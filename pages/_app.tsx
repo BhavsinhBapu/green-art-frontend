@@ -4,16 +4,25 @@ import { Provider } from "react-redux";
 import { store } from "../state/store";
 import Head from "next/head";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import Layout from "layout/index";
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
+      {/* <Navbar /> */}
       <Head>
         <title>CPocket Exchange</title>
-      </Head>
-      <Provider store={store}>
-        <Component {...pageProps} />
-      </Provider>
+        <link
+          rel="stylesheet"
+          href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+          crossOrigin="anonymous"
+        />
+      </Head>{" "}
+      <Layout>
+        <Provider store={store}>
+          <Component {...pageProps} />
+        </Provider>
+      </Layout>
     </>
   );
 }
