@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import backgroundImage from "/user-content-wrapper-bg.jpg";
+
 const Signup: NextPage = () => {
   return (
     <div
