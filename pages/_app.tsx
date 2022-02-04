@@ -8,7 +8,6 @@ import Layout from "layout/index";
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-      {/* <Navbar /> */}
       <Head>
         <title>CPocket Exchange</title>
         <link

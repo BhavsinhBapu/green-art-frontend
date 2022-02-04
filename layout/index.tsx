@@ -1,11 +1,28 @@
 import Navbar from "components/common/navbar";
-const index = ({ children }: any) => {
-  return (
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+const Index = ({ children }: any) => {
+  const [navbarVisible, setNavbarVisible] = useState(false);
+  const router = useRouter();
+  useEffect(() => {
+    const path = router.pathname;
+    if (
+      path === "//authentication/signup" ||
+      path === "/authentication/signin"
+    ) {
+      setNavbarVisible(false);
+    } else {
+      setNavbarVisible(true);
+    }
+  }, [router.pathname]);
+  return navbarVisible ? (
     <div>
       <Navbar />
       <div className="cp-user-main-wrapper">{children}</div>
     </div>
+  ) : (
+    <div>{children}</div>
   );
 };
 
-export default index;
+export default Index;
