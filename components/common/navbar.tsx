@@ -102,8 +102,9 @@ const navbar = () => {
                     </Link>
                   </ul>
                 </li>
+
                 <li className="">
-                  <a href="http://localhost:8000/user/profile">
+                  <a href="">
                     <span className="cp-user-icon">
                       <img
                         src="/sidebar-icons/user.svg"
@@ -119,23 +120,25 @@ const navbar = () => {
                     <span className="cp-user-name">My Profile</span>
                   </a>
                 </li>
-                <li className="">
-                  <a href="http://localhost:8000/user/referral">
-                    <span className="cp-user-icon">
-                      <img
-                        src="/sidebar-icons/referral.svg"
-                        className="img-fluid cp-user-side-bar-icon"
-                        alt=""
-                      />
-                      <img
-                        src="/sidebar-icons/hover/referral.svg"
-                        className="img-fluid cp-user-side-bar-icon-hover"
-                        alt=""
-                      />
-                    </span>
-                    <span className="cp-user-name">My Referral</span>
-                  </a>
-                </li>
+                <Link href="/referral">
+                  <li className="">
+                    <a href="http://localhost:8000/user/referral">
+                      <span className="cp-user-icon">
+                        <img
+                          src="/sidebar-icons/referral.svg"
+                          className="img-fluid cp-user-side-bar-icon"
+                          alt=""
+                        />
+                        <img
+                          src="/sidebar-icons/hover/referral.svg"
+                          className="img-fluid cp-user-side-bar-icon-hover"
+                          alt=""
+                        />
+                      </span>
+                      <span className="cp-user-name">My Referral</span>
+                    </a>
+                  </li>
+                </Link>
                 <li className="">
                   <a className="arrow-icon" href="#" aria-expanded="true">
                     <span className="cp-user-icon">
