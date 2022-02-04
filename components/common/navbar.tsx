@@ -102,24 +102,25 @@ const navbar = () => {
                     </Link>
                   </ul>
                 </li>
-
-                <li className="">
-                  <a href="">
-                    <span className="cp-user-icon">
-                      <img
-                        src="/sidebar-icons/user.svg"
-                        className="img-fluid cp-user-side-bar-icon"
-                        alt=""
-                      />
-                      <img
-                        src="/sidebar-icons/hover/user.svg"
-                        className="img-fluid cp-user-side-bar-icon-hover"
-                        alt=""
-                      />
-                    </span>
-                    <span className="cp-user-name">My Profile</span>
-                  </a>
-                </li>
+                <Link href="/user/profile">
+                  <li className="">
+                    <a href="">
+                      <span className="cp-user-icon">
+                        <img
+                          src="/sidebar-icons/user.svg"
+                          className="img-fluid cp-user-side-bar-icon"
+                          alt=""
+                        />
+                        <img
+                          src="/sidebar-icons/hover/user.svg"
+                          className="img-fluid cp-user-side-bar-icon-hover"
+                          alt=""
+                        />
+                      </span>
+                      <span className="cp-user-name">My Profile</span>
+                    </a>
+                  </li>
+                </Link>
                 <Link href="/referral">
                   <li className="">
                     <a href="http://localhost:8000/user/referral">
