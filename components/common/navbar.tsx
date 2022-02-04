@@ -1,5 +1,5 @@
 import React from "react";
-
+import Link from "next/link";
 const navbar = () => {
   return (
     <div className="cp-user-top-bar">
@@ -9,7 +9,7 @@ const navbar = () => {
             <div className="cp-user-logo">
               <a href="http://localhost:8000/user/exchange/dashboard">
                 <img
-                  src="http://localhost:8000/assets/user/images/logo.svg"
+                  src="/logo.svg"
                   className="img-fluid cp-user-logo-large"
                   alt=""
                 />
@@ -20,15 +20,15 @@ const navbar = () => {
             <nav className="main-menu">
               <ul>
                 <li className="">
-                  <a href="http://localhost:8000/user/exchange/dashboard">
+                  <a href="/user/dashboard">
                     <span className="cp-user-icon">
                       <img
-                        src="http://localhost:8000/assets/user/images/sidebar-icons/dashboard.svg"
+                        src="/sidebar-icons/dashboard.svg"
                         className="img-fluid cp-user-side-bar-icon"
                         alt=""
                       />
                       <img
-                        src="http://localhost:8000/assets/user/images/sidebar-icons/hover/dashboard.svg"
+                        src="/sidebar-icons/hover/dashboard.svg"
                         className="img-fluid cp-user-side-bar-icon-hover"
                         alt=""
                       />
@@ -36,33 +36,33 @@ const navbar = () => {
                     <span className="cp-user-name">Trade</span>
                   </a>
                 </li>
-                <li className=" cp-user-active-page  ">
-                  <a href="http://localhost:8000/user/my-wallet">
+                <Link href="/user/my-wallet">
+                  <li className=" cp-user-active-page  arrow-icon">
                     <span className="cp-user-icon">
                       <img
-                        src="http://localhost:8000/assets/user/images/sidebar-icons/Wallet.svg"
+                        src="/sidebar-icons/Wallet.svg"
                         className="img-fluid cp-user-side-bar-icon"
                         alt=""
                       />
                       <img
-                        src="http://localhost:8000/assets/user/images/sidebar-icons/hover/Wallet.svg"
+                        src="/sidebar-icons/Wallet.svg"
                         className="img-fluid cp-user-side-bar-icon-hover"
                         alt=""
                       />
                     </span>
                     <span className="cp-user-name">Wallet</span>
-                  </a>
-                </li>
+                  </li>
+                </Link>
                 <li className="">
                   <a className="arrow-icon" href="#" aria-expanded="true">
                     <span className="cp-user-icon">
                       <img
-                        src="http://localhost:8000/assets/user/images/sidebar-icons/Membership.svg"
+                        src="/sidebar-icons/Membership.svg"
                         className="img-fluid cp-user-side-bar-icon"
                         alt=""
                       />
                       <img
-                        src="http://localhost:8000/assets/user/images/sidebar-icons/hover/Membership-1.svg"
+                        src="/sidebar-icons/hover/Membership-1.svg"
                         className="img-fluid cp-user-side-bar-icon-hover"
                         alt=""
                       />
@@ -70,48 +70,48 @@ const navbar = () => {
                     <span className="cp-user-name">Reports</span>
                   </a>
                   <ul className="">
-                    <li className="">
-                      <a href="http://localhost:8000/user/wallet-history?type=deposit">
-                        Deposit History
-                      </a>
-                    </li>
-                    <li className="">
-                      <a href="http://localhost:8000/user/wallet-history?type=withdrawal">
-                        Withdrawal History
-                      </a>
-                    </li>
-                    <li className="">
-                      <a href="http://localhost:8000/user/coin-convert-history">
-                        Swap History
-                      </a>
-                    </li>
-                    <li className="">
-                      <a href="http://localhost:8000/user/exchange/all-buy-orders-history">
-                        Buy Order History
-                      </a>
-                    </li>
-                    <li className="">
-                      <a href="http://localhost:8000/user/exchange/all-sell-orders-history">
-                        Sell Order History
-                      </a>
-                    </li>
-                    <li className="">
-                      <a href="http://localhost:8000/user/exchange/all-transaction-history">
-                        Transaction History
-                      </a>
-                    </li>
+                    <Link href="/user/deposit-history?type=deposit">
+                      <li className="">
+                        <a>Deposit History</a>
+                      </li>
+                    </Link>
+                    <Link href="/user/deposit-history?type=withdraw">
+                      <li className="">
+                        <a>Withdrawal History</a>
+                      </li>
+                    </Link>
+                    <Link href="/user/swap-history">
+                      <li className="">
+                        <a>Swap History</a>
+                      </li>
+                    </Link>
+                    <Link href="/user/buy-order-history">
+                      <li className="">
+                        <a href="">Buy Order History</a>
+                      </li>
+                    </Link>
+                    <Link href="/user/sell-order-history">
+                      <li className="">
+                        <a href="">Sell Order History</a>
+                      </li>
+                    </Link>
+                    <Link href="/user/transaction-history">
+                      <li className="">
+                        <a href="">Transaction History</a>
+                      </li>
+                    </Link>
                   </ul>
                 </li>
                 <li className="">
                   <a href="http://localhost:8000/user/profile">
                     <span className="cp-user-icon">
                       <img
-                        src="http://localhost:8000/assets/user/images/sidebar-icons/user.svg"
+                        src="/sidebar-icons/user.svg"
                         className="img-fluid cp-user-side-bar-icon"
                         alt=""
                       />
                       <img
-                        src="http://localhost:8000/assets/user/images/sidebar-icons/hover/user.svg"
+                        src="/sidebar-icons/hover/user.svg"
                         className="img-fluid cp-user-side-bar-icon-hover"
                         alt=""
                       />
@@ -123,12 +123,12 @@ const navbar = () => {
                   <a href="http://localhost:8000/user/referral">
                     <span className="cp-user-icon">
                       <img
-                        src="http://localhost:8000/assets/user/images/sidebar-icons/referral.svg"
+                        src="/sidebar-icons/referral.svg"
                         className="img-fluid cp-user-side-bar-icon"
                         alt=""
                       />
                       <img
-                        src="http://localhost:8000/assets/user/images/sidebar-icons/hover/referral.svg"
+                        src="/sidebar-icons/hover/referral.svg"
                         className="img-fluid cp-user-side-bar-icon-hover"
                         alt=""
                       />
@@ -140,12 +140,12 @@ const navbar = () => {
                   <a className="arrow-icon" href="#" aria-expanded="true">
                     <span className="cp-user-icon">
                       <img
-                        src="http://localhost:8000/assets/user/images/sidebar-icons/settings.svg"
+                        src="/sidebar-icons/settings.svg"
                         className="img-fluid cp-user-side-bar-icon"
                         alt=""
                       />
                       <img
-                        src="http://localhost:8000/assets/user/images/sidebar-icons/hover/settings.svg"
+                        src="/sidebar-icons/hover/settings.svg"
                         className="img-fluid cp-user-side-bar-icon-hover"
                         alt=""
                       />
@@ -180,7 +180,7 @@ const navbar = () => {
                     >
                       <span className="notify-value hm-notify-number"> 0 </span>
                       <img
-                        src="http://localhost:8000/assets/img/icons/notification.png"
+                        src="/img/icons/notification.png"
                         className="img-fluid"
                         alt=""
                       />
@@ -234,7 +234,7 @@ const navbar = () => {
                       <span className="cp-user-avater">
                         <span className="cp-user-img">
                           <img
-                            src="http://localhost:8000/assets/img/avater.png"
+                            src="https://www.w3schools.com/howto/img_avatar2.png"
                             className="img-fluid"
                             alt=""
                           />
@@ -244,11 +244,7 @@ const navbar = () => {
                     </button>
                     <div className="dropdown-menu dropdown-menu-right">
                       <span className="big-user-thumb">
-                        <img
-                          src="http://localhost:8000/assets/img/avater.png"
-                          className="img-fluid"
-                          alt=""
-                        />
+                        <img src="/avater.svg" className="img-fluid" alt="" />
                       </span>
                       <div className="user-name">
                         <p>Mr User</p>
@@ -278,11 +274,7 @@ const navbar = () => {
                 </li>
               </ul>
               <div className="cp-user-sidebar-toggler-s2">
-                <img
-                  src="http://localhost:8000/assets/user/images/menu.svg"
-                  className="img-fluid"
-                  alt=""
-                />
+                <img src="/menu.svg" className="img-fluid" alt="" />
               </div>
             </div>
           </div>

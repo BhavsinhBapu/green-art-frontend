@@ -4392,7 +4392,7 @@ select:-webkit-autofill:focus {
 .section-top-title {
   margin-bottom: 15px;
   font-size: 32px;
-  font-weight: 700;
+  font-weight: 500;
   text-transform: capitalize;
   color: #23262f;
 }
