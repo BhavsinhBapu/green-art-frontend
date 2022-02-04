@@ -121,9 +121,9 @@ const navbar = () => {
                     </a>
                   </li>
                 </Link>
-                <Link href="/referral">
+                <Link href="/user/referral">
                   <li className="">
-                    <a href="http://localhost:8000/user/referral">
+                    <a href="">
                       <span className="cp-user-icon">
                         <img
                           src="/sidebar-icons/referral.svg"

@@ -22,7 +22,7 @@ const Security: NextPage = () => {
                   <div className="security-left">
                     <div className="security-info">
                       <img
-                        src="http://localhost:8000/assets/user/images/fingerprint-scan.svg"
+                        src="/fingerprint-scan.svg"
                         alt="fingerprint"
                         className="security-icon"
                       />
@@ -48,7 +48,7 @@ const Security: NextPage = () => {
                   <div className="security-left">
                     <div className="security-info">
                       <img
-                        src="http://localhost:8000/assets/user/images/smartphone.svg"
+                        src="/smartphone.svg"
                         alt="smartphone"
                         className="security-icon"
                       />
@@ -77,7 +77,7 @@ const Security: NextPage = () => {
                   <div className="security-left">
                     <div className="security-info">
                       <img
-                        src="http://localhost:8000/assets/user/images/email.svg"
+                        src="/email.svg"
                         alt="email"
                         className="security-icon"
                       />
@@ -106,11 +106,7 @@ const Security: NextPage = () => {
                 <div className="single-security">
                   <div className="security-left">
                     <div className="security-info">
-                      <img
-                        src="http://localhost:8000/assets/user/images/key.svg"
-                        alt="key"
-                        className="security-icon"
-                      />
+                      <img src="/key.svg" alt="key" className="security-icon" />
                       <div className="security-content">
                         <h4>Login Password</h4>
                         <p>Login password is used to log in to your account.</p>
@@ -130,7 +126,7 @@ const Security: NextPage = () => {
                   <div className="security-left">
                     <div className="security-info">
                       <img
-                        src="http://localhost:8000/assets/user/images/fingerprint-scan.svg"
+                        src="/fingerprint-scan.svg"
                         alt="fingerprint"
                         className="security-icon"
                       />
