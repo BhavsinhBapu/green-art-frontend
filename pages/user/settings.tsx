@@ -8,7 +8,7 @@ const Settings: NextPage = () => {
         <div className="container-fluid">
           <div className="section-top-wrap mb-25">
             <div className="profle-are-top">
-              <h2 className="section-top-title mb-0">Security Setting</h2>
+              <h2 className="section-top-title mb-0">Security Settings</h2>
             </div>
           </div>
         </div>

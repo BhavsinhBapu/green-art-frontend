@@ -7,7 +7,7 @@ const navbar = () => {
         <div className="row align-items-center justify-content-between">
           <div className="col-xl-2 col-lg-2 col-4">
             <div className="cp-user-logo">
-              <a href="http://localhost:8000/user/exchange/dashboard">
+              <a href="/dashboard">
                 <img
                   src="/logo.svg"
                   className="img-fluid cp-user-logo-large"
@@ -157,14 +157,16 @@ const navbar = () => {
                     <span className="cp-user-name">Settings</span>
                   </a>
                   <ul className="">
-                    <li className="">
-                      <a href="http://localhost:8000/user/setting">
-                        My Settings
-                      </a>
-                    </li>
-                    <li className="">
-                      <a href="http://localhost:8000/user/faq">FAQ</a>
-                    </li>
+                    <Link href="/user/settings">
+                      <li className="">
+                        <a href="">My Settings</a>
+                      </li>
+                    </Link>
+                    <Link href="/user/faq">
+                      <li className="">
+                        <a href="">FAQ</a>
+                      </li>
+                    </Link>
                   </ul>
                 </li>
               </ul>
@@ -254,17 +256,19 @@ const navbar = () => {
                         <p>Mr User</p>
                       </div>
                       <button className="dropdown-item" type="button">
-                        <a href="http://localhost:8000/user/profile">
+                        <a href="">
                           <i className="fa fa-user-circle-o"></i> Profile
                         </a>
                       </button>
+                      <Link href="/user/settings">
+                        <button className="dropdown-item" type="button">
+                          <a href="">
+                            <i className="fa fa-cog"></i> My Settings
+                          </a>
+                        </button>
+                      </Link>
                       <button className="dropdown-item" type="button">
-                        <a href="http://localhost:8000/user/setting">
-                          <i className="fa fa-cog"></i> My Settings
-                        </a>
-                      </button>
-                      <button className="dropdown-item" type="button">
-                        <a href="http://localhost:8000/user/my-wallet">
+                        <a href="-wallet">
                           <i className="fa fa-credit-card"></i> My Wallet
                         </a>
                       </button>
