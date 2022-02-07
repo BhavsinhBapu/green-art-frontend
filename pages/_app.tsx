@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
           crossOrigin="anonymous"
         />
-      </Head>{" "}
+      </Head>
       <Layout>
         <Provider store={store}>
           <Component {...pageProps} />

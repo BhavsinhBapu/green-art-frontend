@@ -65,7 +65,7 @@ const Index: NextPage = () => {
         <div className="section-wrapper">
           <div className="row align-items-center">
             <div className="col-lg-6">
-              <div id="accordion" className="accordion">
+              <div className="accordion" id="accordionExample">
                 <div className="cp-user-referral-content">
                   <div className="card">
                     <div className="card-header" id="headingOne">

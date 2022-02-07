@@ -1,8 +1,8 @@
 import React from "react";
 import Link from "next/link";
-const navbar = () => {
+const dashboardNavbar = () => {
   return (
-    <div className="cp-user-top-bar">
+    <div className="cp-user-top-bar-dashborad">
       <div className="container-fluid">
         <div className="row align-items-center justify-content-between">
           <div className="col-xl-2 col-lg-2 col-4">
@@ -292,4 +292,4 @@ const navbar = () => {
   );
 };
 
-export default navbar;
+export default dashboardNavbar;

@@ -21,15 +21,11 @@ const Edit: NextPage = () => {
                   <div className="col-lg-4">
                     <div className="user-profile-left">
                       <div className="user-thumbnail">
-                        <img
-                          src="http://localhost:8000/assets/img/avater.png"
-                          className="img-fluid"
-                          alt=""
-                        />
+                        <img src="/avater.svg" className="img-fluid" alt="" />
                         <form
                           encType="multipart/form-data"
                           method="post"
-                          action="http://localhost:8000/upload-profile-image"
+                          action="/upload-profile-image"
                         >
                           <input
                             type="hidden"
@@ -59,10 +55,7 @@ const Edit: NextPage = () => {
                   </div>
                   <div className="col-lg-8">
                     <div className="user-profile-form">
-                      <form
-                        action="http://localhost:8000/user-profile-update"
-                        method="post"
-                      >
+                      <form action="/user-profile-update" method="post">
                         <input
                           type="hidden"
                           name="_token"

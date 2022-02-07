@@ -8,7 +8,8 @@ const Index = ({ children }: any) => {
     const path = router.pathname;
     if (
       path === "//authentication/signup" ||
-      path === "/authentication/signin"
+      path === "/authentication/signin" ||
+      path === "/exchange/dashboard"
     ) {
       setNavbarVisible(false);
     } else {
