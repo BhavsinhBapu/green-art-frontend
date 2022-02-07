@@ -19,23 +19,25 @@ const dashboardNavbar = () => {
           <div className="col-xl-8 col-lg-8 d-none d-lg-block">
             <nav className="main-menu">
               <ul>
-                <li className="">
-                  <a href="/exchange/dashboard">
-                    <span className="cp-user-icon">
-                      <img
-                        src="/sidebar-icons/dashboard.svg"
-                        className="img-fluid cp-user-side-bar-icon"
-                        alt=""
-                      />
-                      <img
-                        src="/sidebar-icons/hover/dashboard.svg"
-                        className="img-fluid cp-user-side-bar-icon-hover"
-                        alt=""
-                      />
-                    </span>
-                    <span className="cp-user-name">Trade</span>
-                  </a>
-                </li>
+                <Link href="/user/my-wallet">
+                  <li className="">
+                    <a href="/exchange/dashboard">
+                      <span className="cp-user-icon">
+                        <img
+                          src="/sidebar-icons/dashboard.svg"
+                          className="img-fluid cp-user-side-bar-icon"
+                          alt=""
+                        />
+                        <img
+                          src="/sidebar-icons/hover/dashboard.svg"
+                          className="img-fluid cp-user-side-bar-icon-hover"
+                          alt=""
+                        />
+                      </span>
+                      <span className="cp-user-name">Trade</span>
+                    </a>
+                  </li>
+                </Link>
                 <Link href="/user/my-wallet">
                   <li className=" cp-user-active-page  arrow-icon">
                     <span className="cp-user-icon">
