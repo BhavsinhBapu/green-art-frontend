@@ -1,6 +1,21 @@
 import type { NextPage } from "next";
 import DashboardNavbar from "components/common/dashboardNavbar";
+import OpenOrders from "components/exchange/openOrders";
+import OrderHistory from "components/exchange/orderHistory";
+import TradeOrder from "components/exchange/tradeOrder";
+import { useState } from "react";
+
 const Dashboard: NextPage = () => {
+  type activeTabType = {
+    openOrders: boolean;
+    orderHistory: boolean;
+    tradeOrder: boolean;
+  };
+  const [activeTab, setActiveTab] = useState<activeTabType>({
+    openOrders: true,
+    orderHistory: false,
+    tradeOrder: false,
+  });
   return (
     <div className="background-col">
       <DashboardNavbar />
@@ -1701,7 +1716,17 @@ const Dashboard: NextPage = () => {
                           role="tablist"
                           className="nav nav-tabs"
                         >
-                          <li role="presentation" className="nav-item">
+                          <li
+                            role="presentation"
+                            className="nav-item"
+                            onClick={() => {
+                              setActiveTab({
+                                openOrders: true,
+                                orderHistory: false,
+                                tradeOrder: false,
+                              });
+                            }}
+                          >
                             <a
                               id="Open-orders-tab"
                               data-toggle="tab"
@@ -1709,33 +1734,60 @@ const Dashboard: NextPage = () => {
                               role="tab"
                               aria-controls="Open-orders"
                               aria-selected="true"
-                              className="nav-link active"
+                              className={
+                                "nav-link " + (activeTab.openOrders && "active")
+                              }
                             >
                               Open orders
                             </a>
                           </li>{" "}
-                          <li role="presentation" className="nav-item">
+                          <li
+                            role="presentation"
+                            className="nav-item"
+                            onClick={() => {
+                              setActiveTab({
+                                openOrders: false,
+                                orderHistory: true,
+                                tradeOrder: false,
+                              });
+                            }}
+                          >
                             <a
-                              id="Order-history-tab"
+                              id="Open-orders-tab"
                               data-toggle="tab"
-                              href="#Order-history"
+                              href="#Open-orders"
                               role="tab"
-                              aria-controls="Order-history"
-                              aria-selected="false"
-                              className="nav-link"
+                              aria-controls="Open-orders"
+                              aria-selected="true"
+                              className={
+                                "nav-link " +
+                                (activeTab.orderHistory && "active")
+                              }
                             >
                               Order history
                             </a>
                           </li>{" "}
-                          <li role="presentation" className="nav-item">
+                          <li
+                            role="presentation"
+                            className="nav-item"
+                            onClick={() => {
+                              setActiveTab({
+                                openOrders: false,
+                                orderHistory: false,
+                                tradeOrder: true,
+                              });
+                            }}
+                          >
                             <a
-                              id="Trade-history-tab"
+                              id="Open-orders-tab"
                               data-toggle="tab"
-                              href="#Trade-history"
+                              href="#Open-orders"
                               role="tab"
-                              aria-controls="Trade-history"
-                              aria-selected="false"
-                              className="nav-link"
+                              aria-controls="Open-orders"
+                              aria-selected="true"
+                              className={
+                                "nav-link " + (activeTab.tradeOrder && "active")
+                              }
                             >
                               Trade history
                             </a>
@@ -1743,107 +1795,10 @@ const Dashboard: NextPage = () => {
                         </ul>
                       </div>
                     </div>{" "}
-                    <div id="ordersTabContent" className="tab-content">
-                      <div
-                        id="Open-orders"
-                        role="tabpanel"
-                        aria-labelledby="Open-orders-tab"
-                        className="tab-pane fade show active"
-                      >
-                        <div className="table-responsive">
-                          <table id="myOrderBookTable" className="table">
-                            <thead>
-                              <tr>
-                                <th>Date</th> <th>Type</th>{" "}
-                                <th>
-                                  Amount(<span>BTC</span>)
-                                </th>{" "}
-                                <th>
-                                  Price(<span>USDT</span>)
-                                </th>{" "}
-                                <th>
-                                  Total(<span>USDT</span>)
-                                </th>{" "}
-                                <th>
-                                  Fees(<span>USDT</span>)
-                                </th>{" "}
-                                <th>Action</th>
-                              </tr>
-                            </thead>{" "}
-                            <tbody />
-                          </table>
-                        </div>
-                      </div>{" "}
-                      <div
-                        id="Order-history"
-                        role="tabpanel"
-                        aria-labelledby="Order-history-tab"
-                        className="tab-pane fade"
-                      >
-                        <div className="row">
-                          <div className="col-md-6">
-                            <div className="table-responsive">
-                              <table id="myBuyOrderBookTable" className="table">
-                                <thead>
-                                  <tr>
-                                    <th>Date</th>{" "}
-                                    <th>
-                                      Amount(<span>BTC</span>)
-                                    </th>{" "}
-                                    <th>
-                                      Price(<span>USDT</span>)
-                                    </th>{" "}
-                                    <th>Status</th>
-                                  </tr>
-                                </thead>{" "}
-                                <tbody />
-                              </table>
-                            </div>
-                          </div>{" "}
-                          <div className="col-md-6">
-                            <div className="table-responsive">
-                              <table
-                                id="mySellOrderBookTable"
-                                className="table"
-                              >
-                                <thead>
-                                  <tr>
-                                    <th>Date</th>{" "}
-                                    <th>
-                                      Amount(<span>BTC</span>)
-                                    </th>{" "}
-                                    <th>
-                                      Price(<span>USDT</span>)
-                                    </th>{" "}
-                                    <th>Status</th>
-                                  </tr>
-                                </thead>{" "}
-                                <tbody />
-                              </table>
-                            </div>
-                          </div>
-                        </div>
-                      </div>{" "}
-                      <div
-                        id="Trade-history"
-                        role="tabpanel"
-                        aria-labelledby="Trade-history-tab"
-                        className="tab-pane fade"
-                      >
-                        <div className="table-responsive">
-                          <table id="myTradeTable" className="table">
-                            <thead>
-                              <tr>
-                                <th>
-                                  Price(<span>USDT</span>)
-                                </th>{" "}
-                                <th>Amount</th> <th>Time</th>
-                              </tr>
-                            </thead>{" "}
-                            <tbody />
-                          </table>
-                        </div>
-                      </div>
+                    <div className="tab-content" id="ordersTabContent">
+                      <OpenOrders openOrders={activeTab.openOrders} />
+                      <OrderHistory orderHistory={activeTab.orderHistory} />
+                      <TradeOrder tradeOrder={activeTab.tradeOrder} />
                     </div>
                   </div>
                 </div>{" "}

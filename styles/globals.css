@@ -4312,7 +4312,7 @@ select:-webkit-autofill:focus {
   font-size: 16px;
   font-weight: 400;
   text-transform: capitalize;
-  color: rgba(255, 255, 255, 0.5);
+  color: #fff
 }
 .orders-area .nav-tabs .nav-item .nav-link.active {
   color: #f9b507;
