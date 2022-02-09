@@ -1,6 +1,15 @@
 import type { NextPage } from "next";
+import { useState } from "react";
 
 const Index: NextPage = () => {
+  const [active, setActive] = useState<number>(1);
+  const handleActive = (index: number) => {
+    if (index === active) {
+      setActive(0);
+    } else {
+      setActive(index);
+    }
+  };
   return (
     <div className="container-fluid">
       <div
@@ -66,10 +75,14 @@ const Index: NextPage = () => {
           <div className="row align-items-center">
             <div className="col-lg-6">
               <div className="accordion" id="accordionExample">
-                <div className="cp-user-referral-content">
+                <div className="cp-user-referral-content ">
                   <div className="card">
-                    <div className="card-header" id="headingOne">
-                      <h5 className="mb-0">
+                    <div
+                      className="card-header"
+                      id="headingOne"
+                      onClick={() => handleActive(1)}
+                    >
+                      <h5 className="mb-0 header-align">
                         <button
                           className="btn btn-link collapsed"
                           data-toggle="collapse"
@@ -79,27 +92,39 @@ const Index: NextPage = () => {
                         >
                           What is Codexpro exchange ?
                         </button>
+                        <i
+                          className={`fas ${
+                            active === 1 ? "fa-caret-up" : "fa-caret-down"
+                          } mright-5`}
+                        ></i>
                       </h5>
                     </div>
-                    <div
-                      id="collapseOne1"
-                      className="collapse  show "
-                      aria-labelledby="headingOne"
-                      data-parent="#accordion"
-                    >
-                      <div className="card-body">
-                        Aenean condimentum nibh vel enim sodales scelerisque.
-                        Mauris quisn pellentesque odio, in vulputate turpis.
-                        Integer condimentum eni lorem pellentesque euismod. Nam
-                        rutrum accumsan nisl vulputate.
+
+                    {active === 1 && (
+                      <div
+                        id="collapseOne1"
+                        className="collapse  show "
+                        aria-labelledby="headingOne"
+                        data-parent="#accordion"
+                      >
+                        <div className="card-body">
+                          Aenean condimentum nibh vel enim sodales scelerisque.
+                          Mauris quisn pellentesque odio, in vulputate turpis.
+                          Integer condimentum eni lorem pellentesque euismod.
+                          Nam rutrum accumsan nisl vulputate.
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </div>
                 </div>
                 <div className="cp-user-referral-content">
                   <div className="card">
-                    <div className="card-header" id="headingOne">
-                      <h5 className="mb-0">
+                    <div
+                      className="card-header"
+                      id="headingOne"
+                      onClick={() => handleActive(2)}
+                    >
+                      <h5 className="mb-0 header-align">
                         <button
                           className="btn btn-link collapsed"
                           data-toggle="collapse"
@@ -109,27 +134,38 @@ const Index: NextPage = () => {
                         >
                           How it works ?
                         </button>
+                        <i
+                          className={`fas ${
+                            active === 2 ? "fa-caret-up" : "fa-caret-down"
+                          } mright-5`}
+                        ></i>
                       </h5>
                     </div>
-                    <div
-                      id="collapseOne2"
-                      className="collapse "
-                      aria-labelledby="headingOne"
-                      data-parent="#accordion"
-                    >
-                      <div className="card-body">
-                        Aenean condimentum nibh vel enim sodales scelerisque.
-                        Mauris quisn pellentesque odio, in vulputate turpis.
-                        Integer condimentum eni lorem pellentesque euismod. Nam
-                        rutrum accumsan nisl vulputate.
+                    {active === 2 && (
+                      <div
+                        id="collapseOne2"
+                        className="collapse show"
+                        aria-labelledby="headingOne"
+                        data-parent="#accordion"
+                      >
+                        <div className="card-body">
+                          Aenean condimentum nibh vel enim sodales scelerisque.
+                          Mauris quisn pellentesque odio, in vulputate turpis.
+                          Integer condimentum eni lorem pellentesque euismod.
+                          Nam rutrum accumsan nisl vulputate.
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </div>
                 </div>
                 <div className="cp-user-referral-content">
                   <div className="card">
-                    <div className="card-header" id="headingOne">
-                      <h5 className="mb-0">
+                    <div
+                      className="card-header"
+                      id="headingOne"
+                      onClick={() => handleActive(3)}
+                    >
+                      <h5 className="mb-0 header-align">
                         <button
                           className="btn btn-link collapsed"
                           data-toggle="collapse"
@@ -139,27 +175,38 @@ const Index: NextPage = () => {
                         >
                           What is the workflow ?
                         </button>
+                        <i
+                          className={`fas ${
+                            active === 3 ? "fa-caret-up" : "fa-caret-down"
+                          } mright-5`}
+                        ></i>
                       </h5>
                     </div>
-                    <div
-                      id="collapseOne3"
-                      className="collapse "
-                      aria-labelledby="headingOne"
-                      data-parent="#accordion"
-                    >
-                      <div className="card-body">
-                        Aenean condimentum nibh vel enim sodales scelerisque.
-                        Mauris quisn pellentesque odio, in vulputate turpis.
-                        Integer condimentum eni lorem pellentesque euismod. Nam
-                        rutrum accumsan nisl vulputate.
+                    {active === 3 && (
+                      <div
+                        id="collapseOne3"
+                        className="collapse show"
+                        aria-labelledby="headingOne"
+                        data-parent="#accordion"
+                      >
+                        <div className="card-body">
+                          Aenean condimentum nibh vel enim sodales scelerisque.
+                          Mauris quisn pellentesque odio, in vulputate turpis.
+                          Integer condimentum eni lorem pellentesque euismod.
+                          Nam rutrum accumsan nisl vulputate.
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </div>
                 </div>
                 <div className="cp-user-referral-content">
                   <div className="card">
-                    <div className="card-header" id="headingOne">
-                      <h5 className="mb-0">
+                    <div
+                      className="card-header"
+                      id="headingOne"
+                      onClick={() => handleActive(4)}
+                    >
+                      <h5 className="mb-0 header-align">
                         <button
                           className="btn btn-link collapsed"
                           data-toggle="collapse"
@@ -169,27 +216,38 @@ const Index: NextPage = () => {
                         >
                           How i place a order ?
                         </button>
+                        <i
+                          className={`fas ${
+                            active === 4 ? "fa-caret-up" : "fa-caret-down"
+                          } mright-5`}
+                        ></i>
                       </h5>
                     </div>
-                    <div
-                      id="collapseOne4"
-                      className="collapse "
-                      aria-labelledby="headingOne"
-                      data-parent="#accordion"
-                    >
-                      <div className="card-body">
-                        Aenean condimentum nibh vel enim sodales scelerisque.
-                        Mauris quisn pellentesque odio, in vulputate turpis.
-                        Integer condimentum eni lorem pellentesque euismod. Nam
-                        rutrum accumsan nisl vulputate.
+                    {active === 4 && (
+                      <div
+                        id="collapseOne4"
+                        className="collapse show"
+                        aria-labelledby="headingOne"
+                        data-parent="#accordion"
+                      >
+                        <div className="card-body">
+                          Aenean condimentum nibh vel enim sodales scelerisque.
+                          Mauris quisn pellentesque odio, in vulputate turpis.
+                          Integer condimentum eni lorem pellentesque euismod.
+                          Nam rutrum accumsan nisl vulputate.
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </div>
                 </div>
                 <div className="cp-user-referral-content">
                   <div className="card">
-                    <div className="card-header" id="headingOne">
-                      <h5 className="mb-0">
+                    <div
+                      className="card-header"
+                      id="headingOne"
+                      onClick={() => handleActive(5)}
+                    >
+                      <h5 className="mb-0 header-align">
                         <button
                           className="btn btn-link collapsed"
                           data-toggle="collapse"
@@ -199,51 +257,62 @@ const Index: NextPage = () => {
                         >
                           How i make a withdrawal ?
                         </button>
+                        <i
+                          className={`fas ${
+                            active === 5 ? "fa-caret-up" : "fa-caret-down"
+                          } mright-5`}
+                        ></i>
                       </h5>
                     </div>
-                    <div
-                      id="collapseOne5"
-                      className="collapse "
-                      aria-labelledby="headingOne"
-                      data-parent="#accordion"
-                    >
-                      <div className="card-body">
-                        Aenean condimentum nibh vel enim sodales scelerisque.
-                        Mauris quisn pellentesque odio, in vulputate turpis.
-                        Integer condimentum eni lorem pellentesque euismod. Nam
-                        rutrum accumsan nisl vulputate.
+                    {active === 5 && (
+                      <div
+                        id="collapseOne5"
+                        className="collapse show"
+                        aria-labelledby="headingOne"
+                        data-parent="#accordion"
+                      >
+                        <div className="card-body">
+                          Aenean condimentum nibh vel enim sodales scelerisque.
+                          Mauris quisn pellentesque odio, in vulputate turpis.
+                          Integer condimentum eni lorem pellentesque euismod.
+                          Nam rutrum accumsan nisl vulputate.
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </div>
                 </div>
                 <div className="cp-user-referral-content">
                   <div className="card">
-                    <div className="card-header" id="headingOne">
-                      <h5 className="mb-0">
-                        <button
-                          className="btn btn-link collapsed"
-                          data-toggle="collapse"
-                          data-target="#collapseOne6"
-                          aria-expanded="true"
-                          aria-controls="collapseOne"
-                        >
+                    <div
+                      className="card-header"
+                      onClick={() => handleActive(6)}
+                    >
+                      <h5 className="mb-0 header-align">
+                        <button className="btn btn-link ">
                           What about the deposit process ?
                         </button>
+                        <i
+                          className={`fas ${
+                            active === 6 ? "fa-caret-up" : "fa-caret-down"
+                          } mright-5`}
+                        ></i>
                       </h5>
                     </div>
-                    <div
-                      id="collapseOne6"
-                      className="collapse "
-                      aria-labelledby="headingOne"
-                      data-parent="#accordion"
-                    >
-                      <div className="card-body">
-                        Aenean condimentum nibh vel enim sodales scelerisque.
-                        Mauris quisn pellentesque odio, in vulputate turpis.
-                        Integer condimentum eni lorem pellentesque euismod. Nam
-                        rutrum accumsan nisl vulputate.
+                    {active === 6 && (
+                      <div
+                        id="collapseOne6"
+                        className="collapse show"
+                        aria-labelledby="headingOne"
+                        data-parent="#accordion"
+                      >
+                        <div className="card-body">
+                          Aenean condimentum nibh vel enim sodales scelerisque.
+                          Mauris quisn pellentesque odio, in vulputate turpis.
+                          Integer condimentum eni lorem pellentesque euismod.
+                          Nam rutrum accumsan nisl vulputate.
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </div>
                 </div>
               </div>

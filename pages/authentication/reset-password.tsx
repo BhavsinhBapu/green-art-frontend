@@ -1,6 +1,26 @@
 import type { NextPage } from "next";
+import React, { useState } from "react";
 
 const ResetPassword: NextPage = () => {
+  type resetType = {
+    email: string;
+    password: string;
+    password_confirmation: string;
+  };
+
+  const [resetPassword, serResetPassword] = useState<resetType>({
+    email: "",
+    password: "",
+    password_confirmation: "",
+  });
+
+  const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    serResetPassword({
+      ...resetPassword,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   return (
     <div
       className="user-content-wrapper"
@@ -27,16 +47,18 @@ const ResetPassword: NextPage = () => {
                     placeholder=""
                     className="form-control"
                     name="token"
-                    value=""
+                    value={resetPassword.email}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="form-group">
                   <input
                     type="email"
                     name="email"
-                    value=""
+                    value={resetPassword.password}
                     className="form-control"
                     placeholder=""
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="form-group">
@@ -45,6 +67,8 @@ const ResetPassword: NextPage = () => {
                     name="password"
                     className="form-control"
                     placeholder=""
+                    value={resetPassword.password}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="form-group">
@@ -53,6 +77,8 @@ const ResetPassword: NextPage = () => {
                     name="password_confirmation"
                     className="form-control"
                     placeholder=""
+                    value={resetPassword.password_confirmation}
+                    onChange={handleChange}
                   />
                 </div>
                 <button type="submit" className="btn nimmu-user-sibmit-button">

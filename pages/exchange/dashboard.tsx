@@ -4,18 +4,23 @@ import OpenOrders from "components/exchange/openOrders";
 import OrderHistory from "components/exchange/orderHistory";
 import TradeOrder from "components/exchange/tradeOrder";
 import { useState } from "react";
+type activeTabType = {
+  openOrders: boolean;
+  orderHistory: boolean;
+  tradeOrder: boolean;
+};
+type tradingTabType = number;
 
 const Dashboard: NextPage = () => {
-  type activeTabType = {
-    openOrders: boolean;
-    orderHistory: boolean;
-    tradeOrder: boolean;
-  };
   const [activeTab, setActiveTab] = useState<activeTabType>({
     openOrders: true,
     orderHistory: false,
     tradeOrder: false,
   });
+  const [tradingTab, setTradingTab] = useState<tradingTabType>(1);
+  const handletradingTab = (tab: number) => {
+    setTradingTab(tab);
+  };
   return (
     <div className="background-col">
       <DashboardNavbar />
@@ -36,15 +41,15 @@ const Dashboard: NextPage = () => {
             <nav>
               <ul id="metismenu" className="metismenu">
                 <li className=" cp-user-active-page ">
-                  <a href="http://localhost:8000/user/exchange/dashboard">
+                  <a>
                     <span className="cp-user-icon">
                       <img
-                        src="http://localhost:8000/assets/user/images/sidebar-icons/dashboard.svg"
+                        src="/assets/user/images/sidebar-icons/dashboard.svg"
                         alt=""
                         className="img-fluid cp-user-side-bar-icon"
                       />{" "}
                       <img
-                        src="http://localhost:8000/assets/user/images/sidebar-icons/hover/dashboard.svg"
+                        src="/assets/user/images/sidebar-icons/hover/dashboard.svg"
                         alt=""
                         className="img-fluid cp-user-side-bar-icon-hover"
                       />
@@ -53,15 +58,15 @@ const Dashboard: NextPage = () => {
                   </a>
                 </li>{" "}
                 <li>
-                  <a href="#" aria-expanded="true" className="arrow-icon">
+                  <a aria-expanded="true" className="arrow-icon">
                     <span className="cp-user-icon">
                       <img
-                        src="http://localhost:8000/assets/user/images/sidebar-icons/Wallet.svg"
+                        src="/assets/user/images/sidebar-icons/Wallet.svg"
                         alt=""
                         className="img-fluid cp-user-side-bar-icon"
                       />{" "}
                       <img
-                        src="http://localhost:8000/assets/user/images/sidebar-icons/hover/Wallet.svg"
+                        src="/assets/user/images/sidebar-icons/hover/Wallet.svg"
                         alt=""
                         className="img-fluid cp-user-side-bar-icon-hover"
                       />
@@ -70,27 +75,23 @@ const Dashboard: NextPage = () => {
                   </a>{" "}
                   <ul className="mm-collapse">
                     <li>
-                      <a href="http://localhost:8000/user/my-wallet">
-                        My Wallet
-                      </a>
+                      <a>My Wallet</a>
                     </li>{" "}
                     <li>
-                      <a href="http://localhost:8000/user/coin-swap">
-                        Swap Coin
-                      </a>
+                      <a>Swap Coin</a>
                     </li>
                   </ul>
                 </li>{" "}
                 <li>
-                  <a href="#" aria-expanded="true" className="arrow-icon">
+                  <a aria-expanded="true" className="arrow-icon">
                     <span className="cp-user-icon">
                       <img
-                        src="http://localhost:8000/assets/user/images/sidebar-icons/Membership.svg"
+                        src="/assets/user/images/sidebar-icons/Membership.svg"
                         alt=""
                         className="img-fluid cp-user-side-bar-icon"
                       />{" "}
                       <img
-                        src="http://localhost:8000/assets/user/images/sidebar-icons/hover/Membership-1.svg"
+                        src="/assets/user/images/sidebar-icons/hover/Membership-1.svg"
                         alt=""
                         className="img-fluid cp-user-side-bar-icon-hover"
                       />
@@ -99,47 +100,35 @@ const Dashboard: NextPage = () => {
                   </a>{" "}
                   <ul className="mm-collapse">
                     <li>
-                      <a href="http://localhost:8000/user/wallet-history?type=deposit">
-                        Deposit History
-                      </a>
+                      <a>Deposit History</a>
                     </li>{" "}
                     <li>
-                      <a href="http://localhost:8000/user/wallet-history?type=withdrawal">
-                        Withdrawal History
-                      </a>
+                      <a>Withdrawal History</a>
                     </li>{" "}
                     <li>
-                      <a href="http://localhost:8000/user/coin-convert-history">
-                        Swap History
-                      </a>
+                      <a>Swap History</a>
                     </li>{" "}
                     <li>
-                      <a href="http://localhost:8000/user/exchange/all-buy-orders-history">
-                        Buy Order History
-                      </a>
+                      <a>Buy Order History</a>
                     </li>{" "}
                     <li>
-                      <a href="http://localhost:8000/user/exchange/all-sell-orders-history">
-                        Sell Order History
-                      </a>
+                      <a>Sell Order History</a>
                     </li>{" "}
                     <li>
-                      <a href="http://localhost:8000/user/exchange/all-transaction-history">
-                        Transaction History
-                      </a>
+                      <a>Transaction History</a>
                     </li>
                   </ul>
                 </li>{" "}
                 <li>
-                  <a href="http://localhost:8000/user/profile">
+                  <a>
                     <span className="cp-user-icon">
                       <img
-                        src="http://localhost:8000/assets/user/images/sidebar-icons/user.svg"
+                        src="/assets/user/images/sidebar-icons/user.svg"
                         alt=""
                         className="img-fluid cp-user-side-bar-icon"
                       />{" "}
                       <img
-                        src="http://localhost:8000/assets/user/images/sidebar-icons/hover/user.svg"
+                        src="/assets/user/images/sidebar-icons/hover/user.svg"
                         alt=""
                         className="img-fluid cp-user-side-bar-icon-hover"
                       />
@@ -148,15 +137,15 @@ const Dashboard: NextPage = () => {
                   </a>
                 </li>{" "}
                 <li>
-                  <a href="http://localhost:8000/user/referral">
+                  <a>
                     <span className="cp-user-icon">
                       <img
-                        src="http://localhost:8000/assets/user/images/sidebar-icons/referral.svg"
+                        src="/assets/user/images/sidebar-icons/referral.svg"
                         alt=""
                         className="img-fluid cp-user-side-bar-icon"
                       />{" "}
                       <img
-                        src="http://localhost:8000/assets/user/images/sidebar-icons/hover/referral.svg"
+                        src="/assets/user/images/sidebar-icons/hover/referral.svg"
                         alt=""
                         className="img-fluid cp-user-side-bar-icon-hover"
                       />
@@ -165,15 +154,15 @@ const Dashboard: NextPage = () => {
                   </a>
                 </li>{" "}
                 <li>
-                  <a href="#" aria-expanded="true" className="arrow-icon">
+                  <a aria-expanded="true" className="arrow-icon">
                     <span className="cp-user-icon">
                       <img
-                        src="http://localhost:8000/assets/user/images/sidebar-icons/settings.svg"
+                        src="/assets/user/images/sidebar-icons/settings.svg"
                         alt=""
                         className="img-fluid cp-user-side-bar-icon"
                       />{" "}
                       <img
-                        src="http://localhost:8000/assets/user/images/sidebar-icons/hover/settings.svg"
+                        src="/assets/user/images/sidebar-icons/hover/settings.svg"
                         alt=""
                         className="img-fluid cp-user-side-bar-icon-hover"
                       />
@@ -182,12 +171,10 @@ const Dashboard: NextPage = () => {
                   </a>{" "}
                   <ul className="mm-collapse">
                     <li>
-                      <a href="http://localhost:8000/user/setting">
-                        My Settings
-                      </a>
+                      <a>My Settings</a>
                     </li>{" "}
                     <li>
-                      <a href="http://localhost:8000/user/faq">FAQ</a>
+                      <a>FAQ</a>
                     </li>
                   </ul>
                 </li>
@@ -282,14 +269,14 @@ const Dashboard: NextPage = () => {
                   className="close"
                 >
                   <img
-                    src="http://localhost:8000/assets/user/images/close.svg"
+                    src="/assets/user/images/close.svg"
                     alt=""
                     className="img-fluid"
                   />
                 </button>{" "}
                 <div className="text-center">
                   <img
-                    src="http://localhost:8000/assets/user/images/add-pockaet-vector.svg"
+                    src="/assets/user/images/add-pockaet-vector.svg"
                     alt=""
                     className="img-fluid img-vector"
                   />{" "}
@@ -298,7 +285,6 @@ const Dashboard: NextPage = () => {
                 <div className="modal-body">
                   <a
                     id="confirm-link"
-                    href="#"
                     className="btn btn-block cp-user-move-btn"
                   >
                     Confirm
@@ -1693,7 +1679,7 @@ const Dashboard: NextPage = () => {
                             <iframe
                               id="tradingview_6a41e"
                               name="tradingview_6a41e"
-                              src="http://localhost:8000/assets/exchange/chart_library/static/en-tv-chart.aa0061904b783ada8056.html#symbol=BTC%E2%88%92USDT&interval=24&toolbarbg=262626&widgetbar=%7B%22details%22%3Afalse%2C%22watchlist%22%3Afalse%2C%22watchlist_settings%22%3A%7B%22default_symbols%22%3A%5B%5D%7D%7D&timeFrames=%5B%7B%22text%22%3A%225y%22%2C%22resolution%22%3A%221440%22%2C%22description%22%3A%22All%22%2C%22title%22%3A%22All%22%2C%22value%22%3A%2260m%22%2C%22from%22%3A0%7D%2C%7B%22text%22%3A%221y%22%2C%22resolution%22%3A%221440%22%2C%22description%22%3A%221%20Year%22%2C%22value%22%3A%2212m%22%2C%22from%22%3A31536000%7D%2C%7B%22text%22%3A%223m%22%2C%22resolution%22%3A%221440%22%2C%22description%22%3A%223%20Months%22%2C%22value%22%3A%223m%22%2C%22from%22%3A7776000%7D%2C%7B%22text%22%3A%221m%22%2C%22resolution%22%3A%22240%22%2C%22description%22%3A%221%20Month%22%2C%22value%22%3A%221m%22%2C%22from%22%3A2592000%7D%2C%7B%22text%22%3A%227d%22%2C%22resolution%22%3A%22120%22%2C%22description%22%3A%227%20Days%22%2C%22value%22%3A%227d%22%2C%22from%22%3A604800%7D%2C%7B%22text%22%3A%223d%22%2C%22resolution%22%3A%2230%22%2C%22description%22%3A%223%20Days%22%2C%22value%22%3A%223d%22%2C%22from%22%3A259200%7D%2C%7B%22text%22%3A%221d%22%2C%22resolution%22%3A%2215%22%2C%22description%22%3A%221%20Day%22%2C%22value%22%3A%221d%22%2C%22from%22%3A86400%7D%5D&locale=en&uid=tradingview_6a41e&clientId=tradingview.com&userId=public_user_id&chartsStorageVer=1.1&customCSS=http%3A%2F%2Flocalhost%3A8000%2Fassets%2Fexchange%2Fchart_library%2Fstyle.css&debug=false&timezone=Etc%2FUTC&theme=dark"
+                              src="/assets/exchange/chart_library/static/en-tv-chart.aa0061904b783ada8056.html#symbol=BTC%E2%88%92USDT&interval=24&toolbarbg=262626&widgetbar=%7B%22details%22%3Afalse%2C%22watchlist%22%3Afalse%2C%22watchlist_settings%22%3A%7B%22default_symbols%22%3A%5B%5D%7D%7D&timeFrames=%5B%7B%22text%22%3A%225y%22%2C%22resolution%22%3A%221440%22%2C%22description%22%3A%22All%22%2C%22title%22%3A%22All%22%2C%22value%22%3A%2260m%22%2C%22from%22%3A0%7D%2C%7B%22text%22%3A%221y%22%2C%22resolution%22%3A%221440%22%2C%22description%22%3A%221%20Year%22%2C%22value%22%3A%2212m%22%2C%22from%22%3A31536000%7D%2C%7B%22text%22%3A%223m%22%2C%22resolution%22%3A%221440%22%2C%22description%22%3A%223%20Months%22%2C%22value%22%3A%223m%22%2C%22from%22%3A7776000%7D%2C%7B%22text%22%3A%221m%22%2C%22resolution%22%3A%22240%22%2C%22description%22%3A%221%20Month%22%2C%22value%22%3A%221m%22%2C%22from%22%3A2592000%7D%2C%7B%22text%22%3A%227d%22%2C%22resolution%22%3A%22120%22%2C%22description%22%3A%227%20Days%22%2C%22value%22%3A%227d%22%2C%22from%22%3A604800%7D%2C%7B%22text%22%3A%223d%22%2C%22resolution%22%3A%2230%22%2C%22description%22%3A%223%20Days%22%2C%22value%22%3A%223d%22%2C%22from%22%3A259200%7D%2C%7B%22text%22%3A%221d%22%2C%22resolution%22%3A%2215%22%2C%22description%22%3A%221%20Day%22%2C%22value%22%3A%221d%22%2C%22from%22%3A86400%7D%5D&locale=en&uid=tradingview_6a41e&clientId=tradingview.com&userId=public_user_id&chartsStorageVer=1.1&customCSS=http%3A%2F%2Flocalhost%3A8000%2Fassets%2Fexchange%2Fchart_library%2Fstyle.css&debug=false&timezone=Etc%2FUTC&theme=dark"
                               frameBorder={0}
                               scrolling="no"
                               allowFullScreen
@@ -1730,7 +1716,6 @@ const Dashboard: NextPage = () => {
                             <a
                               id="Open-orders-tab"
                               data-toggle="tab"
-                              href="#Open-orders"
                               role="tab"
                               aria-controls="Open-orders"
                               aria-selected="true"
@@ -1755,7 +1740,6 @@ const Dashboard: NextPage = () => {
                             <a
                               id="Open-orders-tab"
                               data-toggle="tab"
-                              href="#Open-orders"
                               role="tab"
                               aria-controls="Open-orders"
                               aria-selected="true"
@@ -1781,7 +1765,6 @@ const Dashboard: NextPage = () => {
                             <a
                               id="Open-orders-tab"
                               data-toggle="tab"
-                              href="#Open-orders"
                               role="tab"
                               aria-controls="Open-orders"
                               aria-selected="true"
@@ -1997,12 +1980,7 @@ const Dashboard: NextPage = () => {
                             <div className="trades-table-footer">
                               <div className="trades-table-row">
                                 <div className="trades-table-col volume">
-                                  <a
-                                    href="http://localhost:8000/user/exchange/get-all-buy-orders?order_type=buy&base_coin_type=USDT&trade_coin_type=BTC"
-                                    className="more-btn"
-                                  >
-                                    More
-                                  </a>
+                                  <a className="more-btn">More</a>
                                 </div>{" "}
                                 <div className="trades-table-col price total-price" />{" "}
                                 <div className="trades-table-col price total-price">
@@ -2183,12 +2161,7 @@ const Dashboard: NextPage = () => {
                             <div className="trades-table-footer">
                               <div className="trades-table-row">
                                 <div className="trades-table-col volume">
-                                  <a
-                                    href="http://localhost:8000/user/exchange/get-all-sell-orders?order_type=sell&base_coin_type=USDT&trade_coin_type=BTC"
-                                    className="more-btn"
-                                  >
-                                    More
-                                  </a>
+                                  <a className="more-btn">More</a>
                                 </div>{" "}
                                 <div className="trades-table-col price total-price" />{" "}
                                 <div className="trades-table-col price total-price">
@@ -2208,28 +2181,42 @@ const Dashboard: NextPage = () => {
                             role="tablist"
                             className="nav nav-pills transfer-tabs"
                           >
-                            <li role="presentation" className="nav-item">
+                            <li
+                              role="presentation"
+                              className="nav-item"
+                              onClick={() => {
+                                handletradingTab(1);
+                              }}
+                            >
                               <a
                                 id="pills-transfer-1-tab"
                                 data-toggle="pill"
-                                href="#pills-transfer-1"
                                 role="tab"
                                 aria-controls="pills-transfer-1"
                                 aria-selected="true"
-                                className="nav-link active"
+                                className={`nav-link ${
+                                  tradingTab === 1 ? "active" : ""
+                                }`}
                               >
                                 Buy
                               </a>
                             </li>{" "}
-                            <li role="presentation" className="nav-item">
+                            <li
+                              role="presentation"
+                              className="nav-item"
+                              onClick={() => {
+                                handletradingTab(2);
+                              }}
+                            >
                               <a
                                 id="pills-transfer-2-tab"
                                 data-toggle="pill"
-                                href="#pills-transfer-2"
                                 role="tab"
                                 aria-controls="pills-transfer-2"
                                 aria-selected="false"
-                                className="nav-link "
+                                className={`nav-link ${
+                                  tradingTab === 2 ? "active" : ""
+                                }`}
                               >
                                 Sell
                               </a>
@@ -2241,7 +2228,9 @@ const Dashboard: NextPage = () => {
                             id="pills-transfer-1"
                             role="tabpanel"
                             aria-labelledby="pills-transfer-1-tab"
-                            className="tab-pane fade show active "
+                            className={`tab-pane fade show ${
+                              tradingTab === 1 && "active"
+                            } `}
                           >
                             <ul
                               id="BuyTab"
@@ -2252,7 +2241,6 @@ const Dashboard: NextPage = () => {
                                 <a
                                   id="Limit-tab"
                                   data-toggle="tab"
-                                  href="#Limit"
                                   role="tab"
                                   aria-controls="Limit"
                                   aria-selected="true"
@@ -2265,7 +2253,6 @@ const Dashboard: NextPage = () => {
                                 <a
                                   id="Market-tab"
                                   data-toggle="tab"
-                                  href="#Market"
                                   role="tab"
                                   aria-controls="Market"
                                   aria-selected="false"
@@ -2278,7 +2265,6 @@ const Dashboard: NextPage = () => {
                                 <a
                                   id="Stop-limit-tab"
                                   data-toggle="tab"
-                                  href="#Stop-limit"
                                   role="tab"
                                   aria-controls="Stop-limit"
                                   aria-selected="false"
@@ -2397,10 +2383,7 @@ const Dashboard: NextPage = () => {
                                           </span>
                                         </div>{" "}
                                         <div className="form-group mt-4">
-                                          <a
-                                            href="http://localhost:8000/login"
-                                            className="btn btn-danger"
-                                          >
+                                          <a className="btn btn-danger">
                                             {" "}
                                             Login
                                           </a>
@@ -2495,10 +2478,7 @@ const Dashboard: NextPage = () => {
                                           </span>
                                         </div>{" "}
                                         <div className="form-group mt-4">
-                                          <a
-                                            href="http://localhost:8000/login"
-                                            className="btn btn-danger"
-                                          >
+                                          <a className="btn btn-danger">
                                             {" "}
                                             Login
                                           </a>
@@ -2636,10 +2616,7 @@ const Dashboard: NextPage = () => {
                                           </span>
                                         </div>{" "}
                                         <div className="form-group mt-4 d-flex justify-content-between flex-wrap">
-                                          <a
-                                            href="http://localhost:8000/login"
-                                            className="btn btn-danger"
-                                          >
+                                          <a className="btn btn-danger">
                                             {" "}
                                             Login
                                           </a>
@@ -2650,12 +2627,14 @@ const Dashboard: NextPage = () => {
                                 </div>
                               </div>
                             </div>
-                          </div>{" "}
+                          </div>
                           <div
                             id="pills-transfer-2"
                             role="tabpanel"
                             aria-labelledby="pills-transfer-2-tab"
-                            className="tab-pane fade "
+                            className={`tab-pane fade show ${
+                              tradingTab === 2 && "active"
+                            } `}
                           >
                             <ul
                               id="SellTab"
@@ -2666,7 +2645,6 @@ const Dashboard: NextPage = () => {
                                 <a
                                   id="sell-Limit-tab"
                                   data-toggle="tab"
-                                  href="#LimitSell"
                                   role="tab"
                                   aria-controls="LimitSell"
                                   aria-selected="true"
@@ -2679,7 +2657,6 @@ const Dashboard: NextPage = () => {
                                 <a
                                   id="sell-Market-tab"
                                   data-toggle="tab"
-                                  href="#MarketSell"
                                   role="tab"
                                   aria-controls="MarketSell"
                                   aria-selected="false"
@@ -2692,7 +2669,6 @@ const Dashboard: NextPage = () => {
                                 <a
                                   id="sell-Stop-limit-tab"
                                   data-toggle="tab"
-                                  href="#Stop-limitSell"
                                   role="tab"
                                   aria-controls="Stop-limitSell"
                                   aria-selected="false"
@@ -2714,7 +2690,7 @@ const Dashboard: NextPage = () => {
                                     <div className="cp-user-profile-info">
                                       <form
                                         method="POST"
-                                        action="http://localhost:8000/user/exchange/sell"
+                                        action="/user/exchange/sell"
                                         id="sell-form"
                                         className="mt-4"
                                       >
@@ -2816,10 +2792,7 @@ const Dashboard: NextPage = () => {
                                           </span>
                                         </div>{" "}
                                         <div className="form-group mt-4">
-                                          <a
-                                            href="http://localhost:8000/login"
-                                            className="btn btn-danger"
-                                          >
+                                          <a className="btn btn-danger">
                                             {" "}
                                             Login
                                           </a>
@@ -2840,7 +2813,7 @@ const Dashboard: NextPage = () => {
                                     <div className="cp-user-profile-info">
                                       <form
                                         method="POST"
-                                        action="http://localhost:8000/user/exchange/sell"
+                                        action="/user/exchange/sell"
                                         id="sell-form"
                                         className="mt-4"
                                       >
@@ -2919,10 +2892,7 @@ const Dashboard: NextPage = () => {
                                           </span>
                                         </div>{" "}
                                         <div className="form-group mt-4">
-                                          <a
-                                            href="http://localhost:8000/login"
-                                            className="btn btn-danger"
-                                          >
+                                          <a className="btn btn-danger">
                                             {" "}
                                             Login
                                           </a>
@@ -3060,10 +3030,7 @@ const Dashboard: NextPage = () => {
                                           </span>
                                         </div>{" "}
                                         <div className="form-group mt-4 d-flex justify-content-between flex-wrap">
-                                          <a
-                                            href="http://localhost:8000/login"
-                                            className="btn btn-danger"
-                                          >
+                                          <a className="btn btn-danger">
                                             {" "}
                                             Login
                                           </a>

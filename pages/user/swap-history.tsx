@@ -1,10 +1,15 @@
 import type { NextPage } from "next";
+import * as React from "react";
 import ReportSidebar from "layout/report-sidebar";
 const SwapHistory: NextPage = () => {
+  type searchType = string;
+  const [search, setSearch] = React.useState<searchType>("");
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+  };
   return (
     <div className="page-wrap">
       <ReportSidebar />
-
       <div className="page-main-content">
         <div className="container-fluid">
           <div className="section-top-wrap mb-25">
@@ -49,8 +54,11 @@ const SwapHistory: NextPage = () => {
                           <input
                             type="search"
                             className="data_table_input"
-                            placeholder=""
                             aria-controls="table"
+                            value={search}
+                            onChange={(e) => {
+                              handleChange(e);
+                            }}
                           />
                         </label>
                       </div>

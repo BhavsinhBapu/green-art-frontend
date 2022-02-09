@@ -7,7 +7,7 @@ const Index = ({ children }: any) => {
   useEffect(() => {
     const path = router.pathname;
     if (
-      path === "//authentication/signup" ||
+      path === "/authentication/signup" ||
       path === "/authentication/signin" ||
       path === "/exchange/dashboard"
     ) {

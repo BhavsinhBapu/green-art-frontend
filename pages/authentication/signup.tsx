@@ -1,6 +1,28 @@
 import type { NextPage } from "next";
 
+import React, { useState } from "react";
+
 const Signup: NextPage = () => {
+  type CredentialsTypes = {
+    email: string;
+    first_name: string;
+    last_name: string;
+    password: string;
+    confirm_password: string;
+  };
+  const [credentials, setCredentials] = useState<CredentialsTypes>({
+    email: "",
+    first_name: "",
+    last_name: "",
+    password: "",
+    confirm_password: "",
+  });
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCredentials({
+      ...credentials,
+      [e.target.name]: e.target.value,
+    });
+  };
   return (
     <div
       className="user-content-wrapper"
@@ -22,7 +44,8 @@ const Signup: NextPage = () => {
                   <input
                     type="text"
                     name="first_name"
-                    value=""
+                    value={credentials.first_name}
+                    onChange={handleChange}
                     className="form-control"
                     placeholder="Your first name here"
                   />

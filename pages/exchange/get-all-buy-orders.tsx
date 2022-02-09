@@ -1,20 +1,22 @@
 import type { NextPage } from "next";
+
 import React, { useState } from "react";
-import ReportSidebar from "layout/report-sidebar";
-const DepositHistory: NextPage = () => {
-  const [search, setSearch] = useState<any>("");
+const getAllBuyOrders: NextPage = () => {
+  type searchType = string;
+  const [search, setSearch] = useState<searchType>("");
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.currentTarget.value);
   };
   return (
     <div className="page-wrap">
-      <ReportSidebar />
       <div className="page-main-content">
         <div className="container-fluid">
           <div className="section-top-wrap mb-25">
             <div className="overview-area">
               <div className="overview-left">
-                <h2 className="section-top-title">Deposit History</h2>
+                <h2 className="section-top-title">
+                  All Open Buy Order History Of BTC/USDT
+                </h2>
               </div>
             </div>
           </div>
@@ -49,65 +51,100 @@ const DepositHistory: NextPage = () => {
                       </div>
                       <div id="table_filter" className="dataTables_filter">
                         <label>
-                          Search:
+                          Search:{search}
                           <input
                             type="search"
-                            name="search"
                             className="data_table_input"
                             placeholder=""
-                            value={search}
                             aria-controls="table"
-                            onChange={(e) => {
-                              handleChange(e);
-                            }}
+                            value={search}
+                            onChange={handleChange}
                           />
                         </label>
                       </div>
                     </div>
                   </div>
-                  <div className="cp-user-wallet-table table-responsive">
-                    <table
-                      id="assetBalances"
-                      className="table table-borderless secendary-table asset-balances-table"
-                    >
-                      <thead>
-                        <tr>
-                          <th scope="col" className="">
-                            Created At
-                            <i className="fas fa-sort-down sort_space"></i>
-                          </th>
-                          <th scope="col" rowSpan={1} colSpan={1}>
-                            Address
-                            <i className="fas fa-sort sort_space"></i>
-                          </th>
-                          <th scope="col" rowSpan={1} colSpan={1}>
-                            Coin Type
-                            <i className="fas fa-sort sort_space"></i>
-                          </th>
-                          <th scope="col">
-                            Amount
-                            <i className="fas fa-sort sort_space"></i>
-                          </th>
-                          <th scope="col">
-                            Fees
-                            <i className="fas fa-sort sort_space"></i>
-                          </th>
-                          <th scope="col">
-                            Transaction Hash
-                            <i className="fas fa-sort sort_space"></i>
-                          </th>
-                          <th scope="col">
-                            Status
-                            <i className="fas fa-sort sort_space"></i>
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody></tbody>
-                    </table>
-                    <div className="no_data_table">
+
+                  <table
+                    id="assetBalances"
+                    className="table table-borderless secendary-table asset-balances-table"
+                  >
+                    <thead>
+                      <tr>
+                        <th scope="col" className="">
+                          Amount
+                          <i className="fas fa-sort-down sort_space"></i>
+                        </th>
+                        <th scope="col" rowSpan={1} colSpan={1}>
+                          Processed
+                          <i className="fas fa-sort sort_space"></i>
+                        </th>
+                        <th scope="col" rowSpan={1} colSpan={1}>
+                          Price
+                          <i className="fas fa-sort sort_space"></i>
+                        </th>
+                        <th scope="col">
+                          Total
+                          <i className="fas fa-sort sort_space"></i>
+                        </th>
+                        <th scope="col">
+                          My Size
+                          <i className="fas fa-sort sort_space"></i>
+                        </th>
+                        <th scope="col">
+                          Status
+                          <i className="fas fa-sort sort_space"></i>
+                        </th>
+                        <th scope="col">
+                          Date
+                          <i className="fas fa-sort sort_space"></i>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr id="{{$wallet->id}}">
+                        <td>
+                          <div className="asset">
+                            <span className="asset-name">BCH Wallet</span>
+                          </div>
+                        </td>
+                        <td>
+                          <span className="symbol">BCH</span>
+                        </td>
+                        <td>
+                          <div className="blance-text">
+                            <span className="usd">$0.000000</span>
+                          </div>
+                        </td>
+                        <td>
+                          <div className="blance-text">
+                            <span className="blance">0.000000</span>
+                          </div>
+                        </td>
+                        <td>
+                          <div className="blance-text">
+                            <span className="blance">0.000000</span>
+                          </div>
+                        </td>
+                        <td>
+                          <div className="blance-text">
+                            <span className="blance market incree">
+                              Completed
+                            </span>
+                          </div>
+                        </td>
+                        <td>
+                          <div className="status-text">
+                            <span className="status">11/11/2019</span>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  {/* <div className="no_data_table">
                       No data available in table
-                    </div>
-                  </div>
+                    </div> */}
+
                   <div
                     className="pagination-wrapper"
                     id="assetBalances_paginate"
@@ -157,4 +194,4 @@ const DepositHistory: NextPage = () => {
   );
 };
 
-export default DepositHistory;
+export default getAllBuyOrders;

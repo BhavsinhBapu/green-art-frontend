@@ -1,7 +1,12 @@
 import type { NextPage } from "next";
 import ProfileSidebar from "layout/profile-sidebar";
+import React, { useState } from "react";
+import { handleSearch } from "common/search";
 
 const Activity: NextPage = () => {
+  type searchType = string;
+  const [search, setSearch] = useState<searchType>("");
+
   return (
     <div className="page-wrap">
       <ProfileSidebar />
@@ -52,6 +57,10 @@ const Activity: NextPage = () => {
                             className="data_table_input"
                             placeholder=""
                             aria-controls="table"
+                            value={search}
+                            onChange={(e) => {
+                              handleSearch(e, setSearch);
+                            }}
                           />
                         </label>
                       </div>

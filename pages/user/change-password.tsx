@@ -1,7 +1,29 @@
 import type { NextPage } from "next";
 import ProfileSidebar from "layout/profile-sidebar";
+import React, { useState } from "react";
 
 const PhoneVerification: NextPage = () => {
+  type passwordListType = {
+    current_password: string;
+    new_password: string;
+    confirm_new_password: string;
+  };
+  const [passwordList, setPasswordList] = useState<passwordListType>({
+    current_password: "",
+    new_password: "",
+    confirm_new_password: "",
+  });
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPasswordList({
+      ...passwordList,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(passwordList, "password list");
+  };
   return (
     <div className="page-wrap">
       <ProfileSidebar />
@@ -18,19 +40,21 @@ const PhoneVerification: NextPage = () => {
               <div className="row">
                 <div className="col-lg-6 col-md-8">
                   <div className="user-profile-form">
-                    <form method="POST">
+                    <form onSubmit={handleSubmit}>
                       <input
                         type="hidden"
                         name="_token"
-                        defaultValue="UHxumztviDLlLBs3t8g3IMcfQsz9pSMy9wObVejT"
+                        value="{{ csrf_token() }}"
                       />{" "}
                       <div className="form-group">
                         <label>Current Password</label>
                         <input
-                          name="password"
+                          name="current_password"
                           type="password"
                           placeholder="Current Password"
                           className="form-control"
+                          value={passwordList.current_password}
+                          onChange={handleChange}
                         />
                       </div>
                       <div className="form-group">
@@ -40,6 +64,8 @@ const PhoneVerification: NextPage = () => {
                           type="password"
                           placeholder="New Password"
                           className="form-control"
+                          value={passwordList.new_password}
+                          onChange={handleChange}
                         />
                       </div>
                       <div className="form-group">
@@ -49,6 +75,8 @@ const PhoneVerification: NextPage = () => {
                           type="password"
                           placeholder="Re Enter New Password"
                           className="form-control"
+                          value={passwordList.confirm_new_password}
+                          onChange={handleChange}
                         />
                       </div>
                       <div className="form-group m-0">

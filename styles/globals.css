@@ -2723,8 +2723,15 @@ div.dataTables_wrapper div.dataTables_filter {
   position: relative;
   border-bottom: none;
 }
-
-.accordion .card .card-header h5 button.collapsed::before {
+.header-align {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.mright-5 {
+  margin-right: 20px;
+}
+/* .accordion .card .card-header h5 button.collapsed::before {
   position: absolute;
   content: "\f067";
   font-family: fontawesome;
@@ -2744,7 +2751,7 @@ div.dataTables_wrapper div.dataTables_filter {
   right: 15px;
   top: 50%;
   transform: translateY(-50%);
-}
+} */
 .cp-user-referral-content .card {
   box-shadow: none;
 }
@@ -4312,7 +4319,7 @@ select:-webkit-autofill:focus {
   font-size: 16px;
   font-weight: 400;
   text-transform: capitalize;
-  color: #fff
+  color: #fff;
 }
 .orders-area .nav-tabs .nav-item .nav-link.active {
   color: #f9b507;

@@ -1,6 +1,12 @@
 import type { NextPage } from "next";
+import React, { useState } from "react";
 
 const ForgetPassword: NextPage = () => {
+  type emailType = string;
+  const [email, setEmail] = useState("");
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  };
   return (
     <div
       className="user-content-wrapper"
@@ -26,6 +32,8 @@ const ForgetPassword: NextPage = () => {
                     name="email"
                     className="form-control"
                     placeholder="Your email here"
+                    value={email}
+                    onChange={handleChange}
                   />
                 </div>
                 <button type="submit" className="btn nimmu-user-sibmit-button">
