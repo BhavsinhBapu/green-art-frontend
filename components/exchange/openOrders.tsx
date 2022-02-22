@@ -15,18 +15,15 @@ const OpenOrders = ({ openOrders }: Props) => {
         <table className="table">
           <thead>
             <tr>
-              <th scope="col">Date2</th>
-              <th scope="col">Pair</th>
+              <th scope="col">Date</th>
+
               <th scope="col">Type</th>
-              <th scope="col">Side</th>
-              <th scope="col">Price</th>
-              <th scope="col">Amount</th>
-              <th scope="col">Filled</th>
+              <th scope="col">Amount(BTC)</th>
+              <th scope="col">Price(USDT)</th>
+              <th scope="col">Total(USDT)</th>
+              <th scope="col">Fees(USDT)</th>
               <th scope="col">total</th>
               <th scope="col">Trigger Conditions</th>
-              <th scope="col">
-                <button className="cancel">Cancel All</button>
-              </th>
             </tr>
           </thead>
           <tbody>
@@ -40,9 +37,6 @@ const OpenOrders = ({ openOrders }: Props) => {
               <td>Filled</td>
               <td>total</td>
               <td>Trigger Conditions</td>
-              <td>
-                <button className="cancel">Cancel</button>
-              </td>
             </tr>
             <tr>
               <td>Date</td>
@@ -54,9 +48,6 @@ const OpenOrders = ({ openOrders }: Props) => {
               <td>Filled</td>
               <td>total</td>
               <td>Trigger Conditions</td>
-              <td>
-                <button className="cancel">Cancel</button>
-              </td>
             </tr>
             <tr>
               <td>Date</td>
@@ -68,9 +59,6 @@ const OpenOrders = ({ openOrders }: Props) => {
               <td>Filled</td>
               <td>total</td>
               <td>Trigger Conditions</td>
-              <td>
-                <button className="cancel">Cancel</button>
-              </td>
             </tr>
           </tbody>
         </table>

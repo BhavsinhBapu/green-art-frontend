@@ -1,7 +1,9 @@
 import type { NextPage } from "next";
 import ProfileSidebar from "layout/profile-sidebar";
-import React, { InputHTMLAttributes, useState } from "react";
+import React, { ChangeEvent, FormEvent, useState } from "react";
 import countries from "lib/values/country.json";
+import { AdvancedRealTimeChart } from "react-ts-tradingview-widgets";
+import Dynamic from "next/dynamic";
 
 const Edit: NextPage = () => {
   type editType = {
@@ -24,13 +26,13 @@ const Edit: NextPage = () => {
     gender: "",
     file: null,
   });
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setEdit({
       ...edit,
       [e.target.name]: e.target.value,
     });
   };
-  const editProfile = async (e: React.FormEvent<HTMLFormElement>) => {
+  const editProfile = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(edit, "submitted");
   };

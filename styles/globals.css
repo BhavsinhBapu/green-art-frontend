@@ -8888,3 +8888,10 @@ input:-webkit-autofill:active {
     font-size: 26px;
   }
 }
+.card.cp-user-custom-card {
+  background: transparent;
+  border: none;
+}
+#tradingview_widget_wrapper div:nth-child(2) {
+  display: none;
+}

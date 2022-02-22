@@ -4,6 +4,7 @@ import OpenOrders from "components/exchange/openOrders";
 import OrderHistory from "components/exchange/orderHistory";
 import TradeOrder from "components/exchange/tradeOrder";
 import { useState } from "react";
+import TradingChart from "components/exchange/TradingChart";
 type activeTabType = {
   openOrders: boolean;
   orderHistory: boolean;
@@ -1664,34 +1665,7 @@ const Dashboard: NextPage = () => {
                 <div className="col-xl-6">
                   <div className="cp-user-buy-coin-content-area">
                     <div className="card cp-user-custom-card">
-                      <div className="card-body">
-                        <div className="cp-user-card-header-area">
-                          <div className="cp-user-title">
-                            <h4>Trade chart</h4>
-                          </div>
-                        </div>{" "}
-                        <div className="graph-loader">
-                          <div
-                            id="trade_chart_container"
-                            className="h-100"
-                            style={{ visibility: "visible" }}
-                          >
-                            <iframe
-                              id="tradingview_6a41e"
-                              name="tradingview_6a41e"
-                              src="/assets/exchange/chart_library/static/en-tv-chart.aa0061904b783ada8056.html#symbol=BTC%E2%88%92USDT&interval=24&toolbarbg=262626&widgetbar=%7B%22details%22%3Afalse%2C%22watchlist%22%3Afalse%2C%22watchlist_settings%22%3A%7B%22default_symbols%22%3A%5B%5D%7D%7D&timeFrames=%5B%7B%22text%22%3A%225y%22%2C%22resolution%22%3A%221440%22%2C%22description%22%3A%22All%22%2C%22title%22%3A%22All%22%2C%22value%22%3A%2260m%22%2C%22from%22%3A0%7D%2C%7B%22text%22%3A%221y%22%2C%22resolution%22%3A%221440%22%2C%22description%22%3A%221%20Year%22%2C%22value%22%3A%2212m%22%2C%22from%22%3A31536000%7D%2C%7B%22text%22%3A%223m%22%2C%22resolution%22%3A%221440%22%2C%22description%22%3A%223%20Months%22%2C%22value%22%3A%223m%22%2C%22from%22%3A7776000%7D%2C%7B%22text%22%3A%221m%22%2C%22resolution%22%3A%22240%22%2C%22description%22%3A%221%20Month%22%2C%22value%22%3A%221m%22%2C%22from%22%3A2592000%7D%2C%7B%22text%22%3A%227d%22%2C%22resolution%22%3A%22120%22%2C%22description%22%3A%227%20Days%22%2C%22value%22%3A%227d%22%2C%22from%22%3A604800%7D%2C%7B%22text%22%3A%223d%22%2C%22resolution%22%3A%2230%22%2C%22description%22%3A%223%20Days%22%2C%22value%22%3A%223d%22%2C%22from%22%3A259200%7D%2C%7B%22text%22%3A%221d%22%2C%22resolution%22%3A%2215%22%2C%22description%22%3A%221%20Day%22%2C%22value%22%3A%221d%22%2C%22from%22%3A86400%7D%5D&locale=en&uid=tradingview_6a41e&clientId=tradingview.com&userId=public_user_id&chartsStorageVer=1.1&customCSS=http%3A%2F%2Flocalhost%3A8000%2Fassets%2Fexchange%2Fchart_library%2Fstyle.css&debug=false&timezone=Etc%2FUTC&theme=dark"
-                              frameBorder={0}
-                              scrolling="no"
-                              allowFullScreen
-                              style={{
-                                display: "block",
-                                width: "100%",
-                                height: "100%",
-                              }}
-                            />
-                          </div>
-                        </div>
-                      </div>
+                      <TradingChart />
                     </div>
                   </div>{" "}
                   <div className="orders-area mt-4">
