@@ -1,0 +1,29 @@
+Authentication
+    signin
+    signup
+    forget-password
+    reset-password
+User
+    Activity
+    Buy order History
+    Change password
+    Deposit history
+    Edit profile
+    My Wallet
+    Personal verification
+    Phone verification
+    Profile
+    Referral
+    Security
+    Sell order history
+    Settings
+    Swap History
+    Transaction History
+    Verifiation list  
+
+Exchange
+    Dashboard
+    Get all buy orders
+
+Notification
+
