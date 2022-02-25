@@ -1,28 +1,11 @@
 import type { NextPage } from "next";
-
+import * as Yup from "yup";
 import React, { useState } from "react";
-
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import Link from "next/link";
 const Signup: NextPage = () => {
-  type CredentialsTypes = {
-    email: string;
-    first_name: string;
-    last_name: string;
-    password: string;
-    confirm_password: string;
-  };
-  const [credentials, setCredentials] = useState<CredentialsTypes>({
-    email: "",
-    first_name: "",
-    last_name: "",
-    password: "",
-    confirm_password: "",
-  });
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCredentials({
-      ...credentials,
-      [e.target.name]: e.target.value,
-    });
-  };
+  const [showPassword, setShowPassword] = useState(true);
+
   return (
     <div
       className="user-content-wrapper"
@@ -39,77 +22,157 @@ const Signup: NextPage = () => {
                   <h2>Sign Up</h2>
                   <p>Create a new account.</p>
                 </div>
+                <Formik
+                  initialValues={{
+                    email: "",
+                    first_name: "",
+                    last_name: "",
+                    password: "",
+                    password_confirmation: "",
+                  }}
+                  validationSchema={Yup.object({
+                    email: Yup.string()
+                      .email("Invalid email address")
+                      .required("Email is required"),
+                    first_name: Yup.string()
+                      .min(2)
+                      .required("First name is required"),
+                    last_name: Yup.string()
+                      .min(2)
+                      .required("Last name is required"),
+                    password: Yup.string()
+                      .min(6)
+                      .required("Password is required"),
+                    password_confirmation: Yup.string()
+                      .oneOf(
+                        [Yup.ref("password"), null],
+                        "Passwords must match"
+                      )
+                      .required("Confirm password is required"),
+                  })}
+                  onSubmit={async (values) => {
+                    console.log(values.email);
+                  }}
+                  render={({ errors, status, touched, isSubmitting }) => (
+                    <Form>
+                      <div className="form-group">
+                        <Field
+                          type="text"
+                          name="first_name"
+                          id="first_name"
+                          className={`form-control ${
+                            touched.first_name && errors.first_name
+                              ? "is-invalid"
+                              : ""
+                          }`}
+                          placeholder="Your first name here"
+                        />
+                      </div>
+                      <ErrorMessage
+                        name="first_name"
+                        component="div"
+                        className="red-text"
+                      />
+                      <div className="form-group">
+                        <Field
+                          type="text"
+                          name="last_name"
+                          id="last_name"
+                          className={`form-control ${
+                            touched.last_name && errors.last_name
+                              ? "is-invalid"
+                              : ""
+                          }`}
+                          placeholder="Your last name here"
+                        />
+                      </div>
+                      <ErrorMessage
+                        name="last_name"
+                        component="div"
+                        className="red-text"
+                      />
+                      <div className="form-group">
+                        <Field
+                          type="email"
+                          name="email"
+                          id="email"
+                          className={`form-control ${
+                            touched.email && errors.email ? "is-invalid" : ""
+                          }`}
+                          placeholder="Your email here"
+                        />
+                      </div>
+                      <ErrorMessage
+                        name="email"
+                        component="div"
+                        className="red-text"
+                      />
+                      <div className="form-group">
+                        <Field
+                          type={showPassword ? "text" : "password"}
+                          name="password"
+                          id="password"
+                          className={`form-control form-control-password look-pass ${
+                            touched.password && errors.password
+                              ? "is-invalid"
+                              : ""
+                          }`}
+                          placeholder="Your password here"
+                        />
 
-                <div className="form-group">
-                  <input
-                    type="text"
-                    name="first_name"
-                    value={credentials.first_name}
-                    onChange={handleChange}
-                    className="form-control"
-                    placeholder="Your first name here"
-                  />
+                        <span
+                          className="eye rev"
+                          onClick={() => setShowPassword(!showPassword)}
+                        >
+                          <i className="fa fa-eye-slash toggle-password"></i>
+                        </span>
+                      </div>
+                      <ErrorMessage
+                        name="password"
+                        component="div"
+                        className="red-text"
+                      />
 
-                  <p className="invalid-feedback">error </p>
-                </div>
-                <div className="form-group">
-                  <input
-                    type="text"
-                    name="last_name"
-                    value=""
-                    className="form-control"
-                    placeholder="Your last name here"
-                  />
+                      <div className="form-group">
+                        <Field
+                          type={showPassword ? "text" : "password"}
+                          name="password_confirmation"
+                          id="password_confirmation"
+                          className={`form-control form-control-password look-pass ${
+                            touched.password_confirmation &&
+                            errors.password_confirmation
+                              ? "is-invalid"
+                              : ""
+                          }`}
+                          placeholder="Your password here"
+                        />
 
-                  <p className="invalid-feedback">error </p>
-                </div>
-                <div className="form-group">
-                  <input
-                    type="email"
-                    name="email"
-                    value=""
-                    className="form-control"
-                    placeholder="Your email here"
-                  />
+                        <span
+                          className="eye rev"
+                          onClick={() => setShowPassword(!showPassword)}
+                        >
+                          <i className="fa fa-eye-slash toggle-password"></i>
+                        </span>
+                      </div>
+                      <ErrorMessage
+                        name="password_confirmation"
+                        component="div"
+                        className="red-text"
+                      />
+                      <div className="form-group">
+                        <label></label>
+                        <p className="invalid-feedback">Message </p>
+                      </div>
 
-                  <p className="invalid-feedback">error </p>
-                </div>
-                <div className="form-group">
-                  <input
-                    type="password"
-                    name="password"
-                    className="form-control form-control-password look-pass"
-                    placeholder="Your password here"
-                  />
-
-                  <p className="invalid-feedback">password </p>
-                  <span className="eye rev">
-                    <i className="fa fa-eye-slash toggle-password"></i>
-                  </span>
-                </div>
-                <div className="form-group">
-                  <input
-                    type="password"
-                    name="password_confirmation"
-                    className="form-control form-control-password look-pass-1"
-                    placeholder="Your confirm password here"
-                  />
-
-                  <p className="invalid-feedback">password_confirmation </p>
-
-                  <span className="eye rev-1">
-                    <i className="fa fa-eye-slash toggle-password"></i>
-                  </span>
-                </div>
-                <div className="form-group">
-                  <label></label>
-
-                  <p className="invalid-feedback">Message </p>
-                </div>
-
-                <button type="submit" className="btn nimmu-user-sibmit-button">
-                  Sign Up
-                </button>
+                      <button
+                        type="submit"
+                        className="btn nimmu-user-sibmit-button"
+                      >
+                        Sign Up
+                      </button>
+                    </Form>
+                  )}
+                />
               </div>
             </div>
           </div>
@@ -119,9 +182,11 @@ const Signup: NextPage = () => {
               <a className="auth-logo" href="javascript:;">
                 <img src="/logo.svg" className="img-fluid" alt="" />
               </a>
-              <p>
-                Already have an accoun ? <a href=""> Sign In</a>
-              </p>
+              <Link href="/authentication/signin">
+                <p>
+                  Already have an accoun ? <a href=""> Sign In</a>
+                </p>
+              </Link>
             </div>
           </div>
         </div>

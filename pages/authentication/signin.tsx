@@ -1,21 +1,13 @@
 import type { NextPage } from "next";
+import * as Yup from "yup";
+import { SigninAction } from "state/actions/authentication";
+import { useDispatch, useSelector } from "react-redux";
 import React, { useState } from "react";
-
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import Link from "next/link";
 const Signin: NextPage = () => {
-  type credentialType = {
-    email: string;
-    password: string;
-  };
-  const [credentials, setCredentials] = useState<credentialType>({
-    email: "",
-    password: "",
-  });
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCredentials({
-      ...credentials,
-      [e.target.name]: e.target.value,
-    });
-  };
+  const [showPassword, setShowPassword] = useState(true);
+  const dispatch = useDispatch();
   return (
     <div
       className="user-content-wrapper"
@@ -32,60 +24,100 @@ const Signin: NextPage = () => {
                   <h2>Sign In</h2>
                   <p>Please Sign In To Your Account.</p>
                 </div>
+                <Formik
+                  initialValues={{
+                    email: "",
+                    password: "",
+                  }}
+                  validationSchema={Yup.object({
+                    email: Yup.string()
+                      .email("Invalid email address")
+                      .required("Email is required"),
+                    password: Yup.string()
+                      .min(6)
+                      .required("Password is required"),
+                  })}
+                  onSubmit={async (values) => {
+                    const response = await SigninAction(values)(dispatch);
+                    console.log(response);
+                  }}
+                  render={({ errors, status, touched, isSubmitting }) => (
+                    <Form>
+                      <div className="form-group">
+                        <Field
+                          type="email"
+                          name="email"
+                          id="email"
+                          className={`form-control ${
+                            touched.email && errors.email ? "is-invalid" : ""
+                          }`}
+                          placeholder="Your email here"
+                        />
+                      </div>
+                      <ErrorMessage
+                        name="email"
+                        component="div"
+                        className="red-text"
+                      />
+                      <div className="form-group">
+                        <Field
+                          type={showPassword ? "text" : "password"}
+                          name="password"
+                          id="password"
+                          className={`form-control form-control-password look-pass ${
+                            touched.password && errors.password
+                              ? "is-invalid"
+                              : ""
+                          }`}
+                          placeholder="Your password here"
+                        />
 
-                <div className="form-group">
-                  <input
-                    type="email"
-                    name="email"
-                    className="form-control"
-                    placeholder="Your email here"
-                    value={credentials.email}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <input
-                    type="password"
-                    name="password"
-                    className="form-control form-control-password look-pass"
-                    placeholder="Your password here"
-                    value={credentials.password}
-                    onChange={handleChange}
-                  />
+                        <span
+                          className="eye rev"
+                          onClick={() => setShowPassword(!showPassword)}
+                        >
+                          <i className="fa fa-eye-slash toggle-password"></i>
+                        </span>
+                      </div>
+                      <ErrorMessage
+                        name="password"
+                        component="div"
+                        className="red-text"
+                      />
 
-                  <p className="invalid-feedback">password </p>
-                  <span className="eye rev">
-                    <i className="fa fa-eye-slash toggle-password"></i>
-                  </span>
-                </div>
+                      <div className="form-group">
+                        <p className="invalid-feedback">Message </p>
+                      </div>
 
-                <div className="form-group">
-                  <label></label>
-                  <p className="invalid-feedback">Message </p>
-                </div>
+                      <div className="d-flex justify-content-between rememberme align-items-center mb-4">
+                        <div className="form-check">
+                          <input
+                            type="checkbox"
+                            className="form-check-input"
+                            id="exampleCheck1"
+                          />
+                          <label className="form-check-label">
+                            Remember me
+                          </label>
+                        </div>
+                        <div className="text-right">
+                          <Link href="/authentication/forgot-password">
+                            <a className="text-theme forgot-password">
+                              Forgot Password?
+                            </a>
+                          </Link>
+                        </div>
+                      </div>
 
-                <div className="d-flex justify-content-between rememberme align-items-center mb-4">
-                  <div className="form-check">
-                    <input
-                      type="checkbox"
-                      className="form-check-input"
-                      id="exampleCheck1"
-                    />
-                    <label className="form-check-label">Remember me</label>
-                  </div>
-                  <div className="text-right">
-                    <a
-                      className="text-theme forgot-password"
-                      href="{{route('forgotPassword')}}"
-                    >
-                      Forgot Password?
-                    </a>
-                  </div>
-                </div>
-
-                <button type="submit" className="btn nimmu-user-sibmit-button">
-                  Sign In
-                </button>
+                      <button
+                        type="submit"
+                        className="btn nimmu-user-sibmit-button"
+                      >
+                        Sign In
+                      </button>
+                    </Form>
+                  )}
+                />
               </div>
             </div>
           </div>
@@ -95,9 +127,11 @@ const Signin: NextPage = () => {
               <a className="auth-logo" href="javascript:;">
                 <img src="/logo.svg" className="img-fluid" alt="" />
               </a>
-              <p>
-                Don’t have account ? <a href=""> Sign Up</a>
-              </p>
+              <Link href="/authentication/signup">
+                <p>
+                  Don’t have account ? <a href=""> Sign Up</a>
+                </p>
+              </Link>
             </div>
           </div>
         </div>

@@ -2469,7 +2469,21 @@ a#submit {
 #vanillatoasts-container {
   z-index: 99999999;
 }
-
+.red-text {
+  color: #ff0000;
+  margin-bottom: 10px;
+  margin-top: 0px;
+}
+.user-form .form-control {
+  color: #ffffff;
+}
+.user-form .form-control.invalid-field {
+  border-color: #ff0000;
+}
+.user-form .form-control:focus {
+  background: transparent;
+  color: #ffffff;
+}
 table.dataTable thead .sorting:before,
 table.dataTable thead .sorting:after,
 table.dataTable thead .sorting_asc:before,
@@ -7525,12 +7539,12 @@ textarea.form-control.textarea {
 
 .user-form .form-group {
   position: relative;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .user-form .form-group .eye {
   position: absolute;
-  right: 15px;
+  right: 9px;
   top: 50%;
   transform: translateY(-50%);
   font-size: 18px;
@@ -7621,8 +7635,9 @@ textarea.form-control.textarea {
   font-size: 16px;
   font-weight: 700;
   border-radius: 7px !important;
-  color: #fafafa;
-  border: none;
+  color: #ffffff !important;
+  background: #ffce51 !important;
+  border-color: #ffce51 !important;
 }
 
 .nimmu-user-sibmit-button:active,
@@ -8894,4 +8909,14 @@ input:-webkit-autofill:active {
 }
 #tradingview_widget_wrapper div:nth-child(2) {
   display: none;
+}
+.user-content-inner-wrap .form-check .form-check-input {
+  float: left;
+  margin-left: 0;
+  margin-right: 10px;
+}
+.look-pass {
+  color: #ffba00;
+  font-size: 14px;
+  font-weight: 400;
 }

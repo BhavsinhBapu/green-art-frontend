@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import React, { useState } from "react";
 
-const ForgetPassword: NextPage = () => {
+const ForgotPassword: NextPage = () => {
   type emailType = string;
   const [email, setEmail] = useState("");
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -59,4 +59,4 @@ const ForgetPassword: NextPage = () => {
   );
 };
 
-export default ForgetPassword;
+export default ForgotPassword;

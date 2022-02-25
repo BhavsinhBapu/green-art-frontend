@@ -9,7 +9,9 @@ const Index = ({ children }: any) => {
     if (
       path === "/authentication/signup" ||
       path === "/authentication/signin" ||
-      path === "/exchange/dashboard"
+      path === "/exchange/dashboard" ||
+      path === "/authentication/forgot-password" ||
+      path === "/authentication/reset-password"
     ) {
       setNavbarVisible(false);
     } else {
