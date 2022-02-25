@@ -38,10 +38,10 @@ const Signin: NextPage = () => {
                       .required("Password is required"),
                   })}
                   onSubmit={async (values) => {
-                    const response = await SigninAction(values)(dispatch);
-                    console.log(response);
+                    await dispatch(SigninAction(values));
                   }}
-                  render={({ errors, status, touched, isSubmitting }) => (
+                >
+                  {({ errors, touched }) => (
                     <Form>
                       <div className="form-group">
                         <Field
@@ -117,7 +117,7 @@ const Signin: NextPage = () => {
                       </button>
                     </Form>
                   )}
-                />
+                </Formik>
               </div>
             </div>
           </div>

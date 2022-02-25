@@ -2,6 +2,8 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { Provider } from "react-redux";
 import { store } from "../state/store";
+import "react-toastify/dist/ReactToastify.css";
+
 import Head from "next/head";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Layout from "layout/index";

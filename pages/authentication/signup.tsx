@@ -2,8 +2,13 @@ import type { NextPage } from "next";
 import * as Yup from "yup";
 import React, { useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
+import { SignupAction } from "state/actions/authentication";
+import { useDispatch } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
+
 import Link from "next/link";
 const Signup: NextPage = () => {
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(true);
 
   return (
@@ -13,6 +18,17 @@ const Signup: NextPage = () => {
         backgroundImage: `url(/user-content-wrapper-bg.jpg)`,
       }}
     >
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <div className="user-content-inner-wrap">
         <div className="row align-items-center">
           <div className="col-md-6">
@@ -41,7 +57,7 @@ const Signup: NextPage = () => {
                       .min(2)
                       .required("Last name is required"),
                     password: Yup.string()
-                      .min(6)
+                      .min(8)
                       .required("Password is required"),
                     password_confirmation: Yup.string()
                       .oneOf(
@@ -51,9 +67,10 @@ const Signup: NextPage = () => {
                       .required("Confirm password is required"),
                   })}
                   onSubmit={async (values) => {
-                    console.log(values.email);
+                    dispatch(SignupAction(values));
                   }}
-                  render={({ errors, status, touched, isSubmitting }) => (
+                >
+                  {({ errors, touched }) => (
                     <Form>
                       <div className="form-group">
                         <Field
@@ -172,7 +189,7 @@ const Signup: NextPage = () => {
                       </button>
                     </Form>
                   )}
-                />
+                </Formik>
               </div>
             </div>
           </div>

@@ -4,8 +4,8 @@ export const SigninApi = async (credentials: {
   email: string;
   password: string;
 }) => {
-  const response = await request.post("/signin", credentials);
-  return response.data;
+  const { data } = await request.post("/sign-in", credentials);
+  return data;
 };
 
 export const SignupApi = async (credentials: {
@@ -15,6 +15,6 @@ export const SignupApi = async (credentials: {
   last_name: string;
   password_confirmation: string;
 }) => {
-  const response = await request.post("/signup", credentials);
-  return response.data;
+  const { data } = await request.post("/sign-up", credentials);
+  return data;
 };
