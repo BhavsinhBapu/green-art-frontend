@@ -8920,3 +8920,15 @@ input:-webkit-autofill:active {
   font-size: 14px;
   font-weight: 400;
 }
+button.btn.nimmu-user-sibmit-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+button.btn.nimmu-user-sibmit-button .spinner-border {
+  margin-right: 5px;
+}
+.dark-toast {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}

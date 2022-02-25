@@ -18,3 +18,8 @@ export const SignupApi = async (credentials: {
   const { data } = await request.post("/sign-up", credentials);
   return data;
 };
+
+export const ForgotPasswordApi = async (credentials: { email: string }) => {
+  const { data } = await request.post("/forgot-password", credentials);
+  return data;
+};

@@ -4,9 +4,12 @@ import { SigninAction } from "state/actions/authentication";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
+import { ToastContainer } from "react-toastify";
+
 import Link from "next/link";
 const Signin: NextPage = () => {
   const [showPassword, setShowPassword] = useState(true);
+  const [processing, setProcessing] = useState(false);
   const dispatch = useDispatch();
   return (
     <div
@@ -15,6 +18,17 @@ const Signin: NextPage = () => {
         backgroundImage: `url(/user-content-wrapper-bg.jpg)`,
       }}
     >
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <div className="user-content-inner-wrap">
         <div className="row align-items-center">
           <div className="col-md-6">
@@ -38,7 +52,7 @@ const Signin: NextPage = () => {
                       .required("Password is required"),
                   })}
                   onSubmit={async (values) => {
-                    await dispatch(SigninAction(values));
+                    await dispatch(SigninAction(values, setProcessing));
                   }}
                 >
                   {({ errors, touched }) => (
@@ -111,9 +125,21 @@ const Signin: NextPage = () => {
 
                       <button
                         type="submit"
+                        disabled={processing}
                         className="btn nimmu-user-sibmit-button"
                       >
-                        Sign In
+                        {processing ? (
+                          <>
+                            <span
+                              className="spinner-border spinner-border-md"
+                              role="status"
+                              aria-hidden="true"
+                            ></span>
+                            <span>Please wait</span>
+                          </>
+                        ) : (
+                          "Sign In"
+                        )}
                       </button>
                     </Form>
                   )}

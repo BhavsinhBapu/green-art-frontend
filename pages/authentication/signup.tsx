@@ -4,11 +4,12 @@ import React, { useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { SignupAction } from "state/actions/authentication";
 import { useDispatch } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 
 import Link from "next/link";
 const Signup: NextPage = () => {
   const dispatch = useDispatch();
+  const [processing, setProcessing] = useState(false);
   const [showPassword, setShowPassword] = useState(true);
 
   return (
@@ -57,7 +58,7 @@ const Signup: NextPage = () => {
                       .min(2)
                       .required("Last name is required"),
                     password: Yup.string()
-                      .min(8)
+                      .min(6)
                       .required("Password is required"),
                     password_confirmation: Yup.string()
                       .oneOf(
@@ -67,7 +68,7 @@ const Signup: NextPage = () => {
                       .required("Confirm password is required"),
                   })}
                   onSubmit={async (values) => {
-                    dispatch(SignupAction(values));
+                    dispatch(SignupAction(values, setProcessing));
                   }}
                 >
                   {({ errors, touched }) => (
@@ -183,9 +184,21 @@ const Signup: NextPage = () => {
 
                       <button
                         type="submit"
+                        disabled={processing}
                         className="btn nimmu-user-sibmit-button"
                       >
-                        Sign Up
+                        {processing ? (
+                          <>
+                            <span
+                              className="spinner-border spinner-border-md"
+                              role="status"
+                              aria-hidden="true"
+                            ></span>
+                            <span>Please wait</span>
+                          </>
+                        ) : (
+                          "Sign Up"
+                        )}
                       </button>
                     </Form>
                   )}
