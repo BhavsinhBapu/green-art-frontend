@@ -2,6 +2,7 @@ import {
   ForgotPasswordApi,
   SigninApi,
   SignupApi,
+  GetUserInfoByToken,
 } from "service/authentication";
 import { login, setAuthenticationState } from "state/reducer/user";
 import Router from "next/router";
@@ -133,4 +134,19 @@ export const ForgotPasswordAction = async (
     });
   }
   setProcessing(false);
+};
+
+export const GetUserInfoByTokenAction = () => async (dispatch: any) => {
+  const response = await GetUserInfoByToken();
+  if (response.success === true) {
+    dispatch(login(response.user));
+  } else {
+    dispatch(setAuthenticationState(false));
+  }
+};
+
+export const LogoutAction = () => async (dispatch: any) => {
+  Cookies.remove("token");
+  dispatch(setAuthenticationState(false));
+  Router.replace("/authentication/signin");
 };

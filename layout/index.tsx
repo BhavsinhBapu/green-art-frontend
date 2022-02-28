@@ -3,8 +3,12 @@ import { useRouter } from "next/router";
 import { ToastContainer } from "react-toastify";
 
 import { useEffect, useState } from "react";
+import { GetUserInfoByTokenAction } from "state/actions/authentication";
+import { useDispatch } from "react-redux";
+import Cookies from "js-cookie";
 const Index = ({ children }: any) => {
   const [navbarVisible, setNavbarVisible] = useState(false);
+  const dispatch = useDispatch();
   const router = useRouter();
   useEffect(() => {
     const path = router.pathname;
@@ -20,6 +24,10 @@ const Index = ({ children }: any) => {
       setNavbarVisible(true);
     }
   }, [router.pathname]);
+  useEffect(() => {
+    const token = Cookies.get("token");
+    if (token) dispatch(GetUserInfoByTokenAction());
+  }, []);
   return navbarVisible ? (
     <div>
       <Navbar />

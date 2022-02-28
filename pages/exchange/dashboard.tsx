@@ -80,7 +80,7 @@ const Dashboard: NextPage = () => {
             </div>
           </div>
         </div>
-      </div>{" "}
+      </div>
       <div className="cp-user-main-wrapper-dashboard">
         <div className="container-fluid">
           <div

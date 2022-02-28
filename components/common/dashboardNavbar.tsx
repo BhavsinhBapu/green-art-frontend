@@ -1,6 +1,10 @@
 import React from "react";
 import Link from "next/link";
+import { useSelector } from "react-redux";
+import { RootState } from "state/store";
 const dashboardNavbar = () => {
+  const { isLoggedIn } = useSelector((state: RootState) => state.user);
+
   return (
     <div className="cp-user-top-bar-dashborad">
       <div className="container-fluid">
@@ -174,120 +178,127 @@ const dashboardNavbar = () => {
               </ul>
             </nav>
           </div>
-          <div className="col-xl-2 col-lg-2 col-8">
-            <div className="cp-user-top-bar-right">
-              <ul>
-                <li className="hm-notify" id="notification_item">
-                  <div className="btn-group dropdown">
-                    <button
-                      type="button"
-                      className="btn notification-btn dropdown-toggle"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                    >
-                      <span className="notify-value hm-notify-number"> 0 </span>
-                      <img
-                        src="/img/icons/notification.png"
-                        className="img-fluid"
-                        alt=""
-                      />
-                    </button>
-                    <div className="dropdown-menu notification-list dropdown-menu-right">
-                      <div className="text-center p-2 border-bottom nt-title">
-                        New Notifications
-                      </div>
-                      <div
-                        className="scroll-wrapper scrollbar-inner"
-                        style={{
-                          position: "relative",
-                        }}
+          {isLoggedIn ? (
+            <div className="col-xl-2 col-lg-2 col-8">
+              <div className="cp-user-top-bar-right">
+                <ul>
+                  <li className="hm-notify" id="notification_item">
+                    <div className="btn-group dropdown">
+                      <button
+                        type="button"
+                        className="btn notification-btn dropdown-toggle"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
                       >
-                        <ul
-                          className="scrollbar-inner scroll-content"
-                          style={{
-                            height: "auto",
-                            marginBottom: "0px",
-                            marginRight: "0px",
-                            maxHeight: "0px",
-                          }}
-                        ></ul>
-                        <div className="scroll-element scroll-x">
-                          <div className="scroll-element_outer">
-                            <div className="scroll-element_size"></div>
-                            <div className="scroll-element_track"></div>
-                            <div className="scroll-bar"></div>
-                          </div>
+                        <span className="notify-value hm-notify-number">
+                          {" "}
+                          0{" "}
+                        </span>
+                        <img
+                          src="/img/icons/notification.png"
+                          className="img-fluid"
+                          alt=""
+                        />
+                      </button>
+                      <div className="dropdown-menu notification-list dropdown-menu-right">
+                        <div className="text-center p-2 border-bottom nt-title">
+                          New Notifications
                         </div>
-                        <div className="scroll-element scroll-y">
-                          <div className="scroll-element_outer">
-                            <div className="scroll-element_size"></div>
-                            <div className="scroll-element_track"></div>
-                            <div className="scroll-bar"></div>
+                        <div
+                          className="scroll-wrapper scrollbar-inner"
+                          style={{
+                            position: "relative",
+                          }}
+                        >
+                          <ul
+                            className="scrollbar-inner scroll-content"
+                            style={{
+                              height: "auto",
+                              marginBottom: "0px",
+                              marginRight: "0px",
+                              maxHeight: "0px",
+                            }}
+                          ></ul>
+                          <div className="scroll-element scroll-x">
+                            <div className="scroll-element_outer">
+                              <div className="scroll-element_size"></div>
+                              <div className="scroll-element_track"></div>
+                              <div className="scroll-bar"></div>
+                            </div>
+                          </div>
+                          <div className="scroll-element scroll-y">
+                            <div className="scroll-element_outer">
+                              <div className="scroll-element_size"></div>
+                              <div className="scroll-element_track"></div>
+                              <div className="scroll-bar"></div>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </li>
-                <li>
-                  <div className="btn-group profile-dropdown">
-                    <button
-                      type="button"
-                      className="btn dropdown-toggle"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                    >
-                      <span className="cp-user-avater">
-                        <span className="cp-user-img">
-                          <img
-                            src="https://www.w3schools.com/howto/img_avatar2.png"
-                            className="img-fluid"
-                            alt=""
-                          />
+                  </li>
+                  <li>
+                    <div className="btn-group profile-dropdown">
+                      <button
+                        type="button"
+                        className="btn dropdown-toggle"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                      >
+                        <span className="cp-user-avater">
+                          <span className="cp-user-img">
+                            <img
+                              src="https://www.w3schools.com/howto/img_avatar2.png"
+                              className="img-fluid"
+                              alt=""
+                            />
+                          </span>
+                          <span className="cp-user-avater-info"></span>
                         </span>
-                        <span className="cp-user-avater-info"></span>
-                      </span>
-                    </button>
-                    <div className="dropdown-menu dropdown-menu-right">
-                      <span className="big-user-thumb">
-                        <img src="/avater.svg" className="img-fluid" alt="" />
-                      </span>
-                      <div className="user-name">
-                        <p>Mr User</p>
-                      </div>
-                      <button className="dropdown-item" type="button">
-                        <a href="">
-                          <i className="fa fa-user-circle-o"></i> Profile
-                        </a>
                       </button>
-                      <Link href="/user/settings">
+                      <div className="dropdown-menu dropdown-menu-right">
+                        <span className="big-user-thumb">
+                          <img src="/avater.svg" className="img-fluid" alt="" />
+                        </span>
+                        <div className="user-name">
+                          <p>Mr User</p>
+                        </div>
                         <button className="dropdown-item" type="button">
                           <a href="">
-                            <i className="fa fa-cog"></i> My Settings
+                            <i className="fa fa-user-circle-o"></i> Profile
                           </a>
                         </button>
-                      </Link>
-                      <button className="dropdown-item" type="button">
-                        <a href="-wallet">
-                          <i className="fa fa-credit-card"></i> My Wallet
-                        </a>
-                      </button>
-                      <button className="dropdown-item" type="button">
-                        <a href="http://localhost:8000/logout">
-                          <i className="fa fa-sign-out"></i> Logout
-                        </a>
-                      </button>
+                        <Link href="/user/settings">
+                          <button className="dropdown-item" type="button">
+                            <a href="">
+                              <i className="fa fa-cog"></i> My Settings
+                            </a>
+                          </button>
+                        </Link>
+                        <button className="dropdown-item" type="button">
+                          <a href="-wallet">
+                            <i className="fa fa-credit-card"></i> My Wallet
+                          </a>
+                        </button>
+                        <button className="dropdown-item" type="button">
+                          <a href="http://localhost:8000/logout">
+                            <i className="fa fa-sign-out"></i> Logout
+                          </a>
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                </li>
-              </ul>
-              <div className="cp-user-sidebar-toggler-s2">
-                <img src="/menu.svg" className="img-fluid" alt="" />
+                  </li>
+                </ul>
+                <div className="cp-user-sidebar-toggler-s2">
+                  <img src="/menu.svg" className="img-fluid" alt="" />
+                </div>
               </div>
             </div>
-          </div>
+          ) : (
+            <div className="col-xl-2 col-lg-2 col-8"></div>
+          )}
         </div>
       </div>
     </div>

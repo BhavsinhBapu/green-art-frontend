@@ -6,7 +6,7 @@ const request = axios.create({
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",
-    Authorization: Cookie.get("token")!,
+    Authorization: `Bearer ${Cookie.get("token")}`,
   },
 });
 
@@ -16,7 +16,7 @@ request.interceptors.response.use(
   },
   (error) => {
     if (error.response.status === 401) {
-      window.location.href = "/login";
+      // window.location.href = "/login";
     }
     return Promise.reject(error);
   }

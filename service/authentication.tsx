@@ -23,3 +23,8 @@ export const ForgotPasswordApi = async (credentials: { email: string }) => {
   const { data } = await request.post("/forgot-password", credentials);
   return data;
 };
+
+export const GetUserInfoByToken = async () => {
+  const { data } = await request.get("/profile");
+  return data;
+};

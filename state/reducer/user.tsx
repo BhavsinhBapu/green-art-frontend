@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export type UserType = {
-  user: Object;
+  user: {};
   isLoggedIn: boolean;
 };
 
-const initialState: UserType = {
+const initialState: any = {
   user: {},
   isLoggedIn: false,
 };
