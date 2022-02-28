@@ -1,5 +1,7 @@
 import Navbar from "components/common/navbar";
 import { useRouter } from "next/router";
+import { ToastContainer } from "react-toastify";
+
 import { useEffect, useState } from "react";
 const Index = ({ children }: any) => {
   const [navbarVisible, setNavbarVisible] = useState(false);
@@ -24,7 +26,20 @@ const Index = ({ children }: any) => {
       <div className="cp-user-main-wrapper">{children}</div>
     </div>
   ) : (
-    <div>{children}</div>
+    <>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+      <div>{children}</div>
+    </>
   );
 };
 

@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import ProfileSidebar from "layout/profile-sidebar";
+import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 
 const VerificationList: NextPage = () => {
   return (
@@ -76,5 +77,8 @@ const VerificationList: NextPage = () => {
     </div>
   );
 };
-
+VerificationList.getInitialProps = async (ctx) => {
+  await SSRAuthCheck(ctx, "/user/verification-list");
+  return {};
+};
 export default VerificationList;

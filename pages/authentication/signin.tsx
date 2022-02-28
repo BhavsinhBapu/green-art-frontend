@@ -4,11 +4,11 @@ import { SigninAction } from "state/actions/authentication";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
-import { ToastContainer } from "react-toastify";
 
 import Link from "next/link";
+import { authPageRequireCheck } from "middlewares/ssr-authentication-check";
 const Signin: NextPage = () => {
-  const [showPassword, setShowPassword] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
   const [processing, setProcessing] = useState(false);
   const dispatch = useDispatch();
   return (
@@ -18,17 +18,6 @@ const Signin: NextPage = () => {
         backgroundImage: `url(/user-content-wrapper-bg.jpg)`,
       }}
     >
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
       <div className="user-content-inner-wrap">
         <div className="row align-items-center">
           <div className="col-md-6">
@@ -90,7 +79,11 @@ const Signin: NextPage = () => {
                           className="eye rev"
                           onClick={() => setShowPassword(!showPassword)}
                         >
-                          <i className="fa fa-eye-slash toggle-password"></i>
+                          {showPassword ? (
+                            <i className="fa fa-eye toggle-password"></i>
+                          ) : (
+                            <i className="fa fa-eye-slash toggle-password"></i>
+                          )}
                         </span>
                       </div>
                       <ErrorMessage
@@ -100,7 +93,7 @@ const Signin: NextPage = () => {
                       />
 
                       <div className="form-group">
-                        <p className="invalid-feedback">Message </p>
+                        <p className="invalid-feedback">Message</p>
                       </div>
 
                       <div className="d-flex justify-content-between rememberme align-items-center mb-4">
@@ -164,6 +157,11 @@ const Signin: NextPage = () => {
       </div>
     </div>
   );
+};
+
+Signin.getInitialProps = async (ctx) => {
+  await authPageRequireCheck(ctx);
+  return {};
 };
 
 export default Signin;

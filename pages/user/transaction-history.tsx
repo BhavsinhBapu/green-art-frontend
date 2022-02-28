@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import ReportSidebar from "layout/report-sidebar";
 import React, { useState } from "react";
+import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 const TransactionHistory: NextPage = () => {
   type searchType = string;
   const [search, setSearch] = useState<searchType>("");
@@ -211,5 +212,8 @@ const TransactionHistory: NextPage = () => {
     </div>
   );
 };
-
+TransactionHistory.getInitialProps = async (ctx) => {
+  await SSRAuthCheck(ctx, "/user/transaction-history");
+  return {};
+};
 export default TransactionHistory;

@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import ProfileSidebar from "layout/profile-sidebar";
 import React, { useState } from "react";
+import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 
 const PhoneVerification: NextPage = () => {
   type passwordListType = {
@@ -100,5 +101,8 @@ const PhoneVerification: NextPage = () => {
     </div>
   );
 };
-
+PhoneVerification.getInitialProps = async (ctx) => {
+  await SSRAuthCheck(ctx, "/user/change-password");
+  return {};
+};
 export default PhoneVerification;

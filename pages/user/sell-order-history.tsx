@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import ReportSidebar from "layout/report-sidebar";
 import React, { useState } from "react";
+import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 const SellOrderHistory: NextPage = () => {
   type searchType = string;
   const [search, setSearch] = useState<searchType>("");
@@ -195,5 +196,8 @@ const SellOrderHistory: NextPage = () => {
     </div>
   );
 };
-
+SellOrderHistory.getInitialProps = async (ctx) => {
+  await SSRAuthCheck(ctx, "/user/sell-order-history");
+  return {};
+};
 export default SellOrderHistory;

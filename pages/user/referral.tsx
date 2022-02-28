@@ -1,6 +1,7 @@
+import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import type { NextPage } from "next";
 
-const Index: NextPage = () => {
+const Referral: NextPage = () => {
   return (
     <div className="referral-area">
       <div className="section-top-wrap mb-25">
@@ -135,5 +136,8 @@ const Index: NextPage = () => {
     </div>
   );
 };
-
-export default Index;
+Referral.getInitialProps = async (ctx) => {
+  await SSRAuthCheck(ctx, "/user/referral");
+  return {};
+};
+export default Referral;

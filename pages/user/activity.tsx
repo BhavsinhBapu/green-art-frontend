@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import ProfileSidebar from "layout/profile-sidebar";
 import React, { useState } from "react";
 import { handleSearch } from "common/search";
+import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 
 const Activity: NextPage = () => {
   type searchType = string;
@@ -187,6 +188,11 @@ const Activity: NextPage = () => {
       </div>
     </div>
   );
+};
+
+Activity.getInitialProps = async (ctx) => {
+  await SSRAuthCheck(ctx, "/user/activity");
+  return {};
 };
 
 export default Activity;

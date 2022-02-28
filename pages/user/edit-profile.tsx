@@ -4,6 +4,7 @@ import React, { ChangeEvent, FormEvent, useState } from "react";
 import countries from "lib/values/country.json";
 import { AdvancedRealTimeChart } from "react-ts-tradingview-widgets";
 import Dynamic from "next/dynamic";
+import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 
 const Edit: NextPage = () => {
   type editType = {
@@ -182,5 +183,8 @@ const Edit: NextPage = () => {
     </div>
   );
 };
-
+Edit.getInitialProps = async (ctx) => {
+  await SSRAuthCheck(ctx, "/user/edit-profile");
+  return {};
+};
 export default Edit;

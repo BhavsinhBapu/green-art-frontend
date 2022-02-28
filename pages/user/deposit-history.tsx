@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import React, { useState } from "react";
 import ReportSidebar from "layout/report-sidebar";
+import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 const DepositHistory: NextPage = () => {
   const [search, setSearch] = useState<any>("");
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -156,5 +157,8 @@ const DepositHistory: NextPage = () => {
     </div>
   );
 };
-
+DepositHistory.getInitialProps = async (ctx) => {
+  await SSRAuthCheck(ctx, "/user/deposit-history");
+  return {};
+};
 export default DepositHistory;

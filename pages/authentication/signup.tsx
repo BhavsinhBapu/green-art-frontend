@@ -4,9 +4,8 @@ import React, { useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { SignupAction } from "state/actions/authentication";
 import { useDispatch } from "react-redux";
-import { ToastContainer } from "react-toastify";
-
 import Link from "next/link";
+import { authPageRequireCheck } from "middlewares/ssr-authentication-check";
 const Signup: NextPage = () => {
   const dispatch = useDispatch();
   const [processing, setProcessing] = useState(false);
@@ -19,17 +18,6 @@ const Signup: NextPage = () => {
         backgroundImage: `url(/user-content-wrapper-bg.jpg)`,
       }}
     >
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
       <div className="user-content-inner-wrap">
         <div className="row align-items-center">
           <div className="col-md-6">
@@ -223,6 +211,11 @@ const Signup: NextPage = () => {
       </div>
     </div>
   );
+};
+
+Signup.getInitialProps = async (ctx) => {
+  await authPageRequireCheck(ctx);
+  return {};
 };
 
 export default Signup;

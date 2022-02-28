@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import ProfileSidebar from "layout/profile-sidebar";
+import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 
 const PhoneVerification: NextPage = () => {
   return (
@@ -56,6 +57,11 @@ const PhoneVerification: NextPage = () => {
       </div>
     </div>
   );
+};
+
+PhoneVerification.getInitialProps = async (ctx) => {
+  await SSRAuthCheck(ctx, "/user/phone-verification");
+  return {};
 };
 
 export default PhoneVerification;

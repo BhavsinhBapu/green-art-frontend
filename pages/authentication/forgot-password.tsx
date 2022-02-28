@@ -1,12 +1,13 @@
 import type { NextPage } from "next";
 import React, { useState } from "react";
+import { ForgotPasswordAction } from "state/actions/authentication";
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import { authPageRequireCheck } from "middlewares/ssr-authentication-check";
 
 const ForgotPassword: NextPage = () => {
-  type emailType = string;
-  const [email, setEmail] = useState("");
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-  };
+  const [processing, setProcessing] = useState(false);
+
   return (
     <div
       className="user-content-wrapper"
@@ -25,20 +26,57 @@ const ForgotPassword: NextPage = () => {
                     Please enter the email address to request a password reset.
                   </p>
                 </div>
-
-                <div className="form-group">
-                  <input
-                    type="email"
-                    name="email"
-                    className="form-control"
-                    placeholder="Your email here"
-                    value={email}
-                    onChange={handleChange}
-                  />
-                </div>
-                <button type="submit" className="btn nimmu-user-sibmit-button">
-                  Send
-                </button>
+                <Formik
+                  initialValues={{
+                    email: "",
+                  }}
+                  validationSchema={Yup.object({
+                    email: Yup.string()
+                      .email("Invalid email address")
+                      .required("Email is required"),
+                  })}
+                  onSubmit={async (values) => {
+                    await ForgotPasswordAction(values, setProcessing);
+                  }}
+                >
+                  {({ errors, touched }) => (
+                    <Form>
+                      <div className="form-group">
+                        <Field
+                          type="email"
+                          name="email"
+                          id="email"
+                          className={`form-control ${
+                            touched.email && errors.email ? "is-invalid" : ""
+                          }`}
+                          placeholder="Your email here"
+                        />
+                      </div>
+                      <ErrorMessage
+                        name="email"
+                        component="div"
+                        className="red-text"
+                      />
+                      <button
+                        type="submit"
+                        className="btn nimmu-user-sibmit-button"
+                      >
+                        {processing ? (
+                          <>
+                            <span
+                              className="spinner-border spinner-border-md"
+                              role="status"
+                              aria-hidden="true"
+                            ></span>
+                            <span>Please wait</span>
+                          </>
+                        ) : (
+                          "Send"
+                        )}
+                      </button>
+                    </Form>
+                  )}
+                </Formik>
               </div>
             </div>
           </div>
@@ -58,5 +96,8 @@ const ForgotPassword: NextPage = () => {
     </div>
   );
 };
-
+ForgotPassword.getInitialProps = async (ctx) => {
+  await authPageRequireCheck(ctx);
+  return {};
+};
 export default ForgotPassword;

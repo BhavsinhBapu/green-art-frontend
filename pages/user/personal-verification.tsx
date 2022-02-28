@@ -1,7 +1,8 @@
 import type { NextPage } from "next";
 import ProfileSidebar from "layout/profile-sidebar";
+import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 
-const PhoneVerification: NextPage = () => {
+const PersonalVerification: NextPage = () => {
   return (
     <div className="page-wrap">
       <ProfileSidebar />
@@ -82,5 +83,8 @@ const PhoneVerification: NextPage = () => {
     </div>
   );
 };
-
-export default PhoneVerification;
+PersonalVerification.getInitialProps = async (ctx) => {
+  await SSRAuthCheck(ctx, "/user/personal-verification");
+  return {};
+};
+export default PersonalVerification;

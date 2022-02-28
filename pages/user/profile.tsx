@@ -1,7 +1,8 @@
 import type { NextPage } from "next";
 import ProfileComp from "components/profile/profile";
 import ProfileSidebar from "layout/profile-sidebar";
-const Index: NextPage = () => {
+import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
+const Profile: NextPage = () => {
   return (
     <div className="page-wrap">
       <ProfileSidebar />
@@ -87,5 +88,8 @@ const Index: NextPage = () => {
     </div>
   );
 };
-
-export default Index;
+Profile.getInitialProps = async (ctx) => {
+  await SSRAuthCheck(ctx, "/user/profile");
+  return {};
+};
+export default Profile;

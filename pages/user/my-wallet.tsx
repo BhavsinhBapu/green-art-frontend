@@ -1,7 +1,8 @@
+import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import type { NextPage } from "next";
 import React, { useState } from "react";
 
-const Index: NextPage = () => {
+const MyWallet: NextPage = () => {
   type searchType = string;
   const [search, setSearch] = useState<searchType>("");
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -527,5 +528,8 @@ const Index: NextPage = () => {
     </>
   );
 };
-
-export default Index;
+MyWallet.getInitialProps = async (ctx) => {
+  await SSRAuthCheck(ctx, "/user/my-wallet");
+  return {};
+};
+export default MyWallet;

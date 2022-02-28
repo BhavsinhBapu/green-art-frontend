@@ -6,7 +6,7 @@ import {
 import { login, setAuthenticationState } from "state/reducer/user";
 import Router from "next/router";
 import { toast } from "react-toastify";
-
+import Cookies from "js-cookie";
 export const SigninAction =
   (credentials: { email: string; password: string }, setProcessing: any) =>
   async (dispatch: any) => {
@@ -14,8 +14,10 @@ export const SigninAction =
     const response = await SigninApi(credentials);
     const responseMessage = response.message;
     console.log(response, "response from action");
-    if (response === true) {
-      dispatch(login(response));
+    if (response.success === true) {
+      Cookies.set("token", response.access_token);
+      console.log(response.user, "response.user");
+      dispatch(login(response.user));
       toast.success(responseMessage, {
         position: "top-right",
         autoClose: 5000,
@@ -26,6 +28,7 @@ export const SigninAction =
         progress: undefined,
         className: "dark-toast",
       });
+      Router.replace("/exchange/dashboard");
     } else {
       dispatch(setAuthenticationState(false));
       toast.error(responseMessage, {
@@ -92,9 +95,17 @@ export const SignupAction =
     return response;
   };
 
-export const ForgotPasswordAction = async (credentials: { email: string }) => {
+const Pause = (miliSeconds: number) => {
+  return new Promise((resolve) => setTimeout(resolve, miliSeconds));
+};
+
+export const ForgotPasswordAction = async (
+  credentials: { email: string },
+  setProcessing: any
+) => {
+  setProcessing(true);
   const response = await ForgotPasswordApi(credentials);
-  console.log(response, "response from action");
+
   let responseMessage = response.message;
   if (response.success === true) {
     toast.success(responseMessage, {
@@ -105,7 +116,10 @@ export const ForgotPasswordAction = async (credentials: { email: string }) => {
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
+      className: "dark-toast",
     });
+    // await Pause(5000);
+    Router.push("/authentication/signin");
   } else {
     toast.error(responseMessage, {
       position: "top-right",
@@ -115,6 +129,8 @@ export const ForgotPasswordAction = async (credentials: { email: string }) => {
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
+      className: "dark-toast",
     });
   }
+  setProcessing(false);
 };

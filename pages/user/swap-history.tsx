@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import * as React from "react";
 import ReportSidebar from "layout/report-sidebar";
+import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 const SwapHistory: NextPage = () => {
   type searchType = string;
   const [search, setSearch] = React.useState<searchType>("");
@@ -199,5 +200,8 @@ const SwapHistory: NextPage = () => {
     </div>
   );
 };
-
+SwapHistory.getInitialProps = async (ctx) => {
+  await SSRAuthCheck(ctx, "/user/swap-history");
+  return {};
+};
 export default SwapHistory;

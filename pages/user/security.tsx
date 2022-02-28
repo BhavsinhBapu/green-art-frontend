@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import ProfileSidebar from "layout/profile-sidebar";
+import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 
 const Security: NextPage = () => {
   return (
@@ -156,5 +157,8 @@ const Security: NextPage = () => {
     </div>
   );
 };
-
+Security.getInitialProps = async (ctx) => {
+  await SSRAuthCheck(ctx, "/user/security");
+  return {};
+};
 export default Security;

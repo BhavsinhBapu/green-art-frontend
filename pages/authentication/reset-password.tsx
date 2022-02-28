@@ -1,24 +1,14 @@
 import type { NextPage } from "next";
 import React, { useState } from "react";
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import { authPageRequireCheck } from "middlewares/ssr-authentication-check";
 
 const ResetPassword: NextPage = () => {
   type resetType = {
     email: string;
     password: string;
     password_confirmation: string;
-  };
-
-  const [resetPassword, serResetPassword] = useState<resetType>({
-    email: "",
-    password: "",
-    password_confirmation: "",
-  });
-
-  const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    serResetPassword({
-      ...resetPassword,
-      [e.target.name]: e.target.value,
-    });
   };
 
   return (
@@ -39,51 +29,94 @@ const ResetPassword: NextPage = () => {
                     Please enter the email address to request a password reset.
                   </p>
                 </div>
+                <Formik
+                  initialValues={{
+                    email: "",
+                    password: "",
+                    password_confirmation: "",
+                    token: "",
+                  }}
+                  validationSchema={Yup.object({
+                    email: Yup.string()
+                      .email("Invalid email address")
+                      .required("Email is required"),
+                    password: Yup.string()
+                      .min(6, "Password must be at least 6 characters")
+                      .required("Password is required"),
+                    password_confirmation: Yup.string()
+                      .oneOf(
+                        [Yup.ref("password"), null],
+                        "Passwords must match"
+                      )
+                      .required("Password confirmation is required"),
+                  })}
+                  onSubmit={async (values) => {}}
+                >
+                  {({ errors, touched }) => (
+                    <Form>
+                      <div className="form-group">
+                        <Field
+                          type="email"
+                          name="email"
+                          id="email"
+                          className="form-control"
+                          placeholder="Your email here"
+                        />
+                      </div>
+                      <ErrorMessage
+                        name="email"
+                        component="div"
+                        className="red-text"
+                      />
+                      <div className="form-group">
+                        <Field
+                          type="password"
+                          name="password"
+                          className="form-control"
+                          placeholder="Type your password"
+                        />
+                      </div>
+                      <ErrorMessage
+                        name="password"
+                        component="div"
+                        className="red-text"
+                      />
+                      <div className="form-group">
+                        <Field
+                          type="password"
+                          name="password"
+                          className="form-control"
+                          placeholder="Type your confirm password"
+                        />
+                      </div>
+                      <ErrorMessage
+                        name="password_confirmation"
+                        component="div"
+                        className="red-text"
+                      />
+                      <div className="form-group">
+                        <Field
+                          type="password"
+                          name="password_confirmation"
+                          className="form-control"
+                          placeholder="Enter your code"
+                        />
+                      </div>
 
-                <div className="form-group">
-                  <input
-                    id="token"
-                    type="text"
-                    placeholder=""
-                    className="form-control"
-                    name="token"
-                    value={resetPassword.email}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <input
-                    type="email"
-                    name="email"
-                    value={resetPassword.password}
-                    className="form-control"
-                    placeholder=""
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <input
-                    type="password"
-                    name="password"
-                    className="form-control"
-                    placeholder=""
-                    value={resetPassword.password}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <input
-                    type="password"
-                    name="password_confirmation"
-                    className="form-control"
-                    placeholder=""
-                    value={resetPassword.password_confirmation}
-                    onChange={handleChange}
-                  />
-                </div>
-                <button type="submit" className="btn nimmu-user-sibmit-button">
-                  Submit
-                </button>
+                      <ErrorMessage
+                        name="password_confirmation"
+                        component="div"
+                        className="red-text"
+                      />
+                      <button
+                        type="submit"
+                        className="btn nimmu-user-sibmit-button"
+                      >
+                        Submit
+                      </button>
+                    </Form>
+                  )}
+                </Formik>
               </div>
             </div>
           </div>
@@ -103,5 +136,8 @@ const ResetPassword: NextPage = () => {
     </div>
   );
 };
-
+ResetPassword.getInitialProps = async (ctx) => {
+  await authPageRequireCheck(ctx);
+  return {};
+};
 export default ResetPassword;
