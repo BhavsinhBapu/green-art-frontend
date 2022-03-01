@@ -23,7 +23,7 @@ const dashboardNavbar = () => {
           <div className="col-xl-8 col-lg-8 d-none d-lg-block">
             <nav className="main-menu">
               <ul>
-                <Link href="/user/my-wallet">
+                <Link href={"/user/my-wallet"}>
                   <li className="">
                     <a href="/exchange/dashboard">
                       <span className="cp-user-icon">
@@ -42,7 +42,11 @@ const dashboardNavbar = () => {
                     </a>
                   </li>
                 </Link>
-                <Link href="/user/my-wallet">
+                <Link
+                  href={
+                    isLoggedIn ? "/user/my-wallet" : "/authentication/signin"
+                  }
+                >
                   <li className=" cp-user-active-page  arrow-icon">
                     <span className="cp-user-icon">
                       <img
@@ -76,39 +80,77 @@ const dashboardNavbar = () => {
                     <span className="cp-user-name">Reports</span>
                   </a>
                   <ul className="">
-                    <Link href="/user/deposit-history?type=deposit">
+                    <Link
+                      href={
+                        isLoggedIn
+                          ? "/user/deposit-history?type=deposit"
+                          : "/authentication/signin"
+                      }
+                    >
                       <li className="">
                         <a>Deposit History</a>
                       </li>
                     </Link>
-                    <Link href="/user/deposit-history?type=withdraw">
+                    <Link
+                      href={
+                        isLoggedIn
+                          ? "/user/deposit-history?type=withdraw"
+                          : "/authentication/signin"
+                      }
+                    >
                       <li className="">
                         <a>Withdrawal History</a>
                       </li>
                     </Link>
-                    <Link href="/user/swap-history">
+                    <Link
+                      href={
+                        isLoggedIn
+                          ? "/user/swap-history"
+                          : "/authentication/signin"
+                      }
+                    >
                       <li className="">
                         <a>Swap History</a>
                       </li>
                     </Link>
-                    <Link href="/user/buy-order-history">
+                    <Link
+                      href={
+                        isLoggedIn
+                          ? "/user/buy-order-history"
+                          : "/authentication/signin"
+                      }
+                    >
                       <li className="">
                         <a href="">Buy Order History</a>
                       </li>
                     </Link>
-                    <Link href="/user/sell-order-history">
+                    <Link
+                      href={
+                        isLoggedIn
+                          ? "/user/sell-order-history"
+                          : "/authentication/signin"
+                      }
+                    >
                       <li className="">
                         <a href="">Sell Order History</a>
                       </li>
                     </Link>
-                    <Link href="/user/transaction-history">
+                    <Link
+                      href={
+                        isLoggedIn
+                          ? "/user/transaction-history"
+                          : "/authentication/signin"
+                      }
+                    >
                       <li className="">
                         <a href="">Transaction History</a>
                       </li>
                     </Link>
                   </ul>
                 </li>
-                <Link href="/user/profile">
+                <Link
+                  href={isLoggedIn ? "/user/profile" : "/authentication/signin"}
+                >
                   <li className="">
                     <a href="">
                       <span className="cp-user-icon">
@@ -127,7 +169,11 @@ const dashboardNavbar = () => {
                     </a>
                   </li>
                 </Link>
-                <Link href="/user/referral">
+                <Link
+                  href={
+                    isLoggedIn ? "/user/referral" : "/authentication/signin"
+                  }
+                >
                   <li className="">
                     <a href="">
                       <span className="cp-user-icon">
@@ -163,12 +209,18 @@ const dashboardNavbar = () => {
                     <span className="cp-user-name">Settings</span>
                   </a>
                   <ul className="">
-                    <Link href="/user/settings">
+                    <Link
+                      href={
+                        isLoggedIn ? "/user/settings" : "/authentication/signin"
+                      }
+                    >
                       <li className="">
                         <a href="">My Settings</a>
                       </li>
                     </Link>
-                    <Link href="/user/faq">
+                    <Link
+                      href={isLoggedIn ? "/user/faq" : "/authentication/signin"}
+                    >
                       <li className="">
                         <a href="">FAQ</a>
                       </li>

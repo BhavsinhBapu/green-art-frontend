@@ -8,7 +8,8 @@ import CurrencyLevel from "components/exchange/currencyLevel";
 import OrderHistorySection from "components/exchange/orderHistorySection";
 import ExchangeBox from "components/exchange/ExchangeBox";
 import OrderBook from "components/exchange/OrderBook";
-
+import { useSelector } from "react-redux";
+import { RootState } from "state/store";
 const Dashboard: NextPage = () => {
   return (
     <div className="background-col">

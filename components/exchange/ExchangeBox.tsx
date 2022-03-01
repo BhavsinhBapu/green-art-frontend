@@ -1,11 +1,15 @@
+import Link from "next/link";
 import React, { useState } from "react";
-
+import { useSelector } from "react-redux";
+import { RootState } from "state/store";
 const ExchangeBox = () => {
   type tradingTabType = number;
   const [tradingTab, setTradingTab] = useState<tradingTabType>(1);
   const handletradingTab = (tab: number) => {
     setTradingTab(tab);
   };
+  const { isLoggedIn, user } = useSelector((state: RootState) => state.user);
+
   return (
     <div className="exchange-box order-box">
       <div className="trades-headers">
@@ -198,9 +202,13 @@ const ExchangeBox = () => {
                           <span className="base_coin_type">USDT</span>
                         </span>
                       </div>{" "}
-                      <div className="form-group mt-4">
-                        <a className="btn btn-danger"> Login</a>
-                      </div>
+                      {!isLoggedIn && (
+                        <div className="form-group mt-4">
+                          <Link href="/authentication/signin">
+                            <a className="btn btn-danger">Login</a>
+                          </Link>{" "}
+                        </div>
+                      )}
                     </form>
                   </div>
                 </div>

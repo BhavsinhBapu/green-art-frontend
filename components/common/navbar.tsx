@@ -41,7 +41,13 @@ const navbar = () => {
                     <span className="cp-user-name">Trade</span>
                   </a>
                 </li>
-                <Link href="/user/my-wallet">
+                <Link
+                  href={
+                    isLoggedIn === true
+                      ? "/user/my-wallet"
+                      : "authentication/signin"
+                  }
+                >
                   <li className=" cp-user-active-page  arrow-icon">
                     <span className="cp-user-icon">
                       <img
@@ -288,7 +294,9 @@ const navbar = () => {
                             dispatch(LogoutAction());
                           }}
                         >
-                          <i className="fa fa-sign-out"></i> Logout
+                          <a>
+                            <i className="fa fa-sign-out"></i> Logout
+                          </a>
                         </button>
                       </div>
                     </div>
