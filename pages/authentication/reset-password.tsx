@@ -3,13 +3,10 @@ import React, { useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { authPageRequireCheck } from "middlewares/ssr-authentication-check";
+import { ForgotPasswordAction, ResetPasswordAction } from "state/actions/user";
 
 const ResetPassword: NextPage = () => {
-  type resetType = {
-    email: string;
-    password: string;
-    password_confirmation: string;
-  };
+  const [processing, setProcessing] = useState(false);
 
   return (
     <div
@@ -49,8 +46,11 @@ const ResetPassword: NextPage = () => {
                         "Passwords must match"
                       )
                       .required("Password confirmation is required"),
+                    token: Yup.string().required("Token is required"),
                   })}
-                  onSubmit={async (values) => {}}
+                  onSubmit={async (values) => {
+                    await ResetPasswordAction(values, setProcessing);
+                  }}
                 >
                   {({ errors, touched }) => (
                     <Form>
@@ -59,7 +59,9 @@ const ResetPassword: NextPage = () => {
                           type="email"
                           name="email"
                           id="email"
-                          className="form-control"
+                          className={`form-control ${
+                            touched.email && errors.email ? "is-invalid" : ""
+                          }`}
                           placeholder="Your email here"
                         />
                       </div>
@@ -72,7 +74,12 @@ const ResetPassword: NextPage = () => {
                         <Field
                           type="password"
                           name="password"
-                          className="form-control"
+                          id="password"
+                          className={`form-control ${
+                            touched.password && errors.password
+                              ? "is-invalid"
+                              : ""
+                          }`}
                           placeholder="Type your password"
                         />
                       </div>
@@ -84,8 +91,14 @@ const ResetPassword: NextPage = () => {
                       <div className="form-group">
                         <Field
                           type="password"
-                          name="password"
-                          className="form-control"
+                          name="password_confirmation"
+                          id="password_confirmation"
+                          className={`form-control ${
+                            touched.password_confirmation &&
+                            errors.password_confirmation
+                              ? "is-invalid"
+                              : ""
+                          }`}
                           placeholder="Type your confirm password"
                         />
                       </div>
@@ -94,17 +107,20 @@ const ResetPassword: NextPage = () => {
                         component="div"
                         className="red-text"
                       />
+
                       <div className="form-group">
                         <Field
-                          type="password"
-                          name="password_confirmation"
-                          className="form-control"
-                          placeholder="Enter your code"
+                          type="token"
+                          name="token"
+                          id="token"
+                          className={`form-control ${
+                            touched.token && errors.token ? "is-invalid" : ""
+                          }`}
+                          placeholder="Your token here"
                         />
                       </div>
-
                       <ErrorMessage
-                        name="password_confirmation"
+                        name="token"
                         component="div"
                         className="red-text"
                       />
@@ -112,7 +128,18 @@ const ResetPassword: NextPage = () => {
                         type="submit"
                         className="btn nimmu-user-sibmit-button"
                       >
-                        Submit
+                        {processing ? (
+                          <>
+                            <span
+                              className="spinner-border spinner-border-md"
+                              role="status"
+                              aria-hidden="true"
+                            ></span>
+                            <span>Please wait</span>
+                          </>
+                        ) : (
+                          "Submit"
+                        )}
                       </button>
                     </Form>
                   )}

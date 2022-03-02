@@ -18,6 +18,13 @@ function MyApp({ Component, pageProps }: AppProps) {
           integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
           crossOrigin="anonymous"
         />
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+          integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+          crossOrigin="anonymous"
+          referrerPolicy="no-referrer"
+        />
       </Head>
 
       <Provider store={store}>

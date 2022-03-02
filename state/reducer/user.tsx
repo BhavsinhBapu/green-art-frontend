@@ -8,6 +8,7 @@ export type UserType = {
 const initialState: any = {
   user: {},
   isLoggedIn: false,
+  isLoading: false,
 };
 
 export const userSlice = createSlice({
@@ -23,14 +24,17 @@ export const userSlice = createSlice({
       state.isLoggedIn = false;
     },
     setUser: (state, action: PayloadAction<UserType>) => {
-      state.user = action.payload.user;
+      state.user = action.payload;
     },
     setAuthenticationState: (state, action: PayloadAction<boolean>) => {
       state.isLoggedIn = action.payload;
     },
+    setLoading: (state, action: PayloadAction<boolean>) => {
+      state.isLoading = action.payload;
+    },
   },
 });
 
-export const { login, logout, setUser, setAuthenticationState } =
+export const { login, logout, setUser, setAuthenticationState, setLoading } =
   userSlice.actions;
 export default userSlice.reducer;

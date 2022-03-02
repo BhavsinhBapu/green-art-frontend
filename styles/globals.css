@@ -5287,7 +5287,7 @@ table.dataTable tbody tr td {
   background: #151515;
 }
 .cp-user-body-bg .main-menu ul li a {
-  color: #ffffff;
+  color: #ffffff !important;
 }
 .cp-user-body-bg .main-menu ul li ul {
   background: #151515 !important;
@@ -8937,4 +8937,37 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
 .dark-toast {
   background-color: #000000 !important;
   color: #ffffff !important;
+}
+
+/* preloder-area */
+.preloder-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+}
+.preloder-area .spinner-border {
+  margin-right: 10px;
+}
+.cstm-img-picker {
+  display: flex;
+  width: 100px;
+  height: 204px;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+  background: #f3f3f3;
+  color: #ffffff;
+  align-items: center;
+  justify-content: center;
+}
+.cstm-img-picker input {
+  display: none;
 }

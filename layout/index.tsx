@@ -3,11 +3,14 @@ import { useRouter } from "next/router";
 import { ToastContainer } from "react-toastify";
 
 import { useEffect, useState } from "react";
-import { GetUserInfoByTokenAction } from "state/actions/authentication";
-import { useDispatch } from "react-redux";
+import { GetUserInfoByTokenAction } from "state/actions/user";
+import { useDispatch, useSelector } from "react-redux";
 import Cookies from "js-cookie";
+import { RootState } from "state/store";
 const Index = ({ children }: any) => {
   const [navbarVisible, setNavbarVisible] = useState(false);
+
+  const { isLoading, user } = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
   const router = useRouter();
   useEffect(() => {
@@ -30,7 +33,28 @@ const Index = ({ children }: any) => {
   }, []);
   return navbarVisible ? (
     <div>
+      {isLoading && (
+        <div className="preloder-area">
+          <span
+            className="spinner-border spinner-border-md"
+            role="status"
+            aria-hidden="true"
+          ></span>
+          <span>Please wait</span>
+        </div>
+      )}
       <Navbar />
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <div className="cp-user-main-wrapper">{children}</div>
     </div>
   ) : (

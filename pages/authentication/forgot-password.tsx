@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import React, { useState } from "react";
-import { ForgotPasswordAction } from "state/actions/authentication";
+import { ForgotPasswordAction } from "state/actions/user";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { authPageRequireCheck } from "middlewares/ssr-authentication-check";

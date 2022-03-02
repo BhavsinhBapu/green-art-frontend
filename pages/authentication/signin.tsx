@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import * as Yup from "yup";
-import { SigninAction } from "state/actions/authentication";
+import { SigninAction } from "state/actions/user";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";

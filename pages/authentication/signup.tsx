@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import * as Yup from "yup";
 import React, { useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
-import { SignupAction } from "state/actions/authentication";
+import { SignupAction } from "state/actions/user";
 import { useDispatch } from "react-redux";
 import Link from "next/link";
 import { authPageRequireCheck } from "middlewares/ssr-authentication-check";
