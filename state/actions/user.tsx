@@ -8,6 +8,9 @@ import {
   SendPhoneVerificationSms,
   PhoneVerify,
   ChangePassword,
+  UploadNid,
+  UploadPassport,
+  UploadDrivingLicence,
 } from "service/user";
 import {
   login,
@@ -326,3 +329,96 @@ export const ChangePasswordAction =
     }
     dispatch(setLoading(false));
   };
+
+export const UploadNidImageAction = async (
+  image: any,
+  setProcessing: Dispatch<SetStateAction<boolean>>
+) => {
+  setProcessing(true);
+  const response = await UploadNid(image);
+  if (response.success === true) {
+    toast.success(response.message, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      className: "dark-toast",
+    });
+  } else {
+    toast.error(response.message, {
+      position: "top-right",
+      autoClose: 10000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  }
+  setProcessing(false);
+};
+
+export const UploadPassportImageAction = async (
+  image: any,
+  setProcessing: Dispatch<SetStateAction<boolean>>
+) => {
+  setProcessing(true);
+  const response = await UploadPassport(image);
+  if (response.success === true) {
+    toast.success(response.message, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      className: "dark-toast",
+    });
+  } else {
+    toast.error(response.message, {
+      position: "top-right",
+      autoClose: 10000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  }
+  setProcessing(false);
+};
+
+export const UploadDrivingLicenceImageAction = async (
+  image: any,
+  setProcessing: Dispatch<SetStateAction<boolean>>
+) => {
+  setProcessing(true);
+  const response = await UploadDrivingLicence(image);
+  if (response.success === true) {
+    toast.success(response.message, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      className: "dark-toast",
+    });
+  } else {
+    toast.error(response.message, {
+      position: "top-right",
+      autoClose: 10000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  }
+  setProcessing(false);
+};

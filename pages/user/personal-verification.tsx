@@ -2,10 +2,12 @@ import type { NextPage } from "next";
 import ProfileSidebar from "layout/profile-sidebar";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import NidModal from "components/profile/personal-verification/NidModal";
+
 import { useState } from "react";
 
 const PersonalVerification: NextPage = () => {
   const [type, setType] = useState<string>("");
+
   return (
     <div className="page-wrap">
       <ProfileSidebar />

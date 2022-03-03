@@ -1,18 +1,54 @@
 import React, { useState } from "react";
 import { useDropzone } from "react-dropzone";
-import ImageInputField from "./imageInputField";
+import {
+  UploadDrivingLicenceImageAction,
+  UploadNidImageAction,
+  UploadPassportImageAction,
+} from "state/actions/user";
+import { useDispatch } from "react-redux";
 
 const NidModal = ({ type }: any) => {
+  const [previousType, setPreviousType] = useState<string>("");
   const [frontSide, setFrontSide] = useState(null);
+  const [processing, setProcessing] = useState(false);
   const [backSide, setBackSide] = useState(null);
-  const storeSelectedFile = (e: any, setState: any) => {
+  if (type !== previousType) {
+    setPreviousType(type);
+    setFrontSide(null);
+    setBackSide(null);
+  }
+  const [uploadFiles, setUploadFiles] = useState({
+    frontSide: null,
+    backSide: null,
+  });
+  const storeSelectedFile = (e: any, setState: any, side: number) => {
     var reader = new FileReader();
     var url = reader.readAsDataURL(e.target.files[0]);
     reader.onloadend = function (e) {
       setState(reader.result);
     };
 
+    side === 1
+      ? setUploadFiles({ ...uploadFiles, frontSide: e.target.files[0] })
+      : setUploadFiles({ ...uploadFiles, backSide: e.target.files[0] });
+
     console.log(url, "url");
+  };
+  const uploadImage = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.preventDefault();
+
+    const formData: any = new FormData();
+    formData.append("file_two", uploadFiles.frontSide);
+    formData.append("file_three", uploadFiles.backSide);
+    if (type === "nid") {
+      UploadNidImageAction(formData, setProcessing);
+    } else if (type === "driving_licence") {
+      UploadDrivingLicenceImageAction(formData, setProcessing);
+    } else if (type === "passport") {
+      UploadPassportImageAction(formData, setProcessing);
+    }
   };
   return (
     <div
@@ -66,7 +102,7 @@ const NidModal = ({ type }: any) => {
                               type="file"
                               name="front_side"
                               onChange={(e) => {
-                                storeSelectedFile(e, setFrontSide);
+                                storeSelectedFile(e, setFrontSide, 1);
                               }}
                             />
                             <span>drag and drop file</span>
@@ -87,7 +123,7 @@ const NidModal = ({ type }: any) => {
                               type="file"
                               name="front_side"
                               onChange={(e) => {
-                                storeSelectedFile(e, setBackSide);
+                                storeSelectedFile(e, setBackSide, 2);
                               }}
                             />
                             <span>drag and drop file</span>
@@ -96,34 +132,26 @@ const NidModal = ({ type }: any) => {
                       </div>
                     </div>
                   </div>
-                  {/* {frontSide && (
-                    <img src={frontSide} className="img-fluid" alt="" />
-                  )} */}
 
-                  {/* 
-                  <div>
-                    <div {...getRootProps()}>
-                      <input {...getInputProps()} />
-                      <p>Drop the files here ...</p>
-                    </div>
-                  </div> */}
-
-                  {/* {paths.length > 0 &&
-                    paths.map((path: any, index: any) => (
-                      <div className="col-lg-6 mb-lg-0 mb-4" key={index}>
-                        <div className="idcard">
-                          <h3 className="title">Front Side {index + 2}</h3>
-                          <div className="container cstm-img-picker">
-                            <img src={path} className="img-fluid" alt="" />
-                          </div>
-                        </div>
-                      </div>
-                    ))} */}
                   <button
                     type="submit"
                     className="btn nimmu-user-sibmit-button mt-5"
+                    onClick={(e) => {
+                      uploadImage(e);
+                    }}
                   >
-                    Upload
+                    {processing ? (
+                      <>
+                        <span
+                          className="spinner-border spinner-border-md"
+                          role="status"
+                          aria-hidden="true"
+                        ></span>
+                        <span>Please wait</span>
+                      </>
+                    ) : (
+                      "Upload"
+                    )}
                   </button>
                 </div>
               </div>

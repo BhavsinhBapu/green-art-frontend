@@ -72,3 +72,18 @@ export const ChangePassword = async (credentials: {
   const { data } = await request.post("/change-password", credentials);
   return data;
 };
+
+export const UploadNid = async (Files: any) => {
+  const { data } = await request.post("/upload-nid", Files);
+  return data;
+};
+
+export const UploadPassport = async (Files: any) => {
+  const { data } = await request.post("/upload-passport", Files);
+  return data;
+};
+
+export const UploadDrivingLicence = async (Files: any) => {
+  const { data } = await request.post("/upload-driving-licence", Files);
+  return data;
+};
