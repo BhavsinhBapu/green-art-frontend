@@ -44,7 +44,7 @@ const NidModal = ({ type }: any) => {
     formData.append("file_three", uploadFiles.backSide);
     if (type === "nid") {
       UploadNidImageAction(formData, setProcessing);
-    } else if (type === "driving_licence") {
+    } else if (type === "driving-licence") {
       UploadDrivingLicenceImageAction(formData, setProcessing);
     } else if (type === "passport") {
       UploadPassportImageAction(formData, setProcessing);

@@ -1,8 +1,19 @@
 import type { NextPage } from "next";
 import ProfileSidebar from "layout/profile-sidebar";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
-
+import { useSelector } from "react-redux";
+import { RootState } from "state/store";
+import Link from "next/link";
 const Security: NextPage = () => {
+  const { user } = useSelector((state: RootState) => state.user);
+  const makeEmailSecure = (email: string) => {
+    const [first, ...rest] = email.split("@");
+    return first[0] + "*****" + "@" + rest.join("@");
+  };
+  const makePhoneNumberSecure = (phoneNumber: string) => {
+    const middleNumbers = phoneNumber.slice(2, 9);
+    return phoneNumber.replace(middleNumbers, "*******");
+  };
   return (
     <div className="page-wrap">
       <ProfileSidebar />
@@ -60,18 +71,19 @@ const Security: NextPage = () => {
                     </div>
                   </div>
                   <div className="security-center">
-                    <span className="text-danger">No phone number added</span>
+                    {user.phone ? (
+                      <span>{makePhoneNumberSecure(user?.phone)}</span>
+                    ) : (
+                      <span className="text-danger">No phone number added</span>
+                    )}
                   </div>
                   <div className="security-right">
                     <a href="#" className="action-btn remove-btn">
                       Unverified
                     </a>
-                    <a
-                      href="http://localhost:8000/user/phone-verification"
-                      className="action-btn enable-btn"
-                    >
-                      Verify ?
-                    </a>
+                    <Link href="/user/phone-verification">
+                      <a className="action-btn enable-btn">Verify ?</a>
+                    </Link>
                   </div>
                 </div>
                 <div className="single-security">
@@ -89,7 +101,13 @@ const Security: NextPage = () => {
                     </div>
                   </div>
                   <div className="security-center">
-                    <span> use****com </span>
+                    {user.email ? (
+                      <span>{makeEmailSecure(user.email)}</span>
+                    ) : (
+                      <span className="text-danger">
+                        No email address added
+                      </span>
+                    )}
                   </div>
                   <div className="security-right">
                     <a href="#" className="action-btn change-btn">
@@ -115,12 +133,9 @@ const Security: NextPage = () => {
                     </div>
                   </div>
                   <div className="security-right">
-                    <a
-                      href="http://localhost:8000/user/change-password"
-                      className="action-btn enable-btn"
-                    >
-                      Change
-                    </a>
+                    <Link href="/user/change-password">
+                      <a className="action-btn enable-btn">Change</a>
+                    </Link>
                   </div>
                 </div>
                 <div className="single-security">

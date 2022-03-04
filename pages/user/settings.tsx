@@ -27,11 +27,7 @@ const Settings: NextPage = () => {
                       </div>
                       <div className="cp-user-setting-card-inner">
                         <div className="cp-user-auth-icon">
-                          <img
-                            src="http://localhost:8000/assets/user/images/gauth.svg"
-                            className="img-fluid"
-                            alt=""
-                          />
+                          <img src="/gauth.svg" className="img-fluid" alt="" />
                         </div>
                         <div className="cp-user-content mb-0">
                           <h5>Authenticator app</h5>

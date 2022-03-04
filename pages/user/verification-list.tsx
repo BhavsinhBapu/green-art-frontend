@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import ProfileSidebar from "layout/profile-sidebar";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
+import Link from "next/link";
 
 const VerificationList: NextPage = () => {
   return (
@@ -25,12 +26,9 @@ const VerificationList: NextPage = () => {
                         <span className="text-warning">Not Submitted</span>
                       </li>
                     </ul>
-                    <a
-                      href="http://localhost:8000/user/personal-verification"
-                      className="primary-btn-sm"
-                    >
-                      Start now
-                    </a>
+                    <Link href="/user/personal-verification">
+                      <a className="primary-btn-sm">Start now</a>
+                    </Link>
                   </div>
                 </div>
                 <div className="col-lg-4 col-md-6">
@@ -43,12 +41,9 @@ const VerificationList: NextPage = () => {
                         <span className="text-warning">Not Submitted</span>
                       </li>
                     </ul>
-                    <a
-                      href="http://localhost:8000/user/personal-verification"
-                      className="primary-btn-sm"
-                    >
-                      Start now
-                    </a>
+                    <Link href="/user/personal-verification">
+                      <a className="primary-btn-sm">Start now</a>
+                    </Link>
                   </div>
                 </div>
                 <div className="col-lg-4 col-md-6">
@@ -61,12 +56,9 @@ const VerificationList: NextPage = () => {
                         <span className="text-warning">Not Submitted</span>
                       </li>
                     </ul>
-                    <a
-                      href="http://localhost:8000/user/personal-verification"
-                      className="primary-btn-sm"
-                    >
-                      Start now
-                    </a>
+                    <Link href="/user/personal-verification">
+                      <a className="primary-btn-sm">Start now</a>
+                    </Link>
                   </div>
                 </div>
               </div>
