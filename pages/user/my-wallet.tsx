@@ -70,7 +70,7 @@ const MyWallet: NextPage = () => {
                           id="assetBalances_length"
                         >
                           <label className="">
-                            Show{" "}
+                            Show
                             <select
                               name="assetBalances_length"
                               aria-controls="assetBalances"
@@ -80,7 +80,7 @@ const MyWallet: NextPage = () => {
                               <option value="25">25</option>
                               <option value="50">50</option>
                               <option value="100">100</option>
-                            </select>{" "}
+                            </select>
                             entries
                           </label>
                         </div>
@@ -337,7 +337,7 @@ const MyWallet: NextPage = () => {
                           <p>
                             Only send BCH to this address. Sending any other
                             asset to this address may result in the loss of your
-                            deposit!{" "}
+                            deposit!
                           </p>
                           <div className="input-url">
                             <input

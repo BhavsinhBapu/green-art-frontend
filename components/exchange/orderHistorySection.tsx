@@ -40,7 +40,7 @@ const orderHistorySection = () => {
               >
                 Open orders
               </a>
-            </li>{" "}
+            </li>
             <li
               role="presentation"
               className="nav-item"
@@ -62,7 +62,7 @@ const orderHistorySection = () => {
               >
                 Order history
               </a>
-            </li>{" "}
+            </li>
             <li
               role="presentation"
               className="nav-item"
@@ -87,7 +87,7 @@ const orderHistorySection = () => {
             </li>
           </ul>
         </div>
-      </div>{" "}
+      </div>
       <div className="tab-content" id="ordersTabContent">
         <OpenOrders openOrders={activeTab.openOrders} />
         <OrderHistory orderHistory={activeTab.orderHistory} />

@@ -96,7 +96,7 @@ const SelectCurrency = () => {
               </div>
             </th>
           </tr>
-        </thead>{" "}
+        </thead>
         <tbody>
           <tr role="row" className="odd" id="market-BCH_BTC">
             <td

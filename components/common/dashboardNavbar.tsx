@@ -243,10 +243,7 @@ const dashboardNavbar = () => {
                         aria-haspopup="true"
                         aria-expanded="false"
                       >
-                        <span className="notify-value hm-notify-number">
-                          {" "}
-                          0{" "}
-                        </span>
+                        <span className="notify-value hm-notify-number">0</span>
                         <img
                           src="/img/icons/notification.png"
                           className="img-fluid"

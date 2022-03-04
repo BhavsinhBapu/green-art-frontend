@@ -35,7 +35,7 @@ const BuyOrderHistory: NextPage = () => {
                         id="assetBalances_length"
                       >
                         <label className="">
-                          Show{" "}
+                          Show
                           <select
                             name="assetBalances_length"
                             aria-controls="assetBalances"
@@ -45,7 +45,7 @@ const BuyOrderHistory: NextPage = () => {
                             <option value="25">25</option>
                             <option value="50">50</option>
                             <option value="100">100</option>
-                          </select>{" "}
+                          </select>
                           entries
                         </label>
                       </div>

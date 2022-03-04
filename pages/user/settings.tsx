@@ -140,7 +140,7 @@ const Settings: NextPage = () => {
                               type="hidden"
                               name="_token"
                               defaultValue="UHxumztviDLlLBs3t8g3IMcfQsz9pSMy9wObVejT"
-                            />{" "}
+                            />
                             <label className="switch">
                               <input type="checkbox" />
                               <span className="slider round" />
@@ -169,7 +169,7 @@ const Settings: NextPage = () => {
                               type="hidden"
                               name="_token"
                               defaultValue="UHxumztviDLlLBs3t8g3IMcfQsz9pSMy9wObVejT"
-                            />{" "}
+                            />
                             <div className="form-group">
                               <label>Language</label>
                               <div className="cp-user-preferance-setting">

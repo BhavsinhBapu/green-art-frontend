@@ -154,7 +154,7 @@ const AllSellOrders = () => {
                                           />
                                         </th> */}
                   </tr>
-                </thead>{" "}
+                </thead>
                 <tbody>
                   <tr className="odd">
                     <td valign="top" colSpan={3} className="dataTables_empty">
@@ -165,13 +165,13 @@ const AllSellOrders = () => {
               </table>
             </div>
           </div>
-        </div>{" "}
+        </div>
         <div className="trades-table-footer">
           <div className="trades-table-row">
             <div className="trades-table-col volume">
               <a className="more-btn">More</a>
-            </div>{" "}
-            <div className="trades-table-col price total-price" />{" "}
+            </div>
+            <div className="trades-table-col price total-price" />
             <div className="trades-table-col price total-price">
               <span>0.00</span> <span>BTC</span>
             </div>

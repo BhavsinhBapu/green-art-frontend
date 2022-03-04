@@ -5,7 +5,7 @@ import { store } from "../state/store";
 import "react-toastify/dist/ReactToastify.css";
 
 import Head from "next/head";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 import Layout from "layout/index";
 function MyApp({ Component, pageProps }: AppProps) {
   return (

@@ -55,7 +55,6 @@ const Profile: NextPage = ({ user }: any) => {
                           <span>Country</span>
                           <span className="cp-user-dot">:</span>
                           <span>
-                            {" "}
                             {user?.country ? user?.country : "No country"}
                           </span>
                         </li>

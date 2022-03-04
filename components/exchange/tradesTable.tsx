@@ -92,7 +92,7 @@ const TradesTable = () => {
               </div>
             </th>
           </tr>
-        </thead>{" "}
+        </thead>
         <tbody>
           <tr className="odd">
             <td valign="top" colSpan={3} className="dataTables_empty">

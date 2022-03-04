@@ -43,7 +43,7 @@ const Dashboard: NextPage = () => {
             </div>
           </div>
         </div>
-      </div>{" "}
+      </div>
       <div
         id="notificationShow"
         tabIndex={-1}
@@ -60,7 +60,7 @@ const Dashboard: NextPage = () => {
             <div className="modal-header align-items-center">
               <h5 id="exampleModalCenterTitle" className="modal-title">
                 New Notifications
-              </h5>{" "}
+              </h5>
               <button
                 type="button"
                 data-dismiss="modal"
@@ -69,7 +69,7 @@ const Dashboard: NextPage = () => {
               >
                 <span aria-hidden="true">×</span>
               </button>
-            </div>{" "}
+            </div>
             <div className="modal-body">
               <div className="hm-form">
                 <div className="row">
@@ -89,7 +89,7 @@ const Dashboard: NextPage = () => {
             id="web_socket_notification"
             className="alert alert-success alert-dismissible fade show d-none"
           >
-            <span id="socket_message" />{" "}
+            <span id="socket_message" />
             <button
               type="button"
               data-dismiss="alert"
@@ -98,7 +98,7 @@ const Dashboard: NextPage = () => {
             >
               <span aria-hidden="true">×</span>
             </button>
-          </div>{" "}
+          </div>
           <div
             id="confirm-modal"
             tabIndex={-1}
@@ -120,15 +120,15 @@ const Dashboard: NextPage = () => {
                     alt=""
                     className="img-fluid"
                   />
-                </button>{" "}
+                </button>
                 <div className="text-center">
                   <img
                     src="/assets/user/images/add-pockaet-vector.svg"
                     alt=""
                     className="img-fluid img-vector"
-                  />{" "}
+                  />
                   <h3 id="confirm-title" />
-                </div>{" "}
+                </div>
                 <div className="modal-body">
                   <a
                     id="confirm-link"
@@ -139,7 +139,7 @@ const Dashboard: NextPage = () => {
                 </div>
               </div>
             </div>
-          </div>{" "}
+          </div>
           <div className="cp-user-custom-card exchange-area">
             <div id="dashboard">
               <div className="row">
@@ -147,8 +147,8 @@ const Dashboard: NextPage = () => {
                   <div className="cxchange-summary-wrap">
                     <div className="cxchange-summary-name">
                       <div className="summber-coin-type">
-                        <span className="coin-badge">BTC/USDT</span>{" "}
-                        <i aria-hidden="true" className="fa fa-angle-down" />{" "}
+                        <span className="coin-badge">BTC/USDT</span>
+                        <i aria-hidden="true" className="fa fa-angle-down" />
                         <div className="cp-user-buy-coin-content-area">
                           <div className="cp-user-wallet-table dashboard-coin_pairs table-responsive">
                             <div
@@ -248,20 +248,20 @@ const Dashboard: NextPage = () => {
                             </div>
                           </div>
                         </div>
-                      </div>{" "}
+                      </div>
                       <span className="font-weight-bold">Bitcoin</span>
-                    </div>{" "}
+                    </div>
                     <CurrencyLevel />
                   </div>
-                </div>{" "}
+                </div>
                 <div className="col-xl-6">
                   <div className="cp-user-buy-coin-content-area">
                     <div className="card cp-user-custom-card">
                       <TradingChart />
                     </div>
-                  </div>{" "}
+                  </div>
                   <OrderHistorySection />
-                </div>{" "}
+                </div>
                 <OrderBook />
               </div>
             </div>

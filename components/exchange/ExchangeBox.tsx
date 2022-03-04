@@ -35,7 +35,7 @@ const ExchangeBox = () => {
             >
               Buy
             </a>
-          </li>{" "}
+          </li>
           <li
             role="presentation"
             className="nav-item"
@@ -55,7 +55,7 @@ const ExchangeBox = () => {
             </a>
           </li>
         </ul>
-      </div>{" "}
+      </div>
       <div id="pills-tabContent" className="tab-content">
         <div
           id="pills-transfer-1"
@@ -79,7 +79,7 @@ const ExchangeBox = () => {
               >
                 Limit
               </a>
-            </li>{" "}
+            </li>
             <li role="presentation" className="nav-item">
               <a
                 id="Market-tab"
@@ -91,7 +91,7 @@ const ExchangeBox = () => {
               >
                 Market
               </a>
-            </li>{" "}
+            </li>
             <li role="presentation" className="nav-item">
               <a
                 id="Stop-limit-tab"
@@ -104,7 +104,7 @@ const ExchangeBox = () => {
                 Stop-limit
               </a>
             </li>
-          </ul>{" "}
+          </ul>
           <div id="BuyTabContent" className="tab-content">
             <div
               id="Limit"
@@ -120,11 +120,11 @@ const ExchangeBox = () => {
                         type="hidden"
                         name="_token"
                         defaultValue="g2OWJq3pDqYRQmVvmGt799aCsDmkkV4UjrWDhzcF"
-                      />{" "}
+                      />
                       <div className="form-group mt-4">
                         <div className="total-top">
                           <label>Total</label> <label>Available</label>
-                        </div>{" "}
+                        </div>
                         <div className="total-top-blance">
                           <div className="total-blance">
                             <span
@@ -132,21 +132,21 @@ const ExchangeBox = () => {
                               style={{ fontWeight: 700 }}
                             >
                               <span>0</span>
-                            </span>{" "}
+                            </span>
                             <span
                               className="text-warning"
                               style={{ fontWeight: 700 }}
                             >
                               <span className="base_coin_type">USDT</span>
                             </span>
-                          </div>{" "}
+                          </div>
                           <div className="avilable-blance">
                             <span
                               className="text-warning"
                               style={{ fontWeight: 700 }}
                             >
                               <span>0</span>
-                            </span>{" "}
+                            </span>
                             <span
                               className="text-warning"
                               style={{ fontWeight: 700 }}
@@ -155,65 +155,65 @@ const ExchangeBox = () => {
                             </span>
                           </div>
                         </div>
-                      </div>{" "}
+                      </div>
                       <div className="form-group mt-3">
-                        <label>Price</label>{" "}
+                        <label>Price</label>
                         <input
                           name="price"
                           type="text"
                           placeholder=""
                           className="form-control number_only"
-                        />{" "}
+                        />
                         <span
                           className="text-warning blns"
                           style={{ fontWeight: 700 }}
                         >
                           <span className="base_coin_type">USDT</span>
                         </span>
-                      </div>{" "}
+                      </div>
                       <div className="form-group mt-3">
-                        <label>Amount</label>{" "}
+                        <label>Amount</label>
                         <input
                           name="amount"
                           type="text"
                           placeholder=""
                           className="form-control number_only"
-                        />{" "}
+                        />
                         <span
                           className="text-warning blns"
                           style={{ fontWeight: 700 }}
                         >
                           <span className="trade_coin_type">BTC</span>
                         </span>
-                      </div>{" "}
+                      </div>
                       <div className="form-group mt-3">
-                        <label>Total Amount</label>{" "}
+                        <label>Total Amount</label>
                         <input
                           // disabled
                           name="total_amount"
                           type="text"
                           placeholder=""
                           className="form-control number_only"
-                        />{" "}
+                        />
                         <span
                           className="text-warning blns"
                           style={{ fontWeight: 700 }}
                         >
                           <span className="base_coin_type">USDT</span>
                         </span>
-                      </div>{" "}
+                      </div>
                       {!isLoggedIn && (
                         <div className="form-group mt-4">
                           <Link href="/authentication/signin">
                             <a className="btn btn-danger">Login</a>
-                          </Link>{" "}
+                          </Link>
                         </div>
                       )}
                     </form>
                   </div>
                 </div>
               </div>
-            </div>{" "}
+            </div>
             <div
               id="Market"
               role="tabpanel"
@@ -228,11 +228,11 @@ const ExchangeBox = () => {
                         type="hidden"
                         name="_token"
                         defaultValue="g2OWJq3pDqYRQmVvmGt799aCsDmkkV4UjrWDhzcF"
-                      />{" "}
+                      />
                       <div className="form-group mt-4">
                         <div className="total-top">
                           <label>Total</label> <label>Available</label>
-                        </div>{" "}
+                        </div>
                         <div className="total-top-blance">
                           <div className="total-blance">
                             <span
@@ -240,21 +240,21 @@ const ExchangeBox = () => {
                               style={{ fontWeight: 700 }}
                             >
                               <span>0</span>
-                            </span>{" "}
+                            </span>
                             <span
                               className="text-warning"
                               style={{ fontWeight: 700 }}
                             >
                               <span className="base_coin_type">USDT</span>
                             </span>
-                          </div>{" "}
+                          </div>
                           <div className="avilable-blance">
                             <span
                               className="text-warning"
                               style={{ fontWeight: 700 }}
                             >
                               <span>0</span>
-                            </span>{" "}
+                            </span>
                             <span
                               className="text-warning"
                               style={{ fontWeight: 700 }}
@@ -263,32 +263,32 @@ const ExchangeBox = () => {
                             </span>
                           </div>
                         </div>
-                      </div>{" "}
+                      </div>
                       <div className="form-group mt-3">
-                        <label>Price</label>{" "}
-                        <p className="form-control">Market</p>{" "}
+                        <label>Price</label>
+                        <p className="form-control">Market</p>
                         <span
                           className="text-warning blns"
                           style={{ fontWeight: 700 }}
                         >
                           <span className="base_coin_type">USDT</span>
                         </span>
-                      </div>{" "}
+                      </div>
                       <div className="form-group mt-3">
-                        <label>Amount</label>{" "}
+                        <label>Amount</label>
                         <input
                           name="amount"
                           type="text"
                           placeholder=""
                           className="form-control number_only"
-                        />{" "}
+                        />
                         <span
                           className="text-warning blns"
                           style={{ fontWeight: 700 }}
                         >
                           <span className="trade_coin_type">BTC</span>
                         </span>
-                      </div>{" "}
+                      </div>
                       <div className="form-group mt-4">
                         <a className="btn btn-danger"> Login</a>
                       </div>
@@ -296,7 +296,7 @@ const ExchangeBox = () => {
                   </div>
                 </div>
               </div>
-            </div>{" "}
+            </div>
             <div
               id="Stop-limit"
               role="tabpanel"
@@ -311,11 +311,11 @@ const ExchangeBox = () => {
                         type="hidden"
                         name="_token"
                         defaultValue="g2OWJq3pDqYRQmVvmGt799aCsDmkkV4UjrWDhzcF"
-                      />{" "}
+                      />
                       <div className="form-group mt-4">
                         <div className="total-top">
                           <label>Total</label> <label>Available</label>
-                        </div>{" "}
+                        </div>
                         <div className="total-top-blance">
                           <div className="total-blance">
                             <span
@@ -323,21 +323,21 @@ const ExchangeBox = () => {
                               style={{ fontWeight: 700 }}
                             >
                               <span>0</span>
-                            </span>{" "}
+                            </span>
                             <span
                               className="text-warning"
                               style={{ fontWeight: 700 }}
                             >
                               <span className="base_coin_type">USDT</span>
                             </span>
-                          </div>{" "}
+                          </div>
                           <div className="avilable-blance">
                             <span
                               className="text-warning"
                               style={{ fontWeight: 700 }}
                             >
                               <span>0</span>
-                            </span>{" "}
+                            </span>
                             <span
                               className="text-warning"
                               style={{ fontWeight: 700 }}
@@ -346,68 +346,68 @@ const ExchangeBox = () => {
                             </span>
                           </div>
                         </div>
-                      </div>{" "}
+                      </div>
                       <div className="form-group mt-3">
-                        <label>Stop</label>{" "}
+                        <label>Stop</label>
                         <input
                           name="stop"
                           type="text"
                           placeholder=""
                           className="form-control number_only"
-                        />{" "}
+                        />
                         <span
                           className="text-warning blns"
                           style={{ fontWeight: 700 }}
                         >
                           <span className="base_coin_type">USDT</span>
                         </span>
-                      </div>{" "}
+                      </div>
                       <div className="form-group mt-3">
-                        <label>Limit</label>{" "}
+                        <label>Limit</label>
                         <input
                           name="limit"
                           type="text"
                           placeholder=""
                           className="form-control number_only"
-                        />{" "}
+                        />
                         <span
                           className="text-warning blns"
                           style={{ fontWeight: 700 }}
                         >
                           <span className="base_coin_type">USDT</span>
                         </span>
-                      </div>{" "}
+                      </div>
                       <div className="form-group mt-3">
-                        <label>Amount</label>{" "}
+                        <label>Amount</label>
                         <input
                           name="amount"
                           type="text"
                           placeholder=""
                           className="form-control number_only"
-                        />{" "}
+                        />
                         <span
                           className="text-warning blns"
                           style={{ fontWeight: 700 }}
                         >
                           <span className="trade_coin_type">BTC</span>
                         </span>
-                      </div>{" "}
+                      </div>
                       <div className="form-group mt-3">
-                        <label>Total Amount</label>{" "}
+                        <label>Total Amount</label>
                         <input
                           // disabled
                           name="total_amount"
                           type="text"
                           placeholder=""
                           className="form-control number_only"
-                        />{" "}
+                        />
                         <span
                           className="text-warning blns"
                           style={{ fontWeight: 700 }}
                         >
                           <span className="base_coin_type">USDT</span>
                         </span>
-                      </div>{" "}
+                      </div>
                       <div className="form-group mt-4 d-flex justify-content-between flex-wrap">
                         <a className="btn btn-danger"> Login</a>
                       </div>
@@ -440,7 +440,7 @@ const ExchangeBox = () => {
               >
                 Limit
               </a>
-            </li>{" "}
+            </li>
             <li role="presentation" className="nav-item">
               <a
                 id="sell-Market-tab"
@@ -452,7 +452,7 @@ const ExchangeBox = () => {
               >
                 Market
               </a>
-            </li>{" "}
+            </li>
             <li role="presentation" className="nav-item">
               <a
                 id="sell-Stop-limit-tab"
@@ -465,7 +465,7 @@ const ExchangeBox = () => {
                 Stop-limit
               </a>
             </li>
-          </ul>{" "}
+          </ul>
           <div id="SellTabContent" className="tab-content">
             <div
               id="LimitSell"
@@ -486,11 +486,11 @@ const ExchangeBox = () => {
                         type="hidden"
                         name="_token"
                         defaultValue="g2OWJq3pDqYRQmVvmGt799aCsDmkkV4UjrWDhzcF"
-                      />{" "}
+                      />
                       <div className="form-group mt-4">
                         <div className="total-top">
                           <label>Total</label> <label>Available</label>
-                        </div>{" "}
+                        </div>
                         <div className="total-top-blance">
                           <div className="total-blance">
                             <span
@@ -498,21 +498,21 @@ const ExchangeBox = () => {
                               style={{ fontWeight: 700 }}
                             >
                               <span>0.00</span>
-                            </span>{" "}
+                            </span>
                             <span
                               className="text-warning"
                               style={{ fontWeight: 700 }}
                             >
                               <span className="base_coin_type">BTC</span>
                             </span>
-                          </div>{" "}
+                          </div>
                           <div className="avilable-blance">
                             <span
                               className="text-warning"
                               style={{ fontWeight: 700 }}
                             >
                               <span>0.00</span>
-                            </span>{" "}
+                            </span>
                             <span
                               className="text-warning"
                               style={{ fontWeight: 700 }}
@@ -521,53 +521,53 @@ const ExchangeBox = () => {
                             </span>
                           </div>
                         </div>
-                      </div>{" "}
+                      </div>
                       <div className="form-group mt-3">
-                        <label>Price</label>{" "}
+                        <label>Price</label>
                         <input
                           name="price"
                           type="text"
                           placeholder=""
                           className="form-control number_only"
-                        />{" "}
+                        />
                         <span
                           className="text-warning blns"
                           style={{ fontWeight: 700 }}
                         >
                           <span className="base_coin_type">USDT</span>
                         </span>
-                      </div>{" "}
+                      </div>
                       <div className="form-group mt-3">
-                        <label>Amount</label>{" "}
+                        <label>Amount</label>
                         <input
                           name="amount"
                           type="text"
                           placeholder=""
                           className="form-control number_only"
-                        />{" "}
+                        />
                         <span
                           className="text-warning blns"
                           style={{ fontWeight: 700 }}
                         >
                           <span className="trade_coin_type">BTC</span>
                         </span>
-                      </div>{" "}
+                      </div>
                       <div className="form-group mt-3">
-                        <label>Total Amount</label>{" "}
+                        <label>Total Amount</label>
                         <input
                           // disabled
                           name="total_amount"
                           type="text"
                           placeholder=""
                           className="form-control number_only"
-                        />{" "}
+                        />
                         <span
                           className="text-warning blns"
                           style={{ fontWeight: 700 }}
                         >
                           <span className="base_coin_type">USDT</span>
                         </span>
-                      </div>{" "}
+                      </div>
                       <div className="form-group mt-4">
                         <a className="btn btn-danger"> Login</a>
                       </div>
@@ -575,7 +575,7 @@ const ExchangeBox = () => {
                   </div>
                 </div>
               </div>
-            </div>{" "}
+            </div>
             <div
               id="MarketSell"
               role="tabpanel"
@@ -595,11 +595,11 @@ const ExchangeBox = () => {
                         type="hidden"
                         name="_token"
                         defaultValue="g2OWJq3pDqYRQmVvmGt799aCsDmkkV4UjrWDhzcF"
-                      />{" "}
+                      />
                       <div className="form-group mt-4">
                         <div className="total-top">
                           <label>Total</label> <label>Available</label>
-                        </div>{" "}
+                        </div>
                         <div className="total-top-blance">
                           <div className="total-blance">
                             <span
@@ -607,21 +607,21 @@ const ExchangeBox = () => {
                               style={{ fontWeight: 700 }}
                             >
                               <span>0.00</span>
-                            </span>{" "}
+                            </span>
                             <span
                               className="text-warning"
                               style={{ fontWeight: 700 }}
                             >
                               <span className="base_coin_type">BTC</span>
                             </span>
-                          </div>{" "}
+                          </div>
                           <div className="avilable-blance">
                             <span
                               className="text-warning"
                               style={{ fontWeight: 700 }}
                             >
                               <span>0.00</span>
-                            </span>{" "}
+                            </span>
                             <span
                               className="text-warning"
                               style={{ fontWeight: 700 }}
@@ -630,32 +630,32 @@ const ExchangeBox = () => {
                             </span>
                           </div>
                         </div>
-                      </div>{" "}
+                      </div>
                       <div className="form-group mt-3">
-                        <label>Price</label>{" "}
-                        <p className="form-control">Market</p>{" "}
+                        <label>Price</label>
+                        <p className="form-control">Market</p>
                         <span
                           className="text-warning blns"
                           style={{ fontWeight: 700 }}
                         >
                           <span className="base_coin_type">USDT</span>
                         </span>
-                      </div>{" "}
+                      </div>
                       <div className="form-group mt-3">
-                        <label>Amount</label>{" "}
+                        <label>Amount</label>
                         <input
                           name="amount"
                           type="text"
                           placeholder=""
                           className="form-control number_only"
-                        />{" "}
+                        />
                         <span
                           className="text-warning blns"
                           style={{ fontWeight: 700 }}
                         >
                           <span className="trade_coin_type">BTC</span>
                         </span>
-                      </div>{" "}
+                      </div>
                       <div className="form-group mt-4">
                         <a className="btn btn-danger"> Login</a>
                       </div>
@@ -663,7 +663,7 @@ const ExchangeBox = () => {
                   </div>
                 </div>
               </div>
-            </div>{" "}
+            </div>
             <div
               id="Stop-limitSell"
               role="tabpanel"
@@ -678,11 +678,11 @@ const ExchangeBox = () => {
                         type="hidden"
                         name="_token"
                         defaultValue="g2OWJq3pDqYRQmVvmGt799aCsDmkkV4UjrWDhzcF"
-                      />{" "}
+                      />
                       <div className="form-group mt-4">
                         <div className="total-top">
                           <label>Total</label> <label>Available</label>
-                        </div>{" "}
+                        </div>
                         <div className="total-top-blance">
                           <div className="total-blance">
                             <span
@@ -690,21 +690,21 @@ const ExchangeBox = () => {
                               style={{ fontWeight: 700 }}
                             >
                               <span>0.00</span>
-                            </span>{" "}
+                            </span>
                             <span
                               className="text-warning"
                               style={{ fontWeight: 700 }}
                             >
                               <span className="base_coin_type">BTC</span>
                             </span>
-                          </div>{" "}
+                          </div>
                           <div className="avilable-blance">
                             <span
                               className="text-warning"
                               style={{ fontWeight: 700 }}
                             >
                               <span>0.00</span>
-                            </span>{" "}
+                            </span>
                             <span
                               className="text-warning"
                               style={{ fontWeight: 700 }}
@@ -713,68 +713,68 @@ const ExchangeBox = () => {
                             </span>
                           </div>
                         </div>
-                      </div>{" "}
+                      </div>
                       <div className="form-group mt-3">
-                        <label>Stop</label>{" "}
+                        <label>Stop</label>
                         <input
                           name="stop"
                           type="text"
                           placeholder=""
                           className="form-control number_only"
-                        />{" "}
+                        />
                         <span
                           className="text-warning blns"
                           style={{ fontWeight: 700 }}
                         >
                           <span className="base_coin_type">USDT</span>
                         </span>
-                      </div>{" "}
+                      </div>
                       <div className="form-group mt-3">
-                        <label>Limit</label>{" "}
+                        <label>Limit</label>
                         <input
                           name="limit"
                           type="text"
                           placeholder=""
                           className="form-control number_only"
-                        />{" "}
+                        />
                         <span
                           className="text-warning blns"
                           style={{ fontWeight: 700 }}
                         >
                           <span className="base_coin_type">USDT</span>
                         </span>
-                      </div>{" "}
+                      </div>
                       <div className="form-group mt-3">
-                        <label>Amount</label>{" "}
+                        <label>Amount</label>
                         <input
                           name="amount"
                           type="text"
                           placeholder=""
                           className="form-control number_only"
-                        />{" "}
+                        />
                         <span
                           className="text-warning blns"
                           style={{ fontWeight: 700 }}
                         >
                           <span className="trade_coin_type">BTC</span>
                         </span>
-                      </div>{" "}
+                      </div>
                       <div className="form-group mt-3">
-                        <label>Total Amount</label>{" "}
+                        <label>Total Amount</label>
                         <input
                           // disabled
                           name="total_amount"
                           type="text"
                           placeholder=""
                           className="form-control number_only"
-                        />{" "}
+                        />
                         <span
                           className="text-warning blns"
                           style={{ fontWeight: 700 }}
                         >
                           <span className="base_coin_type">USDT</span>
                         </span>
-                      </div>{" "}
+                      </div>
                       <div className="form-group mt-4 d-flex justify-content-between flex-wrap">
                         <a className="btn btn-danger"> Login</a>
                       </div>

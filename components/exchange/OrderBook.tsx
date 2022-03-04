@@ -11,7 +11,7 @@ const OrderBook = () => {
           <div className="trades-section">
             <div className="trades-headers mb-3">
               <h3>Order Book</h3>
-            </div>{" "}
+            </div>
             <div className="buy-order">
               <div className="trades-table">
                 <div className="trades-table-header">
@@ -82,7 +82,6 @@ const OrderBook = () => {
                                 style={{ width: "127.688px" }}
                                 aria-label="	My Size"
                               >
-                                {" "}
                                 My Size
                               </th>
                             </tr>
@@ -92,30 +91,30 @@ const OrderBook = () => {
                     </div>
                     <TradesTable />
                   </div>
-                </div>{" "}
+                </div>
                 <div className="trades-table-footer">
                   <div className="trades-table-row">
                     <div className="trades-table-col volume">
                       <a className="more-btn">More</a>
-                    </div>{" "}
-                    <div className="trades-table-col price total-price" />{" "}
+                    </div>
+                    <div className="trades-table-col price total-price" />
                     <div className="trades-table-col price total-price">
                       <span>0.00</span> <span>USDT</span>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>{" "}
+            </div>
             <AllSellOrders />
           </div>
-        </div>{" "}
+        </div>
         <div className="col-lg-6">
           {/* exchange box */}
           <ExchangeBox />
           <div className="trades-section mt-4">
             <div className="trades-headers mb-3">
               <h3>Trades</h3>
-            </div>{" "}
+            </div>
             <div className="primary-table">
               <div className="table-header">
                 <div className="table-row" />
@@ -282,7 +281,7 @@ const OrderBook = () => {
                             </div>
                           </th>
                         </tr>
-                      </thead>{" "}
+                      </thead>
                       <tbody>
                         <tr className="odd">
                           <td
