@@ -3,7 +3,6 @@ import type { AppProps } from "next/app";
 import { Provider } from "react-redux";
 import { store } from "../state/store";
 import "react-toastify/dist/ReactToastify.css";
-
 import Head from "next/head";
 // import "bootstrap/dist/css/bootstrap.min.css";
 import Layout from "layout/index";
@@ -11,7 +10,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>CPocket Exchange</title>
+        <title>TradexPro Exchange</title>
         <link
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"

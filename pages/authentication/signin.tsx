@@ -37,7 +37,7 @@ const Signin: NextPage = () => {
                       .email("Invalid email address")
                       .required("Email is required"),
                     password: Yup.string()
-                      .min(6)
+                      .min(8)
                       .required("Password is required"),
                   })}
                   onSubmit={async (values) => {

@@ -8682,6 +8682,10 @@ table.dataTable thead .sorting_desc_disabled:after {
   border-color: #dc3545;
   color: #fff;
 }
+.form-control.is-invalid,
+.was-validated .form-control:invalid {
+  border-color: #dc3545 !important;
+}
 .trade-card .profile-info-form .btn:hover {
   background-color: #c82333;
   border-color: #bd2130;

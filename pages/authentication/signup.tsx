@@ -9,7 +9,10 @@ import { authPageRequireCheck } from "middlewares/ssr-authentication-check";
 const Signup: NextPage = () => {
   const dispatch = useDispatch();
   const [processing, setProcessing] = useState(false);
-  const [showPassword, setShowPassword] = useState(true);
+  const [showPassword, setShowPassword] = useState({
+    password: false,
+    confirm_password: false,
+  });
 
   return (
     <div
@@ -46,7 +49,7 @@ const Signup: NextPage = () => {
                       .min(2)
                       .required("Last name is required"),
                     password: Yup.string()
-                      .min(6)
+                      .min(8)
                       .required("Password is required"),
                     password_confirmation: Yup.string()
                       .oneOf(
@@ -115,7 +118,7 @@ const Signup: NextPage = () => {
                       />
                       <div className="form-group">
                         <Field
-                          type={showPassword ? "text" : "password"}
+                          type={showPassword.password ? "text" : "password"}
                           name="password"
                           id="password"
                           className={`form-control form-control-password look-pass ${
@@ -128,7 +131,12 @@ const Signup: NextPage = () => {
 
                         <span
                           className="eye rev"
-                          onClick={() => setShowPassword(!showPassword)}
+                          onClick={() =>
+                            setShowPassword({
+                              ...showPassword,
+                              password: !showPassword.password,
+                            })
+                          }
                         >
                           <i className="fa fa-eye-slash toggle-password"></i>
                         </span>
@@ -141,7 +149,9 @@ const Signup: NextPage = () => {
 
                       <div className="form-group">
                         <Field
-                          type={showPassword ? "text" : "password"}
+                          type={
+                            showPassword.confirm_password ? "text" : "password"
+                          }
                           name="password_confirmation"
                           id="password_confirmation"
                           className={`form-control form-control-password look-pass ${
@@ -155,7 +165,12 @@ const Signup: NextPage = () => {
 
                         <span
                           className="eye rev"
-                          onClick={() => setShowPassword(!showPassword)}
+                          onClick={() =>
+                            setShowPassword({
+                              ...showPassword,
+                              confirm_password: !showPassword.confirm_password,
+                            })
+                          }
                         >
                           <i className="fa fa-eye-slash toggle-password"></i>
                         </span>
