@@ -26,6 +26,7 @@ export const SigninAction =
   (credentials: { email: string; password: string }, setProcessing: any) =>
   async (dispatch: any) => {
     setProcessing(true);
+    const redirectUrl: any = Router.query.redirect;
     const response = await SigninApi(credentials);
     const responseMessage = response.message;
     console.log(response, "response from action");
@@ -43,7 +44,11 @@ export const SigninAction =
         progress: undefined,
         className: "dark-toast",
       });
-      Router.replace("/exchange/dashboard");
+      if (redirectUrl) {
+        Router.replace(redirectUrl);
+      } else {
+        Router.replace("/exchange/dashboard");
+      }
     } else {
       dispatch(setAuthenticationState(false));
       toast.error(responseMessage, {

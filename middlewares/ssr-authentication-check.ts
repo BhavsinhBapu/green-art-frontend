@@ -8,7 +8,7 @@ export const SSRAuthCheck = async (ctx: any, redirect: string) => {
   } else {
     if (redirect) {
       ctx.res.writeHead(302, {
-        Location: "/authentication/signin",
+        Location: "/authentication/signin" + "?redirect=" + redirect,
       });
       ctx.res.end();
     }
