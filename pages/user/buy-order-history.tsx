@@ -195,9 +195,11 @@ const BuyOrderHistory: NextPage = () => {
     </div>
   );
 };
-BuyOrderHistory.getInitialProps = async (ctx) => {
-  await SSRAuthCheck(ctx, "/user/buy-order-history");
-  return {};
+export const getServerSideProps = async (ctx: any) => {
+  const authStatusForRedirect = await SSRAuthCheck(ctx, "/user/edit-profile");
+  return {
+    props: {},
+  };
 };
 
 export default BuyOrderHistory;

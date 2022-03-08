@@ -196,8 +196,11 @@ const SellOrderHistory: NextPage = () => {
     </div>
   );
 };
-SellOrderHistory.getInitialProps = async (ctx) => {
-  await SSRAuthCheck(ctx, "/user/sell-order-history");
-  return {};
+export const getServerSideProps = async (ctx: any) => {
+  const authStatusForRedirect = await SSRAuthCheck(ctx, "/user/edit-profile");
+  return {
+    props: {},
+  };
 };
+
 export default SellOrderHistory;

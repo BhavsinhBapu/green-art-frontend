@@ -107,15 +107,17 @@ const Profile: NextPage = ({ user }: any) => {
     </div>
   );
 };
-Profile.getInitialProps = async (ctx) => {
+
+export const getServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/user/profile");
   const cookies = parseCookies(ctx);
 
   const response = await GetUserInfoByTokenServer(cookies.token);
   console.log(response);
   return {
-    user: response.user,
+    props: {
+      user: response.user,
+    },
   };
 };
-
 export default Profile;

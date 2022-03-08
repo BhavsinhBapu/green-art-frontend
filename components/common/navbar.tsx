@@ -6,6 +6,7 @@ import { LogoutAction } from "state/actions/user";
 const navbar = () => {
   const { isLoggedIn, user } = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
+
   return (
     <div className="cp-user-top-bar">
       <div className="container-fluid">
@@ -299,11 +300,13 @@ const navbar = () => {
                       >
                         <span className="cp-user-avater">
                           <span className="cp-user-img">
-                            <img
-                              src={user?.photo}
-                              className="img-fluid"
-                              alt=""
-                            />
+                            {user?.photo && (
+                              <img
+                                src={user?.photo}
+                                className="img-fluid"
+                                alt="user"
+                              />
+                            )}
                           </span>
                           <span className="cp-user-avater-info"></span>
                         </span>

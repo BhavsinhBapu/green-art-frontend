@@ -4,13 +4,15 @@ export const SSRAuthCheck = async (ctx: any, redirect: string) => {
   const cookies = parseCookies(ctx);
   if (cookies.token) {
     ctx.token = cookies.token;
+    return true;
   } else {
     if (redirect) {
       ctx.res.writeHead(302, {
-        Location: "/authentication/signin" + "?redirect=" + redirect,
+        Location: "/authentication/signin",
       });
       ctx.res.end();
     }
+    return false;
   }
 };
 

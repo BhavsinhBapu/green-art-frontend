@@ -136,8 +136,11 @@ const Referral: NextPage = () => {
     </div>
   );
 };
-Referral.getInitialProps = async (ctx) => {
-  await SSRAuthCheck(ctx, "/user/referral");
-  return {};
+export const getServerSideProps = async (ctx: any) => {
+  const authStatusForRedirect = await SSRAuthCheck(ctx, "/user/edit-profile");
+  return {
+    props: {},
+  };
 };
+
 export default Referral;

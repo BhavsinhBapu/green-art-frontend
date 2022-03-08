@@ -237,8 +237,11 @@ const Settings: NextPage = () => {
     </div>
   );
 };
-Settings.getInitialProps = async (ctx) => {
-  await SSRAuthCheck(ctx, "/user/settings");
-  return {};
+export const getServerSideProps = async (ctx: any) => {
+  const authStatusForRedirect = await SSRAuthCheck(ctx, "/user/edit-profile");
+  return {
+    props: {},
+  };
 };
+
 export default Settings;

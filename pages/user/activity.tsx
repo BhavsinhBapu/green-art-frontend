@@ -1,4 +1,4 @@
-import type { NextPage } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 import ProfileSidebar from "layout/profile-sidebar";
 import React, { useState } from "react";
 import { handleSearch } from "common/search";
@@ -190,9 +190,10 @@ const Activity: NextPage = () => {
   );
 };
 
-Activity.getInitialProps = async (ctx) => {
-  await SSRAuthCheck(ctx, "/user/activity");
-  return {};
-};
-
 export default Activity;
+export const getServerSideProps = async (ctx: any) => {
+  const authStatusForRedirect = await SSRAuthCheck(ctx, "/user/edit-profile");
+  return {
+    props: {},
+  };
+};

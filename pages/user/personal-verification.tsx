@@ -98,8 +98,11 @@ const PersonalVerification: NextPage = () => {
     </div>
   );
 };
-PersonalVerification.getInitialProps = async (ctx) => {
-  await SSRAuthCheck(ctx, "/user/personal-verification");
-  return {};
+export const getServerSideProps = async (ctx: any) => {
+  const authStatusForRedirect = await SSRAuthCheck(ctx, "/user/edit-profile");
+  return {
+    props: {},
+  };
 };
+
 export default PersonalVerification;

@@ -212,8 +212,11 @@ const TransactionHistory: NextPage = () => {
     </div>
   );
 };
-TransactionHistory.getInitialProps = async (ctx) => {
-  await SSRAuthCheck(ctx, "/user/transaction-history");
-  return {};
+export const getServerSideProps = async (ctx: any) => {
+  const authStatusForRedirect = await SSRAuthCheck(ctx, "/user/edit-profile");
+  return {
+    props: {},
+  };
 };
+
 export default TransactionHistory;

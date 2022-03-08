@@ -69,8 +69,11 @@ const VerificationList: NextPage = () => {
     </div>
   );
 };
-VerificationList.getInitialProps = async (ctx) => {
-  await SSRAuthCheck(ctx, "/user/verification-list");
-  return {};
+export const getServerSideProps = async (ctx: any) => {
+  const authStatusForRedirect = await SSRAuthCheck(ctx, "/user/edit-profile");
+  return {
+    props: {},
+  };
 };
+
 export default VerificationList;

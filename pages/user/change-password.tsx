@@ -132,8 +132,11 @@ const PhoneVerification: NextPage = () => {
     </div>
   );
 };
-PhoneVerification.getInitialProps = async (ctx) => {
-  await SSRAuthCheck(ctx, "/user/change-password");
-  return {};
+export const getServerSideProps = async (ctx: any) => {
+  const authStatusForRedirect = await SSRAuthCheck(ctx, "/user/edit-profile");
+  return {
+    props: {},
+  };
 };
+
 export default PhoneVerification;

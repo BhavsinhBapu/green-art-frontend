@@ -172,8 +172,10 @@ const Security: NextPage = () => {
     </div>
   );
 };
-Security.getInitialProps = async (ctx) => {
-  await SSRAuthCheck(ctx, "/user/security");
-  return {};
+export const getServerSideProps = async (ctx: any) => {
+  const authStatusForRedirect = await SSRAuthCheck(ctx, "/user/edit-profile");
+  return {
+    props: {},
+  };
 };
 export default Security;

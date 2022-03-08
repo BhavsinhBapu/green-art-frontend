@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
 const dashboardNavbar = () => {
-  const { isLoggedIn } = useSelector((state: RootState) => state.user);
+  const { isLoggedIn, user } = useSelector((state: RootState) => state.user);
 
   return (
     <div className="cp-user-top-bar-dashborad">
@@ -299,9 +299,9 @@ const dashboardNavbar = () => {
                         <span className="cp-user-avater">
                           <span className="cp-user-img">
                             <img
-                              src="https://www.w3schools.com/howto/img_avatar2.png"
+                              src={user?.photo}
                               className="img-fluid"
-                              alt=""
+                              alt="user"
                             />
                           </span>
                           <span className="cp-user-avater-info"></span>
