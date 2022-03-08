@@ -192,7 +192,7 @@ const Activity: NextPage = () => {
 
 export default Activity;
 export const getServerSideProps = async (ctx: any) => {
-  await SSRAuthCheck(ctx, "/user/edit-profile");
+  await SSRAuthCheck(ctx, "/user/activity");
   return {
     props: {},
   };

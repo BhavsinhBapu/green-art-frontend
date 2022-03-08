@@ -131,7 +131,7 @@ const PhoneVerification: NextPage = () => {
 };
 
 export const getServerSideProps = async (ctx: any) => {
-  await SSRAuthCheck(ctx, "/user/edit-profile");
+  await SSRAuthCheck(ctx, "/user/phone-verification");
   return {
     props: {},
   };
