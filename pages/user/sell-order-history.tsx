@@ -197,7 +197,7 @@ const SellOrderHistory: NextPage = () => {
   );
 };
 export const getServerSideProps = async (ctx: any) => {
-  const authStatusForRedirect = await SSRAuthCheck(ctx, "/user/edit-profile");
+  await SSRAuthCheck(ctx, "/user/edit-profile");
   return {
     props: {},
   };
