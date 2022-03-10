@@ -1,14 +1,42 @@
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import type { NextPage } from "next";
-import React, { useState } from "react";
-
+import React, { useEffect, useState } from "react";
+import {
+  SearchObjectArrayFuesJS,
+  WalletListApiAction,
+} from "state/actions/wallet";
+import Loading from "components/common/TableLoading";
+import Link from "next/link";
 const MyWallet: NextPage = () => {
-  type searchType = string;
-  const [search, setSearch] = useState<searchType>("");
   const [show, setShow] = useState<boolean>(false);
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value);
+  const [walletList, setWalletList] = useState<any>();
+  const [Changeable, Cetchangeable] = useState<any[]>([]);
+  const [processing, setProcessing] = useState<boolean>(false);
+  const [selectedRow, setSelectedRow] = useState<any>(null);
+
+  const getWalletLists = async (url: string) => {
+    const response: any = await WalletListApiAction(url, setProcessing);
+    setWalletList(response);
+    Cetchangeable(response.data);
   };
+  const LinkTopaginationString = async (link: any) => {
+    if (link.url === null) return;
+    if (link.label === walletList.current_page.toString()) return;
+    const splitLink = link.url.split("api");
+    const response: any = await WalletListApiAction(
+      splitLink[1],
+      setProcessing
+    );
+    setWalletList(response);
+    Cetchangeable(response.data);
+  };
+
+  useEffect(() => {
+    getWalletLists("/wallet-list?page=1");
+    return () => {
+      setWalletList(null);
+    };
+  }, []);
   return (
     <>
       <div className="page-wrap">
@@ -16,10 +44,14 @@ const MyWallet: NextPage = () => {
           <div className="sidebar-top">
             <ul className="left-menu">
               <li className="active">
-                <a href="">Wallet Overview</a>
+                <Link href={`/user/my-wallet`}>
+                  <a>Wallet Overview</a>
+                </Link>
               </li>
               <li className="">
-                <a href="">Swap Coin</a>
+                <Link href={`/user/swap-coin`}>
+                  <a>Swap Coin</a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -56,243 +88,189 @@ const MyWallet: NextPage = () => {
               </div>
             </div>
             <h4 className="section-title-medium">Asset Balances</h4>
-            <div className="asset-balances-area">
-              <div className="asset-balances-left">
-                <div className="section-wrapper">
-                  <div className="table-responsive">
-                    <div
-                      id="assetBalances_wrapper"
-                      className="dataTables_wrapper no-footer"
-                    >
-                      <div className="dataTables_head">
-                        <div
-                          className="dataTables_length"
-                          id="assetBalances_length"
-                        >
-                          <label className="">
-                            Show
-                            <select
-                              name="assetBalances_length"
-                              aria-controls="assetBalances"
-                              className=""
-                            >
-                              <option value="10">10</option>
-                              <option value="25">25</option>
-                              <option value="50">50</option>
-                              <option value="100">100</option>
-                            </select>
-                            entries
-                          </label>
-                        </div>
-                        <div id="table_filter" className="dataTables_filter">
-                          <label>
-                            Search:
-                            <input
-                              type="search"
-                              className="data_table_input"
-                              placeholder=""
-                              aria-controls="table"
-                              value={search}
-                              onChange={handleChange}
-                            />
-                          </label>
+            <div className="asset-balances-area cstm-loader-area">
+              {processing ? (
+                <Loading />
+              ) : (
+                <div className="asset-balances-left">
+                  <div className="section-wrapper">
+                    <div className="table-responsive">
+                      <div
+                        id="assetBalances_wrapper"
+                        className="dataTables_wrapper no-footer"
+                      >
+                        <div className="dataTables_head">
+                          <div
+                            className="dataTables_length"
+                            id="assetBalances_length"
+                          >
+                            <label className="">
+                              Show
+                              <select
+                                name="assetBalances_length"
+                                aria-controls="assetBalances"
+                                className=""
+                              >
+                                <option value="10">10</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                              </select>
+                              entries
+                            </label>
+                          </div>
+                          <div id="table_filter" className="dataTables_filter">
+                            <label>
+                              Search:
+                              <input
+                                type="search"
+                                className="data_table_input"
+                                placeholder=""
+                                aria-controls="table"
+                                onChange={(e) =>
+                                  SearchObjectArrayFuesJS(
+                                    walletList,
+                                    Cetchangeable,
+                                    e.target.value
+                                  )
+                                }
+                              />
+                            </label>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <table
-                      id="assetBalances"
-                      className="table table-borderless secendary-table asset-balances-table"
-                    >
-                      <thead>
-                        <tr>
-                          <th scope="col">
-                            Asset
-                            <i className="fas fa-sort-down sort_space"></i>
-                          </th>
-                          <th scope="col">
-                            Symbol
-                            <i className="fas fa-sort-up sort_space"></i>
-                          </th>
-                          <th scope="col">
-                            On Order
-                            <i className="fas fa-sort sort_space"></i>
-                          </th>
-                          <th scope="col">
-                            Available Balance
-                            <i className="fas fa-sort sort_space"></i>
-                          </th>
-                          <th scope="col">
-                            Total Balance
-                            <i className="fas fa-sort sort_space"></i>
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr id="{{$wallet->id}}">
-                          <td>
-                            <div className="asset">
-                              <img
-                                className="asset-icon"
-                                src="/amz.png"
-                                alt=""
-                              />
-                              <span className="asset-name">BCH Wallet</span>
-                            </div>
-                          </td>
-                          <td>
-                            <span className="symbol">BCH</span>
-                          </td>
-                          <td>
-                            <div className="blance-text">
-                              <span className="blance market incree">
-                                0.00000
-                              </span>
-                              <span className="usd">$0.000000</span>
-                            </div>
-                          </td>
-                          <td>
-                            <div className="blance-text">
-                              <span className="blance">0.000000</span>
-                              <span className="usd">0.00000</span>
-                            </div>
-                          </td>
-                          <td>
-                            <div className="blance-text">
-                              <span className="blance">0.000000</span>
-                              <span className="usd">0.000000</span>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr id="{{$wallet->id}}">
-                          <td>
-                            <div className="asset">
-                              <img
-                                className="asset-icon"
-                                src="/amz.png"
-                                alt=""
-                              />
-                              <span className="asset-name">BCH Wallet</span>
-                            </div>
-                          </td>
-                          <td>
-                            <span className="symbol">BCH</span>
-                          </td>
-                          <td>
-                            <div className="blance-text">
-                              <span className="blance market incree">
-                                0.00000
-                              </span>
-                              <span className="usd">$0.000000</span>
-                            </div>
-                          </td>
-                          <td>
-                            <div className="blance-text">
-                              <span className="blance">0.000000</span>
-                              <span className="usd">0.00000</span>
-                            </div>
-                          </td>
-                          <td>
-                            <div className="blance-text">
-                              <span className="blance">0.000000</span>
-                              <span className="usd">0.000000</span>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr id="{{$wallet->id}}">
-                          <td>
-                            <div className="asset">
-                              <img
-                                className="asset-icon"
-                                src="/amz.png"
-                                alt=""
-                              />
-                              <span className="asset-name">BCH Wallet</span>
-                            </div>
-                          </td>
-                          <td>
-                            <span className="symbol">BCH</span>
-                          </td>
-                          <td>
-                            <div className="blance-text">
-                              <span className="blance market incree">
-                                0.00000
-                              </span>
-                              <span className="usd">$0.000000</span>
-                            </div>
-                          </td>
-                          <td>
-                            <div className="blance-text">
-                              <span className="blance">0.000000</span>
-                              <span className="usd">0.00000</span>
-                            </div>
-                          </td>
-                          <td>
-                            <div className="blance-text">
-                              <span className="blance">0.000000</span>
-                              <span className="usd">0.000000</span>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr id="{{$wallet->id}}">
-                          <td>
-                            <div className="asset">
-                              <img
-                                className="asset-icon"
-                                src="/amz.png"
-                                alt=""
-                              />
-                              <span className="asset-name">BCH Wallet</span>
-                            </div>
-                          </td>
-                          <td>
-                            <span className="symbol">BCH</span>
-                          </td>
-                          <td>
-                            <div className="blance-text">
-                              <span className="blance market incree">
-                                0.00000
-                              </span>
-                              <span className="usd">$0.000000</span>
-                            </div>
-                          </td>
-                          <td>
-                            <div className="blance-text">
-                              <span className="blance">0.000000</span>
-                              <span className="usd">0.00000</span>
-                            </div>
-                          </td>
-                          <td>
-                            <div className="blance-text">
-                              <span className="blance">0.000000</span>
-                              <span className="usd">0.000000</span>
-                            </div>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <div
-                      className="pagination-wrapper"
-                      id="assetBalances_paginate"
-                    >
-                      <a className="paginate-button">
-                        <i className="fa fa-angle-left"></i>
-                      </a>
-                      <span>
-                        <a
-                          className="paginate_button paginate-number"
-                          aria-controls="assetBalances"
-                          data-dt-idx="1"
-                        >
-                          1
-                        </a>
-                      </span>
-                      <a className="paginate-button">
-                        <i className="fa fa-angle-right"></i>
-                      </a>
+                      <table
+                        id="assetBalances"
+                        className="table table-borderless secendary-table asset-balances-table"
+                      >
+                        <thead>
+                          <tr>
+                            <th scope="col">
+                              Asset
+                              <i className="fas fa-sort-down sort_space"></i>
+                            </th>
+                            <th scope="col">
+                              Symbol
+                              <i className="fas fa-sort-up sort_space"></i>
+                            </th>
+                            <th scope="col">
+                              On Order
+                              <i className="fas fa-sort sort_space"></i>
+                            </th>
+                            <th scope="col">
+                              Available Balance
+                              <i className="fas fa-sort sort_space"></i>
+                            </th>
+                            <th scope="col">
+                              Total Balance
+                              <i className="fas fa-sort sort_space"></i>
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {Changeable?.map((item: any, index: number) => (
+                            <tr
+                              id=""
+                              className={
+                                index === selectedRow ? "even active" : "odd"
+                              }
+                              key={index}
+                              onClick={() => {
+                                setSelectedRow(index);
+                              }}
+                            >
+                              <td>
+                                <div className="asset">
+                                  <img
+                                    className="asset-icon"
+                                    src="/amz.png"
+                                    alt=""
+                                  />
+                                  <span className="asset-name">
+                                    {item?.name}
+                                  </span>
+                                </div>
+                              </td>
+                              <td>
+                                <span className="symbol">
+                                  {item?.coin_type}
+                                </span>
+                              </td>
+                              <td>
+                                <div className="blance-text">
+                                  <span className="blance market incree">
+                                    {item?.on_order}
+                                  </span>
+                                  <span className="usd">
+                                    ${item?.on_order_usd}
+                                  </span>
+                                </div>
+                              </td>
+                              <td>
+                                <div className="blance-text">
+                                  <span className="blance">
+                                    {item?.available_balance_usd}
+                                  </span>
+                                  <span className="usd">
+                                    ${item?.total_balance_usd}
+                                  </span>
+                                </div>
+                              </td>
+                              <td>
+                                <div className="blance-text">
+                                  <span className="blance">
+                                    {item?.available_balance_usd}
+                                  </span>
+                                  <span className="usd">
+                                    ${item?.total_balance_usd}
+                                  </span>
+                                </div>
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                      <div
+                        className="pagination-wrapper"
+                        id="assetBalances_paginate"
+                      >
+                        <span>
+                          {walletList?.links?.map((link: any, index: number) =>
+                            link.label === "&laquo; Previous" ? (
+                              <a
+                                className="paginate-button"
+                                onClick={() => LinkTopaginationString(link)}
+                                key={index}
+                              >
+                                <i className="fa fa-angle-left"></i>
+                              </a>
+                            ) : link.label === "Next &raquo;" ? (
+                              <a
+                                className="paginate-button"
+                                onClick={() => LinkTopaginationString(link)}
+                                key={index}
+                              >
+                                <i className="fa fa-angle-right"></i>
+                              </a>
+                            ) : (
+                              <a
+                                className="paginate_button paginate-number"
+                                aria-controls="assetBalances"
+                                data-dt-idx="1"
+                                onClick={() => LinkTopaginationString(link)}
+                                key={index}
+                              >
+                                {link.label}
+                              </a>
+                            )
+                          )}
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              )}
+
               {show && (
                 <div className="asset-balances-right visible">
                   <div className="box-one single-box visible">

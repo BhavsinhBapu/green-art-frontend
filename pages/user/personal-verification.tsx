@@ -3,11 +3,17 @@ import ProfileSidebar from "layout/profile-sidebar";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import NidModal from "components/profile/personal-verification/NidModal";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { getKycDetailsAction } from "state/actions/user";
 
 const PersonalVerification: NextPage = () => {
   const [type, setType] = useState<string>("");
-
+  const [kycDetails, setKycDetails] = useState<any>();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getKycDetailsAction(setKycDetails));
+  }, []);
   return (
     <div className="page-wrap">
       <ProfileSidebar />
@@ -18,7 +24,7 @@ const PersonalVerification: NextPage = () => {
               <h2 className="section-top-title">Personal Verification</h2>
             </div>
           </div>
-          <NidModal type={type} />
+          <NidModal type={type} kycDetails={kycDetails} />
           <div className="profile-area">
             <h4 className="section-title-medium">Verification</h4>
             <div className="section-wrapper">

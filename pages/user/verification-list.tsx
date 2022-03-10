@@ -2,8 +2,19 @@ import type { NextPage } from "next";
 import ProfileSidebar from "layout/profile-sidebar";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import Link from "next/link";
+import { KycDetailsApi } from "service/user";
+import { useEffect, useState } from "react";
+import { setLoading } from "state/reducer/user";
+import { useDispatch } from "react-redux";
+import { getKycDetailsAction } from "state/actions/user";
 
 const VerificationList: NextPage = () => {
+  const [kycDetails, setKycDetails] = useState<any>();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getKycDetailsAction(setKycDetails));
+  }, []);
+
   return (
     <div className="page-wrap">
       <ProfileSidebar />
@@ -23,7 +34,9 @@ const VerificationList: NextPage = () => {
                     </h3>
                     <ul className="verification-list">
                       <li>
-                        <span className="text-warning">Not Submitted</span>
+                        <span className="text-warning">
+                          {kycDetails?.nid?.status}
+                        </span>
                       </li>
                     </ul>
                     <Link href="/user/personal-verification">
@@ -38,7 +51,9 @@ const VerificationList: NextPage = () => {
                     </h3>
                     <ul className="verification-list">
                       <li>
-                        <span className="text-warning">Not Submitted</span>
+                        <span className="text-warning">
+                          {kycDetails?.passport?.status}
+                        </span>
                       </li>
                     </ul>
                     <Link href="/user/personal-verification">
@@ -53,7 +68,11 @@ const VerificationList: NextPage = () => {
                     </h3>
                     <ul className="verification-list">
                       <li>
-                        <span className="text-warning">Not Submitted</span>
+                        <li>
+                          <span className="text-warning">
+                            {kycDetails?.driving?.status}
+                          </span>
+                        </li>
                       </li>
                     </ul>
                     <Link href="/user/personal-verification">

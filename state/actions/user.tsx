@@ -11,6 +11,7 @@ import {
   UploadNid,
   UploadPassport,
   UploadDrivingLicence,
+  KycDetailsApi,
 } from "service/user";
 import {
   login,
@@ -152,14 +153,15 @@ export const ForgotPasswordAction = async (
 };
 
 export const GetUserInfoByTokenAction = () => async (dispatch: any) => {
-  dispatch(setLoading(true));
+  // dispatch(setLoading(true));
   const response = await GetUserInfoByToken();
+
   if (response.success === true) {
     dispatch(login(response.user));
   } else {
     dispatch(setAuthenticationState(false));
   }
-  dispatch(setLoading(false));
+  // dispatch(setLoading(false));
 };
 
 export const LogoutAction = () => async (dispatch: any) => {
@@ -207,7 +209,7 @@ export const ResetPasswordAction = async (
 };
 export const UpdateUserInfoByTokenAction =
   (user: any) => async (dispatch: any) => {
-    dispatch(setLoading(true));
+    // dispatch(setLoading(true));
     const response = await UpdateUserInfoByToken(user);
     if (response.success === true) {
       console.log(response, "response from action");
@@ -233,7 +235,7 @@ export const UpdateUserInfoByTokenAction =
         progress: undefined,
       });
     }
-    dispatch(setLoading(false));
+    // dispatch(setLoading(false));
   };
 
 export const SendPhoneVerificationSmsAction = async (
@@ -309,7 +311,7 @@ export const ChangePasswordAction =
     password_confirmation: string;
   }) =>
   async (dispatch: any) => {
-    dispatch(setLoading(true));
+    // dispatch(setLoading(true));
     const response = await ChangePassword(credentials);
     if (response.success === true) {
       toast.success(response.message, {
@@ -332,7 +334,7 @@ export const ChangePasswordAction =
         progress: undefined,
       });
     }
-    dispatch(setLoading(false));
+    // dispatch(setLoading(false));
   };
 
 export const UploadNidImageAction = async (
@@ -427,3 +429,11 @@ export const UploadDrivingLicenceImageAction = async (
   }
   setProcessing(false);
 };
+export const getKycDetailsAction =
+  (setKycDetails: Dispatch<SetStateAction<null>>) => async (dispatch: any) => {
+    // dispatch(setLoading(true));
+    const { data } = await KycDetailsApi();
+    setKycDetails(data);
+    console.log(data);
+    // dispatch(setLoading(false));
+  };

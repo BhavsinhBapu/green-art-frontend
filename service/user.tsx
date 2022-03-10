@@ -87,3 +87,8 @@ export const UploadDrivingLicence = async (Files: any) => {
   const { data } = await request.post("/upload-driving-licence", Files);
   return data;
 };
+
+export const KycDetailsApi = async () => {
+  const { data } = await request.get("/kyc-details");
+  return data;
+};

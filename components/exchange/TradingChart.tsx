@@ -10,7 +10,6 @@ const TradingChart = () => {
         locale="en"
         height={500}
         allow_symbol_change
-        // autosize
         width="100%"
         container_id="tv_chart_container"
       />

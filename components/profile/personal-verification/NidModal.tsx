@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import {
   UploadDrivingLicenceImageAction,
@@ -7,11 +7,12 @@ import {
 } from "state/actions/user";
 import { useDispatch } from "react-redux";
 
-const NidModal = ({ type }: any) => {
+const NidModal = ({ type, kycDetails }: any) => {
   const [previousType, setPreviousType] = useState<string>("");
   const [frontSide, setFrontSide] = useState(null);
   const [processing, setProcessing] = useState(false);
   const [backSide, setBackSide] = useState(null);
+  const [existingKyc, setExistingKyc] = useState<any>();
   if (type !== previousType) {
     setPreviousType(type);
     setFrontSide(null);
@@ -50,6 +51,22 @@ const NidModal = ({ type }: any) => {
       UploadPassportImageAction(formData, setProcessing);
     }
   };
+  const loadCard = () => {
+    if (type === "nid") {
+      setExistingKyc(kycDetails.nid);
+      console.log(kycDetails.nid, "kycDetails.nid");
+    } else if (type === "driving-licence") {
+      setExistingKyc(kycDetails.driving);
+      console.log(kycDetails.driving, "kycDetails.driving");
+    } else if (type === "passport") {
+      setExistingKyc(kycDetails.passport);
+      console.log(kycDetails.passport, "kycDetails.passport");
+    }
+  };
+  useEffect(() => {
+    loadCard();
+  }, [type]);
+
   return (
     <div
       className="modal fade cp-user-idverifymodal"
@@ -92,20 +109,37 @@ const NidModal = ({ type }: any) => {
                   </div>
                   <div className="col-lg-6 mb-lg-0 mb-4">
                     <div className="idcard">
-                      <h3 className="title">Front Side</h3>
+                      <h3
+                        className="title"
+                        onClick={() => {
+                          console.log(kycDetails?.status, "type");
+                        }}
+                      >
+                        Front Side
+                      </h3>
                       <div className="container cstm-img-picker">
                         {frontSide ? (
                           <img src={frontSide} className="img-fluid" alt="" />
                         ) : (
                           <label className="container cstm-img-picker">
-                            <input
-                              type="file"
-                              name="front_side"
-                              onChange={(e) => {
-                                storeSelectedFile(e, setFrontSide, 1);
-                              }}
-                            />
-                            <span>drag and drop file</span>
+                            {existingKyc?.front_image ? (
+                              <img
+                                src={existingKyc?.front_image}
+                                className="img-fluid"
+                                alt=""
+                              />
+                            ) : (
+                              <>
+                                <input
+                                  type="file"
+                                  name="front_side"
+                                  onChange={(e) => {
+                                    storeSelectedFile(e, setFrontSide, 1);
+                                  }}
+                                />
+                                <span>drag and drop file</span>
+                              </>
+                            )}
                           </label>
                         )}
                       </div>
@@ -117,6 +151,12 @@ const NidModal = ({ type }: any) => {
                       <div className="container cstm-img-picker">
                         {backSide ? (
                           <img src={backSide} className="img-fluid" alt="" />
+                        ) : existingKyc?.back_image ? (
+                          <img
+                            src={existingKyc?.back_image}
+                            className="img-fluid"
+                            alt=""
+                          />
                         ) : (
                           <label className="container cstm-img-picker">
                             <input
@@ -132,27 +172,28 @@ const NidModal = ({ type }: any) => {
                       </div>
                     </div>
                   </div>
-
-                  <button
-                    type="submit"
-                    className="btn nimmu-user-sibmit-button mt-5"
-                    onClick={(e) => {
-                      uploadImage(e);
-                    }}
-                  >
-                    {processing ? (
-                      <>
-                        <span
-                          className="spinner-border spinner-border-md"
-                          role="status"
-                          aria-hidden="true"
-                        ></span>
-                        <span>Please wait</span>
-                      </>
-                    ) : (
-                      "Upload"
-                    )}
-                  </button>
+                  {!existingKyc?.front_image && !existingKyc?.back_image && (
+                    <button
+                      type="submit"
+                      className="btn nimmu-user-sibmit-button mt-5"
+                      onClick={(e) => {
+                        uploadImage(e);
+                      }}
+                    >
+                      {processing ? (
+                        <>
+                          <span
+                            className="spinner-border spinner-border-md"
+                            role="status"
+                            aria-hidden="true"
+                          ></span>
+                          <span>Please wait</span>
+                        </>
+                      ) : (
+                        "Upload"
+                      )}
+                    </button>
+                  )}
                 </div>
               </div>
             </form>

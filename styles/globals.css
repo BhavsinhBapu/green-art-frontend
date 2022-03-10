@@ -3708,6 +3708,7 @@ table.dataTable tbody tr.selected td {
 /* custome code start here  */
 table.table {
   width: 100%;
+  margin-bottom: 30px;
 }
 #trade_chart_container {
   height: 600px !important;
@@ -8768,7 +8769,7 @@ label {
   outline: none;
 }
 .modal-content {
-  background-color: #242831;
+  background-color: #fff;
   border: 1px solid #353535;
 }
 .modal-title {
@@ -8960,10 +8961,30 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
 .preloder-area .spinner-border {
   margin-right: 10px;
 }
+.cstm-loader-area {
+  position: relative;
+}
+
+.inside-preloder-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+  background: rgb(195 195 195 / 50%);
+  color: #ffffff;
+}
+.inside-preloder-area .spinner-border {
+  margin-right: 10px;
+}
 .cstm-img-picker {
   display: flex;
-  width: 100px;
-  height: 204px;
+  width: 320px;
+  height: 223px;
   left: 0;
   top: 0;
   z-index: 9999;
@@ -8974,4 +8995,14 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
 }
 .cstm-img-picker input {
   display: none;
+}
+.skenliton-effect {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  background: #f3f3f3;
+  color: #ffffff;
+  align-items: center;
+  justify-content: center;
 }
