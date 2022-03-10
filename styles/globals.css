@@ -5374,7 +5374,7 @@ table.dataTable tbody tr td {
   flex-shrink: 0;
   width: 545px;
   margin-right: -545px;
-  transition: margin 0.2s;
+  transition: margin 0.2s !important;
   opacity: 0;
   visibility: hidden;
 }
