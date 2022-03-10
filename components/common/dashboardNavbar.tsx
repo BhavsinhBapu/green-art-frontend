@@ -298,7 +298,7 @@ const dashboardNavbar = () => {
                         aria-expanded="false"
                       >
                         <span className="cp-user-avater">
-                          {/* <span className="cp-user-img">
+                          <span className="cp-user-img">
                             {user?.photo && (
                               <img
                                 src={user?.photo}
@@ -306,7 +306,7 @@ const dashboardNavbar = () => {
                                 alt="user"
                               />
                             )}
-                          </span> */}
+                          </span>
                           <span className="cp-user-avater-info"></span>
                         </span>
                       </button>

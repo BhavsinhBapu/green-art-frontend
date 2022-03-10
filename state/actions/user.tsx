@@ -30,10 +30,8 @@ export const SigninAction =
     const redirectUrl: any = Router.query.redirect;
     const response = await SigninApi(credentials);
     const responseMessage = response.message;
-    console.log(response, "response from action");
     if (response.success === true) {
       Cookies.set("token", response.access_token);
-      console.log(response.user, "response.user");
       dispatch(login(response.user));
       toast.success(responseMessage, {
         position: "top-right",
@@ -81,12 +79,9 @@ export const SignupAction =
   async (dispatch: any) => {
     // const router = useRouter();
     setProcessing(true);
-    console.log("Clicking on me");
     const response = await SignupApi(credentials);
     let responseMessage = response.message;
-    console.log(response, "response from action");
     if (response.success === true) {
-      console.log("SignupApi success");
       toast.success(responseMessage, {
         position: "top-right",
         autoClose: 5000,
@@ -100,7 +95,6 @@ export const SignupAction =
       Router.push("/authentication/signin");
     } else if (response.success === false) {
       dispatch(setAuthenticationState(false));
-      console.log(responseMessage, "SignupApi fail");
       toast.error(responseMessage, {
         position: "top-right",
         autoClose: 10000,
@@ -167,7 +161,11 @@ export const GetUserInfoByTokenAction = () => async (dispatch: any) => {
 export const LogoutAction = () => async (dispatch: any) => {
   Cookies.remove("token");
   dispatch(setAuthenticationState(false));
-  Router.replace("/authentication/signin");
+  const currentRoute = Router.pathname;
+  const splitRoute = currentRoute.split("/");
+  if (splitRoute[1] != "exchange") {
+    Router.replace("/authentication/signin");
+  }
 };
 
 export const ResetPasswordAction = async (
@@ -212,7 +210,6 @@ export const UpdateUserInfoByTokenAction =
     // dispatch(setLoading(true));
     const response = await UpdateUserInfoByToken(user);
     if (response.success === true) {
-      console.log(response, "response from action");
       toast.success(response.message, {
         position: "top-right",
         autoClose: 5000,
@@ -222,7 +219,7 @@ export const UpdateUserInfoByTokenAction =
         draggable: true,
         progress: undefined,
       });
-      console.log(response.user, "response.user");
+
       dispatch(setUser(response.user));
     } else {
       toast.error(response.message, {
@@ -434,6 +431,5 @@ export const getKycDetailsAction =
     // dispatch(setLoading(true));
     const { data } = await KycDetailsApi();
     setKycDetails(data);
-    console.log(data);
     // dispatch(setLoading(false));
   };
