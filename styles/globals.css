@@ -220,7 +220,7 @@ p {
   left: 0;
 }
 
-.cp-user-top-ba-dashborad {
+.dark-board {
   background: #151515;
   padding: 10px 0;
   position: fixed;
@@ -229,7 +229,9 @@ p {
   top: 0;
   left: 0;
 }
-
+.cp-user-top-bar-dashboard .logo {
+  padding-left: 30px;
+}
 .cp-user-top-bar .logo {
   padding-left: 30px;
 }
@@ -305,7 +307,19 @@ p {
   -ms-flex-align: center;
   align-items: center;
 }
+.cp-user-top-bar .cp-user-top-bar-dashboard {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
 
+.cp-user-top-bar .cp-user-avater .cp-user-avater-info {
+  text-align: left;
+  color: #242831;
+}
 .cp-user-top-bar .cp-user-avater .cp-user-avater-info {
   text-align: left;
   color: #242831;
@@ -9005,4 +9019,22 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
   color: #ffffff;
   align-items: center;
   justify-content: center;
+}
+
+/* custome code start here for tab  */
+.exchange-box > .tab-content {
+  border: none;
+  padding: 0;
+}
+.exchange-box .tab-content {
+  border: none;
+  padding: 10px;
+  margin: 0;
+}
+.exchange-box .inner-tabs-menu {
+  padding: 10px 0;
+}
+
+.trades-headers .nav-pills .nav-link {
+  background: #151515 !important;
 }

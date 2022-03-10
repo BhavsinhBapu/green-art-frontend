@@ -115,13 +115,13 @@ const ExchangeBox = () => {
               <div className="row">
                 <div className="col-md-12">
                   <div className="cp-user-profile-info">
-                    <form id="buy-form" className="mt-4">
+                    <form id="buy-form">
                       <input
                         type="hidden"
                         name="_token"
                         defaultValue="g2OWJq3pDqYRQmVvmGt799aCsDmkkV4UjrWDhzcF"
                       />
-                      <div className="form-group mt-4">
+                      <div className="form-group ">
                         <div className="total-top">
                           <label>Total</label> <label>Available</label>
                         </div>

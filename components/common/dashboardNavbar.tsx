@@ -1,12 +1,13 @@
 import React from "react";
 import Link from "next/link";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "state/store";
+import { LogoutAction } from "state/actions/user";
 const dashboardNavbar = () => {
   const { isLoggedIn, user } = useSelector((state: RootState) => state.user);
-
+  const dispatch = useDispatch();
   return (
-    <div className="cp-user-top-bar-dashborad">
+    <div className="cp-user-top-bar dark-board">
       <div className="container-fluid">
         <div className="row align-items-center justify-content-between">
           <div className="col-xl-2 col-lg-2 col-4">
@@ -245,7 +246,7 @@ const dashboardNavbar = () => {
                       >
                         <span className="notify-value hm-notify-number">0</span>
                         <img
-                          src="/img/icons/notification.png"
+                          src="/notification.png"
                           className="img-fluid"
                           alt=""
                         />
@@ -287,7 +288,7 @@ const dashboardNavbar = () => {
                       </div>
                     </div>
                   </li>
-                  <li>
+                  <li className="hm-notify" id="notification_item">
                     <div className="btn-group profile-dropdown">
                       <button
                         type="button"
@@ -297,22 +298,24 @@ const dashboardNavbar = () => {
                         aria-expanded="false"
                       >
                         <span className="cp-user-avater">
-                          <span className="cp-user-img">
-                            <img
-                              src={user?.photo}
-                              className="img-fluid"
-                              alt="user"
-                            />
-                          </span>
+                          {/* <span className="cp-user-img">
+                            {user?.photo && (
+                              <img
+                                src={user?.photo}
+                                className="img-fluid"
+                                alt="user"
+                              />
+                            )}
+                          </span> */}
                           <span className="cp-user-avater-info"></span>
                         </span>
                       </button>
                       <div className="dropdown-menu dropdown-menu-right">
                         <span className="big-user-thumb">
-                          <img src="/avater.svg" className="img-fluid" alt="" />
+                          <img src={user?.photo} className="img-fluid" alt="" />
                         </span>
                         <div className="user-name">
-                          <p>Mr User</p>
+                          <p>{user?.first_name!}</p>
                         </div>
                         <button className="dropdown-item" type="button">
                           <a href="">
@@ -331,8 +334,14 @@ const dashboardNavbar = () => {
                             <i className="fa fa-credit-card"></i> My Wallet
                           </a>
                         </button>
-                        <button className="dropdown-item" type="button">
-                          <a href="http://localhost:8000/logout">
+                        <button
+                          className="dropdown-item"
+                          type="button"
+                          onClick={() => {
+                            dispatch(LogoutAction());
+                          }}
+                        >
+                          <a>
                             <i className="fa fa-sign-out"></i> Logout
                           </a>
                         </button>

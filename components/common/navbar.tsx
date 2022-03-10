@@ -289,7 +289,7 @@ const navbar = () => {
                       </div>
                     </div>
                   </li>
-                  <li>
+                  <li className="hm-notify" id="notification_item">
                     <div className="btn-group profile-dropdown">
                       <button
                         type="button"
