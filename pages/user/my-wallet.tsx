@@ -10,14 +10,18 @@ import Link from "next/link";
 const MyWallet: NextPage = () => {
   const [show, setShow] = useState<boolean>(false);
   const [walletList, setWalletList] = useState<any>();
-  const [Changeable, Cetchangeable] = useState<any[]>([]);
+  const [Changeable, setChangeable] = useState<any[]>([]);
   const [processing, setProcessing] = useState<boolean>(false);
   const [selectedRow, setSelectedRow] = useState<any>(null);
-
   const getWalletLists = async (url: string) => {
     const response: any = await WalletListApiAction(url, setProcessing);
     setWalletList(response);
-    Cetchangeable(response.data);
+    setChangeable(response.data);
+  };
+  const ResizeChangebleArrayBySize = (size: number) => {
+    let newArray = walletList?.data?.slice(0, size);
+    console.log(size);
+    setChangeable(newArray);
   };
   const LinkTopaginationString = async (link: any) => {
     if (link.url === null) return;
@@ -28,7 +32,7 @@ const MyWallet: NextPage = () => {
       setProcessing
     );
     setWalletList(response);
-    Cetchangeable(response.data);
+    setChangeable(response.data);
   };
 
   useEffect(() => {
@@ -110,9 +114,14 @@ const MyWallet: NextPage = () => {
                                 name="assetBalances_length"
                                 aria-controls="assetBalances"
                                 className=""
+                                onChange={(e) => {
+                                  ResizeChangebleArrayBySize(
+                                    parseInt(e.target.value)
+                                  );
+                                }}
                               >
                                 <option value="10">10</option>
-                                <option value="25">25</option>
+                                <option value="20">25</option>
                                 <option value="50">50</option>
                                 <option value="100">100</option>
                               </select>
@@ -130,7 +139,7 @@ const MyWallet: NextPage = () => {
                                 onChange={(e) =>
                                   SearchObjectArrayFuesJS(
                                     walletList,
-                                    Cetchangeable,
+                                    setChangeable,
                                     e.target.value
                                   )
                                 }
