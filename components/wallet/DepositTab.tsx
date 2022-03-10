@@ -1,5 +1,6 @@
 import React from "react";
 import Qr from "components/common/qr";
+import { copyTextById } from "common";
 
 const DepositTab = ({ response, TurnoffSetShow }: any) => {
   return (
@@ -52,8 +53,14 @@ const DepositTab = ({ response, TurnoffSetShow }: any) => {
                   defaultValue={response?.address}
                   readOnly
                 />
-                <button type="button" className="btn copy-url-btn">
-                  <i className="fa fa-clone" />
+                <button
+                  type="button"
+                  className="btn copy-url-btn"
+                  onClick={() => {
+                    copyTextById("url");
+                  }}
+                >
+                  <i className="fa fa-clone"></i>
                 </button>
               </div>
               <div className="bar-code-area">

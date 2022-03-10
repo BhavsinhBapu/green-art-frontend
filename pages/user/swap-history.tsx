@@ -106,7 +106,11 @@ const SwapHistory: NextPage = () => {
                       <tr id="{{$wallet->id}}">
                         <td>
                           <div className="asset">
-                            <img className="asset-icon" src="/amz.png" alt="" />
+                            <img
+                              className="asset-icon"
+                              src="/bitcoin.png"
+                              alt=""
+                            />
                             <span className="asset-name">BCH Wallet</span>
                           </div>
                         </td>

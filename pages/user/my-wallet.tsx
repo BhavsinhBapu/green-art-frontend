@@ -296,7 +296,7 @@ const MyWallet: NextPage = () => {
                                 <div className="asset">
                                   <img
                                     className="asset-icon"
-                                    src="/amz.png"
+                                    src="/bitcoin.png"
                                     alt=""
                                   />
                                   <span className="asset-name">
