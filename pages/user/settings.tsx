@@ -1,8 +1,16 @@
 import type { NextPage } from "next";
 import ProfileSidebar from "layout/profile-sidebar";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
+import { useEffect, useState } from "react";
+import { UserSettingsAction } from "state/actions/settings";
+import GoogleAuthModal from "components/settings/GoogleAuthModal";
 
 const Settings: NextPage = () => {
+  const [settings, setSettings] = useState<object>();
+  const [languageList, setLanguageList] = useState<any>([]);
+  useEffect(() => {
+    UserSettingsAction(setSettings, setLanguageList);
+  }, []);
   return (
     <div className="page-wrap">
       <div className="page-main-content">
@@ -46,85 +54,8 @@ const Settings: NextPage = () => {
                           >
                             Set up
                           </a>
-                          <div
-                            className="modal fade"
-                            id="exampleModal"
-                            tabIndex={-1}
-                            role="dialog"
-                            aria-labelledby="exampleModalLabel"
-                            aria-hidden="true"
-                          >
-                            <div className="modal-dialog" role="document">
-                              <form
-                                method="post"
-                                action="http://localhost:8000/user/g2f-secret-save"
-                              >
-                                <input
-                                  type="hidden"
-                                  name="google2fa_secret"
-                                  defaultValue="ZKIY6H76QMUBKGBH"
-                                />
-                                <div className="modal-content">
-                                  <div className="modal-header">
-                                    <h5
-                                      className="modal-title"
-                                      id="exampleModalLabel"
-                                    >
-                                      Google Authentication
-                                    </h5>
-                                    <button
-                                      type="button"
-                                      className="close"
-                                      data-dismiss="modal"
-                                      aria-label="Close"
-                                    >
-                                      <span aria-hidden="true">×</span>
-                                    </button>
-                                  </div>
-                                  <div className="modal-body">
-                                    <div className="row">
-                                      <div className="col-4">
-                                        <img
-                                          src="https://chart.googleapis.com/chart?chs=200x200&chld=M|0&cht=qr&chl=otpauth%3A%2F%2Ftotp%2FTradexpro%2520Exchange%3Auser%2540email.com%3Fsecret%3DZKIY6H76QMUBKGBH%26issuer%3DTradexpro%2520Exchange"
-                                          className="img-fluid"
-                                          alt=""
-                                        />
-                                      </div>
-                                      <div className="col-8">
-                                        <p>
-                                          Open your Google Authenticator app,
-                                          and scan Your secret code and enter
-                                          the 6-digit code from the app into the
-                                          input field
-                                        </p>
-                                        <input
-                                          placeholder="Code"
-                                          type="text"
-                                          className="form-control"
-                                          name="code"
-                                        />
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div className="modal-footer">
-                                    <button
-                                      type="button"
-                                      className="btn btn-secondary"
-                                      data-dismiss="modal"
-                                    >
-                                      Close
-                                    </button>
-                                    <button
-                                      type="submit"
-                                      className="btn btn-primary"
-                                    >
-                                      Verify
-                                    </button>
-                                  </div>
-                                </div>
-                              </form>
-                            </div>
-                          </div>
+
+                          <GoogleAuthModal settings={settings} />
                         </div>
                         <div className="cp-user-content">
                           <h5>Security</h5>
@@ -174,47 +105,13 @@ const Settings: NextPage = () => {
                               <label>Language</label>
                               <div className="cp-user-preferance-setting">
                                 <select name="lang" className="form-control">
-                                  <option value="ar">Arabic</option>
-                                  <option value="de">German</option>
-                                  <option selected value="en">
-                                    English
-                                  </option>
-                                  <option value="es">Spanish</option>
-                                  <option value="et">Estonian</option>
-                                  <option value="fa">Farsi</option>
-                                  <option value="fr">French</option>
-                                  <option value="gr">Greece</option>
-                                  <option value="id">Indonesian</option>
-                                  <option value="it">Italian</option>
-                                  <option value="ja">Japanese</option>
-                                  <option value="ko">Korean</option>
-                                  <option value="nl">Dutch</option>
-                                  <option value="pl">Polish</option>
-                                  <option value="pt-br">
-                                    Portuguese (Brazil)
-                                  </option>
-                                  <option value="pt">
-                                    Portuguese (European)
-                                  </option>
-                                  <option value="ro">Romanian</option>
-                                  <option value="ru">Russian</option>
-                                  <option value="th">Thai</option>
-                                  <option value="tr">Turkish</option>
-                                  <option value="zh-CN">
-                                    Chinese (Simplified)
-                                  </option>
-                                  <option value="zh-HK">
-                                    Chinese (Hong Kong)
-                                  </option>
-                                  <option value="zh-SG">
-                                    Chinese (Singapore)
-                                  </option>
-                                  <option value="zh-TW">
-                                    Chinese (Traditional)
-                                  </option>
-                                  <option value="zh">
-                                    Chinese (Singapore)
-                                  </option>
+                                  {languageList?.map(
+                                    (language: any, index: any) => (
+                                      <option value={language.key} key={index}>
+                                        {language.lang}
+                                      </option>
+                                    )
+                                  )}
                                 </select>
                               </div>
                             </div>

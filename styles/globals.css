@@ -8793,17 +8793,17 @@ label {
   color: #cbcfd7;
 }
 .btn {
-  color: #cbcfd7;
-  min-width: 135px;
+  color: #ffff;
+  min-width: 96px;
 }
 .btn:hover {
   color: #cbcfd7;
 }
 .modal-header {
-  border-color: #353535;
+  border-color: #ededed;
 }
 .modal-footer {
-  border-color: #353535;
+  border-color: #ededed;
 }
 .modal-header .close {
   color: #cbcfd7;
@@ -8815,7 +8815,7 @@ label {
   margin-bottom: 10px;
 }
 .modal-body .form-control {
-  border-color: #353535;
+  border-color: #ededed;
 }
 #pair_edit_30 .modal-header .close {
   order: 1;
