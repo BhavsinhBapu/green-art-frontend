@@ -1,6 +1,23 @@
 import React from "react";
-
-const GoogleAuthModal = ({ settings }: any) => {
+import { SetupGoogle2faAction } from "state/actions/settings";
+import { useRouter } from "next/router";
+const GoogleAuthModal = ({ settings, setSettings }: any) => {
+  const [code, setCode] = React.useState<string>("");
+  const router = useRouter();
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    SetupGoogle2faAction(
+      {
+        code,
+        setup: settings?.user?.google2fa === 0 ? "add" : "remove",
+        google2fa_secret:
+          settings?.user?.google2fa === 0
+            ? settings?.google2fa_secret
+            : settings?.user?.google2fa_secret,
+      },
+      setSettings
+    );
+  };
   return (
     <div
       className="modal fade"
@@ -29,7 +46,9 @@ const GoogleAuthModal = ({ settings }: any) => {
             <div className="modal-body">
               <div className="row">
                 <div className="col-4">
-                  <img src={settings?.qrcode} className="img-fluid" alt="" />
+                  {settings?.user?.google2fa === 0 && (
+                    <img src={settings?.qrcode} className="img-fluid" alt="" />
+                  )}
                 </div>
                 <div className="col-8">
                   <p>
@@ -42,6 +61,10 @@ const GoogleAuthModal = ({ settings }: any) => {
                     type="text"
                     className="form-control"
                     name="code"
+                    value={code}
+                    onChange={(e) => {
+                      setCode(e.target.value);
+                    }}
                   />
                 </div>
               </div>
@@ -54,7 +77,12 @@ const GoogleAuthModal = ({ settings }: any) => {
               >
                 Close
               </button>
-              <button type="submit" className="btn btn-primary">
+              <button
+                type="submit"
+                className="btn btn-primary"
+                data-dismiss="modal"
+                onClick={handleSubmit}
+              >
                 Verify
               </button>
             </div>

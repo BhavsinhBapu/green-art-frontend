@@ -2,14 +2,27 @@ import type { NextPage } from "next";
 import ProfileSidebar from "layout/profile-sidebar";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { useEffect, useState } from "react";
-import { UserSettingsAction } from "state/actions/settings";
+import {
+  UserSettingsAction,
+  SetupGoogle2faAction,
+  SetupLanguageAction,
+  Google2faLoginAction,
+} from "state/actions/settings";
 import GoogleAuthModal from "components/settings/GoogleAuthModal";
 
 const Settings: NextPage = () => {
-  const [settings, setSettings] = useState<object>();
+  const [settings, setSettings] = useState<any>();
   const [languageList, setLanguageList] = useState<any>([]);
+  const [languageUpdate, setLanguageUpdate] = useState<string>("");
+  const [code, setCode] = useState<number>();
+
   useEffect(() => {
     UserSettingsAction(setSettings, setLanguageList);
+    console.log(settings);
+    return () => {
+      setSettings(null);
+      setLanguageList([]);
+    };
   }, []);
   return (
     <div className="page-wrap">
@@ -45,17 +58,32 @@ const Settings: NextPage = () => {
                             for Android and iPhone.
                           </p>
                         </div>
-                        <div className="cp-user-content mt-0">
-                          <a
-                            href="javascript:"
-                            data-toggle="modal"
-                            data-target="#exampleModal"
-                            className="btn cp-user-setupbtn"
-                          >
-                            Set up
-                          </a>
 
-                          <GoogleAuthModal settings={settings} />
+                        <div className="cp-user-content mt-0">
+                          {settings?.user?.google2fa === 0 ? (
+                            <a
+                              href=""
+                              data-toggle="modal"
+                              data-target="#exampleModal"
+                              className="btn cp-user-setupbtn"
+                            >
+                              Set up
+                            </a>
+                          ) : (
+                            <a
+                              href=""
+                              data-toggle="modal"
+                              data-target="#exampleModal"
+                              className="btn cp-user-setupbtn"
+                            >
+                              Remove Google Authentication
+                            </a>
+                          )}
+
+                          <GoogleAuthModal
+                            settings={settings}
+                            setSettings={setSettings}
+                          />
                         </div>
                         <div className="cp-user-content">
                           <h5>Security</h5>
@@ -73,7 +101,18 @@ const Settings: NextPage = () => {
                               defaultValue="UHxumztviDLlLBs3t8g3IMcfQsz9pSMy9wObVejT"
                             />
                             <label className="switch">
-                              <input type="checkbox" />
+                              <input
+                                type="checkbox"
+                                name="google_login_enable"
+                                checked={
+                                  settings?.user?.g2f_enabled === "1"
+                                    ? true
+                                    : false
+                                }
+                                onClick={(e) => {
+                                  Google2faLoginAction();
+                                }}
+                              />
                               <span className="slider round" />
                             </label>
                           </form>
@@ -104,10 +143,23 @@ const Settings: NextPage = () => {
                             <div className="form-group">
                               <label>Language</label>
                               <div className="cp-user-preferance-setting">
-                                <select name="lang" className="form-control">
+                                <select
+                                  name="lang"
+                                  className="form-control"
+                                  onChange={(e) => {
+                                    setLanguageUpdate(e.target.value);
+                                  }}
+                                >
                                   {languageList?.map(
                                     (language: any, index: any) => (
-                                      <option value={language.key} key={index}>
+                                      <option
+                                        value={language?.key}
+                                        key={index}
+                                        selected={
+                                          settings?.user?.language ===
+                                          language?.key
+                                        }
+                                      >
                                         {language.lang}
                                       </option>
                                     )
@@ -116,7 +168,18 @@ const Settings: NextPage = () => {
                               </div>
                             </div>
                             <div className="form-group">
-                              <button className="btn cp-user-setupbtn">
+                              <button
+                                className="btn cp-user-setupbtn"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  SetupLanguageAction(
+                                    {
+                                      language: languageUpdate,
+                                    },
+                                    setSettings
+                                  );
+                                }}
+                              >
                                 Update
                               </button>
                             </div>

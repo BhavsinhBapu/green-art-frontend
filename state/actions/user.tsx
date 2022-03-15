@@ -12,6 +12,8 @@ import {
   UploadPassport,
   UploadDrivingLicence,
   KycDetailsApi,
+  G2fVerifyApi,
+  GetUserInfoByTokenServer,
 } from "service/user";
 import {
   login,
@@ -30,8 +32,8 @@ export const SigninAction =
     const redirectUrl: any = Router.query.redirect;
     const response = await SigninApi(credentials);
     const responseMessage = response.message;
+    Cookies.set("token", response.access_token);
     if (response.success === true) {
-      Cookies.set("token", response.access_token);
       dispatch(login(response.user));
       toast.success(responseMessage, {
         position: "top-right",
@@ -433,3 +435,36 @@ export const getKycDetailsAction =
     setKycDetails(data);
     // dispatch(setLoading(false));
   };
+
+export const G2fVerifyAction = async (
+  code: any,
+  setProcessing: Dispatch<SetStateAction<boolean>>
+) => {
+  setProcessing(true);
+  const formData = new FormData();
+  formData.append("code", code);
+  const response = await G2fVerifyApi(formData);
+  if (response.success === true) {
+    toast.success(response.message, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      className: "dark-toast",
+    });
+  } else {
+    toast.error(response.message, {
+      position: "top-right",
+      autoClose: 10000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  }
+  setProcessing(false);
+};

@@ -92,3 +92,7 @@ export const KycDetailsApi = async () => {
   const { data } = await request.get("/kyc-details");
   return data;
 };
+export const G2fVerifyApi = async (credential: any) => {
+  const { data } = await request.post("/g2f-verify", credential);
+  return data;
+};

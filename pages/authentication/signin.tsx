@@ -159,9 +159,11 @@ const Signin: NextPage = () => {
   );
 };
 
-Signin.getInitialProps = async (ctx) => {
+export const getServerSideProps = async (ctx: any) => {
   await authPageRequireCheck(ctx);
-  return {};
+  return {
+    props: {},
+  };
 };
 
 export default Signin;

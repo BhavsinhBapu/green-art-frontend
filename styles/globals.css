@@ -8929,7 +8929,7 @@ input:-webkit-autofill:active {
   }
 }
 .card.cp-user-custom-card {
-  background: transparent;
+  background: #f7f7f8;
   border: none;
 }
 #tradingview_widget_wrapper div:nth-child(2) {
