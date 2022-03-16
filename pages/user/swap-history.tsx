@@ -1,4 +1,4 @@
-import type { NextPage } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 import * as React from "react";
 import ReportSidebar from "layout/report-sidebar";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
@@ -204,7 +204,7 @@ const SwapHistory: NextPage = () => {
     </div>
   );
 };
-export const getServerSideProps = async (ctx: any) => {
+export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/user/swap-history");
   return {
     props: {},

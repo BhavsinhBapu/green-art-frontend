@@ -1,4 +1,4 @@
-import type { NextPage } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 import ProfileSidebar from "layout/profile-sidebar";
 import React, { useState } from "react";
 import * as Yup from "yup";
@@ -132,7 +132,7 @@ const PhoneVerification: NextPage = () => {
     </div>
   );
 };
-export const getServerSideProps = async (ctx: any) => {
+export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/user/change-password");
   return {
     props: {},

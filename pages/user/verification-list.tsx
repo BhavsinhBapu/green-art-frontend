@@ -1,10 +1,8 @@
-import type { NextPage } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 import ProfileSidebar from "layout/profile-sidebar";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import Link from "next/link";
-import { KycDetailsApi } from "service/user";
 import { useEffect, useState } from "react";
-import { setLoading } from "state/reducer/user";
 import { useDispatch } from "react-redux";
 import { getKycDetailsAction } from "state/actions/user";
 
@@ -88,7 +86,7 @@ const VerificationList: NextPage = () => {
     </div>
   );
 };
-export const getServerSideProps = async (ctx: any) => {
+export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/user/verification-list");
   return {
     props: {},

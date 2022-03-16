@@ -1,4 +1,4 @@
-import type { NextPage } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 import * as Yup from "yup";
 import { SigninAction } from "state/actions/user";
 import { useDispatch, useSelector } from "react-redux";
@@ -159,7 +159,7 @@ const Signin: NextPage = () => {
   );
 };
 
-export const getServerSideProps = async (ctx: any) => {
+export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await authPageRequireCheck(ctx);
   return {
     props: {},

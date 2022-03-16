@@ -1,4 +1,4 @@
-import type { NextPage } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 import ReportSidebar from "layout/report-sidebar";
 import React, { useState } from "react";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
@@ -212,7 +212,7 @@ const TransactionHistory: NextPage = () => {
     </div>
   );
 };
-export const getServerSideProps = async (ctx: any) => {
+export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/user/transaction-history");
   return {
     props: {},

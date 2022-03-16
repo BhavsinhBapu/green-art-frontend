@@ -1,4 +1,4 @@
-import type { NextPage } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 import ProfileSidebar from "layout/profile-sidebar";
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import countries from "lib/values/country.json";
@@ -179,7 +179,7 @@ const Edit: NextPage = () => {
     </div>
   );
 };
-export const getServerSideProps = async (ctx: any) => {
+export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/user/edit-profile");
   return {
     props: {},

@@ -1,4 +1,4 @@
-import type { NextPage } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 import React, { useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -163,8 +163,10 @@ const ResetPassword: NextPage = () => {
     </div>
   );
 };
-ResetPassword.getInitialProps = async (ctx) => {
+export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await authPageRequireCheck(ctx);
-  return {};
+  return {
+    props: {},
+  };
 };
 export default ResetPassword;

@@ -1,5 +1,5 @@
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
-import type { NextPage } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 
 const Referral: NextPage = () => {
   return (
@@ -136,7 +136,7 @@ const Referral: NextPage = () => {
     </div>
   );
 };
-export const getServerSideProps = async (ctx: any) => {
+export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/user/referral");
   return {
     props: {},

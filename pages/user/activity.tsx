@@ -191,7 +191,7 @@ const Activity: NextPage = () => {
 };
 
 export default Activity;
-export const getServerSideProps = async (ctx: any) => {
+export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/user/activity");
   return {
     props: {},

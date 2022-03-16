@@ -1,4 +1,4 @@
-import type { NextPage } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 import ProfileComp from "components/profile/profile";
 import { parseCookies } from "nookies";
 
@@ -108,7 +108,7 @@ const Profile: NextPage = ({ user }: any) => {
   );
 };
 
-export const getServerSideProps = async (ctx: any) => {
+export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/user/profile");
   const cookies = parseCookies(ctx);
 

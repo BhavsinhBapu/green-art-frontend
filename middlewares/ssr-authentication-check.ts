@@ -43,3 +43,12 @@ export const authPageRequireCheck = async (ctx: any) => {
     ctx.res.end();
   }
 };
+export const g2fPageRequireCheck = async (ctx: any) => {
+  const cookies = parseCookies(ctx);
+  if (!cookies.token) {
+    ctx.res.writeHead(302, {
+      Location: "/exchange/dashboard",
+    });
+    ctx.res.end();
+  }
+};

@@ -1,5 +1,5 @@
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
-import type { NextPage } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 import DepositTab from "components/wallet/DepositTab";
 import WirhdrawTab from "components/wallet/WirhdrawTab";
 
@@ -402,7 +402,7 @@ const MyWallet: NextPage = () => {
     </>
   );
 };
-export const getServerSideProps = async (ctx: any) => {
+export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/user/my-wallet");
   return {
     props: {},
