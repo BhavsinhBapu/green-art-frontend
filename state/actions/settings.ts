@@ -66,6 +66,5 @@ export const SetupGoogle2faAction = async (
   } else {
     toast.error(setup.message);
   }
-
   return setup.data;
 };

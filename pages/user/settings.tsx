@@ -91,10 +91,7 @@ const Settings: NextPage = () => {
                             Please on this option to enable two factor
                             authentication at log In.
                           </p>
-                          <form
-                            method="post"
-                            action="http://localhost:8000/user/google-login-enable"
-                          >
+                          <form>
                             <input
                               type="hidden"
                               name="_token"

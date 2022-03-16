@@ -1,9 +1,8 @@
 import React from "react";
 import { SetupGoogle2faAction } from "state/actions/settings";
-import { useRouter } from "next/router";
+
 const GoogleAuthModal = ({ settings, setSettings }: any) => {
   const [code, setCode] = React.useState<string>("");
-  const router = useRouter();
   const handleSubmit = (e: any) => {
     e.preventDefault();
     SetupGoogle2faAction(

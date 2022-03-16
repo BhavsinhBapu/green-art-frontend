@@ -39,7 +39,7 @@ const G2fverify = () => {
                 <div className="form-group">
                   <label>Authentication Code</label>
                   <Field
-                    type="text"
+                    type="number"
                     id="exampleInputEmail1"
                     name="code"
                     className={`form-control ${
