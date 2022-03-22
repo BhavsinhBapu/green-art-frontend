@@ -2,6 +2,7 @@ import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import type { GetServerSideProps, NextPage } from "next";
 import DepositTab from "components/wallet/DepositTab";
 import WirhdrawTab from "components/wallet/WirhdrawTab";
+import { toast } from "react-toastify";
 
 import React, { useEffect, useState } from "react";
 import {
@@ -47,6 +48,7 @@ const MyWallet: NextPage = () => {
   const getWalletLists = async (url: string) => {
     const response: any = await WalletListApiAction(url, setProcessing);
     setWalletList(response);
+    console.log(response?.data, "responsesssssssssssssssss");
     setChangeable(response.data);
   };
   const ResizeChangebleArrayBySize = (size: number) => {
@@ -66,7 +68,15 @@ const MyWallet: NextPage = () => {
     setChangeable(response.data);
   };
   const handleWithdrawAndDeposit = async (actionType: number, id: number) => {
-    if (show === true) return;
+    if (selectedRow.index === null) return;
+    if (
+      (show.withdraw === true && show.deposit === true) ||
+      (show.deposit === true && show.withdraw === false)
+    ) {
+      toast.error("Please select a wallet");
+      return;
+    }
+
     setShow({
       deposit: false,
       withdraw: false,

@@ -4,6 +4,7 @@ import {
   WalletDepositApi,
   WalletWithdrawApi,
 } from "service/wallet";
+
 import { setLoading } from "state/reducer/user";
 
 export const WalletListApiAction = async (

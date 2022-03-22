@@ -3,10 +3,12 @@ import React, { useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { G2fVerifyAction } from "state/actions/user";
+import { useDispatch } from "react-redux";
 import { g2fPageRequireCheck } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
 const G2fverify = () => {
   const [processing, setProcessing] = useState(false);
+  const dispatch = useDispatch();
   return (
     <div className="user-content-wrapper">
       <div className="user-form">
@@ -33,7 +35,7 @@ const G2fverify = () => {
             onSubmit={async (values, { setSubmitting }) => {
               setProcessing(true);
               const code = parseInt(values.code);
-              await G2fVerifyAction(code, setProcessing);
+              dispatch(G2fVerifyAction(code));
               setSubmitting(false);
             }}
           >

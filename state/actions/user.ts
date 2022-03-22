@@ -32,9 +32,16 @@ export const SigninAction =
     const redirectUrl: any = Router.query.redirect;
     const response = await SigninApi(credentials);
     const responseMessage = response.message;
-    Cookies.set("token", response.access_token);
+
     if (response.success === true) {
       dispatch(login(response.user));
+      if (response.g2f_enabled === "1") {
+        Cookies.set("user-id", response.user.id);
+        Cookies.set("g2f-required", "true");
+        Router.push("/authentication/g2f-verify");
+        return;
+      }
+      Cookies.set("token", response.access_token);
       toast.success(responseMessage, {
         position: "top-right",
         autoClose: 5000,
@@ -436,15 +443,17 @@ export const getKycDetailsAction =
     // dispatch(setLoading(false));
   };
 
-export const G2fVerifyAction = async (
-  code: any,
-  setProcessing: Dispatch<SetStateAction<boolean>>
-) => {
-  setProcessing(true);
+export const G2fVerifyAction = (code: any) => async (dispatch: any) => {
   const formData = new FormData();
+  const uid: any = Cookies.get("user-id");
   formData.append("code", code);
+  formData.append("user_id", uid);
   const response = await G2fVerifyApi(formData);
   if (response.success === true) {
+    Cookies.remove("g2f-status");
+    Cookies.set("token", response.data.access_token);
+    dispatch(setUser(response.data));
+    Router.push("/exchange/dashboard");
     toast.success(response.message, {
       position: "top-right",
       autoClose: 5000,
@@ -466,5 +475,4 @@ export const G2fVerifyAction = async (
       progress: undefined,
     });
   }
-  setProcessing(false);
 };

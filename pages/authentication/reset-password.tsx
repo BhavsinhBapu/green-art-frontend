@@ -7,7 +7,6 @@ import { ResetPasswordAction } from "state/actions/user";
 
 const ResetPassword: NextPage = () => {
   const [processing, setProcessing] = useState(false);
-
   return (
     <div
       className="user-content-wrapper"
@@ -150,11 +149,11 @@ const ResetPassword: NextPage = () => {
           <div className="col-md-6">
             <div className="user-content-text text-center">
               <h3>Welcome Back To</h3>
-              <a className="auth-logo" href="javascript:;">
+              <a className="auth-logo">
                 <img src="/logo.svg" className="img-fluid" alt="" />
               </a>
               <p>
-                Return to sign in <a href="{{route('login">Sign in</a>
+                Return to sign in <a>Sign in</a>
               </p>
             </div>
           </div>
