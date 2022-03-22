@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { authPageRequireCheck } from "middlewares/ssr-authentication-check";
-import { ForgotPasswordAction, ResetPasswordAction } from "state/actions/user";
+import { ResetPasswordAction } from "state/actions/user";
 
 const ResetPassword: NextPage = () => {
   const [processing, setProcessing] = useState(false);
