@@ -46,7 +46,7 @@ export const authPageRequireCheck = async (ctx: any) => {
 };
 export const g2fPageRequireCheck = async (ctx: any) => {
   const cookies = parseCookies(ctx);
-  if (!cookies.token) {
+  if (cookies.g2f_required !== "true") {
     ctx.res.writeHead(302, {
       Location: "/exchange/dashboard",
     });

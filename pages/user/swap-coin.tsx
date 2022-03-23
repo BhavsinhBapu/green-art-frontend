@@ -1,0 +1,137 @@
+import type { GetServerSideProps, NextPage } from "next";
+import * as React from "react";
+import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
+import SwapCoinSidebar from "layout/swap-coin-sidebar";
+const SwapCoin: NextPage = () => {
+  type searchType = string;
+  const [search, setSearch] = React.useState<searchType>("");
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+  };
+  return (
+    <div className="page-wrap">
+      <SwapCoinSidebar />
+      <div className="page-main-content">
+        <div className="container-fluid">
+          <div className="section-top-wrap mb-25">
+            <div className="overview-area">
+              <div className="overview-left">
+                <h2 className="section-top-title">Swap Coin</h2>
+              </div>
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="col-lg-10">
+              <div className="section-wrapper">
+                <div className="swap-area">
+                  <div className="swap-area-top">
+                    <div className="form-group">
+                      <div className="swap-wrap">
+                        <div className="swap-wrap-top">
+                          <label>From</label>
+                          <span className="available">Available : 0 USDT</span>
+                        </div>
+                        <div className="swap-input-wrap">
+                          <div className="form-amount">
+                            <input
+                              type="text"
+                              className="form-control"
+                              id="amount-one"
+                              defaultValue={1}
+                              placeholder="Please enter 10 -2400000"
+                            />
+                          </div>
+                          <div className="cp-select-area">
+                            <select
+                              className=" form-control "
+                              id="currency-one"
+                            >
+                              <option value="BTC">BTC</option>
+                              <option value="ETH">ETH</option>
+                              <option value="LTC">LTC</option>
+                              <option value="DOGE">DOGE</option>
+                              <option value="BCH">BCH</option>
+                              <option value="DASH">DASH</option>
+                              <option value="USD" selected>
+                                USDT
+                              </option>
+                              <option value="EUR">EUR</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="swap-button-area text-center">
+                      <button id="swap" className="swap-button">
+                        <i className="fa fa-refresh" />
+                      </button>
+                    </div>
+                    <div className="form-group">
+                      <div className="swap-wrap">
+                        <div className="swap-wrap-top">
+                          <label>To</label>
+                        </div>
+                        <div className="swap-input-wrap">
+                          <div className="form-amount">
+                            <input
+                              type="text"
+                              className="form-control"
+                              id="amount-two"
+                              placeholder="Please enter 0 - 65"
+                            />
+                          </div>
+                          <div className="cp-select-area">
+                            <select className="form-control" id="currency-two">
+                              <option value="BTC">BTC</option>
+                              <option value="ETH">ETH</option>
+                              <option value="LTC">LTC</option>
+                              <option value="DOGE">DOGE</option>
+                              <option value="BCH">BCH</option>
+                              <option value="DASH">DASH</option>
+                              <option value="USD">USDT</option>
+                              <option value="EUR" selected>
+                                EUR
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="swap-area-middle">
+                    <ul>
+                      <li>
+                        <span>Price</span>
+                        <span id="rate">1 USD = 0.907 EUR</span>
+                      </li>
+                      <li>
+                        <span>You will spend</span>
+                        <span className="spend">2544960 USDT</span>
+                      </li>
+                    </ul>
+                    <div className="message-box">
+                      <p>Insufficient balance. Please fund your account.</p>
+                    </div>
+                  </div>
+                  <div className="swap-area-bottom">
+                    <button className="primary-btn-outline">Refresh</button>
+                    <button className="primary-btn-outline">convart</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
+  await SSRAuthCheck(ctx, "/user/swap-history");
+  return {
+    props: {},
+  };
+};
+
+export default SwapCoin;

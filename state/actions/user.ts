@@ -37,7 +37,7 @@ export const SigninAction =
       dispatch(login(response.user));
       if (response.g2f_enabled === "1") {
         Cookies.set("user-id", response.user.id);
-        Cookies.set("g2f-required", "true");
+        Cookies.set("g2f_required", "true");
         Router.push("/authentication/g2f-verify");
         return;
       }
@@ -86,7 +86,6 @@ export const SignupAction =
     setProcessing: any
   ) =>
   async (dispatch: any) => {
-    // const router = useRouter();
     setProcessing(true);
     const response = await SignupApi(credentials);
     let responseMessage = response.message;
