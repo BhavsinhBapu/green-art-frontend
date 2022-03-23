@@ -3,7 +3,9 @@ import {
   WalletListApi,
   WalletDepositApi,
   WalletWithdrawApi,
+  WalletWithdrawProcessApi,
 } from "service/wallet";
+import { toast } from "react-toastify";
 
 import { setLoading } from "state/reducer/user";
 
@@ -58,5 +60,20 @@ export const WalletWithdrawApiAction = async (
     withdraw: false,
     deposit: false,
   });
+  return response;
+};
+
+export const WalletWithdrawProcessApiAction = async (
+  credential: any,
+  setProcessing: React.Dispatch<React.SetStateAction<any>>
+) => {
+  setProcessing(true);
+  const response = await WalletWithdrawProcessApi(credential);
+  if (response.success === true) {
+    toast.success(response.message);
+  } else {
+    toast.error(response.message);
+  }
+  setProcessing(false);
   return response;
 };

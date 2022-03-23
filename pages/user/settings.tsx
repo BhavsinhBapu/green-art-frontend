@@ -74,7 +74,7 @@ const Settings: NextPage = () => {
                               href=""
                               data-toggle="modal"
                               data-target="#exampleModal"
-                              className="btn cp-user-setupbtn"
+                              className=""
                             >
                               Remove Google Authentication
                             </a>

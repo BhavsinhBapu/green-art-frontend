@@ -35,6 +35,7 @@ export const Google2faLoginAction = async () => {
   } else {
     toast.error(setup.message);
   }
+
   return setup.data;
 };
 
@@ -60,11 +61,14 @@ export const SetupGoogle2faAction = async (
   setSettings: any
 ) => {
   const setup = await Google2faSetupApi(credentials);
-  if (setup.success) {
+
+  if (setup.success === true) {
     toast.success(setup.message);
     setSettings(setup.data);
   } else {
     toast.error(setup.message);
   }
+  const settings = await UserSettingsApi();
+  setSettings(settings.data);
   return setup.data;
 };

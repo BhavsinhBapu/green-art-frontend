@@ -1,6 +1,38 @@
 import React from "react";
+import WalletGoogleAuth from "components/wallet/wallet-google-auth";
+import { UserSettingsApi } from "service/settings";
 
 const WirhdrawTab = ({ response, TurnoffSetShow }: any) => {
+  const [withdrawalCredentials, setWithdrawalCredentials] = React.useState({
+    wallet_id: "",
+    code: "",
+    address: "",
+    amount: "",
+    note: "withdrawal",
+  });
+  const [errorMessage, setErrorMessage] = React.useState({
+    status: false,
+    message: "",
+  });
+  const CheckG2faEnabled = async () => {
+    const { data } = await UserSettingsApi();
+    const { user } = data;
+    if (user.google2fa === 1) {
+    } else {
+      setErrorMessage({
+        status: true,
+        message: "Google 2FA is not enabled",
+      });
+    }
+  };
+  React.useEffect(() => {
+    setWithdrawalCredentials({
+      ...withdrawalCredentials,
+      wallet_id: response?.wallet?.id,
+    });
+    CheckG2faEnabled();
+  }, [response]);
+
   return (
     <div className="asset-balances-right visible">
       <div className="box-one single-box">
@@ -35,9 +67,6 @@ const WirhdrawTab = ({ response, TurnoffSetShow }: any) => {
                 <h2 className="blance">
                   {response?.wallet?.balance} {response?.wallet?.coin_type}
                 </h2>
-                {/* <h4 className="blance-usd">
-                  0.00000000 {response?.wallet?.coin_type}
-                </h4> */}
               </div>
               <div className="form-group">
                 <div className="withdrawal-limit">
@@ -45,6 +74,7 @@ const WirhdrawTab = ({ response, TurnoffSetShow }: any) => {
                   BTC daily withdrawal limit.
                 </div>
               </div>
+
               <form>
                 <div className="form-group">
                   <input
@@ -53,6 +83,13 @@ const WirhdrawTab = ({ response, TurnoffSetShow }: any) => {
                     id="address"
                     name="address"
                     placeholder="Address"
+                    value={withdrawalCredentials.address}
+                    onChange={(e) => {
+                      setWithdrawalCredentials({
+                        ...withdrawalCredentials,
+                        address: e.target.value,
+                      });
+                    }}
                   />
                 </div>
                 <div className="form-group">
@@ -63,6 +100,13 @@ const WirhdrawTab = ({ response, TurnoffSetShow }: any) => {
                       id="amountWithdrawal"
                       name="amount"
                       placeholder="AMOUNT TO WITHDRAW"
+                      value={withdrawalCredentials.amount}
+                      onChange={(e) => {
+                        setWithdrawalCredentials({
+                          ...withdrawalCredentials,
+                          amount: e.target.value,
+                        });
+                      }}
                     />
                     <small>
                       <span className="mr-2">
@@ -75,72 +119,38 @@ const WirhdrawTab = ({ response, TurnoffSetShow }: any) => {
                         Max withdraw {response?.wallet?.maximum_withdrawal} %
                       </span>
                     </small>
-                    <input
-                      id="withdrawalFees"
-                      type="hidden"
-                      value="0.00000010"
-                    />
                   </div>
                 </div>
+                <WalletGoogleAuth
+                  withdrawalCredentials={withdrawalCredentials}
+                  setWithdrawalCredentials={setWithdrawalCredentials}
+                />
                 <input type="hidden" name="wallet_id" value="19" />
-                <button type="button" className="withdraw-btn">
+                {errorMessage.status && (
+                  <div className="alert alert-danger">
+                    {errorMessage.message}
+                  </div>
+                )}
+
+                <button
+                  type="button"
+                  className="withdraw-btn"
+                  data-target="#exampleModal"
+                  disabled={
+                    withdrawalCredentials.address === "" ||
+                    withdrawalCredentials.amount === "" ||
+                    errorMessage.status === true
+                  }
+                  data-toggle="modal"
+                  onClick={() => {
+                    setErrorMessage({
+                      status: false,
+                      message: "",
+                    });
+                  }}
+                >
                   Withdraw
                 </button>
-
-                <div
-                  className="modal fade"
-                  id="g2fcheck"
-                  role="dialog"
-                  aria-labelledby="exampleModalLabel"
-                  aria-hidden="true"
-                >
-                  <div className="modal-dialog" role="document">
-                    <div className="modal-content">
-                      <div className="modal-header">
-                        <h5 className="modal-title" id="exampleModalLabel">
-                          Google Authentication
-                        </h5>
-                        <button
-                          type="button"
-                          className="close"
-                          data-dismiss="modal"
-                          aria-label="Close"
-                        >
-                          <span aria-hidden="true">×</span>
-                        </button>
-                      </div>
-                      <div className="modal-body">
-                        <div className="row">
-                          <div className="col-12">
-                            <p>
-                              Open your Google Authenticator app and enter the
-                              6-digit code from the app into the input field to
-                              remove the google secret key
-                            </p>
-                            <input
-                              placeholder="Code"
-                              type="text"
-                              className="form-control"
-                              name="code"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      <div className="modal-footer">
-                        <button
-                          type="button"
-                          className="btn btn-secondary"
-                          data-dismiss="modal"
-                        >
-                          Close
-                        </button>
-                        <button type="submit" className="btn btn-primary">
-                          Verify
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </form>
             </div>
           </div>

@@ -3,9 +3,9 @@ import { SetupGoogle2faAction } from "state/actions/settings";
 
 const GoogleAuthModal = ({ settings, setSettings }: any) => {
   const [code, setCode] = React.useState<string>("");
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-    SetupGoogle2faAction(
+    await SetupGoogle2faAction(
       {
         code,
         setup: settings?.user?.google2fa === 0 ? "add" : "remove",
