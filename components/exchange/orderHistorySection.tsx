@@ -3,7 +3,7 @@ import OpenOrders from "./openOrders";
 import OrderHistory from "./orderHistory";
 import TradeOrder from "./tradeOrder";
 
-const orderHistorySection = () => {
+const OrderHistorySection = () => {
   type activeTabType = {
     openOrders: boolean;
     orderHistory: boolean;
@@ -97,4 +97,4 @@ const orderHistorySection = () => {
   );
 };
 
-export default orderHistorySection;
+export default OrderHistorySection;

@@ -1,7 +1,7 @@
 import type { GetServerSideProps, NextPage } from "next";
 import ProfileSidebar from "layout/profile-sidebar";
 import React, { useState } from "react";
-import { handleSearch } from "common/search";
+// import { handleSearch } from "common/search";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 
 const Activity: NextPage = () => {
@@ -60,7 +60,7 @@ const Activity: NextPage = () => {
                             aria-controls="table"
                             value={search}
                             onChange={(e) => {
-                              handleSearch(e, setSearch);
+                              // handleSearch(e, setSearch);
                             }}
                           />
                         </label>

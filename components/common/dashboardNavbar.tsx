@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "state/store";
 import { LogoutAction } from "state/actions/user";
-const dashboardNavbar = () => {
+const DashboardNavbar = () => {
   const { isLoggedIn, user } = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
   return (
@@ -26,21 +26,23 @@ const dashboardNavbar = () => {
               <ul>
                 <Link href={"/user/my-wallet"}>
                   <li className="">
-                    <a href="/exchange/dashboard">
-                      <span className="cp-user-icon">
-                        <img
-                          src="/sidebar-icons/dashboard.svg"
-                          className="img-fluid cp-user-side-bar-icon"
-                          alt=""
-                        />
-                        <img
-                          src="/sidebar-icons/hover/dashboard.svg"
-                          className="img-fluid cp-user-side-bar-icon-hover"
-                          alt=""
-                        />
-                      </span>
-                      <span className="cp-user-name">Trade</span>
-                    </a>
+                    <Link href="/exchange/dashboard">
+                      <>
+                        <span className="cp-user-icon">
+                          <img
+                            src="/sidebar-icons/dashboard.svg"
+                            className="img-fluid cp-user-side-bar-icon"
+                            alt=""
+                          />
+                          <img
+                            src="/sidebar-icons/hover/dashboard.svg"
+                            className="img-fluid cp-user-side-bar-icon-hover"
+                            alt=""
+                          />
+                        </span>
+                        <span className="cp-user-name">Trade</span>
+                      </>
+                    </Link>
                   </li>
                 </Link>
                 <Link
@@ -363,4 +365,4 @@ const dashboardNavbar = () => {
   );
 };
 
-export default dashboardNavbar;
+export default DashboardNavbar;

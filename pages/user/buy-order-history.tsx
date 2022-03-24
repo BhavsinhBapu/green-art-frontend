@@ -1,7 +1,7 @@
 import type { GetServerSideProps, NextPage } from "next";
 import ReportSidebar from "layout/report-sidebar";
 import React, { useState } from "react";
-import { handleSearch } from "common/search";
+// import { handleSearch } from "common/search";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 const BuyOrderHistory: NextPage = () => {
   type searchType = string;
@@ -59,7 +59,7 @@ const BuyOrderHistory: NextPage = () => {
                             aria-controls="table"
                             value={search}
                             onChange={(e) => {
-                              handleSearch(e, setSearch);
+                              // handleSearch(e, setSearch);
                             }}
                           />
                         </label>

@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 
 import React, { useState } from "react";
-const getAllBuyOrders: NextPage = () => {
+const GetAllBuyOrders: NextPage = () => {
   type searchType = string;
   const [search, setSearch] = useState<searchType>("");
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -194,4 +194,4 @@ const getAllBuyOrders: NextPage = () => {
   );
 };
 
-export default getAllBuyOrders;
+export default GetAllBuyOrders;

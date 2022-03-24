@@ -8,6 +8,7 @@ import {
   SendPhoneVerificationSmsAction,
   VerifyPhoneAction,
 } from "state/actions/user";
+import Link from "next/link";
 
 const PhoneVerification: NextPage = () => {
   const { user } = useSelector((state: RootState) => state.user);
@@ -72,7 +73,7 @@ const PhoneVerification: NextPage = () => {
                         <div className="code-list">
                           <p>
                             Please add mobile no. first from
-                            <a href="/user/edit-profile">edit profile</a>
+                            <Link href="/user/edit-profile">edit profile</Link>
                           </p>
                         </div>
                       )}

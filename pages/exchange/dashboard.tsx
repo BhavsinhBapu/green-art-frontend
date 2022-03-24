@@ -1,19 +1,25 @@
 import type { NextPage } from "next";
 import DashboardNavbar from "components/common/dashboardNavbar";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TradingChart from "components/exchange/TradingChart";
 import SelectCurrency from "components/exchange/selectCurrency";
 import CurrencyLevel from "components/exchange/currencyLevel";
 import OrderHistorySection from "components/exchange/orderHistorySection";
 import ExchangeBox from "components/exchange/ExchangeBox";
 import OrderBook from "components/exchange/OrderBook";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "state/store";
+import { initialDashboardCallAction } from "state/actions/exchange";
 const Dashboard: NextPage = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(initialDashboardCallAction("BTC_USDT"));
+  }, []);
   return (
     <div className="background-col">
       <DashboardNavbar />
+      <div className="mt-5"></div>
       <div className="cp-user-sidebar">
         <div
           className="scroll-wrapper cp-user-sidebar-menu scrollbar-inner"

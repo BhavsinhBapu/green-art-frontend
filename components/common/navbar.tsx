@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "state/store";
 import { LogoutAction } from "state/actions/user";
-const navbar = () => {
+const Navbar = () => {
   const { isLoggedIn, user } = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
 
@@ -13,20 +13,20 @@ const navbar = () => {
         <div className="row align-items-center justify-content-between">
           <div className="col-xl-2 col-lg-2 col-4">
             <div className="cp-user-logo">
-              <a href="/dashboard">
+              <Link href="/dashboard">
                 <img
                   src="/logo.svg"
                   className="img-fluid cp-user-logo-large"
                   alt=""
                 />
-              </a>
+              </Link>
             </div>
           </div>
           <div className="col-xl-8 col-lg-8 d-none d-lg-block">
             <nav className="main-menu">
               <ul>
                 <li className="">
-                  <a href="/exchange/dashboard">
+                  <Link href="/exchange/dashboard">
                     <span className="cp-user-icon">
                       <img
                         src="/sidebar-icons/dashboard.svg"
@@ -40,7 +40,7 @@ const navbar = () => {
                       />
                     </span>
                     <span className="cp-user-name">Trade</span>
-                  </a>
+                  </Link>
                 </li>
                 <Link
                   href={
@@ -364,4 +364,4 @@ const navbar = () => {
   );
 };
 
-export default navbar;
+export default Navbar;
