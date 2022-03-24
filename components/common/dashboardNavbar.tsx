@@ -84,7 +84,7 @@ const dashboardNavbar = () => {
                     <Link
                       href={
                         isLoggedIn
-                          ? "/user/deposit-history?type=deposit"
+                          ? "/user/wallet-history?type=deposit"
                           : "/authentication/signin"
                       }
                     >
@@ -95,7 +95,7 @@ const dashboardNavbar = () => {
                     <Link
                       href={
                         isLoggedIn
-                          ? "/user/deposit-history?type=withdraw"
+                          ? "/user/wallet-history?type=withdrawal"
                           : "/authentication/signin"
                       }
                     >

@@ -15,6 +15,7 @@ import {
   G2fVerifyApi,
   GetUserInfoByTokenServer,
 } from "service/user";
+import request from "lib/request";
 import {
   login,
   setAuthenticationState,
@@ -35,13 +36,26 @@ export const SigninAction =
 
     if (response.success === true) {
       dispatch(login(response.user));
+      if (response.access_token) {
+        request.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer ${response.access_token}`;
+      }
       if (response.g2f_enabled === "1") {
         Cookies.set("user-id", response.user.id);
         Cookies.set("g2f_required", "true");
         Router.push("/authentication/g2f-verify");
         return;
       }
-      Cookies.set("token", response.access_token);
+
+      if (response.access_token) {
+        alert("setting access token");
+        Cookies.set("token", response.access_token);
+        request.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer ${response.access_token}`;
+      }
+
       toast.success(responseMessage, {
         position: "top-right",
         autoClose: 5000,

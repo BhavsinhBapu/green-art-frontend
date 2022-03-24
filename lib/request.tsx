@@ -6,20 +6,17 @@ const request = axios.create({
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",
-    Authorization: `Bearer ${Cookie.get("token")}`,
   },
 });
 
-request.interceptors.response.use(
-  (response) => {
-    return response;
-  },
-  (error) => {
-    // if (error.response.status === 401) {
-    //   window.location.href = "/login";
-    // }
-    return Promise.reject(error);
+request.interceptors.request.use((config: any) => {
+  const token = Cookie.get("token");
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
   }
-);
-
+  return config;
+});
+request.interceptors.response.use((response: any) => {
+  return response;
+});
 export default request;

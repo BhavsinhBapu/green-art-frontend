@@ -8,3 +8,23 @@ export const copyTextById = (id: string) => {
     toast.success("Copied to clipboard");
   }
 };
+export const sortArray = (
+  arr: any,
+  key: string,
+  order: string,
+  setArray: any
+) => {
+  let newArr = [];
+  if (order === "asc") {
+    newArr = arr.sort((a: any, b: any) => {
+      return a[key] - b[key];
+    });
+  } else {
+    newArr = arr.sort((a: any, b: any) => {
+      return b[key] - a[key];
+    });
+  }
+  console.log(newArr, "newArr");
+  setArray(newArr);
+  return newArr;
+};

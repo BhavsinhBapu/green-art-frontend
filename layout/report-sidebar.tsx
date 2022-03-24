@@ -6,14 +6,14 @@ const ReportSidebar = () => {
     <div className="page-left-sidebar">
       <div className="sidebar-top">
         <ul className="left-menu">
-          <Link href="/user/deposit-history?type=deposit">
+          <Link href="/user/wallet-history?type=deposit">
             <li className="@if(isset($sub_menu) && $sub_menu == 'deposit') active @endif">
               <a href="walletHistory',['type' => 'deposit'])}}">
                 Deposit History
               </a>
             </li>
           </Link>
-          <Link href="/user/deposit-history?type=withdraw">
+          <Link href="/user/wallet-history?type=withdrawal">
             <li className="@if(isset($sub_menu) && $sub_menu == 'withdrawal') active @endif">
               <a href="walletHistory',['type' => 'withdrawal'])}}">
                 Withdrawal History

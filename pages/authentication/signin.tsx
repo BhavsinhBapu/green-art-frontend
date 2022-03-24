@@ -1,6 +1,6 @@
 import type { GetServerSideProps, NextPage } from "next";
 import * as Yup from "yup";
-import { SigninAction } from "state/actions/user";
+import { GetUserInfoByTokenAction, SigninAction } from "state/actions/user";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
@@ -42,6 +42,7 @@ const Signin: NextPage = () => {
                   })}
                   onSubmit={async (values) => {
                     await dispatch(SigninAction(values, setProcessing));
+                    await dispatch(GetUserInfoByTokenAction());
                   }}
                 >
                   {({ errors, touched }) => (
