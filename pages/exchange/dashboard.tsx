@@ -12,10 +12,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "state/store";
 import { initialDashboardCallAction } from "state/actions/exchange";
 const Dashboard: NextPage = () => {
+  const { isLoggedIn, user } = useSelector((state: RootState) => state.user);
+
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(initialDashboardCallAction("BTC_USDT"));
-  }, []);
+    isLoggedIn && dispatch(initialDashboardCallAction("BTC_USDT"));
+  }, [isLoggedIn]);
   return (
     <div className="background-col">
       <DashboardNavbar />

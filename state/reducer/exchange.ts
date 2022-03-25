@@ -1,10 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export type ExchangeState = {
-  dashboard: {};
+  dashboard: any;
+  currentPair: string;
 };
 const initialState: ExchangeState = {
   dashboard: {},
+  currentPair: "BTC_USDT",
 };
 
 export const exchangeSlice = createSlice({
@@ -13,6 +15,9 @@ export const exchangeSlice = createSlice({
   reducers: {
     setDashboard: (state, action: PayloadAction<ExchangeState>) => {
       state.dashboard = action.payload;
+    },
+    setCurrentPair: (state, action: PayloadAction<string>) => {
+      state.currentPair = action.payload;
     },
   },
 });

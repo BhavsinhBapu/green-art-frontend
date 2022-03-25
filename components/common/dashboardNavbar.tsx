@@ -27,7 +27,7 @@ const DashboardNavbar = () => {
                 <Link href={"/user/my-wallet"}>
                   <li className="">
                     <Link href="/exchange/dashboard">
-                      <>
+                      <span>
                         <span className="cp-user-icon">
                           <img
                             src="/sidebar-icons/dashboard.svg"
@@ -41,7 +41,7 @@ const DashboardNavbar = () => {
                           />
                         </span>
                         <span className="cp-user-name">Trade</span>
-                      </>
+                      </span>
                     </Link>
                   </li>
                 </Link>

@@ -25,8 +25,8 @@ const Navbar = () => {
           <div className="col-xl-8 col-lg-8 d-none d-lg-block">
             <nav className="main-menu">
               <ul>
-                <li className="">
-                  <Link href="/exchange/dashboard">
+                <Link href="/exchange/dashboard">
+                  <li className="">
                     <span className="cp-user-icon">
                       <img
                         src="/sidebar-icons/dashboard.svg"
@@ -40,8 +40,8 @@ const Navbar = () => {
                       />
                     </span>
                     <span className="cp-user-name">Trade</span>
-                  </Link>
-                </li>
+                  </li>
+                </Link>
                 <Link
                   href={
                     isLoggedIn === true
