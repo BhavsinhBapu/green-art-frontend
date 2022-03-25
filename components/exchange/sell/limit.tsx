@@ -2,15 +2,14 @@ import Link from "next/link";
 import React from "react";
 import { useDispatch } from "react-redux";
 import {
+  sellLimitAppAction,
   initialDashboardCallAction,
-  buyMarketAppAction,
-  buyStopLimitAppAction,
 } from "state/actions/exchange";
 
-const StopLimit = ({
+const Limit = ({
   dashboard,
-  buyStopLimitCoinData,
-  setBuyStopLimitCoinData,
+  buySellLimitCoinData,
+  setBuySellLimitCoinData,
   isLoggedIn,
   currentPair,
 }: any) => {
@@ -74,17 +73,20 @@ const StopLimit = ({
                   </div>
                 </div>
                 <div className="form-group mt-3">
-                  <label>Stop</label>
+                  <label>Price</label>
                   <input
-                    name="stop"
-                    type="number"
+                    name="price"
+                    type="text"
                     placeholder=""
                     className="form-control number_only"
-                    value={buyStopLimitCoinData?.stop}
+                    value={buySellLimitCoinData.price}
                     onChange={(e) => {
-                      setBuyStopLimitCoinData({
-                        ...buyStopLimitCoinData,
-                        stop: e.target.value,
+                      setBuySellLimitCoinData({
+                        ...buySellLimitCoinData,
+                        price: e.target.value,
+                        total:
+                          parseInt(e.target.value) *
+                          buySellLimitCoinData.amount,
                       });
                     }}
                   />
@@ -95,29 +97,6 @@ const StopLimit = ({
                     <span className="base_coin_type">USDT</span>
                   </span>
                 </div>
-                <div className="form-group mt-3">
-                  <label>Limit</label>
-                  <input
-                    name="limit"
-                    type="number"
-                    placeholder=""
-                    className="form-control number_only"
-                    value={buyStopLimitCoinData?.limit}
-                    onChange={(e) => {
-                      setBuyStopLimitCoinData({
-                        ...buyStopLimitCoinData,
-                        limit: e.target.value,
-                      });
-                    }}
-                  />
-                  <span
-                    className="text-warning blns"
-                    style={{ fontWeight: 700 }}
-                  >
-                    <span className="base_coin_type">USDT</span>
-                  </span>
-                </div>
-
                 <div className="form-group mt-3">
                   <label>Amount</label>
                   <input
@@ -125,13 +104,13 @@ const StopLimit = ({
                     type="number"
                     placeholder=""
                     className="form-control number_only"
-                    value={buyStopLimitCoinData?.amount}
+                    value={buySellLimitCoinData.amount}
                     onChange={(e) => {
-                      setBuyStopLimitCoinData({
-                        ...buyStopLimitCoinData,
+                      setBuySellLimitCoinData({
+                        ...buySellLimitCoinData,
                         amount: e.target.value,
                         total:
-                          parseInt(e.target.value) * buyStopLimitCoinData.price,
+                          parseInt(e.target.value) * buySellLimitCoinData.price,
                       });
                     }}
                   />
@@ -147,10 +126,10 @@ const StopLimit = ({
                   <input
                     disabled
                     name="total_amount"
-                    type="number"
+                    type="text"
                     placeholder=""
                     className="form-control number_only"
-                    value={buyStopLimitCoinData.total}
+                    value={buySellLimitCoinData.total}
                   />
                   <span
                     className="text-warning blns"
@@ -186,14 +165,13 @@ const StopLimit = ({
                       className="btn theme-btn"
                       onClick={async (e) => {
                         e.preventDefault();
-                        await buyStopLimitAppAction(
-                          buyStopLimitCoinData.amount,
-                          buyStopLimitCoinData?.total,
-                          buyStopLimitCoinData.limit,
-                          buyStopLimitCoinData?.stop,
+                        await sellLimitAppAction(
+                          buySellLimitCoinData.amount,
+                          buySellLimitCoinData.price,
                           dashboard?.order_data?.trade_coin_id,
                           dashboard?.order_data?.base_coin_id,
-                          setLoading
+                          setLoading,
+                          setBuySellLimitCoinData
                         );
                         await dispatch(initialDashboardCallAction(currentPair));
                       }}
@@ -413,4 +391,4 @@ const StopLimit = ({
   );
 };
 
-export default StopLimit;
+export default Limit;

@@ -37,7 +37,6 @@ export const buyMarketApp = async (
 // buy - stop - limit - app;
 export const buyStopLimitApp = async (
   amount: number,
-  total: number,
   limit: number,
   stop: number,
   trade_coin_id: string,
@@ -45,7 +44,52 @@ export const buyStopLimitApp = async (
 ) => {
   const { data } = await request.post(`/buy-stop-limit-app`, {
     amount,
-    total,
+
+    limit,
+    stop,
+    trade_coin_id,
+    base_coin_id,
+  });
+  return data;
+};
+// sell - limit - app;
+export const sellLimitApp = async (
+  amount: number,
+  price: number,
+  trade_coin_id: string,
+  base_coin_id: string
+) => {
+  const { data } = await request.post(`/sell-limit-app`, {
+    amount,
+    price,
+    trade_coin_id,
+    base_coin_id,
+  });
+  return data;
+};
+export const sellMarketApp = async (
+  amount: number,
+  price: number,
+  trade_coin_id: string,
+  base_coin_id: string
+) => {
+  const { data } = await request.post(`/sell-market-app`, {
+    amount,
+    price,
+    trade_coin_id,
+    base_coin_id,
+  });
+  return data;
+};
+export const sellStopLimitApp = async (
+  amount: number,
+  limit: number,
+  stop: number,
+  trade_coin_id: string,
+  base_coin_id: string
+) => {
+  const { data } = await request.post(`/buy-stop-limit-app`, {
+    amount,
     limit,
     stop,
     trade_coin_id,

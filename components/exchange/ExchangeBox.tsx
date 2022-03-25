@@ -2,9 +2,12 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
-import Limit from "./limit";
-import Market from "./market";
-import StopLimit from "./stopLimit";
+import Limit from "components/exchange/buy/limit";
+import Market from "components/exchange/buy/market";
+import StopLimit from "components/exchange/buy/stopLimit";
+import SellLimit from "components/exchange/sell/limit";
+import SellMarket from "components/exchange/sell/market";
+import SellStopLimit from "components/exchange/sell/stopLimit";
 const ExchangeBox = () => {
   type tradingTabType = number;
   const { isLoggedIn, user } = useSelector((state: RootState) => state.user);
@@ -12,37 +15,47 @@ const ExchangeBox = () => {
     (state: RootState) => state.exchange
   );
   const [tradingTab, setTradingTab] = useState<tradingTabType>(1);
-  const [buyLimitCoinData, setBuyLimitCoinData] = useState<any>({
+  const [buySellLimitCoinData, setBuySellLimitCoinData] = useState<any>({
     price: dashboard?.order_data?.sell_price,
     amount: 0.0,
     total: 0.0,
   });
-  const [buyMarketCoinData, setBuyMarketCoinData] = useState<any>({
+  const [buySellMarketCoinData, setBuySellMarketCoinData] = useState<any>({
     price: dashboard?.order_data?.sell_price,
     amount: 0.0,
     total: 0.0,
   });
-  const [buyStopLimitCoinData, setBuyStopLimitCoinData] = useState<any>({
-    amount: 0.0,
-    total: 0,
-    limit: 0,
-    stop: 0,
-  });
+  const [buySellStopLimitCoinData, setBuySellStopLimitCoinData] = useState<any>(
+    {
+      amount: 0.0,
+      total: 0,
+      limit: 0,
+      stop: 0,
+    }
+  );
 
   const [buySelectedTab, setBuySelectedTab] = useState<number>(1);
+  const [sellSelectedTab, setSellSelectedTab] = useState<number>(1);
+
   const handletradingTab = (tab: number) => {
     setTradingTab(tab);
   };
   const initialSetUp = () => {
-    setBuyLimitCoinData({
+    setBuySellLimitCoinData({
       price: dashboard?.order_data?.sell_price,
       amount: 0,
       total: 0,
     });
-    setBuyMarketCoinData({
+    setBuySellMarketCoinData({
       price: dashboard?.order_data?.sell_price,
       amount: 0,
       total: 0,
+    });
+    setBuySellStopLimitCoinData({
+      amount: 0,
+      total: 0,
+      limit: 0,
+      stop: 0,
     });
   };
 
@@ -63,6 +76,7 @@ const ExchangeBox = () => {
             role="presentation"
             className="nav-item"
             onClick={() => {
+              initialSetUp();
               handletradingTab(1);
             }}
           >
@@ -81,6 +95,7 @@ const ExchangeBox = () => {
             role="presentation"
             className="nav-item"
             onClick={() => {
+              initialSetUp();
               handletradingTab(2);
             }}
           >
@@ -158,8 +173,8 @@ const ExchangeBox = () => {
           {buySelectedTab === 1 && (
             <Limit
               dashboard={dashboard}
-              buyLimitCoinData={buyLimitCoinData}
-              setBuyLimitCoinData={setBuyLimitCoinData}
+              buySellLimitCoinData={buySellLimitCoinData}
+              setBuySellLimitCoinData={setBuySellLimitCoinData}
               isLoggedIn={isLoggedIn}
               currentPair={currentPair}
             />
@@ -167,8 +182,8 @@ const ExchangeBox = () => {
           {buySelectedTab === 2 && (
             <Market
               dashboard={dashboard}
-              buyMarketCoinData={buyMarketCoinData}
-              setBuyMarketCoinData={setBuyMarketCoinData}
+              buySellMarketCoinData={buySellMarketCoinData}
+              setBuySellMarketCoinData={setBuySellMarketCoinData}
               isLoggedIn={isLoggedIn}
               currentPair={currentPair}
             />
@@ -176,8 +191,8 @@ const ExchangeBox = () => {
           {buySelectedTab === 3 && (
             <StopLimit
               dashboard={dashboard}
-              buyStopLimitCoinData={buyStopLimitCoinData}
-              setBuyStopLimitCoinData={setBuyStopLimitCoinData}
+              buySellStopLimitCoinData={buySellStopLimitCoinData}
+              setBuySellStopLimitCoinData={setBuySellStopLimitCoinData}
               isLoggedIn={isLoggedIn}
               currentPair={currentPair}
             />
@@ -194,7 +209,13 @@ const ExchangeBox = () => {
             role="tablist"
             className="nav nav-tabs inner-tabs-menu"
           >
-            <li role="presentation" className="nav-item">
+            <li
+              role="presentation"
+              className="nav-item"
+              onClick={() => {
+                setSellSelectedTab(1);
+              }}
+            >
               <a
                 id="sell-Limit-tab"
                 data-toggle="tab"
@@ -206,7 +227,13 @@ const ExchangeBox = () => {
                 Limit
               </a>
             </li>
-            <li role="presentation" className="nav-item">
+            <li
+              role="presentation"
+              className="nav-item"
+              onClick={() => {
+                setSellSelectedTab(2);
+              }}
+            >
               <a
                 id="sell-Market-tab"
                 data-toggle="tab"
@@ -218,7 +245,13 @@ const ExchangeBox = () => {
                 Market
               </a>
             </li>
-            <li role="presentation" className="nav-item">
+            <li
+              role="presentation"
+              className="nav-item"
+              onClick={() => {
+                setSellSelectedTab(3);
+              }}
+            >
               <a
                 id="sell-Stop-limit-tab"
                 data-toggle="tab"
@@ -231,324 +264,33 @@ const ExchangeBox = () => {
               </a>
             </li>
           </ul>
-          <div id="SellTabContent" className="tab-content">
-            <div
-              id="LimitSell"
-              role="tabpanel"
-              aria-labelledby="Limit-tab"
-              className="tab-pane fade show active"
-            >
-              <div className="row">
-                <div className="col-md-12">
-                  <div className="cp-user-profile-info">
-                    <form
-                      method="POST"
-                      action="/user/exchange/sell"
-                      id="sell-form"
-                      className="mt-4"
-                    >
-                      <input
-                        type="hidden"
-                        name="_token"
-                        defaultValue="g2OWJq3pDqYRQmVvmGt799aCsDmkkV4UjrWDhzcF"
-                      />
-                      <div className="form-group mt-4">
-                        <div className="total-top">
-                          <label>Total</label> <label>Available</label>
-                        </div>
-                        <div className="total-top-blance">
-                          <div className="total-blance">
-                            <span
-                              className="text-warning"
-                              style={{ fontWeight: 700 }}
-                            >
-                              <span>0.00</span>
-                            </span>
-                            <span
-                              className="text-warning"
-                              style={{ fontWeight: 700 }}
-                            >
-                              <span className="base_coin_type">BTC</span>
-                            </span>
-                          </div>
-                          <div className="avilable-blance">
-                            <span
-                              className="text-warning"
-                              style={{ fontWeight: 700 }}
-                            >
-                              <span>0.00</span>
-                            </span>
-                            <span
-                              className="text-warning"
-                              style={{ fontWeight: 700 }}
-                            >
-                              <span className="base_coin_type">BTC</span>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="form-group mt-3">
-                        <label>Price</label>
-                        <input
-                          name="price"
-                          type="text"
-                          placeholder=""
-                          className="form-control number_only"
-                        />
-                        <span
-                          className="text-warning blns"
-                          style={{ fontWeight: 700 }}
-                        >
-                          <span className="base_coin_type">USDT</span>
-                        </span>
-                      </div>
-                      <div className="form-group mt-3">
-                        <label>Amount</label>
-                        <input
-                          name="amount"
-                          type="text"
-                          placeholder=""
-                          className="form-control number_only"
-                        />
-                        <span
-                          className="text-warning blns"
-                          style={{ fontWeight: 700 }}
-                        >
-                          <span className="trade_coin_type">BTC</span>
-                        </span>
-                      </div>
-                      <div className="form-group mt-3">
-                        <label>Total Amount</label>
-                        <input
-                          // disabled
-                          name="total_amount"
-                          type="text"
-                          placeholder=""
-                          className="form-control number_only"
-                        />
-                        <span
-                          className="text-warning blns"
-                          style={{ fontWeight: 700 }}
-                        >
-                          <span className="base_coin_type">USDT</span>
-                        </span>
-                      </div>
-                      <div className="form-group mt-4">
-                        <a className="btn btn-danger"> Login</a>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              id="MarketSell"
-              role="tabpanel"
-              aria-labelledby="Market-tab"
-              className="tab-pane fade"
-            >
-              <div className="row">
-                <div className="col-md-12">
-                  <div className="cp-user-profile-info">
-                    <form
-                      method="POST"
-                      action="/user/exchange/sell"
-                      id="sell-form"
-                      className="mt-4"
-                    >
-                      <input
-                        type="hidden"
-                        name="_token"
-                        defaultValue="g2OWJq3pDqYRQmVvmGt799aCsDmkkV4UjrWDhzcF"
-                      />
-                      <div className="form-group mt-4">
-                        <div className="total-top">
-                          <label>Total</label> <label>Available</label>
-                        </div>
-                        <div className="total-top-blance">
-                          <div className="total-blance">
-                            <span
-                              className="text-warning"
-                              style={{ fontWeight: 700 }}
-                            >
-                              <span>0.00</span>
-                            </span>
-                            <span
-                              className="text-warning"
-                              style={{ fontWeight: 700 }}
-                            >
-                              <span className="base_coin_type">BTC</span>
-                            </span>
-                          </div>
-                          <div className="avilable-blance">
-                            <span
-                              className="text-warning"
-                              style={{ fontWeight: 700 }}
-                            >
-                              <span>0.00</span>
-                            </span>
-                            <span
-                              className="text-warning"
-                              style={{ fontWeight: 700 }}
-                            >
-                              <span className="base_coin_type">BTC</span>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="form-group mt-3">
-                        <label>Price</label>
-                        <p className="form-control">Market</p>
-                        <span
-                          className="text-warning blns"
-                          style={{ fontWeight: 700 }}
-                        >
-                          <span className="base_coin_type">USDT</span>
-                        </span>
-                      </div>
-                      <div className="form-group mt-3">
-                        <label>Amount</label>
-                        <input
-                          name="amount"
-                          type="text"
-                          placeholder=""
-                          className="form-control number_only"
-                        />
-                        <span
-                          className="text-warning blns"
-                          style={{ fontWeight: 700 }}
-                        >
-                          <span className="trade_coin_type">BTC</span>
-                        </span>
-                      </div>
-                      <div className="form-group mt-4">
-                        <a className="btn btn-danger"> Login</a>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              id="Stop-limitSell"
-              role="tabpanel"
-              aria-labelledby="Stop-limit-tab"
-              className="tab-pane fade"
-            >
-              <div className="row">
-                <div className="col-md-12">
-                  <div className="cp-user-profile-info">
-                    <form id="stop-limit-form" className="mt-4">
-                      <input
-                        type="hidden"
-                        name="_token"
-                        defaultValue="g2OWJq3pDqYRQmVvmGt799aCsDmkkV4UjrWDhzcF"
-                      />
-                      <div className="form-group mt-4">
-                        <div className="total-top">
-                          <label>Total</label> <label>Available</label>
-                        </div>
-                        <div className="total-top-blance">
-                          <div className="total-blance">
-                            <span
-                              className="text-warning"
-                              style={{ fontWeight: 700 }}
-                            >
-                              <span>0.00</span>
-                            </span>
-                            <span
-                              className="text-warning"
-                              style={{ fontWeight: 700 }}
-                            >
-                              <span className="base_coin_type">BTC</span>
-                            </span>
-                          </div>
-                          <div className="avilable-blance">
-                            <span
-                              className="text-warning"
-                              style={{ fontWeight: 700 }}
-                            >
-                              <span>0.00</span>
-                            </span>
-                            <span
-                              className="text-warning"
-                              style={{ fontWeight: 700 }}
-                            >
-                              <span className="base_coin_type">BTC</span>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="form-group mt-3">
-                        <label>Stop</label>
-                        <input
-                          name="stop"
-                          type="text"
-                          placeholder=""
-                          className="form-control number_only"
-                        />
-                        <span
-                          className="text-warning blns"
-                          style={{ fontWeight: 700 }}
-                        >
-                          <span className="base_coin_type">USDT</span>
-                        </span>
-                      </div>
-                      <div className="form-group mt-3">
-                        <label>Limit</label>
-                        <input
-                          name="limit"
-                          type="text"
-                          placeholder=""
-                          className="form-control number_only"
-                        />
-                        <span
-                          className="text-warning blns"
-                          style={{ fontWeight: 700 }}
-                        >
-                          <span className="base_coin_type">USDT</span>
-                        </span>
-                      </div>
-                      <div className="form-group mt-3">
-                        <label>Amount</label>
-                        <input
-                          name="amount"
-                          type="text"
-                          placeholder=""
-                          className="form-control number_only"
-                        />
-                        <span
-                          className="text-warning blns"
-                          style={{ fontWeight: 700 }}
-                        >
-                          <span className="trade_coin_type">BTC</span>
-                        </span>
-                      </div>
-                      <div className="form-group mt-3">
-                        <label>Total Amount</label>
-                        <input
-                          // disabled
-                          name="total_amount"
-                          type="text"
-                          placeholder=""
-                          className="form-control number_only"
-                        />
-                        <span
-                          className="text-warning blns"
-                          style={{ fontWeight: 700 }}
-                        >
-                          <span className="base_coin_type">USDT</span>
-                        </span>
-                      </div>
-                      <div className="form-group mt-4 d-flex justify-content-between flex-wrap">
-                        <a className="btn btn-danger"> Login</a>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          {sellSelectedTab === 1 && (
+            <SellLimit
+              dashboard={dashboard}
+              buySellLimitCoinData={buySellLimitCoinData}
+              setBuySellLimitCoinData={setBuySellLimitCoinData}
+              isLoggedIn={isLoggedIn}
+              currentPair={currentPair}
+            />
+          )}
+          {sellSelectedTab === 2 && (
+            <SellMarket
+              dashboard={dashboard}
+              buySellMarketCoinData={buySellMarketCoinData}
+              setBuySellMarketCoinData={setBuySellMarketCoinData}
+              isLoggedIn={isLoggedIn}
+              currentPair={currentPair}
+            />
+          )}
+          {sellSelectedTab === 3 && (
+            <SellStopLimit
+              dashboard={dashboard}
+              buySellStopLimitCoinData={buySellStopLimitCoinData}
+              setBuySellStopLimitCoinData={setBuySellStopLimitCoinData}
+              isLoggedIn={isLoggedIn}
+              currentPair={currentPair}
+            />
+          )}
         </div>
       </div>
     </div>

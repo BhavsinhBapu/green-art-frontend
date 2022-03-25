@@ -2,14 +2,14 @@ import Link from "next/link";
 import React from "react";
 import { useDispatch } from "react-redux";
 import {
+  buyLimitAppAction,
   initialDashboardCallAction,
-  buyMarketAppAction,
 } from "state/actions/exchange";
 
-const Market = ({
+const Limit = ({
   dashboard,
-  buyMarketCoinData,
-  setBuyMarketCoinData,
+  buySellLimitCoinData,
+  setBuySellLimitCoinData,
   isLoggedIn,
   currentPair,
 }: any) => {
@@ -79,8 +79,16 @@ const Market = ({
                     type="text"
                     placeholder=""
                     className="form-control number_only"
-                    value={buyMarketCoinData?.price}
-                    disabled
+                    value={buySellLimitCoinData.price}
+                    onChange={(e) => {
+                      setBuySellLimitCoinData({
+                        ...buySellLimitCoinData,
+                        price: e.target.value,
+                        total:
+                          parseInt(e.target.value) *
+                          buySellLimitCoinData.amount,
+                      });
+                    }}
                   />
                   <span
                     className="text-warning blns"
@@ -96,13 +104,13 @@ const Market = ({
                     type="number"
                     placeholder=""
                     className="form-control number_only"
-                    value={buyMarketCoinData?.amount}
+                    value={buySellLimitCoinData.amount}
                     onChange={(e) => {
-                      setBuyMarketCoinData({
-                        ...buyMarketCoinData,
+                      setBuySellLimitCoinData({
+                        ...buySellLimitCoinData,
                         amount: e.target.value,
                         total:
-                          parseInt(e.target.value) * buyMarketCoinData.price,
+                          parseInt(e.target.value) * buySellLimitCoinData.price,
                       });
                     }}
                   />
@@ -113,7 +121,7 @@ const Market = ({
                     <span className="trade_coin_type">BTC</span>
                   </span>
                 </div>
-                {/* <div className="form-group mt-3">
+                <div className="form-group mt-3">
                   <label>Total Amount</label>
                   <input
                     disabled
@@ -121,7 +129,7 @@ const Market = ({
                     type="text"
                     placeholder=""
                     className="form-control number_only"
-                    value={buyMarketCoinData.total}
+                    value={buySellLimitCoinData.total}
                   />
                   <span
                     className="text-warning blns"
@@ -129,7 +137,7 @@ const Market = ({
                   >
                     <span className="base_coin_type">USDT</span>
                   </span>
-                </div> */}
+                </div>
                 {!isLoggedIn ? (
                   <div className="form-group mt-4">
                     <Link href="/authentication/signin">
@@ -157,12 +165,13 @@ const Market = ({
                       className="btn theme-btn"
                       onClick={async (e) => {
                         e.preventDefault();
-                        await buyMarketAppAction(
-                          buyMarketCoinData.amount,
-                          buyMarketCoinData?.price,
+                        await buyLimitAppAction(
+                          buySellLimitCoinData.amount,
+                          buySellLimitCoinData.price,
                           dashboard?.order_data?.trade_coin_id,
                           dashboard?.order_data?.base_coin_id,
-                          setLoading
+                          setLoading,
+                          setBuySellLimitCoinData
                         );
                         await dispatch(initialDashboardCallAction(currentPair));
                       }}
@@ -382,4 +391,4 @@ const Market = ({
   );
 };
 
-export default Market;
+export default Limit;
