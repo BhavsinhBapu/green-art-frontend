@@ -7,10 +7,16 @@ import { GetUserInfoByTokenAction } from "state/actions/user";
 import { useDispatch, useSelector } from "react-redux";
 import Cookies from "js-cookie";
 import { RootState } from "state/store";
+import { initialDashboardCallAction } from "state/actions/exchange";
 const Index = ({ children }: any) => {
   const [navbarVisible, setNavbarVisible] = useState(false);
 
-  const { isLoading, user } = useSelector((state: RootState) => state.user);
+  const { isLoading, user, isLoggedIn } = useSelector(
+    (state: RootState) => state.user
+  );
+  const { dashboard, currentPair } = useSelector(
+    (state: RootState) => state.exchange
+  );
   const dispatch = useDispatch();
   const router = useRouter();
   useEffect(() => {
@@ -30,8 +36,11 @@ const Index = ({ children }: any) => {
   }, [router.pathname]);
   useEffect(() => {
     const token = Cookies.get("token");
-    if (token) dispatch(GetUserInfoByTokenAction());
-  }, []);
+    if (token) {
+      dispatch(GetUserInfoByTokenAction());
+      dispatch(initialDashboardCallAction(currentPair));
+    }
+  }, [isLoggedIn]);
   return navbarVisible ? (
     <div>
       {isLoading && (
