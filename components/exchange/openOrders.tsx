@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+
 type Props = {
   openOrders: boolean;
 };
 const OpenOrders = ({ openOrders }: Props) => {
-  console.log(openOrders);
   return (
     <div
       className={"tab-pane fade" + (openOrders ? " show active" : "")}
@@ -27,28 +27,6 @@ const OpenOrders = ({ openOrders }: Props) => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Date</td>
-              <td>Pair</td>
-              <td>Type</td>
-              <td>Side</td>
-              <td>Price</td>
-              <td>Amount</td>
-              <td>Filled</td>
-              <td>total</td>
-              <td>Trigger Conditions</td>
-            </tr>
-            <tr>
-              <td>Date</td>
-              <td>Pair</td>
-              <td>Type</td>
-              <td>Side</td>
-              <td>Price</td>
-              <td>Amount</td>
-              <td>Filled</td>
-              <td>total</td>
-              <td>Trigger Conditions</td>
-            </tr>
             <tr>
               <td>Date</td>
               <td>Pair</td>

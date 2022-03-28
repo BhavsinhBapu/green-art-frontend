@@ -3,10 +3,21 @@ import ReportSidebar from "layout/report-sidebar";
 import React, { useState } from "react";
 // import { handleSearch } from "common/search";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
+
 const BuyOrderHistory: NextPage = () => {
   type searchType = string;
-  const [search, setSearch] = useState<searchType>("");
 
+  const [search, setSearch] = useState<searchType>("");
+  const [processing, setProcessing] = useState<boolean>(false);
+  const [history, setHistory] = useState<any>([]);
+  const [stillHistory, setStillHistory] = useState<any>([]);
+  const getReport = async () => {};
+  React.useEffect(() => {
+    getReport();
+    return () => {
+      setHistory([]);
+    };
+  }, []);
   return (
     <div className="page-wrap">
       <ReportSidebar />
@@ -104,43 +115,49 @@ const BuyOrderHistory: NextPage = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr id="{{$wallet->id}}">
-                        <td>
-                          <div className="asset">
-                            <span className="asset-name">BCH Wallet</span>
-                          </div>
-                        </td>
-                        <td>
-                          <span className="symbol">BCH</span>
-                        </td>
-                        <td>
-                          <div className="blance-text">
-                            <span className="usd">$0.000000</span>
-                          </div>
-                        </td>
-                        <td>
-                          <div className="blance-text">
-                            <span className="blance">0.000000</span>
-                          </div>
-                        </td>
-                        <td>
-                          <div className="blance-text">
-                            <span className="blance">0.000000</span>
-                          </div>
-                        </td>
-                        <td>
-                          <div className="blance-text">
-                            <span className="blance market incree">
-                              Completed
-                            </span>
-                          </div>
-                        </td>
-                        <td>
-                          <div className="status-text">
-                            <span className="status">11/11/2019</span>
-                          </div>
-                        </td>
-                      </tr>
+                      {history?.map((item: any, index: any) => (
+                        <tr id="{{$wallet->id}}" key={index}>
+                          <td>
+                            <div className="asset">
+                              <span className="asset-name">
+                                {item?.base_coin}
+                              </span>
+                            </div>
+                          </td>
+                          <td>
+                            <span className="symbol">{item?.trade_coin}</span>
+                          </td>
+                          <td>
+                            <div className="blance-text">
+                              <span className="usd">${item?.amount}</span>
+                            </div>
+                          </td>
+                          <td>
+                            <div className="blance-text">
+                              <span className="blance">{item?.processed}</span>
+                            </div>
+                          </td>
+                          <td>
+                            <div className="blance-text">
+                              <span className="blance">{item?.price}</span>
+                            </div>
+                          </td>
+                          <td>
+                            <div className="blance-text">
+                              {item?.status === 0
+                                ? "processing"
+                                : item?.status === 1
+                                ? "completed"
+                                : "cancelled"}
+                            </div>
+                          </td>
+                          <td>
+                            <div className="status-text">
+                              <span className="status">{item?.created_at}</span>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
                   {/* <div className="no_data_table">

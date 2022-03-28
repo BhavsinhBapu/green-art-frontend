@@ -11,7 +11,7 @@ export const WithdrawAndDepositHistoryApi = async (
   return data;
 };
 // get-all-sell-orders-app?order_type=buy&base_coin_id=1&trade_coin_id=2&per_page=7&dashboard_type=dashboard
-export const GetAllSellOrdersApi = async (
+export const GetAllSellOrdersAppApi = async (
   order_type: string,
   base_coin_id: number,
   trade_coin_id: number,

@@ -49,7 +49,6 @@ export const SigninAction =
       }
 
       if (response.access_token) {
-        alert("setting access token");
         Cookies.set("token", response.access_token);
         request.defaults.headers.common[
           "Authorization"

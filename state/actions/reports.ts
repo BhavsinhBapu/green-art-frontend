@@ -1,4 +1,7 @@
-import { WithdrawAndDepositHistoryApi } from "service/reports";
+import {
+  WithdrawAndDepositHistoryApi,
+  GetAllSellOrdersAppApi,
+} from "service/reports";
 import React, { Dispatch, SetStateAction } from "react";
 import * as JsSearch from "js-search";
 export const WithdrawAndDepositHistoryAction = async (
@@ -41,4 +44,26 @@ export const handleSearch = (
   const result = search.search(e.target.value);
   setHistory(result);
   console.log(result, "result");
+};
+
+export const GetAllSellOrdersAppAction = async (
+  order_type: string,
+  base_coin_id: number,
+  trade_coin_id: number,
+  per_page: number,
+  dashboard_type: string,
+  setReport: React.Dispatch<SetStateAction<object>>
+) => {
+  const response = await GetAllSellOrdersAppApi(
+    order_type,
+    base_coin_id,
+    trade_coin_id,
+    per_page,
+    dashboard_type
+  );
+  console.log(response, "base data");
+  console.log(response?.data.items, "response.data.sell_orders.data");
+  setReport(response?.data.items);
+
+  return response;
 };
