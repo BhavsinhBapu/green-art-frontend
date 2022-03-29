@@ -38,7 +38,7 @@ const Index = ({ children }: any) => {
     const token = Cookies.get("token");
     if (token) {
       dispatch(GetUserInfoByTokenAction());
-      dispatch(initialDashboardCallAction(currentPair));
+      // dispatch(initialDashboardCallAction(currentPair));
     }
   }, [isLoggedIn]);
   return navbarVisible ? (

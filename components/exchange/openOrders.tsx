@@ -24,6 +24,9 @@ const OpenOrders = ({ openOrders }: Props) => {
               <th scope="col">Fees(USDT)</th>
               <th scope="col">total</th>
               <th scope="col">Trigger Conditions</th>
+              <th scope="col">
+                <button className="cancel">Cancel All</button>
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -37,6 +40,9 @@ const OpenOrders = ({ openOrders }: Props) => {
               <td>Filled</td>
               <td>total</td>
               <td>Trigger Conditions</td>
+              <td>
+                <button className="cancel">Cancel</button>
+              </td>
             </tr>
           </tbody>
         </table>

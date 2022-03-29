@@ -3,6 +3,8 @@ import {
   buyLimitApp,
   buyMarketApp,
   buyStopLimitApp,
+  GetAllSellOrdersAppApi,
+  GetAllTradeOrdersAppApi,
   sellLimitApp,
   sellMarketApp,
   sellStopLimitApp,
@@ -271,4 +273,45 @@ export const sellStopLimitAppAction = async (
     });
   }
   setLoading(false);
+};
+
+export const GetAllSellOrdersAppAction = async (
+  order_type: string,
+  base_coin_id: number,
+  trade_coin_id: number,
+  per_page: number,
+  dashboard_type: string,
+  setReport: React.Dispatch<SetStateAction<object>>
+) => {
+  const response = await GetAllSellOrdersAppApi(
+    order_type,
+    base_coin_id,
+    trade_coin_id,
+    per_page,
+    dashboard_type
+  );
+  console.log(response, "base data");
+  console.log(response?.data.items, "response.data.sell_orders.data");
+  setReport(response?.data.items);
+
+  return response;
+};
+export const GetAllTradeOrdersAppAction = async (
+  base_coin_id: number,
+  trade_coin_id: number,
+  per_page: number,
+  dashboard_type: string,
+  setReport: React.Dispatch<SetStateAction<object>>
+) => {
+  const response = await GetAllTradeOrdersAppApi(
+    base_coin_id,
+    trade_coin_id,
+    per_page,
+    dashboard_type
+  );
+  console.log(response, "base data");
+  console.log(response?.data.transactions, "response.data.sell_orders.data");
+  setReport(response?.data.transactions);
+
+  return response;
 };

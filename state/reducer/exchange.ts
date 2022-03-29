@@ -22,6 +22,6 @@ export const exchangeSlice = createSlice({
   },
 });
 
-export const { setDashboard } = exchangeSlice.actions;
+export const { setDashboard, setCurrentPair } = exchangeSlice.actions;
 
 export default exchangeSlice.reducer;

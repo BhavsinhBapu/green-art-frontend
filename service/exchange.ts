@@ -1,8 +1,12 @@
 import request from "lib/request";
 
-export const appDashboardData = async (pair: string) => {
-  const { data } = await request.get(`/app-dashboard/${pair}`);
-  return data;
+export const appDashboardData = async (pair: string | null) => {
+  if (pair) {
+    const { data } = await request.get(`/app-dashboard/${pair}`);
+    return data;
+  } else {
+    return null;
+  }
 };
 
 export const buyLimitApp = async (
@@ -95,5 +99,29 @@ export const sellStopLimitApp = async (
     trade_coin_id,
     base_coin_id,
   });
+  return data;
+};
+export const GetAllSellOrdersAppApi = async (
+  order_type: string,
+  base_coin_id: number,
+  trade_coin_id: number,
+  per_page: number,
+  dashboard_type: string
+) => {
+  const { data } = await request.get(
+    `/get-all-sell-orders-app?order_type=${order_type}&base_coin_id=${base_coin_id}&trade_coin_id=${trade_coin_id}&per_page=${per_page}&dashboard_type=${dashboard_type}`
+  );
+  return data;
+};
+// get-my-trades-app?base_coin_id=2&trade_coin_id=1&per_page=7&dashboard_type=dashboard
+export const GetAllTradeOrdersAppApi = async (
+  base_coin_id: number,
+  trade_coin_id: number,
+  per_page: number,
+  dashboard_type: string
+) => {
+  const { data } = await request.get(
+    `/get-my-trades-app?base_coin_id=${base_coin_id}&trade_coin_id=${trade_coin_id}&per_page=${per_page}&dashboard_type=${dashboard_type}`
+  );
   return data;
 };

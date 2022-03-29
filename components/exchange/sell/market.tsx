@@ -43,14 +43,16 @@ const Market = ({
                         style={{ fontWeight: 700 }}
                       >
                         <span>
-                          {dashboard?.order_data?.total?.base_wallet?.balance}
+                          {dashboard?.order_data?.total?.trade_wallet?.balance}
                         </span>
                       </span>
                       <span
                         className="text-warning"
                         style={{ fontWeight: 700 }}
                       >
-                        <span className="base_coin_type">USDT</span>
+                        <span className="trade_coin_type">
+                          {dashboard?.order_data?.total?.base_wallet?.coin_type}
+                        </span>
                       </span>
                     </div>
                     <div className="avilable-blance">
@@ -59,15 +61,16 @@ const Market = ({
                         style={{ fontWeight: 700 }}
                       >
                         <span>
-                          {" "}
-                          {dashboard?.order_data?.total?.base_wallet?.balance}
+                          {dashboard?.order_data?.total?.trade_wallet?.balance}
                         </span>
                       </span>
                       <span
                         className="text-warning"
                         style={{ fontWeight: 700 }}
                       >
-                        <span className="base_coin_type">USDT</span>
+                        <span className="trade_coin_type">
+                          {dashboard?.order_data?.total?.base_wallet?.coin_type}
+                        </span>
                       </span>
                     </div>
                   </div>
@@ -86,7 +89,9 @@ const Market = ({
                     className="text-warning blns"
                     style={{ fontWeight: 700 }}
                   >
-                    <span className="base_coin_type">USDT</span>
+                    <span className="trade_coin_type">
+                      {dashboard?.order_data?.total?.base_wallet?.coin_type}
+                    </span>
                   </span>
                 </div>
                 <div className="form-group mt-3">
@@ -111,7 +116,9 @@ const Market = ({
                     className="text-warning blns"
                     style={{ fontWeight: 700 }}
                   >
-                    <span className="trade_coin_type">BTC</span>
+                    <span className="trade_coin_type">
+                      {dashboard?.order_data?.total?.trade_wallet?.coin_type}
+                    </span>
                   </span>
                 </div>
                 {/* <div className="form-group mt-3">
@@ -128,7 +135,9 @@ const Market = ({
                     className="text-warning blns"
                     style={{ fontWeight: 700 }}
                   >
-                    <span className="base_coin_type">USDT</span>
+                    <span className="trade_coin_type">
+                      {dashboard?.order_data?.total?.base_wallet?.coin_type}
+                    </span>
                   </span>
                 </div> */}
                 {!isLoggedIn ? (
@@ -208,7 +217,9 @@ const Market = ({
                         className="text-warning"
                         style={{ fontWeight: 700 }}
                       >
-                        <span className="base_coin_type">USDT</span>
+                        <span className="trade_coin_type">
+                          {dashboard?.order_data?.total?.base_wallet?.coin_type}
+                        </span>
                       </span>
                     </div>
                     <div className="avilable-blance">
@@ -222,7 +233,9 @@ const Market = ({
                         className="text-warning"
                         style={{ fontWeight: 700 }}
                       >
-                        <span className="base_coin_type">USDT</span>
+                        <span className="trade_coin_type">
+                          {dashboard?.order_data?.total?.base_wallet?.coin_type}
+                        </span>
                       </span>
                     </div>
                   </div>
@@ -234,7 +247,9 @@ const Market = ({
                     className="text-warning blns"
                     style={{ fontWeight: 700 }}
                   >
-                    <span className="base_coin_type">USDT</span>
+                    <span className="trade_coin_type">
+                      {dashboard?.order_data?.total?.base_wallet?.coin_type}
+                    </span>
                   </span>
                 </div>
                 <div className="form-group mt-3">
@@ -249,7 +264,9 @@ const Market = ({
                     className="text-warning blns"
                     style={{ fontWeight: 700 }}
                   >
-                    <span className="trade_coin_type">BTC</span>
+                    <span className="trade_coin_type">
+                      {dashboard?.order_data?.total?.trade_wallet?.coin_type}
+                    </span>
                   </span>
                 </div>
                 <div className="form-group mt-4">
@@ -291,7 +308,9 @@ const Market = ({
                         className="text-warning"
                         style={{ fontWeight: 700 }}
                       >
-                        <span className="base_coin_type">USDT</span>
+                        <span className="trade_coin_type">
+                          {dashboard?.order_data?.total?.base_wallet?.coin_type}
+                        </span>
                       </span>
                     </div>
                     <div className="avilable-blance">
@@ -305,7 +324,9 @@ const Market = ({
                         className="text-warning"
                         style={{ fontWeight: 700 }}
                       >
-                        <span className="base_coin_type">USDT</span>
+                        <span className="trade_coin_type">
+                          {dashboard?.order_data?.total?.base_wallet?.coin_type}
+                        </span>
                       </span>
                     </div>
                   </div>
@@ -322,7 +343,9 @@ const Market = ({
                     className="text-warning blns"
                     style={{ fontWeight: 700 }}
                   >
-                    <span className="base_coin_type">USDT</span>
+                    <span className="trade_coin_type">
+                      {dashboard?.order_data?.total?.base_wallet?.coin_type}
+                    </span>
                   </span>
                 </div>
                 <div className="form-group mt-3">
@@ -337,7 +360,9 @@ const Market = ({
                     className="text-warning blns"
                     style={{ fontWeight: 700 }}
                   >
-                    <span className="base_coin_type">USDT</span>
+                    <span className="trade_coin_type">
+                      {dashboard?.order_data?.total?.base_wallet?.coin_type}
+                    </span>
                   </span>
                 </div>
                 <div className="form-group mt-3">
@@ -352,7 +377,9 @@ const Market = ({
                     className="text-warning blns"
                     style={{ fontWeight: 700 }}
                   >
-                    <span className="trade_coin_type">BTC</span>
+                    <span className="trade_coin_type">
+                      {dashboard?.order_data?.total?.trade_wallet?.coin_type}
+                    </span>
                   </span>
                 </div>
                 <div className="form-group mt-3">
@@ -368,7 +395,9 @@ const Market = ({
                     className="text-warning blns"
                     style={{ fontWeight: 700 }}
                   >
-                    <span className="base_coin_type">USDT</span>
+                    <span className="trade_coin_type">
+                      {dashboard?.order_data?.total?.base_wallet?.coin_type}
+                    </span>
                   </span>
                 </div>
                 <div className="form-group mt-4 d-flex justify-content-between flex-wrap">

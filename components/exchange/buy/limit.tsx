@@ -50,7 +50,9 @@ const Limit = ({
                         className="text-warning"
                         style={{ fontWeight: 700 }}
                       >
-                        <span className="base_coin_type">USDT</span>
+                        <span className="trade_coin_type">
+                          {dashboard?.order_data?.total?.base_wallet?.coin_type}
+                        </span>
                       </span>
                     </div>
                     <div className="avilable-blance">
@@ -67,7 +69,9 @@ const Limit = ({
                         className="text-warning"
                         style={{ fontWeight: 700 }}
                       >
-                        <span className="base_coin_type">USDT</span>
+                        <span className="trade_coin_type">
+                          {dashboard?.order_data?.total?.base_wallet?.coin_type}
+                        </span>
                       </span>
                     </div>
                   </div>
@@ -94,7 +98,9 @@ const Limit = ({
                     className="text-warning blns"
                     style={{ fontWeight: 700 }}
                   >
-                    <span className="base_coin_type">USDT</span>
+                    <span className="trade_coin_type">
+                      {dashboard?.order_data?.total?.base_wallet?.coin_type}
+                    </span>
                   </span>
                 </div>
                 <div className="form-group mt-3">
@@ -118,7 +124,9 @@ const Limit = ({
                     className="text-warning blns"
                     style={{ fontWeight: 700 }}
                   >
-                    <span className="trade_coin_type">BTC</span>
+                    <span className="trade_coin_type">
+                      {dashboard?.order_data?.total?.trade_wallet?.coin_type}
+                    </span>
                   </span>
                 </div>
                 <div className="form-group mt-3">
@@ -135,7 +143,9 @@ const Limit = ({
                     className="text-warning blns"
                     style={{ fontWeight: 700 }}
                   >
-                    <span className="base_coin_type">USDT</span>
+                    <span className="trade_coin_type">
+                      {dashboard?.order_data?.total?.base_wallet?.coin_type}
+                    </span>
                   </span>
                 </div>
                 {!isLoggedIn ? (
@@ -216,7 +226,9 @@ const Limit = ({
                         className="text-warning"
                         style={{ fontWeight: 700 }}
                       >
-                        <span className="base_coin_type">USDT</span>
+                        <span className="trade_coin_type">
+                          {dashboard?.order_data?.total?.base_wallet?.coin_type}
+                        </span>
                       </span>
                     </div>
                     <div className="avilable-blance">
@@ -230,7 +242,9 @@ const Limit = ({
                         className="text-warning"
                         style={{ fontWeight: 700 }}
                       >
-                        <span className="base_coin_type">USDT</span>
+                        <span className="trade_coin_type">
+                          {dashboard?.order_data?.total?.base_wallet?.coin_type}
+                        </span>
                       </span>
                     </div>
                   </div>
@@ -242,7 +256,9 @@ const Limit = ({
                     className="text-warning blns"
                     style={{ fontWeight: 700 }}
                   >
-                    <span className="base_coin_type">USDT</span>
+                    <span className="trade_coin_type">
+                      {dashboard?.order_data?.total?.base_wallet?.coin_type}
+                    </span>
                   </span>
                 </div>
                 <div className="form-group mt-3">
@@ -257,7 +273,9 @@ const Limit = ({
                     className="text-warning blns"
                     style={{ fontWeight: 700 }}
                   >
-                    <span className="trade_coin_type">BTC</span>
+                    <span className="trade_coin_type">
+                      {dashboard?.order_data?.total?.base_wallet?.coin_type}
+                    </span>
                   </span>
                 </div>
                 <div className="form-group mt-4">
@@ -299,7 +317,9 @@ const Limit = ({
                         className="text-warning"
                         style={{ fontWeight: 700 }}
                       >
-                        <span className="base_coin_type">USDT</span>
+                        <span className="trade_coin_type">
+                          {dashboard?.order_data?.total?.base_wallet?.coin_type}
+                        </span>
                       </span>
                     </div>
                     <div className="avilable-blance">
@@ -313,7 +333,9 @@ const Limit = ({
                         className="text-warning"
                         style={{ fontWeight: 700 }}
                       >
-                        <span className="base_coin_type">USDT</span>
+                        <span className="trade_coin_type">
+                          {dashboard?.order_data?.total?.base_wallet?.coin_type}
+                        </span>
                       </span>
                     </div>
                   </div>
@@ -330,7 +352,9 @@ const Limit = ({
                     className="text-warning blns"
                     style={{ fontWeight: 700 }}
                   >
-                    <span className="base_coin_type">USDT</span>
+                    <span className="trade_coin_type">
+                      {dashboard?.order_data?.total?.base_wallet?.coin_type}
+                    </span>
                   </span>
                 </div>
                 <div className="form-group mt-3">
@@ -345,7 +369,9 @@ const Limit = ({
                     className="text-warning blns"
                     style={{ fontWeight: 700 }}
                   >
-                    <span className="base_coin_type">USDT</span>
+                    <span className="trade_coin_type">
+                      {dashboard?.order_data?.total?.base_wallet?.coin_type}
+                    </span>
                   </span>
                 </div>
                 <div className="form-group mt-3">
@@ -360,7 +386,9 @@ const Limit = ({
                     className="text-warning blns"
                     style={{ fontWeight: 700 }}
                   >
-                    <span className="trade_coin_type">BTC</span>
+                    <span className="trade_coin_type">
+                      {dashboard?.order_data?.total?.trade_wallet?.coin_type}
+                    </span>
                   </span>
                 </div>
                 <div className="form-group mt-3">
@@ -376,7 +404,9 @@ const Limit = ({
                     className="text-warning blns"
                     style={{ fontWeight: 700 }}
                   >
-                    <span className="base_coin_type">USDT</span>
+                    <span className="trade_coin_type">
+                      {dashboard?.order_data?.total?.base_wallet?.coin_type}
+                    </span>
                   </span>
                 </div>
                 <div className="form-group mt-4 d-flex justify-content-between flex-wrap">

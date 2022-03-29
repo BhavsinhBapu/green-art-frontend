@@ -4,7 +4,7 @@ type Props = {
   tradeOrder: boolean;
 };
 
-const TradeOrder = ({ tradeOrder }: Props) => {
+const TradeOrder = ({ tradeOrder, tradeOrderHistory }: any) => {
   return (
     <div
       className={"tab-pane fade" + (tradeOrder ? " show active" : "")}
@@ -16,63 +16,29 @@ const TradeOrder = ({ tradeOrder }: Props) => {
         <table className="table">
           <thead>
             <tr>
-              <th scope="col">Date3</th>
-              <th scope="col">Pair</th>
-              <th scope="col">Type</th>
-              <th scope="col">Side</th>
-              <th scope="col">Price</th>
+              <th scope="col">Created At</th>
+              <th scope="col">Transaction id</th>
+              <th scope="col">Fees</th>
               <th scope="col">Amount</th>
-              <th scope="col">Filled</th>
-              <th scope="col">total</th>
-              <th scope="col">Trigger Conditions</th>
-              <th scope="col">
-                <button className="cancel">Cancel All</button>
-              </th>
+              <th scope="col">Price</th>
+              <th scope="col">Last price</th>
+              <th scope="col">Price order type</th>
+              <th scope="col">Total</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Date</td>
-              <td>Pair</td>
-              <td>Type</td>
-              <td>Side</td>
-              <td>Price</td>
-              <td>Amount</td>
-              <td>Filled</td>
-              <td>total</td>
-              <td>Trigger Conditions</td>
-              <td>
-                <button className="cancel">Cancel</button>
-              </td>
-            </tr>
-            <tr>
-              <td>Date</td>
-              <td>Pair</td>
-              <td>Type</td>
-              <td>Side</td>
-              <td>Price</td>
-              <td>Amount</td>
-              <td>Filled</td>
-              <td>total</td>
-              <td>Trigger Conditions</td>
-              <td>
-                <button className="cancel">Cancel</button>
-              </td>
-            </tr>
-            <tr>
-              <td>Date</td>
-              <td>Pair</td>
-              <td>Type</td>
-              <td>Side</td>
-              <td>Price</td>
-              <td>Amount</td>
-              <td>Filled</td>
-              <td>total</td>
-              <td>Trigger Conditions</td>
-              <td>
-                <button className="cancel">Cancel</button>
-              </td>
-            </tr>
+            {tradeOrderHistory?.map((order: any) => (
+              <tr>
+                <td>{order.created_at}</td>
+                <td>{order.transaction_id}</td>
+                <td>{order.fees}</td>
+                <td>{order.amount}</td>
+                <td>{order.price}</td>
+                <td>{order.last_price}</td>
+                <td>{order.price_order_type}</td>
+                <td>{order.total}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

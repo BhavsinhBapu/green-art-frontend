@@ -8,6 +8,7 @@ import StopLimit from "components/exchange/buy/stopLimit";
 import SellLimit from "components/exchange/sell/limit";
 import SellMarket from "components/exchange/sell/market";
 import SellStopLimit from "components/exchange/sell/stopLimit";
+
 const ExchangeBox = () => {
   type tradingTabType = number;
   const { isLoggedIn, user } = useSelector((state: RootState) => state.user);

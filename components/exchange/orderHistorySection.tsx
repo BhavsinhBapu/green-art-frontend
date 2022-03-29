@@ -1,4 +1,10 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import {
+  GetAllSellOrdersAppAction,
+  GetAllTradeOrdersAppAction,
+} from "state/actions/exchange";
+import { RootState } from "state/store";
 import OpenOrders from "./openOrders";
 import OrderHistory from "./orderHistory";
 import TradeOrder from "./tradeOrder";
@@ -14,6 +20,40 @@ const OrderHistorySection = () => {
     orderHistory: false,
     tradeOrder: false,
   });
+  const { dashboard, currentPair } = useSelector(
+    (state: RootState) => state.exchange
+  );
+  const [orderHistory, setOrderHistory] = useState<any>([]);
+  const [tradeOrderHistory, settradeOrderHistory] = useState<any>([]);
+  const getHistory = async () => {
+    if (
+      dashboard?.order_data?.base_coin_id &&
+      dashboard?.order_data?.trade_coin_id
+    ) {
+      GetAllSellOrdersAppAction(
+        "buy",
+        dashboard?.order_data?.base_coin_id,
+        dashboard?.order_data?.trade_coin_id,
+        10,
+        "dashboard",
+        setOrderHistory
+      );
+      GetAllTradeOrdersAppAction(
+        dashboard?.order_data?.base_coin_id,
+        dashboard?.order_data?.trade_coin_id,
+        10,
+        "dashboard",
+        settradeOrderHistory
+      );
+    }
+  };
+  React.useEffect(() => {
+    console.log("orderHistory", orderHistory);
+    getHistory();
+    return () => {
+      setOrderHistory([]);
+    };
+  }, [currentPair, dashboard]);
   return (
     <div className="orders-area mt-4">
       <div className="orders-area-top">
@@ -90,8 +130,14 @@ const OrderHistorySection = () => {
       </div>
       <div className="tab-content" id="ordersTabContent">
         <OpenOrders openOrders={activeTab.openOrders} />
-        <OrderHistory orderHistory={activeTab.orderHistory} />
-        <TradeOrder tradeOrder={activeTab.tradeOrder} />
+        <OrderHistory
+          orderHistory={activeTab.orderHistory}
+          orderHistoryState={orderHistory}
+        />
+        <TradeOrder
+          tradeOrder={activeTab.tradeOrder}
+          tradeOrderHistory={tradeOrderHistory}
+        />
       </div>
     </div>
   );
