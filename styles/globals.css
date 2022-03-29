@@ -9038,3 +9038,8 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
 .trades-headers .nav-pills .nav-link {
   background: #151515 !important;
 }
+
+.buy-sell-tabs .nav-tabs {
+  padding-left: 25px;
+  padding-right: 25px;
+}

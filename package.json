@@ -25,6 +25,7 @@
     "react-qr-code": "^2.0.3",
     "react-redux": "^7.2.6",
     "react-toastify": "^8.2.0",
+    "react-tradingview-embed": "^2.2.8",
     "react-ts-tradingview-widgets": "^1.0.9",
     "sort-objects-array": "^1.7.1",
     "yup": "^0.32.11"

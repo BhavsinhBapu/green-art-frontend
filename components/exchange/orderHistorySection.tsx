@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import {
   GetAllSellOrdersAppAction,
   GetAllTradeOrdersAppAction,
+  GetOpenOrdersAppAction,
 } from "state/actions/exchange";
 import { RootState } from "state/store";
 import OpenOrders from "./openOrders";
@@ -23,35 +24,50 @@ const OrderHistorySection = () => {
   const { dashboard, currentPair } = useSelector(
     (state: RootState) => state.exchange
   );
-  const [orderHistory, setOrderHistory] = useState<any>([]);
+  const [openOrderHistory, setOpenOrderHistory] = useState<any>([]);
+  const [sellOrderHistory, setsellOrderHistory] = useState<any>([]);
+  const [buyOrderHistory, setBuyOrderHistory] = useState<any>([]);
   const [tradeOrderHistory, settradeOrderHistory] = useState<any>([]);
   const getHistory = async () => {
     if (
       dashboard?.order_data?.base_coin_id &&
       dashboard?.order_data?.trade_coin_id
     ) {
-      GetAllSellOrdersAppAction(
-        "buy",
+      GetOpenOrdersAppAction(
         dashboard?.order_data?.base_coin_id,
         dashboard?.order_data?.trade_coin_id,
-        10,
         "dashboard",
-        setOrderHistory
+        "buy_sell",
+        setOpenOrderHistory
+      );
+
+      GetAllSellOrdersAppAction(
+        dashboard?.order_data?.base_coin_id,
+        dashboard?.order_data?.trade_coin_id,
+        "dashboard",
+        "sell",
+        setsellOrderHistory
+      );
+      GetAllSellOrdersAppAction(
+        dashboard?.order_data?.base_coin_id,
+        dashboard?.order_data?.trade_coin_id,
+        "dashboard",
+        "buy",
+        setBuyOrderHistory
       );
       GetAllTradeOrdersAppAction(
         dashboard?.order_data?.base_coin_id,
         dashboard?.order_data?.trade_coin_id,
-        10,
         "dashboard",
         settradeOrderHistory
       );
     }
   };
   React.useEffect(() => {
-    console.log("orderHistory", orderHistory);
+    console.log("orderHistory", sellOrderHistory);
     getHistory();
     return () => {
-      setOrderHistory([]);
+      setsellOrderHistory([]);
     };
   }, [currentPair, dashboard]);
   return (
@@ -129,10 +145,14 @@ const OrderHistorySection = () => {
         </div>
       </div>
       <div className="tab-content" id="ordersTabContent">
-        <OpenOrders openOrders={activeTab.openOrders} />
+        <OpenOrders
+          openOrders={activeTab.openOrders}
+          openOrderHistory={openOrderHistory}
+        />
         <OrderHistory
           orderHistory={activeTab.orderHistory}
-          orderHistoryState={orderHistory}
+          sellOrderHistoryState={sellOrderHistory}
+          buyOrderHistoryState={buyOrderHistory}
         />
         <TradeOrder
           tradeOrder={activeTab.tradeOrder}

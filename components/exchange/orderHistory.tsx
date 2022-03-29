@@ -6,7 +6,11 @@ type Props = {
   orderHistory: boolean;
 };
 
-const OrderHistory = ({ orderHistory, orderHistoryState }: any) => {
+const OrderHistory = ({
+  orderHistory,
+  sellOrderHistoryState,
+  buyOrderHistoryState,
+}: any) => {
   const { dashboard, currentPair } = useSelector(
     (state: RootState) => state.exchange
   );
@@ -17,37 +21,111 @@ const OrderHistory = ({ orderHistory, orderHistoryState }: any) => {
       role="tabpanel"
       aria-labelledby="Trade-history-tab"
     >
-      <div className="table-responsive">
-        <table className="table">
-          <thead>
-            <tr>
-              <th scope="col">Date</th>
-              <th scope="col">Pair</th>
-              <th scope="col">Type</th>
-              <th scope="col">Side</th>
-              <th scope="col">Price</th>
-              <th scope="col">Amount</th>
-              <th scope="col">Filled</th>
-              <th scope="col">total</th>
-              <th scope="col">Trigger Conditions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {orderHistoryState?.map((item: any, index: number) => (
-              <tr key={index}>
-                <td>{item.created_at}</td>
-                <td>{currentPair && currentPair}</td>
-                <td>Type</td>
-                <td>Side</td>
-                <td>{item.price}</td>
-                <td>{item.amount}</td>
-                <td>Filled</td>
-                <td>total</td>
-                <td>Trigger Conditions</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div className="buy-sell-tabs">
+        <ul className="nav nav-tabs" id="buySellTab" role="tablist">
+          <li className="nav-item" role="presentation">
+            <a
+              className="nav-link active"
+              id="buy-tab"
+              data-toggle="tab"
+              href="#buy"
+              role="tab"
+              aria-controls="buy"
+              aria-selected="true"
+            >
+              buy
+            </a>
+          </li>
+          <li className="nav-item" role="presentation">
+            <a
+              className="nav-link"
+              id="sell-tab"
+              data-toggle="tab"
+              href="#sell"
+              role="tab"
+              aria-controls="sell"
+              aria-selected="false"
+            >
+              sell
+            </a>
+          </li>
+        </ul>
+        <div className="tab-content" id="buySellTabContent">
+          <div
+            className="tab-pane fade show active"
+            id="buy"
+            role="tabpanel"
+            aria-labelledby="buy-tab"
+          >
+            <div className="table-responsive">
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Pair</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Actual amount</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Fees</th>
+                    <th scope="col">total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {buyOrderHistoryState?.map((item: any, index: number) => (
+                    <tr key={index}>
+                      <td>{item.created_at}</td>
+                      <td>{currentPair && currentPair}</td>
+                      <td>{item?.type}</td>
+                      <td>{item.actual_amount}</td>
+                      <td>{item.price}</td>
+                      <td>{item.amount}</td>
+                      <td>{item.fees}</td>
+                      <td>{item.total}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div
+            className="tab-pane fade"
+            id="sell"
+            role="tabpanel"
+            aria-labelledby="sell-tab"
+          >
+            <div className="table-responsive">
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Pair</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Actual amount</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Fees</th>
+                    <th scope="col">total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {sellOrderHistoryState?.map((item: any, index: number) => (
+                    <tr key={index}>
+                      <td>{item.created_at}</td>
+                      <td>{currentPair && currentPair}</td>
+                      <td>{item?.type}</td>
+                      <td>{item.actual_amount}</td>
+                      <td>{item.price}</td>
+                      <td>{item.amount}</td>
+                      <td>{item.fees}</td>
+                      <td>{item.total}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

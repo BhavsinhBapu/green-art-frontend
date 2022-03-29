@@ -21,8 +21,7 @@ const TradeOrder = ({ tradeOrder, tradeOrderHistory }: any) => {
               <th scope="col">Fees</th>
               <th scope="col">Amount</th>
               <th scope="col">Price</th>
-              <th scope="col">Last price</th>
-              <th scope="col">Price order type</th>
+              <th scope="col">Time</th>
               <th scope="col">Total</th>
             </tr>
           </thead>
@@ -34,8 +33,7 @@ const TradeOrder = ({ tradeOrder, tradeOrderHistory }: any) => {
                 <td>{order.fees}</td>
                 <td>{order.amount}</td>
                 <td>{order.price}</td>
-                <td>{order.last_price}</td>
-                <td>{order.price_order_type}</td>
+                <td>{order.time}</td>
                 <td>{order.total}</td>
               </tr>
             ))}

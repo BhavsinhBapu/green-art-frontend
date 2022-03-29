@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { AdvancedRealTimeChart } from "react-ts-tradingview-widgets";
 import { RootState } from "state/store";
+import { AdvancedChart } from "react-tradingview-embed";
 
 const TradingChart = () => {
   const { dashboard } = useSelector((state: RootState) => state.exchange);

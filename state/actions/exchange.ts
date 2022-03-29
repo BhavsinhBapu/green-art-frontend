@@ -3,11 +3,11 @@ import {
   buyLimitApp,
   buyMarketApp,
   buyStopLimitApp,
-  GetAllSellOrdersAppApi,
-  GetAllTradeOrdersAppApi,
+  ordersHistoryDashboard,
   sellLimitApp,
   sellMarketApp,
   sellStopLimitApp,
+  tradesHistoryDashboard,
 } from "service/exchange";
 import { setDashboard } from "state/reducer/exchange";
 import { setLoading } from "state/reducer/user";
@@ -276,42 +276,54 @@ export const sellStopLimitAppAction = async (
 };
 
 export const GetAllSellOrdersAppAction = async (
-  order_type: string,
-  base_coin_id: number,
-  trade_coin_id: number,
-  per_page: number,
+  base_coin_id: string,
+  trade_coin_id: string,
   dashboard_type: string,
+  order_type: string,
   setReport: React.Dispatch<SetStateAction<object>>
 ) => {
-  const response = await GetAllSellOrdersAppApi(
-    order_type,
+  const response = await ordersHistoryDashboard(
     base_coin_id,
     trade_coin_id,
-    per_page,
-    dashboard_type
+    dashboard_type,
+    order_type
   );
-  console.log(response, "base data");
-  console.log(response?.data.items, "response.data.sell_orders.data");
-  setReport(response?.data.items);
+  setReport(response?.data?.orders);
+
+  console.log(response?.data?.orders, "response.data.sell_orders.data");
 
   return response;
 };
 export const GetAllTradeOrdersAppAction = async (
-  base_coin_id: number,
-  trade_coin_id: number,
-  per_page: number,
+  base_coin_id: string,
+  trade_coin_id: string,
   dashboard_type: string,
   setReport: React.Dispatch<SetStateAction<object>>
 ) => {
-  const response = await GetAllTradeOrdersAppApi(
+  const response = await tradesHistoryDashboard(
     base_coin_id,
     trade_coin_id,
-    per_page,
     dashboard_type
   );
-  console.log(response, "base data");
-  console.log(response?.data.transactions, "response.data.sell_orders.data");
-  setReport(response?.data.transactions);
 
+  setReport(response?.data?.transactions);
+
+  return response;
+};
+export const GetOpenOrdersAppAction = async (
+  base_coin_id: string,
+  trade_coin_id: string,
+  dashboard_type: string,
+  order_type: string,
+  setReport: React.Dispatch<SetStateAction<object>>
+) => {
+  const response = await ordersHistoryDashboard(
+    base_coin_id,
+    trade_coin_id,
+    dashboard_type,
+    order_type
+  );
+  console.log(response?.data?.orders, "oepnopenopen");
+  setReport(response?.data?.orders);
   return response;
 };

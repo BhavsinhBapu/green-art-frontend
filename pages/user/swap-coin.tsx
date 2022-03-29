@@ -2,12 +2,20 @@ import type { GetServerSideProps, NextPage } from "next";
 import * as React from "react";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import SwapCoinSidebar from "layout/swap-coin-sidebar";
+import { getUserCoinForSwapAction } from "state/actions/swap";
 const SwapCoin: NextPage = () => {
-  type searchType = string;
-  const [search, setSearch] = React.useState<searchType>("");
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value);
-  };
+  const [walletLists, setWalletLists] = React.useState<any>([]);
+  const [fromSelected, setFromSelected] = React.useState<any>({
+    amount: 0,
+    coin_id: null,
+  });
+  const [toSelected, setToSelected] = React.useState<any>({
+    amount: 0,
+    coin_id: null,
+  });
+  React.useEffect(() => {
+    getUserCoinForSwapAction(setWalletLists);
+  }, []);
   return (
     <div className="page-wrap">
       <SwapCoinSidebar />
@@ -38,7 +46,7 @@ const SwapCoin: NextPage = () => {
                               type="text"
                               className="form-control"
                               id="amount-one"
-                              defaultValue={1}
+                              value={fromSelected ? fromSelected.amount : ""}
                               placeholder="Please enter 10 -2400000"
                             />
                           </div>
@@ -47,23 +55,27 @@ const SwapCoin: NextPage = () => {
                               className=" form-control "
                               id="currency-one"
                             >
-                              <option value="BTC">BTC</option>
-                              <option value="ETH">ETH</option>
-                              <option value="LTC">LTC</option>
-                              <option value="DOGE">DOGE</option>
-                              <option value="BCH">BCH</option>
-                              <option value="DASH">DASH</option>
-                              <option value="USD" selected>
-                                USDT
-                              </option>
-                              <option value="EUR">EUR</option>
+                              {walletLists.map((item: any) => (
+                                <option value={item.id} key={item.id}>
+                                  {item.coin_type}
+                                </option>
+                              ))}
                             </select>
                           </div>
                         </div>
                       </div>
                     </div>
                     <div className="swap-button-area text-center">
-                      <button id="swap" className="swap-button">
+                      <button
+                        id="swap"
+                        className="swap-button"
+                        onClick={() => {
+                          // swap from to
+                          const form = fromSelected;
+                          setFromSelected(toSelected);
+                          setToSelected(form);
+                        }}
+                      >
                         <i className="fa fa-refresh" />
                       </button>
                     </div>
@@ -78,21 +90,23 @@ const SwapCoin: NextPage = () => {
                               type="text"
                               className="form-control"
                               id="amount-two"
+                              value={toSelected ? toSelected.amount : ""}
                               placeholder="Please enter 0 - 65"
+                              disabled
                             />
                           </div>
                           <div className="cp-select-area">
                             <select className="form-control" id="currency-two">
-                              <option value="BTC">BTC</option>
-                              <option value="ETH">ETH</option>
-                              <option value="LTC">LTC</option>
-                              <option value="DOGE">DOGE</option>
-                              <option value="BCH">BCH</option>
-                              <option value="DASH">DASH</option>
-                              <option value="USD">USDT</option>
-                              <option value="EUR" selected>
-                                EUR
-                              </option>
+                              {walletLists.map((item: any) => (
+                                <option
+                                  value={item.id}
+                                  key={item.id}
+                                  onClick={() => setToSelected(item)}
+                                  selected={toSelected === item}
+                                >
+                                  {item.coin_type}
+                                </option>
+                              ))}
                             </select>
                           </div>
                         </div>
