@@ -1,10 +1,6 @@
+import Cookies from "js-cookie";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import {
-  GetAllSellOrdersAppAction,
-  GetAllTradeOrdersAppAction,
-  GetOpenOrdersAppAction,
-} from "state/actions/exchange";
 import { RootState } from "state/store";
 import OpenOrders from "./openOrders";
 import OrderHistory from "./orderHistory";
@@ -21,54 +17,17 @@ const OrderHistorySection = () => {
     orderHistory: false,
     tradeOrder: false,
   });
-  const { dashboard, currentPair } = useSelector(
-    (state: RootState) => state.exchange
-  );
-  const [openOrderHistory, setOpenOrderHistory] = useState<any>([]);
-  const [sellOrderHistory, setsellOrderHistory] = useState<any>([]);
-  const [buyOrderHistory, setBuyOrderHistory] = useState<any>([]);
-  const [tradeOrderHistory, settradeOrderHistory] = useState<any>([]);
-  const getHistory = async () => {
-    if (
-      dashboard?.order_data?.base_coin_id &&
-      dashboard?.order_data?.trade_coin_id
-    ) {
-      GetOpenOrdersAppAction(
-        dashboard?.order_data?.base_coin_id,
-        dashboard?.order_data?.trade_coin_id,
-        "dashboard",
-        "buy_sell",
-        setOpenOrderHistory
-      );
+  const {
+    dashboard,
+    currentPair,
+    openOrderHistory,
+    sellOrderHistory,
+    buyOrderHistory,
+    tradeOrderHistory,
+  } = useSelector((state: RootState) => state.exchange);
 
-      GetAllSellOrdersAppAction(
-        dashboard?.order_data?.base_coin_id,
-        dashboard?.order_data?.trade_coin_id,
-        "dashboard",
-        "sell",
-        setsellOrderHistory
-      );
-      GetAllSellOrdersAppAction(
-        dashboard?.order_data?.base_coin_id,
-        dashboard?.order_data?.trade_coin_id,
-        "dashboard",
-        "buy",
-        setBuyOrderHistory
-      );
-      GetAllTradeOrdersAppAction(
-        dashboard?.order_data?.base_coin_id,
-        dashboard?.order_data?.trade_coin_id,
-        "dashboard",
-        settradeOrderHistory
-      );
-    }
-  };
   React.useEffect(() => {
-    console.log("orderHistory", sellOrderHistory);
-    getHistory();
-    return () => {
-      setsellOrderHistory([]);
-    };
+    return () => {};
   }, [currentPair, dashboard]);
   return (
     <div className="orders-area mt-4">

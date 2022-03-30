@@ -19,10 +19,7 @@ const Dashboard: NextPage = () => {
     (state: RootState) => state.exchange
   );
   useEffect(() => {
-    const token = Cookies.get("token");
-    if (token) {
-      dispatch(initialDashboardCallAction(currentPair));
-    }
+    dispatch(initialDashboardCallAction(currentPair, dashboard));
   }, [isLoggedIn, currentPair]);
   return (
     <div className="background-col">

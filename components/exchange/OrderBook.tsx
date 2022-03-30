@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "state/store";
 import AllSellOrders from "./AllSellOrders";
 import ExchangeBox from "./ExchangeBox";
-import TradesTable from "./tradesTable";
+import BuyTable from "./BuyTable";
+import SellTable from "./SellTable";
 
 const OrderBook = () => {
+  const { dashboard, currentPair, OpenBookBuy, OpenBooksell } = useSelector(
+    (state: RootState) => state.exchange
+  );
+
   return (
     <div className="col-xl-6">
       <div className="row">
@@ -40,11 +47,12 @@ const OrderBook = () => {
                       }}
                     >
                       <div
-                        className="dataTables_scrollHeadInner"
+                        className="dataTables_scrollBody"
                         style={{
-                          boxSizing: "content-box",
-                          width: "431.25px",
-                          paddingRight: "0px",
+                          position: "relative",
+                          overflow: "auto",
+                          height: "244px",
+                          width: "100%",
                         }}
                       >
                         <table
@@ -61,7 +69,7 @@ const OrderBook = () => {
                                 className="trades-table-col price text-pink w-30 sorting_desc"
                                 rowSpan={1}
                                 colSpan={1}
-                                style={{ width: "109.906px" }}
+                                // style={{ width: "109.906px" }}
                                 aria-label="Price(USDT)"
                               >
                                 Price(<span>USDT</span>)
@@ -70,7 +78,7 @@ const OrderBook = () => {
                                 className="trades-table-col amount text-center w-30 sorting_disabled"
                                 rowSpan={1}
                                 colSpan={1}
-                                style={{ width: "133.656px" }}
+                                // style={{ width: "133.656px" }}
                                 aria-label="Amount"
                               >
                                 Amount
@@ -79,17 +87,17 @@ const OrderBook = () => {
                                 className="trades-table-col volume sorting_disabled"
                                 rowSpan={1}
                                 colSpan={1}
-                                style={{ width: "127.688px" }}
+                                // style={{ width: "127.688px" }}
                                 aria-label="	My Size"
                               >
                                 My Size
                               </th>
                             </tr>
                           </thead>
+                          <BuyTable buy={OpenBookBuy} />
                         </table>
                       </div>
                     </div>
-                    <TradesTable />
                   </div>
                 </div>
                 <div className="trades-table-footer">
@@ -206,93 +214,7 @@ const OrderBook = () => {
                       role="grid"
                       style={{ width: "100%" }}
                     >
-                      <thead>
-                        <tr role="row" style={{ height: "0px" }}>
-                          <th
-                            className="table-col price sorting_disabled"
-                            rowSpan={1}
-                            colSpan={1}
-                            style={{
-                              width: "170.656px",
-                              paddingTop: "0px",
-                              paddingBottom: "0px",
-                              borderTopWidth: "0px",
-                              borderBottomWidth: "0px",
-                              height: "0px",
-                            }}
-                            aria-label="Price(USDT)"
-                          >
-                            <div
-                              className="dataTables_sizing"
-                              style={{
-                                height: "0px",
-                                overflow: "hidden",
-                              }}
-                            >
-                              Price(<span>USDT</span>)
-                            </div>
-                          </th>
-                          <th
-                            className="table-col amount sorting_disabled"
-                            rowSpan={1}
-                            colSpan={1}
-                            style={{
-                              width: "120.75px",
-                              paddingTop: "0px",
-                              paddingBottom: "0px",
-                              borderTopWidth: "0px",
-                              borderBottomWidth: "0px",
-                              height: "0px",
-                            }}
-                            aria-label="Amount"
-                          >
-                            <div
-                              className="dataTables_sizing"
-                              style={{
-                                height: "0px",
-                                overflow: "hidden",
-                              }}
-                            >
-                              Amount
-                            </div>
-                          </th>
-                          <th
-                            className="table-col time text-right sorting_desc"
-                            rowSpan={1}
-                            colSpan={1}
-                            style={{
-                              width: "79.8438px",
-                              paddingTop: "0px",
-                              paddingBottom: "0px",
-                              borderTopWidth: "0px",
-                              borderBottomWidth: "0px",
-                              height: "0px",
-                            }}
-                            aria-label="Time"
-                          >
-                            <div
-                              className="dataTables_sizing"
-                              style={{
-                                height: "0px",
-                                overflow: "hidden",
-                              }}
-                            >
-                              Time
-                            </div>
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr className="odd">
-                          <td
-                            valign="top"
-                            colSpan={3}
-                            className="dataTables_empty"
-                          >
-                            No data available in table
-                          </td>
-                        </tr>
-                      </tbody>
+                      <SellTable sell={OpenBooksell} />
                     </table>
                   </div>
                 </div>

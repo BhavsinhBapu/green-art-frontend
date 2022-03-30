@@ -102,7 +102,7 @@ const GetAllBuyOrders: NextPage = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr id="{{$wallet->id}}">
+                      <tr id="">
                         <td>
                           <div className="asset">
                             <span className="asset-name">BCH Wallet</span>

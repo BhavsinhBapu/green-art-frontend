@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { GetAllSellOrdersAppAction } from "state/actions/exchange";
 import { RootState } from "state/store";
 type Props = {
   orderHistory: boolean;

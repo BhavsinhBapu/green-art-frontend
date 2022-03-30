@@ -7,7 +7,6 @@ import { GetUserInfoByTokenAction } from "state/actions/user";
 import { useDispatch, useSelector } from "react-redux";
 import Cookies from "js-cookie";
 import { RootState } from "state/store";
-import { initialDashboardCallAction } from "state/actions/exchange";
 const Index = ({ children }: any) => {
   const [navbarVisible, setNavbarVisible] = useState(false);
 
@@ -38,7 +37,6 @@ const Index = ({ children }: any) => {
     const token = Cookies.get("token");
     if (token) {
       dispatch(GetUserInfoByTokenAction());
-      // dispatch(initialDashboardCallAction(currentPair));
     }
   }, [isLoggedIn]);
   return navbarVisible ? (

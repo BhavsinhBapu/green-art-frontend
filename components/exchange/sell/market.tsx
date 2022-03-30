@@ -174,7 +174,9 @@ const Market = ({
                           dashboard?.order_data?.base_coin_id,
                           setLoading
                         );
-                        await dispatch(initialDashboardCallAction(currentPair));
+                        await dispatch(
+                          initialDashboardCallAction(currentPair, dashboard)
+                        );
                       }}
                     >
                       <span v-else="">Place Order</span>

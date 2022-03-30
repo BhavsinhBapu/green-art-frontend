@@ -9043,3 +9043,8 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
   padding-left: 25px;
   padding-right: 25px;
 }
+
+.trades-section table.dataTable thead tr th {
+  padding: 0;
+  text-align: left !important;
+}

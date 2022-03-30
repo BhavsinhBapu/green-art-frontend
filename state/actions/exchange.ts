@@ -3,22 +3,92 @@ import {
   buyLimitApp,
   buyMarketApp,
   buyStopLimitApp,
+  openBookDashboard,
   ordersHistoryDashboard,
   sellLimitApp,
   sellMarketApp,
   sellStopLimitApp,
   tradesHistoryDashboard,
 } from "service/exchange";
-import { setDashboard } from "state/reducer/exchange";
+import {
+  setDashboard,
+  setOpenBookBuy,
+  setOpenBooksell,
+  setOpenOrderHistory,
+  setSellOrderHistory,
+  setBuyOrderHistory,
+  setTradeOrderHistory,
+} from "state/reducer/exchange";
 import { setLoading } from "state/reducer/user";
 import { toast } from "react-toastify";
 import { Dispatch, SetStateAction } from "react";
+import Cookies from "js-cookie";
 
 export const initialDashboardCallAction =
-  (pair: string) => async (dispatch: any) => {
+  (pair: string, dashboard: any) => async (dispatch: any) => {
     dispatch(setLoading(true));
+    const token = Cookies.get("token");
     const response = await appDashboardData(pair);
     dispatch(setDashboard(response));
+    const BuyResponse = await openBookDashboard(
+      dashboard?.order_data?.base_coin_id
+        ? dashboard?.order_data?.base_coin_id
+        : 2,
+      dashboard?.order_data?.trade_coin_id
+        ? dashboard?.order_data?.trade_coin_id
+        : 1,
+      "dashboard",
+      "buy",
+      10
+    );
+    dispatch(setOpenBookBuy(BuyResponse?.data?.orders));
+    const SellResponse = await openBookDashboard(
+      dashboard?.order_data?.base_coin_id
+        ? dashboard?.order_data?.base_coin_id
+        : 2,
+      dashboard?.order_data?.trade_coin_id
+        ? dashboard?.order_data?.trade_coin_id
+        : 1,
+      "dashboard",
+      "sell",
+      10
+    );
+    dispatch(setOpenBooksell(SellResponse?.data?.orders));
+    if (
+      dashboard?.order_data?.base_coin_id &&
+      dashboard?.order_data?.trade_coin_id &&
+      token
+    ) {
+      const ordersHistoryResponse = await ordersHistoryDashboard(
+        dashboard?.order_data?.base_coin_id,
+        dashboard?.order_data?.trade_coin_id,
+        "dashboard",
+        "buy_sell"
+      );
+      dispatch(setOpenOrderHistory(ordersHistoryResponse?.data?.orders));
+      const sellOrderHistoryresponse = await ordersHistoryDashboard(
+        dashboard?.order_data?.base_coin_id,
+        dashboard?.order_data?.trade_coin_id,
+        "dashboard",
+        "sell"
+      );
+      dispatch(setSellOrderHistory(sellOrderHistoryresponse?.data?.orders));
+      const buyOrderHistoryresponse = await ordersHistoryDashboard(
+        dashboard?.order_data?.base_coin_id,
+        dashboard?.order_data?.trade_coin_id,
+        "dashboard",
+        "buy"
+      );
+      dispatch(setBuyOrderHistory(buyOrderHistoryresponse?.data?.orders));
+      const tradeOrderHistoryResponse = await tradesHistoryDashboard(
+        dashboard?.order_data?.base_coin_id,
+        dashboard?.order_data?.trade_coin_id,
+        "dashboard"
+      );
+      dispatch(
+        setTradeOrderHistory(tradeOrderHistoryResponse?.data?.transactions)
+      );
+    }
     dispatch(setLoading(false));
   };
 
@@ -273,57 +343,4 @@ export const sellStopLimitAppAction = async (
     });
   }
   setLoading(false);
-};
-
-export const GetAllSellOrdersAppAction = async (
-  base_coin_id: string,
-  trade_coin_id: string,
-  dashboard_type: string,
-  order_type: string,
-  setReport: React.Dispatch<SetStateAction<object>>
-) => {
-  const response = await ordersHistoryDashboard(
-    base_coin_id,
-    trade_coin_id,
-    dashboard_type,
-    order_type
-  );
-  setReport(response?.data?.orders);
-
-  console.log(response?.data?.orders, "response.data.sell_orders.data");
-
-  return response;
-};
-export const GetAllTradeOrdersAppAction = async (
-  base_coin_id: string,
-  trade_coin_id: string,
-  dashboard_type: string,
-  setReport: React.Dispatch<SetStateAction<object>>
-) => {
-  const response = await tradesHistoryDashboard(
-    base_coin_id,
-    trade_coin_id,
-    dashboard_type
-  );
-
-  setReport(response?.data?.transactions);
-
-  return response;
-};
-export const GetOpenOrdersAppAction = async (
-  base_coin_id: string,
-  trade_coin_id: string,
-  dashboard_type: string,
-  order_type: string,
-  setReport: React.Dispatch<SetStateAction<object>>
-) => {
-  const response = await ordersHistoryDashboard(
-    base_coin_id,
-    trade_coin_id,
-    dashboard_type,
-    order_type
-  );
-  console.log(response?.data?.orders, "oepnopenopen");
-  setReport(response?.data?.orders);
-  return response;
 };

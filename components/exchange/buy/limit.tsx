@@ -183,7 +183,9 @@ const Limit = ({
                           setLoading,
                           setBuySellLimitCoinData
                         );
-                        await dispatch(initialDashboardCallAction(currentPair));
+                        await dispatch(
+                          initialDashboardCallAction(currentPair, dashboard)
+                        );
                       }}
                     >
                       <span v-else="">Place Order</span>
