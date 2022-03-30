@@ -18,11 +18,13 @@ import {
   setSellOrderHistory,
   setBuyOrderHistory,
   setTradeOrderHistory,
+  setCurrentPair,
 } from "state/reducer/exchange";
 import { setLoading } from "state/reducer/user";
 import { toast } from "react-toastify";
 import { Dispatch, SetStateAction } from "react";
 import Cookies from "js-cookie";
+import Router from "next/router";
 
 export const initialDashboardCallAction =
   (pair: string, dashboard: any) => async (dispatch: any) => {

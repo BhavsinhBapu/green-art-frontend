@@ -9,6 +9,7 @@ export type ExchangeState = {
   sellOrderHistory: Array<any>;
   buyOrderHistory: Array<any>;
   tradeOrderHistory: Array<any>;
+  publicTradesDashboard: Array<any>;
 };
 const initialState: ExchangeState = {
   dashboard: {},
@@ -19,6 +20,7 @@ const initialState: ExchangeState = {
   sellOrderHistory: [],
   buyOrderHistory: [],
   tradeOrderHistory: [],
+  publicTradesDashboard: [],
 };
 
 export const exchangeSlice = createSlice({
@@ -49,6 +51,9 @@ export const exchangeSlice = createSlice({
     setTradeOrderHistory: (state, action: PayloadAction<Array<any>>) => {
       state.tradeOrderHistory = action.payload;
     },
+    setPublicTradesDashboard: (state, action: PayloadAction<Array<any>>) => {
+      state.publicTradesDashboard = action.payload;
+    },
   },
 });
 
@@ -61,6 +66,7 @@ export const {
   setSellOrderHistory,
   setBuyOrderHistory,
   setTradeOrderHistory,
+  setPublicTradesDashboard,
 } = exchangeSlice.actions;
 
 export default exchangeSlice.reducer;

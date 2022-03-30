@@ -8,7 +8,7 @@ const TradesTable = ({ buy }: any) => {
           <tr className="odd">
             <td>
               <div className="asset">
-                <span className="asset-name">{item.price}</span>
+                <span className="text-danger">{item.price}</span>
               </div>
             </td>
             <td>
