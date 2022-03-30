@@ -10,4 +10,23 @@ export const WithdrawAndDepositHistoryApi = async (
   );
   return data;
 };
-// get-all-sell-orders-app?order_type=buy&base_coin_id=1&trade_coin_id=2&per_page=7&dashboard_type=dashboard
+
+export const AllBuyOrdersHistoryApi = async (
+  per_page: number,
+  page: number
+) => {
+  const { data } = await request.get(
+    `/all-buy-orders-history-app?per_page=${per_page}&page=${page}`
+  );
+  return data;
+};
+
+export const AllSellOrdersHistoryApi = async (
+  per_page: number,
+  page: number
+) => {
+  const { data } = await request.get(
+    `/all-sell-orders-history-app?per_page=${per_page}&page=${page}`
+  );
+  return data;
+};

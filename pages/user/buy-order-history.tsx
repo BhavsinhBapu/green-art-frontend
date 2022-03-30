@@ -3,6 +3,11 @@ import ReportSidebar from "layout/report-sidebar";
 import React, { useState } from "react";
 // import { handleSearch } from "common/search";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
+import {
+  AllBuyOrdersHistoryAction,
+  handleSearchItems,
+} from "state/actions/reports";
+import TableLoading from "components/common/TableLoading";
 
 const BuyOrderHistory: NextPage = () => {
   type searchType = string;
@@ -11,7 +16,21 @@ const BuyOrderHistory: NextPage = () => {
   const [processing, setProcessing] = useState<boolean>(false);
   const [history, setHistory] = useState<any>([]);
   const [stillHistory, setStillHistory] = useState<any>([]);
-  const getReport = async () => {};
+  const LinkTopaginationString = (page: any) => {
+    console.log(page.url);
+    const url = page.url.split("?")[1];
+    const number = url.split("=")[1];
+    AllBuyOrdersHistoryAction(
+      5,
+      parseInt(number),
+      setHistory,
+      setProcessing,
+      setStillHistory
+    );
+  };
+  const getReport = async () => {
+    AllBuyOrdersHistoryAction(5, 1, setHistory, setProcessing, setStillHistory);
+  };
   React.useEffect(() => {
     getReport();
     return () => {
@@ -33,160 +52,204 @@ const BuyOrderHistory: NextPage = () => {
           </div>
 
           <div className="asset-balances-area">
-            <div className="asset-balances-left">
-              <div className="section-wrapper">
-                <div className="table-responsive">
-                  <div
-                    id="assetBalances_wrapper"
-                    className="dataTables_wrapper no-footer"
-                  >
-                    <div className="dataTables_head">
-                      <div
-                        className="dataTables_length"
-                        id="assetBalances_length"
-                      >
-                        <label className="">
-                          Show
-                          <select
-                            name="assetBalances_length"
-                            aria-controls="assetBalances"
-                            className=""
-                          >
-                            <option value="10">10</option>
-                            <option value="25">25</option>
-                            <option value="50">50</option>
-                            <option value="100">100</option>
-                          </select>
-                          entries
-                        </label>
-                      </div>
-                      <div id="table_filter" className="dataTables_filter">
-                        <label>
-                          Search:{search}
-                          <input
-                            type="search"
-                            className="data_table_input"
-                            placeholder=""
-                            aria-controls="table"
-                            value={search}
-                            onChange={(e) => {
-                              // handleSearch(e, setSearch);
-                            }}
-                          />
-                        </label>
+            {processing ? (
+              <TableLoading />
+            ) : (
+              <div className="asset-balances-left">
+                <div className="section-wrapper">
+                  <div className="table-responsive">
+                    <div
+                      id="assetBalances_wrapper"
+                      className="dataTables_wrapper no-footer"
+                    >
+                      <div className="dataTables_head">
+                        <div
+                          className="dataTables_length"
+                          id="assetBalances_length"
+                        >
+                          <label className="">
+                            Show
+                            <select
+                              name="assetBalances_length"
+                              aria-controls="assetBalances"
+                              className=""
+                              placeholder="10"
+                              onChange={(e) => {
+                                AllBuyOrdersHistoryAction(
+                                  parseInt(e.target.value),
+                                  1,
+                                  setHistory,
+                                  setProcessing,
+                                  setStillHistory
+                                );
+                              }}
+                            >
+                              <option value="10">10</option>
+                              <option value="25">25</option>
+                              <option value="50">50</option>
+                              <option value="100">100</option>
+                            </select>
+                            entries
+                          </label>
+                        </div>
+                        <div id="table_filter" className="dataTables_filter">
+                          <label>
+                            Search:
+                            <input
+                              type="search"
+                              className="data_table_input"
+                              placeholder=""
+                              aria-controls="table"
+                              value={search}
+                              onChange={(e) => {
+                                handleSearchItems(
+                                  e,
+                                  setSearch,
+                                  stillHistory,
+                                  setHistory
+                                );
+                              }}
+                            />
+                          </label>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <table
-                    id="assetBalances"
-                    className="table table-borderless secendary-table asset-balances-table"
-                  >
-                    <thead>
-                      <tr>
-                        <th scope="col" className="">
-                          Base Coin
-                          <i className="fas fa-sort-down sort_space"></i>
-                        </th>
-                        <th scope="col" rowSpan={1} colSpan={1}>
-                          Trade Coin
-                          <i className="fas fa-sort sort_space"></i>
-                        </th>
-                        <th scope="col" rowSpan={1} colSpan={1}>
-                          Amount
-                          <i className="fas fa-sort sort_space"></i>
-                        </th>
-                        <th scope="col">
-                          Processed
-                          <i className="fas fa-sort sort_space"></i>
-                        </th>
-                        <th scope="col">
-                          Price
-                          <i className="fas fa-sort sort_space"></i>
-                        </th>
-                        <th scope="col">
-                          Status
-                          <i className="fas fa-sort sort_space"></i>
-                        </th>
-                        <th scope="col">
-                          Date
-                          <i className="fas fa-sort sort_space"></i>
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {history?.map((item: any, index: any) => (
-                        <tr id="{{$wallet->id}}" key={index}>
-                          <td>
-                            <div className="asset">
-                              <span className="asset-name">
-                                {item?.base_coin}
-                              </span>
-                            </div>
-                          </td>
-                          <td>
-                            <span className="symbol">{item?.trade_coin}</span>
-                          </td>
-                          <td>
-                            <div className="blance-text">
-                              <span className="usd">${item?.amount}</span>
-                            </div>
-                          </td>
-                          <td>
-                            <div className="blance-text">
-                              <span className="blance">{item?.processed}</span>
-                            </div>
-                          </td>
-                          <td>
-                            <div className="blance-text">
-                              <span className="blance">{item?.price}</span>
-                            </div>
-                          </td>
-                          <td>
-                            <div className="blance-text">
-                              {item?.status === 0
-                                ? "processing"
-                                : item?.status === 1
-                                ? "completed"
-                                : "cancelled"}
-                            </div>
-                          </td>
-                          <td>
-                            <div className="status-text">
-                              <span className="status">{item?.created_at}</span>
-                            </div>
-                          </td>
+                    <table
+                      id="assetBalances"
+                      className="table table-borderless secendary-table asset-balances-table"
+                    >
+                      <thead>
+                        <tr>
+                          <th scope="col" className="">
+                            Base Coin
+                            <i className="fas fa-sort-down sort_space"></i>
+                          </th>
+                          <th scope="col" rowSpan={1} colSpan={1}>
+                            Trade Coin
+                            <i className="fas fa-sort sort_space"></i>
+                          </th>
+                          <th scope="col" rowSpan={1} colSpan={1}>
+                            Amount
+                            <i className="fas fa-sort sort_space"></i>
+                          </th>
+                          <th scope="col">
+                            Processed
+                            <i className="fas fa-sort sort_space"></i>
+                          </th>
+                          <th scope="col">
+                            Price
+                            <i className="fas fa-sort sort_space"></i>
+                          </th>
+                          <th scope="col">
+                            Status
+                            <i className="fas fa-sort sort_space"></i>
+                          </th>
+                          <th scope="col">
+                            Date
+                            <i className="fas fa-sort sort_space"></i>
+                          </th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                  {/* <div className="no_data_table">
-                      No data available in table
-                    </div> */}
+                      </thead>
+                      <tbody>
+                        {history?.map((item: any, index: any) => (
+                          <tr id="{{$wallet->id}}" key={index}>
+                            <td>
+                              <div className="asset">
+                                <span className="asset-name">
+                                  {item?.base_coin}
+                                </span>
+                              </div>
+                            </td>
+                            <td>
+                              <span className="symbol">{item?.trade_coin}</span>
+                            </td>
+                            <td>
+                              <div className="blance-text">
+                                <span className="usd">${item?.amount}</span>
+                              </div>
+                            </td>
+                            <td>
+                              <div className="blance-text">
+                                <span className="blance">
+                                  {item?.processed}
+                                </span>
+                              </div>
+                            </td>
+                            <td>
+                              <div className="blance-text">
+                                <span className="blance">{item?.price}</span>
+                              </div>
+                            </td>
+                            <td>
+                              <div className="blance-text">
+                                {item?.status === 0
+                                  ? "processing"
+                                  : item?.status === 1
+                                  ? "completed"
+                                  : "cancelled"}
+                              </div>
+                            </td>
+                            <td>
+                              <div className="status-text">
+                                <span className="status">
+                                  {item?.created_at}
+                                </span>
+                              </div>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
 
-                  <div
-                    className="pagination-wrapper"
-                    id="assetBalances_paginate"
-                  >
-                    <a className="paginate-button">
-                      <i className="fa fa-angle-left"></i>
-                    </a>
-                    <span>
-                      <a
-                        className="paginate_button paginate-number"
-                        aria-controls="assetBalances"
-                        data-dt-idx="1"
-                      >
-                        1
-                      </a>
-                    </span>
-                    <a className="paginate-button">
-                      <i className="fa fa-angle-right"></i>
-                    </a>
+                    {history?.length <= 0 && (
+                      <div className="no_data_table">
+                        No data available in table
+                      </div>
+                    )}
+                    <div
+                      className="pagination-wrapper"
+                      id="assetBalances_paginate"
+                    >
+                      <span>
+                        {stillHistory?.items?.links.map(
+                          (link: any, index: number) =>
+                            link.label === "&laquo; Previous" ? (
+                              <a
+                                className="paginate-button"
+                                onClick={() => {
+                                  if (link.url) LinkTopaginationString(link);
+                                }}
+                                key={index}
+                              >
+                                <i className="fa fa-angle-left"></i>
+                              </a>
+                            ) : link.label === "Next &raquo;" ? (
+                              <a
+                                className="paginate-button"
+                                onClick={() => LinkTopaginationString(link)}
+                                key={index}
+                              >
+                                <i className="fa fa-angle-right"></i>
+                              </a>
+                            ) : (
+                              <a
+                                className="paginate_button paginate-number"
+                                aria-controls="assetBalances"
+                                data-dt-idx="1"
+                                onClick={() => LinkTopaginationString(link)}
+                                key={index}
+                              >
+                                {link.label}
+                              </a>
+                            )
+                        )}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            )}
 
             {/* <div className="asset-balances-right">
               <div className="box-one single-box">

@@ -21,7 +21,7 @@ const DepositHistory: NextPage = () => {
     const number = url.split("=")[1];
     WithdrawAndDepositHistoryAction(
       type as string,
-      5,
+      10,
       parseInt(number),
       setHistory,
       setProcessing,
@@ -32,7 +32,7 @@ const DepositHistory: NextPage = () => {
     if (type === "deposit" || type === "withdrawal") {
       WithdrawAndDepositHistoryAction(
         type as string,
-        5,
+        10,
         1,
         setHistory,
         setProcessing,
@@ -96,7 +96,6 @@ const DepositHistory: NextPage = () => {
                                 );
                               }}
                             >
-                              <option value="5">5</option>
                               <option value="10">10</option>
                               <option value="25">25</option>
                               <option value="50">50</option>
@@ -107,7 +106,7 @@ const DepositHistory: NextPage = () => {
                         </div>
                         <div id="table_filter" className="dataTables_filter">
                           <label>
-                            Searchsss:
+                            Search:
                             <input
                               type="search"
                               name="search"
