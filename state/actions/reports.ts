@@ -2,9 +2,9 @@ import {
   WithdrawAndDepositHistoryApi,
   AllBuyOrdersHistoryApi,
   AllSellOrdersHistoryApi,
+  AllTransactionHistoryApi,
 } from "service/reports";
 import React, { Dispatch, SetStateAction } from "react";
-import * as JsSearch from "js-search";
 import FuzzySearch from "fuzzy-search";
 export const WithdrawAndDepositHistoryAction = async (
   type: string,
@@ -90,6 +90,11 @@ export const handleSearchItems = (
       "price",
       "base_coin",
       "trade_coin",
+      "transaction_id",
+      "last_price",
+      "price_order_type",
+      "total",
+      "time",
     ],
     {
       caseSensitive: false,
@@ -124,6 +129,20 @@ export const AllSellOrdersHistoryAction = async (
 ) => {
   setProcessing(true);
   const response = await AllSellOrdersHistoryApi(per_page, page);
+  setReport(response.data.items.data);
+  setStillHistory(response.data);
+  setProcessing(false);
+  return response;
+};
+export const AllTransactionHistoryAction = async (
+  per_page: number,
+  page: number,
+  setReport: React.Dispatch<SetStateAction<object>>,
+  setProcessing: React.Dispatch<SetStateAction<boolean>>,
+  setStillHistory: React.Dispatch<SetStateAction<boolean>>
+) => {
+  setProcessing(true);
+  const response = await AllTransactionHistoryApi(per_page, page);
   setReport(response.data.items.data);
   setStillHistory(response.data);
   setProcessing(false);

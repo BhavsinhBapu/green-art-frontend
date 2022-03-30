@@ -30,3 +30,12 @@ export const AllSellOrdersHistoryApi = async (
   );
   return data;
 };
+export const AllTransactionHistoryApi = async (
+  per_page: number,
+  page: number
+) => {
+  const { data } = await request.get(
+    `/all-transaction-history-app?per_page=${per_page}&page=${page}`
+  );
+  return data;
+};

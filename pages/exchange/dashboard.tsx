@@ -10,7 +10,10 @@ import ExchangeBox from "components/exchange/ExchangeBox";
 import OrderBook from "components/exchange/OrderBook";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "state/store";
-import { initialDashboardCallAction } from "state/actions/exchange";
+import {
+  initialDashboardCallAction,
+  initialDashboardCallActionWithToken,
+} from "state/actions/exchange";
 import Cookies from "js-cookie";
 const Dashboard: NextPage = () => {
   const dispatch = useDispatch();
@@ -21,6 +24,14 @@ const Dashboard: NextPage = () => {
   useEffect(() => {
     dispatch(initialDashboardCallAction(currentPair, dashboard));
   }, [isLoggedIn, currentPair]);
+  useEffect(() => {
+    if (
+      dashboard?.order_data?.base_coin_id &&
+      dashboard?.order_data?.trade_coin_id
+    ) {
+      dispatch(initialDashboardCallActionWithToken(currentPair, dashboard));
+    }
+  }, [dashboard?.order_data?.base_coin_id]);
   return (
     <div className="background-col">
       <DashboardNavbar />

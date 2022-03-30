@@ -29,7 +29,7 @@ import Router from "next/router";
 export const initialDashboardCallAction =
   (pair: string, dashboard: any) => async (dispatch: any) => {
     dispatch(setLoading(true));
-    const token = Cookies.get("token");
+
     const response = await appDashboardData(pair);
     dispatch(setDashboard(response));
     const BuyResponse = await openBookDashboard(
@@ -58,9 +58,46 @@ export const initialDashboardCallAction =
     dispatch(setOpenBooksell(SellResponse?.data?.orders));
     if (
       dashboard?.order_data?.base_coin_id &&
-      dashboard?.order_data?.trade_coin_id &&
-      token
+      dashboard?.order_data?.trade_coin_id
     ) {
+      const ordersHistoryResponse = await ordersHistoryDashboard(
+        dashboard?.order_data?.base_coin_id,
+        dashboard?.order_data?.trade_coin_id,
+        "dashboard",
+        "buy_sell"
+      );
+      dispatch(setOpenOrderHistory(ordersHistoryResponse?.data?.orders));
+      const sellOrderHistoryresponse = await ordersHistoryDashboard(
+        dashboard?.order_data?.base_coin_id,
+        dashboard?.order_data?.trade_coin_id,
+        "dashboard",
+        "sell"
+      );
+      dispatch(setSellOrderHistory(sellOrderHistoryresponse?.data?.orders));
+      const buyOrderHistoryresponse = await ordersHistoryDashboard(
+        dashboard?.order_data?.base_coin_id,
+        dashboard?.order_data?.trade_coin_id,
+        "dashboard",
+        "buy"
+      );
+      dispatch(setBuyOrderHistory(buyOrderHistoryresponse?.data?.orders));
+      const tradeOrderHistoryResponse = await tradesHistoryDashboard(
+        dashboard?.order_data?.base_coin_id,
+        dashboard?.order_data?.trade_coin_id,
+        "dashboard"
+      );
+      dispatch(
+        setTradeOrderHistory(tradeOrderHistoryResponse?.data?.transactions)
+      );
+    }
+    dispatch(setLoading(false));
+  };
+
+export const initialDashboardCallActionWithToken =
+  (pair: string, dashboard: any) => async (dispatch: any) => {
+    const token = Cookies.get("token");
+    dispatch(setLoading(true));
+    if (token) {
       const ordersHistoryResponse = await ordersHistoryDashboard(
         dashboard?.order_data?.base_coin_id,
         dashboard?.order_data?.trade_coin_id,
