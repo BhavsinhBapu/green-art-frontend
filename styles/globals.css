@@ -5478,6 +5478,7 @@ table.dataTable tbody tr td {
   border-radius: 0;
   font-size: 16px;
   color: #23262f;
+  background-color: transparent;
 }
 .swap-area .form-group .swap-input-wrap .cp-select-area {
   width: 150px;

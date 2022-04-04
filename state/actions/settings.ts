@@ -31,12 +31,13 @@ export const UserSettingsAction = async (
 export const Google2faLoginAction = async () => {
   const setup = await Google2faLoginApi();
   if (setup.success) {
+    console.log(setup);
     toast.success(setup.message);
   } else {
     toast.error(setup.message);
   }
 
-  return setup.data;
+  return setup;
 };
 
 export const SetupLanguageAction = async (

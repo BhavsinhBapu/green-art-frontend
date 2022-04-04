@@ -106,8 +106,12 @@ const Settings: NextPage = () => {
                                     ? true
                                     : false
                                 }
-                                onClick={(e) => {
-                                  Google2faLoginAction();
+                                onClick={async (e) => {
+                                  const settings = await Google2faLoginAction();
+                                  setSettings({
+                                    ...settings,
+                                    user: settings,
+                                  });
                                 }}
                               />
                               <span className="slider round" />
@@ -150,7 +154,6 @@ const Settings: NextPage = () => {
                                   {languageList?.map(
                                     (language: any, index: any) => (
                                       <option
-                                        value={language?.key}
                                         key={index}
                                         selected={
                                           settings?.user?.language ===

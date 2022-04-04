@@ -2,20 +2,75 @@ import type { GetServerSideProps, NextPage } from "next";
 import * as React from "react";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import SwapCoinSidebar from "layout/swap-coin-sidebar";
-import { getUserCoinForSwapAction } from "state/actions/swap";
+import { getUserCoinForSwapAction, getRateAction } from "state/actions/swap";
 const SwapCoin: NextPage = () => {
   const [walletLists, setWalletLists] = React.useState<any>([]);
+  let tempfromSelected;
+  let temptoSelected;
   const [fromSelected, setFromSelected] = React.useState<any>({
     amount: 0,
+    selected: null,
     coin_id: null,
   });
   const [toSelected, setToSelected] = React.useState<any>({
     amount: 0,
+    selected: null,
     coin_id: null,
   });
+  const [rate, setRate] = React.useState<any>({
+    wallet_rate: 0,
+    convert_rate: 0,
+    rate: 0,
+  });
+  const swapSelected = async () => {
+    tempfromSelected = await { ...fromSelected };
+    temptoSelected = await { ...toSelected };
+    let midvar;
+    await setFromSelected(temptoSelected);
+    await setToSelected(tempfromSelected);
+    setRate({
+      ...rate,
+      convert_rate: 0,
+    });
+    midvar = temptoSelected;
+    temptoSelected = tempfromSelected;
+    tempfromSelected = midvar;
+  };
+  const convertCoin = async (amount: any) => {
+    const convert_rate = await getRateAction(
+      fromSelected.coin_id,
+      toSelected.coin_id,
+      amount,
+      setRate
+    );
+    setToSelected({
+      ...toSelected,
+      amount: convert_rate,
+    });
+  };
+
   React.useEffect(() => {
     getUserCoinForSwapAction(setWalletLists);
   }, []);
+  React.useEffect(() => {
+    setToSelected({
+      ...toSelected,
+      amount: rate.convert_rate,
+    });
+  }, [rate]);
+  React.useEffect(() => {
+    setFromSelected({
+      amount: 1,
+      selected: "BTC",
+      coin_id: 21,
+    });
+    setToSelected({
+      amount: 0,
+      selected: "USDT",
+      coin_id: 22,
+    });
+    convertCoin(1);
+  }, [walletLists]);
   return (
     <div className="page-wrap">
       <SwapCoinSidebar />
@@ -48,15 +103,40 @@ const SwapCoin: NextPage = () => {
                               id="amount-one"
                               value={fromSelected ? fromSelected.amount : ""}
                               placeholder="Please enter 10 -2400000"
+                              onChange={(e) => {
+                                setFromSelected({
+                                  ...fromSelected,
+                                  amount: e.target.value,
+                                });
+                                convertCoin(e.target.value);
+                              }}
                             />
                           </div>
                           <div className="cp-select-area">
                             <select
                               className=" form-control "
                               id="currency-one"
+                              onChange={(e) => {
+                                setFromSelected({
+                                  ...fromSelected,
+
+                                  coin_id: e.target.value,
+                                });
+                              }}
                             >
-                              {walletLists.map((item: any) => (
-                                <option value={item.id} key={item.id}>
+                              <option value="" selected disabled hidden>
+                                {fromSelected.selected
+                                  ? fromSelected.selected
+                                  : "Select"}
+                              </option>
+                              {walletLists?.map((item: any, index: number) => (
+                                <option
+                                  key={index}
+                                  value={item.id}
+                                  selected={
+                                    fromSelected.coin_id === item.id.toString()
+                                  }
+                                >
                                   {item.coin_type}
                                 </option>
                               ))}
@@ -69,11 +149,14 @@ const SwapCoin: NextPage = () => {
                       <button
                         id="swap"
                         className="swap-button"
-                        onClick={() => {
-                          // swap from to
-                          const form = fromSelected;
-                          setFromSelected(toSelected);
-                          setToSelected(form);
+                        onClick={async () => {
+                          await swapSelected();
+                          await getRateAction(
+                            toSelected.coin_id,
+                            fromSelected.coin_id,
+                            toSelected.amount,
+                            setRate
+                          );
                         }}
                       >
                         <i className="fa fa-refresh" />
@@ -90,19 +173,34 @@ const SwapCoin: NextPage = () => {
                               type="text"
                               className="form-control"
                               id="amount-two"
-                              value={toSelected ? toSelected.amount : ""}
+                              value={toSelected.amount}
                               placeholder="Please enter 0 - 65"
                               disabled
                             />
                           </div>
                           <div className="cp-select-area">
-                            <select className="form-control" id="currency-two">
-                              {walletLists.map((item: any) => (
+                            <select
+                              className="form-control"
+                              id="currency-two"
+                              onChange={(e) => {
+                                setToSelected({
+                                  ...toSelected,
+                                  coin_id: e.target.value,
+                                });
+                              }}
+                            >
+                              <option value="" selected disabled hidden>
+                                {toSelected.selected
+                                  ? toSelected.selected
+                                  : "Select"}
+                              </option>
+                              {walletLists?.map((item: any, index: number) => (
                                 <option
+                                  key={index}
                                   value={item.id}
-                                  key={item.id}
-                                  onClick={() => setToSelected(item)}
-                                  selected={toSelected === item}
+                                  selected={
+                                    toSelected.coin_id === item.id.toString()
+                                  }
                                 >
                                   {item.coin_type}
                                 </option>
@@ -117,11 +215,13 @@ const SwapCoin: NextPage = () => {
                     <ul>
                       <li>
                         <span>Price</span>
-                        <span id="rate">1 USD = 0.907 EUR</span>
+                        <span id="rate">
+                          1 USD = {rate.rate ? rate.rate : "0"} EUR
+                        </span>
                       </li>
                       <li>
                         <span>You will spend</span>
-                        <span className="spend">2544960 USDT</span>
+                        <span className="spend">{rate.convert_rate} USDT</span>
                       </li>
                     </ul>
                     <div className="message-box">

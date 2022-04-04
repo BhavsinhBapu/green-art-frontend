@@ -53,14 +53,14 @@ const NidModal = ({ type, kycDetails }: any) => {
   };
   const loadCard = () => {
     if (type === "nid") {
-      setExistingKyc(kycDetails.nid);
-      console.log(kycDetails.nid, "kycDetails.nid");
+      setExistingKyc(kycDetails?.nid);
+      console.log(kycDetails?.nid, "kycDetails.nid");
     } else if (type === "driving-licence") {
-      setExistingKyc(kycDetails.driving);
-      console.log(kycDetails.driving, "kycDetails.driving");
+      setExistingKyc(kycDetails?.driving);
+      console.log(kycDetails?.driving, "kycDetails.driving");
     } else if (type === "passport") {
-      setExistingKyc(kycDetails.passport);
-      console.log(kycDetails.passport, "kycDetails.passport");
+      setExistingKyc(kycDetails?.passport);
+      console.log(kycDetails?.passport, "kycDetails.passport");
     }
   };
   useEffect(() => {
