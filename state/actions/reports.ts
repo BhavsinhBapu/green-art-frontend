@@ -3,6 +3,7 @@ import {
   AllBuyOrdersHistoryApi,
   AllSellOrdersHistoryApi,
   AllTransactionHistoryApi,
+  CoinConvertHistoryApi,
 } from "service/reports";
 import React, { Dispatch, SetStateAction } from "react";
 import FuzzySearch from "fuzzy-search";
@@ -61,6 +62,41 @@ export const handleSearch = (
   const result = searcher.search(e.target.value);
   setHistory(result);
 };
+
+export const handleSwapHistorySearch = (
+  e: React.ChangeEvent<HTMLInputElement>,
+  setSearch: Dispatch<any>,
+  json: any,
+  setHistory: React.Dispatch<SetStateAction<object>>
+) => {
+  e.preventDefault();
+  setSearch(e.target.value);
+  if (!e.target.value) {
+    setHistory(json.list.data);
+    return;
+  }
+  const searcher = new FuzzySearch(
+    json.list.data,
+    [
+      "converted_amount",
+      "created_at",
+      "fromWallet",
+      "from_coin_type",
+      "from_wallet.name",
+      "to_wallet.coin_type",
+      "requested_amount",
+      "converted_amount",
+      "rate",
+    ],
+    {
+      caseSensitive: false,
+      sort: true,
+    }
+  );
+  const result = searcher.search(e.target.value);
+  setHistory(result);
+};
+
 export const handleSearchItems = (
   e: React.ChangeEvent<HTMLInputElement>,
   setSearch: Dispatch<any>,
@@ -144,6 +180,22 @@ export const AllTransactionHistoryAction = async (
   setProcessing(true);
   const response = await AllTransactionHistoryApi(per_page, page);
   setReport(response.data.items.data);
+  setStillHistory(response.data);
+  setProcessing(false);
+  return response;
+};
+
+export const CoinConvertHistoryAction = async (
+  per_page: number,
+  page: number,
+  setReport: React.Dispatch<SetStateAction<object>>,
+  setProcessing: React.Dispatch<SetStateAction<boolean>>,
+  setStillHistory: React.Dispatch<SetStateAction<boolean>>
+) => {
+  setProcessing(true);
+  const response = await CoinConvertHistoryApi(per_page, page);
+  console.log(response.data.list.data, "response");
+  setReport(response.data.list.data);
   setStillHistory(response.data);
   setProcessing(false);
   return response;
