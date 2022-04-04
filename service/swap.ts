@@ -15,3 +15,16 @@ export const getRate = async (
   );
   return data;
 };
+// swap - coin - app;
+export const swapCoin = async (
+  from_coin_id: number,
+  to_coin_id: number,
+  amount: number
+) => {
+  const { data } = await request.post(`/swap-coin-app`, {
+    from_coin_id,
+    to_coin_id,
+    amount,
+  });
+  return data;
+};

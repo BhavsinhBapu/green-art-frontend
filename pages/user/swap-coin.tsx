@@ -2,8 +2,16 @@ import type { GetServerSideProps, NextPage } from "next";
 import * as React from "react";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import SwapCoinSidebar from "layout/swap-coin-sidebar";
-import { getUserCoinForSwapAction, getRateAction } from "state/actions/swap";
+import {
+  getUserCoinForSwapAction,
+  getRateAction,
+  swapCoinAction,
+} from "state/actions/swap";
+import { setLoading } from "state/reducer/user";
+import { useDispatch } from "react-redux";
 const SwapCoin: NextPage = () => {
+  const dispatch = useDispatch();
+  const [loading, setLoading] = React.useState(false);
   const [walletLists, setWalletLists] = React.useState<any>([]);
   let tempfromSelected;
   let temptoSelected;
@@ -21,6 +29,8 @@ const SwapCoin: NextPage = () => {
     wallet_rate: 0,
     convert_rate: 0,
     rate: 0,
+    from_wallet: null,
+    to_wallet: null,
   });
   const swapSelected = async () => {
     tempfromSelected = await { ...fromSelected };
@@ -36,13 +46,8 @@ const SwapCoin: NextPage = () => {
     temptoSelected = tempfromSelected;
     tempfromSelected = midvar;
   };
-  const convertCoin = async (amount: any) => {
-    const convert_rate = await getRateAction(
-      fromSelected.coin_id,
-      toSelected.coin_id,
-      amount,
-      setRate
-    );
+  const convertCoin = async (amount: any, from_id: any, to_id: any) => {
+    const convert_rate = await getRateAction(from_id, to_id, amount, setRate);
     setToSelected({
       ...toSelected,
       amount: convert_rate,
@@ -61,16 +66,17 @@ const SwapCoin: NextPage = () => {
   React.useEffect(() => {
     setFromSelected({
       amount: 1,
-      selected: "BTC",
-      coin_id: 21,
+      selected: walletLists[0]?.coin_type,
+      coin_id: walletLists[0]?.id,
     });
     setToSelected({
       amount: 0,
-      selected: "USDT",
-      coin_id: 22,
+      selected: walletLists[1]?.coin_type,
+      coin_id: walletLists[1]?.id,
     });
-    convertCoin(1);
-  }, [walletLists]);
+
+    convertCoin(1, walletLists[0]?.id, walletLists[1]?.id);
+  }, [walletLists[0]?.id]);
   return (
     <div className="page-wrap">
       <SwapCoinSidebar />
@@ -108,7 +114,11 @@ const SwapCoin: NextPage = () => {
                                   ...fromSelected,
                                   amount: e.target.value,
                                 });
-                                convertCoin(e.target.value);
+                                convertCoin(
+                                  e.target.value,
+                                  fromSelected.coin_id,
+                                  toSelected.coin_id
+                                );
                               }}
                             />
                           </div>
@@ -116,10 +126,10 @@ const SwapCoin: NextPage = () => {
                             <select
                               className=" form-control "
                               id="currency-one"
-                              onChange={(e) => {
+                              onChange={(e: any) => {
+                                console.log(e, "e.target.value");
                                 setFromSelected({
                                   ...fromSelected,
-
                                   coin_id: e.target.value,
                                 });
                               }}
@@ -150,6 +160,7 @@ const SwapCoin: NextPage = () => {
                         id="swap"
                         className="swap-button"
                         onClick={async () => {
+                          dispatch(setLoading(true));
                           await swapSelected();
                           await getRateAction(
                             toSelected.coin_id,
@@ -157,6 +168,7 @@ const SwapCoin: NextPage = () => {
                             toSelected.amount,
                             setRate
                           );
+                          dispatch(setLoading(false));
                         }}
                       >
                         <i className="fa fa-refresh" />
@@ -216,21 +228,55 @@ const SwapCoin: NextPage = () => {
                       <li>
                         <span>Price</span>
                         <span id="rate">
-                          1 USD = {rate.rate ? rate.rate : "0"} EUR
+                          1 {rate.from_wallet} = {rate.rate ? rate.rate : "0"}{" "}
+                          {rate.to_wallet}
                         </span>
                       </li>
                       <li>
                         <span>You will spend</span>
-                        <span className="spend">{rate.convert_rate} USDT</span>
+                        <span className="spend">
+                          {rate.convert_rate} {rate.to_wallet}
+                        </span>
                       </li>
                     </ul>
-                    <div className="message-box">
-                      <p>Insufficient balance. Please fund your account.</p>
-                    </div>
+                    {/* {error.status && (
+                      <div className="message-box">
+                        <p>{error.message}</p>
+                      </div>
+                    )} */}
                   </div>
                   <div className="swap-area-bottom">
                     <button className="primary-btn-outline">Refresh</button>
-                    <button className="primary-btn-outline">convart</button>
+                    <button
+                      className="primary-btn-outline"
+                      disabled={
+                        !fromSelected.amount ||
+                        !fromSelected.coin_id ||
+                        !toSelected.amount ||
+                        !toSelected.coin_id
+                      }
+                      onClick={() => {
+                        swapCoinAction(
+                          fromSelected.amount,
+                          fromSelected.coin_id,
+                          toSelected.coin_id,
+                          setLoading
+                        );
+                      }}
+                    >
+                      {loading ? (
+                        <>
+                          <span
+                            className="spinner-border spinner-border-sm"
+                            role="status"
+                            aria-hidden="true"
+                          ></span>
+                          <span>Please wait</span>
+                        </>
+                      ) : (
+                        "convart"
+                      )}
+                    </button>
                   </div>
                 </div>
               </div>
