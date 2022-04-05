@@ -23,7 +23,7 @@ export const buyLimitApp = async (
   });
   return data;
 };
-// buy - market - app;
+
 export const buyMarketApp = async (
   amount: number,
   price: number,
@@ -38,7 +38,7 @@ export const buyMarketApp = async (
   });
   return data;
 };
-// buy - stop - limit - app;
+
 export const buyStopLimitApp = async (
   amount: number,
   limit: number,
@@ -56,7 +56,7 @@ export const buyStopLimitApp = async (
   });
   return data;
 };
-// sell - limit - app;
+
 export const sellLimitApp = async (
   amount: number,
   price: number,
@@ -92,7 +92,7 @@ export const sellStopLimitApp = async (
   trade_coin_id: string,
   base_coin_id: string
 ) => {
-  const { data } = await request.post(`/buy-stop-limit-app`, {
+  const { data } = await request.post(`/sell-stop-limit-app`, {
     amount,
     limit,
     stop,
@@ -101,7 +101,7 @@ export const sellStopLimitApp = async (
   });
   return data;
 };
-// get-my-all-orders-app?base_coin_id=2&trade_coin_id=1&dashboard_type=dashboard&order_type=buy_sell
+
 export const ordersHistoryDashboard = async (
   base_coin_id: string,
   trade_coin_id: string,
@@ -113,7 +113,7 @@ export const ordersHistoryDashboard = async (
   );
   return data;
 };
-// get-my-trades-app?base_coin_id=1&trade_coin_id=2&dashboard_type=dashboard
+
 export const tradesHistoryDashboard = async (
   base_coin_id: string,
   trade_coin_id: string,
@@ -124,7 +124,7 @@ export const tradesHistoryDashboard = async (
   );
   return data;
 };
-// get-exchange-all-orders-app?per_page=9&dashboard_type=dashboard&order_type=buy&base_coin_id=1&trade_coin_id=2
+
 export const openBookDashboard = async (
   base_coin_id: string,
   trade_coin_id: string,
@@ -134,6 +134,18 @@ export const openBookDashboard = async (
 ) => {
   const { data } = await request.get(
     `/get-exchange-all-orders-app?per_page=${per_page}&dashboard_type=${dashboard_type}&order_type=${order_type}&base_coin_id=${base_coin_id}&trade_coin_id=${trade_coin_id}`
+  );
+  return data;
+};
+// get-exchange-market-trades-app
+export const marketTradesDashboard = async (
+  base_coin_id: string,
+  trade_coin_id: string,
+  dashboard_type: string,
+  per_page: number
+) => {
+  const { data } = await request.get(
+    `/get-exchange-market-trades-app?per_page=${per_page}&dashboard_type=${dashboard_type}&base_coin_id=${base_coin_id}&trade_coin_id=${trade_coin_id}`
   );
   return data;
 };

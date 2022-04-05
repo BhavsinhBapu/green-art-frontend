@@ -4,8 +4,12 @@ import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
 import Link from "next/link";
+import { UserSettingsAction } from "state/actions/settings";
+import { useEffect, useState } from "react";
 const Security: NextPage = () => {
   const { user } = useSelector((state: RootState) => state.user);
+  const [languageList, setLanguageList] = useState<any>([]);
+  const [settings, setSettings] = useState<any>();
   const makeEmailSecure = (email: string) => {
     const [first, ...rest] = email.split("@");
     return first[0] + "*****" + "@" + rest.join("@");
@@ -14,6 +18,14 @@ const Security: NextPage = () => {
     const middleNumbers = phoneNumber.slice(2, 9);
     return phoneNumber.replace(middleNumbers, "*******");
   };
+  useEffect(() => {
+    UserSettingsAction(setSettings, setLanguageList);
+    console.log(settings);
+    return () => {
+      setSettings(null);
+      setLanguageList([]);
+    };
+  }, []);
   return (
     <div className="page-wrap">
       <ProfileSidebar />
@@ -45,15 +57,27 @@ const Security: NextPage = () => {
                     </div>
                   </div>
                   <div className="security-right">
-                    <a href="#" className="action-btn remove-btn">
-                      Disabled
-                    </a>
-                    <a
-                      href="http://localhost:8000/user/setting"
-                      className="action-btn enable-btn"
-                    >
-                      Enable ?
-                    </a>
+                    {settings?.user?.google2fa === 0 ? (
+                      <a href="#" className="action-btn remove-btn">
+                        Disabled
+                      </a>
+                    ) : (
+                      <a href="#" className="action-btn change-btn">
+                        Enabled
+                      </a>
+                    )}
+
+                    {settings?.user?.google2fa === 0 ? (
+                      <Link href="/user/settings">
+                        <a className="action-btn enable-btn">Enable?</a>
+                      </Link>
+                    ) : (
+                      <Link href="/user/settings">
+                        <a href="" className="action-btn remove-btn">
+                          Remove ?
+                        </a>
+                      </Link>
+                    )}
                   </div>
                 </div>
                 <div className="single-security">
@@ -78,12 +102,20 @@ const Security: NextPage = () => {
                     )}
                   </div>
                   <div className="security-right">
-                    <a href="#" className="action-btn remove-btn">
-                      Unverified
-                    </a>
-                    <Link href="/user/phone-verification">
-                      <a className="action-btn enable-btn">Verify ?</a>
-                    </Link>
+                    {user.phone_verified === 0 ? (
+                      <a className="action-btn remove-btn">Unverified</a>
+                    ) : (
+                      <a className="action-btn change-btn">Verified</a>
+                    )}
+                    {user.phone_verified === 0 ? (
+                      <Link href="/user/phone-verification">
+                        <a className="action-btn enable-btn">Verify?</a>
+                      </Link>
+                    ) : (
+                      <a href="" className="action-btn remove-btn">
+                        Verified
+                      </a>
+                    )}
                   </div>
                 </div>
                 <div className="single-security">

@@ -92,11 +92,7 @@ const Settings: NextPage = () => {
                             authentication at log In.
                           </p>
                           <form>
-                            <input
-                              type="hidden"
-                              name="_token"
-                              defaultValue="UHxumztviDLlLBs3t8g3IMcfQsz9pSMy9wObVejT"
-                            />
+                            <input type="hidden" name="" defaultValue="" />
                             <label className="switch">
                               <input
                                 type="checkbox"
@@ -109,7 +105,6 @@ const Settings: NextPage = () => {
                                 onClick={async (e) => {
                                   const settings = await Google2faLoginAction();
                                   setSettings({
-                                    ...settings,
                                     user: settings,
                                   });
                                 }}

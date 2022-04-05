@@ -9,6 +9,7 @@ import {
   sellMarketApp,
   sellStopLimitApp,
   tradesHistoryDashboard,
+  marketTradesDashboard,
 } from "service/exchange";
 import {
   setDashboard,

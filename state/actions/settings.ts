@@ -37,7 +37,7 @@ export const Google2faLoginAction = async () => {
     toast.error(setup.message);
   }
 
-  return setup;
+  return setup.data;
 };
 
 export const SetupLanguageAction = async (

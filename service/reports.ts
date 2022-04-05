@@ -39,7 +39,6 @@ export const AllTransactionHistoryApi = async (
   );
   return data;
 };
-// coin-convert-history-app
 export const CoinConvertHistoryApi = async (per_page: number, page: number) => {
   const { data } = await request.get(
     `/coin-convert-history-app?per_page=${per_page}&page=${page}`
