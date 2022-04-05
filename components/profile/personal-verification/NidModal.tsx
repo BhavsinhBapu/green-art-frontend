@@ -32,8 +32,6 @@ const NidModal = ({ type, kycDetails }: any) => {
     side === 1
       ? setUploadFiles({ ...uploadFiles, frontSide: e.target.files[0] })
       : setUploadFiles({ ...uploadFiles, backSide: e.target.files[0] });
-
-    console.log(url, "url");
   };
   const uploadImage = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -54,13 +52,10 @@ const NidModal = ({ type, kycDetails }: any) => {
   const loadCard = () => {
     if (type === "nid") {
       setExistingKyc(kycDetails?.nid);
-      console.log(kycDetails?.nid, "kycDetails.nid");
     } else if (type === "driving-licence") {
       setExistingKyc(kycDetails?.driving);
-      console.log(kycDetails?.driving, "kycDetails.driving");
     } else if (type === "passport") {
       setExistingKyc(kycDetails?.passport);
-      console.log(kycDetails?.passport, "kycDetails.passport");
     }
   };
   useEffect(() => {
@@ -109,12 +104,7 @@ const NidModal = ({ type, kycDetails }: any) => {
                   </div>
                   <div className="col-lg-6 mb-lg-0 mb-4">
                     <div className="idcard">
-                      <h3
-                        className="title"
-                        onClick={() => {
-                          console.log(kycDetails?.status, "type");
-                        }}
-                      >
+                      <h3 className="title" onClick={() => {}}>
                         Front Side
                       </h3>
                       <div className="container cstm-img-picker">

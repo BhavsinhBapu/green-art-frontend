@@ -138,7 +138,6 @@ const SwapCoin: NextPage = ({
                               className=" form-control "
                               id="currency-one"
                               onChange={(e: any) => {
-                                console.log(e, "e.target.value");
                                 setFromSelected({
                                   ...fromSelected,
                                   coin_id: e.target.value,

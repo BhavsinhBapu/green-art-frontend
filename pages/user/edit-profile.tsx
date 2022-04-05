@@ -80,7 +80,6 @@ const Edit: NextPage = () => {
                       phone: user?.phone,
                     }}
                     onSubmit={async (values) => {
-                      console.log(values, "submitted");
                       dispatch(UpdateUserInfoByTokenAction(values));
                     }}
                   >

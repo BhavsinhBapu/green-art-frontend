@@ -1,4 +1,3 @@
-import { setLoading } from "state/reducer/user";
 import { toast } from "react-toastify";
 import { getUserCoinForSwap, getRate, swapCoin } from "service/swap";
 import { parseCookies } from "nookies";
@@ -9,8 +8,6 @@ export const getUserCoinForSwapAction = async (
 ) => {
   const cookies = parseCookies(ctx);
   const { data } = await getUserCoinForSwap(cookies.token);
-  console.log(data.wallets, "wallets");
-
   return data.wallets;
 };
 export const getRateAction = async (

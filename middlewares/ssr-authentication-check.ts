@@ -2,7 +2,6 @@ import { parseCookies } from "nookies";
 import { GetUserInfoByTokenServer } from "service/user";
 
 export const SSRAuthCheck = async (ctx: any, redirect: string) => {
-  console.log(ctx.resolvedUrl, "ctx.pathname");
   const cookies = parseCookies(ctx);
   if (cookies.token) {
     ctx.token = cookies.token;

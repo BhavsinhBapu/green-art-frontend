@@ -20,7 +20,6 @@ export const WithdrawAndDepositHistoryAction = async (
   setReport(response.data.histories.data);
   // sortArray(response.data.histories.data, "id", "asc");
   setStillHistory(response.data);
-  console.log(response, "response");
   setProcessing(false);
   return response;
 };
@@ -194,7 +193,6 @@ export const CoinConvertHistoryAction = async (
 ) => {
   setProcessing(true);
   const response = await CoinConvertHistoryApi(per_page, page);
-  console.log(response.data.list.data, "response");
   setReport(response.data.list.data);
   setStillHistory(response.data);
   setProcessing(false);

@@ -14,7 +14,6 @@ const SwapHistory: NextPage = () => {
   const [history, setHistory] = React.useState<any>([]);
   const [stillHistory, setStillHistory] = React.useState<any>([]);
   const LinkTopaginationString = (page: any) => {
-    console.log(page.url);
     const url = page.url.split("?")[1];
     const number = url.split("=")[1];
     CoinConvertHistoryAction(

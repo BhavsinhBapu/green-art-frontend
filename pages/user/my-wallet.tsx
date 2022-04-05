@@ -48,12 +48,10 @@ const MyWallet: NextPage = () => {
   const getWalletLists = async (url: string) => {
     const response: any = await WalletListApiAction(url, setProcessing);
     setWalletList(response);
-    console.log(response?.data, "responsesssssssssssssssss");
     setChangeable(response.data);
   };
   const ResizeChangebleArrayBySize = (size: number) => {
     let newArray = walletList?.data?.slice(0, size);
-    console.log(size);
     setChangeable(newArray);
   };
   const LinkTopaginationString = async (link: any) => {
@@ -93,7 +91,6 @@ const MyWallet: NextPage = () => {
           deposit: response.wallet,
           address: response.address ? response.address : null,
         });
-        console.log(response.wallet, "deposit");
         setShow({
           deposit: true,
         });

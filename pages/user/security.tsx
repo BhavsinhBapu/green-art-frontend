@@ -20,7 +20,6 @@ const Security: NextPage = () => {
   };
   useEffect(() => {
     UserSettingsAction(setSettings, setLanguageList);
-    console.log(settings);
     return () => {
       setSettings(null);
       setLanguageList([]);

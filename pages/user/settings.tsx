@@ -18,7 +18,6 @@ const Settings: NextPage = () => {
 
   useEffect(() => {
     UserSettingsAction(setSettings, setLanguageList);
-    console.log(settings);
     return () => {
       setSettings(null);
       setLanguageList([]);

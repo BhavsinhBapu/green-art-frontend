@@ -17,7 +17,6 @@ const BuyOrderHistory: NextPage = () => {
   const [history, setHistory] = useState<any>([]);
   const [stillHistory, setStillHistory] = useState<any>([]);
   const LinkTopaginationString = (page: any) => {
-    console.log(page.url);
     const url = page.url.split("?")[1];
     const number = url.split("=")[1];
     AllBuyOrdersHistoryAction(

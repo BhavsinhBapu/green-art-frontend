@@ -24,7 +24,7 @@ export const sortArray = (
       return b[key] - a[key];
     });
   }
-  console.log(newArr, "newArr");
+
   setArray(newArr);
   return newArr;
 };
