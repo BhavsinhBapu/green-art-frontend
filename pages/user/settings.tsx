@@ -1,7 +1,7 @@
 import type { GetServerSideProps, NextPage } from "next";
-import ProfileSidebar from "layout/profile-sidebar";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { useEffect, useState } from "react";
+import { setLoading } from "state/reducer/user";
 import {
   UserSettingsAction,
   SetupGoogle2faAction,
@@ -9,15 +9,18 @@ import {
   Google2faLoginAction,
 } from "state/actions/settings";
 import GoogleAuthModal from "components/settings/GoogleAuthModal";
+import { useDispatch } from "react-redux";
 
 const Settings: NextPage = () => {
+  const dispatch = useDispatch();
   const [settings, setSettings] = useState<any>();
   const [languageList, setLanguageList] = useState<any>([]);
   const [languageUpdate, setLanguageUpdate] = useState<string>("");
   const [code, setCode] = useState<number>();
 
   useEffect(() => {
-    UserSettingsAction(setSettings, setLanguageList);
+    dispatch(UserSettingsAction(setSettings, setLanguageList));
+
     return () => {
       setSettings(null);
       setLanguageList([]);
@@ -96,12 +99,17 @@ const Settings: NextPage = () => {
                               <input
                                 type="checkbox"
                                 name="google_login_enable"
+                                // defaultChecked={
+                                //   settings?.user?.g2f_enabled === "1"
+                                //     ? true
+                                //     : false
+                                // }
                                 checked={
                                   settings?.user?.g2f_enabled === "1"
                                     ? true
                                     : false
                                 }
-                                onClick={async (e) => {
+                                onChange={async (e) => {
                                   const settings = await Google2faLoginAction();
                                   setSettings({
                                     user: settings,
@@ -149,9 +157,13 @@ const Settings: NextPage = () => {
                                     (language: any, index: any) => (
                                       <option
                                         key={index}
-                                        selected={
+                                        // selected={
+                                        //   settings?.user?.language ===
+                                        //   language.lang
+                                        // }
+                                        defaultChecked={
                                           settings?.user?.language ===
-                                          language?.key
+                                          language.lang
                                         }
                                       >
                                         {language.lang}
@@ -178,6 +190,7 @@ const Settings: NextPage = () => {
                               </button>
                             </div>
                           </form>
+                          <small>{JSON.stringify(settings)}</small>
                         </div>
                       </div>
                     </div>
