@@ -9,10 +9,18 @@ import {
 } from "state/actions/swap";
 import { setLoading } from "state/reducer/user";
 import { useDispatch } from "react-redux";
-const SwapCoin: NextPage = () => {
+import { parseCookies } from "nookies";
+import { getRateSsr } from "service/swap";
+const SwapCoin: NextPage = ({
+  walletLists,
+  wallet_rate,
+  convert_rate,
+  ssrRate,
+  from_wallet,
+  to_wallet,
+}: any) => {
   const dispatch = useDispatch();
   const [loading, setLoading] = React.useState(false);
-  const [walletLists, setWalletLists] = React.useState<any>([]);
   let tempfromSelected;
   let temptoSelected;
   const [fromSelected, setFromSelected] = React.useState<any>({
@@ -55,9 +63,6 @@ const SwapCoin: NextPage = () => {
   };
 
   React.useEffect(() => {
-    getUserCoinForSwapAction(setWalletLists);
-  }, []);
-  React.useEffect(() => {
     setToSelected({
       ...toSelected,
       amount: rate.convert_rate,
@@ -70,13 +75,19 @@ const SwapCoin: NextPage = () => {
       coin_id: walletLists[0]?.id,
     });
     setToSelected({
-      amount: 0,
+      amount: wallet_rate,
       selected: walletLists[1]?.coin_type,
       coin_id: walletLists[1]?.id,
     });
-
-    convertCoin(1, walletLists[0]?.id, walletLists[1]?.id);
-  }, [walletLists[0]?.id]);
+    setRate({
+      wallet_rate: wallet_rate,
+      convert_rate: convert_rate,
+      rate: ssrRate,
+      from_wallet: from_wallet,
+      to_wallet: to_wallet,
+    });
+    // convertCoin(1, walletLists[0]?.id, walletLists[1]?.id);
+  }, []);
   return (
     <div className="page-wrap">
       <SwapCoinSidebar />
@@ -160,7 +171,6 @@ const SwapCoin: NextPage = () => {
                         id="swap"
                         className="swap-button"
                         onClick={async () => {
-                          dispatch(setLoading(true));
                           await swapSelected();
                           await getRateAction(
                             toSelected.coin_id,
@@ -168,7 +178,6 @@ const SwapCoin: NextPage = () => {
                             toSelected.amount,
                             setRate
                           );
-                          dispatch(setLoading(false));
                         }}
                       >
                         <i className="fa fa-refresh" />
@@ -289,8 +298,25 @@ const SwapCoin: NextPage = () => {
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/user/swap-history");
+  const cookies = parseCookies(ctx);
+  const walletLists = await getUserCoinForSwapAction(null, ctx);
+  const data = await getRateSsr(
+    walletLists[0].id,
+    walletLists[1].id,
+    1,
+    cookies.token
+  );
+  const { wallet_rate, convert_rate, rate, from_wallet, to_wallet } = data;
   return {
-    props: {},
+    props: {
+      walletLists,
+      convert_rate,
+      ssrRate: rate,
+      from_wallet: from_wallet.coin_type,
+      to_wallet: to_wallet.coin_type,
+
+      wallet_rate,
+    },
   };
 };
 

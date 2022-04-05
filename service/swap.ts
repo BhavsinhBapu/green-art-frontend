@@ -1,7 +1,11 @@
 import request from "lib/request";
 
-export const getUserCoinForSwap = async () => {
-  const { data } = await request.get(`/coin-swap-app`);
+export const getUserCoinForSwap = async (ctxCookie: string) => {
+  const { data } = await request.get(`/coin-swap-app`, {
+    headers: {
+      Authorization: `Bearer ${ctxCookie}`,
+    },
+  });
   return data;
 };
 // get-rate-app?from_coin_id=21&to_coin_id=22&amount=5
@@ -12,6 +16,22 @@ export const getRate = async (
 ) => {
   const { data } = await request.get(
     `/get-rate-app?from_coin_id=${from_coin_id}&to_coin_id=${to_coin_id}&amount=${amount}`
+  );
+  return data;
+};
+export const getRateSsr = async (
+  from_coin_id: number,
+  to_coin_id: number,
+  amount: number,
+  ctxCookie: string
+) => {
+  const { data } = await request.get(
+    `/get-rate-app?from_coin_id=${from_coin_id}&to_coin_id=${to_coin_id}&amount=${amount}`,
+    {
+      headers: {
+        Authorization: `Bearer ${ctxCookie}`,
+      },
+    }
   );
   return data;
 };
