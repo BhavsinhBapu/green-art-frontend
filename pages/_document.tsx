@@ -17,6 +17,7 @@ export default function Document() {
           crossOrigin="anonymous"
           referrerPolicy="no-referrer"
         />
+        <script src="/static/datafeeds/udf/dist/bundle.js" />
       </Head>
       <body>
         <Main />

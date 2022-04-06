@@ -24,33 +24,36 @@ const DashboardNavbar = () => {
           <div className="col-xl-8 col-lg-8 d-none d-lg-block">
             <nav className="main-menu">
               <ul>
-                <Link href={"/user/my-wallet"}>
+                {/* <Link href={"/user/my-wallet"}> */}
+
+                <Link href="/exchange/dashboard">
                   <li className="">
-                    <Link href="/exchange/dashboard">
-                      <span>
-                        <span className="cp-user-icon">
-                          <img
-                            src="/sidebar-icons/dashboard.svg"
-                            className="img-fluid cp-user-side-bar-icon"
-                            alt=""
-                          />
-                          <img
-                            src="/sidebar-icons/hover/dashboard.svg"
-                            className="img-fluid cp-user-side-bar-icon-hover"
-                            alt=""
-                          />
-                        </span>
-                        <span className="cp-user-name">Trade</span>
+                    <a href="">
+                      <span className="cp-user-icon">
+                        <img
+                          src="/sidebar-icons/dashboard.svg"
+                          className="img-fluid cp-user-side-bar-icon"
+                          alt=""
+                        />
+                        <img
+                          src="/sidebar-icons/hover/dashboard.svg"
+                          className="img-fluid cp-user-side-bar-icon-hover"
+                          alt=""
+                        />
                       </span>
-                    </Link>
+                      <span className="cp-user-name">Trade</span>
+                    </a>
                   </li>
                 </Link>
+
+                {/* </Link> */}
                 <Link
                   href={
                     isLoggedIn ? "/user/my-wallet" : "/authentication/signin"
                   }
                 >
-                  <li className=" cp-user-active-page  arrow-icon">
+                   <li className="">
+                    <a href="">
                     <span className="cp-user-icon">
                       <img
                         src="/sidebar-icons/Wallet.svg"
@@ -64,6 +67,7 @@ const DashboardNavbar = () => {
                       />
                     </span>
                     <span className="cp-user-name">Wallet</span>
+                    </a>
                   </li>
                 </Link>
                 <li className="">

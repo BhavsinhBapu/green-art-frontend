@@ -26,7 +26,8 @@ const Index = ({ children }: any) => {
       path === "/exchange/dashboard" ||
       path === "/authentication/forgot-password" ||
       path === "/authentication/reset-password" ||
-      path === "/authentication/g2f-verify"
+      path === "/authentication/g2f-verify" ||
+      path === "/"
     ) {
       setNavbarVisible(false);
     } else {

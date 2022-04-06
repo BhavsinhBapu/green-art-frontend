@@ -1,10 +1,15 @@
 import React, { Dispatch } from "react";
-import * as JsSearch from "js-search";
+import _ from "lodash";
 
-// export const handleSearch = (
-//   e: React.ChangeEvent<HTMLInputElement>,
-//   setSearch: Dispatch<any>
-// ) => {
-//   e.preventDefault();
-//   setSearch(e.target.value);
-// };
+export const sortByPropertyAndDirection = async (
+  arrayObject: any,
+  property: string,
+  direction: string,
+  setArray: Dispatch<any>
+) => {
+  console.log(property, direction);
+  const bool = direction === "desc" ? true : false;
+  const sorted = _.orderBy(arrayObject, [property], [bool]);
+  console.log(sorted);
+  setArray(sorted);
+};

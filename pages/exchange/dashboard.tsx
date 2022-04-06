@@ -2,7 +2,15 @@ import type { NextPage } from "next";
 import DashboardNavbar from "components/common/dashboardNavbar";
 
 import { useEffect, useState } from "react";
-import TradingChart from "components/exchange/TradingChart";
+import dynamic from "next/dynamic";
+const TradingChart = dynamic(
+  () =>
+    import("components/exchange/TradingChart").then(
+      (mod: any) => mod.TVChartContainer
+    ),
+  { ssr: false }
+);
+// import TradingChart from "components/exchange/TradingChart";
 import SelectCurrency from "components/exchange/selectCurrency";
 import CurrencyLevel from "components/exchange/currencyLevel";
 import OrderHistorySection from "components/exchange/orderHistorySection";
@@ -175,108 +183,12 @@ const Dashboard: NextPage = () => {
                             : "BTC/USDT"}
                         </span>
                         {dashboard?.order_data?.exchange_coin_pair && (
-                          <i aria-hidden="true" className="fa fa-angle-down" />
+                          <i
+                            aria-hidden="true"
+                            className=" ml-2 fa fa-angle-down"
+                          />
                         )}
-                        {isLoggedIn && (
-                          <div className="cp-user-buy-coin-content-area">
-                            <div className="cp-user-wallet-table dashboard-coin_pairs table-responsive">
-                              <div
-                                id="exchangeCoinPair_wrapper"
-                                className="dataTables_wrapper no-footer"
-                              >
-                                <div
-                                  id="exchangeCoinPair_filter"
-                                  className="dataTables_filter"
-                                >
-                                  <label>
-                                    <input
-                                      type="search"
-                                      className=""
-                                      placeholder="Search"
-                                      aria-controls="exchangeCoinPair"
-                                    />
-                                  </label>
-                                </div>
-                                <div
-                                  id="exchangeCoinPair_processing"
-                                  className="dataTables_processing"
-                                  style={{ display: "none" }}
-                                >
-                                  Processing...
-                                </div>
-                                <div className="dataTables_scroll">
-                                  <div
-                                    className="dataTables_scrollHead"
-                                    style={{
-                                      overflow: "hidden",
-                                      position: "relative",
-                                      border: "0px",
-                                      width: "100%",
-                                    }}
-                                  >
-                                    <div
-                                      className="dataTables_scrollHeadInner"
-                                      style={{
-                                        boxSizing: "content-box",
-                                        width: "415px",
-                                        paddingRight: "17px",
-                                      }}
-                                    >
-                                      <table
-                                        className="table dataTable no-footer"
-                                        role="grid"
-                                        style={{
-                                          marginLeft: "0px",
-                                          width: "415px",
-                                        }}
-                                      >
-                                        <thead>
-                                          <tr role="row">
-                                            <th
-                                              className="text-left text-green w-30 sorting_asc"
-                                              tabIndex={0}
-                                              aria-controls="exchangeCoinPair"
-                                              rowSpan={1}
-                                              colSpan={1}
-                                              style={{ width: "104.672px" }}
-                                              aria-label="Coins: activate to sort column descending"
-                                              aria-sort="ascending"
-                                            >
-                                              Coins
-                                            </th>
-                                            <th
-                                              className="text-center w-40 sorting"
-                                              tabIndex={0}
-                                              aria-controls="exchangeCoinPair"
-                                              rowSpan={1}
-                                              colSpan={1}
-                                              style={{ width: "103.281px" }}
-                                              aria-label="Last: activate to sort column ascending"
-                                            >
-                                              Last
-                                            </th>
-                                            <th
-                                              className="sorting"
-                                              tabIndex={0}
-                                              aria-controls="exchangeCoinPair"
-                                              rowSpan={1}
-                                              colSpan={1}
-                                              style={{ width: "147.047px" }}
-                                              aria-label="Balance: activate to sort column ascending"
-                                            >
-                                              Balance
-                                            </th>
-                                          </tr>
-                                        </thead>
-                                      </table>
-                                    </div>
-                                  </div>
-                                  <SelectCurrency />
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        )}
+                        {isLoggedIn && <SelectCurrency />}
                       </div>
                       <span className="font-weight-bold">Bitcoin</span>
                     </div>
