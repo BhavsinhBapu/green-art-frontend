@@ -1127,23 +1127,23 @@ const Home: NextPage = () => {
                       <ul>
                         <li>
                           <a>
-                            <i className="fa fa-facebook" aria-hidden="true" />
+                            <i className="fab fa-facebook" aria-hidden="true" />
                           </a>
                         </li>
                         <li>
                           <a>
-                            <i className="fa fa-twitter" aria-hidden="true" />
+                            <i className="fab fa-twitter" aria-hidden="true" />
                           </a>
                         </li>
                         <li>
                           <a>
-                            <i className="fa fa-linkedin" aria-hidden="true" />
+                            <i className="fab fa-linkedin" aria-hidden="true" />
                           </a>
                         </li>
                         <li>
                           <a>
                             <i
-                              className="fa fa-youtube-play"
+                              className="fab fa-youtube"
                               aria-hidden="true"
                             />
                           </a>

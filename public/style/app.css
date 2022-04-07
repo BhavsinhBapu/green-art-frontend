@@ -683,7 +683,7 @@ client-area
 ==================================================*/
 .hero-banner-area {
   padding: 150px 0 80px 0;
-  background-color: #fafafa;
+  background-color: #FAFAFA;
 }
 .hero-banner-area .banner-title {
   font-size: 60px;
@@ -691,6 +691,7 @@ client-area
   text-transform: capitalize;
 }
 .hero-banner-area .banner-content {
+  margin-bottom: 20px;
   font-size: 16px;
   font-weight: 500;
 }
@@ -947,6 +948,7 @@ client-area
 ==================================================*/
 .trade-anywhere-area {
   padding: 100px 0;
+  background: #ffffff;
 }
 .trade-anywhere-area .qr-code-area {
   display: flex;
@@ -1016,6 +1018,7 @@ client-area
 ==================================================*/
 .get-touch-area {
   padding: 40px 0;
+  background: #ffffff;
 }
 .single-card {
   display: block;
@@ -1057,4 +1060,8 @@ client-area
   .secondary-btn {
     min-width: 190px;
   }
+}
+
+.user-form .form-check-label {
+  padding-left: 20px;
 }

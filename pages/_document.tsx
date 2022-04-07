@@ -1,5 +1,4 @@
 import { Html, Head, Main, NextScript } from "next/document";
-
 export default function Document() {
   return (
     <Html>
@@ -17,6 +16,7 @@ export default function Document() {
           crossOrigin="anonymous"
           referrerPolicy="no-referrer"
         />
+        <link rel="shortcut icon" href="../fav.png" />
         <script src="/static/datafeeds/udf/dist/bundle.js" />
       </Head>
       <body>
