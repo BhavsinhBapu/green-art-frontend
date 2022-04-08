@@ -12,13 +12,15 @@ const DashboardNavbar = () => {
         <div className="row align-items-center justify-content-between">
           <div className="col-xl-2 col-lg-2 col-4">
             <div className="cp-user-logo">
-              <a href="/dashboard">
+              <Link href="/">
+              <a href="">
                 <img
                   src="/logo.svg"
                   className="img-fluid cp-user-logo-large"
                   alt=""
                 />
               </a>
+              </Link>
             </div>
           </div>
           <div className="col-xl-8 col-lg-8 d-none d-lg-block">

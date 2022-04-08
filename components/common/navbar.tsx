@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useRouter } from "next/router";
 import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "state/store";
@@ -6,19 +7,21 @@ import { LogoutAction } from "state/actions/user";
 const Navbar = () => {
   const { isLoggedIn, user } = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
-
+  const router = useRouter();
   return (
     <div className="cp-user-top-bar">
       <div className="container-fluid">
         <div className="row align-items-center justify-content-between">
           <div className="col-xl-2 col-lg-2 col-4">
             <div className="cp-user-logo">
-              <Link href="/dashboard">
+              <Link href="/">
+                <a href="">
                 <img
                   src="/logo.svg"
                   className="img-fluid cp-user-logo-large"
                   alt=""
                 />
+                </a>
               </Link>
             </div>
           </div>
@@ -26,7 +29,8 @@ const Navbar = () => {
             <nav className="main-menu">
               <ul>
                 <Link href="/exchange/dashboard">
-                  <li className="">
+                  <li className={router.pathname == "/exchange/dashboard" ? "cp-user-active-page" : ""}>
+                    <a href="">
                     <span className="cp-user-icon">
                       <img
                         src="/sidebar-icons/dashboard.svg"
@@ -40,6 +44,7 @@ const Navbar = () => {
                       />
                     </span>
                     <span className="cp-user-name">Trade</span>
+                    </a>
                   </li>
                 </Link>
                 <Link
@@ -49,7 +54,8 @@ const Navbar = () => {
                       : "authentication/signin"
                   }
                 >
-                  <li className=" cp-user-active-page  arrow-icon">
+                  <li className={router.pathname == "/user/my-wallet" ? "cp-user-active-page" : ""}>
+                    <a href="">
                     <span className="cp-user-icon">
                       <img
                         src="/sidebar-icons/Wallet.svg"
@@ -63,6 +69,7 @@ const Navbar = () => {
                       />
                     </span>
                     <span className="cp-user-name">Wallet</span>
+                    </a>
                   </li>
                 </Link>
                 <li className="">
@@ -89,8 +96,8 @@ const Navbar = () => {
                           : "/authentication/signin"
                       }
                     >
-                      <li className="">
-                        <a>Deposit History</a>
+                      <li className={router.pathname == "/user/wallet-history?type=deposit" ? "cp-user-active-page" : ""}>
+                        <a href="">Deposit History</a>
                       </li>
                     </Link>
                     <Link
@@ -100,8 +107,8 @@ const Navbar = () => {
                           : "/authentication/signin"
                       }
                     >
-                      <li className="">
-                        <a>Withdrawal History</a>
+                      <li className={router.pathname == "/user/wallet-history?type=withdrawal" ? "cp-user-active-page" : ""}>
+                        <a href="">Withdrawal History</a>
                       </li>
                     </Link>
                     <Link
@@ -111,8 +118,8 @@ const Navbar = () => {
                           : "/authentication/signin"
                       }
                     >
-                      <li className="">
-                        <a>Swap History</a>
+                      <li className={router.pathname == "/user/swap-history" ? "cp-user-active-page" : ""}>
+                        <a href="">Swap History</a>
                       </li>
                     </Link>
                     <Link
@@ -122,7 +129,7 @@ const Navbar = () => {
                           : "/authentication/signin"
                       }
                     >
-                      <li className="">
+                      <li className={router.pathname == "/user/buy-order-history" ? "cp-user-active-page" : ""}>
                         <a href="">Buy Order History</a>
                       </li>
                     </Link>
@@ -133,7 +140,7 @@ const Navbar = () => {
                           : "/authentication/signin"
                       }
                     >
-                      <li className="">
+                      <li className={router.pathname == "/user/sell-order-history" ? "cp-user-active-page" : ""}>
                         <a href="">Sell Order History</a>
                       </li>
                     </Link>
@@ -144,7 +151,7 @@ const Navbar = () => {
                           : "/authentication/signin"
                       }
                     >
-                      <li className="">
+                      <li className={router.pathname == "/user/transaction-history" ? "cp-user-active-page" : ""}>
                         <a href="">Transaction History</a>
                       </li>
                     </Link>
@@ -153,7 +160,7 @@ const Navbar = () => {
                 <Link
                   href={isLoggedIn ? "/user/profile" : "/authentication/signin"}
                 >
-                  <li className="">
+                  <li className={router.pathname == "/user/profile" ? "cp-user-active-page" : ""}>
                     <a href="">
                       <span className="cp-user-icon">
                         <img
@@ -176,7 +183,7 @@ const Navbar = () => {
                     isLoggedIn ? "/user/referral" : "/authentication/signin"
                   }
                 >
-                  <li className="">
+                  <li className={router.pathname == "/user/referral" ? "cp-user-active-page" : ""}>
                     <a href="">
                       <span className="cp-user-icon">
                         <img
@@ -216,14 +223,14 @@ const Navbar = () => {
                         isLoggedIn ? "/user/settings" : "/authentication/signin"
                       }
                     >
-                      <li className="">
+                      <li className={router.pathname == "user/settings" ? "cp-user-active-page" : ""}>
                         <a href="">My Settings</a>
                       </li>
                     </Link>
                     <Link
                       href={isLoggedIn ? "/user/faq" : "/authentication/signin"}
                     >
-                      <li className="">
+                      <li className={router.pathname == "/user/faq" ? "cp-user-active-page" : ""}>
                         <a href="">FAQ</a>
                       </li>
                     </Link>

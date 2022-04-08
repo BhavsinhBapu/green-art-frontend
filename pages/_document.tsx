@@ -3,12 +3,7 @@ export default function Document() {
   return (
     <Html>
       <Head>
-        <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
-          integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
-          crossOrigin="anonymous"
-        />
+        <link rel="stylesheet" href="/style/bootstrap.min.css" />
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -22,6 +17,8 @@ export default function Document() {
       <body>
         <Main />
         <NextScript />
+        <script src="/js/jquery-3.6.0.min.js" />
+        <script src="/js/bootstrap.bundle.min.js" />
       </body>
     </Html>
   );
