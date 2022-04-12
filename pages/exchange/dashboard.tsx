@@ -10,6 +10,8 @@ const TradingChart = dynamic(
     ),
   { ssr: false }
 );
+import Echo from "laravel-echo";
+
 // import TradingChart from "components/exchange/TradingChart";
 import SelectCurrency from "components/exchange/selectCurrency";
 import CurrencyLevel from "components/exchange/currencyLevel";
@@ -22,13 +24,14 @@ import {
   initialDashboardCallAction,
   initialDashboardCallActionWithToken,
 } from "state/actions/exchange";
-import Cookies from "js-cookie";
+
 const Dashboard: NextPage = () => {
   const dispatch = useDispatch();
   const { isLoggedIn } = useSelector((state: RootState) => state.user);
   const { dashboard, currentPair } = useSelector(
     (state: RootState) => state.exchange
   );
+
   useEffect(() => {
     dispatch(initialDashboardCallAction(currentPair, dashboard));
   }, [isLoggedIn, currentPair]);
@@ -40,6 +43,7 @@ const Dashboard: NextPage = () => {
       dispatch(initialDashboardCallActionWithToken(currentPair, dashboard));
     }
   }, [dashboard?.order_data?.base_coin_id]);
+
   return (
     <div className="background-col">
       <DashboardNavbar />
@@ -146,7 +150,7 @@ const Dashboard: NextPage = () => {
                   className="close"
                 >
                   <img
-                    src="/assets/user/images/close.svg"
+                    // src="/assets/user/images/close.svg"
                     alt=""
                     className="img-fluid"
                   />

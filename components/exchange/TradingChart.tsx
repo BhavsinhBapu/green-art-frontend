@@ -23,7 +23,6 @@ export class TVChartContainer extends React.PureComponent {
     fullscreen: false,
     autosize: true,
     studiesOverrides: {},
-  
   };
 
   tvWidget = null;
@@ -44,6 +43,7 @@ export class TVChartContainer extends React.PureComponent {
         //@ts-ignore
         this.props.datafeedUrl
       ),
+
       //@ts-ignore
       interval: this.props.interval,
       //@ts-ignore
@@ -63,12 +63,21 @@ export class TVChartContainer extends React.PureComponent {
       client_id: this.props.clientId,
       //@ts-ignore
       user_id: this.props.userId,
+
       //@ts-ignore
       fullscreen: this.props.fullscreen,
       //@ts-ignore
       autosize: this.props.autosize,
       //@ts-ignore
       studies_overrides: this.props.studiesOverrides,
+      overrides: {
+        "paneProperties.background": "#131722",
+        "paneProperties.vertGridProperties.color": "#363c4e",
+        "paneProperties.horzGridProperties.color": "#363c4e",
+        "symbolWatermarkProperties.transparency": 90,
+        "scalesProperties.textColor": "#AAA",
+      },
+      toolbar: false,
     };
     //@ts-ignore
     const tvWidget = new widget(widgetOptions);

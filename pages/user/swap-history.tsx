@@ -149,7 +149,7 @@ const SwapHistory: NextPage = () => {
                       </thead>
                       <tbody>
                         {history?.map((item: any, index: any) => (
-                          <tr id="">
+                          <tr id="" key={index}>
                             <td>
                               <div className="asset">
                                 <img

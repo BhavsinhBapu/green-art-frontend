@@ -26,8 +26,8 @@ const TradeOrder = ({ tradeOrder, tradeOrderHistory }: any) => {
             </tr>
           </thead>
           <tbody>
-            {tradeOrderHistory?.map((order: any) => (
-              <tr>
+            {tradeOrderHistory?.map((order: any, index: number) => (
+              <tr key={index}>
                 <td>{order.created_at}</td>
                 <td>{order.transaction_id}</td>
                 <td>{order.fees}</td>

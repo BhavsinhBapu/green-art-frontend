@@ -30,6 +30,7 @@ import Router from "next/router";
 export const initialDashboardCallAction =
   (pair: string, dashboard: any) => async (dispatch: any) => {
     dispatch(setLoading(true));
+    const token = Cookies.get("token");
 
     const response = await appDashboardData(pair);
     dispatch(setDashboard(response));
@@ -59,7 +60,8 @@ export const initialDashboardCallAction =
     dispatch(setOpenBooksell(SellResponse?.data?.orders));
     if (
       dashboard?.order_data?.base_coin_id &&
-      dashboard?.order_data?.trade_coin_id
+      dashboard?.order_data?.trade_coin_id &&
+      token
     ) {
       const ordersHistoryResponse = await ordersHistoryDashboard(
         dashboard?.order_data?.base_coin_id,

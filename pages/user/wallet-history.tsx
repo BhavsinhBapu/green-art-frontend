@@ -165,7 +165,7 @@ const DepositHistory: NextPage = () => {
                         </thead>
                         {history.length > 0 && (
                           <tbody>
-                            {history.map((item: any) => {
+                            {history.map((item: any, index: number) => {
                               return (
                                 <tr key={item.id}>
                                   <td>{item.created_at}</td>

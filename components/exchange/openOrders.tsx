@@ -30,8 +30,8 @@ const OpenOrders = ({ openOrders, openOrderHistory }: any) => {
             </tr>
           </thead>
           <tbody>
-            {openOrderHistory?.map((order: any) => (
-              <tr>
+            {openOrderHistory?.map((order: any, index: number) => (
+              <tr key={index}>
                 <td>{order.created_at}</td>
                 <td>{order.actual_amount}</td>
                 <td>{order.actual_total}</td>

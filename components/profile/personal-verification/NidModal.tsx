@@ -83,7 +83,7 @@ const NidModal = ({ type, kycDetails }: any) => {
               aria-label="Close"
             >
               <span aria-hidden="true">
-                <img src="/close.svg" className="img-fluid" alt="" />
+                {/* <img src="/close.svg" className="img-fluid" alt="" /> */}
               </span>
             </button>
             <form id="nidUpload" className="Upload">

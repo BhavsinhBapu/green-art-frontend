@@ -4,8 +4,8 @@ const TradesTable = ({ sell }: any) => {
   return (
     <tbody>
       {sell?.length > 0 ? (
-        sell?.map((item: any) => (
-          <tr className="odd">
+        sell?.map((item: any, index: number) => (
+          <tr className="odd" key={index}>
             <td>
               <div className="asset">
                 <span className="asset-name">00</span>

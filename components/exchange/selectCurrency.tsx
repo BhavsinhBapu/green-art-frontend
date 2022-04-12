@@ -210,9 +210,10 @@ const SelectCurrency = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {pairs?.map((pair: any) => (
+                  {pairs?.map((pair: any, index: number) => (
                     <tr
                       role="row"
+                      key={index}
                       className="odd"
                       id="market-BCH_BTC"
                       onClick={() => dispatch(setCurrentPair(pair.coin_pair))}
