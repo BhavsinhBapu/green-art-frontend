@@ -7,9 +7,13 @@ import BuyTable from "./BuyTable";
 import SellTable from "./SellTable";
 
 const OrderBook = () => {
-  const { dashboard, currentPair, OpenBookBuy, OpenBooksell } = useSelector(
-    (state: RootState) => state.exchange
-  );
+  const {
+    dashboard,
+    currentPair,
+    OpenBookBuy,
+    OpenBooksell,
+    tradeOrderHistory,
+  } = useSelector((state: RootState) => state.exchange);
 
   return (
     <div className="col-xl-6">
@@ -113,7 +117,7 @@ const OrderBook = () => {
                 </div>
               </div>
             </div>
-            <AllSellOrders />
+            <AllSellOrders OpenBooksell={OpenBooksell} />
           </div>
         </div>
         <div className="col-lg-6">
@@ -174,7 +178,7 @@ const OrderBook = () => {
                               style={{ width: "170.656px" }}
                               aria-label="Price(USDT)"
                             >
-                              Price(<span>USDT</span>)
+                              Price(<span></span>)
                             </th>
                             <th
                               className="table-col amount sorting_disabled"
@@ -196,6 +200,8 @@ const OrderBook = () => {
                             </th>
                           </tr>
                         </thead>
+
+                        <SellTable tradeOrderHistory={tradeOrderHistory} />
                       </table>
                     </div>
                   </div>
@@ -207,16 +213,7 @@ const OrderBook = () => {
                       height: "244px",
                       width: "100%",
                     }}
-                  >
-                    <table
-                      id="marketTradeTable"
-                      className="table dataTable no-footer dtr-inline"
-                      role="grid"
-                      style={{ width: "100%" }}
-                    >
-                      <SellTable sell={OpenBooksell} />
-                    </table>
-                  </div>
+                  ></div>
                 </div>
               </div>
             </div>

@@ -10,6 +10,7 @@ import {
   sellStopLimitApp,
   tradesHistoryDashboard,
   marketTradesDashboard,
+  cancelOrderApp,
 } from "service/exchange";
 import {
   setDashboard,
@@ -385,4 +386,31 @@ export const sellStopLimitAppAction = async (
     });
   }
   setLoading(false);
+};
+
+export const cancelOrderAppAction = async (type: string, id: string) => {
+  const response = await cancelOrderApp(type, id);
+  if (response.status === true) {
+    toast.success(response.message, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      className: "dark-toast",
+    });
+  } else {
+    toast.error(response.message, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      className: "dark-toast",
+    });
+  }
 };

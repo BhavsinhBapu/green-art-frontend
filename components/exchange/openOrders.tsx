@@ -1,9 +1,19 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  cancelOrderAppAction,
+  initialDashboardCallActionWithToken,
+} from "state/actions/exchange";
+import { RootState } from "state/store";
 
 type Props = {
   openOrders: boolean;
 };
 const OpenOrders = ({ openOrders, openOrderHistory }: any) => {
+  const { dashboard, currentPair } = useSelector(
+    (state: RootState) => state.exchange
+  );
+  const dispatch = useDispatch();
   return (
     <div
       className={"tab-pane fade" + (openOrders ? " show active" : "")}
@@ -25,7 +35,7 @@ const OpenOrders = ({ openOrders, openOrderHistory }: any) => {
               <th scope="col">total</th>
               <th scope="col">Type</th>
               <th scope="col">
-                <button className="cancel">Cancel All</button>
+                {/* <button className="cancel">Cancel All</button> */}
               </th>
             </tr>
           </thead>
@@ -42,7 +52,22 @@ const OpenOrders = ({ openOrders, openOrderHistory }: any) => {
                 <td>{order.total}</td>
                 <td>{order.type}</td>
                 <td>
-                  <button className="cancel">Cancel</button>
+                  <button
+                    className="cancel"
+                    onClick={async () => {
+                      await cancelOrderAppAction("buy", order.id);
+                      if (currentPair && dashboard) {
+                        await dispatch(
+                          initialDashboardCallActionWithToken(
+                            currentPair,
+                            dashboard
+                          )
+                        );
+                      }
+                    }}
+                  >
+                    Cancel
+                  </button>
                 </td>
               </tr>
             ))}

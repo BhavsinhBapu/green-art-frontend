@@ -11,6 +11,8 @@ const TradingChart = dynamic(
   { ssr: false }
 );
 import Echo from "laravel-echo";
+import Pusher from "pusher-js";
+const hostUrl = "tradexpro-laravel.cdibrandstudio.com";
 
 // import TradingChart from "components/exchange/TradingChart";
 import SelectCurrency from "components/exchange/selectCurrency";
@@ -24,7 +26,28 @@ import {
   initialDashboardCallAction,
   initialDashboardCallActionWithToken,
 } from "state/actions/exchange";
-
+import { setOpenBookBuy } from "state/reducer/exchange";
+let socketCall = 0;
+async function listenMessages(dispatch: any) {
+  //@ts-ignore
+  window.Pusher = Pusher;
+  //@ts-ignore
+  window.Echo = new Echo({
+    broadcaster: "pusher",
+    key: "test",
+    wsHost: hostUrl,
+    wsPort: 6006,
+    wssPort: 443,
+    cluster: "mt1",
+    disableStats: true,
+    enabledTransports: ["ws", "wss"],
+  });
+  //@ts-ignore
+  window.Echo.channel("dashboard").listen(".order_place", (e) => {
+    console.log(e, "hello");
+    dispatch(setOpenBookBuy(e.orders));
+  });
+}
 const Dashboard: NextPage = () => {
   const dispatch = useDispatch();
   const { isLoggedIn } = useSelector((state: RootState) => state.user);
@@ -43,7 +66,12 @@ const Dashboard: NextPage = () => {
       dispatch(initialDashboardCallActionWithToken(currentPair, dashboard));
     }
   }, [dashboard?.order_data?.base_coin_id]);
-
+  useEffect(() => {
+    if (socketCall === 0) {
+      listenMessages(dispatch);
+    }
+    socketCall = 1;
+  });
   return (
     <div className="background-col">
       <DashboardNavbar />

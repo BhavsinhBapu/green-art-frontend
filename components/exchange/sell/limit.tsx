@@ -84,8 +84,8 @@ const Limit = ({
                     placeholder=""
                     className="form-control number_only"
                     value={buySellLimitCoinData.price}
-                    onChange={(e) => {
-                      setBuySellLimitCoinData({
+                    onChange={async (e) => {
+                      await setBuySellLimitCoinData({
                         ...buySellLimitCoinData,
                         price: e.target.value,
                         total:

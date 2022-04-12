@@ -33,7 +33,6 @@
     "react-ts-tradingview-widgets": "^1.0.9",
     "react-use-websocket": "^3.0.0",
     "slick-carousel": "^1.8.1",
-    "websocket": "^1.0.34",
     "yup": "^0.32.11"
   },
   "devDependencies": {

@@ -102,7 +102,7 @@ const Market = ({
                     placeholder=""
                     className="form-control number_only"
                     value={buySellMarketCoinData?.amount}
-                    onChange={(e) => {
+                    onChange={async (e) => {
                       setBuySellMarketCoinData({
                         ...buySellMarketCoinData,
                         amount: e.target.value,
@@ -110,6 +110,9 @@ const Market = ({
                           parseInt(e.target.value) *
                           buySellMarketCoinData.price,
                       });
+                      await dispatch(
+                        initialDashboardCallAction(currentPair, dashboard)
+                      );
                     }}
                   />
                   <span

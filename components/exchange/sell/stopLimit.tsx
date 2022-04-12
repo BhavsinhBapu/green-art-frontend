@@ -133,7 +133,7 @@ const StopLimit = ({
                     placeholder=""
                     className="form-control number_only"
                     value={buySellStopLimitCoinData?.amount}
-                    onChange={(e) => {
+                    onChange={async (e) => {
                       setBuySellStopLimitCoinData({
                         ...buySellStopLimitCoinData,
                         amount: e.target.value,
@@ -141,6 +141,9 @@ const StopLimit = ({
                           parseInt(e.target.value) *
                           dashboard?.order_data?.sell_price,
                       });
+                      await dispatch(
+                        initialDashboardCallAction(currentPair, dashboard)
+                      );
                     }}
                   />
                   <span

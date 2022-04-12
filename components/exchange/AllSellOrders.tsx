@@ -1,6 +1,6 @@
 import React from "react";
 
-const AllSellOrders = () => {
+const AllSellOrders = ({ OpenBooksell }: any) => {
   return (
     <div className="sell-order">
       <div className="trades-table">
@@ -43,29 +43,9 @@ const AllSellOrders = () => {
                   }}
                 >
                   <thead>
-                    <tr role="row">
-                      {/* <th
-                                            className="text-pink w-30 sorting_asc"
-                                            rowSpan={1}
-                                            colSpan={1}
-                                            style={{ width: "109.766px" }}
-                                            aria-label
-                                          /> */}
-                      {/* <th
-                                            className="text-center w-30 sorting_disabled"
-                                            rowSpan={1}
-                                            colSpan={1}
-                                            style={{ width: "130.734px" }}
-                                            aria-label
-                                          />
-                                          <th
-                                            className="sorting_disabled"
-                                            rowSpan={1}
-                                            colSpan={1}
-                                            style={{ width: "130.75px" }}
-                                            aria-label
-                                          /> */}
-                    </tr>
+                    <tr role="row"></tr>
+                    <tr role="row"></tr>
+                    <tr role="row"></tr>
                   </thead>
                 </table>
               </div>
@@ -86,81 +66,58 @@ const AllSellOrders = () => {
                 style={{ width: "100%" }}
               >
                 <thead>
-                  <tr role="row" style={{ height: "0px" }}>
-                    {/* <th
-                                          className="text-pink w-30 sorting_asc"
-                                          rowSpan={1}
-                                          colSpan={1}
-                                          style={{
-                                            width: "109.766px",
-                                            paddingTop: "0px",
-                                            paddingBottom: "0px",
-                                            borderTopWidth: "0px",
-                                            borderBottomWidth: "0px",
-                                            height: "0px",
-                                          }}
-                                          aria-label
-                                        >
-                                          <div
-                                            className="dataTables_sizing"
-                                            style={{
-                                              height: 0,
-                                              overflow: "hidden",
-                                            }}
-                                          />
-                                        </th>
-                                        <th
-                                          className="text-center w-30 sorting_disabled"
-                                          rowSpan={1}
-                                          colSpan={1}
-                                          style={{
-                                            width: "130.734px",
-                                            paddingTop: "0px",
-                                            paddingBottom: "0px",
-                                            borderTopWidth: "0px",
-                                            borderBottomWidth: "0px",
-                                            height: "0px",
-                                          }}
-                                          aria-label
-                                        >
-                                          <div
-                                            className="dataTables_sizing"
-                                            style={{
-                                              height: 0,
-                                              overflow: "hidden",
-                                            }}
-                                          />
-                                        </th>
-                                        <th
-                                          className="sorting_disabled"
-                                          rowSpan={1}
-                                          colSpan={1}
-                                          style={{
-                                            width: "130.75px",
-                                            paddingTop: "0px",
-                                            paddingBottom: "0px",
-                                            borderTopWidth: "0px",
-                                            borderBottomWidth: "0px",
-                                            height: "0px",
-                                          }}
-                                          aria-label
-                                        >
-                                          <div
-                                            className="dataTables_sizing"
-                                            style={{
-                                              height: 0,
-                                              overflow: "hidden",
-                                            }}
-                                          />
-                                        </th> */}
+                  <tr role="row">
+                    <th
+                      className="table-col price sorting_disabled"
+                      rowSpan={1}
+                      colSpan={1}
+                      style={{ width: "170.656px" }}
+                      aria-label="Price(USDT)"
+                    ></th>
+                    <th
+                      className="table-col amount sorting_disabled"
+                      rowSpan={1}
+                      colSpan={1}
+                      style={{ width: "120.75px" }}
+                      aria-label="Amount"
+                    ></th>
+                    <th
+                      className="table-col time text-right sorting_desc"
+                      rowSpan={1}
+                      colSpan={1}
+                      style={{ width: "79.8438px" }}
+                      aria-label="Time"
+                    ></th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="odd">
-                    <td valign="top" colSpan={3} className="dataTables_empty">
-                      No data available in table
-                    </td>
-                  </tr>
+                  {OpenBooksell?.length !== 0 ? (
+                    OpenBooksell?.map((item: any, index: number) => (
+                      <tr className="odd" key={index}>
+                        <td>
+                          <div className="asset">
+                            <span className="text-success">{item.price}</span>
+                          </div>
+                        </td>
+                        <td>
+                          <div className="asset">
+                            <span className="asset-name">{item.amount}</span>
+                          </div>
+                        </td>
+                        <td>
+                          <div className="asset">
+                            <span className="asset-name">{item.my_size}</span>
+                          </div>
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr className="odd">
+                      <td valign="top" colSpan={3} className="dataTables_empty">
+                        No data available in table
+                      </td>
+                    </tr>
+                  )}
                 </tbody>
               </table>
             </div>
@@ -169,7 +126,7 @@ const AllSellOrders = () => {
         <div className="trades-table-footer">
           <div className="trades-table-row">
             <div className="trades-table-col volume">
-              <a className="more-btn">More</a>
+              <a className="more-btn">More{OpenBooksell?.length.toString()}</a>
             </div>
             <div className="trades-table-col price total-price" />
             <div className="trades-table-col price total-price">
