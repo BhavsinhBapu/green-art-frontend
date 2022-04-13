@@ -1,4 +1,4 @@
 export const TV_CHART = {
-  relativeUrl: "/api/get-chart-data",
+  relativeUrl: "/get-exchange-chart-data-app",
   method: "GET",
 };

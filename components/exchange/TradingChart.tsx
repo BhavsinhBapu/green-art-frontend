@@ -24,6 +24,7 @@ export class TVChartContainer extends React.PureComponent {
     symbol: "AAPL",
     interval: "D",
     datafeedUrl: "https://demo_feed.tradingview.com",
+    datafeed: Datafeed,
     libraryPath: "/static/charting_library/",
     chartsStorageUrl: "https://saveload.tradingview.com",
     chartsStorageApiVersion: "1.1",
@@ -52,11 +53,8 @@ export class TVChartContainer extends React.PureComponent {
 
       // BEWARE: no trailing slash is expected in feed URL
       //@ts-ignore
-      // datafeed: new window.Datafeeds.UDFCompatibleDatafeed(
-      //   //@ts-ignore
-      //   this.props.datafeedUrl
-      // ),
       datafeed: Datafeed,
+      // datafeed: Datafeed,
 
       //@ts-ignore
       interval: this.props.interval,
@@ -96,17 +94,6 @@ export class TVChartContainer extends React.PureComponent {
       //@ts-ignore
       disabled_features: DISABLED_FEATURES,
       custom_css_url: "charting_library/chart-v3-ethfinex-theme.css",
-
-      //@ts-ignore
-      toolbar_bg: getBackgroundColor(this.props.theme),
-      save_load_adapter: undefined,
-      //@ts-ignore
-      loading_screen: getLoadingScreenStyle(this.props.theme),
-      //@ts-ignore
-      overrides: getChartOverrides(this.props.theme),
-
-      //@ts-ignore
-      studies_overrides: getChartStudiesOverrides(this.props.theme),
 
       //@ts-ignore
       time_frames: TIME_FRAMES,
