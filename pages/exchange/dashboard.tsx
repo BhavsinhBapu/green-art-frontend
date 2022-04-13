@@ -26,7 +26,7 @@ import {
   initialDashboardCallAction,
   initialDashboardCallActionWithToken,
 } from "state/actions/exchange";
-import { setOpenBookBuy } from "state/reducer/exchange";
+import { setOpenBookBuy, setOpenBooksell } from "state/reducer/exchange";
 let socketCall = 0;
 async function listenMessages(dispatch: any) {
   //@ts-ignore
@@ -45,7 +45,8 @@ async function listenMessages(dispatch: any) {
   //@ts-ignore
   window.Echo.channel("dashboard").listen(".order_place", (e) => {
     console.log(e, "hello");
-    dispatch(setOpenBookBuy(e.orders));
+    if (e.order_type === "buy") dispatch(setOpenBookBuy(e.orders));
+    if (e.order_type === "sell") dispatch(setOpenBooksell(e.orders));
   });
 }
 const Dashboard: NextPage = () => {
