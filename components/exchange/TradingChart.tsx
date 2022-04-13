@@ -1,7 +1,16 @@
 import * as React from "react";
 import styles from "./index.module.css";
 import { widget, version } from "../../public/static/charting_library";
-
+import Datafeed from "components/exchange/api";
+import {
+  DISABLED_FEATURES,
+  ENABLED_FEATURES,
+  getBackgroundColor,
+  getChartOverrides,
+  getChartStudiesOverrides,
+  getLoadingScreenStyle,
+  TIME_FRAMES,
+} from "./api/chartConfig";
 function getLanguageFromURL() {
   const regex = new RegExp("[\\?&]lang=([^&#]*)");
   const results = regex.exec(window.location.search);
@@ -35,14 +44,19 @@ export class TVChartContainer extends React.PureComponent {
 
   componentDidMount() {
     const widgetOptions = {
+      height: 480,
+      width: 1400,
       //@ts-ignore
       symbol: this.props.symbol,
+      style: 1,
+
       // BEWARE: no trailing slash is expected in feed URL
       //@ts-ignore
-      datafeed: new window.Datafeeds.UDFCompatibleDatafeed(
-        //@ts-ignore
-        this.props.datafeedUrl
-      ),
+      // datafeed: new window.Datafeeds.UDFCompatibleDatafeed(
+      //   //@ts-ignore
+      //   this.props.datafeedUrl
+      // ),
+      datafeed: Datafeed,
 
       //@ts-ignore
       interval: this.props.interval,
@@ -77,6 +91,26 @@ export class TVChartContainer extends React.PureComponent {
         "symbolWatermarkProperties.transparency": 90,
         "scalesProperties.textColor": "#AAA",
       },
+      //@ts-ignore
+      enabled_features: ENABLED_FEATURES,
+      //@ts-ignore
+      disabled_features: DISABLED_FEATURES,
+      custom_css_url: "charting_library/chart-v3-ethfinex-theme.css",
+
+      //@ts-ignore
+      toolbar_bg: getBackgroundColor(this.props.theme),
+      save_load_adapter: undefined,
+      //@ts-ignore
+      loading_screen: getLoadingScreenStyle(this.props.theme),
+      //@ts-ignore
+      overrides: getChartOverrides(this.props.theme),
+
+      //@ts-ignore
+      studies_overrides: getChartStudiesOverrides(this.props.theme),
+
+      //@ts-ignore
+      time_frames: TIME_FRAMES,
+
       toolbar: false,
     };
     //@ts-ignore

@@ -10,6 +10,10 @@ import TableLoading from "components/common/TableLoading";
 const SellOrderHistory: NextPage = () => {
   type searchType = string;
   const [search, setSearch] = useState<searchType>("");
+  const [sortingInfo, setSortingInfo] = useState<any>({
+    column_name: "created_at",
+    order_by: "desc",
+  });
   const [processing, setProcessing] = useState<boolean>(false);
   const [history, setHistory] = useState<any>([]);
   const [stillHistory, setStillHistory] = useState<any>([]);
@@ -22,7 +26,9 @@ const SellOrderHistory: NextPage = () => {
       parseInt(number),
       setHistory,
       setProcessing,
-      setStillHistory
+      setStillHistory,
+      sortingInfo.column_name,
+      sortingInfo.order_by
     );
   };
   const getReport = async () => {
@@ -31,7 +37,24 @@ const SellOrderHistory: NextPage = () => {
       1,
       setHistory,
       setProcessing,
-      setStillHistory
+      setStillHistory,
+      sortingInfo.column_name,
+      sortingInfo.order_by
+    );
+  };
+  const sort_table = (column_name: string, order_by: string) => {
+    setSortingInfo({
+      column_name,
+      order_by,
+    });
+    AllSellOrdersHistoryAction(
+      5,
+      1,
+      setHistory,
+      setProcessing,
+      setStillHistory,
+      column_name,
+      order_by
     );
   };
   React.useEffect(() => {
@@ -82,7 +105,9 @@ const SellOrderHistory: NextPage = () => {
                                   1,
                                   setHistory,
                                   setProcessing,
-                                  setStillHistory
+                                  setStillHistory,
+                                  sortingInfo.column_name,
+                                  sortingInfo.order_by
                                 );
                               }}
                             >
@@ -125,31 +150,213 @@ const SellOrderHistory: NextPage = () => {
                         <tr>
                           <th scope="col" className="">
                             Base Coin
-                            <i className="fas fa-sort-down sort_space"></i>
+                            {sortingInfo.column_name === "base_coin" ? (
+                              sortingInfo.order_by === "asc" ? (
+                                <i
+                                  className="fa fa-sort-asc"
+                                  style={{ marginLeft: "10px" }}
+                                  onClick={() => {
+                                    sort_table("base_coin", "desc");
+                                  }}
+                                ></i>
+                              ) : (
+                                <i
+                                  className="fa fa-sort-desc"
+                                  style={{ marginLeft: "10px" }}
+                                  onClick={() => {
+                                    sort_table("base_coin", "asc");
+                                  }}
+                                ></i>
+                              )
+                            ) : (
+                              <i
+                                className="fa fa-sort"
+                                style={{ marginLeft: "10px" }}
+                                onClick={() => {
+                                  sort_table("base_coin", "asc");
+                                }}
+                              ></i>
+                            )}
                           </th>
                           <th scope="col" rowSpan={1} colSpan={1}>
                             Trade Coin
-                            <i className="fas fa-sort sort_space"></i>
+                            {sortingInfo.column_name === "trade_coin" ? (
+                              sortingInfo.order_by === "asc" ? (
+                                <i
+                                  className="fa fa-sort-asc"
+                                  style={{ marginLeft: "10px" }}
+                                  onClick={() => {
+                                    sort_table("trade_coin", "desc");
+                                  }}
+                                ></i>
+                              ) : (
+                                <i
+                                  className="fa fa-sort-desc"
+                                  style={{ marginLeft: "10px" }}
+                                  onClick={() => {
+                                    sort_table("trade_coin", "asc");
+                                  }}
+                                ></i>
+                              )
+                            ) : (
+                              <i
+                                className="fa fa-sort"
+                                style={{ marginLeft: "10px" }}
+                                onClick={() => {
+                                  sort_table("trade_coin", "asc");
+                                }}
+                              ></i>
+                            )}
                           </th>
                           <th scope="col" rowSpan={1} colSpan={1}>
                             Amount
-                            <i className="fas fa-sort sort_space"></i>
+                            {sortingInfo.column_name === "amount" ? (
+                              sortingInfo.order_by === "asc" ? (
+                                <i
+                                  className="fa fa-sort-asc"
+                                  style={{ marginLeft: "10px" }}
+                                  onClick={() => {
+                                    sort_table("amount", "desc");
+                                  }}
+                                ></i>
+                              ) : (
+                                <i
+                                  className="fa fa-sort-desc"
+                                  style={{ marginLeft: "10px" }}
+                                  onClick={() => {
+                                    sort_table("amount", "asc");
+                                  }}
+                                ></i>
+                              )
+                            ) : (
+                              <i
+                                className="fa fa-sort"
+                                style={{ marginLeft: "10px" }}
+                                onClick={() => {
+                                  sort_table("amount", "asc");
+                                }}
+                              ></i>
+                            )}
                           </th>
                           <th scope="col">
                             Processed
-                            <i className="fas fa-sort sort_space"></i>
+                            {sortingInfo.column_name === "processed" ? (
+                              sortingInfo.order_by === "asc" ? (
+                                <i
+                                  className="fa fa-sort-asc"
+                                  style={{ marginLeft: "10px" }}
+                                  onClick={() => {
+                                    sort_table("processed", "desc");
+                                  }}
+                                ></i>
+                              ) : (
+                                <i
+                                  className="fa fa-sort-desc"
+                                  style={{ marginLeft: "10px" }}
+                                  onClick={() => {
+                                    sort_table("processed", "asc");
+                                  }}
+                                ></i>
+                              )
+                            ) : (
+                              <i
+                                className="fa fa-sort"
+                                style={{ marginLeft: "10px" }}
+                                onClick={() => {
+                                  sort_table("processed", "asc");
+                                }}
+                              ></i>
+                            )}
                           </th>
                           <th scope="col">
                             Price
-                            <i className="fas fa-sort sort_space"></i>
+                            {sortingInfo.column_name === "price" ? (
+                              sortingInfo.order_by === "asc" ? (
+                                <i
+                                  className="fa fa-sort-asc"
+                                  style={{ marginLeft: "10px" }}
+                                  onClick={() => {
+                                    sort_table("price", "desc");
+                                  }}
+                                ></i>
+                              ) : (
+                                <i
+                                  className="fa fa-sort-desc"
+                                  style={{ marginLeft: "10px" }}
+                                  onClick={() => {
+                                    sort_table("price", "asc");
+                                  }}
+                                ></i>
+                              )
+                            ) : (
+                              <i
+                                className="fa fa-sort"
+                                style={{ marginLeft: "10px" }}
+                                onClick={() => {
+                                  sort_table("price", "asc");
+                                }}
+                              ></i>
+                            )}
                           </th>
                           <th scope="col">
                             Status
-                            <i className="fas fa-sort sort_space"></i>
+                            {sortingInfo.column_name === "status" ? (
+                              sortingInfo.order_by === "asc" ? (
+                                <i
+                                  className="fa fa-sort-asc"
+                                  style={{ marginLeft: "10px" }}
+                                  onClick={() => {
+                                    sort_table("status", "desc");
+                                  }}
+                                ></i>
+                              ) : (
+                                <i
+                                  className="fa fa-sort-desc"
+                                  style={{ marginLeft: "10px" }}
+                                  onClick={() => {
+                                    sort_table("status", "asc");
+                                  }}
+                                ></i>
+                              )
+                            ) : (
+                              <i
+                                className="fa fa-sort"
+                                style={{ marginLeft: "10px" }}
+                                onClick={() => {
+                                  sort_table("status", "asc");
+                                }}
+                              ></i>
+                            )}
                           </th>
                           <th scope="col">
                             Date
-                            <i className="fas fa-sort sort_space"></i>
+                            {sortingInfo.column_name === "created_at" ? (
+                              sortingInfo.order_by === "asc" ? (
+                                <i
+                                  className="fa fa-sort-asc"
+                                  style={{ marginLeft: "10px" }}
+                                  onClick={() => {
+                                    sort_table("created_at", "desc");
+                                  }}
+                                ></i>
+                              ) : (
+                                <i
+                                  className="fa fa-sort-desc"
+                                  style={{ marginLeft: "10px" }}
+                                  onClick={() => {
+                                    sort_table("created_at", "asc");
+                                  }}
+                                ></i>
+                              )
+                            ) : (
+                              <i
+                                className="fa fa-sort"
+                                style={{ marginLeft: "10px" }}
+                                onClick={() => {
+                                  sort_table("created_at", "asc");
+                                }}
+                              ></i>
+                            )}
                           </th>
                         </tr>
                       </thead>

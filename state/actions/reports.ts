@@ -145,10 +145,17 @@ export const AllBuyOrdersHistoryAction = async (
   page: number,
   setReport: React.Dispatch<SetStateAction<object>>,
   setProcessing: React.Dispatch<SetStateAction<boolean>>,
-  setStillHistory: React.Dispatch<SetStateAction<boolean>>
+  setStillHistory: React.Dispatch<SetStateAction<boolean>>,
+  column_name: string,
+  order_by: string
 ) => {
   setProcessing(true);
-  const response = await AllBuyOrdersHistoryApi(per_page, page);
+  const response = await AllBuyOrdersHistoryApi(
+    per_page,
+    page,
+    column_name,
+    order_by
+  );
   setReport(response.data.items.data);
   setStillHistory(response.data);
   setProcessing(false);
@@ -160,10 +167,17 @@ export const AllSellOrdersHistoryAction = async (
   page: number,
   setReport: React.Dispatch<SetStateAction<object>>,
   setProcessing: React.Dispatch<SetStateAction<boolean>>,
-  setStillHistory: React.Dispatch<SetStateAction<boolean>>
+  setStillHistory: React.Dispatch<SetStateAction<boolean>>,
+  column_name: string,
+  order_by: string
 ) => {
   setProcessing(true);
-  const response = await AllSellOrdersHistoryApi(per_page, page);
+  const response = await AllSellOrdersHistoryApi(
+    per_page,
+    page,
+    column_name,
+    order_by
+  );
   setReport(response.data.items.data);
   setStillHistory(response.data);
   setProcessing(false);

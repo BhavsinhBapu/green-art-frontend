@@ -19,4 +19,19 @@ request.interceptors.request.use((config: any) => {
 request.interceptors.response.use((response: any) => {
   return response;
 });
+
+export function apiRequest(url: any, params: any, query: any | null) {
+  let requestUrl = "";
+  if (query === null) {
+    requestUrl = process.env.NEXT_PUBLIC_BASE_URL + url.relativeUrl;
+  } else {
+    requestUrl = process.env.NEXT_PUBLIC_BASE_URL + url.relativeUrl + query;
+  }
+  return axios({
+    method: url.method,
+    url: requestUrl,
+    data: params,
+  });
+}
+
 export default request;
