@@ -1,6 +1,10 @@
 import * as React from "react";
 import styles from "./index.module.css";
-import { widget, version } from "../../public/static/charting_library";
+import {
+  widget,
+  version,
+  ChartingLibraryWidgetOptions,
+} from "../../public/static/charting_library";
 import Datafeed from "components/exchange/api";
 import {
   DISABLED_FEATURES,
@@ -53,7 +57,10 @@ export class TVChartContainer extends React.PureComponent {
 
       // BEWARE: no trailing slash is expected in feed URL
       //@ts-ignore
-      datafeed: Datafeed,
+      datafeed: new window.Datafeeds.UDFCompatibleDatafeed(
+        //@ts-ignore
+        this.props.datafeedUrl
+      ),
       // datafeed: Datafeed,
 
       //@ts-ignore
@@ -64,8 +71,8 @@ export class TVChartContainer extends React.PureComponent {
       library_path: this.props.libraryPath,
 
       locale: getLanguageFromURL() || "en",
-      disabled_features: ["use_localstorage_for_settings"],
-      enabled_features: ["study_templates"],
+      // disabled_features: ["use_localstorage_for_settings"],
+      // enabled_features: ["study_templates"],
       //@ts-ignore
       charts_storage_url: this.props.chartsStorageUrl,
       //@ts-ignore
