@@ -25,14 +25,16 @@ function getLanguageFromURL() {
 
 export class TVChartContainer extends React.PureComponent {
   static defaultProps = {
-    symbol: "AAPL",
-    interval: "D",
-    datafeedUrl: "https://demo_feed.tradingview.com",
-    datafeed: Datafeed,
+    symbol: "Coinbase:BTC/USD",
+    interval: "15",
+    // datafeedUrl: "https://demo_feed.tradingview.com",
+    // datafeed: Datafeed,
+    containerId: "tv_chart_container",
     libraryPath: "/static/charting_library/",
     chartsStorageUrl: "https://saveload.tradingview.com",
     chartsStorageApiVersion: "1.1",
     clientId: "tradingview.com",
+
     userId: "public_user_id",
     fullscreen: false,
     autosize: true,
@@ -57,10 +59,7 @@ export class TVChartContainer extends React.PureComponent {
 
       // BEWARE: no trailing slash is expected in feed URL
       //@ts-ignore
-      datafeed: new window.Datafeeds.UDFCompatibleDatafeed(
-        //@ts-ignore
-        this.props.datafeedUrl
-      ),
+      datafeed: Datafeed,
       // datafeed: Datafeed,
 
       //@ts-ignore

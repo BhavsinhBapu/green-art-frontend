@@ -12,5 +12,17 @@ module.exports = withCSS({
     url: false,
   },
 });
+module.exports = {
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.node = {
+        net: "empty",
+        tls: "empty",
+        dns: "empty",
+      };
+    }
 
+    return config;
+  },
+};
 module.exports = withImages();

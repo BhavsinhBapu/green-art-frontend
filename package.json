@@ -29,9 +29,6 @@
     "react-redux": "^7.2.6",
     "react-slick": "^0.28.1",
     "react-toastify": "^8.2.0",
-    "react-tradingview-embed": "^2.2.8",
-    "react-ts-tradingview-widgets": "^1.0.9",
-    "react-use-websocket": "^3.0.0",
     "slick-carousel": "^1.8.1",
     "yup": "^0.32.11"
   },
