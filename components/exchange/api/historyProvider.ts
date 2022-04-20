@@ -55,10 +55,11 @@ export default {
       e: split_symbol[0],
       fsym: split_symbol[1],
       tsym: split_symbol[2],
-      toTs: from.to,
+      toTs: to,
       limit: limit ? limit : 2000,
       // aggregate: 1//resolution
     };
+    console.log(qs, "this is qs");
     //time stamp
 
     return apiRequest(
@@ -66,19 +67,11 @@ export default {
       `${qs.e}&fsym=${qs.fsym}&tsym=${qs.tsym}&toTs=${qs.toTs}&limit=${qs.limit}`
     ).then((data: any) => {
       if (data.data.Data.length) {
-        console.log(
-          "this is a big data lengthhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh",
-          data.data.Data[0].volumefrom
-        );
-        const bars = data.data.Data.map((el: any) => ({
-          // TradingView requires bar time in ms
-          // time: el.time * 1000,
-          // open: parseFloat(el.open),
-          // high: parseFloat(el.high),
-          // low: parseFloat(el.low),
-          // close: parseFloat(el.close),
-          // volume: parseFloat(el.volumefrom),
+        const myBars = data.data.Data;
+        const klines4800 = [...myBars, ...myBars, ...myBars];
+        console.log("eeeeeeeeeeeeeeeeeeeeeeeeeeeeee", klines4800.length);
 
+        const bars = klines4800.map((el: any) => ({
           time: el.time * 1000,
           low: el.low,
           high: el.high,

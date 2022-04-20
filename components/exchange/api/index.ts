@@ -1,3 +1,4 @@
+import { PeriodParams } from "./../../../public/static/charting_library/datafeed-api.d";
 import { HistoryCallback } from "public/static/charting_library/charting_library";
 import historyProvider from "./historyProvider";
 
@@ -10,7 +11,10 @@ const supportedResolutions = [
   "60",
   "120",
   "240",
+  "360",
   "D",
+  "W",
+  "M",
 ];
 
 const config = {
@@ -18,8 +22,8 @@ const config = {
 };
 export default {
   onReady: (cb: any) => {
-    console.log("=====onReady running");
-    setTimeout(() => cb(config), 0);
+    console.log("=====onReady=====");
+    cb(config);
   },
   searchSymbols: (
     userInput: any,
@@ -66,43 +70,82 @@ export default {
 
     // onResolveErrorCallback('Not feeling it today')
   },
+
   getBars: function (
     symbolInfo: any,
     resolution: any,
-    from: any,
-    to: any,
-    onHistoryCallback: HistoryCallback,
-    onErrorCallback: any,
-    firstDataRequest: any
+    periodParams: any,
+    onHistoryCallback: any,
+    onError: any
   ) {
-    console.log("=====getBars runninggggggggggggggggggggggggggggggg");
-    // console.log('function args',arguments)
-    // console.log(`Requesting bars between ${new Date(from * 1000).toISOString()} and ${new Date(to * 1000).toISOString()}`)
-    historyProvider
-      //@ts-ignore
+    const { from, to } = periodParams;
+    const countBack = periodParams.countBack;
+    const countForward = periodParams.countForward;
 
-      .getBars(symbolInfo, resolution, from, to, firstDataRequest)
-      .then((bars) => {
-        // console.log("Got bars", bars);
+    historyProvider
+      .getBars(
+        symbolInfo,
+        resolution,
+        from * 1000,
+        to * 1000,
+        countBack,
+        countForward
+      )
+      .then((bars: any) => {
+        console.log("bars", bars);
         if (bars.length) {
-          try {
-            console.log("on History callback is calling ==============>", bars);
-            onHistoryCallback(bars, { noData: false });
-          } catch (error) {
-            console.log("onHistoryCallback error", error);
-          }
+          onHistoryCallback(bars, { noData: false });
         } else {
           onHistoryCallback(bars, { noData: true });
         }
       })
-      .catch((err) => {
-        console.log(
-          { err },
-          "thisssssssssssssssssssssssssssssssssssssssssssssssssssssss"
-        );
-        // onErrorCallback(err);
+      .catch((err: any) => {
+        console.log("err", err);
+        onError(err);
       });
   },
+
+  // getBars: function (
+  //   symbolInfo: any,
+  //   resolution: any,
+  //   from: any,
+  //   to: any,
+  //   onHistoryCallback: HistoryCallback,
+  //   onErrorCallback: any,
+  //   firstDataRequest: any,
+  //   periodParams: any
+  // ) {
+  //   console.log(
+  //     "=====getBars runninggggggggggggggggggggggggggggggg",
+  //     symbolInfo
+  //   );
+  //   // console.log('function args',arguments)
+  //   // console.log(`Requesting bars between ${new Date(from * 1000).toISOString()} and ${new Date(to * 1000).toISOString()}`)
+  //   historyProvider
+  //     //@ts-ignore
+
+  //     .getBars(symbolInfo, resolution, from, to, firstDataRequest)
+  //     .then((bars) => {
+  //       // console.log("Got bars", bars);
+  //       if (bars.length) {
+  //         try {
+  //           console.log("on History callback is calling ==============>", bars);
+  //           onHistoryCallback(bars, { noData: false });
+  //         } catch (error) {
+  //           console.log("onHistoryCallback error", error);
+  //         }
+  //       } else {
+  //         onHistoryCallback(bars, { noData: true });
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       // console.log(
+  //       //   { err },
+  //       //   "thisssssssssssssssssssssssssssssssssssssssssssssssssssssss"
+  //       // );
+  //       onErrorCallback(err);
+  //     });
+  // },
   subscribeBars: (
     symbolInfo: any,
     resolution: any,

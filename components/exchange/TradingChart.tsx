@@ -1,10 +1,6 @@
 import * as React from "react";
 import styles from "./index.module.css";
-import {
-  widget,
-  version,
-  ChartingLibraryWidgetOptions,
-} from "../../public/static/charting_library";
+import { widget, version } from "../../public/static/charting_library";
 import Datafeed from "components/exchange/api";
 import {
   DISABLED_FEATURES,
@@ -25,7 +21,7 @@ function getLanguageFromURL() {
 
 export class TVChartContainer extends React.PureComponent {
   static defaultProps = {
-    symbol: "Coinbase:BTC/USD",
+    symbol: "Tradexpro:BTC/USD",
     interval: "15",
     // datafeedUrl: "https://demo_feed.tradingview.com",
     // datafeed: Datafeed,
