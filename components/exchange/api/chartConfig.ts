@@ -424,6 +424,8 @@ export const DISABLED_FEATURES = [
   "header_interval_dialog_button",
   "show_interval_dialog_on_key_press",
   "header_saveload",
+  "header_symbol_search",
+  "header_symbol_search_hot_key",
 ];
 
 export const INTERVAL = {

@@ -1,6 +1,8 @@
 import * as React from "react";
+import { connect } from "react-redux";
 import styles from "./index.module.css";
 import { widget, version } from "../../public/static/charting_library";
+import { useSelector } from "react-redux";
 import Datafeed from "components/exchange/api";
 import {
   DISABLED_FEATURES,
@@ -11,6 +13,7 @@ import {
   getLoadingScreenStyle,
   TIME_FRAMES,
 } from "./api/chartConfig";
+import { RootState } from "state/store";
 function getLanguageFromURL() {
   const regex = new RegExp("[\\?&]lang=([^&#]*)");
   const results = regex.exec(window.location.search);
@@ -18,11 +21,15 @@ function getLanguageFromURL() {
     ? null
     : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
+type MyProps = {
+  // using `interface` is also ok
+  coinpair: any;
+};
 
-export class TVChartContainer extends React.PureComponent {
+export class TVChartContainer extends React.Component<MyProps> {
   static defaultProps = {
     symbol: "Tradexpro:BTC/USD",
-    interval: "15",
+    interval: "0.0000000000000000000000001",
     // datafeedUrl: "https://demo_feed.tradingview.com",
     // datafeed: Datafeed,
     containerId: "tv_chart_container",
@@ -36,6 +43,7 @@ export class TVChartContainer extends React.PureComponent {
     autosize: true,
     studiesOverrides: {},
   };
+  // name = this.props.name;
 
   tvWidget = null;
   //@ts-ignore
@@ -43,6 +51,7 @@ export class TVChartContainer extends React.PureComponent {
     super(props);
     //@ts-ignore
     this.ref = React.createRef();
+    console.log(props.coinpair, "jp morgan");
   }
 
   componentDidMount() {

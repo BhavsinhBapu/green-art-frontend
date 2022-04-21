@@ -64,6 +64,11 @@ const Dashboard: NextPage = () => {
       dashboard?.order_data?.base_coin_id &&
       dashboard?.order_data?.trade_coin_id
     ) {
+      localStorage.setItem("base_coin_id", dashboard?.order_data?.base_coin_id);
+      localStorage.setItem(
+        "trade_coin_id",
+        dashboard?.order_data?.trade_coin_id
+      );
       dispatch(initialDashboardCallActionWithToken(currentPair, dashboard));
     }
   }, [dashboard?.order_data?.base_coin_id]);
@@ -231,7 +236,10 @@ const Dashboard: NextPage = () => {
                 <div className="col-xl-6">
                   <div className="cp-user-buy-coin-content-area">
                     <div className="card cp-user-custom-card">
-                      <TradingChart />
+                      <TradingChart
+                        //  @ts-ignore
+                        coinpair={dashboard?.order_data?.exchange_coin_pair}
+                      />
                     </div>
                   </div>
                   <OrderHistorySection />

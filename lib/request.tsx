@@ -34,6 +34,10 @@ request.interceptors.response.use((response: any) => {
 //   });
 // }
 export function apiRequest(base: any, query: any | null) {
-  return axios.get(base + query);
+  if (query === null) {
+    return request(base);
+  } else {
+    return axios.get(base + query);
+  }
 }
 export default request;

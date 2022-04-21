@@ -1,7 +1,8 @@
 import { PeriodParams } from "./../../../public/static/charting_library/datafeed-api.d";
 import { HistoryCallback } from "public/static/charting_library/charting_library";
 import historyProvider from "./historyProvider";
-
+import { useSelector } from "react-redux";
+import { RootState } from "state/store";
 const supportedResolutions = [
   "1",
   "3",
@@ -81,7 +82,7 @@ export default {
     const { from, to } = periodParams;
     const countBack = periodParams.countBack;
     const countForward = periodParams.countForward;
-
+    //@ts-ignore
     historyProvider
       .getBars(
         symbolInfo,
@@ -92,7 +93,8 @@ export default {
         countForward
       )
       .then((bars: any) => {
-        console.log("bars", bars);
+        console.log("bars", periodParams);
+        console.log("barssssssssssssssss", bars);
         if (bars.length) {
           onHistoryCallback(bars, { noData: false });
         } else {
@@ -105,47 +107,6 @@ export default {
       });
   },
 
-  // getBars: function (
-  //   symbolInfo: any,
-  //   resolution: any,
-  //   from: any,
-  //   to: any,
-  //   onHistoryCallback: HistoryCallback,
-  //   onErrorCallback: any,
-  //   firstDataRequest: any,
-  //   periodParams: any
-  // ) {
-  //   console.log(
-  //     "=====getBars runninggggggggggggggggggggggggggggggg",
-  //     symbolInfo
-  //   );
-  //   // console.log('function args',arguments)
-  //   // console.log(`Requesting bars between ${new Date(from * 1000).toISOString()} and ${new Date(to * 1000).toISOString()}`)
-  //   historyProvider
-  //     //@ts-ignore
-
-  //     .getBars(symbolInfo, resolution, from, to, firstDataRequest)
-  //     .then((bars) => {
-  //       // console.log("Got bars", bars);
-  //       if (bars.length) {
-  //         try {
-  //           console.log("on History callback is calling ==============>", bars);
-  //           onHistoryCallback(bars, { noData: false });
-  //         } catch (error) {
-  //           console.log("onHistoryCallback error", error);
-  //         }
-  //       } else {
-  //         onHistoryCallback(bars, { noData: true });
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       // console.log(
-  //       //   { err },
-  //       //   "thisssssssssssssssssssssssssssssssssssssssssssssssssssssss"
-  //       // );
-  //       onErrorCallback(err);
-  //     });
-  // },
   subscribeBars: (
     symbolInfo: any,
     resolution: any,
