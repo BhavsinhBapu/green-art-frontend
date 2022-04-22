@@ -2,14 +2,17 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "state/store";
 import { setCurrentPair } from "state/reducer/exchange";
+import { useRouter } from "next/router";
 
 const SelectCurrency = () => {
+  const router = useRouter();
   const [pairs, setPairs] = React.useState([]);
   const { dashboard } = useSelector((state: RootState) => state.exchange);
   const dispatch = useDispatch();
   useEffect(() => {
     if (dashboard?.pairs) {
       setPairs(dashboard.pairs);
+      console.log(dashboard.pairs, "dashboard.pairs");
     }
   }, [dashboard]);
   return (
@@ -216,7 +219,19 @@ const SelectCurrency = () => {
                       key={index}
                       className="odd"
                       id="market-BCH_BTC"
-                      onClick={() => dispatch(setCurrentPair(pair.coin_pair))}
+                      onClick={() => {
+                        dispatch(setCurrentPair(pair.coin_pair));
+                        localStorage.setItem(
+                          "base_coin_id",
+                          dashboard?.order_data?.base_coin_id
+                        );
+                        localStorage.setItem(
+                          "trade_coin_id",
+                          dashboard?.order_data?.trade_coin_id
+                        );
+                        localStorage.setItem("current_pair", pair.coin_pair);
+                        router.reload();
+                      }}
                     >
                       <td
                         className="text-left text-green w-30 sorting_1"

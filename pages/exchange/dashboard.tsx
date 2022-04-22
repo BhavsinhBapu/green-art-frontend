@@ -13,7 +13,7 @@ const TradingChart = dynamic(
 import Echo from "laravel-echo";
 import Pusher from "pusher-js";
 const hostUrl = "tradexpro-laravel.cdibrandstudio.com";
-
+import { useRouter } from "next/router";
 // import TradingChart from "components/exchange/TradingChart";
 import SelectCurrency from "components/exchange/selectCurrency";
 import CurrencyLevel from "components/exchange/currencyLevel";
@@ -26,7 +26,11 @@ import {
   initialDashboardCallAction,
   initialDashboardCallActionWithToken,
 } from "state/actions/exchange";
-import { setOpenBookBuy, setOpenBooksell } from "state/reducer/exchange";
+import {
+  setCurrentPair,
+  setOpenBookBuy,
+  setOpenBooksell,
+} from "state/reducer/exchange";
 let socketCall = 0;
 async function listenMessages(dispatch: any) {
   //@ts-ignore
@@ -57,7 +61,15 @@ const Dashboard: NextPage = () => {
   );
 
   useEffect(() => {
-    dispatch(initialDashboardCallAction(currentPair, dashboard));
+    const pair = localStorage.getItem("current_pair");
+    if (pair) {
+      console.log(pair, "there is a paur");
+      setCurrentPair(pair);
+      dispatch(initialDashboardCallAction(pair, dashboard));
+    } else {
+      console.log("there is a paur");
+      dispatch(initialDashboardCallAction(currentPair, dashboard));
+    }
   }, [isLoggedIn, currentPair]);
   useEffect(() => {
     if (
