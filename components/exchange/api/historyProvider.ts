@@ -30,8 +30,9 @@ export default {
         let klines4800: any = [];
         for (let i = 0; i < 80; i++) {
           myBars.map((el: any) => {
+            let j = i;
             klines4800.push({
-              time: el.time, // TradingView requires bar time in ms
+              time: el.time + j, // TradingView requires bar time in ms
               low: el.low,
               high: el.high,
               open: el.open,

@@ -28,35 +28,35 @@ const Navbar = () => {
           <div className="col-xl-8 col-lg-8 d-none d-lg-block">
             <nav className="main-menu">
               <ul>
-                <Link href="/exchange/dashboard">
-                  <li
-                    // onClick={() => {
-                    //   router.push("/exchange/dashboard");
-                    //   router.reload();
-                    // }}
-                    className={
-                      router.pathname == "/exchange/dashboard"
-                        ? "cp-user-active-page"
-                        : ""
-                    }
-                  >
-                    <a href="">
-                      <span className="cp-user-icon">
-                        <img
-                          src="/sidebar-icons/dashboard.svg"
-                          className="img-fluid cp-user-side-bar-icon"
-                          alt=""
-                        />
-                        <img
-                          src="/sidebar-icons/hover/dashboard.svg"
-                          className="img-fluid cp-user-side-bar-icon-hover"
-                          alt=""
-                        />
-                      </span>
-                      <span className="cp-user-name">Trade</span>
-                    </a>
-                  </li>
-                </Link>
+                {/* <a href="/exchange/dashboard"> */}
+                <li
+                  // onClick={() => {
+                  //   router.push("/exchange/dashboard");
+                  //   router.reload();
+                  // }}
+                  className={
+                    router.pathname == "/exchange/dashboard"
+                      ? "cp-user-active-page"
+                      : ""
+                  }
+                >
+                  <a href="/exchange/dashboard">
+                    <span className="cp-user-icon">
+                      <img
+                        src="/sidebar-icons/dashboard.svg"
+                        className="img-fluid cp-user-side-bar-icon"
+                        alt=""
+                      />
+                      <img
+                        src="/sidebar-icons/hover/dashboard.svg"
+                        className="img-fluid cp-user-side-bar-icon-hover"
+                        alt=""
+                      />
+                    </span>
+                    <span className="cp-user-name">Trade</span>
+                  </a>
+                </li>
+                {/* </a> */}
                 <Link
                   href={
                     isLoggedIn === true
