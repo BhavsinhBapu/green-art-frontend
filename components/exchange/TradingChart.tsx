@@ -70,9 +70,6 @@ export class TVChartContainer extends React.Component<MyProps> {
     super(props);
     //@ts-ignore
     this.ref = React.createRef();
-    // //@ts-ignore
-    // this.theme = "Dark";
-    console.log(props.coinpair, "jp morgan");
   }
 
   componentDidMount() {

@@ -13,13 +13,13 @@ const DashboardNavbar = () => {
           <div className="col-xl-2 col-lg-2 col-4">
             <div className="cp-user-logo">
               <Link href="/">
-              <a href="">
-                <img
-                  src="/logo.svg"
-                  className="img-fluid cp-user-logo-large"
-                  alt=""
-                />
-              </a>
+                <a href="">
+                  <img
+                    src="/logo.svg"
+                    className="img-fluid cp-user-logo-large"
+                    alt=""
+                  />
+                </a>
               </Link>
             </div>
           </div>
@@ -54,21 +54,21 @@ const DashboardNavbar = () => {
                     isLoggedIn ? "/user/my-wallet" : "/authentication/signin"
                   }
                 >
-                   <li className="">
+                  <li className="">
                     <a href="">
-                    <span className="cp-user-icon">
-                      <img
-                        src="/sidebar-icons/Wallet.svg"
-                        className="img-fluid cp-user-side-bar-icon"
-                        alt=""
-                      />
-                      <img
-                        src="/sidebar-icons/Wallet.svg"
-                        className="img-fluid cp-user-side-bar-icon-hover"
-                        alt=""
-                      />
-                    </span>
-                    <span className="cp-user-name">Wallet</span>
+                      <span className="cp-user-icon">
+                        <img
+                          src="/sidebar-icons/Wallet.svg"
+                          className="img-fluid cp-user-side-bar-icon"
+                          alt=""
+                        />
+                        <img
+                          src="/sidebar-icons/Wallet.svg"
+                          className="img-fluid cp-user-side-bar-icon-hover"
+                          alt=""
+                        />
+                      </span>
+                      <span className="cp-user-name">Wallet</span>
                     </a>
                   </li>
                 </Link>
@@ -245,7 +245,7 @@ const DashboardNavbar = () => {
                 <ul>
                   <li className="hm-notify" id="notification_item">
                     <div className="btn-group dropdown">
-                      <button
+                      {/* <button
                         type="button"
                         className="btn notification-btn dropdown-toggle"
                         data-toggle="dropdown"
@@ -258,7 +258,7 @@ const DashboardNavbar = () => {
                           className="img-fluid"
                           alt=""
                         />
-                      </button>
+                      </button> */}
                       <div className="dropdown-menu notification-list dropdown-menu-right">
                         <div className="text-center p-2 border-bottom nt-title">
                           New Notifications

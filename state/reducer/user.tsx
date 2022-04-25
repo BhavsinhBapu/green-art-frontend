@@ -3,12 +3,14 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 export type UserType = {
   user: {};
   isLoggedIn: boolean;
+  notification: [];
 };
 
 const initialState: any = {
   user: {},
   isLoggedIn: false,
   isLoading: false,
+  notification: [],
 };
 
 export const userSlice = createSlice({
@@ -31,6 +33,9 @@ export const userSlice = createSlice({
     },
     setLoading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload;
+    },
+    setNotification: (state, action: PayloadAction<any>) => {
+      state.notification = action.payload;
     },
   },
 });
