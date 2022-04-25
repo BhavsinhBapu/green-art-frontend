@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 import { getChartData } from "service/trading-chart";
 import { apiRequest } from "lib/request";
 const history: any = {};
@@ -20,7 +21,11 @@ export default {
 
     if (this.hitted === false) {
       this.hitted = true;
-      return getChartData(1440, from, to).then((data: any) => {
+      const base = Cookies.get("base_coin_id");
+      const trade = Cookies.get("trade_coin_id");
+      console.log(base, "myyyyyyy base");
+      console.log(trade, "myyyyyyy trade");
+      return getChartData(1440, from, to, base, trade).then((data: any) => {
         const myBars = data.data;
         let klines4800: any = [];
         for (let i = 0; i < 80; i++) {

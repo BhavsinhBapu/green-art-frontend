@@ -1,8 +1,5 @@
-import { PeriodParams } from "./../../../public/static/charting_library/datafeed-api.d";
-import { HistoryCallback } from "public/static/charting_library/charting_library";
 import historyProvider from "./historyProvider";
-import { useSelector } from "react-redux";
-import { RootState } from "state/store";
+import stream from "./stream";
 const supportedResolutions = [
   "1",
   "3",
@@ -115,6 +112,13 @@ export default {
     onResetCacheNeededCallback: any
   ) => {
     console.log("=====subscribeBars runnning");
+    stream.subscribeBars(
+      symbolInfo,
+      resolution,
+      onRealtimeCallback,
+      subscribeUID,
+      onResetCacheNeededCallback
+    );
   },
   unsubscribeBars: (subscriberUID: any) => {
     console.log("=====unsubscribeBars running");

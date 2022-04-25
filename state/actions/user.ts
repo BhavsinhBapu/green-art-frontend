@@ -65,11 +65,12 @@ export const SigninAction =
         progress: undefined,
         className: "dark-toast",
       });
-      if (redirectUrl) {
-        Router.replace(redirectUrl);
-      } else {
-        Router.replace("/exchange/dashboard");
-      }
+      // if (redirectUrl) {
+      //   Router.replace(redirectUrl);
+      // } else {
+      //   Router.replace("/exchange/dashboard");
+      // }
+      Router.reload();
     } else {
       dispatch(setAuthenticationState(false));
       toast.error(responseMessage, {

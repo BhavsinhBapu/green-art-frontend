@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "state/store";
 import { setCurrentPair } from "state/reducer/exchange";
 import { useRouter } from "next/router";
+import Cookies from "js-cookie";
 
 const SelectCurrency = () => {
   const router = useRouter();
@@ -219,17 +220,30 @@ const SelectCurrency = () => {
                       key={index}
                       className="odd"
                       id="market-BCH_BTC"
-                      onClick={() => {
-                        dispatch(setCurrentPair(pair.coin_pair));
-                        localStorage.setItem(
+                      onClick={async () => {
+                        await localStorage.setItem(
                           "base_coin_id",
                           dashboard?.order_data?.base_coin_id
                         );
-                        localStorage.setItem(
+                        await localStorage.setItem(
                           "trade_coin_id",
                           dashboard?.order_data?.trade_coin_id
                         );
-                        localStorage.setItem("current_pair", pair.coin_pair);
+                        await Cookies.set(
+                          "base_coin_id",
+                          dashboard?.order_data?.base_coin_id
+                        );
+                        await Cookies.set(
+                          "trade_coin_id",
+                          dashboard?.order_data?.trade_coin_id
+                        );
+                        await localStorage.setItem(
+                          "current_pair",
+                          pair.coin_pair
+                        );
+                        // await dispatch(setCurrentPair(pair.coin_pair));
+                        //pause 4 seconds
+
                         router.reload();
                       }}
                     >

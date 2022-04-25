@@ -1,6 +1,5 @@
 import type { NextPage } from "next";
 import DashboardNavbar from "components/common/dashboardNavbar";
-
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 const TradingChart = dynamic(
@@ -13,8 +12,6 @@ const TradingChart = dynamic(
 import Echo from "laravel-echo";
 import Pusher from "pusher-js";
 const hostUrl = "tradexpro-laravel.cdibrandstudio.com";
-import { useRouter } from "next/router";
-// import TradingChart from "components/exchange/TradingChart";
 import SelectCurrency from "components/exchange/selectCurrency";
 import CurrencyLevel from "components/exchange/currencyLevel";
 import OrderHistorySection from "components/exchange/orderHistorySection";
@@ -52,6 +49,14 @@ async function listenMessages(dispatch: any) {
     if (e.order_type === "buy") dispatch(setOpenBookBuy(e.orders));
     if (e.order_type === "sell") dispatch(setOpenBooksell(e.orders));
   });
+  //@ts-ignore
+  window.Echo.channel(
+    `trade-info-${localStorage.getItem("base_coin_id")}-${localStorage.getItem(
+      "trade_coin_id"
+    )}`
+  ).listen(".process", (e: any) => {
+    console.log(e.chart, "found a chart data");
+  });
 }
 const Dashboard: NextPage = () => {
   const dispatch = useDispatch();
@@ -63,11 +68,9 @@ const Dashboard: NextPage = () => {
   useEffect(() => {
     const pair = localStorage.getItem("current_pair");
     if (pair) {
-      console.log(pair, "there is a paur");
       setCurrentPair(pair);
       dispatch(initialDashboardCallAction(pair, dashboard));
     } else {
-      console.log("there is a paur");
       dispatch(initialDashboardCallAction(currentPair, dashboard));
     }
   }, [isLoggedIn, currentPair]);
@@ -86,7 +89,7 @@ const Dashboard: NextPage = () => {
   }, [dashboard?.order_data?.base_coin_id]);
   useEffect(() => {
     if (socketCall === 0) {
-      listenMessages(dispatch);
+      // listenMessages(dispatch);
     }
     socketCall = 1;
   });

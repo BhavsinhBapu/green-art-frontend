@@ -1,19 +1,32 @@
 import * as React from "react";
-import { connect } from "react-redux";
 import styles from "./index.module.css";
 import { widget, version } from "../../public/static/charting_library";
-import { useSelector } from "react-redux";
 import Datafeed from "components/exchange/api";
 import {
   DISABLED_FEATURES,
   ENABLED_FEATURES,
-  getBackgroundColor,
   getChartOverrides,
   getChartStudiesOverrides,
-  getLoadingScreenStyle,
   TIME_FRAMES,
 } from "./api/chartConfig";
-import { RootState } from "state/store";
+import historyProvider from "./api/historyProvider";
+const supportedResolutions = [
+  "1",
+  "3",
+  "5",
+  "15",
+  "30",
+  "60",
+  "120",
+  "240",
+  "360",
+  "D",
+  "W",
+  "M",
+];
+const config = {
+  supported_resolutions: supportedResolutions,
+};
 function getLanguageFromURL() {
   const regex = new RegExp("[\\?&]lang=([^&#]*)");
   const results = regex.exec(window.location.search);
@@ -47,10 +60,18 @@ export class TVChartContainer extends React.Component<MyProps> {
 
   tvWidget = null;
   //@ts-ignore
+  chartInit = (config) => {
+    const tvWidget = new widget(config);
+    //@ts-ignore
+    this.tvWidget = tvWidget;
+  };
+  //@ts-ignore
   constructor(props) {
     super(props);
     //@ts-ignore
     this.ref = React.createRef();
+    // //@ts-ignore
+    // this.theme = "Dark";
     console.log(props.coinpair, "jp morgan");
   }
 
@@ -61,8 +82,7 @@ export class TVChartContainer extends React.Component<MyProps> {
       //@ts-ignore
       symbol: this.props.symbol,
       style: 1,
-
-      // BEWARE: no trailing slash is expected in feed URL
+      theme: "Dark",
       //@ts-ignore
       datafeed: Datafeed,
       // datafeed: Datafeed,
@@ -73,10 +93,10 @@ export class TVChartContainer extends React.Component<MyProps> {
       container: this.ref.current,
       //@ts-ignore
       library_path: this.props.libraryPath,
+      //@ts-ignore
+      studies_overrides: getChartStudiesOverrides(this.props.theme),
 
       locale: getLanguageFromURL() || "en",
-      // disabled_features: ["use_localstorage_for_settings"],
-      // enabled_features: ["study_templates"],
       //@ts-ignore
       charts_storage_url: this.props.chartsStorageUrl,
       //@ts-ignore
@@ -96,14 +116,21 @@ export class TVChartContainer extends React.Component<MyProps> {
       overrides: {
         "paneProperties.background": "#131722",
         "paneProperties.vertGridProperties.color": "#363c4e",
+
         "paneProperties.horzGridProperties.color": "#363c4e",
         "symbolWatermarkProperties.transparency": 90,
         "scalesProperties.textColor": "#AAA",
+        //background dark
       },
+      drawings_access: { type: "black", tools: [{ name: "Regression Trend" }] },
       //@ts-ignore
       enabled_features: ENABLED_FEATURES,
       //@ts-ignore
       disabled_features: DISABLED_FEATURES,
+      //@ts-ignore
+      // toolbar_bg: getBackgroundColor(this.props.theme),
+      //@ts-ignore
+      overrides: getChartOverrides(this.props.theme),
       custom_css_url: "charting_library/chart-v3-ethfinex-theme.css",
 
       //@ts-ignore
@@ -112,28 +139,7 @@ export class TVChartContainer extends React.Component<MyProps> {
       toolbar: false,
     };
     //@ts-ignore
-    const tvWidget = new widget(widgetOptions);
-    //@ts-ignore
-    this.tvWidget = tvWidget;
-
-    tvWidget.onChartReady(() => {
-      tvWidget.headerReady().then(() => {
-        const button = tvWidget.createButton();
-        button.setAttribute("title", "Click to show a notification popup");
-        button.classList.add("apply-common-tooltip");
-        button.addEventListener("click", () =>
-          tvWidget.showNoticeDialog({
-            title: "Notification",
-            body: "TradingView Charting Library API works correctly",
-            callback: () => {
-              console.log("Noticed!");
-            },
-          })
-        );
-
-        button.innerHTML = "Check API";
-      });
-    });
+    this.chartInit(widgetOptions);
   }
 
   componentWillUnmount() {

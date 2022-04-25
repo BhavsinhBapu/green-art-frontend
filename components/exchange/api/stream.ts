@@ -1,5 +1,9 @@
 import historyProvider from "./historyProvider";
+import Echo from "laravel-echo";
+import Pusher from "pusher-js";
+const hostUrl = "tradexpro-laravel.cdibrandstudio.com";
 const _subs: any = [];
+
 export default {
   subscribeBars(
     symbolInfo: any,
@@ -8,16 +12,37 @@ export default {
     uid: any,
     resetCache: any
   ) {
-    const channelString = createChannelString(symbolInfo);
-    const newSub = {
-      channelString,
-      uid,
-      resolution,
-      symbolInfo,
-      lastBar: historyProvider.history[symbolInfo.name].lastBar,
-      listener: updateCb,
-    };
-    _subs.push(newSub);
+    //@ts-ignore
+    window.Pusher = Pusher;
+    //@ts-ignore
+    window.Echo = new Echo({
+      broadcaster: "pusher",
+      key: "test",
+      wsHost: hostUrl,
+      wsPort: 6006,
+      wssPort: 443,
+      cluster: "mt1",
+      disableStats: true,
+      enabledTransports: ["ws", "wss"],
+    });
+
+    //@ts-ignore
+    window.Echo.channel(
+      `trade-info-${localStorage.getItem(
+        "base_coin_id"
+      )}-${localStorage.getItem("trade_coin_id")}`
+    ).listen(".process", (e: any) => {
+      const channelString = createChannelString(symbolInfo);
+      const newSub = {
+        channelString,
+        uid,
+        resolution,
+        symbolInfo,
+        lastBar: historyProvider.history[symbolInfo.name].lastBar,
+        listener: updateCb,
+      };
+      _subs.push(newSub);
+    });
   },
   unsubscribeBars(uid: any) {
     const subIndex = _subs.findIndex((e: any) => e.uid === uid);

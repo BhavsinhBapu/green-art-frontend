@@ -141,9 +141,9 @@ const StopLimit = ({
                           parseInt(e.target.value) *
                           dashboard?.order_data?.sell_price,
                       });
-                      await dispatch(
-                        initialDashboardCallAction(currentPair, dashboard)
-                      );
+                      // await dispatch(
+                      //   initialDashboardCallAction(currentPair, dashboard)
+                      // );
                     }}
                   />
                   <span

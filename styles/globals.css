@@ -1,3 +1,6 @@
 .TVChartContainer {
   height: calc(100vh - 80px);
 }
+.layout__area--left {
+  color: white;
+}
