@@ -128,36 +128,36 @@ const TransactionHistory: NextPage = () => {
                         <tr>
                           <th scope="col" className="">
                             Transaction id
-                            <i className="fas fa-sort-down sort_space"></i>
+                            {/* <i className="fas fa-sort-down sort_space"></i> */}
                           </th>
 
                           <th scope="col" rowSpan={1} colSpan={1}>
                             Base Coin
-                            <i className="fas fa-sort sort_space"></i>
+                            {/* <i className="fas fa-sort sort_space"></i> */}
                           </th>
                           <th scope="col">
                             Trade Coin
-                            <i className="fas fa-sort sort_space"></i>
+                            {/* <i className="fas fa-sort sort_space"></i> */}
                           </th>
                           <th scope="col">
                             Amount
-                            <i className="fas fa-sort sort_space"></i>
+                            {/* <i className="fas fa-sort sort_space"></i> */}
                           </th>
                           <th scope="col">
                             Price
-                            <i className="fas fa-sort sort_space"></i>
+                            {/* <i className="fas fa-sort sort_space"></i> */}
                           </th>
                           <th scope="col">
                             Fees
-                            <i className="fas fa-sort sort_space"></i>
+                            {/* <i className="fas fa-sort sort_space"></i> */}
                           </th>
                           <th scope="col">
                             Total
-                            <i className="fas fa-sort sort_space"></i>
+                            {/* <i className="fas fa-sort sort_space"></i> */}
                           </th>
                           <th scope="col">
                             Date
-                            <i className="fas fa-sort sort_space"></i>
+                            {/* <i className="fas fa-sort sort_space"></i> */}
                           </th>
                         </tr>
                       </thead>

@@ -258,23 +258,23 @@ const MyWallet: NextPage = () => {
                           <tr>
                             <th scope="col">
                               Asset
-                              <i className="fas fa-sort-down sort_space"></i>
+                              {/* <i className="fas fa-sort-down sort_space"></i> */}
                             </th>
                             <th scope="col">
                               Symbol
-                              <i className="fas fa-sort-up sort_space"></i>
+                              {/* <i className="fas fa-sort-up sort_space"></i> */}
                             </th>
                             <th scope="col">
                               On Order
-                              <i className="fas fa-sort sort_space"></i>
+                              {/* <i className="fas fa-sort sort_space"></i> */}
                             </th>
                             <th scope="col">
                               Available Balance
-                              <i className="fas fa-sort sort_space"></i>
+                              {/* <i className="fas fa-sort sort_space"></i> */}
                             </th>
                             <th scope="col">
                               Total Balance
-                              <i className="fas fa-sort sort_space"></i>
+                              {/* <i className="fas fa-sort sort_space"></i> */}
                             </th>
                           </tr>
                         </thead>

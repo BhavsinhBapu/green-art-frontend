@@ -119,31 +119,31 @@ const SwapHistory: NextPage = () => {
                         <tr>
                           <th scope="col" className="">
                             From Wallet
-                            <i className="fas fa-sort-down sort_space"></i>
+                            {/* <i className="fas fa-sort-down sort_space"></i> */}
                           </th>
                           <th scope="col" rowSpan={1} colSpan={1}>
                             To Wallet
-                            <i className="fas fa-sort sort_space"></i>
+                            {/* <i className="fas fa-sort sort_space"></i> */}
                           </th>
                           <th scope="col" rowSpan={1} colSpan={1}>
                             Requested Amount
-                            <i className="fas fa-sort sort_space"></i>
+                            {/* <i className="fas fa-sort sort_space"></i> */}
                           </th>
                           <th scope="col">
                             Converted Amount
-                            <i className="fas fa-sort sort_space"></i>
+                            {/* <i className="fas fa-sort sort_space"></i> */}
                           </th>
                           <th scope="col">
                             Rate
-                            <i className="fas fa-sort sort_space"></i>
+                            {/* <i className="fas fa-sort sort_space"></i> */}
                           </th>
                           <th scope="col">
                             Created At
-                            <i className="fas fa-sort sort_space"></i>
+                            {/* <i className="fas fa-sort sort_space"></i> */}
                           </th>
                           <th scope="col">
                             Status
-                            <i className="fas fa-sort sort_space"></i>
+                            {/* <i className="fas fa-sort sort_space"></i> */}
                           </th>
                         </tr>
                       </thead>

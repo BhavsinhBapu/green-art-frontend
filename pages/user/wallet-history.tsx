@@ -135,27 +135,27 @@ const DepositHistory: NextPage = () => {
                           <tr>
                             <th scope="col" className="">
                               Created At
-                              <i className="fas fa-sort-down sort_space"></i>
+                              {/* <i className="fas fa-sort-down sort_space"></i> */}
                             </th>
                             <th scope="col" rowSpan={1} colSpan={1}>
                               Address
-                              <i className="fas fa-sort sort_space"></i>
+                              {/* <i className="fas fa-sort sort_space"></i> */}
                             </th>
                             <th scope="col" rowSpan={1} colSpan={1}>
                               Coin Type
-                              <i className="fas fa-sort sort_space"></i>
+                              {/* <i className="fas fa-sort sort_space"></i> */}
                             </th>
                             <th scope="col">
                               Amount
-                              <i className="fas fa-sort sort_space"></i>
+                              {/* <i className="fas fa-sort sort_space"></i> */}
                             </th>
                             <th scope="col">
                               Fees
-                              <i className="fas fa-sort sort_space"></i>
+                              {/* <i className="fas fa-sort sort_space"></i> */}
                             </th>
                             <th scope="col">
                               Transaction Hash
-                              <i className="fas fa-sort sort_space"></i>
+                              {/* <i className="fas fa-sort sort_space"></i> */}
                             </th>
                             <th scope="col">
                               Status

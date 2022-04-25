@@ -73,31 +73,31 @@ const GetAllBuyOrders: NextPage = () => {
                       <tr>
                         <th scope="col" className="">
                           Amount
-                          <i className="fas fa-sort-down sort_space"></i>
+                          {/* <i className="fas fa-sort-down sort_space"></i> */}
                         </th>
                         <th scope="col" rowSpan={1} colSpan={1}>
                           Processed
-                          <i className="fas fa-sort sort_space"></i>
+                          {/* <i className="fas fa-sort sort_space"></i> */}
                         </th>
                         <th scope="col" rowSpan={1} colSpan={1}>
                           Price
-                          <i className="fas fa-sort sort_space"></i>
+                          {/* <i className="fas fa-sort sort_space"></i> */}
                         </th>
                         <th scope="col">
                           Total
-                          <i className="fas fa-sort sort_space"></i>
+                          {/* <i className="fas fa-sort sort_space"></i> */}
                         </th>
                         <th scope="col">
                           My Size
-                          <i className="fas fa-sort sort_space"></i>
+                          {/* <i className="fas fa-sort sort_space"></i> */}
                         </th>
                         <th scope="col">
                           Status
-                          <i className="fas fa-sort sort_space"></i>
+                          {/* <i className="fas fa-sort sort_space"></i> */}
                         </th>
                         <th scope="col">
                           Date
-                          <i className="fas fa-sort sort_space"></i>
+                          {/* <i className="fas fa-sort sort_space"></i> */}
                         </th>
                       </tr>
                     </thead>

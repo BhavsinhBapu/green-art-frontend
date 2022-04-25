@@ -106,13 +106,13 @@ const OrderBook = () => {
                 </div>
                 <div className="trades-table-footer">
                   <div className="trades-table-row">
-                    <div className="trades-table-col volume">
+                    {/* <div className="trades-table-col volume">
                       <a className="more-btn">More</a>
-                    </div>
+                    </div> */}
                     <div className="trades-table-col price total-price" />
-                    <div className="trades-table-col price total-price">
+                    {/* <div className="trades-table-col price total-price">
                       <span>0.00</span> <span>USDT</span>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>
