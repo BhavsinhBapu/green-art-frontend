@@ -190,7 +190,7 @@ const Settings: NextPage = () => {
                               </button>
                             </div>
                           </form>
-                          <small>{JSON.stringify(settings)}</small>
+                          {/* <small>{JSON.stringify(settings)}</small> */}
                         </div>
                       </div>
                     </div>

@@ -1,7 +1,20 @@
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import type { GetServerSideProps, NextPage } from "next";
-
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import { getReferral } from "service/refer";
 const Referral: NextPage = () => {
+  const [referral, setReferral] = useState<any>();
+  useEffect(() => {
+    getReferral().then((res) => {
+      console.log(res.data.data.url, "referral");
+      setReferral(res.data.data.url);
+    });
+    //cleanup
+    return () => {
+      setReferral(null);
+    };
+  }, []);
   return (
     <div className="referral-area">
       <div className="section-top-wrap mb-25">
@@ -15,10 +28,17 @@ const Referral: NextPage = () => {
                   type="url"
                   className="form-control"
                   id="url"
-                  defaultValue="http://localhost:8000/referral-reg?ref_code=261fb5b35b3b82"
+                  defaultValue={referral}
                   readOnly
                 />
-                <button type="button" className="btn copy-url-btn">
+                <button
+                  type="button"
+                  className="btn copy-url-btn"
+                  onClick={() => {
+                    navigator.clipboard.writeText(referral);
+                    toast.success("Copied to clipboard");
+                  }}
+                >
                   <i className="fa fa-clone" />
                 </button>
               </div>
@@ -26,7 +46,7 @@ const Referral: NextPage = () => {
           </div>
         </div>
       </div>
-      <div className="container">
+      {/* <div className="container">
         <div className="section-wrapper rounded-sm">
           <div className="rewards-inviter mb-25">
             <div className="single-item">
@@ -132,7 +152,7 @@ const Referral: NextPage = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -220,32 +220,6 @@ const SelectCurrency = () => {
                       key={index}
                       className="odd"
                       id="market-BCH_BTC"
-                      onClick={async () => {
-                        await localStorage.setItem(
-                          "base_coin_id",
-                          dashboard?.order_data?.base_coin_id
-                        );
-                        await localStorage.setItem(
-                          "trade_coin_id",
-                          dashboard?.order_data?.trade_coin_id
-                        );
-                        await Cookies.set(
-                          "base_coin_id",
-                          dashboard?.order_data?.base_coin_id
-                        );
-                        await Cookies.set(
-                          "trade_coin_id",
-                          dashboard?.order_data?.trade_coin_id
-                        );
-                        await localStorage.setItem(
-                          "current_pair",
-                          pair.coin_pair
-                        );
-                        // await dispatch(setCurrentPair(pair.coin_pair));
-                        //pause 4 seconds
-
-                        router.reload();
-                      }}
                     >
                       <td
                         className="text-left text-green w-30 sorting_1"
@@ -255,6 +229,33 @@ const SelectCurrency = () => {
                           className="text-info select_coin_pair p-0 m-0"
                           data-baseid={1}
                           data-tradeid={5}
+                          href="/exchange/dashboard"
+                          onClick={async () => {
+                            await localStorage.setItem(
+                              "base_coin_id",
+                              dashboard?.order_data?.base_coin_id
+                            );
+                            await localStorage.setItem(
+                              "trade_coin_id",
+                              dashboard?.order_data?.trade_coin_id
+                            );
+                            await Cookies.set(
+                              "base_coin_id",
+                              dashboard?.order_data?.base_coin_id
+                            );
+                            await Cookies.set(
+                              "trade_coin_id",
+                              dashboard?.order_data?.trade_coin_id
+                            );
+                            await localStorage.setItem(
+                              "current_pair",
+                              pair.coin_pair
+                            );
+                            // await dispatch(setCurrentPair(pair.coin_pair));
+                            //pause 4 seconds
+
+                            // router.reload();
+                          }}
                         >
                           {pair?.coin_pair_name}
                         </a>
