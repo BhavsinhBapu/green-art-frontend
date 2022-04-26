@@ -45,7 +45,6 @@ async function listenMessages(dispatch: any) {
   });
   //@ts-ignore
   window.Echo.channel("dashboard").listen(".order_place", (e) => {
-    console.log(e, "hello");
     if (e.order_type === "buy") dispatch(setOpenBookBuy(e.orders));
     if (e.order_type === "sell") dispatch(setOpenBooksell(e.orders));
   });
@@ -54,9 +53,7 @@ async function listenMessages(dispatch: any) {
     `trade-info-${localStorage.getItem("base_coin_id")}-${localStorage.getItem(
       "trade_coin_id"
     )}`
-  ).listen(".process", (e: any) => {
-    console.log(e.chart, "found a chart data");
-  });
+  ).listen(".process", (e: any) => {});
 }
 const Dashboard: NextPage = () => {
   const dispatch = useDispatch();
@@ -241,7 +238,7 @@ const Dashboard: NextPage = () => {
                             className=" ml-2 fa fa-angle-down"
                           />
                         )}
-                        {isLoggedIn && <SelectCurrency />}
+                        {!isLoggedIn && <SelectCurrency />}
                       </div>
                       <span className="font-weight-bold">Bitcoin</span>
                     </div>

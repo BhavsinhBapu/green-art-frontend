@@ -7,7 +7,6 @@ const Referral: NextPage = () => {
   const [referral, setReferral] = useState<any>();
   useEffect(() => {
     getReferral().then((res) => {
-      console.log(res.data.data.url, "referral");
       setReferral(res.data.data.url);
     });
     //cleanup

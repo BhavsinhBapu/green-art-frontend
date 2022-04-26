@@ -19,9 +19,7 @@ async function listenMessages() {
     enabledTransports: ["ws", "wss"],
   });
   //@ts-ignore
-  window.Echo.channel("dashboard").listen(".order_place", (e) => {
-    console.log(e);
-  });
+  window.Echo.channel("dashboard").listen(".order_place", (e) => {});
 }
 
 const Index: NextPage = () => {

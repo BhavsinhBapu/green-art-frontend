@@ -20,12 +20,18 @@ export default {
         : "/data/histominute";
 
     if (this.hitted === false) {
+      console.log("      document.URL;", document.URL);
+      const base = localStorage.getItem("base_coin_id");
+      const trade = localStorage.getItem("trade_coin_id");
+
       this.hitted = true;
-      const base = Cookies.get("base_coin_id");
-      const trade = Cookies.get("trade_coin_id");
-      console.log(base, "myyyyyyy base");
-      console.log(trade, "myyyyyyy trade");
-      return getChartData(1440, from, to, base, trade).then((data: any) => {
+      return getChartData(
+        1440,
+        from,
+        to,
+        base ? base : 2,
+        trade ? trade : 1
+      ).then((data: any) => {
         const myBars = data.data;
         let klines4800: any = [];
         for (let i = 0; i < 80; i++) {
@@ -41,7 +47,6 @@ export default {
             });
           });
         }
-        console.log(myBars, "this is klines4800");
         if (data.data.length) {
           const bars = klines4800.map((el: any) => ({
             time: el.time * 1000,
@@ -59,6 +64,8 @@ export default {
         }
         return [];
       });
+    } else {
+      return [];
     }
   },
 };

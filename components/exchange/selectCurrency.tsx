@@ -13,7 +13,6 @@ const SelectCurrency = () => {
   useEffect(() => {
     if (dashboard?.pairs) {
       setPairs(dashboard.pairs);
-      console.log(dashboard.pairs, "dashboard.pairs");
     }
   }, [dashboard]);
   return (
@@ -225,11 +224,11 @@ const SelectCurrency = () => {
                         className="text-left text-green w-30 sorting_1"
                         style={{ padding: "5px" }}
                       >
-                        <a
+                        <tr
                           className="text-info select_coin_pair p-0 m-0"
                           data-baseid={1}
                           data-tradeid={5}
-                          href="/exchange/dashboard"
+                          // href="/exchange/dashboard"
                           onClick={async () => {
                             await localStorage.setItem(
                               "base_coin_id",
@@ -239,26 +238,26 @@ const SelectCurrency = () => {
                               "trade_coin_id",
                               dashboard?.order_data?.trade_coin_id
                             );
-                            await Cookies.set(
-                              "base_coin_id",
-                              dashboard?.order_data?.base_coin_id
-                            );
-                            await Cookies.set(
-                              "trade_coin_id",
-                              dashboard?.order_data?.trade_coin_id
-                            );
                             await localStorage.setItem(
                               "current_pair",
                               pair.coin_pair
                             );
+                            router.replace(
+                              "/exchange/dashboard?base_coin_id=" +
+                                pair.base_coin_id +
+                                "&trade_coin_id=" +
+                                pair.trade_coin_id
+                            );
+                            //@ts-ignore
+                            // window.location.reload();
                             // await dispatch(setCurrentPair(pair.coin_pair));
                             //pause 4 seconds
 
-                            // router.reload();
+                            router.reload();
                           }}
                         >
                           {pair?.coin_pair_name}
-                        </a>
+                        </tr>
                       </td>
                       <td className="text-center w-40 text-white">
                         {pair?.last_price}

@@ -20,7 +20,6 @@ const config = {
 };
 export default {
   onReady: (cb: any) => {
-    console.log("=====onReady=====");
     cb(config);
   },
   searchSymbols: (
@@ -28,19 +27,16 @@ export default {
     exchange: any,
     symbolType: any,
     onResultReadyCallback: any
-  ) => {
-    console.log("====Search Symbols running");
-  },
+  ) => {},
   resolveSymbol: (
     symbolName: any,
     onSymbolResolvedCallback: any,
     onResolveErrorCallback: any
   ) => {
     // expects a symbolInfo object in response
-    console.log("======resolveSymbol running");
-    // console.log('resolveSymbol:',{symbolName})
+
     var split_data = symbolName.split(/[:/]/);
-    // console.log({split_data})
+
     var symbol_stub = {
       name: symbolName,
       description: "",
@@ -63,7 +59,6 @@ export default {
     }
     setTimeout(function () {
       onSymbolResolvedCallback(symbol_stub);
-      console.log("Resolving that symbol....", symbol_stub);
     }, 0);
 
     // onResolveErrorCallback('Not feeling it today')
@@ -90,8 +85,6 @@ export default {
         countForward
       )
       .then((bars: any) => {
-        console.log("bars", periodParams);
-        console.log("barssssssssssssssss", bars);
         if (bars.length) {
           onHistoryCallback(bars, { noData: false });
         } else {
@@ -99,7 +92,6 @@ export default {
         }
       })
       .catch((err: any) => {
-        console.log("err", err);
         onError(err);
       });
   },
@@ -111,7 +103,6 @@ export default {
     subscribeUID: any,
     onResetCacheNeededCallback: any
   ) => {
-    console.log("=====subscribeBars runnning");
     stream.subscribeBars(
       symbolInfo,
       resolution,
@@ -120,16 +111,14 @@ export default {
       onResetCacheNeededCallback
     );
   },
-  unsubscribeBars: (subscriberUID: any) => {
-    console.log("=====unsubscribeBars running");
-  },
+  unsubscribeBars: (subscriberUID: any) => {},
   calculateHistoryDepth: (
     resolution: any,
     resolutionBack: any,
     intervalBack: any
   ) => {
     //optional
-    console.log("=====calculateHistoryDepth running");
+
     // while optional, this makes sure we request 24 hours of minute data at a time
     // CryptoCompare's minute data endpoint will throw an error if we request data beyond 7 days in the past, and return no data
     return resolution < 60
@@ -144,7 +133,6 @@ export default {
     resolution: any
   ) => {
     //optional
-    console.log("=====getMarks running");
   },
   getTimeScaleMarks: (
     symbolInfo: any,
@@ -154,9 +142,6 @@ export default {
     resolution: any
   ) => {
     //optional
-    console.log("=====getTimeScaleMarks running");
   },
-  getServerTime: (cb: any) => {
-    console.log("=====getServerTime running");
-  },
+  getServerTime: (cb: any) => {},
 };
