@@ -1,7 +1,7 @@
 import historyProvider from "./historyProvider";
 import Echo from "laravel-echo";
 import Pusher from "pusher-js";
-const hostUrl = "tradexpro-laravel.cdibrandstudio.com";
+
 const _subs: any = [];
 
 export default {
@@ -18,7 +18,7 @@ export default {
     window.Echo = new Echo({
       broadcaster: "pusher",
       key: "test",
-      wsHost: hostUrl,
+      wsHost: process.env.NEXT_PUBLIC_HOST_SOCKET,
       wsPort: 6006,
       wssPort: 443,
       cluster: "mt1",

@@ -33,9 +33,22 @@ export const initialDashboardCallAction =
     dispatch(setLoading(true));
     const token = Cookies.get("token");
     const response = await appDashboardData(pair);
-    localStorage.setItem("base_coin_id", response.order_data.base_coin_id);
-    localStorage.setItem("trade_coin_id", response.order_data.trade_coin_id);
-    dispatch(setDashboard(response));
+    // if (
+    //   !localStorage.getItem("base_coin_id") &&
+    //   !localStorage.getItem("trade_coin_id")
+    // ) {
+    console.log("there is already");
+    await localStorage.setItem(
+      "base_coin_id",
+      response.order_data.base_coin_id
+    );
+    await localStorage.setItem(
+      "trade_coin_id",
+      response.order_data.trade_coin_id
+    );
+    // }
+
+    await dispatch(setDashboard(response));
     const BuyResponse = await openBookDashboard(
       dashboard?.order_data?.base_coin_id
         ? dashboard?.order_data?.base_coin_id

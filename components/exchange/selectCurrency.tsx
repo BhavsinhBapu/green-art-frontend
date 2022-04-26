@@ -230,27 +230,28 @@ const SelectCurrency = () => {
                           data-tradeid={5}
                           // href="/exchange/dashboard"
                           onClick={async () => {
+                            console.log("pair", pair);
                             await localStorage.setItem(
                               "base_coin_id",
-                              dashboard?.order_data?.base_coin_id
+                              pair?.parent_coin_id
                             );
                             await localStorage.setItem(
                               "trade_coin_id",
-                              dashboard?.order_data?.trade_coin_id
+                              pair?.child_coin_id
                             );
                             await localStorage.setItem(
                               "current_pair",
                               pair.coin_pair
                             );
-                            router.replace(
-                              "/exchange/dashboard?base_coin_id=" +
-                                pair.base_coin_id +
-                                "&trade_coin_id=" +
-                                pair.trade_coin_id
-                            );
+                            // router.replace(
+                            //   "/exchange/dashboard?base_coin_id=" +
+                            //     pair.base_coin_id +
+                            //     "&trade_coin_id=" +
+                            //     pair.trade_coin_id
+                            // );
                             //@ts-ignore
                             // window.location.reload();
-                            // await dispatch(setCurrentPair(pair.coin_pair));
+                            await dispatch(setCurrentPair(pair.coin_pair));
                             //pause 4 seconds
 
                             router.reload();

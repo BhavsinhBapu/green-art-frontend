@@ -2,25 +2,6 @@ import type { NextPage } from "next";
 import { useEffect, useState } from "react";
 import Echo from "laravel-echo";
 import Pusher from "pusher-js";
-const hostUrl = "tradexpro-laravel.cdibrandstudio.com";
-async function listenMessages() {
-  //@ts-ignore
-  window.Pusher = Pusher;
-
-  //@ts-ignore
-  window.Echo = new Echo({
-    broadcaster: "pusher",
-    key: "test",
-    wsHost: hostUrl,
-    wsPort: 6006,
-    wssPort: 443,
-    cluster: "mt1",
-    disableStats: true,
-    enabledTransports: ["ws", "wss"],
-  });
-  //@ts-ignore
-  window.Echo.channel("dashboard").listen(".order_place", (e) => {});
-}
 
 const Index: NextPage = () => {
   const [active, setActive] = useState<number>(1);
@@ -31,9 +12,6 @@ const Index: NextPage = () => {
       setActive(index);
     }
   };
-  useEffect(() => {
-    listenMessages();
-  });
 
   return (
     <div className="container-fluid">

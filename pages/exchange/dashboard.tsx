@@ -11,7 +11,7 @@ const TradingChart = dynamic(
 );
 import Echo from "laravel-echo";
 import Pusher from "pusher-js";
-const hostUrl = "tradexpro-laravel.cdibrandstudio.com";
+
 import SelectCurrency from "components/exchange/selectCurrency";
 import CurrencyLevel from "components/exchange/currencyLevel";
 import OrderHistorySection from "components/exchange/orderHistorySection";
@@ -36,7 +36,7 @@ async function listenMessages(dispatch: any) {
   window.Echo = new Echo({
     broadcaster: "pusher",
     key: "test",
-    wsHost: hostUrl,
+    wsHost: process.env.NEXT_PUBLIC_HOST_SOCKET,
     wsPort: 6006,
     wssPort: 443,
     cluster: "mt1",
@@ -65,6 +65,7 @@ const Dashboard: NextPage = () => {
   useEffect(() => {
     const pair = localStorage.getItem("current_pair");
     if (pair) {
+      console.log("first is calling", pair);
       setCurrentPair(pair);
       dispatch(initialDashboardCallAction(pair, dashboard));
     } else {
@@ -76,17 +77,17 @@ const Dashboard: NextPage = () => {
       dashboard?.order_data?.base_coin_id &&
       dashboard?.order_data?.trade_coin_id
     ) {
-      localStorage.setItem("base_coin_id", dashboard?.order_data?.base_coin_id);
-      localStorage.setItem(
-        "trade_coin_id",
-        dashboard?.order_data?.trade_coin_id
-      );
+      // localStorage.setItem("base_coin_id", dashboard?.order_data?.base_coin_id);
+      // localStorage.setItem(
+      //   "trade_coin_id",
+      //   dashboard?.order_data?.trade_coin_id
+      // );
       dispatch(initialDashboardCallActionWithToken(currentPair, dashboard));
     }
   }, [dashboard?.order_data?.base_coin_id]);
   useEffect(() => {
     if (socketCall === 0) {
-      // listenMessages(dispatch);
+      listenMessages(dispatch);
     }
     socketCall = 1;
   });
@@ -238,7 +239,8 @@ const Dashboard: NextPage = () => {
                             className=" ml-2 fa fa-angle-down"
                           />
                         )}
-                        {!isLoggedIn && <SelectCurrency />}
+                        {/* {!isLoggedIn && <SelectCurrency />} */}
+                        <SelectCurrency />
                       </div>
                       <span className="font-weight-bold">Bitcoin</span>
                     </div>
