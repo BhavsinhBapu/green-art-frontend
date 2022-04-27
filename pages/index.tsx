@@ -34,9 +34,9 @@ const Home: NextPage = () => {
                   <nav className="main-menu" style={{ display: "block" }}>
                     <ul id="nav">
                       <li>
-                        <Link href="/exchange/dashboard">
+                        <a href="/exchange/dashboard">
                           <a>Exchange</a>
-                        </Link>
+                        </a>
                       </li>
                       <li>
                         <Link href="/authentication/signin">
@@ -1142,10 +1142,7 @@ const Home: NextPage = () => {
                         </li>
                         <li>
                           <a>
-                            <i
-                              className="fab fa-youtube"
-                              aria-hidden="true"
-                            />
+                            <i className="fab fa-youtube" aria-hidden="true" />
                           </a>
                         </li>
                       </ul>

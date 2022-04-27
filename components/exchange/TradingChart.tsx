@@ -9,7 +9,7 @@ import {
   getChartStudiesOverrides,
   TIME_FRAMES,
 } from "./api/chartConfig";
-import historyProvider from "./api/historyProvider";
+
 const supportedResolutions = [
   "1",
   "3",
