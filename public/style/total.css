@@ -8079,7 +8079,7 @@ table.dataTable.order-column.stripe tbody tr.odd > .sorting_1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  max-width: 380px;
+  max-width: 450px;
   height: 45px;
   border-radius: 5px;
   background: #f7f7f8;
@@ -9288,7 +9288,7 @@ table.dataTable thead tr th {
   display: block;
 }
 .trades-section .dataTables_scrollBody {
-  height: 408px !important;
+  height: 430px !important;
 }
 #marketTradeTable_wrapper .dataTables_scrollBody {
   height: 200px !important;
@@ -9318,4 +9318,16 @@ table.dataTable thead tr th {
 }
 .header-area .main-menu ul {
   justify-content: flex-end;
+}
+#exchangeCoinPair tr {
+  cursor: pointer;
+}
+#marketTradeTable_wrapper .dataTables_scroll {
+  height: 250px;
+  overflow-y: scroll;
+  -ms-overflow-style: none;  
+  scrollbar-width: none;
+}
+#marketTradeTable_wrapper .dataTables_scroll::-webkit-scrollbar {
+  display: none;
 }
