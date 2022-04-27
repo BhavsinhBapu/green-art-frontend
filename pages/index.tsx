@@ -31,7 +31,7 @@ const Home: NextPage = () => {
               </div>
               <div className="col-md-10">
                 <div className="menu-area text-right">
-                  <nav className="main-menu" style={{ display: "block" }}>
+                  <nav className="main-menu" >
                     <ul id="nav">
                       <li>
                         <a href="/exchange/dashboard">
