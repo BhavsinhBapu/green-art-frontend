@@ -9313,6 +9313,9 @@ table.dataTable thead tr th {
   padding: 0;
   text-align: center;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
+}
+.header-area .main-menu ul {
+  justify-content: flex-end;
 }
