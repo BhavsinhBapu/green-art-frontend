@@ -38,10 +38,11 @@ type MyProps = {
   // using `interface` is also ok
   coinpair: any;
 };
-
+const pair = localStorage.getItem("current_pair")?.replace("_", "/");
+localStorage.setItem("tradingview.ChartDrawingToolbarWidget.visible", "false");
 export class TVChartContainer extends React.Component<MyProps> {
   static defaultProps = {
-    symbol: "Tradexpro:BTC/USD",
+    symbol: `Tradexpro:${pair ? pair : "BTC/USDT"}`,
     interval: "0.0000000000000000000000001",
     // datafeedUrl: "https://demo_feed.tradingview.com",
     // datafeed: Datafeed,
