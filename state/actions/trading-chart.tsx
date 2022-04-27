@@ -5,5 +5,5 @@ export const getChartDataAction = async (
   startTime: any,
   endTime: any
 ) => {
-  const response = await getChartData(interval, startTime, endTime);
+  // const response = await getChartData(interval, startTime, endTime);
 };

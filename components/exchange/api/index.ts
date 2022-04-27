@@ -84,6 +84,7 @@ export default {
         countBack,
         countForward
       )
+      //@ts-ignore
       .then((bars: any) => {
         if (bars.length) {
           onHistoryCallback(bars, { noData: false });
