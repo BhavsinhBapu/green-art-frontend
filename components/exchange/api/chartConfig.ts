@@ -348,60 +348,54 @@ export function getCurrentStyle(theme = "dark-theme") {
 export function getChartOverrides(theme: any) {
   const style = getCurrentStyle(theme);
   return {
-    "paneProperties.background": style.bg,
-    "paneProperties.vertGridProperties.color": style.chartHorizontalLine, // main chart vertical line color
-    "paneProperties.horzGridProperties.color": style.chartVerticalLine, // main chart horizontal line color
-    "paneProperties.crossHairProperties.color": style.crosshair,
-    "scalesProperties.backgroundColor": style.bg,
-    "scalesProperties.lineColor": style.textColor,
-    "scalesProperties.textColor": style.textColor,
-    "symbolWatermarkProperties.color": "rgba(0, 0, 0, 0)",
-
+    // "paneProperties.background": style.bg,
+    // "paneProperties.vertGridProperties.color": style.chartHorizontalLine, // main chart vertical line color
+    // "paneProperties.horzGridProperties.color": style.chartVerticalLine, // main chart horizontal line color
+    // "paneProperties.crossHairProperties.color": style.crosshair,
+    // "scalesProperties.backgroundColor": style.bg,
+    // "scalesProperties.lineColor": style.textColor,
+    // "scalesProperties.textColor": style.textColor,
+    // "symbolWatermarkProperties.color": "rgba(0, 0, 0, 0)",
     // Note
     // LINESTYLE_SOLID = 0
     // LINESTYLE_DOTTED = 1
     // LINESTYLE_DASHED = 2
     // LINESTYLE_LARGE_DASHED = 3
     // Note
-
     // 'paneProperties.vertGridProperties.style': 0,
     // 'paneProperties.horzGridProperties.style': 0,
     // 'paneProperties.crossHairProperties.width': 2,
     // 'paneProperties.crossHairProperties.style': 0,
-
-    "mainSeriesProperties.style": 9,
-    //  Candles styles
-    "mainSeriesProperties.hollowCandleStyle.upColor":
-      style.barOuterBorderColorUpColor, // line chart bar inner background color
-    "mainSeriesProperties.hollowCandleStyle.downColor":
-      style.barOuterBorderColorDownColor, // line chart bar inner background color
-    "mainSeriesProperties.hollowCandleStyle.drawWick": true,
-    "mainSeriesProperties.hollowCandleStyle.drawBorder": true,
-    "mainSeriesProperties.hollowCandleStyle.borderColor":
-      style.barOuterBorderColorBorderColor,
-    "mainSeriesProperties.hollowCandleStyle.borderUpColor":
-      style.barOuterBorderColorBorderUpColor, // line chart bar outer border color
-    "mainSeriesProperties.hollowCandleStyle.borderDownColor":
-      style.barOuterBorderColorBorderDownColor, // line chart bar outer border color
-    "mainSeriesProperties.hollowCandleStyle.wickUpColor": style.long,
-    "mainSeriesProperties.hollowCandleStyle.wickDownColor": style.short,
-
-    "study_Overlay@tv-basicstudies.barStyle.upColor": "blue",
-    "study_Overlay@tv-basicstudies.barStyle.downColor": "blue",
-
-    "study_Overlay@tv-basicstudies.lineStyle.color": "blue",
-
-    "study_Overlay@tv-basicstudies.areaStyle.color1": "blue",
-    "study_Overlay@tv-basicstudies.areaStyle.color2": "blue",
-    "study_Overlay@tv-basicstudies.areaStyle.linecolor": "blue",
+    // "mainSeriesProperties.style": 9,
+    // //  Candles styles
+    // "mainSeriesProperties.hollowCandleStyle.upColor":
+    //   style.barOuterBorderColorUpColor, // line chart bar inner background color
+    // "mainSeriesProperties.hollowCandleStyle.downColor":
+    //   style.barOuterBorderColorDownColor, // line chart bar inner background color
+    // "mainSeriesProperties.hollowCandleStyle.drawWick": true,
+    // "mainSeriesProperties.hollowCandleStyle.drawBorder": true,
+    // "mainSeriesProperties.hollowCandleStyle.borderColor":
+    //   style.barOuterBorderColorBorderColor,
+    // "mainSeriesProperties.hollowCandleStyle.borderUpColor":
+    //   style.barOuterBorderColorBorderUpColor, // line chart bar outer border color
+    // "mainSeriesProperties.hollowCandleStyle.borderDownColor":
+    //   style.barOuterBorderColorBorderDownColor, // line chart bar outer border color
+    // "mainSeriesProperties.hollowCandleStyle.wickUpColor": style.long,
+    // "mainSeriesProperties.hollowCandleStyle.wickDownColor": style.short,
+    // "study_Overlay@tv-basicstudies.barStyle.upColor": "blue",
+    // "study_Overlay@tv-basicstudies.barStyle.downColor": "blue",
+    // "study_Overlay@tv-basicstudies.lineStyle.color": "blue",
+    // "study_Overlay@tv-basicstudies.areaStyle.color1": "blue",
+    // "study_Overlay@tv-basicstudies.areaStyle.color2": "blue",
+    // "study_Overlay@tv-basicstudies.areaStyle.linecolor": "blue",
   };
 }
 export function getChartStudiesOverrides(theme: any) {
   const style = getCurrentStyle(theme);
   return {
-    "volume.volume.color.0": style.short,
-    "volume.volume.color.1": style.long,
-    "volume.volume.transparency": style.transparency,
+    // "volume.volume.color.0": style.short,
+    // "volume.volume.color.1": style.long,
+    // "volume.volume.transparency": style.transparency,
   };
 }
 export const ENABLED_FEATURES = [
@@ -453,8 +447,8 @@ export const TIME_FRAMES = [
 export function getLoadingScreenStyle(theme: any) {
   const style = getCurrentStyle(theme);
   return {
-    backgroundColor: style.bg,
-    foregroundColor: style.textColor,
+    // backgroundColor: style.bg,
+    // foregroundColor: style.textColor,
   };
 }
 export const getBackgroundColor = (theme: any) => getCurrentStyle(theme).bg;
