@@ -246,26 +246,13 @@ const DashboardNavbar = () => {
                 </ul>
               </nav>
             </div>
-            {isLoggedIn && (
-              <div className="col-xl-2 col-lg-2 col-8">
-                <div className="cp-user-top-bar-right">
+
+            <div className="col-xl-2 col-lg-2 col-8">
+              <div className="cp-user-top-bar-right">
+                {isLoggedIn && (
                   <ul>
                     <li className="hm-notify" id="notification_item">
                       <div className="btn-group dropdown">
-                        {/* <button
-                        type="button"
-                        className="btn notification-btn dropdown-toggle"
-                        data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                      >
-                        <span className="notify-value hm-notify-number">0</span>
-                        <img
-                          src="/notification.png"
-                          className="img-fluid"
-                          alt="" /
-                        />
-                      </button> */}
                         <div className="dropdown-menu notification-list dropdown-menu-right">
                           <div className="text-center p-2 border-bottom nt-title">
                             New Notifications
@@ -368,18 +355,17 @@ const DashboardNavbar = () => {
                       </div>
                     </li>
                   </ul>
+                )}
+
+                <div
+                  className="cp-user-sidebar-toggler-s2"
+                  onClick={() => {
+                    //ADD TOGGLE SIDEBAR TO BODY
+                    document.body.classList.toggle("sidebar-cllopse");
+                  }}
+                >
+                  <img src="/menu.svg" className="img-fluid" alt="" />
                 </div>
-              </div>
-            )}
-            <div className="col-xl-2 col-lg-2 col-8">
-              <div
-                className="cp-user-sidebar-toggler-s2"
-                onClick={() => {
-                  //ADD TOGGLE SIDEBAR TO BODY
-                  document.body.classList.toggle("sidebar-cllopse");
-                }}
-              >
-                <img src="/menu.svg" className="img-fluid" alt="" />
               </div>
             </div>
           </div>
