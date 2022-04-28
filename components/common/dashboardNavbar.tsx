@@ -246,7 +246,7 @@ const DashboardNavbar = () => {
                 </ul>
               </nav>
             </div>
-            {isLoggedIn ? (
+            {isLoggedIn && (
               <div className="col-xl-2 col-lg-2 col-8">
                 <div className="cp-user-top-bar-right">
                   <ul>
@@ -368,20 +368,20 @@ const DashboardNavbar = () => {
                       </div>
                     </li>
                   </ul>
-                  <div
-                    className="cp-user-sidebar-toggler-s2"
-                    onClick={() => {
-                      //ADD TOGGLE SIDEBAR TO BODY
-                      document.body.classList.toggle("sidebar-cllopse");
-                    }}
-                  >
-                    <img src="/menu.svg" className="img-fluid" alt="" />
-                  </div>
                 </div>
               </div>
-            ) : (
-              <div className="col-xl-2 col-lg-2 col-8"></div>
             )}
+            <div className="col-xl-2 col-lg-2 col-8">
+              <div
+                className="cp-user-sidebar-toggler-s2"
+                onClick={() => {
+                  //ADD TOGGLE SIDEBAR TO BODY
+                  document.body.classList.toggle("sidebar-cllopse");
+                }}
+              >
+                <img src="/menu.svg" className="img-fluid" alt="" />
+              </div>
+            </div>
           </div>
         </div>
       </div>
