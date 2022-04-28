@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Router, useRouter } from "next/router";
 import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
@@ -7,8 +7,11 @@ import { LogoutAction } from "state/actions/user";
 const Navbar = () => {
   const { isLoggedIn, user } = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
+  const [active,setActive]= useState(false)
   const router = useRouter();
   return (
+    <>
+    
     <div className="cp-user-top-bar">
       <div className="container-fluid">
         <div className="row align-items-center justify-content-between">
@@ -434,7 +437,12 @@ const Navbar = () => {
                     </div>
                   </li>
                 </ul>
-                <div className="cp-user-sidebar-toggler-s2">
+                <div className="cp-user-sidebar-toggler-s2"
+                onClick={() => {
+                  //ADD TOGGLE SIDEBAR TO BODY
+                  // document.body.classList.toggle("sidebar-cllopse");
+                  setActive(active?false:true)
+                }}>
                   <img src="/menu.svg" className="img-fluid" alt="" />
                 </div>
               </div>
@@ -445,6 +453,216 @@ const Navbar = () => {
         </div>
       </div>
     </div>
+
+    <div className={`cp-user-sidebar ${active?"active":""}`}>
+        <div className="cp-user-sidebar-menu scrollbar-inner">
+          <nav>
+            <ul id="metismenu">
+              <li className=" cp-user-active-page ">
+                <a href="https://tradexpro-laravel.cdibrandstudio.com/user/exchange/dashboard">
+                  <span className="cp-user-icon">
+                    <img
+                      src="https://tradexpro-laravel.cdibrandstudio.com/assets/user/images/sidebar-icons/dashboard.svg"
+                      className="img-fluid cp-user-side-bar-icon"
+                      alt=""
+                    />
+                    <img
+                      src="https://tradexpro-laravel.cdibrandstudio.com/assets/user/images/sidebar-icons/hover/dashboard.svg"
+                      className="img-fluid cp-user-side-bar-icon-hover"
+                      alt=""
+                    />
+                  </span>
+                  <span className="cp-user-name">Dashboard</span>
+                </a>
+              </li>
+              <li>
+                <a className="arrow-icon" href="#" aria-expanded="true">
+                  <span className="cp-user-icon">
+                    <img
+                      src="https://tradexpro-laravel.cdibrandstudio.com/assets/user/images/sidebar-icons/Wallet.svg"
+                      className="img-fluid cp-user-side-bar-icon"
+                      alt=""
+                    />
+                    <img
+                      src="https://tradexpro-laravel.cdibrandstudio.com/assets/user/images/sidebar-icons/hover/Wallet.svg"
+                      className="img-fluid cp-user-side-bar-icon-hover"
+                      alt=""
+                    />
+                  </span>
+                  <span className="cp-user-name">Wallet</span>
+                </a>
+                <ul>
+                  <li>
+                    <a href="https://tradexpro-laravel.cdibrandstudio.com/user/my-wallet">
+                      My Wallet
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://tradexpro-laravel.cdibrandstudio.com/user/coin-swap">
+                      Swap Coin
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a className="arrow-icon" href="#" aria-expanded="true">
+                  <span className="cp-user-icon">
+                    <img
+                      src="https://tradexpro-laravel.cdibrandstudio.com/assets/user/images/sidebar-icons/Membership.svg"
+                      className="img-fluid cp-user-side-bar-icon"
+                      alt=""
+                    />
+                    <img
+                      src="https://tradexpro-laravel.cdibrandstudio.com/assets/user/images/sidebar-icons/hover/Membership-1.svg"
+                      className="img-fluid cp-user-side-bar-icon-hover"
+                      alt=""
+                    />
+                  </span>
+                  <span className="cp-user-name">Reports</span>
+                </a>
+                <ul>
+                  <li>
+                    <a href="https://tradexpro-laravel.cdibrandstudio.com/user/wallet-history?type=deposit">
+                      Deposit History
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://tradexpro-laravel.cdibrandstudio.com/user/wallet-history?type=withdrawal">
+                      Withdrawal History
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://tradexpro-laravel.cdibrandstudio.com/user/coin-convert-history">
+                      Swap History
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://tradexpro-laravel.cdibrandstudio.com/user/exchange/all-buy-orders-history">
+                      Buy Order History
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://tradexpro-laravel.cdibrandstudio.com/user/exchange/all-sell-orders-history">
+                      Sell Order History
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://tradexpro-laravel.cdibrandstudio.com/user/exchange/all-transaction-history">
+                      Transaction History
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a className="arrow-icon" href="#" aria-expanded="true">
+                  <span className="cp-user-icon">
+                    <img
+                      src="https://tradexpro-laravel.cdibrandstudio.com/assets/user/images/sidebar-icons/user.svg"
+                      className="img-fluid cp-user-side-bar-icon"
+                      alt=""
+                    />
+                    <img
+                      src="https://tradexpro-laravel.cdibrandstudio.com/assets/user/images/sidebar-icons/hover/user.svg"
+                      className="img-fluid cp-user-side-bar-icon-hover"
+                      alt=""
+                    />
+                  </span>
+                  <span className="cp-user-name">My Profile</span>
+                </a>
+                <ul>
+                  <li>
+                    <a href="https://tradexpro-laravel.cdibrandstudio.com/user/profile">
+                      Profile
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://tradexpro-laravel.cdibrandstudio.com/user/edit-profile">
+                      Edit Profile
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://tradexpro-laravel.cdibrandstudio.com/user/phone-verification">
+                      Phone Verification
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://tradexpro-laravel.cdibrandstudio.com/user/security-setting">
+                      Security
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://tradexpro-laravel.cdibrandstudio.com/user/profile-verification-list">
+                      Verification List
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://tradexpro-laravel.cdibrandstudio.com/user/personal-verification">
+                      Personal Verification
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://tradexpro-laravel.cdibrandstudio.com/user/change-password">
+                      Change Password
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://tradexpro-laravel.cdibrandstudio.com/user/activity">
+                      Activity
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="https://tradexpro-laravel.cdibrandstudio.com/user/referral">
+                  <span className="cp-user-icon">
+                    <img
+                      src="https://tradexpro-laravel.cdibrandstudio.com/assets/user/images/sidebar-icons/referral.svg"
+                      className="img-fluid cp-user-side-bar-icon"
+                      alt=""
+                    />
+                    <img
+                      src="https://tradexpro-laravel.cdibrandstudio.com/assets/user/images/sidebar-icons/hover/referral.svg"
+                      className="img-fluid cp-user-side-bar-icon-hover"
+                      alt=""
+                    />
+                  </span>
+                  <span className="cp-user-name">My Referral</span>
+                </a>
+              </li>
+              <li>
+                <a className="arrow-icon" href="#" aria-expanded="true">
+                  <span className="cp-user-icon">
+                    <img
+                      src="https://tradexpro-laravel.cdibrandstudio.com/assets/user/images/sidebar-icons/settings.svg"
+                      className="img-fluid cp-user-side-bar-icon"
+                      alt=""
+                    />
+                    <img
+                      src="https://tradexpro-laravel.cdibrandstudio.com/assets/user/images/sidebar-icons/hover/settings.svg"
+                      className="img-fluid cp-user-side-bar-icon-hover"
+                      alt=""
+                    />
+                  </span>
+                  <span className="cp-user-name">Settings</span>
+                </a>
+                <ul>
+                  <li>
+                    <a href="https://tradexpro-laravel.cdibrandstudio.com/user/setting">
+                      My Settings
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://tradexpro-laravel.cdibrandstudio.com/user/faq">
+                      FAQ
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </>
   );
 };
 
