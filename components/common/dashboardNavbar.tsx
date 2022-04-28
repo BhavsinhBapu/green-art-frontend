@@ -372,7 +372,7 @@ const DashboardNavbar = () => {
                     className="cp-user-sidebar-toggler-s2"
                     onClick={() => {
                       //ADD TOGGLE SIDEBAR TO BODY
-                      document.body.classList.toggle("_sidebar-cllopse");
+                      document.body.classList.toggle("sidebar-cllopse");
                     }}
                   >
                     <img src="/menu.svg" className="img-fluid" alt="" />

@@ -14,7 +14,7 @@ $(".menu-close").on("click", function() {
 });
 
 $(".cp-user-sidebar-toggler-s2").on("click", function() {
-    $('body').toggleClass('_sidebar-cllopse');
+    $('body').toggleClass('sidebar-cllopse');
 });
 $('.cp-user-sidebar-toggler-s2').on('click', function () {
     $('.page-left-sidebar').toggleClass('sidebar-show');
