@@ -947,7 +947,7 @@ client-area
     #.trade-anywhere-area
 ==================================================*/
 .trade-anywhere-area {
-  padding: 100px 0;
+  padding: 60px 0;
   background: #ffffff;
 }
 .trade-anywhere-area .qr-code-area {
@@ -1010,7 +1010,7 @@ client-area
 }
 @media (max-width: 991px) {
   .trade-anywhere-left {
-    margin-top: 30px;
+    margin-bottom: 30px;
   }
 }
 /*=================================================

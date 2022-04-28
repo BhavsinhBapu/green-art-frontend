@@ -26,6 +26,12 @@
   .section {
     padding: 100px 0;
   }
+  .main-menu ul li a .cp-user-icon {
+    margin-right: 0;
+  }
+  .cp-user-sidebar {
+    display: block;
+  }
 }
 @media (max-width: 1024px) {
   .find-app-area .single-app {
@@ -112,6 +118,22 @@
 @media (max-width: 767px) {
   .about-text h2 {
     font-size: 25px;
+  }
+  #DataTables_Table_0 tr td {
+    white-space: nowrap;
+  }
+  #DataTables_Table_2 tr td {
+    white-space: nowrap;
+  }
+  .footer-area .footer-bottom-wrap {
+    padding: 10px 0;
+  }
+  
+  .cp-user-buy-coin-content-area table.dataTable thead tr th {
+    padding: 3px 5px;
+  }
+  .cp-user-buy-coin-content-area table.dataTable tbody tr td {
+    padding: 3px 5px !important;
   }
 }
 

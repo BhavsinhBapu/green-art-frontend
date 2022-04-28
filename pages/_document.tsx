@@ -5,6 +5,8 @@ export default function Document() {
       <Head>
         <link rel="stylesheet" href="/style/bootstrap.min.css" />
         <link rel="stylesheet" href="/style/meanmenu.min.css" />
+        <link rel="stylesheet" href="/style/metisMenu.min.css" />
+        <link rel="stylesheet" href="/style/jquery.scrollbar.css" />
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -21,6 +23,8 @@ export default function Document() {
         <script src="/js/jquery-3.6.0.min.js" />
         <script src="/js/bootstrap.bundle.min.js" />
         <script src="/js/jquery.meanmenu.js" />
+        <script src="/js/metisMenu.min.js" />
+        <script src="/js/jquery.scrollbar.min.js" />
         <script src="/js/main.js" />
       </body>
     </Html>

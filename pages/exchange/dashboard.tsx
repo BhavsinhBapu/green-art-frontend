@@ -95,7 +95,7 @@ const Dashboard: NextPage = () => {
     <div className="background-col">
       <DashboardNavbar />
       <div className="mt-5"></div>
-      <div className="cp-user-sidebar">
+      <div className="cp-user-sidebar-area">
         <div
           className="scroll-wrapper cp-user-sidebar-menu scrollbar-inner"
           style={{ position: "relative" }}

@@ -10,6 +10,32 @@ const Home: NextPage = () => {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2
+        }
+      },
+      {
+        breakpoint: 360,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
   };
   return (
     <div>
@@ -31,7 +57,7 @@ const Home: NextPage = () => {
               </div>
               <div className="col-md-10">
                 <div className="menu-area text-right">
-                  <nav className="main-menu" >
+                  <nav className="main-menu mobile-menu" >
                     <ul id="nav">
                       <li>
                         <a href="/exchange/dashboard">
@@ -100,197 +126,6 @@ const Home: NextPage = () => {
         {/* about area start here  */}
         <section className="about-area">
           <div className="container">
-            {/* <div className="top-banner-slider owl-carousel owl-loaded owl-drag">
-              <div className="owl-stage-outer">
-                <div
-                  className="owl-stage"
-                  style={{
-                    transform: "translate3d(-1125px, 0px, 0px)",
-                    transition: "all 1s ease 0s",
-                    width: "3657px",
-                  }}
-                >
-                  <div
-                    className="owl-item cloned"
-                    style={{ width: "266.25px", marginRight: "15px" }}
-                  >
-                    <div className="single-banner">
-                      <a href="#">
-                        <img
-                          src="https://tradexpro-exchange.itech-theme.com/assets/landing/images/banner-image-2.png"
-                          alt="about-image-phone"
-                        />
-                      </a>
-                    </div>
-                  </div>
-                  <div
-                    className="owl-item cloned"
-                    style={{ width: "266.25px", marginRight: "15px" }}
-                  >
-                    <div className="single-banner">
-                      <a href="#">
-                        <img
-                          src="https://tradexpro-exchange.itech-theme.com/assets/landing/images/banner-image-3.png"
-                          alt="about-image-phone"
-                        />
-                      </a>
-                    </div>
-                  </div>
-                  <div
-                    className="owl-item cloned"
-                    style={{ width: "266.25px", marginRight: "15px" }}
-                  >
-                    <div className="single-banner">
-                      <a href="#">
-                        <img
-                          src="https://tradexpro-exchange.itech-theme.com/assets/landing/images/banner-image-4.png"
-                          alt="about-image-phone"
-                        />
-                      </a>
-                    </div>
-                  </div>
-                  <div
-                    className="owl-item cloned"
-                    style={{ width: "266.25px", marginRight: "15px" }}
-                  >
-                    <div className="single-banner">
-                      <a href="#">
-                        <img
-                          src="https://tradexpro-exchange.itech-theme.com/assets/landing/images/banner-image-1.png"
-                          alt="about-image-phone"
-                        />
-                      </a>
-                    </div>
-                  </div>
-                  <div
-                    className="owl-item active"
-                    style={{ width: "266.25px", marginRight: "15px" }}
-                  >
-                    <div className="single-banner">
-                      <a href="#">
-                        <img
-                          src="https://tradexpro-exchange.itech-theme.com/assets/landing/images/banner-image-1.png"
-                          alt="about-image-phone"
-                        />
-                      </a>
-                    </div>
-                  </div>
-                  <div
-                    className="owl-item active"
-                    style={{ width: "266.25px", marginRight: "15px" }}
-                  >
-                    <div className="single-banner">
-                      <a href="#">
-                        <img
-                          src="https://tradexpro-exchange.itech-theme.com/assets/landing/images/banner-image-2.png"
-                          alt="about-image-phone"
-                        />
-                      </a>
-                    </div>
-                  </div>
-                  <div
-                    className="owl-item active"
-                    style={{ width: "266.25px", marginRight: "15px" }}
-                  >
-                    <div className="single-banner">
-                      <a href="#">
-                        <img
-                          src="https://tradexpro-exchange.itech-theme.com/assets/landing/images/banner-image-3.png"
-                          alt="about-image-phone"
-                        />
-                      </a>
-                    </div>
-                  </div>
-                  <div
-                    className="owl-item active"
-                    style={{ width: "266.25px", marginRight: "15px" }}
-                  >
-                    <div className="single-banner">
-                      <a href="#">
-                        <img
-                          src="https://tradexpro-exchange.itech-theme.com/assets/landing/images/banner-image-4.png"
-                          alt="about-image-phone"
-                        />
-                      </a>
-                    </div>
-                  </div>
-                  <div
-                    className="owl-item"
-                    style={{ width: "266.25px", marginRight: "15px" }}
-                  >
-                    <div className="single-banner">
-                      <a href="#">
-                        <img
-                          src="https://tradexpro-exchange.itech-theme.com/assets/landing/images/banner-image-1.png"
-                          alt="about-image-phone"
-                        />
-                      </a>
-                    </div>
-                  </div>
-                  <div
-                    className="owl-item cloned"
-                    style={{ width: "266.25px", marginRight: "15px" }}
-                  >
-                    <div className="single-banner">
-                      <a href="#">
-                        <img
-                          src="https://tradexpro-exchange.itech-theme.com/assets/landing/images/banner-image-1.png"
-                          alt="about-image-phone"
-                        />
-                      </a>
-                    </div>
-                  </div>
-                  <div
-                    className="owl-item cloned"
-                    style={{ width: "266.25px", marginRight: "15px" }}
-                  >
-                    <div className="single-banner">
-                      <a href="#">
-                        <img
-                          src="https://tradexpro-exchange.itech-theme.com/assets/landing/images/banner-image-2.png"
-                          alt="about-image-phone"
-                        />
-                      </a>
-                    </div>
-                  </div>
-                  <div
-                    className="owl-item cloned"
-                    style={{ width: "266.25px", marginRight: "15px" }}
-                  >
-                    <div className="single-banner">
-                      <a href="#">
-                        <img
-                          src="https://tradexpro-exchange.itech-theme.com/assets/landing/images/banner-image-3.png"
-                          alt="about-image-phone"
-                        />
-                      </a>
-                    </div>
-                  </div>
-                  <div
-                    className="owl-item cloned"
-                    style={{ width: "266.25px", marginRight: "15px" }}
-                  >
-                    <div className="single-banner">
-                      <a href="#">
-                        <img
-                          src="https://tradexpro-exchange.itech-theme.com/assets/landing/images/banner-image-4.png"
-                          alt="about-image-phone"
-                        />
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="owl-nav">
-                <button type="button" role="presentation" className="owl-prev">
-                  <i className="fa fa-angle-left" aria-hidden="true" />
-                </button>
-                <button type="button" role="presentation" className="owl-next">
-                  <i className="fa fa-angle-right" aria-hidden="true" />
-                </button>
-              </div>
-              <div className="owl-dots disabled" />
-            </div> */}
             <Slider {...settings}>
               <div className="single-banner">
                 <a href="#">
@@ -1049,7 +884,7 @@ const Home: NextPage = () => {
           <div className="footer-top">
             <div className="container">
               <div className="row">
-                <div className="col-lg-3 col-md-6 mb-30">
+                <div className="col-lg-3 col-md-6 col-sm-6 mb-30">
                   <div className="single-wedgets text-widget">
                     <div className="widget-title">
                       <h4>Products</h4>
@@ -1072,7 +907,7 @@ const Home: NextPage = () => {
                     </div>
                   </div>
                 </div>
-                <div className="col-lg-3 col-md-6 mb-30">
+                <div className="col-lg-3 col-md-6 col-sm-6 mb-30">
                   <div className="single-wedgets text-widget">
                     <div className="widget-title">
                       <h4>Service</h4>
@@ -1095,7 +930,7 @@ const Home: NextPage = () => {
                     </div>
                   </div>
                 </div>
-                <div className="col-lg-3 col-md-6 mb-30">
+                <div className="col-lg-3 col-md-6 col-sm-6 mb-30">
                   <div className="single-wedgets text-widget">
                     <div className="widget-title">
                       <h4>Support</h4>
@@ -1118,7 +953,7 @@ const Home: NextPage = () => {
                     </div>
                   </div>
                 </div>
-                <div className="col-lg-2 col-md-6">
+                <div className="col-lg-2 col-md-6 col-sm-6">
                   <div className="single-wedgets social-link">
                     <div className="widget-title">
                       <h4>Community</h4>

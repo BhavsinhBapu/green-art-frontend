@@ -3979,7 +3979,7 @@ select:-webkit-autofill:focus {
   display: block;
   position: absolute;
   width: 200px;
-  background: #ffffff;
+  background: rgba(30, 35, 41, 1) ;
   left: 0;
   top: 100%;
   text-align: left;
@@ -3996,7 +3996,7 @@ select:-webkit-autofill:focus {
 }
 .main-menu ul li ul li {
   display: block;
-  border-bottom: 1px solid #efefef;
+  border-bottom: 1px solid #353535;
 }
 .main-menu ul li ul li:last-child {
   border-bottom: none;
@@ -4004,7 +4004,7 @@ select:-webkit-autofill:focus {
 .main-menu ul li ul li a {
   display: block;
   padding: 8px 5px;
-  color: #777778 !important;
+  color: rgba(255, 255, 255, 0.6) !important;
   transition: all 0.3s;
 }
 .main-menu ul li ul li a:hover {
@@ -9330,4 +9330,16 @@ table.dataTable thead tr th {
 }
 #marketTradeTable_wrapper .dataTables_scroll::-webkit-scrollbar {
   display: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
+.dataTables_scrollHeadInner {
+  width: 100% !important;
 }

@@ -7,6 +7,7 @@ const DashboardNavbar = () => {
   const { isLoggedIn, user } = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
   return (
+    <>
     <div className="cp-user-top-bar dark-board">
       <div className="container-fluid">
         <div className="row align-items-center justify-content-between">
@@ -17,7 +18,7 @@ const DashboardNavbar = () => {
                   <img
                     src="/logo.svg"
                     className="img-fluid cp-user-logo-large"
-                    alt=""
+                    alt="" 
                   />
                 </a>
               </Link>
@@ -29,18 +30,18 @@ const DashboardNavbar = () => {
                 {/* <Link href={"/user/my-wallet"}> */}
 
                 <Link href="/exchange/dashboard">
-                  <li className="">
+                  <li>
                     <a href="">
                       <span className="cp-user-icon">
                         <img
                           src="/sidebar-icons/dashboard.svg"
                           className="img-fluid cp-user-side-bar-icon"
-                          alt=""
+                          alt="" 
                         />
                         <img
                           src="/sidebar-icons/hover/dashboard.svg"
                           className="img-fluid cp-user-side-bar-icon-hover"
-                          alt=""
+                          alt="" 
                         />
                       </span>
                       <span className="cp-user-name">Trade</span>
@@ -54,41 +55,41 @@ const DashboardNavbar = () => {
                     isLoggedIn ? "/user/my-wallet" : "/authentication/signin"
                   }
                 >
-                  <li className="">
+                  <li>
                     <a href="">
                       <span className="cp-user-icon">
                         <img
                           src="/sidebar-icons/Wallet.svg"
                           className="img-fluid cp-user-side-bar-icon"
-                          alt=""
+                          alt="" 
                         />
                         <img
                           src="/sidebar-icons/Wallet.svg"
                           className="img-fluid cp-user-side-bar-icon-hover"
-                          alt=""
+                          alt="" 
                         />
                       </span>
                       <span className="cp-user-name">Wallet</span>
                     </a>
                   </li>
                 </Link>
-                <li className="">
+                <li>
                   <a className="arrow-icon" href="#" aria-expanded="true">
                     <span className="cp-user-icon">
                       <img
                         src="/sidebar-icons/Membership.svg"
                         className="img-fluid cp-user-side-bar-icon"
-                        alt=""
+                        alt="" 
                       />
                       <img
                         src="/sidebar-icons/hover/Membership-1.svg"
                         className="img-fluid cp-user-side-bar-icon-hover"
-                        alt=""
+                        alt="" 
                       />
                     </span>
                     <span className="cp-user-name">Reports</span>
                   </a>
-                  <ul className="">
+                  <ul>
                     <Link
                       href={
                         isLoggedIn
@@ -96,8 +97,8 @@ const DashboardNavbar = () => {
                           : "/authentication/signin"
                       }
                     >
-                      <li className="">
-                        <a>Deposit History</a>
+                      <li>
+                        <a href="">Deposit History</a>
                       </li>
                     </Link>
                     <Link
@@ -107,8 +108,8 @@ const DashboardNavbar = () => {
                           : "/authentication/signin"
                       }
                     >
-                      <li className="">
-                        <a>Withdrawal History</a>
+                      <li>
+                        <a href="">Withdrawal History</a>
                       </li>
                     </Link>
                     <Link
@@ -118,8 +119,8 @@ const DashboardNavbar = () => {
                           : "/authentication/signin"
                       }
                     >
-                      <li className="">
-                        <a>Swap History</a>
+                      <li>
+                        <a href="">Swap History</a>
                       </li>
                     </Link>
                     <Link
@@ -129,7 +130,7 @@ const DashboardNavbar = () => {
                           : "/authentication/signin"
                       }
                     >
-                      <li className="">
+                      <li>
                         <a href="">Buy Order History</a>
                       </li>
                     </Link>
@@ -140,7 +141,7 @@ const DashboardNavbar = () => {
                           : "/authentication/signin"
                       }
                     >
-                      <li className="">
+                      <li>
                         <a href="">Sell Order History</a>
                       </li>
                     </Link>
@@ -151,7 +152,7 @@ const DashboardNavbar = () => {
                           : "/authentication/signin"
                       }
                     >
-                      <li className="">
+                      <li>
                         <a href="">Transaction History</a>
                       </li>
                     </Link>
@@ -160,18 +161,18 @@ const DashboardNavbar = () => {
                 <Link
                   href={isLoggedIn ? "/user/profile" : "/authentication/signin"}
                 >
-                  <li className="">
+                  <li>
                     <a href="">
                       <span className="cp-user-icon">
                         <img
                           src="/sidebar-icons/user.svg"
                           className="img-fluid cp-user-side-bar-icon"
-                          alt=""
+                          alt="" 
                         />
                         <img
                           src="/sidebar-icons/hover/user.svg"
                           className="img-fluid cp-user-side-bar-icon-hover"
-                          alt=""
+                          alt="" 
                         />
                       </span>
                       <span className="cp-user-name">My Profile</span>
@@ -183,54 +184,54 @@ const DashboardNavbar = () => {
                     isLoggedIn ? "/user/referral" : "/authentication/signin"
                   }
                 >
-                  <li className="">
+                  <li>
                     <a href="">
                       <span className="cp-user-icon">
                         <img
                           src="/sidebar-icons/referral.svg"
                           className="img-fluid cp-user-side-bar-icon"
-                          alt=""
+                          alt="" 
                         />
                         <img
                           src="/sidebar-icons/hover/referral.svg"
                           className="img-fluid cp-user-side-bar-icon-hover"
-                          alt=""
+                          alt="" 
                         />
                       </span>
                       <span className="cp-user-name">My Referral</span>
                     </a>
                   </li>
                 </Link>
-                <li className="">
+                <li>
                   <a className="arrow-icon" href="#" aria-expanded="true">
                     <span className="cp-user-icon">
                       <img
                         src="/sidebar-icons/settings.svg"
                         className="img-fluid cp-user-side-bar-icon"
-                        alt=""
+                        alt="" 
                       />
                       <img
                         src="/sidebar-icons/hover/settings.svg"
                         className="img-fluid cp-user-side-bar-icon-hover"
-                        alt=""
+                        alt="" 
                       />
                     </span>
                     <span className="cp-user-name">Settings</span>
                   </a>
-                  <ul className="">
+                  <ul>
                     <Link
                       href={
                         isLoggedIn ? "/user/settings" : "/authentication/signin"
                       }
                     >
-                      <li className="">
+                      <li>
                         <a href="">My Settings</a>
                       </li>
                     </Link>
                     <Link
                       href={isLoggedIn ? "/user/faq" : "/authentication/signin"}
                     >
-                      <li className="">
+                      <li>
                         <a href="">FAQ</a>
                       </li>
                     </Link>
@@ -256,7 +257,7 @@ const DashboardNavbar = () => {
                         <img
                           src="/notification.png"
                           className="img-fluid"
-                          alt=""
+                          alt="" /
                         />
                       </button> */}
                       <div className="dropdown-menu notification-list dropdown-menu-right">
@@ -368,6 +369,105 @@ const DashboardNavbar = () => {
         </div>
       </div>
     </div>
+    
+  <div className="cp-user-sidebar">
+    <div className="cp-user-sidebar-menu scrollbar-inner">
+        <nav>
+            <ul id="metismenu">
+                <li className=" cp-user-active-page ">
+                    <a href="https://tradexpro-laravel.cdibrandstudio.com/user/exchange/dashboard">
+                            <span className="cp-user-icon">
+                                <img src="https://tradexpro-laravel.cdibrandstudio.com/assets/user/images/sidebar-icons/dashboard.svg" className="img-fluid cp-user-side-bar-icon" alt="" />
+                                <img src="https://tradexpro-laravel.cdibrandstudio.com/assets/user/images/sidebar-icons/hover/dashboard.svg" className="img-fluid cp-user-side-bar-icon-hover" alt="" />
+                            </span>
+                        <span className="cp-user-name">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a className="arrow-icon" href="#" aria-expanded="true">
+                        <span className="cp-user-icon">
+                            <img src="https://tradexpro-laravel.cdibrandstudio.com/assets/user/images/sidebar-icons/Wallet.svg" className="img-fluid cp-user-side-bar-icon" alt="" />
+                            <img src="https://tradexpro-laravel.cdibrandstudio.com/assets/user/images/sidebar-icons/hover/Wallet.svg" className="img-fluid cp-user-side-bar-icon-hover" alt="" />
+                        </span>
+                        <span className="cp-user-name">Wallet</span>
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="https://tradexpro-laravel.cdibrandstudio.com/user/my-wallet">My Wallet</a>
+                        </li>
+                        <li>
+                            <a href="https://tradexpro-laravel.cdibrandstudio.com/user/coin-swap">Swap Coin</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a className="arrow-icon" href="#" aria-expanded="true">
+                        <span className="cp-user-icon">
+                            <img src="https://tradexpro-laravel.cdibrandstudio.com/assets/user/images/sidebar-icons/Membership.svg" className="img-fluid cp-user-side-bar-icon" alt="" />
+                            <img src="https://tradexpro-laravel.cdibrandstudio.com/assets/user/images/sidebar-icons/hover/Membership-1.svg" className="img-fluid cp-user-side-bar-icon-hover" alt="" />
+                        </span>
+                        <span className="cp-user-name">Reports</span>
+                    </a>
+                    <ul>
+                        <li><a href="https://tradexpro-laravel.cdibrandstudio.com/user/wallet-history?type=deposit">Deposit History</a></li>
+                        <li><a href="https://tradexpro-laravel.cdibrandstudio.com/user/wallet-history?type=withdrawal">Withdrawal History</a></li>
+                        <li><a href="https://tradexpro-laravel.cdibrandstudio.com/user/coin-convert-history">Swap History</a></li>
+                        <li><a href="https://tradexpro-laravel.cdibrandstudio.com/user/exchange/all-buy-orders-history">Buy Order History</a></li>
+                        <li><a href="https://tradexpro-laravel.cdibrandstudio.com/user/exchange/all-sell-orders-history">Sell Order History</a></li>
+                        <li><a href="https://tradexpro-laravel.cdibrandstudio.com/user/exchange/all-transaction-history">Transaction History</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a className="arrow-icon" href="#" aria-expanded="true">
+                            <span className="cp-user-icon">
+                                <img src="https://tradexpro-laravel.cdibrandstudio.com/assets/user/images/sidebar-icons/user.svg" className="img-fluid cp-user-side-bar-icon" alt="" />
+                                <img src="https://tradexpro-laravel.cdibrandstudio.com/assets/user/images/sidebar-icons/hover/user.svg" className="img-fluid cp-user-side-bar-icon-hover" alt="" />
+                            </span>
+                        <span className="cp-user-name">My Profile</span>
+                    </a>
+                    <ul>
+                        <li><a href="https://tradexpro-laravel.cdibrandstudio.com/user/profile">Profile</a></li>
+                        <li><a href="https://tradexpro-laravel.cdibrandstudio.com/user/edit-profile">Edit Profile</a></li>
+                        <li><a href="https://tradexpro-laravel.cdibrandstudio.com/user/phone-verification">Phone Verification</a></li>
+                        <li><a href="https://tradexpro-laravel.cdibrandstudio.com/user/security-setting">Security</a></li>
+                        <li><a href="https://tradexpro-laravel.cdibrandstudio.com/user/profile-verification-list">Verification List</a></li>
+                        <li><a href="https://tradexpro-laravel.cdibrandstudio.com/user/personal-verification">Personal Verification</a></li>
+                        <li><a href="https://tradexpro-laravel.cdibrandstudio.com/user/change-password">Change Password</a></li>
+                        <li><a href="https://tradexpro-laravel.cdibrandstudio.com/user/activity">Activity</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="https://tradexpro-laravel.cdibrandstudio.com/user/referral">
+                            <span className="cp-user-icon">
+                                <img src="https://tradexpro-laravel.cdibrandstudio.com/assets/user/images/sidebar-icons/referral.svg" className="img-fluid cp-user-side-bar-icon" alt="" />
+                                <img src="https://tradexpro-laravel.cdibrandstudio.com/assets/user/images/sidebar-icons/hover/referral.svg" className="img-fluid cp-user-side-bar-icon-hover" alt="" />
+                            </span>
+                        <span className="cp-user-name">My Referral</span>
+                    </a>
+                </li>
+                <li>
+                    <a className="arrow-icon" href="#" aria-expanded="true">
+                        <span className="cp-user-icon">
+                            <img src="https://tradexpro-laravel.cdibrandstudio.com/assets/user/images/sidebar-icons/settings.svg" className="img-fluid cp-user-side-bar-icon" alt="" />
+                            <img src="https://tradexpro-laravel.cdibrandstudio.com/assets/user/images/sidebar-icons/hover/settings.svg" className="img-fluid cp-user-side-bar-icon-hover" alt="" />
+                        </span>
+                        <span className="cp-user-name">Settings</span>
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="https://tradexpro-laravel.cdibrandstudio.com/user/setting">My Settings</a>
+                        </li>
+                        <li>
+                            <a href="https://tradexpro-laravel.cdibrandstudio.com/user/faq">FAQ</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+    </>
   );
 };
 

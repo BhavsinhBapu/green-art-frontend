@@ -5,8 +5,8 @@ const TradesTable = ({ tradeOrderHistory }: any) => {
     <tbody>
       {tradeOrderHistory?.length === 0 ? (
         <tr className="odd">
-          <td valign="top" colSpan={3} className="dataTables_empty">
-            No data available in table
+          <td valign="top" colSpan={3} className="text-center">
+            No data available in table 
           </td>
         </tr>
       ) : (
