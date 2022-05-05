@@ -29,7 +29,7 @@
   .main-menu ul li a .cp-user-icon {
     margin-right: 0;
   }
-  .sidebar-cllopse .cp-user-sidebar {
+  .cp-user-sidebar.active {
     display: block;
   }
 }
