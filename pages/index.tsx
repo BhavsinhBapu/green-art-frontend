@@ -3,8 +3,20 @@ import Slider from "react-slick";
 import styles from "../styles/Home.module.css";
 import Cookies from "js-cookie";
 import Link from "next/link";
-import { landingPage } from "service/landing-page";
-const Home: NextPage = ({ landing }: any) => {
+import {
+  announcementList,
+  bannerList,
+  featureList,
+  landingPage,
+  socialMediaList,
+} from "service/landing-page";
+const Home: NextPage = ({
+  landing,
+  bannerListdata,
+  announcementListdata,
+  featureListdata,
+  socialData,
+}: any) => {
   const settings = {
     dots: false,
     infinite: true,
@@ -123,117 +135,36 @@ const Home: NextPage = ({ landing }: any) => {
         <section className="about-area">
           <div className="container">
             <Slider {...settings}>
-              <div className="single-banner">
-                <a href="#">
-                  <img
-                    src="https://tradexpro-exchange.itech-theme.com/assets/landing/images/banner-image-2.png"
-                    alt="about-image-phone"
-                  />
-                </a>
-              </div>
-              <div className="single-banner">
-                <a href="#">
-                  <img
-                    src="https://tradexpro-exchange.itech-theme.com/assets/landing/images/banner-image-3.png"
-                    alt="about-image-phone"
-                  />
-                </a>
-              </div>
-              <div className="single-banner">
-                <a href="#">
-                  <img
-                    src="https://tradexpro-exchange.itech-theme.com/assets/landing/images/banner-image-4.png"
-                    alt="about-image-phone"
-                  />
-                </a>
-              </div>
-              <div className="single-banner">
-                <a href="#">
-                  <img
-                    src="https://tradexpro-exchange.itech-theme.com/assets/landing/images/banner-image-2.png"
-                    alt="about-image-phone"
-                  />
-                </a>
-              </div>
-              <div className="single-banner">
-                <a href="#">
-                  <img
-                    src="https://tradexpro-exchange.itech-theme.com/assets/landing/images/banner-image-4.png"
-                    alt="about-image-phone"
-                  />
-                </a>
-              </div>
-              <div className="single-banner">
-                <a href="#">
-                  <img
-                    src="https://tradexpro-exchange.itech-theme.com/assets/landing/images/banner-image-2.png"
-                    alt="about-image-phone"
-                  />
-                </a>
-              </div>
+              {bannerListdata?.map((item: any) => (
+                <div className="single-banner">
+                  <a href="#">
+                    <img src={item.image} alt="about-image-phone" />
+                  </a>
+                </div>
+              ))}
             </Slider>
             <div className="about-info">
-              <div className="single-info">
-                <p>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    className="mirror css-1w66k1s"
-                  >
-                    <path
-                      d="M12.867 18.47l5.13-.94L15.517 4l-5.18.95-3.25 3.94-4.85.89.5 2.71-1.97.36.36 1.97 1.97-.36.44 2.42 1.97-.36.79 4.28 1.97-.36-.79-4.28.98-.18 4.41 2.49zm-5.76-4.28l-1.97.36-.58-3.17 3.61-.66 3.25-3.92 2.5-.46 1.76 9.59-2.46.45-4.4-2.51-1.71.32zM22.871 8.792l-2.99.55.362 1.967 2.99-.55-.362-1.967zM19.937 13.183l-1.135 1.647 2.503 1.725 1.135-1.646-2.503-1.726zM19.006 4.052l-1.725 2.503 1.646 1.135 1.726-2.503-1.647-1.135z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                  <span>
-                    Tradexpro Collect &amp; Win Christmas Edition: Trade TRX,
-                    BTT, WIN, JST or SUN to Light Up the Christmas Tree &amp;
-                    Share $300k in Rewards!
-                  </span>
-                </p>
-                <a href="#" className="more-btn">
+              {announcementListdata?.map((item: any) => (
+                <div className="single-info">
+                  <p>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      className="mirror css-1w66k1s"
+                    >
+                      <path
+                        d="M12.867 18.47l5.13-.94L15.517 4l-5.18.95-3.25 3.94-4.85.89.5 2.71-1.97.36.36 1.97 1.97-.36.44 2.42 1.97-.36.79 4.28 1.97-.36-.79-4.28.98-.18 4.41 2.49zm-5.76-4.28l-1.97.36-.58-3.17 3.61-.66 3.25-3.92 2.5-.46 1.76 9.59-2.46.45-4.4-2.51-1.71.32zM22.871 8.792l-2.99.55.362 1.967 2.99-.55-.362-1.967zM19.937 13.183l-1.135 1.647 2.503 1.725 1.135-1.646-2.503-1.726zM19.006 4.052l-1.725 2.503 1.646 1.135 1.726-2.503-1.647-1.135z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                    {item.title}
+                  </p>
+                  {/* <a href="#" className="more-btn">
                   More
-                </a>
-              </div>
-              <div className="single-info">
-                <p>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    className="mirror css-1w66k1s"
-                  >
-                    <path
-                      d="M12.867 18.47l5.13-.94L15.517 4l-5.18.95-3.25 3.94-4.85.89.5 2.71-1.97.36.36 1.97 1.97-.36.44 2.42 1.97-.36.79 4.28 1.97-.36-.79-4.28.98-.18 4.41 2.49zm-5.76-4.28l-1.97.36-.58-3.17 3.61-.66 3.25-3.92 2.5-.46 1.76 9.59-2.46.45-4.4-2.51-1.71.32zM22.871 8.792l-2.99.55.362 1.967 2.99-.55-.362-1.967zM19.937 13.183l-1.135 1.647 2.503 1.725 1.135-1.646-2.503-1.726zM19.006 4.052l-1.725 2.503 1.646 1.135 1.726-2.503-1.647-1.135z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                  <span>Special Notice about Tradexpro in Portugal</span>
-                </p>
-                <a href="#" className="more-btn">
-                  More
-                </a>
-              </div>
-              <div className="single-info">
-                <p>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    className="mirror css-1w66k1s"
-                  >
-                    <path
-                      d="M12.867 18.47l5.13-.94L15.517 4l-5.18.95-3.25 3.94-4.85.89.5 2.71-1.97.36.36 1.97 1.97-.36.44 2.42 1.97-.36.79 4.28 1.97-.36-.79-4.28.98-.18 4.41 2.49zm-5.76-4.28l-1.97.36-.58-3.17 3.61-.66 3.25-3.92 2.5-.46 1.76 9.59-2.46.45-4.4-2.51-1.71.32zM22.871 8.792l-2.99.55.362 1.967 2.99-.55-.362-1.967zM19.937 13.183l-1.135 1.647 2.503 1.725 1.135-1.646-2.503-1.726zM19.006 4.052l-1.725 2.503 1.646 1.135 1.726-2.503-1.647-1.135z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                  <span>Special Notice About Tradexpro Markets Limited</span>
-                </p>
-                <a href="#" className="more-btn">
-                  More
-                </a>
-              </div>
+                </a> */}
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -799,63 +730,21 @@ const Home: NextPage = ({ landing }: any) => {
             <div className="section-title">
               <h2 className="title">{landing.landing_feature_title}.</h2>
             </div>
+
             <div className="row">
-              <div className="col-lg-3 col-md-6">
-                <a href="#" className="single-card">
-                  <img
-                    className="card-icon"
-                    src="https://tradexpro-exchange.itech-theme.com/assets/landing/images/touch-icon-1.png"
-                    alt="icon"
-                  />
-                  <h3 className="card-title">24 / 7 Support</h3>
-                  <p className="card-content">
-                    Got a problem? Just get in touch. Our support team is
-                    available 24/7.
-                  </p>
-                </a>
-              </div>
-              <div className="col-lg-3 col-md-6">
-                <a href="#" className="single-card">
-                  <img
-                    className="card-icon"
-                    src="https://tradexpro-exchange.itech-theme.com/assets/landing/images/touch-icon-2.png"
-                    alt="icon"
-                  />
-                  <h3 className="card-title">Blog</h3>
-                  <p className="card-content">
-                    News and updates from the world’s leading cryptocurrency
-                    exchange.
-                  </p>
-                </a>
-              </div>
-              <div className="col-lg-3 col-md-6">
-                <a href="#" className="single-card">
-                  <img
-                    className="card-icon"
-                    src="https://tradexpro-exchange.itech-theme.com/assets/landing/images/touch-icon-3.png"
-                    alt="icon"
-                  />
-                  <h3 className="card-title">Community</h3>
-                  <p className="card-content">
-                    Binance is global. Join the discussion in our worldwide
-                    communities.
-                  </p>
-                </a>
-              </div>
-              <div className="col-lg-3 col-md-6">
-                <a href="#" className="single-card">
-                  <img
-                    className="card-icon"
-                    src="https://tradexpro-exchange.itech-theme.com/assets/landing/images/touch-icon-4.png"
-                    alt="icon"
-                  />
-                  <h3 className="card-title">Careers</h3>
-                  <p className="card-content">
-                    Help build the future of technology. Start your new career
-                    at Binance.
-                  </p>
-                </a>
-              </div>
+              {featureListdata.map((feature: any, index: any) => (
+                <div className="col-lg-3 col-md-6">
+                  <a href="#" className="single-card">
+                    <img
+                      className="card-icon"
+                      src={feature.feature_icon}
+                      alt="icon"
+                    />
+                    <h3 className="card-title">{feature?.feature_title}</h3>
+                    <p className="card-content">{feature?.description}</p>
+                  </a>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -960,26 +849,18 @@ const Home: NextPage = ({ landing }: any) => {
                     </div>
                     <div className="widget-inner">
                       <ul>
-                        <li>
-                          <a>
-                            <i className="fab fa-facebook" aria-hidden="true" />
-                          </a>
-                        </li>
-                        <li>
-                          <a>
-                            <i className="fab fa-twitter" aria-hidden="true" />
-                          </a>
-                        </li>
-                        <li>
-                          <a>
-                            <i className="fab fa-linkedin" aria-hidden="true" />
-                          </a>
-                        </li>
-                        <li>
-                          <a>
-                            <i className="fab fa-youtube" aria-hidden="true" />
-                          </a>
-                        </li>
+                        {socialData.map((social: any, index: any) => (
+                          <li>
+                            <a href={social.media_link}>
+                              <img
+                                src={social.media_icon}
+                                alt={social.media_title}
+                                height={20}
+                                width={20}
+                              />
+                            </a>
+                          </li>
+                        ))}
                       </ul>
                     </div>
                   </div>
@@ -1029,10 +910,18 @@ const Home: NextPage = ({ landing }: any) => {
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const { data } = await landingPage();
-  console.log(data);
+  const bannerListdata = await bannerList();
+  const announcementListdata = await announcementList();
+  const featureListdata = await featureList();
+  const socialData = await socialMediaList();
+  console.log(announcementListdata.data.data, "announcementListdata.data.data");
   return {
     props: {
       landing: data,
+      bannerListdata: bannerListdata.data.data,
+      announcementListdata: announcementListdata.data.data,
+      featureListdata: featureListdata.data.data,
+      socialData: socialData.data.data,
     },
   };
 };
