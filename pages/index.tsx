@@ -1,9 +1,10 @@
-import type { NextPage } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 import Slider from "react-slick";
 import styles from "../styles/Home.module.css";
 import Cookies from "js-cookie";
 import Link from "next/link";
-const Home: NextPage = () => {
+import { landingPage } from "service/landing-page";
+const Home: NextPage = ({ landing }: any) => {
   const settings = {
     dots: false,
     infinite: true,
@@ -17,25 +18,25 @@ const Home: NextPage = () => {
           slidesToShow: 3,
           slidesToScroll: 3,
           infinite: true,
-          dots: true
-        }
+          dots: true,
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          initialSlide: 2
-        }
+          initialSlide: 2,
+        },
       },
       {
         breakpoint: 360,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
   return (
     <div>
@@ -57,7 +58,7 @@ const Home: NextPage = () => {
               </div>
               <div className="col-md-10">
                 <div className="menu-area text-right">
-                  <nav className="main-menu mobile-menu" >
+                  <nav className="main-menu mobile-menu">
                     <ul id="nav">
                       <li>
                         <a href="/exchange/dashboard">
@@ -91,13 +92,8 @@ const Home: NextPage = () => {
           <div className="container">
             <div className="row">
               <div className="col-md-6">
-                <h1 className="banner-title">
-                  Buy &amp; Sell Instantly and Hold Cryptocurrency
-                </h1>
-                <p className="banner-content">
-                  Tradexpro exchange is such a marketplace where people can
-                  trade directly with each other.
-                </p>
+                <h1 className="banner-title">{landing?.landing_title}</h1>
+                <p className="banner-content">{landing?.landing_description}</p>
                 <a
                   href="https://tradexpro-exchange.itech-theme.com/sign-up"
                   className="primary-btn"
@@ -246,7 +242,7 @@ const Home: NextPage = () => {
         <section className="market-trend-area">
           <div className="container">
             <div className="section-title">
-              <h2 className="title">Market trend</h2>
+              <h2 className="title">{landing?.market_trend_title}</h2>
             </div>
             <div className="exchange-tab-menu">
               <ul className="nav nav-tabs" id="exchangeTab" role="tablist">
@@ -646,14 +642,14 @@ const Home: NextPage = () => {
         <section className="trade-anywhere-area sectiob-bg">
           <div className="container">
             <div className="section-title">
-              <h2 className="title">Trade. Anywhere.</h2>
+              <h2 className="title">{landing?.trade_anywhere_title}</h2>
             </div>
             <div className="row align-items-center">
               <div className="col-lg-6">
                 <div className="trade-anywhere-left">
                   <img
                     className="trend-image"
-                    src="https://tradexpro-exchange.itech-theme.com/assets/landing/images/trade-imge.png"
+                    src={landing?.trade_anywhere_left_img}
                     alt="trade-imge"
                   />
                 </div>
@@ -676,7 +672,10 @@ const Home: NextPage = () => {
                   <div className="avable-items">
                     <ul className="item-lsit">
                       <li className="single-item">
-                        <a href="#" className="item-link">
+                        <a
+                          href={landing?.apple_store_link}
+                          className="item-link"
+                        >
                           <img
                             className="icon"
                             src="https://tradexpro-exchange.itech-theme.com/assets/landing/images/apple-logo.png"
@@ -686,7 +685,10 @@ const Home: NextPage = () => {
                         </a>
                       </li>
                       <li className="single-item">
-                        <a href="#" className="item-link">
+                        <a
+                          href={landing?.google_store_link}
+                          className="item-link"
+                        >
                           <img
                             className="icon"
                             src="https://tradexpro-exchange.itech-theme.com/assets/landing/images/android.png"
@@ -706,7 +708,10 @@ const Home: NextPage = () => {
                         </a>
                       </li>
                       <li className="single-item">
-                        <a href="#" className="item-link">
+                        <a
+                          href={landing?.macos_store_link}
+                          className="item-link"
+                        >
                           <img
                             className="icon"
                             src="https://tradexpro-exchange.itech-theme.com/assets/landing/images/command-symbol.png"
@@ -716,7 +721,10 @@ const Home: NextPage = () => {
                         </a>
                       </li>
                       <li className="single-item">
-                        <a href="#" className="item-link">
+                        <a
+                          href={landing?.windows_store_link}
+                          className="item-link"
+                        >
                           <img
                             className="icon"
                             src="https://tradexpro-exchange.itech-theme.com/assets/landing/images/windows.png"
@@ -726,7 +734,10 @@ const Home: NextPage = () => {
                         </a>
                       </li>
                       <li className="single-item">
-                        <a href="#" className="item-link">
+                        <a
+                          href={landing?.windows_store_link}
+                          className="item-link"
+                        >
                           <img
                             className="icon"
                             src="https://tradexpro-exchange.itech-theme.com/assets/landing/images/linux.png"
@@ -736,7 +747,7 @@ const Home: NextPage = () => {
                         </a>
                       </li>
                       <li className="single-item">
-                        <a href="#" className="item-link">
+                        <a href={landing?.api_link} className="item-link">
                           <img
                             className="icon"
                             src="https://tradexpro-exchange.itech-theme.com/assets/landing/images/api.png"
@@ -763,29 +774,18 @@ const Home: NextPage = () => {
         <section className="trade-anywhere-area">
           <div className="container">
             <div className="section-title">
-              <h2 className="title"> Secure trend System. </h2>
+              <h2 className="title"> {landing?.secure_trade_title} </h2>
             </div>
             <div className="row align-items-center">
               <div className="col-lg-6">
                 <div className="trade-anywhere-left">
-                  <img
-                    src="https://tradexpro-exchange.itech-theme.com/assets/landing/images/trade-imge.png"
-                    alt="integration"
-                  />
+                  <img src={landing?.secure_trade_left_img} alt="integration" />
                 </div>
               </div>
               <div className="col-lg-6">
                 <div className="trade-anywhere-right">
-                  <h2 className="subtitle"> Easy Customization . </h2>
-                  <p>
-                    Codexpro Exchange is a complete crypto coins exchange
-                    platform developed with Laravel. It works via coin payment.
-                    There is no need for any personal node, it will connect with
-                    a coin payment merchant account. Our system is 100% secure
-                    and dynamic. It supports all crypto currency wallets
-                    including Coin Payment, Deposit, Withdrawal, Referral
-                    system, and whatever you need.{" "}
-                  </p>
+                  <h2 className="subtitle"> {landing?.customization_title} </h2>
+                  <p>{landing?.customization_details}</p>
                   <a className="primary-btn">Know More</a>
                 </div>
               </div>
@@ -797,7 +797,7 @@ const Home: NextPage = () => {
         <section className="get-touch-area">
           <div className="container">
             <div className="section-title">
-              <h2 className="title">Get in touch. Stay in touch.</h2>
+              <h2 className="title">{landing.landing_feature_title}.</h2>
             </div>
             <div className="row">
               <div className="col-lg-3 col-md-6">
@@ -1027,5 +1027,13 @@ const Home: NextPage = () => {
     </div>
   );
 };
-
+export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
+  const { data } = await landingPage();
+  console.log(data);
+  return {
+    props: {
+      landing: data,
+    },
+  };
+};
 export default Home;
