@@ -22,3 +22,8 @@ export const featureList = () => {
 export const socialMediaList = () => {
   return request.get("/social-media-list");
 };
+
+// /banner-list/
+export const bannerDetailsBySlug = (slug: any) => {
+  return request.get(`/banner-list/${slug}`);
+};

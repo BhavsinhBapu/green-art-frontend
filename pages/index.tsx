@@ -137,9 +137,9 @@ const Home: NextPage = ({
             <Slider {...settings}>
               {bannerListdata?.map((item: any) => (
                 <div className="single-banner">
-                  <a href="#">
+                  <Link href={`/banner/${item.slug}`}>
                     <img src={item.image} alt="about-image-phone" />
-                  </a>
+                  </Link>
                 </div>
               ))}
             </Slider>
@@ -914,7 +914,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const announcementListdata = await announcementList();
   const featureListdata = await featureList();
   const socialData = await socialMediaList();
-  console.log(announcementListdata.data.data, "announcementListdata.data.data");
   return {
     props: {
       landing: data,
