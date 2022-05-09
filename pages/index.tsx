@@ -1,7 +1,5 @@
 import type { GetServerSideProps, NextPage } from "next";
 import Slider from "react-slick";
-import styles from "../styles/Home.module.css";
-import Cookies from "js-cookie";
 import Link from "next/link";
 import { landingPage } from "service/landing-page";
 const Home: NextPage = ({
@@ -70,19 +68,13 @@ const Home: NextPage = ({
                   <nav className="main-menu mobile-menu">
                     <ul id="nav">
                       <li>
-                        <a href="/exchange/dashboard">
-                          <a>Exchange</a>
-                        </a>
+                        <a href="/exchange/dashboard">Exchange</a>
                       </li>
                       <li>
-                        <Link href="/authentication/signin">
-                          <a>Login</a>
-                        </Link>
+                        <Link href="/authentication/signin">Login</Link>
                       </li>
                       <li>
-                        <Link href="/authentication/signup">
-                          <a>Sign up</a>
-                        </Link>
+                        <Link href="/authentication/signup">Sign up</Link>
                       </li>
                       <li>
                         <a href="#contact">Contact</a>
@@ -103,10 +95,7 @@ const Home: NextPage = ({
               <div className="col-md-6">
                 <h1 className="banner-title">{landing?.landing_title}</h1>
                 <p className="banner-content">{landing?.landing_description}</p>
-                <a
-                  href="https://tradexpro-exchange.itech-theme.com/sign-up"
-                  className="primary-btn"
-                >
+                <a href="/authentication/signup" className="primary-btn">
                   Register Now
                 </a>
               </div>
@@ -114,7 +103,7 @@ const Home: NextPage = ({
             <div className="hero-banner-bottom">
               <ul className="item-list">
                 <li className="single-item">
-                  <a href="https://tradexpro-exchange.itech-theme.com/user/exchange/dashboard/BTC_USDT">
+                  <a href="/exchange/dashboard">
                     <h4>
                       BTC / USDT
                       <span className="percent  decrase ">0.00%</span>
@@ -132,8 +121,8 @@ const Home: NextPage = ({
         <section className="about-area">
           <div className="container">
             <Slider {...settings}>
-              {bannerListdata?.map((item: any) => (
-                <div className="single-banner">
+              {bannerListdata?.map((item: any, index: number) => (
+                <div className="single-banner" key={index}>
                   <Link href={`/banner/${item.slug}`}>
                     <img src={item.image} alt="about-image-phone" />
                   </Link>
@@ -141,8 +130,8 @@ const Home: NextPage = ({
               ))}
             </Slider>
             <div className="about-info">
-              {announcementListdata?.map((item: any) => (
-                <div className="single-info">
+              {announcementListdata?.map((item: any, index: number) => (
+                <div className="single-info" key={index}>
                   <p>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -293,8 +282,8 @@ const Home: NextPage = ({
                           </tr>
                         </thead>
                         <tbody>
-                          {asset_coin_pairs?.map((item: any) => (
-                            <tr role="row" className="odd">
+                          {asset_coin_pairs?.map((item: any, index: number) => (
+                            <tr role="row" className="odd" key={index}>
                               <td>
                                 <a className="cellMarket" href="#">
                                   <div className="marketSymbols">
@@ -440,70 +429,72 @@ const Home: NextPage = ({
                           </tr>
                         </thead>
                         <tbody>
-                          {hourly_coin_pairs?.map((item: any) => (
-                            <tr role="row" className="odd">
-                              <td>
-                                <a className="cellMarket" href="#">
-                                  <div className="marketSymbols">
-                                    <span className="quoteSymbol">
-                                      {item?.child_coin_name}
-                                    </span>
-                                    <span className="baseSymbol">
-                                      /{item?.parent_coin_name}
-                                    </span>
-                                  </div>
-                                  <div className="currencyName">Bitcoin</div>
-                                </a>
-                              </td>
-                              <td className="txtBlack">{item.last_price}</td>
-                              <td>
-                                <span className="changePos  text-success ">
-                                  {item.price_change}
-                                </span>
-                              </td>
-                              <td>
-                                {item.price_change >= 0 ? (
-                                  <img
-                                    src="/chart-image-1.png"
-                                    alt="chart-image"
-                                  />
-                                ) : (
-                                  <img
-                                    src="/chart-image-2.png"
-                                    alt="chart-image"
-                                  />
-                                )}
-                              </td>
-                              <td className="txtBlack">
-                                {item.volume} {item.parent_coin_name}
-                              </td>
-                              <td
-                                onClick={async () => {
-                                  await localStorage.setItem(
-                                    "base_coin_id",
-                                    item?.parent_coin_id
-                                  );
-                                  await localStorage.setItem(
-                                    "trade_coin_id",
-                                    item?.child_coin_id
-                                  );
-                                  await localStorage.setItem(
-                                    "current_pair",
-                                    item?.child_coin_name +
-                                      "_" +
-                                      item?.parent_coin_name
-                                  );
-                                }}
-                              >
-                                <a
-                                  href="/exchange/dashboard"
-                                  className="btnTrade btn-link"
+                          {hourly_coin_pairs?.map(
+                            (item: any, index: number) => (
+                              <tr role="row" className="odd" key={index}>
+                                <td>
+                                  <a className="cellMarket" href="#">
+                                    <div className="marketSymbols">
+                                      <span className="quoteSymbol">
+                                        {item?.child_coin_name}
+                                      </span>
+                                      <span className="baseSymbol">
+                                        /{item?.parent_coin_name}
+                                      </span>
+                                    </div>
+                                    <div className="currencyName">Bitcoin</div>
+                                  </a>
+                                </td>
+                                <td className="txtBlack">{item.last_price}</td>
+                                <td>
+                                  <span className="changePos  text-success ">
+                                    {item.price_change}
+                                  </span>
+                                </td>
+                                <td>
+                                  {item.price_change >= 0 ? (
+                                    <img
+                                      src="/chart-image-1.png"
+                                      alt="chart-image"
+                                    />
+                                  ) : (
+                                    <img
+                                      src="/chart-image-2.png"
+                                      alt="chart-image"
+                                    />
+                                  )}
+                                </td>
+                                <td className="txtBlack">
+                                  {item.volume} {item.parent_coin_name}
+                                </td>
+                                <td
+                                  onClick={async () => {
+                                    await localStorage.setItem(
+                                      "base_coin_id",
+                                      item?.parent_coin_id
+                                    );
+                                    await localStorage.setItem(
+                                      "trade_coin_id",
+                                      item?.child_coin_id
+                                    );
+                                    await localStorage.setItem(
+                                      "current_pair",
+                                      item?.child_coin_name +
+                                        "_" +
+                                        item?.parent_coin_name
+                                    );
+                                  }}
                                 >
-                                  Trade
-                                </a>
-                              </td>
-                            </tr>
-                          ))}
+                                  <a
+                                    href="/exchange/dashboard"
+                                    className="btnTrade btn-link"
+                                  >
+                                    Trade
+                                  </a>
+                                </td>
+                              </tr>
+                            )
+                          )}
                         </tbody>
                       </table>
                     </div>
@@ -587,70 +578,72 @@ const Home: NextPage = ({
                           </tr>
                         </thead>
                         <tbody>
-                          {latest_coin_pairs?.map((item: any) => (
-                            <tr role="row" className="odd">
-                              <td>
-                                <a className="cellMarket" href="#">
-                                  <div className="marketSymbols">
-                                    <span className="quoteSymbol">
-                                      {item?.child_coin_name}
-                                    </span>
-                                    <span className="baseSymbol">
-                                      /{item?.parent_coin_name}
-                                    </span>
-                                  </div>
-                                  <div className="currencyName">Bitcoin</div>
-                                </a>
-                              </td>
-                              <td className="txtBlack">{item.last_price}</td>
-                              <td>
-                                <span className="changePos  text-success ">
-                                  {item.price_change}
-                                </span>
-                              </td>
-                              <td>
-                                {item.price_change >= 0 ? (
-                                  <img
-                                    src="/chart-image-1.png"
-                                    alt="chart-image"
-                                  />
-                                ) : (
-                                  <img
-                                    src="/chart-image-2.png"
-                                    alt="chart-image"
-                                  />
-                                )}
-                              </td>
-                              <td className="txtBlack">
-                                {item.volume} {item.parent_coin_name}
-                              </td>
-                              <td
-                                onClick={async () => {
-                                  await localStorage.setItem(
-                                    "base_coin_id",
-                                    item?.parent_coin_id
-                                  );
-                                  await localStorage.setItem(
-                                    "trade_coin_id",
-                                    item?.child_coin_id
-                                  );
-                                  await localStorage.setItem(
-                                    "current_pair",
-                                    item?.child_coin_name +
-                                      "_" +
-                                      item?.parent_coin_name
-                                  );
-                                }}
-                              >
-                                <a
-                                  href="/exchange/dashboard"
-                                  className="btnTrade btn-link"
+                          {latest_coin_pairs?.map(
+                            (item: any, index: number) => (
+                              <tr role="row" className="odd" key={index}>
+                                <td>
+                                  <a className="cellMarket" href="#">
+                                    <div className="marketSymbols">
+                                      <span className="quoteSymbol">
+                                        {item?.child_coin_name}
+                                      </span>
+                                      <span className="baseSymbol">
+                                        /{item?.parent_coin_name}
+                                      </span>
+                                    </div>
+                                    <div className="currencyName">Bitcoin</div>
+                                  </a>
+                                </td>
+                                <td className="txtBlack">{item.last_price}</td>
+                                <td>
+                                  <span className="changePos  text-success ">
+                                    {item.price_change}
+                                  </span>
+                                </td>
+                                <td>
+                                  {item.price_change >= 0 ? (
+                                    <img
+                                      src="/chart-image-1.png"
+                                      alt="chart-image"
+                                    />
+                                  ) : (
+                                    <img
+                                      src="/chart-image-2.png"
+                                      alt="chart-image"
+                                    />
+                                  )}
+                                </td>
+                                <td className="txtBlack">
+                                  {item.volume} {item.parent_coin_name}
+                                </td>
+                                <td
+                                  onClick={async () => {
+                                    await localStorage.setItem(
+                                      "base_coin_id",
+                                      item?.parent_coin_id
+                                    );
+                                    await localStorage.setItem(
+                                      "trade_coin_id",
+                                      item?.child_coin_id
+                                    );
+                                    await localStorage.setItem(
+                                      "current_pair",
+                                      item?.child_coin_name +
+                                        "_" +
+                                        item?.parent_coin_name
+                                    );
+                                  }}
                                 >
-                                  Trade
-                                </a>
-                              </td>
-                            </tr>
-                          ))}
+                                  <a
+                                    href="/exchange/dashboard"
+                                    className="btnTrade btn-link"
+                                  >
+                                    Trade
+                                  </a>
+                                </td>
+                              </tr>
+                            )
+                          )}
                         </tbody>
                       </table>
                       <div
@@ -833,7 +826,7 @@ const Home: NextPage = ({
 
             <div className="row">
               {featureListdata.map((feature: any, index: any) => (
-                <div className="col-lg-3 col-md-6">
+                <div className="col-lg-3 col-md-6" key={index}>
                   <a href="#" className="single-card">
                     <img
                       className="card-icon"
@@ -856,14 +849,8 @@ const Home: NextPage = ({
               <h2 className="title">Start trading now</h2>
             </div>
             <div className="trading-button text-center">
-              <Link href="/authentication/signup">
-                <a className="primary-btn mr-3">Sign Up</a>
-              </Link>
-              <Link href="/exchange/dashboard">
-                <a className="secondary-btn" href="#">
-                  Trade Now
-                </a>
-              </Link>
+              <Link href="/authentication/signup">Sign Up</Link>
+              <Link href="/exchange/dashboard">Trade Now</Link>
             </div>
           </div>
         </section>
@@ -950,7 +937,7 @@ const Home: NextPage = ({
                     <div className="widget-inner">
                       <ul>
                         {socialData.map((social: any, index: any) => (
-                          <li>
+                          <li key={index}>
                             <a href={social.media_link}>
                               <img
                                 src={social.media_icon}

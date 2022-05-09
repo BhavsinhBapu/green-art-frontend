@@ -37,7 +37,7 @@ export const initialDashboardCallAction =
     //   !localStorage.getItem("base_coin_id") &&
     //   !localStorage.getItem("trade_coin_id")
     // ) {
-    console.log("there is already");
+
     await localStorage.setItem(
       "base_coin_id",
       response.order_data.base_coin_id

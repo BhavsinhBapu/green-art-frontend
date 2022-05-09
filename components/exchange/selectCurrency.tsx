@@ -230,7 +230,6 @@ const SelectCurrency = () => {
                           data-tradeid={5}
                           // href="/exchange/dashboard"
                           onClick={async () => {
-                            console.log("pair", pair);
                             await localStorage.setItem(
                               "base_coin_id",
                               pair?.parent_coin_id

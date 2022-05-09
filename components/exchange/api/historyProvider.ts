@@ -20,7 +20,6 @@ export default {
         : "/data/histominute";
 
     if (this.hitted === false) {
-      console.log("      document.URL;", document.URL);
       const base = localStorage.getItem("base_coin_id");
       const trade = localStorage.getItem("trade_coin_id");
 
