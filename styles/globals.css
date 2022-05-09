@@ -4,3 +4,6 @@
 .layout__area--left {
   color: white;
 }
+.txtBlack {
+  color: black !important;
+}
