@@ -16,7 +16,7 @@ import SelectCurrency from "components/exchange/selectCurrency";
 import CurrencyLevel from "components/exchange/currencyLevel";
 import OrderHistorySection from "components/exchange/orderHistorySection";
 import ExchangeBox from "components/exchange/ExchangeBox";
-import OrderBook from "components/exchange/OrderBook";
+import DashboardBody from "components/exchange/DashboardBody";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "state/store";
 import {
@@ -246,7 +246,7 @@ const Dashboard: NextPage = () => {
                     <CurrencyLevel />
                   </div>
                 </div>
-                <div className="col-xl-6">
+                {/* <div className="col-xl-6">
                   <div className="cp-user-buy-coin-content-area">
                     <div className="card cp-user-custom-card">
                       <TradingChart
@@ -256,8 +256,8 @@ const Dashboard: NextPage = () => {
                     </div>
                   </div>
                   <OrderHistorySection />
-                </div>
-                <OrderBook />
+                </div> */}
+                <DashboardBody />
               </div>
             </div>
           </div>

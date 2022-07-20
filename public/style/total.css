@@ -3744,7 +3744,7 @@ table.table {
   flex-direction: column;
   justify-content: center;
   padding: 15px;
-  width: 300px;
+  width: 444px;
   box-sizing: border-box;
 }
 .cxchange-summary-wrap .cxchange-summary-name {
@@ -3825,6 +3825,7 @@ table.table {
   z-index: 99;
   opacity: 0;
   visibility: hidden;
+  padding: 25px;
 }
 .summber-coin-type:hover .cp-user-buy-coin-content-area {
   opacity: 1;
@@ -3979,7 +3980,7 @@ select:-webkit-autofill:focus {
   display: block;
   position: absolute;
   width: 200px;
-  background: rgba(30, 35, 41, 1) ;
+  background: rgba(30, 35, 41, 1);
   left: 0;
   top: 100%;
   text-align: left;
@@ -9238,7 +9239,7 @@ table.dataTable thead tr th {
   font-size: 12px;
 }
 .exchange-area .cp-user-buy-coin-content-area {
-  background: rgba(30, 35, 41, 1) !important;
+  background: #151515 !important;
 }
 .cp-user-buy-coin-content-area table.dataTable tbody tr td {
   font-size: 12px;
@@ -9325,7 +9326,7 @@ table.dataTable thead tr th {
 #marketTradeTable_wrapper .dataTables_scroll {
   height: 250px;
   overflow-y: scroll;
-  -ms-overflow-style: none;  
+  -ms-overflow-style: none;
   scrollbar-width: none;
 }
 #marketTradeTable_wrapper .dataTables_scroll::-webkit-scrollbar {
@@ -9337,7 +9338,7 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
 }
 .dataTables_scrollHeadInner {

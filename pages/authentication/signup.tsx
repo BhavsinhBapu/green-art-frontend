@@ -212,9 +212,11 @@ const Signup: NextPage = () => {
           <div className="col-md-6">
             <div className="user-content-text text-center">
               <h3>Welcome To</h3>
-              <a className="auth-logo" href="javascript:;">
-                <img src="/logo.svg" className="img-fluid" alt="" />
-              </a>
+              <Link href="/">
+                <a className="auth-logo" href="javascript:;">
+                  <img src="/logo.svg" className="img-fluid" alt="" />
+                </a>
+              </Link>
               <Link href="/authentication/signin">
                 <p>
                   Already have an accoun ? <a href=""> Sign In</a>
