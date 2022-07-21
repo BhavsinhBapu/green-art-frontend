@@ -93,8 +93,14 @@ const Home: NextPage = ({
           <div className="container">
             <div className="row">
               <div className="col-md-6">
-                <h1 className="banner-title">{landing?.landing_title}</h1>
-                <p className="banner-content">{landing?.landing_description}</p>
+                <h1 className="banner-title">
+                  {landing?.landing_title ||
+                    "Buy & Sell Instantly And Hold Cryptocurrency"}
+                </h1>
+                <p className="banner-content">
+                  {landing?.landing_description ||
+                    "Tradexpro exchange is such a marketplace where people can trade directly with each other."}
+                </p>
                 <a href="/authentication/signup" className="primary-btn">
                   Register Now
                 </a>
@@ -124,7 +130,11 @@ const Home: NextPage = ({
               {bannerListdata?.map((item: any, index: number) => (
                 <div className="single-banner" key={index}>
                   <Link href={`/banner/${item.slug}`}>
-                    <img src={item.image} alt="about-image-phone" />
+                    <img
+                      src={item.image}
+                      alt="about-image-phone"
+                      className="slider-image-class"
+                    />
                   </Link>
                 </div>
               ))}
@@ -159,7 +169,9 @@ const Home: NextPage = ({
         <section className="market-trend-area">
           <div className="container">
             <div className="section-title">
-              <h2 className="title">{landing?.market_trend_title}</h2>
+              <h2 className="title">
+                {landing?.market_trend_title || "Market Trend"}
+              </h2>
             </div>
             <div className="exchange-tab-menu">
               <ul className="nav nav-tabs" id="exchangeTab" role="tablist">
