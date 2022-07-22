@@ -153,7 +153,7 @@ const BuyOrderHistory: NextPage = () => {
                         <tr>
                           <th scope="col" className="">
                             Base Coin
-                            {sortingInfo.column_name === "base_coin" ? (
+                            {/* {sortingInfo.column_name === "base_coin" ? (
                               sortingInfo.order_by === "asc" ? (
                                 <i
                                   className="fa fa-sort-asc"
@@ -179,11 +179,11 @@ const BuyOrderHistory: NextPage = () => {
                                   sort_table("base_coin", "asc");
                                 }}
                               ></i>
-                            )}
+                            )} */}
                           </th>
                           <th scope="col" rowSpan={1} colSpan={1}>
                             Trade Coin
-                            {sortingInfo.column_name === "trade_coin" ? (
+                            {/* {sortingInfo.column_name === "trade_coin" ? (
                               sortingInfo.order_by === "asc" ? (
                                 <i
                                   className="fa fa-sort-asc"
@@ -209,11 +209,11 @@ const BuyOrderHistory: NextPage = () => {
                                   sort_table("trade_coin", "asc");
                                 }}
                               ></i>
-                            )}
+                            )} */}
                           </th>
                           <th scope="col" rowSpan={1} colSpan={1}>
                             Amount
-                            {sortingInfo.column_name === "amount" ? (
+                            {/* {sortingInfo.column_name === "amount" ? (
                               sortingInfo.order_by === "asc" ? (
                                 <i
                                   className="fa fa-sort-asc"
@@ -239,11 +239,11 @@ const BuyOrderHistory: NextPage = () => {
                                   sort_table("amount", "asc");
                                 }}
                               ></i>
-                            )}
+                            )} */}
                           </th>
                           <th scope="col">
                             Processed
-                            {sortingInfo.column_name === "processed" ? (
+                            {/* {sortingInfo.column_name === "processed" ? (
                               sortingInfo.order_by === "asc" ? (
                                 <i
                                   className="fa fa-sort-asc"
@@ -269,11 +269,11 @@ const BuyOrderHistory: NextPage = () => {
                                   sort_table("processed", "asc");
                                 }}
                               ></i>
-                            )}
+                            )} */}
                           </th>
                           <th scope="col">
                             Price
-                            {sortingInfo.column_name === "price" ? (
+                            {/* {sortingInfo.column_name === "price" ? (
                               sortingInfo.order_by === "asc" ? (
                                 <i
                                   className="fa fa-sort-asc"
@@ -299,11 +299,11 @@ const BuyOrderHistory: NextPage = () => {
                                   sort_table("price", "asc");
                                 }}
                               ></i>
-                            )}
+                            )} */}
                           </th>
                           <th scope="col">
                             Status
-                            {sortingInfo.column_name === "status" ? (
+                            {/* {sortingInfo.column_name === "status" ? (
                               sortingInfo.order_by === "asc" ? (
                                 <i
                                   className="fa fa-sort-asc"
@@ -329,11 +329,11 @@ const BuyOrderHistory: NextPage = () => {
                                   sort_table("status", "asc");
                                 }}
                               ></i>
-                            )}
+                            )} */}
                           </th>
                           <th scope="col">
                             Date
-                            {sortingInfo.column_name === "created_at" ? (
+                            {/* {sortingInfo.column_name === "created_at" ? (
                               sortingInfo.order_by === "asc" ? (
                                 <i
                                   className="fa fa-sort-asc"
@@ -359,7 +359,7 @@ const BuyOrderHistory: NextPage = () => {
                                   sort_table("created_at", "asc");
                                 }}
                               ></i>
-                            )}
+                            )} */}
                           </th>
                         </tr>
                       </thead>

@@ -14,6 +14,7 @@ request.interceptors.request.use((config: any) => {
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
+  config.headers.userapisecret = process.env.NEXT_PUBLIC_SECRET_KEY;
   return config;
 });
 request.interceptors.response.use((response: any) => {

@@ -1,3 +1,4 @@
+import { formateData } from "common";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -31,7 +32,7 @@ const OpenOrders = ({ openOrders, openOrderHistory }: any) => {
               <th scope="col">Amount</th>
               <th scope="col">Fees</th>
               <th scope="col">Price</th>
-              <th scope="col">Processed)</th>
+              <th scope="col">Processed</th>
               <th scope="col">total</th>
               <th scope="col">Type</th>
               <th scope="col">
@@ -42,7 +43,7 @@ const OpenOrders = ({ openOrders, openOrderHistory }: any) => {
           <tbody>
             {openOrderHistory?.map((order: any, index: number) => (
               <tr key={index}>
-                <td>{order.created_at}</td>
+                <td>{formateData(order.created_at)}</td>
                 <td>{order.actual_amount}</td>
                 <td>{order.actual_total}</td>
                 <td>{order.amount}</td>

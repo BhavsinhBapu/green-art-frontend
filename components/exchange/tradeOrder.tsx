@@ -1,3 +1,4 @@
+import { formateData } from "common";
 import React from "react";
 
 type Props = {
@@ -28,7 +29,7 @@ const TradeOrder = ({ tradeOrder, tradeOrderHistory }: any) => {
           <tbody>
             {tradeOrderHistory?.map((order: any, index: number) => (
               <tr key={index}>
-                <td>{order.created_at}</td>
+                <td>{formateData(order.created_at)}</td>
                 <td>{order.transaction_id}</td>
                 <td>{order.fees}</td>
                 <td>{order.amount}</td>

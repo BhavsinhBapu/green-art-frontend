@@ -1,5 +1,12 @@
+import moment from "moment";
 import { toast } from "react-toastify";
+export const formateData = (date: any) => {
+  return moment(date).format("MMM Do YY");
+};
 
+export const formateZert = (number: any) => {
+  return parseFloat(number);
+};
 export const copyTextById = (id: string) => {
   const element: any = document.getElementById(id);
   if (element) {

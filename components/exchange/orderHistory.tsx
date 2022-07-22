@@ -1,3 +1,4 @@
+import { formateData } from "common";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
@@ -73,7 +74,7 @@ const OrderHistory = ({
                 <tbody>
                   {buyOrderHistoryState?.map((item: any, index: number) => (
                     <tr key={index}>
-                      <td>{item.created_at}</td>
+                      <td>{formateData(item.created_at)}</td>
                       <td>{currentPair && currentPair}</td>
                       <td>{item?.type}</td>
                       <td>{item.actual_amount}</td>
@@ -110,7 +111,7 @@ const OrderHistory = ({
                 <tbody>
                   {sellOrderHistoryState?.map((item: any, index: number) => (
                     <tr key={index}>
-                      <td>{item.created_at}</td>
+                      <td>{formateData(item.created_at)}</td>
                       <td>{currentPair && currentPair}</td>
                       <td>{item?.type}</td>
                       <td>{item.actual_amount}</td>

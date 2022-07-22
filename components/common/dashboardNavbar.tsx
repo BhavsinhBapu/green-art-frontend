@@ -5,7 +5,7 @@ import { RootState } from "state/store";
 import { LogoutAction } from "state/actions/user";
 const DashboardNavbar = () => {
   const { isLoggedIn, user } = useSelector((state: RootState) => state.user);
-  const [active,setActive]= useState(false)
+  const [active, setActive] = useState(false);
   const dispatch = useDispatch();
   return (
     <>
@@ -336,11 +336,13 @@ const DashboardNavbar = () => {
                               </a>
                             </button>
                           </Link>
-                          <button className="dropdown-item" type="button">
-                            <a href="-wallet">
-                              <i className="fa fa-credit-card"></i> My Wallet
-                            </a>
-                          </button>
+                          <Link href="/user/my-wallet">
+                            <button className="dropdown-item" type="button">
+                              <a>
+                                <i className="fa fa-credit-card"></i> My Wallet
+                              </a>
+                            </button>
+                          </Link>
                           <button
                             className="dropdown-item"
                             type="button"
@@ -363,7 +365,7 @@ const DashboardNavbar = () => {
                   onClick={() => {
                     //ADD TOGGLE SIDEBAR TO BODY
                     // document.body.classList.toggle("sidebar-cllopse");
-                    setActive(active?false:true)
+                    setActive(active ? false : true);
                   }}
                 >
                   <img src="/menu.svg" className="img-fluid" alt="" />
@@ -374,7 +376,7 @@ const DashboardNavbar = () => {
         </div>
       </div>
 
-      <div className={`cp-user-sidebar ${active?"active":""}`}>
+      <div className={`cp-user-sidebar ${active ? "active" : ""}`}>
         <div className="cp-user-sidebar-menu scrollbar-inner">
           <nav>
             <ul id="metismenu">

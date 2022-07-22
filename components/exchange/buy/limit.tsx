@@ -1,3 +1,4 @@
+import { formateZert } from "common";
 import Link from "next/link";
 import React from "react";
 import { useDispatch } from "react-redux";
@@ -44,7 +45,9 @@ const Limit = ({
                         style={{ fontWeight: 700 }}
                       >
                         <span>
-                          {dashboard?.order_data?.total?.base_wallet?.balance}
+                          {formateZert(
+                            dashboard?.order_data?.total?.base_wallet?.balance
+                          )}
                         </span>
                       </span>
                       <span
@@ -63,7 +66,9 @@ const Limit = ({
                       >
                         <span>
                           {" "}
-                          {dashboard?.order_data?.total?.base_wallet?.balance}
+                          {formateZert(
+                            dashboard?.order_data?.total?.base_wallet?.balance
+                          )}
                         </span>
                       </span>
                       <span

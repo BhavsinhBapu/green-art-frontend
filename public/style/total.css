@@ -387,6 +387,19 @@ p {
   border: 1px solid #353535;
   border-radius: 0;
 }
+.notificationicon {
+  height: 20px;
+  width: 20px;
+  margin: 10px;
+}
+.notification-body {
+  margin-left: 10px;
+  margin-right: 10px;
+  border-bottom: 1px solid gray;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  display: flex;
+}
 .cp-user-top-bar-right .dropdown-menu:before {
   content: "";
   height: 59px;
@@ -4968,6 +4981,11 @@ table.dataTable tbody tr td {
   font-weight: 400;
   color: #23262f;
   color: #ffffff;
+}
+.notification-body {
+}
+.referral-text {
+  color: #23262f !important;
 }
 /* Security page style */
 .security-list .single-security {

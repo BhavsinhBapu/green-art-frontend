@@ -7,6 +7,7 @@ import {
 } from "state/actions/reports";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import TableLoading from "components/common/TableLoading";
+import { formateData } from "common";
 const SwapHistory: NextPage = () => {
   type searchType = string;
   const [search, setSearch] = React.useState<searchType>("");
@@ -192,7 +193,9 @@ const SwapHistory: NextPage = () => {
                             </td>
                             <td>
                               <div className="blance-text">
-                                <span className="usd">{item?.created_at}</span>
+                                <span className="usd">
+                                  {formateData(item?.created_at)}
+                                </span>
                               </div>
                             </td>
                             <td>

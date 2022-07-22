@@ -8,14 +8,25 @@ export const SigninApi = async (credentials: {
   return data;
 };
 
-export const SignupApi = async (credentials: {
-  email: string;
-  password: string;
-  first_name: string;
-  last_name: string;
-  password_confirmation: string;
-}) => {
-  const { data } = await request.post("/sign-up", credentials);
+export const SignupApi = async (
+  credentials: {
+    email: string;
+    password: string;
+    first_name: string;
+    last_name: string;
+    password_confirmation: string;
+  },
+  ref_code: any
+) => {
+  const finalCredential = {
+    email: credentials.email,
+    password: credentials.password,
+    first_name: credentials.first_name,
+    last_name: credentials.last_name,
+    password_confirmation: credentials.password_confirmation,
+    ref_code: ref_code,
+  };
+  const { data } = await request.post("/sign-up", finalCredential);
   return data;
 };
 

@@ -1,14 +1,25 @@
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import type { GetServerSideProps, NextPage } from "next";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { getReferral } from "service/refer";
+import { setLoading } from "state/reducer/user";
 const Referral: NextPage = () => {
   const [referral, setReferral] = useState<any>();
+  const [allData, setAllData] = useState<any>();
+
   useEffect(() => {
     getReferral().then((res) => {
-      setReferral(res.data.data.url);
+      const code = res.data.data.url;
+      setReferral(
+        process.env.NEXT_PUBLIC_HOSTED_CLIENT_URL +
+          "authentication/signup?" +
+          code
+      );
+      setAllData(res.data.data);
     });
+
     //cleanup
     return () => {
       setReferral(null);
@@ -45,7 +56,7 @@ const Referral: NextPage = () => {
           </div>
         </div>
       </div>
-      {/* <div className="container">
+      <div className="container">
         <div className="section-wrapper rounded-sm">
           <div className="rewards-inviter mb-25">
             <div className="single-item">
@@ -56,7 +67,7 @@ const Referral: NextPage = () => {
             </div>
             <div className="single-item">
               <h4>Total Invited</h4>
-              <h2>0</h2>
+              <h2>{allData?.count_referrals}</h2>
             </div>
           </div>
           <div className="referrals-table">
@@ -95,11 +106,23 @@ const Referral: NextPage = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr id="" role="row" className="">
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
+                  <tr id="" role="row referral" className="">
+                    <td className="referral-text">
+                      {allData?.referralLevel[1]}
+                    </td>
+                    <td className="referral-text">
+                      {allData?.referralLevel[2]}
+                    </td>
+                    <td className="referral-text">
+                      {allData?.referralLevel[3]}
+                    </td>
                   </tr>
+                  {allData?.referralLevel.length == 0 && (
+                    <td colSpan={5} className="text-center referral-text">
+                      <b>No Data available</b>
+                    </td>
+                  )}
+
                   <tr>
                     <td colSpan={3} />
                   </tr>
@@ -117,15 +140,22 @@ const Referral: NextPage = () => {
                     <th className="">Email</th>
                     <th className="">Level</th>
                     <th className="">Joining Date</th>
-                    <th className="">Balance</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                  {allData?.referrals?.map((data: any, index: number) => (
+                    <tr key={index}>
+                      <td className="referral-text">{data?.full_name}</td>
+                      <td className="referral-text">{data?.email}</td>
+                      <td className="referral-text">{data?.level}</td>
+                      <td className="referral-text">{data?.joining_date}</td>
+                    </tr>
+                  ))}
+                  {/* <tr>
                     <td colSpan={5} className="text-center">
                       <b>No Data available</b>
                     </td>
-                  </tr>
+                  </tr> */}
                 </tbody>
               </table>
             </div>
@@ -136,22 +166,36 @@ const Referral: NextPage = () => {
               <table className="table dataTable cp-user-custom-table table-borderless text-center">
                 <thead>
                   <tr>
-                    <th>Period</th>
-                    <th>Commissions</th>
+                    <th>Coin type</th>
+                    <th>Amount</th>
+                    <th>Transactuib Id</th>
+                    <th>Level</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td colSpan={2} className="text-center">
-                      <b>No Data available</b>
-                    </td>
-                  </tr>
+                  {allData?.monthlyEarningHistories?.map(
+                    (data: any, index: number) => (
+                      <tr key={index}>
+                        <td>{data?.coin_type}</td>
+                        <td>{data?.amount}</td>
+                        <td>{data?.transaction_id}</td>
+                        <td>{data?.level}</td>
+                      </tr>
+                    )
+                  )}
+                  {allData?.monthlyEarningHistories.length === 0 && (
+                    <tr>
+                      <td colSpan={6} className="text-center referral-text">
+                        <b>No Data available</b>
+                      </td>
+                    </tr>
+                  )}
                 </tbody>
               </table>
             </div>
           </div>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 };

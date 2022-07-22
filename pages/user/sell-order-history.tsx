@@ -7,6 +7,7 @@ import {
   handleSearchItems,
 } from "state/actions/reports";
 import TableLoading from "components/common/TableLoading";
+import { formateData } from "common";
 const SellOrderHistory: NextPage = () => {
   type searchType = string;
   const [search, setSearch] = useState<searchType>("");
@@ -401,7 +402,7 @@ const SellOrderHistory: NextPage = () => {
                             <td>
                               <div className="status-text">
                                 <span className="status">
-                                  {item?.created_at}
+                                  {formateData(item?.created_at)}
                                 </span>
                               </div>
                             </td>

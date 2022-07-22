@@ -38,8 +38,8 @@ const Settings: NextPage = () => {
         </div>
         <div className="setting-area">
           <div className="container">
-            <div className="section-top-wrap">
-              <div className="row">
+            <div className="section-top-wrap ">
+              <div className="row ">
                 <div className="col-xl-6 mb-xl-0 mb-4">
                   <div className="card cp-user-custom-card cp-user-setting-card">
                     <div className="card-body">
@@ -119,78 +119,6 @@ const Settings: NextPage = () => {
                               <span className="slider round" />
                             </label>
                           </form>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-xl-6">
-                  <div className="card cp-user-custom-card cp-user-setting-card">
-                    <div className="card-body">
-                      <div className="cp-user-card-header-area">
-                        <div className="cp-user-title">
-                          <h4>Preference Settings</h4>
-                        </div>
-                      </div>
-                      <div className="cp-user-setting-card-inner cp-user-setting-card-inner-preference">
-                        <div className="cp-user-content">
-                          <form
-                            method="post"
-                            action="http://localhost:8000/user/save-preference"
-                          >
-                            <input
-                              type="hidden"
-                              name="_token"
-                              defaultValue="UHxumztviDLlLBs3t8g3IMcfQsz9pSMy9wObVejT"
-                            />
-                            <div className="form-group">
-                              <label>Language</label>
-                              <div className="cp-user-preferance-setting">
-                                <select
-                                  name="lang"
-                                  className="form-control"
-                                  onChange={(e) => {
-                                    setLanguageUpdate(e.target.value);
-                                  }}
-                                >
-                                  {languageList?.map(
-                                    (language: any, index: any) => (
-                                      <option
-                                        key={index}
-                                        // selected={
-                                        //   settings?.user?.language ===
-                                        //   language.lang
-                                        // }
-                                        defaultChecked={
-                                          settings?.user?.language ===
-                                          language.lang
-                                        }
-                                      >
-                                        {language.lang}
-                                      </option>
-                                    )
-                                  )}
-                                </select>
-                              </div>
-                            </div>
-                            <div className="form-group">
-                              <button
-                                className="btn cp-user-setupbtn"
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                  SetupLanguageAction(
-                                    {
-                                      language: languageUpdate,
-                                    },
-                                    setSettings
-                                  );
-                                }}
-                              >
-                                Update
-                              </button>
-                            </div>
-                          </form>
-                          {/* <small>{JSON.stringify(settings)}</small> */}
                         </div>
                       </div>
                     </div>

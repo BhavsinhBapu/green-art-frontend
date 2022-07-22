@@ -11,6 +11,7 @@ import { setLoading } from "state/reducer/user";
 import { useDispatch } from "react-redux";
 import { parseCookies } from "nookies";
 import { getRateSsr } from "service/swap";
+import Link from "next/link";
 const SwapCoin: NextPage = ({
   walletLists,
   wallet_rate,
@@ -90,7 +91,23 @@ const SwapCoin: NextPage = ({
   }, []);
   return (
     <div className="page-wrap">
-      <SwapCoinSidebar />
+      {/* <SwapCoinSidebar /> */}
+      <div className="page-left-sidebar">
+        <div className="sidebar-top">
+          <ul className="left-menu">
+            <li>
+              <Link href={`/user/my-wallet`}>
+                <a>Wallet Overview</a>
+              </Link>
+            </li>
+            <li className="active">
+              <Link href={`/user/swap-coin`}>
+                <a>Swap Coin</a>
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </div>
       <div className="page-main-content">
         <div className="container-fluid">
           <div className="section-top-wrap mb-25">

@@ -88,7 +88,7 @@ const ForgotPassword: NextPage = () => {
                 <img src="/logo.svg" className="img-fluid" alt="" />
               </a>
               <p>
-                Return to sign in{" "}
+                Return to{" "}
                 <Link href="/authentication/signin">
                   <a href=""> Sign In</a>
                 </Link>

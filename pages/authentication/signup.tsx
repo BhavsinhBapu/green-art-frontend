@@ -5,9 +5,12 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import { SignupAction } from "state/actions/user";
 import { useDispatch } from "react-redux";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { authPageRequireCheck } from "middlewares/ssr-authentication-check";
 const Signup: NextPage = () => {
   const dispatch = useDispatch();
+  const router = useRouter();
+  const { ref_code } = router.query;
   const [processing, setProcessing] = useState(false);
   const [showPassword, setShowPassword] = useState({
     password: false,
@@ -59,7 +62,7 @@ const Signup: NextPage = () => {
                       .required("Confirm password is required"),
                   })}
                   onSubmit={async (values) => {
-                    dispatch(SignupAction(values, setProcessing));
+                    dispatch(SignupAction(values, setProcessing, ref_code));
                   }}
                 >
                   {({ errors, touched }) => (

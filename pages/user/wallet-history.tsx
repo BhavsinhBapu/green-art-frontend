@@ -8,6 +8,7 @@ import {
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import Loading from "components/common/TableLoading";
 import { useRouter } from "next/router";
+import { formateData } from "common";
 const DepositHistory: NextPage = () => {
   const router = useRouter();
   const { type } = router.query;
@@ -159,7 +160,7 @@ const DepositHistory: NextPage = () => {
                             </th>
                             <th scope="col">
                               Status
-                              <i className="fas fa-sort sort_space"></i>
+                              {/* <i className="fas fa-sort sort_space"></i> */}
                             </th>
                           </tr>
                         </thead>
@@ -168,7 +169,7 @@ const DepositHistory: NextPage = () => {
                             {history.map((item: any, index: number) => {
                               return (
                                 <tr key={item.id}>
-                                  <td>{item.created_at}</td>
+                                  <td>{formateData(item.created_at)}</td>
                                   <td>{item.address}</td>
                                   <td>{item.coin_type}</td>
                                   <td>{item.amount}</td>

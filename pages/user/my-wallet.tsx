@@ -18,9 +18,10 @@ const MyWallet: NextPage = () => {
     deposit: false,
     withdraw: false,
   });
-  const [walletList, setWalletList] = useState<any>();
+  const [walletList, setWalletList] = useState<any>([]);
   const [Changeable, setChangeable] = useState<any[]>([]);
   const [processing, setProcessing] = useState<boolean>(false);
+  const [allData, setAllData] = useState<any>();
   const [transactionProcessing, settransactionProcessing] = useState<any>({
     deposit: false,
     withdraw: false,
@@ -47,8 +48,9 @@ const MyWallet: NextPage = () => {
   };
   const getWalletLists = async (url: string) => {
     const response: any = await WalletListApiAction(url, setProcessing);
-    setWalletList(response);
-    setChangeable(response.data);
+    setWalletList(response?.wallets);
+    setChangeable(response?.wallets?.data);
+    setAllData(response);
   };
   const ResizeChangebleArrayBySize = (size: number) => {
     let newArray = walletList?.data?.slice(0, size);
@@ -62,8 +64,8 @@ const MyWallet: NextPage = () => {
       splitLink[1],
       setProcessing
     );
-    setWalletList(response);
-    setChangeable(response.data);
+    setWalletList(response?.wallets);
+    setChangeable(response?.wallets?.data);
   };
   const handleWithdrawAndDeposit = async (actionType: number, id: number) => {
     if (selectedRow.index === null) return;
@@ -189,7 +191,9 @@ const MyWallet: NextPage = () => {
                 <div className="overview-left">
                   <h2 className="section-top-title">Overview</h2>
                   <h4 className="blance-title">Total balance</h4>
-                  <h4 className="blance">0.545645656</h4>
+                  <h4 className="blance">
+                    {allData?.total ? allData?.total : 0}
+                  </h4>
                 </div>
               </div>
             </div>

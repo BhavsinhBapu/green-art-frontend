@@ -97,12 +97,14 @@ export const SignupAction =
       password: string;
       password_confirmation: string;
     },
-    setProcessing: any
+    setProcessing: any,
+    ref_code: any
   ) =>
   async (dispatch: any) => {
     setProcessing(true);
-    const response = await SignupApi(credentials);
+    const response = await SignupApi(credentials, ref_code);
     let responseMessage = response.message;
+    console.log(response, "response");
     if (response.success === true) {
       toast.success(responseMessage, {
         position: "top-right",
