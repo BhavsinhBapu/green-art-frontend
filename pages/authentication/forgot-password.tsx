@@ -4,6 +4,7 @@ import { ForgotPasswordAction } from "state/actions/user";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { authPageRequireCheck } from "middlewares/ssr-authentication-check";
+import Link from "next/link";
 
 const ForgotPassword: NextPage = () => {
   const [processing, setProcessing] = useState(false);
@@ -87,7 +88,10 @@ const ForgotPassword: NextPage = () => {
                 <img src="/logo.svg" className="img-fluid" alt="" />
               </a>
               <p>
-                Return to sign in <a href=""> Sign In</a>
+                Return to sign in{" "}
+                <Link href="/authentication/signin">
+                  <a href=""> Sign In</a>
+                </Link>
               </p>
             </div>
           </div>

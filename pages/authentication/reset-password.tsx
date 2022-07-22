@@ -4,6 +4,7 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { authPageRequireCheck } from "middlewares/ssr-authentication-check";
 import { ResetPasswordAction } from "state/actions/user";
+import Link from "next/link";
 
 const ResetPassword: NextPage = () => {
   const [processing, setProcessing] = useState(false);
@@ -153,7 +154,10 @@ const ResetPassword: NextPage = () => {
                 <img src="/logo.svg" className="img-fluid" alt="" />
               </a>
               <p>
-                Return to sign in <a>Sign in</a>
+                Return to sign in{" "}
+                <Link href="/authentication/signin">
+                  <a> Sign in</a>
+                </Link>
               </p>
             </div>
           </div>
