@@ -84,7 +84,7 @@ const ForgotPassword: NextPage = () => {
           <div className="col-md-6">
             <div className="user-content-text text-center">
               <h3>Welcome Back To</h3>
-              <a className="auth-logo" href="javascript:;">
+              <a className="auth-logo" href="">
                 <img src="/logo.svg" className="img-fluid" alt="" />
               </a>
               <p>

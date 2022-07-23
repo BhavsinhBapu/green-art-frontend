@@ -14,6 +14,7 @@ import {
   KycDetailsApi,
   G2fVerifyApi,
   GetUserInfoByTokenServer,
+  verifyEmailApi,
 } from "service/user";
 import request from "lib/request";
 import {
@@ -26,6 +27,42 @@ import Router from "next/router";
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
 import { Dispatch, SetStateAction } from "react";
+
+export const VerifyEmailAction =
+  (credentials: { email: string; code: any }, setProcessing: any) =>
+  async (dispatch: any) => {
+    setProcessing(true);
+    const response: any = await verifyEmailApi(credentials);
+    let responseMessage = response.message;
+    if (response.success === true) {
+      toast.success(responseMessage, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        className: "dark-toast",
+      });
+      Router.push("/authentication/signin");
+    } else if (response.success === false) {
+      dispatch(setAuthenticationState(false));
+      toast.error(responseMessage, {
+        position: "top-right",
+        autoClose: 10000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        className: "dark-toast",
+      });
+    }
+    setProcessing(false);
+    return response;
+  };
+
 export const SigninAction =
   (credentials: { email: string; password: string }, setProcessing: any) =>
   async (dispatch: any) => {
@@ -104,7 +141,6 @@ export const SignupAction =
     setProcessing(true);
     const response = await SignupApi(credentials, ref_code);
     let responseMessage = response.message;
-    console.log(response, "response");
     if (response.success === true) {
       toast.success(responseMessage, {
         position: "top-right",
@@ -116,7 +152,7 @@ export const SignupAction =
         progress: undefined,
         className: "dark-toast",
       });
-      Router.push("/authentication/signin");
+      Router.push("/authentication/verify-email");
     } else if (response.success === false) {
       dispatch(setAuthenticationState(false));
       toast.error(responseMessage, {

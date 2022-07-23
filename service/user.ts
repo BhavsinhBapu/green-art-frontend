@@ -107,3 +107,11 @@ export const G2fVerifyApi = async (credential: any) => {
   const { data } = await request.post("/g2f-verify", credential);
   return data;
 };
+
+export const verifyEmailApi = async (credential: any) => {
+  const { data } = await request.post("/verify-email", {
+    email: credential.email,
+    verify_code: credential.code,
+  });
+  return data;
+};

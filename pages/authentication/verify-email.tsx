@@ -1,6 +1,10 @@
 import type { GetServerSideProps, NextPage } from "next";
 import * as Yup from "yup";
-import { GetUserInfoByTokenAction, SigninAction } from "state/actions/user";
+import {
+  GetUserInfoByTokenAction,
+  SigninAction,
+  VerifyEmailAction,
+} from "state/actions/user";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
@@ -8,7 +12,6 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import Link from "next/link";
 import { authPageRequireCheck } from "middlewares/ssr-authentication-check";
 const Signin: NextPage = () => {
-  const [showPassword, setShowPassword] = useState(false);
   const [processing, setProcessing] = useState(false);
   const dispatch = useDispatch();
   return (
@@ -24,25 +27,21 @@ const Signin: NextPage = () => {
             <div className="user-form">
               <div className="user-form-inner">
                 <div className="form-top">
-                  <h2>Sign In</h2>
-                  <p>Please Sign In To Your Account.</p>
+                  <h2>Verify Email</h2>
                 </div>
                 <Formik
                   initialValues={{
                     email: "",
-                    password: "",
+                    code: "",
                   }}
                   validationSchema={Yup.object({
                     email: Yup.string()
                       .email("Invalid email address")
                       .required("Email is required"),
-                    password: Yup.string()
-                      .min(6)
-                      .required("Password is required"),
+                    code: Yup.string().min(6).required("Code is required"),
                   })}
                   onSubmit={async (values) => {
-                    await dispatch(SigninAction(values, setProcessing));
-                    await dispatch(GetUserInfoByTokenAction());
+                    await dispatch(VerifyEmailAction(values, setProcessing));
                   }}
                 >
                   {({ errors, touched }) => (
@@ -65,30 +64,17 @@ const Signin: NextPage = () => {
                       />
                       <div className="form-group">
                         <Field
-                          type={showPassword ? "text" : "password"}
-                          name="password"
-                          id="password"
+                          type={"number"}
+                          name="code"
+                          id="code"
                           className={`form-control form-control-password look-pass ${
-                            touched.password && errors.password
-                              ? "is-invalid"
-                              : ""
+                            touched.code && errors.code ? "is-invalid" : ""
                           }`}
-                          placeholder="Your password here"
+                          placeholder="Your code here"
                         />
-
-                        <span
-                          className="eye rev"
-                          onClick={() => setShowPassword(!showPassword)}
-                        >
-                          {showPassword ? (
-                            <i className="fa fa-eye toggle-password"></i>
-                          ) : (
-                            <i className="fa fa-eye-slash toggle-password"></i>
-                          )}
-                        </span>
                       </div>
                       <ErrorMessage
-                        name="password"
+                        name="code"
                         component="div"
                         className="red-text"
                       />
@@ -132,7 +118,7 @@ const Signin: NextPage = () => {
                             <span>Please wait</span>
                           </>
                         ) : (
-                          "Sign In"
+                          "Verify Email"
                         )}
                       </button>
                     </Form>
@@ -145,7 +131,7 @@ const Signin: NextPage = () => {
             <div className="user-content-text text-center">
               <h3>Welcome To</h3>
               <Link href="/">
-                <a className="auth-logo" href="javascript:;">
+                <a className="auth-logo" href="">
                   <img src="/logo.svg" className="img-fluid" alt="" />
                 </a>
               </Link>
