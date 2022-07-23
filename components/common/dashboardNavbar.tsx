@@ -381,15 +381,15 @@ const DashboardNavbar = () => {
           <nav>
             <ul id="metismenu">
               <li className=" cp-user-active-page ">
-                <a href="https://tradexpro-laravel.cdibrandstudio.com/user/exchange/dashboard">
+                <a href="">
                   <span className="cp-user-icon">
                     <img
-                      src="https://tradexpro-laravel.cdibrandstudio.com/assets/user/images/sidebar-icons/dashboard.svg"
+                      src=""
                       className="img-fluid cp-user-side-bar-icon"
                       alt=""
                     />
                     <img
-                      src="https://tradexpro-laravel.cdibrandstudio.com/assets/user/images/sidebar-icons/hover/dashboard.svg"
+                      src=""
                       className="img-fluid cp-user-side-bar-icon-hover"
                       alt=""
                     />
@@ -401,12 +401,12 @@ const DashboardNavbar = () => {
                 <a className="arrow-icon" href="#" aria-expanded="true">
                   <span className="cp-user-icon">
                     <img
-                      src="https://tradexpro-laravel.cdibrandstudio.com/assets/user/images/sidebar-icons/Wallet.svg"
+                      src=""
                       className="img-fluid cp-user-side-bar-icon"
                       alt=""
                     />
                     <img
-                      src="https://tradexpro-laravel.cdibrandstudio.com/assets/user/images/sidebar-icons/hover/Wallet.svg"
+                      src=""
                       className="img-fluid cp-user-side-bar-icon-hover"
                       alt=""
                     />
@@ -415,14 +415,10 @@ const DashboardNavbar = () => {
                 </a>
                 <ul>
                   <li>
-                    <a href="https://tradexpro-laravel.cdibrandstudio.com/user/my-wallet">
-                      My Wallet
-                    </a>
+                    <a href="">My Wallet</a>
                   </li>
                   <li>
-                    <a href="https://tradexpro-laravel.cdibrandstudio.com/user/coin-swap">
-                      Swap Coin
-                    </a>
+                    <a href="">Swap Coin</a>
                   </li>
                 </ul>
               </li>
@@ -430,12 +426,12 @@ const DashboardNavbar = () => {
                 <a className="arrow-icon" href="#" aria-expanded="true">
                   <span className="cp-user-icon">
                     <img
-                      src="https://tradexpro-laravel.cdibrandstudio.com/assets/user/images/sidebar-icons/Membership.svg"
+                      src=""
                       className="img-fluid cp-user-side-bar-icon"
                       alt=""
                     />
                     <img
-                      src="https://tradexpro-laravel.cdibrandstudio.com/assets/user/images/sidebar-icons/hover/Membership-1.svg"
+                      src=""
                       className="img-fluid cp-user-side-bar-icon-hover"
                       alt=""
                     />
@@ -444,34 +440,22 @@ const DashboardNavbar = () => {
                 </a>
                 <ul>
                   <li>
-                    <a href="https://tradexpro-laravel.cdibrandstudio.com/user/wallet-history?type=deposit">
-                      Deposit History
-                    </a>
+                    <a href="">Deposit History</a>
                   </li>
                   <li>
-                    <a href="https://tradexpro-laravel.cdibrandstudio.com/user/wallet-history?type=withdrawal">
-                      Withdrawal History
-                    </a>
+                    <a href="">Withdrawal History</a>
                   </li>
                   <li>
-                    <a href="https://tradexpro-laravel.cdibrandstudio.com/user/coin-convert-history">
-                      Swap History
-                    </a>
+                    <a href="">Swap History</a>
                   </li>
                   <li>
-                    <a href="https://tradexpro-laravel.cdibrandstudio.com/user/exchange/all-buy-orders-history">
-                      Buy Order History
-                    </a>
+                    <a href="">Buy Order History</a>
                   </li>
                   <li>
-                    <a href="https://tradexpro-laravel.cdibrandstudio.com/user/exchange/all-sell-orders-history">
-                      Sell Order History
-                    </a>
+                    <a href="">Sell Order History</a>
                   </li>
                   <li>
-                    <a href="https://tradexpro-laravel.cdibrandstudio.com/user/exchange/all-transaction-history">
-                      Transaction History
-                    </a>
+                    <a href="">Transaction History</a>
                   </li>
                 </ul>
               </li>
@@ -479,12 +463,12 @@ const DashboardNavbar = () => {
                 <a className="arrow-icon" href="#" aria-expanded="true">
                   <span className="cp-user-icon">
                     <img
-                      src="https://tradexpro-laravel.cdibrandstudio.com/assets/user/images/sidebar-icons/user.svg"
+                      src=""
                       className="img-fluid cp-user-side-bar-icon"
                       alt=""
                     />
                     <img
-                      src="https://tradexpro-laravel.cdibrandstudio.com/assets/user/images/sidebar-icons/hover/user.svg"
+                      src=""
                       className="img-fluid cp-user-side-bar-icon-hover"
                       alt=""
                     />
@@ -493,57 +477,41 @@ const DashboardNavbar = () => {
                 </a>
                 <ul>
                   <li>
-                    <a href="https://tradexpro-laravel.cdibrandstudio.com/user/profile">
-                      Profile
-                    </a>
+                    <a href="">Profile</a>
                   </li>
                   <li>
-                    <a href="https://tradexpro-laravel.cdibrandstudio.com/user/edit-profile">
-                      Edit Profile
-                    </a>
+                    <a href="">Edit Profile</a>
                   </li>
                   <li>
-                    <a href="https://tradexpro-laravel.cdibrandstudio.com/user/phone-verification">
-                      Phone Verification
-                    </a>
+                    <a href="">Phone Verification</a>
                   </li>
                   <li>
-                    <a href="https://tradexpro-laravel.cdibrandstudio.com/user/security-setting">
-                      Security
-                    </a>
+                    <a href="">Security</a>
                   </li>
                   <li>
-                    <a href="https://tradexpro-laravel.cdibrandstudio.com/user/profile-verification-list">
-                      Verification List
-                    </a>
+                    <a href="">Verification List</a>
                   </li>
                   <li>
-                    <a href="https://tradexpro-laravel.cdibrandstudio.com/user/personal-verification">
-                      Personal Verification
-                    </a>
+                    <a href="">Personal Verification</a>
                   </li>
                   <li>
-                    <a href="https://tradexpro-laravel.cdibrandstudio.com/user/change-password">
-                      Change Password
-                    </a>
+                    <a href="">Change Password</a>
                   </li>
                   <li>
-                    <a href="https://tradexpro-laravel.cdibrandstudio.com/user/activity">
-                      Activity
-                    </a>
+                    <a href="">Activity</a>
                   </li>
                 </ul>
               </li>
               <li>
-                <a href="https://tradexpro-laravel.cdibrandstudio.com/user/referral">
+                <a href="">
                   <span className="cp-user-icon">
                     <img
-                      src="https://tradexpro-laravel.cdibrandstudio.com/assets/user/images/sidebar-icons/referral.svg"
+                      src=""
                       className="img-fluid cp-user-side-bar-icon"
                       alt=""
                     />
                     <img
-                      src="https://tradexpro-laravel.cdibrandstudio.com/assets/user/images/sidebar-icons/hover/referral.svg"
+                      src=""
                       className="img-fluid cp-user-side-bar-icon-hover"
                       alt=""
                     />
@@ -555,12 +523,12 @@ const DashboardNavbar = () => {
                 <a className="arrow-icon" href="#" aria-expanded="true">
                   <span className="cp-user-icon">
                     <img
-                      src="https://tradexpro-laravel.cdibrandstudio.com/assets/user/images/sidebar-icons/settings.svg"
+                      src=""
                       className="img-fluid cp-user-side-bar-icon"
                       alt=""
                     />
                     <img
-                      src="https://tradexpro-laravel.cdibrandstudio.com/assets/user/images/sidebar-icons/hover/settings.svg"
+                      src=""
                       className="img-fluid cp-user-side-bar-icon-hover"
                       alt=""
                     />
@@ -569,14 +537,10 @@ const DashboardNavbar = () => {
                 </a>
                 <ul>
                   <li>
-                    <a href="https://tradexpro-laravel.cdibrandstudio.com/user/setting">
-                      My Settings
-                    </a>
+                    <a href="">My Settings</a>
                   </li>
                   <li>
-                    <a href="https://tradexpro-laravel.cdibrandstudio.com/user/faq">
-                      FAQ
-                    </a>
+                    <a href="">FAQ</a>
                   </li>
                 </ul>
               </li>

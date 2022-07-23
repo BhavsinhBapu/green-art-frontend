@@ -203,7 +203,7 @@ const Dashboard: NextPage = () => {
                 </button>
                 <div className="text-center">
                   <img
-                    src="/assets/user/images/add-pockaet-vector.svg"
+                    src="/add-pockaet-vector.svg"
                     alt=""
                     className="img-fluid img-vector"
                   />
