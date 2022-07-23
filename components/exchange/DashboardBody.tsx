@@ -23,6 +23,7 @@ const DashboardBody = () => {
     OpenBookBuy,
     OpenBooksell,
     tradeOrderHistory,
+    marketTrades,
   } = useSelector((state: RootState) => state.exchange);
 
   return (
@@ -62,7 +63,7 @@ const DashboardBody = () => {
       <div className="col-xl-3">
         {/* exchange box */}
         <ExchangeBox />
-        <TradesHistory tradeOrderHistory={tradeOrderHistory} />
+        <TradesHistory marketTrades={marketTrades} />
       </div>
     </>
   );

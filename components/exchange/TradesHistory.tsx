@@ -1,6 +1,6 @@
 import React from "react";
 import SellTable from "./SellTable";
-const TradesHistory = ({ tradeOrderHistory }: any) => {
+const TradesHistory = ({ marketTrades }: any) => {
   return (
     <div className="trades-section mt-4">
       <div className="trades-headers mb-3">
@@ -80,7 +80,7 @@ const TradesHistory = ({ tradeOrderHistory }: any) => {
                     </tr>
                   </thead>
 
-                  <SellTable tradeOrderHistory={tradeOrderHistory} />
+                  <SellTable marketTrades={marketTrades} />
                 </table>
               </div>
             </div>

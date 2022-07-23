@@ -21,6 +21,7 @@ import {
   setBuyOrderHistory,
   setTradeOrderHistory,
   setCurrentPair,
+  setAllmarketTrades,
 } from "state/reducer/exchange";
 import { setLoading } from "state/reducer/user";
 import { toast } from "react-toastify";
@@ -107,6 +108,15 @@ export const initialDashboardCallAction =
       dispatch(
         setTradeOrderHistory(tradeOrderHistoryResponse?.data?.transactions)
       );
+      const marketTradesDashboardResponse = await marketTradesDashboard(
+        dashboard?.order_data?.base_coin_id,
+        dashboard?.order_data?.trade_coin_id,
+        "dashboard",
+        50
+      );
+      dispatch(
+        setAllmarketTrades(marketTradesDashboardResponse.data.transactions)
+      );
     }
     dispatch(setLoading(false));
   };
@@ -144,6 +154,15 @@ export const initialDashboardCallActionWithToken =
       );
       dispatch(
         setTradeOrderHistory(tradeOrderHistoryResponse?.data?.transactions)
+      );
+      const marketTradesDashboardResponse = await marketTradesDashboard(
+        dashboard?.order_data?.base_coin_id,
+        dashboard?.order_data?.trade_coin_id,
+        "dashboard",
+        50
+      );
+      dispatch(
+        setAllmarketTrades(marketTradesDashboardResponse.data.transactions)
       );
     }
     dispatch(setLoading(false));

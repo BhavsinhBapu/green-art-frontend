@@ -1,16 +1,16 @@
 import React from "react";
 
-const TradesTable = ({ tradeOrderHistory }: any) => {
+const TradesTable = ({ marketTrades }: any) => {
   return (
     <tbody>
-      {tradeOrderHistory?.length === 0 ? (
+      {marketTrades?.length === 0 ? (
         <tr className="odd">
           <td valign="top" colSpan={3} className="text-center">
-            No data available in table 
+            No data available in table
           </td>
         </tr>
       ) : (
-        tradeOrderHistory?.map((item: any, index: number) => (
+        marketTrades?.map((item: any, index: number) => (
           <tr className="odd" key={index}>
             <td>
               <div className="asset">
