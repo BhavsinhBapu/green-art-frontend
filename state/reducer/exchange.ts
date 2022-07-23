@@ -22,6 +22,7 @@ const initialState: ExchangeState = {
   buyOrderHistory: [],
   tradeOrderHistory: [],
   publicTradesDashboard: [],
+  marketTrades: [],
 };
 
 export const exchangeSlice = createSlice({
