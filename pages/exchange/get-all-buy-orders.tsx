@@ -73,32 +73,17 @@ const GetAllBuyOrders: NextPage = () => {
                       <tr>
                         <th scope="col" className="">
                           Amount
-                          {/* <i className="fas fa-sort-down sort_space"></i> */}
                         </th>
                         <th scope="col" rowSpan={1} colSpan={1}>
                           Processed
-                          {/* <i className="fas fa-sort sort_space"></i> */}
                         </th>
                         <th scope="col" rowSpan={1} colSpan={1}>
                           Price
-                          {/* <i className="fas fa-sort sort_space"></i> */}
                         </th>
-                        <th scope="col">
-                          Total
-                          {/* <i className="fas fa-sort sort_space"></i> */}
-                        </th>
-                        <th scope="col">
-                          My Size
-                          {/* <i className="fas fa-sort sort_space"></i> */}
-                        </th>
-                        <th scope="col">
-                          Status
-                          {/* <i className="fas fa-sort sort_space"></i> */}
-                        </th>
-                        <th scope="col">
-                          Date
-                          {/* <i className="fas fa-sort sort_space"></i> */}
-                        </th>
+                        <th scope="col">Total</th>
+                        <th scope="col">My Size</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Date</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -141,9 +126,6 @@ const GetAllBuyOrders: NextPage = () => {
                       </tr>
                     </tbody>
                   </table>
-                  {/* <div className="no_data_table">
-                      No data available in table
-                    </div> */}
 
                   <div
                     className="pagination-wrapper"
@@ -168,25 +150,6 @@ const GetAllBuyOrders: NextPage = () => {
                 </div>
               </div>
             </div>
-
-            {/* <div className="asset-balances-right">
-              <div className="box-one single-box">
-                <div className="section-wrapper">
-                  <div
-                    className="deposit-info-area"
-                    id="wallet_deposit_area"
-                  ></div>
-                </div>
-              </div>
-              <div className="box-two single-box">
-                <div className="section-wrapper">
-                  <div
-                    className="withdrawal-info-area"
-                    id="withdrawal_wallet_area"
-                  ></div>
-                </div>
-              </div>
-            </div> */}
           </div>
         </div>
       </div>

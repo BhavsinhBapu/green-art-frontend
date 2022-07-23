@@ -151,11 +151,6 @@ const Referral: NextPage = () => {
                       <td className="referral-text">{data?.joining_date}</td>
                     </tr>
                   ))}
-                  {/* <tr>
-                    <td colSpan={5} className="text-center">
-                      <b>No Data available</b>
-                    </td>
-                  </tr> */}
                 </tbody>
               </table>
             </div>

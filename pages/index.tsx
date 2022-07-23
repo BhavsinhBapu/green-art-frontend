@@ -48,7 +48,6 @@ const Home: NextPage = ({
   return (
     <div>
       <div>
-        {/* header-area start here */}
         <header className="header-area">
           <div className="container">
             <div className="row align-items-center">
@@ -76,9 +75,6 @@ const Home: NextPage = ({
                       <li>
                         <Link href="/authentication/signup">Sign up</Link>
                       </li>
-                      <li>
-                        <a href="#contact">Contact</a>
-                      </li>
                     </ul>
                   </nav>
                 </div>
@@ -86,9 +82,7 @@ const Home: NextPage = ({
             </div>
           </div>
         </header>
-        {/* header-area end here */}
-        {/* banner area start here */}
-        {/* hero banenr area start here  */}
+
         <section className="hero-banner-area">
           <div className="container">
             <div className="row">
@@ -106,24 +100,9 @@ const Home: NextPage = ({
                 </a>
               </div>
             </div>
-            <div className="hero-banner-bottom">
-              <ul className="item-list">
-                <li className="single-item">
-                  <a href="/exchange/dashboard">
-                    <h4>
-                      BTC / USDT
-                      <span className="percent  decrase ">0.00%</span>
-                    </h4>
-                    <h3>1.00000000</h3>
-                    <h5>0.00</h5>
-                  </a>
-                </li>
-              </ul>
-            </div>
           </div>
         </section>
-        {/* hero banenr area end here  */}
-        {/* about area start here  */}
+
         <section className="about-area">
           <div className="container">
             <Slider {...settings}>
@@ -156,16 +135,12 @@ const Home: NextPage = ({
                     </svg>
                     {item.title}
                   </p>
-                  {/* <a href="#" className="more-btn">
-                  More
-                </a> */}
                 </div>
               ))}
             </div>
           </div>
         </section>
-        {/* about area end here  */}
-        {/* Market trend area start here  */}
+
         <section className="market-trend-area">
           <div className="container">
             <div className="section-title">
@@ -673,8 +648,7 @@ const Home: NextPage = ({
             </div>
           </div>
         </section>
-        {/* Market trend area end here  */}
-        {/* Trade. Anywhere. area start here  */}
+
         <section className="trade-anywhere-area sectiob-bg">
           <div className="container">
             <div className="section-title">
@@ -694,11 +668,7 @@ const Home: NextPage = ({
                 <div className="trade-anywhere-right">
                   <div className="qr-code-area">
                     <div className="qr-image">
-                      <img
-                        className="img-fluid"
-                        src="https://tradexpro-exchange.itech-theme.com/assets/landing/images/qr-code.png"
-                        alt=""
-                      />
+                      <img className="img-fluid" src="/qr-code.png" alt="" />
                     </div>
                     <div className="qr-info">
                       <h4>Scan to Download</h4>
@@ -714,7 +684,7 @@ const Home: NextPage = ({
                         >
                           <img
                             className="icon"
-                            src="https://tradexpro-exchange.itech-theme.com/assets/landing/images/apple-logo.png"
+                            src="/apple-logo.png"
                             alt="apple-logo"
                           />
                           <span>App Store</span>
@@ -727,7 +697,7 @@ const Home: NextPage = ({
                         >
                           <img
                             className="icon"
-                            src="https://tradexpro-exchange.itech-theme.com/assets/landing/images/android.png"
+                            src="/android.png"
                             alt="android"
                           />
                           <span>Android APK</span>
@@ -737,7 +707,7 @@ const Home: NextPage = ({
                         <a href="#" className="item-link">
                           <img
                             className="icon"
-                            src="https://tradexpro-exchange.itech-theme.com/assets/landing/images/google-play.png"
+                            src="/google-play.png"
                             alt="google-play"
                           />
                           <span>Google Play</span>
@@ -750,7 +720,7 @@ const Home: NextPage = ({
                         >
                           <img
                             className="icon"
-                            src="https://tradexpro-exchange.itech-theme.com/assets/landing/images/command-symbol.png"
+                            src="/command-symbol.png"
                             alt="command-symbol"
                           />
                           <span>MacOS</span>
@@ -763,7 +733,7 @@ const Home: NextPage = ({
                         >
                           <img
                             className="icon"
-                            src="https://tradexpro-exchange.itech-theme.com/assets/landing/images/windows.png"
+                            src="/windows.png"
                             alt="windows"
                           />
                           <span>Windows</span>
@@ -774,21 +744,13 @@ const Home: NextPage = ({
                           href={landing?.windows_store_link}
                           className="item-link"
                         >
-                          <img
-                            className="icon"
-                            src="https://tradexpro-exchange.itech-theme.com/assets/landing/images/linux.png"
-                            alt="linux"
-                          />
+                          <img className="icon" src="/linux.png" alt="linux" />
                           <span>Linux</span>
                         </a>
                       </li>
                       <li className="single-item">
                         <a href={landing?.api_link} className="item-link">
-                          <img
-                            className="icon"
-                            src="https://tradexpro-exchange.itech-theme.com/assets/landing/images/api.png"
-                            alt="api"
-                          />
+                          <img className="icon" src="/api.png" alt="api" />
                           <span>API</span>
                         </a>
                       </li>
@@ -805,8 +767,7 @@ const Home: NextPage = ({
             </div>
           </div>
         </section>
-        {/* Trade. Anywhere. area end here  */}
-        {/* Trade. Anywhere. area start here  */}
+
         <section className="trade-anywhere-area">
           <div className="container">
             <div className="section-title">
@@ -974,10 +935,7 @@ const Home: NextPage = ({
                   <div className="col-md-6">
                     <div className="copyright-area text-center text-md-left">
                       <p>
-                        Copyright@2020{" "}
-                        <a href="https://tradexpro-exchange.itech-theme.com">
-                          TradexPro Admin
-                        </a>
+                        Copyright@2020 <a href="">TradexPro Admin</a>
                       </p>
                     </div>
                   </div>

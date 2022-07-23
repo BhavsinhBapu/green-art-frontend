@@ -115,10 +115,12 @@ const WirhdrawTab = ({ response, TurnoffSetShow }: any) => {
                         Fees{response?.wallet?.withdrawal_fees} %
                       </span>
                       <span className="mr-2">
-                        Min withdraw {response?.wallet?.minimum_withdrawal} %
+                        Min withdraw {response?.wallet?.minimum_withdrawal}
+                        {response?.wallet?.coin_type}
                       </span>
                       <span className="mr-2">
-                        Max withdraw {response?.wallet?.maximum_withdrawal} %
+                        Max withdraw {response?.wallet?.maximum_withdrawal}{" "}
+                        {response?.wallet?.coin_type}
                       </span>
                     </small>
                   </div>

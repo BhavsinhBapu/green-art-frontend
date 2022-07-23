@@ -112,7 +112,7 @@ const Market = ({
                         ...buySellMarketCoinData,
                         amount: e.target.value,
                         total:
-                          parseInt(e.target.value) *
+                          parseFloat(e.target.value) *
                           buySellMarketCoinData.price,
                       });
                       await dispatch(
@@ -129,25 +129,7 @@ const Market = ({
                     </span>
                   </span>
                 </div>
-                {/* <div className="form-group mt-3">
-                  <label>Total Amount</label>
-                  <input
-                    disabled
-                    name="total_amount"
-                    type="text"
-                    placeholder=""
-                    className="form-control number_only"
-                    value={buySellMarketCoinData.total}
-                  />
-                  <span
-                    className="text-warning blns"
-                    style={{ fontWeight: 700 }}
-                  >
-                    <span className="trade_coin_type">
-                      {dashboard?.order_data?.total?.base_wallet?.coin_type}
-                    </span>
-                  </span>
-                </div> */}
+
                 {!isLoggedIn ? (
                   <div className="form-group mt-4">
                     <Link href="/authentication/signin">

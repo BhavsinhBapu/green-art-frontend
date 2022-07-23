@@ -128,37 +128,17 @@ const TransactionHistory: NextPage = () => {
                         <tr>
                           <th scope="col" className="">
                             Transaction id
-                            {/* <i className="fas fa-sort-down sort_space"></i> */}
                           </th>
 
                           <th scope="col" rowSpan={1} colSpan={1}>
                             Base Coin
-                            {/* <i className="fas fa-sort sort_space"></i> */}
                           </th>
-                          <th scope="col">
-                            Trade Coin
-                            {/* <i className="fas fa-sort sort_space"></i> */}
-                          </th>
-                          <th scope="col">
-                            Amount
-                            {/* <i className="fas fa-sort sort_space"></i> */}
-                          </th>
-                          <th scope="col">
-                            Price
-                            {/* <i className="fas fa-sort sort_space"></i> */}
-                          </th>
-                          <th scope="col">
-                            Fees
-                            {/* <i className="fas fa-sort sort_space"></i> */}
-                          </th>
-                          <th scope="col">
-                            Total
-                            {/* <i className="fas fa-sort sort_space"></i> */}
-                          </th>
-                          <th scope="col">
-                            Date
-                            {/* <i className="fas fa-sort sort_space"></i> */}
-                          </th>
+                          <th scope="col">Trade Coin</th>
+                          <th scope="col">Amount</th>
+                          <th scope="col">Price</th>
+                          <th scope="col">Fees</th>
+                          <th scope="col">Total</th>
+                          <th scope="col">Date</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -262,25 +242,6 @@ const TransactionHistory: NextPage = () => {
                 </div>
               </div>
             )}
-
-            {/* <div className="asset-balances-right">
-              <div className="box-one single-box">
-                <div className="section-wrapper">
-                  <div
-                    className="deposit-info-area"
-                    id="wallet_deposit_area"
-                  ></div>
-                </div>
-              </div>
-              <div className="box-two single-box">
-                <div className="section-wrapper">
-                  <div
-                    className="withdrawal-info-area"
-                    id="withdrawal_wallet_area"
-                  ></div>
-                </div>
-              </div>
-            </div> */}
           </div>
         </div>
       </div>

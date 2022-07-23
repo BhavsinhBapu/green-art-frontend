@@ -458,25 +458,6 @@ const SellOrderHistory: NextPage = () => {
                 </div>
               </div>
             )}
-
-            {/* <div className="asset-balances-right">
-              <div className="box-one single-box">
-                <div className="section-wrapper">
-                  <div
-                    className="deposit-info-area"
-                    id="wallet_deposit_area"
-                  ></div>
-                </div>
-              </div>
-              <div className="box-two single-box">
-                <div className="section-wrapper">
-                  <div
-                    className="withdrawal-info-area"
-                    id="withdrawal_wallet_area"
-                  ></div>
-                </div>
-              </div>
-            </div> */}
           </div>
         </div>
       </div>

@@ -238,7 +238,6 @@ const Dashboard: NextPage = () => {
                             className=" ml-2 fa fa-angle-down"
                           />
                         )}
-                        {/* {!isLoggedIn && <SelectCurrency />} */}
                         <SelectCurrency />
                       </div>
                       <span className="font-weight-bold">Bitcoin</span>
@@ -246,17 +245,7 @@ const Dashboard: NextPage = () => {
                     <CurrencyLevel />
                   </div>
                 </div>
-                {/* <div className="col-xl-6">
-                  <div className="cp-user-buy-coin-content-area">
-                    <div className="card cp-user-custom-card">
-                      <TradingChart
-                        //  @ts-ignore
-                        coinpair={dashboard?.order_data?.exchange_coin_pair}
-                      />
-                    </div>
-                  </div>
-                  <OrderHistorySection />
-                </div> */}
+
                 <DashboardBody />
               </div>
             </div>

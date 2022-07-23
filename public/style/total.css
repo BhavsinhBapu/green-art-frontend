@@ -690,7 +690,9 @@ ul.cp-user-legend {
   -ms-flex-align: center;
   align-items: center;
 }
-
+.color-white{
+  color: #ffff !important
+}
 ul.cp-user-legend .cp-user-color-box {
   height: 15px;
   width: 20px;
@@ -2179,7 +2181,7 @@ a#submit {
   line-height: 38px;
   top: -15px;
   right: -15px;
-  background: #e9ebf2;
+  background: transparent;
   padding: 0;
 }
 

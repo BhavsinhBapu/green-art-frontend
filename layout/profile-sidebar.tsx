@@ -12,12 +12,20 @@ const ProfileSidebar = () => {
             </li>
           </Link>
           <Link href="/user/edit-profile">
-            <li className={router.pathname == "/user/edit-profile" ? "active" : ""}>
+            <li
+              className={
+                router.pathname == "/user/edit-profile" ? "active" : ""
+              }
+            >
               <a href="/user/edit-profile">Edit Profile</a>
             </li>
           </Link>
           <Link href="/user/phone-verification">
-            <li className={router.pathname == "/user/phone-verification" ? "active" : ""}>
+            <li
+              className={
+                router.pathname == "/user/phone-verification" ? "active" : ""
+              }
+            >
               <a href="/user/phone-verification">Phone Verification</a>
             </li>
           </Link>
@@ -27,23 +35,30 @@ const ProfileSidebar = () => {
             </li>
           </Link>
           <Link href="/user/verification-list">
-            <li className={router.pathname == "/user/verification-list" ? "active" : ""}>
+            <li
+              className={
+                router.pathname == "/user/verification-list" ? "active" : ""
+              }
+            >
               <a href="/user/profile-verification-list">Verification List</a>
             </li>
           </Link>
           <Link href="/user/personal-verification">
-            <li className={router.pathname == "/user/personal-verification" ? "active" : ""}>
+            <li
+              className={
+                router.pathname == "/user/personal-verification" ? "active" : ""
+              }
+            >
               <a href="/user/personal-verification">Personal Verification</a>
             </li>
           </Link>
           <Link href="/user/change-password">
-            <li className={router.pathname == "/user/change-password" ? "active" : ""}>
+            <li
+              className={
+                router.pathname == "/user/change-password" ? "active" : ""
+              }
+            >
               <a href="/user/change-password">Change Password</a>
-            </li>
-          </Link>
-          <Link href="/user/activity">
-            <li className={router.pathname == "/user/activity" ? "active" : ""}>
-              <a href="/user/activity">Activity</a>
             </li>
           </Link>
         </ul>

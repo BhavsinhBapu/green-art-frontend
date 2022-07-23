@@ -35,9 +35,7 @@ const Edit: NextPage = () => {
               <h3 className="user-mail">{user?.email}</h3>
             </div>
           </div>
-          {/* {uploadImageProcess && (
-         
-          )} */}
+
           <div className="profile-area">
             <h4 className="section-title-medium">Update Profile Information</h4>
             <div className="section-wrapper">
@@ -47,7 +45,6 @@ const Edit: NextPage = () => {
                     <div className="user-profile-left">
                       <div className="user-thumbnail">
                         <img src={user?.photo} className="img-fluid" alt="" />
-                        {/* <Field type="hidden" name="_token" />  */}
                         <div className="uplode-profile">
                           <input
                             type="file"
@@ -86,7 +83,6 @@ const Edit: NextPage = () => {
                     <div className="col-lg-8">
                       <div className="user-profile-form">
                         <Form>
-                          {/* <Field type="hidden" name="_token" />  */}
                           <div className="form-group">
                             <label>First Name</label>
                             <Field

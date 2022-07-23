@@ -28,8 +28,6 @@ const DashboardNavbar = () => {
             <div className="col-xl-8 col-lg-8 d-none d-lg-block">
               <nav className="main-menu">
                 <ul>
-                  {/* <Link href={"/user/my-wallet"}> */}
-
                   <Link href="/exchange/dashboard">
                     <li>
                       <a href="">
@@ -50,7 +48,6 @@ const DashboardNavbar = () => {
                     </li>
                   </Link>
 
-                  {/* </Link> */}
                   <Link
                     href={
                       isLoggedIn ? "/user/my-wallet" : "/authentication/signin"
@@ -496,9 +493,6 @@ const DashboardNavbar = () => {
                   </li>
                   <li>
                     <a href="">Change Password</a>
-                  </li>
-                  <li>
-                    <a href="">Activity</a>
                   </li>
                 </ul>
               </li>

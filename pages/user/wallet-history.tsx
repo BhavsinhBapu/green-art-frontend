@@ -136,32 +136,17 @@ const DepositHistory: NextPage = () => {
                           <tr>
                             <th scope="col" className="">
                               Created At
-                              {/* <i className="fas fa-sort-down sort_space"></i> */}
                             </th>
                             <th scope="col" rowSpan={1} colSpan={1}>
                               Address
-                              {/* <i className="fas fa-sort sort_space"></i> */}
                             </th>
                             <th scope="col" rowSpan={1} colSpan={1}>
                               Coin Type
-                              {/* <i className="fas fa-sort sort_space"></i> */}
                             </th>
-                            <th scope="col">
-                              Amount
-                              {/* <i className="fas fa-sort sort_space"></i> */}
-                            </th>
-                            <th scope="col">
-                              Fees
-                              {/* <i className="fas fa-sort sort_space"></i> */}
-                            </th>
-                            <th scope="col">
-                              Transaction Hash
-                              {/* <i className="fas fa-sort sort_space"></i> */}
-                            </th>
-                            <th scope="col">
-                              Status
-                              {/* <i className="fas fa-sort sort_space"></i> */}
-                            </th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Fees</th>
+                            <th scope="col">Transaction Hash</th>
+                            <th scope="col">Status</th>
                           </tr>
                         </thead>
                         {history.length > 0 && (
@@ -180,9 +165,9 @@ const DepositHistory: NextPage = () => {
                                       : item.transaction_hash}
                                   </td>
                                   <td>
-                                    {item.status === "0"
+                                    {item.status === 0
                                       ? "Pending"
-                                      : item.status === "1"
+                                      : item.status === 1
                                       ? "Success"
                                       : "Failed"}
                                   </td>

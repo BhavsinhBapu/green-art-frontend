@@ -7,12 +7,12 @@ const SwapCoinSidebar = () => {
       <div className="sidebar-top">
         <ul className="left-menu">
           <Link href="">
-            <li className="@if(isset($sub_menu) && $sub_menu == 'deposit') active @endif">
-              <a href="walletHistory',['type' => 'deposit'])}}">Market</a>
+            <li className="active ">
+              <a href="">Market</a>
             </li>
           </Link>
           <Link href="">
-            <li className="@if(isset($sub_menu) && $sub_menu == 'withdrawal') active @endif">
+            <li className=" active ">
               <a href="">Order</a>
             </li>
           </Link>

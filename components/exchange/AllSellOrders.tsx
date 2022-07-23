@@ -125,13 +125,9 @@ const AllSellOrders = ({ OpenBooksell }: any) => {
         </div>
         <div className="trades-table-footer">
           <div className="trades-table-row">
-            <div className="trades-table-col volume">
-              {/* <a className="more-btn">More{OpenBooksell?.length.toString()}</a> */}
-            </div>
+            <div className="trades-table-col volume"></div>
             <div className="trades-table-col price total-price" />
-            <div className="trades-table-col price total-price">
-              {/* <span>0.00</span> <span>BTC</span> */}
-            </div>
+            <div className="trades-table-col price total-price"></div>
           </div>
         </div>
       </div>

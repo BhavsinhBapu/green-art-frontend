@@ -25,8 +25,6 @@ function MyApp({ Component, pageProps }: AppProps) {
           <Component {...pageProps} />
         </Layout>
       </Provider>
-      {/* <Script src="/js/jquery-3.6.0.min.js" />
-      <Script src="/js/bootstrap.bundle.min.js" /> */}
     </>
   );
 }

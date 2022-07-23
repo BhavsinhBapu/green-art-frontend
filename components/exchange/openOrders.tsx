@@ -35,9 +35,7 @@ const OpenOrders = ({ openOrders, openOrderHistory }: any) => {
               <th scope="col">Processed</th>
               <th scope="col">total</th>
               <th scope="col">Type</th>
-              <th scope="col">
-                {/* <button className="cancel">Cancel All</button> */}
-              </th>
+              <th scope="col"></th>
             </tr>
           </thead>
           <tbody>

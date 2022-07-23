@@ -94,7 +94,7 @@ const Limit = ({
                         ...buySellLimitCoinData,
                         price: e.target.value,
                         total:
-                          parseInt(e.target.value) *
+                          parseFloat(e.target.value) *
                           buySellLimitCoinData.amount,
                       });
                     }}
@@ -121,7 +121,8 @@ const Limit = ({
                         ...buySellLimitCoinData,
                         amount: e.target.value,
                         total:
-                          parseInt(e.target.value) * buySellLimitCoinData.price,
+                          parseFloat(e.target.value) *
+                          buySellLimitCoinData.price,
                       });
                     }}
                   />

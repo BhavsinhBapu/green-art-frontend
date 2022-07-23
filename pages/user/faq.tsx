@@ -45,9 +45,7 @@ const Index: NextPage = () => {
               className="close"
               data-dismiss="modal"
               aria-label="Close"
-            >
-              {/* <img src="/close.svg" className="img-fluid" alt="" /> */}
-            </button>
+            ></button>
             <div className="text-center">
               <img
                 src="/add-pockaet-vector.svg"

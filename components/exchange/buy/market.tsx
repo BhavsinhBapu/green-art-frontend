@@ -116,7 +116,7 @@ const Market = ({
                         ...buySellMarketCoinData,
                         amount: e.target.value,
                         total:
-                          parseInt(e.target.value) *
+                          parseFloat(e.target.value) *
                           buySellMarketCoinData.price,
                       });
                     }}

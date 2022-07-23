@@ -28,23 +28,12 @@ const DashboardBody = () => {
 
   return (
     <>
-      {/* <div className="col-xl-6">
-        <div className="cp-user-buy-coin-content-area">
-          <div className="card cp-user-custom-card">
-            <TradingChart
-              //  @ts-ignore
-              coinpair={dashboard?.order_data?.exchange_coin_pair}
-            />
-          </div>
-        </div>
-        <OrderHistorySection />
-      </div> */}
-
       <div className="col-xl-3">
         <div className="trades-section">
           <div className="trades-headers mb-3">
             <h3>Order Book</h3>
           </div>
+
           <AllBuyOtders OpenBookBuy={OpenBookBuy} />
           <AllSellOrders OpenBooksell={OpenBooksell} />
         </div>
@@ -61,7 +50,6 @@ const DashboardBody = () => {
         <OrderHistorySection />
       </div>
       <div className="col-xl-3">
-        {/* exchange box */}
         <ExchangeBox />
         <TradesHistory marketTrades={marketTrades} />
       </div>

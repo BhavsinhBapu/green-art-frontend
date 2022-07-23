@@ -46,12 +46,7 @@ const Navbar = () => {
             <div className="col-xl-8 col-lg-8 d-none d-lg-block">
               <nav className="main-menu">
                 <ul>
-                  {/* <a href="/exchange/dashboard"> */}
                   <li
-                    // onClick={() => {
-                    //   router.push("/exchange/dashboard");
-                    //   router.reload();
-                    // }}
                     className={
                       router.pathname == "/exchange/dashboard"
                         ? "cp-user-active-page"
@@ -74,7 +69,6 @@ const Navbar = () => {
                       <span className="cp-user-name">Trade</span>
                     </a>
                   </li>
-                  {/* </a> */}
                   <Link
                     href={
                       isLoggedIn === true
@@ -655,9 +649,6 @@ const Navbar = () => {
                   </li>
                   <li>
                     <a href="">Change Password</a>
-                  </li>
-                  <li>
-                    <a href="">Activity</a>
                   </li>
                 </ul>
               </li>

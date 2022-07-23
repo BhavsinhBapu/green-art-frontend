@@ -148,7 +148,7 @@ const StopLimit = ({
                         ...buySellStopLimitCoinData,
                         amount: e.target.value,
                         total:
-                          parseInt(e.target.value) *
+                          parseFloat(e.target.value) *
                           dashboard?.order_data?.sell_price,
                       });
                     }}

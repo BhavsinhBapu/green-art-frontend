@@ -144,7 +144,6 @@ export const marketTradesDashboard = async (
   dashboard_type: string,
   per_page: number
 ) => {
-  console.log("calling");
   const { data } = await request.get(
     `/get-exchange-market-trades-app?dashboard_type=${dashboard_type}&base_coin_id=${base_coin_id}&trade_coin_id=${trade_coin_id}`
   );

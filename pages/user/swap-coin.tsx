@@ -87,11 +87,9 @@ const SwapCoin: NextPage = ({
       from_wallet: from_wallet,
       to_wallet: to_wallet,
     });
-    // convertCoin(1, walletLists[0]?.id, walletLists[1]?.id);
   }, []);
   return (
     <div className="page-wrap">
-      {/* <SwapCoinSidebar /> */}
       <div className="page-left-sidebar">
         <div className="sidebar-top">
           <ul className="left-menu">
@@ -264,11 +262,6 @@ const SwapCoin: NextPage = ({
                         </span>
                       </li>
                     </ul>
-                    {/* {error.status && (
-                      <div className="message-box">
-                        <p>{error.message}</p>
-                      </div>
-                    )} */}
                   </div>
                   <div className="swap-area-bottom">
                     <button className="primary-btn-outline">Refresh</button>

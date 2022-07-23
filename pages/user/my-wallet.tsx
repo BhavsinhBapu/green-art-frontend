@@ -261,26 +261,11 @@ const MyWallet: NextPage = () => {
                       >
                         <thead>
                           <tr>
-                            <th scope="col">
-                              Asset
-                              {/* <i className="fas fa-sort-down sort_space"></i> */}
-                            </th>
-                            <th scope="col">
-                              Symbol
-                              {/* <i className="fas fa-sort-up sort_space"></i> */}
-                            </th>
-                            <th scope="col">
-                              On Order
-                              {/* <i className="fas fa-sort sort_space"></i> */}
-                            </th>
-                            <th scope="col">
-                              Available Balance
-                              {/* <i className="fas fa-sort sort_space"></i> */}
-                            </th>
-                            <th scope="col">
-                              Total Balance
-                              {/* <i className="fas fa-sort sort_space"></i> */}
-                            </th>
+                            <th scope="col">Asset</th>
+                            <th scope="col">Symbol</th>
+                            <th scope="col">On Order</th>
+                            <th scope="col">Available Balance</th>
+                            <th scope="col">Total Balance</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -334,17 +319,18 @@ const MyWallet: NextPage = () => {
                               <td>
                                 <div className="blance-text">
                                   <span className="blance">
-                                    {item?.available_balance_usd}
+                                    {item?.balance}
                                   </span>
                                   <span className="usd">
-                                    ${item?.total_balance_usd}
+                                    ${item?.available_balance_usd}
                                   </span>
                                 </div>
                               </td>
                               <td>
                                 <div className="blance-text">
                                   <span className="blance">
-                                    {item?.available_balance_usd}
+                                    {Number(item?.balance) +
+                                      Number(item?.on_order)}
                                   </span>
                                   <span className="usd">
                                     ${item?.total_balance_usd}
