@@ -84,16 +84,6 @@ const Signin: NextPage = () => {
                       </div>
 
                       <div className="d-flex justify-content-between rememberme align-items-center mb-4">
-                        <div className="form-check">
-                          <input
-                            type="checkbox"
-                            className="form-check-input"
-                            id="exampleCheck1"
-                          />
-                          <label className="form-check-label">
-                            Remember me
-                          </label>
-                        </div>
                         <div className="text-right">
                           <Link href="/authentication/forgot-password">
                             <a className="text-theme forgot-password">

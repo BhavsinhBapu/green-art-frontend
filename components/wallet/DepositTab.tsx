@@ -1,6 +1,6 @@
 import React from "react";
 import Qr from "components/common/qr";
-import { copyTextById } from "common";
+import { copyTextById, formateZert } from "common";
 
 const DepositTab = ({ response, TurnoffSetShow }: any) => {
   return (
@@ -32,10 +32,10 @@ const DepositTab = ({ response, TurnoffSetShow }: any) => {
               </div>
               <div className="total-balance-right">
                 <h3>
-                  {response?.deposit?.balance}
+                  {formateZert(response?.deposit?.balance)}
                   {response?.deposit?.coin_type}
                 </h3>
-                <h4>0.00000000 USD</h4>
+                {/* <h4>0.00000000sssss USD</h4> */}
               </div>
             </div>
 

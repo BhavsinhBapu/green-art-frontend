@@ -184,7 +184,7 @@ const Limit = ({
                           buySellLimitCoinData.amount,
                           buySellLimitCoinData.price,
                           dashboard?.order_data?.trade_coin_id,
-                          dashboard?.order_data?.trade_coin_id,
+                          dashboard?.order_data?.base_coin_id,
                           setLoading,
                           setBuySellLimitCoinData
                         );

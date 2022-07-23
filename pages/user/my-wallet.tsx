@@ -193,6 +193,7 @@ const MyWallet: NextPage = () => {
                   <h4 className="blance-title">Total balance</h4>
                   <h4 className="blance">
                     {allData?.total ? allData?.total : 0}
+                    {""} USD
                   </h4>
                 </div>
               </div>

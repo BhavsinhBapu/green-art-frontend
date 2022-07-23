@@ -1,6 +1,7 @@
 import React from "react";
 import WalletGoogleAuth from "components/wallet/wallet-google-auth";
 import { UserSettingsApi } from "service/settings";
+import { formateZert } from "common";
 
 const WirhdrawTab = ({ response, TurnoffSetShow }: any) => {
   const [withdrawalCredentials, setWithdrawalCredentials] = React.useState({
@@ -65,7 +66,8 @@ const WirhdrawTab = ({ response, TurnoffSetShow }: any) => {
               <div className="avable-blance">
                 <h4 className="avable-blance-title">AVAILABLE BALANCE</h4>
                 <h2 className="blance">
-                  {response?.wallet?.balance} {response?.wallet?.coin_type}
+                  {formateZert(response?.wallet?.balance)}{" "}
+                  {response?.wallet?.coin_type}
                 </h2>
               </div>
               <div className="form-group">
