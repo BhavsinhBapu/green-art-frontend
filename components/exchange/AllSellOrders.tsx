@@ -130,10 +130,8 @@ const AllSellOrders = ({ OpenBooksell }: any) => {
                       </Tooltip>
                     ))
                   ) : (
-                    <tr className="odd">
-                      <td valign="top" colSpan={3} className="dataTables_empty">
-                        No data available in tabletable
-                      </td>
+                    <tr>
+                      <td className="">No data available in table</td>
                     </tr>
                   )}
                 </tbody>

@@ -114,7 +114,8 @@ const Home: NextPage = ({
               <div className="col-md-6 ">
                 <img
                   src={
-                    landing_banner_image || "/undraw_crypto_flowers_re_dyqo.svg"
+                    landing_banner_image ||
+                    "/undraw_crypto_flowers_re_dyqo.svg.svg"
                   }
                 />
               </div>
