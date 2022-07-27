@@ -803,7 +803,9 @@ const Home: NextPage = ({
                 <div className="trade-anywhere-right">
                   <h2 className="subtitle"> {landing?.customization_title} </h2>
                   <p>{landing?.customization_details}</p>
-                  <a className="primary-btn">Know More</a>
+                  <a href="/exchange/dashboard" className="primary-btn">
+                    Know More
+                  </a>
                 </div>
               </div>
             </div>

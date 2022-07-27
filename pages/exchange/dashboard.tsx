@@ -240,7 +240,7 @@ const Dashboard: NextPage = () => {
                         )}
                         <SelectCurrency />
                       </div>
-                      <span className="font-weight-bold">Bitcoin</span>
+                      {/* <span className="font-weight-bold">Bitcoin</span> */}
                     </div>
                     <CurrencyLevel />
                   </div>
