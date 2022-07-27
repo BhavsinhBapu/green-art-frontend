@@ -1,14 +1,24 @@
 import type { GetServerSideProps, NextPage } from "next";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ForgotPasswordAction } from "state/actions/user";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { authPageRequireCheck } from "middlewares/ssr-authentication-check";
 import Link from "next/link";
-
+import { RecapCha } from "service/user";
+//@ts-ignore
+import ReCAPTCHA from "react-google-recaptcha";
 const ForgotPassword: NextPage = () => {
   const [processing, setProcessing] = useState(false);
-
+  const [recaptchaData, setRecaptchaData] = useState<any>({});
+  const getRecapcha = async () => {
+    const response = await RecapCha();
+    setRecaptchaData(response.data);
+    return response;
+  };
+  useEffect(() => {
+    getRecapcha();
+  }, []);
   return (
     <div
       className="user-content-wrapper"
@@ -30,17 +40,21 @@ const ForgotPassword: NextPage = () => {
                 <Formik
                   initialValues={{
                     email: "",
+                    recapcha: "",
                   }}
                   validationSchema={Yup.object({
                     email: Yup.string()
                       .email("Invalid email address")
                       .required("Email is required"),
+                    recapcha: Yup.string()
+                      .min(6)
+                      .required("Recapcha is required"),
                   })}
                   onSubmit={async (values) => {
                     await ForgotPasswordAction(values, setProcessing);
                   }}
                 >
-                  {({ errors, touched }) => (
+                  {({ errors, touched, setFieldValue }) => (
                     <Form>
                       <div className="form-group">
                         <Field
@@ -58,6 +72,17 @@ const ForgotPassword: NextPage = () => {
                         component="div"
                         className="red-text"
                       />
+                      {recaptchaData?.NOCAPTCHA_SITEKEY &&
+                        recaptchaData?.google_recapcha === "1" && (
+                          <ReCAPTCHA
+                            sitekey={recaptchaData?.NOCAPTCHA_SITEKEY}
+                            render="explicit"
+                            onChange={(response: any) => {
+                              setFieldValue("recapcha", response);
+                              console.log("recapcha", response);
+                            }}
+                          />
+                        )}
                       <button
                         type="submit"
                         className="btn nimmu-user-sibmit-button"

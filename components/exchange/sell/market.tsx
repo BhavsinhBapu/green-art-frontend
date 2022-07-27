@@ -53,8 +53,11 @@ const Market = ({
                         className="text-warning"
                         style={{ fontWeight: 700 }}
                       >
-                        <span className="trade_coin_type">
-                          {dashboard?.order_data?.total?.base_wallet?.coin_type}
+                        <span className="trade_coin_type ml-1">
+                          {
+                            dashboard?.order_data?.total?.trade_wallet
+                              ?.coin_type
+                          }
                         </span>
                       </span>
                     </div>
@@ -73,8 +76,11 @@ const Market = ({
                         className="text-warning"
                         style={{ fontWeight: 700 }}
                       >
-                        <span className="trade_coin_type">
-                          {dashboard?.order_data?.total?.base_wallet?.coin_type}
+                        <span className="trade_coin_type ml-1">
+                          {
+                            dashboard?.order_data?.total?.trade_wallet
+                              ?.coin_type
+                          }
                         </span>
                       </span>
                     </div>

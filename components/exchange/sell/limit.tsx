@@ -53,8 +53,11 @@ const Limit = ({
                         className="text-warning"
                         style={{ fontWeight: 700 }}
                       >
-                        <span className="trade_coin_type">
-                          {dashboard?.order_data?.total?.base_wallet?.coin_type}
+                        <span className="trade_coin_type ml-1">
+                          {
+                            dashboard?.order_data?.total?.trade_wallet
+                              ?.coin_type
+                          }
                         </span>
                       </span>
                     </div>
@@ -74,8 +77,11 @@ const Limit = ({
                         className="text-warning"
                         style={{ fontWeight: 700 }}
                       >
-                        <span className="trade_coin_type">
-                          {dashboard?.order_data?.total?.base_wallet?.coin_type}
+                        <span className="trade_coin_type ml-1">
+                          {
+                            dashboard?.order_data?.total?.trade_wallet
+                              ?.coin_type
+                          }
                         </span>
                       </span>
                     </div>
@@ -311,7 +317,7 @@ const Limit = ({
                 />
                 <div className="form-group mt-4">
                   <div className="total-top">
-                    <label>Total</label> <label>Available</label>
+                    <label>Total</label> <label>Availableeee</label>
                   </div>
                   <div className="total-top-blance">
                     <div className="total-blance">
@@ -326,7 +332,10 @@ const Limit = ({
                         style={{ fontWeight: 700 }}
                       >
                         <span className="trade_coin_type">
-                          {dashboard?.order_data?.total?.base_wallet?.coin_type}
+                          {
+                            dashboard?.order_data?.total?.trade_wallet
+                              ?.coin_type
+                          }
                         </span>
                       </span>
                     </div>

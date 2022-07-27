@@ -108,6 +108,11 @@ export const G2fVerifyApi = async (credential: any) => {
   return data;
 };
 
+export const RecapCha = async () => {
+  const { data } = await request.get("/recaptcha-settings");
+  return data;
+};
+
 export const verifyEmailApi = async (credential: any) => {
   const { data } = await request.post("/verify-email", {
     email: credential.email,

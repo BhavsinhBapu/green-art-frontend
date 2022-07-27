@@ -690,8 +690,8 @@ ul.cp-user-legend {
   -ms-flex-align: center;
   align-items: center;
 }
-.color-white{
-  color: #ffff !important
+.color-white {
+  color: #ffff !important;
 }
 ul.cp-user-legend .cp-user-color-box {
   height: 15px;
@@ -2181,7 +2181,8 @@ a#submit {
   line-height: 38px;
   top: -15px;
   right: -15px;
-  background: transparent;
+  background: white;
+  color: gray;
   padding: 0;
 }
 
@@ -5092,6 +5093,7 @@ table.dataTable tbody tr td {
   border-radius: 5px;
   border: 1px solid #dedede;
   background: transparent;
+  color: black;
 }
 /* referral-area */
 .referral-area table.dataTable thead tr th {

@@ -6,14 +6,25 @@ import {
   VerifyEmailAction,
 } from "state/actions/user";
 import { useDispatch, useSelector } from "react-redux";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
-
+//@ts-ignore
+import ReCAPTCHA from "react-google-recaptcha";
 import Link from "next/link";
 import { authPageRequireCheck } from "middlewares/ssr-authentication-check";
+import { RecapCha } from "service/user";
 const Signin: NextPage = () => {
   const [processing, setProcessing] = useState(false);
   const dispatch = useDispatch();
+  const [recaptchaData, setRecaptchaData] = useState<any>({});
+  const getRecapcha = async () => {
+    const response = await RecapCha();
+    setRecaptchaData(response.data);
+    return response;
+  };
+  useEffect(() => {
+    getRecapcha();
+  }, []);
   return (
     <div
       className="user-content-wrapper"
@@ -33,18 +44,22 @@ const Signin: NextPage = () => {
                   initialValues={{
                     email: "",
                     code: "",
+                    recapcha: "",
                   }}
                   validationSchema={Yup.object({
                     email: Yup.string()
                       .email("Invalid email address")
                       .required("Email is required"),
                     code: Yup.string().min(6).required("Code is required"),
+                    recapcha: Yup.string()
+                      .min(6)
+                      .required("Recapcha is required"),
                   })}
                   onSubmit={async (values) => {
                     await dispatch(VerifyEmailAction(values, setProcessing));
                   }}
                 >
-                  {({ errors, touched }) => (
+                  {({ errors, touched, setFieldValue }) => (
                     <Form>
                       <div className="form-group">
                         <Field
@@ -83,16 +98,17 @@ const Signin: NextPage = () => {
                         <p className="invalid-feedback">Message</p>
                       </div>
 
-                      <div className="d-flex justify-content-between rememberme align-items-center mb-4">
-                        <div className="text-right">
-                          <Link href="/authentication/forgot-password">
-                            <a className="text-theme forgot-password">
-                              Forgot Password?
-                            </a>
-                          </Link>
-                        </div>
-                      </div>
-
+                      {recaptchaData?.NOCAPTCHA_SITEKEY &&
+                        recaptchaData?.google_recapcha === "1" && (
+                          <ReCAPTCHA
+                            sitekey={recaptchaData?.NOCAPTCHA_SITEKEY}
+                            render="explicit"
+                            onChange={(response: any) => {
+                              setFieldValue("recapcha", response);
+                              console.log("recapcha", response);
+                            }}
+                          />
+                        )}
                       <button
                         type="submit"
                         disabled={processing}

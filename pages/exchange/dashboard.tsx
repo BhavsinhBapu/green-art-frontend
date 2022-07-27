@@ -65,7 +65,7 @@ const Dashboard: NextPage = () => {
   useEffect(() => {
     const pair = localStorage.getItem("current_pair");
     if (pair) {
-      setCurrentPair(pair);
+      dispatch(setCurrentPair(pair));
       dispatch(initialDashboardCallAction(pair, dashboard));
     } else {
       dispatch(initialDashboardCallAction(currentPair, dashboard));

@@ -1,5 +1,6 @@
 import React from "react";
-
+import Tooltip from "rc-tooltip";
+import "rc-tooltip/assets/bootstrap.css";
 const AllSellOrders = ({ OpenBooksell }: any) => {
   return (
     <div className="sell-order">
@@ -72,7 +73,7 @@ const AllSellOrders = ({ OpenBooksell }: any) => {
                       rowSpan={1}
                       colSpan={1}
                       style={{ width: "170.656px" }}
-                      aria-label="Price(USDT)"
+                      aria-label="Price"
                     ></th>
                     <th
                       className="table-col amount sorting_disabled"
@@ -93,23 +94,40 @@ const AllSellOrders = ({ OpenBooksell }: any) => {
                 <tbody>
                   {OpenBooksell?.length !== 0 ? (
                     OpenBooksell?.map((item: any, index: number) => (
-                      <tr className="odd" key={index}>
-                        <td>
-                          <div className="asset">
-                            <span className="text-success">{item.price}</span>
-                          </div>
-                        </td>
-                        <td>
-                          <div className="asset">
-                            <span className="asset-name">{item.amount}</span>
-                          </div>
-                        </td>
-                        <td>
-                          <div className="asset">
-                            <span className="asset-name">{item.my_size}</span>
-                          </div>
-                        </td>
-                      </tr>
+                      <Tooltip
+                        key={index}
+                        placement={"right"}
+                        overlay={
+                          <span>
+                            <span>Price: {item.price}</span>
+                            <br />
+                            <span>Amount: {item.amount}</span>
+                            <br />
+
+                            <span>Size: {item.my_size}</span>
+                          </span>
+                        }
+                        trigger={["hover"]}
+                        overlayClassName="rcTooltipOverlay"
+                      >
+                        <tr className="odd">
+                          <td>
+                            <div className="asset">
+                              <span className="text-success">{item.price}</span>
+                            </div>
+                          </td>
+                          <td>
+                            <div className="asset">
+                              <span className="asset-name">{item.amount}</span>
+                            </div>
+                          </td>
+                          <td>
+                            <div className="asset">
+                              <span className="asset-name">{item.my_size}</span>
+                            </div>
+                          </td>
+                        </tr>
+                      </Tooltip>
                     ))
                   ) : (
                     <tr className="odd">

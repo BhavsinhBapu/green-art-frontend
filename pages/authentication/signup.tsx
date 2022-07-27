@@ -1,22 +1,34 @@
 import type { GetServerSideProps, NextPage } from "next";
 import * as Yup from "yup";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { SignupAction } from "state/actions/user";
 import { useDispatch } from "react-redux";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { authPageRequireCheck } from "middlewares/ssr-authentication-check";
+//@ts-ignore
+import ReCAPTCHA from "react-google-recaptcha";
+import { RecapCha } from "service/user";
 const Signup: NextPage = () => {
   const dispatch = useDispatch();
+  const [recaptchaData, setRecaptchaData] = useState<any>({});
   const router = useRouter();
+
   const { ref_code } = router.query;
   const [processing, setProcessing] = useState(false);
   const [showPassword, setShowPassword] = useState({
     password: false,
     confirm_password: false,
   });
-
+  const getRecapcha = async () => {
+    const response = await RecapCha();
+    setRecaptchaData(response.data);
+    return response;
+  };
+  useEffect(() => {
+    getRecapcha();
+  }, []);
   return (
     <div
       className="user-content-wrapper"
@@ -40,6 +52,7 @@ const Signup: NextPage = () => {
                     last_name: "",
                     password: "",
                     password_confirmation: "",
+                    recapcha: "",
                   }}
                   validationSchema={Yup.object({
                     email: Yup.string()
@@ -60,12 +73,15 @@ const Signup: NextPage = () => {
                         "Passwords must match"
                       )
                       .required("Confirm password is required"),
+                    recapcha: Yup.string()
+                      .min(6)
+                      .required("Recapcha is required"),
                   })}
                   onSubmit={async (values) => {
                     dispatch(SignupAction(values, setProcessing, ref_code));
                   }}
                 >
-                  {({ errors, touched }) => (
+                  {({ errors, touched, setFieldValue }) => (
                     <Form>
                       <div className="form-group">
                         <Field
@@ -187,7 +203,17 @@ const Signup: NextPage = () => {
                         <label></label>
                         <p className="invalid-feedback">Message </p>
                       </div>
-
+                      {recaptchaData?.NOCAPTCHA_SITEKEY &&
+                        recaptchaData?.google_recapcha === "1" && (
+                          <ReCAPTCHA
+                            sitekey={recaptchaData?.NOCAPTCHA_SITEKEY}
+                            render="explicit"
+                            onChange={(response: any) => {
+                              setFieldValue("recapcha", response);
+                              console.log("recapcha", response);
+                            }}
+                          />
+                        )}
                       <button
                         type="submit"
                         disabled={processing}

@@ -42,8 +42,9 @@ const DepositTab = ({ response, TurnoffSetShow }: any) => {
             <div className="address-area">
               <h3>Address</h3>
               <p>
-                Only send BCH to this address. Sending any other asset to this
-                address may result in the loss of your deposit!
+                Only send {response?.deposit?.coin_type} to this address.
+                Sending any other asset to this address may result in the loss
+                of your deposit!
               </p>
               <div className="input-url">
                 <input
@@ -51,7 +52,8 @@ const DepositTab = ({ response, TurnoffSetShow }: any) => {
                   className="form-control"
                   id="url"
                   defaultValue={response?.address}
-                  readOnly
+                  value={response?.amount}
+                  // readOnly
                 />
                 <button
                   type="button"

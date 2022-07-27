@@ -50,67 +50,60 @@ export const initialDashboardCallAction =
     // }
 
     await dispatch(setDashboard(response));
+
     const BuyResponse = await openBookDashboard(
-      dashboard?.order_data?.base_coin_id
-        ? dashboard?.order_data?.base_coin_id
-        : 2,
-      dashboard?.order_data?.trade_coin_id
-        ? dashboard?.order_data?.trade_coin_id
-        : 1,
+      response.order_data.base_coin_id ? response.order_data.base_coin_id : 2,
+      response.order_data.trade_coin_id ? response.order_data.trade_coin_id : 1,
       "dashboard",
       "buy",
       10
     );
     dispatch(setOpenBookBuy(BuyResponse?.data?.orders));
     const SellResponse = await openBookDashboard(
-      dashboard?.order_data?.base_coin_id
-        ? dashboard?.order_data?.base_coin_id
-        : 2,
-      dashboard?.order_data?.trade_coin_id
-        ? dashboard?.order_data?.trade_coin_id
-        : 1,
+      response.order_data.base_coin_id ? response.order_data.base_coin_id : 2,
+      response.order_data.trade_coin_id ? response.order_data.trade_coin_id : 1,
       "dashboard",
       "sell",
       10
     );
     dispatch(setOpenBooksell(SellResponse?.data?.orders));
     if (
-      dashboard?.order_data?.base_coin_id &&
-      dashboard?.order_data?.trade_coin_id &&
+      response.order_data.base_coin_id &&
+      response.order_data.trade_coin_id &&
       token
     ) {
       const ordersHistoryResponse = await ordersHistoryDashboard(
-        dashboard?.order_data?.base_coin_id,
-        dashboard?.order_data?.trade_coin_id,
+        response.order_data.base_coin_id,
+        response.order_data.trade_coin_id,
         "dashboard",
         "buy_sell"
       );
       dispatch(setOpenOrderHistory(ordersHistoryResponse?.data?.orders));
       const sellOrderHistoryresponse = await ordersHistoryDashboard(
-        dashboard?.order_data?.base_coin_id,
-        dashboard?.order_data?.trade_coin_id,
+        response.order_data.base_coin_id,
+        response.order_data.trade_coin_id,
         "dashboard",
         "sell"
       );
       dispatch(setSellOrderHistory(sellOrderHistoryresponse?.data?.orders));
       const buyOrderHistoryresponse = await ordersHistoryDashboard(
-        dashboard?.order_data?.base_coin_id,
-        dashboard?.order_data?.trade_coin_id,
+        response.order_data.base_coin_id,
+        response.order_data.trade_coin_id,
         "dashboard",
         "buy"
       );
       dispatch(setBuyOrderHistory(buyOrderHistoryresponse?.data?.orders));
       const tradeOrderHistoryResponse = await tradesHistoryDashboard(
-        dashboard?.order_data?.base_coin_id,
-        dashboard?.order_data?.trade_coin_id,
+        response.order_data.base_coin_id,
+        response.order_data.trade_coin_id,
         "dashboard"
       );
       dispatch(
         setTradeOrderHistory(tradeOrderHistoryResponse?.data?.transactions)
       );
       const marketTradesDashboardResponse = await marketTradesDashboard(
-        dashboard?.order_data?.base_coin_id,
-        dashboard?.order_data?.trade_coin_id,
+        response.order_data.base_coin_id,
+        response.order_data.trade_coin_id,
         "dashboard",
         50
       );

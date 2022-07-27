@@ -55,7 +55,7 @@ const TradesHistory = ({ marketTrades }: any) => {
                         rowSpan={1}
                         colSpan={1}
                         style={{ width: "170.656px" }}
-                        aria-label="Price(USDT)"
+                        aria-label="Price"
                       >
                         Price(<span></span>)
                       </th>

@@ -2,6 +2,11 @@ import type { GetServerSideProps, NextPage } from "next";
 import Slider from "react-slick";
 import Link from "next/link";
 import { landingPage } from "service/landing-page";
+import { useSelector } from "react-redux";
+import { RootState } from "state/store";
+import Navbar from "components/common/navbar";
+import { GetUserInfoByToken, GetUserInfoByTokenServer } from "service/user";
+import { parseCookies } from "nookies";
 const Home: NextPage = ({
   landing,
   bannerListdata,
@@ -11,6 +16,8 @@ const Home: NextPage = ({
   asset_coin_pairs,
   hourly_coin_pairs,
   latest_coin_pairs,
+  loggedin,
+  landing_banner_image,
 }: any) => {
   const settings = {
     dots: false,
@@ -45,43 +52,48 @@ const Home: NextPage = ({
       },
     ],
   };
+  // const { isLoggedIn } = useSelector((state: RootState) => state.user);
   return (
     <div>
       <div>
-        <header className="header-area">
-          <div className="container">
-            <div className="row align-items-center">
-              <div className="col-md-2">
-                <div className="logo-area">
-                  <a href="">
-                    <img
-                      src="/logo.svg"
-                      className="img-fluid cp-user-logo-large"
-                      alt=""
-                    />
-                  </a>
+        {loggedin ? (
+          <Navbar />
+        ) : (
+          <header className="header-area">
+            <div className="container">
+              <div className="row align-items-center">
+                <div className="col-md-2">
+                  <div className="logo-area">
+                    <a href="">
+                      <img
+                        src="/logo.svg"
+                        className="img-fluid cp-user-logo-large"
+                        alt=""
+                      />
+                    </a>
+                  </div>
                 </div>
-              </div>
-              <div className="col-md-10">
-                <div className="menu-area text-right">
-                  <nav className="main-menu mobile-menu">
-                    <ul id="nav">
-                      <li>
-                        <a href="/exchange/dashboard">Exchange</a>
-                      </li>
-                      <li>
-                        <Link href="/authentication/signin">Login</Link>
-                      </li>
-                      <li>
-                        <Link href="/authentication/signup">Sign up</Link>
-                      </li>
-                    </ul>
-                  </nav>
+                <div className="col-md-10">
+                  <div className="menu-area text-right">
+                    <nav className="main-menu mobile-menu">
+                      <ul id="nav">
+                        <li>
+                          <a href="/exchange/dashboard">Exchange</a>
+                        </li>
+                        <li>
+                          <Link href="/authentication/signin">Login</Link>
+                        </li>
+                        <li>
+                          <Link href="/authentication/signup">Sign up</Link>
+                        </li>
+                      </ul>
+                    </nav>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </header>
+          </header>
+        )}
 
         <section className="hero-banner-area">
           <div className="container">
@@ -98,6 +110,13 @@ const Home: NextPage = ({
                 <a href="/authentication/signup" className="primary-btn">
                   Register Now
                 </a>
+              </div>
+              <div className="col-md-6 ">
+                <img
+                  src={
+                    landing_banner_image || "/undraw_crypto_flowers_re_dyqo.svg"
+                  }
+                />
               </div>
             </div>
           </div>
@@ -760,7 +779,7 @@ const Home: NextPage = ({
               </div>
             </div>
             <div className="view-more text-center">
-              <a href="#" className="view-btn">
+              <a href="https://play.google.com/" className="view-btn">
                 More Download Options{" "}
                 <i className="fa fa-angle-right" aria-hidden="true" />
               </a>
@@ -822,8 +841,12 @@ const Home: NextPage = ({
               <h2 className="title">Start trading now</h2>
             </div>
             <div className="trading-button text-center">
-              <Link href="/authentication/signup">Sign Up</Link>
-              <Link href="/exchange/dashboard">Trade Now</Link>
+              <Link href="/authentication/signup">
+                <a className="primary-btn mr-5">Sign Up</a>
+              </Link>
+              <Link href="/exchange/dashboard">
+                <a className="primary-btn">Trade Now</a>
+              </Link>
             </div>
           </div>
         </section>
@@ -932,16 +955,11 @@ const Home: NextPage = ({
             <div className="container">
               <div className="footer-bottom-wrap">
                 <div className="row align-items-center">
-                  <div className="col-md-6">
-                    <div className="copyright-area text-center text-md-left">
+                  <div className="col-md-12">
+                    <div className="copyright-area text-center text-md-center">
                       <p>
-                        Copyright@2020 <a href="">TradexPro Admin</a>
+                        Copyright@2022 <a href="">TradexPro</a>
                       </p>
-                    </div>
-                  </div>
-                  <div className="col-md-6">
-                    <div className="footer-menu text-center text-md-right">
-                      <ul></ul>
                     </div>
                   </div>
                 </div>
@@ -967,6 +985,10 @@ const Home: NextPage = ({
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const { data } = await landingPage();
+  const cookies = parseCookies(ctx);
+  const response = cookies.token
+    ? await GetUserInfoByTokenServer(cookies.token)
+    : false;
   return {
     props: {
       landing: data,
@@ -977,6 +999,10 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
       asset_coin_pairs: data.asset_coin_pairs,
       hourly_coin_pairs: data.hourly_coin_pairs,
       latest_coin_pairs: data.latest_coin_pairs,
+      loggedin: cookies.token ? response.success : false,
+      landing_banner_image: data?.landing_banner_image
+        ? data?.landing_banner_image
+        : null,
     },
   };
 };

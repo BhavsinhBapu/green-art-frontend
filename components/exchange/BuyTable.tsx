@@ -1,28 +1,47 @@
 import React from "react";
+import Tooltip from "rc-tooltip";
+import "rc-tooltip/assets/bootstrap.css";
 const TradesTable = ({ buy }: any) => {
   return (
     <tbody>
       {buy?.length > 0 ? (
         buy?.map((item: any, index: number) => (
-          <tr className="odd" key={index}>
-            <>
-              <td>
-                <div className="asset">
-                  <span className="text-danger">{item.price}</span>
-                </div>
-              </td>
-              <td>
-                <div className="asset">
-                  <span className="asset-name">{item.amount}</span>
-                </div>
-              </td>
-              <td>
-                <div className="asset">
-                  <span className="asset-name">{item.my_size}</span>
-                </div>
-              </td>
-            </>
-          </tr>
+          <Tooltip
+            placement={"right"}
+            overlay={
+              <span>
+                <span>Price: {item.price}</span>
+                <br />
+                <span>Amount: {item.amount}</span>
+                <br />
+
+                <span>Size: {item.my_size}</span>
+              </span>
+            }
+            trigger={["hover"]}
+            key={index}
+            overlayClassName="rcTooltipOverlay"
+          >
+            <tr className="odd">
+              <>
+                <td>
+                  <div className="asset">
+                    <span className="text-danger">{item.price}</span>
+                  </div>
+                </td>
+                <td>
+                  <div className="asset">
+                    <span className="asset-name">{item.amount}</span>
+                  </div>
+                </td>
+                <td>
+                  <div className="asset">
+                    <span className="asset-name">{item.my_size}</span>
+                  </div>
+                </td>
+              </>
+            </tr>
+          </Tooltip>
         ))
       ) : (
         <tbody className="w-100">

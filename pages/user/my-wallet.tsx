@@ -4,7 +4,7 @@ import DepositTab from "components/wallet/DepositTab";
 import WirhdrawTab from "components/wallet/WirhdrawTab";
 import { toast } from "react-toastify";
 import React, { useEffect, useState } from "react";
-import { sortArray } from "common";
+import { formateZert, sortArray } from "common";
 import {
   SearchObjectArrayFuesJS,
   WalletDepositApiAction,
@@ -117,6 +117,14 @@ const MyWallet: NextPage = () => {
 
   useEffect(() => {
     getWalletLists("/wallet-list?page=1");
+
+    return () => {
+      setWalletList(null);
+    };
+  }, []);
+  useEffect(() => {
+    getWalletLists("/wallet-list?page=1&type=usd");
+
     return () => {
       setWalletList(null);
     };
@@ -312,28 +320,30 @@ const MyWallet: NextPage = () => {
                                     {item?.on_order}
                                   </span>
                                   <span className="usd">
-                                    ${item?.on_order_usd}
+                                    ${formateZert(item?.on_order_usd)}
                                   </span>
                                 </div>
                               </td>
                               <td>
                                 <div className="blance-text">
                                   <span className="blance">
-                                    {item?.balance}
+                                    {formateZert(item?.balance)}
                                   </span>
                                   <span className="usd">
-                                    ${item?.available_balance_usd}
+                                    ${formateZert(item?.available_balance_usd)}
                                   </span>
                                 </div>
                               </td>
                               <td>
                                 <div className="blance-text">
                                   <span className="blance">
-                                    {Number(item?.balance) +
-                                      Number(item?.on_order)}
+                                    {formateZert(
+                                      Number(item?.balance) +
+                                        Number(item?.on_order)
+                                    )}
                                   </span>
                                   <span className="usd">
-                                    ${item?.total_balance_usd}
+                                    ${formateZert(item?.total_balance_usd)}
                                   </span>
                                 </div>
                               </td>

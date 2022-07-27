@@ -1,13 +1,24 @@
 import type { GetServerSideProps, NextPage } from "next";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { authPageRequireCheck } from "middlewares/ssr-authentication-check";
 import { ResetPasswordAction } from "state/actions/user";
 import Link from "next/link";
-
+//@ts-ignore
+import ReCAPTCHA from "react-google-recaptcha";
+import { RecapCha } from "service/user";
 const ResetPassword: NextPage = () => {
   const [processing, setProcessing] = useState(false);
+  const [recaptchaData, setRecaptchaData] = useState<any>({});
+  const getRecapcha = async () => {
+    const response = await RecapCha();
+    setRecaptchaData(response.data);
+    return response;
+  };
+  useEffect(() => {
+    getRecapcha();
+  }, []);
   return (
     <div
       className="user-content-wrapper"
@@ -32,6 +43,7 @@ const ResetPassword: NextPage = () => {
                     password: "",
                     password_confirmation: "",
                     token: "",
+                    recapcha: "",
                   }}
                   validationSchema={Yup.object({
                     email: Yup.string()
@@ -47,12 +59,15 @@ const ResetPassword: NextPage = () => {
                       )
                       .required("Password confirmation is required"),
                     token: Yup.string().required("Token is required"),
+                    recapcha: Yup.string()
+                      .min(6)
+                      .required("Recapcha is required"),
                   })}
                   onSubmit={async (values) => {
                     await ResetPasswordAction(values, setProcessing);
                   }}
                 >
-                  {({ errors, touched }) => (
+                  {({ errors, touched, setFieldValue }) => (
                     <Form>
                       <div className="form-group">
                         <Field
@@ -124,6 +139,17 @@ const ResetPassword: NextPage = () => {
                         component="div"
                         className="red-text"
                       />
+                      {recaptchaData?.NOCAPTCHA_SITEKEY &&
+                        recaptchaData?.google_recapcha === "1" && (
+                          <ReCAPTCHA
+                            sitekey={recaptchaData?.NOCAPTCHA_SITEKEY}
+                            render="explicit"
+                            onChange={(response: any) => {
+                              setFieldValue("recapcha", response);
+                              console.log("recapcha", response);
+                            }}
+                          />
+                        )}
                       <button
                         type="submit"
                         className="btn nimmu-user-sibmit-button"

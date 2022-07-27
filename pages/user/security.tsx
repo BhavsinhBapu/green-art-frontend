@@ -1,7 +1,7 @@
 import type { GetServerSideProps, NextPage } from "next";
 import ProfileSidebar from "layout/profile-sidebar";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "state/store";
 import Link from "next/link";
 import { UserSettingsAction } from "state/actions/settings";
@@ -10,6 +10,7 @@ const Security: NextPage = () => {
   const { user } = useSelector((state: RootState) => state.user);
   const [languageList, setLanguageList] = useState<any>([]);
   const [settings, setSettings] = useState<any>();
+  const dispatch = useDispatch();
   const makeEmailSecure = (email: string) => {
     const [first, ...rest] = email.split("@");
     return first[0] + "*****" + "@" + rest.join("@");
@@ -19,7 +20,7 @@ const Security: NextPage = () => {
     return phoneNumber.replace(middleNumbers, "*******");
   };
   useEffect(() => {
-    UserSettingsAction(setSettings, setLanguageList);
+    dispatch(UserSettingsAction(setSettings, setLanguageList));
     return () => {
       setSettings(null);
       setLanguageList([]);
@@ -28,6 +29,7 @@ const Security: NextPage = () => {
   return (
     <div className="page-wrap">
       <ProfileSidebar />
+
       <div className="page-main-content">
         <div className="container-fluid">
           <div className="section-top-wrap mb-25">
@@ -56,24 +58,16 @@ const Security: NextPage = () => {
                     </div>
                   </div>
                   <div className="security-right">
-                    {settings?.user?.google2fa === 0 ? (
-                      <a href="#" className="action-btn remove-btn">
-                        Disabled
-                      </a>
-                    ) : (
-                      <a href="#" className="action-btn change-btn">
-                        Enabled
-                      </a>
-                    )}
-
-                    {settings?.user?.google2fa === 0 ? (
+                    {settings?.user?.google2fa === 1 ? (
                       <Link href="/user/settings">
-                        <a className="action-btn enable-btn">Enable?</a>
+                        <a href="" className="action-btn remove-btn">
+                          Disable
+                        </a>
                       </Link>
                     ) : (
                       <Link href="/user/settings">
-                        <a href="" className="action-btn remove-btn">
-                          Remove ?
+                        <a href="" className="action-btn change-btn">
+                          Enable
                         </a>
                       </Link>
                     )}
@@ -102,16 +96,11 @@ const Security: NextPage = () => {
                   </div>
                   <div className="security-right">
                     {user.phone_verified === 0 ? (
-                      <a className="action-btn remove-btn">Unverified</a>
-                    ) : (
-                      <a className="action-btn change-btn">Verified</a>
-                    )}
-                    {user.phone_verified === 0 ? (
                       <Link href="/user/phone-verification">
                         <a className="action-btn enable-btn">Verify?</a>
                       </Link>
                     ) : (
-                      <a href="" className="action-btn remove-btn">
+                      <a href="" className="action-btn change-btn">
                         Verified
                       </a>
                     )}
@@ -141,7 +130,7 @@ const Security: NextPage = () => {
                     )}
                   </div>
                   <div className="security-right">
-                    <a href="#" className="action-btn change-btn">
+                    <a href="#" className="action-btn change-btn" hidden>
                       Verified
                     </a>
                   </div>
@@ -167,32 +156,6 @@ const Security: NextPage = () => {
                     <Link href="/user/change-password">
                       <a className="action-btn enable-btn">Change</a>
                     </Link>
-                  </div>
-                </div>
-                <div className="single-security">
-                  <div className="security-left">
-                    <div className="security-info">
-                      <img
-                        src="/fingerprint-scan.svg"
-                        alt="fingerprint"
-                        className="security-icon"
-                      />
-                      <div className="security-content">
-                        <h4>Google auth enable for login</h4>
-                        <p>To enable two factor authentication at log In</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="security-right">
-                    <a href="#" className="action-btn remove-btn">
-                      Disabled
-                    </a>
-                    <a
-                      href="http://localhost:8000/user/setting"
-                      className="action-btn enable-btn"
-                    >
-                      Enable ?
-                    </a>
                   </div>
                 </div>
               </div>

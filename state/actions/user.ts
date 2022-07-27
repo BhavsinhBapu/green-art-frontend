@@ -15,6 +15,7 @@ import {
   G2fVerifyApi,
   GetUserInfoByTokenServer,
   verifyEmailApi,
+  RecapCha,
 } from "service/user";
 import request from "lib/request";
 import {
@@ -515,6 +516,7 @@ export const G2fVerifyAction = (code: any) => async (dispatch: any) => {
       progress: undefined,
       className: "dark-toast",
     });
+    return true;
   } else {
     toast.error(response.message, {
       position: "top-right",
@@ -525,5 +527,6 @@ export const G2fVerifyAction = (code: any) => async (dispatch: any) => {
       draggable: true,
       progress: undefined,
     });
+    return false;
   }
 };

@@ -62,18 +62,7 @@ const G2fverify = () => {
                   type="submit"
                   className="btn btn-primary nimmu-user-sibmit-button"
                 >
-                  {processing ? (
-                    <>
-                      <span
-                        className="spinner-border spinner-border-md"
-                        role="status"
-                        aria-hidden="true"
-                      ></span>
-                      <span>Please wait</span>
-                    </>
-                  ) : (
-                    "Verify"
-                  )}
+                  Verify
                 </button>
               </Form>
             )}

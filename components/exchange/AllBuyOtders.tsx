@@ -55,9 +55,9 @@ const AllBuyOtders = ({ OpenBookBuy }: any) => {
                           rowSpan={1}
                           colSpan={1}
                           // style={{ width: "109.906px" }}
-                          aria-label="Price(USDT)"
+                          aria-label="Price"
                         >
-                          Price(<span>USDT</span>)
+                          Price
                         </th>
                         <th
                           className="trades-table-col amount text-center w-30 sorting_disabled"
