@@ -128,7 +128,7 @@ const Edit: NextPage = () => {
                               {countries.map((country: any) => (
                                 <option
                                   key={country.value}
-                                  value={country.value}
+                                  value={country.value.toUpperCase()}
                                   selected={country.value === user?.country}
                                 >
                                   {country.name}

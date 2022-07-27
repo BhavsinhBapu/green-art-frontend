@@ -40,7 +40,10 @@ const ForgotPassword: NextPage = () => {
                 <Formik
                   initialValues={{
                     email: "",
-                    recapcha: "",
+                    recapcha:
+                      recaptchaData?.google_recapcha !== "1"
+                        ? "ksmaldkmalksmdlkamsdlk"
+                        : "",
                   }}
                   validationSchema={Yup.object({
                     email: Yup.string()

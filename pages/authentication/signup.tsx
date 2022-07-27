@@ -52,7 +52,10 @@ const Signup: NextPage = () => {
                     last_name: "",
                     password: "",
                     password_confirmation: "",
-                    recapcha: "",
+                    recapcha:
+                      recaptchaData?.google_recapcha !== "1"
+                        ? "ksmaldkmalksmdlkamsdlk"
+                        : "",
                   }}
                   validationSchema={Yup.object({
                     email: Yup.string()

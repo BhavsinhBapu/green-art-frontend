@@ -44,7 +44,10 @@ const Signin: NextPage = () => {
                   initialValues={{
                     email: "",
                     code: "",
-                    recapcha: "",
+                    recapcha:
+                      recaptchaData?.google_recapcha !== "1"
+                        ? "ksmaldkmalksmdlkamsdlk"
+                        : "",
                   }}
                   validationSchema={Yup.object({
                     email: Yup.string()
