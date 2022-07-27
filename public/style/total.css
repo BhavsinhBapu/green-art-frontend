@@ -5216,6 +5216,7 @@ table.dataTable tbody tr td {
   background: #ffffff;
   border-radius: 5px;
   border: none;
+  color: black;
 }
 .deposit-info-area .bar-code-area {
   margin-top: 20px;

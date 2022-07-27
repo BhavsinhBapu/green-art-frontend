@@ -1,149 +1,94 @@
 import React from "react";
-import Tooltip from "rc-tooltip";
-import "rc-tooltip/assets/bootstrap.css";
+import BuyTable from "./BuyTable";
 const AllSellOrders = ({ OpenBooksell }: any) => {
   return (
-    <div className="sell-order">
-      <div className="trades-table">
-        <div className="trades-table-body" />
-        <div
-          id="exchangeAllSellOrders_wrapper"
-          className="dataTables_wrapper no-footer"
-        >
-          <div
-            id="exchangeAllSellOrders_processing"
-            className="dataTables_processing"
-            style={{ display: "none" }}
-          >
-            Processing...
+    <div>
+      {" "}
+      <div className="buy-order">
+        <div className="trades-table">
+          <div className="trades-table-header">
+            <div className="trades-table-row" />
           </div>
-          <div className="dataTables_scroll">
+          <div className="trades-table-body" />
+          <div
+            id="exchangeAllBuyOrders_wrapper"
+            className="dataTables_wrapper no-footer"
+          >
             <div
-              className="dataTables_scrollHead"
-              style={{
-                overflow: "hidden",
-                position: "relative",
-                border: "0px",
-                width: "100%",
-              }}
+              id="exchangeAllBuyOrders_processing"
+              className="dataTables_processing"
+              style={{ display: "none" }}
             >
+              Processing...
+            </div>
+            <div className="dataTables_scroll">
               <div
-                className="dataTables_scrollHeadInner"
+                className="dataTables_scrollHead"
                 style={{
-                  boxSizing: "content-box",
-                  width: "431.25px",
-                  paddingRight: "0px",
+                  overflow: "hidden",
+                  position: "relative",
+                  border: "0px",
+                  width: "100%",
                 }}
               >
-                <table
-                  className="table dataTable no-footer"
-                  role="grid"
+                <div
+                  className="dataTables_scrollBody"
                   style={{
-                    marginLeft: "0px",
-                    width: "431.25px",
+                    position: "relative",
+                    overflow: "auto",
+                    height: "244px",
+                    width: "100%",
                   }}
                 >
-                  <thead>
-                    <tr role="row"></tr>
-                    <tr role="row"></tr>
-                    <tr role="row"></tr>
-                  </thead>
-                </table>
+                  <table
+                    className="table dataTable no-footer"
+                    role="grid"
+                    style={{
+                      marginLeft: "0px",
+                      width: "431.25px",
+                    }}
+                  >
+                    <thead>
+                      <tr role="row">
+                        <th
+                          className="trades-table-col price text-pink w-30 sorting_desc"
+                          rowSpan={1}
+                          colSpan={1}
+                          // style={{ width: "109.906px" }}
+                          aria-label="Price"
+                        >
+                          Price
+                        </th>
+                        <th
+                          className="trades-table-col amount text-center w-30 sorting_disabled"
+                          rowSpan={1}
+                          colSpan={1}
+                          // style={{ width: "133.656px" }}
+                          aria-label="Amount"
+                        >
+                          Amount
+                        </th>
+                        <th
+                          className="trades-table-col volume sorting_disabled"
+                          rowSpan={1}
+                          colSpan={1}
+                          // style={{ width: "127.688px" }}
+                          aria-label="	My Size"
+                        >
+                          My Size
+                        </th>
+                      </tr>
+                    </thead>
+                    <BuyTable buy={OpenBooksell} />
+                  </table>
+                </div>
               </div>
             </div>
-            <div
-              className="dataTables_scrollBody"
-              style={{
-                position: "relative",
-                overflow: "auto",
-                height: "425px",
-                width: "100%",
-              }}
-            >
-              <table
-                id="exchangeAllSellOrders"
-                className="table dataTable no-footer"
-                role="grid"
-                style={{ width: "100%" }}
-              >
-                <thead>
-                  <tr role="row">
-                    <th
-                      className="table-col price sorting_disabled"
-                      rowSpan={1}
-                      colSpan={1}
-                      style={{ width: "170.656px" }}
-                      aria-label="Price"
-                    ></th>
-                    <th
-                      className="table-col amount sorting_disabled"
-                      rowSpan={1}
-                      colSpan={1}
-                      style={{ width: "120.75px" }}
-                      aria-label="Amount"
-                    ></th>
-                    <th
-                      className="table-col time text-right sorting_desc"
-                      rowSpan={1}
-                      colSpan={1}
-                      style={{ width: "79.8438px" }}
-                      aria-label="Time"
-                    ></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {OpenBooksell?.length !== 0 ? (
-                    OpenBooksell?.map((item: any, index: number) => (
-                      <Tooltip
-                        key={index}
-                        placement={"right"}
-                        overlay={
-                          <span>
-                            <span>Price: {item.price}</span>
-                            <br />
-                            <span>Amount: {item.amount}</span>
-                            <br />
-
-                            <span>Size: {item.my_size}</span>
-                          </span>
-                        }
-                        trigger={["hover"]}
-                        overlayClassName="rcTooltipOverlay"
-                      >
-                        <tr className="odd">
-                          <td>
-                            <div className="asset">
-                              <span className="text-success">{item.price}</span>
-                            </div>
-                          </td>
-                          <td>
-                            <div className="asset">
-                              <span className="asset-name">{item.amount}</span>
-                            </div>
-                          </td>
-                          <td>
-                            <div className="asset">
-                              <span className="asset-name">{item.my_size}</span>
-                            </div>
-                          </td>
-                        </tr>
-                      </Tooltip>
-                    ))
-                  ) : (
-                    <tr>
-                      <td className="">No data available in table</td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
-            </div>
           </div>
-        </div>
-        <div className="trades-table-footer">
-          <div className="trades-table-row">
-            <div className="trades-table-col volume"></div>
-            <div className="trades-table-col price total-price" />
-            <div className="trades-table-col price total-price"></div>
+          <div className="trades-table-footer">
+            <div className="trades-table-row">
+              <div className="trades-table-col price total-price" />
+            </div>
           </div>
         </div>
       </div>

@@ -17,12 +17,18 @@ const ExchangeBox = () => {
   );
   const [tradingTab, setTradingTab] = useState<tradingTabType>(1);
   const [buySellLimitCoinData, setBuySellLimitCoinData] = useState<any>({
-    price: dashboard?.order_data?.sell_price,
+    price:
+      tradingTab === 1
+        ? dashboard?.order_data?.sell_price
+        : dashboard?.order_data?.buy_price,
     amount: 0.0,
     total: 0.0,
   });
   const [buySellMarketCoinData, setBuySellMarketCoinData] = useState<any>({
-    price: dashboard?.order_data?.sell_price,
+    price:
+      tradingTab === 1
+        ? dashboard?.order_data?.sell_price
+        : dashboard?.order_data?.buy_price,
     amount: 0.0,
     total: 0.0,
   });
@@ -43,12 +49,18 @@ const ExchangeBox = () => {
   };
   const initialSetUp = () => {
     setBuySellLimitCoinData({
-      price: dashboard?.order_data?.sell_price,
+      price:
+        tradingTab === 1
+          ? dashboard?.order_data?.sell_price
+          : dashboard?.order_data?.buy_price,
       amount: 0,
       total: 0,
     });
     setBuySellMarketCoinData({
-      price: dashboard?.order_data?.sell_price,
+      price:
+        tradingTab === 1
+          ? dashboard?.order_data?.sell_price
+          : dashboard?.order_data?.buy_price,
       amount: 0,
       total: 0,
     });
@@ -62,7 +74,7 @@ const ExchangeBox = () => {
 
   useEffect(() => {
     initialSetUp();
-  }, [currentPair, dashboard]);
+  }, [currentPair, dashboard, tradingTab]);
 
   return (
     <div className="exchange-box order-box">

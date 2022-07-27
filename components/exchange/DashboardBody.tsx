@@ -6,7 +6,7 @@ import ExchangeBox from "./ExchangeBox";
 import BuyTable from "./BuyTable";
 import SellTable from "./SellTable";
 import TradesHistory from "./TradesHistory";
-import AllBuyOtders from "./AllBuyOtders";
+import AllBuyOrders from "./AllBuyOrders";
 import dynamic from "next/dynamic";
 import OrderHistorySection from "./orderHistorySection";
 const TradingChart = dynamic(
@@ -25,7 +25,6 @@ const DashboardBody = () => {
     tradeOrderHistory,
     marketTrades,
   } = useSelector((state: RootState) => state.exchange);
-
   return (
     <>
       <div className="col-xl-3">
@@ -34,8 +33,8 @@ const DashboardBody = () => {
             <h3>Order Book</h3>
           </div>
 
-          <AllBuyOtders OpenBookBuy={OpenBookBuy} />
           <AllSellOrders OpenBooksell={OpenBooksell} />
+          <AllBuyOrders OpenBookBuy={OpenBookBuy} />
         </div>
       </div>
       <div className="col-xl-6">
