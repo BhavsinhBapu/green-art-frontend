@@ -1,7 +1,13 @@
 import React from "react";
 import Tooltip from "rc-tooltip";
 import "rc-tooltip/assets/bootstrap.css";
+import { useDispatch } from "react-redux";
+import { setBuyPrice, setSellPrice } from "state/reducer/exchange";
 const TradesTable = ({ buy }: any) => {
+  const dispatch = useDispatch();
+  const changeSellPrice = (price: number) => {
+    dispatch(setSellPrice(price));
+  };
   return (
     <tbody>
       {buy?.length > 0 ? (
@@ -22,7 +28,7 @@ const TradesTable = ({ buy }: any) => {
             key={index}
             overlayClassName="rcTooltipOverlay"
           >
-            <tr className="odd">
+            <tr className="odd" onClick={() => changeSellPrice(item.price)}>
               <>
                 <td>
                   <div className="asset">

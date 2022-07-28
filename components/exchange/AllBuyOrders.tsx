@@ -1,8 +1,13 @@
 import React from "react";
 import Tooltip from "rc-tooltip";
 import "rc-tooltip/assets/bootstrap.css";
+import { useDispatch } from "react-redux";
+import { setBuyPrice } from "state/reducer/exchange";
 const AllBuyOrders = ({ OpenBookBuy }: any) => {
-  console.log("AllBuyOrders", AllBuyOrders);
+  const dispatch = useDispatch();
+  const changeSellPrice = (price: number) => {
+    dispatch(setBuyPrice(price));
+  };
   return (
     <div className="sell-order">
       <div className="trades-table">
@@ -111,7 +116,12 @@ const AllBuyOrders = ({ OpenBookBuy }: any) => {
                         trigger={["hover"]}
                         overlayClassName="rcTooltipOverlay"
                       >
-                        <tr className="odd">
+                        <tr
+                          className="odd"
+                          onClick={() => {
+                            changeSellPrice(item.price);
+                          }}
+                        >
                           <td>
                             <div className="asset">
                               <span className="text-success">{item.price}</span>
