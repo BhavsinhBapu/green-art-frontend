@@ -420,6 +420,7 @@ export const DISABLED_FEATURES = [
   "header_saveload",
   "header_symbol_search",
   "header_symbol_search_hot_key",
+  "toggle_auto_size",
 ];
 
 export const INTERVAL = {

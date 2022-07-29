@@ -14,11 +14,13 @@ import Head from "next/head";
 // import "bootstrap/dist/css/bootstrap.min.css";
 import Layout from "layout/index";
 import Script from "next/script";
+import useTranslation from "next-translate/useTranslation";
 function MyApp({ Component, pageProps }: AppProps) {
+  const { t } = useTranslation("common");
   return (
     <>
       <Head>
-        <title>TradexPro Exchange</title>
+        <title>{t("TradexPro Exchange")}</title>
       </Head>
       <Provider store={store}>
         <Layout>

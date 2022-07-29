@@ -8,7 +8,9 @@ import Link from "next/link";
 //@ts-ignore
 import ReCAPTCHA from "react-google-recaptcha";
 import { RecapCha } from "service/user";
+import useTranslation from "next-translate/useTranslation";
 const ResetPassword: NextPage = () => {
+  const { t } = useTranslation("common");
   const [processing, setProcessing] = useState(false);
   const [recaptchaData, setRecaptchaData] = useState<any>({});
   const getRecapcha = async () => {
@@ -32,9 +34,11 @@ const ResetPassword: NextPage = () => {
             <div className="user-form">
               <div className="user-form-inner">
                 <div className="form-top">
-                  <h2>Forgot Password ?</h2>
+                  <h2>{t("Forgot Password ?")}</h2>
                   <p>
-                    Please enter the email address to request a password reset.
+                    {t(
+                      "Please enter the email address to request a password reset."
+                    )}
                   </p>
                 </div>
                 <Formik
@@ -50,21 +54,21 @@ const ResetPassword: NextPage = () => {
                   }}
                   validationSchema={Yup.object({
                     email: Yup.string()
-                      .email("Invalid email address")
-                      .required("Email is required"),
+                      .email(t("Invalid email address"))
+                      .required(t("Email is required")),
                     password: Yup.string()
-                      .min(6, "Password must be at least 6 characters")
-                      .required("Password is required"),
+                      .min(6, t("Password must be at least 6 characters"))
+                      .required(t("Password is required")),
                     password_confirmation: Yup.string()
                       .oneOf(
                         [Yup.ref("password"), null],
-                        "Passwords must match"
+                        t("Passwords must match")
                       )
-                      .required("Password confirmation is required"),
-                    token: Yup.string().required("Token is required"),
+                      .required(t("Password confirmation is required")),
+                    token: Yup.string().required(t("Token is required")),
                     recapcha: Yup.string()
                       .min(6)
-                      .required("Recapcha is required"),
+                      .required(t("Recapcha is required")),
                   })}
                   onSubmit={async (values) => {
                     await ResetPasswordAction(values, setProcessing);
@@ -134,7 +138,7 @@ const ResetPassword: NextPage = () => {
                           className={`form-control ${
                             touched.token && errors.token ? "is-invalid" : ""
                           }`}
-                          placeholder="Your token here"
+                          placeholder={t("Your token here")}
                         />
                       </div>
                       <ErrorMessage
@@ -164,10 +168,10 @@ const ResetPassword: NextPage = () => {
                               role="status"
                               aria-hidden="true"
                             ></span>
-                            <span>Please wait</span>
+                            <span>{t("Please wait")}</span>
                           </>
                         ) : (
-                          "Submit"
+                          t("Submit")
                         )}
                       </button>
                     </Form>
@@ -178,14 +182,14 @@ const ResetPassword: NextPage = () => {
           </div>
           <div className="col-md-6">
             <div className="user-content-text text-center">
-              <h3>Welcome Back To</h3>
+              <h3>{t("Welcome Back To")}</h3>
               <a className="auth-logo">
                 <img src="/logo.svg" className="img-fluid" alt="" />
               </a>
               <p>
-                Return to sign in{" "}
+                {t("Return to sign in")}
                 <Link href="/authentication/signin">
-                  <a> Sign in</a>
+                  <a> {t("Sign in")}</a>
                 </Link>
               </p>
             </div>

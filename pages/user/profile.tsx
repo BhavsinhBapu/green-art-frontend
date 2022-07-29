@@ -5,7 +5,9 @@ import { parseCookies } from "nookies";
 import { GetUserInfoByTokenServer } from "service/user";
 import ProfileSidebar from "layout/profile-sidebar";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
+import useTranslation from "next-translate/useTranslation";
 const Profile: NextPage = ({ user }: any) => {
+  const { t } = useTranslation("common");
   return (
     <div className="page-wrap">
       <ProfileSidebar />
@@ -20,7 +22,7 @@ const Profile: NextPage = ({ user }: any) => {
             </div>
           </div>
           <div className="profile-area">
-            <h4 className="section-title-medium">Profile Information</h4>
+            <h4 className="section-title-medium">{t("Profile Information")}</h4>
             <div className="section-wrapper">
               <div className="user-profile">
                 <div className="row">
@@ -43,7 +45,7 @@ const Profile: NextPage = ({ user }: any) => {
                     <div className="user-profile-info">
                       <ul>
                         <li>
-                          <span>Name</span>
+                          <span>{t("Name")}</span>
                           <span className="cp-user-dot">:</span>
                           <span>
                             {user?.first_name
@@ -52,51 +54,56 @@ const Profile: NextPage = ({ user }: any) => {
                           </span>
                         </li>
                         <li>
-                          <span>Country</span>
+                          <span>{t("Country")}</span>
                           <span className="cp-user-dot">:</span>
                           <span>
                             {user?.country_name
                               ? user?.country_name
                               : user?.country
                               ? user?.country
-                              : "No country"}
+                              : t("No country")}
                           </span>
                         </li>
                         <li>
-                          <span>Email</span>
+                          <span>{t("Email")}</span>
                           <span className="cp-user-dot">:</span>
-                          <span> {user?.email ? user?.email : "No email"}</span>
+                          <span>
+                            {" "}
+                            {user?.email ? user?.email : t("No email")}
+                          </span>
                         </li>
                         <li>
-                          <span>Email Verification</span>
+                          <span>{t("Email Verification")}</span>
                           <span className="cp-user-dot">:</span>
                           <span>
                             {user?.is_verified ? (
                               <span className="badge badge-success">
-                                Active
+                                {t("Active")}
                               </span>
                             ) : (
                               <span className="badge badge-danger">
-                                Inactive
+                                {t("Inactive")}
                               </span>
                             )}
                           </span>
                         </li>
                         <li>
-                          <span>Phone</span>
+                          <span>{t("Phone")}</span>
                           <span className="cp-user-dot">:</span>
                           <span> {user?.phone ? user?.phone : "No phone"}</span>
                         </li>
                         <li>
-                          <span>Role</span>
+                          <span>{t("Role")}</span>
                           <span className="cp-user-dot">:</span>
-                          <span>User</span>
+                          <span>{t("User")}</span>
                         </li>
                         <li>
-                          <span>Active Status</span>
+                          <span>{t("Active Status")}</span>
                           <span className="cp-user-dot">:</span>
                           <span>
-                            <span className="badge badge-success">Active</span>
+                            <span className="badge badge-success">
+                              {t("Active")}
+                            </span>
                           </span>
                         </li>
                       </ul>

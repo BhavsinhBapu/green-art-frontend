@@ -6,7 +6,9 @@ import { G2fVerifyAction } from "state/actions/user";
 import { useDispatch } from "react-redux";
 import { g2fPageRequireCheck } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
+import useTranslation from "next-translate/useTranslation";
 const G2fverify = () => {
+  const { t } = useTranslation("common");
   const [processing, setProcessing] = useState(false);
   const dispatch = useDispatch();
   return (
@@ -17,10 +19,11 @@ const G2fverify = () => {
             <a className="auth-logo" href="javascript:">
               <img src="/logo.svg" className="img-fluid" alt="" />
             </a>
-            <h2>Two Factor Authentication</h2>
+            <h2>{t("Two Factor Authentication")}</h2>
             <p>
-              Open your authentication app and enter the code for TradexPro
-              Admin
+              {t(
+                "Open your authentication app and enter the code for TradexPro Admin"
+              )}
             </p>
           </div>
           <Formik
@@ -29,8 +32,8 @@ const G2fverify = () => {
             }}
             validationSchema={Yup.object({
               code: Yup.string()
-                .required("Code is required")
-                .min(6, "Code must be at least 6 characters"),
+                .required(t("Code is required"))
+                .min(6, t("Code must be at least 6 characters")),
             })}
             onSubmit={async (values, { setSubmitting }) => {
               setProcessing(true);
@@ -42,7 +45,7 @@ const G2fverify = () => {
             {({ errors, touched }) => (
               <Form>
                 <div className="form-group">
-                  <label>Authentication Code</label>
+                  <label>{t("Authentication Code")}</label>
                   <Field
                     type="number"
                     id="exampleInputEmail1"
@@ -62,7 +65,7 @@ const G2fverify = () => {
                   type="submit"
                   className="btn btn-primary nimmu-user-sibmit-button"
                 >
-                  Verify
+                  {t("Verify")}
                 </button>
               </Form>
             )}

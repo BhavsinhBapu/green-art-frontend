@@ -2,11 +2,12 @@ import type { GetServerSideProps, NextPage } from "next";
 import Slider from "react-slick";
 import Link from "next/link";
 import { landingPage } from "service/landing-page";
-import { useSelector } from "react-redux";
-import { RootState } from "state/store";
+import useTranslation from "next-translate/useTranslation";
+
 import Navbar from "components/common/navbar";
-import { GetUserInfoByToken, GetUserInfoByTokenServer } from "service/user";
+import { GetUserInfoByTokenServer } from "service/user";
 import { parseCookies } from "nookies";
+import { useRouter } from "next/router";
 const Home: NextPage = ({
   landing,
   bannerListdata,
@@ -19,6 +20,8 @@ const Home: NextPage = ({
   loggedin,
   landing_banner_image,
 }: any) => {
+  const { t } = useTranslation("common");
+  const { asPath, locale, reload, push } = useRouter();
   const settings = {
     dots: false,
     infinite: true,
@@ -52,7 +55,6 @@ const Home: NextPage = ({
       },
     ],
   };
-  // const { isLoggedIn } = useSelector((state: RootState) => state.user);
   return (
     <div>
       <div>
@@ -78,13 +80,17 @@ const Home: NextPage = ({
                     <nav className="main-menu mobile-menu">
                       <ul id="nav">
                         <li>
-                          <a href="/exchange/dashboard">Exchange</a>
+                          <a href="/exchange/dashboard">{t("Exchange")}</a>
                         </li>
                         <li>
-                          <Link href="/authentication/signin">Login</Link>
+                          <Link href="/authentication/signin">
+                            {t("Login")}
+                          </Link>
                         </li>
                         <li>
-                          <Link href="/authentication/signup">Sign up</Link>
+                          <Link href="/authentication/signup">
+                            {t("Sign up")}
+                          </Link>
                         </li>
                       </ul>
                     </nav>
@@ -101,14 +107,16 @@ const Home: NextPage = ({
               <div className="col-md-6">
                 <h1 className="banner-title">
                   {landing?.landing_title ||
-                    "Buy & Sell Instantly And Hold Cryptocurrency"}
+                    t("Buy & Sell Instantly And Hold Cryptocurrency")}
                 </h1>
                 <p className="banner-content">
                   {landing?.landing_description ||
-                    "Tradexpro exchange is such a marketplace where people can trade directly with each other."}
+                    t(
+                      "Tradexpro exchange is such a marketplace where people can trade directly with each other."
+                    )}
                 </p>
                 <a href="/authentication/signup" className="primary-btn">
-                  Register Now
+                  {t("Register Now")}
                 </a>
               </div>
               <div className="col-md-6 ">
@@ -164,9 +172,11 @@ const Home: NextPage = ({
         <section className="market-trend-area">
           <div className="container">
             <div className="section-title">
-              <h2 className="title">
-                {landing?.market_trend_title || "Market Trend"}
-              </h2>
+              <Link href={"/"} locale={"es"}>
+                <h2 className="title">
+                  {landing?.market_trend_title || t("Market Trend")}
+                </h2>
+              </Link>
             </div>
             <div className="exchange-tab-menu">
               <ul className="nav nav-tabs" id="exchangeTab" role="tablist">
@@ -180,7 +190,7 @@ const Home: NextPage = ({
                     aria-controls="CoreAssets"
                     aria-selected="true"
                   >
-                    Core Assets
+                    {t("Core Assets")}
                   </a>
                 </li>
                 <li className="nav-item" role="presentation">
@@ -193,7 +203,7 @@ const Home: NextPage = ({
                     aria-controls="Gainers"
                     aria-selected="false"
                   >
-                    24H Gainers
+                    {t("24H Gainers")}
                   </a>
                 </li>
                 <li className="nav-item" role="presentation">
@@ -206,7 +216,7 @@ const Home: NextPage = ({
                     aria-controls="Listings"
                     aria-selected="false"
                   >
-                    New Listings
+                    {t("New Listings")}
                   </a>
                 </li>
               </ul>
@@ -239,7 +249,7 @@ const Home: NextPage = ({
                               colSpan={1}
                               style={{ width: "137.516px" }}
                             >
-                              Market
+                              {t("Market")}
                             </th>
                             <th
                               scope="col"
@@ -248,7 +258,7 @@ const Home: NextPage = ({
                               colSpan={1}
                               style={{ width: "81.2812px" }}
                             >
-                              Price
+                              {t("Price")}
                             </th>
                             <th
                               scope="col"
@@ -257,7 +267,7 @@ const Home: NextPage = ({
                               colSpan={1}
                               style={{ width: "193.797px" }}
                             >
-                              Change (24h)
+                              {t("Change (24h)")}
                             </th>
                             <th
                               scope="col"
@@ -266,7 +276,7 @@ const Home: NextPage = ({
                               colSpan={1}
                               style={{ width: "182.297px" }}
                             >
-                              Chart
+                              {t("Chart")}
                             </th>
                             <th
                               scope="col"
@@ -275,7 +285,7 @@ const Home: NextPage = ({
                               colSpan={1}
                               style={{ width: "207.766px" }}
                             >
-                              Volume
+                              {t("Volume")}
                             </th>
                             <th
                               scope="col"
@@ -284,7 +294,7 @@ const Home: NextPage = ({
                               colSpan={1}
                               style={{ width: "127.344px" }}
                             >
-                              Actions
+                              {t("Actions")}
                             </th>
                           </tr>
                         </thead>
@@ -301,12 +311,17 @@ const Home: NextPage = ({
                                       /{item?.parent_coin_name}
                                     </span>
                                   </div>
-                                  <div className="currencyName">Bitcoin</div>
                                 </a>
                               </td>
                               <td className="txtBlack">{item.last_price}</td>
                               <td>
-                                <span className="changePos  text-success ">
+                                <span
+                                  className={`changePos  ${
+                                    parseFloat(item.price_change) >= 0
+                                      ? "text-success"
+                                      : "text-danger"
+                                  } `}
+                                >
                                   {item.price_change}
                                 </span>
                               </td>
@@ -348,7 +363,7 @@ const Home: NextPage = ({
                                   href="/exchange/dashboard"
                                   className="btnTrade btn-link"
                                 >
-                                  Trade
+                                  {t("Trade")}
                                 </a>
                               </td>
                             </tr>
@@ -386,7 +401,7 @@ const Home: NextPage = ({
                               colSpan={1}
                               style={{ width: "0px" }}
                             >
-                              Market
+                              {t("Market")}
                             </th>
                             <th
                               scope="col"
@@ -395,7 +410,7 @@ const Home: NextPage = ({
                               colSpan={1}
                               style={{ width: "0px" }}
                             >
-                              Price
+                              {t("Price")}
                             </th>
                             <th
                               scope="col"
@@ -404,7 +419,7 @@ const Home: NextPage = ({
                               colSpan={1}
                               style={{ width: "0px" }}
                             >
-                              Change (24h)
+                              {t("Change (24h)")}
                             </th>
                             <th
                               scope="col"
@@ -413,7 +428,7 @@ const Home: NextPage = ({
                               colSpan={1}
                               style={{ width: "0px" }}
                             >
-                              Chart
+                              {t("Chart")}
                             </th>
                             <th
                               scope="col"
@@ -422,7 +437,7 @@ const Home: NextPage = ({
                               colSpan={1}
                               style={{ width: "0px" }}
                             >
-                              Volume
+                              {t("Volume")}
                             </th>
                             <th
                               scope="col"
@@ -431,7 +446,7 @@ const Home: NextPage = ({
                               colSpan={1}
                               style={{ width: "0px" }}
                             >
-                              Actions
+                              {t("Actions")}
                             </th>
                           </tr>
                         </thead>
@@ -449,12 +464,20 @@ const Home: NextPage = ({
                                         /{item?.parent_coin_name}
                                       </span>
                                     </div>
-                                    <div className="currencyName">Bitcoin</div>
+                                    <div className="currencyName">
+                                      {t("Bitcoin")}
+                                    </div>
                                   </a>
                                 </td>
                                 <td className="txtBlack">{item.last_price}</td>
                                 <td>
-                                  <span className="changePos  text-success ">
+                                  <span
+                                    className={`changePos  ${
+                                      parseFloat(item.price_change) >= 0
+                                        ? "text-success"
+                                        : "text-danger"
+                                    } `}
+                                  >
                                     {item.price_change}
                                   </span>
                                 </td>
@@ -496,7 +519,7 @@ const Home: NextPage = ({
                                     href="/exchange/dashboard"
                                     className="btnTrade btn-link"
                                   >
-                                    Trade
+                                    {t("Trade")}
                                   </a>
                                 </td>
                               </tr>
@@ -535,7 +558,7 @@ const Home: NextPage = ({
                               colSpan={1}
                               style={{ width: "0px" }}
                             >
-                              Market
+                              {t("Market")}
                             </th>
                             <th
                               scope="col"
@@ -544,7 +567,7 @@ const Home: NextPage = ({
                               colSpan={1}
                               style={{ width: "0px" }}
                             >
-                              Price
+                              {t("Price")}
                             </th>
                             <th
                               scope="col"
@@ -553,7 +576,7 @@ const Home: NextPage = ({
                               colSpan={1}
                               style={{ width: "0px" }}
                             >
-                              Change (24h)
+                              {t("Change (24h)")}
                             </th>
                             <th
                               scope="col"
@@ -562,7 +585,7 @@ const Home: NextPage = ({
                               colSpan={1}
                               style={{ width: "0px" }}
                             >
-                              Chart
+                              {t("Chart")}
                             </th>
                             <th
                               scope="col"
@@ -571,7 +594,7 @@ const Home: NextPage = ({
                               colSpan={1}
                               style={{ width: "0px" }}
                             >
-                              Volume
+                              {t("Volume")}
                             </th>
                             <th
                               scope="col"
@@ -580,7 +603,7 @@ const Home: NextPage = ({
                               colSpan={1}
                               style={{ width: "0px" }}
                             >
-                              Actions
+                              {t("Actions")}
                             </th>
                           </tr>
                         </thead>
@@ -603,7 +626,13 @@ const Home: NextPage = ({
                                 </td>
                                 <td className="txtBlack">{item.last_price}</td>
                                 <td>
-                                  <span className="changePos  text-success ">
+                                  <span
+                                    className={`changePos  ${
+                                      parseFloat(item.price_change) >= 0
+                                        ? "text-success"
+                                        : "text-danger"
+                                    } `}
+                                  >
                                     {item.price_change}
                                   </span>
                                 </td>
@@ -645,7 +674,7 @@ const Home: NextPage = ({
                                     href="/exchange/dashboard"
                                     className="btnTrade btn-link"
                                   >
-                                    Trade
+                                    {t("Trade")}
                                   </a>
                                 </td>
                               </tr>
@@ -653,14 +682,6 @@ const Home: NextPage = ({
                           )}
                         </tbody>
                       </table>
-                      <div
-                        className="dataTables_info"
-                        id="DataTables_Table_2_info"
-                        role="status"
-                        aria-live="polite"
-                      >
-                        Showing 1 to 1 of 1 entries
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -691,7 +712,7 @@ const Home: NextPage = ({
                       <img className="img-fluid" src="/qr-code.png" alt="" />
                     </div>
                     <div className="qr-info">
-                      <h4>Scan to Download</h4>
+                      <h4>{"Scan to Download"}</h4>
                       <h5>iOS &amp; Android</h5>
                     </div>
                   </div>
@@ -707,7 +728,7 @@ const Home: NextPage = ({
                             src="/apple-logo.png"
                             alt="apple-logo"
                           />
-                          <span>App Store</span>
+                          <span>{t("App Store")}</span>
                         </a>
                       </li>
                       <li className="single-item">
@@ -720,7 +741,7 @@ const Home: NextPage = ({
                             src="/android.png"
                             alt="android"
                           />
-                          <span>Android APK</span>
+                          <span>{t("Android APK")}</span>
                         </a>
                       </li>
                       <li className="single-item">
@@ -730,7 +751,7 @@ const Home: NextPage = ({
                             src="/google-play.png"
                             alt="google-play"
                           />
-                          <span>Google Play</span>
+                          <span>{t("Google Play")}</span>
                         </a>
                       </li>
                       <li className="single-item">
@@ -743,7 +764,7 @@ const Home: NextPage = ({
                             src="/command-symbol.png"
                             alt="command-symbol"
                           />
-                          <span>MacOS</span>
+                          <span>{t("MacOS")}</span>
                         </a>
                       </li>
                       <li className="single-item">
@@ -756,7 +777,7 @@ const Home: NextPage = ({
                             src="/windows.png"
                             alt="windows"
                           />
-                          <span>Windows</span>
+                          <span>{t("Windows")}</span>
                         </a>
                       </li>
                       <li className="single-item">
@@ -765,13 +786,13 @@ const Home: NextPage = ({
                           className="item-link"
                         >
                           <img className="icon" src="/linux.png" alt="linux" />
-                          <span>Linux</span>
+                          <span>{t("Linux")}</span>
                         </a>
                       </li>
                       <li className="single-item">
                         <a href={landing?.api_link} className="item-link">
                           <img className="icon" src="/api.png" alt="api" />
-                          <span>API</span>
+                          <span>{t("API")}</span>
                         </a>
                       </li>
                     </ul>
@@ -781,7 +802,7 @@ const Home: NextPage = ({
             </div>
             <div className="view-more text-center">
               <a href="https://play.google.com/" className="view-btn">
-                More Download Options{" "}
+                {t("More Download Options")}
                 <i className="fa fa-angle-right" aria-hidden="true" />
               </a>
             </div>
@@ -804,7 +825,7 @@ const Home: NextPage = ({
                   <h2 className="subtitle"> {landing?.customization_title} </h2>
                   <p>{landing?.customization_details}</p>
                   <a href="/exchange/dashboard" className="primary-btn">
-                    Know More
+                    {t("Know More")}
                   </a>
                 </div>
               </div>
@@ -816,11 +837,11 @@ const Home: NextPage = ({
         <section className="get-touch-area">
           <div className="container">
             <div className="section-title">
-              <h2 className="title">{landing.landing_feature_title}.</h2>
+              <h2 className="title">{landing?.landing_feature_title}.</h2>
             </div>
 
             <div className="row">
-              {featureListdata.map((feature: any, index: any) => (
+              {featureListdata?.map((feature: any, index: any) => (
                 <div className="col-lg-3 col-md-6" key={index}>
                   <a href="#" className="single-card">
                     <img
@@ -841,14 +862,14 @@ const Home: NextPage = ({
         <section className="start-trading-area">
           <div className="container">
             <div className="section-title text-center">
-              <h2 className="title">Start trading now</h2>
+              <h2 className="title">{t("Start trading now")}</h2>
             </div>
             <div className="trading-button text-center">
               <Link href="/authentication/signup">
-                <a className="primary-btn mr-5">Sign Up</a>
+                <a className="primary-btn mr-5">{t("Sign Up")}</a>
               </Link>
               <Link href="/exchange/dashboard">
-                <a className="primary-btn">Trade Now</a>
+                <a className="primary-btn">{t("Trade Now")}</a>
               </Link>
             </div>
           </div>
@@ -862,21 +883,21 @@ const Home: NextPage = ({
                 <div className="col-lg-3 col-md-6 col-sm-6 mb-30">
                   <div className="single-wedgets text-widget">
                     <div className="widget-title">
-                      <h4>Products</h4>
+                      <h4>{t("Products")}</h4>
                     </div>
                     <div className="widget-inner">
                       <ul>
                         <li>
-                          <a href="#banner-area">Home</a>
+                          <a href="#banner-area">{t("Home")}</a>
                         </li>
                         <li>
-                          <a href="#features">Feature</a>
+                          <a href="#features">{t("Feature")}</a>
                         </li>
                         <li>
-                          <a href="#integration">Integrations</a>
+                          <a href="#integration">{t("Integrations")}</a>
                         </li>
                         <li>
-                          <a href="#about">About</a>
+                          <a href="#about">{t("About")}</a>
                         </li>
                       </ul>
                     </div>
@@ -885,21 +906,21 @@ const Home: NextPage = ({
                 <div className="col-lg-3 col-md-6 col-sm-6 mb-30">
                   <div className="single-wedgets text-widget">
                     <div className="widget-title">
-                      <h4>Service</h4>
+                      <h4>{t("Service")}</h4>
                     </div>
                     <div className="widget-inner">
                       <ul>
                         <li>
-                          <a href="#banner-area">Home</a>
+                          <a href="#banner-area">{t("Home")}</a>
                         </li>
                         <li>
-                          <a href="#features">Feature</a>
+                          <a href="#features">{t("Feature")}</a>
                         </li>
                         <li>
-                          <a href="#integration">Integrations</a>
+                          <a href="#integration">{t("Integrations")}</a>
                         </li>
                         <li>
-                          <a href="#about">About</a>
+                          <a href="#about">{t("About")}</a>
                         </li>
                       </ul>
                     </div>
@@ -908,21 +929,21 @@ const Home: NextPage = ({
                 <div className="col-lg-3 col-md-6 col-sm-6 mb-30">
                   <div className="single-wedgets text-widget">
                     <div className="widget-title">
-                      <h4>Support</h4>
+                      <h4>{t("Support")}</h4>
                     </div>
                     <div className="widget-inner">
                       <ul>
                         <li>
-                          <a href="#banner-area">Home</a>
+                          <a href="#banner-area">{t("Home")}</a>
                         </li>
                         <li>
-                          <a href="#features">Feature</a>
+                          <a href="#features">{t("Feature")}</a>
                         </li>
                         <li>
-                          <a href="#integration">Integrations</a>
+                          <a href="#integration">{t("Integrations")}</a>
                         </li>
                         <li>
-                          <a href="#about">About</a>
+                          <a href="#about">{t("About")}</a>
                         </li>
                       </ul>
                     </div>
@@ -931,11 +952,11 @@ const Home: NextPage = ({
                 <div className="col-lg-2 col-md-6 col-sm-6">
                   <div className="single-wedgets social-link">
                     <div className="widget-title">
-                      <h4>Community</h4>
+                      <h4>{t("Community")}</h4>
                     </div>
                     <div className="widget-inner">
                       <ul>
-                        {socialData.map((social: any, index: any) => (
+                        {socialData?.map((social: any, index: any) => (
                           <li key={index}>
                             <a href={social.media_link}>
                               <img
@@ -961,7 +982,7 @@ const Home: NextPage = ({
                   <div className="col-md-12">
                     <div className="copyright-area text-center text-md-center">
                       <p>
-                        Copyright@2022 <a href="">TradexPro</a>
+                        {t("Copyright@2022")} <a href="">{t("TradexPro")}</a>
                       </p>
                     </div>
                   </div>
@@ -970,9 +991,7 @@ const Home: NextPage = ({
             </div>
           </div>
         </footer>
-        {/* footer area end here */}
-        {/* js file start */}
-        {/* tweenmax canvas */}
+
         <a
           id="scrollUp"
           href="#top"
@@ -980,7 +999,6 @@ const Home: NextPage = ({
         >
           <i className="fa fa-angle-up" />
         </a>
-        {/* End js file */}
         <div id="vanillatoasts-container" />
       </div>
     </div>

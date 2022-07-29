@@ -8,10 +8,11 @@ import {
   handleSearchItems,
 } from "state/actions/reports";
 import TableLoading from "components/common/TableLoading";
+import useTranslation from "next-translate/useTranslation";
 
 const BuyOrderHistory: NextPage = () => {
   type searchType = string;
-
+  const { t } = useTranslation("common");
   const [search, setSearch] = useState<searchType>("");
   const [sortingInfo, setSortingInfo] = useState<any>({
     column_name: "created_at",
@@ -74,7 +75,7 @@ const BuyOrderHistory: NextPage = () => {
           <div className="section-top-wrap mb-25">
             <div className="overview-area">
               <div className="overview-left">
-                <h2 className="section-top-title">Buy Order History</h2>
+                <h2 className="section-top-title">{t("Buy Order History")}</h2>
               </div>
             </div>
           </div>
@@ -96,7 +97,7 @@ const BuyOrderHistory: NextPage = () => {
                           id="assetBalances_length"
                         >
                           <label className="">
-                            Show
+                            {t("Show")}
                             <select
                               name="assetBalances_length"
                               aria-controls="assetBalances"
@@ -119,12 +120,12 @@ const BuyOrderHistory: NextPage = () => {
                               <option value="50">50</option>
                               <option value="100">100</option>
                             </select>
-                            entries
+                            {t("entries")}
                           </label>
                         </div>
                         <div id="table_filter" className="dataTables_filter">
                           <label>
-                            Search:
+                            {t("Search")}
                             <input
                               type="search"
                               className="data_table_input"
@@ -152,18 +153,18 @@ const BuyOrderHistory: NextPage = () => {
                       <thead>
                         <tr>
                           <th scope="col" className="">
-                            Base Coin
+                            {t("Base Coin")}
                           </th>
                           <th scope="col" rowSpan={1} colSpan={1}>
-                            Trade Coin
+                            {t("Trade Coin")}
                           </th>
                           <th scope="col" rowSpan={1} colSpan={1}>
-                            Amount
+                            {t("Amount")}
                           </th>
-                          <th scope="col">Processed</th>
-                          <th scope="col">Price</th>
-                          <th scope="col">Status</th>
-                          <th scope="col">Date</th>
+                          <th scope="col">{t("Processed")}</th>
+                          <th scope="col">{t("Price")}</th>
+                          <th scope="col">{t("Status")}</th>
+                          <th scope="col">{t("Date")}</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -219,7 +220,7 @@ const BuyOrderHistory: NextPage = () => {
 
                     {history?.length <= 0 && (
                       <div className="no_data_table">
-                        No data available in table
+                        {t("No data available in table")}
                       </div>
                     )}
                     <div

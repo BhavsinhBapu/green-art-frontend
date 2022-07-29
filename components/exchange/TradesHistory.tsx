@@ -1,10 +1,12 @@
+import useTranslation from "next-translate/useTranslation";
 import React from "react";
 import SellTable from "./SellTable";
 const TradesHistory = ({ marketTrades }: any) => {
+  const { t } = useTranslation("common");
   return (
     <div className="trades-section mt-4">
       <div className="trades-headers mb-3">
-        <h3>Trades</h3>
+        <h3>{t("Trades")}</h3>
       </div>
       <div className="primary-table">
         <div className="table-header">
@@ -20,7 +22,7 @@ const TradesHistory = ({ marketTrades }: any) => {
             className="dataTables_processing"
             style={{ display: "none" }}
           >
-            Processing...
+            {t("Processing...")}
           </div>
           <div className="dataTables_scroll">
             <div
@@ -57,7 +59,7 @@ const TradesHistory = ({ marketTrades }: any) => {
                         style={{ width: "170.656px" }}
                         aria-label="Price"
                       >
-                        Price(<span></span>)
+                        {t("Price")}(<span></span>)
                       </th>
                       <th
                         className="table-col amount sorting_disabled"
@@ -66,7 +68,7 @@ const TradesHistory = ({ marketTrades }: any) => {
                         style={{ width: "120.75px" }}
                         aria-label="Amount"
                       >
-                        Amount
+                        {t("Amount")}
                       </th>
                       <th
                         className="table-col time text-right sorting_desc"
@@ -75,7 +77,7 @@ const TradesHistory = ({ marketTrades }: any) => {
                         style={{ width: "79.8438px" }}
                         aria-label="Time"
                       >
-                        Time
+                        {t("Time")}
                       </th>
                     </tr>
                   </thead>

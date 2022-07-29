@@ -9,9 +9,11 @@ import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import Loading from "components/common/TableLoading";
 import { useRouter } from "next/router";
 import { formateData } from "common";
+import useTranslation from "next-translate/useTranslation";
 const DepositHistory: NextPage = () => {
   const router = useRouter();
   const { type } = router.query;
+  const { t } = useTranslation("common");
   const [search, setSearch] = useState<any>("");
   const [processing, setProcessing] = useState<boolean>(false);
   const [history, setHistory] = useState<any>([]);
@@ -80,7 +82,7 @@ const DepositHistory: NextPage = () => {
                           id="assetBalances_length"
                         >
                           <label className="">
-                            Show
+                            {t("Show")}
                             <select
                               name="assetBalances_length"
                               aria-controls="assetBalances"
@@ -101,12 +103,12 @@ const DepositHistory: NextPage = () => {
                               <option value="50">50</option>
                               <option value="100">100</option>
                             </select>
-                            entries
+                            {t("entries")}
                           </label>
                         </div>
                         <div id="table_filter" className="dataTables_filter">
                           <label>
-                            Search:
+                            {t("Search:")}
                             <input
                               type="search"
                               name="search"
@@ -135,18 +137,18 @@ const DepositHistory: NextPage = () => {
                         <thead>
                           <tr>
                             <th scope="col" className="">
-                              Created At
+                              {t("Created At")}
                             </th>
                             <th scope="col" rowSpan={1} colSpan={1}>
-                              Address
+                              {t("Address")}
                             </th>
                             <th scope="col" rowSpan={1} colSpan={1}>
-                              Coin Type
+                              {t("Coin Type")}
                             </th>
-                            <th scope="col">Amount</th>
-                            <th scope="col">Fees</th>
-                            <th scope="col">Transaction Hash</th>
-                            <th scope="col">Status</th>
+                            <th scope="col">{t("Amount")}</th>
+                            <th scope="col">{t("Fees")}</th>
+                            <th scope="col">{t("Transaction Hash")}</th>
+                            <th scope="col">{t("Status")}</th>
                           </tr>
                         </thead>
                         {history.length > 0 && (
@@ -166,10 +168,10 @@ const DepositHistory: NextPage = () => {
                                   </td>
                                   <td>
                                     {item.status === 0
-                                      ? "Pending"
+                                      ? t("Pending")
                                       : item.status === 1
-                                      ? "Success"
-                                      : "Failed"}
+                                      ? t("Success")
+                                      : t("Failed")}
                                   </td>
                                 </tr>
                               );
@@ -179,7 +181,7 @@ const DepositHistory: NextPage = () => {
                       </table>
                       {history.length === 0 && (
                         <div className="no_data_table">
-                          No data available in table
+                          {t("No data available in table")}
                         </div>
                       )}
                     </div>

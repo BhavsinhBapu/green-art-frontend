@@ -7,8 +7,10 @@ import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { RootState } from "state/store";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { UpdateUserInfoByTokenAction } from "state/actions/user";
+import useTranslation from "next-translate/useTranslation";
 const Edit: NextPage = () => {
   const { user } = useSelector((state: RootState) => state.user);
+  const { t } = useTranslation("common");
   const dispatch = useDispatch();
   const uploadFile = (e: any) => {
     const file = e.target.files[0];
@@ -37,7 +39,9 @@ const Edit: NextPage = () => {
           </div>
 
           <div className="profile-area">
-            <h4 className="section-title-medium">Update Profile Information</h4>
+            <h4 className="section-title-medium">
+              {t("Update Profile Information")}
+            </h4>
             <div className="section-wrapper">
               <div className="user-profile">
                 <div className="row">
@@ -84,7 +88,7 @@ const Edit: NextPage = () => {
                       <div className="user-profile-form">
                         <Form>
                           <div className="form-group">
-                            <label>First Name</label>
+                            <label>{t("First Name")}</label>
                             <Field
                               type="text"
                               name="first_name"
@@ -94,7 +98,7 @@ const Edit: NextPage = () => {
                             />
                           </div>
                           <div className="form-group">
-                            <label>Last Name</label>
+                            <label>{t("Last Name")}</label>
                             <Field
                               type="text"
                               name="last_name"
@@ -104,7 +108,7 @@ const Edit: NextPage = () => {
                             />
                           </div>
                           <div className="form-group">
-                            <label>Phone</label>
+                            <label>{t("Phone")}</label>
                             <Field
                               type="text"
                               name="phone"
@@ -113,12 +117,13 @@ const Edit: NextPage = () => {
                               placeholder="Phone"
                             />
                             <small>
-                              Please add phone number with country phone code
-                              but not (+ sign.) Ex. for portugal 351*****
+                              {t(
+                                "Please add phone number with country phone code but not (+ sign.) Ex. for portugal 351*****"
+                              )}
                             </small>
                           </div>
                           <div className="form-group">
-                            <label>Country</label>
+                            <label>{t("Country")}</label>
                             <Field
                               as="select"
                               name="country"
@@ -159,7 +164,7 @@ const Edit: NextPage = () => {
                             type="submit"
                             className="btn nimmu-user-sibmit-button"
                           >
-                            <span>Update Profile</span>
+                            <span>{t("Update Profile")}</span>
                           </button>
                         </Form>
                       </div>

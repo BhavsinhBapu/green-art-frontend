@@ -1,10 +1,11 @@
+import useTranslation from "next-translate/useTranslation";
 import React from "react";
 
 import BuyTable from "./BuyTable";
 const AllSellOrders = ({ OpenBooksell }: any) => {
+  const { t } = useTranslation("common");
   return (
     <div>
-      {" "}
       <div className="buy-order">
         <div className="trades-table">
           <div className="trades-table-header">
@@ -20,7 +21,7 @@ const AllSellOrders = ({ OpenBooksell }: any) => {
               className="dataTables_processing"
               style={{ display: "none" }}
             >
-              Processing...
+              {t("Processing...")}
             </div>
             <div className="dataTables_scroll">
               <div
@@ -58,7 +59,7 @@ const AllSellOrders = ({ OpenBooksell }: any) => {
                           // style={{ width: "109.906px" }}
                           aria-label="Price"
                         >
-                          Price
+                          {t("Price")}
                         </th>
                         <th
                           className="trades-table-col amount text-center w-30 sorting_disabled"
@@ -67,7 +68,7 @@ const AllSellOrders = ({ OpenBooksell }: any) => {
                           // style={{ width: "133.656px" }}
                           aria-label="Amount"
                         >
-                          Amount
+                          {"Amount"}
                         </th>
                         <th
                           className="trades-table-col volume sorting_disabled"
@@ -76,7 +77,7 @@ const AllSellOrders = ({ OpenBooksell }: any) => {
                           // style={{ width: "127.688px" }}
                           aria-label="	My Size"
                         >
-                          My Size
+                          {t("My Size")}
                         </th>
                       </tr>
                     </thead>

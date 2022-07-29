@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 import { parseCookies } from "nookies";
 import { getRateSsr } from "service/swap";
 import Link from "next/link";
+import useTranslation from "next-translate/useTranslation";
 const SwapCoin: NextPage = ({
   walletLists,
   wallet_rate,
@@ -20,7 +21,7 @@ const SwapCoin: NextPage = ({
   from_wallet,
   to_wallet,
 }: any) => {
-  const dispatch = useDispatch();
+  const { t } = useTranslation("common");
   const [loading, setLoading] = React.useState(false);
   let tempfromSelected;
   let temptoSelected;
@@ -95,12 +96,12 @@ const SwapCoin: NextPage = ({
           <ul className="left-menu">
             <li>
               <Link href={`/user/my-wallet`}>
-                <a>Wallet Overview</a>
+                <a>{t("Wallet Overview")}</a>
               </Link>
             </li>
             <li className="active">
               <Link href={`/user/swap-coin`}>
-                <a>Swap Coin</a>
+                <a>{t("Swap Coin")}</a>
               </Link>
             </li>
           </ul>
@@ -111,7 +112,7 @@ const SwapCoin: NextPage = ({
           <div className="section-top-wrap mb-25">
             <div className="overview-area">
               <div className="overview-left">
-                <h2 className="section-top-title">Swap Coin</h2>
+                <h2 className="section-top-title">{t("Swap Coin")}</h2>
               </div>
             </div>
           </div>
@@ -124,8 +125,8 @@ const SwapCoin: NextPage = ({
                     <div className="form-group">
                       <div className="swap-wrap">
                         <div className="swap-wrap-top">
-                          <label>From</label>
-                          <span className="available">Available : 0 USDT</span>
+                          <label>{t("From")}</label>
+                          {/* <span className="available">Available : 0 USDT</span> */}
                         </div>
                         <div className="swap-input-wrap">
                           <div className="form-amount">
@@ -134,7 +135,7 @@ const SwapCoin: NextPage = ({
                               className="form-control"
                               id="amount-one"
                               value={fromSelected ? fromSelected.amount : ""}
-                              placeholder="Please enter 10 -2400000"
+                              placeholder={t("Please enter 10 -2400000")}
                               onChange={(e) => {
                                 setFromSelected({
                                   ...fromSelected,
@@ -200,7 +201,7 @@ const SwapCoin: NextPage = ({
                     <div className="form-group">
                       <div className="swap-wrap">
                         <div className="swap-wrap-top">
-                          <label>To</label>
+                          <label>{t("To")}</label>
                         </div>
                         <div className="swap-input-wrap">
                           <div className="form-amount">
@@ -209,7 +210,7 @@ const SwapCoin: NextPage = ({
                               className="form-control"
                               id="amount-two"
                               value={toSelected.amount}
-                              placeholder="Please enter 0 - 65"
+                              placeholder={t("Please enter 0 - 65")}
                               disabled
                             />
                           </div>
@@ -249,14 +250,14 @@ const SwapCoin: NextPage = ({
                   <div className="swap-area-middle">
                     <ul>
                       <li>
-                        <span>Price</span>
+                        <span>{t("Price")}</span>
                         <span id="rate">
                           1 {rate.from_wallet} = {rate.rate ? rate.rate : "0"}{" "}
                           {rate.to_wallet}
                         </span>
                       </li>
                       <li>
-                        <span>You will spend</span>
+                        <span>{t("You will spend")}</span>
                         <span className="spend">
                           {rate.convert_rate} {rate.to_wallet}
                         </span>
@@ -264,7 +265,9 @@ const SwapCoin: NextPage = ({
                     </ul>
                   </div>
                   <div className="swap-area-bottom">
-                    <button className="primary-btn-outline">Refresh</button>
+                    <button className="primary-btn-outline">
+                      {t("Refresh")}
+                    </button>
                     <button
                       className="primary-btn-outline"
                       disabled={
@@ -289,10 +292,10 @@ const SwapCoin: NextPage = ({
                             role="status"
                             aria-hidden="true"
                           ></span>
-                          <span>Please wait</span>
+                          <span>{t("Please wait")}</span>
                         </>
                       ) : (
-                        "convart"
+                        t("convert")
                       )}
                     </button>
                   </div>

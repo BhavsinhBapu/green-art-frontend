@@ -1,8 +1,10 @@
+import useTranslation from "next-translate/useTranslation";
 import React from "react";
 import { SetupGoogle2faAction } from "state/actions/settings";
 
 const GoogleAuthModal = ({ settings, setSettings }: any) => {
   const [code, setCode] = React.useState<string>("");
+  const { t } = useTranslation("common");
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     await SetupGoogle2faAction(
@@ -31,7 +33,7 @@ const GoogleAuthModal = ({ settings, setSettings }: any) => {
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLabel">
-                Google Authentication
+                {t("Google Authentication")}
               </h5>
               <button
                 type="button"
@@ -51,9 +53,9 @@ const GoogleAuthModal = ({ settings, setSettings }: any) => {
                 </div>
                 <div className="col-8">
                   <p>
-                    Open your Google Authenticator app, and scan Your secret
-                    code and enter the 6-digit code from the app into the input
-                    field
+                    {t(
+                      "Open your Google Authenticator app, and scan Your secret code and enter the 6-digit code from the app into the input field"
+                    )}
                   </p>
                   <input
                     placeholder="Code"
@@ -74,7 +76,7 @@ const GoogleAuthModal = ({ settings, setSettings }: any) => {
                 className="btn btn-secondary"
                 data-dismiss="modal"
               >
-                Close
+                {t("Close")}
               </button>
               <button
                 type="submit"
@@ -82,7 +84,7 @@ const GoogleAuthModal = ({ settings, setSettings }: any) => {
                 data-dismiss="modal"
                 onClick={handleSubmit}
               >
-                Verify
+                {t("Verify")}
               </button>
             </div>
           </div>

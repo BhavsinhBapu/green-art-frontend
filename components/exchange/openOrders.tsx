@@ -1,4 +1,5 @@
 import { formateData } from "common";
+import useTranslation from "next-translate/useTranslation";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -11,6 +12,7 @@ type Props = {
   openOrders: boolean;
 };
 const OpenOrders = ({ openOrders, openOrderHistory }: any) => {
+  const { t } = useTranslation("common");
   const { dashboard, currentPair } = useSelector(
     (state: RootState) => state.exchange
   );
@@ -26,15 +28,15 @@ const OpenOrders = ({ openOrders, openOrderHistory }: any) => {
         <table className="table">
           <thead>
             <tr>
-              <th scope="col">Created at</th>
-              <th scope="col">Actual amount</th>
-              <th scope="col">Actual total</th>
-              <th scope="col">Amount</th>
-              <th scope="col">Fees</th>
-              <th scope="col">Price</th>
-              <th scope="col">Processed</th>
-              <th scope="col">total</th>
-              <th scope="col">Type</th>
+              <th scope="col">{t("Created at")}</th>
+              <th scope="col">{t("Actual amount")}</th>
+              <th scope="col">{t("Actual total")}</th>
+              <th scope="col">{t("Amount")}</th>
+              <th scope="col">{t("Fees")}</th>
+              <th scope="col">{t("Price<")}</th>
+              <th scope="col">{t("Processed")}</th>
+              <th scope="col">{t("total")}</th>
+              <th scope="col">{t("Type")}</th>
               <th scope="col"></th>
             </tr>
           </thead>
@@ -65,7 +67,7 @@ const OpenOrders = ({ openOrders, openOrderHistory }: any) => {
                       }
                     }}
                   >
-                    Cancel
+                    {t("Cancel")}
                   </button>
                 </td>
               </tr>

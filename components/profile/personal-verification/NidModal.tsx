@@ -1,3 +1,4 @@
+import useTranslation from "next-translate/useTranslation";
 import React, { useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import {
@@ -5,7 +6,6 @@ import {
   UploadNidImageAction,
   UploadPassportImageAction,
 } from "state/actions/user";
-import { useDispatch } from "react-redux";
 
 const NidModal = ({ type, kycDetails }: any) => {
   const [previousType, setPreviousType] = useState<string>("");
@@ -13,6 +13,7 @@ const NidModal = ({ type, kycDetails }: any) => {
   const [processing, setProcessing] = useState(false);
   const [backSide, setBackSide] = useState(null);
   const [existingKyc, setExistingKyc] = useState<any>();
+  const { t } = useTranslation("common");
   if (type !== previousType) {
     setPreviousType(type);
     setFrontSide(null);
@@ -82,7 +83,6 @@ const NidModal = ({ type, kycDetails }: any) => {
               data-dismiss="modal"
               aria-label="Close"
             >
-              {/* <span aria-hidden="true"></span> */}
               <i className="fa-solid fa-xmark"></i>
             </button>
             <form id="nidUpload" className="Upload">
@@ -104,7 +104,7 @@ const NidModal = ({ type, kycDetails }: any) => {
                   <div className="col-lg-6 mb-lg-0 mb-4">
                     <div className="idcard">
                       <h3 className="title" onClick={() => {}}>
-                        Front Side
+                        {t("Front Side")}
                       </h3>
                       <div className="container cstm-img-picker">
                         {frontSide ? (
@@ -126,7 +126,7 @@ const NidModal = ({ type, kycDetails }: any) => {
                                     storeSelectedFile(e, setFrontSide, 1);
                                   }}
                                 />
-                                <span>drag and drop file</span>
+                                <span>{t("drag and drop file")}</span>
                               </>
                             )}
                           </label>
@@ -136,7 +136,7 @@ const NidModal = ({ type, kycDetails }: any) => {
                   </div>
                   <div className="col-lg-6 mb-lg-0 mb-4">
                     <div className="idcard">
-                      <h3 className="title">Back Side</h3>
+                      <h3 className="title">{t("Back Side")}</h3>
                       <div className="container cstm-img-picker">
                         {backSide ? (
                           <img src={backSide} className="img-fluid" alt="" />
@@ -155,7 +155,7 @@ const NidModal = ({ type, kycDetails }: any) => {
                                 storeSelectedFile(e, setBackSide, 2);
                               }}
                             />
-                            <span>drag and drop file</span>
+                            <span>{t("drag and drop file")}</span>
                           </label>
                         )}
                       </div>
@@ -176,10 +176,10 @@ const NidModal = ({ type, kycDetails }: any) => {
                             role="status"
                             aria-hidden="true"
                           ></span>
-                          <span>Please wait</span>
+                          <span>{t("Please wait")}</span>
                         </>
                       ) : (
-                        "Upload"
+                        t("Upload")
                       )}
                     </button>
                   )}

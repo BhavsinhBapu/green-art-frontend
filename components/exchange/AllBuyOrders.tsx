@@ -3,7 +3,9 @@ import Tooltip from "rc-tooltip";
 import "rc-tooltip/assets/bootstrap.css";
 import { useDispatch } from "react-redux";
 import { setBuyPrice } from "state/reducer/exchange";
+import useTranslation from "next-translate/useTranslation";
 const AllBuyOrders = ({ OpenBookBuy }: any) => {
+  const { t } = useTranslation("common");
   const dispatch = useDispatch();
   const changeSellPrice = (price: number) => {
     dispatch(setBuyPrice(price));
@@ -21,7 +23,7 @@ const AllBuyOrders = ({ OpenBookBuy }: any) => {
             className="dataTables_processing"
             style={{ display: "none" }}
           >
-            Processing...
+            {t("Processing...")}
           </div>
           <div className="dataTables_scroll">
             <div
@@ -105,12 +107,18 @@ const AllBuyOrders = ({ OpenBookBuy }: any) => {
                         placement={"right"}
                         overlay={
                           <span>
-                            <span>Price: {item.price}</span>
+                            <span>
+                              {t("Price:")} {item.price}
+                            </span>
                             <br />
-                            <span>Amount: {item.amount}</span>
+                            <span>
+                              {t("Amount:")} {item.amount}
+                            </span>
                             <br />
 
-                            <span>Size: {item.my_size}</span>
+                            <span>
+                              {t("Size:")} {item.my_size}
+                            </span>
                           </span>
                         }
                         trigger={["hover"]}
@@ -142,7 +150,7 @@ const AllBuyOrders = ({ OpenBookBuy }: any) => {
                     ))
                   ) : (
                     <tr>
-                      <td className="">No data available in table</td>
+                      <td className="">{t("No data available in table")}</td>
                     </tr>
                   )}
                 </tbody>

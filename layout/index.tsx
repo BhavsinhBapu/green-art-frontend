@@ -7,6 +7,7 @@ import { GetUserInfoByTokenAction } from "state/actions/user";
 import { useDispatch, useSelector } from "react-redux";
 import Cookies from "js-cookie";
 import { RootState } from "state/store";
+import useTranslation from "next-translate/useTranslation";
 const Index = ({ children }: any) => {
   const [navbarVisible, setNavbarVisible] = useState(false);
 
@@ -16,6 +17,7 @@ const Index = ({ children }: any) => {
   const { dashboard, currentPair } = useSelector(
     (state: RootState) => state.exchange
   );
+  const { t } = useTranslation("common");
   const dispatch = useDispatch();
   const router = useRouter();
   useEffect(() => {
@@ -50,7 +52,7 @@ const Index = ({ children }: any) => {
             role="status"
             aria-hidden="true"
           ></span>
-          <span>Please wait</span>
+          <span>{t("Please wait")}</span>
         </div>
       )}
       <Navbar />

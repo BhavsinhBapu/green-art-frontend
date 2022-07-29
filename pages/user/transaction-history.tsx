@@ -7,7 +7,9 @@ import {
   handleSearchItems,
 } from "state/actions/reports";
 import TableLoading from "components/common/TableLoading";
+import useTranslation from "next-translate/useTranslation";
 const TransactionHistory: NextPage = () => {
+  const { t } = useTranslation("common");
   type searchType = string;
   const [search, setSearch] = useState<searchType>("");
   const [processing, setProcessing] = useState<boolean>(false);
@@ -48,7 +50,9 @@ const TransactionHistory: NextPage = () => {
           <div className="section-top-wrap mb-25">
             <div className="overview-area">
               <div className="overview-left">
-                <h2 className="section-top-title">Transaction History</h2>
+                <h2 className="section-top-title">
+                  {t("Transaction History")}
+                </h2>
               </div>
             </div>
           </div>
@@ -70,7 +74,7 @@ const TransactionHistory: NextPage = () => {
                           id="assetBalances_length"
                         >
                           <label className="">
-                            Show
+                            {t("Show")}
                             <select
                               name="assetBalances_length"
                               aria-controls="assetBalances"
@@ -99,7 +103,7 @@ const TransactionHistory: NextPage = () => {
                         </div>
                         <div id="table_filter" className="dataTables_filter">
                           <label>
-                            Search:
+                            {t("Search:")}
                             <input
                               type="search"
                               className="data_table_input"
@@ -127,18 +131,18 @@ const TransactionHistory: NextPage = () => {
                       <thead>
                         <tr>
                           <th scope="col" className="">
-                            Transaction id
+                            {t("Transaction id")}
                           </th>
 
                           <th scope="col" rowSpan={1} colSpan={1}>
-                            Base Coin
+                            {t("Base Coin")}
                           </th>
-                          <th scope="col">Trade Coin</th>
-                          <th scope="col">Amount</th>
-                          <th scope="col">Price</th>
-                          <th scope="col">Fees</th>
-                          <th scope="col">Total</th>
-                          <th scope="col">Date</th>
+                          <th scope="col">{t("Trade Coin")}</th>
+                          <th scope="col">{t("Amount")}</th>
+                          <th scope="col">{t("Price")}</th>
+                          <th scope="col">{t("Fees")}</th>
+                          <th scope="col">{t("Total")}</th>
+                          <th scope="col">{t("Date")}</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -195,7 +199,7 @@ const TransactionHistory: NextPage = () => {
                     </table>
                     {history?.length <= 0 && (
                       <div className="no_data_table">
-                        No data available in table
+                        {t("No data available in table")}
                       </div>
                     )}
 

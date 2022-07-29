@@ -1,11 +1,9 @@
 const withCSS = require("@zeit/next-css");
 const withImages = require("next-images");
+const nextTranslate = require("next-translate");
 
 module.exports = {
   reactStrictMode: true,
-  env: {
-    // NEXT_PUBLIC_BASE_URL: process.env.NEXT_PUBLIC_BASE_URL,
-  },
 };
 module.exports = withCSS({
   cssLoaderOptions: {
@@ -14,8 +12,6 @@ module.exports = withCSS({
 });
 module.exports = {
   eslint: {
-    // Warning: This allows production builds to successfully complete even if
-    // your project has ESLint errors.
     ignoreDuringBuilds: true,
   },
 };
@@ -33,3 +29,6 @@ module.exports = {
   },
 };
 module.exports = withImages();
+module.exports = nextTranslate({
+  reactStrictMode: true,
+});

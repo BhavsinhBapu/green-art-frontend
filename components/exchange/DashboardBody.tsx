@@ -9,6 +9,7 @@ import TradesHistory from "./TradesHistory";
 import AllBuyOrders from "./AllBuyOrders";
 import dynamic from "next/dynamic";
 import OrderHistorySection from "./orderHistorySection";
+import useTranslation from "next-translate/useTranslation";
 const TradingChart = dynamic(
   () =>
     import("components/exchange/TradingChart").then(
@@ -17,6 +18,7 @@ const TradingChart = dynamic(
   { ssr: false }
 );
 const DashboardBody = () => {
+  const { t } = useTranslation("common");
   const {
     dashboard,
     currentPair,
@@ -30,7 +32,7 @@ const DashboardBody = () => {
       <div className="col-xl-3">
         <div className="trades-section">
           <div className="trades-headers mb-3">
-            <h3>Order Book</h3>
+            <h3>{t("Order Book")}</h3>
           </div>
 
           <AllSellOrders OpenBooksell={OpenBooksell} />

@@ -1,4 +1,5 @@
 import { formateData } from "common";
+import useTranslation from "next-translate/useTranslation";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
@@ -11,6 +12,7 @@ const OrderHistory = ({
   sellOrderHistoryState,
   buyOrderHistoryState,
 }: any) => {
+  const { t } = useTranslation("common");
   const { dashboard, currentPair } = useSelector(
     (state: RootState) => state.exchange
   );
@@ -33,7 +35,7 @@ const OrderHistory = ({
               aria-controls="buy"
               aria-selected="true"
             >
-              buy
+              {t("buy")}
             </a>
           </li>
           <li className="nav-item" role="presentation">
@@ -46,7 +48,7 @@ const OrderHistory = ({
               aria-controls="sell"
               aria-selected="false"
             >
-              sell
+              {t("sell")}
             </a>
           </li>
         </ul>
@@ -61,14 +63,14 @@ const OrderHistory = ({
               <table className="table">
                 <thead>
                   <tr>
-                    <th scope="col">Date</th>
-                    <th scope="col">Pair</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Actual amount</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Amount</th>
-                    <th scope="col">Fees</th>
-                    <th scope="col">total</th>
+                    <th scope="col">{t("Date")}</th>
+                    <th scope="col">{t("Pair")}</th>
+                    <th scope="col">{t("Type")}</th>
+                    <th scope="col">{t("Actual amount")}</th>
+                    <th scope="col">{t("Price")}</th>
+                    <th scope="col">{t("Amount")}</th>
+                    <th scope="col">{t("Fees")}</th>
+                    <th scope="col">{t("total")}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -98,14 +100,14 @@ const OrderHistory = ({
               <table className="table">
                 <thead>
                   <tr>
-                    <th scope="col">Date</th>
-                    <th scope="col">Pair</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Actual amount</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Amount</th>
-                    <th scope="col">Fees</th>
-                    <th scope="col">total</th>
+                    <th scope="col">{t("Date")}</th>
+                    <th scope="col">{t("Pair")}</th>
+                    <th scope="col">{t("Type")}</th>
+                    <th scope="col">{t("Actual amount")}</th>
+                    <th scope="col">{t("Price")}</th>
+                    <th scope="col">{t("Amount")}</th>
+                    <th scope="col">{t("Fees")}</th>
+                    <th scope="col">{t("total")}</th>
                   </tr>
                 </thead>
                 <tbody>

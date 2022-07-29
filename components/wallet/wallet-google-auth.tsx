@@ -1,3 +1,4 @@
+import useTranslation from "next-translate/useTranslation";
 import React from "react";
 import { SetupGoogle2faAction } from "state/actions/settings";
 import { WalletWithdrawProcessApiAction } from "state/actions/wallet";
@@ -7,6 +8,7 @@ const WalletGoogleAuth = ({
   setWithdrawalCredentials,
 }: any) => {
   const [processing, setProcessing] = React.useState(false);
+  const { t } = useTranslation("common");
   const handleSubmit = (e: any) => {
     e.preventDefault();
     WalletWithdrawProcessApiAction(withdrawalCredentials, setProcessing);
@@ -24,7 +26,7 @@ const WalletGoogleAuth = ({
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title" id="exampleModalLabel">
-              Google Authentication
+              {t("Google Authentication")}
             </h5>
             <button
               type="button"
@@ -39,9 +41,10 @@ const WalletGoogleAuth = ({
             <div className="row">
               <div className="col-12">
                 <p>
-                  Open your Google Authenticator app and enter the 6-digit code
-                  from the app into the input field to remove the google secret
-                  key{withdrawalCredentials.code}
+                  {
+                    "Open your Google Authenticator app and enter the 6-digit code from the app into the input field to remove the google secret key"
+                  }
+                  {withdrawalCredentials.code}
                 </p>
                 <input
                   placeholder="Code"
@@ -68,7 +71,7 @@ const WalletGoogleAuth = ({
                 className="btn btn-secondary"
                 data-dismiss="modal"
               >
-                Close
+                {t("Close")}
               </button>
             )}
 
@@ -85,10 +88,10 @@ const WalletGoogleAuth = ({
                     role="status"
                     aria-hidden="true"
                   ></span>
-                  <span>Please wait</span>
+                  <span>{t("Please wait")}</span>
                 </>
               ) : (
-                "Verify"
+                t("Verify")
               )}
             </button>
           </div>

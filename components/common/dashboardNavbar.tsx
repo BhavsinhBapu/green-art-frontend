@@ -3,9 +3,11 @@ import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "state/store";
 import { LogoutAction } from "state/actions/user";
+import useTranslation from "next-translate/useTranslation";
 const DashboardNavbar = () => {
   const { isLoggedIn, user } = useSelector((state: RootState) => state.user);
   const [active, setActive] = useState(false);
+  const { t } = useTranslation("common");
   const dispatch = useDispatch();
   return (
     <>
@@ -43,7 +45,7 @@ const DashboardNavbar = () => {
                             alt=""
                           />
                         </span>
-                        <span className="cp-user-name">Trade</span>
+                        <span className="cp-user-name">{t("Trade")}</span>
                       </a>
                     </li>
                   </Link>
@@ -67,7 +69,7 @@ const DashboardNavbar = () => {
                             alt=""
                           />
                         </span>
-                        <span className="cp-user-name">Wallet</span>
+                        <span className="cp-user-name">{t("Wallet")}</span>
                       </a>
                     </li>
                   </Link>
@@ -85,7 +87,7 @@ const DashboardNavbar = () => {
                           alt=""
                         />
                       </span>
-                      <span className="cp-user-name">Reports</span>
+                      <span className="cp-user-name">{t("Reports")}</span>
                     </a>
                     <ul>
                       <Link
@@ -96,7 +98,7 @@ const DashboardNavbar = () => {
                         }
                       >
                         <li>
-                          <a href="">Deposit History</a>
+                          <a href="">{t("Deposit History")}</a>
                         </li>
                       </Link>
                       <Link
@@ -107,7 +109,7 @@ const DashboardNavbar = () => {
                         }
                       >
                         <li>
-                          <a href="">Withdrawal History</a>
+                          <a href="">{t("Withdrawal History")}</a>
                         </li>
                       </Link>
                       <Link
@@ -118,7 +120,7 @@ const DashboardNavbar = () => {
                         }
                       >
                         <li>
-                          <a href="">Swap History</a>
+                          <a href="">{t("Swap History")}</a>
                         </li>
                       </Link>
                       <Link
@@ -129,7 +131,7 @@ const DashboardNavbar = () => {
                         }
                       >
                         <li>
-                          <a href="">Buy Order History</a>
+                          <a href="">{t("Buy Order History")}</a>
                         </li>
                       </Link>
                       <Link
@@ -140,7 +142,7 @@ const DashboardNavbar = () => {
                         }
                       >
                         <li>
-                          <a href="">Sell Order History</a>
+                          <a href="">{t("Sell Order History")}</a>
                         </li>
                       </Link>
                       <Link
@@ -151,7 +153,7 @@ const DashboardNavbar = () => {
                         }
                       >
                         <li>
-                          <a href="">Transaction History</a>
+                          <a href="">{t("Transaction History")}</a>
                         </li>
                       </Link>
                     </ul>
@@ -175,7 +177,7 @@ const DashboardNavbar = () => {
                             alt=""
                           />
                         </span>
-                        <span className="cp-user-name">My Profile</span>
+                        <span className="cp-user-name">{t("My Profile")}</span>
                       </a>
                     </li>
                   </Link>
@@ -198,7 +200,7 @@ const DashboardNavbar = () => {
                             alt=""
                           />
                         </span>
-                        <span className="cp-user-name">My Referral</span>
+                        <span className="cp-user-name">{t("My Referral")}</span>
                       </a>
                     </li>
                   </Link>
@@ -216,7 +218,7 @@ const DashboardNavbar = () => {
                           alt=""
                         />
                       </span>
-                      <span className="cp-user-name">Settings</span>
+                      <span className="cp-user-name">{t("Settings")}</span>
                     </a>
                     <ul>
                       <Link
@@ -227,7 +229,7 @@ const DashboardNavbar = () => {
                         }
                       >
                         <li>
-                          <a href="">My Settings</a>
+                          <a href="">{t("My Settings")}</a>
                         </li>
                       </Link>
                       <Link
@@ -236,7 +238,7 @@ const DashboardNavbar = () => {
                         }
                       >
                         <li>
-                          <a href="">FAQ</a>
+                          <a href="">{t("FAQ")}</a>
                         </li>
                       </Link>
                     </ul>

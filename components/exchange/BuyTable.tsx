@@ -3,8 +3,10 @@ import Tooltip from "rc-tooltip";
 import "rc-tooltip/assets/bootstrap.css";
 import { useDispatch } from "react-redux";
 import { setBuyPrice, setSellPrice } from "state/reducer/exchange";
+import useTranslation from "next-translate/useTranslation";
 const TradesTable = ({ buy }: any) => {
   const dispatch = useDispatch();
+  const { t } = useTranslation("common");
   const changeSellPrice = (price: number) => {
     dispatch(setSellPrice(price));
   };
@@ -16,12 +18,18 @@ const TradesTable = ({ buy }: any) => {
             placement={"right"}
             overlay={
               <span>
-                <span>Price: {item.price}</span>
+                <span>
+                  {t("Price:")} {item.price}
+                </span>
                 <br />
-                <span>Amount: {item.amount}</span>
+                <span>
+                  {t("Amount:")} {item.amount}
+                </span>
                 <br />
 
-                <span>Size: {item.my_size}</span>
+                <span>
+                  {t("Size:")} {item.my_size}
+                </span>
               </span>
             }
             trigger={["hover"]}

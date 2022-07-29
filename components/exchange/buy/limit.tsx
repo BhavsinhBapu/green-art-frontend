@@ -1,4 +1,5 @@
 import { formateZert } from "common";
+import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import React from "react";
 import { useDispatch } from "react-redux";
@@ -15,6 +16,7 @@ const Limit = ({
   isLoggedIn,
   currentPair,
 }: any) => {
+  const { t } = useTranslation("common");
   const [loading, setLoading] = React.useState(false);
   const dispatch = useDispatch();
   return (
@@ -36,7 +38,7 @@ const Limit = ({
                 />
                 <div className="form-group ">
                   <div className="total-top">
-                    <label>Total</label> <label>Available</label>
+                    <label>{t("Total")}</label> <label>{t("Available")}</label>
                   </div>
                   <div className="total-top-blance">
                     <div className="total-blance">
@@ -83,7 +85,7 @@ const Limit = ({
                   </div>
                 </div>
                 <div className="form-group mt-3">
-                  <label>Price</label>
+                  <label>{t("Price")}</label>
                   <input
                     name="price"
                     type="text"
@@ -110,7 +112,7 @@ const Limit = ({
                   </span>
                 </div>
                 <div className="form-group mt-3">
-                  <label>Amount</label>
+                  <label>{t("Amount")}</label>
                   <input
                     name="amount"
                     type="number"
@@ -137,7 +139,7 @@ const Limit = ({
                   </span>
                 </div>
                 <div className="form-group mt-3">
-                  <label>Total Amount</label>
+                  <label>{t("Total Amount")}</label>
                   <input
                     disabled
                     name="total_amount"
@@ -158,7 +160,7 @@ const Limit = ({
                 {!isLoggedIn ? (
                   <div className="form-group mt-4">
                     <Link href="/authentication/signin">
-                      <a className="btn btn-danger">Login</a>
+                      <a className="btn btn-danger">{t("Login")}</a>
                     </Link>
                   </div>
                 ) : loading ? (
@@ -170,9 +172,9 @@ const Limit = ({
                           role="status"
                           aria-hidden="true"
                         ></span>
-                        Placing Order...
+                        {t("Placing Order...")}
                       </span>
-                      <span v-else="">Buy </span>
+                      <span v-else="">{t("Buy")} </span>
                     </button>
                   </div>
                 ) : (
@@ -195,7 +197,7 @@ const Limit = ({
                         );
                       }}
                     >
-                      <span v-else="">Place Order</span>
+                      <span v-else="">{t("Place Order")}</span>
                     </button>
                   </div>
                 )}

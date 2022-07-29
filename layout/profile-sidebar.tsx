@@ -1,14 +1,16 @@
+import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import { useRouter } from "next/router";
 const ProfileSidebar = () => {
   const router = useRouter();
+  const { t } = useTranslation("common");
   return (
     <div className="page-left-sidebar">
       <div className="sidebar-top">
         <ul className="left-menu">
           <Link href="/user/profile">
             <li className={router.pathname == "/user/profile" ? "active" : ""}>
-              <a href="/user/profile">Profile</a>
+              <a href="/user/profile">{t("Profile")}</a>
             </li>
           </Link>
           <Link href="/user/edit-profile">
@@ -17,7 +19,7 @@ const ProfileSidebar = () => {
                 router.pathname == "/user/edit-profile" ? "active" : ""
               }
             >
-              <a href="/user/edit-profile">Edit Profile</a>
+              <a href="/user/edit-profile">{t("Edit Profile")}</a>
             </li>
           </Link>
           <Link href="/user/phone-verification">
@@ -26,12 +28,12 @@ const ProfileSidebar = () => {
                 router.pathname == "/user/phone-verification" ? "active" : ""
               }
             >
-              <a href="/user/phone-verification">Phone Verification</a>
+              <a href="/user/phone-verification">{t("Phone Verification")}</a>
             </li>
           </Link>
           <Link href="/user/security">
             <li className={router.pathname == "/user/security" ? "active" : ""}>
-              <a href="/user/security-setting">Security</a>
+              <a href="/user/security-setting">{t("Security")}</a>
             </li>
           </Link>
           <Link href="/user/verification-list">
@@ -40,7 +42,9 @@ const ProfileSidebar = () => {
                 router.pathname == "/user/verification-list" ? "active" : ""
               }
             >
-              <a href="/user/profile-verification-list">Verification List</a>
+              <a href="/user/profile-verification-list">
+                {t("Verification List")}
+              </a>
             </li>
           </Link>
           <Link href="/user/personal-verification">
@@ -49,7 +53,9 @@ const ProfileSidebar = () => {
                 router.pathname == "/user/personal-verification" ? "active" : ""
               }
             >
-              <a href="/user/personal-verification">Personal Verification</a>
+              <a href="/user/personal-verification">
+                {t("Personal Verification")}
+              </a>
             </li>
           </Link>
           <Link href="/user/change-password">
@@ -58,7 +64,7 @@ const ProfileSidebar = () => {
                 router.pathname == "/user/change-password" ? "active" : ""
               }
             >
-              <a href="/user/change-password">Change Password</a>
+              <a href="/user/change-password">{t("Change Password")}</a>
             </li>
           </Link>
         </ul>

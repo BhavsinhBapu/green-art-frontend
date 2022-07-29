@@ -10,8 +10,10 @@ import { authPageRequireCheck } from "middlewares/ssr-authentication-check";
 //@ts-ignore
 import ReCAPTCHA from "react-google-recaptcha";
 import { RecapCha } from "service/user";
+import useTranslation from "next-translate/useTranslation";
 const Signup: NextPage = () => {
   const dispatch = useDispatch();
+  const { t } = useTranslation("common");
   const [recaptchaData, setRecaptchaData] = useState<any>({});
   const router = useRouter();
 
@@ -42,8 +44,8 @@ const Signup: NextPage = () => {
             <div className="user-form">
               <div className="user-form-inner">
                 <div className="form-top">
-                  <h2>Sign Up</h2>
-                  <p>Create a new account.</p>
+                  <h2>{t("Sign Up")}</h2>
+                  <p>{t("Create a new account")}.</p>
                 </div>
                 <Formik
                   initialValues={{
@@ -59,26 +61,26 @@ const Signup: NextPage = () => {
                   }}
                   validationSchema={Yup.object({
                     email: Yup.string()
-                      .email("Invalid email address")
-                      .required("Email is required"),
+                      .email(t("Invalid email address"))
+                      .required(t("Email is required")),
                     first_name: Yup.string()
                       .min(2)
-                      .required("First name is required"),
+                      .required(t("First name is required")),
                     last_name: Yup.string()
                       .min(2)
-                      .required("Last name is required"),
+                      .required(t("Last name is required")),
                     password: Yup.string()
                       .min(8)
-                      .required("Password is required"),
+                      .required(t("Password is required")),
                     password_confirmation: Yup.string()
                       .oneOf(
                         [Yup.ref("password"), null],
-                        "Passwords must match"
+                        t("Passwords must match")
                       )
                       .required("Confirm password is required"),
                     recapcha: Yup.string()
                       .min(6)
-                      .required("Recapcha is required"),
+                      .required(t("Recapcha is required")),
                   })}
                   onSubmit={async (values) => {
                     dispatch(SignupAction(values, setProcessing, ref_code));
@@ -96,7 +98,7 @@ const Signup: NextPage = () => {
                               ? "is-invalid"
                               : ""
                           }`}
-                          placeholder="Your first name here"
+                          placeholder={t("Your first name here")}
                         />
                       </div>
                       <ErrorMessage
@@ -114,7 +116,7 @@ const Signup: NextPage = () => {
                               ? "is-invalid"
                               : ""
                           }`}
-                          placeholder="Your last name here"
+                          placeholder={t("Your last name here")}
                         />
                       </div>
                       <ErrorMessage
@@ -130,7 +132,7 @@ const Signup: NextPage = () => {
                           className={`form-control ${
                             touched.email && errors.email ? "is-invalid" : ""
                           }`}
-                          placeholder="Your email here"
+                          placeholder={t("Your email here")}
                         />
                       </div>
                       <ErrorMessage
@@ -182,7 +184,7 @@ const Signup: NextPage = () => {
                               ? "is-invalid"
                               : ""
                           }`}
-                          placeholder="Your password here"
+                          placeholder={t("Your password here")}
                         />
 
                         <span
@@ -204,7 +206,7 @@ const Signup: NextPage = () => {
                       />
                       <div className="form-group">
                         <label></label>
-                        <p className="invalid-feedback">Message </p>
+                        <p className="invalid-feedback">{t("Message")} </p>
                       </div>
                       {recaptchaData?.NOCAPTCHA_SITEKEY &&
                         recaptchaData?.google_recapcha === "1" && (
@@ -229,10 +231,10 @@ const Signup: NextPage = () => {
                               role="status"
                               aria-hidden="true"
                             ></span>
-                            <span>Please wait</span>
+                            <span>{t("Please wait")}</span>
                           </>
                         ) : (
-                          "Sign Up"
+                          t("Sign Up")
                         )}
                       </button>
                     </Form>
@@ -243,7 +245,7 @@ const Signup: NextPage = () => {
           </div>
           <div className="col-md-6">
             <div className="user-content-text text-center">
-              <h3>Welcome To</h3>
+              <h3>{t("Welcome To")}</h3>
               <Link href="/">
                 <a className="auth-logo" href="">
                   <img src="/logo.svg" className="img-fluid" alt="" />
@@ -251,7 +253,7 @@ const Signup: NextPage = () => {
               </Link>
               <Link href="/authentication/signin">
                 <p>
-                  Already have an accoun ? <a href=""> Sign In</a>
+                  {t("Already have an accoun ?")} <a href=""> {t("Sign In")}</a>
                 </p>
               </Link>
             </div>

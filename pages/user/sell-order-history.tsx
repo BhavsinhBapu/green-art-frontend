@@ -8,6 +8,7 @@ import {
 } from "state/actions/reports";
 import TableLoading from "components/common/TableLoading";
 import { formateData } from "common";
+import useTranslation from "next-translate/useTranslation";
 const SellOrderHistory: NextPage = () => {
   type searchType = string;
   const [search, setSearch] = useState<searchType>("");
@@ -15,6 +16,7 @@ const SellOrderHistory: NextPage = () => {
     column_name: "created_at",
     order_by: "desc",
   });
+  const { t } = useTranslation("common");
   const [processing, setProcessing] = useState<boolean>(false);
   const [history, setHistory] = useState<any>([]);
   const [stillHistory, setStillHistory] = useState<any>([]);
@@ -94,7 +96,7 @@ const SellOrderHistory: NextPage = () => {
                           id="assetBalances_length"
                         >
                           <label className="">
-                            Show
+                            {t("Show")}
                             <select
                               name="assetBalances_length"
                               aria-controls="assetBalances"
@@ -116,12 +118,12 @@ const SellOrderHistory: NextPage = () => {
                               <option value="50">50</option>
                               <option value="100">100</option>
                             </select>
-                            entries
+                            {t("entries")}
                           </label>
                         </div>
                         <div id="table_filter" className="dataTables_filter">
                           <label>
-                            Search:
+                            {t("Search:")}
                             <input
                               type="search"
                               className="data_table_input"
@@ -149,7 +151,7 @@ const SellOrderHistory: NextPage = () => {
                       <thead>
                         <tr>
                           <th scope="col" className="">
-                            Base Coin
+                            {t("Base Coin")}
                             {sortingInfo.column_name === "base_coin" ? (
                               sortingInfo.order_by === "asc" ? (
                                 <i
@@ -179,7 +181,7 @@ const SellOrderHistory: NextPage = () => {
                             )}
                           </th>
                           <th scope="col" rowSpan={1} colSpan={1}>
-                            Trade Coin
+                            {t("Trade Coin")}
                             {sortingInfo.column_name === "trade_coin" ? (
                               sortingInfo.order_by === "asc" ? (
                                 <i
@@ -209,7 +211,7 @@ const SellOrderHistory: NextPage = () => {
                             )}
                           </th>
                           <th scope="col" rowSpan={1} colSpan={1}>
-                            Amount
+                            {t("Amount")}
                             {sortingInfo.column_name === "amount" ? (
                               sortingInfo.order_by === "asc" ? (
                                 <i
@@ -239,7 +241,7 @@ const SellOrderHistory: NextPage = () => {
                             )}
                           </th>
                           <th scope="col">
-                            Processed
+                            {t("Processed")}
                             {sortingInfo.column_name === "processed" ? (
                               sortingInfo.order_by === "asc" ? (
                                 <i
@@ -269,7 +271,7 @@ const SellOrderHistory: NextPage = () => {
                             )}
                           </th>
                           <th scope="col">
-                            Price
+                            {t("Price")}
                             {sortingInfo.column_name === "price" ? (
                               sortingInfo.order_by === "asc" ? (
                                 <i
@@ -299,7 +301,7 @@ const SellOrderHistory: NextPage = () => {
                             )}
                           </th>
                           <th scope="col">
-                            Status
+                            {t("Status")}
                             {sortingInfo.column_name === "status" ? (
                               sortingInfo.order_by === "asc" ? (
                                 <i
@@ -329,7 +331,7 @@ const SellOrderHistory: NextPage = () => {
                             )}
                           </th>
                           <th scope="col">
-                            Date
+                            {t("Date")}
                             {sortingInfo.column_name === "created_at" ? (
                               sortingInfo.order_by === "asc" ? (
                                 <i
@@ -412,7 +414,7 @@ const SellOrderHistory: NextPage = () => {
                     </table>
                     {history?.length <= 0 && (
                       <div className="no_data_table">
-                        No data available in table
+                        {t("No data available in table")}
                       </div>
                     )}
                     <div

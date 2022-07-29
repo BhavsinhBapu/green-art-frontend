@@ -2,8 +2,10 @@ import React from "react";
 import WalletGoogleAuth from "components/wallet/wallet-google-auth";
 import { UserSettingsApi } from "service/settings";
 import { formateZert } from "common";
+import useTranslation from "next-translate/useTranslation";
 
 const WirhdrawTab = ({ response, TurnoffSetShow }: any) => {
+  const { t } = useTranslation("common");
   const [withdrawalCredentials, setWithdrawalCredentials] = React.useState({
     wallet_id: "",
     code: "",
@@ -48,8 +50,12 @@ const WirhdrawTab = ({ response, TurnoffSetShow }: any) => {
               <div className="balance-box">
                 <img className="icon" src="/bitcoin.png" alt="coin" />
                 <div className="balance-content">
-                  <h4>{response?.wallet?.coin_type} Balance</h4>
-                  <h5>{response?.wallet?.coin_type} Wallet</h5>
+                  <h4>
+                    {response?.wallet?.coin_type} {t("Balance")}
+                  </h4>
+                  <h5>
+                    {response?.wallet?.coin_type} {t("Wallet")}
+                  </h5>
                 </div>
               </div>
               <a
@@ -64,7 +70,9 @@ const WirhdrawTab = ({ response, TurnoffSetShow }: any) => {
             </div>
             <div className="withdrawal-form">
               <div className="avable-blance">
-                <h4 className="avable-blance-title">AVAILABLE BALANCE</h4>
+                <h4 className="avable-blance-title">
+                  {t("AVAILABLE BALANCE")}
+                </h4>
                 <h2 className="blance">
                   {formateZert(response?.wallet?.balance)}{" "}
                   {response?.wallet?.coin_type}
@@ -73,7 +81,7 @@ const WirhdrawTab = ({ response, TurnoffSetShow }: any) => {
               <div className="form-group">
                 <div className="withdrawal-limit">
                   {" "}
-                  BTC daily withdrawal limit.
+                  {t("BTC daily withdrawal limit.")}
                 </div>
               </div>
 
@@ -153,7 +161,7 @@ const WirhdrawTab = ({ response, TurnoffSetShow }: any) => {
                     });
                   }}
                 >
-                  Withdraw
+                  {t("Withdraw")}
                 </button>
               </form>
             </div>

@@ -13,7 +13,9 @@ import {
 } from "state/actions/wallet";
 import Loading from "components/common/TableLoading";
 import Link from "next/link";
+import useTranslation from "next-translate/useTranslation";
 const MyWallet: NextPage = () => {
+  const { t } = useTranslation("common");
   const [show, setShow] = useState<any>({
     deposit: false,
     withdraw: false,
@@ -137,12 +139,12 @@ const MyWallet: NextPage = () => {
             <ul className="left-menu">
               <li className="active">
                 <Link href={`/user/my-wallet`}>
-                  <a>Wallet Overview</a>
+                  <a>{t("Wallet Overview")}</a>
                 </Link>
               </li>
               <li className="">
                 <Link href={`/user/swap-coin`}>
-                  <a>Swap Coin</a>
+                  <a>{t("Swap Coin")}</a>
                 </Link>
               </li>
             </ul>
@@ -164,10 +166,10 @@ const MyWallet: NextPage = () => {
                     role="status"
                     aria-hidden="true"
                   ></span>
-                  <span>Please wait</span>
+                  <span>{t("Please wait")}</span>
                 </>
               ) : (
-                "Deposit"
+                t("Deposit")
               )}
             </button>
             <button
@@ -184,10 +186,10 @@ const MyWallet: NextPage = () => {
                     role="status"
                     aria-hidden="true"
                   ></span>
-                  <span>Please wait</span>
+                  <span>{t("Please wait")}</span>
                 </>
               ) : (
-                "Withdraw"
+                t("Withdraw")
               )}
             </button>
           </div>
@@ -197,16 +199,16 @@ const MyWallet: NextPage = () => {
             <div className="section-top-wrap mb-25">
               <div className="overview-area">
                 <div className="overview-left">
-                  <h2 className="section-top-title">Overview</h2>
-                  <h4 className="blance-title">Total balance</h4>
+                  <h2 className="section-top-title">{t("Overview")}</h2>
+                  <h4 className="blance-title">{t("Total balance")}</h4>
                   <h4 className="blance">
                     {allData?.total ? allData?.total : 0}
-                    {""} USD
+                    {""} {t("USD")}
                   </h4>
                 </div>
               </div>
             </div>
-            <h4 className="section-title-medium">Asset Balances</h4>
+            <h4 className="section-title-medium">{t("Asset Balances")}</h4>
             <div className="asset-balances-area cstm-loader-area">
               {processing ? (
                 <Loading />
@@ -224,7 +226,7 @@ const MyWallet: NextPage = () => {
                             id="assetBalances_length"
                           >
                             <label className="">
-                              Show
+                              {t("Show")}
                               <select
                                 name="assetBalances_length"
                                 aria-controls="assetBalances"
@@ -240,12 +242,12 @@ const MyWallet: NextPage = () => {
                                 <option value="50">50</option>
                                 <option value="100">100</option>
                               </select>
-                              entries
+                              {t("entries")}
                             </label>
                           </div>
                           <div id="table_filter" className="dataTables_filter">
                             <label>
-                              Search:
+                              {t("Search:")}
                               <input
                                 type="search"
                                 className="data_table_input"
@@ -269,11 +271,11 @@ const MyWallet: NextPage = () => {
                       >
                         <thead>
                           <tr>
-                            <th scope="col">Asset</th>
-                            <th scope="col">Symbol</th>
-                            <th scope="col">On Order</th>
-                            <th scope="col">Available Balance</th>
-                            <th scope="col">Total Balance</th>
+                            <th scope="col">{t("Asset")}</th>
+                            <th scope="col">{t("Symbol")}</th>
+                            <th scope="col">{t("On Order")}</th>
+                            <th scope="col">{t("Available Balance")}</th>
+                            <th scope="col">{t("Total Balance")}</th>
                           </tr>
                         </thead>
                         <tbody>

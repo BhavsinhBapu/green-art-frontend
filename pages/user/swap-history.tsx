@@ -8,7 +8,9 @@ import {
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import TableLoading from "components/common/TableLoading";
 import { formateData } from "common";
+import useTranslation from "next-translate/useTranslation";
 const SwapHistory: NextPage = () => {
+  const { t } = useTranslation("common");
   type searchType = string;
   const [search, setSearch] = React.useState<searchType>("");
   const [processing, setProcessing] = React.useState<boolean>(false);
@@ -42,7 +44,7 @@ const SwapHistory: NextPage = () => {
           <div className="section-top-wrap mb-25">
             <div className="overview-area">
               <div className="overview-left">
-                <h2 className="section-top-title">Coin Swap History</h2>
+                <h2 className="section-top-title">{t("Coin Swap History")}</h2>
               </div>
             </div>
           </div>
@@ -64,7 +66,7 @@ const SwapHistory: NextPage = () => {
                           id="assetBalances_length"
                         >
                           <label className="">
-                            Show
+                            {t("Show")}
                             <select
                               name="assetBalances_length"
                               aria-controls="assetBalances"
@@ -88,12 +90,12 @@ const SwapHistory: NextPage = () => {
                               <option value="50">50</option>
                               <option value="100">100</option>
                             </select>
-                            entries
+                            {t("entries")}
                           </label>
                         </div>
                         <div id="table_filter" className="dataTables_filter">
                           <label>
-                            Search:
+                            {t("Search:")}
                             <input
                               type="search"
                               className="data_table_input"
@@ -119,18 +121,18 @@ const SwapHistory: NextPage = () => {
                       <thead>
                         <tr>
                           <th scope="col" className="">
-                            From Wallet
+                            {t("From Wallet")}
                           </th>
                           <th scope="col" rowSpan={1} colSpan={1}>
-                            To Wallet
+                            {t("To Wallet")}
                           </th>
                           <th scope="col" rowSpan={1} colSpan={1}>
-                            Requested Amount
+                            {t("Requested Amount")}
                           </th>
-                          <th scope="col">Converted Amount</th>
-                          <th scope="col">Rate</th>
-                          <th scope="col">Created At</th>
-                          <th scope="col">Status</th>
+                          <th scope="col">{t("Converted Amount")}</th>
+                          <th scope="col">{t("Rate")}</th>
+                          <th scope="col">{t("Created At")}</th>
+                          <th scope="col">{t("Status")}</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -150,7 +152,6 @@ const SwapHistory: NextPage = () => {
                             </td>
                             <td>
                               <span className="symbol">
-                                {" "}
                                 {item?.to_wallet?.coin_type}
                               </span>
                             </td>
@@ -197,7 +198,7 @@ const SwapHistory: NextPage = () => {
                     </table>
                     {history?.length <= 0 && (
                       <div className="no_data_table">
-                        No data available in table
+                        {t("No data available in table")}
                       </div>
                     )}
 

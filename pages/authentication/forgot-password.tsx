@@ -8,7 +8,9 @@ import Link from "next/link";
 import { RecapCha } from "service/user";
 //@ts-ignore
 import ReCAPTCHA from "react-google-recaptcha";
+import useTranslation from "next-translate/useTranslation";
 const ForgotPassword: NextPage = () => {
+  const { t } = useTranslation("common");
   const [processing, setProcessing] = useState(false);
   const [recaptchaData, setRecaptchaData] = useState<any>({});
   const getRecapcha = async () => {
@@ -32,9 +34,11 @@ const ForgotPassword: NextPage = () => {
             <div className="user-form">
               <div className="user-form-inner">
                 <div className="form-top">
-                  <h2>Forgot Password ?</h2>
+                  <h2>{t("Forgot Password ?")}</h2>
                   <p>
-                    Please enter the email address to request a password reset.
+                    {t(
+                      "Please enter the email address to request a password reset."
+                    )}
                   </p>
                 </div>
                 <Formik
@@ -47,11 +51,11 @@ const ForgotPassword: NextPage = () => {
                   }}
                   validationSchema={Yup.object({
                     email: Yup.string()
-                      .email("Invalid email address")
-                      .required("Email is required"),
+                      .email(t("Invalid email address"))
+                      .required(t("Email is required")),
                     recapcha: Yup.string()
                       .min(6)
-                      .required("Recapcha is required"),
+                      .required(t("Recapcha is required")),
                   })}
                   onSubmit={async (values) => {
                     await ForgotPasswordAction(values, setProcessing);
@@ -67,7 +71,7 @@ const ForgotPassword: NextPage = () => {
                           className={`form-control ${
                             touched.email && errors.email ? "is-invalid" : ""
                           }`}
-                          placeholder="Your email here"
+                          placeholder={t("Your email here")}
                         />
                       </div>
                       <ErrorMessage
@@ -97,10 +101,10 @@ const ForgotPassword: NextPage = () => {
                               role="status"
                               aria-hidden="true"
                             ></span>
-                            <span>Please wait</span>
+                            <span>{t("Please wait")}</span>
                           </>
                         ) : (
-                          "Send"
+                          t("Send")
                         )}
                       </button>
                     </Form>
@@ -111,14 +115,14 @@ const ForgotPassword: NextPage = () => {
           </div>
           <div className="col-md-6">
             <div className="user-content-text text-center">
-              <h3>Welcome Back To</h3>
+              <h3>{t("Welcome Back To")}</h3>
               <a className="auth-logo" href="">
                 <img src="/logo.svg" className="img-fluid" alt="" />
               </a>
               <p>
-                Return to{" "}
+                {t("Return to")}
                 <Link href="/authentication/signin">
-                  <a href=""> Sign In</a>
+                  <a href="">{t("Sign In")}</a>
                 </Link>
               </p>
             </div>

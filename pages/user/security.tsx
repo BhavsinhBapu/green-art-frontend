@@ -6,8 +6,10 @@ import { RootState } from "state/store";
 import Link from "next/link";
 import { UserSettingsAction } from "state/actions/settings";
 import { useEffect, useState } from "react";
+import useTranslation from "next-translate/useTranslation";
 const Security: NextPage = () => {
   const { user } = useSelector((state: RootState) => state.user);
+  const { t } = useTranslation("common");
   const [languageList, setLanguageList] = useState<any>([]);
   const [settings, setSettings] = useState<any>();
   const dispatch = useDispatch();
@@ -19,8 +21,13 @@ const Security: NextPage = () => {
     const middleNumbers = phoneNumber.slice(2, 9);
     return phoneNumber.replace(middleNumbers, "*******");
   };
+  const setLanguageSelected = (language: string) => {
+    return language;
+  };
   useEffect(() => {
-    dispatch(UserSettingsAction(setSettings, setLanguageList));
+    dispatch(
+      UserSettingsAction(setSettings, setLanguageList, setLanguageSelected)
+    );
     return () => {
       setSettings(null);
       setLanguageList([]);
@@ -35,7 +42,7 @@ const Security: NextPage = () => {
           <div className="section-top-wrap mb-25">
             <div className="profle-are-top">
               <h2 className="section-top-title mb-0">
-                Profile Security Status
+                {t("Profile Security Status")}
               </h2>
             </div>
           </div>
@@ -52,8 +59,8 @@ const Security: NextPage = () => {
                         className="security-icon"
                       />
                       <div className="security-content">
-                        <h4>Google Authenticator (Recommended)</h4>
-                        <p>Protect your account and transactions.</p>
+                        <h4>{t("Google Authenticator (Recommended)")}</h4>
+                        <p>{t("Protect your account and transactions.")}</p>
                       </div>
                     </div>
                   </div>
@@ -61,13 +68,13 @@ const Security: NextPage = () => {
                     {settings?.user?.google2fa === 1 ? (
                       <Link href="/user/settings">
                         <a href="" className="action-btn remove-btn">
-                          Disable
+                          {t("Disable")}
                         </a>
                       </Link>
                     ) : (
                       <Link href="/user/settings">
                         <a href="" className="action-btn change-btn">
-                          Enable
+                          {t("Enable")}
                         </a>
                       </Link>
                     )}
@@ -82,8 +89,8 @@ const Security: NextPage = () => {
                         className="security-icon"
                       />
                       <div className="security-content">
-                        <h4>Phone Number Verification</h4>
-                        <p>Protect your account and transactions.</p>
+                        <h4>{t("Phone Number Verification")}</h4>
+                        <p>{t("Protect your account and transactions.")}</p>
                       </div>
                     </div>
                   </div>
@@ -91,17 +98,19 @@ const Security: NextPage = () => {
                     {user.phone ? (
                       <span>{makePhoneNumberSecure(user?.phone)}</span>
                     ) : (
-                      <span className="text-danger">No phone number added</span>
+                      <span className="text-danger">
+                        {t("No phone number added")}
+                      </span>
                     )}
                   </div>
                   <div className="security-right">
                     {user.phone_verified === 0 ? (
                       <Link href="/user/phone-verification">
-                        <a className="action-btn enable-btn">Verify?</a>
+                        <a className="action-btn enable-btn">{t("Verify?")}</a>
                       </Link>
                     ) : (
                       <a href="" className="action-btn change-btn">
-                        Verified
+                        {t("Verified")}
                       </a>
                     )}
                   </div>
@@ -115,8 +124,8 @@ const Security: NextPage = () => {
                         className="security-icon"
                       />
                       <div className="security-content">
-                        <h4>Email Address Verification</h4>
-                        <p>Protect your account and transactions.</p>
+                        <h4>{t("Email Address Verification")}</h4>
+                        <p>{t("Protect your account and transactions.")}</p>
                       </div>
                     </div>
                   </div>
@@ -125,13 +134,13 @@ const Security: NextPage = () => {
                       <span>{makeEmailSecure(user.email)}</span>
                     ) : (
                       <span className="text-danger">
-                        No email address added
+                        {t("No email address added")}
                       </span>
                     )}
                   </div>
                   <div className="security-right">
                     <a href="#" className="action-btn change-btn" hidden>
-                      Verified
+                      {t("Verified")}
                     </a>
                   </div>
                 </div>
@@ -139,7 +148,7 @@ const Security: NextPage = () => {
             </div>
           </div>
           <div className="advanced-security-area">
-            <h4 className="section-title-medium">Advanced Security</h4>
+            <h4 className="section-title-medium">{t("Advanced Security")}</h4>
             <div className="section-wrapper">
               <div className="security-list">
                 <div className="single-security">
@@ -147,14 +156,18 @@ const Security: NextPage = () => {
                     <div className="security-info">
                       <img src="/key.svg" alt="key" className="security-icon" />
                       <div className="security-content">
-                        <h4>Login Password</h4>
-                        <p>Login password is used to log in to your account.</p>
+                        <h4>{t("Login Password")}</h4>
+                        <p>
+                          {t(
+                            "Login password is used to log in to your account."
+                          )}
+                        </p>
                       </div>
                     </div>
                   </div>
                   <div className="security-right">
                     <Link href="/user/change-password">
-                      <a className="action-btn enable-btn">Change</a>
+                      <a className="action-btn enable-btn">{t("Change")}</a>
                     </Link>
                   </div>
                 </div>

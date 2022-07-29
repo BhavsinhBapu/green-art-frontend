@@ -4,10 +4,12 @@ import { RootState } from "state/store";
 import { setCurrentPair } from "state/reducer/exchange";
 import { useRouter } from "next/router";
 import Cookies from "js-cookie";
+import useTranslation from "next-translate/useTranslation";
 
 const SelectCurrency = () => {
   const router = useRouter();
   const [pairs, setPairs] = React.useState([]);
+  const { t } = useTranslation("common");
   const { dashboard } = useSelector((state: RootState) => state.exchange);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -48,7 +50,7 @@ const SelectCurrency = () => {
             className="dataTables_processing"
             style={{ display: "none" }}
           >
-            Processing...
+            {t("Processing...")}
           </div>
           <div className="dataTables_scroll">
             <div
@@ -88,7 +90,7 @@ const SelectCurrency = () => {
                         aria-label="Coins: activate to sort column descending"
                         aria-sort="ascending"
                       >
-                        Coins
+                        {t("Coins")}
                       </th>
                       <th
                         className="text-center w-40 sorting"
@@ -99,7 +101,7 @@ const SelectCurrency = () => {
                         style={{ width: "103.281px" }}
                         aria-label="Last: activate to sort column ascending"
                       >
-                        Last
+                        {t("Last")}
                       </th>
                       <th
                         className="sorting"
@@ -110,7 +112,7 @@ const SelectCurrency = () => {
                         style={{ width: "147.047px" }}
                         aria-label="Balance: activate to sort column ascending"
                       >
-                        Balance
+                        {t("Balance")}
                       </th>
                     </tr>
                   </thead>
@@ -157,7 +159,7 @@ const SelectCurrency = () => {
                           overflow: "hidden",
                         }}
                       >
-                        Coins
+                        {t("Coins")}
                       </div>
                     </th>
                     <th
@@ -182,7 +184,7 @@ const SelectCurrency = () => {
                           overflow: "hidden",
                         }}
                       >
-                        Last
+                        {t("Last")}
                       </div>
                     </th>
                     <th
@@ -207,7 +209,7 @@ const SelectCurrency = () => {
                           overflow: "hidden",
                         }}
                       >
-                        Balance
+                        {t("Balance")}
                       </div>
                     </th>
                   </tr>

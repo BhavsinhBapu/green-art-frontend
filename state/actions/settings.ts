@@ -23,13 +23,15 @@ export const UserSettingsAction =
           ]
         >
       >
-    >
+    >,
+    setLanguageSelected: any
   ) =>
   async (dispatch: any) => {
     dispatch(setLoading(true));
     const settings = await UserSettingsApi();
     const language = await LanguageListApi();
     setSettings(settings.data);
+    setLanguageSelected(settings.data?.user?.language);
     setLanguageList(language.data);
     dispatch(setLoading(false));
   };
@@ -46,12 +48,13 @@ export const Google2faLoginAction = async () => {
 
 export const SetupLanguageAction = async (
   credential: { language: string },
-  setSettings: any
+  setLanguageSelected: any
 ) => {
   const language = await LanguageSetupApi(credential);
   if (language.success) {
     toast.success(language.message);
-    setSettings({ user: language?.data });
+    console.log(language.data, "setLanguageSelected");
+    setLanguageSelected(language?.data?.language);
   } else {
     toast.error(language.message);
   }

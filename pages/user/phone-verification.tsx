@@ -9,8 +9,10 @@ import {
   VerifyPhoneAction,
 } from "state/actions/user";
 import Link from "next/link";
+import useTranslation from "next-translate/useTranslation";
 
 const PhoneVerification: NextPage = () => {
+  const { t } = useTranslation("common");
   const { user } = useSelector((state: RootState) => state.user);
   const [ShowOtpSection, setShowOtpSection] = useState(false);
   const [processing, setProcessing] = useState(false);
@@ -29,17 +31,19 @@ const PhoneVerification: NextPage = () => {
         <div className="container-fluid">
           <div className="section-top-wrap mb-25">
             <div className="profle-are-top">
-              <h2 className="section-top-title mb-0">Phone Verification</h2>
+              <h2 className="section-top-title mb-0">
+                {t("Phone Verification")}
+              </h2>
             </div>
           </div>
           <div className="reset-password-area">
-            <h4 className="section-title-medium">Verify Phone </h4>
+            <h4 className="section-title-medium">{t("Verify Phone")} </h4>
             <div className="section-wrapper">
               <div className="row">
                 <div className="col-lg-6 col-md-8">
                   <div className="user-profile-form">
                     <div className="form-group">
-                      <label htmlFor="number">Phone number</label>
+                      <label htmlFor="number">{t("Phone number")}</label>
                       {user?.phone ? (
                         <div className="code-list">
                           <input
@@ -59,21 +63,23 @@ const PhoneVerification: NextPage = () => {
                                   role="status"
                                   aria-hidden="true"
                                 ></span>
-                                <span>Please wait</span>
+                                <span>{t("Please wait")}</span>
                               </>
                             ) : ShowOtpSection ? (
-                              "Resend SMS"
+                              t("Resend SMS")
                             ) : (
-                              "Send SMS"
+                              t("Send SMS")
                             )}
                           </button>
-                          <p>Did not receive code?</p>
+                          <p>{t("Did not receive code?")}</p>
                         </div>
                       ) : (
                         <div className="code-list">
                           <p>
-                            Please add mobile no. first from
-                            <Link href="/user/edit-profile">edit profile</Link>
+                            {t("Please add mobile no. first from")}
+                            <Link href="/user/edit-profile">
+                              {t("edit profile")}
+                            </Link>
                           </p>
                         </div>
                       )}
@@ -81,7 +87,7 @@ const PhoneVerification: NextPage = () => {
 
                     {ShowOtpSection && (
                       <div className="form-group">
-                        <label htmlFor="number">Verify Code</label>
+                        <label htmlFor="number">{t("Verify Code")}</label>
                         <div className="code-list">
                           <input
                             type="text"
@@ -103,10 +109,10 @@ const PhoneVerification: NextPage = () => {
                                   role="status"
                                   aria-hidden="true"
                                 ></span>
-                                <span>Please wait</span>
+                                <span>{t("Please wait")}</span>
                               </>
                             ) : (
-                              "Verify"
+                              t("Verify")
                             )}
                           </button>
                         </div>

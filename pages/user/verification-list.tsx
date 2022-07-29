@@ -5,8 +5,10 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getKycDetailsAction } from "state/actions/user";
+import useTranslation from "next-translate/useTranslation";
 
 const VerificationList: NextPage = () => {
+  const { t } = useTranslation("common");
   const [kycDetails, setKycDetails] = useState<any>();
   const dispatch = useDispatch();
   useEffect(() => {
@@ -19,16 +21,18 @@ const VerificationList: NextPage = () => {
       <div className="page-main-content">
         <div className="container-fluid">
           <div className="section-top-wrap mb-25">
-            <h2 className="section-top-title mb-0">Personal Verification</h2>
+            <h2 className="section-top-title mb-0">
+              {t("Personal Verification")}
+            </h2>
           </div>
           <div className="verification-list-area">
-            <h4 className="section-title-medium">Verification List</h4>
+            <h4 className="section-title-medium">{t("Verification List")}</h4>
             <div className="section-wrapper">
               <div className="row">
                 <div className="col-lg-4 col-md-6">
                   <div className="single-verification">
                     <h3 className="verification-title">
-                      National Id Card Verification
+                      {t("National Id Card Verification")}
                     </h3>
                     <ul className="verification-list">
                       <li>
@@ -38,14 +42,14 @@ const VerificationList: NextPage = () => {
                       </li>
                     </ul>
                     <Link href="/user/personal-verification">
-                      <a className="primary-btn-sm">Start now</a>
+                      <a className="primary-btn-sm">{t("Start now")}</a>
                     </Link>
                   </div>
                 </div>
                 <div className="col-lg-4 col-md-6">
                   <div className="single-verification">
                     <h3 className="verification-title">
-                      Passport Verification
+                      {t("Passport Verification")}
                     </h3>
                     <ul className="verification-list">
                       <li>
@@ -55,14 +59,14 @@ const VerificationList: NextPage = () => {
                       </li>
                     </ul>
                     <Link href="/user/personal-verification">
-                      <a className="primary-btn-sm">Start now</a>
+                      <a className="primary-btn-sm">{t("Start now")}</a>
                     </Link>
                   </div>
                 </div>
                 <div className="col-lg-4 col-md-6">
                   <div className="single-verification">
                     <h3 className="verification-title">
-                      Driving Licence Verification
+                      {t("Driving Licence Verification")}
                     </h3>
                     <ul className="verification-list">
                       <li>
@@ -74,7 +78,7 @@ const VerificationList: NextPage = () => {
                       </li>
                     </ul>
                     <Link href="/user/personal-verification">
-                      <a className="primary-btn-sm">Start now</a>
+                      <a className="primary-btn-sm">{t("Start now")}</a>
                     </Link>
                   </div>
                 </div>

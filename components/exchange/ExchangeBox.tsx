@@ -8,9 +8,11 @@ import StopLimit from "components/exchange/buy/stopLimit";
 import SellLimit from "components/exchange/sell/limit";
 import SellMarket from "components/exchange/sell/market";
 import SellStopLimit from "components/exchange/sell/stopLimit";
+import useTranslation from "next-translate/useTranslation";
 
 const ExchangeBox = () => {
   type tradingTabType = number;
+  const { t } = useTranslation("common");
   const { isLoggedIn, user } = useSelector((state: RootState) => state.user);
   const { dashboard, currentPair } = useSelector(
     (state: RootState) => state.exchange
@@ -100,7 +102,7 @@ const ExchangeBox = () => {
               aria-selected="true"
               className={`nav-link ${tradingTab === 1 ? "active" : ""}`}
             >
-              Buy
+              {t("Buy")}
             </a>
           </li>
           <li
@@ -119,7 +121,7 @@ const ExchangeBox = () => {
               aria-selected="false"
               className={`nav-link ${tradingTab === 2 ? "active" : ""}`}
             >
-              Sell
+              {t("Sell")}
             </a>
           </li>
         </ul>
@@ -148,7 +150,7 @@ const ExchangeBox = () => {
                   setBuySelectedTab(1);
                 }}
               >
-                Limit
+                {t("Limit")}
               </a>
             </li>
             <li role="presentation" className="nav-item">
@@ -163,7 +165,7 @@ const ExchangeBox = () => {
                   setBuySelectedTab(2);
                 }}
               >
-                Market
+                {t("Market")}
               </a>
             </li>
             <li role="presentation" className="nav-item">
@@ -178,7 +180,7 @@ const ExchangeBox = () => {
                   setBuySelectedTab(3);
                 }}
               >
-                Stop-limit
+                {t("Stop-limit")}
               </a>
             </li>
           </ul>
@@ -236,7 +238,7 @@ const ExchangeBox = () => {
                 aria-selected="true"
                 className="nav-link active"
               >
-                Limit
+                {t("Limit")}
               </a>
             </li>
             <li
@@ -254,7 +256,7 @@ const ExchangeBox = () => {
                 aria-selected="false"
                 className="nav-link"
               >
-                Market
+                {t("Market")}
               </a>
             </li>
             <li
@@ -272,7 +274,7 @@ const ExchangeBox = () => {
                 aria-selected="false"
                 className="nav-link"
               >
-                Stop-limit
+                {t("Stop-limit")}
               </a>
             </li>
           </ul>

@@ -1,7 +1,9 @@
+import useTranslation from "next-translate/useTranslation";
 import React, { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 
 const ImageInputField = ({ setter, getter }: any) => {
+  const { t } = useTranslation("common");
   const onDrop = useCallback(
     (acceptedFiles) => {
       setter(acceptedFiles[0]);
@@ -16,8 +18,7 @@ const ImageInputField = ({ setter, getter }: any) => {
       <div className="container cstm-img-picker">
         <div {...getRootProps()}>
           <input {...getInputProps()} />
-          <p>Drop the files hereeeeeeeeeee ...</p>
-          <h1>jasjdnskjan</h1>
+          <p>{t("Drop the files hereeeeeeeeeee ...")}</p>
         </div>
       </div>
       <div className="col-lg-6 mb-lg-0 mb-4">

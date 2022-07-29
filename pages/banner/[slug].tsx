@@ -1,21 +1,22 @@
 import { GetServerSideProps } from "next";
+import useTranslation from "next-translate/useTranslation";
 import React from "react";
 import { bannerDetailsBySlug } from "service/landing-page";
 
 const Bannerdetails = ({ details, status }: any) => {
+  const { t } = useTranslation("common");
+
   if (status === false) {
     return (
       <div className="container">
-        {/* //all content center */}
         <div className="section-wrapper text-center">
-          <h4>404 not found</h4>
+          <h4>{t("404 not found")}</h4>
         </div>
       </div>
     );
   }
   return (
     <div className="container">
-      {/* //all content center */}
       <div className="section-wrapper text-center">
         <img src={details.image} />
         <h1 className="display-4 mt-3">{details.title}</h1>

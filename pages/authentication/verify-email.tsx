@@ -13,7 +13,9 @@ import ReCAPTCHA from "react-google-recaptcha";
 import Link from "next/link";
 import { authPageRequireCheck } from "middlewares/ssr-authentication-check";
 import { RecapCha } from "service/user";
+import useTranslation from "next-translate/useTranslation";
 const Signin: NextPage = () => {
+  const { t } = useTranslation("common");
   const [processing, setProcessing] = useState(false);
   const dispatch = useDispatch();
   const [recaptchaData, setRecaptchaData] = useState<any>({});
@@ -38,7 +40,7 @@ const Signin: NextPage = () => {
             <div className="user-form">
               <div className="user-form-inner">
                 <div className="form-top">
-                  <h2>Verify Email</h2>
+                  <h2>{t("Verify Email")}</h2>
                 </div>
                 <Formik
                   initialValues={{
@@ -72,7 +74,7 @@ const Signin: NextPage = () => {
                           className={`form-control ${
                             touched.email && errors.email ? "is-invalid" : ""
                           }`}
-                          placeholder="Your email here"
+                          placeholder={t("Your email here")}
                         />
                       </div>
                       <ErrorMessage
@@ -88,7 +90,7 @@ const Signin: NextPage = () => {
                           className={`form-control form-control-password look-pass ${
                             touched.code && errors.code ? "is-invalid" : ""
                           }`}
-                          placeholder="Your code here"
+                          placeholder={t("Your code here")}
                         />
                       </div>
                       <ErrorMessage
@@ -98,7 +100,7 @@ const Signin: NextPage = () => {
                       />
 
                       <div className="form-group">
-                        <p className="invalid-feedback">Message</p>
+                        <p className="invalid-feedback">{t("Message")}</p>
                       </div>
 
                       {recaptchaData?.NOCAPTCHA_SITEKEY &&
@@ -124,10 +126,10 @@ const Signin: NextPage = () => {
                               role="status"
                               aria-hidden="true"
                             ></span>
-                            <span>Please wait</span>
+                            <span>{t("Please wait")}</span>
                           </>
                         ) : (
-                          "Verify Email"
+                          t("Verify Email")
                         )}
                       </button>
                     </Form>
@@ -146,7 +148,7 @@ const Signin: NextPage = () => {
               </Link>
               <Link href="/authentication/signup">
                 <p>
-                  Don’t have account ? <a href=""> Sign Up</a>
+                  {t("Don’t have account ?")} <a href=""> {t("Sign Up")}</a>
                 </p>
               </Link>
             </div>

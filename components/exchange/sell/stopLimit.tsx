@@ -1,4 +1,5 @@
 import { formateZert } from "common";
+import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import React from "react";
 import { useDispatch } from "react-redux";
@@ -16,6 +17,7 @@ const StopLimit = ({
   currentPair,
 }: any) => {
   const [loading, setLoading] = React.useState(false);
+  const { t } = useTranslation("common");
   const dispatch = useDispatch();
   return (
     <div id="BuyTabContent" className="tab-content">
@@ -36,7 +38,7 @@ const StopLimit = ({
                 />
                 <div className="form-group ">
                   <div className="total-top">
-                    <label>Total</label> <label>Available</label>
+                    <label>{t("Total")}</label> <label>{t("Available")}</label>
                   </div>
                   <div className="total-top-blance">
                     <div className="total-blance">
@@ -88,7 +90,7 @@ const StopLimit = ({
                   </div>
                 </div>
                 <div className="form-group mt-3">
-                  <label>Stop</label>
+                  <label>{t("Stop")}</label>
                   <input
                     name="stop"
                     type="number"
@@ -112,7 +114,7 @@ const StopLimit = ({
                   </span>
                 </div>
                 <div className="form-group mt-3">
-                  <label>Limit</label>
+                  <label>{t("Limit")}</label>
                   <input
                     name="limit"
                     type="number"
@@ -137,7 +139,7 @@ const StopLimit = ({
                 </div>
 
                 <div className="form-group mt-3">
-                  <label>Amount</label>
+                  <label>{t("Amount")}</label>
                   <input
                     name="amount"
                     type="number"
@@ -167,7 +169,7 @@ const StopLimit = ({
                   </span>
                 </div>
                 <div className="form-group mt-3">
-                  <label>Total Amount</label>
+                  <label>{t("Total Amount")}</label>
                   <input
                     disabled
                     name="total_amount"
@@ -188,7 +190,7 @@ const StopLimit = ({
                 {!isLoggedIn ? (
                   <div className="form-group mt-4">
                     <Link href="/authentication/signin">
-                      <a className="btn btn-danger">Login</a>
+                      <a className="btn btn-danger">{t("Login")}</a>
                     </Link>
                   </div>
                 ) : loading ? (
@@ -200,9 +202,9 @@ const StopLimit = ({
                           role="status"
                           aria-hidden="true"
                         ></span>
-                        Placing Order...
+                        {t("Placing Order...")}
                       </span>
-                      <span v-else="">Buy </span>
+                      <span v-else="">{t("Buy")} </span>
                     </button>
                   </div>
                 ) : (
@@ -226,7 +228,7 @@ const StopLimit = ({
                         );
                       }}
                     >
-                      <span v-else="">Place Order</span>
+                      <span v-else="">{t("Place Order")}</span>
                     </button>
                   </div>
                 )}
@@ -252,7 +254,7 @@ const StopLimit = ({
                 />
                 <div className="form-group mt-4">
                   <div className="total-top">
-                    <label>Total</label> <label>Available</label>
+                    <label>{t("Total")}</label> <label>{t("Available")}</label>
                   </div>
                   <div className="total-top-blance">
                     <div className="total-blance">
@@ -290,8 +292,8 @@ const StopLimit = ({
                   </div>
                 </div>
                 <div className="form-group mt-3">
-                  <label>Price</label>
-                  <p className="form-control">Market</p>
+                  <label>{t("Price")}</label>
+                  <p className="form-control">{t("Market")}</p>
                   <span
                     className="text-warning blns"
                     style={{ fontWeight: 700 }}
@@ -302,7 +304,7 @@ const StopLimit = ({
                   </span>
                 </div>
                 <div className="form-group mt-3">
-                  <label>Amount</label>
+                  <label>{t("Amount")}</label>
                   <input
                     name="amount"
                     type="text"
@@ -319,7 +321,7 @@ const StopLimit = ({
                   </span>
                 </div>
                 <div className="form-group mt-4">
-                  <a className="btn btn-danger"> Login</a>
+                  <a className="btn btn-danger"> {t("Login")}</a>
                 </div>
               </form>
             </div>
@@ -343,7 +345,7 @@ const StopLimit = ({
                 />
                 <div className="form-group mt-4">
                   <div className="total-top">
-                    <label>Total</label> <label>Available</label>
+                    <label>{t("Total")}</label> <label>{t("Available")}</label>
                   </div>
                   <div className="total-top-blance">
                     <div className="total-blance">
@@ -381,7 +383,7 @@ const StopLimit = ({
                   </div>
                 </div>
                 <div className="form-group mt-3">
-                  <label>Stop</label>
+                  <label>{t("Stop")}</label>
                   <input
                     name="stop"
                     type="text"
@@ -398,7 +400,7 @@ const StopLimit = ({
                   </span>
                 </div>
                 <div className="form-group mt-3">
-                  <label>Limit</label>
+                  <label>{t("Limit")}</label>
                   <input
                     name="limit"
                     type="text"
@@ -415,7 +417,7 @@ const StopLimit = ({
                   </span>
                 </div>
                 <div className="form-group mt-3">
-                  <label>Amount</label>
+                  <label>{t("Amount")}</label>
                   <input
                     name="amount"
                     type="text"
@@ -432,7 +434,7 @@ const StopLimit = ({
                   </span>
                 </div>
                 <div className="form-group mt-3">
-                  <label>Total Amount</label>
+                  <label>{t("Total Amount")}</label>
                   <input
                     // disabled
                     name="total_amount"
@@ -450,7 +452,7 @@ const StopLimit = ({
                   </span>
                 </div>
                 <div className="form-group mt-4 d-flex justify-content-between flex-wrap">
-                  <a className="btn btn-danger"> Login</a>
+                  <a className="btn btn-danger"> {t("Login")}</a>
                 </div>
               </form>
             </div>

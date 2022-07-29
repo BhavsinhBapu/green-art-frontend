@@ -5,9 +5,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "state/store";
 import { LogoutAction } from "state/actions/user";
 import { notification, notificationSeen } from "service/notification";
+import useTranslation from "next-translate/useTranslation";
 const Navbar = () => {
   const { isLoggedIn, user } = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
+  const { t } = useTranslation("common");
   const [notificationData, setNotification] = useState([]);
   const [active, setActive] = useState(false);
   const router = useRouter();
@@ -66,7 +68,7 @@ const Navbar = () => {
                           alt=""
                         />
                       </span>
-                      <span className="cp-user-name">Trade</span>
+                      <span className="cp-user-name">{t("Trade")}</span>
                     </a>
                   </li>
                   <Link
@@ -98,7 +100,7 @@ const Navbar = () => {
                             alt=""
                           />
                         </span>
-                        <span className="cp-user-name">Wallet</span>
+                        <span className="cp-user-name">{t("Wallet")}</span>
                       </a>
                     </li>
                   </Link>
@@ -130,7 +132,7 @@ const Navbar = () => {
                           alt=""
                         />
                       </span>
-                      <span className="cp-user-name">Reports</span>
+                      <span className="cp-user-name">{t("Reports")}</span>
                     </a>
                     <ul className="">
                       <Link
@@ -148,7 +150,7 @@ const Navbar = () => {
                               : ""
                           }
                         >
-                          <a href="">Deposit History</a>
+                          <a href="">{t("Deposit History")}</a>
                         </li>
                       </Link>
                       <Link
@@ -166,7 +168,7 @@ const Navbar = () => {
                               : ""
                           }
                         >
-                          <a href="">Withdrawal History</a>
+                          <a href="">{t("Withdrawal History")}</a>
                         </li>
                       </Link>
                       <Link
@@ -183,7 +185,7 @@ const Navbar = () => {
                               : ""
                           }
                         >
-                          <a href="">Swap History</a>
+                          <a href="">{t("Swap History")}</a>
                         </li>
                       </Link>
                       <Link
@@ -200,7 +202,7 @@ const Navbar = () => {
                               : ""
                           }
                         >
-                          <a href="">Buy Order History</a>
+                          <a href="">{t("Buy Order History")}</a>
                         </li>
                       </Link>
                       <Link
@@ -217,7 +219,7 @@ const Navbar = () => {
                               : ""
                           }
                         >
-                          <a href="">Sell Order History</a>
+                          <a href="">{t("Sell Order History")}</a>
                         </li>
                       </Link>
                       <Link
@@ -234,7 +236,7 @@ const Navbar = () => {
                               : ""
                           }
                         >
-                          <a href="">Transaction History</a>
+                          <a href="">{t("Transaction History")}</a>
                         </li>
                       </Link>
                     </ul>
@@ -264,7 +266,7 @@ const Navbar = () => {
                             alt=""
                           />
                         </span>
-                        <span className="cp-user-name">My Profile</span>
+                        <span className="cp-user-name">{t("My Profile")}</span>
                       </a>
                     </li>
                   </Link>
@@ -293,7 +295,7 @@ const Navbar = () => {
                             alt=""
                           />
                         </span>
-                        <span className="cp-user-name">My Referral</span>
+                        <span className="cp-user-name">{t("My Referral")}</span>
                       </a>
                     </li>
                   </Link>
@@ -319,7 +321,7 @@ const Navbar = () => {
                           alt=""
                         />
                       </span>
-                      <span className="cp-user-name">Settings</span>
+                      <span className="cp-user-name">{t("Settings")}</span>
                     </a>
                     <ul className="">
                       <Link
@@ -330,7 +332,7 @@ const Navbar = () => {
                         }
                       >
                         <li>
-                          <a href="">My Settings</a>
+                          <a href="">{t("My Settings")}</a>
                         </li>
                       </Link>
                       <Link
@@ -345,7 +347,7 @@ const Navbar = () => {
                               : ""
                           }
                         >
-                          <a href="">FAQ</a>
+                          <a href="">{t("FAQ")}</a>
                         </li>
                       </Link>
                     </ul>
@@ -406,7 +408,7 @@ const Navbar = () => {
                             )}
 
                             <div className="text-center p-2 border-bottom nt-title">
-                              New Notifications
+                              {t("New Notifications")}
                             </div>
                             <div
                               className="scroll-wrapper scrollbar-inner"
@@ -476,21 +478,23 @@ const Navbar = () => {
                             </div>
                             <button className="dropdown-item" type="button">
                               <a href="">
-                                <i className="fa fa-user-circle-o"></i> Profile
+                                <i className="fa fa-user-circle-o"></i>{" "}
+                                {t("Profile")}
                               </a>
                             </button>
                             <Link href="/user/settings">
                               <button className="dropdown-item" type="button">
                                 <a href="">
-                                  <i className="fa fa-cog"></i> My Settings
+                                  <i className="fa fa-cog"></i>{" "}
+                                  {t("My Settings")}
                                 </a>
                               </button>
                             </Link>
                             <Link href="/user/my-wallet">
                               <button className="dropdown-item" type="button">
                                 <a href="-wallet">
-                                  <i className="fa fa-credit-card"></i> My
-                                  Wallet
+                                  <i className="fa fa-credit-card"></i>{" "}
+                                  {t("My Wallet")}
                                 </a>
                               </button>
                             </Link>
@@ -502,7 +506,7 @@ const Navbar = () => {
                               }}
                             >
                               <a>
-                                <i className="fa fa-sign-out"></i> Logout
+                                <i className="fa fa-sign-out"></i> {t("Logout")}
                               </a>
                             </button>
                           </div>

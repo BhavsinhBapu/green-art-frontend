@@ -1,11 +1,9 @@
 import { formateData } from "common";
+import useTranslation from "next-translate/useTranslation";
 import React from "react";
 
-type Props = {
-  tradeOrder: boolean;
-};
-
 const TradeOrder = ({ tradeOrder, tradeOrderHistory }: any) => {
+  const { t } = useTranslation("common");
   return (
     <div
       className={"tab-pane fade" + (tradeOrder ? " show active" : "")}
@@ -17,13 +15,13 @@ const TradeOrder = ({ tradeOrder, tradeOrderHistory }: any) => {
         <table className="table">
           <thead>
             <tr>
-              <th scope="col">Created At</th>
-              <th scope="col">Transaction id</th>
-              <th scope="col">Fees</th>
-              <th scope="col">Amount</th>
-              <th scope="col">Price</th>
-              <th scope="col">Time</th>
-              <th scope="col">Total</th>
+              <th scope="col">{t("Created At")}</th>
+              <th scope="col">{t("Transaction id")}</th>
+              <th scope="col">{t("Fees")}</th>
+              <th scope="col">{t("Amount")}</th>
+              <th scope="col">{t("Price")}</th>
+              <th scope="col">{t("Time")}</th>
+              <th scope="col">{t("Total")}</th>
             </tr>
           </thead>
           <tbody>

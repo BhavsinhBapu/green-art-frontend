@@ -28,6 +28,7 @@ import {
   setOpenBookBuy,
   setOpenBooksell,
 } from "state/reducer/exchange";
+import useTranslation from "next-translate/useTranslation";
 let socketCall = 0;
 async function listenMessages(dispatch: any) {
   //@ts-ignore
@@ -56,6 +57,7 @@ async function listenMessages(dispatch: any) {
   ).listen(".process", (e: any) => {});
 }
 const Dashboard: NextPage = () => {
+  const { t } = useTranslation("common");
   const dispatch = useDispatch();
   const { isLoggedIn } = useSelector((state: RootState) => state.user);
   const { dashboard, currentPair } = useSelector(
@@ -76,11 +78,6 @@ const Dashboard: NextPage = () => {
       dashboard?.order_data?.base_coin_id &&
       dashboard?.order_data?.trade_coin_id
     ) {
-      // localStorage.setItem("base_coin_id", dashboard?.order_data?.base_coin_id);
-      // localStorage.setItem(
-      //   "trade_coin_id",
-      //   dashboard?.order_data?.trade_coin_id
-      // );
       dispatch(initialDashboardCallActionWithToken(currentPair, dashboard));
     }
   }, [dashboard?.order_data?.base_coin_id]);
@@ -139,7 +136,7 @@ const Dashboard: NextPage = () => {
           <div className="modal-content dark-modal">
             <div className="modal-header align-items-center">
               <h5 id="exampleModalCenterTitle" className="modal-title">
-                New Notifications
+                {t("New Notifications")}
               </h5>
               <button
                 type="button"
@@ -214,7 +211,7 @@ const Dashboard: NextPage = () => {
                     id="confirm-link"
                     className="btn btn-block cp-user-move-btn"
                   >
-                    Confirm
+                    {t("Confirm")}
                   </a>
                 </div>
               </div>

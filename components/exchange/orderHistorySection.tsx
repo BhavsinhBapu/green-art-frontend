@@ -1,4 +1,5 @@
 import Cookies from "js-cookie";
+import useTranslation from "next-translate/useTranslation";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
@@ -17,6 +18,7 @@ const OrderHistorySection = () => {
     orderHistory: false,
     tradeOrder: false,
   });
+  const { t } = useTranslation("common");
   const {
     dashboard,
     currentPair,
@@ -53,7 +55,7 @@ const OrderHistorySection = () => {
                 aria-selected="true"
                 className={"nav-link " + (activeTab.openOrders && "active")}
               >
-                Open orders
+                {t("Open orders")}
               </a>
             </li>
             <li
@@ -75,7 +77,7 @@ const OrderHistorySection = () => {
                 aria-selected="true"
                 className={"nav-link " + (activeTab.orderHistory && "active")}
               >
-                Order history
+                {t("Order history")}
               </a>
             </li>
             <li
@@ -97,7 +99,7 @@ const OrderHistorySection = () => {
                 aria-selected="true"
                 className={"nav-link " + (activeTab.tradeOrder && "active")}
               >
-                Trade history
+                {t("Trade history")}
               </a>
             </li>
           </ul>

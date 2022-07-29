@@ -10,7 +10,9 @@ import ReCAPTCHA from "react-google-recaptcha";
 import Link from "next/link";
 import { authPageRequireCheck } from "middlewares/ssr-authentication-check";
 import { RecapCha } from "service/user";
+import useTranslation from "next-translate/useTranslation";
 const Signin: NextPage = () => {
+  const { t } = useTranslation("common");
   const [showPassword, setShowPassword] = useState(false);
   const [processing, setProcessing] = useState<any>(false);
   const [recaptchaData, setRecaptchaData] = useState<any>({});
@@ -36,8 +38,8 @@ const Signin: NextPage = () => {
             <div className="user-form">
               <div className="user-form-inner">
                 <div className="form-top">
-                  <h2>Sign In</h2>
-                  <p>Please Sign In To Your Account.</p>
+                  <h2>{t("Sign In")}</h2>
+                  <p>{t("Please Sign In To Your Account.")}</p>
                 </div>
                 <Formik
                   initialValues={{
@@ -50,14 +52,14 @@ const Signin: NextPage = () => {
                   }}
                   validationSchema={Yup.object({
                     email: Yup.string()
-                      .email("Invalid email address")
-                      .required("Email is required"),
+                      .email(t("Invalid email address"))
+                      .required(t("Email is required")),
                     password: Yup.string()
                       .min(6)
-                      .required("Password is required"),
+                      .required(t("Password is required")),
                     recapcha: Yup.string()
                       .min(6)
-                      .required("Recapcha is required"),
+                      .required(t("Recapcha is required")),
                   })}
                   onSubmit={async (values) => {
                     await dispatch(SigninAction(values, setProcessing));
@@ -74,7 +76,7 @@ const Signin: NextPage = () => {
                           className={`form-control ${
                             touched.email && errors.email ? "is-invalid" : ""
                           }`}
-                          placeholder="Your email here"
+                          placeholder={t("Your email here")}
                         />
                       </div>
                       <ErrorMessage
@@ -112,7 +114,7 @@ const Signin: NextPage = () => {
                         className="red-text"
                       />
                       <div className="form-group">
-                        <p className="invalid-feedback">Message</p>
+                        <p className="invalid-feedback">{t("Message")}</p>
                       </div>
                       <div className="d-flex justify-content-between rememberme align-items-center mb-4">
                         <div className="form-check">
@@ -122,13 +124,13 @@ const Signin: NextPage = () => {
                             id="exampleCheck1"
                           />
                           <label className="form-check-label">
-                            Remember me
+                            {t("Remember me")}
                           </label>
                         </div>
                         <div className="text-right">
                           <Link href="/authentication/forgot-password">
                             <a className="text-theme forgot-password">
-                              Forgot Password?
+                              {t("Forgot Password?")}
                             </a>
                           </Link>
                         </div>
@@ -140,7 +142,6 @@ const Signin: NextPage = () => {
                             render="explicit"
                             onChange={(response: any) => {
                               setFieldValue("recapcha", response);
-                              console.log("recapcha", response);
                             }}
                           />
                         )}
@@ -157,10 +158,10 @@ const Signin: NextPage = () => {
                               role="status"
                               aria-hidden="true"
                             ></span>
-                            <span>Please wait</span>
+                            <span>{t("Please wait")}</span>
                           </>
                         ) : (
-                          "Sign In"
+                          t("Sign In")
                         )}
                       </button>
                     </Form>
@@ -171,7 +172,7 @@ const Signin: NextPage = () => {
           </div>
           <div className="col-md-6">
             <div className="user-content-text text-center">
-              <h3>Welcome To</h3>
+              <h3>{t("Welcome To")}</h3>
               <Link href="/">
                 <a className="auth-logo" href="">
                   <img src="/logo.svg" className="img-fluid" alt="" />
@@ -179,7 +180,7 @@ const Signin: NextPage = () => {
               </Link>
               <Link href="/authentication/signup">
                 <p>
-                  Don’t have account ? <a href=""> Sign Up</a>
+                  {t("Don’t have account ?")} <a href=""> {t("Sign Up")}</a>
                 </p>
               </Link>
             </div>

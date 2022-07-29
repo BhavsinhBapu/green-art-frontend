@@ -1,9 +1,9 @@
 import type { NextPage } from "next";
-import { useEffect, useState } from "react";
-import Echo from "laravel-echo";
-import Pusher from "pusher-js";
+import useTranslation from "next-translate/useTranslation";
+import { useState } from "react";
 
 const Index: NextPage = () => {
+  const { t } = useTranslation("common");
   const [active, setActive] = useState<number>(1);
   const handleActive = (index: number) => {
     if (index === active) {
@@ -60,7 +60,7 @@ const Index: NextPage = () => {
                 href="#"
                 className="btn btn-block cp-user-move-btn"
               >
-                Confirm
+                {t("Confirm")}
               </a>
             </div>
           </div>
@@ -68,7 +68,7 @@ const Index: NextPage = () => {
       </div>
       <div className="section-top-wrap mb-25">
         <div className="profle-are-top">
-          <h2 className="section-top-title mb-0">FAQ</h2>
+          <h2 className="section-top-title mb-0">{t("FAQ")}</h2>
         </div>
       </div>
       <div className="container">
@@ -91,7 +91,7 @@ const Index: NextPage = () => {
                           aria-expanded="true"
                           aria-controls="collapseOne"
                         >
-                          What is Codexpro exchange ?
+                          {t("What is Codexpro exchange ?")}
                         </button>
                         <i
                           className={`fas ${
@@ -109,10 +109,9 @@ const Index: NextPage = () => {
                         data-parent="#accordion"
                       >
                         <div className="card-body">
-                          Aenean condimentum nibh vel enim sodales scelerisque.
-                          Mauris quisn pellentesque odio, in vulputate turpis.
-                          Integer condimentum eni lorem pellentesque euismod.
-                          Nam rutrum accumsan nisl vulputate.
+                          {t(
+                            "Aenean condimentum nibh vel enim sodales scelerisque.Mauris quisn pellentesque odio, in vulputate turpis.Integer condimentum eni lorem pellentesque euismod. Nam rutrum accumsan nisl vulputate."
+                          )}
                         </div>
                       </div>
                     )}
@@ -133,7 +132,7 @@ const Index: NextPage = () => {
                           aria-expanded="true"
                           aria-controls="collapseOne"
                         >
-                          How it works ?
+                          {t("How it works ?")}
                         </button>
                         <i
                           className={`fas ${
@@ -150,10 +149,9 @@ const Index: NextPage = () => {
                         data-parent="#accordion"
                       >
                         <div className="card-body">
-                          Aenean condimentum nibh vel enim sodales scelerisque.
-                          Mauris quisn pellentesque odio, in vulputate turpis.
-                          Integer condimentum eni lorem pellentesque euismod.
-                          Nam rutrum accumsan nisl vulputate.
+                          {
+                            "Aenean condimentum nibh vel enim sodales scelerisque.Mauris quisn pellentesque odio, in vulputate turpis.Integer condimentum eni lorem pellentesque euismod.Nam rutrum accumsan nisl vulputate."
+                          }
                         </div>
                       </div>
                     )}
@@ -174,7 +172,7 @@ const Index: NextPage = () => {
                           aria-expanded="true"
                           aria-controls="collapseOne"
                         >
-                          What is the workflow ?
+                          {t("What is the workflow ?")}
                         </button>
                         <i
                           className={`fas ${
@@ -191,10 +189,9 @@ const Index: NextPage = () => {
                         data-parent="#accordion"
                       >
                         <div className="card-body">
-                          Aenean condimentum nibh vel enim sodales scelerisque.
-                          Mauris quisn pellentesque odio, in vulputate turpis.
-                          Integer condimentum eni lorem pellentesque euismod.
-                          Nam rutrum accumsan nisl vulputate.
+                          {
+                            "Aenean condimentum nibh vel enim sodales scelerisque.Mauris quisn pellentesque odio, in vulputate turpis.Integer condimentum eni lorem pellentesque euismod.Nam rutrum accumsan nisl vulputate."
+                          }
                         </div>
                       </div>
                     )}
@@ -215,7 +212,7 @@ const Index: NextPage = () => {
                           aria-expanded="true"
                           aria-controls="collapseOne"
                         >
-                          How i place a order ?
+                          {t("How i place a order ?")}
                         </button>
                         <i
                           className={`fas ${
@@ -232,10 +229,9 @@ const Index: NextPage = () => {
                         data-parent="#accordion"
                       >
                         <div className="card-body">
-                          Aenean condimentum nibh vel enim sodales scelerisque.
-                          Mauris quisn pellentesque odio, in vulputate turpis.
-                          Integer condimentum eni lorem pellentesque euismod.
-                          Nam rutrum accumsan nisl vulputate.
+                          {t(
+                            "Aenean condimentum nibh vel enim sodales scelerisque.Mauris quisn pellentesque odio, in vulputate turpis.Integer condimentum eni lorem pellentesque euismod.Nam rutrum accumsan nisl vulputate."
+                          )}
                         </div>
                       </div>
                     )}
@@ -256,7 +252,7 @@ const Index: NextPage = () => {
                           aria-expanded="true"
                           aria-controls="collapseOne"
                         >
-                          How i make a withdrawal ?
+                          {t("How i make a withdrawal ?")}
                         </button>
                         <i
                           className={`fas ${
@@ -273,10 +269,9 @@ const Index: NextPage = () => {
                         data-parent="#accordion"
                       >
                         <div className="card-body">
-                          Aenean condimentum nibh vel enim sodales scelerisque.
-                          Mauris quisn pellentesque odio, in vulputate turpis.
-                          Integer condimentum eni lorem pellentesque euismod.
-                          Nam rutrum accumsan nisl vulputate.
+                          {t(
+                            "Aenean condimentum nibh vel enim sodales scelerisque.Mauris quisn pellentesque odio, in vulputate turpis.Integer condimentum eni lorem pellentesque euismod.Nam rutrum accumsan nisl vulputate."
+                          )}
                         </div>
                       </div>
                     )}
@@ -290,7 +285,7 @@ const Index: NextPage = () => {
                     >
                       <h5 className="mb-0 header-align">
                         <button className="btn btn-link ">
-                          What about the deposit process ?
+                          {t("What about the deposit process ?")}
                         </button>
                         <i
                           className={`fas ${
@@ -307,10 +302,9 @@ const Index: NextPage = () => {
                         data-parent="#accordion"
                       >
                         <div className="card-body">
-                          Aenean condimentum nibh vel enim sodales scelerisque.
-                          Mauris quisn pellentesque odio, in vulputate turpis.
-                          Integer condimentum eni lorem pellentesque euismod.
-                          Nam rutrum accumsan nisl vulputate.
+                          {t(
+                            "Aenean condimentum nibh vel enim sodales scelerisque.Mauris quisn pellentesque odio, in vulputate turpis.Integer condimentum eni lorem pellentesque euismod.Nam rutrum accumsan nisl vulputate."
+                          )}
                         </div>
                       </div>
                     )}
