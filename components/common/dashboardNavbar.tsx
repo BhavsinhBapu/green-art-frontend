@@ -255,7 +255,7 @@ const DashboardNavbar = () => {
                       <div className="btn-group dropdown">
                         <div className="dropdown-menu notification-list dropdown-menu-right">
                           <div className="text-center p-2 border-bottom nt-title">
-                            New Notifications
+                            {t("New Notifications")}
                           </div>
                           <div
                             className="scroll-wrapper scrollbar-inner"
@@ -325,20 +325,22 @@ const DashboardNavbar = () => {
                           </div>
                           <button className="dropdown-item" type="button">
                             <a href="">
-                              <i className="fa fa-user-circle-o"></i> Profile
+                              <i className="fa fa-user-circle-o"></i>{" "}
+                              {t("Profile")}
                             </a>
                           </button>
                           <Link href="/user/settings">
                             <button className="dropdown-item" type="button">
                               <a href="">
-                                <i className="fa fa-cog"></i> My Settings
+                                <i className="fa fa-cog"></i> {t("My Settings")}
                               </a>
                             </button>
                           </Link>
                           <Link href="/user/my-wallet">
                             <button className="dropdown-item" type="button">
                               <a>
-                                <i className="fa fa-credit-card"></i> My Wallet
+                                <i className="fa fa-credit-card"></i>{" "}
+                                {t("My Wallet")}
                               </a>
                             </button>
                           </Link>
@@ -350,7 +352,7 @@ const DashboardNavbar = () => {
                             }}
                           >
                             <a>
-                              <i className="fa fa-sign-out"></i> Logout
+                              <i className="fa fa-sign-out"></i> {t("Logout")}
                             </a>
                           </button>
                         </div>
@@ -393,7 +395,7 @@ const DashboardNavbar = () => {
                       alt=""
                     />
                   </span>
-                  <span className="cp-user-name">Dashboard</span>
+                  <span className="cp-user-name">{t("Dashboard")}</span>
                 </a>
               </li>
               <li>
@@ -410,14 +412,14 @@ const DashboardNavbar = () => {
                       alt=""
                     />
                   </span>
-                  <span className="cp-user-name">Wallet</span>
+                  <span className="cp-user-name">{t("Wallet")}</span>
                 </a>
                 <ul>
                   <li>
-                    <a href="">My Wallet</a>
+                    <a href="">{t("My Wallet")}</a>
                   </li>
                   <li>
-                    <a href="">Swap Coin</a>
+                    <a href="">{t("Swap Coin")}</a>
                   </li>
                 </ul>
               </li>
@@ -435,26 +437,26 @@ const DashboardNavbar = () => {
                       alt=""
                     />
                   </span>
-                  <span className="cp-user-name">Reports</span>
+                  <span className="cp-user-name">{t("Reports")}</span>
                 </a>
                 <ul>
                   <li>
-                    <a href="">Deposit History</a>
+                    <a href="">{t("Deposit History")}</a>
                   </li>
                   <li>
-                    <a href="">Withdrawal History</a>
+                    <a href="">{t("Withdrawal History")}</a>
                   </li>
                   <li>
-                    <a href="">Swap History</a>
+                    <a href="">{t("Swap History")}</a>
                   </li>
                   <li>
-                    <a href="">Buy Order History</a>
+                    <a href="">{t("Buy Order History")}</a>
                   </li>
                   <li>
-                    <a href="">Sell Order History</a>
+                    <a href="">{t("Sell Order History")}</a>
                   </li>
                   <li>
-                    <a href="">Transaction History</a>
+                    <a href="">{t("Transaction History")}</a>
                   </li>
                 </ul>
               </li>
@@ -472,29 +474,29 @@ const DashboardNavbar = () => {
                       alt=""
                     />
                   </span>
-                  <span className="cp-user-name">My Profile</span>
+                  <span className="cp-user-name">{t("My Profile")}</span>
                 </a>
                 <ul>
                   <li>
-                    <a href="">Profile</a>
+                    <a href="">{t("Profile")}</a>
                   </li>
                   <li>
-                    <a href="">Edit Profile</a>
+                    <a href="">{t("Edit Profile")}</a>
                   </li>
                   <li>
-                    <a href="">Phone Verification</a>
+                    <a href="">{t("Phone Verification")}</a>
                   </li>
                   <li>
-                    <a href="">Security</a>
+                    <a href="">{t("Security")}</a>
                   </li>
                   <li>
-                    <a href="">Verification List</a>
+                    <a href="">{t("Verification List")}</a>
                   </li>
                   <li>
-                    <a href="">Personal Verification</a>
+                    <a href="">{t("Personal Verification")}</a>
                   </li>
                   <li>
-                    <a href="">Change Password</a>
+                    <a href="">{t("Change Password")}</a>
                   </li>
                 </ul>
               </li>
@@ -512,7 +514,7 @@ const DashboardNavbar = () => {
                       alt=""
                     />
                   </span>
-                  <span className="cp-user-name">My Referral</span>
+                  <span className="cp-user-name">{t("My Referral")}</span>
                 </a>
               </li>
               <li>
@@ -529,14 +531,14 @@ const DashboardNavbar = () => {
                       alt=""
                     />
                   </span>
-                  <span className="cp-user-name">Settings</span>
+                  <span className="cp-user-name">{t("Settings")}</span>
                 </a>
                 <ul>
                   <li>
-                    <a href="">My Settings</a>
+                    <a href="">{t("My Settings")}</a>
                   </li>
                   <li>
-                    <a href="">FAQ</a>
+                    <a href="">{t("FAQ")}</a>
                   </li>
                 </ul>
               </li>

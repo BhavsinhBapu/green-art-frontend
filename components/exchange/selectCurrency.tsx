@@ -17,8 +17,12 @@ const SelectCurrency = () => {
       setPairs(dashboard.pairs);
     }
   }, [dashboard]);
+  console.log(pairs, "pairs");
   return (
-    <div className="cp-user-buy-coin-content-area">
+    <div
+      className="cp-user-buy-coin-content-area dropdown-menu"
+      aria-labelledby="dropdownMenuButton"
+    >
       <div className="cp-user-wallet-table dashboard-coin_pairs table-responsive">
         <div
           id="exchangeCoinPair_wrapper"
@@ -112,7 +116,7 @@ const SelectCurrency = () => {
                         style={{ width: "147.047px" }}
                         aria-label="Balance: activate to sort column ascending"
                       >
-                        {t("Balance")}
+                        {t("Change")}
                       </th>
                     </tr>
                   </thead>
@@ -264,7 +268,15 @@ const SelectCurrency = () => {
                       <td className="text-center w-40 text-white">
                         {pair?.last_price}
                       </td>
-                      <td className="text-white">{pair?.balance}</td>
+                      <td
+                        className={
+                          parseFloat(pair?.price_change) >= 0
+                            ? "text-success"
+                            : "text-danger"
+                        }
+                      >
+                        {parseFloat(pair?.price_change)}
+                      </td>
                     </tr>
                   ))}
                 </tbody>

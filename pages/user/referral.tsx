@@ -27,7 +27,6 @@ const Referral: NextPage = () => {
       setReferral(null);
     };
   }, []);
-  console.log(allData, "allData");
   return (
     <div className="referral-area">
       <div className="section-top-wrap mb-25">

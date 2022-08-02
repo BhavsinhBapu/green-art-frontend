@@ -223,18 +223,24 @@ const Dashboard: NextPage = () => {
                 <div className="col-xl-12">
                   <div className="cxchange-summary-wrap">
                     <div className="cxchange-summary-name">
-                      <div className="summber-coin-type">
-                        <span className="coin-badge">
+                      <div className="summber-coin-type dropdown">
+                        <span
+                          className="coin-badge dropdown-toggle"
+                          id="dropdownMenuButton"
+                          data-toggle="dropdown"
+                          aria-haspopup="true"
+                          aria-expanded="false"
+                        >
                           {dashboard?.order_data?.exchange_coin_pair
                             ? dashboard?.order_data?.exchange_coin_pair
                             : "BTC/USDT"}
                         </span>
-                        {dashboard?.order_data?.exchange_coin_pair && (
+                        {/* {dashboard?.order_data?.exchange_coin_pair && (
                           <i
                             aria-hidden="true"
                             className=" ml-2 fa fa-angle-down"
                           />
-                        )}
+                        )} */}
                         <SelectCurrency />
                       </div>
                       {/* <span className="font-weight-bold">Bitcoin</span> */}

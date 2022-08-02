@@ -1,7 +1,7 @@
 module.exports = {
   locales: ["en", "es"],
   defaultLocale: "en",
-  keySeparator: false,
+  // keySeparator: false,
   pages: {
     "*": ["common"],
   },

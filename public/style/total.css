@@ -3831,22 +3831,22 @@ table.table {
   font-weight: 600;
   box-sizing: border-box;
 }
-.summber-coin-type {
+/* .summber-coin-type {
   position: relative;
-}
+} */
 .summber-coin-type .cp-user-buy-coin-content-area {
-  position: absolute;
+  /* position: absolute;
   left: 0;
   top: 100%;
   z-index: 99;
   opacity: 0;
-  visibility: hidden;
+  visibility: hidden; */
   padding: 25px;
 }
-.summber-coin-type:hover .cp-user-buy-coin-content-area {
+/* .summber-coin-type:hover .cp-user-buy-coin-content-area {
   opacity: 1;
   visibility: visible;
-}
+} */
 
 .exchange-area .cp-exchange-rt.order-box .trades-headers.s2 {
   margin-bottom: 40px;

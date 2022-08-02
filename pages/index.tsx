@@ -21,7 +21,7 @@ const Home: NextPage = ({
   landing_banner_image,
 }: any) => {
   const { t } = useTranslation("common");
-  const { asPath, locale, reload, push } = useRouter();
+  const router = useRouter();
   const settings = {
     dots: false,
     infinite: true,
@@ -115,7 +115,14 @@ const Home: NextPage = ({
                       "Tradexpro exchange is such a marketplace where people can trade directly with each other."
                     )}
                 </p>
-                <a href="/authentication/signup" className="primary-btn">
+                <a
+                  href={
+                    router.locale !== "en"
+                      ? `/${router.locale}/exchange/dashboard`
+                      : "/exchange/dashboard"
+                  }
+                  className="primary-btn"
+                >
                   {t("Register Now")}
                 </a>
               </div>
@@ -360,7 +367,11 @@ const Home: NextPage = ({
                                 }}
                               >
                                 <a
-                                  href="/exchange/dashboard"
+                                  href={
+                                    router.locale !== "en"
+                                      ? `/${router.locale}/exchange/dashboard`
+                                      : "/exchange/dashboard"
+                                  }
                                   className="btnTrade btn-link"
                                 >
                                   {t("Trade")}
@@ -868,9 +879,15 @@ const Home: NextPage = ({
               <Link href="/authentication/signup">
                 <a className="primary-btn mr-5">{t("Sign Up")}</a>
               </Link>
-              <Link href="/exchange/dashboard">
+              <a
+                href={
+                  router.locale !== "en"
+                    ? `/${router.locale}/exchange/dashboard`
+                    : "/exchange/dashboard"
+                }
+              >
                 <a className="primary-btn">{t("Trade Now")}</a>
-              </Link>
+              </a>
             </div>
           </div>
         </section>

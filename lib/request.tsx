@@ -11,9 +11,12 @@ const request = axios.create({
 
 request.interceptors.request.use((config: any) => {
   const token = Cookie.get("token");
+  const lang = global.window && window.location.href.split("/")[3];
+
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
+  config.headers.lang = lang ? lang : "en";
   config.headers.userapisecret = process.env.NEXT_PUBLIC_SECRET_KEY;
   return config;
 });

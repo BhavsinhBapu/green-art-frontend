@@ -6,6 +6,7 @@ import { RootState } from "state/store";
 import { LogoutAction } from "state/actions/user";
 import { notification, notificationSeen } from "service/notification";
 import useTranslation from "next-translate/useTranslation";
+import { LanguageList } from "helpers/lang";
 const Navbar = () => {
   const { isLoggedIn, user } = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
@@ -55,7 +56,13 @@ const Navbar = () => {
                         : ""
                     }
                   >
-                    <a href="/exchange/dashboard">
+                    <a
+                      href={
+                        router.locale !== "en"
+                          ? `/${router.locale}/exchange/dashboard`
+                          : "/exchange/dashboard"
+                      }
+                    >
                       <span className="cp-user-icon">
                         <img
                           src="/sidebar-icons/dashboard.svg"
@@ -352,9 +359,39 @@ const Navbar = () => {
                       </Link>
                     </ul>
                   </li>
+                  <li>
+                    <a className="arrow-icon" href="#" aria-expanded="true">
+                      <span className="cp-user-icon">
+                        <img
+                          src="/sidebar-icons/Membership.svg"
+                          className="img-fluid cp-user-side-bar-icon"
+                          alt=""
+                        />
+                        <img
+                          src="/sidebar-icons/hover/Membership-1.svg"
+                          className="img-fluid cp-user-side-bar-icon-hover"
+                          alt=""
+                        />
+                      </span>
+                      <span className="cp-user-name">
+                        {router.locale?.toLocaleUpperCase()}
+                      </span>
+                    </a>
+                    <ul className="">
+                      {LanguageList.map((item, index) => (
+                        <li key={index}>
+                          <Link href={router.asPath} locale={item.value}>
+                            <a className="py-1">{item.name}</a>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
                 </ul>
               </nav>
             </div>
+
+            {/* language list       */}
             <div className="col-xl-2 col-lg-2 col-8">
               {isLoggedIn ? (
                 <div className="cp-user-top-bar-right">
@@ -476,12 +513,14 @@ const Navbar = () => {
                             <div className="user-name">
                               <p>{user?.first_name!}</p>
                             </div>
-                            <button className="dropdown-item" type="button">
-                              <a href="">
-                                <i className="fa fa-user-circle-o"></i>{" "}
-                                {t("Profile")}
-                              </a>
-                            </button>
+                            <Link href="/user/profile">
+                              <button className="dropdown-item" type="button">
+                                <a href="">
+                                  <i className="fa fa-user-circle-o"></i>{" "}
+                                  {t("Profile")}
+                                </a>
+                              </button>
+                            </Link>
                             <Link href="/user/settings">
                               <button className="dropdown-item" type="button">
                                 <a href="">
