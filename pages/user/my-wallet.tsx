@@ -5,6 +5,7 @@ import WirhdrawTab from "components/wallet/WirhdrawTab";
 import { toast } from "react-toastify";
 import React, { useEffect, useState } from "react";
 import { formateZert, sortArray } from "common";
+import DataTable from "react-data-table-component";
 import {
   SearchObjectArrayFuesJS,
   WalletDepositApiAction,
@@ -37,6 +38,16 @@ const MyWallet: NextPage = () => {
     withdraw: null,
     address: null,
   });
+  const handleChange = (state: any) => {
+    {
+      /* {JSON.stringify(selectedRow)} */
+    }
+    console.log(state, "ssss ");
+    setSelectedRow({
+      id: state.id,
+      index: state.index,
+    });
+  };
   const TurnoffSetShow = () => {
     setShow({
       deposit: false,
@@ -48,6 +59,56 @@ const MyWallet: NextPage = () => {
       address: null,
     });
   };
+  const columns = [
+    {
+      name: t("Asset"),
+      selector: (row: any) => row?.name,
+      sortable: true,
+    },
+    {
+      name: t("Symbol"),
+      selector: (row: any) => row?.coin_type,
+      sortable: true,
+    },
+    {
+      name: t("On Order"),
+      cell: (row: any) => {
+        return (
+          <div className="blance-text">
+            <span className="blance market incree">{row?.on_order}</span>
+            <span className="usd">${formateZert(row?.on_order_usd)}</span>
+          </div>
+        );
+      },
+    },
+    {
+      name: t("Available Balance"),
+      cell: (row: any) => {
+        return (
+          <div className="blance-text">
+            <div className="blance">{formateZert(row?.balance)}</div>
+            <div className="usd">
+              ${formateZert(row?.available_balance_usd)}
+            </div>
+          </div>
+        );
+      },
+    },
+    {
+      name: t("Total Balance"),
+      cell: (row: any) => {
+        return (
+          <div className="blance-text">
+            <div className="blance">
+              {formateZert(Number(row?.balance) + Number(row?.on_order))}
+            </div>
+            <div className="usd">${formateZert(row?.total_balance_usd)}</div>
+          </div>
+        );
+      },
+    },
+  ];
+
   const getWalletLists = async (url: string) => {
     const response: any = await WalletListApiAction(url, setProcessing);
     setWalletList(response?.wallets);
@@ -156,6 +217,10 @@ const MyWallet: NextPage = () => {
               type="submit"
               className="depositId primary-btn-outline btn-deposite"
               onClick={() => {
+                if (!selectedRow.id) {
+                  toast.info("Please select a wallet");
+                  return;
+                }
                 handleWithdrawAndDeposit(1, selectedRow.id);
               }}
             >
@@ -177,7 +242,13 @@ const MyWallet: NextPage = () => {
               id="withdrawalId"
               type="submit"
               className="withdrawalId primary-btn-outline btn-withdraw"
-              onClick={() => handleWithdrawAndDeposit(2, selectedRow.id)}
+              onClick={() => {
+                if (!selectedRow.id) {
+                  toast.info("Please select a wallet");
+                  return;
+                }
+                handleWithdrawAndDeposit(2, selectedRow.id);
+              }}
             >
               {transactionProcessing.withdraw ? (
                 <>
@@ -201,6 +272,7 @@ const MyWallet: NextPage = () => {
                 <div className="overview-left">
                   <h2 className="section-top-title">{t("Overview")}</h2>
                   <h4 className="blance-title">{t("Total balance")}</h4>
+
                   <h4 className="blance">
                     {allData?.total ? allData?.total : 0}
                     {""} {t("USD")}
@@ -265,6 +337,12 @@ const MyWallet: NextPage = () => {
                           </div>
                         </div>
                       </div>
+                      {/* <DataTable
+                        data={Changeable}
+                        columns={columns}
+                        selectableRowsSingle
+                        onSelectedRowsChange={handleChange}
+                      /> */}
                       <table
                         id="assetBalances"
                         className="table table-borderless secendary-table asset-balances-table"

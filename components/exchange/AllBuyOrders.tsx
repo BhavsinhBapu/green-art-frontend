@@ -10,6 +10,10 @@ const AllBuyOrders = ({ OpenBookBuy }: any) => {
   const changeSellPrice = (price: number) => {
     dispatch(setBuyPrice(price));
   };
+  const [summary, setSummary] = React.useState({
+    amount: 0,
+    total: 0,
+  });
   return (
     <div className="sell-order">
       <div className="trades-table">
@@ -108,16 +112,16 @@ const AllBuyOrders = ({ OpenBookBuy }: any) => {
                         overlay={
                           <span>
                             <span>
-                              {t("Price:")} {item.price}
+                              {t("Avg Price:")} {item.price}
                             </span>
                             <br />
                             <span>
-                              {t("Amount:")} {item.amount}
+                              {t("Amount:")} {summary.amount}
                             </span>
                             <br />
 
                             <span>
-                              {t("Size:")} {item.my_size}
+                              {t("Size:")} {summary.total}
                             </span>
                           </span>
                         }
@@ -129,10 +133,26 @@ const AllBuyOrders = ({ OpenBookBuy }: any) => {
                           onClick={() => {
                             changeSellPrice(item.price);
                           }}
+                          onMouseEnter={() => {
+                            const selectedIndex = index;
+                            const firstIndex = 0;
+                            let sumtotal = 0;
+                            let sumAmount = 0;
+                            for (let i = selectedIndex; i >= firstIndex; i--) {
+                              sumtotal += parseFloat(OpenBookBuy[i].total);
+                              sumAmount += parseFloat(OpenBookBuy[i].amount);
+                            }
+                            setSummary({
+                              amount: sumAmount,
+                              total: sumtotal,
+                            });
+                          }}
                         >
                           <td>
                             <div className="asset">
-                              <span className="text-success">{item.price}</span>
+                              <span className="text-success">
+                                {parseFloat(item.price)}
+                              </span>
                             </div>
                           </td>
                           <td>
@@ -142,7 +162,9 @@ const AllBuyOrders = ({ OpenBookBuy }: any) => {
                           </td>
                           <td>
                             <div className="asset">
-                              <span className="asset-name">{item.my_size}</span>
+                              <span className="asset-name">
+                                {parseFloat(item.total).toFixed(2)}
+                              </span>
                             </div>
                           </td>
                         </tr>

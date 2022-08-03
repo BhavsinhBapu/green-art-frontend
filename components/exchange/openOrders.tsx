@@ -28,30 +28,46 @@ const OpenOrders = ({ openOrders, openOrderHistory }: any) => {
         <table className="table">
           <thead>
             <tr>
-              <th scope="col">{t("Created at")}</th>
-              <th scope="col">{t("Actual amount")}</th>
-              <th scope="col">{t("Actual total")}</th>
-              <th scope="col">{t("Amount")}</th>
-              <th scope="col">{t("Fees")}</th>
-              <th scope="col">{t("Price<")}</th>
-              <th scope="col">{t("Processed")}</th>
-              <th scope="col">{t("total")}</th>
               <th scope="col">{t("Type")}</th>
+
+              <th scope="col">
+                {t("Amount")}({dashboard?.order_data?.trade_coin})
+              </th>
+              <th scope="col">
+                {t("Fees")}({dashboard?.order_data?.base_coin})
+              </th>
+              <th scope="col">
+                {t("Price")}({dashboard?.order_data?.base_coin})
+              </th>
+              <th scope="col">
+                {t("Processed")}({dashboard?.order_data?.trade_coin})
+              </th>
+              <th scope="col">
+                {t("total")}({dashboard?.order_data?.base_coin})
+              </th>
+              <th scope="col">{t("Created at")}</th>
+
               <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
             {openOrderHistory?.map((order: any, index: number) => (
               <tr key={index}>
-                <td>{formateData(order.created_at)}</td>
-                <td>{order.actual_amount}</td>
-                <td>{order.actual_total}</td>
+                <td
+                  className={
+                    order.type === "sell" ? "text-danger" : "text-success"
+                  }
+                >
+                  {order.type}
+                </td>
+
                 <td>{order.amount}</td>
                 <td>{order.fees}</td>
                 <td>{order.price}</td>
                 <td>{order.processed}</td>
                 <td>{order.total}</td>
-                <td>{order.type}</td>
+                <td>{formateData(order.created_at)}</td>
+
                 <td>
                   <button
                     className="cancel"

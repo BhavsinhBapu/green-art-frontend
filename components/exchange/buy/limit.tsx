@@ -30,7 +30,12 @@ const Limit = ({
         <div className="row">
           <div className="col-md-12">
             <div className="cp-user-profile-info">
-              <form id="buy-form">
+              <form
+                id="buy-form"
+                style={{
+                  overflow: "hidden",
+                }}
+              >
                 <input
                   type="hidden"
                   name="_token"
@@ -43,7 +48,7 @@ const Limit = ({
                   <div className="total-top-blance">
                     <div className="total-blance">
                       <span
-                        className="text-warning"
+                        className="text-warning mr-1"
                         style={{ fontWeight: 700 }}
                       >
                         <span>
@@ -74,7 +79,7 @@ const Limit = ({
                         </span>
                       </span>
                       <span
-                        className="text-warning"
+                        className="text-warning ml-1"
                         style={{ fontWeight: 700 }}
                       >
                         <span className="trade_coin_type">
@@ -85,12 +90,12 @@ const Limit = ({
                   </div>
                 </div>
                 <div className="form-group mt-3">
-                  <label>{t("Price")}</label>
+                  <label className="cstmHead">{t("Price")}</label>
                   <input
                     name="price"
                     type="text"
                     placeholder=""
-                    className="form-control number_only"
+                    className="form-control number_only input_1"
                     value={buySellLimitCoinData.price}
                     onChange={(e) => {
                       setBuySellLimitCoinData({
@@ -112,12 +117,12 @@ const Limit = ({
                   </span>
                 </div>
                 <div className="form-group mt-3">
-                  <label>{t("Amount")}</label>
+                  <label className="cstmHead">{t("Amount")}</label>
                   <input
                     name="amount"
                     type="number"
                     placeholder=""
-                    className="form-control number_only"
+                    className="form-control number_only input_2"
                     value={buySellLimitCoinData.amount}
                     onChange={(e) => {
                       setBuySellLimitCoinData({
@@ -139,13 +144,14 @@ const Limit = ({
                   </span>
                 </div>
                 <div className="form-group mt-3">
-                  <label>{t("Total Amount")}</label>
+                  <label className="cstmHead">{t("Total Amount")}</label>
+
                   <input
                     disabled
                     name="total_amount"
                     type="text"
                     placeholder=""
-                    className="form-control number_only"
+                    className="form-control number_only input_3"
                     value={buySellLimitCoinData.total}
                   />
                   <span

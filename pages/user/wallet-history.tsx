@@ -1,6 +1,7 @@
 import type { GetServerSideProps, NextPage } from "next";
 import React, { useState } from "react";
 import ReportSidebar from "layout/report-sidebar";
+import DataTable from "react-data-table-component";
 import {
   WithdrawAndDepositHistoryAction,
   handleSearch,
@@ -10,6 +11,7 @@ import Loading from "components/common/TableLoading";
 import { useRouter } from "next/router";
 import { formateData } from "common";
 import useTranslation from "next-translate/useTranslation";
+import moment from "moment";
 const DepositHistory: NextPage = () => {
   const router = useRouter();
   const { type } = router.query;
@@ -42,6 +44,57 @@ const DepositHistory: NextPage = () => {
       );
     }
   };
+  const columns = [
+    {
+      name: "Created At",
+      selector: (row: any) => row.created_at,
+      sortable: true,
+      cell: (row: any) => (
+        <div>{moment(row.created_at).format("YYYY-MM-DD HH:mm:ss")}</div>
+      ),
+    },
+    {
+      name: "Address",
+      selector: (row: any) => row.address,
+      sortable: true,
+    },
+    {
+      name: "Coin Type",
+      selector: (row: any) => row.coin_type,
+      sortable: true,
+    },
+    {
+      name: "Amount",
+      selector: (row: any) => row.amount,
+      sortable: true,
+    },
+    {
+      name: "Fees",
+      selector: (row: any) => row.fees,
+      sortable: true,
+    },
+    {
+      name: "Transaction Hash",
+      selector: (row: any) => row.transaction_hash,
+      sortable: true,
+    },
+    {
+      name: "Status",
+      selector: (row: any) => row.status,
+      sortable: true,
+      cell: (row: any) => (
+        <div>
+          {row.status === 0 ? (
+            <span className="text-warning">{t("Pending")}</span>
+          ) : row.status === 1 ? (
+            <span className="text-success"> {t("Success")}</span>
+          ) : (
+            <span className="text-danger">{t("Failed")}</span>
+          )}
+        </div>
+      ),
+    },
+  ];
   React.useEffect(() => {
     getReport();
     return () => {
@@ -130,100 +183,49 @@ const DepositHistory: NextPage = () => {
                       </div>
                     </div>
                     <div className="cp-user-wallet-table table-responsive">
-                      <table
-                        id="assetBalances"
-                        className="table table-borderless secendary-table asset-balances-table"
+                      <DataTable columns={columns} data={history} />
+                    </div>
+                    {history.length > 0 && (
+                      <div
+                        className="pagination-wrapper"
+                        id="assetBalances_paginate"
                       >
-                        <thead>
-                          <tr>
-                            <th scope="col" className="">
-                              {t("Created At")}
-                            </th>
-                            <th scope="col" rowSpan={1} colSpan={1}>
-                              {t("Address")}
-                            </th>
-                            <th scope="col" rowSpan={1} colSpan={1}>
-                              {t("Coin Type")}
-                            </th>
-                            <th scope="col">{t("Amount")}</th>
-                            <th scope="col">{t("Fees")}</th>
-                            <th scope="col">{t("Transaction Hash")}</th>
-                            <th scope="col">{t("Status")}</th>
-                          </tr>
-                        </thead>
-                        {history.length > 0 && (
-                          <tbody>
-                            {history.map((item: any, index: number) => {
-                              return (
-                                <tr key={item.id}>
-                                  <td>{formateData(item.created_at)}</td>
-                                  <td>{item.address}</td>
-                                  <td>{item.coin_type}</td>
-                                  <td>{item.amount}</td>
-                                  <td>{item.fees}</td>
-                                  <td>
-                                    {item.hashKey
-                                      ? item.hashKey
-                                      : item.transaction_hash}
-                                  </td>
-                                  <td>
-                                    {item.status === 0
-                                      ? t("Pending")
-                                      : item.status === 1
-                                      ? t("Success")
-                                      : t("Failed")}
-                                  </td>
-                                </tr>
-                              );
-                            })}
-                          </tbody>
-                        )}
-                      </table>
-                      {history.length === 0 && (
-                        <div className="no_data_table">
-                          {t("No data available in table")}
-                        </div>
-                      )}
-                    </div>
-                    <div
-                      className="pagination-wrapper"
-                      id="assetBalances_paginate"
-                    >
-                      <span>
-                        {stillHistory?.histories?.links.map(
-                          (link: any, index: number) =>
-                            link.label === "&laquo; Previous" ? (
-                              <a
-                                className="paginate-button"
-                                onClick={() => {
-                                  if (link.url) LinkTopaginationString(link);
-                                }}
-                                key={index}
-                              >
-                                <i className="fa fa-angle-left"></i>
-                              </a>
-                            ) : link.label === "Next &raquo;" ? (
-                              <a
-                                className="paginate-button"
-                                onClick={() => LinkTopaginationString(link)}
-                                key={index}
-                              >
-                                <i className="fa fa-angle-right"></i>
-                              </a>
-                            ) : (
-                              <a
-                                className="paginate_button paginate-number"
-                                aria-controls="assetBalances"
-                                data-dt-idx="1"
-                                onClick={() => LinkTopaginationString(link)}
-                                key={index}
-                              >
-                                {link.label}
-                              </a>
-                            )
-                        )}
-                      </span>
-                    </div>
+                        <span>
+                          {stillHistory?.histories?.links.map(
+                            (link: any, index: number) =>
+                              link.label === "&laquo; Previous" ? (
+                                <a
+                                  className="paginate-button"
+                                  onClick={() => {
+                                    if (link.url) LinkTopaginationString(link);
+                                  }}
+                                  key={index}
+                                >
+                                  <i className="fa fa-angle-left"></i>
+                                </a>
+                              ) : link.label === "Next &raquo;" ? (
+                                <a
+                                  className="paginate-button"
+                                  onClick={() => LinkTopaginationString(link)}
+                                  key={index}
+                                >
+                                  <i className="fa fa-angle-right"></i>
+                                </a>
+                              ) : (
+                                <a
+                                  className="paginate_button paginate-number"
+                                  aria-controls="assetBalances"
+                                  data-dt-idx="1"
+                                  onClick={() => LinkTopaginationString(link)}
+                                  key={index}
+                                >
+                                  {link.label}
+                                </a>
+                              )
+                          )}
+                        </span>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

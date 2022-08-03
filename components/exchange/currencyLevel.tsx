@@ -19,26 +19,50 @@ const CurrencyLevel = () => {
         </li>
         <li>
           <span className="label">{t("24h change")}</span>
-          <span className="value decrease">
-            {dashboard?.order_data?.total?.trade_wallet?.price_change}
+          <span
+            className={`value ${
+              dashboard?.order_data?.total?.trade_wallet?.price_change >= 0
+                ? "increase"
+                : "decrease"
+            }`}
+          >
+            {parseFloat(
+              dashboard?.order_data?.total?.trade_wallet?.price_change
+            )}
+            %
           </span>
         </li>
         <li>
           <span className="label">{t("24h high")}</span>
           <span className="value">
-            {dashboard?.order_data?.total?.trade_wallet?.high}
+            {parseFloat(dashboard?.order_data?.total?.trade_wallet?.high)}
           </span>
         </li>
         <li>
           <span className="label">{t("24h Low")}</span>
           <span className="value">
-            {dashboard?.order_data?.total?.trade_wallet?.low}
+            {parseFloat(dashboard?.order_data?.total?.trade_wallet?.low)}
           </span>
         </li>
         <li>
-          <span className="label"> {t("24h volume:")} </span>
+          <span className="label">
+            {" "}
+            {t("24h volume")}({dashboard?.order_data?.trade_coin}){" "}
+          </span>
           <span className="value">
-            {dashboard?.order_data?.total?.trade_wallet?.volume}
+            {parseFloat(dashboard?.order_data?.total?.trade_wallet?.volume)}
+          </span>
+        </li>
+        <li>
+          <span className="label">
+            {" "}
+            {t("24h volume")}({dashboard?.order_data?.base_coin}){" "}
+          </span>
+          <span className="value">
+            {parseFloat(dashboard?.order_data?.total?.trade_wallet?.volume) *
+              parseFloat(
+                dashboard?.order_data?.total?.trade_wallet?.last_price
+              )}
           </span>
         </li>
       </ul>

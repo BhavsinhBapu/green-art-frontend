@@ -90,7 +90,7 @@ const StopLimit = ({
                   </div>
                 </div>
                 <div className="form-group mt-3">
-                  <label>{t("Stop")}</label>
+                  <label className="cstmHead">{t("Stop")}</label>
                   <input
                     name="stop"
                     type="number"
@@ -114,7 +114,7 @@ const StopLimit = ({
                   </span>
                 </div>
                 <div className="form-group mt-3">
-                  <label>{t("Limit")}</label>
+                  <label className="cstmHead">{t("Limit")}</label>
                   <input
                     name="limit"
                     type="number"
@@ -139,7 +139,7 @@ const StopLimit = ({
                 </div>
 
                 <div className="form-group mt-3">
-                  <label>{t("Amount")}</label>
+                  <label className="cstmHead">{t("Amount")}</label>
                   <input
                     name="amount"
                     type="number"
@@ -169,7 +169,7 @@ const StopLimit = ({
                   </span>
                 </div>
                 <div className="form-group mt-3">
-                  <label>{t("Total Amount")}</label>
+                  <label className="cstmHead">{t("Total Amount")}</label>
                   <input
                     disabled
                     name="total_amount"
@@ -434,7 +434,7 @@ const StopLimit = ({
                   </span>
                 </div>
                 <div className="form-group mt-3">
-                  <label>{t("Total Amount")}</label>
+                  <label className="cstmHead">{t("Total Amount")}</label>
                   <input
                     // disabled
                     name="total_amount"

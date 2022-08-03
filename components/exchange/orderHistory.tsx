@@ -63,27 +63,42 @@ const OrderHistory = ({
               <table className="table">
                 <thead>
                   <tr>
-                    <th scope="col">{t("Date")}</th>
-                    <th scope="col">{t("Pair")}</th>
                     <th scope="col">{t("Type")}</th>
-                    <th scope="col">{t("Actual amount")}</th>
-                    <th scope="col">{t("Price")}</th>
-                    <th scope="col">{t("Amount")}</th>
-                    <th scope="col">{t("Fees")}</th>
-                    <th scope="col">{t("total")}</th>
+                    <th scope="col">{t("Pair")}</th>
+                    <th scope="col">
+                      {t("Price")}({dashboard?.order_data?.base_coin})
+                    </th>
+                    <th scope="col">
+                      {t("Amount")}({dashboard?.order_data?.trade_coin})
+                    </th>
+                    <th scope="col">
+                      {t("Fees")}({dashboard?.order_data?.base_coin})
+                    </th>
+                    <th scope="col">
+                      {t("total")}({dashboard?.order_data?.base_coin})
+                    </th>
+                    <th scope="col">{t("Created At")}</th>
                   </tr>
                 </thead>
                 <tbody>
                   {buyOrderHistoryState?.map((item: any, index: number) => (
                     <tr key={index}>
-                      <td>{formateData(item.created_at)}</td>
-                      <td>{currentPair && currentPair}</td>
-                      <td>{item?.type}</td>
-                      <td>{item.actual_amount}</td>
+                      <td
+                        className={
+                          item?.type === "sell" ? "text-danger" : "text-success"
+                        }
+                      >
+                        {item?.type}
+                      </td>
+                      <td>
+                        {dashboard.order_data.exchange_coin_pair &&
+                          dashboard.order_data.exchange_coin_pair}
+                      </td>
                       <td>{item.price}</td>
                       <td>{item.amount}</td>
                       <td>{item.fees}</td>
                       <td>{item.total}</td>
+                      <td>{formateData(item.created_at)}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -100,27 +115,42 @@ const OrderHistory = ({
               <table className="table">
                 <thead>
                   <tr>
-                    <th scope="col">{t("Date")}</th>
-                    <th scope="col">{t("Pair")}</th>
                     <th scope="col">{t("Type")}</th>
-                    <th scope="col">{t("Actual amount")}</th>
-                    <th scope="col">{t("Price")}</th>
-                    <th scope="col">{t("Amount")}</th>
-                    <th scope="col">{t("Fees")}</th>
-                    <th scope="col">{t("total")}</th>
+                    <th scope="col">{t("Pair")}</th>
+                    <th scope="col">
+                      {t("Price")}({dashboard?.order_data?.base_coin})
+                    </th>
+                    <th scope="col">
+                      {t("Amount")}({dashboard?.order_data?.trade_coin})
+                    </th>
+                    <th scope="col">
+                      {t("Fees")}({dashboard?.order_data?.base_coin})
+                    </th>
+                    <th scope="col">
+                      {t("total")}({dashboard?.order_data?.base_coin})
+                    </th>
+                    <th scope="col">{t("Created At")}</th>
                   </tr>
                 </thead>
                 <tbody>
                   {sellOrderHistoryState?.map((item: any, index: number) => (
                     <tr key={index}>
-                      <td>{formateData(item.created_at)}</td>
-                      <td>{currentPair && currentPair}</td>
-                      <td>{item?.type}</td>
-                      <td>{item.actual_amount}</td>
+                      <td
+                        className={
+                          item?.type === "sell" ? "text-danger" : "text-success"
+                        }
+                      >
+                        {item?.type}
+                      </td>
+                      <td>
+                        {dashboard.order_data.exchange_coin_pair &&
+                          dashboard.order_data.exchange_coin_pair}
+                      </td>
                       <td>{item.price}</td>
                       <td>{item.amount}</td>
                       <td>{item.fees}</td>
                       <td>{item.total}</td>
+                      <td>{formateData(item.created_at)}</td>
                     </tr>
                   ))}
                 </tbody>

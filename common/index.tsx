@@ -1,7 +1,7 @@
 import moment from "moment";
 import { toast } from "react-toastify";
 export const formateData = (date: any) => {
-  return moment(date).format("MMM Do YY");
+  return moment(date).format("MMM Do YY h:mm:ss a");
 };
 
 export const formateZert = (number: any) => {

@@ -1,9 +1,14 @@
 import { formateData } from "common";
 import useTranslation from "next-translate/useTranslation";
 import React from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "state/store";
 
 const TradeOrder = ({ tradeOrder, tradeOrderHistory }: any) => {
   const { t } = useTranslation("common");
+  const { dashboard, currentPair } = useSelector(
+    (state: RootState) => state.exchange
+  );
   return (
     <div
       className={"tab-pane fade" + (tradeOrder ? " show active" : "")}
@@ -15,25 +20,33 @@ const TradeOrder = ({ tradeOrder, tradeOrderHistory }: any) => {
         <table className="table">
           <thead>
             <tr>
-              <th scope="col">{t("Created At")}</th>
               <th scope="col">{t("Transaction id")}</th>
-              <th scope="col">{t("Fees")}</th>
-              <th scope="col">{t("Amount")}</th>
-              <th scope="col">{t("Price")}</th>
-              <th scope="col">{t("Time")}</th>
-              <th scope="col">{t("Total")}</th>
+              <th scope="col">
+                {" "}
+                {t("Fees")}({dashboard?.order_data?.base_coin})
+              </th>
+              <th scope="col">
+                {t("Amount")}({dashboard?.order_data?.trade_coin})
+              </th>
+              <th scope="col">
+                {t("Price")}({dashboard?.order_data?.base_coin})
+              </th>
+              <th scope="col">
+                {" "}
+                {t("Processed")}({dashboard?.order_data?.trade_coin})
+              </th>
+              <th scope="col">{t("Created At")}</th>
             </tr>
           </thead>
           <tbody>
             {tradeOrderHistory?.map((order: any, index: number) => (
               <tr key={index}>
-                <td>{formateData(order.created_at)}</td>
-                <td>{order.transaction_id}</td>
-                <td>{order.fees}</td>
+                <td>{parseInt(order.transaction_id)}</td>
+                <td>{parseFloat(order.fees).toFixed(8)}</td>
                 <td>{order.amount}</td>
                 <td>{order.price}</td>
-                <td>{order.time}</td>
                 <td>{order.total}</td>
+                <td>{formateData(order.created_at)}</td>
               </tr>
             ))}
           </tbody>

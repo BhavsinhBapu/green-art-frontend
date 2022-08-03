@@ -86,12 +86,12 @@ const Market = ({
                   </div>
                 </div>
                 <div className="form-group mt-3">
-                  <label>{t("Price")}</label>
+                  <label className="cstmHead">{t("Price")}</label>
                   <input
                     name="price"
                     type="text"
                     placeholder=""
-                    className="form-control number_only"
+                    className="form-control number_only input_1"
                     value={buySellMarketCoinData?.price}
                     disabled
                   />
@@ -106,7 +106,7 @@ const Market = ({
                   </span>
                 </div>
                 <div className="form-group mt-3">
-                  <label>{t("Amount")}</label>
+                  <label className="cstmHead">{t("Amount")}</label>
                   <input
                     name="amount"
                     type="number"

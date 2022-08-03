@@ -10,6 +10,10 @@ const TradesTable = ({ buy }: any) => {
   const changeSellPrice = (price: number) => {
     dispatch(setSellPrice(price));
   };
+  const [summary, setSummary] = React.useState<any>({
+    amount: 0,
+    total: 0,
+  });
   return (
     <tbody>
       {buy?.length > 0 ? (
@@ -19,16 +23,16 @@ const TradesTable = ({ buy }: any) => {
             overlay={
               <span>
                 <span>
-                  {t("Price:")} {item.price}
+                  {t("Avg Price:")} {parseFloat(item.price)}
                 </span>
                 <br />
                 <span>
-                  {t("Amount:")} {item.amount}
+                  {t("Amount:")} {parseFloat(summary.amount)}
                 </span>
                 <br />
 
                 <span>
-                  {t("Size:")} {item.my_size}
+                  {t("Total:")} {parseFloat(summary.total).toFixed(5)}
                 </span>
               </span>
             }
@@ -36,11 +40,30 @@ const TradesTable = ({ buy }: any) => {
             key={index}
             overlayClassName="rcTooltipOverlay"
           >
-            <tr className="odd" onClick={() => changeSellPrice(item.price)}>
+            <tr
+              className="odd"
+              onClick={() => changeSellPrice(item.price)}
+              onMouseEnter={() => {
+                const selectedIndex = index;
+                const lastIndex = buy.length - 1;
+                let sumtotal = 0;
+                let sumAmount = 0;
+                for (let i = selectedIndex; i <= lastIndex; i++) {
+                  sumtotal += parseFloat(buy[i].total);
+                  sumAmount += parseFloat(buy[i].amount);
+                }
+                setSummary({
+                  amount: sumAmount,
+                  total: sumtotal,
+                });
+              }}
+            >
               <>
                 <td>
                   <div className="asset">
-                    <span className="text-danger">{item.price}</span>
+                    <span className="text-danger">
+                      {parseFloat(item.price)}
+                    </span>
                   </div>
                 </td>
                 <td>
@@ -50,7 +73,7 @@ const TradesTable = ({ buy }: any) => {
                 </td>
                 <td>
                   <div className="asset">
-                    <span className="asset-name">{item.my_size}</span>
+                    <span className="asset-name">{item.total}</span>
                   </div>
                 </td>
               </>

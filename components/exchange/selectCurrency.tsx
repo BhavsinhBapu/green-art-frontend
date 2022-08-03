@@ -5,19 +5,98 @@ import { setCurrentPair } from "state/reducer/exchange";
 import { useRouter } from "next/router";
 import Cookies from "js-cookie";
 import useTranslation from "next-translate/useTranslation";
-
+import DataTable from "react-data-table-component";
 const SelectCurrency = () => {
   const router = useRouter();
   const [pairs, setPairs] = React.useState([]);
   const { t } = useTranslation("common");
   const { dashboard } = useSelector((state: RootState) => state.exchange);
+  const customStyles = {
+    rows: {
+      style: {
+        backgroundColor: "#151515",
+        color: "#fff",
+        borderColor: "#151515",
+      },
+    },
+    headCells: {
+      style: {
+        backgroundColor: "#151515",
+        color: "#fff",
+        borderColor: "#151515",
+      },
+    },
+    cells: {
+      style: {
+        width: "100%",
+        backgroundColor: "#151515",
+        color: "#fff",
+        borderColor: "#151515",
+        fontSize: "10px",
+      },
+    },
+  };
+  const columns = [
+    {
+      name: t("Coin"),
+      selector: (row: any) => row.coin,
+      sortable: true,
+      cell: (row: any) => {
+        return (
+          <div
+            onClick={async () => {
+              await localStorage.setItem("base_coin_id", row?.parent_coin_id);
+              await localStorage.setItem("trade_coin_id", row?.child_coin_id);
+              await localStorage.setItem("current_pair", row.coin_pair);
+
+              await dispatch(setCurrentPair(row.coin_pair));
+
+              router.reload();
+            }}
+          >
+            <span className="coin-name">{row?.coin_pair_name}</span>
+          </div>
+        );
+      },
+    },
+    {
+      name: t("Last"),
+      selector: (row: any) => row.price,
+      sortable: true,
+      cell: (row: any) => {
+        return (
+          <span className="text-center w-40 text-white">
+            {parseFloat(row.last_price).toFixed(4)}
+          </span>
+        );
+      },
+    },
+    {
+      name: t("Change"),
+
+      selector: (row: any) => row.price_change,
+      sortable: true,
+      cell: (row: any) => {
+        return (
+          <span
+            className={
+              parseFloat(row?.price_change) >= 0
+                ? "text-success"
+                : "text-danger"
+            }
+          >
+            {parseFloat(row.price_change).toFixed(2)}%
+          </span>
+        );
+      },
+    },
+  ];
   const dispatch = useDispatch();
   useEffect(() => {
     if (dashboard?.pairs) {
       setPairs(dashboard.pairs);
     }
   }, [dashboard]);
-  console.log(pairs, "pairs");
   return (
     <div
       className="cp-user-buy-coin-content-area dropdown-menu"
@@ -73,55 +152,7 @@ const SelectCurrency = () => {
                   width: "415px",
                   paddingRight: "17px",
                 }}
-              >
-                <table
-                  className="table dataTable no-footer"
-                  role="grid"
-                  style={{
-                    marginLeft: "0px",
-                    width: "415px",
-                  }}
-                >
-                  <thead>
-                    <tr role="row">
-                      <th
-                        className="text-left text-green w-30 sorting_asc"
-                        tabIndex={0}
-                        aria-controls="exchangeCoinPair"
-                        rowSpan={1}
-                        colSpan={1}
-                        style={{ width: "104.672px" }}
-                        aria-label="Coins: activate to sort column descending"
-                        aria-sort="ascending"
-                      >
-                        {t("Coins")}
-                      </th>
-                      <th
-                        className="text-center w-40 sorting"
-                        tabIndex={0}
-                        aria-controls="exchangeCoinPair"
-                        rowSpan={1}
-                        colSpan={1}
-                        style={{ width: "103.281px" }}
-                        aria-label="Last: activate to sort column ascending"
-                      >
-                        {t("Last")}
-                      </th>
-                      <th
-                        className="sorting"
-                        tabIndex={0}
-                        aria-controls="exchangeCoinPair"
-                        rowSpan={1}
-                        colSpan={1}
-                        style={{ width: "147.047px" }}
-                        aria-label="Balance: activate to sort column ascending"
-                      >
-                        {t("Change")}
-                      </th>
-                    </tr>
-                  </thead>
-                </table>
-              </div>
+              ></div>
             </div>
             <div
               className="dataTables_scrollBody"
@@ -132,7 +163,13 @@ const SelectCurrency = () => {
                 width: "100%",
               }}
             >
-              <table
+              <DataTable
+                columns={columns}
+                data={pairs}
+                customStyles={customStyles}
+              />
+
+              {/* <table
                 id="exchangeCoinPair"
                 className="table dataTable no-footer"
                 role="grid"
@@ -248,16 +285,8 @@ const SelectCurrency = () => {
                               "current_pair",
                               pair.coin_pair
                             );
-                            // router.replace(
-                            //   "/exchange/dashboard?base_coin_id=" +
-                            //     pair.base_coin_id +
-                            //     "&trade_coin_id=" +
-                            //     pair.trade_coin_id
-                            // );
-                            //@ts-ignore
-                            // window.location.reload();
+
                             await dispatch(setCurrentPair(pair.coin_pair));
-                            //pause 4 seconds
 
                             router.reload();
                           }}
@@ -275,12 +304,12 @@ const SelectCurrency = () => {
                             : "text-danger"
                         }
                       >
-                        {parseFloat(pair?.price_change)}
+                        {parseFloat(pair?.price_change)}%
                       </td>
                     </tr>
                   ))}
                 </tbody>
-              </table>
+              </table> */}
             </div>
           </div>
         </div>

@@ -115,16 +115,18 @@ const Home: NextPage = ({
                       "Tradexpro exchange is such a marketplace where people can trade directly with each other."
                     )}
                 </p>
-                <a
-                  href={
-                    router.locale !== "en"
-                      ? `/${router.locale}/exchange/dashboard`
-                      : "/exchange/dashboard"
-                  }
-                  className="primary-btn"
-                >
-                  {t("Register Now")}
-                </a>
+                {!loggedin && (
+                  <a
+                    href={
+                      router.locale !== "en"
+                        ? `/${router.locale}/exchange/dashboard`
+                        : "/exchange/dashboard"
+                    }
+                    className="primary-btn"
+                  >
+                    {t("Register Now")}
+                  </a>
+                )}
               </div>
               <div className="col-md-6 ">
                 <img
@@ -876,9 +878,11 @@ const Home: NextPage = ({
               <h2 className="title">{t("Start trading now")}</h2>
             </div>
             <div className="trading-button text-center">
-              <Link href="/authentication/signup">
-                <a className="primary-btn mr-5">{t("Sign Up")}</a>
-              </Link>
+              {!loggedin && (
+                <Link href="/authentication/signup">
+                  <a className="primary-btn mr-5">{t("Sign Up")}</a>
+                </Link>
+              )}
               <a
                 href={
                   router.locale !== "en"

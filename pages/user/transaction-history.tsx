@@ -8,6 +8,8 @@ import {
 } from "state/actions/reports";
 import TableLoading from "components/common/TableLoading";
 import useTranslation from "next-translate/useTranslation";
+import moment from "moment";
+import DataTable from "react-data-table-component";
 const TransactionHistory: NextPage = () => {
   const { t } = useTranslation("common");
   type searchType = string;
@@ -19,7 +21,7 @@ const TransactionHistory: NextPage = () => {
     const url = page.url.split("?")[1];
     const number = url.split("=")[1];
     AllTransactionHistoryAction(
-      5,
+      10,
       parseInt(number),
       setHistory,
       setProcessing,
@@ -28,13 +30,73 @@ const TransactionHistory: NextPage = () => {
   };
   const getReport = async () => {
     AllTransactionHistoryAction(
-      5,
+      10,
       1,
       setHistory,
       setProcessing,
       setStillHistory
     );
   };
+  const columns = [
+    {
+      name: t("Transaction Id"),
+      selector: (row: any) => row.transaction_id,
+      sortable: true,
+    },
+    {
+      name: t("Base Coin"),
+      selector: (row: any) => row?.base_coin,
+      sortable: true,
+    },
+    {
+      name: t("Trade Coin"),
+      selector: (row: any) => row?.trade_coin,
+      sortable: true,
+    },
+    {
+      name: t("Amount"),
+      selector: (row: any) => row?.amount,
+      sortable: true,
+      cell: (row: any) => (
+        <div className="blance-text">
+          <span className="blance market incree">
+            {parseFloat(row?.amount).toFixed(8)}
+          </span>
+        </div>
+      ),
+    },
+    {
+      name: t("Price"),
+      selector: (row: any) => row?.price,
+      sortable: true,
+      cell: (row: any) => (
+        <div className="blance-text">
+          <span className="blance market incree">
+            ${parseFloat(row?.price).toFixed(8)}
+          </span>
+        </div>
+      ),
+    },
+    {
+      name: t("Fees"),
+      selector: (row: any) => row?.fees,
+      sortable: true,
+      cell: (row: any) => (
+        <div className="blance-text">
+          <span className="blance market incree">
+            ${parseFloat(row?.fees).toFixed(8)}
+          </span>
+        </div>
+      ),
+    },
+
+    {
+      name: t("Date"),
+      selector: (row: any) =>
+        moment(row.created_at).format("YYYY-MM-DD HH:mm:ss"),
+      sortable: true,
+    },
+  ];
   React.useEffect(() => {
     getReport();
     return () => {
@@ -90,9 +152,8 @@ const TransactionHistory: NextPage = () => {
                               }}
                             >
                               <option selected disabled hidden>
-                                5
+                                10
                               </option>
-                              <option value="5">5</option>
                               <option value="10">10</option>
                               <option value="25">25</option>
                               <option value="50">50</option>
@@ -123,123 +184,46 @@ const TransactionHistory: NextPage = () => {
                         </div>
                       </div>
                     </div>
-
-                    <table
-                      id="assetBalances"
-                      className="table table-borderless secendary-table asset-balances-table"
-                    >
-                      <thead>
-                        <tr>
-                          <th scope="col" className="">
-                            {t("Transaction id")}
-                          </th>
-
-                          <th scope="col" rowSpan={1} colSpan={1}>
-                            {t("Base Coin")}
-                          </th>
-                          <th scope="col">{t("Trade Coin")}</th>
-                          <th scope="col">{t("Amount")}</th>
-                          <th scope="col">{t("Price")}</th>
-                          <th scope="col">{t("Fees")}</th>
-                          <th scope="col">{t("Total")}</th>
-                          <th scope="col">{t("Date")}</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {history?.map((item: any, index: any) => (
-                          <tr id="{{$wallet->id}}" key={index}>
-                            <td>
-                              <div className="asset">
-                                <span className="asset-name">
-                                  {item.transaction_id}
-                                </span>
-                              </div>
-                            </td>
-
-                            <td>
-                              <div className="blance-text">
-                                <span className="usd">{item.base_coin}</span>
-                              </div>
-                            </td>
-                            <td>
-                              <div className="blance-text">
-                                <span className="blance">
-                                  {item.trade_coin}
-                                </span>
-                              </div>
-                            </td>
-                            <td>
-                              <div className="blance-text">
-                                <span className="blance">{item.amount}</span>
-                              </div>
-                            </td>
-                            <td>
-                              <div className="blance-text">
-                                <span className="blance">{item.price}</span>
-                              </div>
-                            </td>
-                            <td>
-                              <div className="status-text">
-                                <span className="status">{item.fees}</span>
-                              </div>
-                            </td>
-                            <td>
-                              <div className="status-text">
-                                <span className="status">{item.total}</span>
-                              </div>
-                            </td>
-                            <td>
-                              <div className="status-text">
-                                <span className="status">{item.time}</span>
-                              </div>
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                    {history?.length <= 0 && (
-                      <div className="no_data_table">
-                        {t("No data available in table")}
-                      </div>
-                    )}
+                    <DataTable columns={columns} data={history} />
 
                     <div
                       className="pagination-wrapper"
                       id="assetBalances_paginate"
                     >
                       <span>
-                        {stillHistory?.items?.links.map(
-                          (link: any, index: number) =>
-                            link.label === "&laquo; Previous" ? (
-                              <a
-                                className="paginate-button"
-                                onClick={() => {
-                                  if (link.url) LinkTopaginationString(link);
-                                }}
-                                key={index}
-                              >
-                                <i className="fa fa-angle-left"></i>
-                              </a>
-                            ) : link.label === "Next &raquo;" ? (
-                              <a
-                                className="paginate-button"
-                                onClick={() => LinkTopaginationString(link)}
-                                key={index}
-                              >
-                                <i className="fa fa-angle-right"></i>
-                              </a>
-                            ) : (
-                              <a
-                                className="paginate_button paginate-number"
-                                aria-controls="assetBalances"
-                                data-dt-idx="1"
-                                onClick={() => LinkTopaginationString(link)}
-                                key={index}
-                              >
-                                {link.label}
-                              </a>
-                            )
-                        )}
+                        {history.length > 0 &&
+                          stillHistory?.items?.links.map(
+                            (link: any, index: number) =>
+                              link.label === "&laquo; Previous" ? (
+                                <a
+                                  className="paginate-button"
+                                  onClick={() => {
+                                    if (link.url) LinkTopaginationString(link);
+                                  }}
+                                  key={index}
+                                >
+                                  <i className="fa fa-angle-left"></i>
+                                </a>
+                              ) : link.label === "Next &raquo;" ? (
+                                <a
+                                  className="paginate-button"
+                                  onClick={() => LinkTopaginationString(link)}
+                                  key={index}
+                                >
+                                  <i className="fa fa-angle-right"></i>
+                                </a>
+                              ) : (
+                                <a
+                                  className="paginate_button paginate-number"
+                                  aria-controls="assetBalances"
+                                  data-dt-idx="1"
+                                  onClick={() => LinkTopaginationString(link)}
+                                  key={index}
+                                >
+                                  {link.label}
+                                </a>
+                              )
+                          )}
                       </span>
                     </div>
                   </div>

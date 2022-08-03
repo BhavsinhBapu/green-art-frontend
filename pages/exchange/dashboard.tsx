@@ -235,15 +235,9 @@ const Dashboard: NextPage = () => {
                             ? dashboard?.order_data?.exchange_coin_pair
                             : "BTC/USDT"}
                         </span>
-                        {/* {dashboard?.order_data?.exchange_coin_pair && (
-                          <i
-                            aria-hidden="true"
-                            className=" ml-2 fa fa-angle-down"
-                          />
-                        )} */}
+
                         <SelectCurrency />
                       </div>
-                      {/* <span className="font-weight-bold">Bitcoin</span> */}
                     </div>
                     <CurrencyLevel />
                   </div>

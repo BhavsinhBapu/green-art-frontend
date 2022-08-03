@@ -59,7 +59,7 @@ const TradesHistory = ({ marketTrades }: any) => {
                         style={{ width: "170.656px" }}
                         aria-label="Price"
                       >
-                        {t("Price")}(<span></span>)
+                        {t("Price")}
                       </th>
                       <th
                         className="table-col amount sorting_disabled"

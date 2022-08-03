@@ -9,6 +9,8 @@ import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import TableLoading from "components/common/TableLoading";
 import { formateData } from "common";
 import useTranslation from "next-translate/useTranslation";
+import moment from "moment";
+import DataTable from "react-data-table-component";
 const SwapHistory: NextPage = () => {
   const { t } = useTranslation("common");
   type searchType = string;
@@ -20,7 +22,7 @@ const SwapHistory: NextPage = () => {
     const url = page.url.split("?")[1];
     const number = url.split("=")[1];
     CoinConvertHistoryAction(
-      5,
+      10,
       parseInt(number),
       setHistory,
       setProcessing,
@@ -28,8 +30,66 @@ const SwapHistory: NextPage = () => {
     );
   };
   const getReport = async () => {
-    CoinConvertHistoryAction(5, 1, setHistory, setProcessing, setStillHistory);
+    CoinConvertHistoryAction(10, 1, setHistory, setProcessing, setStillHistory);
   };
+  const columns = [
+    {
+      name: "From Wallet",
+      selector: (row: any) => row?.from_wallet?.name,
+      sortable: true,
+    },
+    {
+      name: "To Wallet",
+      selector: (row: any) => row.to_wallet?.name,
+      sortable: true,
+    },
+    {
+      name: "Requested Amount",
+      selector: (row: any) => row.requested_amount,
+      sortable: true,
+      cell: (row: any) => (
+        <div className="blance-text">
+          <span className="blance market incree">
+            ${parseFloat(row?.requested_amount).toFixed(8)}
+          </span>
+        </div>
+      ),
+    },
+    {
+      name: "Converted Amount",
+      selector: (row: any) => parseFloat(row.converted_amount).toFixed(8),
+      sortable: true,
+    },
+    {
+      name: "Rate",
+      selector: (row: any) => row.rate,
+      sortable: true,
+    },
+    {
+      name: "Created At",
+      selector: (row: any) => row.created_at,
+      sortable: true,
+      cell: (row: any) => (
+        <div>{moment(row.created_at).format("YYYY-MM-DD HH:mm:ss")}</div>
+      ),
+    },
+    {
+      name: "Status",
+      selector: (row: any) => row.status,
+      sortable: true,
+      cell: (row: any) => (
+        <div>
+          {row.status === 0 ? (
+            <span className="text-warning">{t("Pending")}</span>
+          ) : row.status === 1 ? (
+            <span className="text-success"> {t("Success")}</span>
+          ) : (
+            <span className="text-danger">{t("Failed")}</span>
+          )}
+        </div>
+      ),
+    },
+  ];
   React.useEffect(() => {
     getReport();
     return () => {
@@ -82,9 +142,8 @@ const SwapHistory: NextPage = () => {
                               }}
                             >
                               <option selected disabled hidden>
-                                5
+                                10
                               </option>
-                              <option value="5">5</option>
                               <option value="10">10</option>
                               <option value="25">25</option>
                               <option value="50">50</option>
@@ -114,88 +173,8 @@ const SwapHistory: NextPage = () => {
                         </div>
                       </div>
                     </div>
-                    <table
-                      id="assetBalances"
-                      className="table table-borderless secendary-table asset-balances-table"
-                    >
-                      <thead>
-                        <tr>
-                          <th scope="col" className="">
-                            {t("From Wallet")}
-                          </th>
-                          <th scope="col" rowSpan={1} colSpan={1}>
-                            {t("To Wallet")}
-                          </th>
-                          <th scope="col" rowSpan={1} colSpan={1}>
-                            {t("Requested Amount")}
-                          </th>
-                          <th scope="col">{t("Converted Amount")}</th>
-                          <th scope="col">{t("Rate")}</th>
-                          <th scope="col">{t("Created At")}</th>
-                          <th scope="col">{t("Status")}</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {history?.map((item: any, index: any) => (
-                          <tr id="" key={index}>
-                            <td>
-                              <div className="asset">
-                                <img
-                                  className="asset-icon"
-                                  src="/bitcoin.png"
-                                  alt=""
-                                />
-                                <span className="asset-name">
-                                  {item?.from_wallet?.name}
-                                </span>
-                              </div>
-                            </td>
-                            <td>
-                              <span className="symbol">
-                                {item?.to_wallet?.coin_type}
-                              </span>
-                            </td>
-                            <td>
-                              <div className="blance-text">
-                                <span className="blance market incree">
-                                  ${item?.requested_amount}
-                                </span>
-                              </div>
-                            </td>
-                            <td>
-                              <div className="blance-text">
-                                <span className="blance">
-                                  {item?.converted_amount}
-                                </span>
-                              </div>
-                            </td>
-                            <td>
-                              <div className="blance-text">
-                                <span className="blance">{item?.rate}</span>
-                              </div>
-                            </td>
-                            <td>
-                              <div className="blance-text">
-                                <span className="usd">
-                                  {formateData(item?.created_at)}
-                                </span>
-                              </div>
-                            </td>
-                            <td>
-                              <div className="status-text">
-                                <span className="blance market ">
-                                  {item?.status === 0
-                                    ? "Pending"
-                                    : item?.status === 1
-                                    ? "Completed"
-                                    : "Cancelled"}
-                                </span>
-                              </div>
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
+                    <DataTable columns={columns} data={history} />
+
                     {history?.length <= 0 && (
                       <div className="no_data_table">
                         {t("No data available in table")}
