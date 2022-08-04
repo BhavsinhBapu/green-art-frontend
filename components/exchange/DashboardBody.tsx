@@ -51,8 +51,6 @@ const DashboardBody = () => {
                 >
                   <path d="M4 4h7v16H4V4z" fill="#0ECB81"></path>
                   <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
                     d="M13 4h7v4h-7V4zm0 6h7v4h-7v-4zm7 6h-7v4h7v-4z"
                     fill="currentColor"
                   ></path>
@@ -72,8 +70,6 @@ const DashboardBody = () => {
                 >
                   <path d="M4 4h7v16H4V4z" fill="#F6465D"></path>
                   <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
                     d="M13 4h7v4h-7V4zm0 6h7v4h-7v-4zm7 6h-7v4h7v-4z"
                     fill="currentColor"
                   ></path>
@@ -94,8 +90,6 @@ const DashboardBody = () => {
                   <path d="M4 4h7v7H4V4z" fill="#F6465D"></path>
                   <path d="M4 13h7v7H4v-7z" fill="#0ECB81"></path>
                   <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
                     d="M13 4h7v4h-7V4zm0 6h7v4h-7v-4zm7 6h-7v4h7v-4z"
                     fill="currentColor"
                   ></path>
