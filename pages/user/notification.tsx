@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { notification, notificationSeen } from "service/notification";
 import { RootState } from "state/store";
-const notificationPage = () => {
+const NotificationPage = () => {
   const { t } = useTranslation("common");
   const [notificationData, setNotification] = useState<any>([]);
   const { isLoggedIn, user } = useSelector((state: RootState) => state.user);
@@ -19,8 +19,8 @@ const notificationPage = () => {
     <div className="container">
       <h2 className="section-top-title">{t("Overview")}</h2>
 
-      {notificationData.map((item: any) => (
-        <div className="notification-body">
+      {notificationData.map((item: any, index: any) => (
+        <div className="notification-body" key={index}>
           <img
             src="/notification.png"
             className="img-fluid notificationicon"
@@ -38,4 +38,4 @@ const notificationPage = () => {
   );
 };
 
-export default notificationPage;
+export default NotificationPage;
