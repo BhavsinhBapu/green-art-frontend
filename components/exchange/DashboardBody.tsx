@@ -39,7 +39,7 @@ const DashboardBody = () => {
             <div className="orderBookIcons">
               <h3
                 onClick={() => {
-                  setSelect(1);
+                  setSelect(2);
                 }}
                 className="icon-center"
               >
@@ -58,7 +58,7 @@ const DashboardBody = () => {
               </h3>
               <h3
                 onClick={() => {
-                  setSelect(2);
+                  setSelect(1);
                 }}
                 className="icon-center"
               >
