@@ -62,7 +62,7 @@ const TradesTable = ({ buy }: any) => {
                 <td>
                   <div className="asset">
                     <span className="text-danger">
-                      {parseFloat(item.price)}
+                      {parseFloat(item.price).toFixed(2)}
                     </span>
                   </div>
                 </td>
@@ -73,7 +73,9 @@ const TradesTable = ({ buy }: any) => {
                 </td>
                 <td>
                   <div className="asset">
-                    <span className="asset-name">{item.total}</span>
+                    <span className="asset-name">
+                      {parseFloat(item.total).toFixed(2)}
+                    </span>
                   </div>
                 </td>
               </>

@@ -30,12 +30,12 @@ const DashboardBody = () => {
   } = useSelector((state: RootState) => state.exchange);
   return (
     <>
-      <div className="col-xl-2">
+      <div className="col-xl-3">
         <div className="trades-section">
+          <div>
+            <h6 className="text-white">{t("Order Book")}</h6>
+          </div>
           <div className="trades-headers mb-3">
-            <div>
-              <h3>{t("Order Book")}</h3>
-            </div>
             <div className="orderBookIcons">
               <h3
                 onClick={() => {
@@ -107,7 +107,7 @@ const DashboardBody = () => {
           )}
         </div>
       </div>
-      <div className="col-xl-7">
+      <div className="col-xl-6">
         <div className="cp-user-buy-coin-content-area">
           <div className="card cp-user-custom-card">
             <TradingChart

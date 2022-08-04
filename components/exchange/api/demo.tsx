@@ -7,6 +7,9 @@ export default {
   history: history,
   //@ts-ignore
   getBars: function (symbolInfo, resolution, from, to, first, limit) {
+    const base = localStorage.getItem("current_pair")?.split("_")[0];
+    const trade = localStorage.getItem("current_pair")?.split("_")[1];
+
     var split_symbol = symbolInfo.name.split(/[:/]/);
     const url =
       resolution === "D"
@@ -16,8 +19,8 @@ export default {
         : "/data/histominute";
     const qs = {
       e: split_symbol[0],
-      fsym: split_symbol[1],
-      tsym: split_symbol[2],
+      fsym: base,
+      tsym: trade,
       toTs: to,
       limit: limit ? limit : 2000,
       // aggregate: 1//resolution

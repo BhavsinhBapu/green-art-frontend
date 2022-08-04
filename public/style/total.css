@@ -3822,7 +3822,7 @@ table.table {
   .cxchange-summary-items
   li
   .value {
-  font-size: 17px;
+  font-size: 17px !important;
   font-weight: 500;
   color: rgb(188, 188, 188) !important;
 }
@@ -3831,7 +3831,7 @@ table.table {
   .cxchange-summary-items
   li
   .value.decrease {
-  color: #ff2e2e;
+  color: #ff2e2e !important;
 }
 .cxchange-summary-wrap
   .cxchange-summary-featured

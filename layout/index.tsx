@@ -30,7 +30,8 @@ const Index = ({ children }: any) => {
       path === "/authentication/reset-password" ||
       path === "/authentication/g2f-verify" ||
       path === "/" ||
-      path === "/authentication/verify-email"
+      path === "/authentication/verify-email" ||
+      path === "user/notification"
     ) {
       setNavbarVisible(false);
     } else {

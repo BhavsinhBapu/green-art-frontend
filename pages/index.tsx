@@ -331,7 +331,7 @@ const Home: NextPage = ({
                                       : "text-danger"
                                   } `}
                                 >
-                                  {item.price_change}
+                                  {item.price_change}%
                                 </span>
                               </td>
                               <td>
@@ -491,7 +491,7 @@ const Home: NextPage = ({
                                         : "text-danger"
                                     } `}
                                   >
-                                    {item.price_change}
+                                    {item.price_change}%
                                   </span>
                                 </td>
                                 <td>
@@ -646,7 +646,7 @@ const Home: NextPage = ({
                                         : "text-danger"
                                     } `}
                                   >
-                                    {item.price_change}
+                                    {item.price_change}%
                                   </span>
                                 </td>
                                 <td>
