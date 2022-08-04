@@ -43,7 +43,7 @@ localStorage.setItem("tradingview.ChartDrawingToolbarWidget.visible", "false");
 export class TVChartContainer extends React.Component<MyProps> {
   static defaultProps = {
     symbol: `Tradexpro:${pair ? pair : "BTC/USDT"}`,
-    interval: "0.0000000000000000000000001",
+    interval: "5",
     // datafeedUrl: "https://demo_feed.tradingview.com",
     // datafeed: Datafeed,
     containerId: "tv_chart_container",
