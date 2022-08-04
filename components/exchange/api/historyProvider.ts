@@ -17,52 +17,36 @@ export default {
         ? "/data/histohour"
         : "/data/histominute";
 
-    if (this.hitted === false) {
-      const base = localStorage.getItem("base_coin_id");
-      const trade = localStorage.getItem("trade_coin_id");
+    const base = localStorage.getItem("base_coin_id");
+    const trade = localStorage.getItem("trade_coin_id");
 
-      this.hitted = true;
-      return getChartData(
-        1440,
-        from,
-        to,
-        base ? base : 2,
-        trade ? trade : 1
-      ).then((data: any) => {
-        const myBars = data.data;
-        let klines4800: any = [];
-        for (let i = 0; i < 80; i++) {
-          myBars.map((el: any) => {
-            let j = i;
-            klines4800.push({
-              time: el.time + j, // TradingView requires bar time in ms
-              low: el.low,
-              high: el.high,
-              open: el.open,
-              close: el.close,
-              volume: parseFloat(el.volume),
-            });
-          });
+    this.hitted = true;
+    return getChartData(
+      1440,
+      from,
+      to,
+      base ? base : 2,
+      trade ? trade : 1
+    ).then((data: any) => {
+      if (data.data.data.length) {
+        const myBars = data.data.data;
+        const klines4800 = [...myBars];
+        console.log("getBars", klines4800);
+        const bars = klines4800.map((el: any) => ({
+          time: parseFloat(el[0]) + 1000, // time
+          low: parseFloat(el[4]), //low
+          high: parseFloat(el[3]), // high
+          open: parseFloat(el[1]), // open
+          close: parseFloat(el[2]), // close
+          volume: parseFloat(el[5]), // volume
+        }));
+        if (first) {
+          const lastBar = bars[bars.length - 1];
+          history[symbolInfo.name] = { lastBar };
         }
-        if (data.data.length) {
-          const bars = klines4800.map((el: any) => ({
-            time: el.time * 1000,
-            low: el.low,
-            high: el.high,
-            open: el.open,
-            close: el.close,
-            volume: el.volumefrom,
-          }));
-          if (first) {
-            const lastBar = bars[bars.length - 1];
-            history[symbolInfo.name] = { lastBar };
-          }
-          return bars;
-        }
-        return [];
-      });
-    } else {
+        return bars;
+      }
       return [];
-    }
+    });
   },
 };

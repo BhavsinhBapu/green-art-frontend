@@ -5,7 +5,7 @@ import Datafeed from "components/exchange/api";
 import {
   DISABLED_FEATURES,
   ENABLED_FEATURES,
-  // getChartOverrides,
+  getChartOverrides,
   // getChartStudiesOverrides,
   TIME_FRAMES,
 } from "./api/chartConfig";
@@ -128,7 +128,7 @@ export class TVChartContainer extends React.Component<MyProps> {
       //@ts-ignore
       // toolbar_bg: getBackgroundColor(this.props.theme),
       //@ts-ignore
-      // overrides: getChartOverrides(this.props.theme),
+      overrides: getChartOverrides(this.props.theme),
       custom_css_url: "charting_library/chart-v3-ethfinex-theme.css",
 
       //@ts-ignore

@@ -22,6 +22,8 @@ const SwapCoin: NextPage = ({
   to_wallet,
 }: any) => {
   const { t } = useTranslation("common");
+  console.log(walletLists, "data");
+
   const [loading, setLoading] = React.useState(false);
   let tempfromSelected;
   let temptoSelected;
@@ -29,11 +31,13 @@ const SwapCoin: NextPage = ({
     amount: 0,
     selected: null,
     coin_id: null,
+    balamce: 0,
   });
   const [toSelected, setToSelected] = React.useState<any>({
     amount: 0,
     selected: null,
     coin_id: null,
+    balamce: 0,
   });
   const [rate, setRate] = React.useState<any>({
     wallet_rate: 0,
@@ -75,11 +79,13 @@ const SwapCoin: NextPage = ({
       amount: 1,
       selected: walletLists[0]?.coin_type,
       coin_id: walletLists[0]?.id,
+      balamce: walletLists[0]?.balance,
     });
     setToSelected({
       amount: wallet_rate,
       selected: walletLists[1]?.coin_type,
       coin_id: walletLists[1]?.id,
+      balamce: walletLists[1]?.balance,
     });
     setRate({
       wallet_rate: wallet_rate,
@@ -126,7 +132,10 @@ const SwapCoin: NextPage = ({
                       <div className="swap-wrap">
                         <div className="swap-wrap-top">
                           <label>{t("From")}</label>
-                          {/* <span className="available">Available : 0 USDT</span> */}
+                          <span className="available">
+                            Available : {fromSelected.balamce}{" "}
+                            {fromSelected.selected}
+                          </span>
                         </div>
                         <div className="swap-input-wrap">
                           <div className="form-amount">
@@ -202,6 +211,10 @@ const SwapCoin: NextPage = ({
                       <div className="swap-wrap">
                         <div className="swap-wrap-top">
                           <label>{t("To")}</label>
+                          <span className="available">
+                            Available : {toSelected.balamce}{" "}
+                            {toSelected.selected}
+                          </span>
                         </div>
                         <div className="swap-input-wrap">
                           <div className="form-amount">
@@ -265,9 +278,6 @@ const SwapCoin: NextPage = ({
                     </ul>
                   </div>
                   <div className="swap-area-bottom">
-                    <button className="primary-btn-outline">
-                      {t("Refresh")}
-                    </button>
                     <button
                       className="primary-btn-outline"
                       disabled={
@@ -325,8 +335,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
       convert_rate,
       ssrRate: rate,
       from_wallet: from_wallet.coin_type,
-      to_wallet: to_wallet.coin_type,
 
+      to_wallet: to_wallet.coin_type,
       wallet_rate,
     },
   };

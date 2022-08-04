@@ -358,7 +358,7 @@ p {
   white-space: normal;
   padding: 9px 10px;
   line-height: 20px !important;
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
   border-bottom: 1px solid #353535;
 }
 .cp-user-top-bar-right .notification-list ul li:last-child a {
@@ -440,7 +440,7 @@ p {
   border-bottom: none;
 }
 .cp-user-top-bar-right .profile-dropdown button a {
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
   text-transform: uppercase;
   display: block;
 }
@@ -474,7 +474,7 @@ ul {
   align-items: center;
 }
 .cp-user-top-bar-right .hm-notify .btn {
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
   min-width: auto;
 }
 .notification-btn img {
@@ -1039,7 +1039,7 @@ table.dataTable.dtr-inline.collapsed
 }
 .cp-user-copy .input-group .btn:hover {
   background: #ffce51;
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
 }
 .cp-user-copy .input-group .form-control {
   background: transparent;
@@ -1072,7 +1072,7 @@ table.dataTable.dtr-inline.collapsed
   margin: 30px auto;
 }
 .cp-user-copy .cp-user-buy-btn:hover {
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
   background: #ffce51;
 }
 /* credit card */
@@ -1216,7 +1216,7 @@ table.dataTable.dtr-inline.collapsed
 
 .cp-user-body-bg .cp-user-wallet-table table tbody tr td,
 .cp-user-body-bg .cp-user-wallet-table table thead tr th {
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
 }
 .cp-user-wallet-card .cp-user-card-header-area {
   -webkit-box-align: center;
@@ -2061,7 +2061,7 @@ a#submit {
   width: 110px;
   height: 30px;
   background: #ff5556;
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
   font-size: 12px;
   font-weight: 400;
   text-transform: uppercase;
@@ -2281,7 +2281,7 @@ a#submit {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ffffff;
+  background-color: rgb(188, 188, 188) !important;
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
@@ -2400,7 +2400,7 @@ a#submit {
 }
 .cp-user-referral-content .copy-url-btn:hover {
   background: #ffce51;
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
 }
 .cp-user-card-header-area .cp-user-card-header-bb .cp-user-content-bottom {
   margin-top: 30px;
@@ -2465,7 +2465,7 @@ a#submit {
 
 .cp-user-myreferral table.dataTable thead tr th {
   color: #23262f;
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
   font-weight: 500;
   font-size: 18px;
 }
@@ -2478,7 +2478,7 @@ a#submit {
 }
 .cp-user-myreferral table.dataTable tbody tr td {
   color: #23262f;
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
   vertical-align: middle;
 }
 
@@ -2512,14 +2512,14 @@ a#submit {
   margin-top: 0px;
 }
 .user-form .form-control {
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
 }
 .user-form .form-control.invalid-field {
   border-color: #ff0000;
 }
 .user-form .form-control:focus {
   background: transparent;
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
 }
 table.dataTable thead .sorting:before,
 table.dataTable thead .sorting:after,
@@ -2857,7 +2857,7 @@ div.dataTables_wrapper div.dataTables_filter {
 }
 
 .transfer-coin-option li:hover label {
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
 }
 
 .transfer-coin-option li .check {
@@ -2931,7 +2931,7 @@ div.dataTables_wrapper div.dataTables_filter {
 }
 
 .bank-details h3 {
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
 }
 .bank-details .table tr td {
   color: #242831;
@@ -2963,7 +2963,7 @@ div.dataTables_wrapper div.dataTables_filter {
   text-transform: capitalize;
   padding: 10px 25px;
   background: #f9b507;
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
   border-radius: 3px;
 }
 .profile-edit-btn.phn-verify-btn:hover {
@@ -2988,7 +2988,7 @@ div.dataTables_wrapper div.dataTables_filter {
   font-size: 14px !important;
 }
 .cp-user-active-notice {
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
   text-align: center;
 }
 
@@ -3104,7 +3104,7 @@ div.dataTables_wrapper div.dataTables_filter {
 }
 
 .ico-phase-amount-title {
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
   margin: 15px 0;
   font-size: 16px;
 }
@@ -3134,7 +3134,7 @@ div.dataTables_wrapper div.dataTables_filter {
 
 .countdown-section {
   background: #182346;
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
   border-radius: 5px;
   padding: 15px;
   width: 24%;
@@ -3585,8 +3585,21 @@ table.dataTable tbody tr.selected td {
   padding: 10px;
   background: #151515;
   background: rgba(30, 35, 41, 1);
+  height: 800px;
 }
-
+.icon-center {
+  display: flex;
+  width: 50%;
+  align-items: center;
+  justify-content: flex-start;
+}
+.orderBookIcons {
+  display: flex;
+  /* width: 100%; */
+  height: 50px;
+  align-items: center;
+  justify-content: flex-start;
+}
 .trades-headers {
   display: flex;
   justify-content: space-between;
@@ -3773,7 +3786,7 @@ table.table {
   font-size: 15px;
   font-weight: 700;
   margin-bottom: 10px;
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
 }
 .cxchange-summary-wrap .cxchange-summary-name .coin-badge {
   display: inline-block;
@@ -3811,7 +3824,7 @@ table.table {
   .value {
   font-size: 17px;
   font-weight: 500;
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
 }
 .cxchange-summary-wrap
   .cxchange-summary-featured
@@ -3825,7 +3838,7 @@ table.table {
   .cxchange-summary-items
   li
   .value.increase {
-  color: #32d777;
+  color: #32d777 !important;
 }
 .cxchange-summary-wrap .cxchange-summary-volume {
   width: 100%;
@@ -4132,7 +4145,7 @@ select:-webkit-autofill:focus {
   width: 33%;
   font-size: 16px;
   font-weight: 500;
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
 }
 .buy-text {
   color: #ff2e2e;
@@ -4171,7 +4184,7 @@ select:-webkit-autofill:focus {
 .buy-order table.dataTable tbody tr td {
   font-size: 16px;
   font-weight: 500;
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
 }
 .buy-order table.dataTable tbody tr td.price {
   color: #ff2e2e;
@@ -4182,7 +4195,7 @@ select:-webkit-autofill:focus {
 .sell-order table.dataTable tbody tr td {
   font-size: 16px;
   font-weight: 500;
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
 }
 .sell-order table.dataTable tbody tr td.price {
   color: #32d777;
@@ -4211,7 +4224,7 @@ select:-webkit-autofill:focus {
 .primary-table .table-body .table-col {
   font-size: 17px;
   font-weight: 500;
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
 }
 .primary-table .table-body .table-col.buy {
   color: #32d777;
@@ -4234,7 +4247,7 @@ select:-webkit-autofill:focus {
   font-size: 18px;
   font-weight: 600;
   text-transform: capitalize;
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
   padding: 10px 0;
 }
 .order-box .trades-headers .nav-pills .nav-link.active {
@@ -4254,7 +4267,7 @@ select:-webkit-autofill:focus {
   font-size: 16px;
   font-weight: 500;
   text-transform: capitalize;
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
 }
 .exchange-box .form-group .form-control {
   width: 100%;
@@ -4277,7 +4290,7 @@ select:-webkit-autofill:focus {
   width: 100%;
   border-radius: 0;
   background: #32d777;
-  color: #ffffff;
+  color: #fff !important;
   font-size: 20px;
   font-weight: 600;
   text-transform: capitalize;
@@ -4295,10 +4308,10 @@ select:-webkit-autofill:focus {
   font-size: 14px;
   font-weight: 400;
   text-transform: capitalize;
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
 }
 .inner-tabs-menu .nav-item .nav-link.active {
-  color: #32d777;
+  color: #32d777 !important;
   background-color: transparent !important;
 }
 .fee-lavel {
@@ -4347,7 +4360,7 @@ select:-webkit-autofill:focus {
   font-size: 14px;
   font-weight: 400;
   text-transform: capitalize;
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
   border: none;
 }
 .assets-tabs .assets-list {
@@ -4360,7 +4373,7 @@ select:-webkit-autofill:focus {
   justify-content: space-between;
   font-size: 14px;
   font-weight: 400;
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
   margin-bottom: 10px;
 }
 .assets-tabs .assets-list .assets-single:last-child {
@@ -4452,7 +4465,7 @@ select:-webkit-autofill:focus {
   box-shadow: 0px 64px 64px -48px rgb(15 15 15 / 10%);
 }
 .cp-user-body-bg .cp-user-card-header-area h4 {
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
 }
 .card {
   border-radius: 12px;
@@ -4498,7 +4511,7 @@ select:-webkit-autofill:focus {
 }
 .cp-user-body-bg.cp-user-profile-info label,
 .cp-user-profile-info .form-control {
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
 }
 /* style start here  */
 .mb-25 {
@@ -4607,7 +4620,7 @@ select:-webkit-autofill:focus {
 .overview-area .overview-right .primary-btn-outline {
   height: 55px;
   background: #f9b507;
-  color: #ffffff;
+  color: #ffffff !important;
   cursor: pointer;
   min-width: 186px;
 }
@@ -4624,7 +4637,7 @@ select:-webkit-autofill:focus {
   min-width: 150px;
   border-radius: 5px;
   background: #f9b507;
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
   font-size: 18px;
   line-height: 1.3;
   font-weight: 700;
@@ -4633,7 +4646,7 @@ select:-webkit-autofill:focus {
   transition: all 0.3s;
 }
 .primary-btn-sm:hover {
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
   background: #f9b507;
 }
 /* page-left-sidebar */
@@ -4720,14 +4733,14 @@ select:-webkit-autofill:focus {
   font-size: 16px;
   font-weight: 700;
   text-transform: capitalize;
-  color: #ffffff;
+  color: #ffffff !important;
   text-align: center;
   transition: all 0.5s;
   background: #f9b507;
   cursor: pointer;
 }
 .primary-btn-outline:hover {
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
   background: #f9b507;
 }
 .secendary-table {
@@ -4870,7 +4883,7 @@ select:-webkit-autofill:focus {
   text-align: center;
   border-radius: 50%;
   background: #f9b507;
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
   cursor: pointer;
   font-size: 18px;
 }
@@ -4995,13 +5008,13 @@ table.dataTable thead tr th {
   font-size: 16px;
   font-weight: 400;
   text-transform: capitalize;
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
 }
 table.dataTable tbody tr td {
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 400;
   color: #23262f;
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
 }
 .notification-body {
 }
@@ -5060,7 +5073,7 @@ table.dataTable tbody tr td {
   font-weight: 700;
   text-transform: capitalize;
   letter-spacing: 1px;
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
   transition: all 0.3s;
 }
 .action-btn.enable-btn {
@@ -5073,7 +5086,7 @@ table.dataTable tbody tr td {
   background: #ff2e2e;
 }
 .action-btn:hover {
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
 }
 .security-list .single-security .action-btn {
   margin-right: 10px;
@@ -5350,7 +5363,7 @@ table.dataTable tbody tr td {
   width: 100%;
   background: #f9b507;
   text-align: center;
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
   font-size: 18px;
   font-weight: 700;
   border-radius: 0 0 5px 5px;
@@ -5362,7 +5375,7 @@ table.dataTable tbody tr td {
   border: none;
   border-radius: 5px;
   background: #f9b507;
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
   font-size: 18px;
   font-weight: 700;
   padding: 14px;
@@ -5373,13 +5386,13 @@ table.dataTable tbody tr td {
   background: #151515;
 }
 .cp-user-body-bg .main-menu ul li a {
-  color: #ffffff !important;
+  color: rgb(188, 188, 188) !important !important;
 }
 .cp-user-body-bg .main-menu ul li ul {
   background: #151515 !important;
 }
 .cp-user-body-bg .main-menu ul li ul li a {
-  color: #ffffff !important;
+  color: rgb(188, 188, 188) !important !important;
 }
 .cp-user-body-bg .main-menu ul li ul li {
   border-bottom: 1px solid rgba(224, 224, 224, 0.2);
@@ -5392,13 +5405,13 @@ table.dataTable tbody tr td {
 }
 .cp-user-body-bg table.dataTable thead tr th {
   font-size: 17px;
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
   border: none;
   padding: 7px 10px;
 }
 .cp-user-body-bg table.dataTable tbody tr td {
   font-size: 16px;
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
   border: none;
   padding: 7px 10px;
 }
@@ -5622,7 +5635,7 @@ table.dataTable tbody tr td {
   margin-top: 30px;
 }
 .swap-area .swap-area-bottom .primary-btn-outline {
-  width: 49%;
+  width: 100%;
 }
 @media (max-width: 1199px) {
   .orders-area {
@@ -5649,7 +5662,7 @@ table.dataTable tbody tr td {
   text-transform: capitalize;
   padding: 10px 25px;
   background: #f9b507;
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
   border-radius: 3px;
 }
 .code-list p {
@@ -5894,7 +5907,7 @@ table.dataTable tbody tr td {
     width: 100%;
   }
   .cp-user-body-bg div.dataTables_wrapper div.dataTables_filter input {
-    color: #ffffff;
+    color: rgb(188, 188, 188) !important;
   }
   .user-profile .user-profile-info ul li {
     font-size: 16px;
@@ -7543,7 +7556,7 @@ label.logo {
   padding: 0 25px;
   background-color: #2a3865;
   border: 1px solid #2a3865;
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
   font-size: 20px;
 }
 
@@ -7618,7 +7631,7 @@ textarea.form-control.textarea {
 }
 .user-form .form-top h2 {
   margin-bottom: 15px;
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
   font-size: 32px;
   font-weight: 700;
   text-transform: capitalize;
@@ -7626,7 +7639,7 @@ textarea.form-control.textarea {
 .user-form .form-top p {
   margin: 0;
   font-size: 16px;
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
   font-weight: 400;
 }
 
@@ -7642,7 +7655,7 @@ textarea.form-control.textarea {
   transform: translateY(-50%);
   font-size: 18px;
   cursor: pointer;
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
 }
 
 .user-form .form-group label {
@@ -7655,7 +7668,7 @@ textarea.form-control.textarea {
   border-color: #323232;
   border-radius: 7px;
   background: transparent;
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
   font-family: "Karla", sans-serif;
   font-size: 16px;
   font-weight: 400;
@@ -7665,17 +7678,17 @@ textarea.form-control.textarea {
   padding-right: 35px;
 }
 .user-form .form-control::-webkit-input-placeholder {
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
   font-size: 14px;
 }
 
 .user-form .form-control::-moz-placeholder {
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
   font-size: 14px;
 }
 
 .user-form .form-control:-ms-input-placeholder {
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
   font-size: 14px;
 }
 
@@ -7703,12 +7716,12 @@ textarea.form-control.textarea {
   font-size: 32px;
   font-weight: 700;
   text-transform: capitalize;
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
 }
 .user-content-wrapper .user-content-text p {
   font-size: 24px;
   font-weight: 700;
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
 }
 .user-content-wrapper .user-content-text p a {
   display: inline-block;
@@ -7728,7 +7741,7 @@ textarea.form-control.textarea {
   font-size: 16px;
   font-weight: 700;
   border-radius: 7px !important;
-  color: #ffffff !important;
+  color: rgb(188, 188, 188) !important !important;
   background: #ffce51 !important;
   border-color: #ffce51 !important;
 }
@@ -7736,7 +7749,7 @@ textarea.form-control.textarea {
 .nimmu-user-sibmit-button:active,
 .nimmu-user-sibmit-button:focus,
 .nimmu-user-sibmit-button:hover {
-  color: #ffffff !important;
+  color: rgb(188, 188, 188) !important !important;
   background: #ffce51 !important;
   border-color: #ffce51 !important;
 }
@@ -7947,7 +7960,7 @@ textarea.form-control.textarea {
 }
 
 .theme-btn {
-  color: #ffffff !important;
+  color: rgb(188, 188, 188) !important !important;
   font-size: 16px;
   font-weight: 500;
   display: inline-block;
@@ -8277,7 +8290,7 @@ table.dataTable thead .sorting_asc:after {
 }
 
 .profile-dropdown button a {
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
   text-transform: uppercase;
   display: block;
 }
@@ -8471,7 +8484,7 @@ table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th:first-child {
 }
 
 .single-phase .card .card-header .top .left p {
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
   text-transform: uppercase;
   font-weight: 700;
   font-size: 14px;
@@ -8933,7 +8946,7 @@ label {
   border: 1px solid #353535;
 }
 .deleteuser a {
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
 }
 .nimmu-user-sibmit-button {
   color: #fafafa;
@@ -8943,11 +8956,11 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   -webkit-box-shadow: none !important;
-  -webkit-text-fill-color: #ffffff !important;
+  -webkit-text-fill-color: rgb(188, 188, 188) !important !important;
   transition: background-color 5000s ease-in-out 0s;
 }
 .forgot-password {
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
   font-size: 14px;
   font-weight: 400;
   text-transform: capitalize;
@@ -9027,7 +9040,7 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
 }
 .dark-toast {
   background-color: #000000 !important;
-  color: #ffffff !important;
+  color: rgb(188, 188, 188) !important !important;
 }
 
 /* preloder-area */
@@ -9042,7 +9055,7 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
   top: 0;
   z-index: 9999;
   background: rgba(0, 0, 0, 0.5);
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
 }
 .preloder-area .spinner-border {
   margin-right: 10px;
@@ -9062,7 +9075,7 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
   top: 0;
   z-index: 9999;
   background: rgb(195 195 195 / 50%);
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
 }
 .inside-preloder-area .spinner-border {
   margin-right: 10px;
@@ -9075,7 +9088,7 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
   top: 0;
   z-index: 9999;
   background: #f3f3f3;
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
   align-items: center;
   justify-content: center;
 }
@@ -9088,7 +9101,7 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
   width: 100%;
   height: 100%;
   background: #f3f3f3;
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
   align-items: center;
   justify-content: center;
 }
@@ -9158,7 +9171,7 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
   z-index: 2;
 }
 .slick-arrow::before {
@@ -9169,7 +9182,7 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
   height: 40px;
   border-radius: 50%;
   background: rgba(0, 0, 0, 0.5);
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
   z-index: 2;
 }
 .slick-arrow:hover::before {
@@ -9313,7 +9326,7 @@ table.dataTable thead tr th {
   line-height: 1.3;
   font-weight: 400;
   padding: 10px;
-  color: #ffffff;
+  color: rgb(188, 188, 188) !important;
 }
 .cp-user-buy-coin-content-area
   div.dataTables_wrapper

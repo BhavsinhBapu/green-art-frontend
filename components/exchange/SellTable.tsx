@@ -65,7 +65,7 @@ const TradesTable = ({ marketTrades }: any) => {
                       ? "text-success"
                       : item.type === "red"
                       ? "text-danger"
-                      : "text-white"
+                      : ""
                   }
                 >
                   {item?.price}

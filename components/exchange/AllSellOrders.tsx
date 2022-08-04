@@ -74,7 +74,7 @@ const AllSellOrders = ({ OpenBooksell }: any) => {
                         style={{ width: "79.8438px" }}
                         aria-label="Time"
                       >
-                        {t("Time")}
+                        {t("Total")}
                       </th>
                     </tr>
                   </thead>

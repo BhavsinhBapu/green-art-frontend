@@ -1,8 +1,13 @@
 import useTranslation from "next-translate/useTranslation";
 import React from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "state/store";
 import SellTable from "./SellTable";
 const TradesHistory = ({ marketTrades }: any) => {
   const { t } = useTranslation("common");
+  const { dashboard, currentPair } = useSelector(
+    (state: RootState) => state.exchange
+  );
   return (
     <div className="trades-section mt-4">
       <div className="trades-headers mb-3">
@@ -59,7 +64,7 @@ const TradesHistory = ({ marketTrades }: any) => {
                         style={{ width: "170.656px" }}
                         aria-label="Price"
                       >
-                        {t("Price")}
+                        {t("Price")}({dashboard?.order_data?.base_coin})
                       </th>
                       <th
                         className="table-col amount sorting_disabled"
@@ -68,7 +73,7 @@ const TradesHistory = ({ marketTrades }: any) => {
                         style={{ width: "120.75px" }}
                         aria-label="Amount"
                       >
-                        {t("Amount")}
+                        {t("Amount")}({dashboard?.order_data?.trade_coin})
                       </th>
                       <th
                         className="table-col time text-right sorting_desc"

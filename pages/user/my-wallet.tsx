@@ -215,7 +215,7 @@ const MyWallet: NextPage = () => {
               value="0"
               id="depositId"
               type="submit"
-              className="depositId primary-btn-outline btn-deposite"
+              className="depositId primary-btn-outline btn-deposite text-white"
               onClick={() => {
                 if (!selectedRow.id) {
                   toast.info("Please select a wallet");
@@ -241,7 +241,7 @@ const MyWallet: NextPage = () => {
               value="0"
               id="withdrawalId"
               type="submit"
-              className="withdrawalId primary-btn-outline btn-withdraw"
+              className="withdrawalId primary-btn-outline btn-withdraw text-white"
               onClick={() => {
                 if (!selectedRow.id) {
                   toast.info("Please select a wallet");
