@@ -97,11 +97,65 @@ const DashboardBody = () => {
               </h3>
             </div>
           </div>
-          {select === 1 && <AllSellOrders OpenBooksell={OpenBooksell} />}
-          {select === 2 && <AllBuyOrders OpenBookBuy={OpenBookBuy} />}
+          {select === 1 && (
+            <>
+              <AllSellOrders OpenBooksell={OpenBooksell} />
+              <div className="trades-table-footer">
+                <div className="trades-table-row">
+                  <span
+                    className={
+                      parseFloat(
+                        dashboard?.order_data?.total?.trade_wallet?.last_price
+                      ) >= 0
+                        ? "value-increase"
+                        : "value-decrease"
+                    }
+                  >
+                    {dashboard?.order_data?.total?.trade_wallet?.last_price}
+                  </span>
+                </div>
+              </div>
+            </>
+          )}
+          {select === 2 && (
+            <>
+              {" "}
+              <AllBuyOrders OpenBookBuy={OpenBookBuy} />
+              <div className="trades-table-footer">
+                <div className="trades-table-row">
+                  <span
+                    className={
+                      parseFloat(
+                        dashboard?.order_data?.total?.trade_wallet?.last_price
+                      ) >= 0
+                        ? "value-increase"
+                        : "value-decrease"
+                    }
+                  >
+                    {dashboard?.order_data?.total?.trade_wallet?.last_price}
+                  </span>
+                </div>
+              </div>
+            </>
+          )}
           {select === 3 && (
             <>
               <AllSellOrders OpenBooksell={OpenBooksell} />
+              <div className="trades-table-footer">
+                <div className="trades-table-row">
+                  <span
+                    className={
+                      parseFloat(
+                        dashboard?.order_data?.total?.trade_wallet?.last_price
+                      ) >= 0
+                        ? "value-increase"
+                        : "value-decrease"
+                    }
+                  >
+                    {dashboard?.order_data?.total?.trade_wallet?.last_price}
+                  </span>
+                </div>
+              </div>
               <AllBuyOrders OpenBookBuy={OpenBookBuy} />
             </>
           )}

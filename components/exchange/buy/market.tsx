@@ -132,7 +132,12 @@ const Market = ({
                     </span>
                   </span>
                 </div>
-
+                <div className=" mt-3 percent-container ">
+                  <span className=" percent-btn col-3">{t("0%")}</span>
+                  <span className=" percent-btn col-3">{t("25%")}</span>
+                  <span className=" percent-btn col-3">{t("50%")}</span>
+                  <span className=" percent-btn col-3">{t("100%")}</span>
+                </div>
                 {!isLoggedIn ? (
                   <div className="form-group mt-4">
                     <Link href="/authentication/signin">

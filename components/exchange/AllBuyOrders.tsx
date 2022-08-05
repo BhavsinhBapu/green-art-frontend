@@ -180,13 +180,6 @@ const AllBuyOrders = ({ OpenBookBuy }: any) => {
             </div>
           </div>
         </div>
-        <div className="trades-table-footer">
-          <div className="trades-table-row">
-            <div className="trades-table-col volume"></div>
-            <div className="trades-table-col price total-price" />
-            <div className="trades-table-col price total-price"></div>
-          </div>
-        </div>
       </div>
     </div>
   );

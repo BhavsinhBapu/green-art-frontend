@@ -19,6 +19,7 @@ const StopLimit = ({
   const [loading, setLoading] = React.useState(false);
   const { t } = useTranslation("common");
   const dispatch = useDispatch();
+
   return (
     <div id="BuyTabContent" className="tab-content">
       <div
@@ -187,6 +188,12 @@ const StopLimit = ({
                     </span>
                   </span>
                 </div>
+                <div className=" mt-3 percent-container ">
+                  <span className=" percent-btn col-3">{t("0%")}</span>
+                  <span className=" percent-btn col-3">{t("25%")}</span>
+                  <span className=" percent-btn col-3">{t("50%")}</span>
+                  <span className=" percent-btn col-3">{t("100%")}</span>
+                </div>
                 {!isLoggedIn ? (
                   <div className="form-group mt-4">
                     <Link href="/authentication/signin">
@@ -232,228 +239,6 @@ const StopLimit = ({
                     </button>
                   </div>
                 )}
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        id="Market"
-        role="tabpanel"
-        aria-labelledby="Market-tab"
-        className="tab-pane fade"
-      >
-        <div className="row">
-          <div className="col-md-12">
-            <div className="cp-user-profile-info">
-              <form id="buy-form" className="mt-4">
-                <input
-                  type="hidden"
-                  name="_token"
-                  defaultValue="g2OWJq3pDqYRQmVvmGt799aCsDmkkV4UjrWDhzcF"
-                />
-                <div className="form-group mt-4">
-                  <div className="total-top">
-                    <label>{t("Total")}</label> <label>{t("Available")}</label>
-                  </div>
-                  <div className="total-top-blance">
-                    <div className="total-blance">
-                      <span
-                        className="text-warning"
-                        style={{ fontWeight: 700 }}
-                      >
-                        <span>0</span>
-                      </span>
-                      <span
-                        className="text-warning"
-                        style={{ fontWeight: 700 }}
-                      >
-                        <span className="trade_coin_type">
-                          {dashboard?.order_data?.total?.base_wallet?.coin_type}
-                        </span>
-                      </span>
-                    </div>
-                    <div className="avilable-blance">
-                      <span
-                        className="text-warning"
-                        style={{ fontWeight: 700 }}
-                      >
-                        <span>0</span>
-                      </span>
-                      <span
-                        className="text-warning"
-                        style={{ fontWeight: 700 }}
-                      >
-                        <span className="trade_coin_type">
-                          {dashboard?.order_data?.total?.base_wallet?.coin_type}
-                        </span>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div className="form-group mt-3">
-                  <label>{t("Price")}</label>
-                  <p className="form-control">{t("Market")}</p>
-                  <span
-                    className="text-warning blns"
-                    style={{ fontWeight: 700 }}
-                  >
-                    <span className="trade_coin_type">
-                      {dashboard?.order_data?.total?.base_wallet?.coin_type}
-                    </span>
-                  </span>
-                </div>
-                <div className="form-group mt-3">
-                  <label>{t("Amount")}</label>
-                  <input
-                    name="amount"
-                    type="text"
-                    placeholder=""
-                    className="form-control number_only"
-                  />
-                  <span
-                    className="text-warning blns"
-                    style={{ fontWeight: 700 }}
-                  >
-                    <span className="trade_coin_type">
-                      {dashboard?.order_data?.total?.trade_wallet?.coin_type}
-                    </span>
-                  </span>
-                </div>
-                <div className="form-group mt-4">
-                  <a className="btn btn-danger"> {t("Login")}</a>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        id="Stop-limit"
-        role="tabpanel"
-        aria-labelledby="Stop-limit-tab"
-        className="tab-pane fade"
-      >
-        <div className="row">
-          <div className="col-md-12">
-            <div className="cp-user-profile-info">
-              <form id="stop-limit-form" className="mt-4">
-                <input
-                  type="hidden"
-                  name="_token"
-                  defaultValue="g2OWJq3pDqYRQmVvmGt799aCsDmkkV4UjrWDhzcF"
-                />
-                <div className="form-group mt-4">
-                  <div className="total-top">
-                    <label>{t("Total")}</label> <label>{t("Available")}</label>
-                  </div>
-                  <div className="total-top-blance">
-                    <div className="total-blance">
-                      <span
-                        className="text-warning"
-                        style={{ fontWeight: 700 }}
-                      >
-                        <span>0</span>
-                      </span>
-                      <span
-                        className="text-warning"
-                        style={{ fontWeight: 700 }}
-                      >
-                        <span className="trade_coin_type">
-                          {dashboard?.order_data?.total?.base_wallet?.coin_type}
-                        </span>
-                      </span>
-                    </div>
-                    <div className="avilable-blance">
-                      <span
-                        className="text-warning"
-                        style={{ fontWeight: 700 }}
-                      >
-                        <span>0</span>
-                      </span>
-                      <span
-                        className="text-warning"
-                        style={{ fontWeight: 700 }}
-                      >
-                        <span className="trade_coin_type">
-                          {dashboard?.order_data?.total?.base_wallet?.coin_type}
-                        </span>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div className="form-group mt-3">
-                  <label>{t("Stop")}</label>
-                  <input
-                    name="stop"
-                    type="text"
-                    placeholder=""
-                    className="form-control number_only"
-                  />
-                  <span
-                    className="text-warning blns"
-                    style={{ fontWeight: 700 }}
-                  >
-                    <span className="trade_coin_type">
-                      {dashboard?.order_data?.total?.base_wallet?.coin_type}
-                    </span>
-                  </span>
-                </div>
-                <div className="form-group mt-3">
-                  <label>{t("Limit")}</label>
-                  <input
-                    name="limit"
-                    type="text"
-                    placeholder=""
-                    className="form-control number_only"
-                  />
-                  <span
-                    className="text-warning blns"
-                    style={{ fontWeight: 700 }}
-                  >
-                    <span className="trade_coin_type">
-                      {dashboard?.order_data?.total?.base_wallet?.coin_type}
-                    </span>
-                  </span>
-                </div>
-                <div className="form-group mt-3">
-                  <label>{t("Amount")}</label>
-                  <input
-                    name="amount"
-                    type="text"
-                    placeholder=""
-                    className="form-control number_only"
-                  />
-                  <span
-                    className="text-warning blns"
-                    style={{ fontWeight: 700 }}
-                  >
-                    <span className="trade_coin_type">
-                      {dashboard?.order_data?.total?.trade_wallet?.coin_type}
-                    </span>
-                  </span>
-                </div>
-                <div className="form-group mt-3">
-                  <label className="cstmHead">{t("Total Amount")}</label>
-                  <input
-                    // disabled
-                    name="total_amount"
-                    type="text"
-                    placeholder=""
-                    className="form-control number_only"
-                  />
-                  <span
-                    className="text-warning blns"
-                    style={{ fontWeight: 700 }}
-                  >
-                    <span className="trade_coin_type">
-                      {dashboard?.order_data?.total?.base_wallet?.coin_type}
-                    </span>
-                  </span>
-                </div>
-                <div className="form-group mt-4 d-flex justify-content-between flex-wrap">
-                  <a className="btn btn-danger"> {t("Login")}</a>
-                </div>
               </form>
             </div>
           </div>

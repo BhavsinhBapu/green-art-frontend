@@ -13,7 +13,15 @@ const CurrencyLevel = () => {
       <ul className="cxchange-summary-items">
         <li>
           <span className="label">{t("Last price")}</span>
-          <span className="value">
+          <span
+            className={
+              parseFloat(
+                dashboard?.order_data?.total?.trade_wallet?.last_price
+              ) >= 0
+                ? "value increase"
+                : "value decrease"
+            }
+          >
             {dashboard?.order_data?.total?.trade_wallet?.last_price}
           </span>
         </li>

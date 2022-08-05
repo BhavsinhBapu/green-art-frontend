@@ -110,11 +110,17 @@ p {
   background: #161a1e !important;
 }
 .background-col {
-  background: #161a1e !important;
+  background: #151515 !important;
   height: 100%;
   width: 100%;
 }
-
+.container-dashboard {
+  background: #151515 !important;
+  padding-right: 5%;
+  padding-left: 5%;
+  margin-right: auto;
+  margin-left: auto;
+}
 .cp-user-content-expend {
   margin-left: 0 !important;
 }
@@ -2587,6 +2593,10 @@ member club
 .cp-user-wallet-card ul li h4.text-warning {
   font-size: 16px;
 }
+.text-warning {
+  color: #ffc107 !important;
+  font-size: 12px;
+}
 
 .user-plan-table {
   border: 1px solid #2b3c70;
@@ -3580,18 +3590,30 @@ table.dataTable tbody tr.selected td {
 }
 
 .trades-section {
-  border: 1px solid transparent;
+  border: 1px solid rgba(224, 224, 224, 0.2);
   border-radius: 0;
   padding: 10px;
   background: #151515;
-  background: rgba(30, 35, 41, 1);
-  height: 800px;
+  /* background: rgba(30, 35, 41, 1); */
+  height: 984px;
+}
+.trades-section1 {
+  border: 1px solid rgba(224, 224, 224, 0.2);
+  border-radius: 0;
+  padding: 10px;
+  background: #151515;
+  /* background: rgba(30, 35, 41, 1); */
+  /* height: 800px; */
 }
 .icon-center {
   display: flex;
   width: 50%;
   align-items: center;
   justify-content: flex-start;
+}
+.css-3kwgah {
+  height: 25px !important;
+  width: 25px !important;
 }
 .orderBookIcons {
   display: flex;
@@ -3605,6 +3627,8 @@ table.dataTable tbody tr.selected td {
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
+  border-bottom: 1px solid rgba(224, 224, 224, 0.2);
+  padding-bottom: 1px;
 }
 .trades-headers {
   display: flex;
@@ -3612,7 +3636,10 @@ table.dataTable tbody tr.selected td {
   align-items: center;
   flex-wrap: wrap;
   padding: 0;
+  /* border-bottom: 1px solid rgba(224, 224, 224, 0.2); */
+  /* padding-bottom: 15px; */
 }
+
 .trades-headers h3 {
   font-size: 20px;
   color: #cbcfd7;
@@ -3635,8 +3662,18 @@ table.dataTable tbody tr.selected td {
   padding: 10px;
   font-size: 14px;
 }
+.trades-section1 table thead tr th,
+.trades-section1 table tbody tr td {
+  height: 32px;
+  padding: 10px;
+  font-size: 14px;
+}
 
 .trades-section table tbody tr td {
+  font-size: 12px;
+  padding: 5px;
+}
+.trades-section1 table tbody tr td {
   font-size: 12px;
   padding: 5px;
 }
@@ -3709,6 +3746,9 @@ table.dataTable tbody tr.selected td {
   .trades-section {
     margin-bottom: 30px;
   }
+  .trades-section1 {
+    margin-bottom: 30px;
+  }
 }
 
 .idcard h3.title {
@@ -3773,6 +3813,7 @@ table.table {
   box-sizing: border-box;
   margin-bottom: 25px;
   margin-top: 21px;
+  border-bottom: 1px solid rgba(224, 224, 224, 0.2);
 }
 .cxchange-summary-wrap .cxchange-summary-name {
   display: flex;
@@ -4159,6 +4200,16 @@ select:-webkit-autofill:focus {
 .trades-table-footer {
   padding: 10px 0;
   border-top: 1px solid rgba(224, 224, 224, 0.2);
+  border-bottom: 1px solid rgba(224, 224, 224, 0.2);
+  margin-bottom: 31px;
+}
+.value-increase {
+  color: #28a745 !important;
+  font-size: 25px;
+}
+.value-decrease {
+  color: #dc3545 !important;
+  font-size: 25px;
 }
 .trades-table .trades-table-row .trades-table-col.total-price {
   font-size: 20px;
@@ -4256,9 +4307,10 @@ select:-webkit-autofill:focus {
 }
 .exchange-box {
   background: #151515;
-  background: rgba(30, 35, 41, 1);
+  /* background: rgba(30, 35, 41, 1); */
   /* min-height: 705px; */
   height: 570px;
+  border: 1px solid rgba(224, 224, 224, 0.2);
 }
 .exchange-box > .tab-content {
   padding: 20px;
@@ -4345,6 +4397,7 @@ select:-webkit-autofill:focus {
   text-transform: uppercase;
   color: #f9b507;
 }
+
 .assets-tabs .nav-tabs {
   justify-content: space-between;
   border-bottom: none;
@@ -4389,7 +4442,8 @@ select:-webkit-autofill:focus {
 /* orders-area */
 .orders-area {
   background: #151515;
-  background: rgba(30, 35, 41, 1);
+  /* background: rgba(30, 35, 41, 1); */
+  border: 1px solid rgba(224, 224, 224, 0.2);
 }
 .orders-area .tab-content {
   height: 330px;
@@ -8818,7 +8872,20 @@ table.dataTable thead .sorting_desc_disabled:after {
   background-position: 100% !important;
   color: #fff;
 }
-
+.percent-container {
+  display: flex;
+  margin-top: 20px;
+}
+.percent-btn {
+  color: #fff;
+  width: 10px !important;
+  border: 1px solid #ffc107;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+}
 .add-btn-new a {
   display: block;
   width: 275px;
@@ -9133,6 +9200,10 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
   padding: 0;
   text-align: left !important;
 }
+.trades-section1 table.dataTable thead tr th {
+  padding: 0;
+  text-align: left !important;
+}
 
 .slick-track {
   padding: 0 -8px;
@@ -9269,6 +9340,7 @@ table.dataTable thead tr th {
   line-height: 1.3;
   font-weight: 400;
   padding: 3px;
+  cursor: pointer;
 }
 .trades-section table thead tr th,
 .trades-section table tbody tr td {
@@ -9320,6 +9392,7 @@ table.dataTable thead tr th {
   line-height: 1.3;
   font-weight: 400;
   padding: 3px;
+  cursor: pointer;
 }
 .orders-area .table tbody td {
   font-size: 10px;

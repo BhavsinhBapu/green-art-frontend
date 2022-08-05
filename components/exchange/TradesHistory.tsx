@@ -9,7 +9,7 @@ const TradesHistory = ({ marketTrades }: any) => {
     (state: RootState) => state.exchange
   );
   return (
-    <div className="trades-section mt-4">
+    <div className="trades-section1 mt-4">
       <div className="trades-headers mb-3">
         <h3>{t("Trades")}</h3>
       </div>
