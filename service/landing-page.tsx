@@ -4,6 +4,10 @@ import request from "lib/request";
 export const landingPage = () => {
   return request.get("/landing");
 };
+
+export const customPage = () => {
+  return request.get("/custom-pages");
+};
 ///banner-list
 
 export const bannerList = () => {

@@ -17,6 +17,7 @@ const WirhdrawTab = ({ response, TurnoffSetShow }: any) => {
     status: false,
     message: "",
   });
+  console.log(response, "response");
   const CheckG2faEnabled = async () => {
     const { data } = await UserSettingsApi();
     const { user } = data;
@@ -78,12 +79,6 @@ const WirhdrawTab = ({ response, TurnoffSetShow }: any) => {
                   {response?.wallet?.coin_type}
                 </h2>
               </div>
-              <div className="form-group">
-                <div className="withdrawal-limit">
-                  {" "}
-                  {t("BTC daily withdrawal limit.")}
-                </div>
-              </div>
 
               <form>
                 <div className="form-group">
@@ -120,14 +115,22 @@ const WirhdrawTab = ({ response, TurnoffSetShow }: any) => {
                     />
                     <small>
                       <span className="mr-2">
-                        Fees{response?.wallet?.withdrawal_fees} %
+                        Fees
+                        {parseFloat(response?.wallet?.withdrawal_fees).toFixed(
+                          8
+                        )}{" "}
+                        %
                       </span>
                       <span className="mr-2">
-                        Min withdraw {response?.wallet?.minimum_withdrawal}
+                        Min withdraw{" "}
+                        {parseFloat(
+                          response?.wallet?.minimum_withdrawal
+                        ).toFixed(5)}
                         {response?.wallet?.coin_type}
                       </span>
                       <span className="mr-2">
-                        Max withdraw {response?.wallet?.maximum_withdrawal}{" "}
+                        Max withdraw{" "}
+                        {parseFloat(response?.wallet?.maximum_withdrawal)}{" "}
                         {response?.wallet?.coin_type}
                       </span>
                     </small>

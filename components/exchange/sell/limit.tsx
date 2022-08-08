@@ -18,6 +18,16 @@ const Limit = ({
   const { t } = useTranslation("common");
   const [loading, setLoading] = React.useState(false);
   const dispatch = useDispatch();
+  const setAmountBasedOnPercentage = (percentage: any) => {
+    const amount =
+      parseFloat(dashboard?.order_data?.total?.trade_wallet?.balance) /
+      parseFloat(buySellLimitCoinData.price);
+    setBuySellLimitCoinData({
+      ...buySellLimitCoinData,
+      amount: amount * percentage,
+      total: amount * percentage * parseFloat(buySellLimitCoinData.price),
+    });
+  };
   return (
     <div id="BuyTabContent" className="tab-content">
       <div
@@ -162,12 +172,34 @@ const Limit = ({
                     </span>
                   </span>
                 </div>
-                <div className=" mt-3 percent-container ">
-                  <span className=" percent-btn col-3">{t("0%")}</span>
-                  <span className=" percent-btn col-3">{t("25%")}</span>
-                  <span className=" percent-btn col-3">{t("50%")}</span>
-                  <span className=" percent-btn col-3">{t("100%")}</span>
-                </div>
+                {isLoggedIn && (
+                  <div className=" mt-3 percent-container ">
+                    <span
+                      className=" percent-btn col-3"
+                      onClick={() => setAmountBasedOnPercentage(0.25)}
+                    >
+                      {t("25%")}
+                    </span>
+                    <span
+                      className=" percent-btn col-3"
+                      onClick={() => setAmountBasedOnPercentage(0.5)}
+                    >
+                      {t("50%")}
+                    </span>
+                    <span
+                      className=" percent-btn col-3"
+                      onClick={() => setAmountBasedOnPercentage(0.75)}
+                    >
+                      {t("75%")}
+                    </span>
+                    <span
+                      className=" percent-btn col-3"
+                      onClick={() => setAmountBasedOnPercentage(1)}
+                    >
+                      {t("100%")}
+                    </span>
+                  </div>
+                )}
                 {!isLoggedIn ? (
                   <div className="form-group mt-4">
                     <Link href="/authentication/signin">

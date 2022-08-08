@@ -16,7 +16,7 @@ const NotificationPage = () => {
     isLoggedIn && getNotifications();
   }, [isLoggedIn]);
   return (
-    <div className="container">
+    <div className="container notification-continer">
       <h2 className="section-top-title">{t("All notifications")}</h2>
 
       {notificationData.map((item: any, index: any) => (

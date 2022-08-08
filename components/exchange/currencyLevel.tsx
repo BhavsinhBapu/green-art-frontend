@@ -43,13 +43,17 @@ const CurrencyLevel = () => {
         <li>
           <span className="label">{t("24h high")}</span>
           <span className="value">
-            {parseFloat(dashboard?.order_data?.total?.trade_wallet?.high)}
+            {parseFloat(
+              dashboard?.order_data?.total?.trade_wallet?.high
+            ).toFixed(3)}
           </span>
         </li>
         <li>
           <span className="label">{t("24h Low")}</span>
           <span className="value">
-            {parseFloat(dashboard?.order_data?.total?.trade_wallet?.low)}
+            {parseFloat(
+              dashboard?.order_data?.total?.trade_wallet?.low
+            ).toFixed(3)}
           </span>
         </li>
         <li>

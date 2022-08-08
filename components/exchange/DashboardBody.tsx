@@ -112,6 +112,13 @@ const DashboardBody = () => {
                     }
                   >
                     {dashboard?.order_data?.total?.trade_wallet?.last_price}
+                    {parseFloat(
+                      dashboard?.order_data?.total?.trade_wallet?.last_price
+                    ) >= 0 ? (
+                      <i className="fa-solid fa-up-long value-increase ml-2"></i>
+                    ) : (
+                      <i className="fa-solid fa-down-long value-decrease ml-2"></i>
+                    )}
                   </span>
                 </div>
               </div>
@@ -133,6 +140,13 @@ const DashboardBody = () => {
                     }
                   >
                     {dashboard?.order_data?.total?.trade_wallet?.last_price}
+                    {parseFloat(
+                      dashboard?.order_data?.total?.trade_wallet?.last_price
+                    ) >= 0 ? (
+                      <i className="fa-solid fa-up-long value-increase ml-2"></i>
+                    ) : (
+                      <i className="fa-solid fa-down-long value-decrease ml-2"></i>
+                    )}
                   </span>
                 </div>
               </div>
@@ -153,6 +167,13 @@ const DashboardBody = () => {
                     }
                   >
                     {dashboard?.order_data?.total?.trade_wallet?.last_price}
+                    {parseFloat(
+                      dashboard?.order_data?.total?.trade_wallet?.last_price
+                    ) >= 0 ? (
+                      <i className="fa-solid fa-up-long value-increase ml-2"></i>
+                    ) : (
+                      <i className="fa-solid fa-down-long value-decrease ml-2"></i>
+                    )}
                   </span>
                 </div>
               </div>

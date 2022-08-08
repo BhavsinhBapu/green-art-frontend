@@ -1,7 +1,7 @@
 import type { GetServerSideProps, NextPage } from "next";
 import Slider from "react-slick";
 import Link from "next/link";
-import { landingPage } from "service/landing-page";
+import { landingPage, customPage } from "service/landing-page";
 import useTranslation from "next-translate/useTranslation";
 
 import Navbar from "components/common/navbar";
@@ -19,6 +19,7 @@ const Home: NextPage = ({
   latest_coin_pairs,
   loggedin,
   landing_banner_image,
+  customPageData,
 }: any) => {
   const { t } = useTranslation("common");
   const router = useRouter();
@@ -908,18 +909,14 @@ const Home: NextPage = ({
                     </div>
                     <div className="widget-inner">
                       <ul>
-                        <li>
-                          <a href="#banner-area">{t("Home")}</a>
-                        </li>
-                        <li>
-                          <a href="#features">{t("Feature")}</a>
-                        </li>
-                        <li>
-                          <a href="#integration">{t("Integrations")}</a>
-                        </li>
-                        <li>
-                          <a href="#about">{t("About")}</a>
-                        </li>
+                        {customPageData?.map(
+                          (item: any) =>
+                            item.type === 1 && (
+                              <li>
+                                <a href="#banner-area">{item.title}</a>
+                              </li>
+                            )
+                        )}
                       </ul>
                     </div>
                   </div>
@@ -931,18 +928,14 @@ const Home: NextPage = ({
                     </div>
                     <div className="widget-inner">
                       <ul>
-                        <li>
-                          <a href="#banner-area">{t("Home")}</a>
-                        </li>
-                        <li>
-                          <a href="#features">{t("Feature")}</a>
-                        </li>
-                        <li>
-                          <a href="#integration">{t("Integrations")}</a>
-                        </li>
-                        <li>
-                          <a href="#about">{t("About")}</a>
-                        </li>
+                        {customPageData?.map(
+                          (item: any) =>
+                            item.type === 2 && (
+                              <li>
+                                <a href="#banner-area">{item.title}</a>
+                              </li>
+                            )
+                        )}
                       </ul>
                     </div>
                   </div>
@@ -954,18 +947,14 @@ const Home: NextPage = ({
                     </div>
                     <div className="widget-inner">
                       <ul>
-                        <li>
-                          <a href="#banner-area">{t("Home")}</a>
-                        </li>
-                        <li>
-                          <a href="#features">{t("Feature")}</a>
-                        </li>
-                        <li>
-                          <a href="#integration">{t("Integrations")}</a>
-                        </li>
-                        <li>
-                          <a href="#about">{t("About")}</a>
-                        </li>
+                        {customPageData?.map(
+                          (item: any) =>
+                            item.type === 3 && (
+                              <li>
+                                <a href="#banner-area">{item.title}</a>
+                              </li>
+                            )
+                        )}
                       </ul>
                     </div>
                   </div>
@@ -1028,9 +1017,11 @@ const Home: NextPage = ({
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const { data } = await landingPage();
   const cookies = parseCookies(ctx);
+  const { data: customPageData } = await customPage();
   const response = cookies.token
     ? await GetUserInfoByTokenServer(cookies.token)
     : false;
+
   return {
     props: {
       landing: data,
@@ -1045,6 +1036,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
       landing_banner_image: data?.landing_banner_image
         ? data?.landing_banner_image
         : null,
+      customPageData: customPageData.data,
     },
   };
 };

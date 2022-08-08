@@ -19,6 +19,24 @@ const StopLimit = ({
   const { t } = useTranslation("common");
   const [loading, setLoading] = React.useState(false);
   const dispatch = useDispatch();
+  const setAmountBasedOnPercentage = (percentage: any) => {
+    const { maker_fees, taker_fees } = dashboard.fees_settings;
+    const amount =
+      parseFloat(dashboard?.order_data?.total?.base_wallet?.balance) /
+      parseFloat(buySellStopLimitCoinData.limit);
+    const feesPercentage =
+      parseFloat(maker_fees) > parseFloat(taker_fees)
+        ? parseFloat(maker_fees)
+        : parseFloat(taker_fees);
+    const total =
+      amount * percentage * parseFloat(buySellStopLimitCoinData.limit);
+    const fees = (total * feesPercentage) / 100;
+    setBuySellStopLimitCoinData({
+      ...buySellStopLimitCoinData,
+      amount: (total - fees) / parseFloat(buySellStopLimitCoinData.limit),
+      total: total - fees,
+    });
+  };
   return (
     <div id="BuyTabContent" className="tab-content">
       <div
@@ -184,12 +202,34 @@ const StopLimit = ({
                     </span>
                   </span>
                 </div>
-                <div className=" mt-3 percent-container ">
-                  <span className=" percent-btn col-3">{t("0%")}</span>
-                  <span className=" percent-btn col-3">{t("25%")}</span>
-                  <span className=" percent-btn col-3">{t("50%")}</span>
-                  <span className=" percent-btn col-3">{t("100%")}</span>
-                </div>
+                {isLoggedIn && (
+                  <div className=" mt-3 percent-container ">
+                    <span
+                      className=" percent-btn col-3"
+                      onClick={() => setAmountBasedOnPercentage(0.25)}
+                    >
+                      {t("25%")}
+                    </span>
+                    <span
+                      className=" percent-btn col-3"
+                      onClick={() => setAmountBasedOnPercentage(0.5)}
+                    >
+                      {t("50%")}
+                    </span>
+                    <span
+                      className=" percent-btn col-3"
+                      onClick={() => setAmountBasedOnPercentage(0.75)}
+                    >
+                      {t("75%")}
+                    </span>
+                    <span
+                      className=" percent-btn col-3"
+                      onClick={() => setAmountBasedOnPercentage(1)}
+                    >
+                      {t("100%")}
+                    </span>
+                  </div>
+                )}
                 {!isLoggedIn ? (
                   <div className="form-group mt-4">
                     <Link href="/authentication/signin">

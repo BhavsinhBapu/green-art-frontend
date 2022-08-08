@@ -92,20 +92,6 @@ const Profile: NextPage = ({ user }: any) => {
                           <span className="cp-user-dot">:</span>
                           <span> {user?.phone ? user?.phone : "No phone"}</span>
                         </li>
-                        <li>
-                          <span>{t("Role")}</span>
-                          <span className="cp-user-dot">:</span>
-                          <span>{t("User")}</span>
-                        </li>
-                        <li>
-                          <span>{t("Active Status")}</span>
-                          <span className="cp-user-dot">:</span>
-                          <span>
-                            <span className="badge badge-success">
-                              {t("Active")}
-                            </span>
-                          </span>
-                        </li>
                       </ul>
                     </div>
                   </div>
