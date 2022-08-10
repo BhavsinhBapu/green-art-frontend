@@ -2,11 +2,11 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
 import AllSellOrders from "./AllSellOrders";
+import AllSellOrdersFull from "./AllSellOrdersFull";
 import ExchangeBox from "./ExchangeBox";
-import BuyTable from "./BuyTable";
-import SellTable from "./SellTable";
 import TradesHistory from "./TradesHistory";
 import AllBuyOrders from "./AllBuyOrders";
+import AllBuyOrdersFull from "./AllBuyOrdersFull";
 import dynamic from "next/dynamic";
 import OrderHistorySection from "./orderHistorySection";
 import useTranslation from "next-translate/useTranslation";
@@ -20,6 +20,7 @@ const TradingChart = dynamic(
 const DashboardBody = () => {
   const { t } = useTranslation("common");
   const [select, setSelect] = React.useState(3);
+
   const {
     dashboard,
     currentPair,
@@ -99,25 +100,63 @@ const DashboardBody = () => {
           </div>
           {select === 1 && (
             <>
-              <AllSellOrders OpenBooksell={OpenBooksell} />
+              <AllSellOrdersFull OpenBooksell={OpenBooksell} />
               <div className="trades-table-footer">
                 <div className="trades-table-row">
                   <span
                     className={
                       parseFloat(
-                        dashboard?.order_data?.total?.trade_wallet?.last_price
-                      ) >= 0
+                        dashboard?.last_price_data &&
+                          dashboard?.last_price_data[0]?.price
+                      ) >
+                      parseFloat(
+                        dashboard?.last_price_data &&
+                          dashboard?.last_price_data[0]?.last_price
+                      )
                         ? "value-increase"
-                        : "value-decrease"
+                        : parseFloat(
+                            dashboard?.last_price_data &&
+                              dashboard?.last_price_data[0]?.price
+                          ) <
+                          parseFloat(
+                            dashboard?.last_price_data &&
+                              dashboard?.last_price_data[0]?.last_price
+                          )
+                        ? "value-decrease"
+                        : "value-same"
                     }
                   >
-                    {dashboard?.order_data?.total?.trade_wallet?.last_price}
                     {parseFloat(
-                      dashboard?.order_data?.total?.trade_wallet?.last_price
-                    ) >= 0 ? (
-                      <i className="fa-solid fa-up-long value-increase ml-2"></i>
+                      dashboard?.last_price_data &&
+                        dashboard?.last_price_data[0]?.price
+                    )}
+                    {parseFloat(
+                      dashboard?.last_price_data &&
+                        dashboard?.last_price_data[0]?.price
+                    ) >
+                    parseFloat(
+                      dashboard?.last_price_data &&
+                        dashboard?.last_price_data[0]?.last_price
+                    ) ? (
+                      <i className="fa-solid fa-up-long value-increaseicon ml-2"></i>
+                    ) : parseFloat(
+                        dashboard?.last_price_data &&
+                          dashboard?.last_price_data[0]?.price
+                      ) <
+                      parseFloat(
+                        dashboard?.last_price_data &&
+                          dashboard?.last_price_data[0]?.last_price
+                      ) ? (
+                      <i className="fa-solid fa-down-long value-decreaseicon ml-2"></i>
                     ) : (
-                      <i className="fa-solid fa-down-long value-decrease ml-2"></i>
+                      ""
+                    )}
+                  </span>
+                  <span className="value-previous">
+                    {" "}
+                    {parseFloat(
+                      dashboard?.last_price_data &&
+                        dashboard?.last_price_data[0]?.last_price
                     )}
                   </span>
                 </div>
@@ -126,59 +165,134 @@ const DashboardBody = () => {
           )}
           {select === 2 && (
             <>
-              {" "}
-              <AllBuyOrders OpenBookBuy={OpenBookBuy} />
               <div className="trades-table-footer">
                 <div className="trades-table-row">
                   <span
                     className={
                       parseFloat(
-                        dashboard?.order_data?.total?.trade_wallet?.last_price
-                      ) >= 0
+                        dashboard?.last_price_data &&
+                          dashboard?.last_price_data[0]?.price
+                      ) >
+                      parseFloat(
+                        dashboard?.last_price_data &&
+                          dashboard?.last_price_data[0]?.last_price
+                      )
                         ? "value-increase"
-                        : "value-decrease"
+                        : parseFloat(
+                            dashboard?.last_price_data &&
+                              dashboard?.last_price_data[0]?.price
+                          ) <
+                          parseFloat(
+                            dashboard?.last_price_data &&
+                              dashboard?.last_price_data[0]?.last_price
+                          )
+                        ? "value-decrease"
+                        : "value-same"
                     }
                   >
-                    {dashboard?.order_data?.total?.trade_wallet?.last_price}
                     {parseFloat(
-                      dashboard?.order_data?.total?.trade_wallet?.last_price
-                    ) >= 0 ? (
-                      <i className="fa-solid fa-up-long value-increase ml-2"></i>
+                      dashboard?.last_price_data &&
+                        dashboard?.last_price_data[0]?.price
+                    )}
+                    {parseFloat(
+                      dashboard?.last_price_data &&
+                        dashboard?.last_price_data[0]?.price
+                    ) >
+                    parseFloat(
+                      dashboard?.last_price_data &&
+                        dashboard?.last_price_data[0]?.last_price
+                    ) ? (
+                      <i className="fa-solid fa-up-long value-increaseicon ml-2"></i>
+                    ) : parseFloat(
+                        dashboard?.last_price_data &&
+                          dashboard?.last_price_data[0]?.price
+                      ) <
+                      parseFloat(
+                        dashboard?.last_price_data &&
+                          dashboard?.last_price_data[0]?.last_price
+                      ) ? (
+                      <i className="fa-solid fa-down-long value-decreaseicon ml-2"></i>
                     ) : (
-                      <i className="fa-solid fa-down-long value-decrease ml-2"></i>
+                      ""
+                    )}
+                  </span>
+                  <span className="value-previous">
+                    {" "}
+                    {parseFloat(
+                      dashboard?.last_price_data &&
+                        dashboard?.last_price_data[0]?.last_price
                     )}
                   </span>
                 </div>
               </div>
+              <AllBuyOrdersFull OpenBookBuy={OpenBookBuy} />
             </>
           )}
           {select === 3 && (
-            <>
-              <AllSellOrders OpenBooksell={OpenBooksell} />
+            <div className="tradeSection-both">
+              <AllSellOrders OpenBooksell={OpenBooksell} show={18} />
               <div className="trades-table-footer">
                 <div className="trades-table-row">
                   <span
                     className={
                       parseFloat(
-                        dashboard?.order_data?.total?.trade_wallet?.last_price
-                      ) >= 0
+                        dashboard?.last_price_data &&
+                          dashboard?.last_price_data[0]?.price
+                      ) >
+                      parseFloat(
+                        dashboard?.last_price_data &&
+                          dashboard?.last_price_data[0]?.last_price
+                      )
                         ? "value-increase"
-                        : "value-decrease"
+                        : parseFloat(
+                            dashboard?.last_price_data &&
+                              dashboard?.last_price_data[0]?.price
+                          ) <
+                          parseFloat(
+                            dashboard?.last_price_data &&
+                              dashboard?.last_price_data[0]?.last_price
+                          )
+                        ? "value-decrease"
+                        : "value-same"
                     }
                   >
-                    {dashboard?.order_data?.total?.trade_wallet?.last_price}
                     {parseFloat(
-                      dashboard?.order_data?.total?.trade_wallet?.last_price
-                    ) >= 0 ? (
-                      <i className="fa-solid fa-up-long value-increase ml-2"></i>
+                      dashboard?.last_price_data &&
+                        dashboard?.last_price_data[0]?.price
+                    )}
+                    {parseFloat(
+                      dashboard?.last_price_data &&
+                        dashboard?.last_price_data[0]?.price
+                    ) >
+                    parseFloat(
+                      dashboard?.last_price_data &&
+                        dashboard?.last_price_data[0]?.last_price
+                    ) ? (
+                      <i className="fa-solid fa-up-long value-increaseicon ml-2"></i>
+                    ) : parseFloat(
+                        dashboard?.last_price_data &&
+                          dashboard?.last_price_data[0]?.price
+                      ) <
+                      parseFloat(
+                        dashboard?.last_price_data &&
+                          dashboard?.last_price_data[0]?.last_price
+                      ) ? (
+                      <i className="fa-solid fa-down-long value-decreaseicon ml-2"></i>
                     ) : (
-                      <i className="fa-solid fa-down-long value-decrease ml-2"></i>
+                      ""
+                    )}
+                  </span>
+                  <span className="value-previous">
+                    {" "}
+                    {parseFloat(
+                      dashboard?.last_price_data &&
+                        dashboard?.last_price_data[0]?.last_price
                     )}
                   </span>
                 </div>
               </div>
-              <AllBuyOrders OpenBookBuy={OpenBookBuy} />
-            </>
+              <AllBuyOrders OpenBookBuy={OpenBookBuy} show={18} />
+            </div>
           )}
         </div>
       </div>

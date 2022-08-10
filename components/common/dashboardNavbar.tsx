@@ -74,21 +74,29 @@ const DashboardNavbar = () => {
                     </li>
                   </Link>
                   <li>
-                    <a className="arrow-icon" href="#" aria-expanded="true">
-                      <span className="cp-user-icon">
-                        <img
-                          src="/sidebar-icons/Membership.svg"
-                          className="img-fluid cp-user-side-bar-icon"
-                          alt=""
-                        />
-                        <img
-                          src="/sidebar-icons/hover/Membership-1.svg"
-                          className="img-fluid cp-user-side-bar-icon-hover"
-                          alt=""
-                        />
-                      </span>
-                      <span className="cp-user-name">{t("Reports")}</span>
-                    </a>
+                    <Link
+                      href={
+                        isLoggedIn
+                          ? "/user/wallet-history?type=deposit"
+                          : "/authentication/signin"
+                      }
+                    >
+                      <a className="arrow-icon" href="#" aria-expanded="true">
+                        <span className="cp-user-icon">
+                          <img
+                            src="/sidebar-icons/Membership.svg"
+                            className="img-fluid cp-user-side-bar-icon"
+                            alt=""
+                          />
+                          <img
+                            src="/sidebar-icons/hover/Membership-1.svg"
+                            className="img-fluid cp-user-side-bar-icon-hover"
+                            alt=""
+                          />
+                        </span>
+                        <span className="cp-user-name">{t("Reports")}</span>
+                      </a>
+                    </Link>
                     <ul>
                       <Link
                         href={
@@ -205,21 +213,27 @@ const DashboardNavbar = () => {
                     </li>
                   </Link>
                   <li>
-                    <a className="arrow-icon" href="#" aria-expanded="true">
-                      <span className="cp-user-icon">
-                        <img
-                          src="/sidebar-icons/settings.svg"
-                          className="img-fluid cp-user-side-bar-icon"
-                          alt=""
-                        />
-                        <img
-                          src="/sidebar-icons/hover/settings.svg"
-                          className="img-fluid cp-user-side-bar-icon-hover"
-                          alt=""
-                        />
-                      </span>
-                      <span className="cp-user-name">{t("Settings")}</span>
-                    </a>
+                    <Link
+                      href={
+                        isLoggedIn ? "/user/settings" : "/authentication/signin"
+                      }
+                    >
+                      <a className="arrow-icon" href="#" aria-expanded="true">
+                        <span className="cp-user-icon">
+                          <img
+                            src="/sidebar-icons/settings.svg"
+                            className="img-fluid cp-user-side-bar-icon"
+                            alt=""
+                          />
+                          <img
+                            src="/sidebar-icons/hover/settings.svg"
+                            className="img-fluid cp-user-side-bar-icon-hover"
+                            alt=""
+                          />
+                        </span>
+                        <span className="cp-user-name">{t("Settings")}</span>
+                      </a>
+                    </Link>
                     <ul>
                       <Link
                         href={

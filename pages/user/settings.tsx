@@ -43,7 +43,7 @@ const Settings: NextPage = () => {
             <div className="section-top-wrap ">
               <div className="row ">
                 <div className="col-xl-12 mb-xl-0 mb-4">
-                  <div className="card cp-user-custom-card cp-user-setting-card">
+                  <div className=" cp-user-custom-card cp-user-setting-card">
                     <div className="card-body">
                       <div className="cp-user-card-header-area">
                         <div className="cp-user-title">

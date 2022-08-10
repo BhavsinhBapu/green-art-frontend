@@ -1,5 +1,5 @@
 import useTranslation from "next-translate/useTranslation";
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
 
@@ -8,21 +8,73 @@ const CurrencyLevel = () => {
   const { dashboard, currentPair } = useSelector(
     (state: RootState) => state.exchange
   );
+  const [volume, setVolume] = React.useState(
+    parseFloat(dashboard?.order_data?.total?.trade_wallet?.volume) *
+      parseFloat(dashboard?.order_data?.total?.trade_wallet?.last_price)
+  );
+
+  useEffect(() => {
+    setVolume(
+      parseFloat(dashboard?.order_data?.total?.trade_wallet?.volume) *
+        parseFloat(dashboard?.order_data?.total?.trade_wallet?.last_price)
+    );
+  }, [
+    dashboard?.order_data?.total?.trade_wallet?.volume,
+    dashboard?.order_data?.total?.trade_wallet?.last_price,
+  ]);
   return (
     <div className="cxchange-summary-featured">
       <ul className="cxchange-summary-items">
         <li>
-          <span className="label">{t("Last price")}</span>
+          {/* <span className="label">{t("Last price")}</span> */}
           <span
             className={
               parseFloat(
-                dashboard?.order_data?.total?.trade_wallet?.last_price
-              ) >= 0
+                dashboard?.last_price_data &&
+                  dashboard?.last_price_data[0]?.price
+              ) >=
+              parseFloat(
+                dashboard?.last_price_data &&
+                  dashboard?.last_price_data[0]?.last_price
+              )
                 ? "value increase"
-                : "value decrease"
+                : parseFloat(
+                    dashboard?.last_price_data &&
+                      dashboard?.last_price_data[0]?.price
+                  ) <
+                  parseFloat(
+                    dashboard?.last_price_data &&
+                      dashboard?.last_price_data[0]?.last_price
+                  )
+                ? "value decrease"
+                : "value"
             }
           >
-            {dashboard?.order_data?.total?.trade_wallet?.last_price}
+            {dashboard?.order_data?.total?.trade_wallet?.last_price}{" "}
+            {parseFloat(
+              dashboard?.last_price_data && dashboard?.last_price_data[0]?.price
+            ) >=
+            parseFloat(
+              dashboard?.last_price_data &&
+                dashboard?.last_price_data[0]?.last_price
+            ) ? (
+              <i className="fa-solid fa-up-long value-increaseicon ml-2"></i>
+            ) : parseFloat(
+                dashboard?.last_price_data &&
+                  dashboard?.last_price_data[0]?.price
+              ) <
+              parseFloat(
+                dashboard?.last_price_data &&
+                  dashboard?.last_price_data[0]?.last_price
+              ) ? (
+              <i className="fa-solid fa-down-long value-decreaseicon ml-2"></i>
+            ) : (
+              ""
+            )}
+          </span>
+          <span className="label">
+            {dashboard?.last_price_data &&
+              dashboard?.last_price_data[0]?.last_price}
           </span>
         </li>
         <li>
@@ -70,12 +122,7 @@ const CurrencyLevel = () => {
             {" "}
             {t("24h volume")}({dashboard?.order_data?.base_coin}){" "}
           </span>
-          <span className="value">
-            {parseFloat(dashboard?.order_data?.total?.trade_wallet?.volume) *
-              parseFloat(
-                dashboard?.order_data?.total?.trade_wallet?.last_price
-              )}
-          </span>
+          <span className="value">{volume.toFixed(8)}</span>
         </li>
       </ul>
     </div>

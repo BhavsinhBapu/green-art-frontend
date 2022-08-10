@@ -109,7 +109,10 @@ const StopLimit = ({
                     type="number"
                     placeholder=""
                     className="form-control number_only"
-                    value={buySellStopLimitCoinData?.stop}
+                    value={
+                      buySellStopLimitCoinData?.stop !== 0 &&
+                      buySellStopLimitCoinData?.stop
+                    }
                     onChange={(e) => {
                       setBuySellStopLimitCoinData({
                         ...buySellStopLimitCoinData,
@@ -133,7 +136,10 @@ const StopLimit = ({
                     type="number"
                     placeholder=""
                     className="form-control number_only"
-                    value={buySellStopLimitCoinData?.limit}
+                    value={
+                      buySellStopLimitCoinData?.limit !== 0 &&
+                      buySellStopLimitCoinData?.limit
+                    }
                     onChange={(e) => {
                       setBuySellStopLimitCoinData({
                         ...buySellStopLimitCoinData,
@@ -158,7 +164,10 @@ const StopLimit = ({
                     type="number"
                     placeholder=""
                     className="form-control number_only"
-                    value={buySellStopLimitCoinData?.amount}
+                    value={
+                      buySellStopLimitCoinData?.amount !== 0 &&
+                      buySellStopLimitCoinData?.amount
+                    }
                     onChange={async (e) => {
                       setBuySellStopLimitCoinData({
                         ...buySellStopLimitCoinData,

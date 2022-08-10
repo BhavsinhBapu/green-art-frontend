@@ -12,7 +12,11 @@ const DepositTab = ({ response, TurnoffSetShow }: any) => {
           <div className="deposit-info-area" id="wallet_deposit_area">
             <div className="deposit-info-top">
               <div className="balance-box">
-                <img className="icon" src="/bitcoin.png" alt="coin" />
+                <img
+                  className="icon"
+                  src={response?.deposit?.coin_icon || "/bitcoin.png"}
+                  alt="coin"
+                />
                 <div className="balance-content">
                   <h4>
                     {response?.deposit?.coin_type} {t("Balance")}
@@ -46,14 +50,16 @@ const DepositTab = ({ response, TurnoffSetShow }: any) => {
             </div>
 
             <div className="address-area">
-              <h3>Address</h3>
-              <p>
-                {t("Only send")} {response?.deposit?.coin_type}{" "}
-                {t("to this address.")}
-                {t(
-                  "Sending any other asset to this address may result in the loss of your deposit!"
-                )}
-              </p>
+              <div className="address-area-info">
+                <h3 className="text-white">Address</h3>
+                <p className="text-white">
+                  {t("Only send")} {response?.deposit?.coin_type}{" "}
+                  {t("to this address.")}
+                  {t(
+                    "Sending any other asset to this address may result in the loss of your deposit!"
+                  )}
+                </p>
+              </div>
               <div className="input-url">
                 <input
                   type="url"

@@ -61,11 +61,13 @@ const SwapCoin: NextPage = ({
     tempfromSelected = midvar;
   };
   const convertCoin = async (amount: any, from_id: any, to_id: any) => {
+    setLoading(true);
     const convert_rate = await getRateAction(from_id, to_id, amount, setRate);
     setToSelected({
       ...toSelected,
       amount: convert_rate,
     });
+    setLoading(false);
   };
 
   React.useEffect(() => {
@@ -124,6 +126,17 @@ const SwapCoin: NextPage = ({
           </div>
 
           <div className="row">
+            {loading && (
+              <div className="preloder-area">
+                <span
+                  className="spinner-border spinner-border-md"
+                  role="status"
+                  aria-hidden="true"
+                ></span>
+                <span>{t("Please wait")}</span>
+              </div>
+            )}
+
             <div className="col-lg-10">
               <div className="section-wrapper">
                 <div className="swap-area">
@@ -195,6 +208,7 @@ const SwapCoin: NextPage = ({
                         id="swap"
                         className="swap-button"
                         onClick={async () => {
+                          setLoading(true);
                           await swapSelected();
                           await getRateAction(
                             toSelected.coin_id,
@@ -202,6 +216,7 @@ const SwapCoin: NextPage = ({
                             toSelected.amount,
                             setRate
                           );
+                          setLoading(false);
                         }}
                       >
                         <i className="fa fa-refresh" />
@@ -271,6 +286,7 @@ const SwapCoin: NextPage = ({
                       </li>
                       <li>
                         <span>{t("You will spend")}</span>
+
                         <span className="spend">
                           {rate.convert_rate} {rate.to_wallet}
                         </span>
@@ -295,18 +311,7 @@ const SwapCoin: NextPage = ({
                         );
                       }}
                     >
-                      {loading ? (
-                        <>
-                          <span
-                            className="spinner-border spinner-border-sm"
-                            role="status"
-                            aria-hidden="true"
-                          ></span>
-                          <span>{t("Please wait")}</span>
-                        </>
-                      ) : (
-                        t("convert")
-                      )}
+                      {t("convert")}
                     </button>
                   </div>
                 </div>

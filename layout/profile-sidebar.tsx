@@ -43,7 +43,7 @@ const ProfileSidebar = () => {
               }
             >
               <a href="/user/profile-verification-list">
-                {t("Verification List")}
+                {t("KYC Verification")}
               </a>
             </li>
           </Link>

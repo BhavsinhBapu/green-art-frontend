@@ -1,6 +1,9 @@
 import type { GetServerSideProps, NextPage } from "next";
 import ProfileSidebar from "layout/profile-sidebar";
 import React, { ChangeEvent, FormEvent, useState } from "react";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
+
 import countries from "lib/values/country.json";
 import { useDispatch, useSelector } from "react-redux";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
@@ -84,91 +87,102 @@ const Edit: NextPage = () => {
                       dispatch(UpdateUserInfoByTokenAction(values));
                     }}
                   >
-                    <div className="col-lg-8">
-                      <div className="user-profile-form">
-                        <Form>
-                          <div className="form-group">
-                            <label>{t("First Name")}</label>
-                            <Field
-                              type="text"
-                              name="first_name"
-                              className="form-control"
-                              placeholder="First Name"
-                              id="first_name"
-                            />
-                          </div>
-                          <div className="form-group">
-                            <label>{t("Last Name")}</label>
-                            <Field
-                              type="text"
-                              name="last_name"
-                              className="form-control"
-                              placeholder="Last Name"
-                              id="last_name"
-                            />
-                          </div>
-                          <div className="form-group">
-                            <label>{t("Phone")}</label>
-                            <Field
+                    {({ errors, touched, setFieldValue }) => (
+                      <div className="col-lg-8">
+                        <div className="user-profile-form">
+                          <Form>
+                            <div className="form-group">
+                              <label>{t("First Name")}</label>
+                              <Field
+                                type="text"
+                                name="first_name"
+                                className="form-control"
+                                placeholder="First Name"
+                                id="first_name"
+                              />
+                            </div>
+                            <div className="form-group">
+                              <label>{t("Last Name")}</label>
+                              <Field
+                                type="text"
+                                name="last_name"
+                                className="form-control"
+                                placeholder="Last Name"
+                                id="last_name"
+                              />
+                            </div>
+                            <div className="form-group">
+                              <label>{t("Phone")}</label>
+
+                              {/* <Field
                               type="text"
                               name="phone"
                               className="form-control"
                               id="phone"
                               placeholder="Phone"
-                            />
-                            <small>
-                              {t(
-                                "Please add phone number with country phone code but not (+ sign.) Ex. for portugal 351*****"
-                              )}
-                            </small>
-                          </div>
-                          <div className="form-group">
-                            <label>{t("Country")}</label>
-                            <Field
-                              as="select"
-                              name="country"
-                              id="country"
-                              className="form-control"
-                            >
-                              {countries.map((country: any) => (
-                                <option
-                                  key={country.value}
-                                  value={country.value.toUpperCase()}
-                                  selected={country.value === user?.country}
-                                >
-                                  {country.name}
+                            /> */}
+                              <PhoneInput
+                                country={"us"}
+                                value={user?.phone}
+                                onChange={(phone) => {
+                                  setFieldValue("phone", phone);
+                                }}
+                              />
+
+                              <small>
+                                {t(
+                                  "Please add phone number with country phone code but not (+ sign.) Ex. for portugal 351*****"
+                                )}
+                              </small>
+                            </div>
+                            <div className="form-group">
+                              <label>{t("Country")}</label>
+                              <Field
+                                as="select"
+                                name="country"
+                                id="country"
+                                className="form-control"
+                              >
+                                {countries.map((country: any) => (
+                                  <option
+                                    key={country.value}
+                                    value={country.value.toUpperCase()}
+                                    selected={country.value === user?.country}
+                                  >
+                                    {country.name}
+                                  </option>
+                                ))}
+                              </Field>
+                            </div>
+                            <div className="form-group">
+                              <label>Gender</label>
+                              <Field
+                                className="form-control"
+                                name="gender"
+                                id=""
+                                as="select"
+                              >
+                                <option selected={user?.gender === 1} value={1}>
+                                  Male
                                 </option>
-                              ))}
-                            </Field>
-                          </div>
-                          <div className="form-group">
-                            <label>Gender</label>
-                            <Field
-                              className="form-control"
-                              name="gender"
-                              id=""
-                              as="select"
+                                <option selected={user?.gender === 2} value={2}>
+                                  Female
+                                </option>
+                                <option selected={user?.gender === 3} value={3}>
+                                  Others
+                                </option>
+                              </Field>
+                            </div>
+                            <button
+                              type="submit"
+                              className="btn nimmu-user-sibmit-button"
                             >
-                              <option selected={user?.gender === 1} value={1}>
-                                Male
-                              </option>
-                              <option selected={user?.gender === 2} value={2}>
-                                Female
-                              </option>
-                              <option selected={user?.gender === 3} value={3}>
-                                Others
-                              </option>
-                            </Field>
-                          </div>
-                          <button
-                            type="submit"
-                            className="btn nimmu-user-sibmit-button"
-                          >
-                            <span>{t("Update Profile")}</span>
-                          </button>
-                        </Form>
+                              <span>{t("Update Profile")}</span>
+                            </button>
+                          </Form>
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </Formik>
                 </div>
               </div>

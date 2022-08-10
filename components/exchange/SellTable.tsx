@@ -40,7 +40,6 @@ const TradesTable = ({ marketTrades }: any) => {
         });
       }
     }
-    console.log(allTradeData, "allTradeData");
     setTrades(allTradeData.reverse());
   };
   useEffect(() => {

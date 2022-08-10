@@ -8,6 +8,9 @@ export const landingPage = () => {
 export const customPage = () => {
   return request.get("/custom-pages");
 };
+export const customPageWithSlug = (slug: string) => {
+  return request.get(`/pages-details/${slug}`);
+};
 ///banner-list
 
 export const bannerList = () => {

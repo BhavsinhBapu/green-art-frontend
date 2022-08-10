@@ -913,7 +913,9 @@ const Home: NextPage = ({
                           (item: any) =>
                             item.type === 1 && (
                               <li>
-                                <a href="#banner-area">{item.title}</a>
+                                <Link href={"/page-details/" + item.key}>
+                                  {item.title}
+                                </Link>
                               </li>
                             )
                         )}
@@ -932,7 +934,9 @@ const Home: NextPage = ({
                           (item: any) =>
                             item.type === 2 && (
                               <li>
-                                <a href="#banner-area">{item.title}</a>
+                                <Link href={"/page-details/" + item.key}>
+                                  {item.title}
+                                </Link>
                               </li>
                             )
                         )}
@@ -951,7 +955,9 @@ const Home: NextPage = ({
                           (item: any) =>
                             item.type === 3 && (
                               <li>
-                                <a href="#banner-area">{item.title}</a>
+                                <Link href={"/page-details/" + item.key}>
+                                  {item.title}
+                                </Link>
                               </li>
                             )
                         )}

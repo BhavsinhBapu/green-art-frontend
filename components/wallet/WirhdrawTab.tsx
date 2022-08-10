@@ -49,7 +49,11 @@ const WirhdrawTab = ({ response, TurnoffSetShow }: any) => {
           <div className="withdrawal-info-area" id="withdrawal_wallet_area">
             <div className="withdrawal-info-top">
               <div className="balance-box">
-                <img className="icon" src="/bitcoin.png" alt="coin" />
+                <img
+                  className="icon"
+                  src={response?.wallet?.coin_icon || "/bitcoin.png"}
+                  alt="coin"
+                />
                 <div className="balance-content">
                   <h4>
                     {response?.wallet?.coin_type} {t("Balance")}

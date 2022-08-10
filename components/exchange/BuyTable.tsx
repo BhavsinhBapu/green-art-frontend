@@ -1,23 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Tooltip from "rc-tooltip";
 import "rc-tooltip/assets/bootstrap.css";
 import { useDispatch } from "react-redux";
 import { setBuyPrice, setSellPrice } from "state/reducer/exchange";
 import useTranslation from "next-translate/useTranslation";
-const TradesTable = ({ buy }: any) => {
+const TradesTable = ({ buy, show }: any) => {
   const dispatch = useDispatch();
   const { t } = useTranslation("common");
   const changeSellPrice = (price: number) => {
     dispatch(setSellPrice(price));
   };
+  const [buyData, setBuyData] = React.useState<any>([]);
   const [summary, setSummary] = React.useState<any>({
     amount: 0,
     total: 0,
   });
+  useEffect(() => {
+    const Array = show ? [...buy].reverse().slice(-show) : [...buy].reverse();
+    setBuyData(Array);
+  }, [buy]);
   return (
     <tbody>
-      {buy?.length > 0 ? (
-        buy?.map((item: any, index: number) => (
+      {buyData?.length > 0 ? (
+        buyData?.map((item: any, index: number) => (
           <Tooltip
             placement={"right"}
             overlay={

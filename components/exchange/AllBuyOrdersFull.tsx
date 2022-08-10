@@ -1,12 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Tooltip from "rc-tooltip";
 import "rc-tooltip/assets/bootstrap.css";
 import { useDispatch } from "react-redux";
 import { setBuyPrice } from "state/reducer/exchange";
 import useTranslation from "next-translate/useTranslation";
-const AllBuyOrders = ({ OpenBookBuy, show }: any) => {
+const AllBuyOrders = ({ OpenBookBuy }: any) => {
   const { t } = useTranslation("common");
-  const [buyData, setBuyData] = React.useState<any>([]);
   const dispatch = useDispatch();
   const changeSellPrice = (price: number) => {
     dispatch(setBuyPrice(price));
@@ -15,11 +14,6 @@ const AllBuyOrders = ({ OpenBookBuy, show }: any) => {
     amount: 0,
     total: 0,
   });
-  useEffect(() => {
-    const Array = show ? [...OpenBookBuy].slice(0, show) : [...OpenBookBuy];
-    setBuyData(Array);
-  }),
-    [OpenBookBuy];
   return (
     <div className="sell-order">
       <div className="trades-table">
@@ -74,7 +68,7 @@ const AllBuyOrders = ({ OpenBookBuy, show }: any) => {
               style={{
                 position: "relative",
                 overflow: "auto",
-                height: "425px",
+                height: "855px !important",
                 width: "100%",
               }}
             >
@@ -110,8 +104,8 @@ const AllBuyOrders = ({ OpenBookBuy, show }: any) => {
                   </tr>
                 </thead>
                 <tbody>
-                  {buyData?.length !== 0 ? (
-                    buyData?.map((item: any, index: number) => (
+                  {OpenBookBuy?.length !== 0 ? (
+                    OpenBookBuy?.map((item: any, index: number) => (
                       <Tooltip
                         key={index}
                         placement={"right"}

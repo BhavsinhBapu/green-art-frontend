@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "state/store";
 
 import BuyTable from "./BuyTable";
-const AllSellOrders = ({ OpenBooksell, show }: any) => {
+const AllSellOrders = ({ OpenBooksell }: any) => {
   const { t } = useTranslation("common");
   const { dashboard, currentPair } = useSelector(
     (state: RootState) => state.exchange
@@ -35,6 +35,7 @@ const AllSellOrders = ({ OpenBooksell, show }: any) => {
                 position: "relative",
                 border: "0px",
                 width: "100%",
+                // height: "100% !important",
               }}
             >
               <div
@@ -42,7 +43,7 @@ const AllSellOrders = ({ OpenBooksell, show }: any) => {
                 style={{
                   position: "relative",
                   overflow: "auto",
-                  height: "244px",
+                  height: "825px",
                   width: "100%",
                 }}
               >
@@ -83,7 +84,7 @@ const AllSellOrders = ({ OpenBooksell, show }: any) => {
                       </th>
                     </tr>
                   </thead>
-                  <BuyTable buy={OpenBooksell} show={show} />
+                  <BuyTable buy={OpenBooksell} />
                 </table>
               </div>
             </div>

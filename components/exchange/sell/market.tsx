@@ -124,7 +124,10 @@ const Market = ({
                     type="number"
                     placeholder=""
                     className="form-control number_only"
-                    value={buySellMarketCoinData?.amount}
+                    value={
+                      buySellMarketCoinData?.amount !== 0 &&
+                      buySellMarketCoinData?.amount
+                    }
                     onChange={async (e) => {
                       setBuySellMarketCoinData({
                         ...buySellMarketCoinData,

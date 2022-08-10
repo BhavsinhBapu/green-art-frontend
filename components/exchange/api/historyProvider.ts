@@ -1,5 +1,6 @@
 // import { TV_CHART } from "service/trading-chart";
 import { apiRequest } from "lib/request";
+import { getChartData } from "service/trading-chart";
 const history: any = {};
 const api_root = "https://min-api.cryptocompare.com";
 
@@ -7,14 +8,14 @@ export default {
   history: history,
   //@ts-ignore
   getBars: function (symbolInfo, resolution, from, to, first, limit) {
-    console.log(localStorage.getItem("current_pair"), "hello");
     const base = localStorage.getItem("current_pair")?.split("_")[0]
       ? localStorage.getItem("current_pair")?.split("_")[0]
       : "BTC";
     const trade = localStorage.getItem("current_pair")?.split("_")[1]
       ? localStorage.getItem("current_pair")?.split("_")[1]
       : "USDT";
-
+    const baseId = localStorage.getItem("base_coin_id");
+    const tradeId = localStorage.getItem("trade_coin_id");
     var split_symbol = symbolInfo.name.split(/[:/]/);
     const url =
       resolution === "D"
@@ -30,7 +31,6 @@ export default {
       limit: limit ? limit : 2000,
       // aggregate: 1//resolution
     };
-    console.log(qs, "this is qs");
     //time stamp
 
     return apiRequest(
@@ -40,6 +40,7 @@ export default {
       if (data.data.Data.length) {
         const myBars = data.data.Data;
         const klines4800 = [...myBars, ...myBars, ...myBars];
+        console.log(klines4800, "klines4800");
         const bars = klines4800.map((el: any) => ({
           time: el.time * 1000,
           low: el.low,

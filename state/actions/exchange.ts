@@ -56,7 +56,7 @@ export const initialDashboardCallAction =
       response.order_data.trade_coin_id ? response.order_data.trade_coin_id : 1,
       "dashboard",
       "buy",
-      10
+      50
     );
     dispatch(setOpenBookBuy(BuyResponse?.data?.orders));
     const SellResponse = await openBookDashboard(
@@ -64,7 +64,7 @@ export const initialDashboardCallAction =
       response.order_data.trade_coin_id ? response.order_data.trade_coin_id : 1,
       "dashboard",
       "sell",
-      10
+      50
     );
     dispatch(setOpenBooksell(SellResponse?.data?.orders));
     if (
