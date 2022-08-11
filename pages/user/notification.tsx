@@ -23,11 +23,11 @@ const NotificationPage = () => {
       </div>
       <div className="container notification-continer">
         {notificationData.map((item: any, index: any) => (
-          <div className="notification-container">
+          <div className="notification-container" key={index}>
             <p className="notification-time">
               {moment(item.created_at).format("DD MMM YYYY")}
             </p>
-            <div className="notification-body" key={index}>
+            <div className="notification-body">
               <div className="notificationicon"></div>
               <div>
                 <h5 className="text-black">{item?.title}</h5>
