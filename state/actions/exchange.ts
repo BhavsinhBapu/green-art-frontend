@@ -160,8 +160,8 @@ export const initialDashboardCallActionWithToken =
       dispatch(
         setAllmarketTrades(marketTradesDashboardResponse.data.transactions)
       );
-      setisLoading && setisLoading(false);
     }
+    setisLoading && setisLoading(false);
   };
 
 export const buyLimitAppAction = async (
