@@ -80,7 +80,7 @@ export class TVChartContainer extends React.Component<MyProps> {
       //@ts-ignore
       symbol: this.props.symbol,
       style: 1,
-      theme: "Dark",
+      theme: "dark",
       //@ts-ignore
       datafeed: Datafeed,
       // datafeed: Datafeed,

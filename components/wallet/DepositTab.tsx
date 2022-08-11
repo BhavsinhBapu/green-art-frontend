@@ -51,7 +51,13 @@ const DepositTab = ({ response, TurnoffSetShow }: any) => {
 
             <div className="address-area">
               <div className="address-area-info">
-                <h3 className="text-white">Address</h3>
+                <h3 className="text-white">
+                  Address
+                  <i
+                    className="fa fa-exclamation-triangle ml-2"
+                    aria-hidden="true"
+                  ></i>
+                </h3>
                 <p className="text-white">
                   {t("Only send")} {response?.deposit?.coin_type}{" "}
                   {t("to this address.")}

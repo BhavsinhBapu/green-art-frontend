@@ -116,7 +116,7 @@ const Limit = ({
                   <input
                     name="price"
                     type="text"
-                    placeholder=""
+                    placeholder="0"
                     className="form-control number_only input_1"
                     value={buySellLimitCoinData.price}
                     onChange={(e) => {
@@ -143,7 +143,7 @@ const Limit = ({
                   <input
                     name="amount"
                     type="number"
-                    placeholder=""
+                    placeholder="0"
                     className="form-control number_only input_2"
                     value={
                       buySellLimitCoinData.amount !== 0 &&

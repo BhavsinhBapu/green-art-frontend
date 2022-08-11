@@ -11,7 +11,7 @@ const TradingChart = dynamic(
 );
 import Echo from "laravel-echo";
 import Pusher from "pusher-js";
-
+import Loading from "components/common/loading";
 import SelectCurrency from "components/exchange/selectCurrency";
 import CurrencyLevel from "components/exchange/currencyLevel";
 import OrderHistorySection from "components/exchange/orderHistorySection";
@@ -29,6 +29,7 @@ import {
   setOpenBooksell,
 } from "state/reducer/exchange";
 import useTranslation from "next-translate/useTranslation";
+import { setLoading } from "state/reducer/user";
 let socketCall = 0;
 async function listenMessages(dispatch: any) {
   //@ts-ignore
@@ -59,6 +60,7 @@ async function listenMessages(dispatch: any) {
 const Dashboard: NextPage = () => {
   const { t } = useTranslation("common");
   const dispatch = useDispatch();
+  const [isLoading, setisLoading] = useState(false);
   const { isLoggedIn } = useSelector((state: RootState) => state.user);
   const { dashboard, currentPair } = useSelector(
     (state: RootState) => state.exchange
@@ -68,9 +70,11 @@ const Dashboard: NextPage = () => {
     const pair = localStorage.getItem("current_pair");
     if (pair) {
       dispatch(setCurrentPair(pair));
-      dispatch(initialDashboardCallAction(pair, dashboard));
+      dispatch(initialDashboardCallAction(pair, dashboard, setisLoading));
     } else {
-      dispatch(initialDashboardCallAction(currentPair, dashboard));
+      dispatch(
+        initialDashboardCallAction(currentPair, dashboard, setisLoading)
+      );
     }
   }, [isLoggedIn, currentPair]);
   useEffect(() => {
@@ -78,7 +82,13 @@ const Dashboard: NextPage = () => {
       dashboard?.order_data?.base_coin_id &&
       dashboard?.order_data?.trade_coin_id
     ) {
-      dispatch(initialDashboardCallActionWithToken(currentPair, dashboard));
+      dispatch(
+        initialDashboardCallActionWithToken(
+          currentPair,
+          dashboard,
+          setisLoading
+        )
+      );
     }
   }, [dashboard?.order_data?.base_coin_id]);
   useEffect(() => {
@@ -91,6 +101,7 @@ const Dashboard: NextPage = () => {
     <div className="container-dashboard">
       <div className="background-col">
         <DashboardNavbar />
+        {isLoading && <Loading />}
         <div className="mt-5"></div>
         <div className="cp-user-sidebar-area">
           <div

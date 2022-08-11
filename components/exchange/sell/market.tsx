@@ -122,7 +122,7 @@ const Market = ({
                   <input
                     name="amount"
                     type="number"
-                    placeholder=""
+                    placeholder="0"
                     className="form-control number_only"
                     value={
                       buySellMarketCoinData?.amount !== 0 &&

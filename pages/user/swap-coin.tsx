@@ -1,4 +1,5 @@
 import type { GetServerSideProps, NextPage } from "next";
+
 import * as React from "react";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import SwapCoinSidebar from "layout/swap-coin-sidebar";
@@ -13,6 +14,8 @@ import { parseCookies } from "nookies";
 import { getRateSsr } from "service/swap";
 import Link from "next/link";
 import useTranslation from "next-translate/useTranslation";
+import Skeleton from "react-loading-skeleton";
+import SmallLoading from "components/common/smallLoading";
 const SwapCoin: NextPage = ({
   walletLists,
   wallet_rate,
@@ -126,17 +129,6 @@ const SwapCoin: NextPage = ({
           </div>
 
           <div className="row">
-            {loading && (
-              <div className="preloder-area">
-                <span
-                  className="spinner-border spinner-border-md"
-                  role="status"
-                  aria-hidden="true"
-                ></span>
-                <span>{t("Please wait")}</span>
-              </div>
-            )}
-
             <div className="col-lg-10">
               <div className="section-wrapper">
                 <div className="swap-area">
@@ -275,24 +267,31 @@ const SwapCoin: NextPage = ({
                       </div>
                     </div>
                   </div>
-                  <div className="swap-area-middle">
-                    <ul>
-                      <li>
-                        <span>{t("Price")}</span>
-                        <span id="rate">
-                          1 {rate.from_wallet} = {rate.rate ? rate.rate : "0"}{" "}
-                          {rate.to_wallet}
-                        </span>
-                      </li>
-                      <li>
-                        <span>{t("You will spend")}</span>
 
-                        <span className="spend">
-                          {rate.convert_rate} {rate.to_wallet}
-                        </span>
-                      </li>
-                    </ul>
-                  </div>
+                  {!loading ? (
+                    <div className="swap-area-middle">
+                      <ul>
+                        <li>
+                          <span>{t("Price")}</span>
+
+                          <span id="rate">
+                            1 {rate.from_wallet} = {rate.rate ? rate.rate : "0"}{" "}
+                            {rate.to_wallet}
+                          </span>
+                        </li>
+                        <li>
+                          <span>{t("You will spend")}</span>
+
+                          <span className="spend">
+                            {rate.convert_rate} {rate.to_wallet}
+                          </span>
+                        </li>
+                      </ul>
+                    </div>
+                  ) : (
+                    <SmallLoading />
+                  )}
+
                   <div className="swap-area-bottom">
                     <button
                       className="primary-btn-outline"
@@ -302,17 +301,62 @@ const SwapCoin: NextPage = ({
                         !toSelected.amount ||
                         !toSelected.coin_id
                       }
-                      onClick={() => {
-                        swapCoinAction(
-                          fromSelected.amount,
-                          fromSelected.coin_id,
-                          toSelected.coin_id,
-                          setLoading
-                        );
-                      }}
+                      // onClick={() => {
+                      //   swapCoinAction(
+                      //     fromSelected.amount,
+                      //     fromSelected.coin_id,
+                      //     toSelected.coin_id,
+                      //     setLoading
+                      //   );
+                      // }}
+                      data-toggle="modal"
+                      data-target="#exampleModal"
                     >
                       {t("convert")}
                     </button>
+
+                    <div
+                      className="modal fade"
+                      id="exampleModal"
+                      role="dialog"
+                      aria-labelledby="exampleModalLabel"
+                      aria-hidden="true"
+                    >
+                      <div className="modal-dialog" role="document">
+                        <div className="modal-content">
+                          <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLabel">
+                              Are You sure?
+                            </h5>
+                          </div>
+
+                          <div className="modal-footer">
+                            <button
+                              type="button"
+                              className="btn btn-danger"
+                              data-dismiss="modal"
+                            >
+                              No
+                            </button>
+                            <button
+                              type="button"
+                              className="btn btn-success"
+                              onClick={() => {
+                                swapCoinAction(
+                                  fromSelected.amount,
+                                  fromSelected.coin_id,
+                                  toSelected.coin_id,
+                                  setLoading
+                                );
+                              }}
+                              data-dismiss="modal"
+                            >
+                              Yes
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

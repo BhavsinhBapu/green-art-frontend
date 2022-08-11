@@ -109,7 +109,7 @@ const StopLimit = ({
                   <input
                     name="stop"
                     type="number"
-                    placeholder=""
+                    placeholder="0"
                     className="form-control number_only"
                     value={
                       buySellStopLimitCoinData?.stop !== 0 &&
@@ -137,7 +137,7 @@ const StopLimit = ({
                   <input
                     name="limit"
                     type="number"
-                    placeholder=""
+                    placeholder="0"
                     className="form-control number_only"
                     value={
                       buySellStopLimitCoinData?.limit !== 0 &&
@@ -166,7 +166,7 @@ const StopLimit = ({
                   <input
                     name="amount"
                     type="number"
-                    placeholder=""
+                    placeholder="0"
                     className="form-control number_only"
                     value={
                       buySellStopLimitCoinData?.amount !== 0 &&

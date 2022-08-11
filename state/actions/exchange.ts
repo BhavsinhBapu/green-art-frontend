@@ -30,8 +30,9 @@ import Cookies from "js-cookie";
 import Router from "next/router";
 
 export const initialDashboardCallAction =
-  (pair: string, dashboard: any) => async (dispatch: any) => {
-    dispatch(setLoading(true));
+  (pair: string, dashboard: any, setisLoading?: any) =>
+  async (dispatch: any) => {
+    setisLoading && setisLoading(true);
     const token = Cookies.get("token");
     const response = await appDashboardData(pair);
     // if (
@@ -110,14 +111,16 @@ export const initialDashboardCallAction =
       dispatch(
         setAllmarketTrades(marketTradesDashboardResponse.data.transactions)
       );
+      setisLoading && setisLoading(false);
     }
-    dispatch(setLoading(false));
   };
 
 export const initialDashboardCallActionWithToken =
-  (pair: string, dashboard: any) => async (dispatch: any) => {
+  (pair: string, dashboard: any, setisLoading?: any) =>
+  async (dispatch: any) => {
+    setisLoading && setisLoading(true);
     const token = Cookies.get("token");
-    dispatch(setLoading(true));
+
     if (token) {
       const ordersHistoryResponse = await ordersHistoryDashboard(
         dashboard?.order_data?.base_coin_id,
@@ -157,8 +160,8 @@ export const initialDashboardCallActionWithToken =
       dispatch(
         setAllmarketTrades(marketTradesDashboardResponse.data.transactions)
       );
+      setisLoading && setisLoading(false);
     }
-    dispatch(setLoading(false));
   };
 
 export const buyLimitAppAction = async (

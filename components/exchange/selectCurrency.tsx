@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Tooltip from "rc-tooltip";
+import "rc-tooltip/assets/bootstrap.css";
 import { RootState } from "state/store";
 import { setCurrentPair } from "state/reducer/exchange";
 import { useRouter } from "next/router";
@@ -43,19 +45,32 @@ const SelectCurrency = () => {
       sortable: true,
       cell: (row: any) => {
         return (
-          <div
-            onClick={async () => {
-              await localStorage.setItem("base_coin_id", row?.parent_coin_id);
-              await localStorage.setItem("trade_coin_id", row?.child_coin_id);
-              await localStorage.setItem("current_pair", row.coin_pair);
-
-              await dispatch(setCurrentPair(row.coin_pair));
-
-              router.reload();
-            }}
+          <Tooltip
+            placement={"left"}
+            overlay={
+              <span>
+                <span>
+                  {t("Last Price:")} {row.last_price}
+                </span>
+              </span>
+            }
+            trigger={["hover"]}
+            overlayClassName="rcTooltipOverlay"
           >
-            <span className="coin-name">{row?.coin_pair_name}</span>
-          </div>
+            <div
+              onClick={async () => {
+                await localStorage.setItem("base_coin_id", row?.parent_coin_id);
+                await localStorage.setItem("trade_coin_id", row?.child_coin_id);
+                await localStorage.setItem("current_pair", row.coin_pair);
+
+                await dispatch(setCurrentPair(row.coin_pair));
+
+                router.reload();
+              }}
+            >
+              <span className="coin-name">{row?.coin_pair_name}</span>
+            </div>
+          </Tooltip>
         );
       },
     },
@@ -65,9 +80,22 @@ const SelectCurrency = () => {
       sortable: true,
       cell: (row: any) => {
         return (
-          <span className="text-center w-40 text-white">
-            {parseFloat(row.last_price).toFixed(4)}
-          </span>
+          <Tooltip
+            placement={"left"}
+            overlay={
+              <span>
+                <span>
+                  {t("Last Price:")} {row.last_price}
+                </span>
+              </span>
+            }
+            trigger={["hover"]}
+            overlayClassName="rcTooltipOverlay"
+          >
+            <span className="text-center w-40 text-white">
+              {parseFloat(row.last_price).toFixed(4)}
+            </span>
+          </Tooltip>
         );
       },
     },
@@ -78,15 +106,28 @@ const SelectCurrency = () => {
       sortable: true,
       cell: (row: any) => {
         return (
-          <span
-            className={
-              parseFloat(row?.price_change) >= 0
-                ? "text-success"
-                : "text-danger"
+          <Tooltip
+            placement={"left"}
+            overlay={
+              <span>
+                <span>
+                  {t("Last Price:")} {row.last_price}
+                </span>
+              </span>
             }
+            trigger={["hover"]}
+            overlayClassName="rcTooltipOverlay"
           >
-            {parseFloat(row.price_change).toFixed(2)}%
-          </span>
+            <span
+              className={
+                parseFloat(row?.price_change) >= 0
+                  ? "text-success"
+                  : "text-danger"
+              }
+            >
+              {parseFloat(row.price_change).toFixed(2)}%
+            </span>
+          </Tooltip>
         );
       },
     },

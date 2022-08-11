@@ -75,6 +75,7 @@ const CurrencyLevel = () => {
           <span className="label">
             {dashboard?.last_price_data &&
               dashboard?.last_price_data[0]?.last_price}
+            ({dashboard?.order_data?.base_coin})
           </span>
         </li>
         <li>

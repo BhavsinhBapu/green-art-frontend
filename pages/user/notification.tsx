@@ -27,7 +27,7 @@ const NotificationPage = () => {
             alt=""
           />
           <div>
-            <p className="text-black">{item?.title}</p>
+            <h5 className="text-black">{item?.title}</h5>
             <p className="title-body-notifination text-black">
               {item?.notification_body}
             </p>

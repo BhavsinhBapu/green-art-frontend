@@ -131,7 +131,7 @@ const Limit = ({
                   <input
                     name="amount"
                     type="number"
-                    placeholder=""
+                    placeholder="0"
                     className="form-control number_only"
                     value={
                       buySellLimitCoinData.amount !== 0 &&
