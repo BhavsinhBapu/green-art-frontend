@@ -394,22 +394,54 @@ p {
   border-radius: 0;
 }
 .notificationicon {
-  height: 35px;
-  width: 35px;
-  margin: 10px;
-  background: #ededed;
+  /* position: absolute; */
+  height: 5px;
+  width: 5px;
+  background-color: black;
   border-radius: 50%;
   padding: 8px;
-  margin-top: 0;
+  /* bottom: 40px; */
+  margin-right: 10px;
 }
 .notification-body {
   margin-left: 10px;
   margin-right: 10px;
-  border-bottom: 1px solid #d7d7d7;
+  /* border-left: 1px solid #d7d7d7; */
   margin-top: 5px;
   margin-bottom: 5px;
   display: flex;
   padding: 15px;
+  padding-left: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.notification-body::before {
+  content: "";
+  position: absolute;
+  top: 31px;
+  left: 7.5px;
+  z-index: -1;
+  width: 1px;
+  height: 100%;
+  background: #d7d7d7;
+}
+.notification-body-drop {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  border-left: 1px solid #d7d7d7;
+  padding-left: 10px;
+}
+.notification-container {
+  display: flex;
+}
+.notification-time {
+  font-size: 12px;
+  color: #636363;
+  margin-top: 15px;
 }
 .cp-user-top-bar-right .dropdown-menu:before {
   content: "";
@@ -8227,6 +8259,14 @@ table.dataTable.order-column.stripe tbody tr.odd > .sorting_1 {
   background: white;
   padding-top: 20px;
   padding-bottom: 20px;
+  padding: 20px;
+  margin-top: 20px;
+}
+@media (max-width: 768px) {
+  .notification-continer {
+    display: flex;
+    flex-direction: column;
+  }
 }
 .paginate-button {
   font-size: 18px;

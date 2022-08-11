@@ -436,12 +436,7 @@ const Navbar = () => {
                           </button>
                           <div className="dropdown-menu notification-list dropdown-menu-right">
                             {notificationData[0] && (
-                              <div className="notification-body">
-                                <img
-                                  src="/notification.png"
-                                  className="img-fluid notificationicon"
-                                  alt=""
-                                />
+                              <div className="notification-body-drop">
                                 <div>
                                   <p className="title-notifination">
                                     {notificationData[0].title}
@@ -453,12 +448,7 @@ const Navbar = () => {
                               </div>
                             )}
                             {notificationData[1] && (
-                              <div className="notification-body">
-                                <img
-                                  src="/notification.png"
-                                  className="img-fluid notificationicon"
-                                  alt=""
-                                />
+                              <div className="notification-body-drop">
                                 <div>
                                   <p className="title-notifination">
                                     {notificationData[1].title}
@@ -470,12 +460,7 @@ const Navbar = () => {
                               </div>
                             )}
                             {notificationData[2] && (
-                              <div className="notification-body">
-                                <img
-                                  src="/notification.png"
-                                  className="img-fluid notificationicon"
-                                  alt=""
-                                />
+                              <div className="notification-body-drop">
                                 <div>
                                   <p className="title-notifination">
                                     {notificationData[2].title}
