@@ -19,13 +19,13 @@ const Limit = ({
   const [loading, setLoading] = React.useState(false);
   const dispatch = useDispatch();
   const setAmountBasedOnPercentage = (percentage: any) => {
-    const amount =
-      parseFloat(dashboard?.order_data?.total?.trade_wallet?.balance) /
-      parseFloat(buySellLimitCoinData.price);
+    const amountPercentage =
+      parseFloat(dashboard?.order_data?.total?.trade_wallet?.balance) *
+      percentage;
     setBuySellLimitCoinData({
       ...buySellLimitCoinData,
-      amount: amount * percentage,
-      total: amount * percentage * parseFloat(buySellLimitCoinData.price),
+      amount: amountPercentage,
+      total: amountPercentage * parseFloat(buySellLimitCoinData.price),
     });
   };
   return (

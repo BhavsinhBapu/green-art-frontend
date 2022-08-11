@@ -8,6 +8,7 @@ import Navbar from "components/common/navbar";
 import { GetUserInfoByTokenServer } from "service/user";
 import { parseCookies } from "nookies";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 const Home: NextPage = ({
   landing,
   bannerListdata,
@@ -56,6 +57,21 @@ const Home: NextPage = ({
       },
     ],
   };
+  useEffect(() => {
+    //@ts-ignore
+    window.$crisp = [];
+    //@ts-ignore
+    window.CRISP_WEBSITE_ID = "4fcd9fa1-25d7-4059-af88-dfc088545027";
+    (function () {
+      //@ts-ignore
+      var d = document;
+      var s = d.createElement("script");
+      s.src = "https://client.crisp.chat/l.js";
+      //@ts-ignore
+      s.async = 1;
+      d.getElementsByTagName("head")[0].appendChild(s);
+    })();
+  }, []);
   return (
     <div>
       <div>

@@ -20,17 +20,14 @@ const StopLimit = ({
   const { t } = useTranslation("common");
   const dispatch = useDispatch();
   const setAmountBasedOnPercentage = (percentage: any) => {
-    const amount =
-      parseFloat(dashboard?.order_data?.total?.trade_wallet?.balance) /
-      parseFloat(buySellStopLimitCoinData.limit);
+    const amountPercentage =
+      parseFloat(dashboard?.order_data?.total?.trade_wallet?.balance) *
+      percentage;
     setBuySellStopLimitCoinData({
       ...buySellStopLimitCoinData,
-      amount: amount * percentage,
-      total: amount * percentage * parseFloat(buySellStopLimitCoinData.limit),
+      amount: amountPercentage,
+      total: amountPercentage * parseFloat(buySellStopLimitCoinData.limit),
     });
-    console.log(
-      amount * percentage * parseFloat(buySellStopLimitCoinData.limit)
-    );
   };
   return (
     <div id="BuyTabContent" className="tab-content">

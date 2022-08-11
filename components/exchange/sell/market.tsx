@@ -19,13 +19,13 @@ const Market = ({
   const [loading, setLoading] = React.useState(false);
   const dispatch = useDispatch();
   const setAmountBasedOnPercentage = (percentage: any) => {
-    const amount =
-      parseFloat(dashboard?.order_data?.total?.trade_wallet?.balance) /
-      parseFloat(buySellMarketCoinData.price);
+    const amountPercentage =
+      parseFloat(dashboard?.order_data?.total?.trade_wallet?.balance) *
+      percentage;
     setBuySellMarketCoinData({
       ...buySellMarketCoinData,
-      amount: amount * percentage,
-      total: amount * percentage * parseFloat(buySellMarketCoinData.price),
+      amount: amountPercentage,
+      total: amountPercentage * parseFloat(buySellMarketCoinData.price),
     });
   };
   return (
