@@ -1044,7 +1044,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const response = cookies.token
     ? await GetUserInfoByTokenServer(cookies.token)
     : false;
-  console.log(data, "data");
   return {
     props: {
       landing: data,
