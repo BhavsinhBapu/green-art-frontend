@@ -40,7 +40,6 @@ export default {
       if (data.data.Data.length) {
         const myBars = data.data.Data;
         const klines4800 = [...myBars, ...myBars, ...myBars];
-        console.log(klines4800, "klines4800");
         const bars = klines4800.map((el: any) => ({
           time: el.time * 1000,
           low: el.low,

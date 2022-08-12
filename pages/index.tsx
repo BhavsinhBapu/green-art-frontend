@@ -21,6 +21,7 @@ const Home: NextPage = ({
   loggedin,
   landing_banner_image,
   customPageData,
+  copyright_text
 }: any) => {
   const { t } = useTranslation("common");
   const router = useRouter();
@@ -1014,7 +1015,7 @@ const Home: NextPage = ({
                   <div className="col-md-12">
                     <div className="copyright-area text-center text-md-center">
                       <p>
-                        {t("Copyright@2022")} <a href="">{t("TradexPro")}</a>
+                        {copyright_text||t("Copyright@2022")} <a href="">{t("TradexPro")}</a>
                       </p>
                     </div>
                   </div>
@@ -1043,7 +1044,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const response = cookies.token
     ? await GetUserInfoByTokenServer(cookies.token)
     : false;
-
+  console.log(data, "data");
   return {
     props: {
       landing: data,
@@ -1058,6 +1059,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
       landing_banner_image: data?.landing_banner_image
         ? data?.landing_banner_image
         : null,
+      copyright_text:data?.copyright_text,
       customPageData: customPageData.data,
     },
   };

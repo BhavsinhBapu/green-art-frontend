@@ -26,7 +26,6 @@ export default {
         if (data.data.data.length) {
           const myBars = data.data.data;
           const klines4800 = [...myBars];
-          console.log("getBars", klines4800);
           const bars = klines4800.map((el: any) => ({
             time: parseFloat(el[0]) + 1000, // time
             low: parseFloat(el[4]), //low
