@@ -25,14 +25,14 @@ export default {
       (data: any) => {
         if (data.data.data.length) {
           const myBars = data.data.data;
-          const klines4800 = [...myBars];
+          const klines4800 = [...myBars, ...myBars, ...myBars];
           const bars = klines4800.map((el: any) => ({
-            time: parseFloat(el[0]) + 1000, // time
-            low: parseFloat(el[4]), //low
-            high: parseFloat(el[3]), // high
-            open: parseFloat(el[1]), // open
-            close: parseFloat(el[2]), // close
-            volume: parseFloat(el[5]), // volume
+            time: el.time * 1000,
+            low: el.low,
+            high: el.high,
+            open: el.open,
+            close: el.close,
+            volume: el.volume,
           }));
           if (first) {
             const lastBar = bars[bars.length - 1];
