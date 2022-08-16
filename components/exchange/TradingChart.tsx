@@ -129,7 +129,7 @@ export class TVChartContainer extends React.Component<MyProps> {
       // toolbar_bg: getBackgroundColor(this.props.theme),
       //@ts-ignore
       overrides: getChartOverrides(this.props.theme),
-      custom_css_url: "charting_library/chart-v3-ethfinex-theme.css",
+      // custom_css_url: "charting_library/chart-v3-ethfinex-theme.css",
 
       //@ts-ignore
       time_frames: TIME_FRAMES,
