@@ -25,7 +25,6 @@ const SwapCoin: NextPage = ({
   to_wallet,
 }: any) => {
   const { t } = useTranslation("common");
-  console.log(walletLists, "data");
 
   const [loading, setLoading] = React.useState(false);
   let tempfromSelected;

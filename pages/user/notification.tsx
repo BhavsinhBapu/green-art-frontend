@@ -12,7 +12,6 @@ const NotificationPage = () => {
     const data = await notification();
     setNotification(data.data.data);
   };
-  console.log(notificationData, "notificationData");
   useEffect(() => {
     isLoggedIn && getNotifications();
   }, [isLoggedIn]);

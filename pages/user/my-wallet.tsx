@@ -42,7 +42,6 @@ const MyWallet: NextPage = () => {
     {
       /* {JSON.stringify(selectedRow)} */
     }
-    console.log(state, "ssss ");
     setSelectedRow({
       id: state.id,
       index: state.index,

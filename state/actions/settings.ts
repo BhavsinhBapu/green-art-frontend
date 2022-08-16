@@ -53,7 +53,6 @@ export const SetupLanguageAction = async (
   const language = await LanguageSetupApi(credential);
   if (language.success) {
     toast.success(language.message);
-    console.log(language.data, "setLanguageSelected");
     setLanguageSelected(language?.data?.language);
   } else {
     toast.error(language.message);

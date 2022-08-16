@@ -17,7 +17,6 @@ const WirhdrawTab = ({ response, TurnoffSetShow }: any) => {
     status: false,
     message: "",
   });
-  console.log(response, "response");
   const CheckG2faEnabled = async () => {
     const { data } = await UserSettingsApi();
     const { user } = data;

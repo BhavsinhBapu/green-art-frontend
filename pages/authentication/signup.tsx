@@ -215,7 +215,6 @@ const Signup: NextPage = () => {
                             render="explicit"
                             onChange={(response: any) => {
                               setFieldValue("recapcha", response);
-                              console.log("recapcha", response);
                             }}
                           />
                         )}
