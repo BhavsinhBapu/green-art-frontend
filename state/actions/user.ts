@@ -28,7 +28,13 @@ import Router from "next/router";
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
 import { Dispatch, SetStateAction } from "react";
-import { setAllmarketTrades, setBuyOrderHistory, setSellOrderHistory } from "state/reducer/exchange";
+import {
+  setAllmarketTrades,
+  setBuyOrderHistory,
+  setOpenOrderHistory,
+  setSellOrderHistory,
+  setTradeOrderHistory,
+} from "state/reducer/exchange";
 
 export const VerifyEmailAction =
   (credentials: { email: string; code: any }, setProcessing: any) =>
@@ -223,9 +229,11 @@ export const GetUserInfoByTokenAction = () => async (dispatch: any) => {
 export const LogoutAction = () => async (dispatch: any) => {
   Cookies.remove("token");
   dispatch(setAuthenticationState(false));
-  dispatch(setAllmarketTrades([]));
+  // dispatch(setAllmarketTrades([]));
   dispatch(setSellOrderHistory([]));
   dispatch(setBuyOrderHistory([]));
+  dispatch(setTradeOrderHistory([]));
+  dispatch(setOpenOrderHistory([]));
   const currentRoute = Router.pathname;
   const splitRoute = currentRoute.split("/");
   if (splitRoute[1] != "exchange") {

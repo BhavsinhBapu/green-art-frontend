@@ -8,6 +8,8 @@ const TradesHistory = ({ marketTrades }: any) => {
   const { dashboard, currentPair } = useSelector(
     (state: RootState) => state.exchange
   );
+  const { isLoggedIn } = useSelector((state: RootState) => state.user);
+
   return (
     <div className="trades-section1 mt-4">
       <div className="trades-headers mb-3">
