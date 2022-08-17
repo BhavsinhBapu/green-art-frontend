@@ -9553,3 +9553,16 @@ input[type="number"] {
 .dataTables_scrollHeadInner {
   width: 100% !important;
 }
+.notLoggedin {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  color: white;
+  margin-top: 50px;
+}
+.colorTheme {
+  color: #fcd535 !important;
+  cursor: pointer;
+}

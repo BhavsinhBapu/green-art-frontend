@@ -3,6 +3,7 @@ import useTranslation from "next-translate/useTranslation";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
+import NotLoggedin from "./notLoggedin";
 type Props = {
   orderHistory: boolean;
 };
@@ -16,6 +17,7 @@ const OrderHistory = ({
   const { dashboard, currentPair } = useSelector(
     (state: RootState) => state.exchange
   );
+  const { isLoggedIn } = useSelector((state: RootState) => state.user);
   return (
     <div
       className={"tab-pane fade" + (orderHistory ? " show active" : "")}
@@ -103,6 +105,7 @@ const OrderHistory = ({
                   ))}
                 </tbody>
               </table>
+              {!isLoggedIn && <NotLoggedin />}
             </div>
           </div>
           <div
@@ -155,6 +158,7 @@ const OrderHistory = ({
                   ))}
                 </tbody>
               </table>
+              {!isLoggedIn && <NotLoggedin />}
             </div>
           </div>
         </div>

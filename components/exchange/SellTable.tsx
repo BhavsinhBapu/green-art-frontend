@@ -1,5 +1,7 @@
 import useTranslation from "next-translate/useTranslation";
 import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "state/store";
 
 const TradesTable = ({ marketTrades }: any) => {
   const { t } = useTranslation("common");
@@ -42,12 +44,14 @@ const TradesTable = ({ marketTrades }: any) => {
     }
     setTrades(allTradeData.reverse());
   };
+  const { isLoggedIn } = useSelector((state: RootState) => state.user);
+
   useEffect(() => {
     setTradeData();
   }, [marketTrades]);
   return (
     <tbody>
-      {marketTrades?.length === 0 ? (
+      {marketTrades?.length === 0 && isLoggedIn ? (
         <tr className="odd">
           <td valign="top" colSpan={3} className="text-center">
             {t("No data available in table")}

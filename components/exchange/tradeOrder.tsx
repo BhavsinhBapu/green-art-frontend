@@ -3,12 +3,14 @@ import useTranslation from "next-translate/useTranslation";
 import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
+import NotLoggedin from "./notLoggedin";
 
 const TradeOrder = ({ tradeOrder, tradeOrderHistory }: any) => {
   const { t } = useTranslation("common");
   const { dashboard, currentPair } = useSelector(
     (state: RootState) => state.exchange
   );
+  const { isLoggedIn } = useSelector((state: RootState) => state.user);
   return (
     <div
       className={"tab-pane fade" + (tradeOrder ? " show active" : "")}
@@ -52,6 +54,7 @@ const TradeOrder = ({ tradeOrder, tradeOrderHistory }: any) => {
           </tbody>
         </table>
       </div>
+      {!isLoggedIn && <NotLoggedin />}
     </div>
   );
 };

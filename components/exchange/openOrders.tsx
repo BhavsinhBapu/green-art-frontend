@@ -7,12 +7,15 @@ import {
   initialDashboardCallActionWithToken,
 } from "state/actions/exchange";
 import { RootState } from "state/store";
+import NotLoggedin from "./notLoggedin";
 
 type Props = {
   openOrders: boolean;
 };
 const OpenOrders = ({ openOrders, openOrderHistory }: any) => {
   const { t } = useTranslation("common");
+  const { isLoggedIn } = useSelector((state: RootState) => state.user);
+
   const { dashboard, currentPair } = useSelector(
     (state: RootState) => state.exchange
   );
@@ -90,6 +93,7 @@ const OpenOrders = ({ openOrders, openOrderHistory }: any) => {
             ))}
           </tbody>
         </table>
+        {!isLoggedIn && <NotLoggedin />}
       </div>
     </div>
   );

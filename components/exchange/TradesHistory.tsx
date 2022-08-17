@@ -2,12 +2,15 @@ import useTranslation from "next-translate/useTranslation";
 import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
+import NotLoggedin from "./notLoggedin";
 import SellTable from "./SellTable";
 const TradesHistory = ({ marketTrades }: any) => {
   const { t } = useTranslation("common");
   const { dashboard, currentPair } = useSelector(
     (state: RootState) => state.exchange
   );
+  const { isLoggedIn } = useSelector((state: RootState) => state.user);
+
   return (
     <div className="trades-section1 mt-4">
       <div className="trades-headers mb-3">
@@ -89,6 +92,7 @@ const TradesHistory = ({ marketTrades }: any) => {
 
                   <SellTable marketTrades={marketTrades} />
                 </table>
+                {!isLoggedIn && <NotLoggedin />}
               </div>
             </div>
             <div
