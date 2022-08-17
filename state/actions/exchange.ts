@@ -68,6 +68,15 @@ export const initialDashboardCallAction =
       50
     );
     dispatch(setOpenBooksell(SellResponse?.data?.orders));
+    const marketTradesDashboardResponse = await marketTradesDashboard(
+      response.order_data.base_coin_id,
+      response.order_data.trade_coin_id,
+      "dashboard",
+      50
+    );
+    dispatch(
+      setAllmarketTrades(marketTradesDashboardResponse.data.transactions)
+    );
     if (
       response.order_data.base_coin_id &&
       response.order_data.trade_coin_id &&
@@ -102,16 +111,8 @@ export const initialDashboardCallAction =
       dispatch(
         setTradeOrderHistory(tradeOrderHistoryResponse?.data?.transactions)
       );
-      const marketTradesDashboardResponse = await marketTradesDashboard(
-        response.order_data.base_coin_id,
-        response.order_data.trade_coin_id,
-        "dashboard",
-        50
-      );
-      dispatch(
-        setAllmarketTrades(marketTradesDashboardResponse.data.transactions)
-      );
     }
+
     setisLoading && setisLoading(false);
   };
 
