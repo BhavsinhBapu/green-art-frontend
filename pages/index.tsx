@@ -6,9 +6,10 @@ import useTranslation from "next-translate/useTranslation";
 
 import Navbar from "components/common/navbar";
 import { GetUserInfoByTokenServer } from "service/user";
-import { parseCookies } from "nookies";
+import { parseCookies, destroyCookie } from "nookies";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import Footer from "components/common/footer";
 const Home: NextPage = ({
   landing,
   bannerListdata,
@@ -21,7 +22,7 @@ const Home: NextPage = ({
   loggedin,
   landing_banner_image,
   customPageData,
-  copyright_text
+  copyright_text,
 }: any) => {
   const { t } = useTranslation("common");
   const router = useRouter();
@@ -915,115 +916,11 @@ const Home: NextPage = ({
         </section>
         {/* Start trading area end here  */}
         {/* footer area start here */}
-        <footer className="footer-area pt--70">
-          <div className="footer-top">
-            <div className="container">
-              <div className="row">
-                <div className="col-lg-3 col-md-6 col-sm-6 mb-30">
-                  <div className="single-wedgets text-widget">
-                    <div className="widget-title">
-                      <h4>{t("Products")}</h4>
-                    </div>
-                    <div className="widget-inner">
-                      <ul>
-                        {customPageData?.map(
-                          (item: any) =>
-                            item.type === 1 && (
-                              <li>
-                                <Link href={"/page-details/" + item.key}>
-                                  {item.title}
-                                </Link>
-                              </li>
-                            )
-                        )}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-lg-3 col-md-6 col-sm-6 mb-30">
-                  <div className="single-wedgets text-widget">
-                    <div className="widget-title">
-                      <h4>{t("Service")}</h4>
-                    </div>
-                    <div className="widget-inner">
-                      <ul>
-                        {customPageData?.map(
-                          (item: any) =>
-                            item.type === 2 && (
-                              <li>
-                                <Link href={"/page-details/" + item.key}>
-                                  {item.title}
-                                </Link>
-                              </li>
-                            )
-                        )}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-lg-3 col-md-6 col-sm-6 mb-30">
-                  <div className="single-wedgets text-widget">
-                    <div className="widget-title">
-                      <h4>{t("Support")}</h4>
-                    </div>
-                    <div className="widget-inner">
-                      <ul>
-                        {customPageData?.map(
-                          (item: any) =>
-                            item.type === 3 && (
-                              <li>
-                                <Link href={"/page-details/" + item.key}>
-                                  {item.title}
-                                </Link>
-                              </li>
-                            )
-                        )}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-lg-2 col-md-6 col-sm-6">
-                  <div className="single-wedgets social-link">
-                    <div className="widget-title">
-                      <h4>{t("Community")}</h4>
-                    </div>
-                    <div className="widget-inner">
-                      <ul>
-                        {socialData?.map((social: any, index: any) => (
-                          <li key={index}>
-                            <a href={social.media_link}>
-                              <img
-                                src={social.media_icon}
-                                alt={social.media_title}
-                                height={20}
-                                width={20}
-                              />
-                            </a>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="footer-bottom">
-            <div className="container">
-              <div className="footer-bottom-wrap">
-                <div className="row align-items-center">
-                  <div className="col-md-12">
-                    <div className="copyright-area text-center text-md-center">
-                      <p>
-                        {copyright_text||t("Copyright@2022")} <a href="">{t("TradexPro")}</a>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </footer>
+        <Footer
+          customPageData={customPageData}
+          socialData={socialData}
+          copyright_text={copyright_text}
+        />
 
         <a
           id="scrollUp"
@@ -1041,9 +938,16 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const { data } = await landingPage();
   const cookies = parseCookies(ctx);
   const { data: customPageData } = await customPage();
-  const response = cookies.token
-    ? await GetUserInfoByTokenServer(cookies.token)
-    : false;
+  let response;
+  try {
+    response = cookies.token
+      ? await GetUserInfoByTokenServer(cookies.token)
+      : false;
+  } catch (error) {
+    //@ts-ignore
+    cookies.token = null;
+    destroyCookie(ctx, "token");
+  }
   return {
     props: {
       landing: data,
@@ -1054,11 +958,11 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
       asset_coin_pairs: data.asset_coin_pairs,
       hourly_coin_pairs: data.hourly_coin_pairs,
       latest_coin_pairs: data.latest_coin_pairs,
-      loggedin: cookies.token ? response.success : false,
+      loggedin: cookies.token ? true : false,
       landing_banner_image: data?.landing_banner_image
         ? data?.landing_banner_image
         : null,
-      copyright_text:data?.copyright_text,
+      copyright_text: data?.copyright_text,
       customPageData: customPageData.data,
     },
   };

@@ -84,7 +84,7 @@ const Navbar = () => {
                     href={
                       isLoggedIn === true
                         ? "/user/my-wallet"
-                        : "authentication/signin"
+                        : "/authentication/signin"
                     }
                   >
                     <li

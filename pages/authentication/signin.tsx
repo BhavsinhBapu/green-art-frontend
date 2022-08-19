@@ -11,6 +11,7 @@ import Link from "next/link";
 import { authPageRequireCheck } from "middlewares/ssr-authentication-check";
 import { RecapCha } from "service/user";
 import useTranslation from "next-translate/useTranslation";
+import { destroyCookie } from "nookies";
 const Signin: NextPage = () => {
   const { t } = useTranslation("common");
   const [showPassword, setShowPassword] = useState(false);
@@ -79,11 +80,11 @@ const Signin: NextPage = () => {
                           placeholder={t("Your email here")}
                         />
                       </div>
-                      <ErrorMessage
+                      {/* <ErrorMessage
                         name="email"
                         component="div"
                         className="red-text"
-                      />
+                      /> */}
                       <div className="form-group">
                         <Field
                           type={showPassword ? "text" : "password"}
@@ -108,11 +109,11 @@ const Signin: NextPage = () => {
                           )}
                         </span>
                       </div>
-                      <ErrorMessage
+                      {/* <ErrorMessage
                         name="password"
                         component="div"
                         className="red-text"
-                      />
+                      /> */}
                       <div className="form-group">
                         <p className="invalid-feedback">{t("Message")}</p>
                       </div>
@@ -192,7 +193,12 @@ const Signin: NextPage = () => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
-  await authPageRequireCheck(ctx);
+  try {
+    await authPageRequireCheck(ctx);
+  } catch (error) {
+    destroyCookie(ctx, "token");
+    console.log(error, "error");
+  }
   return {
     props: {},
   };

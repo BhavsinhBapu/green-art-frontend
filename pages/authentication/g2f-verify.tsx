@@ -56,11 +56,11 @@ const G2fverify = () => {
                     placeholder="code"
                   />
                 </div>
-                <ErrorMessage
+                {/* <ErrorMessage
                   name="email"
                   component="div"
                   className="red-text"
-                />
+                /> */}
                 <button
                   type="submit"
                   className="btn btn-primary nimmu-user-sibmit-button"

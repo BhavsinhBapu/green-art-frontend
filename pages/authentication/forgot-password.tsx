@@ -74,11 +74,11 @@ const ForgotPassword: NextPage = () => {
                           placeholder={t("Your email here")}
                         />
                       </div>
-                      <ErrorMessage
+                      {/* <ErrorMessage
                         name="email"
                         component="div"
                         className="red-text"
-                      />
+                      /> */}
                       {recaptchaData?.NOCAPTCHA_SITEKEY &&
                         recaptchaData?.google_recapcha === "1" && (
                           <ReCAPTCHA

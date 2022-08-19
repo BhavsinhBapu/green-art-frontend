@@ -77,11 +77,11 @@ const Signin: NextPage = () => {
                           placeholder={t("Your email here")}
                         />
                       </div>
-                      <ErrorMessage
+                      {/* <ErrorMessage
                         name="email"
                         component="div"
                         className="red-text"
-                      />
+                      /> */}
                       <div className="form-group">
                         <Field
                           type={"number"}

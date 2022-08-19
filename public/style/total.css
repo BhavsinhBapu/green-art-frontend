@@ -3934,6 +3934,13 @@ table.table {
   font-weight: 600;
   box-sizing: border-box;
 }
+.cover-image {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 /* .summber-coin-type {
   position: relative;
 } */
@@ -4735,7 +4742,10 @@ select:-webkit-autofill:focus {
 }
 .section-wrapper {
   background: #ffffff;
-  padding: 30px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 .section-wrapper.rounded-sm {
   border-radius: 10px;
@@ -5876,7 +5886,7 @@ table.dataTable tbody tr td {
     width: 100px;
   }
   .section-wrapper {
-    padding: 30px 15px;
+    padding: 30px;
   }
   .section-top-wrap {
     padding: 25px 15px;

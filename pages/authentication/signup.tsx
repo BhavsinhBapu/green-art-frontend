@@ -101,11 +101,11 @@ const Signup: NextPage = () => {
                           placeholder={t("Your first name here")}
                         />
                       </div>
-                      <ErrorMessage
+                      {/* <ErrorMessage
                         name="first_name"
                         component="div"
                         className="red-text"
-                      />
+                      /> */}
                       <div className="form-group">
                         <Field
                           type="text"
@@ -119,11 +119,11 @@ const Signup: NextPage = () => {
                           placeholder={t("Your last name here")}
                         />
                       </div>
-                      <ErrorMessage
+                      {/* <ErrorMessage
                         name="last_name"
                         component="div"
                         className="red-text"
-                      />
+                      /> */}
                       <div className="form-group">
                         <Field
                           type="email"
@@ -135,11 +135,11 @@ const Signup: NextPage = () => {
                           placeholder={t("Your email here")}
                         />
                       </div>
-                      <ErrorMessage
+                      {/* <ErrorMessage
                         name="email"
                         component="div"
                         className="red-text"
-                      />
+                      /> */}
                       <div className="form-group">
                         <Field
                           type={showPassword.password ? "text" : "password"}
@@ -165,11 +165,11 @@ const Signup: NextPage = () => {
                           <i className="fa fa-eye-slash toggle-password"></i>
                         </span>
                       </div>
-                      <ErrorMessage
+                      {/* <ErrorMessage
                         name="password"
                         component="div"
                         className="red-text"
-                      />
+                      /> */}
 
                       <div className="form-group">
                         <Field
@@ -199,11 +199,11 @@ const Signup: NextPage = () => {
                           <i className="fa fa-eye-slash toggle-password"></i>
                         </span>
                       </div>
-                      <ErrorMessage
+                      {/* <ErrorMessage
                         name="password_confirmation"
                         component="div"
                         className="red-text"
-                      />
+                      /> */}
                       <div className="form-group">
                         <label></label>
                         <p className="invalid-feedback">{t("Message")} </p>
