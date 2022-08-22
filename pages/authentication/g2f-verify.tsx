@@ -63,7 +63,7 @@ const G2fverify = () => {
                 /> */}
                 <button
                   type="submit"
-                  className="btn btn-primary nimmu-user-sibmit-button"
+                  className="btn btn-primary nimmu-user-sibmit-button mt-3"
                 >
                   {t("Verify")}
                 </button>

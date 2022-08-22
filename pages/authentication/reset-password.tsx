@@ -158,7 +158,7 @@ const ResetPassword: NextPage = () => {
                         )}
                       <button
                         type="submit"
-                        className="btn nimmu-user-sibmit-button"
+                        className="btn nimmu-user-sibmit-button mt-3"
                       >
                         {processing ? (
                           <>
