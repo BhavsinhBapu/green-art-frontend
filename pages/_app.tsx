@@ -8,15 +8,22 @@ import "slick-carousel/slick/slick-theme.css";
 import "/public/style/app.css";
 import "/public/style/total.css";
 import "/public/style/responsive.css";
-
+import "../styles/nprogress.css";
 import Head from "next/head";
 
 // import "bootstrap/dist/css/bootstrap.min.css";
 import Layout from "layout/index";
-import Script from "next/script";
+import NProgress from "nprogress";
+import { useEffect } from "react";
+import Router from "next/router";
 import useTranslation from "next-translate/useTranslation";
 function MyApp({ Component, pageProps }: AppProps) {
   const { t } = useTranslation("common");
+  useEffect(() => {
+    Router.events.on("routeChangeStart", () => NProgress.start());
+    Router.events.on("routeChangeComplete", () => NProgress.done());
+    Router.events.on("routeChangeError", () => NProgress.done());
+  }, []);
   return (
     <>
       <Head>

@@ -175,12 +175,6 @@ const SwapHistory: NextPage = () => {
                     </div>
                     <DataTable columns={columns} data={history} />
 
-                    {history?.length <= 0 && (
-                      <div className="no_data_table">
-                        {t("No data available in table")}
-                      </div>
-                    )}
-
                     <div
                       className="pagination-wrapper"
                       id="assetBalances_paginate"

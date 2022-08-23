@@ -4745,10 +4745,17 @@ select:-webkit-autofill:focus {
   padding: 40px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  /* align-items: flex-start; */
 }
 .section-wrapper.rounded-sm {
   border-radius: 10px;
+}
+.section-wrapper-withHtml {
+  background: #ffffff;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 .primary-btn-sm {
   display: inline-block;
@@ -8282,6 +8289,7 @@ table.dataTable.order-column.stripe tbody tr.odd > .sorting_1 {
   font-size: 18px;
   font-weight: 400 !important;
   color: #777778;
+  cursor: pointer;
   padding: 0;
   border: none !important;
   background: transparent !important;
@@ -8291,6 +8299,7 @@ table.dataTable.order-column.stripe tbody tr.odd > .sorting_1 {
   font-weight: 400;
   color: #777778;
   padding: 0;
+  cursor: pointer;
   border: none !important;
   background: transparent !important;
   margin-left: 10px;
