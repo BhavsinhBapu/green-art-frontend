@@ -9,7 +9,8 @@ import {
   customPageWithSlug,
   landingPage,
 } from "service/landing-page";
-
+//@ts-ignore
+import sanitizeHtml from "sanitize-html";
 const Bannerdetails = ({
   details,
   status,
@@ -18,11 +19,50 @@ const Bannerdetails = ({
   copyright_text,
 }: any) => {
   const { t } = useTranslation("common");
+  const clean = (dirty: any) => {
+    return sanitizeHtml(dirty, {
+      allowedTags: [
+        "b",
+        "i",
+        "em",
+        "strong",
+        "a",
+        "font",
+        "h1",
+        "h2",
+        "h3",
+        "h4",
+        "h5",
+        "h6",
+        "div",
+        "p",
+        "br",
+        "hr",
+        "head",
+      ],
+      allowedAttributes: {
+        a: ["href", "target", "style"],
+        div: ["href", "target", "style"],
+        b: ["href", "target", "style"],
+        i: ["href", "target", "style"],
+        em: ["href", "target", "style"],
+        strong: ["href", "target", "style"],
+        font: ["href", "target", "style"],
+        h1: ["href", "target", "style"],
+        h2: ["href", "target", "style"],
+        h3: ["href", "target", "style"],
+        h4: ["href", "target", "style"],
+        h5: ["href", "target", "style"],
+        h6: ["href", "target", "style"],
+        p: ["href", "target", "style"],
+      },
+    });
+  };
 
   if (status === false) {
     return (
       <div className="container ">
-        <div className="section-wrapper text-center">
+        <div className="section-wrapper-withHtml text-center">
           <h4>{t("404 not found")}</h4>
         </div>
       </div>
@@ -31,7 +71,7 @@ const Bannerdetails = ({
   return (
     <>
       <div className="container mb-5">
-        <div className="section-wrapper text-center">
+        <div className="section-wrapper-withHtml text-center">
           <img src={details.image} />
           <h1 className="display-4 mt-3">{details.title}</h1>
           <p className="mt-2 mb-2">
@@ -39,10 +79,7 @@ const Bannerdetails = ({
           </p>
           <div
             dangerouslySetInnerHTML={{
-              __html: details.description.replace(
-                /(<? *script)/gi,
-                "illegalscript"
-              ),
+              __html: clean(details.description),
             }}
           ></div>
         </div>
