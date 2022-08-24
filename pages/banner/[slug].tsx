@@ -70,7 +70,7 @@ const Bannerdetails = ({
   return (
     <>
       <div className="container mb-5">
-        <div className="section-wrapper-withHtml text-center">
+        <div className="section-wrapper-withHtml ">
           <h1 className="display-4 mb-2">{details.title}</h1>
           <p className="mb-2">
             Last revised: {formateData(details.updated_at)}
