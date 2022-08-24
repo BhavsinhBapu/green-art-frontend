@@ -71,7 +71,7 @@ const Bannerdetails = ({
   return (
     <>
       <div className="container mb-5">
-        <div className="section-wrapper-withHtml text-center">
+        <div className="section-wrapper-withHtml ">
           <img src={details.image} />
           <h1 className="display-4 mt-3">{details.title}</h1>
           <p className="mt-2 mb-2">
