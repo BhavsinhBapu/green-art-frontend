@@ -45,7 +45,6 @@ const DepositTab = ({ response, TurnoffSetShow }: any) => {
                   {formateZert(response?.deposit?.balance)}
                   {response?.deposit?.coin_type}
                 </h3>
-                {/* <h4>0.00000000sssss USD</h4> */}
               </div>
             </div>
 

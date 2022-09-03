@@ -6,9 +6,7 @@ import { RootState } from "state/store";
 import BuyTable from "./BuyTable";
 const AllSellOrders = ({ OpenBooksell }: any) => {
   const { t } = useTranslation("common");
-  const { dashboard, currentPair } = useSelector(
-    (state: RootState) => state.exchange
-  );
+  const { dashboard } = useSelector((state: RootState) => state.exchange);
   return (
     <div className="buy-order">
       <div className="trades-table">

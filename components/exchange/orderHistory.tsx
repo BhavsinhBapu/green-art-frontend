@@ -1,6 +1,6 @@
 import { formateData } from "common";
 import useTranslation from "next-translate/useTranslation";
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
 import NotLoggedin from "./notLoggedin";
@@ -14,9 +14,7 @@ const OrderHistory = ({
   buyOrderHistoryState,
 }: any) => {
   const { t } = useTranslation("common");
-  const { dashboard, currentPair } = useSelector(
-    (state: RootState) => state.exchange
-  );
+  const { dashboard } = useSelector((state: RootState) => state.exchange);
   const { isLoggedIn } = useSelector((state: RootState) => state.user);
   return (
     <div

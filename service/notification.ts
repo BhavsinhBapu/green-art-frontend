@@ -1,6 +1,5 @@
 import request from "lib/request";
 
-// notifications;
 
 export const notification = async () => {
   return request.get("/notifications");

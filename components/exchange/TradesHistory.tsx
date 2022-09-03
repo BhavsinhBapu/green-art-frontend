@@ -5,10 +5,9 @@ import { RootState } from "state/store";
 import SellTable from "./SellTable";
 const TradesHistory = ({ marketTrades }: any) => {
   const { t } = useTranslation("common");
-  const { dashboard, currentPair } = useSelector(
+  const { dashboard } = useSelector(
     (state: RootState) => state.exchange
   );
-  const { isLoggedIn } = useSelector((state: RootState) => state.user);
 
   return (
     <div className="trades-section1 mt-4">

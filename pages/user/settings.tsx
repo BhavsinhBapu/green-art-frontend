@@ -1,11 +1,8 @@
 import type { GetServerSideProps, NextPage } from "next";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { useEffect, useState } from "react";
-import { setLoading } from "state/reducer/user";
 import {
   UserSettingsAction,
-  SetupGoogle2faAction,
-  SetupLanguageAction,
   Google2faLoginAction,
 } from "state/actions/settings";
 import GoogleAuthModal from "components/settings/GoogleAuthModal";
@@ -14,18 +11,12 @@ import { useDispatch } from "react-redux";
 const Settings: NextPage = () => {
   const dispatch = useDispatch();
   const [settings, setSettings] = useState<any>();
-  const [languageSelected, setLanguageSelected] = useState<string>();
-  const [languageList, setLanguageList] = useState<any>([]);
-  const [languageUpdate, setLanguageUpdate] = useState<string>("");
 
   useEffect(() => {
-    dispatch(
-      UserSettingsAction(setSettings, setLanguageList, setLanguageSelected)
-    );
+    dispatch(UserSettingsAction(setSettings));
 
     return () => {
       setSettings(null);
-      setLanguageList([]);
     };
   }, []);
   return (
@@ -101,11 +92,6 @@ const Settings: NextPage = () => {
                               <input
                                 type="checkbox"
                                 name="google_login_enable"
-                                // defaultChecked={
-                                //   settings?.user?.g2f_enabled === "1"
-                                //     ? true
-                                //     : false
-                                // }
                                 checked={
                                   settings?.user?.g2f_enabled === "1"
                                     ? true

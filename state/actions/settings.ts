@@ -3,36 +3,17 @@ import { toast } from "react-toastify";
 import {
   UserSettingsApi,
   Google2faSetupApi,
-  LanguageListApi,
   Google2faLoginApi,
   LanguageSetupApi,
 } from "service/settings";
 import { setLoading } from "state/reducer/user";
 
 export const UserSettingsAction =
-  (
-    setSettings: React.Dispatch<SetStateAction<object>>,
-    setLanguageList: React.Dispatch<
-      SetStateAction<
-        Array<
-          [
-            {
-              lang: string;
-              key: string;
-            }
-          ]
-        >
-      >
-    >,
-    setLanguageSelected: any
-  ) =>
+  (setSettings: React.Dispatch<SetStateAction<object>>) =>
   async (dispatch: any) => {
     dispatch(setLoading(true));
     const settings = await UserSettingsApi();
-    const language = await LanguageListApi();
     setSettings(settings.data);
-    setLanguageSelected(settings.data?.user?.language);
-    setLanguageList(language.data);
     dispatch(setLoading(false));
   };
 export const Google2faLoginAction = async () => {
@@ -68,9 +49,7 @@ export const SetupGoogle2faAction = async (
   setSettings: any
 ) => {
   const setup = await Google2faSetupApi(credentials);
-  // toast.success(setup.message);
   toast.warning(setup.message);
-  // setSettings({ user: setup.data });
   const settings = await UserSettingsApi();
   setSettings(settings.data);
   return setup.data;

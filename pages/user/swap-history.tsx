@@ -7,7 +7,6 @@ import {
 } from "state/actions/reports";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import TableLoading from "components/common/TableLoading";
-import { formateData } from "common";
 import useTranslation from "next-translate/useTranslation";
 import moment from "moment";
 import DataTable from "react-data-table-component";

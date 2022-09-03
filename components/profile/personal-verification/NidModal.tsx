@@ -1,6 +1,5 @@
 import useTranslation from "next-translate/useTranslation";
 import React, { useEffect, useState } from "react";
-import { useDropzone } from "react-dropzone";
 import {
   UploadDrivingLicenceImageAction,
   UploadNidImageAction,
@@ -25,7 +24,6 @@ const NidModal = ({ type, kycDetails }: any) => {
   });
   const storeSelectedFile = (e: any, setState: any, side: number) => {
     var reader = new FileReader();
-    var url = reader.readAsDataURL(e.target.files[0]);
     reader.onloadend = function (e) {
       setState(reader.result);
     };

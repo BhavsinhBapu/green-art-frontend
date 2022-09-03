@@ -118,140 +118,6 @@ export const LIGHT_THEME_STYLE = {
   },
 };
 
-// export const DARK_THEME_STYLE = {
-//   bg: COLORS.dark.bg,
-//   crosshair: '#626c73',
-//   short: COLORS.dark.redDark,
-//   shortFill: COLORS.dark.redLight,
-//   long: COLORS.dark.greenDark,
-//   longFill: COLORS.dark.greenLight,
-//   cta: '#363D52',
-//   ctaHighlight: '#414A67',
-//   alert: '#FFD506',
-//   category: 'dark',
-//   grid: '#28343C',
-//   lineColor: '#555',
-//   textColor: '#999',
-//   transparency: 65,
-//   ordersVis: {
-//     ask: {
-//       lineColor: COLORS.dark.redDark,
-//       bodyTextColor: COLORS.dark.redDark,
-//       quantityTextColor: COLORS.dark.redDark,
-//       cancelButtonIconColor: COLORS.dark.redDark,
-//       bodyBorderColor: COLORS.dark.redLight,
-//       quantityBorderColor: COLORS.dark.redLight,
-//       cancelButtonBorderColor: COLORS.dark.redLight,
-//       bodyBackgroundColor: COLORS.dark.bg,
-//       quantityBackgroundColor: COLORS.dark.bg,
-//       cancelButtonBackgroundColor: COLORS.dark.bg,
-//     },
-//     bid: {
-//       lineColor: COLORS.dark.greenDark,
-//       bodyTextColor: COLORS.dark.greenDark,
-//       quantityTextColor: COLORS.dark.greenDark,
-//       cancelButtonIconColor: COLORS.dark.greenDark,
-//       bodyBorderColor: COLORS.dark.greenLight,
-//       quantityBorderColor: COLORS.dark.greenLight,
-//       cancelButtonBorderColor: COLORS.dark.greenLight,
-//       bodyBackgroundColor: COLORS.dark.bg,
-//       quantityBackgroundColor: COLORS.dark.bg,
-//       cancelButtonBackgroundColor: COLORS.dark.bg,
-//     },
-//   },
-//   posVis: {
-//     lineColor: COLORS.grayscale6,
-//     bodyTextColor: COLORS.grayscale7,
-//     quantityTextColor: COLORS.grayscale7,
-//     cancelButtonIconColor: COLORS.grayscale7,
-//     bodyBorderColor: COLORS.grayscale8,
-//     quantityBorderColor: COLORS.grayscale8,
-//     cancelButtonBorderColor: COLORS.grayscale8,
-//     bodyBackgroundColor: COLORS.grayscale11,
-//     quantityBackgroundColor: COLORS.grayscale11,
-//     cancelButtonBackgroundColor: COLORS.grayscale11,
-//   },
-//   alerts: {
-//     lineColor: COLORS.dark.blueDark,
-//     bodyTextColor: COLORS.dark.blueDark,
-//     quantityTextColor: COLORS.dark.blueDark,
-//     cancelButtonIconColor: COLORS.dark.blueDark,
-//     bodyBorderColor: COLORS.dark.blueLight,
-//     quantityBorderColor: COLORS.dark.blueLight,
-//     cancelButtonBorderColor: COLORS.dark.blueLight,
-//     bodyBackgroundColor: COLORS.dark.bg,
-//     quantityBackgroundColor: COLORS.dark.bg,
-//     cancelButtonBackgroundColor: COLORS.dark.bg,
-//   },
-// };
-
-// export const BLACK_THEME_STYLE = {
-//   bg: COLORS.black.bg,
-//   crosshair: '#2B2F33',
-//   short: COLORS.black.redDark,
-//   shortFill: COLORS.black.redLight,
-//   long: COLORS.black.greenDark,
-//   longFill: COLORS.black.greenLight,
-//   cta: COLORS.black.bg,
-//   ctaHighlight: COLORS.grayscale9,
-//   alert: '#FFD506',
-//   category: 'dark',
-//   grid: '#0D1012',
-//   lineColor: '#555',
-//   textColor: COLORS.grayscale9,
-//   transparency: 65,
-//   ordersVis: {
-//     ask: {
-//       lineColor: COLORS.black.redDark,
-//       bodyTextColor: COLORS.black.redDark,
-//       quantityTextColor: COLORS.black.redDark,
-//       cancelButtonIconColor: COLORS.black.redDark,
-//       bodyBorderColor: COLORS.black.redLight,
-//       quantityBorderColor: COLORS.black.redLight,
-//       cancelButtonBorderColor: COLORS.black.redLight,
-//       bodyBackgroundColor: COLORS.black.bg,
-//       quantityBackgroundColor: COLORS.black.bg,
-//       cancelButtonBackgroundColor: COLORS.black.bg,
-//     },
-//     bid: {
-//       lineColor: COLORS.black.greenDark,
-//       bodyTextColor: COLORS.black.greenDark,
-//       quantityTextColor: COLORS.black.greenDark,
-//       cancelButtonIconColor: COLORS.black.greenDark,
-//       bodyBorderColor: COLORS.black.greenLight,
-//       quantityBorderColor: COLORS.black.greenLight,
-//       cancelButtonBorderColor: COLORS.black.greenLight,
-//       bodyBackgroundColor: COLORS.black.bg,
-//       quantityBackgroundColor: COLORS.black.bg,
-//       cancelButtonBackgroundColor: COLORS.black.bg,
-//     },
-//   },
-//   posVis: {
-//     lineColor: COLORS.grayscale8,
-//     bodyTextColor: COLORS.grayscale7,
-//     quantityTextColor: COLORS.grayscale7,
-//     cancelButtonIconColor: COLORS.grayscale7,
-//     bodyBorderColor: COLORS.grayscale8,
-//     quantityBorderColor: COLORS.grayscale8,
-//     cancelButtonBorderColor: COLORS.grayscale8,
-//     bodyBackgroundColor: COLORS.grayscale15,
-//     quantityBackgroundColor: COLORS.grayscale15,
-//     cancelButtonBackgroundColor: COLORS.grayscale15,
-//   },
-//   alerts: {
-//     lineColor: COLORS.black.blueDark,
-//     bodyTextColor: COLORS.black.blueDark,
-//     quantityTextColor: COLORS.black.blueDark,
-//     cancelButtonIconColor: COLORS.black.blueDark,
-//     bodyBorderColor: COLORS.black.blueLight,
-//     quantityBorderColor: COLORS.black.blueLight,
-//     cancelButtonBorderColor: COLORS.black.blueLight,
-//     bodyBackgroundColor: COLORS.black.bg,
-//     quantityBackgroundColor: COLORS.black.bg,
-//     cancelButtonBackgroundColor: COLORS.black.bg,
-//   },
-// };
-
 export const ETHFINEX_THEME_STYLE = {
   bg: "#211B28", // main background color
   crosshair: "#657474", // cross line color when mouse hover
@@ -330,72 +196,26 @@ export const ETHFINEX_THEME_STYLE = {
 };
 export const THEMES = {
   LIGHT_THEME: "light-theme",
-  //   BLACK_THEME: 'black-theme',
-  //   DARK_THEME: 'dark-theme',
-  // order matters, this one must be the last
   ETHFINEX_THEME: "dark-theme",
 };
 
 export const THEME_MAP = {
   [THEMES.LIGHT_THEME]: LIGHT_THEME_STYLE,
-  //   [THEMES.DARK_THEME]: DARK_THEME_STYLE,
-  //   [THEMES.BLACK_THEME]: BLACK_THEME_STYLE,
+
   [THEMES.ETHFINEX_THEME]: ETHFINEX_THEME_STYLE,
 };
 export function getCurrentStyle(theme = "dark-theme") {
   return THEME_MAP[theme];
 }
 export function getChartOverrides(theme: any) {
-  const style = getCurrentStyle(theme);
   return {
-    // "paneProperties.background": style.bg,
-    // "paneProperties.vertGridProperties.color": style.chartHorizontalLine, // main chart vertical line color
-    // "paneProperties.horzGridProperties.color": style.chartVerticalLine, // main chart horizontal line color
-    // "paneProperties.crossHairProperties.color": style.crosshair,
-    // "scalesProperties.backgroundColor": style.bg,
-    // "scalesProperties.lineColor": style.textColor,
-    // "scalesProperties.textColor": style.textColor,
-    // "symbolWatermarkProperties.color": "rgba(0, 0, 0, 0)",
-    // Note
-    // LINESTYLE_SOLID = 0
-    // LINESTYLE_DOTTED = 1
-    // LINESTYLE_DASHED = 2
-    // LINESTYLE_LARGE_DASHED = 3
-    // Note
-    // 'paneProperties.vertGridProperties.style': 0,
-    // 'paneProperties.horzGridProperties.style': 0,
-    // 'paneProperties.crossHairProperties.width': 2,
-    // 'paneProperties.crossHairProperties.style': 0,
-    // "mainSeriesProperties.style": 9,
-    // //  Candles styles
-    // "mainSeriesProperties.hollowCandleStyle.upColor":
-    //   style.barOuterBorderColorUpColor, // line chart bar inner background color
-    // "mainSeriesProperties.hollowCandleStyle.downColor":
-    //   style.barOuterBorderColorDownColor, // line chart bar inner background color
-    // "mainSeriesProperties.hollowCandleStyle.drawWick": true,
-    // "mainSeriesProperties.hollowCandleStyle.drawBorder": true,
-    // "mainSeriesProperties.hollowCandleStyle.borderColor":
-    //   style.barOuterBorderColorBorderColor,
-    // "mainSeriesProperties.hollowCandleStyle.borderUpColor":
-    //   style.barOuterBorderColorBorderUpColor, // line chart bar outer border color
-    // "mainSeriesProperties.hollowCandleStyle.borderDownColor":
-    //   style.barOuterBorderColorBorderDownColor, // line chart bar outer border color
-    // "mainSeriesProperties.hollowCandleStyle.wickUpColor": style.long,
-    // "mainSeriesProperties.hollowCandleStyle.wickDownColor": style.short,
-    // "study_Overlay@tv-basicstudies.barStyle.upColor": "blue",
-    // "study_Overlay@tv-basicstudies.barStyle.downColor": "blue",
-    // "study_Overlay@tv-basicstudies.lineStyle.color": "blue",
-    // "study_Overlay@tv-basicstudies.areaStyle.color1": "blue",
-    // "study_Overlay@tv-basicstudies.areaStyle.color2": "blue",
-    // "study_Overlay@tv-basicstudies.areaStyle.linecolor": "blue",
+   
   };
 }
 export function getChartStudiesOverrides(theme: any) {
   const style = getCurrentStyle(theme);
   return {
-    // "volume.volume.color.0": style.short,
-    // "volume.volume.color.1": style.long,
-    // "volume.volume.transparency": style.transparency,
+
   };
 }
 export const ENABLED_FEATURES = [

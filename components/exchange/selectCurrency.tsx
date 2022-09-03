@@ -5,7 +5,6 @@ import "rc-tooltip/assets/bootstrap.css";
 import { RootState } from "state/store";
 import { setCurrentPair } from "state/reducer/exchange";
 import { useRouter } from "next/router";
-import Cookies from "js-cookie";
 import useTranslation from "next-translate/useTranslation";
 import DataTable from "react-data-table-component";
 const SelectCurrency = () => {

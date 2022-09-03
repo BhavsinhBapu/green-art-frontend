@@ -1,6 +1,6 @@
 import { formateData } from "common";
 import useTranslation from "next-translate/useTranslation";
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   cancelOrderAppAction,
@@ -9,9 +9,6 @@ import {
 import { RootState } from "state/store";
 import NotLoggedin from "./notLoggedin";
 
-type Props = {
-  openOrders: boolean;
-};
 const OpenOrders = ({ openOrders, openOrderHistory }: any) => {
   const { t } = useTranslation("common");
   const { isLoggedIn } = useSelector((state: RootState) => state.user);

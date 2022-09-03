@@ -20,14 +20,11 @@ import {
   setSellOrderHistory,
   setBuyOrderHistory,
   setTradeOrderHistory,
-  setCurrentPair,
   setAllmarketTrades,
 } from "state/reducer/exchange";
-import { setLoading } from "state/reducer/user";
 import { toast } from "react-toastify";
 import { Dispatch, SetStateAction } from "react";
 import Cookies from "js-cookie";
-import Router from "next/router";
 
 export const initialDashboardCallAction =
   (pair: string, dashboard: any, setisLoading?: any) =>
@@ -35,10 +32,7 @@ export const initialDashboardCallAction =
     setisLoading && setisLoading(true);
     const token = Cookies.get("token");
     const response = await appDashboardData(pair);
-    // if (
-    //   !localStorage.getItem("base_coin_id") &&
-    //   !localStorage.getItem("trade_coin_id")
-    // ) {
+   
 
     await localStorage.setItem(
       "base_coin_id",
@@ -48,7 +42,6 @@ export const initialDashboardCallAction =
       "trade_coin_id",
       response.order_data.trade_coin_id
     );
-    // }
 
     await dispatch(setDashboard(response));
 

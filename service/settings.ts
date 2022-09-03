@@ -23,7 +23,6 @@ export const Google2faLoginApi = async () => {
   const { data } = await request.get("/setup-google2fa-login");
   return data;
 };
-// language-setup;
 
 export const LanguageSetupApi = async (credentials: { language: string }) => {
   const { data } = await request.post("/language-setup", credentials);

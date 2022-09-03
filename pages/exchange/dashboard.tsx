@@ -1,21 +1,11 @@
 import type { NextPage } from "next";
 import DashboardNavbar from "components/common/dashboardNavbar";
 import { useEffect, useState } from "react";
-import dynamic from "next/dynamic";
-const TradingChart = dynamic(
-  () =>
-    import("components/exchange/TradingChart").then(
-      (mod: any) => mod.TVChartContainer
-    ),
-  { ssr: false }
-);
 import Echo from "laravel-echo";
 import Pusher from "pusher-js";
 import Loading from "components/common/loading";
 import SelectCurrency from "components/exchange/selectCurrency";
 import CurrencyLevel from "components/exchange/currencyLevel";
-import OrderHistorySection from "components/exchange/orderHistorySection";
-import ExchangeBox from "components/exchange/ExchangeBox";
 import DashboardBody from "components/exchange/DashboardBody";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "state/store";
@@ -208,7 +198,6 @@ const Dashboard: NextPage = () => {
                     className="close"
                   >
                     <img
-                      // src="/assets/user/images/close.svg"
                       alt=""
                       className="img-fluid"
                     />

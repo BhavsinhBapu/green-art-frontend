@@ -474,8 +474,7 @@ const DashboardNavbar = () => {
                   <div
                     className="cp-user-sidebar-toggler-s2"
                     onClick={() => {
-                      //ADD TOGGLE SIDEBAR TO BODY
-                      // document.body.classList.toggle("sidebar-cllopse");
+        
                       setActive(active ? false : true);
                     }}
                   >

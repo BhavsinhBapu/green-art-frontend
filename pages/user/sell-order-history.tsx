@@ -8,7 +8,6 @@ import {
   handleSearchItems,
 } from "state/actions/reports";
 import TableLoading from "components/common/TableLoading";
-import { formateData } from "common";
 import useTranslation from "next-translate/useTranslation";
 import moment from "moment";
 const SellOrderHistory: NextPage = () => {

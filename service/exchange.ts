@@ -137,7 +137,6 @@ export const openBookDashboard = async (
   );
   return data;
 };
-// get-exchange-market-trades-app
 export const marketTradesDashboard = async (
   base_coin_id: string,
   trade_coin_id: string,
@@ -149,7 +148,6 @@ export const marketTradesDashboard = async (
   );
   return data;
 };
-// cancel - open - order - app;
 export const cancelOrderApp = async (type: string, id: string) => {
   const { data } = await request.post(`/cancel-open-order-app`, {
     type,

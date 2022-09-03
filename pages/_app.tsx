@@ -11,7 +11,6 @@ import "/public/style/responsive.css";
 import "../styles/nprogress.css";
 import Head from "next/head";
 
-// import "bootstrap/dist/css/bootstrap.min.css";
 import Layout from "layout/index";
 import NProgress from "nprogress";
 import { useEffect } from "react";

@@ -9,7 +9,6 @@ import {
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import Loading from "components/common/TableLoading";
 import { useRouter } from "next/router";
-import { formateData } from "common";
 import useTranslation from "next-translate/useTranslation";
 import moment from "moment";
 const DepositHistory: NextPage = () => {

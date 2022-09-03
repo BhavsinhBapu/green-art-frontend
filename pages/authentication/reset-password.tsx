@@ -87,11 +87,7 @@ const ResetPassword: NextPage = () => {
                           placeholder="Your email here"
                         />
                       </div>
-                      {/* <ErrorMessage
-                        name="email"
-                        component="div"
-                        className="red-text"
-                      /> */}
+                     
                       <div className="form-group">
                         <Field
                           type="password"

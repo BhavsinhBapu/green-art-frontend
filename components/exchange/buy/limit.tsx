@@ -19,11 +19,7 @@ const Limit = ({
   const { t } = useTranslation("common");
   const [loading, setLoading] = React.useState(false);
   const dispatch = useDispatch();
-  //   $total = ($request->price * $request->amount);
-  // $feesPercentage = $maker_fees > $taker_fees ? $maker_fees : $taker_fees;
-  // $fees = ($total * $fessper)/100
-
-  // feewithtotal = total + fees;
+ 
   const setAmountBasedOnPercentage = (percentage: any) => {
     const { maker_fees, taker_fees } = dashboard.fees_settings;
     const amount =

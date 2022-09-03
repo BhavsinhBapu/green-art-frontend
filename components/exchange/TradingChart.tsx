@@ -6,7 +6,6 @@ import {
   DISABLED_FEATURES,
   ENABLED_FEATURES,
   getChartOverrides,
-  // getChartStudiesOverrides,
   TIME_FRAMES,
 } from "./api/chartConfig";
 
@@ -24,9 +23,7 @@ const supportedResolutions = [
   "W",
   "M",
 ];
-const config = {
-  supported_resolutions: supportedResolutions,
-};
+
 function getLanguageFromURL() {
   const regex = new RegExp("[\\?&]lang=([^&#]*)");
   const results = regex.exec(window.location.search);
@@ -35,7 +32,6 @@ function getLanguageFromURL() {
     : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 type MyProps = {
-  // using `interface` is also ok
   coinpair: any;
 };
 const pair = localStorage.getItem("current_pair")?.replace("_", "/");
@@ -44,8 +40,7 @@ export class TVChartContainer extends React.Component<MyProps> {
   static defaultProps = {
     symbol: `Tradexpro:${pair ? pair : "BTC/USDT"}`,
     interval: "5",
-    // datafeedUrl: "https://demo_feed.tradingview.com",
-    // datafeed: Datafeed,
+
     containerId: "tv_chart_container",
     libraryPath: "/static/charting_library/",
     chartsStorageUrl: "https://saveload.tradingview.com",
@@ -92,7 +87,6 @@ export class TVChartContainer extends React.Component<MyProps> {
       //@ts-ignore
       library_path: this.props.libraryPath,
       //@ts-ignore
-      // studies_overrides: getChartStudiesOverrides(this.props.theme),
 
       locale: getLanguageFromURL() || "en",
       //@ts-ignore
@@ -125,11 +119,9 @@ export class TVChartContainer extends React.Component<MyProps> {
       enabled_features: ENABLED_FEATURES,
       //@ts-ignore
       disabled_features: DISABLED_FEATURES,
-      //@ts-ignore
-      // toolbar_bg: getBackgroundColor(this.props.theme),
+
       //@ts-ignore
       overrides: getChartOverrides(this.props.theme),
-      // custom_css_url: "charting_library/chart-v3-ethfinex-theme.css",
 
       //@ts-ignore
       time_frames: TIME_FRAMES,

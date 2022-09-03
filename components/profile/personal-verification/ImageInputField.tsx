@@ -10,7 +10,7 @@ const ImageInputField = ({ setter, getter }: any) => {
     },
     [setter]
   );
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+  const { getRootProps, getInputProps } = useDropzone({
     onDrop,
   });
   return (
@@ -18,7 +18,7 @@ const ImageInputField = ({ setter, getter }: any) => {
       <div className="container cstm-img-picker">
         <div {...getRootProps()}>
           <input {...getInputProps()} />
-          <p>{t("Drop the files hereeeeeeeeeee ...")}</p>
+          <p>{t("Drop the files here ...")}</p>
         </div>
       </div>
       <div className="col-lg-6 mb-lg-0 mb-4">

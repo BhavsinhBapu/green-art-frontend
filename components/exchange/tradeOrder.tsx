@@ -7,7 +7,7 @@ import NotLoggedin from "./notLoggedin";
 
 const TradeOrder = ({ tradeOrder, tradeOrderHistory }: any) => {
   const { t } = useTranslation("common");
-  const { dashboard, currentPair } = useSelector(
+  const { dashboard } = useSelector(
     (state: RootState) => state.exchange
   );
   const { isLoggedIn } = useSelector((state: RootState) => state.user);

@@ -24,19 +24,6 @@ request.interceptors.response.use((response: any) => {
   return response;
 });
 
-// export function apiRequest(url: any, params: any, query: any | null) {
-//   let requestUrl = "";
-//   if (query === null) {
-//     requestUrl = url.relativeUrl;
-//   } else {
-//     requestUrl = url.relativeUrl + query;
-//   }
-//   return axios({
-//     method: url.method,
-//     url: requestUrl,
-//     data: params,
-//   });
-// }
 export function apiRequest(base: any, query: any | null) {
   if (query === null) {
     return request(base);

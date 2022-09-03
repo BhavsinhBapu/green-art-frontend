@@ -21,13 +21,9 @@ const Security: NextPage = () => {
     const middleNumbers = phoneNumber.slice(2, 9);
     return phoneNumber.replace(middleNumbers, "*******");
   };
-  const setLanguageSelected = (language: string) => {
-    return language;
-  };
+
   useEffect(() => {
-    dispatch(
-      UserSettingsAction(setSettings, setLanguageList, setLanguageSelected)
-    );
+    dispatch(UserSettingsAction(setSettings));
     return () => {
       setSettings(null);
       setLanguageList([]);

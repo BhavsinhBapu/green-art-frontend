@@ -5,9 +5,7 @@ import { RootState } from "state/store";
 
 const CurrencyLevel = () => {
   const { t } = useTranslation("common");
-  const { dashboard, currentPair } = useSelector(
-    (state: RootState) => state.exchange
-  );
+  const { dashboard } = useSelector((state: RootState) => state.exchange);
   const [volume, setVolume] = React.useState(
     parseFloat(dashboard?.order_data?.total?.trade_wallet?.volume) *
       parseFloat(dashboard?.order_data?.total?.trade_wallet?.last_price)
@@ -26,7 +24,6 @@ const CurrencyLevel = () => {
     <div className="cxchange-summary-featured">
       <ul className="cxchange-summary-items">
         <li>
-          {/* <span className="label">{t("Last price")}</span> */}
           <span
             className={
               parseFloat(

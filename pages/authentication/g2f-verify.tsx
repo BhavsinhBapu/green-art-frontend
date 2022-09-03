@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 
-import { Formik, Field, Form, ErrorMessage } from "formik";
+import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
 import { G2fVerifyAction } from "state/actions/user";
 import { useDispatch } from "react-redux";
@@ -9,7 +9,6 @@ import { GetServerSideProps } from "next";
 import useTranslation from "next-translate/useTranslation";
 const G2fverify = () => {
   const { t } = useTranslation("common");
-  const [processing, setProcessing] = useState(false);
   const dispatch = useDispatch();
   return (
     <div className="user-content-wrapper">
@@ -36,7 +35,6 @@ const G2fverify = () => {
                 .min(6, t("Code must be at least 6 characters")),
             })}
             onSubmit={async (values, { setSubmitting }) => {
-              setProcessing(true);
               const code = parseInt(values.code);
               dispatch(G2fVerifyAction(code));
               setSubmitting(false);
@@ -56,11 +54,7 @@ const G2fverify = () => {
                     placeholder="code"
                   />
                 </div>
-                {/* <ErrorMessage
-                  name="email"
-                  component="div"
-                  className="red-text"
-                /> */}
+
                 <button
                   type="submit"
                   className="btn btn-primary nimmu-user-sibmit-button mt-3"

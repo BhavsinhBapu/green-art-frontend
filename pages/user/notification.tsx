@@ -2,12 +2,12 @@ import useTranslation from "next-translate/useTranslation";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import moment from "moment";
-import { notification, notificationSeen } from "service/notification";
+import { notification } from "service/notification";
 import { RootState } from "state/store";
 const NotificationPage = () => {
   const { t } = useTranslation("common");
   const [notificationData, setNotification] = useState<any>([]);
-  const { isLoggedIn, user } = useSelector((state: RootState) => state.user);
+  const { isLoggedIn } = useSelector((state: RootState) => state.user);
   const getNotifications = async () => {
     const data = await notification();
     setNotification(data.data.data);

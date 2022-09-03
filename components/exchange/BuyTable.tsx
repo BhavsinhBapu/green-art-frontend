@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Tooltip from "rc-tooltip";
 import "rc-tooltip/assets/bootstrap.css";
 import { useDispatch } from "react-redux";
-import { setBuyPrice, setSellPrice } from "state/reducer/exchange";
+import {  setSellPrice } from "state/reducer/exchange";
 import useTranslation from "next-translate/useTranslation";
 const TradesTable = ({ buy, show }: any) => {
   const dispatch = useDispatch();

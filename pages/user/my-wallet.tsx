@@ -4,8 +4,7 @@ import DepositTab from "components/wallet/DepositTab";
 import WirhdrawTab from "components/wallet/WirhdrawTab";
 import { toast } from "react-toastify";
 import React, { useEffect, useState } from "react";
-import { formateZert, sortArray } from "common";
-import DataTable from "react-data-table-component";
+import { formateZert } from "common";
 import {
   SearchObjectArrayFuesJS,
   WalletDepositApiAction,
@@ -38,15 +37,7 @@ const MyWallet: NextPage = () => {
     withdraw: null,
     address: null,
   });
-  const handleChange = (state: any) => {
-    {
-      /* {JSON.stringify(selectedRow)} */
-    }
-    setSelectedRow({
-      id: state.id,
-      index: state.index,
-    });
-  };
+
   const TurnoffSetShow = () => {
     setShow({
       deposit: false,
@@ -58,55 +49,6 @@ const MyWallet: NextPage = () => {
       address: null,
     });
   };
-  const columns = [
-    {
-      name: t("Asset"),
-      selector: (row: any) => row?.name,
-      sortable: true,
-    },
-    {
-      name: t("Symbol"),
-      selector: (row: any) => row?.coin_type,
-      sortable: true,
-    },
-    {
-      name: t("On Order"),
-      cell: (row: any) => {
-        return (
-          <div className="blance-text">
-            <span className="blance market incree">{row?.on_order}</span>
-            <span className="usd">${formateZert(row?.on_order_usd)}</span>
-          </div>
-        );
-      },
-    },
-    {
-      name: t("Available Balance"),
-      cell: (row: any) => {
-        return (
-          <div className="blance-text">
-            <div className="blance">{formateZert(row?.balance)}</div>
-            <div className="usd">
-              ${formateZert(row?.available_balance_usd)}
-            </div>
-          </div>
-        );
-      },
-    },
-    {
-      name: t("Total Balance"),
-      cell: (row: any) => {
-        return (
-          <div className="blance-text">
-            <div className="blance">
-              {formateZert(Number(row?.balance) + Number(row?.on_order))}
-            </div>
-            <div className="usd">${formateZert(row?.total_balance_usd)}</div>
-          </div>
-        );
-      },
-    },
-  ];
 
   const getWalletLists = async (url: string) => {
     const response: any = await WalletListApiAction(url, setProcessing);
@@ -336,12 +278,7 @@ const MyWallet: NextPage = () => {
                           </div>
                         </div>
                       </div>
-                      {/* <DataTable
-                        data={Changeable}
-                        columns={columns}
-                        selectableRowsSingle
-                        onSelectedRowsChange={handleChange}
-                      /> */}
+
                       <table
                         id="assetBalances"
                         className="table table-borderless secendary-table asset-balances-table"

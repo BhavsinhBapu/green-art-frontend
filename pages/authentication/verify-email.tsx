@@ -1,11 +1,7 @@
 import type { GetServerSideProps, NextPage } from "next";
 import * as Yup from "yup";
-import {
-  GetUserInfoByTokenAction,
-  SigninAction,
-  VerifyEmailAction,
-} from "state/actions/user";
-import { useDispatch, useSelector } from "react-redux";
+import { VerifyEmailAction } from "state/actions/user";
+import { useDispatch } from "react-redux";
 import React, { useEffect, useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 //@ts-ignore
@@ -77,11 +73,7 @@ const Signin: NextPage = () => {
                           placeholder={t("Your email here")}
                         />
                       </div>
-                      {/* <ErrorMessage
-                        name="email"
-                        component="div"
-                        className="red-text"
-                      /> */}
+
                       <div className="form-group">
                         <Field
                           type={"number"}

@@ -8,7 +8,6 @@ export const getUserCoinForSwap = async (ctxCookie: string) => {
   });
   return data;
 };
-// get-rate-app?from_coin_id=21&to_coin_id=22&amount=5
 export const getRate = async (
   from_coin_id: number,
   to_coin_id: number,
@@ -35,7 +34,6 @@ export const getRateSsr = async (
   );
   return data;
 };
-// swap - coin - app;
 export const swapCoin = async (
   from_coin_id: number,
   to_coin_id: number,

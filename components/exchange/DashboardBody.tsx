@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
 import AllSellOrders from "./AllSellOrders";
@@ -23,10 +23,8 @@ const DashboardBody = () => {
 
   const {
     dashboard,
-    currentPair,
     OpenBookBuy,
     OpenBooksell,
-    tradeOrderHistory,
     marketTrades,
   } = useSelector((state: RootState) => state.exchange);
   return (

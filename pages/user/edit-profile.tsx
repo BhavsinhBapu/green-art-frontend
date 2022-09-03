@@ -1,6 +1,6 @@
 import type { GetServerSideProps, NextPage } from "next";
 import ProfileSidebar from "layout/profile-sidebar";
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import React from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 
@@ -8,7 +8,7 @@ import countries from "lib/values/country.json";
 import { useDispatch, useSelector } from "react-redux";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { RootState } from "state/store";
-import { Formik, Field, Form, ErrorMessage } from "formik";
+import { Formik, Field, Form } from "formik";
 import { UpdateUserInfoByTokenAction } from "state/actions/user";
 import useTranslation from "next-translate/useTranslation";
 const Edit: NextPage = () => {
@@ -87,7 +87,7 @@ const Edit: NextPage = () => {
                       dispatch(UpdateUserInfoByTokenAction(values));
                     }}
                   >
-                    {({ errors, touched, setFieldValue }) => (
+                    {({ setFieldValue }) => (
                       <div className="col-lg-8">
                         <div className="user-profile-form">
                           <Form>
@@ -114,13 +114,6 @@ const Edit: NextPage = () => {
                             <div className="form-group">
                               <label>{t("Phone")}</label>
 
-                              {/* <Field
-                              type="text"
-                              name="phone"
-                              className="form-control"
-                              id="phone"
-                              placeholder="Phone"
-                            /> */}
                               <PhoneInput
                                 country={"us"}
                                 value={user?.phone}

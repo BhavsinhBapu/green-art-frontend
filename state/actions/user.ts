@@ -13,23 +13,15 @@ import {
   UploadDrivingLicence,
   KycDetailsApi,
   G2fVerifyApi,
-  GetUserInfoByTokenServer,
   verifyEmailApi,
-  RecapCha,
 } from "service/user";
 import request from "lib/request";
-import {
-  login,
-  setAuthenticationState,
-  setUser,
-  setLoading,
-} from "state/reducer/user";
+import { login, setAuthenticationState, setUser } from "state/reducer/user";
 import Router from "next/router";
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
 import { Dispatch, SetStateAction } from "react";
 import {
-  setAllmarketTrades,
   setBuyOrderHistory,
   setOpenOrderHistory,
   setSellOrderHistory,
@@ -75,7 +67,6 @@ export const SigninAction =
   (credentials: { email: string; password: string }, setProcessing: any) =>
   async (dispatch: any) => {
     setProcessing(true);
-    const redirectUrl: any = Router.query.redirect;
     const response = await SigninApi(credentials);
     const responseMessage = response.message;
 
@@ -110,11 +101,7 @@ export const SigninAction =
         progress: undefined,
         className: "dark-toast",
       });
-      // if (redirectUrl) {
-      //   Router.replace(redirectUrl);
-      // } else {
-      //   Router.replace("/exchange/dashboard");
-      // }
+
       Router.reload();
     } else {
       dispatch(setAuthenticationState(false));
@@ -197,7 +184,6 @@ export const ForgotPasswordAction = async (
       progress: undefined,
       className: "dark-toast",
     });
-    // await Pause(5000);
     Router.push("/authentication/reset-password");
   } else {
     toast.error(responseMessage, {
@@ -215,7 +201,6 @@ export const ForgotPasswordAction = async (
 };
 
 export const GetUserInfoByTokenAction = () => async (dispatch: any) => {
-  // dispatch(setLoading(true));
   const response = await GetUserInfoByToken();
 
   if (response.success === true) {
@@ -223,13 +208,11 @@ export const GetUserInfoByTokenAction = () => async (dispatch: any) => {
   } else {
     dispatch(setAuthenticationState(false));
   }
-  // dispatch(setLoading(false));
 };
 
 export const LogoutAction = () => async (dispatch: any) => {
   Cookies.remove("token");
   dispatch(setAuthenticationState(false));
-  // dispatch(setAllmarketTrades([]));
   dispatch(setSellOrderHistory([]));
   dispatch(setBuyOrderHistory([]));
   dispatch(setTradeOrderHistory([]));
@@ -280,7 +263,6 @@ export const ResetPasswordAction = async (
 };
 export const UpdateUserInfoByTokenAction =
   (user: any) => async (dispatch: any) => {
-    // dispatch(setLoading(true));
     const response = await UpdateUserInfoByToken(user);
     if (response.success === true) {
       toast.success(response.message, {
@@ -305,7 +287,6 @@ export const UpdateUserInfoByTokenAction =
         progress: undefined,
       });
     }
-    // dispatch(setLoading(false));
   };
 
 export const SendPhoneVerificationSmsAction = async (
@@ -381,7 +362,6 @@ export const ChangePasswordAction =
     password_confirmation: string;
   }) =>
   async (dispatch: any) => {
-    // dispatch(setLoading(true));
     const response = await ChangePassword(credentials);
     if (response.success === true) {
       toast.success(response.message, {
@@ -404,7 +384,6 @@ export const ChangePasswordAction =
         progress: undefined,
       });
     }
-    // dispatch(setLoading(false));
   };
 
 export const UploadNidImageAction = async (
@@ -501,10 +480,8 @@ export const UploadDrivingLicenceImageAction = async (
 };
 export const getKycDetailsAction =
   (setKycDetails: Dispatch<SetStateAction<null>>) => async (dispatch: any) => {
-    // dispatch(setLoading(true));
     const { data } = await KycDetailsApi();
     setKycDetails(data);
-    // dispatch(setLoading(false));
   };
 
 export const G2fVerifyAction = (code: any) => async (dispatch: any) => {

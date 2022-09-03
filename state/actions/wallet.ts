@@ -7,7 +7,6 @@ import {
 } from "service/wallet";
 import { toast } from "react-toastify";
 
-import { setLoading } from "state/reducer/user";
 
 export const WalletListApiAction = async (
   url: string,

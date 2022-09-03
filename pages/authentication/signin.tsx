@@ -1,9 +1,9 @@
 import type { GetServerSideProps, NextPage } from "next";
 import * as Yup from "yup";
 import { GetUserInfoByTokenAction, SigninAction } from "state/actions/user";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import React, { useEffect, useState } from "react";
-import { Formik, Field, Form, ErrorMessage } from "formik";
+import { Formik, Field, Form } from "formik";
 //@ts-ignore
 import ReCAPTCHA from "react-google-recaptcha";
 
@@ -80,11 +80,7 @@ const Signin: NextPage = () => {
                           placeholder={t("Your email here")}
                         />
                       </div>
-                      {/* <ErrorMessage
-                        name="email"
-                        component="div"
-                        className="red-text"
-                      /> */}
+
                       <div className="form-group">
                         <Field
                           type={showPassword ? "text" : "password"}
@@ -109,11 +105,7 @@ const Signin: NextPage = () => {
                           )}
                         </span>
                       </div>
-                      {/* <ErrorMessage
-                        name="password"
-                        component="div"
-                        className="red-text"
-                      /> */}
+
                       <div className="form-group">
                         <p className="invalid-feedback">{t("Message")}</p>
                       </div>

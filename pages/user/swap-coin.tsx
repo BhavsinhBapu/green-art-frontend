@@ -2,19 +2,15 @@ import type { GetServerSideProps, NextPage } from "next";
 
 import * as React from "react";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
-import SwapCoinSidebar from "layout/swap-coin-sidebar";
 import {
   getUserCoinForSwapAction,
   getRateAction,
   swapCoinAction,
 } from "state/actions/swap";
-import { setLoading } from "state/reducer/user";
-import { useDispatch } from "react-redux";
 import { parseCookies } from "nookies";
 import { getRateSsr } from "service/swap";
 import Link from "next/link";
 import useTranslation from "next-translate/useTranslation";
-import Skeleton from "react-loading-skeleton";
 import SmallLoading from "components/common/smallLoading";
 const SwapCoin: NextPage = ({
   walletLists,
@@ -300,14 +296,6 @@ const SwapCoin: NextPage = ({
                         !toSelected.amount ||
                         !toSelected.coin_id
                       }
-                      // onClick={() => {
-                      //   swapCoinAction(
-                      //     fromSelected.amount,
-                      //     fromSelected.coin_id,
-                      //     toSelected.coin_id,
-                      //     setLoading
-                      //   );
-                      // }}
                       data-toggle="modal"
                       data-target="#exampleModal"
                     >

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
@@ -13,7 +12,7 @@ import useTranslation from "next-translate/useTranslation";
 const ExchangeBox = () => {
   type tradingTabType = number;
   const { t } = useTranslation("common");
-  const { isLoggedIn, user } = useSelector((state: RootState) => state.user);
+  const { isLoggedIn } = useSelector((state: RootState) => state.user);
   const { dashboard, currentPair } = useSelector(
     (state: RootState) => state.exchange
   );

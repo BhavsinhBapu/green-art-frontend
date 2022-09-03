@@ -1,7 +1,7 @@
 import type { GetServerSideProps, NextPage } from "next";
 import * as Yup from "yup";
 import React, { useEffect, useState } from "react";
-import { Formik, Field, Form, ErrorMessage } from "formik";
+import { Formik, Field, Form } from "formik";
 import { SignupAction } from "state/actions/user";
 import { useDispatch } from "react-redux";
 import Link from "next/link";
@@ -101,11 +101,7 @@ const Signup: NextPage = () => {
                           placeholder={t("Your first name here")}
                         />
                       </div>
-                      {/* <ErrorMessage
-                        name="first_name"
-                        component="div"
-                        className="red-text"
-                      /> */}
+
                       <div className="form-group">
                         <Field
                           type="text"
@@ -119,11 +115,7 @@ const Signup: NextPage = () => {
                           placeholder={t("Your last name here")}
                         />
                       </div>
-                      {/* <ErrorMessage
-                        name="last_name"
-                        component="div"
-                        className="red-text"
-                      /> */}
+
                       <div className="form-group">
                         <Field
                           type="email"
@@ -135,11 +127,7 @@ const Signup: NextPage = () => {
                           placeholder={t("Your email here")}
                         />
                       </div>
-                      {/* <ErrorMessage
-                        name="email"
-                        component="div"
-                        className="red-text"
-                      /> */}
+
                       <div className="form-group">
                         <Field
                           type={showPassword.password ? "text" : "password"}
@@ -165,11 +153,6 @@ const Signup: NextPage = () => {
                           <i className="fa fa-eye-slash toggle-password"></i>
                         </span>
                       </div>
-                      {/* <ErrorMessage
-                        name="password"
-                        component="div"
-                        className="red-text"
-                      /> */}
 
                       <div className="form-group">
                         <Field
@@ -199,11 +182,7 @@ const Signup: NextPage = () => {
                           <i className="fa fa-eye-slash toggle-password"></i>
                         </span>
                       </div>
-                      {/* <ErrorMessage
-                        name="password_confirmation"
-                        component="div"
-                        className="red-text"
-                      /> */}
+
                       <div className="form-group">
                         <label></label>
                         <p className="invalid-feedback">{t("Message")} </p>

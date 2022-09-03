@@ -1,4 +1,4 @@
-import { destroyCookie, parseCookies } from "nookies";
+import { parseCookies } from "nookies";
 import { GetUserInfoByTokenServer } from "service/user";
 
 export const SSRAuthCheck = async (ctx: any, redirect: string) => {

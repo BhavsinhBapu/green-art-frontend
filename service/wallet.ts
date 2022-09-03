@@ -13,7 +13,6 @@ export const WalletWithdrawApi = async (id: number) => {
   const { data } = await request.get(`/wallet-withdrawal-${id}`);
   return data;
 };
-// wallet - withdrawal - process;
 export const WalletWithdrawProcessApi = async (credential: any) => {
   const { data } = await request.post("/wallet-withdrawal-process", credential);
   return data;

@@ -5,7 +5,6 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import {
   initialDashboardCallAction,
-  buyMarketAppAction,
   sellStopLimitAppAction,
 } from "state/actions/exchange";
 
@@ -173,9 +172,6 @@ const StopLimit = ({
                           parseFloat(e.target.value) *
                           dashboard?.order_data?.sell_price,
                       });
-                      // await dispatch(
-                      //   initialDashboardCallAction(currentPair, dashboard)
-                      // );
                     }}
                   />
                   <span

@@ -81,7 +81,6 @@ const Bannerdetails = ({
               __html: clean(details.description),
             }}
           ></div>
-          {/* <p className="text-justify">{details.description}</p> */}
         </div>
       </div>
       <Footer

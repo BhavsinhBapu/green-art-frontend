@@ -2,10 +2,8 @@ import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import type { GetServerSideProps, NextPage } from "next";
 import useTranslation from "next-translate/useTranslation";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { getReferral } from "service/refer";
-import { setLoading } from "state/reducer/user";
 const Referral: NextPage = () => {
   const [referral, setReferral] = useState<any>();
   const [allData, setAllData] = useState<any>();
@@ -22,7 +20,6 @@ const Referral: NextPage = () => {
       setAllData(res.data.data);
     });
 
-    //cleanup
     return () => {
       setReferral(null);
     };

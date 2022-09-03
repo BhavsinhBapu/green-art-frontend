@@ -136,9 +136,6 @@ const Market = ({
                           parseFloat(e.target.value) *
                           buySellMarketCoinData.price,
                       });
-                      // await dispatch(
-                      //   initialDashboardCallAction(currentPair, dashboard)
-                      // );
                     }}
                   />
                   <span

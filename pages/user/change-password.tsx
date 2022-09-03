@@ -1,6 +1,6 @@
 import type { GetServerSideProps, NextPage } from "next";
 import ProfileSidebar from "layout/profile-sidebar";
-import React, { useState } from "react";
+import React from "react";
 import * as Yup from "yup";
 
 import { Formik, Field, Form, ErrorMessage } from "formik";
