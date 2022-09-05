@@ -364,6 +364,14 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
     1,
     cookies.token
   );
+  if (data.success === false) {
+    return {
+      redirect: {
+        destination: "/user/my-wallet",
+        permanent: false,
+      },
+    };
+  }
   const { wallet_rate, convert_rate, rate, from_wallet, to_wallet } = data;
   return {
     props: {
