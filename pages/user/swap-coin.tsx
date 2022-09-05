@@ -370,9 +370,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
       walletLists,
       convert_rate,
       ssrRate: rate,
-      from_wallet: from_wallet.coin_type,
+      from_wallet: from_wallet?.coin_type,
 
-      to_wallet: to_wallet.coin_type,
+      to_wallet: to_wallet?.coin_type,
       wallet_rate,
     },
   };
