@@ -112,12 +112,15 @@ p {
 .background-col {
   background: #151515 !important;
   height: 100%;
-  width: 100%;
+  /* width: 100%; */
+  max-width: 1883px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .container-dashboard {
   background: #151515 !important;
-  padding-right: 5%;
-  padding-left: 5%;
+  /* padding-right: 5%; */
+  /* padding-left: 5%; */
   margin-right: auto;
   margin-left: auto;
 }
