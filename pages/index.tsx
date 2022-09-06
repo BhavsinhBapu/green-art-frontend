@@ -63,7 +63,7 @@ const Home: NextPage = ({
     //@ts-ignore
     window.$crisp = [];
     //@ts-ignore
-    window.CRISP_WEBSITE_ID = "4fcd9fa1-25d7-4059-af88-dfc088545027";
+    window.CRISP_WEBSITE_ID = process.env.NEXT_PUBLIC_CRISP_ID;
     (function () {
       //@ts-ignore
       var d = document;
