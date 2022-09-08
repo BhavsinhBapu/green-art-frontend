@@ -8,9 +8,10 @@ import { useDispatch, useSelector } from "react-redux";
 import Cookies from "js-cookie";
 import { RootState } from "state/store";
 import useTranslation from "next-translate/useTranslation";
+import CookieAccept from "components/common/cookie-accept";
 const Index = ({ children }: any) => {
   const [navbarVisible, setNavbarVisible] = useState(false);
-
+  const [showterms, setShowTerms] = useState(false);
   const { isLoading, user, isLoggedIn } = useSelector(
     (state: RootState) => state.user
   );
@@ -38,8 +39,18 @@ const Index = ({ children }: any) => {
       setNavbarVisible(true);
     }
   }, [router.pathname]);
+  const iUnderStand = () => {
+    Cookies.set("terms", "yes");
+    setShowTerms(false)
+  };
   useEffect(() => {
     const token = Cookies.get("token");
+    const terms = Cookies.get("terms");
+    if (terms === "yes") {
+      setShowTerms(false);
+    } else {
+      setShowTerms(true);
+    }
     if (token) {
       dispatch(GetUserInfoByTokenAction());
     }
@@ -69,6 +80,7 @@ const Index = ({ children }: any) => {
         pauseOnHover
       />
       <div className="cp-user-main-wrapper">{children}</div>
+      {showterms && <CookieAccept iUnderStand={iUnderStand} />}
     </div>
   ) : (
     <>
@@ -84,6 +96,7 @@ const Index = ({ children }: any) => {
         pauseOnHover
       />
       <div>{children}</div>
+        {showterms && <CookieAccept iUnderStand={iUnderStand} />}
     </>
   );
 };
