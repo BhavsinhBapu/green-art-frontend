@@ -15,6 +15,7 @@ export const SignupApi = async (
     first_name: string;
     last_name: string;
     password_confirmation: string;
+    recapcha: string;
   },
   ref_code: any
 ) => {
@@ -24,6 +25,7 @@ export const SignupApi = async (
     first_name: credentials.first_name,
     last_name: credentials.last_name,
     password_confirmation: credentials.password_confirmation,
+    recapcha:credentials.recapcha,
     ref_code: ref_code,
   };
   const { data } = await request.post("/sign-up", finalCredential);
@@ -117,6 +119,7 @@ export const verifyEmailApi = async (credential: any) => {
   const { data } = await request.post("/verify-email", {
     email: credential.email,
     verify_code: credential.code,
+    recapcha: credential.recapcha,
   });
   return data;
 };

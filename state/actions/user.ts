@@ -29,7 +29,7 @@ import {
 } from "state/reducer/exchange";
 
 export const VerifyEmailAction =
-  (credentials: { email: string; code: any }, setProcessing: any) =>
+  (credentials: { email: string; code: any; recapcha:string }, setProcessing: any) =>
   async (dispatch: any) => {
     setProcessing(true);
     const response: any = await verifyEmailApi(credentials);
@@ -128,6 +128,7 @@ export const SignupAction =
       last_name: string;
       password: string;
       password_confirmation: string;
+      recapcha: string;
     },
     setProcessing: any,
     ref_code: any
