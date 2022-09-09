@@ -50,7 +50,7 @@ async function listenMessages(dispatch: any) {
 const Dashboard: NextPage = () => {
   const { t } = useTranslation("common");
   const dispatch = useDispatch();
-  const [isLoading, setisLoading] = useState(false);
+  const [isLoading, setisLoading] = useState(true);
   const { isLoggedIn } = useSelector((state: RootState) => state.user);
   const { dashboard, currentPair } = useSelector(
     (state: RootState) => state.exchange
@@ -197,10 +197,7 @@ const Dashboard: NextPage = () => {
                     aria-label="Close"
                     className="close"
                   >
-                    <img
-                      alt=""
-                      className="img-fluid"
-                    />
+                    <img alt="" className="img-fluid" />
                   </button>
                   <div className="text-center">
                     <img

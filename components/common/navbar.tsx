@@ -426,7 +426,9 @@ const Navbar = () => {
                               className="notify-value hm-notify-number"
                               onClick={() => {}}
                             >
-                              {notificationData?.length}
+                              {notificationData?.length > 100
+                                ? "99+"
+                                : notificationData?.length}
                             </span>
                             <img
                               src="/notification.png"
@@ -603,7 +605,6 @@ const Navbar = () => {
                   <div
                     className="cp-user-sidebar-toggler-s2"
                     onClick={() => {
-                      
                       setActive(active ? false : true);
                     }}
                   >

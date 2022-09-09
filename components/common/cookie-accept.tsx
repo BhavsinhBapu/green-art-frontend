@@ -1,12 +1,17 @@
+import useTranslation from "next-translate/useTranslation";
+import Link from "next/link";
 import React from "react";
 
 const CookieAccept = ({ iUnderStand }: any) => {
+  const { t } = useTranslation("common");
   return (
     <div className="wrapper">
       <img src="/undraw_warning_re_eoyh.svg" />
       <div className="content">
-        <header>Cookies Constent</header>
-        <p>This website use cookies to ensure you get the besr experience</p>
+        <header>{t("Cookies Constent<")}</header>
+        <p>
+          {t("This website use cookies to ensure you get the besr experience")}
+        </p>
         <div className="buttons">
           <button
             className="item"
@@ -14,11 +19,13 @@ const CookieAccept = ({ iUnderStand }: any) => {
               iUnderStand();
             }}
           >
-            I understand
+            {t("I understand")}
           </button>
-          <a href="#" className="item">
-            provacy policy
-          </a>
+          <Link href="/page-details/privacy">
+            <a href="#" className="item">
+              {t("privacy policy")}
+            </a>
+          </Link>
         </div>
       </div>
     </div>
