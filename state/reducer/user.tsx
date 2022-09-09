@@ -4,6 +4,7 @@ export type UserType = {
   user: {};
   isLoggedIn: boolean;
   notification: [];
+  logo: string;
 };
 
 const initialState: any = {
@@ -11,6 +12,7 @@ const initialState: any = {
   isLoggedIn: false,
   isLoading: false,
   notification: [],
+  logo: "",
 };
 
 export const userSlice = createSlice({
@@ -37,9 +39,12 @@ export const userSlice = createSlice({
     setNotification: (state, action: PayloadAction<any>) => {
       state.notification = action.payload;
     },
+    setLogo: (state, action: PayloadAction<any>) => {
+      state.logo = action.payload;
+    },
   },
 });
 
-export const { login, logout, setUser, setAuthenticationState, setLoading } =
+export const { login, logout, setUser, setAuthenticationState, setLoading, setLogo } =
   userSlice.actions;
 export default userSlice.reducer;

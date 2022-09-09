@@ -3,11 +3,13 @@ import React from "react";
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
 import { G2fVerifyAction } from "state/actions/user";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { g2fPageRequireCheck } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
 import useTranslation from "next-translate/useTranslation";
+import { RootState } from "state/store";
 const G2fverify = () => {
+  const { logo } = useSelector((state: RootState) => state.user);
   const { t } = useTranslation("common");
   const dispatch = useDispatch();
   return (
@@ -16,7 +18,7 @@ const G2fverify = () => {
         <div className="right">
           <div className="form-top">
             <a className="auth-logo" href="javascript:">
-              <img src="/logo.svg" className="img-fluid" alt="" />
+              <img src={logo || ""} className="img-fluid" alt="" />
             </a>
             <h2>{t("Two Factor Authentication")}</h2>
             <p>

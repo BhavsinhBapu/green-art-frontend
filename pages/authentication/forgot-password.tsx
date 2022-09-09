@@ -9,7 +9,10 @@ import { RecapCha } from "service/user";
 //@ts-ignore
 import ReCAPTCHA from "react-google-recaptcha";
 import useTranslation from "next-translate/useTranslation";
+import { useSelector } from "react-redux";
+import { RootState } from "state/store";
 const ForgotPassword: NextPage = () => {
+  const { logo } = useSelector((state: RootState) => state.user);
   const { t } = useTranslation("common");
   const [processing, setProcessing] = useState(false);
   const [recaptchaData, setRecaptchaData] = useState<any>({});
@@ -74,7 +77,7 @@ const ForgotPassword: NextPage = () => {
                           placeholder={t("Your email here")}
                         />
                       </div>
-                     
+
                       {recaptchaData?.NOCAPTCHA_SITEKEY &&
                         recaptchaData?.google_recapcha === "1" && (
                           <ReCAPTCHA
@@ -112,7 +115,7 @@ const ForgotPassword: NextPage = () => {
             <div className="user-content-text text-center">
               <h3>{t("Welcome Back To")}</h3>
               <a className="auth-logo" href="">
-                <img src="/logo.svg" className="img-fluid" alt="" />
+                <img src={logo || ""} className="img-fluid" alt="" />
               </a>
               <p>
                 {t("Return to")}

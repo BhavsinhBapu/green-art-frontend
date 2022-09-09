@@ -10,6 +10,9 @@ import { parseCookies, destroyCookie } from "nookies";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import Footer from "components/common/footer";
+import { setLogo } from "state/reducer/user";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "state/store";
 const Home: NextPage = ({
   landing,
   bannerListdata,
@@ -26,6 +29,8 @@ const Home: NextPage = ({
 }: any) => {
   const { t } = useTranslation("common");
   const router = useRouter();
+  const { logo } = useSelector((state: RootState) => state.user);
+  const dispatch = useDispatch();
   const settings = {
     dots: false,
     infinite: true,
@@ -74,6 +79,7 @@ const Home: NextPage = ({
       d.getElementsByTagName("head")[0].appendChild(s);
     })();
   }, []);
+
   return (
     <div>
       <div>
@@ -87,7 +93,7 @@ const Home: NextPage = ({
                   <div className="logo-area">
                     <a href="">
                       <img
-                        src="/logo.svg"
+                        src={logo || ""}
                         className="img-fluid cp-user-logo-large"
                         alt=""
                       />

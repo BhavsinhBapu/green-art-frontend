@@ -11,7 +11,6 @@ export type ExchangeState = {
   tradeOrderHistory: Array<any>;
   publicTradesDashboard: Array<any>;
   marketTrades: Array<any>;
-  logo: string;
 };
 const initialState: ExchangeState = {
   dashboard: {},
@@ -24,7 +23,6 @@ const initialState: ExchangeState = {
   tradeOrderHistory: [],
   publicTradesDashboard: [],
   marketTrades: [],
-  logo: "",
 };
 
 export const exchangeSlice = createSlice({

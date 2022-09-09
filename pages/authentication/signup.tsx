@@ -3,7 +3,7 @@ import * as Yup from "yup";
 import React, { useEffect, useState } from "react";
 import { Formik, Field, Form } from "formik";
 import { SignupAction } from "state/actions/user";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { authPageRequireCheck } from "middlewares/ssr-authentication-check";
@@ -11,7 +11,11 @@ import { authPageRequireCheck } from "middlewares/ssr-authentication-check";
 import ReCAPTCHA from "react-google-recaptcha";
 import { RecapCha } from "service/user";
 import useTranslation from "next-translate/useTranslation";
+import { RootState } from "state/store";
 const Signup: NextPage = () => {
+  const { isLoggedIn, user, logo } = useSelector(
+    (state: RootState) => state.user
+  );
   const dispatch = useDispatch();
   const { t } = useTranslation("common");
   const [recaptchaData, setRecaptchaData] = useState<any>({});
@@ -227,7 +231,7 @@ const Signup: NextPage = () => {
               <h3>{t("Welcome To")}</h3>
               <Link href="/">
                 <a className="auth-logo" href="">
-                  <img src="/logo.svg" className="img-fluid" alt="" />
+                  <img src={logo || ""} className="img-fluid" alt="" />
                 </a>
               </Link>
               <Link href="/authentication/signin">

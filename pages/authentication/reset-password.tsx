@@ -9,9 +9,12 @@ import Link from "next/link";
 import ReCAPTCHA from "react-google-recaptcha";
 import { RecapCha } from "service/user";
 import useTranslation from "next-translate/useTranslation";
+import { useSelector } from "react-redux";
+import { RootState } from "state/store";
 const ResetPassword: NextPage = () => {
   const { t } = useTranslation("common");
   const [processing, setProcessing] = useState(false);
+  const { logo } = useSelector((state: RootState) => state.user);
   const [recaptchaData, setRecaptchaData] = useState<any>({});
   const getRecapcha = async () => {
     const response = await RecapCha();
@@ -87,7 +90,7 @@ const ResetPassword: NextPage = () => {
                           placeholder="Your email here"
                         />
                       </div>
-                     
+
                       <div className="form-group">
                         <Field
                           type="password"
@@ -179,7 +182,7 @@ const ResetPassword: NextPage = () => {
             <div className="user-content-text text-center">
               <h3>{t("Welcome Back To")}</h3>
               <a className="auth-logo">
-                <img src="/logo.svg" className="img-fluid" alt="" />
+                <img src={logo || ""} className="img-fluid" alt="" />
               </a>
               <p>
                 {t("Return to sign in")}
