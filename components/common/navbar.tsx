@@ -8,7 +8,9 @@ import { notification, notificationSeen } from "service/notification";
 import useTranslation from "next-translate/useTranslation";
 import { LanguageList } from "helpers/lang";
 const Navbar = () => {
-  const { isLoggedIn, user } = useSelector((state: RootState) => state.user);
+  const { isLoggedIn, user, logo } = useSelector(
+    (state: RootState) => state.user
+  );
   const dispatch = useDispatch();
   const { t } = useTranslation("common");
   const [notificationData, setNotification] = useState<any>([]);
@@ -20,6 +22,7 @@ const Navbar = () => {
   };
   const seen = async () => {
     let arr: any = [];
+
     notificationData.map((notification: any) => {
       arr.push(notification.id);
     });
@@ -40,7 +43,7 @@ const Navbar = () => {
                 <Link href="/">
                   <a href="">
                     <img
-                      src="/logo.svg"
+                      src={logo || ""}
                       className="img-fluid cp-user-logo-large"
                       alt=""
                     />

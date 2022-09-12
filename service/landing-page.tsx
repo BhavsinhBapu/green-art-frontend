@@ -7,6 +7,9 @@ export const landingPage = () => {
 export const customPage = () => {
   return request.get("/custom-pages");
 };
+export const commomSettings = () => {
+  return request.get("/common-settings");
+};
 export const customPageWithSlug = (slug: string) => {
   return request.get(`/pages-details/${slug}`);
 };

@@ -6,7 +6,9 @@ import { LogoutAction } from "state/actions/user";
 import useTranslation from "next-translate/useTranslation";
 import { notification, notificationSeen } from "service/notification";
 const DashboardNavbar = () => {
-  const { isLoggedIn, user } = useSelector((state: RootState) => state.user);
+  const { isLoggedIn, user, logo } = useSelector(
+    (state: RootState) => state.user
+  );
   const [active, setActive] = useState(false);
   const [notificationData, setNotification] = useState<any>([]);
   const { t } = useTranslation("common");
@@ -37,7 +39,7 @@ const DashboardNavbar = () => {
                 <Link href="/">
                   <a href="">
                     <img
-                      src="/logo.svg"
+                      src={logo || ""}
                       className="img-fluid cp-user-logo-large"
                       alt=""
                     />

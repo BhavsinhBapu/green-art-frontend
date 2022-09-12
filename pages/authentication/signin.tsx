@@ -1,7 +1,7 @@
 import type { GetServerSideProps, NextPage } from "next";
 import * as Yup from "yup";
 import { GetUserInfoByTokenAction, SigninAction } from "state/actions/user";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useState } from "react";
 import { Formik, Field, Form } from "formik";
 //@ts-ignore
@@ -12,7 +12,11 @@ import { authPageRequireCheck } from "middlewares/ssr-authentication-check";
 import { RecapCha } from "service/user";
 import useTranslation from "next-translate/useTranslation";
 import { destroyCookie } from "nookies";
+import { RootState } from "state/store";
 const Signin: NextPage = () => {
+  const { isLoggedIn, user, logo } = useSelector(
+    (state: RootState) => state.user
+  );
   const { t } = useTranslation("common");
   const [showPassword, setShowPassword] = useState(false);
   const [processing, setProcessing] = useState<any>(false);
@@ -168,7 +172,7 @@ const Signin: NextPage = () => {
               <h3>{t("Welcome To")}</h3>
               <Link href="/">
                 <a className="auth-logo" href="">
-                  <img src="/logo.svg" className="img-fluid" alt="" />
+                  <img src={logo || ""} className="img-fluid" alt="" />
                 </a>
               </Link>
               <Link href="/authentication/signup">

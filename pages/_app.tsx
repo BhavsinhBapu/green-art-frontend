@@ -25,9 +25,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, []);
   return (
     <>
-      <Head>
-        <title>{t("TradexPro Exchange")}</title>
-      </Head>
+      
       <Provider store={store}>
         <Layout>
           <Component {...pageProps} />
