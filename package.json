@@ -3,14 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "starts": "concurrently \"cd server && npm start\" \"yarn start\"",
+    "starts": "concurrently \"cd backend && npm start\" \"yarn start\"",
     "installs": "concurrently \"yarn install && yarn build\" \"yarn server-install\"",
     "dev": "next dev",
     "build": "next build",
     "start": "next start -p 3040",
     "lint": "next lint",
     "prettier": "prettier --write",
-    "server-install": "yarn install --prefix server"
+    "server-install": "yarn install --prefix backend"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.7.1",
