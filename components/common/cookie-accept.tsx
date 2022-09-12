@@ -8,7 +8,7 @@ const CookieAccept = ({ iUnderStand }: any) => {
     <div className="wrapper">
       <img src="/undraw_warning_re_eoyh.svg" />
       <div className="content">
-        <header>{t("Cookies Constent<")}</header>
+        <header>{t("Cookies Constent")}</header>
         <p>
           {t("This website use cookies to ensure you get the besr experience")}
         </p>
