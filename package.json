@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "starts": "concurrently \"cd backend && npm start\" \"yarn start\"",
-    "installs": "concurrently \"yarn install && yarn build\" \"yarn server-install\"",
+    "installs": "concurrently \"yarn install && yarn build\" \"cd backend && yarn install\"",
     "dev": "next dev",
     "build": "next build",
     "start": "next start -p 3040",
