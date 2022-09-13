@@ -73,8 +73,9 @@ const DepositHistory: NextPage = () => {
       sortable: true,
     },
     {
-      name: "Transaction Hash",
-      selector: (row: any) => row.transaction_hash,
+      name: type === "deposit" ? "Transaction Id" : "Transaction Hash",
+      selector: (row: any) =>
+        type === "deposit" ? row.transaction_id : row.transaction_hash,
       sortable: true,
     },
     {
@@ -83,9 +84,9 @@ const DepositHistory: NextPage = () => {
       sortable: true,
       cell: (row: any) => (
         <div>
-          {row.status === 0 ? (
+          {row.status == 0 ? (
             <span className="text-warning">{t("Pending")}</span>
-          ) : row.status === 1 ? (
+          ) : row.status == 1 ? (
             <span className="text-success"> {t("Success")}</span>
           ) : (
             <span className="text-danger">{t("Failed")}</span>
