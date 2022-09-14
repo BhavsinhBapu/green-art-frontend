@@ -19,7 +19,7 @@ const Limit = ({
   const { t } = useTranslation("common");
   const [loading, setLoading] = React.useState(false);
   const dispatch = useDispatch();
- 
+
   const setAmountBasedOnPercentage = (percentage: any) => {
     const { maker_fees, taker_fees } = dashboard.fees_settings;
     const amount =
@@ -72,6 +72,9 @@ const Limit = ({
                         <span>
                           {formateZert(
                             dashboard?.order_data?.total?.base_wallet?.balance
+                              ? dashboard?.order_data?.total?.base_wallet
+                                  ?.balance
+                              : 0
                           )}
                         </span>
                       </span>
@@ -93,6 +96,9 @@ const Limit = ({
                           {" "}
                           {formateZert(
                             dashboard?.order_data?.total?.base_wallet?.balance
+                              ? dashboard?.order_data?.total?.base_wallet
+                                  ?.balance
+                              : 0
                           )}
                         </span>
                       </span>

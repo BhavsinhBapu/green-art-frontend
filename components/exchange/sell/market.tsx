@@ -58,6 +58,9 @@ const Market = ({
                         <span>
                           {formateZert(
                             dashboard?.order_data?.total?.trade_wallet?.balance
+                              ? dashboard?.order_data?.total?.trade_wallet
+                                  ?.balance
+                              : 0
                           )}
                         </span>
                       </span>
@@ -81,6 +84,9 @@ const Market = ({
                         <span>
                           {formateZert(
                             dashboard?.order_data?.total?.trade_wallet?.balance
+                              ? dashboard?.order_data?.total?.trade_wallet
+                                  ?.balance
+                              : 0
                           )}
                         </span>
                       </span>

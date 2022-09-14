@@ -58,6 +58,9 @@ const Limit = ({
                         <span>
                           {formateZert(
                             dashboard?.order_data?.total?.trade_wallet?.balance
+                              ? dashboard?.order_data?.total?.trade_wallet
+                                  ?.balance
+                              : 0
                           )}
                         </span>
                       </span>
@@ -82,6 +85,9 @@ const Limit = ({
                           {" "}
                           {formateZert(
                             dashboard?.order_data?.total?.trade_wallet?.balance
+                              ? dashboard?.order_data?.total?.trade_wallet
+                                  ?.balance
+                              : 0
                           )}
                         </span>
                       </span>

@@ -47,7 +47,9 @@ const CurrencyLevel = () => {
                 : "value"
             }
           >
-            {dashboard?.order_data?.total?.trade_wallet?.last_price}{" "}
+            {dashboard?.order_data?.total?.trade_wallet?.last_price
+              ? dashboard?.order_data?.total?.trade_wallet?.last_price
+              : 0}
             {parseFloat(
               dashboard?.last_price_data && dashboard?.last_price_data[0]?.price
             ) >=
@@ -70,8 +72,9 @@ const CurrencyLevel = () => {
             )}
           </span>
           <span className="label">
-            {dashboard?.last_price_data &&
-              dashboard?.last_price_data[0]?.last_price}
+            {dashboard?.last_price_data[0]?.last_price
+              ? dashboard?.last_price_data[0]?.last_price
+              : 0}
             ({dashboard?.order_data?.base_coin})
           </span>
         </li>
@@ -95,6 +98,8 @@ const CurrencyLevel = () => {
           <span className="value">
             {parseFloat(
               dashboard?.order_data?.total?.trade_wallet?.high
+                ? dashboard?.order_data?.total?.trade_wallet?.high
+                : 0
             ).toFixed(3)}
           </span>
         </li>
@@ -103,6 +108,8 @@ const CurrencyLevel = () => {
           <span className="value">
             {parseFloat(
               dashboard?.order_data?.total?.trade_wallet?.low
+                ? dashboard?.order_data?.total?.trade_wallet?.low
+                : 0
             ).toFixed(3)}
           </span>
         </li>
@@ -112,7 +119,11 @@ const CurrencyLevel = () => {
             {t("24h volume")}({dashboard?.order_data?.trade_coin}){" "}
           </span>
           <span className="value">
-            {parseFloat(dashboard?.order_data?.total?.trade_wallet?.volume)}
+            {parseFloat(
+              dashboard?.order_data?.total?.trade_wallet?.volume
+                ? dashboard?.order_data?.total?.trade_wallet?.volume
+                : 0
+            )}
           </span>
         </li>
         <li>

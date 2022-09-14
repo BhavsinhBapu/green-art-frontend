@@ -67,6 +67,9 @@ const StopLimit = ({
                         <span>
                           {formateZert(
                             dashboard?.order_data?.total?.base_wallet?.balance
+                              ? dashboard?.order_data?.total?.base_wallet
+                                  ?.balance
+                              : 0
                           )}
                         </span>
                       </span>
@@ -89,6 +92,9 @@ const StopLimit = ({
                           {" "}
                           {formateZert(
                             dashboard?.order_data?.total?.base_wallet?.balance
+                              ? dashboard?.order_data?.total?.base_wallet
+                                  ?.balance
+                              : 0
                           )}
                         </span>
                       </span>

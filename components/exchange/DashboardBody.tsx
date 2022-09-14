@@ -21,12 +21,9 @@ const DashboardBody = () => {
   const { t } = useTranslation("common");
   const [select, setSelect] = React.useState(3);
 
-  const {
-    dashboard,
-    OpenBookBuy,
-    OpenBooksell,
-    marketTrades,
-  } = useSelector((state: RootState) => state.exchange);
+  const { dashboard, OpenBookBuy, OpenBooksell, marketTrades } = useSelector(
+    (state: RootState) => state.exchange
+  );
   return (
     <>
       <div className="col-xl-3">
@@ -125,8 +122,9 @@ const DashboardBody = () => {
                     }
                   >
                     {parseFloat(
-                      dashboard?.last_price_data &&
-                        dashboard?.last_price_data[0]?.price
+                      dashboard?.last_price_data[0]?.price
+                        ? dashboard?.last_price_data[0]?.price
+                        : 0
                     )}
                     {parseFloat(
                       dashboard?.last_price_data &&
@@ -153,8 +151,9 @@ const DashboardBody = () => {
                   <span className="value-previous">
                     {" "}
                     {parseFloat(
-                      dashboard?.last_price_data &&
-                        dashboard?.last_price_data[0]?.last_price
+                      dashboard?.last_price_data[0]?.last_price
+                        ? dashboard?.last_price_data[0]?.last_price
+                        : 0
                     )}
                     ({dashboard?.order_data?.base_coin})
                   </span>
