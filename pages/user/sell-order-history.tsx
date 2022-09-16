@@ -92,7 +92,6 @@ const SellOrderHistory: NextPage = () => {
       cell: (row: any) => (
         <div className="blance-text">
           <span className="blance market incree">
-            {settings.currency_symbol}
             {formatCurrency(row?.price)}
           </span>
         </div>

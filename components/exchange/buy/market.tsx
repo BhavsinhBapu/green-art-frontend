@@ -63,12 +63,12 @@ const Market = ({
                         style={{ fontWeight: 700 }}
                       >
                         <span>
-                          {formateZert(
+                          {parseFloat(
                             dashboard?.order_data?.total?.base_wallet?.balance
                               ? dashboard?.order_data?.total?.base_wallet
                                   ?.balance
                               : 0
-                          )}
+                          ).toFixed(8)}
                         </span>
                       </span>
                       <span
@@ -88,9 +88,12 @@ const Market = ({
                       >
                         <span>
                           {" "}
-                          {formateZert(
-                            dashboard?.order_data?.total?.base_wallet?.balance?dashboard?.order_data?.total?.base_wallet?.balance:0
-                          )}
+                          {parseFloat(
+                            dashboard?.order_data?.total?.base_wallet?.balance
+                              ? dashboard?.order_data?.total?.base_wallet
+                                  ?.balance
+                              : 0
+                          ).toFixed(8)}
                         </span>
                       </span>
                       <span

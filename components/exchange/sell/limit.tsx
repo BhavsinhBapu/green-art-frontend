@@ -56,12 +56,12 @@ const Limit = ({
                         style={{ fontWeight: 700 }}
                       >
                         <span>
-                          {formateZert(
+                          {parseFloat(
                             dashboard?.order_data?.total?.trade_wallet?.balance
                               ? dashboard?.order_data?.total?.trade_wallet
                                   ?.balance
                               : 0
-                          )}
+                          ).toFixed(8)}
                         </span>
                       </span>
                       <span
@@ -83,12 +83,12 @@ const Limit = ({
                       >
                         <span>
                           {" "}
-                          {formateZert(
+                          {parseFloat(
                             dashboard?.order_data?.total?.trade_wallet?.balance
                               ? dashboard?.order_data?.total?.trade_wallet
                                   ?.balance
                               : 0
-                          )}
+                          ).toFixed(8)}
                         </span>
                       </span>
                       <span

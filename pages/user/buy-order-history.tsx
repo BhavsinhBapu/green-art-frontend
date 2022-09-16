@@ -92,7 +92,6 @@ const BuyOrderHistory: NextPage = () => {
       cell: (row: any) => (
         <div className="blance-text">
           <span className="blance market incree">
-            {settings.currency_symbol}
             {parseFloat(row?.price).toFixed(8)}
           </span>
         </div>

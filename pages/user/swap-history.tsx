@@ -17,7 +17,6 @@ const SwapHistory: NextPage = () => {
   const { t } = useTranslation("common");
   type searchType = string;
   const [search, setSearch] = React.useState<searchType>("");
-  const { settings } = useSelector((state: RootState) => state.common);
   const [processing, setProcessing] = React.useState<boolean>(false);
   const [history, setHistory] = React.useState<any>([]);
   const [stillHistory, setStillHistory] = React.useState<any>([]);
@@ -53,7 +52,6 @@ const SwapHistory: NextPage = () => {
       cell: (row: any) => (
         <div className="blance-text">
           <span className="blance market incree">
-            {settings.currency_symbol}
             {formatCurrency(row?.requested_amount)}
           </span>
         </div>
