@@ -11,6 +11,7 @@ import useTranslation from "next-translate/useTranslation";
 import CookieAccept from "components/common/cookie-accept";
 import Head from "next/head";
 import { setLogo } from "state/reducer/user";
+import { setSettings } from "state/reducer/common";
 const Index = ({ children }: any) => {
   const [navbarVisible, setNavbarVisible] = useState(false);
   const [showterms, setShowTerms] = useState(false);
@@ -33,6 +34,7 @@ const Index = ({ children }: any) => {
   const getCommonSettings = async () => {
     const response = await commomSettings();
     dispatch(setLogo(response.data.logo));
+    dispatch(setSettings(response.data));
     setMetaData(response.data);
   };
   useEffect(() => {

@@ -14,8 +14,11 @@ import {
 import Loading from "components/common/TableLoading";
 import Link from "next/link";
 import useTranslation from "next-translate/useTranslation";
+import { useSelector } from "react-redux";
+import { RootState } from "state/store";
 const MyWallet: NextPage = () => {
   const { t } = useTranslation("common");
+    const { settings } = useSelector((state: RootState) => state.common);
   const [show, setShow] = useState<any>({
     deposit: false,
     withdraw: false,
@@ -216,7 +219,7 @@ const MyWallet: NextPage = () => {
 
                   <h4 className="blance">
                     {allData?.total ? allData?.total : 0}
-                    {""} {t("USD")}
+                    {""} {settings?.currency}
                   </h4>
                 </div>
               </div>
@@ -336,7 +339,7 @@ const MyWallet: NextPage = () => {
                                     {item?.on_order}
                                   </span>
                                   <span className="usd">
-                                    ${formateZert(item?.on_order_usd)}
+                                    {settings?.currency_symbol}{formateZert(item?.on_order_usd)}
                                   </span>
                                 </div>
                               </td>
@@ -346,7 +349,7 @@ const MyWallet: NextPage = () => {
                                     {formateZert(item?.balance)}
                                   </span>
                                   <span className="usd">
-                                    ${formateZert(item?.available_balance_usd)}
+                                    {settings?.currency_symbol}{formateZert(item?.available_balance_usd)}
                                   </span>
                                 </div>
                               </td>
@@ -359,7 +362,7 @@ const MyWallet: NextPage = () => {
                                     )}
                                   </span>
                                   <span className="usd">
-                                    ${formateZert(item?.total_balance_usd)}
+                                    {settings?.currency_symbol}{formateZert(item?.total_balance_usd)}
                                   </span>
                                 </div>
                               </td>

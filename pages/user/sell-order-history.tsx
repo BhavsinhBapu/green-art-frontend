@@ -10,8 +10,11 @@ import {
 import TableLoading from "components/common/TableLoading";
 import useTranslation from "next-translate/useTranslation";
 import moment from "moment";
+import { useSelector } from "react-redux";
+import { RootState } from "state/store";
 const SellOrderHistory: NextPage = () => {
   type searchType = string;
+   const { settings } = useSelector((state: RootState) => state.common);
   const [search, setSearch] = useState<searchType>("");
   const [sortingInfo, setSortingInfo] = useState<any>({
     column_name: "created_at",
@@ -88,7 +91,8 @@ const SellOrderHistory: NextPage = () => {
       cell: (row: any) => (
         <div className="blance-text">
           <span className="blance market incree">
-            ${parseFloat(row?.price).toFixed(8)}
+            {settings.currency_symbol}
+            {parseFloat(row?.price).toFixed(8)}
           </span>
         </div>
       ),
