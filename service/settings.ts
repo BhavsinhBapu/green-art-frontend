@@ -28,3 +28,8 @@ export const LanguageSetupApi = async (credentials: { language: string }) => {
   const { data } = await request.post("/language-setup", credentials);
   return data;
 };
+
+export const UpdateCurrency = async (code: string) => {
+  const { data } = await request.post("/update-currency", { code: code });
+  return data;
+};

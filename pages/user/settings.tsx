@@ -4,14 +4,16 @@ import { useEffect, useState } from "react";
 import {
   UserSettingsAction,
   Google2faLoginAction,
+  UpdateCurrencyAction,
 } from "state/actions/settings";
 import GoogleAuthModal from "components/settings/GoogleAuthModal";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "state/store";
 
 const Settings: NextPage = () => {
   const dispatch = useDispatch();
   const [settings, setSettings] = useState<any>();
-
+ const { settings:settingsReducer } = useSelector((state: RootState) => state.common);
   useEffect(() => {
     dispatch(UserSettingsAction(setSettings));
 
@@ -32,9 +34,9 @@ const Settings: NextPage = () => {
         <div className="setting-area">
           <div className="container">
             <div className="section-top-wrap ">
-              <div className="row ">
-                <div className="col-xl-12 mb-xl-0 mb-4">
-                  <div className=" cp-user-custom-card cp-user-setting-card">
+              <div className="row">
+                <div className="col-xl-6 mb-xl-0 mb-4">
+                  <div className="cp-user-setting-card">
                     <div className="card-body">
                       <div className="cp-user-card-header-area">
                         <div className="cp-user-title">
@@ -107,6 +109,57 @@ const Settings: NextPage = () => {
                               <span className="slider round" />
                             </label>
                           </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-xl-6 mb-xl-0 mb-4">
+                  <div className="cp-user-setting-card">
+                    <div className="card-body">
+                      <div className="cp-user-card-header-area">
+                        <div className="cp-user-title">
+                          <h4>Preference Settings</h4>
+                        </div>
+                      </div>
+                      <div className="cp-user-setting-card-inner cp-user-setting-card-inner-preference">
+                        <div className="cp-user-content">
+                          <div className="form-group">
+                            <label>Currency</label>
+                            <div className="cp-user-preferance-setting">
+                              <select
+                                name="currency"
+                                className="form-control"
+                                onChange={(e) => {
+                                  dispatch(
+                                    UpdateCurrencyAction(e.target.value)
+                                  );
+                                }}
+                              >
+                                {settings?.fiat_currency?.map(
+                                  (currency: any, index: any) => (
+                                    <option
+                                      key={index}
+                                      selected={
+                                        settingsReducer.currency === currency.code
+                                      }
+                                      defaultChecked={
+                                        settingsReducer.currency === currency.lang
+                                      }
+                                      value={currency.code}
+                                    >
+                                      {currency.name}
+                                    </option>
+                                  )
+                                )}
+                              </select>
+                            </div>
+                          </div>
+                          {/* <div className="form-group">
+                            <button className="btn cp-user-setupbtn">
+                              Update
+                            </button>
+                          </div> */}
                         </div>
                       </div>
                     </div>

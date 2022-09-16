@@ -1,11 +1,14 @@
 import React, { SetStateAction } from "react";
 import { toast } from "react-toastify";
+import { commomSettings } from "service/landing-page";
 import {
   UserSettingsApi,
   Google2faSetupApi,
   Google2faLoginApi,
   LanguageSetupApi,
+  UpdateCurrency,
 } from "service/settings";
+import { setSettings } from "state/reducer/common";
 import { setLoading } from "state/reducer/user";
 
 export const UserSettingsAction =
@@ -16,6 +19,13 @@ export const UserSettingsAction =
     setSettings(settings.data);
     dispatch(setLoading(false));
   };
+
+export const UpdateCurrencyAction = (code: any) => async (dispatch: any) => {
+  console.log("code from action", code);
+  await UpdateCurrency(code);
+  const settingResponse = await commomSettings();
+  dispatch(setSettings(settingResponse.data));
+};
 export const Google2faLoginAction = async () => {
   const setup = await Google2faLoginApi();
   if (setup.success) {
