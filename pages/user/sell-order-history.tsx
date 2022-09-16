@@ -12,6 +12,7 @@ import useTranslation from "next-translate/useTranslation";
 import moment from "moment";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
+import { formatCurrency } from "common";
 const SellOrderHistory: NextPage = () => {
   type searchType = string;
    const { settings } = useSelector((state: RootState) => state.common);
@@ -92,7 +93,7 @@ const SellOrderHistory: NextPage = () => {
         <div className="blance-text">
           <span className="blance market incree">
             {settings.currency_symbol}
-            {parseFloat(row?.price).toFixed(8)}
+            {formatCurrency(row?.price)}
           </span>
         </div>
       ),

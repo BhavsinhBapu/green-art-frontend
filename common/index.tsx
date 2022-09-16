@@ -7,6 +7,10 @@ export const formateData = (date: any) => {
 export const formateZert = (number: any) => {
   return parseFloat(number);
 };
+
+export const formatCurrency = (value:any) => {
+  return  new Intl.NumberFormat("en-US").format(value)
+};
 export const copyTextById = (id: string) => {
   const element: any = document.getElementById(id);
   if (element) {

@@ -4,7 +4,7 @@ import DepositTab from "components/wallet/DepositTab";
 import WirhdrawTab from "components/wallet/WirhdrawTab";
 import { toast } from "react-toastify";
 import React, { useEffect, useState } from "react";
-import { formateZert } from "common";
+import { formateZert, formatCurrency } from "common";
 import {
   SearchObjectArrayFuesJS,
   WalletDepositApiAction,
@@ -18,7 +18,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "state/store";
 const MyWallet: NextPage = () => {
   const { t } = useTranslation("common");
-    const { settings } = useSelector((state: RootState) => state.common);
+  const { settings } = useSelector((state: RootState) => state.common);
   const [show, setShow] = useState<any>({
     deposit: false,
     withdraw: false,
@@ -218,7 +218,7 @@ const MyWallet: NextPage = () => {
                   <h4 className="blance-title">{t("Total balance")}</h4>
 
                   <h4 className="blance">
-                    {allData?.total ? allData?.total : 0}
+                    {allData?.total ? formatCurrency(allData?.total) : 0}
                     {""} {settings?.currency}
                   </h4>
                 </div>
@@ -339,17 +339,21 @@ const MyWallet: NextPage = () => {
                                     {item?.on_order}
                                   </span>
                                   <span className="usd">
-                                    {settings?.currency_symbol}{formateZert(item?.on_order_usd)}
+                                    {settings?.currency_symbol}
+                                    {formatCurrency(item?.on_order_usd)}
                                   </span>
                                 </div>
                               </td>
                               <td>
                                 <div className="blance-text">
                                   <span className="blance">
-                                    {formateZert(item?.balance)}
+                                    {formatCurrency(item?.balance)}
                                   </span>
                                   <span className="usd">
-                                    {settings?.currency_symbol}{formateZert(item?.available_balance_usd)}
+                                    {settings?.currency_symbol}
+                                    {formatCurrency(
+                                      item?.available_balance_usd
+                                    )}
                                   </span>
                                 </div>
                               </td>
@@ -362,7 +366,8 @@ const MyWallet: NextPage = () => {
                                     )}
                                   </span>
                                   <span className="usd">
-                                    {settings?.currency_symbol}{formateZert(item?.total_balance_usd)}
+                                    {settings?.currency_symbol}
+                                    {formatCurrency(item?.total_balance_usd)}
                                   </span>
                                 </div>
                               </td>

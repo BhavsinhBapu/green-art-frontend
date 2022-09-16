@@ -12,6 +12,7 @@ import { getRateSsr } from "service/swap";
 import Link from "next/link";
 import useTranslation from "next-translate/useTranslation";
 import SmallLoading from "components/common/smallLoading";
+import { formateZert } from "common";
 const SwapCoin: NextPage = ({
   walletLists,
   wallet_rate,
@@ -133,7 +134,7 @@ const SwapCoin: NextPage = ({
                         <div className="swap-wrap-top">
                           <label>{t("From")}</label>
                           <span className="available">
-                            Available : {fromSelected.balamce}{" "}
+                            Available : {formateZert(fromSelected.balamce)}{" "}
                             {fromSelected.selected}
                           </span>
                         </div>
@@ -219,7 +220,7 @@ const SwapCoin: NextPage = ({
                         <div className="swap-wrap-top">
                           <label>{t("To")}</label>
                           <span className="available">
-                            Available : {toSelected.balamce}{" "}
+                            Available : {formateZert(toSelected.balamce)}{" "}
                             {toSelected.selected}
                           </span>
                         </div>

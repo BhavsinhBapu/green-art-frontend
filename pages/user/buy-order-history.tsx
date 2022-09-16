@@ -12,6 +12,7 @@ import moment from "moment";
 import DataTable from "react-data-table-component";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
+import { formatCurrency } from "common";
 
 const BuyOrderHistory: NextPage = () => {
   type searchType = string;
@@ -67,7 +68,7 @@ const BuyOrderHistory: NextPage = () => {
       cell: (row: any) => (
         <div className="blance-text">
           <span className="blance market incree">
-            {parseFloat(row?.amount).toFixed(8)}
+            {formatCurrency(row?.amount)}
           </span>
         </div>
       ),
