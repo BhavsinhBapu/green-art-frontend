@@ -240,7 +240,7 @@ const Dashboard: NextPage = () => {
                           <SelectCurrency />
                         </div>
                       </div>
-                      <CurrencyLevel />
+                      {dashboard?.last_price_data && <CurrencyLevel />}
                     </div>
                   </div>
 
