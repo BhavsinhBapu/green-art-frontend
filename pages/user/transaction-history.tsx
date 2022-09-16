@@ -10,13 +10,10 @@ import TableLoading from "components/common/TableLoading";
 import useTranslation from "next-translate/useTranslation";
 import moment from "moment";
 import DataTable from "react-data-table-component";
-import { useSelector } from "react-redux";
-import { RootState } from "state/store";
 import { formatCurrency } from "common";
 const TransactionHistory: NextPage = () => {
   const { t } = useTranslation("common");
   type searchType = string;
-   const { settings } = useSelector((state: RootState) => state.common);
   const [search, setSearch] = useState<searchType>("");
   const [processing, setProcessing] = useState<boolean>(false);
   const [history, setHistory] = useState<any>([]);
@@ -76,7 +73,6 @@ const TransactionHistory: NextPage = () => {
       cell: (row: any) => (
         <div className="blance-text">
           <span className="blance market incree">
-            {settings.currency_symbol}
             {formatCurrency(row?.price)}
           </span>
         </div>
@@ -89,7 +85,6 @@ const TransactionHistory: NextPage = () => {
       cell: (row: any) => (
         <div className="blance-text">
           <span className="blance market incree">
-            {settings.currency_symbol}
             {formatCurrency(row?.fees)}
           </span>
         </div>
