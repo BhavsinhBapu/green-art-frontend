@@ -167,6 +167,11 @@ const SwapCoin: NextPage = ({
                                   ...fromSelected,
                                   coin_id: e.target.value,
                                 });
+                                convertCoin(
+                                  fromSelected.amount,
+                                  e.target.value,
+                                  toSelected.coin_id
+                                );
                               }}
                             >
                               <option value="" selected disabled hidden>
@@ -238,6 +243,11 @@ const SwapCoin: NextPage = ({
                                   ...toSelected,
                                   coin_id: e.target.value,
                                 });
+                                convertCoin(
+                                  fromSelected.amount,
+                                  fromSelected.coin_id,
+                                  e.target.value
+                                );
                               }}
                             >
                               <option value="" selected disabled hidden>
@@ -364,6 +374,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
     1,
     cookies.token
   );
+
   if (data.success === false) {
     return {
       redirect: {
