@@ -29,6 +29,7 @@ const Home: NextPage = ({
 }: any) => {
   const { t } = useTranslation("common");
   const router = useRouter();
+ 
   const { logo } = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
   const settings = {
@@ -944,6 +945,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const { data } = await landingPage();
   const cookies = parseCookies(ctx);
   const { data: customPageData } = await customPage();
+
   let response;
   try {
     response = cookies.token

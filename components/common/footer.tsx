@@ -1,9 +1,12 @@
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import React from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "state/store";
 
 const Footer = ({ customPageData, socialData, copyright_text }: any) => {
   const { t } = useTranslation("common");
+  const { settings } = useSelector((state: RootState) => state.common);
 
   return (
     <footer className="footer-area pt--70">
@@ -107,7 +110,7 @@ const Footer = ({ customPageData, socialData, copyright_text }: any) => {
                 <div className="copyright-area text-center text-md-center">
                   <p>
                     {copyright_text || t("Copyright@2022")}{" "}
-                    <a href="">{t("TradexPro")}</a>
+                    <a href="">{settings.app_title ?? t("TradexPro")}</a>
                   </p>
                 </div>
               </div>

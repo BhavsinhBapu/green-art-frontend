@@ -5137,13 +5137,13 @@ table.dataTable thead tr th {
   font-size: 16px;
   font-weight: 400;
   text-transform: capitalize;
-  color: rgb(188, 188, 188) !important;
+  color: #000 mportant;
 }
 table.dataTable tbody tr td {
   font-size: 12px;
   font-weight: 400;
   color: #23262f;
-  color: rgb(188, 188, 188) !important;
+  color: #000 !important;
 }
 .notification-body {
 }
