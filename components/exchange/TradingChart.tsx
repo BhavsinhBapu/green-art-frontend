@@ -38,7 +38,7 @@ const pair = localStorage.getItem("current_pair")?.replace("_", "/");
 localStorage.setItem("tradingview.ChartDrawingToolbarWidget.visible", "false");
 export class TVChartContainer extends React.Component<MyProps> {
   static defaultProps = {
-    symbol: `${pair ? pair : "BTC/USDT"}`,
+    symbol: `Pair Name:${pair ? pair : "BTC/USDT"}`,
     interval: "5",
 
     containerId: "tv_chart_container",
