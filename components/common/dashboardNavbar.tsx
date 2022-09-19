@@ -5,10 +5,13 @@ import { RootState } from "state/store";
 import { LogoutAction } from "state/actions/user";
 import useTranslation from "next-translate/useTranslation";
 import { notification, notificationSeen } from "service/notification";
+import { LanguageList } from "helpers/lang";
+import { useRouter } from "next/router";
 const DashboardNavbar = () => {
   const { isLoggedIn, user, logo } = useSelector(
     (state: RootState) => state.user
   );
+  const router = useRouter();
   const [active, setActive] = useState(false);
   const [notificationData, setNotification] = useState<any>([]);
   const { t } = useTranslation("common");
@@ -50,32 +53,51 @@ const DashboardNavbar = () => {
             <div className="col-xl-8 col-lg-8 d-none d-lg-block">
               <nav className="main-menu">
                 <ul>
-                  <Link href="/exchange/dashboard">
-                    <li>
-                      <a href="">
-                        <span className="cp-user-icon">
-                          <img
-                            src="/sidebar-icons/dashboard.svg"
-                            className="img-fluid cp-user-side-bar-icon"
-                            alt=""
-                          />
-                          <img
-                            src="/sidebar-icons/hover/dashboard.svg"
-                            className="img-fluid cp-user-side-bar-icon-hover"
-                            alt=""
-                          />
-                        </span>
-                        <span className="cp-user-name">{t("Trade")}</span>
-                      </a>
-                    </li>
-                  </Link>
-
-                  <Link
-                    href={
-                      isLoggedIn ? "/user/my-wallet" : "/authentication/signin"
+                  <li
+                    className={
+                      router.pathname == "/exchange/dashboard"
+                        ? "cp-user-active-page"
+                        : ""
                     }
                   >
-                    <li>
+                    <a
+                      href={
+                        router.locale !== "en"
+                          ? `/${router.locale}/exchange/dashboard`
+                          : "/exchange/dashboard"
+                      }
+                    >
+                      <span className="cp-user-icon">
+                        <img
+                          src="/sidebar-icons/dashboard.svg"
+                          className="img-fluid cp-user-side-bar-icon"
+                          alt=""
+                        />
+                        <img
+                          src="/sidebar-icons/hover/dashboard.svg"
+                          className="img-fluid cp-user-side-bar-icon-hover"
+                          alt=""
+                        />
+                      </span>
+                      <span className="cp-user-name">{t("Trade")}</span>
+                    </a>
+                  </li>
+                  <Link
+                    href={
+                      isLoggedIn === true
+                        ? "/user/my-wallet"
+                        : "/authentication/signin"
+                    }
+                  >
+                    <li
+                      className={
+                        router.pathname == "/user/my-wallet"
+                          ? "cp-user-active-page"
+                          : router.pathname == "/user/swap-coin"
+                          ? "cp-user-active-page"
+                          : ""
+                      }
+                    >
                       <a href="">
                         <span className="cp-user-icon">
                           <img
@@ -93,7 +115,21 @@ const DashboardNavbar = () => {
                       </a>
                     </li>
                   </Link>
-                  <li>
+                  <li
+                    className={
+                      router.pathname == "/user/wallet-history"
+                        ? "cp-user-active-page"
+                        : router.pathname == "/user/swap-history"
+                        ? "cp-user-active-page"
+                        : router.pathname == "/user/buy-order-history"
+                        ? "cp-user-active-page"
+                        : router.pathname == "/user/sell-order-history"
+                        ? "cp-user-active-page"
+                        : router.pathname == "/user/transaction-history"
+                        ? "cp-user-active-page"
+                        : ""
+                    }
+                  >
                     <Link
                       href={
                         isLoggedIn
@@ -117,7 +153,7 @@ const DashboardNavbar = () => {
                         <span className="cp-user-name">{t("Reports")}</span>
                       </a>
                     </Link>
-                    <ul>
+                    <ul className="">
                       <Link
                         href={
                           isLoggedIn
@@ -125,7 +161,14 @@ const DashboardNavbar = () => {
                             : "/authentication/signin"
                         }
                       >
-                        <li>
+                        <li
+                          className={
+                            router.pathname ==
+                            "/user/wallet-history?type=deposit"
+                              ? "cp-user-active-page"
+                              : ""
+                          }
+                        >
                           <a href="">{t("Deposit History")}</a>
                         </li>
                       </Link>
@@ -136,7 +179,14 @@ const DashboardNavbar = () => {
                             : "/authentication/signin"
                         }
                       >
-                        <li>
+                        <li
+                          className={
+                            router.pathname ==
+                            "/user/wallet-history?type=withdrawal"
+                              ? "cp-user-active-page"
+                              : ""
+                          }
+                        >
                           <a href="">{t("Withdrawal History")}</a>
                         </li>
                       </Link>
@@ -147,7 +197,13 @@ const DashboardNavbar = () => {
                             : "/authentication/signin"
                         }
                       >
-                        <li>
+                        <li
+                          className={
+                            router.pathname == "/user/swap-history"
+                              ? "cp-user-active-page"
+                              : ""
+                          }
+                        >
                           <a href="">{t("Swap History")}</a>
                         </li>
                       </Link>
@@ -158,7 +214,13 @@ const DashboardNavbar = () => {
                             : "/authentication/signin"
                         }
                       >
-                        <li>
+                        <li
+                          className={
+                            router.pathname == "/user/buy-order-history"
+                              ? "cp-user-active-page"
+                              : ""
+                          }
+                        >
                           <a href="">{t("Buy Order History")}</a>
                         </li>
                       </Link>
@@ -169,7 +231,13 @@ const DashboardNavbar = () => {
                             : "/authentication/signin"
                         }
                       >
-                        <li>
+                        <li
+                          className={
+                            router.pathname == "/user/sell-order-history"
+                              ? "cp-user-active-page"
+                              : ""
+                          }
+                        >
                           <a href="">{t("Sell Order History")}</a>
                         </li>
                       </Link>
@@ -180,7 +248,13 @@ const DashboardNavbar = () => {
                             : "/authentication/signin"
                         }
                       >
-                        <li>
+                        <li
+                          className={
+                            router.pathname == "/user/transaction-history"
+                              ? "cp-user-active-page"
+                              : ""
+                          }
+                        >
                           <a href="">{t("Transaction History")}</a>
                         </li>
                       </Link>
@@ -191,7 +265,13 @@ const DashboardNavbar = () => {
                       isLoggedIn ? "/user/profile" : "/authentication/signin"
                     }
                   >
-                    <li>
+                    <li
+                      className={
+                        router.pathname == "/user/profile"
+                          ? "cp-user-active-page"
+                          : ""
+                      }
+                    >
                       <a href="">
                         <span className="cp-user-icon">
                           <img
@@ -214,7 +294,13 @@ const DashboardNavbar = () => {
                       isLoggedIn ? "/user/referral" : "/authentication/signin"
                     }
                   >
-                    <li>
+                    <li
+                      className={
+                        router.pathname == "/user/referral"
+                          ? "cp-user-active-page"
+                          : ""
+                      }
+                    >
                       <a href="">
                         <span className="cp-user-icon">
                           <img
@@ -232,7 +318,15 @@ const DashboardNavbar = () => {
                       </a>
                     </li>
                   </Link>
-                  <li>
+                  <li
+                    className={
+                      router.pathname == "/user/settings"
+                        ? "cp-user-active-page"
+                        : router.pathname == "/user/faq"
+                        ? "cp-user-active-page"
+                        : ""
+                    }
+                  >
                     <Link
                       href={
                         isLoggedIn ? "/user/settings" : "/authentication/signin"
@@ -254,7 +348,7 @@ const DashboardNavbar = () => {
                         <span className="cp-user-name">{t("Settings")}</span>
                       </a>
                     </Link>
-                    <ul>
+                    <ul className="">
                       <Link
                         href={
                           isLoggedIn
@@ -271,10 +365,44 @@ const DashboardNavbar = () => {
                           isLoggedIn ? "/user/faq" : "/authentication/signin"
                         }
                       >
-                        <li>
+                        <li
+                          className={
+                            router.pathname == "/user/faq"
+                              ? "cp-user-active-page"
+                              : ""
+                          }
+                        >
                           <a href="">{t("FAQ")}</a>
                         </li>
                       </Link>
+                    </ul>
+                  </li>
+                  <li>
+                    <a className="arrow-icon" href="#" aria-expanded="true">
+                      <span className="cp-user-icon">
+                        <img
+                          src="/sidebar-icons/Membership.svg"
+                          className="img-fluid cp-user-side-bar-icon"
+                          alt=""
+                        />
+                        <img
+                          src="/sidebar-icons/hover/Membership-1.svg"
+                          className="img-fluid cp-user-side-bar-icon-hover"
+                          alt=""
+                        />
+                      </span>
+                      <span className="cp-user-name">
+                        {router.locale?.toLocaleUpperCase()}
+                      </span>
+                    </a>
+                    <ul className="">
+                      {LanguageList.map((item, index) => (
+                        <li key={index}>
+                          <Link href={router.asPath} locale={item.value}>
+                            <a className="py-1">{item.name}</a>
+                          </Link>
+                        </li>
+                      ))}
                     </ul>
                   </li>
                 </ul>
@@ -402,6 +530,7 @@ const DashboardNavbar = () => {
                           </div>
                         </div>
                       </li>
+
                       <li className="hm-notify" id="notification_item">
                         <div className="btn-group profile-dropdown">
                           <button
