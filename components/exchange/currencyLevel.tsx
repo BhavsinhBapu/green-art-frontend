@@ -92,6 +92,8 @@ const CurrencyLevel = () => {
           >
             {parseFloat(
               dashboard?.order_data?.total?.trade_wallet?.price_change
+                ? dashboard?.order_data?.total?.trade_wallet?.price_change
+                : 0
             )}
             %
           </span>
@@ -132,7 +134,7 @@ const CurrencyLevel = () => {
             {" "}
             {t("24h volume")}({dashboard?.order_data?.base_coin}){" "}
           </span>
-          <span className="value">{formatCurrency(volume)}</span>
+          <span className="value">{formatCurrency(volume?volume:0)}</span>
         </li>
       </ul>
     </div>

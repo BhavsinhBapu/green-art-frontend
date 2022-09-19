@@ -10,7 +10,7 @@ const CookieAccept = ({ iUnderStand }: any) => {
       <div className="content">
         <header>{t("Cookies Constent")}</header>
         <p>
-          {t("This website use cookies to ensure you get the besr experience")}
+          {t("This website use cookies to ensure you get the best experience")}
         </p>
         <div className="buttons">
           <button

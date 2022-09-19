@@ -149,7 +149,6 @@ const DashboardBody = () => {
                     )}
                   </span>
                   <span className="value-previous">
-                    {" "}
                     {parseFloat(
                       dashboard?.last_price_data[0]?.last_price
                         ? dashboard?.last_price_data[0]?.last_price
@@ -189,8 +188,9 @@ const DashboardBody = () => {
                     }
                   >
                     {parseFloat(
-                      dashboard?.last_price_data &&
-                        dashboard?.last_price_data[0]?.price
+                      dashboard?.last_price_data[0]?.price
+                        ? dashboard?.last_price_data[0]?.price
+                        : 0
                     )}
                     {parseFloat(
                       dashboard?.last_price_data &&
@@ -217,8 +217,9 @@ const DashboardBody = () => {
                   <span className="value-previous">
                     {" "}
                     {parseFloat(
-                      dashboard?.last_price_data &&
-                        dashboard?.last_price_data[0]?.last_price
+                      dashboard?.last_price_data[0]?.last_price
+                        ? dashboard?.last_price_data[0]?.last_price
+                        : 0
                     )}
                     ({dashboard?.order_data?.base_coin})
                   </span>
@@ -256,8 +257,9 @@ const DashboardBody = () => {
                     }
                   >
                     {parseFloat(
-                      dashboard?.last_price_data &&
-                        dashboard?.last_price_data[0]?.price
+                      dashboard?.last_price_data[0]?.price
+                        ? dashboard?.last_price_data[0]?.price
+                        : 0
                     )}
                     {parseFloat(
                       dashboard?.last_price_data &&
@@ -284,8 +286,9 @@ const DashboardBody = () => {
                   <span className="value-previous">
                     {" "}
                     {parseFloat(
-                      dashboard?.last_price_data &&
-                        dashboard?.last_price_data[0]?.last_price
+                      dashboard?.last_price_data[0]?.last_price
+                        ? dashboard?.last_price_data[0]?.last_price
+                        : 0
                     )}
                     ({dashboard?.order_data?.base_coin})
                   </span>

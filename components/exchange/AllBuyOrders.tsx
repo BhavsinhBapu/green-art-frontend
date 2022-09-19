@@ -184,8 +184,10 @@ const AllBuyOrders = ({ OpenBookBuy, show }: any) => {
                       </Tooltip>
                     ))
                   ) : (
-                    <tr>
-                      <td className="">{t("No data available in table")}</td>
+                    <tr className="odd">
+                      <td valign="top"  className="text-center">
+                        {t("No data available in table")}
+                      </td>
                     </tr>
                   )}
                 </tbody>
