@@ -23,7 +23,7 @@ const G2fverify = () => {
             <h2>{t("Two Factor Authentication")}</h2>
             <p>
               {t(
-                "Open your authentication app and enter the code for TradexPro Admin"
+                "Open your authentication app and enter the code for Admin"
               )}
             </p>
           </div>

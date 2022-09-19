@@ -18,7 +18,7 @@ const Index = ({ children }: any) => {
   const [metaData, setMetaData] = useState({
     app_title: "",
     copyright_text: "",
-    exchange_url: "TradexPro Exchange",
+    exchange_url: "",
     favicon: "",
     login_logo: "",
     logo: "",
