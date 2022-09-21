@@ -12,6 +12,7 @@ import CookieAccept from "components/common/cookie-accept";
 import Head from "next/head";
 import { setLogo } from "state/reducer/user";
 import { setSettings } from "state/reducer/common";
+import { settings } from "nprogress";
 const Index = ({ children }: any) => {
   const [navbarVisible, setNavbarVisible] = useState(false);
   const [showterms, setShowTerms] = useState(false);
@@ -27,7 +28,7 @@ const Index = ({ children }: any) => {
   const { isLoading, isLoggedIn } = useSelector(
     (state: RootState) => state.user
   );
-
+  const { settings } = useSelector((state: RootState) => state.common);
   const { t } = useTranslation("common");
   const dispatch = useDispatch();
   const router = useRouter();
@@ -65,15 +66,15 @@ const Index = ({ children }: any) => {
   useEffect(() => {
     const token = Cookies.get("token");
     const terms = Cookies.get("terms");
-    if (terms === "yes") {
+    if (terms === "yes" && settings.cookie_status == "0") {
       setShowTerms(false);
-    } else {
+    } else if (terms != "yes" && settings.cookie_status == "1") {
       setShowTerms(true);
     }
     if (token) {
       dispatch(GetUserInfoByTokenAction());
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, settings.cookie_status]);
   return navbarVisible ? (
     <div>
       {isLoading && (
