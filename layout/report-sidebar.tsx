@@ -55,6 +55,15 @@ const ReportSidebar = () => {
               <a href="getAllTransactionHistory">{t("Transaction History")}</a>
             </li>
           </Link>
+          <Link href="/user/launchpad-history">
+            <li
+              className={
+                router.pathname == "/user/launchpad-history" ? "active" : ""
+              }
+            >
+              <a href="getAllTransactionHistory">{t("launchpad history")}</a>
+            </li>
+          </Link>
         </ul>
       </div>
     </div>
