@@ -1,14 +1,19 @@
 import useTranslation from "next-translate/useTranslation";
+import Image from "next/image";
 import React from "react";
 
 const LaunchPad = () => {
   const { t } = useTranslation("common");
   return (
-    <div className="mt-5 mb-5 row">
+    <div className="mt-3 mb-5 row launchpad-container">
       <div className="col-lg-4 col-12  mb-2">
-        <img
-          src="https://timelinecovers.pro/facebook-cover/download/apple-shines-facebook-cover.jpg"
+        <Image
+          src="/binance-logo-6219389_960_720.webp"
           alt=""
+          layout="responsive"
+          height={150}
+          width={200}
+          className="launchpad-cover"
         />
       </div>
       <div className="col-lg-8 col-12">
@@ -16,7 +21,7 @@ const LaunchPad = () => {
           <div className="status-launchpool">
             <p>{t("SUBSCRIPTION")}</p>
           </div>
-          <h2 className="mt-1">APPLE</h2>
+          <h2 className="mt-1">{t("APPLE")}</h2>
           <p>{t("APPLE - A Move-to-Earn Health and Fitness Application")}</p>
 
           <div className="row">

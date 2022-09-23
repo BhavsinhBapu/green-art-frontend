@@ -10,15 +10,11 @@ import { parseCookies } from "nookies";
 import React from "react";
 import { customPage, landingPage } from "service/landing-page";
 
-const Index = ({
-  socialData,
-  customPageData,
-  copyright_text,
-}: any) => {
+const Index = ({ socialData, customPageData, copyright_text }: any) => {
   const { t } = useTranslation("common");
   return (
     <div>
-      <div className="page-main-content">
+      <div className="">
         <LaunchTop />
         <div className="launch-body container">
           <Hero />
@@ -41,8 +37,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const { data } = await landingPage();
   const cookies = parseCookies(ctx);
   const { data: customPageData } = await customPage();
-
-  let response;
 
   return {
     props: {

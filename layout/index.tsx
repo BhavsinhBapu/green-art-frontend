@@ -52,7 +52,7 @@ const Index = ({ children }: any) => {
       path === "/authentication/g2f-verify" ||
       path === "/" ||
       path === "/authentication/verify-email" ||
-      path === "user/notification"
+      path === "user/notification" 
     ) {
       setNavbarVisible(false);
     } else {
