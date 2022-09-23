@@ -3558,6 +3558,9 @@ body._toggle .swipe-area-overlay:before {
   .cp-user-wallet-table table tbody tr td ul li:not(:last-child) {
     margin-right: 5px;
   }
+  .secendary-table tbody tr td .asset{
+    flex-direction: column;
+  }
 }
 
 .exchange-area .cp-user-buy-coin-content-area {
@@ -9242,7 +9245,7 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
 }
 .cstm-img-picker {
   display: flex;
-  width: 320px;
+  /* width: 320px; */
   height: 223px;
   left: 0;
   top: 0;
