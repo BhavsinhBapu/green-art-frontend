@@ -24,7 +24,7 @@ const LaunchTop = () => {
             </h5>
           </div>
           <div className=" col-6 col-lg-3  mt-3 ">
-            <h2 className="text-white">{t("$ 105,411,514")}</h2>
+            <h2 className="text-white">{t("$105,411,514")}</h2>
             <h5 className="blance-title mt-3 text-white">
               {t("Total Funds Raised")}
             </h5>
