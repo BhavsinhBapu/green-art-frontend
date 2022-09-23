@@ -223,8 +223,64 @@ const MyWallet: NextPage = () => {
                   </h4>
                 </div>
               </div>
+              <div className="responsive-thing">
+                <button
+                  value="0"
+                  id="depositId"
+                  type="submit"
+                  className="depositId primary-btn-outline btn-deposite text-white"
+                  onClick={() => {
+                    if (!selectedRow.id) {
+                      toast.info("Please select a wallet");
+                      return;
+                    }
+                    handleWithdrawAndDeposit(1, selectedRow.id);
+                  }}
+                >
+                  {transactionProcessing.deposit ? (
+                    <>
+                      <span
+                        className="spinner-border spinner-border-sm mr-3"
+                        role="status"
+                        aria-hidden="true"
+                      ></span>
+                      <span>{t("Please wait")}</span>
+                    </>
+                  ) : (
+                    t("Deposit")
+                  )}
+                </button>
+                <button
+                  value="0"
+                  id="withdrawalId"
+                  type="submit"
+                  className="withdrawalId primary-btn-outline btn-withdraw text-white"
+                  onClick={() => {
+                    if (!selectedRow.id) {
+                      toast.info("Please select a wallet");
+                      return;
+                    }
+                    handleWithdrawAndDeposit(2, selectedRow.id);
+                  }}
+                >
+                  {transactionProcessing.withdraw ? (
+                    <>
+                      <span
+                        className="spinner-border spinner-border-sm mr-3"
+                        role="status"
+                        aria-hidden="true"
+                      ></span>
+                      <span>{t("Please wait")}</span>
+                    </>
+                  ) : (
+                    t("Withdraw")
+                  )}
+                </button>
+              </div>
             </div>
+
             <h4 className="section-title-medium">{t("Asset Balances")}</h4>
+
             <div className="asset-balances-area cstm-loader-area">
               {processing ? (
                 <Loading />

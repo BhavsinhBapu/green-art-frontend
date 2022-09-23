@@ -6,7 +6,7 @@ import useTranslation from "next-translate/useTranslation";
 const DepositTab = ({ response, TurnoffSetShow }: any) => {
   const { t } = useTranslation("common");
   return (
-    <div className={`asset-balances-right visible`}>
+    <div className={`asset-balances-right visible mb-3`}>
       <div className={`box-one single-box visible`}>
         <div className="section-wrapper">
           <div className="deposit-info-area" id="wallet_deposit_area">

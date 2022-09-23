@@ -3558,7 +3558,7 @@ body._toggle .swipe-area-overlay:before {
   .cp-user-wallet-table table tbody tr td ul li:not(:last-child) {
     margin-right: 5px;
   }
-  .secendary-table tbody tr td .asset{
+  .secendary-table tbody tr td .asset {
     flex-direction: column;
   }
 }
@@ -5148,7 +5148,8 @@ table.dataTable tbody tr td {
   color: rgb(188, 188, 188);
   /* color: #000 !important; */
 }
-.notification-body {
+.responsive-thing {
+  display: none;
 }
 .referral-text {
   color: #23262f !important;
@@ -5774,6 +5775,13 @@ table.dataTable tbody tr td {
 @media (max-width: 1199px) {
   .orders-area {
     margin-bottom: 25px;
+  }
+  .responsive-thing {
+    display: flex;
+  }
+  .cstm-loader-area{
+    display: flex;
+    flex-direction: column-reverse;
   }
 }
 @media (max-width: 992px) {
