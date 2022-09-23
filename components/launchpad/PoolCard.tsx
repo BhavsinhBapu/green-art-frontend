@@ -1,30 +1,32 @@
-import React from 'react'
+import useTranslation from "next-translate/useTranslation";
+import React from "react";
 
 const PoolCard = () => {
+  const { t } = useTranslation("common");
   return (
     <div className="pool-card p-3">
       <div className="card-pool-title ">
         <img alt="GAL" src="/gal.svg" className="pool-icon-small" />
-        <h5 className=" ml-2">GAL</h5>
+        <h5 className=" ml-2">{t("GAL")}</h5>
       </div>
-      <p className="text-center">Stake BUSD, Earn GAL</p>
+      <p className="text-center">{t("Stake BUSD, Earn GAL")}</p>
       <div className="center-img-pool">
-        <img alt="GAL" src="/gal.svg" className="pool-icon" />
+        <img alt={t("GAL")} src="/gal.svg" className="pool-icon" />
       </div>
       <div className="pool-row">
-        <p className="pool-title">APY::</p>
-        <p className="pool-value">1.32%</p>
+        <p className="pool-title">{t("APY:")}</p>
+        <p className="pool-value">{t("1.32%")}</p>
       </div>
       <div className="pool-row">
-        <p className="pool-title">Participants:</p>
-        <p className="pool-value">146,264</p>
+        <p className="pool-title">{t("Participants:")}</p>
+        <p className="pool-value">{t("146,264")}</p>
       </div>
       <div className="pool-row">
-        <p className="pool-title">Total Staked:</p>
-        <p className="pool-value">1,571,348 BUSD</p>
+        <p className="pool-title">{t("Total Staked:")}</p>
+        <p className="pool-value">{t("1,571,348 BUSD")}</p>
       </div>
     </div>
   );
-}
+};
 
-export default PoolCard
+export default PoolCard;
