@@ -627,7 +627,13 @@ const Navbar = () => {
           <nav>
             <ul id="metismenu">
               <li className=" cp-user-active-page ">
-                <a href="">
+                <a
+                  href={
+                    router.locale !== "en"
+                      ? `/${router.locale}/exchange/dashboard`
+                      : "/exchange/dashboard"
+                  }
+                >
                   <span className="cp-user-icon">
                     <img
                       src=""
@@ -643,6 +649,7 @@ const Navbar = () => {
                   <span className="cp-user-name">Dashboard</span>
                 </a>
               </li>
+
               <li>
                 <a className="arrow-icon" href="#" aria-expanded="true">
                   <span className="cp-user-icon">
@@ -660,12 +667,24 @@ const Navbar = () => {
                   <span className="cp-user-name">Wallet</span>
                 </a>
                 <ul>
-                  <li>
-                    <a href="">My Wallet</a>
-                  </li>
-                  <li>
-                    <a href="">Swap Coin</a>
-                  </li>
+                  <Link
+                    href={
+                      isLoggedIn ? "/user/my-wallet" : "/authentication/signin"
+                    }
+                  >
+                    <li>
+                      <a href="">My Wallet</a>
+                    </li>
+                  </Link>
+                  <Link
+                    href={
+                      isLoggedIn ? "/user/swap-coin" : "/authentication/signin"
+                    }
+                  >
+                    <li>
+                      <a href="">Swap Coin</a>
+                    </li>
+                  </Link>
                 </ul>
               </li>
               <li>
@@ -685,24 +704,72 @@ const Navbar = () => {
                   <span className="cp-user-name">Reports</span>
                 </a>
                 <ul>
-                  <li>
-                    <a href="">Deposit History</a>
-                  </li>
-                  <li>
-                    <a href="">Withdrawal History</a>
-                  </li>
-                  <li>
-                    <a href="">Swap History</a>
-                  </li>
-                  <li>
-                    <a href="">Buy Order History</a>
-                  </li>
-                  <li>
-                    <a href="">Sell Order History</a>
-                  </li>
-                  <li>
-                    <a href="">Transaction History</a>
-                  </li>
+                  <Link
+                    href={
+                      isLoggedIn
+                        ? "/user/wallet-history?type=deposit"
+                        : "/authentication/signin"
+                    }
+                  >
+                    <li>
+                      <a href="">Deposit History</a>
+                    </li>
+                  </Link>
+                  <Link
+                    href={
+                      isLoggedIn
+                        ? "/user/wallet-history?type=withdrawal"
+                        : "/authentication/signin"
+                    }
+                  >
+                    <li>
+                      <a href="">Withdrawal History</a>
+                    </li>
+                  </Link>
+                  <Link
+                    href={
+                      isLoggedIn
+                        ? "/user/swap-history"
+                        : "/authentication/signin"
+                    }
+                  >
+                    <li>
+                      <a href="">Swap History</a>
+                    </li>
+                  </Link>
+                  <Link
+                    href={
+                      isLoggedIn
+                        ? "/user/buy-order-history"
+                        : "/authentication/signin"
+                    }
+                  >
+                    <li>
+                      <a href="">Buy Order History</a>
+                    </li>
+                  </Link>
+                  <Link
+                    href={
+                      isLoggedIn
+                        ? "/user/sell-order-history"
+                        : "/authentication/signin"
+                    }
+                  >
+                    <li>
+                      <a href="">Sell Order History</a>
+                    </li>
+                  </Link>
+                  <Link
+                    href={
+                      isLoggedIn
+                        ? "/user/transaction-history"
+                        : "/authentication/signin"
+                    }
+                  >
+                    <li>
+                      <a href="">Transaction History</a>
+                    </li>
+                  </Link>
                 </ul>
               </li>
               <li>
@@ -722,27 +789,79 @@ const Navbar = () => {
                   <span className="cp-user-name">My Profile</span>
                 </a>
                 <ul>
-                  <li>
-                    <a href="">Profile</a>
-                  </li>
-                  <li>
-                    <a href="">Edit Profile</a>
-                  </li>
-                  <li>
-                    <a href="">Phone Verification</a>
-                  </li>
-                  <li>
-                    <a href="">Security</a>
-                  </li>
-                  <li>
-                    <a href="">Verification List</a>
-                  </li>
-                  <li>
-                    <a href="">Personal Verification</a>
-                  </li>
-                  <li>
-                    <a href="">Change Password</a>
-                  </li>
+                  <Link
+                    href={
+                      isLoggedIn ? "/user/profile" : "/authentication/signin"
+                    }
+                  >
+                    <li>
+                      <a href="">Profile</a>
+                    </li>
+                  </Link>
+                  <Link
+                    href={
+                      isLoggedIn
+                        ? "/user/edit-profile"
+                        : "/authentication/signin"
+                    }
+                  >
+                    <li>
+                      <a href="">Edit Profile</a>
+                    </li>
+                  </Link>
+                  <Link
+                    href={
+                      isLoggedIn
+                        ? "/user/phone-verification"
+                        : "/authentication/signin"
+                    }
+                  >
+                    <li>
+                      <a href="">Phone Verification</a>
+                    </li>
+                  </Link>
+                  <Link
+                    href={
+                      isLoggedIn ? "/user/security" : "/authentication/signin"
+                    }
+                  >
+                    <li>
+                      <a href="">Security</a>
+                    </li>
+                  </Link>
+                  <Link
+                    href={
+                      isLoggedIn
+                        ? "/user/verification-list"
+                        : "/authentication/signin"
+                    }
+                  >
+                    <li>
+                      <a href="">Verification List</a>
+                    </li>
+                  </Link>
+                  <Link
+                    href={
+                      isLoggedIn
+                        ? "/user/personal-verification"
+                        : "/authentication/signin"
+                    }
+                  >
+                    <li>
+                      <a href="">Personal Verification</a>
+                    </li>
+                  </Link>
+                  <Link
+                    href={
+                      isLoggedIn
+                        ? "/user/change-password"
+                        : "/authentication/signin"
+                    }
+                  >
+                    <li>
+                      <a href="">Change Password</a>
+                    </li>
+                  </Link>
                 </ul>
               </li>
               <li>
@@ -779,12 +898,22 @@ const Navbar = () => {
                   <span className="cp-user-name">Settings</span>
                 </a>
                 <ul>
-                  <li>
-                    <a href="">My Settings</a>
-                  </li>
-                  <li>
-                    <a href="">FAQ</a>
-                  </li>
+                  <Link
+                    href={
+                      isLoggedIn ? "/user/settings" : "/authentication/signin"
+                    }
+                  >
+                    <li>
+                      <a href="">My Settings</a>
+                    </li>
+                  </Link>
+                  <Link
+                    href={isLoggedIn ? "/user/faq" : "/authentication/signin"}
+                  >
+                    <li>
+                      <a href="">FAQ</a>
+                    </li>
+                  </Link>
                 </ul>
               </li>
             </ul>

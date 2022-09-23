@@ -12,7 +12,6 @@ import CookieAccept from "components/common/cookie-accept";
 import Head from "next/head";
 import { setLogo } from "state/reducer/user";
 import { setSettings } from "state/reducer/common";
-import { settings } from "nprogress";
 const Index = ({ children }: any) => {
   const [navbarVisible, setNavbarVisible] = useState(false);
   const [showterms, setShowTerms] = useState(false);
@@ -87,6 +86,9 @@ const Index = ({ children }: any) => {
           <span>{t("Please wait")}</span>
         </div>
       )}
+      <Head>
+        <title>{metaData?.app_title || process.env.NEXT_PUBLIC_APP_NAME}</title>
+      </Head>
       <Navbar />
       <ToastContainer
         position="top-right"
@@ -105,7 +107,7 @@ const Index = ({ children }: any) => {
   ) : (
     <>
       <Head>
-        <title>{metaData?.app_title || t("TradexPro Exchange")}</title>
+        <title>{metaData?.app_title || process.env.NEXT_PUBLIC_APP_NAME}</title>
       </Head>
       <ToastContainer
         position="top-right"

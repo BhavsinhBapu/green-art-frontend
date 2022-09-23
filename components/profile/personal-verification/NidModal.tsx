@@ -9,6 +9,8 @@ import {
 const NidModal = ({ type, kycDetails }: any) => {
   const [previousType, setPreviousType] = useState<string>("");
   const [frontSide, setFrontSide] = useState(null);
+  const [showFront, setShowFront] = useState(null);
+  const [showBack, setShowBack] = useState(null);
   const [processing, setProcessing] = useState(false);
   const [backSide, setBackSide] = useState(null);
   const [existingKyc, setExistingKyc] = useState<any>();
@@ -18,28 +20,32 @@ const NidModal = ({ type, kycDetails }: any) => {
     setFrontSide(null);
     setBackSide(null);
   }
-  const [uploadFiles, setUploadFiles] = useState({
-    frontSide: null,
-    backSide: null,
-  });
+
   const storeSelectedFile = (e: any, setState: any, side: number) => {
     var reader = new FileReader();
     reader.onloadend = function (e) {
       setState(reader.result);
     };
-
-    side === 1
-      ? setUploadFiles({ ...uploadFiles, frontSide: e.target.files[0] })
-      : setUploadFiles({ ...uploadFiles, backSide: e.target.files[0] });
+    console.log(side, "side");
+    if (side === 1) {
+      console.log("front", e.target.files[0]);
+      setState(e.target.files[0]);
+      // @ts-ignore
+      setShowFront(URL.createObjectURL(e.target.files[0]));
+    } else {
+      // @ts-ignore
+      setShowBack(URL.createObjectURL(e.target.files[0]));
+      setState(e.target.files[0]);
+    }
   };
   const uploadImage = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault();
-
+    console.log(frontSide, backSide);
     const formData: any = new FormData();
-    formData.append("file_two", uploadFiles.frontSide);
-    formData.append("file_three", uploadFiles.backSide);
+    formData.append("file_two", frontSide);
+    formData.append("file_three", backSide);
     if (type === "nid") {
       UploadNidImageAction(formData, setProcessing);
     } else if (type === "driving-licence") {
@@ -106,7 +112,8 @@ const NidModal = ({ type, kycDetails }: any) => {
                       </h3>
                       <div className="container cstm-img-picker">
                         {frontSide ? (
-                          <img src={frontSide} className="img-fluid" alt="" />
+                          //@ts-ignore
+                          <img src={showFront} className="img-fluid" alt="" />
                         ) : (
                           <label className="container cstm-img-picker">
                             {existingKyc?.front_image ? (
@@ -120,11 +127,11 @@ const NidModal = ({ type, kycDetails }: any) => {
                                 <input
                                   type="file"
                                   name="front_side"
-                                  onChange={(e) => {
+                                  onChange={(e: any) => {
                                     storeSelectedFile(e, setFrontSide, 1);
                                   }}
                                 />
-                                <span>{t("drag and drop file")}</span>
+                                <span>{t("Click to select a file")}</span>
                               </>
                             )}
                           </label>
@@ -137,7 +144,8 @@ const NidModal = ({ type, kycDetails }: any) => {
                       <h3 className="title">{t("Back Side")}</h3>
                       <div className="container cstm-img-picker">
                         {backSide ? (
-                          <img src={backSide} className="img-fluid" alt="" />
+                          //@ts-ignore
+                          <img src={showBack} className="img-fluid" alt="" />
                         ) : existingKyc?.back_image ? (
                           <img
                             src={existingKyc?.back_image}
@@ -153,7 +161,7 @@ const NidModal = ({ type, kycDetails }: any) => {
                                 storeSelectedFile(e, setBackSide, 2);
                               }}
                             />
-                            <span>{t("drag and drop file")}</span>
+                            <span>{t("Click to select a file")}</span>
                           </label>
                         )}
                       </div>
