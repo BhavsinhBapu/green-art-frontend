@@ -3941,7 +3941,7 @@ table.table {
   box-sizing: border-box;
 }
 .cover-image {
-  width: 100%;
+  width: 50%;
   height: 100%;
   background-size: cover;
   background-position: center;
