@@ -109,7 +109,7 @@ const Footer = ({ customPageData, socialData, copyright_text }: any) => {
               <div className="col-md-12">
                 <div className="copyright-area text-center text-md-center">
                   <p>
-                    {copyright_text || t("Copyright@2022")}{" "}
+                    {copyright_text || t("Copyright@ 2022 CryptoTools")}{" "}
                     <a href="">{settings.app_title ?? t("TradexPro")}</a>
                   </p>
                 </div>
