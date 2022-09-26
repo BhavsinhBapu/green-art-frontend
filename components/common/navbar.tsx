@@ -701,7 +701,7 @@ const Navbar = () => {
                       alt=""
                     />
                   </span>
-                  <span className="cp-user-name">Reports</span>
+                  <span className="cp-user-name">{t("Reports")}</span>
                 </a>
                 <ul>
                   <Link
@@ -712,7 +712,7 @@ const Navbar = () => {
                     }
                   >
                     <li>
-                      <a href="">Deposit History</a>
+                      <a href="">{t("Deposit History")}</a>
                     </li>
                   </Link>
                   <Link
@@ -723,7 +723,7 @@ const Navbar = () => {
                     }
                   >
                     <li>
-                      <a href="">Withdrawal History</a>
+                      <a href="">{t("Withdrawal History")}</a>
                     </li>
                   </Link>
                   <Link
@@ -734,7 +734,7 @@ const Navbar = () => {
                     }
                   >
                     <li>
-                      <a href="">Swap History</a>
+                      <a href="">{t("Swap History")}</a>
                     </li>
                   </Link>
                   <Link
@@ -745,7 +745,7 @@ const Navbar = () => {
                     }
                   >
                     <li>
-                      <a href="">Buy Order History</a>
+                      <a href="">{t("Buy Order History")}</a>
                     </li>
                   </Link>
                   <Link
@@ -756,7 +756,7 @@ const Navbar = () => {
                     }
                   >
                     <li>
-                      <a href="">Sell Order History</a>
+                      <a href="">{t("Sell Order History")}</a>
                     </li>
                   </Link>
                   <Link
@@ -767,7 +767,7 @@ const Navbar = () => {
                     }
                   >
                     <li>
-                      <a href="">Transaction History</a>
+                      <a href="">{t("Transaction History")}</a>
                     </li>
                   </Link>
                 </ul>
@@ -786,7 +786,7 @@ const Navbar = () => {
                       alt=""
                     />
                   </span>
-                  <span className="cp-user-name">My Profile</span>
+                  <span className="cp-user-name">{t("My Profile")}</span>
                 </a>
                 <ul>
                   <Link
@@ -795,7 +795,7 @@ const Navbar = () => {
                     }
                   >
                     <li>
-                      <a href="">Profile</a>
+                      <a href="">{t("Profile")}</a>
                     </li>
                   </Link>
                   <Link
@@ -806,7 +806,7 @@ const Navbar = () => {
                     }
                   >
                     <li>
-                      <a href="">Edit Profile</a>
+                      <a href="">{t("Edit Profile")}</a>
                     </li>
                   </Link>
                   <Link
@@ -817,7 +817,7 @@ const Navbar = () => {
                     }
                   >
                     <li>
-                      <a href="">Phone Verification</a>
+                      <a href="">{t("Phone Verification")}</a>
                     </li>
                   </Link>
                   <Link
@@ -826,7 +826,7 @@ const Navbar = () => {
                     }
                   >
                     <li>
-                      <a href="">Security</a>
+                      <a href="">{t("Security")}</a>
                     </li>
                   </Link>
                   <Link
@@ -837,7 +837,7 @@ const Navbar = () => {
                     }
                   >
                     <li>
-                      <a href="">Verification List</a>
+                      <a href="">{t("Verification List")}</a>
                     </li>
                   </Link>
                   <Link
@@ -848,7 +848,7 @@ const Navbar = () => {
                     }
                   >
                     <li>
-                      <a href="">Personal Verification</a>
+                      <a href="">{t("Personal Verification")}</a>
                     </li>
                   </Link>
                   <Link
@@ -859,7 +859,7 @@ const Navbar = () => {
                     }
                   >
                     <li>
-                      <a href="">Change Password</a>
+                      <a href="">{t("Change Password")}</a>
                     </li>
                   </Link>
                 </ul>
@@ -878,7 +878,7 @@ const Navbar = () => {
                       alt=""
                     />
                   </span>
-                  <span className="cp-user-name">My Referral</span>
+                  <span className="cp-user-name">{t("My Referral")}</span>
                 </a>
               </li>
               <li>
@@ -895,7 +895,7 @@ const Navbar = () => {
                       alt=""
                     />
                   </span>
-                  <span className="cp-user-name">Settings</span>
+                  <span className="cp-user-name">{t("Settings")}</span>
                 </a>
                 <ul>
                   <Link
@@ -904,14 +904,14 @@ const Navbar = () => {
                     }
                   >
                     <li>
-                      <a href="">My Settings</a>
+                      <a href="">{t("My Settings")}</a>
                     </li>
                   </Link>
                   <Link
                     href={isLoggedIn ? "/user/faq" : "/authentication/signin"}
                   >
                     <li>
-                      <a href="">FAQ</a>
+                      <a href="">{t("FAQ")}</a>
                     </li>
                   </Link>
                 </ul>
