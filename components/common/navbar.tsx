@@ -12,6 +12,7 @@ const Navbar = () => {
   const { isLoggedIn, user, logo } = useSelector(
     (state: RootState) => state.user
   );
+  const { settings } = useSelector((state: RootState) => state.common);
   const dispatch = useDispatch();
   const { t } = useTranslation("common");
   const [notificationData, setNotification] = useState<any>([]);
@@ -398,9 +399,9 @@ const Navbar = () => {
                       </span>
                     </a>
                     <ul className="">
-                      {LanguageList.map((item, index) => (
+                      {settings?.LanguageList?.map((item: any, index: any) => (
                         <li key={index}>
-                          <Link href={router.asPath} locale={item.value}>
+                          <Link href={router.asPath} locale={item.key}>
                             <a className="py-1">{item.name}</a>
                           </Link>
                         </li>
