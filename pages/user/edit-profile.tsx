@@ -148,7 +148,7 @@ const Edit: NextPage = () => {
                               </Field>
                             </div>
                             <div className="form-group">
-                              <label>Gender</label>
+                              <label>{t("Gender")}</label>
                               <Field
                                 className="form-control"
                                 name="gender"

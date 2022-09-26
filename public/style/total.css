@@ -5015,7 +5015,7 @@ select:-webkit-autofill:focus {
   text-align: center;
   border-radius: 50%;
   background: #f9b507;
-  color: rgb(188, 188, 188) !important;
+  color: #fff !important;
   cursor: pointer;
   font-size: 18px;
 }
