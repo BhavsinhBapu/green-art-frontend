@@ -88,6 +88,10 @@ const Index = ({ children }: any) => {
       )}
       <Head>
         <title>{metaData?.app_title || process.env.NEXT_PUBLIC_APP_NAME}</title>
+        <link
+          rel="shortcut icon"
+          href={metaData?.favicon || process.env.NEXT_PUBLIC_FAVICON}
+        />
       </Head>
       <Navbar />
       <ToastContainer
@@ -108,6 +112,10 @@ const Index = ({ children }: any) => {
     <>
       <Head>
         <title>{metaData?.app_title || process.env.NEXT_PUBLIC_APP_NAME}</title>
+        <link
+          rel="shortcut icon"
+          href={metaData?.favicon || process.env.NEXT_PUBLIC_FAVICON}
+        />
       </Head>
       <ToastContainer
         position="top-right"
