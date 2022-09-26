@@ -132,7 +132,7 @@ const Settings: NextPage = () => {
                       <div className="cp-user-setting-card-inner cp-user-setting-card-inner-preference">
                         <div className="cp-user-content">
                           <div className="form-group">
-                            <label>Currency</label>
+                            <label>{t("Currency")}</label>
                             <div className="cp-user-preferance-setting">
                               <select
                                 name="currency"

@@ -12,6 +12,7 @@ import CookieAccept from "components/common/cookie-accept";
 import Head from "next/head";
 import { setLogo } from "state/reducer/user";
 import { setSettings } from "state/reducer/common";
+import Loading from "components/common/loading";
 const Index = ({ children }: any) => {
   const [navbarVisible, setNavbarVisible] = useState(false);
   const [showterms, setShowTerms] = useState(false);
@@ -76,16 +77,7 @@ const Index = ({ children }: any) => {
   }, [isLoggedIn, settings.cookie_status]);
   return navbarVisible ? (
     <div>
-      {isLoading && (
-        <div className="preloder-area">
-          <span
-            className="spinner-border spinner-border-md"
-            role="status"
-            aria-hidden="true"
-          ></span>
-          <span>{t("Please wait")}</span>
-        </div>
-      )}
+      {isLoading && <Loading />}
       <Head>
         <title>{metaData?.app_title || process.env.NEXT_PUBLIC_APP_NAME}</title>
         <link

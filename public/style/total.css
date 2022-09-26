@@ -2384,6 +2384,7 @@ a#submit {
 
 .cp-user-preferance-setting {
   position: relative;
+  border: 1px solid #b3b3b3;
 }
 
 .cp-user-preferance-setting:after {
@@ -5779,7 +5780,7 @@ table.dataTable tbody tr td {
   .responsive-thing {
     display: flex;
   }
-  .cstm-loader-area{
+  .cstm-loader-area {
     display: flex;
     flex-direction: column-reverse;
   }
@@ -5815,7 +5816,7 @@ table.dataTable tbody tr td {
   .cp-user-sidebar::before {
     opacity: 0.3;
   }
-  .text-warning{
+  .text-warning {
     font-size: 9px;
   }
 }

@@ -19,7 +19,6 @@ import {
   setOpenBooksell,
 } from "state/reducer/exchange";
 import useTranslation from "next-translate/useTranslation";
-import { setLoading } from "state/reducer/user";
 let socketCall = 0;
 async function listenMessages(dispatch: any) {
   //@ts-ignore
