@@ -45,7 +45,7 @@ const DepositHistory: NextPage = () => {
   };
   const columns = [
     {
-      name: "Created At",
+      name: t("Created At"),
       selector: (row: any) => row.created_at,
       sortable: true,
       cell: (row: any) => (
@@ -53,33 +53,33 @@ const DepositHistory: NextPage = () => {
       ),
     },
     {
-      name: "Address",
+      name: t("Address"),
       selector: (row: any) => row.address,
       sortable: true,
     },
     {
-      name: "Coin Type",
+      name: t("Coin Type"),
       selector: (row: any) => row.coin_type,
       sortable: true,
     },
     {
-      name: "Amount",
+      name: t("Amount"),
       selector: (row: any) => row.amount,
       sortable: true,
     },
     {
-      name: "Fees",
+      name: t("Fees"),
       selector: (row: any) => row.fees,
       sortable: true,
     },
     {
-      name: type === "deposit" ? "Transaction Id" : "Transaction Hash",
+      name: type === t("deposit") ? t("Transaction Id") : t("Transaction Hash"),
       selector: (row: any) =>
         type === "deposit" ? row.transaction_id : row.transaction_hash,
       sortable: true,
     },
     {
-      name: "Status",
+      name: t("Status"),
       selector: (row: any) => row.status,
       sortable: true,
       cell: (row: any) => (
@@ -111,8 +111,8 @@ const DepositHistory: NextPage = () => {
               <div className="overview-left">
                 <h2 className="section-top-title">
                   {type === "deposit"
-                    ? "Deposit History"
-                    : "Withdrawal History"}{" "}
+                    ? t("Deposit History")
+                    : t("Withdrawal History")}
                 </h2>
               </div>
             </div>

@@ -9,11 +9,15 @@ import {
 import GoogleAuthModal from "components/settings/GoogleAuthModal";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "state/store";
+import useTranslation from "next-translate/useTranslation";
 
 const Settings: NextPage = () => {
   const dispatch = useDispatch();
+  const { t } = useTranslation("common");
   const [settings, setSettings] = useState<any>();
- const { settings:settingsReducer } = useSelector((state: RootState) => state.common);
+  const { settings: settingsReducer } = useSelector(
+    (state: RootState) => state.common
+  );
   useEffect(() => {
     dispatch(UserSettingsAction(setSettings));
 
@@ -27,7 +31,9 @@ const Settings: NextPage = () => {
         <div className="container-fluid">
           <div className="section-top-wrap mb-25">
             <div className="profle-are-top">
-              <h2 className="section-top-title mb-0">Security Settings</h2>
+              <h2 className="section-top-title mb-0">
+                {t("Security Settings")}
+              </h2>
             </div>
           </div>
         </div>
@@ -40,7 +46,7 @@ const Settings: NextPage = () => {
                     <div className="card-body">
                       <div className="cp-user-card-header-area">
                         <div className="cp-user-title">
-                          <h4>Google Authentication Settings</h4>
+                          <h4>{t("Google Authentication Settings")}</h4>
                         </div>
                       </div>
                       <div className="cp-user-setting-card-inner">
@@ -48,11 +54,11 @@ const Settings: NextPage = () => {
                           <img src="/gauth.svg" className="img-fluid" alt="" />
                         </div>
                         <div className="cp-user-content mb-0">
-                          <h5>Authenticator app</h5>
+                          <h5>{t("Authenticator app")}</h5>
                           <p>
-                            Use the Authenticator app to get free verification
-                            codes, even when your phone is offline. Available
-                            for Android and iPhone.
+                            {t(
+                              "Use the Authenticator app to get free verification codes, even when your phone is offline. Available for Android and iPhone."
+                            )}
                           </p>
                         </div>
 
@@ -73,7 +79,7 @@ const Settings: NextPage = () => {
                               data-target="#exampleModal"
                               className=""
                             >
-                              Remove Google Authentication
+                              {t("Remove Google Authentication")}
                             </a>
                           )}
 
@@ -83,10 +89,11 @@ const Settings: NextPage = () => {
                           />
                         </div>
                         <div className="cp-user-content">
-                          <h5>Security</h5>
+                          <h5>{t("Security")}</h5>
                           <p>
-                            Please on this option to enable two factor
-                            authentication at log In.
+                            {t(
+                              "Please on this option to enable two factor authentication at log In."
+                            )}
                           </p>
                           <form>
                             <input type="hidden" name="" defaultValue="" />
@@ -119,7 +126,7 @@ const Settings: NextPage = () => {
                     <div className="card-body">
                       <div className="cp-user-card-header-area">
                         <div className="cp-user-title">
-                          <h4>Preference Settings</h4>
+                          <h4>{t("Preference Settings")}</h4>
                         </div>
                       </div>
                       <div className="cp-user-setting-card-inner cp-user-setting-card-inner-preference">
@@ -141,10 +148,12 @@ const Settings: NextPage = () => {
                                     <option
                                       key={index}
                                       selected={
-                                        settingsReducer.currency === currency.code
+                                        settingsReducer.currency ===
+                                        currency.code
                                       }
                                       defaultChecked={
-                                        settingsReducer.currency === currency.lang
+                                        settingsReducer.currency ===
+                                        currency.lang
                                       }
                                       value={currency.code}
                                     >
@@ -155,11 +164,6 @@ const Settings: NextPage = () => {
                               </select>
                             </div>
                           </div>
-                          {/* <div className="form-group">
-                            <button className="btn cp-user-setupbtn">
-                              Update
-                            </button>
-                          </div> */}
                         </div>
                       </div>
                     </div>

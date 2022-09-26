@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Tooltip from "rc-tooltip";
 import "rc-tooltip/assets/bootstrap.css";
 import { useDispatch } from "react-redux";
-import {  setSellPrice } from "state/reducer/exchange";
+import { setSellPrice } from "state/reducer/exchange";
 import useTranslation from "next-translate/useTranslation";
 const TradesTable = ({ buy, show }: any) => {
   const dispatch = useDispatch();
@@ -67,20 +67,27 @@ const TradesTable = ({ buy, show }: any) => {
                 <td>
                   <div className="asset">
                     <span className="text-danger">
-                      {parseFloat(item.price)%1 !== 0 ? parseFloat(item.price) : parseFloat(item.price).toFixed(2)}
+                      {parseFloat(item.price) % 1 !== 0
+                        ? parseFloat(item.price)
+                        : parseFloat(item.price).toFixed(2)}
                     </span>
                   </div>
                 </td>
                 <td>
                   <div className="asset">
-                    <span className="asset-name">{
-                      parseFloat(item.amount) % 1 !== 0 ? parseFloat(item.amount) : parseFloat(item.amount).toFixed(2)} </span>
+                    <span className="asset-name">
+                      {parseFloat(item.amount) % 1 !== 0
+                        ? parseFloat(item.amount)
+                        : parseFloat(item.amount).toFixed(2)}{" "}
+                    </span>
                   </div>
                 </td>
                 <td>
                   <div className="asset">
                     <span className="asset-name">
-                      {parseFloat(item.total) % 1 !== 0 ? parseFloat(item.total) : parseFloat(item.total).toFixed(2)}
+                      {parseFloat(item.total) % 1 !== 0
+                        ? parseFloat(item.total)
+                        : parseFloat(item.total).toFixed(2)}
                     </span>
                   </div>
                 </td>
@@ -92,7 +99,7 @@ const TradesTable = ({ buy, show }: any) => {
         <tbody className="w-100">
           <tr className="odd">
             <td valign="top" colSpan={3} className="dataTables_empty">
-              No data available in table
+              {t("No data available in table")}
             </td>
           </tr>
         </tbody>
