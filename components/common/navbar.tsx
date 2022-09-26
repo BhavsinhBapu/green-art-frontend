@@ -646,7 +646,7 @@ const Navbar = () => {
                       alt=""
                     />
                   </span>
-                  <span className="cp-user-name">Dashboard</span>
+                  <span className="cp-user-name">{t("Dashboard")}</span>
                 </a>
               </li>
 
@@ -664,7 +664,7 @@ const Navbar = () => {
                       alt=""
                     />
                   </span>
-                  <span className="cp-user-name">Wallet</span>
+                  <span className="cp-user-name">{t("Wallet")}</span>
                 </a>
                 <ul>
                   <Link
@@ -673,7 +673,7 @@ const Navbar = () => {
                     }
                   >
                     <li>
-                      <a href="">My Wallet</a>
+                      <a href="">{t("My Wallet")}</a>
                     </li>
                   </Link>
                   <Link
@@ -682,7 +682,7 @@ const Navbar = () => {
                     }
                   >
                     <li>
-                      <a href="">Swap Coin</a>
+                      <a href="">{t("Swap Coin")}</a>
                     </li>
                   </Link>
                 </ul>
