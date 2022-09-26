@@ -7,6 +7,7 @@ import { LogoutAction } from "state/actions/user";
 import { notification, notificationSeen } from "service/notification";
 import useTranslation from "next-translate/useTranslation";
 import { LanguageList } from "helpers/lang";
+import { LanguageListApi } from "service/settings";
 const Navbar = () => {
   const { isLoggedIn, user, logo } = useSelector(
     (state: RootState) => state.user
