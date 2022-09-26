@@ -505,9 +505,6 @@ const Home: NextPage = ({
                                         /{item?.parent_coin_name}
                                       </span>
                                     </div>
-                                    <div className="currencyName">
-                                      {t("Bitcoin")}
-                                    </div>
                                   </a>
                                 </td>
                                 <td className="txtBlack">{item.last_price}</td>

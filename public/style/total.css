@@ -5815,6 +5815,9 @@ table.dataTable tbody tr td {
   .cp-user-sidebar::before {
     opacity: 0.3;
   }
+  .text-warning{
+    font-size: 9px;
+  }
 }
 @media (min-width: 1200px) and (max-width: 1416px) {
   .col-laptop-5 {
