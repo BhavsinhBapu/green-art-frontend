@@ -369,6 +369,14 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/user/swap-history");
   const cookies = parseCookies(ctx);
   const walletLists = await getUserCoinForSwapAction(null, ctx);
+  if (walletLists === false) {
+    return {
+      redirect: {
+        destination: "/user/my-wallet",
+        permanent: false,
+      },
+    };
+  }
   const data = await getRateSsr(
     walletLists[0].id,
     walletLists[1].id,
