@@ -14,9 +14,10 @@ import useTranslation from "next-translate/useTranslation";
 import { destroyCookie } from "nookies";
 import { RootState } from "state/store";
 const Signin: NextPage = () => {
-  const { isLoggedIn, user, logo } = useSelector(
+  const {  logo } = useSelector(
     (state: RootState) => state.user
   );
+   const { settings } = useSelector((state: RootState) => state.common);
   const { t } = useTranslation("common");
   const [showPassword, setShowPassword] = useState(false);
   const [processing, setProcessing] = useState<any>(false);
@@ -34,7 +35,7 @@ const Signin: NextPage = () => {
     <div
       className="user-content-wrapper"
       style={{
-        backgroundImage: `url(/user-content-wrapper-bg.jpg)`,
+        backgroundImage: `url(${settings.login_background})`,
       }}
     >
       <div className="user-content-inner-wrap">
@@ -172,7 +173,7 @@ const Signin: NextPage = () => {
               <h3>{t("Welcome To")}</h3>
               <Link href="/">
                 <a className="auth-logo" href="">
-                  <img src={logo || ""} className="img-fluid" alt="" />
+                  <img src={settings.logo || ""} className="img-fluid" alt="" />
                 </a>
               </Link>
               <Link href="/authentication/signup">

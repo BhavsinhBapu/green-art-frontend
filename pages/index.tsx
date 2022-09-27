@@ -350,7 +350,7 @@ const Home: NextPage = ({
                                   </div>
                                 </a>
                               </td>
-                              <td className="txtBlack">{item.last_price}</td>
+                              <td className="text-black">{item.last_price}</td>
                               <td>
                                 <span
                                   className={`changePos  ${
@@ -375,7 +375,7 @@ const Home: NextPage = ({
                                   />
                                 )}
                               </td>
-                              <td className="txtBlack">
+                              <td className="text-black">
                                 {item.volume} {item.parent_coin_name}
                               </td>
                               <td
@@ -507,7 +507,7 @@ const Home: NextPage = ({
                                     </div>
                                   </a>
                                 </td>
-                                <td className="txtBlack">{item.last_price}</td>
+                                <td className="text-black">{item.last_price}</td>
                                 <td>
                                   <span
                                     className={`changePos  ${
@@ -532,7 +532,7 @@ const Home: NextPage = ({
                                     />
                                   )}
                                 </td>
-                                <td className="txtBlack">
+                                <td className="text-black">
                                   {item.volume} {item.parent_coin_name}
                                 </td>
                                 <td
@@ -662,7 +662,7 @@ const Home: NextPage = ({
                                     <div className="currencyName">Bitcoin</div>
                                   </a>
                                 </td>
-                                <td className="txtBlack">{item.last_price}</td>
+                                <td className="text-black">{item.last_price}</td>
                                 <td>
                                   <span
                                     className={`changePos  ${
@@ -687,7 +687,7 @@ const Home: NextPage = ({
                                     />
                                   )}
                                 </td>
-                                <td className="txtBlack">
+                                <td className="text-black">
                                   {item.volume} {item.parent_coin_name}
                                 </td>
                                 <td

@@ -10,7 +10,7 @@ import { RootState } from "state/store";
 import useTranslation from "next-translate/useTranslation";
 import CookieAccept from "components/common/cookie-accept";
 import Head from "next/head";
-import { setLogo } from "state/reducer/user";
+import { setLoading, setLogo } from "state/reducer/user";
 import { setSettings } from "state/reducer/common";
 import Loading from "components/common/loading";
 const Index = ({ children }: any) => {
@@ -33,10 +33,12 @@ const Index = ({ children }: any) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const getCommonSettings = async () => {
+    dispatch(setLoading(true))
     const response = await commomSettings();
     dispatch(setLogo(response.data.logo));
     dispatch(setSettings(response.data));
     setMetaData(response.data);
+    dispatch(setLoading(false))
   };
   useEffect(() => {
     getCommonSettings();

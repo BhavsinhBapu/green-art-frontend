@@ -80,7 +80,7 @@ const MyWallet: NextPage = () => {
       (show.withdraw === true && show.deposit === true) ||
       (show.deposit === true && show.withdraw === false)
     ) {
-      toast.error("Please select a wallet");
+      toast.error(t("Please select a wallet"));
       return;
     }
 
@@ -129,6 +129,7 @@ const MyWallet: NextPage = () => {
       setWalletList(null);
     };
   }, []);
+
   useEffect(() => {
     getWalletLists("/wallet-list?page=1&type=usd");
 
@@ -147,11 +148,13 @@ const MyWallet: NextPage = () => {
                   <a>{t("Wallet Overview")}</a>
                 </Link>
               </li>
-              <li className="">
-                <Link href={`/user/swap-coin`}>
-                  <a>{t("Swap Coin")}</a>
-                </Link>
-              </li>
+              {parseInt(settings.swap_status) === 1 && (
+                <li className="">
+                  <Link href={`/user/swap-coin`}>
+                    <a>{t("Swap Coin")}</a>
+                  </Link>
+                </li>
+              )}
             </ul>
           </div>
           <div className="sidebar-middle">

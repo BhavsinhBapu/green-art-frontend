@@ -16,6 +16,7 @@ const ResetPassword: NextPage = () => {
   const [processing, setProcessing] = useState(false);
   const { logo } = useSelector((state: RootState) => state.user);
   const [recaptchaData, setRecaptchaData] = useState<any>({});
+    const { settings } = useSelector((state: RootState) => state.common);
   const getRecapcha = async () => {
     const response = await RecapCha();
     setRecaptchaData(response.data);
@@ -28,7 +29,7 @@ const ResetPassword: NextPage = () => {
     <div
       className="user-content-wrapper"
       style={{
-        backgroundImage: `url(/user-content-wrapper-bg.jpg)`,
+        backgroundImage: `url(${settings.login_background})`,
       }}
     >
       <div className="user-content-inner-wrap">
@@ -182,7 +183,7 @@ const ResetPassword: NextPage = () => {
             <div className="user-content-text text-center">
               <h3>{t("Welcome Back To")}</h3>
               <a className="auth-logo">
-                <img src={logo || ""} className="img-fluid" alt="" />
+                <img src={settings.logo || ""} className="img-fluid" alt="" />
               </a>
               <p>
                 {t("Return to sign in")}
