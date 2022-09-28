@@ -12,6 +12,7 @@ const DashboardNavbar = () => {
     (state: RootState) => state.user
   );
   const router = useRouter();
+  const { settings } = useSelector((state: RootState) => state.common);
   const [active, setActive] = useState(false);
   const [notificationData, setNotification] = useState<any>([]);
   const { t } = useTranslation("common");
@@ -396,9 +397,9 @@ const DashboardNavbar = () => {
                       </span>
                     </a>
                     <ul className="">
-                      {LanguageList.map((item, index) => (
+                      {settings?.LanguageList?.map((item: any, index: any) => (
                         <li key={index}>
-                          <Link href={router.asPath} locale={item.value}>
+                          <Link href={router.asPath} locale={item.key}>
                             <a className="py-1">{item.name}</a>
                           </Link>
                         </li>
