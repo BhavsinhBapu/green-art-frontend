@@ -659,7 +659,6 @@ const Home: NextPage = ({
                                         /{item?.parent_coin_name}
                                       </span>
                                     </div>
-                                    <div className="currencyName">Bitcoin</div>
                                   </a>
                                 </td>
                                 <td className="text-black">{item.last_price}</td>
