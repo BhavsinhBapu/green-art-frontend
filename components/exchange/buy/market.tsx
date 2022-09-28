@@ -203,7 +203,6 @@ const Market = ({
                         ></span>
                         {t("Placing Order...")}
                       </span>
-                      <span v-else="">{t("Buy")} </span>
                     </button>
                   </div>
                 ) : (

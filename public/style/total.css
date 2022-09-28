@@ -3519,7 +3519,7 @@ body._toggle .swipe-area-overlay:before {
   .swipe-area {
     width: 300px;
   }
-
+ 
   .header-top h2 {
     font-size: 25px;
   }
@@ -6123,6 +6123,7 @@ table.dataTable tbody tr td {
   }
 }
 @media screen and (max-width: 480px) {
+ 
   .cxchange-summary-wrap .cxchange-summary-featured .cxchange-summary-items li {
     width: 50%;
   }
@@ -8303,6 +8304,15 @@ table.dataTable.order-column.stripe tbody tr.odd > .sorting_1 {
     display: flex;
     flex-direction: column;
   }
+  .asset-balances-right {
+    width: 400px;
+  }
+  .input-url .copy-url-btn {
+    right: -124px;
+  }
+  .deposit-info-area .total-balance h3 {
+    font-size: 12px;
+  }
 }
 .paginate-button {
   font-size: 18px;
@@ -9175,6 +9185,12 @@ input:-webkit-autofill:active {
   }
 }
 @media (max-width: 480px) {
+  .asset-balances-right {
+    width: 367px;
+  }
+.input-url .copy-url-btn {
+    right: -83px;
+  }
   .user-content-wrapper {
     padding: 40px 15px;
   }
