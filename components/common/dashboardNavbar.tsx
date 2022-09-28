@@ -399,7 +399,7 @@ const DashboardNavbar = () => {
                     <ul className="">
                       {settings?.LanguageList?.map((item: any, index: any) => (
                         <li key={index}>
-                          <Link href={router.asPath} locale={item.value}>
+                          <Link href={router.asPath} locale={item.key}>
                             <a className="py-1">{item.name}</a>
                           </Link>
                         </li>

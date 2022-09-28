@@ -30,7 +30,6 @@
   { "value": "bw", "name": "Botswana" },
   { "value": "br", "name": "Brazil" },
   { "value": "io", "name": "British Indian Ocean Territory" },
-
   { "value": "bn", "name": "Brunei" },
   { "value": "bg", "name": "Bulgaria" },
   { "value": "bf", "name": "Burkina" },
@@ -225,7 +224,6 @@
   { "value": "vn", "name": "Vietnam" },
   { "value": "vi", "name": "Virgin Islands (U.S.)" },
   { "value": "wf", "name": "Wallis and Futuna Islands" },
-
   { "value": "eh", "name": "Western" },
   { "value": "ye", "name": "Yemen" },
   { "value": "zm", "name": "Zambia" },
