@@ -231,7 +231,7 @@ const Dashboard: NextPage = () => {
                             aria-haspopup="true"
                             aria-expanded="false"
                           >
-                            {currentPair}
+                            {currentPair.replace(/_/g, "/")}
                           </span>
 
                           <SelectCurrency />

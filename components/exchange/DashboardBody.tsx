@@ -303,10 +303,12 @@ const DashboardBody = () => {
       <div className="col-xl-6">
         <div className="cp-user-buy-coin-content-area">
           <div className="card cp-user-custom-card">
-            <TradingChart
-              //  @ts-ignore
-              coinpair={dashboard?.order_data?.exchange_coin_pair}
-            />
+            {dashboard?.order_data?.exchange_coin_pair && (
+              <TradingChart
+                //  @ts-ignore
+                coinpair={dashboard?.order_data?.exchange_coin_pair}
+              />
+            )}
           </div>
         </div>
         <OrderHistorySection />
