@@ -231,9 +231,7 @@ const Dashboard: NextPage = () => {
                             aria-haspopup="true"
                             aria-expanded="false"
                           >
-                            {dashboard?.order_data?.exchange_coin_pair
-                              ? dashboard?.order_data?.exchange_coin_pair
-                              : "BTC/USDT"}
+                            {currentPair}
                           </span>
 
                           <SelectCurrency />

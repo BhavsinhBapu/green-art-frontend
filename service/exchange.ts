@@ -8,6 +8,12 @@ export const appDashboardData = async (pair: string | null) => {
     return null;
   }
 };
+export const appDashboardDataWithoutPair = async () => {
+ 
+    const { data } = await request.get(`/app-dashboard`);
+    return data;
+
+};
 
 export const buyLimitApp = async (
   amount: number,
