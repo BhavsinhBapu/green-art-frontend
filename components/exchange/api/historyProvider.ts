@@ -15,7 +15,6 @@ export default {
     const trade = localStorage.getItem("current_pair")?.split("_")[1]
       ? splitPair(localStorage.getItem("current_pair")?.split("_")[1])
       : "USDT";
-    alert(base + " aaaaaaaaaaaaaaaaaaaa" + trade);
 
     var split_symbol = symbolInfo.name.split(/[:/]/);
     const url =
