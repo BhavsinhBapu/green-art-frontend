@@ -7,9 +7,17 @@ export const formateData = (date: any) => {
 export const formateZert = (number: any) => {
   return parseFloat(number);
 };
-
-export const formatCurrency = (value:any) => {
-  return  new Intl.NumberFormat("en-US").format(value)
+export const splitPair = (word: any) => {
+  // USDT.TRC20_BTC
+  let check = word.includes(".");
+  if (check === true) {
+    return word.split(".")[0];
+  } else {
+    return word;
+  }
+};
+export const formatCurrency = (value: any) => {
+  return new Intl.NumberFormat("en-US").format(value);
 };
 export const copyTextById = (id: string) => {
   const element: any = document.getElementById(id);

@@ -8,6 +8,7 @@ import {
   getChartOverrides,
   TIME_FRAMES,
 } from "./api/chartConfig";
+import { splitPair } from "common";
 
 const supportedResolutions = [
   "1",
@@ -37,6 +38,7 @@ type MyProps = {
 const pair = localStorage.getItem("current_pair")?.replace("_", "/");
 localStorage.setItem("tradingview.ChartDrawingToolbarWidget.visible", "false");
 export class TVChartContainer extends React.Component<MyProps> {
+ 
   static defaultProps = {
     symbol: `:${pair && pair}`,
     interval: "5",
