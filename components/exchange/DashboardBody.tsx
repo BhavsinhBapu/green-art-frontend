@@ -21,9 +21,8 @@ const DashboardBody = () => {
   const { t } = useTranslation("common");
   const [select, setSelect] = React.useState(3);
 
-  const { dashboard, OpenBookBuy, OpenBooksell, marketTrades } = useSelector(
-    (state: RootState) => state.exchange
-  );
+  const { dashboard, OpenBookBuy, OpenBooksell, marketTrades, currentPair } =
+    useSelector((state: RootState) => state.exchange);
   return (
     <>
       <div className="col-xl-3">
@@ -303,10 +302,12 @@ const DashboardBody = () => {
       <div className="col-xl-6">
         <div className="cp-user-buy-coin-content-area">
           <div className="card cp-user-custom-card">
-            <TradingChart
-              //  @ts-ignore
-              coinpair={dashboard?.order_data?.exchange_coin_pair}
-            />
+            {currentPair && (
+              <TradingChart
+                //  @ts-ignore
+                coinpair={dashboard?.order_data?.exchange_coin_pair}
+              />
+            )}
           </div>
         </div>
         <OrderHistorySection />

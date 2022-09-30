@@ -478,6 +478,7 @@ const MyWallet: NextPage = () => {
                 <DepositTab
                   response={response}
                   TurnoffSetShow={TurnoffSetShow}
+                  id={selectedRow.id}
                 />
               )}
               {show?.withdraw && (

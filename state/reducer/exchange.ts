@@ -14,7 +14,7 @@ export type ExchangeState = {
 };
 const initialState: ExchangeState = {
   dashboard: {},
-  currentPair: "BTC_USDT",
+  currentPair: "",
   OpenBookBuy: [],
   OpenBooksell: [],
   openOrderHistory: [],
