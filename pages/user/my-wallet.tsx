@@ -140,6 +140,7 @@ const MyWallet: NextPage = () => {
   return (
     <>
       <div className="page-wrap">
+        {/* {JSON.stringify(response)} */}
         <div className="page-left-sidebar">
           <div className="sidebar-top">
             <ul className="left-menu">
