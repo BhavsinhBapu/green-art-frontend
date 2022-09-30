@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import WalletGoogleAuth from "components/wallet/wallet-google-auth";
 import { UserSettingsApi } from "service/settings";
 import { formateZert } from "common";
 import useTranslation from "next-translate/useTranslation";
 
 const WirhdrawTab = ({ response, TurnoffSetShow }: any) => {
+  const [selectedNetwork, setSelectedNetwork] = useState(
+    response?.data && response?.data[0]
+  );
   const { t } = useTranslation("common");
   const [withdrawalCredentials, setWithdrawalCredentials] = React.useState({
     wallet_id: "",
@@ -12,6 +15,7 @@ const WirhdrawTab = ({ response, TurnoffSetShow }: any) => {
     address: "",
     amount: "",
     note: "withdrawal",
+    network_name: selectedNetwork?.network_name ?? "",
   });
   const [errorMessage, setErrorMessage] = React.useState({
     status: false,
@@ -24,7 +28,7 @@ const WirhdrawTab = ({ response, TurnoffSetShow }: any) => {
     } else {
       setErrorMessage({
         status: true,
-        message: "Google 2FA is not enabled",
+        message: "Google 2FA is not enabled, Please enable Google 2FA fist",
       });
     }
   };
@@ -35,6 +39,13 @@ const WirhdrawTab = ({ response, TurnoffSetShow }: any) => {
     });
     CheckG2faEnabled();
   }, [response]);
+
+  React.useEffect(() => {
+    setWithdrawalCredentials({
+      ...withdrawalCredentials,
+      network_name: selectedNetwork.network_name,
+    });
+  }, [selectedNetwork.network_name]);
 
   return (
     <div className="asset-balances-right visible mb-2">
@@ -84,6 +95,24 @@ const WirhdrawTab = ({ response, TurnoffSetShow }: any) => {
               </div>
 
               <form>
+                {response.wallet.coin_type == "USDT" && (
+                  <div className="total-balance">
+                    <select
+                      name="currency"
+                      className="form-control"
+                      onChange={(e) => {
+                        const findObje = response?.data?.find(
+                          (x: any) => x.id === parseInt(e.target.value)
+                        );
+                        setSelectedNetwork(findObje);
+                      }}
+                    >
+                      {response?.data?.map((item: any) => (
+                        <option value={item.id}>{item?.network_name}</option>
+                      ))}
+                    </select>
+                  </div>
+                )}
                 <div className="form-group">
                   <input
                     type="text"
