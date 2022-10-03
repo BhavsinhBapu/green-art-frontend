@@ -65,8 +65,10 @@ const DepositTab = ({ response, TurnoffSetShow, id }: any) => {
                     console.log(parseInt(e.target.value));
                   }}
                 >
-                  {response?.data?.map((item: any) => (
-                    <option value={item.id}>{item?.network_name}</option>
+                  {response?.data?.map((item: any, index: number) => (
+                    <option value={item.id} key={index}>
+                      {item?.network_name}
+                    </option>
                   ))}
                 </select>
               </div>

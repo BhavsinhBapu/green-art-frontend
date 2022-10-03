@@ -10,12 +10,12 @@ const WirhdrawTab = ({ response, TurnoffSetShow }: any) => {
   );
   const { t } = useTranslation("common");
   const [withdrawalCredentials, setWithdrawalCredentials] = React.useState({
-    wallet_id: "",
+    wallet_id: response?.wallet?.id,
     code: "",
     address: "",
     amount: "",
     note: "withdrawal",
-    network_name: selectedNetwork?.network_name ?? "",
+    network_type: selectedNetwork?.network_type ?? "",
   });
   const [errorMessage, setErrorMessage] = React.useState({
     status: false,
@@ -37,15 +37,16 @@ const WirhdrawTab = ({ response, TurnoffSetShow }: any) => {
       ...withdrawalCredentials,
       wallet_id: response?.wallet?.id,
     });
+
     CheckG2faEnabled();
-  }, [response]);
+  }, [response?.wallet?.id]);
 
   React.useEffect(() => {
     setWithdrawalCredentials({
       ...withdrawalCredentials,
-      network_name: selectedNetwork.network_name,
+      network_type: selectedNetwork?.network_type,
     });
-  }, [selectedNetwork.network_name]);
+  }, [selectedNetwork?.network_type]);
 
   return (
     <div className="asset-balances-right visible mb-2">
@@ -93,7 +94,6 @@ const WirhdrawTab = ({ response, TurnoffSetShow }: any) => {
                   {response?.wallet?.coin_type}
                 </h2>
               </div>
-
               <form>
                 {response.wallet.coin_type == "USDT" && (
                   <div className="total-balance">
@@ -107,8 +107,10 @@ const WirhdrawTab = ({ response, TurnoffSetShow }: any) => {
                         setSelectedNetwork(findObje);
                       }}
                     >
-                      {response?.data?.map((item: any) => (
-                        <option value={item.id}>{item?.network_name}</option>
+                      {response?.data?.map((item: any, index: number) => (
+                        <option value={item.id} key={index}>
+                          {item?.network_name}
+                        </option>
                       ))}
                     </select>
                   </div>
