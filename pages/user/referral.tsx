@@ -165,7 +165,7 @@ const Referral: NextPage = () => {
                   <tr>
                     <th>{t("Coin type")}</th>
                     <th>{t("Amount")}</th>
-                    <th>{t("Transactuib Id")}</th>
+                    <th>{t("Transaction Id")}</th>
                     <th>{t("Level")}</th>
                   </tr>
                 </thead>

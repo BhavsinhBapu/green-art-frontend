@@ -217,7 +217,7 @@ const Limit = ({
                   </div>
                 ) : loading ? (
                   <div className="form-group mt-4">
-                    <button type="submit" className="btn theme-btn">
+                    <button type="submit" className="btn theme-btn-red">
                       <span v-if="limitBuyData.placingOrder">
                         <span
                           className="spinner-border spinner-border-sm"
@@ -232,7 +232,7 @@ const Limit = ({
                   <div className="form-group mt-4">
                     <button
                       type="submit"
-                      className="btn theme-btn"
+                      className="btn theme-btn-red"
                       onClick={async (e) => {
                         e.preventDefault();
                         await sellLimitAppAction(
