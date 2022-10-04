@@ -116,6 +116,7 @@ const Edit: NextPage = () => {
 
                               <PhoneInput
                                 country={"us"}
+                                inputStyle={{ marginLeft: 23 }}
                                 value={user?.phone}
                                 onChange={(phone) => {
                                   setFieldValue("phone", phone);

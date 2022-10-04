@@ -301,7 +301,7 @@ const MyWallet: NextPage = () => {
                             className="dataTables_length"
                             id="assetBalances_length"
                           >
-                            <label className="">
+                            {/* <label className="">
                               {t("Show")}
                               <select
                                 name="assetBalances_length"
@@ -313,13 +313,13 @@ const MyWallet: NextPage = () => {
                                   );
                                 }}
                               >
-                                <option value="10">10</option>
+                                <option value="15">15</option>
                                 <option value="20">25</option>
                                 <option value="50">50</option>
                                 <option value="100">100</option>
                               </select>
                               {t("entries")}
-                            </label>
+                            </label> */}
                           </div>
                           <div id="table_filter" className="dataTables_filter">
                             <label>

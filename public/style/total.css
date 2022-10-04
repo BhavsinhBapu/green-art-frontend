@@ -4374,6 +4374,10 @@ select:-webkit-autofill:focus {
   color: #32d777;
   border-bottom: 2px solid #32d777;
 }
+.order-box .trades-headers .nav-pills .nav-link.activeSell {
+  color: #d63031;
+  border-bottom: 2px solid #d63031;
+}
 .exchange-box {
   background: #151515;
   /* background: rgba(30, 35, 41, 1); */
@@ -4416,6 +4420,15 @@ select:-webkit-autofill:focus {
   font-weight: 600;
   text-transform: capitalize;
 }
+.exchange-box .theme-btn-red {
+  width: 100%;
+  border-radius: 0;
+  background: #d63031;
+  color: #fff !important;
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
 .inner-tabs-menu {
   border-bottom: none;
 }
@@ -4433,6 +4446,10 @@ select:-webkit-autofill:focus {
 }
 .inner-tabs-menu .nav-item .nav-link.active {
   color: #32d777 !important;
+  background-color: transparent !important;
+}
+.inner-tabs-menu .sellBox  .nav-link.active {
+  color: #d63031 !important;
   background-color: transparent !important;
 }
 .fee-lavel {
