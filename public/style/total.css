@@ -2702,7 +2702,34 @@ member club
   letter-spacing: 1px;
   text-align: center;
 }
+.theme-btn-red {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  display: inline-block;
+  padding: 10px 35px;
+  border: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -o-border-radius: 0;
+  -ms-border-radius: 0;
+  border-radius: 4px !important;
+  position: relative;
+  background: -webkit-linear-gradient(left, #ffba00, #fec939 50%, #bca156);
+  background-size: 200%, 1px;
+  background-position: 0;
+  transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  letter-spacing: 1px;
+  text-align: center;
+}
 .theme-btn:hover,
+.theme-btn {
+  border-radius: 5px !important;
+}
+
+.theme-btn-red:hover,
 .theme-btn {
   border-radius: 5px !important;
 }
@@ -2710,6 +2737,12 @@ member club
 .theme-btn:hover,
 .theme-btn:focus,
 .theme-btn:active {
+  background-position: 100% !important;
+  color: #fff;
+}
+.theme-btn-red:hover,
+.theme-btn-red:focus,
+.theme-btn-red:active {
   background-position: 100% !important;
   color: #fff;
 }
@@ -3519,7 +3552,7 @@ body._toggle .swipe-area-overlay:before {
   .swipe-area {
     width: 300px;
   }
- 
+
   .header-top h2 {
     font-size: 25px;
   }
@@ -3784,6 +3817,11 @@ table.dataTable tbody tr.selected td {
   text-align: center;
 }
 .view-btn .theme-btn {
+  color: #fff;
+  font-size: 12px;
+  padding: 7px 15px;
+}
+.view-btn .theme-btn-red {
   color: #fff;
   font-size: 12px;
   padding: 7px 15px;
@@ -4448,7 +4486,7 @@ select:-webkit-autofill:focus {
   color: #32d777 !important;
   background-color: transparent !important;
 }
-.inner-tabs-menu .sellBox  .nav-link.active {
+.inner-tabs-menu .sellBox .nav-link.active {
   color: #d63031 !important;
   background-color: transparent !important;
 }
@@ -6140,7 +6178,6 @@ table.dataTable tbody tr td {
   }
 }
 @media screen and (max-width: 480px) {
- 
   .cxchange-summary-wrap .cxchange-summary-featured .cxchange-summary-items li {
     width: 50%;
   }
@@ -7610,6 +7647,9 @@ table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th:first-child:b
 .profile-info-form .btn.theme-btn {
   color: #fff;
 }
+.profile-info-form .btn.theme-btn-red {
+  color: #fff;
+}
 
 .profile-info-form .btn.add-faq-btn {
   width: 300px;
@@ -8124,7 +8164,7 @@ textarea.form-control.textarea {
 }
 
 .theme-btn {
-  color: rgb(188, 188, 188) !important !important;
+  color: rgb(188, 188, 188) !important ;
   font-size: 16px;
   font-weight: 500;
   display: inline-block;
@@ -9205,7 +9245,7 @@ input:-webkit-autofill:active {
   .asset-balances-right {
     width: 367px;
   }
-.input-url .copy-url-btn {
+  .input-url .copy-url-btn {
     right: -83px;
   }
   .user-content-wrapper {
