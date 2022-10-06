@@ -2353,7 +2353,7 @@ a#submit {
 }
 
 .cp-user-setting-card .cp-user-content input:checked + .slider {
-  background: #182346;
+  background: #182346 !important;
 }
 
 .cp-user-setting-card .cp-user-content input:checked + .slider:before {
@@ -5415,21 +5415,15 @@ table.dataTable tbody tr td {
   font-weight: 400;
   line-height: 26px;
   color: #23262f;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .input-url {
-  position: relative;
-}
-.input-url .copy-url-btn {
-  position: absolute;
-  right: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 5;
-  font-size: 20px;
-  color: #f9b507;
-  padding: 0;
-}
-.input-url .form-control {
+  display: flex;
+  background: #ffffff;
+  flex-direction: row;
+  justify-content: space-between;
   width: 100%;
   height: 50px;
   padding: 5px 20px;
@@ -5438,6 +5432,21 @@ table.dataTable tbody tr td {
   border: none;
   color: black;
   font-size: 10px;
+}
+.input-url .copy-url-btn {
+  font-size: 20px;
+  color: #f9b507;
+  padding: 0;
+  width: 61px !important;
+  background: white;
+  border: none;
+}
+
+.input-url .address-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 .datatable-background {
   background: #f7f7f8;
@@ -5834,10 +5843,6 @@ table.dataTable tbody tr td {
   }
   .responsive-thing {
     display: flex;
-  }
-  .cstm-loader-area {
-    display: flex;
-    flex-direction: column-reverse;
   }
 }
 @media (max-width: 992px) {
@@ -8364,9 +8369,9 @@ table.dataTable.order-column.stripe tbody tr.odd > .sorting_1 {
   .asset-balances-right {
     width: 400px;
   }
-  .input-url .copy-url-btn {
+  /* .input-url .copy-url-btn {
     right: -124px;
-  }
+  } */
   .deposit-info-area .total-balance h3 {
     font-size: 12px;
   }
@@ -9226,6 +9231,12 @@ input:-webkit-autofill:active {
     max-width: 250px;
   }
 }
+@media (max-width: 1550px) {
+  .cstm-loader-area {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}
 @media (max-width: 1199px) {
   .user-content-wrapper {
     padding: 60px 30px;
@@ -9245,9 +9256,9 @@ input:-webkit-autofill:active {
   .asset-balances-right {
     width: 367px;
   }
-  .input-url .copy-url-btn {
+  /* .input-url .copy-url-btn {
     right: -83px;
-  }
+  } */
   .user-content-wrapper {
     padding: 40px 15px;
   }

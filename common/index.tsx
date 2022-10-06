@@ -19,13 +19,14 @@ export const splitPair = (word: any) => {
 export const formatCurrency = (value: any) => {
   return new Intl.NumberFormat("en-US").format(value);
 };
-export const copyTextById = (id: string) => {
-  const element: any = document.getElementById(id);
-  if (element) {
-    element.select();
-    document.execCommand("copy");
-    toast.success("Copied to clipboard");
-  }
+export const copyTextById = (value: any) => {
+  var dummy = document.createElement("input");
+  document.body.appendChild(dummy);
+  dummy.setAttribute("value", value);
+  dummy.select();
+  document.execCommand("copy");
+  document.body.removeChild(dummy);
+  toast.success("Copied to clipboard");
 };
 export const sortArray = (
   arr: any,
