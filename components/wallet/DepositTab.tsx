@@ -90,7 +90,7 @@ const DepositTab = ({ response, TurnoffSetShow, id }: any) => {
                 </p>
               </div>
               <div className="input-url">
-                <p className="form-control">
+                <p id="url-copy" className="address-box">
                   {response.wallet.coin_type == "USDT"
                     ? selectedNetwork?.address
                     : response?.address}
@@ -99,7 +99,11 @@ const DepositTab = ({ response, TurnoffSetShow, id }: any) => {
                   type="button"
                   className="btn copy-url-btn"
                   onClick={() => {
-                    copyTextById("url");
+                    copyTextById(
+                      response.wallet.coin_type == "USDT"
+                        ? selectedNetwork?.address
+                        : response?.address
+                    );
                   }}
                 >
                   <i className="fa fa-clone"></i>

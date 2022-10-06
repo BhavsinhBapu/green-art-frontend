@@ -70,7 +70,7 @@ const Settings: NextPage = () => {
                               data-target="#exampleModal"
                               className="btn cp-user-setupbtn"
                             >
-                              Set up
+                              {t("Set up")}
                             </a>
                           ) : (
                             <a
@@ -91,9 +91,13 @@ const Settings: NextPage = () => {
                         <div className="cp-user-content">
                           <h5>{t("Security")}</h5>
                           <p>
-                            {t(
-                              "Please on this option to enable two factor authentication at log In."
-                            )}
+                            {parseInt(settings?.user?.g2f_enabled) === 1
+                              ? t(
+                                  "Please turn off this option to disable two factor authentication"
+                                )
+                              : t(
+                                  "Please turn on this option to enable two factor authentication"
+                                )}
                           </p>
                           <form>
                             <input type="hidden" name="" defaultValue="" />
@@ -102,14 +106,18 @@ const Settings: NextPage = () => {
                                 type="checkbox"
                                 name="google_login_enable"
                                 checked={
-                                  settings?.user?.g2f_enabled === "1"
+                                  parseInt(settings?.user?.g2f_enabled) === 1
                                     ? true
                                     : false
                                 }
                                 onChange={async (e) => {
-                                  const settings = await Google2faLoginAction();
+                                  const settingsResponse =
+                                    await Google2faLoginAction();
+                                  if (settingsResponse?.success === false)
+                                    return;
                                   setSettings({
-                                    user: settings,
+                                    ...settings,
+                                    user: settingsResponse,
                                   });
                                 }}
                               />
