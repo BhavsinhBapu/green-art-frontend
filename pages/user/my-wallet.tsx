@@ -130,13 +130,6 @@ const MyWallet: NextPage = () => {
     };
   }, []);
 
-  useEffect(() => {
-    getWalletLists("/wallet-list?page=1&type=usd");
-
-    return () => {
-      setWalletList(null);
-    };
-  }, []);
   return (
     <>
       <div className="page-wrap">
@@ -286,62 +279,63 @@ const MyWallet: NextPage = () => {
             <h4 className="section-title-medium">{t("Asset Balances")}</h4>
 
             <div className="asset-balances-area cstm-loader-area">
-              {processing ? (
-                <Loading />
-              ) : (
-                <div className="asset-balances-left">
-                  <div className="section-wrapper">
-                    <div className="table-responsive">
-                      <div
-                        id="assetBalances_wrapper"
-                        className="dataTables_wrapper no-footer"
-                      >
-                        <div className="dataTables_head">
-                          <div
-                            className="dataTables_length"
-                            id="assetBalances_length"
-                          >
-                            {/* <label className="">
-                              {t("Show")}
-                              <select
-                                name="assetBalances_length"
-                                aria-controls="assetBalances"
-                                className=""
-                                onChange={(e) => {
-                                  ResizeChangebleArrayBySize(
-                                    parseInt(e.target.value)
-                                  );
-                                }}
-                              >
-                                <option value="15">15</option>
-                                <option value="20">25</option>
-                                <option value="50">50</option>
-                                <option value="100">100</option>
-                              </select>
-                              {t("entries")}
-                            </label> */}
-                          </div>
-                          <div id="table_filter" className="dataTables_filter">
-                            <label>
-                              {t("Search:")}
-                              <input
-                                type="search"
-                                className="data_table_input"
-                                placeholder=""
-                                aria-controls="table"
-                                onChange={(e) =>
-                                  SearchObjectArrayFuesJS(
-                                    walletList,
-                                    setChangeable,
+              <div className="asset-balances-left">
+                <div className="section-wrapper">
+                  <div className="table-responsive">
+                    <div
+                      id="assetBalances_wrapper"
+                      className="dataTables_wrapper no-footer"
+                    >
+                      <div className="dataTables_head">
+                        <div
+                          className="dataTables_length"
+                          id="assetBalances_length"
+                        >
+                          <label className="">
+                            {t("Show")}
+                            <select
+                              name="assetBalances_length"
+                              aria-controls="assetBalances"
+                              className=""
+                              onChange={async (e) => {
+                                await getWalletLists(
+                                  "/wallet-list?page=1&per_page=" +
                                     e.target.value
-                                  )
-                                }
-                              />
-                            </label>
-                          </div>
+                                );
+                              }}
+                            >
+                              <option value="15">15</option>
+                              <option value="8">25</option>
+                              <option value="50">50</option>
+                              <option value="100">100</option>
+                            </select>
+                            {t("entries")}
+                          </label>
+                        </div>
+                        <div id="table_filter" className="dataTables_filter">
+                          <label>
+                            {t("Search:")}
+                            <input
+                              type="search"
+                              className="data_table_input"
+                              placeholder=""
+                              aria-controls="table"
+                              onChange={(e) =>
+                                SearchObjectArrayFuesJS(
+                                  walletList,
+                                  setChangeable,
+                                  e.target.value
+                                )
+                              }
+                            />
+                          </label>
                         </div>
                       </div>
+                    </div>
 
+                    {processing ? (
+                      <Loading />
+                    ) : (
                       <table
                         id="assetBalances"
                         className="table table-borderless secendary-table asset-balances-table"
@@ -435,46 +429,47 @@ const MyWallet: NextPage = () => {
                           ))}
                         </tbody>
                       </table>
-                      <div
-                        className="pagination-wrapper"
-                        id="assetBalances_paginate"
-                      >
-                        <span>
-                          {walletList?.links?.map((link: any, index: number) =>
-                            link.label === "&laquo; Previous" ? (
-                              <a
-                                className="paginate-button"
-                                onClick={() => LinkTopaginationString(link)}
-                                key={index}
-                              >
-                                <i className="fa fa-angle-left"></i>
-                              </a>
-                            ) : link.label === "Next &raquo;" ? (
-                              <a
-                                className="paginate-button"
-                                onClick={() => LinkTopaginationString(link)}
-                                key={index}
-                              >
-                                <i className="fa fa-angle-right"></i>
-                              </a>
-                            ) : (
-                              <a
-                                className="paginate_button paginate-number"
-                                aria-controls="assetBalances"
-                                data-dt-idx="1"
-                                onClick={() => LinkTopaginationString(link)}
-                                key={index}
-                              >
-                                {link.label}
-                              </a>
-                            )
-                          )}
-                        </span>
-                      </div>
+                    )}
+                    <div
+                      className="pagination-wrapper"
+                      id="assetBalances_paginate"
+                    >
+                      <span>
+                        {walletList?.links?.map((link: any, index: number) =>
+                          link.label === "&laquo; Previous" ? (
+                            <a
+                              className="paginate-button"
+                              onClick={() => LinkTopaginationString(link)}
+                              key={index}
+                            >
+                              <i className="fa fa-angle-left"></i>
+                            </a>
+                          ) : link.label === "Next &raquo;" ? (
+                            <a
+                              className="paginate-button"
+                              onClick={() => LinkTopaginationString(link)}
+                              key={index}
+                            >
+                              <i className="fa fa-angle-right"></i>
+                            </a>
+                          ) : (
+                            <a
+                              className="paginate_button paginate-number"
+                              aria-controls="assetBalances"
+                              data-dt-idx="1"
+                              onClick={() => LinkTopaginationString(link)}
+                              key={index}
+                            >
+                              {link.label}
+                            </a>
+                          )
+                        )}
+                      </span>
                     </div>
                   </div>
                 </div>
-              )}
+              </div>
+
               {show?.deposit && (
                 <DepositTab
                   response={response}

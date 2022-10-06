@@ -5275,7 +5275,7 @@ table.dataTable tbody tr td {
   background: #ff2e2e;
 }
 .action-btn:hover {
-  color: rgb(188, 188, 188) !important;
+  color: white !important;
 }
 .security-list .single-security .action-btn {
   margin-right: 10px;

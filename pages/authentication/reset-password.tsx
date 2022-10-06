@@ -199,7 +199,7 @@ const ResetPassword: NextPage = () => {
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
-  await authPageRequireCheck(ctx);
+  // await authPageRequireCheck(ctx);
   return {
     props: {},
   };
