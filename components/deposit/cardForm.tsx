@@ -38,18 +38,21 @@ const CardForm = ({ setCredential, credential }: any) => {
       // form submission until Stripe.js has loaded.
       return;
     }
+    const cardElement = elements.getElement("card");
 
-    const payload = await stripe.createPaymentMethod({
-      type: "card",
-      //@ts-ignore
-      card: elements.getElement(CardElement),
-    });
+    // const payload = await stripe.createPaymentMethod({
+    //   type: "card",
+    //   //@ts-ignore
+    //   card: elements.getElement(CardElement),
+    // });
+    //@ts-ignore
+    const payload = await stripe.createToken(cardElement);
+
     setCredential({
       ...credential,
       //@ts-ignore
-      stripe_token: payload.paymentMethod.id,
+      stripe_token: payload.token.id,
     });
-    console.log("[PaymentMethod]", payload);
   };
 
   return (

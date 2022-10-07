@@ -120,7 +120,7 @@ const Navbar = () => {
                   <Link
                     href={
                       isLoggedIn === true
-                        ? "/user/my-wallet"
+                        ? "/deposit"
                         : "/authentication/signin"
                     }
                   >
