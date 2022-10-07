@@ -105,11 +105,11 @@ const ResetPassword: NextPage = () => {
                           placeholder="Type your password"
                         />
                       </div>
-                      <ErrorMessage
+                      {/* <ErrorMessage
                         name="password"
                         component="div"
                         className="red-text"
-                      />
+                      /> */}
                       <div className="form-group">
                         <Field
                           type="password"
@@ -124,11 +124,11 @@ const ResetPassword: NextPage = () => {
                           placeholder="Type your confirm password"
                         />
                       </div>
-                      <ErrorMessage
+                      {/* <ErrorMessage
                         name="password_confirmation"
                         component="div"
                         className="red-text"
-                      />
+                      /> */}
 
                       <div className="form-group">
                         <Field
@@ -141,11 +141,11 @@ const ResetPassword: NextPage = () => {
                           placeholder={t("Your token here")}
                         />
                       </div>
-                      <ErrorMessage
+                      {/* <ErrorMessage
                         name="token"
                         component="div"
                         className="red-text"
-                      />
+                      /> */}
                       {recaptchaData?.NOCAPTCHA_SITEKEY &&
                         recaptchaData?.google_recapcha === "1" && (
                           <ReCAPTCHA
@@ -199,7 +199,7 @@ const ResetPassword: NextPage = () => {
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
-  await authPageRequireCheck(ctx);
+  // await authPageRequireCheck(ctx);
   return {
     props: {},
   };
