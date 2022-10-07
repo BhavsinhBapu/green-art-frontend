@@ -2374,14 +2374,23 @@ a#submit {
 .cp-user-preferance-setting .form-control {
   color: #23262f;
   border-radius: 5px;
-  height: 70px;
+  height: 45px;
   font-size: 18px;
   box-shadow: none;
   background: #ffffff;
   padding: 5px 15px;
   border-color: transparent;
 }
-
+.deposit-conatiner .form-control {
+  color: #23262f;
+  border-radius: 5px;
+  height: 45px;
+  font-size: 18px;
+  box-shadow: none;
+  background: #ffffff;
+  padding: 5px 15px;
+  border-color: #d2d2d2;
+}
 .cp-user-preferance-setting {
   position: relative;
   border: 1px solid #b3b3b3;
@@ -9751,4 +9760,16 @@ input[type="number"] {
 }
 .buttons a {
   color: #fcd535;
+}
+.deposit-conatiner {
+  width: 100%;
+  background: white;
+  min-height: 500px;
+  padding: 30px;
+}
+.file-lable{
+  margin: 0;
+    font-size: 16px;
+    font-weight: 400;
+    color: #777778;
 }
