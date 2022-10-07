@@ -18,6 +18,7 @@ const StripeDeposit = ({ currencyList, walletlist, method_id }: any) => {
     calculated_amount: 0,
     rate: 0,
   });
+  //@ts-ignore
   const stripe = loadStripe(process.env.NEXT_PUBLIC_PUBLISH_KEY);
   const [credential, setCredential] = useState<any>({
     wallet_id: null,

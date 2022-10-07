@@ -41,10 +41,12 @@ const CardForm = ({ setCredential, credential }: any) => {
 
     const payload = await stripe.createPaymentMethod({
       type: "card",
+      //@ts-ignore
       card: elements.getElement(CardElement),
     });
     setCredential({
       ...credential,
+      //@ts-ignore
       stripe_token: payload.paymentMethod.id,
     });
     console.log("[PaymentMethod]", payload);
@@ -54,6 +56,7 @@ const CardForm = ({ setCredential, credential }: any) => {
     <form onSubmit={handleSubmit}>
       <label>
         <CardElement
+          //@ts-ignore
           options={options}
           onReady={() => {
             console.log("CardElement [ready]");

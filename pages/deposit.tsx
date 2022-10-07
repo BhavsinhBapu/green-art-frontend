@@ -6,7 +6,7 @@ import useTranslation from "next-translate/useTranslation";
 import React, { useEffect, useState } from "react";
 import { currencyDeposit } from "service/deposit";
 
-const deposit = () => {
+const Deposit = () => {
   const { t } = useTranslation("common");
   const [selectedMethod, setSelectedMethod] = useState<any>({
     method: null,
@@ -52,8 +52,10 @@ const deposit = () => {
               });
             }}
           >
-            {depositInfo?.payment_methods.map((payment: any) => (
-              <option value={payment.payment_method}>{payment.title}</option>
+            {depositInfo?.payment_methods.map((payment: any, index: any) => (
+              <option value={payment.payment_method} key={index}>
+                {payment.title}
+              </option>
             ))}
           </select>
           {parseInt(selectedMethod.method) === WALLET_DEPOSIT ? (
@@ -84,4 +86,4 @@ const deposit = () => {
   );
 };
 
-export default deposit;
+export default Deposit;
