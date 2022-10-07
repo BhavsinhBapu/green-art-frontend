@@ -104,8 +104,8 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
                           <option value="" selected disabled hidden>
                             Select one
                           </option>
-                          {currencyList.map((currency: any) => (
-                            <option value={currency.code}>
+                          {currencyList.map((currency: any, index: any) => (
+                            <option value={currency.code} key={index}>
                               {currency.name}
                             </option>
                           ))}
@@ -160,8 +160,8 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
                           <option value="" selected disabled hidden>
                             Select one
                           </option>
-                          {walletlist.map((wallet: any) => (
-                            <option value={wallet.id}>
+                          {walletlist.map((wallet: any, index: any) => (
+                            <option value={wallet.id} key={index}>
                               {wallet.coin_type}
                             </option>
                           ))}
@@ -189,8 +189,10 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
             }}
           >
             <option value="">{t("Select bank")}</option>
-            {banks?.map((bank: any) => (
-              <option value={bank.id}>{bank.bank_name}</option>
+            {banks?.map((bank: any, index: any) => (
+              <option key={index} value={bank.id}>
+                {bank.bank_name}
+              </option>
             ))}
           </select>
         </div>
