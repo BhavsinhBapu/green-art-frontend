@@ -18,9 +18,7 @@ const StripeDeposit = ({ currencyList, walletlist, method_id }: any) => {
     calculated_amount: 0,
     rate: 0,
   });
-  const stripe = loadStripe(
-    "pk_test_51HeHMCAk5wRsVMs9lKf2I5NzB8RyfvofDKdjq1sHQ8ydQtkmuRKgQYj7AokBqzo9tDWdkJOYPt3mjVy0UZzoRuHZ00U2htSb77"
-  );
+  const stripe = loadStripe(process.env.NEXT_PUBLIC_PUBLISH_KEY);
   const [credential, setCredential] = useState<any>({
     wallet_id: null,
     payment_method_id: method_id ? parseInt(method_id) : null,
