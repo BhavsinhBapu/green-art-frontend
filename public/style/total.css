@@ -9792,7 +9792,7 @@ input[type="number"] {
   min-height: 360px;
   background-color: white;
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0px 0.1px 2.2px rgba(0, 0, 0, 0.011),
@@ -9835,6 +9835,7 @@ input[type="number"] {
   width: 100%;
   border-radius: 5px;
   border: 0.5px solid #ededed;
+  cursor: pointer;
 }
 .pool-icon-small {
   width: 20px;
@@ -9871,7 +9872,9 @@ input[type="number"] {
   background-color: white;
   padding: 30px;
   border-radius: 10px;
-  box-shadow: 0px 0.1px 2.2px rgb(0 0 0 / 1%), 0px 0.3px 5.3px rgb(0 0 0 / 2%), 0px 0.5px 10px rgb(0 0 0 / 2%), 0px 0.9px 17.9px rgb(0 0 0 / 2%), 0px 1.7px 33.4px rgb(0 0 0 / 3%), 0px 4px 80px rgb(0 0 0 / 4%);
+  box-shadow: 0px 0.1px 2.2px rgb(0 0 0 / 1%), 0px 0.3px 5.3px rgb(0 0 0 / 2%),
+    0px 0.5px 10px rgb(0 0 0 / 2%), 0px 0.9px 17.9px rgb(0 0 0 / 2%),
+    0px 1.7px 33.4px rgb(0 0 0 / 3%), 0px 4px 80px rgb(0 0 0 / 4%);
 }
 .deposit-conatiner {
   width: 100%;
@@ -9879,9 +9882,258 @@ input[type="number"] {
   min-height: 500px;
   padding: 30px;
 }
-.file-lable{
+.file-lable {
   margin: 0;
-    font-size: 16px;
-    font-weight: 400;
-    color: #777778;
+  font-size: 16px;
+  font-weight: 400;
+  color: #777778;
+}
+.viewMoreLink {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  padding-bottom: 60px;
+}
+.viewMoreLink a {
+  text-decoration: underline !important;
+  cursor: pointer;
+  color: #000;
+  font-size: 18px;
+}
+.viewMoreLink a:hover {
+  color: var(--primary-color);
+}
+.launchPadSingleHero {
+  background: #ffffff;
+  padding: 20px 0px;
+}
+.launchPadSingleHeroFlex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  justify-items: center;
+}
+.launchPadSingleHeroTitle {
+  display: flex;
+  justify-items: center;
+  gap: 20px;
+  align-items: center;
+  cursor: pointer;
+}
+.launchPadSingleHeroTitle h2 {
+  font-size: 20px;
+  font-weight: 700;
+}
+.launchPadSingleHeroTitle i {
+  font-size: 18px;
+  font-weight: 700;
+}
+.launchPadSingleHeroright {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  gap: 20px;
+  background: #f7f7f8;
+  padding: 10px 30px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.launchPadSingleHeroright h2 {
+  font-size: 15px;
+}
+.launchPadSingleSectionTitle {
+  margin: 60px 0px;
+}
+.singleLaunch {
+  padding: 60px 0px;
+}
+.singleLaunchPadImg {
+  border-radius: 10px;
+}
+.singleLaunchPadHeroFlex {
+  display: flex;
+  gap: 20px;
+}
+.singleLaunchPadTitle {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.singleLaunchPadStatus {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-items: center;
+  background: #fff;
+  padding: 0px 10px;
+  border-radius: 5px;
+}
+
+.singleLaunchPadLinkList .linkLists {
+  display: flex;
+  margin-top: 20px;
+  gap: 20px;
+}
+.singleLaunchPadLinkList .linkLists > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #fff;
+  padding: 0px 15px;
+  border-radius: 4px;
+}
+.singleLaunchPadLinkList .linkLists > div:hover {
+  background-color: var(--primary-color);
+  cursor: pointer;
+}
+.singleLaunchPadHero {
+  display: flex;
+  justify-content: space-between;
+}
+.endtimeSingleLaunch p {
+  font-size: 16px;
+  font-weight: 600;
+}
+.launchCoinDetails {
+  margin-top: 30px;
+  display: flex;
+  gap: 40px;
+}
+.launchCoinDetails p {
+  font-size: 16px;
+}
+.launchCoinDetails span {
+  font-size: 16px;
+  font-weight: 600;
+}
+.subscriptionTimeLine {
+  margin-top: 60px;
+}
+.timeLineLists {
+  display: flex;
+  gap: 20px;
+  margin-top: 30px;
+  position: relative;
+  max-width: 600px;
+}
+.timeLineIcon {
+  position: relative;
+}
+
+.timeLineIcon::before {
+  height: 45px;
+  width: 3px;
+  background: var(--primary-color);
+  content: "";
+  position: absolute;
+  top: 35px;
+  left: 14px;
+}
+.timeLineIcon::last-child {
+  display: none;
+}
+
+.timeLineLists i {
+  font-size: 30px;
+  color: var(--primary-color);
+  opacity: 0.5;
+}
+.timeLineLists .active {
+  opacity: 1;
+}
+.timeLineLists h5 {
+  margin-bottom: 10px;
+}
+.timeLineLists p {
+  font-size: 16px;
+  line-height: 1.4;
+}
+.launchPadHistory a {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+.flexItem {
+  display: flex;
+  justify-content: space-between;
+}
+.commintCoin {
+  background-color: #fff;
+  border-radius: 5px;
+  height: 250px;
+  margin-top: 30px;
+  justify-items: center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+.commintCoin i {
+  opacity: 1;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+.singleLaunchDetails {
+  margin-top: 60px;
+}
+.singleLaunchDetails h3 {
+  margin-bottom: 40px;
+}
+.singleLaunchDetails h6 {
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: 600;
+}
+.singleLaunchDetails p {
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+.socialLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 30px;
+}
+.socialList {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-items: center;
+  margin-bottom: 10px;
+}
+.socialList i {
+  font-size: 25px;
+}
+.socialList a {
+  font-size: 17px;
+  text-decoration: underline !important;
+}
+.socialList a:hover {
+  color: var(--primary-color) !important;
+  cursor: pointer;
+}
+.contentDetails {
+  padding-right: 40px;
+}
+.singlePoolTabs {
+  margin-top: 50px;
+}
+.singlePoolTabs li.tabs-item {
+  display: inline;
+}
+
+.singlePoolTabs li.tabs-item a {
+  padding: 10px 20px;
+  border-radius: 10px;
+  color: #000;
+  font-size: 16px;
+  font-weight: 600;
+  margin-right: 15px;
+}
+
+.singlePoolTabs li.tabs-item .active {
+  background: var(--primary-color);
+}
+.launchPoolTab {
+  gap: 0;
 }

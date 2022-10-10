@@ -1,8 +1,9 @@
 import useTranslation from "next-translate/useTranslation";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
-const LaunchPad = () => {
+const LaunchPad = ({ viewMore }: any) => {
   const { t } = useTranslation("common");
   return (
     <>
@@ -54,9 +55,13 @@ const LaunchPad = () => {
         </div>
       </div>
 
-      <div className="viewMoreLink">
-        <a>View more</a>
-      </div>
+      {viewMore && (
+        <div className="viewMoreLink">
+          <Link href="/launchpad/view-all/lpd">
+            <a>View more</a>
+          </Link>
+        </div>
+      )}
     </>
   );
 };
