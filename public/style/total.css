@@ -2353,7 +2353,7 @@ a#submit {
 }
 
 .cp-user-setting-card .cp-user-content input:checked + .slider {
-  background: #182346;
+  background: #182346 !important;
 }
 
 .cp-user-setting-card .cp-user-content input:checked + .slider:before {
@@ -2374,16 +2374,26 @@ a#submit {
 .cp-user-preferance-setting .form-control {
   color: #23262f;
   border-radius: 5px;
-  height: 70px;
+  height: 45px;
   font-size: 18px;
   box-shadow: none;
   background: #ffffff;
   padding: 5px 15px;
   border-color: transparent;
 }
-
+.deposit-conatiner .form-control {
+  color: #23262f;
+  border-radius: 5px;
+  height: 45px;
+  font-size: 18px;
+  box-shadow: none;
+  background: #ffffff;
+  padding: 5px 15px;
+  border-color: #d2d2d2;
+}
 .cp-user-preferance-setting {
   position: relative;
+  border: 1px solid #b3b3b3;
 }
 
 .cp-user-preferance-setting:after {
@@ -2701,7 +2711,34 @@ member club
   letter-spacing: 1px;
   text-align: center;
 }
+.theme-btn-red {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  display: inline-block;
+  padding: 10px 35px;
+  border: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -o-border-radius: 0;
+  -ms-border-radius: 0;
+  border-radius: 4px !important;
+  position: relative;
+  background: -webkit-linear-gradient(left, #ffba00, #fec939 50%, #bca156);
+  background-size: 200%, 1px;
+  background-position: 0;
+  transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  letter-spacing: 1px;
+  text-align: center;
+}
 .theme-btn:hover,
+.theme-btn {
+  border-radius: 5px !important;
+}
+
+.theme-btn-red:hover,
 .theme-btn {
   border-radius: 5px !important;
 }
@@ -2709,6 +2746,12 @@ member club
 .theme-btn:hover,
 .theme-btn:focus,
 .theme-btn:active {
+  background-position: 100% !important;
+  color: #fff;
+}
+.theme-btn-red:hover,
+.theme-btn-red:focus,
+.theme-btn-red:active {
   background-position: 100% !important;
   color: #fff;
 }
@@ -3558,6 +3601,9 @@ body._toggle .swipe-area-overlay:before {
   .cp-user-wallet-table table tbody tr td ul li:not(:last-child) {
     margin-right: 5px;
   }
+  .secendary-table tbody tr td .asset {
+    flex-direction: column;
+  }
 }
 
 .exchange-area .cp-user-buy-coin-content-area {
@@ -3784,6 +3830,11 @@ table.dataTable tbody tr.selected td {
   font-size: 12px;
   padding: 7px 15px;
 }
+.view-btn .theme-btn-red {
+  color: #fff;
+  font-size: 12px;
+  padding: 7px 15px;
+}
 
 @media (max-width: 1200px) {
   .cp-exchange-rt {
@@ -3938,7 +3989,7 @@ table.table {
   box-sizing: border-box;
 }
 .cover-image {
-  width: 100%;
+  width: 50%;
   height: 100%;
   background-size: cover;
   background-position: center;
@@ -4370,6 +4421,10 @@ select:-webkit-autofill:focus {
   color: #32d777;
   border-bottom: 2px solid #32d777;
 }
+.order-box .trades-headers .nav-pills .nav-link.activeSell {
+  color: #d63031;
+  border-bottom: 2px solid #d63031;
+}
 .exchange-box {
   background: #151515;
   /* background: rgba(30, 35, 41, 1); */
@@ -4412,6 +4467,15 @@ select:-webkit-autofill:focus {
   font-weight: 600;
   text-transform: capitalize;
 }
+.exchange-box .theme-btn-red {
+  width: 100%;
+  border-radius: 0;
+  background: #d63031;
+  color: #fff !important;
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
 .inner-tabs-menu {
   border-bottom: none;
 }
@@ -4429,6 +4493,10 @@ select:-webkit-autofill:focus {
 }
 .inner-tabs-menu .nav-item .nav-link.active {
   color: #32d777 !important;
+  background-color: transparent !important;
+}
+.inner-tabs-menu .sellBox .nav-link.active {
+  color: #d63031 !important;
   background-color: transparent !important;
 }
 .fee-lavel {
@@ -5020,7 +5088,7 @@ select:-webkit-autofill:focus {
   text-align: center;
   border-radius: 50%;
   background: #f9b507;
-  color: rgb(188, 188, 188) !important;
+  color: #fff !important;
   cursor: pointer;
   font-size: 18px;
 }
@@ -5153,7 +5221,8 @@ table.dataTable tbody tr td {
   color: rgb(188, 188, 188);
   /* color: #000 !important; */
 }
-.notification-body {
+.responsive-thing {
+  display: none;
 }
 .referral-text {
   color: #23262f !important;
@@ -5223,7 +5292,7 @@ table.dataTable tbody tr td {
   background: #ff2e2e;
 }
 .action-btn:hover {
-  color: rgb(188, 188, 188) !important;
+  color: white !important;
 }
 .security-list .single-security .action-btn {
   margin-right: 10px;
@@ -5363,21 +5432,15 @@ table.dataTable tbody tr td {
   font-weight: 400;
   line-height: 26px;
   color: #23262f;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .input-url {
-  position: relative;
-}
-.input-url .copy-url-btn {
-  position: absolute;
-  right: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 5;
-  font-size: 20px;
-  color: #f9b507;
-  padding: 0;
-}
-.input-url .form-control {
+  display: flex;
+  background: #ffffff;
+  flex-direction: row;
+  justify-content: space-between;
   width: 100%;
   height: 50px;
   padding: 5px 20px;
@@ -5386,6 +5449,21 @@ table.dataTable tbody tr td {
   border: none;
   color: black;
   font-size: 10px;
+}
+.input-url .copy-url-btn {
+  font-size: 20px;
+  color: #f9b507;
+  padding: 0;
+  width: 61px !important;
+  background: white;
+  border: none;
+}
+
+.input-url .address-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 .datatable-background {
   background: #f7f7f8;
@@ -5780,6 +5858,9 @@ table.dataTable tbody tr td {
   .orders-area {
     margin-bottom: 25px;
   }
+  .responsive-thing {
+    display: flex;
+  }
 }
 @media (max-width: 992px) {
   .exchange-area .total-top-blance {
@@ -5811,6 +5892,9 @@ table.dataTable tbody tr td {
 @media screen and (max-width: 1500px) {
   .cp-user-sidebar::before {
     opacity: 0.3;
+  }
+  .text-warning {
+    font-size: 9px;
   }
 }
 @media (min-width: 1200px) and (max-width: 1416px) {
@@ -7585,6 +7669,9 @@ table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th:first-child:b
 .profile-info-form .btn.theme-btn {
   color: #fff;
 }
+.profile-info-form .btn.theme-btn-red {
+  color: #fff;
+}
 
 .profile-info-form .btn.add-faq-btn {
   width: 300px;
@@ -8099,7 +8186,7 @@ textarea.form-control.textarea {
 }
 
 .theme-btn {
-  color: rgb(188, 188, 188) !important !important;
+  color: rgb(188, 188, 188) !important ;
   font-size: 16px;
   font-weight: 500;
   display: inline-block;
@@ -8276,7 +8363,7 @@ table.dataTable.order-column.stripe tbody tr.odd > .sorting_1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  max-width: 450px;
+  max-width: 610px;
   height: 45px;
   border-radius: 5px;
   background: #f7f7f8;
@@ -8295,6 +8382,15 @@ table.dataTable.order-column.stripe tbody tr.odd > .sorting_1 {
   .notification-continer {
     display: flex;
     flex-direction: column;
+  }
+  .asset-balances-right {
+    width: 400px;
+  }
+  /* .input-url .copy-url-btn {
+    right: -124px;
+  } */
+  .deposit-info-area .total-balance h3 {
+    font-size: 12px;
   }
 }
 .paginate-button {
@@ -9152,6 +9248,12 @@ input:-webkit-autofill:active {
     max-width: 250px;
   }
 }
+@media (max-width: 1550px) {
+  .cstm-loader-area {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}
 @media (max-width: 1199px) {
   .user-content-wrapper {
     padding: 60px 30px;
@@ -9168,6 +9270,12 @@ input:-webkit-autofill:active {
   }
 }
 @media (max-width: 480px) {
+  .asset-balances-right {
+    width: 367px;
+  }
+  /* .input-url .copy-url-btn {
+    right: -83px;
+  } */
   .user-content-wrapper {
     padding: 40px 15px;
   }
@@ -9250,7 +9358,7 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
 }
 .cstm-img-picker {
   display: flex;
-  width: 320px;
+  /* width: 320px; */
   height: 223px;
   left: 0;
   top: 0;
@@ -9764,4 +9872,16 @@ input[type="number"] {
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0px 0.1px 2.2px rgb(0 0 0 / 1%), 0px 0.3px 5.3px rgb(0 0 0 / 2%), 0px 0.5px 10px rgb(0 0 0 / 2%), 0px 0.9px 17.9px rgb(0 0 0 / 2%), 0px 1.7px 33.4px rgb(0 0 0 / 3%), 0px 4px 80px rgb(0 0 0 / 4%);
+}
+.deposit-conatiner {
+  width: 100%;
+  background: white;
+  min-height: 500px;
+  padding: 30px;
+}
+.file-lable{
+  margin: 0;
+    font-size: 16px;
+    font-weight: 400;
+    color: #777778;
 }

@@ -19,7 +19,6 @@ import {
   setOpenBooksell,
 } from "state/reducer/exchange";
 import useTranslation from "next-translate/useTranslation";
-import { setLoading } from "state/reducer/user";
 let socketCall = 0;
 async function listenMessages(dispatch: any) {
   //@ts-ignore
@@ -232,9 +231,7 @@ const Dashboard: NextPage = () => {
                             aria-haspopup="true"
                             aria-expanded="false"
                           >
-                            {dashboard?.order_data?.exchange_coin_pair
-                              ? dashboard?.order_data?.exchange_coin_pair
-                              : "BTC/USDT"}
+                            {currentPair.replace(/_/g, "/")}
                           </span>
 
                           <SelectCurrency />

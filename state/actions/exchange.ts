@@ -11,6 +11,7 @@ import {
   tradesHistoryDashboard,
   marketTradesDashboard,
   cancelOrderApp,
+  appDashboardDataWithoutPair,
 } from "service/exchange";
 import {
   setDashboard,
@@ -21,6 +22,7 @@ import {
   setBuyOrderHistory,
   setTradeOrderHistory,
   setAllmarketTrades,
+  setCurrentPair,
 } from "state/reducer/exchange";
 import { toast } from "react-toastify";
 import { Dispatch, SetStateAction } from "react";
@@ -31,39 +33,73 @@ export const initialDashboardCallAction =
   async (dispatch: any) => {
     setisLoading && setisLoading(true);
     const token = Cookies.get("token");
-    const response = await appDashboardData(pair);
-   
 
-    await localStorage.setItem(
-      "base_coin_id",
-      response.order_data.base_coin_id
-    );
-    await localStorage.setItem(
-      "trade_coin_id",
-      response.order_data.trade_coin_id
-    );
+    let response;
+    if (pair) {
+      response = await appDashboardData(pair);
+    } else {
+      response = await appDashboardDataWithoutPair();
+      console.log(
+        response.pairs[0].parent_coin_id,
+        "asdasdsasdasdasdassdfsdgsrg"
+      );
+    }
+
+    if (pair) {
+      await localStorage.setItem(
+        "base_coin_id",
+        response.order_data.base_coin_id
+      );
+      await localStorage.setItem(
+        "trade_coin_id",
+        response.order_data.trade_coin_id
+      );
+    } else {
+      await localStorage.setItem(
+        "base_coin_id",
+        response.pairs[0].parent_coin_id
+      );
+      await localStorage.setItem(
+        "trade_coin_id",
+        response.pairs[0].child_coin_id
+      );
+      await localStorage.setItem("current_pair", response.pairs[0].coin_pair);
+      dispatch(setCurrentPair(response.pairs[0].coin_pair));
+    }
 
     await dispatch(setDashboard(response));
 
     const BuyResponse = await openBookDashboard(
-      response.order_data.base_coin_id ? response.order_data.base_coin_id : 2,
-      response.order_data.trade_coin_id ? response.order_data.trade_coin_id : 1,
+      response.order_data.base_coin_id
+        ? response.order_data.base_coin_id
+        : response.pairs[0].parent_coin_id,
+      response.order_data.trade_coin_id
+        ? response.order_data.trade_coin_id
+        : response.pairs[0].child_coin_id,
       "dashboard",
       "buy",
       50
     );
     dispatch(setOpenBookBuy(BuyResponse?.data?.orders));
     const SellResponse = await openBookDashboard(
-      response.order_data.base_coin_id ? response.order_data.base_coin_id : 2,
-      response.order_data.trade_coin_id ? response.order_data.trade_coin_id : 1,
+      response.order_data.base_coin_id
+        ? response.order_data.base_coin_id
+        : response.pairs[0].parent_coin_id,
+      response.order_data.trade_coin_id
+        ? response.order_data.trade_coin_id
+        : response.pairs[0].child_coin_id,
       "dashboard",
       "sell",
       50
     );
     dispatch(setOpenBooksell(SellResponse?.data?.orders));
     const marketTradesDashboardResponse = await marketTradesDashboard(
-      response.order_data.base_coin_id,
-      response.order_data.trade_coin_id,
+      response.order_data.base_coin_id
+        ? response.order_data.base_coin_id
+        : response.pairs[0].parent_coin_id,
+      response.order_data.trade_coin_id
+        ? response.order_data.trade_coin_id
+        : response.pairs[0].child_coin_id,
       "dashboard",
       50
     );

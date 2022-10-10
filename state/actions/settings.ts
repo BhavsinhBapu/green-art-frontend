@@ -32,6 +32,7 @@ export const Google2faLoginAction = async () => {
     toast.success(setup.message);
   } else {
     toast.error(setup.message);
+    return { success: false };
   }
 
   return setup.data;

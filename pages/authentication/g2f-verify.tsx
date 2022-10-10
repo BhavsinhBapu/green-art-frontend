@@ -9,7 +9,7 @@ import { GetServerSideProps } from "next";
 import useTranslation from "next-translate/useTranslation";
 import { RootState } from "state/store";
 const G2fverify = () => {
-  const { logo } = useSelector((state: RootState) => state.user);
+ const { settings } = useSelector((state: RootState) => state.common);
   const { t } = useTranslation("common");
   const dispatch = useDispatch();
   return (
@@ -18,13 +18,11 @@ const G2fverify = () => {
         <div className="right">
           <div className="form-top">
             <a className="auth-logo" href="javascript:">
-              <img src={logo || ""} className="img-fluid" alt="" />
+              <img src={settings.logo || ""} className="img-fluid" alt="" />
             </a>
             <h2>{t("Two Factor Authentication")}</h2>
             <p>
-              {t(
-                "Open your authentication app and enter the code for Admin"
-              )}
+              {t("Open your authentication app and enter the code for Admin")}
             </p>
           </div>
           <Formik

@@ -52,17 +52,17 @@ const BuyOrderHistory: NextPage = () => {
   };
   const columns = [
     {
-      name: "Base Coin",
+      name: t("Base Coin"),
       selector: (row: any) => row?.base_coin,
       sortable: true,
     },
     {
-      name: "Trade Coin",
+      name: t("Trade Coin"),
       selector: (row: any) => row?.trade_coin,
       sortable: true,
     },
     {
-      name: "Amount",
+      name: t("Amount"),
       selector: (row: any) => row?.amount,
       sortable: true,
       cell: (row: any) => (
@@ -74,7 +74,7 @@ const BuyOrderHistory: NextPage = () => {
       ),
     },
     {
-      name: "Processed",
+      name: t("Processed"),
       selector: (row: any) => row?.processed,
       sortable: true,
       cell: (row: any) => (
@@ -86,7 +86,7 @@ const BuyOrderHistory: NextPage = () => {
       ),
     },
     {
-      name: "Price",
+      name: t("Price"),
       selector: (row: any) => row?.price,
       sortable: true,
       cell: (row: any) => (
@@ -98,7 +98,7 @@ const BuyOrderHistory: NextPage = () => {
       ),
     },
     {
-      name: "Status",
+      name: t("Status"),
       selector: (row: any) => row?.status,
       sortable: true,
       cell: (row: any) => (
@@ -114,7 +114,7 @@ const BuyOrderHistory: NextPage = () => {
       ),
     },
     {
-      name: "Date",
+      name: t("Date"),
       selector: (row: any) =>
         moment(row.created_at).format("YYYY-MM-DD HH:mm:ss"),
       sortable: true,

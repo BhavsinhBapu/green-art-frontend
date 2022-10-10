@@ -1,7 +1,7 @@
 import type { GetServerSideProps, NextPage } from "next";
 import React, { useEffect, useState } from "react";
 import { ForgotPasswordAction } from "state/actions/user";
-import { Formik, Field, Form, ErrorMessage } from "formik";
+import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
 import { authPageRequireCheck } from "middlewares/ssr-authentication-check";
 import Link from "next/link";
@@ -12,7 +12,7 @@ import useTranslation from "next-translate/useTranslation";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
 const ForgotPassword: NextPage = () => {
-  const { logo } = useSelector((state: RootState) => state.user);
+  const { settings } = useSelector((state: RootState) => state.common);
   const { t } = useTranslation("common");
   const [processing, setProcessing] = useState(false);
   const [recaptchaData, setRecaptchaData] = useState<any>({});
@@ -28,7 +28,7 @@ const ForgotPassword: NextPage = () => {
     <div
       className="user-content-wrapper"
       style={{
-        backgroundImage: `url(/user-content-wrapper-bg.jpg)`,
+        backgroundImage: `url(${settings.login_background})`,
       }}
     >
       <div className="user-content-inner-wrap">
@@ -115,7 +115,7 @@ const ForgotPassword: NextPage = () => {
             <div className="user-content-text text-center">
               <h3>{t("Welcome Back To")}</h3>
               <a className="auth-logo" href="">
-                <img src={logo || ""} className="img-fluid" alt="" />
+                <img src={settings.logo || ""} className="img-fluid" alt="" />
               </a>
               <p>
                 {t("Return to")}

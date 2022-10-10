@@ -350,7 +350,7 @@ const Home: NextPage = ({
                                   </div>
                                 </a>
                               </td>
-                              <td className="txtBlack">{item.last_price}</td>
+                              <td className="text-black">{item.last_price}</td>
                               <td>
                                 <span
                                   className={`changePos  ${
@@ -375,7 +375,7 @@ const Home: NextPage = ({
                                   />
                                 )}
                               </td>
-                              <td className="txtBlack">
+                              <td className="text-black">
                                 {item.volume} {item.parent_coin_name}
                               </td>
                               <td
@@ -505,12 +505,11 @@ const Home: NextPage = ({
                                         /{item?.parent_coin_name}
                                       </span>
                                     </div>
-                                    <div className="currencyName">
-                                      {t("Bitcoin")}
-                                    </div>
                                   </a>
                                 </td>
-                                <td className="txtBlack">{item.last_price}</td>
+                                <td className="text-black">
+                                  {item.last_price}
+                                </td>
                                 <td>
                                   <span
                                     className={`changePos  ${
@@ -535,7 +534,7 @@ const Home: NextPage = ({
                                     />
                                   )}
                                 </td>
-                                <td className="txtBlack">
+                                <td className="text-black">
                                   {item.volume} {item.parent_coin_name}
                                 </td>
                                 <td
@@ -662,10 +661,11 @@ const Home: NextPage = ({
                                         /{item?.parent_coin_name}
                                       </span>
                                     </div>
-                                    <div className="currencyName">Bitcoin</div>
                                   </a>
                                 </td>
-                                <td className="txtBlack">{item.last_price}</td>
+                                <td className="text-black">
+                                  {item.last_price}
+                                </td>
                                 <td>
                                   <span
                                     className={`changePos  ${
@@ -690,7 +690,7 @@ const Home: NextPage = ({
                                     />
                                   )}
                                 </td>
-                                <td className="txtBlack">
+                                <td className="text-black">
                                   {item.volume} {item.parent_coin_name}
                                 </td>
                                 <td
@@ -759,83 +759,91 @@ const Home: NextPage = ({
                   </div>
                   <div className="avable-items">
                     <ul className="item-lsit">
-                      <li className="single-item">
-                        <a
-                          href={landing?.apple_store_link}
-                          className="item-link"
-                        >
-                          <img
-                            className="icon"
-                            src="/apple-logo.png"
-                            alt="apple-logo"
-                          />
-                          <span>{t("App Store")}</span>
-                        </a>
-                      </li>
-                      <li className="single-item">
-                        <a
-                          href={landing?.google_store_link}
-                          className="item-link"
-                        >
-                          <img
-                            className="icon"
-                            src="/android.png"
-                            alt="android"
-                          />
-                          <span>{t("Android APK")}</span>
-                        </a>
-                      </li>
-                      <li className="single-item">
-                        <a href="#" className="item-link">
-                          <img
-                            className="icon"
-                            src="/google-play.png"
-                            alt="google-play"
-                          />
-                          <span>{t("Google Play")}</span>
-                        </a>
-                      </li>
-                      <li className="single-item">
-                        <a
-                          href={landing?.macos_store_link}
-                          className="item-link"
-                        >
-                          <img
-                            className="icon"
-                            src="/command-symbol.png"
-                            alt="command-symbol"
-                          />
-                          <span>{t("MacOS")}</span>
-                        </a>
-                      </li>
-                      <li className="single-item">
-                        <a
-                          href={landing?.windows_store_link}
-                          className="item-link"
-                        >
-                          <img
-                            className="icon"
-                            src="/windows.png"
-                            alt="windows"
-                          />
-                          <span>{t("Windows")}</span>
-                        </a>
-                      </li>
-                      <li className="single-item">
-                        <a
-                          href={landing?.windows_store_link}
-                          className="item-link"
-                        >
-                          <img className="icon" src="/linux.png" alt="linux" />
-                          <span>{t("Linux")}</span>
-                        </a>
-                      </li>
-                      <li className="single-item">
-                        <a href={landing?.api_link} className="item-link">
-                          <img className="icon" src="/api.png" alt="api" />
-                          <span>{t("API")}</span>
-                        </a>
-                      </li>
+                      {landing?.apple_store_link && (
+                        <li className="single-item">
+                          <a
+                            href={landing?.apple_store_link}
+                            className="item-link"
+                          >
+                            <img
+                              className="icon"
+                              src="/apple-logo.png"
+                              alt="apple-logo"
+                            />
+                            <span>{t("App Store")}</span>
+                          </a>
+                        </li>
+                      )}
+
+                      {landing?.google_store_link && (
+                        <li className="single-item">
+                          <a href="#" className="item-link">
+                            <img
+                              className="icon"
+                              src="/google-play.png"
+                              alt="google-play"
+                            />
+                            <span>{t("Google Play")}</span>
+                          </a>
+                        </li>
+                      )}
+
+                      {landing?.macos_store_link && (
+                        <li className="single-item">
+                          <a
+                            href={landing?.macos_store_link}
+                            className="item-link"
+                          >
+                            <img
+                              className="icon"
+                              src="/command-symbol.png"
+                              alt="command-symbol"
+                            />
+                            <span>{t("MacOS")}</span>
+                          </a>
+                        </li>
+                      )}
+
+                      {landing?.windows_store_link && (
+                        <li className="single-item">
+                          <a
+                            href={landing?.windows_store_link}
+                            className="item-link"
+                          >
+                            <img
+                              className="icon"
+                              src="/windows.png"
+                              alt="windows"
+                            />
+                            <span>{t("Windows")}</span>
+                          </a>
+                        </li>
+                      )}
+
+                      {landing?.windows_store_link && (
+                        <li className="single-item">
+                          <a
+                            href={landing?.windows_store_link}
+                            className="item-link"
+                          >
+                            <img
+                              className="icon"
+                              src="/linux.png"
+                              alt="linux"
+                            />
+                            <span>{t("Linux")}</span>
+                          </a>
+                        </li>
+                      )}
+
+                      {landing?.api_link && (
+                        <li className="single-item">
+                          <a href={landing?.api_link} className="item-link">
+                            <img className="icon" src="/api.png" alt="api" />
+                            <span>{t("API")}</span>
+                          </a>
+                        </li>
+                      )}
                     </ul>
                   </div>
                 </div>

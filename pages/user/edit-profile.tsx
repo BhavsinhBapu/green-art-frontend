@@ -116,6 +116,7 @@ const Edit: NextPage = () => {
 
                               <PhoneInput
                                 country={"us"}
+                                inputStyle={{ marginLeft: 23 }}
                                 value={user?.phone}
                                 onChange={(phone) => {
                                   setFieldValue("phone", phone);
@@ -148,7 +149,7 @@ const Edit: NextPage = () => {
                               </Field>
                             </div>
                             <div className="form-group">
-                              <label>Gender</label>
+                              <label>{t("Gender")}</label>
                               <Field
                                 className="form-control"
                                 name="gender"

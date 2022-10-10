@@ -1,6 +1,7 @@
 import { toast } from "react-toastify";
 import { getUserCoinForSwap, getRate, swapCoin } from "service/swap";
 import { parseCookies } from "nookies";
+import { Router } from "next/router";
 
 export const getUserCoinForSwapAction = async (
   setList: any | null,
@@ -8,7 +9,8 @@ export const getUserCoinForSwapAction = async (
 ) => {
   const cookies = parseCookies(ctx);
   const { data } = await getUserCoinForSwap(cookies.token);
-  return data.wallets;
+
+  return data?.wallets ? data?.wallets : false;
 };
 export const getRateAction = async (
   from_coin_id: number,

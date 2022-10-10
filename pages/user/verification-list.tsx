@@ -30,8 +30,8 @@ const VerificationList: NextPage = () => {
             <div className="section-wrapper">
               <div className="row">
                 <div className="col-lg-4 col-md-6">
-                  <div className="single-verification">
-                    <h3 className="verification-title">
+                  <div className="single-verification mt-3">
+                    <h3 className="verification-title ">
                       {t("National Id Card Verification")}
                     </h3>
                     <ul className="verification-list">
@@ -47,7 +47,7 @@ const VerificationList: NextPage = () => {
                   </div>
                 </div>
                 <div className="col-lg-4 col-md-6">
-                  <div className="single-verification">
+                  <div className="single-verification mt-3">
                     <h3 className="verification-title">
                       {t("Passport Verification")}
                     </h3>
@@ -64,7 +64,7 @@ const VerificationList: NextPage = () => {
                   </div>
                 </div>
                 <div className="col-lg-4 col-md-6">
-                  <div className="single-verification">
+                  <div className="single-verification mt-3">
                     <h3 className="verification-title">
                       {t("Driving Licence Verification")}
                     </h3>

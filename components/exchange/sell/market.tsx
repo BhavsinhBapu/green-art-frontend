@@ -184,12 +184,12 @@ const Market = ({
                 {!isLoggedIn ? (
                   <div className="form-group mt-4">
                     <Link href="/authentication/signin">
-                      <a className="btn btn-danger">{t("Login")}</a>
+                      <a className="btn theme-btn-red">{t("Login")}</a>
                     </Link>
                   </div>
                 ) : loading ? (
                   <div className="form-group mt-4">
-                    <button type="submit" className="btn theme-btn">
+                    <button type="submit" className="btn theme-btn-red">
                       <span v-if="limitBuyData.placingOrder">
                         <span
                           className="spinner-border spinner-border-sm"
@@ -198,14 +198,13 @@ const Market = ({
                         ></span>
                         {t("Placing Order...")}
                       </span>
-                      <span v-else="">{t("Buy")} </span>
                     </button>
                   </div>
                 ) : (
                   <div className="form-group mt-4">
                     <button
                       type="submit"
-                      className="btn theme-btn"
+                      className="btn theme-btn-red"
                       onClick={async (e) => {
                         e.preventDefault();
                         await sellMarketAppAction(
