@@ -9,10 +9,10 @@ const useOptions = () => {
           fontSize: 22,
           color: "#424770",
           letterSpacing: "0.025em",
-          fontFamily: "Source Code Pro, monospace",
-          "::placeholder": {
-            color: "#aab7c4",
-          },
+          // fontFamily: "Source Code Pro, monospace",
+          // "::placeholder": {
+          //   color: "#aab7c4",
+          // },
         },
         invalid: {
           color: "#9e2146",
@@ -40,11 +40,7 @@ const CardForm = ({ setCredential, credential }: any) => {
     }
     const cardElement = elements.getElement("card");
 
-    // const payload = await stripe.createPaymentMethod({
-    //   type: "card",
-    //   //@ts-ignore
-    //   card: elements.getElement(CardElement),
-    // });
+ 
     //@ts-ignore
     const payload = await stripe.createToken(cardElement);
 
@@ -77,10 +73,10 @@ const CardForm = ({ setCredential, credential }: any) => {
       </label>
       <button
         type="submit"
-        className="primary-btn-outline mb-3 "
+        className="primary-btn-outline mb-3 w-100"
         disabled={!stripe}
       >
-        Submit
+        Deposit
       </button>
     </form>
   );

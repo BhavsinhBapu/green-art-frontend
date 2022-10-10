@@ -3604,6 +3604,9 @@ body._toggle .swipe-area-overlay:before {
   .secendary-table tbody tr td .asset {
     flex-direction: column;
   }
+  .bank-container {
+    grid-template-columns: 1fr 1fr !important;
+  }
 }
 
 .exchange-area .cp-user-buy-coin-content-area {
@@ -5865,6 +5868,13 @@ table.dataTable tbody tr td {
 @media (max-width: 575px) {
   .trades-table .trades-table-row .trades-table-col.total-price {
     font-size: 16px;
+  }
+  .bank-container {
+    grid-template-columns: 1fr !important;
+  }
+  .select-method {
+    flex-direction: column;
+    grid-auto-flow: dense !important;
   }
 }
 .code-list .primary-btn {
@@ -9767,9 +9777,97 @@ input[type="number"] {
   min-height: 500px;
   padding: 30px;
 }
-.file-lable{
+.file-lable {
   margin: 0;
-    font-size: 16px;
-    font-weight: 400;
-    color: #777778;
+  font-size: 16px;
+  font-weight: 400;
+  color: #777778;
+}
+.select-method {
+  display: grid;
+  grid-auto-flow: column;
+}
+.select-method-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border: 1px solid #b9b9b9;
+  margin-top: 20px;
+  font-size: 18px;
+  cursor: pointer;
+}
+.select-method-item-active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  margin-top: 20px;
+  font-size: 18px;
+  color: white;
+  cursor: pointer;
+  background-color: #f9b507;
+}
+.file-upload-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  border: 1px solid #cacaca;
+  border-radius: 10px;
+  margin-bottom: 21px;
+}
+.bank-container {
+  border: 1px solid #d2d2d2;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 30px;
+  border-radius: 5px;
+}
+.bank-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+.bank-title {
+  font-size: 18px;
+  font-weight: 800;
+}
+.split-title {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+.copy-btn {
+  font-size: 11px;
+  border: 1px solid;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.faq-body {
+  background-color: white;
+  color: black;
+  margin-top: 10px;
+}
+.faq-head {
+  background-color: white;
+  border: 1px solid #a6a6a6;
+  padding: 10px;
+  border-radius: 10px;
+}
+.faq-head h5 button {
+  color: black;
+}
+.faq-body {
+  padding: 3px;
+}
+.paypal-container {
+  margin-top: 20px;
+}
+#upload-photo {
+   opacity: 0;
+   position: absolute;
+   z-index: -9;
 }

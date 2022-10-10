@@ -119,7 +119,7 @@ const DashboardNavbar = () => {
                   <Link
                     href={
                       isLoggedIn === true
-                        ? "/user/my-wallet"
+                        ? "/deposit"
                         : "/authentication/signin"
                     }
                   >
@@ -160,6 +160,8 @@ const DashboardNavbar = () => {
                         : router.pathname == "/user/sell-order-history"
                         ? "cp-user-active-page"
                         : router.pathname == "/user/transaction-history"
+                        ? "cp-user-active-page"
+                        : router.pathname == "/user/currency-deposit-history"
                         ? "cp-user-active-page"
                         : ""
                     }
@@ -290,6 +292,23 @@ const DashboardNavbar = () => {
                           }
                         >
                           <a href="">{t("Transaction History")}</a>
+                        </li>
+                      </Link>
+                      <Link
+                        href={
+                          isLoggedIn
+                            ? "/user/currency-deposit-history"
+                            : "/authentication/signin"
+                        }
+                      >
+                        <li
+                          className={
+                            router.pathname == "/user/currency-deposit-history"
+                              ? "cp-user-active-page"
+                              : ""
+                          }
+                        >
+                          <a href="">{t("Fiat Deposit History")}</a>
                         </li>
                       </Link>
                     </ul>

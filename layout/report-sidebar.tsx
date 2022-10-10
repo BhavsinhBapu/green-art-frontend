@@ -54,6 +54,17 @@ const ReportSidebar = () => {
             >
               <a href="getAllTransactionHistory">{t("Transaction History")}</a>
             </li>
+          </Link>{" "}
+          <Link href="/user/currency-deposit-history">
+            <li
+              className={
+                router.pathname == "/user/currency-deposit-history"
+                  ? "active"
+                  : ""
+              }
+            >
+              <a href="getAllTransactionHistory">{t("Fiat deposit History")}</a>
+            </li>
           </Link>
         </ul>
       </div>

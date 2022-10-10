@@ -1,4 +1,5 @@
 import useTranslation from "next-translate/useTranslation";
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import {
@@ -8,6 +9,7 @@ import {
 
 const WalletDeposit = ({ walletlist, method_id }: any) => {
   const { t } = useTranslation("common");
+  const router = useRouter();
   const [credential, setCredential] = useState<any>({
     wallet_id: null,
     payment_method_id: method_id ? method_id : null,
@@ -40,6 +42,7 @@ const WalletDeposit = ({ walletlist, method_id }: any) => {
       const res = await currencyDepositProcess(credential);
       if (res.success) {
         toast.success(res.message);
+        router.push("/user/currency-deposit-history");
       } else {
         toast.error(res.message);
       }
@@ -172,7 +175,7 @@ const WalletDeposit = ({ walletlist, method_id }: any) => {
             data-target="#exampleModal"
             onClick={convertCurrency}
           >
-            submit
+            Deposit
           </button>
         </div>
       </div>
