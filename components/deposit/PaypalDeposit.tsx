@@ -47,21 +47,21 @@ function Button({ credential, setCredential }: any) {
        *   facilitatorAccesstoken: string;
        * }
        */
-
+      console.log(data, "datadatadatadata");
+      alert("Data details: " + JSON.stringify(data, null, 2));
+      const credentials = {
+        wallet_id: credential.wallet_id,
+        payment_method_id: credential.payment_method_id,
+        amount: credential.amount,
+        currency: credential.currency,
+        paypal_token: data.billingToken,
+      };
       return actions.order.capture({}).then(async (details: any) => {
-        // alert(
-        //   "Transaction completed by" +
-        //     (details?.payer.name.given_name ?? "No details")
-        // );
+        alert(
+          "Transaction completed by" +
+            (details?.payer.name.given_name ?? "No details")
+        );
 
-        // alert("Data details: " + JSON.stringify(data, null, 2));
-        const credentials = {
-          wallet_id: credential.wallet_id,
-          payment_method_id: credential.payment_method_id,
-          amount: credential.amount,
-          currency: credential.currency,
-          paypal_token: data.billingToken,
-        };
         const res = await currencyDepositProcess(credentials);
         if (res.success) {
           toast.success(res.message);
