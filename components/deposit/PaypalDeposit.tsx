@@ -55,21 +55,19 @@ function Button({ credential, setCredential }: any) {
         // );
 
         // alert("Data details: " + JSON.stringify(data, null, 2));
-        if (data.billingToken) {
-          const credentials = {
-            wallet_id: credential.wallet_id,
-            payment_method_id: credential.payment_method_id,
-            amount: credential.amount,
-            currency: credential.currency,
-            paypal_token: data.billingToken,
-          };
-          const res = await currencyDepositProcess(credentials);
-          if (res.success) {
-            toast.success(res.message);
-            router.push("/user/currency-deposit-history");
-          } else {
-            toast.error(res.message);
-          }
+        const credentials = {
+          wallet_id: credential.wallet_id,
+          payment_method_id: credential.payment_method_id,
+          amount: credential.amount,
+          currency: credential.currency,
+          paypal_token: data.billingToken,
+        };
+        const res = await currencyDepositProcess(credentials);
+        if (res.success) {
+          toast.success(res.message);
+          router.push("/user/currency-deposit-history");
+        } else {
+          toast.error(res.message);
         }
       });
     },
