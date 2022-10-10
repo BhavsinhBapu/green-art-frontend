@@ -7,13 +7,14 @@ const SelectDeposit = ({
 }: any) => {
   return (
     <div className="select-method">
-      {depositInfo?.payment_methods.map((payment: any) => (
+      {depositInfo?.payment_methods.map((payment: any, index: number) => (
         <div
           className={
             selectedMethod.method === payment.payment_method
               ? "select-method-item-active"
               : "select-method-item"
           }
+          key={index}
           onClick={() => {
             setSelectedMethod({
               method: payment.payment_method,

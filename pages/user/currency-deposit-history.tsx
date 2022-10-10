@@ -1,21 +1,17 @@
-import type { GetServerSideProps, NextPage } from "next";
+import { formatCurrency } from "common";
+import TableLoading from "components/common/TableLoading";
 import ReportSidebar from "layout/report-sidebar";
+import moment from "moment";
+import useTranslation from "next-translate/useTranslation";
 import React, { useState } from "react";
-import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import DataTable from "react-data-table-component";
 import {
-  AllSellOrdersHistoryAction,
-  handleSearchItems,
+  CurrencyDepositHistoryAction,
+  handleSearchItemsCurrency,
 } from "state/actions/reports";
-import TableLoading from "components/common/TableLoading";
-import useTranslation from "next-translate/useTranslation";
-import moment from "moment";
-import { useSelector } from "react-redux";
-import { RootState } from "state/store";
-import { formatCurrency } from "common";
-const SellOrderHistory: NextPage = () => {
-  type searchType = string;
 
+const CurrencyDepositHistory = () => {
+  type searchType = string;
   const [search, setSearch] = useState<searchType>("");
   const [sortingInfo, setSortingInfo] = useState<any>({
     column_name: "created_at",
@@ -28,7 +24,7 @@ const SellOrderHistory: NextPage = () => {
   const LinkTopaginationString = (page: any) => {
     const url = page.url.split("?")[1];
     const number = url.split("=")[1];
-    AllSellOrdersHistoryAction(
+    CurrencyDepositHistoryAction(
       10,
       parseInt(number),
       setHistory,
@@ -39,7 +35,7 @@ const SellOrderHistory: NextPage = () => {
     );
   };
   const getReport = async () => {
-    AllSellOrdersHistoryAction(
+    CurrencyDepositHistoryAction(
       10,
       1,
       setHistory,
@@ -52,47 +48,34 @@ const SellOrderHistory: NextPage = () => {
 
   const columns = [
     {
-      name: t("Base Coin"),
-      selector: (row: any) => row?.base_coin,
+      name: t("Currency"),
+      selector: (row: any) => row?.currency,
       sortable: true,
     },
     {
-      name: t("Trade Coin"),
-      selector: (row: any) => row?.trade_coin,
+      name: t("Currency Amount"),
+      selector: (row: any) => row?.currency_amount,
       sortable: true,
     },
+
     {
-      name: t("Amount"),
-      selector: (row: any) => row?.amount,
+      name: t("Transaction id"),
+      selector: (row: any) => row?.transaction_id,
       sortable: true,
       cell: (row: any) => (
         <div className="blance-text">
-          <span className="blance market incree">
-            {parseFloat(row?.amount).toFixed(8)}
-          </span>
+          <span className="blance market incree">{row?.transaction_id}</span>
         </div>
       ),
     },
     {
-      name: t("Processed"),
-      selector: (row: any) => row?.processed,
+      name: t("Rate"),
+      selector: (row: any) => row?.rate,
       sortable: true,
       cell: (row: any) => (
         <div className="blance-text">
           <span className="blance market incree">
-            {parseFloat(row?.processed).toFixed(8)}
-          </span>
-        </div>
-      ),
-    },
-    {
-      name: t("Price"),
-      selector: (row: any) => row?.price,
-      sortable: true,
-      cell: (row: any) => (
-        <div className="blance-text">
-          <span className="blance market incree">
-            {formatCurrency(row?.price)}
+            {formatCurrency(row?.currency_amount)}
           </span>
         </div>
       ),
@@ -121,7 +104,7 @@ const SellOrderHistory: NextPage = () => {
     },
   ];
   React.useEffect(() => {
-    getReport();
+      getReport();
     return () => {
       setHistory([]);
     };
@@ -135,11 +118,12 @@ const SellOrderHistory: NextPage = () => {
           <div className="section-top-wrap mb-25">
             <div className="overview-area">
               <div className="overview-left">
-                <h2 className="section-top-title">{t("Sell Order History")}</h2>
+                <h2 className="section-top-title">
+                  {t("Currency Deposit History")}
+                </h2>
               </div>
             </div>
           </div>
-
           <div className="asset-balances-area">
             {processing ? (
               <TableLoading />
@@ -163,7 +147,7 @@ const SellOrderHistory: NextPage = () => {
                               aria-controls="assetBalances"
                               className=""
                               onChange={(e) => {
-                                AllSellOrdersHistoryAction(
+                                CurrencyDepositHistoryAction(
                                   parseInt(e.target.value),
                                   1,
                                   setHistory,
@@ -192,7 +176,7 @@ const SellOrderHistory: NextPage = () => {
                               aria-controls="table"
                               value={search}
                               onChange={(e) => {
-                                handleSearchItems(
+                                handleSearchItemsCurrency(
                                   e,
                                   setSearch,
                                   stillHistory,
@@ -256,11 +240,5 @@ const SellOrderHistory: NextPage = () => {
     </div>
   );
 };
-export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
-  await SSRAuthCheck(ctx, "/user/sell-order-history");
-  return {
-    props: {},
-  };
-};
 
-export default SellOrderHistory;
+export default CurrencyDepositHistory;

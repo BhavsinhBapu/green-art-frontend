@@ -1,10 +1,12 @@
 import useTranslation from "next-translate/useTranslation";
 import React, { useEffect, useState } from "react";
+import { copyTextById } from "common";
 import {
   currencyDepositProcess,
   getCurrencyDepositRate,
 } from "service/deposit";
 import { toast } from "react-toastify";
+import BankDetails from "./bankDetails";
 const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
   const { t } = useTranslation("common");
   const [calculatedValue, setCalculatedValue] = useState<any>({
@@ -18,6 +20,7 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
     currency: null,
     bank_id: null,
   });
+  const [bankInfo, setBankInfo] = useState({});
   const [doc, setDoc] = useState(null);
   const getCurrencyRate = async () => {
     if (
@@ -180,15 +183,18 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
           </div>
           <select
             name="method"
-            className="form-control mt-2 "
+            className="form-control mt-2"
             onChange={(e: any) => {
               setCredential({
                 ...credential,
                 bank_id: parseInt(e.target.value),
               });
+              setBankInfo(
+                banks.find((bank: any) => bank.id === parseInt(e.target.value))
+              );
             }}
           >
-            <option value="">{t("Select bank")}</option>
+            <option>{t("Select bank")}</option>
             {banks?.map((bank: any, index: any) => (
               <option key={index} value={bank.id}>
                 {bank.bank_name}
@@ -196,6 +202,14 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
             ))}
           </select>
         </div>
+        {credential.bank_id && (
+          <div className="col-lg-12 mb-3">
+            <div className="split-title">
+              <span className="file-lable">{t("Bank details")}</span>
+            </div>
+            <BankDetails bankInfo={bankInfo} />
+          </div>
+        )}
         <div className="col-lg-12 mb-3">
           <div className="swap-wrap">
             <div className="">
@@ -219,7 +233,7 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
             data-target="#exampleModal"
             onClick={convertCurrency}
           >
-            Submit
+            {t("Deposit")}
           </button>
         </div>
       </div>

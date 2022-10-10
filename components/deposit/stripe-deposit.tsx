@@ -12,6 +12,7 @@ import {
 import { loadStripe } from "@stripe/stripe-js";
 import { toast } from "react-toastify";
 import CardForm from "./cardForm";
+import { useRouter } from "next/router";
 const StripeDeposit = ({ currencyList, walletlist, method_id }: any) => {
   const { t } = useTranslation("common");
   const [calculatedValue, setCalculatedValue] = useState<any>({
@@ -20,6 +21,7 @@ const StripeDeposit = ({ currencyList, walletlist, method_id }: any) => {
   });
   //@ts-ignore
   const stripe = loadStripe(process.env.NEXT_PUBLIC_PUBLISH_KEY);
+  const router = useRouter();
   const [credential, setCredential] = useState<any>({
     wallet_id: null,
     payment_method_id: method_id ? parseInt(method_id) : null,
@@ -46,6 +48,7 @@ const StripeDeposit = ({ currencyList, walletlist, method_id }: any) => {
       const res = await currencyDepositProcess(credential);
       if (res.success) {
         toast.success(res.message);
+        router.push("/user/currency-deposit-history");
       } else {
         toast.error(res.message);
       }
@@ -164,14 +167,14 @@ const StripeDeposit = ({ currencyList, walletlist, method_id }: any) => {
         )}
 
         {credential.stripe_token && (
-          <div className="col-lg-12 mb-3">
+          <div className="col-lg-12 mb-3 w-100">
             <button
               className="primary-btn-outline w-100"
               data-toggle="modal"
               data-target="#exampleModal"
               onClick={convertCurrency}
             >
-              Submit
+              Deposit
             </button>
           </div>
         )}

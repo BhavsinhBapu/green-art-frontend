@@ -1,32 +1,40 @@
 import useTranslation from "next-translate/useTranslation";
-import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { toast } from "react-toastify";
 import {
   currencyDepositProcess,
   getCurrencyDepositRate,
 } from "service/deposit";
-
-const WalletDeposit = ({ walletlist, method_id }: any) => {
+import {
+  ElementsConsumer,
+  Elements,
+  CardElement,
+} from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import { toast } from "react-toastify";
+import CardForm from "./cardForm";
+import { useRouter } from "next/router";
+import PaypalButtons from "./PaypalDeposit";
+const PaypalSection = ({ currencyList, walletlist, method_id }: any) => {
   const { t } = useTranslation("common");
-  const router = useRouter();
-  const [credential, setCredential] = useState<any>({
-    wallet_id: null,
-    payment_method_id: method_id ? method_id : null,
-    amount: 0,
-    from_wallet_id: null,
-  });
   const [calculatedValue, setCalculatedValue] = useState<any>({
     calculated_amount: 0,
     rate: 0,
   });
-  const [available, setAvailable] = useState<any>(0);
+  //@ts-ignore
+  const stripe = loadStripe(process.env.NEXT_PUBLIC_PUBLISH_KEY);
+  const router = useRouter();
+  const [credential, setCredential] = useState<any>({
+    wallet_id: null,
+    payment_method_id: method_id ? parseInt(method_id) : null,
+    amount: 0,
+    currency: "USD",
+    paypal_token: null,
+  });
   const getCurrencyRate = async () => {
     if (
       credential.wallet_id &&
       credential.payment_method_id &&
-      credential.amount &&
-      credential.from_wallet_id
+      credential.amount
     ) {
       const response = await getCurrencyDepositRate(credential);
       setCalculatedValue(response.data);
@@ -36,8 +44,7 @@ const WalletDeposit = ({ walletlist, method_id }: any) => {
     if (
       credential.wallet_id &&
       credential.payment_method_id &&
-      credential.amount &&
-      credential.from_wallet_id
+      credential.amount
     ) {
       const res = await currencyDepositProcess(credential);
       if (res.success) {
@@ -56,7 +63,7 @@ const WalletDeposit = ({ walletlist, method_id }: any) => {
   return (
     <div>
       <div className="cp-user-title mt-5 mb-4">
-        <h4>{t("Wallet list")}</h4>
+        <h4>{t("Credit Card Deposit")}</h4>
       </div>
       <div className="row">
         <div className="col-lg-12">
@@ -66,11 +73,8 @@ const WalletDeposit = ({ walletlist, method_id }: any) => {
                 <div className="form-group">
                   <div className="swap-wrap">
                     <div className="swap-wrap-top">
-                      <label>{t("From")}</label>
-                      <span className="available">
-                        {t("Available Balance: ")}
-                        {parseFloat(available)}
-                      </span>
+                      <label>{t("Enter amount")}</label>
+                      <span className="available">{t("Select currency")}</span>
                     </div>
                     <div className="swap-input-wrap">
                       <div className="form-amount">
@@ -87,34 +91,6 @@ const WalletDeposit = ({ walletlist, method_id }: any) => {
                           }}
                         />
                       </div>
-                      <div className="cp-select-area">
-                        <select
-                          className="form-control "
-                          id="currency-one"
-                          onChange={(e) => {
-                            setCredential({
-                              ...credential,
-                              from_wallet_id: parseInt(e.target.value),
-                            });
-                            setAvailable(
-                              walletlist.find(
-                                (wallet: any) =>
-                                  parseInt(wallet.id) ===
-                                  parseInt(e.target.value)
-                              ).balance
-                            );
-                          }}
-                        >
-                          <option value="" selected disabled hidden>
-                            Select one
-                          </option>
-                          {walletlist.map((wallet: any, index: any) => (
-                            <option value={wallet.id} key={index}>
-                              {wallet.coin_type}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -129,27 +105,34 @@ const WalletDeposit = ({ walletlist, method_id }: any) => {
                 <div className="form-group">
                   <div className="swap-wrap">
                     <div className="swap-wrap-top">
-                      <label>{t("To")}</label>
+                      <label>{t("Converted amount")}</label>
+                      <span className="available">{t("Select wallet")}</span>
                     </div>
                     <div className="swap-input-wrap">
                       <div className="form-amount">
                         <input
-                          type="text"
+                          type="number"
                           className="form-control"
                           id="amount-one"
                           disabled
                           value={calculatedValue.calculated_amount}
                           placeholder={t("Please enter 10 -2400000")}
+                          onChange={(e) => {
+                            setCredential({
+                              ...credential,
+                              amount: e.target.value,
+                            });
+                          }}
                         />
                       </div>
                       <div className="cp-select-area">
                         <select
-                          className=" form-control "
+                          className="form-control "
                           id="currency-one"
                           onChange={(e) => {
                             setCredential({
                               ...credential,
-                              wallet_id: parseInt(e.target.value),
+                              wallet_id: e.target.value,
                             });
                           }}
                         >
@@ -169,6 +152,19 @@ const WalletDeposit = ({ walletlist, method_id }: any) => {
               </div>
             </div>
           </div>
+        </div>
+        {credential.wallet_id &&
+          credential.payment_method_id &&
+          credential.amount && (
+            <div className="col-lg-12 mb-3">
+              <PaypalButtons
+                credential={credential}
+                setCredential={setCredential}
+              />
+            </div>
+          )}
+
+        {/* <div className="col-lg-12 mb-3 w-100">
           <button
             className="primary-btn-outline w-100"
             data-toggle="modal"
@@ -177,10 +173,10 @@ const WalletDeposit = ({ walletlist, method_id }: any) => {
           >
             Deposit
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );
 };
 
-export default WalletDeposit;
+export default PaypalSection;
