@@ -14,7 +14,7 @@ const Index = ({ socialData, customPageData, copyright_text }: any) => {
   const { t } = useTranslation("common");
   return (
     <div>
-      <div className="">
+      <div className="launchPad">
         <LaunchTop />
         <div className="launch-body container">
           <Hero />
