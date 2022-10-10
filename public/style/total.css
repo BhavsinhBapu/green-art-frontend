@@ -9767,9 +9767,32 @@ input[type="number"] {
   min-height: 500px;
   padding: 30px;
 }
-.file-lable{
+.file-lable {
   margin: 0;
-    font-size: 16px;
-    font-weight: 400;
-    color: #777778;
+  font-size: 16px;
+  font-weight: 400;
+  color: #777778;
+}
+.select-method {
+  display: grid;
+  grid-auto-flow: column;
+}
+.select-method-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border: 1px solid #b9b9b9;
+  margin-top: 20px;
+  font-size: 18px;
+}
+.select-method-item-active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  margin-top: 20px;
+  font-size: 18px;
+  color: white;
+  background-color: #f9b507;
 }

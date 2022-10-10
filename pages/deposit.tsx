@@ -5,6 +5,7 @@ import { BANK_DEPOSIT, STRIPE, WALLET_DEPOSIT } from "helpers/core-constants";
 import useTranslation from "next-translate/useTranslation";
 import React, { useEffect, useState } from "react";
 import { currencyDeposit } from "service/deposit";
+import SelectDeposit from "components/deposit/selectDeposit";
 
 const Deposit = () => {
   const { t } = useTranslation("common");
@@ -39,7 +40,13 @@ const Deposit = () => {
           <div className="cp-user-title">
             <h4>{t("Select method")}</h4>
           </div>
-          <select
+          <SelectDeposit
+            setSelectedMethod={setSelectedMethod}
+            depositInfo={depositInfo}
+            selectedMethod={selectedMethod}
+          />
+
+          {/* <select
             name="method"
             className="form-control mt-2 "
             onChange={(e: any) => {
@@ -57,7 +64,7 @@ const Deposit = () => {
                 {payment.title}
               </option>
             ))}
-          </select>
+          </select> */}
           {parseInt(selectedMethod.method) === WALLET_DEPOSIT ? (
             <WalletDeposit
               walletlist={depositInfo.wallet_list}

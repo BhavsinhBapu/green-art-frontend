@@ -201,14 +201,16 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
             <div className="">
               <span className="file-lable">{t("Select document")}</span>
             </div>
-            <input
-              className="form-control mb-4 mt-2"
-              type="file"
-              id="formFile"
-              onChange={(e: any) => {
-                setDoc(e.target.files[0]);
-              }}
-            />
+            <div className="file-upload-wrapper">
+              <input
+                type="file"
+                id="input-file-now"
+                className="file-upload"
+                onChange={(e: any) => {
+                  setDoc(e.target.files[0]);
+                }}
+              />
+            </div>
           </div>
 
           <button
