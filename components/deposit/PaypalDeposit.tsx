@@ -12,7 +12,7 @@ import { useRouter } from "next/router";
 
 const paypalScriptOptions: PayPalScriptOptions = {
   //@ts-ignore
-  "client-id": process.env.NEXT_PUBMIC_PAYPAL_SECRET_KEY,
+  "client-id": process.env.NEXT_PUBLIC_PAYPAL_SECRET_KEY,
   currency: "USD",
 };
 function Button({ credential, setCredential }: any) {
