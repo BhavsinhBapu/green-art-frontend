@@ -135,7 +135,7 @@ const SellOrderHistory: NextPage = () => {
           <div className="section-top-wrap mb-25">
             <div className="overview-area">
               <div className="overview-left">
-                <h2 className="section-top-title">Sell Order History</h2>
+                <h2 className="section-top-title">{t("Sell Order History")}</h2>
               </div>
             </div>
           </div>

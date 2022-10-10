@@ -13,9 +13,10 @@ import { RecapCha } from "service/user";
 import useTranslation from "next-translate/useTranslation";
 import { RootState } from "state/store";
 const Signup: NextPage = () => {
-  const { isLoggedIn, user, logo } = useSelector(
+  const {  logo } = useSelector(
     (state: RootState) => state.user
   );
+    const { settings } = useSelector((state: RootState) => state.common);
   const dispatch = useDispatch();
   const { t } = useTranslation("common");
   const [recaptchaData, setRecaptchaData] = useState<any>({});
@@ -39,7 +40,7 @@ const Signup: NextPage = () => {
     <div
       className="user-content-wrapper"
       style={{
-        backgroundImage: `url(/user-content-wrapper-bg.jpg)`,
+        backgroundImage: `url(${settings.login_background})`,
       }}
     >
       <div className="user-content-inner-wrap">
@@ -231,7 +232,7 @@ const Signup: NextPage = () => {
               <h3>{t("Welcome To")}</h3>
               <Link href="/">
                 <a className="auth-logo" href="">
-                  <img src={logo || ""} className="img-fluid" alt="" />
+                  <img src={settings.logo || ""} className="img-fluid" alt="" />
                 </a>
               </Link>
               <Link href="/authentication/signin">

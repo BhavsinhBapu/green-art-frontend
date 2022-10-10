@@ -6,8 +6,10 @@ const TradesTable = ({ marketTrades }: any) => {
   const [trades, setTrades] = React.useState<any>([]);
   const setTradeData = () => {
     let allTradeData = [];
-
-    for (let i = marketTrades.length; i > 0; i--) {
+    console.log(marketTrades, "marketTrades");
+    marketTrades.length &&
+      allTradeData.push(marketTrades[marketTrades.length - 1]);
+    for (let i = marketTrades.length; i >= 0; i--) {
       if (
         parseFloat(marketTrades[i]?.price) >
         parseFloat(marketTrades[i - 1]?.price)
@@ -40,6 +42,7 @@ const TradesTable = ({ marketTrades }: any) => {
         });
       }
     }
+    console.log(allTradeData, "allTradeData");
     setTrades(allTradeData.reverse());
   };
   useEffect(() => {

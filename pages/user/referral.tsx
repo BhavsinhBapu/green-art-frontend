@@ -1,3 +1,4 @@
+import Loading from "components/common/loading";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import type { GetServerSideProps, NextPage } from "next";
 import useTranslation from "next-translate/useTranslation";
@@ -7,6 +8,7 @@ import { getReferral } from "service/refer";
 const Referral: NextPage = () => {
   const [referral, setReferral] = useState<any>();
   const [allData, setAllData] = useState<any>();
+  const [loading, setLoading] = useState(true);
   const { t } = useTranslation("common");
 
   useEffect(() => {
@@ -18,8 +20,8 @@ const Referral: NextPage = () => {
           code
       );
       setAllData(res.data.data);
+      setLoading(false);
     });
-
     return () => {
       setReferral(null);
     };
@@ -28,6 +30,7 @@ const Referral: NextPage = () => {
     <div className="referral-area">
       <div className="section-top-wrap mb-25">
         <div className="profle-are-top">
+          {loading && <Loading />}
           <div className="container">
             <h2 className="section-top-title">{t("Referrals")}</h2>
             <div className="invite-friends">
@@ -45,7 +48,7 @@ const Referral: NextPage = () => {
                   className="btn copy-url-btn"
                   onClick={() => {
                     navigator.clipboard.writeText(referral);
-                    toast.success("Copied to clipboard");
+                    toast.success(t("Copied to clipboard"));
                   }}
                 >
                   <i className="fa fa-clone" />
@@ -162,7 +165,7 @@ const Referral: NextPage = () => {
                   <tr>
                     <th>{t("Coin type")}</th>
                     <th>{t("Amount")}</th>
-                    <th>{t("Transactuib Id")}</th>
+                    <th>{t("Transaction Id")}</th>
                     <th>{t("Level")}</th>
                   </tr>
                 </thead>

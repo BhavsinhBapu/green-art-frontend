@@ -12,6 +12,7 @@ const DashboardNavbar = () => {
     (state: RootState) => state.user
   );
   const router = useRouter();
+  const { settings } = useSelector((state: RootState) => state.common);
   const [active, setActive] = useState(false);
   const [notificationData, setNotification] = useState<any>([]);
   const { t } = useTranslation("common");
@@ -112,6 +113,39 @@ const DashboardNavbar = () => {
                           />
                         </span>
                         <span className="cp-user-name">{t("Wallet")}</span>
+                      </a>
+                    </li>
+                  </Link>
+                  <Link
+                    href={
+                      isLoggedIn === true
+                        ? "/user/my-wallet"
+                        : "/authentication/signin"
+                    }
+                  >
+                    <li
+                      className={
+                        router.pathname == "/deposit"
+                          ? "cp-user-active-page"
+                          : ""
+                      }
+                    >
+                      <a href="">
+                        <span className="cp-user-icon">
+                          <img
+                            src="/sidebar-icons/Wallet.svg"
+                            className="img-fluid cp-user-side-bar-icon"
+                            alt=""
+                          />
+                          <img
+                            src="/sidebar-icons/Wallet.svg"
+                            className="img-fluid cp-user-side-bar-icon-hover"
+                            alt=""
+                          />
+                        </span>
+                        <span className="cp-user-name">
+                          {t("Deposit Wallet")}
+                        </span>
                       </a>
                     </li>
                   </Link>
@@ -396,9 +430,9 @@ const DashboardNavbar = () => {
                       </span>
                     </a>
                     <ul className="">
-                      {LanguageList.map((item, index) => (
+                      {settings?.LanguageList?.map((item: any, index: any) => (
                         <li key={index}>
-                          <Link href={router.asPath} locale={item.value}>
+                          <Link href={router.asPath} locale={item.key}>
                             <a className="py-1">{item.name}</a>
                           </Link>
                         </li>
@@ -604,13 +638,333 @@ const DashboardNavbar = () => {
                       </li>
                     </ul>
                   </div>
-                  <div
-                    className="cp-user-sidebar-toggler-s2"
-                    onClick={() => {
-                      setActive(active ? false : true);
-                    }}
-                  >
-                    <img src="/menu.svg" className="img-fluid" alt="" />
+                  <div className={`cp-user-sidebar ${active ? "active" : ""}`}>
+                    <div className="cp-user-sidebar-menu scrollbar-inner">
+                      <nav>
+                        <ul id="metismenu">
+                          <li className=" cp-user-active-page ">
+                            <a
+                              href={
+                                router.locale !== "en"
+                                  ? `/${router.locale}/exchange/dashboard`
+                                  : "/exchange/dashboard"
+                              }
+                            >
+                              <span className="cp-user-icon">
+                                <img
+                                  src=""
+                                  className="img-fluid cp-user-side-bar-icon"
+                                  alt=""
+                                />
+                                <img
+                                  src=""
+                                  className="img-fluid cp-user-side-bar-icon-hover"
+                                  alt=""
+                                />
+                              </span>
+                              <span className="cp-user-name">Dashboard</span>
+                            </a>
+                          </li>
+
+                          <li>
+                            <a
+                              className="arrow-icon"
+                              href="#"
+                              aria-expanded="true"
+                            >
+                              <span className="cp-user-icon">
+                                <img
+                                  src=""
+                                  className="img-fluid cp-user-side-bar-icon"
+                                  alt=""
+                                />
+                                <img
+                                  src=""
+                                  className="img-fluid cp-user-side-bar-icon-hover"
+                                  alt=""
+                                />
+                              </span>
+                              <span className="cp-user-name">Wallet</span>
+                            </a>
+                            <ul>
+                              <Link
+                                href={
+                                  isLoggedIn
+                                    ? "/user/my-wallet"
+                                    : "/authentication/signin"
+                                }
+                              >
+                                <li>
+                                  <a href="">My Wallet</a>
+                                </li>
+                              </Link>
+                              <Link
+                                href={
+                                  isLoggedIn
+                                    ? "/user/swap-coin"
+                                    : "/authentication/signin"
+                                }
+                              >
+                                <li>
+                                  <a href="">Swap Coin</a>
+                                </li>
+                              </Link>
+                            </ul>
+                          </li>
+                          <li>
+                            <a
+                              className="arrow-icon"
+                              href="#"
+                              aria-expanded="true"
+                            >
+                              <span className="cp-user-icon">
+                                <img
+                                  src=""
+                                  className="img-fluid cp-user-side-bar-icon"
+                                  alt=""
+                                />
+                                <img
+                                  src=""
+                                  className="img-fluid cp-user-side-bar-icon-hover"
+                                  alt=""
+                                />
+                              </span>
+                              <span className="cp-user-name">Reports</span>
+                            </a>
+                            <ul>
+                              <Link
+                                href={
+                                  isLoggedIn
+                                    ? "/user/wallet-history?type=deposit"
+                                    : "/authentication/signin"
+                                }
+                              >
+                                <li>
+                                  <a href="">Deposit History</a>
+                                </li>
+                              </Link>
+                              <Link
+                                href={
+                                  isLoggedIn
+                                    ? "/user/wallet-history?type=withdrawal"
+                                    : "/authentication/signin"
+                                }
+                              >
+                                <li>
+                                  <a href="">Withdrawal History</a>
+                                </li>
+                              </Link>
+                              <Link
+                                href={
+                                  isLoggedIn
+                                    ? "/user/swap-history"
+                                    : "/authentication/signin"
+                                }
+                              >
+                                <li>
+                                  <a href="">Swap History</a>
+                                </li>
+                              </Link>
+                              <Link
+                                href={
+                                  isLoggedIn
+                                    ? "/user/buy-order-history"
+                                    : "/authentication/signin"
+                                }
+                              >
+                                <li>
+                                  <a href="">Buy Order History</a>
+                                </li>
+                              </Link>
+                              <Link
+                                href={
+                                  isLoggedIn
+                                    ? "/user/sell-order-history"
+                                    : "/authentication/signin"
+                                }
+                              >
+                                <li>
+                                  <a href="">Sell Order History</a>
+                                </li>
+                              </Link>
+                              <Link
+                                href={
+                                  isLoggedIn
+                                    ? "/user/transaction-history"
+                                    : "/authentication/signin"
+                                }
+                              >
+                                <li>
+                                  <a href="">Transaction History</a>
+                                </li>
+                              </Link>
+                            </ul>
+                          </li>
+                          <li>
+                            <a
+                              className="arrow-icon"
+                              href="#"
+                              aria-expanded="true"
+                            >
+                              <span className="cp-user-icon">
+                                <img
+                                  src=""
+                                  className="img-fluid cp-user-side-bar-icon"
+                                  alt=""
+                                />
+                                <img
+                                  src=""
+                                  className="img-fluid cp-user-side-bar-icon-hover"
+                                  alt=""
+                                />
+                              </span>
+                              <span className="cp-user-name">My Profile</span>
+                            </a>
+                            <ul>
+                              <Link
+                                href={
+                                  isLoggedIn
+                                    ? "/user/profile"
+                                    : "/authentication/signin"
+                                }
+                              >
+                                <li>
+                                  <a href="">Profile</a>
+                                </li>
+                              </Link>
+                              <Link
+                                href={
+                                  isLoggedIn
+                                    ? "/user/edit-profile"
+                                    : "/authentication/signin"
+                                }
+                              >
+                                <li>
+                                  <a href="">Edit Profile</a>
+                                </li>
+                              </Link>
+                              <Link
+                                href={
+                                  isLoggedIn
+                                    ? "/user/phone-verification"
+                                    : "/authentication/signin"
+                                }
+                              >
+                                <li>
+                                  <a href="">Phone Verification</a>
+                                </li>
+                              </Link>
+                              <Link
+                                href={
+                                  isLoggedIn
+                                    ? "/user/security"
+                                    : "/authentication/signin"
+                                }
+                              >
+                                <li>
+                                  <a href="">Security</a>
+                                </li>
+                              </Link>
+                              <Link
+                                href={
+                                  isLoggedIn
+                                    ? "/user/verification-list"
+                                    : "/authentication/signin"
+                                }
+                              >
+                                <li>
+                                  <a href="">Verification List</a>
+                                </li>
+                              </Link>
+                              <Link
+                                href={
+                                  isLoggedIn
+                                    ? "/user/personal-verification"
+                                    : "/authentication/signin"
+                                }
+                              >
+                                <li>
+                                  <a href="">Personal Verification</a>
+                                </li>
+                              </Link>
+                              <Link
+                                href={
+                                  isLoggedIn
+                                    ? "/user/change-password"
+                                    : "/authentication/signin"
+                                }
+                              >
+                                <li>
+                                  <a href="">Change Password</a>
+                                </li>
+                              </Link>
+                            </ul>
+                          </li>
+                          <li>
+                            <a href="">
+                              <span className="cp-user-icon">
+                                <img
+                                  src=""
+                                  className="img-fluid cp-user-side-bar-icon"
+                                  alt=""
+                                />
+                                <img
+                                  src=""
+                                  className="img-fluid cp-user-side-bar-icon-hover"
+                                  alt=""
+                                />
+                              </span>
+                              <span className="cp-user-name">My Referral</span>
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              className="arrow-icon"
+                              href="#"
+                              aria-expanded="true"
+                            >
+                              <span className="cp-user-icon">
+                                <img
+                                  src=""
+                                  className="img-fluid cp-user-side-bar-icon"
+                                  alt=""
+                                />
+                                <img
+                                  src=""
+                                  className="img-fluid cp-user-side-bar-icon-hover"
+                                  alt=""
+                                />
+                              </span>
+                              <span className="cp-user-name">Settings</span>
+                            </a>
+                            <ul>
+                              <Link
+                                href={
+                                  isLoggedIn
+                                    ? "/user/settings"
+                                    : "/authentication/signin"
+                                }
+                              >
+                                <li>
+                                  <a href="">My Settings</a>
+                                </li>
+                              </Link>
+                              <Link
+                                href={
+                                  isLoggedIn
+                                    ? "/user/faq"
+                                    : "/authentication/signin"
+                                }
+                              >
+                                <li>
+                                  <a href="">FAQ</a>
+                                </li>
+                              </Link>
+                            </ul>
+                          </li>
+                        </ul>
+                      </nav>
+                    </div>
                   </div>
                 </div>
               ) : (

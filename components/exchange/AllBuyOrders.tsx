@@ -158,25 +158,19 @@ const AllBuyOrders = ({ OpenBookBuy, show }: any) => {
                             <div className="asset">
                               <span className="text-success">
                                 {/* {parseFloat(item.price)%1 !== 0 ? parseFloat(item.price) : parseFloat(item.price).toFixed(2)} */}
-                                {item.price}
+                                {parseFloat(item.price)}
                               </span>
                             </div>
                           </td>
                           <td>
                             <div className="asset">
-                              <span className="asset-name">
-                                {parseFloat(item.amount) % 1 !== 0
-                                  ? parseFloat(item.amount)
-                                  : parseFloat(item.amount).toFixed(2)}
-                              </span>
+                              <span className="asset-name">{item.amount}</span>
                             </div>
                           </td>
                           <td>
                             <div className="asset">
                               <span className="asset-name">
-                                {parseFloat(item.total) % 1 !== 0
-                                  ? parseFloat(item.total)
-                                  : parseFloat(item.total).toFixed(2)}
+                                {parseFloat(item.total).toFixed(2)}
                               </span>
                             </div>
                           </td>
@@ -185,7 +179,7 @@ const AllBuyOrders = ({ OpenBookBuy, show }: any) => {
                     ))
                   ) : (
                     <tr className="odd">
-                      <td valign="top"  className="text-center">
+                      <td valign="top" className="text-center">
                         {t("No data available in table")}
                       </td>
                     </tr>

@@ -118,7 +118,7 @@ const ExchangeBox = () => {
               role="tab"
               aria-controls="pills-transfer-2"
               aria-selected="false"
-              className={`nav-link ${tradingTab === 2 ? "active" : ""}`}
+              className={`nav-link ${tradingTab === 2 ? "activeSell" : ""}`}
             >
               {t("Sell")}
             </a>
@@ -224,7 +224,7 @@ const ExchangeBox = () => {
           >
             <li
               role="presentation"
-              className="nav-item"
+              className="nav-item sellBox"
               onClick={() => {
                 setSellSelectedTab(1);
               }}
@@ -242,7 +242,7 @@ const ExchangeBox = () => {
             </li>
             <li
               role="presentation"
-              className="nav-item"
+              className="nav-item sellBox"
               onClick={() => {
                 setSellSelectedTab(2);
               }}
@@ -260,7 +260,7 @@ const ExchangeBox = () => {
             </li>
             <li
               role="presentation"
-              className="nav-item"
+              className="nav-item sellBox"
               onClick={() => {
                 setSellSelectedTab(3);
               }}

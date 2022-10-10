@@ -248,7 +248,7 @@ const StopLimit = ({
                 {!isLoggedIn ? (
                   <div className="form-group mt-4">
                     <Link href="/authentication/signin">
-                      <a className="btn btn-danger">{t("Login")}</a>
+                      <a className="btn theme-btn-red">{t("Login")}</a>
                     </Link>
                   </div>
                 ) : loading ? (
@@ -262,7 +262,6 @@ const StopLimit = ({
                         ></span>
                         {t("Placing Order...")}
                       </span>
-                      <span v-else="">{t("Buy")} </span>
                     </button>
                   </div>
                 ) : (

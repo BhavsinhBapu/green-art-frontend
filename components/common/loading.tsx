@@ -6,7 +6,7 @@ const Loading = () => {
   return (
     <div className="preloder-area">
       <div className="spinner-border text-warning" role="status">
-        <span className="sr-only">Loading...</span>
+        <span className="sr-only">{t("Loading...")}</span>
       </div>
       <span>{t("Loading...")}</span>
     </div>

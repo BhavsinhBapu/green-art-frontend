@@ -16,6 +16,7 @@ const ResetPassword: NextPage = () => {
   const [processing, setProcessing] = useState(false);
   const { logo } = useSelector((state: RootState) => state.user);
   const [recaptchaData, setRecaptchaData] = useState<any>({});
+    const { settings } = useSelector((state: RootState) => state.common);
   const getRecapcha = async () => {
     const response = await RecapCha();
     setRecaptchaData(response.data);
@@ -28,7 +29,7 @@ const ResetPassword: NextPage = () => {
     <div
       className="user-content-wrapper"
       style={{
-        backgroundImage: `url(/user-content-wrapper-bg.jpg)`,
+        backgroundImage: `url(${settings.login_background})`,
       }}
     >
       <div className="user-content-inner-wrap">
@@ -104,11 +105,11 @@ const ResetPassword: NextPage = () => {
                           placeholder="Type your password"
                         />
                       </div>
-                      <ErrorMessage
+                      {/* <ErrorMessage
                         name="password"
                         component="div"
                         className="red-text"
-                      />
+                      /> */}
                       <div className="form-group">
                         <Field
                           type="password"
@@ -123,11 +124,11 @@ const ResetPassword: NextPage = () => {
                           placeholder="Type your confirm password"
                         />
                       </div>
-                      <ErrorMessage
+                      {/* <ErrorMessage
                         name="password_confirmation"
                         component="div"
                         className="red-text"
-                      />
+                      /> */}
 
                       <div className="form-group">
                         <Field
@@ -140,11 +141,11 @@ const ResetPassword: NextPage = () => {
                           placeholder={t("Your token here")}
                         />
                       </div>
-                      <ErrorMessage
+                      {/* <ErrorMessage
                         name="token"
                         component="div"
                         className="red-text"
-                      />
+                      /> */}
                       {recaptchaData?.NOCAPTCHA_SITEKEY &&
                         recaptchaData?.google_recapcha === "1" && (
                           <ReCAPTCHA
@@ -182,7 +183,7 @@ const ResetPassword: NextPage = () => {
             <div className="user-content-text text-center">
               <h3>{t("Welcome Back To")}</h3>
               <a className="auth-logo">
-                <img src={logo || ""} className="img-fluid" alt="" />
+                <img src={settings.logo || ""} className="img-fluid" alt="" />
               </a>
               <p>
                 {t("Return to sign in")}
@@ -198,7 +199,7 @@ const ResetPassword: NextPage = () => {
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
-  await authPageRequireCheck(ctx);
+  // await authPageRequireCheck(ctx);
   return {
     props: {},
   };

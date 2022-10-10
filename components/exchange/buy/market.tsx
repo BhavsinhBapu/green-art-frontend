@@ -189,7 +189,7 @@ const Market = ({
                 {!isLoggedIn ? (
                   <div className="form-group mt-4">
                     <Link href="/authentication/signin">
-                      <a className="btn btn-danger">{t("Login")}</a>
+                      <a className="btn theme-btn-red">{t("Login")}</a>
                     </Link>
                   </div>
                 ) : loading ? (
@@ -203,7 +203,6 @@ const Market = ({
                         ></span>
                         {t("Placing Order...")}
                       </span>
-                      <span v-else="">{t("Buy")} </span>
                     </button>
                   </div>
                 ) : (
@@ -321,7 +320,7 @@ const Market = ({
                   </span>
                 </div>
                 <div className="form-group mt-4">
-                  <a className="btn btn-danger"> {t("Login")}</a>
+                  <a className="btn theme-btn-red"> {t("Login")}</a>
                 </div>
               </form>
             </div>
@@ -457,7 +456,7 @@ const Market = ({
                   </span>
                 </div>
                 <div className="form-group mt-4 d-flex justify-content-between flex-wrap">
-                  <a className="btn btn-danger"> {t("Login")}</a>
+                  <a className="btn theme-btn-red"> {t("Login")}</a>
                 </div>
               </form>
             </div>
