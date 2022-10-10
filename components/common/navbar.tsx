@@ -309,7 +309,7 @@ const Navbar = () => {
                               : ""
                           }
                         >
-                          <a href="">{t("Currency Deposit History")}</a>
+                          <a href="">{t("Fiat Deposit History")}</a>
                         </li>
                       </Link>
                     </ul>

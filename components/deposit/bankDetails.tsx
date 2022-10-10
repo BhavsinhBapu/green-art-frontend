@@ -4,6 +4,7 @@ import React from "react";
 
 const BankDetails = ({ bankInfo }: any) => {
   const { t } = useTranslation("common");
+  console.log(bankInfo);
   return (
     <div className="bank-container">
       <div className="bank-item">
@@ -75,6 +76,20 @@ const BankDetails = ({ bankInfo }: any) => {
           </span>
         </p>
         <p>{bankInfo.account_holder_address ?? ""}</p>
+      </div>{" "}
+      <div className="bank-item">
+        <p className="bank-title">
+          {t("Account Number")}{" "}
+          <span
+            className="file-lable copy-btn"
+            onClick={() => {
+              copyTextById(bankInfo.iban);
+            }}
+          >
+            {t("Copy")}
+          </span>
+        </p>
+        <p>{bankInfo.iban ?? ""}</p>
       </div>
     </div>
   );

@@ -9866,3 +9866,8 @@ input[type="number"] {
 .paypal-container {
   margin-top: 20px;
 }
+#upload-photo {
+   opacity: 0;
+   position: absolute;
+   z-index: -9;
+}

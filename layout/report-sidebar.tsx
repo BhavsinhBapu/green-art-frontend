@@ -63,7 +63,7 @@ const ReportSidebar = () => {
                   : ""
               }
             >
-              <a href="getAllTransactionHistory">{t("Transaction History")}</a>
+              <a href="getAllTransactionHistory">{t("Fiat deposit History")}</a>
             </li>
           </Link>
         </ul>

@@ -63,7 +63,7 @@ const PaypalSection = ({ currencyList, walletlist, method_id }: any) => {
   return (
     <div>
       <div className="cp-user-title mt-5 mb-4">
-        <h4>{t("Credit Card Deposit")}</h4>
+        <h4>{t("Deposit With Paypal")}</h4>
       </div>
       <div className="row">
         <div className="col-lg-12">
@@ -74,7 +74,7 @@ const PaypalSection = ({ currencyList, walletlist, method_id }: any) => {
                   <div className="swap-wrap">
                     <div className="swap-wrap-top">
                       <label>{t("Enter amount")}</label>
-                      <span className="available">{t("Select currency")}</span>
+                      {/* <span className="available">{t("Select currency")}</span> */}
                     </div>
                     <div className="swap-input-wrap">
                       <div className="form-amount">

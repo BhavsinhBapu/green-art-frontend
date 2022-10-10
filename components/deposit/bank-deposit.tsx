@@ -1,6 +1,8 @@
 import useTranslation from "next-translate/useTranslation";
 import React, { useEffect, useState } from "react";
 import { copyTextById } from "common";
+import { useRef } from "react";
+
 import {
   currencyDepositProcess,
   getCurrencyDepositRate,
@@ -9,6 +11,22 @@ import { toast } from "react-toastify";
 import BankDetails from "./bankDetails";
 const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
   const { t } = useTranslation("common");
+  const inputRef = useRef(null);
+
+  const handleClick = () => {
+    // 👇️ open file input box on click of other element
+    //@ts-ignore
+    inputRef.current.click();
+  };
+
+  const handleFileChange = (event: any) => {
+    const fileObj = event.target.files && event.target.files[0];
+    if (!fileObj) {
+      return;
+    }
+    event;
+    setDoc(event.target.files[0]);
+  };
   const [calculatedValue, setCalculatedValue] = useState<any>({
     calculated_amount: 0,
     rate: 0,
@@ -216,13 +234,16 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
               <span className="file-lable">{t("Select document")}</span>
             </div>
             <div className="file-upload-wrapper">
+              {/* @ts-ignore */}
+              <label htmlFor="upload-photo" onClick={handleClick}>
+                {/* @ts-ignore */}
+                {doc ? doc.name : "Browse..."}
+              </label>
               <input
+                style={{ display: "none" }}
+                ref={inputRef}
                 type="file"
-                id="input-file-now"
-                className="file-upload"
-                onChange={(e: any) => {
-                  setDoc(e.target.files[0]);
-                }}
+                onChange={handleFileChange}
               />
             </div>
           </div>

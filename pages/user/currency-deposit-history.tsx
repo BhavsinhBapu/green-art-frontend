@@ -119,7 +119,7 @@ const CurrencyDepositHistory = () => {
             <div className="overview-area">
               <div className="overview-left">
                 <h2 className="section-top-title">
-                  {t("Currency Deposit History")}
+                  {t("Fiat Deposit History")}
                 </h2>
               </div>
             </div>
