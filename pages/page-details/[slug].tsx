@@ -38,6 +38,7 @@ const Bannerdetails = ({
         "br",
         "hr",
         "head",
+        "img",
       ],
       allowedAttributes: {
         a: ["href", "target", "style"],
@@ -54,6 +55,7 @@ const Bannerdetails = ({
         h5: ["href", "target", "style"],
         h6: ["href", "target", "style"],
         p: ["href", "target", "style"],
+        img: ["src", "href", "style", "data-filename"],
       },
     });
   };
@@ -78,7 +80,8 @@ const Bannerdetails = ({
           </p>
           <div
             dangerouslySetInnerHTML={{
-              __html: clean(details.description),
+              // __html: clean(details.description),
+              __html: details.description,
             }}
           ></div>
         </div>

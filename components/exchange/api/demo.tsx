@@ -8,12 +8,8 @@ export default {
   history: history,
   //@ts-ignore
   getBars: function (symbolInfo, resolution, from, to, first, limit) {
-    const base = localStorage.getItem("current_pair")?.split("_")[0]
-      ? localStorage.getItem("current_pair")?.split("_")[0]
-      : "BTC";
-    const trade = localStorage.getItem("current_pair")?.split("_")[1]
-      ? localStorage.getItem("current_pair")?.split("_")[1]
-      : "USDT";
+    const base = localStorage.getItem("current_pair")?.split("_")[0];
+    const trade = localStorage.getItem("current_pair")?.split("_")[1];
     const baseId = localStorage.getItem("base_coin_id");
     const tradeId = localStorage.getItem("trade_coin_id");
     var split_symbol = symbolInfo.name.split(/[:/]/);

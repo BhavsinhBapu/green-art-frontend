@@ -30,7 +30,6 @@
   { "value": "bw", "name": "Botswana" },
   { "value": "br", "name": "Brazil" },
   { "value": "io", "name": "British Indian Ocean Territory" },
-
   { "value": "bn", "name": "Brunei" },
   { "value": "bg", "name": "Bulgaria" },
   { "value": "bf", "name": "Burkina" },
@@ -215,8 +214,9 @@
   { "value": "tv", "name": "Tuvalu" },
   { "value": "ug", "name": "Uganda" },
   { "value": "ua", "name": "Ukraine" },
-  { "value": "ae", "name": "United Arab Emirates" },
   { "value": "gb", "name": "United" },
+  { "value": "ae", "name": "United Arab Emirates" },
+  { "value": "us", "name": "United States of America" },
   { "value": "uy", "name": "Uruguay" },
   { "value": "uz", "name": "Uzbekistan" },
   { "value": "vu", "name": "Vanuatu" },
@@ -225,7 +225,6 @@
   { "value": "vn", "name": "Vietnam" },
   { "value": "vi", "name": "Virgin Islands (U.S.)" },
   { "value": "wf", "name": "Wallis and Futuna Islands" },
-
   { "value": "eh", "name": "Western" },
   { "value": "ye", "name": "Yemen" },
   { "value": "zm", "name": "Zambia" },

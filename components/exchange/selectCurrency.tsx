@@ -152,7 +152,7 @@ const SelectCurrency = () => {
               <input
                 type="search"
                 className=""
-                placeholder="Search"
+                placeholder={t("Search")}
                 aria-controls="exchangeCoinPair"
                 onChange={(e) => {
                   // on typing end

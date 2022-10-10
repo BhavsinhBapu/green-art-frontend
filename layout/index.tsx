@@ -10,9 +10,9 @@ import { RootState } from "state/store";
 import useTranslation from "next-translate/useTranslation";
 import CookieAccept from "components/common/cookie-accept";
 import Head from "next/head";
-import { setLogo } from "state/reducer/user";
+import { setLoading, setLogo } from "state/reducer/user";
 import { setSettings } from "state/reducer/common";
-import { settings } from "nprogress";
+import Loading from "components/common/loading";
 const Index = ({ children }: any) => {
   const [navbarVisible, setNavbarVisible] = useState(false);
   const [showterms, setShowTerms] = useState(false);
@@ -33,10 +33,12 @@ const Index = ({ children }: any) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const getCommonSettings = async () => {
+    dispatch(setLoading(true))
     const response = await commomSettings();
     dispatch(setLogo(response.data.logo));
     dispatch(setSettings(response.data));
     setMetaData(response.data);
+    dispatch(setLoading(false))
   };
   useEffect(() => {
     getCommonSettings();
@@ -77,16 +79,14 @@ const Index = ({ children }: any) => {
   }, [isLoggedIn, settings.cookie_status]);
   return navbarVisible ? (
     <div>
-      {isLoading && (
-        <div className="preloder-area">
-          <span
-            className="spinner-border spinner-border-md"
-            role="status"
-            aria-hidden="true"
-          ></span>
-          <span>{t("Please wait")}</span>
-        </div>
-      )}
+      {isLoading && <Loading />}
+      <Head>
+        <title>{metaData?.app_title || process.env.NEXT_PUBLIC_APP_NAME}</title>
+        <link
+          rel="shortcut icon"
+          href={metaData?.favicon || process.env.NEXT_PUBLIC_FAVICON}
+        />
+      </Head>
       <Navbar />
       <ToastContainer
         position="top-right"
@@ -105,7 +105,11 @@ const Index = ({ children }: any) => {
   ) : (
     <>
       <Head>
-        <title>{metaData?.app_title || t("TradexPro Exchange")}</title>
+        <title>{metaData?.app_title || process.env.NEXT_PUBLIC_APP_NAME}</title>
+        <link
+          rel="shortcut icon"
+          href={metaData?.favicon || process.env.NEXT_PUBLIC_FAVICON}
+        />
       </Head>
       <ToastContainer
         position="top-right"

@@ -4,9 +4,9 @@ import {
   WalletDepositApi,
   WalletWithdrawApi,
   WalletWithdrawProcessApi,
+  GetWalletAddress,
 } from "service/wallet";
 import { toast } from "react-toastify";
-
 
 export const WalletListApiAction = async (
   url: string,
@@ -74,5 +74,20 @@ export const WalletWithdrawProcessApiAction = async (
     toast.error(response.message);
   }
   setProcessing(false);
+  return response;
+};
+export const GetWalletAddressAction = async (
+  credential: any,
+  setNetwork: any
+) => {
+  const response = await GetWalletAddress(credential);
+  if (response.success === true) {
+    toast.success(response.message);
+    setNetwork(response.data);
+    console.log(response.data, "vasda,;ds'as");
+  } else {
+    toast.error(response.message);
+    console.log(response.data, "vasda,;ds'as");
+  }
   return response;
 };

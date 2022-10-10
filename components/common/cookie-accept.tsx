@@ -9,7 +9,7 @@ const CookieAccept = ({ iUnderStand }: any) => {
   const { settings } = useSelector((state: RootState) => state.common);
   return (
     <div className="wrapper">
-      <img src="/undraw_warning_re_eoyh.svg" />
+      <img src={settings.cookie_image || "/undraw_warning_re_eoyh.svg"} />
       <div className="content">
         <header>{settings.cookie_header || t("Cookies Constent")}</header>
         <p>
@@ -33,7 +33,7 @@ const CookieAccept = ({ iUnderStand }: any) => {
             }
           >
             <a href="#" className="item">
-              {settings.cookie_button_text || t("privacy policy")}
+              {settings.cookie_page_key || t("privacy policy")}
             </a>
           </Link>
         </div>

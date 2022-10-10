@@ -34,17 +34,17 @@ const SwapHistory: NextPage = () => {
   };
   const columns = [
     {
-      name: "From Wallet",
+      name: t("From Wallet"),
       selector: (row: any) => row?.from_wallet?.name,
       sortable: true,
     },
     {
-      name: "To Wallet",
+      name: t("To Wallet"),
       selector: (row: any) => row.to_wallet?.name,
       sortable: true,
     },
     {
-      name: "Requested Amount",
+      name: t("Requested Amount"),
       selector: (row: any) => row.requested_amount,
       sortable: true,
       cell: (row: any) => (
@@ -56,17 +56,17 @@ const SwapHistory: NextPage = () => {
       ),
     },
     {
-      name: "Converted Amount",
+      name: t("Converted Amount"),
       selector: (row: any) => parseFloat(row.converted_amount).toFixed(8),
       sortable: true,
     },
     {
-      name: "Rate",
+      name: t("Rate"),
       selector: (row: any) => row.rate,
       sortable: true,
     },
     {
-      name: "Created At",
+      name: t("Created At"),
       selector: (row: any) => row.created_at,
       sortable: true,
       cell: (row: any) => (
@@ -74,7 +74,7 @@ const SwapHistory: NextPage = () => {
       ),
     },
     {
-      name: "Status",
+      name: t("Status"),
       selector: (row: any) => row.status,
       sortable: true,
       cell: (row: any) => (
