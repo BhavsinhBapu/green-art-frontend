@@ -142,6 +142,59 @@ export const SingleLaunchPool = () => {
                   <span>4.50 %</span>
                 </div>
               </div>
+
+              <div className="row fundSection">
+                <div>
+                  <div className="mt-5">
+                    <div className="myFundTitle">
+                      <Image
+                        src="/busd.svg"
+                        alt="--"
+                        layout="fixed"
+                        width={35}
+                        height={30}
+                      />
+                      <h2>My Funds</h2>
+                    </div>
+                  </div>
+
+                  <div className="mt-5">
+                    <h6 className="mb-3">BUSD Staked</h6>
+                    <div className="myFundTitle">
+                      <p>---</p>
+                      <h2>BUSD</h2>
+                    </div>
+                    <p>
+                      Your staked BUSD has been automatically transferred back
+                      to your spot account
+                    </p>
+                  </div>
+                </div>
+
+                <div>
+                  <div className="mt-5">
+                    <div className="myFundTitle">
+                      <Image
+                        src="/gal.svg"
+                        alt="--"
+                        layout="fixed"
+                        width={35}
+                        height={30}
+                      />
+                      <h2>My Rewards</h2>
+                    </div>
+                  </div>
+
+                  <div className="mt-5">
+                    <h6 className="mb-3">Total Rewards Received</h6>
+                    <div className="myFundTitle">
+                      <p>---</p>
+                      <h2>GAL</h2>
+                    </div>
+                    <p>Your rewards have been sent to your spot account</p>
+                  </div>
+                </div>
+              </div>
             </div>
             <div
               className="tab-pane fade"
@@ -149,7 +202,85 @@ export const SingleLaunchPool = () => {
               role="tabpanel"
               aria-labelledby="pills-profile-tab"
             >
-              b
+              <div className="launchCoinDetails launchPoolTab row mt-5">
+                <div className="col-md-3 mb-5">
+                  <p>Total BNB Pool Rewards</p>
+                  <span>2,100,000.0000 GAL</span>
+                </div>
+                <div className="col-md-3">
+                  <p>Staking Token</p>
+                  <span>BNB</span>
+                </div>
+                <div className="col-md-3">
+                  <p>Farming Period</p>
+                  <span>30 Days</span>
+                </div>
+                <div className="col-md-3">
+                  <p>Today’s GAL Pool Rewards</p>
+                  <span>45,652.1700 GAL</span>
+                </div>
+                <div className="col-md-3">
+                  <p>Total BNB Staked</p>
+                  <span>6,924,524.7741 BNB</span>
+                </div>
+                <div className="col-md-3">
+                  <p>BNB Annual Percentage Yield</p>
+                  <span>4.50 %</span>
+                </div>
+              </div>
+
+              <div className="row fundSection">
+                <div>
+                  <div className="mt-5">
+                    <div className="myFundTitle">
+                      <Image
+                        src="/cake.svg"
+                        alt="--"
+                        layout="fixed"
+                        width={35}
+                        height={30}
+                      />
+                      <h2>My Funds</h2>
+                    </div>
+                  </div>
+
+                  <div className="mt-5">
+                    <h6 className="mb-3">BUSD Staked</h6>
+                    <div className="myFundTitle">
+                      <p>---</p>
+                      <h2>BUSD</h2>
+                    </div>
+                    <p>
+                      Your staked BUSD has been automatically transferred back
+                      to your spot account
+                    </p>
+                  </div>
+                </div>
+
+                <div>
+                  <div className="mt-5">
+                    <div className="myFundTitle">
+                      <Image
+                        src="/gal.svg"
+                        alt="--"
+                        layout="fixed"
+                        width={35}
+                        height={30}
+                      />
+                      <h2>My Rewards</h2>
+                    </div>
+                  </div>
+
+                  <div className="mt-5">
+                    <h6 className="mb-3">Total Rewards Received</h6>
+                    <div className="myFundTitle">
+                      <p>---</p>
+                      <h2>GAL</h2>
+                    </div>
+                    <p>Your rewards have been sent to your spot account</p>
+                  </div>
+                </div>
+              </div>
             </div>
             <div
               className="tab-pane fade"
@@ -157,7 +288,85 @@ export const SingleLaunchPool = () => {
               role="tabpanel"
               aria-labelledby="pills-contact-tab"
             >
-              c
+              <div className="launchCoinDetails launchPoolTab row mt-5">
+                <div className="col-md-3 mb-5">
+                  <p>Total BNB Pool Rewards</p>
+                  <span>2,100,000.0000 GAL</span>
+                </div>
+                <div className="col-md-3">
+                  <p>Staking Token</p>
+                  <span>BNB</span>
+                </div>
+                <div className="col-md-3">
+                  <p>Farming Period</p>
+                  <span>30 Days</span>
+                </div>
+                <div className="col-md-3">
+                  <p>Today’s GAL Pool Rewards</p>
+                  <span>45,652.1700 GAL</span>
+                </div>
+                <div className="col-md-3">
+                  <p>Total BNB Staked</p>
+                  <span>6,924,524.7741 BNB</span>
+                </div>
+                <div className="col-md-3">
+                  <p>BNB Annual Percentage Yield</p>
+                  <span>4.50 %</span>
+                </div>
+              </div>
+
+              <div className="row fundSection">
+                <div>
+                  <div className="mt-5">
+                    <div className="myFundTitle">
+                      <Image
+                        src="/busd.svg"
+                        alt="--"
+                        layout="fixed"
+                        width={35}
+                        height={30}
+                      />
+                      <h2>My Funds</h2>
+                    </div>
+                  </div>
+
+                  <div className="mt-5">
+                    <h6 className="mb-3">BUSD Staked</h6>
+                    <div className="myFundTitle">
+                      <p>---</p>
+                      <h2>BUSD</h2>
+                    </div>
+                    <p>
+                      Your staked BUSD has been automatically transferred back
+                      to your spot account
+                    </p>
+                  </div>
+                </div>
+
+                <div>
+                  <div className="mt-5">
+                    <div className="myFundTitle">
+                      <Image
+                        src="/gal.svg"
+                        alt="--"
+                        layout="fixed"
+                        width={35}
+                        height={30}
+                      />
+                      <h2>My Rewards</h2>
+                    </div>
+                  </div>
+
+                  <div className="mt-5">
+                    <h6 className="mb-3">Total Rewards Received</h6>
+                    <div className="myFundTitle">
+                      <p>---</p>
+                      <h2>GAL</h2>
+                    </div>
+                    <p>Your rewards have been sent to your spot account</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
