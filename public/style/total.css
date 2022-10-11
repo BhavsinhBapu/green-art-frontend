@@ -9789,12 +9789,12 @@ input[type="number"] {
   background-size: cover;
 }
 .launchPool-container {
-  min-height: 360px;
+  /* min-height: 360px; */
   background-color: white;
-  margin-top: 20px;
+  /* margin-top: 20px; */
   margin-bottom: 30px;
   border-radius: 10px;
-  padding: 20px;
+  padding: 15px 20px 25px 20px;
   box-shadow: 0px 0.1px 2.2px rgba(0, 0, 0, 0.011),
     0px 0.3px 5.3px rgba(0, 0, 0, 0.016), 0px 0.5px 10px rgba(0, 0, 0, 0.02),
     0px 0.9px 17.9px rgba(0, 0, 0, 0.024), 0px 1.7px 33.4px rgba(0, 0, 0, 0.029),
@@ -9809,6 +9809,7 @@ input[type="number"] {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 10px;
 }
 .pool-icon {
   width: 40px;
@@ -9837,6 +9838,9 @@ input[type="number"] {
   border: 0.5px solid #ededed;
   cursor: pointer;
 }
+.pool-card:hover {
+  border: 0.5px solid var(--primary-color);
+}
 .pool-icon-small {
   width: 20px;
   height: 20px;
@@ -9854,9 +9858,12 @@ input[type="number"] {
   margin-top: 10px;
 }
 .hero-banner-area-pool {
-  min-height: 353px;
+  margin-bottom: 50px;
 }
 
+.hero-banner-area-pool p {
+  padding: 15px 0px;
+}
 .launchpad-cover {
   box-sizing: border-box;
   margin: 0px;
@@ -9870,11 +9877,16 @@ input[type="number"] {
 .launchpad-container {
   display: flex;
   background-color: white;
-  padding: 30px;
+  padding: 30px 20px;
   border-radius: 10px;
   box-shadow: 0px 0.1px 2.2px rgb(0 0 0 / 1%), 0px 0.3px 5.3px rgb(0 0 0 / 2%),
     0px 0.5px 10px rgb(0 0 0 / 2%), 0px 0.9px 17.9px rgb(0 0 0 / 2%),
     0px 1.7px 33.4px rgb(0 0 0 / 3%), 0px 4px 80px rgb(0 0 0 / 4%);
+  cursor: pointer;
+}
+.subscriptionRightContent {
+  display: flex;
+  align-items: center;
 }
 .deposit-conatiner {
   width: 100%;
@@ -10136,4 +10148,20 @@ input[type="number"] {
 }
 .launchPoolTab {
   gap: 0;
+}
+.myFundTitle {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-items: center;
+}
+.myFundTitle h2 {
+  font-size: 22px;
+}
+.fundSection {
+  display: flex;
+  gap: 100px;
+}
+.launchPad {
+  padding-bottom: 40px;
 }

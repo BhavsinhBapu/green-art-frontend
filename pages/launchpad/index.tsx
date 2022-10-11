@@ -18,9 +18,9 @@ const Index = ({ socialData, customPageData, copyright_text }: any) => {
         <LaunchTop />
         <div className="launch-body container">
           <Hero />
-          <h1>Launchpad</h1>
+          <h2 className="mb-5">Launchpad</h2>
           <LaunchPad viewMore={true} />
-          <h1>Launchpool</h1>
+          <h2 className="mb-5">Launchpool</h2>
           <Launchpool viewMore={true} />
           <SellingSection />
         </div>
