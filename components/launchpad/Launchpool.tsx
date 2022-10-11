@@ -9,7 +9,7 @@ const Launchpool = ({ viewMore }: any) => {
     <>
       {" "}
       <div className="launchPool-container row">
-        <div className="col col-sm-6 col-md-6 col-lg-3 mt-3">
+        <div className="co-12 col-sm-12 col-md-6 col-lg-3 mt-3">
           <div className="status-launchpool">
             <p>{t("Completed")}</p>
           </div>
@@ -33,13 +33,13 @@ const Launchpool = ({ viewMore }: any) => {
             <p className="pool-value">2022-05-29</p>
           </div>
         </div>
-        <div className="col col-sm-6 col-md-6 col-lg-3 mt-3 ">
+        <div className="co-12 col-sm-12 col-md-6 col-lg-3 mt-3 ">
           <PoolCard />
         </div>
-        <div className="col col-sm-6 col-md-6 col-lg-3 mt-3">
+        <div className="co-12 col-sm-12 col-md-6 col-lg-3 mt-3">
           <PoolCard />
         </div>
-        <div className="col col-sm-6 col-md-6 col-lg-3 mt-3">
+        <div className="co-12 col-sm-12 col-md-6 col-lg-3 mt-3">
           <PoolCard />
         </div>
       </div>
