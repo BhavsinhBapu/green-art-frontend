@@ -56,7 +56,7 @@ const WalletDeposit = ({ walletlist, method_id }: any) => {
       setCalculatedValue(response.data);
     }
   };
-  const convertCurrency = async () => {
+   const convertCurrency = async (credential: any) => {
     if (
       credential.wallet_id &&
       credential.payment_method_id &&
@@ -202,15 +202,28 @@ const WalletDeposit = ({ walletlist, method_id }: any) => {
           {errorMessage.status && (
             <div className="alert alert-danger">{errorMessage.message}</div>
           )}
-          <button
-            className="primary-btn-outline w-100"
-            type="button"
-            data-target="#exampleModal"
-            disabled={errorMessage.status === true}
-            data-toggle="modal"
-          >
-            Deposit
-          </button>
+          {parseInt(settings.currency_deposit_2fa_status) === 1 ? (
+            <button
+              className="primary-btn-outline w-100"
+              type="button"
+              data-target="#exampleModal"
+              disabled={errorMessage.status === true}
+              data-toggle="modal"
+            >
+              Deposit
+            </button>
+          ) : (
+            <button
+              className="primary-btn-outline w-100"
+              type="button"
+              disabled={errorMessage.status === true}
+              onClick={() => {
+                convertCurrency(credential);
+              }}
+            >
+              Deposit
+            </button>
+          )}
         </div>
       </div>
     </div>

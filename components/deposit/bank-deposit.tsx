@@ -105,6 +105,7 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
   };
   useEffect(() => {
     getCurrencyRate();
+    CheckG2faEnabled();
   }, [credential]);
   return (
     <div>
@@ -289,15 +290,28 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
           {errorMessage.status && (
             <div className="alert alert-danger">{errorMessage.message}</div>
           )}
-          <button
-            className="primary-btn-outline w-100"
-            type="button"
-            data-target="#exampleModal"
-            disabled={errorMessage.status === true}
-            data-toggle="modal"
-          >
-            Deposit
-          </button>
+          {parseInt(settings.currency_deposit_2fa_status) === 1 ? (
+            <button
+              className="primary-btn-outline w-100"
+              type="button"
+              data-target="#exampleModal"
+              disabled={errorMessage.status === true}
+              data-toggle="modal"
+            >
+              Deposit
+            </button>
+          ) : (
+            <button
+              className="primary-btn-outline w-100"
+              type="button"
+              disabled={errorMessage.status === true}
+              onClick={() => {
+                convertCurrency(credential);
+              }}
+            >
+              Deposit
+            </button>
+          )}
         </div>
       </div>
     </div>

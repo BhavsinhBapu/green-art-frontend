@@ -62,7 +62,7 @@ const StripeDeposit = ({ currencyList, walletlist, method_id }: any) => {
       setCalculatedValue(response.data);
     }
   };
-  const convertCurrency = async () => {
+  const convertCurrency = async (credential: any) => {
     if (
       credential.wallet_id &&
       credential.payment_method_id &&
@@ -192,22 +192,33 @@ const StripeDeposit = ({ currencyList, walletlist, method_id }: any) => {
           credential={credential}
           setCredential={setCredential}
         />
-        {errorMessage.status && (
-          <div className="alert alert-danger">{errorMessage.message}</div>
+        {errorMessage.status && credential.stripe_token && (
+          <div className="alert alert-danger ml-3">{errorMessage.message}</div>
         )}
-        {credential.stripe_token && (
-          <div className="col-lg-12 mb-3 w-100">
-            <button
-              className="primary-btn-outline w-100"
-              type="button"
-              data-target="#exampleModal"
-              disabled={errorMessage.status === true}
-              data-toggle="modal"
-            >
-              Deposit
-            </button>
-          </div>
-        )}
+        {parseInt(settings.currency_deposit_2fa_status) === 1
+          ? credential.stripe_token && (
+              <button
+                className="primary-btn-outline w-100"
+                type="button"
+                data-target="#exampleModal"
+                disabled={errorMessage.status === true}
+                data-toggle="modal"
+              >
+                Deposit
+              </button>
+            )
+          : credential.stripe_token && (
+              <button
+                className="primary-btn-outline w-100"
+                type="button"
+                disabled={errorMessage.status === true}
+                onClick={() => {
+                  convertCurrency(credential);
+                }}
+              >
+                Deposit
+              </button>
+            )}
       </div>
     </div>
   );
