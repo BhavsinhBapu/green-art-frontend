@@ -13,6 +13,10 @@ import { loadStripe } from "@stripe/stripe-js";
 import { toast } from "react-toastify";
 import CardForm from "./cardForm";
 import { useRouter } from "next/router";
+import { UserSettingsApi } from "service/settings";
+import { useSelector } from "react-redux";
+import { RootState } from "state/store";
+import DepositGoogleAuth from "./deposit-g2fa";
 const StripeDeposit = ({ currencyList, walletlist, method_id }: any) => {
   const { t } = useTranslation("common");
   const [calculatedValue, setCalculatedValue] = useState<any>({
@@ -22,13 +26,32 @@ const StripeDeposit = ({ currencyList, walletlist, method_id }: any) => {
   //@ts-ignore
   const stripe = loadStripe(process.env.NEXT_PUBLIC_PUBLISH_KEY);
   const router = useRouter();
+  const { settings } = useSelector((state: RootState) => state.common);
   const [credential, setCredential] = useState<any>({
     wallet_id: null,
     payment_method_id: method_id ? parseInt(method_id) : null,
     amount: 0,
     currency: "USD",
     stripe_token: null,
+    code: "",
   });
+  const [errorMessage, setErrorMessage] = React.useState({
+    status: false,
+    message: "",
+  });
+  const CheckG2faEnabled = async () => {
+    const { data } = await UserSettingsApi();
+    const { user } = data;
+    if (
+      user.google2fa !== 1 &&
+      parseInt(settings.currency_deposit_2fa_status) === 1
+    ) {
+      setErrorMessage({
+        status: true,
+        message: "Google 2FA is not enabled, Please enable Google 2FA fist",
+      });
+    }
+  };
   const getCurrencyRate = async () => {
     if (
       credential.wallet_id &&
@@ -53,11 +76,12 @@ const StripeDeposit = ({ currencyList, walletlist, method_id }: any) => {
         toast.error(res.message);
       }
     } else {
-      toast.error(t("Select all the fields"));
+      toast.error(t("Please provide all information's"));
     }
   };
   useEffect(() => {
     getCurrencyRate();
+    CheckG2faEnabled();
   }, [credential]);
   return (
     <div>
@@ -74,9 +98,7 @@ const StripeDeposit = ({ currencyList, walletlist, method_id }: any) => {
                     <div className="swap-wrap">
                       <div className="swap-wrap-top">
                         <label>{t("Enter amount")}</label>
-                        <span className="available">
-                          {t("Currency(USD)")}
-                        </span>
+                        <span className="available">{t("Currency(USD)")}</span>
                       </div>
                       <div className="swap-input-wrap">
                         <div className="form-amount">
@@ -165,14 +187,22 @@ const StripeDeposit = ({ currencyList, walletlist, method_id }: any) => {
             </Elements>
           </div>
         )}
-
+        <DepositGoogleAuth
+          convertCurrency={convertCurrency}
+          credential={credential}
+          setCredential={setCredential}
+        />
+        {errorMessage.status && (
+          <div className="alert alert-danger">{errorMessage.message}</div>
+        )}
         {credential.stripe_token && (
           <div className="col-lg-12 mb-3 w-100">
             <button
               className="primary-btn-outline w-100"
-              data-toggle="modal"
+              type="button"
               data-target="#exampleModal"
-              onClick={convertCurrency}
+              disabled={errorMessage.status === true}
+              data-toggle="modal"
             >
               Deposit
             </button>

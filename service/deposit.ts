@@ -13,4 +13,3 @@ export const currencyDepositProcess = async (credential: any) => {
   const { data } = await request.post("/currency-deposit-process", credential);
   return data;
 };
-// currency - deposit - history;

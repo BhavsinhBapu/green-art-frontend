@@ -123,11 +123,19 @@ const DepositTab = ({ response, TurnoffSetShow, id }: any) => {
                       );
                     }}
                   >
-                    Get address
+                    {t("Get address")}
                   </button>
                 )}
               <div className="bar-code-area">
-                {response?.address && <Qr value={response?.address} />}
+                {response?.address && response.wallet.coin_type !== "USDT" && (
+                  <Qr value={response?.address} />
+                )}
+              </div>
+              <div className="bar-code-area">
+                {selectedNetwork?.address &&
+                  response.wallet.coin_type === "USDT" && (
+                    <Qr value={selectedNetwork?.address} />
+                  )}
               </div>
             </div>
           </div>

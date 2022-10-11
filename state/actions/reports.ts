@@ -231,6 +231,7 @@ export const CurrencyDepositHistoryAction = async (
   column_name: string,
   order_by: string
 ) => {
+  setProcessing(true);
   const response = await currencyDepositHistory(
     per_page,
     page,
@@ -239,6 +240,7 @@ export const CurrencyDepositHistoryAction = async (
   );
   setReport(response.data.data);
   setStillHistory(response.data);
+  setProcessing(false);
   return response;
 };
 

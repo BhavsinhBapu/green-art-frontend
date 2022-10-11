@@ -54,7 +54,7 @@ const PaypalSection = ({ currencyList, walletlist, method_id }: any) => {
         toast.error(res.message);
       }
     } else {
-      toast.error(t("Select all the fields"));
+      toast.error(t("Please provide all information's"));
     }
   };
   useEffect(() => {
@@ -74,7 +74,7 @@ const PaypalSection = ({ currencyList, walletlist, method_id }: any) => {
                   <div className="swap-wrap">
                     <div className="swap-wrap-top">
                       <label>{t("Enter amount")}</label>
-                      {/* <span className="available">{t("Select currency")}</span> */}
+                      <span className="available">{t("Currency(USD)")}</span>
                     </div>
                     <div className="swap-input-wrap">
                       <div className="form-amount">

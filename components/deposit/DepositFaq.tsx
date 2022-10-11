@@ -1,38 +1,42 @@
+import { FAQ_DEPOSIT_TYPE } from "helpers/core-constants";
 import useTranslation from "next-translate/useTranslation";
 import React from "react";
 
-const DepositFaq = () => {
+const DepositFaq = ({ faqs }: any) => {
   const { t } = useTranslation("common");
+  console.log(faqs, "faq");
   return (
     <div className="m-3">
       <div id="accordion">
         <h4>{t("FAQ")}</h4>
-        <div className="faq-body">
-          <div className="faq-head" id="headingOne">
-            <h5 className="mb-0">
-              <button
-                className="btn "
-                data-toggle="collapse"
-                data-target="#collapseOne"
-                aria-expanded="true"
-                aria-controls="collapseOne"
-              >
-                How can I use AdvCash to deposit?
-              </button>
-            </h5>
-          </div>
-          <div
-            id="collapseOne"
-            className="collapse show"
-            aria-labelledby="headingOne"
-            data-parent="#accordion"
-          >
-            <div className="faq-body">
-              You need to verify your ID, phone number and address on Advcash to
-              use this payment method.
-            </div>
-          </div>
-        </div>
+        {faqs.map(
+          (faq: any) =>
+            faq.faq_type_id === FAQ_DEPOSIT_TYPE && (
+              <div className="faq-body">
+                <div className="faq-head" id={"headingOne" + faq.id}>
+                  <h5 className="mb-0">
+                    <button
+                      className="btn "
+                      data-toggle="collapse"
+                      data-target={"#collapseOne" + faq.id}
+                      aria-expanded="true"
+                      aria-controls="collapseOne"
+                    >
+                      {faq.question}
+                    </button>
+                  </h5>
+                </div>
+                <div
+                  id={"collapseOne" + faq.id}
+                  className="collapse "
+                  aria-labelledby={"headingOne" + faq.id}
+                  data-parent="#accordion"
+                >
+                  <div className="faq-body">{faq.answer}</div>
+                </div>
+              </div>
+            )
+        )}
       </div>
     </div>
   );

@@ -41,7 +41,7 @@ const ResetPassword: NextPage = () => {
                   <h2>{t("Forgot Password ?")}</h2>
                   <p>
                     {t(
-                      "Please enter the email address to request a password reset."
+                      "Please enter the new password and token to reset the password."
                     )}
                   </p>
                 </div>
@@ -121,7 +121,7 @@ const ResetPassword: NextPage = () => {
                               ? "is-invalid"
                               : ""
                           }`}
-                          placeholder="Type your confirm password"
+                          placeholder="Reenter your new password"
                         />
                       </div>
                       {/* <ErrorMessage

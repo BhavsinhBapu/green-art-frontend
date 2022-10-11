@@ -117,39 +117,42 @@ const Navbar = () => {
                       </a>
                     </li>
                   </Link>
-                  <Link
-                    href={
-                      isLoggedIn === true
-                        ? "/deposit"
-                        : "/authentication/signin"
-                    }
-                  >
-                    <li
-                      className={
-                        router.pathname == "/deposit"
-                          ? "cp-user-active-page"
-                          : ""
+                  {parseInt(settings.currency_deposit_status) === 1 && (
+                    <Link
+                      href={
+                        isLoggedIn === true
+                          ? "/deposit"
+                          : "/authentication/signin"
                       }
                     >
-                      <a href="">
-                        <span className="cp-user-icon">
-                          <img
-                            src="/sidebar-icons/Wallet.svg"
-                            className="img-fluid cp-user-side-bar-icon"
-                            alt=""
-                          />
-                          <img
-                            src="/sidebar-icons/Wallet.svg"
-                            className="img-fluid cp-user-side-bar-icon-hover"
-                            alt=""
-                          />
-                        </span>
-                        <span className="cp-user-name">
-                          {t("Deposit Wallet")}
-                        </span>
-                      </a>
-                    </li>
-                  </Link>
+                      <li
+                        className={
+                          router.pathname == "/deposit"
+                            ? "cp-user-active-page"
+                            : ""
+                        }
+                      >
+                        <a href="">
+                          <span className="cp-user-icon">
+                            <img
+                              src="/sidebar-icons/Wallet.svg"
+                              className="img-fluid cp-user-side-bar-icon"
+                              alt=""
+                            />
+                            <img
+                              src="/sidebar-icons/Wallet.svg"
+                              className="img-fluid cp-user-side-bar-icon-hover"
+                              alt=""
+                            />
+                          </span>
+                          <span className="cp-user-name">
+                            {t("Deposit Wallet")}
+                          </span>
+                        </a>
+                      </li>
+                    </Link>
+                  )}
+
                   <li
                     className={
                       router.pathname == "/user/wallet-history"

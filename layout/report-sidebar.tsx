@@ -2,9 +2,12 @@ import Link from "next/link";
 import React from "react";
 import { useRouter } from "next/router";
 import useTranslation from "next-translate/useTranslation";
+import { RootState } from "state/store";
+import { useSelector } from "react-redux";
 const ReportSidebar = () => {
   const router = useRouter();
   const { t } = useTranslation("common");
+  const { settings } = useSelector((state: RootState) => state.common);
   return (
     <div className="page-left-sidebar">
       <div className="sidebar-top">
@@ -54,18 +57,22 @@ const ReportSidebar = () => {
             >
               <a href="getAllTransactionHistory">{t("Transaction History")}</a>
             </li>
-          </Link>{" "}
-          <Link href="/user/currency-deposit-history">
-            <li
-              className={
-                router.pathname == "/user/currency-deposit-history"
-                  ? "active"
-                  : ""
-              }
-            >
-              <a href="getAllTransactionHistory">{t("Fiat deposit History")}</a>
-            </li>
           </Link>
+          {parseInt(settings.currency_deposit_status) === 1 && (
+            <Link href="/user/currency-deposit-history">
+              <li
+                className={
+                  router.pathname == "/user/currency-deposit-history"
+                    ? "active"
+                    : ""
+                }
+              >
+                <a href="getAllTransactionHistory">{t("Fiat deposit History")}</a>
+              </li>
+            </Link>
+          )}
+
+        
         </ul>
       </div>
     </div>

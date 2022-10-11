@@ -100,7 +100,7 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
         toast.error(res.message);
       }
     } else {
-      toast.error(t("Select all the fields"));
+      toast.error(t("Please provide all information's"));
     }
   };
   useEffect(() => {

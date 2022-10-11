@@ -71,7 +71,7 @@ const WalletDeposit = ({ walletlist, method_id }: any) => {
         toast.error(res.message);
       }
     } else {
-      toast.error(t("Select all the fields"));
+      toast.error(t("Please provide all information's"));
     }
   };
   useEffect(() => {
