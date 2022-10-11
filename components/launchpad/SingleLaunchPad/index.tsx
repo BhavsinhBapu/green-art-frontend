@@ -156,7 +156,7 @@ export const SingleLaunchPad = () => {
 
         <div className="singleLaunchDetails">
           <div className="row">
-            <div className="col-md-9 contentDetails">
+            <div className="col-md-9 col-sm-12 col-12 contentDetails">
               <h3>STEPN - A Move-to-Earn Health and Fitness Application</h3>
               <div>
                 <h6>Project Introduction</h6>
@@ -251,7 +251,7 @@ export const SingleLaunchPad = () => {
                 </table>
               </div>
             </div>
-            <div className="col-md-3">
+            <div className="col-md-3 col-sm-12 col-12">
               <h5>Social Channels</h5>
               <div className="socialLinks">
                 <Link href={"/"}>
