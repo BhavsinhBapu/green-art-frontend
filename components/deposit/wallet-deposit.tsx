@@ -202,7 +202,6 @@ const WalletDeposit = ({ walletlist, method_id }: any) => {
           {errorMessage.status && (
             <div className="alert alert-danger">{errorMessage.message}</div>
           )}
-          {JSON.stringify(errorMessage)}
           <button
             className="primary-btn-outline w-100"
             type="button"
