@@ -9,10 +9,15 @@ import {
 } from "service/deposit";
 import { toast } from "react-toastify";
 import BankDetails from "./bankDetails";
+import { useRouter } from "next/router";
+import { UserSettingsApi } from "service/settings";
+import { useSelector } from "react-redux";
+import { RootState } from "state/store";
+import DepositGoogleAuth from "./deposit-g2fa";
 const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
   const { t } = useTranslation("common");
   const inputRef = useRef(null);
-
+  const { settings } = useSelector((state: RootState) => state.common);
   const handleClick = () => {
     // 👇️ open file input box on click of other element
     //@ts-ignore
@@ -31,13 +36,33 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
     calculated_amount: 0,
     rate: 0,
   });
+
+  const [errorMessage, setErrorMessage] = React.useState({
+    status: false,
+    message: "",
+  });
+  const CheckG2faEnabled = async () => {
+    const { data } = await UserSettingsApi();
+    const { user } = data;
+    if (
+      user.google2fa !== 1 &&
+      parseInt(settings.currency_deposit_2fa_status) === 1
+    ) {
+      setErrorMessage({
+        status: true,
+        message: "Google 2FA is not enabled, Please enable Google 2FA fist",
+      });
+    }
+  };
   const [credential, setCredential] = useState<any>({
     wallet_id: null,
     payment_method_id: method_id ? parseInt(method_id) : null,
     amount: 0,
     currency: null,
     bank_id: null,
+    verify_code: "",
   });
+  const router = useRouter();
   const [bankInfo, setBankInfo] = useState({});
   const [doc, setDoc] = useState(null);
   const getCurrencyRate = async () => {
@@ -50,7 +75,7 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
       setCalculatedValue(response.data);
     }
   };
-  const convertCurrency = async () => {
+  const convertCurrency = async (credential: any) => {
     if (
       credential.wallet_id &&
       credential.payment_method_id &&
@@ -70,6 +95,7 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
       const res = await currencyDepositProcess(formData);
       if (res.success) {
         toast.success(res.message);
+        router.push("/user/currency-deposit-history");
       } else {
         toast.error(res.message);
       }
@@ -247,14 +273,22 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
               />
             </div>
           </div>
-
+          <DepositGoogleAuth
+            convertCurrency={convertCurrency}
+            credential={credential}
+            setCredential={setCredential}
+          />
+          {errorMessage.status && (
+            <div className="alert alert-danger">{errorMessage.message}</div>
+          )}
           <button
             className="primary-btn-outline w-100"
-            data-toggle="modal"
+            type="button"
             data-target="#exampleModal"
-            onClick={convertCurrency}
+            disabled={errorMessage.status === true}
+            data-toggle="modal"
           >
-            {t("Deposit")}
+            Deposit
           </button>
         </div>
       </div>

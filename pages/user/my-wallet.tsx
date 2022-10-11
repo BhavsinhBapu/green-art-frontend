@@ -123,7 +123,7 @@ const MyWallet: NextPage = () => {
   };
 
   useEffect(() => {
-    getWalletLists("/wallet-list?page=1");
+    getWalletLists("/wallet-list?page=1&per_page=15");
 
     return () => {
       setWalletList(null);

@@ -2,15 +2,18 @@ import useTranslation from "next-translate/useTranslation";
 import React from "react";
 import { WalletWithdrawProcessApiAction } from "state/actions/wallet";
 
-const WalletGoogleAuth = ({
-  withdrawalCredentials,
-  setWithdrawalCredentials,
+const DepositGoogleAuth = ({
+  convertCurrency,
+  credential,
+  setCredential,
 }: any) => {
   const [processing, setProcessing] = React.useState(false);
   const { t } = useTranslation("common");
   const handleSubmit = (e: any) => {
+    setProcessing(true);
     e.preventDefault();
-    WalletWithdrawProcessApiAction(withdrawalCredentials, setProcessing);
+    convertCurrency(credential);
+    setProcessing(false);
   };
   return (
     <div
@@ -50,11 +53,11 @@ const WalletGoogleAuth = ({
                   type="text"
                   className="form-control"
                   name="code"
-                  value={withdrawalCredentials.code}
+                  value={credential.verify_code}
                   onChange={(e) => {
-                    setWithdrawalCredentials({
-                      ...withdrawalCredentials,
-                      code: e.target.value,
+                    setCredential({
+                      ...credential,
+                      verify_code: e.target.value,
                     });
                   }}
                 />
@@ -89,7 +92,7 @@ const WalletGoogleAuth = ({
                   <span>{t("Please wait")}</span>
                 </>
               ) : (
-                t("Verify")
+                t("Submit")
               )}
             </button>
           </div>
@@ -99,4 +102,4 @@ const WalletGoogleAuth = ({
   );
 };
 
-export default WalletGoogleAuth;
+export default DepositGoogleAuth;

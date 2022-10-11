@@ -75,7 +75,7 @@ const StripeDeposit = ({ currencyList, walletlist, method_id }: any) => {
                       <div className="swap-wrap-top">
                         <label>{t("Enter amount")}</label>
                         <span className="available">
-                          {t("Select currency")}
+                          {t("Currency(USD)")}
                         </span>
                       </div>
                       <div className="swap-input-wrap">
