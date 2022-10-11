@@ -250,6 +250,14 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
           <div className="col-lg-12 mb-3">
             <div className="split-title">
               <span className="file-lable">{t("Bank details")}</span>
+              <span
+                className="file-lable copy-btn"
+                onClick={() => {
+                  copyTextById(JSON.stringify(bankInfo));
+                }}
+              >
+                {t("Copy")}
+              </span>
             </div>
             <BankDetails bankInfo={bankInfo} />
           </div>
