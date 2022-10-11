@@ -53,11 +53,11 @@ const DepositGoogleAuth = ({
                   type="text"
                   className="form-control"
                   name="code"
-                  value={credential.verify_code}
+                  value={credential.code}
                   onChange={(e) => {
                     setCredential({
                       ...credential,
-                      verify_code: e.target.value,
+                      code: e.target.value,
                     });
                   }}
                 />

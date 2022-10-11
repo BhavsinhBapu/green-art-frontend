@@ -60,7 +60,7 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
     amount: 0,
     currency: null,
     bank_id: null,
-    verify_code: "",
+    code: "",
   });
   const router = useRouter();
   const [bankInfo, setBankInfo] = useState({});

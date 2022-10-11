@@ -20,7 +20,7 @@ const WalletDeposit = ({ walletlist, method_id }: any) => {
     payment_method_id: method_id ? method_id : null,
     amount: 0,
     from_wallet_id: null,
-    verify_code: "",
+    code: "",
   });
   const [calculatedValue, setCalculatedValue] = useState<any>({
     calculated_amount: 0,
