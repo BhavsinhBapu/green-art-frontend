@@ -48,17 +48,12 @@ const CurrencyDepositHistory = () => {
 
   const columns = [
     {
-      name: t("Currency"),
-      selector: (row: any) => row?.currency,
-      sortable: true,
-    },
-    {
       name: t("Currency Amount"),
       // selector: (row: any) => row?.currency_amount,
       cell: (row: any) => (
         <div className="blance-text">
           <span className="blance market incree">
-            {row?.currency_amount} {row?.currency}
+            {parseFloat(row?.currency_amount).toFixed(2)} {row?.currency}
           </span>
         </div>
       ),
@@ -88,12 +83,12 @@ const CurrencyDepositHistory = () => {
     },
     {
       name: t("Rate"),
-      selector: (row: any) => row?.rate,
+      // selector: (row: any) => row?.rate,
       sortable: true,
       cell: (row: any) => (
         <div className="blance-text">
           <span className="blance market incree">
-            {formatCurrency(row?.currency_amount)}
+            {formatCurrency(row?.rate)} {row?.coin_type}
           </span>
         </div>
       ),
