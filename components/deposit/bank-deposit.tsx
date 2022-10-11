@@ -128,7 +128,7 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
                           type="number"
                           className="form-control"
                           id="amount-one"
-                          placeholder={t("Please enter 10 -2400000")}
+                          placeholder={t("Please enter 1 -2400000")}
                           onChange={(e) => {
                             setCredential({
                               ...credential,
