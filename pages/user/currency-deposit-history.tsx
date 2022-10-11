@@ -88,7 +88,7 @@ const CurrencyDepositHistory = () => {
       cell: (row: any) => (
         <div className="blance-text">
           <span className="blance market incree">
-            {formatCurrency(row?.rate)} {row?.coin_type}
+            {row?.rate} {row?.coin_type}
           </span>
         </div>
       ),
