@@ -54,12 +54,26 @@ const CurrencyDepositHistory = () => {
     },
     {
       name: t("Currency Amount"),
-      selector: (row: any) => row?.currency_amount,
+      // selector: (row: any) => row?.currency_amount,
+      cell: (row: any) => (
+        <div className="blance-text">
+          <span className="blance market incree">
+            {row?.currency_amount} {row?.currency}
+          </span>
+        </div>
+      ),
       sortable: true,
     },
     {
       name: t("Coin Amount"),
-      selector: (row: any) => row?.coin_amount,
+      // selector: (row: any) => row?.coin_amount,
+      cell: (row: any) => (
+        <div className="blance-text">
+          <span className="blance market incree">
+            {row?.coin_amount} {row?.coin_type}
+          </span>
+        </div>
+      ),
       sortable: true,
     },
     {
