@@ -10165,3 +10165,26 @@ input[type="number"] {
 .launchPad {
   padding-bottom: 40px;
 }
+@media screen and (max-width: 769px) {
+  .singleLaunchPadHeroFlex {
+    flex-wrap: wrap;
+  }
+  .singleLaunchPadHero {
+    flex-wrap: wrap;
+  }
+  .singleLaunchPadLinkList .linkLists {
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .launchCoinDetails {
+    flex-wrap: wrap;
+  }
+  .singleLaunch {
+    padding: 30px 15px;
+  }
+  .fundSection {
+    gap: 10px;
+    padding: 15px;
+  }
+}
