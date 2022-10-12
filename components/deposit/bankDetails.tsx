@@ -4,7 +4,6 @@ import React from "react";
 
 const BankDetails = ({ bankInfo }: any) => {
   const { t } = useTranslation("common");
-  console.log(bankInfo);
   return (
     <div className="bank-container">
       <div className="bank-item">

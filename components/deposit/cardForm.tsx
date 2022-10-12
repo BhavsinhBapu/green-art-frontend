@@ -40,7 +40,6 @@ const CardForm = ({ setCredential, credential }: any) => {
     }
     const cardElement = elements.getElement("card");
 
- 
     //@ts-ignore
     const payload = await stripe.createToken(cardElement);
 
@@ -57,18 +56,10 @@ const CardForm = ({ setCredential, credential }: any) => {
         <CardElement
           //@ts-ignore
           options={options}
-          onReady={() => {
-            console.log("CardElement [ready]");
-          }}
-          onChange={(event) => {
-            console.log("CardElement [change]", event);
-          }}
-          onBlur={() => {
-            console.log("CardElement [blur]");
-          }}
-          onFocus={() => {
-            console.log("CardElement [focus]");
-          }}
+          onReady={() => {}}
+          onChange={(event) => {}}
+          onBlur={() => {}}
+          onFocus={() => {}}
         />
       </label>
       <button

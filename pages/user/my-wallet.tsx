@@ -64,7 +64,6 @@ const MyWallet: NextPage = () => {
     if (link.url === null) return;
     if (link.label === walletList.current_page.toString()) return;
     const splitLink = link.url.split("api");
-    console.log(splitLink[1], "splitLink[1]");
     const response: any = await WalletListApiAction(
       splitLink[1] + "&per_page=15",
       setProcessing
@@ -131,7 +130,6 @@ const MyWallet: NextPage = () => {
   return (
     <>
       <div className="page-wrap">
-        {/* {JSON.stringify(response)} */}
         <div className="page-left-sidebar">
           <div className="sidebar-top">
             <ul className="left-menu">
