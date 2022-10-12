@@ -14,10 +14,7 @@ import useTranslation from "next-translate/useTranslation";
 import { destroyCookie } from "nookies";
 import { RootState } from "state/store";
 const Signin: NextPage = () => {
-  const {  logo } = useSelector(
-    (state: RootState) => state.user
-  );
-   const { settings } = useSelector((state: RootState) => state.common);
+  const { settings } = useSelector((state: RootState) => state.common);
   const { t } = useTranslation("common");
   const [showPassword, setShowPassword] = useState(false);
   const [processing, setProcessing] = useState<any>(false);
