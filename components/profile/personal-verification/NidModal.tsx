@@ -26,9 +26,7 @@ const NidModal = ({ type, kycDetails }: any) => {
     reader.onloadend = function (e) {
       setState(reader.result);
     };
-    console.log(side, "side");
     if (side === 1) {
-      console.log("front", e.target.files[0]);
       setState(e.target.files[0]);
       // @ts-ignore
       setShowFront(URL.createObjectURL(e.target.files[0]));
@@ -42,7 +40,6 @@ const NidModal = ({ type, kycDetails }: any) => {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault();
-    console.log(frontSide, backSide);
     const formData: any = new FormData();
     formData.append("file_two", frontSide);
     formData.append("file_three", backSide);

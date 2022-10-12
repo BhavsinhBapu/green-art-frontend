@@ -88,7 +88,6 @@ const Signup: NextPage = () => {
                       .required(t("Recapcha is required")),
                   })}
                   onSubmit={async (values) => {
-                    console.log(values, "values");
                     dispatch(SignupAction(values, setProcessing, ref_code));
                   }}
                 >
