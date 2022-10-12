@@ -12,7 +12,6 @@ export default {
 
     this.hitted = true;
     return getChartData(15, from, to, base, trade).then((data: any) => {
-      alert(limit);
       if (data.data.data.length) {
         const myBars = data.data.data;
         const klines4800 = [...myBars];
