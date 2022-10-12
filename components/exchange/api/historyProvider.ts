@@ -14,7 +14,21 @@ export default {
     return getChartData(15, from, to, base, trade).then((data: any) => {
       if (data.data.data.length) {
         const myBars = data.data.data;
-        const klines4800 = [...myBars];
+        let klines4800 = [...myBars, ...myBars, ...myBars];
+        if (myBars.length < 320) {
+          for (let i = 1; i < 120; i++) {
+            myBars.map((el: any) => {
+              klines4800.push({
+                time: el.time * 1000,
+                low: el.low,
+                high: el.high,
+                open: el.open,
+                close: el.close,
+                volume: el.volume,
+              });
+            });
+          }
+        }
         const bars = klines4800.map((el: any) => ({
           time: el.time * 1000,
           low: el.low,

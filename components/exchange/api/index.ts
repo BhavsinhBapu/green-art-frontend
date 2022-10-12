@@ -71,6 +71,10 @@ export default {
     onHistoryCallback: any,
     onError: any
   ) {
+    console.log(
+      periodParams.countBack,
+      "console.log(periodParams.countBack);console.log(periodParams.countBack);"
+    );
     const { from, to } = periodParams;
     const countBack = periodParams.countBack;
     const countForward = periodParams.countForward;
