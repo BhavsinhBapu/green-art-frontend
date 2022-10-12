@@ -208,15 +208,11 @@ export function getCurrentStyle(theme = "dark-theme") {
   return THEME_MAP[theme];
 }
 export function getChartOverrides(theme: any) {
-  return {
-   
-  };
+  return {};
 }
 export function getChartStudiesOverrides(theme: any) {
   const style = getCurrentStyle(theme);
-  return {
-
-  };
+  return {};
 }
 export const ENABLED_FEATURES = [
   "dont_show_boolean_study_arguments",
@@ -255,15 +251,12 @@ export const INTERVAL = {
   WEEK: "W",
 };
 export const TIME_FRAMES = [
-  // { text: "3y", resolution: INTERVAL.DAY, description: "3 Years" },
-  // { text: "1y", resolution: INTERVAL.DAY, description: "1 Year" },
-  // { text: "3m", resolution: INTERVAL.DAY, description: "3 Months" },
-  // { text: "1m", resolution: 240, description: "1 Month" },
-  // { text: "7d", resolution: 120, description: "7 Days" },
-  // { text: "3d", resolution: INTERVAL.MINUTES_30, description: "3 Days" },
-  // { text: "1d", resolution: INTERVAL.MINUTES_15, description: "1 Day" },
-  // { text: "6h", resolution: INTERVAL.MINUTES_5, description: "6 Hours" },
-  // { text: '1h', resolution: INTERVAL.MINUTE, description: '1 Hour' },
+  { text: "1m", resolution: 60 },
+  { text: "15m", resolution: INTERVAL.MINUTES_15 },
+  { text: "6h", resolution: INTERVAL.HOURS_6, description: "6 Hours" },
+  { text: "1h", resolution: INTERVAL.HOUR, description: "1 Hour" },
+  { text: "7d", resolution: INTERVAL.WEEK, description: "3 Days" },
+  { text: "1d", resolution: INTERVAL.DAY, description: "1 Day" },
 ];
 export function getLoadingScreenStyle(theme: any) {
   const style = getCurrentStyle(theme);

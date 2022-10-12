@@ -18,6 +18,14 @@ import { useSelector } from "react-redux";
 import { RootState } from "state/store";
 import { useRouter } from "next/router";
 import { getFaqList } from "service/faq";
+import { GetServerSideProps } from "next";
+import {
+  pageAvailabilityCheck,
+  SSRAuthCheck,
+} from "middlewares/ssr-authentication-check";
+import { parseCookies } from "nookies";
+import { GetUserInfoByTokenServer } from "service/user";
+import { redirect } from "next/dist/server/api-utils";
 
 const Deposit = () => {
   const { t } = useTranslation("common");
@@ -112,5 +120,23 @@ const Deposit = () => {
     </div>
   );
 };
-
+export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
+  await SSRAuthCheck(ctx, "/user/profile");
+  const cookies = parseCookies(ctx);
+  const response = await GetUserInfoByTokenServer(cookies.token);
+  const commonRes = await pageAvailabilityCheck();
+  if (parseInt(commonRes.currency_deposit_status) !== 1) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {
+      user: response.user,
+    },
+  };
+};
 export default Deposit;
