@@ -23,6 +23,15 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
     //@ts-ignore
     inputRef.current.click();
   };
+  const prepareCopyData = (data: any) => {
+    const copyData = `Account Holder Name:${data.account_holder_name},
+     Bank Name:${data.bank_name}, 
+     Bank Address:${data.bank_address}, 
+     Country:${data.country}, 
+     Swift Code:${data.swift_code}, 
+     Account Number:${data.iban}`;
+    copyTextById(copyData);
+  };
 
   const handleFileChange = (event: any) => {
     const fileObj = event.target.files && event.target.files[0];
@@ -166,7 +175,6 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
             </div>
           </div>
         </div>
-
         <div className="col-lg-12">
           <div className="">
             <div className="swap-area">
@@ -254,7 +262,7 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
               <span
                 className="file-lable copy-btn"
                 onClick={() => {
-                  copyTextById(JSON.stringify(bankInfo));
+                  prepareCopyData(bankInfo);
                 }}
               >
                 {t("Copy")}
