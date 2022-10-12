@@ -59,16 +59,14 @@ const MyWallet: NextPage = () => {
     setChangeable(response?.wallets?.data);
     setAllData(response);
   };
-  const ResizeChangebleArrayBySize = (size: number) => {
-    let newArray = walletList?.data?.slice(0, size);
-    setChangeable(newArray);
-  };
+ 
   const LinkTopaginationString = async (link: any) => {
     if (link.url === null) return;
     if (link.label === walletList.current_page.toString()) return;
     const splitLink = link.url.split("api");
+    console.log(splitLink[1], "splitLink[1]");
     const response: any = await WalletListApiAction(
-      splitLink[1],
+      splitLink[1] + "&per_page=15",
       setProcessing
     );
     setWalletList(response?.wallets);
