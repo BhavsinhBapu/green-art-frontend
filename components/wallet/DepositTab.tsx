@@ -62,7 +62,6 @@ const DepositTab = ({ response, TurnoffSetShow, id }: any) => {
                       (x: any) => x.id === parseInt(e.target.value)
                     );
                     setSelectedNetwork(findObje);
-                    console.log(parseInt(e.target.value));
                   }}
                 >
                   {response?.data?.map((item: any, index: number) => (

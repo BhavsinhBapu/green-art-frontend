@@ -51,10 +51,6 @@ function Button({ credential, setCredential }: any) {
       //   alert("Data details: " + JSON.stringify(data, null, 2));
 
       return actions.order.capture({}).then(async (details: any) => {
-        // alert(
-        //   "Transaction completed by" +
-        //     (details?.payer.name.given_name ?? "No details")
-        // );
         const credentials = {
           wallet_id: credential.wallet_id,
           payment_method_id: credential.payment_method_id,
@@ -62,7 +58,6 @@ function Button({ credential, setCredential }: any) {
           currency: credential.currency,
           paypal_token: data.facilitatorAccessToken,
         };
-        console.log(data.facilitatorAccessToken, "credential.billingToken");
         if (data.facilitatorAccessToken) {
           const res = await currencyDepositProcess(credentials);
           if (res.success) {

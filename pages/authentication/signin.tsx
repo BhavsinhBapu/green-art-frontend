@@ -194,7 +194,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
     await authPageRequireCheck(ctx);
   } catch (error) {
     destroyCookie(ctx, "token");
-    console.log(error, "error");
   }
   return {
     props: {},

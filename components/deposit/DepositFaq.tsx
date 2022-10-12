@@ -4,7 +4,6 @@ import React from "react";
 
 const DepositFaq = ({ faqs }: any) => {
   const { t } = useTranslation("common");
-  console.log(faqs, "faq");
   return (
     <div className="m-3">
       <div id="accordion">
