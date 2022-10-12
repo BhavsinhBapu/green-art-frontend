@@ -59,7 +59,7 @@ const MyWallet: NextPage = () => {
     setChangeable(response?.wallets?.data);
     setAllData(response);
   };
- 
+
   const LinkTopaginationString = async (link: any) => {
     if (link.url === null) return;
     if (link.label === walletList.current_page.toString()) return;
@@ -450,7 +450,9 @@ const MyWallet: NextPage = () => {
                             </a>
                           ) : (
                             <a
-                              className="paginate_button paginate-number"
+                              className={`paginate_button paginate-number ${
+                                link.active === true && "text-warning"
+                              }`}
                               aria-controls="assetBalances"
                               data-dt-idx="1"
                               onClick={() => LinkTopaginationString(link)}
