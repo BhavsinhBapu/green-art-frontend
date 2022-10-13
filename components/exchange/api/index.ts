@@ -21,6 +21,7 @@ const config = {
 export default {
   onReady: (cb: any) => {
     cb(config);
+    console.log("=====onReady running");
   },
   searchSymbols: (
     userInput: any,
@@ -116,7 +117,11 @@ export default {
       onResetCacheNeededCallback
     );
   },
-  unsubscribeBars: (subscriberUID: any) => {},
+  unsubscribeBars: (subscriberUID: any) => {
+    stream.unsubscribeBars(subscriberUID);
+
+    console.log("Unsubscribing from " + subscriberUID);
+  },
   calculateHistoryDepth: (
     resolution: any,
     resolutionBack: any,

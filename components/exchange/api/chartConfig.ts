@@ -230,13 +230,12 @@ export const DISABLED_FEATURES = [
   "compare_symbol",
   "border_around_the_chart",
   "remove_library_container_border",
-  "symbol_info",
   "header_interval_dialog_button",
   "show_interval_dialog_on_key_press",
   "header_saveload",
-  "header_symbol_search",
   "header_symbol_search_hot_key",
-  "toggle_auto_size",
+  "header_interval_dropdown",
+  
 ];
 
 export const INTERVAL = {
