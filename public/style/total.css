@@ -9867,7 +9867,17 @@ input[type="number"] {
   margin-top: 20px;
 }
 #upload-photo {
-   opacity: 0;
-   position: absolute;
-   z-index: -9;
+  opacity: 0;
+  position: absolute;
+  z-index: -9;
+}
+.address-copy-box {
+  width: 100%;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.referel-inputfield {
+  cursor: pointer;
 }
