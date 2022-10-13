@@ -238,7 +238,7 @@ export const CurrencyDepositHistoryAction = async (
     column_name,
     order_by
   );
-  setReport(response.data.data);
+  setReport(response?.data?.data);
   setStillHistory(response.data);
   setProcessing(false);
   return response;
