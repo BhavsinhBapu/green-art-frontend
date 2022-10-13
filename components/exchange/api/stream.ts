@@ -41,6 +41,7 @@ export default {
         lastBar: historyProvider.history[symbolInfo.name].lastBar,
         listener: updateCb,
       };
+      console.log("newSub", newSub);
       _subs.push(newSub);
     });
   },
