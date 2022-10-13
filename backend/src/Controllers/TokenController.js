@@ -1,16 +1,27 @@
 const { response } = require("express");
 const Web3 = require("web3");
 const {contractJson} = require("../../src/ContractAbiJson");
-const { contract_decimals } = require("../Heplers/helper");
+const { contract_decimals,customFromWei,customToWei } = require("../Heplers/helper");
 
 
 function getData(req, res)
 {
+    let tokenBalance = 100;
+    let tokenBalance1 = Web3.utils.fromWei(tokenBalance.toString(), 'picoether');
+    let tokenBalance2 = Web3.utils.toWei(tokenBalance.toString(), 'picoether');
+    let dc = customFromWei(tokenBalance,6);
+    let dc2 = customToWei(tokenBalance,6);
     res.send({
         status: true,
         message: "data successfully",
         data: {
-            'data' : 'exapmle data '
+            'data' : 'exapmle data ',
+            'data0' : tokenBalance,
+            'data1' : tokenBalance1,
+            'data2' : tokenBalance2,
+            'data3' : dc,
+            'data4' : dc2,
+
         }
     });
 }
@@ -83,6 +94,7 @@ async function getWalletBalance(req, res)
                 if (contractAddress) {
                     const contractInstance = new web3.eth.Contract(contractJsons, contractAddress);
                     tokenBalance = await contractInstance.methods.balanceOf(address).call();
+
                     tokenDecimal = await contractInstance.methods.decimals().call();
                     tokenBalance = Web3.utils.fromWei(tokenBalance.toString(), contract_decimals(tokenDecimal));
                 } else {
@@ -155,8 +167,11 @@ async function checkEstimateGasFees(req, res)
 
                 const web3 = new Web3(network);
                 const contract = new web3.eth.Contract(contractJsons, contractAddress);
-    
-                amount = Web3.utils.toWei(amount.toString(), decimalValue);
+                if (decimalValue === 'customeight') {
+                    amount = customToWei(amount, req.body.decimal_value);
+                } else {
+                    amount = Web3.utils.toWei(amount.toString(), decimalValue);
+                }
 
                 const tx = {
                     from: fromAddress,
@@ -224,8 +239,11 @@ async function checkEstimateGasFees(req, res)
                 gasPrice = Web3.utils.fromWei(gasPrice.toString(), 'ether');
 
                 const contract = new web3.eth.Contract(contractJsons, contractAddress);
-    
-                amount = Web3.utils.toWei(amount.toString(), decimalValue);
+                if (decimalValue === 'customeight') {
+                    amount = customToWei(amount, req.body.decimal_value);
+                } else {
+                    amount = Web3.utils.toWei(amount.toString(), decimalValue);
+                }
 
                 const tx = {
                     from: fromAddress,
@@ -577,7 +595,7 @@ async function getLatestEvents(req, res)
                       block_hash: res.blockHash,
                       from_address: res.returnValues.from,
                       to_address: res.returnValues.to,
-                      amount: Web3.utils.fromWei(res.returnValues.value.toString(), decimalValue)
+                      amount: decimalValue === 'customeight' ? customFromWei(res.returnValues.value,req.body.decimal_value) : Web3.utils.fromWei(res.returnValues.value.toString(), decimalValue)
                   };
                   resultData.push(innerData)
               });
