@@ -105,15 +105,6 @@ export class TVChartContainer extends React.Component<MyProps> {
       autosize: this.props.autosize,
       //@ts-ignore
       studies_overrides: this.props.studiesOverrides,
-      overrides: {
-        "paneProperties.background": "#131722",
-        "paneProperties.vertGridProperties.color": "#363c4e",
-
-        "paneProperties.horzGridProperties.color": "#363c4e",
-        "symbolWatermarkProperties.transparency": 90,
-        "scalesProperties.textColor": "#AAA",
-        //background dark
-      },
       drawings_access: { type: "black", tools: [{ name: "Regression Trend" }] },
       //@ts-ignore
       enabled_features: ENABLED_FEATURES,
@@ -143,12 +134,7 @@ export class TVChartContainer extends React.Component<MyProps> {
   render() {
     return (
       <>
-        <header className={styles.VersionHeader}>
-          <h1>
-            TradingView Charting Library and Next.js Integration Example{" "}
-            {version()}
-          </h1>
-        </header>
+        <header className={styles.VersionHeader}></header>
         {/* @ts-ignore */}
         <div ref={this.ref} className={styles.TVChartContainer} />
       </>
