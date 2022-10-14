@@ -151,7 +151,7 @@ const AllBuyOrders = ({ OpenBookBuy }: any) => {
                           <td>
                             <div className="asset">
                               <span className="text-success">
-                                {parseFloat(item.price)}
+                                {item.price}asdasdasd
                               </span>
                             </div>
                           </td>
