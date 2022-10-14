@@ -67,7 +67,7 @@ const TradesTable = ({ buy, show }: any) => {
                 <td>
                   <div className="asset">
                     <span className="text-danger">
-                      {parseFloat(item.price)}
+                      {(item.price)}
                     </span>
                   </div>
                 </td>
