@@ -84,10 +84,8 @@ export const GetWalletAddressAction = async (
   if (response.success === true) {
     toast.success(response.message);
     setNetwork(response.data);
-    console.log(response.data, "vasda,;ds'as");
   } else {
     toast.error(response.message);
-    console.log(response.data, "vasda,;ds'as");
   }
   return response;
 };

@@ -21,7 +21,6 @@ const config = {
 export default {
   onReady: (cb: any) => {
     cb(config);
-    console.log("=====onReady running");
   },
   searchSymbols: (
     userInput: any,
@@ -72,10 +71,7 @@ export default {
     onHistoryCallback: any,
     onError: any
   ) {
-    console.log(
-      periodParams.countBack,
-      "console.log(periodParams.countBack);console.log(periodParams.countBack);"
-    );
+
     const { from, to } = periodParams;
     const countBack = periodParams.countBack;
     const countForward = periodParams.countForward;
@@ -120,7 +116,6 @@ export default {
   unsubscribeBars: (subscriberUID: any) => {
     stream.unsubscribeBars(subscriberUID);
 
-    console.log("Unsubscribing from " + subscriberUID);
   },
 
   calculateHistoryDepth: (
