@@ -122,6 +122,7 @@ export default {
 
     console.log("Unsubscribing from " + subscriberUID);
   },
+
   calculateHistoryDepth: (
     resolution: any,
     resolutionBack: any,
@@ -154,4 +155,5 @@ export default {
     //optional
   },
   getServerTime: (cb: any) => {},
+ 
 };

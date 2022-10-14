@@ -69,6 +69,7 @@ export class TVChartContainer extends React.Component<MyProps> {
   }
 
   componentDidMount() {
+    console.log(version, "version");
     const widgetOptions = {
       height: 480,
       width: 1400,
@@ -118,6 +119,22 @@ export class TVChartContainer extends React.Component<MyProps> {
       time_frames: TIME_FRAMES,
 
       toolbar: false,
+      //@ts-ignore
+      // studies_overrides: {
+      //   //@ts-ignore
+        
+      //   "moving average.ma.visible": true,
+      //   "volume.volume.color.0": "#ffc107",
+      //   "volume.volume.color.1": "#ffffff",
+      //   "volume.volume.transparency": 0,
+      //   "volume.volume ma.color": "#ffc107",
+      //   "volume.volume ma.linewidth": 2,
+      //   "volume.volume ma.plottype": "line",
+      //   "volume.volume ma.transparency": 0,
+      //   "volume.volume ma.visible": true,
+      //   "volume.volume.plottype": "column",
+      //   "volume.volume.show ma": true,
+      // },
     };
     //@ts-ignore
     this.chartInit(widgetOptions);
