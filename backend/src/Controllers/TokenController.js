@@ -96,7 +96,11 @@ async function getWalletBalance(req, res)
                     tokenBalance = await contractInstance.methods.balanceOf(address).call();
 
                     tokenDecimal = await contractInstance.methods.decimals().call();
-                    tokenBalance = Web3.utils.fromWei(tokenBalance.toString(), contract_decimals(tokenDecimal));
+                    if(tokenDecimal == 8) {
+                        tokenBalance = customFromWei(tokenBalance, tokenDecimal);
+                    } else {
+                        tokenBalance = Web3.utils.fromWei(tokenBalance.toString(), contract_decimals(tokenDecimal));
+                    }
                 } else {
                     res.json({
                         status: false,
@@ -114,8 +118,11 @@ async function getWalletBalance(req, res)
                     const contractInstance = new web3.eth.Contract(contractJsons, contractAddress);
                     tokenBalance = await contractInstance.methods.balanceOf(address).call();
                     tokenDecimal = await contractInstance.methods.decimals().call();
-                    tokenBalance = Web3.utils.fromWei(tokenBalance.toString(), contract_decimals(tokenDecimal));
-
+                    if(tokenDecimal == 8) {
+                        tokenBalance = customFromWei(tokenBalance, tokenDecimal);
+                    } else {
+                        tokenBalance = Web3.utils.fromWei(tokenBalance.toString(), contract_decimals(tokenDecimal));
+                    }
                 } else {
                     res.json({
                         status: false,
