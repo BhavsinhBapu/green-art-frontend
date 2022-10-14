@@ -39,10 +39,7 @@ export const initialDashboardCallAction =
       response = await appDashboardData(pair);
     } else {
       response = await appDashboardDataWithoutPair();
-      console.log(
-        response.pairs[0].parent_coin_id,
-        "asdasdsasdasdasdassdfsdgsrg"
-      );
+    
     }
 
     if (pair) {

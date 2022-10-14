@@ -53,16 +53,7 @@ async function listenMessages(dispatch: any) {
       trade_coin_id: e.summary.trade_coin_id,
       total: e.summary.total,
     });
-    console.log(
-      {
-        price: e.summary.buy_price,
-        ts: last(e.chart).time,
-        base_coin_id: e.summary.base_coin_id,
-        trade_coin_id: e.summary.trade_coin_id,
-        total: e.summary.total,
-      },
-      "eeeeeeeeeeeeeeeeeeeeee"
-    );
+
   });
 }
 const Dashboard: NextPage = () => {

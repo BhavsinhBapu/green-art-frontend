@@ -78,7 +78,6 @@ export function updateChart(e: any) {
     // if (data.ts < sub.lastBar.time / 1000) {
     //   return;
     // }
-    console.log("Calling subs");
 
     const _lastBar = updateBar(data, sub);
     // send the most recent bar back to TV's realtimeUpdate callback
@@ -91,7 +90,6 @@ export function updateChart(e: any) {
 // Take a single trade, and subscription record, return updated bar
 function updateBar(data: any, sub: any) {
   const lastBar = sub.lastBar;
-  console.log("this is lastbar", lastBar);
   let resolution = sub.resolution;
   if (resolution.includes("D")) {
     // 1 day in minutes === 1440
@@ -112,7 +110,6 @@ function updateBar(data: any, sub: any) {
       close: data.price,
       volume: parseFloat(data.total),
     };
-    console.log("this is _lastbar", _lastBar);
 
     if (data.price < _lastBar.low) {
       _lastBar.low = data.price;
