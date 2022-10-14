@@ -19,6 +19,7 @@ import {
   setOpenBooksell,
 } from "state/reducer/exchange";
 import useTranslation from "next-translate/useTranslation";
+import { last, updateChart } from "components/exchange/api/stream";
 let socketCall = 0;
 async function listenMessages(dispatch: any) {
   //@ts-ignore
@@ -44,7 +45,25 @@ async function listenMessages(dispatch: any) {
     `trade-info-${localStorage.getItem("base_coin_id")}-${localStorage.getItem(
       "trade_coin_id"
     )}`
-  ).listen(".process", (e: any) => {});
+  ).listen(".process", (e: any) => {
+    updateChart({
+      price: e.summary.buy_price,
+      ts: last(e.chart).time,
+      base_coin_id: e.summary.base_coin_id,
+      trade_coin_id: e.summary.trade_coin_id,
+      total: e.summary.total,
+    });
+    console.log(
+      {
+        price: e.summary.buy_price,
+        ts: last(e.chart).time,
+        base_coin_id: e.summary.base_coin_id,
+        trade_coin_id: e.summary.trade_coin_id,
+        total: e.summary.total,
+      },
+      "eeeeeeeeeeeeeeeeeeeeee"
+    );
+  });
 }
 const Dashboard: NextPage = () => {
   const { t } = useTranslation("common");
