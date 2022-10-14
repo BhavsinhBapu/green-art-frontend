@@ -179,7 +179,6 @@ async function checkEstimateGasFees(req, res)
                 } else {
                     amount = Web3.utils.toWei(amount.toString(), decimalValue);
                 }
-
                 const tx = {
                     from: fromAddress,
                     to: contractAddress,
