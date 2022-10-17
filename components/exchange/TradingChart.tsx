@@ -24,7 +24,7 @@ localStorage.setItem("tradingview.ChartDrawingToolbarWidget.visible", "false");
 export class TVChartContainer extends React.Component<MyProps> {
   static defaultProps = {
     symbol: `:${pair && pair}`,
-    interval: "1",
+    interval: "5",
     containerId: "tv_chart_container",
     libraryPath: "/static/charting_library/",
     chartsStorageUrl: "https://saveload.tradingview.com",
@@ -81,7 +81,22 @@ export class TVChartContainer extends React.Component<MyProps> {
       client_id: this.props.clientId,
       //@ts-ignore
       user_id: this.props.userId,
-
+      overrides: {
+        "mainSeriesProperties.style": 2,
+        //override background color
+        "paneProperties.background": "#000000",
+        "platformOverrides": {
+          "mainSeriesProperties.style": 2,
+          "paneProperties.background": "#000000",
+          "paneProperties.vertGridProperties.color": "#363c4e",
+          "paneProperties.horzGridProperties.color": "#363c4e",
+          "symbolWatermarkProperties.transparency": 90,
+          "scalesProperties.textColor": "#AAA",
+          "mainSeriesProperties.candleStyle.upColor": "#336854",
+          "mainSeriesProperties.candleStyle.downColor": "#7f323f",
+          "mainSeriesProperties.candleStyle.drawWick": true,
+        }
+      },
       //@ts-ignore
       fullscreen: this.props.fullscreen,
       //@ts-ignore
@@ -90,18 +105,25 @@ export class TVChartContainer extends React.Component<MyProps> {
       studies_overrides: this.props.studiesOverrides,
       drawings_access: { type: "black", tools: [{ name: "Regression Trend" }] },
       //@ts-ignore
-      // enabled_features: ENABLED_FEATURES,
+      enabled_features: ENABLED_FEATURES,
       //@ts-ignore
       disabled_features: DISABLED_FEATURES,
       //@ts-ignore
       studies_overrides: this.props.studiesOverrides,
       custom_css_url: "css/style.css",
+      // custom_css_url: "chart-v3-ethfinex-theme.css",
       //@ts-ignore
-      overrides: getChartOverrides(this.props.theme),
+      // overrides: getChartOverrides(this.props.theme),
       theme: "dark",
 
       //@ts-ignore
       time_frames: TIME_FRAMES,
+      //@ts-ignore
+      studies_overrides: {
+        "volume.volume.color.0": "#df5e35",
+        "volume.volume.color.1": "#6ac955",
+        "volume.volume.transparency": 0,
+      },
 
       toolbar: false,
       //@ts-ignore

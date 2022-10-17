@@ -53,7 +53,6 @@ async function listenMessages(dispatch: any) {
       trade_coin_id: e.summary.trade_coin_id,
       total: e.summary.total,
     });
-
   });
 }
 const Dashboard: NextPage = () => {
