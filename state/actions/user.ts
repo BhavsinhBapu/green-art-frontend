@@ -15,6 +15,7 @@ import {
   G2fVerifyApi,
   verifyEmailApi,
   KycActiveList,
+  UploadVoter,
 } from "service/user";
 import request from "lib/request";
 import { login, setAuthenticationState, setUser } from "state/reducer/user";
@@ -454,6 +455,37 @@ export const UploadPassportImageAction = async (
   setProcessing(false);
 };
 
+export const UploadVoterImageAction = async (
+  image: any,
+  setProcessing: Dispatch<SetStateAction<boolean>>
+) => {
+  setProcessing(true);
+  const response = await UploadVoter(image);
+
+  if (response.success === true) {
+    toast.success(response.message, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      className: "dark-toast",
+    });
+  } else {
+    toast.error(response.message, {
+      position: "top-right",
+      autoClose: 10000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  }
+  setProcessing(false);
+};
 export const UploadDrivingLicenceImageAction = async (
   image: any,
   setProcessing: Dispatch<SetStateAction<boolean>>

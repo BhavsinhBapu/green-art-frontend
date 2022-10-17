@@ -85,7 +85,7 @@ const PersonalVerification: NextPage = () => {
                               data-target=".cp-user-idverifymodal"
                             >
                               <img
-                                src={item.image ? item.image : "/cards/nid.svg"}
+                                src={item.image}
                                 className="img-fluid"
                                 alt=""
                               />

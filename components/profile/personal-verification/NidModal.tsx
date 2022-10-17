@@ -4,6 +4,7 @@ import {
   UploadDrivingLicenceImageAction,
   UploadNidImageAction,
   UploadPassportImageAction,
+  UploadVoterImageAction,
 } from "state/actions/user";
 
 const NidModal = ({ type, kycDetails }: any) => {
@@ -56,10 +57,12 @@ const NidModal = ({ type, kycDetails }: any) => {
     formData.append("file_selfie", selfeSide);
     if (type === "nid") {
       UploadNidImageAction(formData, setProcessing);
-    } else if (type === "driving-licence") {
+    } else if (type === "driving") {
       UploadDrivingLicenceImageAction(formData, setProcessing);
     } else if (type === "passport") {
       UploadPassportImageAction(formData, setProcessing);
+    } else if (type === "voter") {
+      UploadVoterImageAction(formData, setProcessing);
     }
   };
   const loadCard = () => {
