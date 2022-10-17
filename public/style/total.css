@@ -2183,7 +2183,7 @@ a#submit {
 .id-card-type .id-card {
   background: #f3f3f3;
   border-radius: 12px;
-  height: 200px;
+  height: 250px;
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2200,10 +2200,8 @@ a#submit {
 .id-card-type .id-card img {
   background: #f3f3f3;
   border-radius: 12px;
-  height: 250px;
-  width: 100%;
+  width: 250px;
   padding: 15px;
-  object-fit: cover;
 }
 .idcard .cp-user-title {
   font-size: 18px;
