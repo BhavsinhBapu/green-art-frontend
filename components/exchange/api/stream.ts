@@ -32,33 +32,7 @@ export default {
     _subs.splice(subIndex, 1);
   },
 };
-// //@ts-ignore
-// window.Pusher = Pusher;
-// //@ts-ignore
-// window.Echo = new Echo({
-//   broadcaster: "pusher",
-//   key: "test",
-//   wsHost: process.env.NEXT_PUBLIC_HOST_SOCKET,
-//   wsPort: 6006,
-//   wssPort: 443,
-//   cluster: "mt1",
-//   disableStats: true,
-//   enabledTransports: ["ws", "wss"],
-// });
 
-// //@ts-ignore
-// window.Echo.channel(
-//   `trade-info-${localStorage.getItem("base_coin_id")}-${localStorage.getItem(
-//     "trade_coin_id"
-//   )}`
-// ).listen(".process", (e: any) => {
-//   // var _lastBar = updateBar(last(e.chart));
-//   // console.log("eeeeee", _lastBar);
-//   // // send the most recent bar back to TV's realtimeUpdate callback
-//   // sub.listener(_lastBar);
-//   // // update our own record of lastBar
-//   // sub.lastBar = _lastBar;
-// });
 export function updateChart(e: any) {
   const data = {
     ts: e.ts,
