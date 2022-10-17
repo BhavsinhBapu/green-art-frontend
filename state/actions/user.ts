@@ -29,7 +29,10 @@ import {
 } from "state/reducer/exchange";
 
 export const VerifyEmailAction =
-  (credentials: { email: string; code: any; recapcha:string }, setProcessing: any) =>
+  (
+    credentials: { email: string; code: any; recapcha: string },
+    setProcessing: any
+  ) =>
   async (dispatch: any) => {
     setProcessing(true);
     const response: any = await verifyEmailApi(credentials);
@@ -423,7 +426,9 @@ export const UploadPassportImageAction = async (
   setProcessing: Dispatch<SetStateAction<boolean>>
 ) => {
   setProcessing(true);
+  console.log("responseeeeeeee", image);
   const response = await UploadPassport(image);
+
   if (response.success === true) {
     toast.success(response.message, {
       position: "top-right",

@@ -16,6 +16,9 @@ const PersonalVerification: NextPage = () => {
   useEffect(() => {
     dispatch(getKycDetailsAction(setKycDetails));
   }, []);
+
+  console.log(kycDetails);
+
   return (
     <div className="page-wrap">
       <ProfileSidebar />
@@ -30,7 +33,7 @@ const PersonalVerification: NextPage = () => {
           </div>
           <NidModal type={type} kycDetails={kycDetails} />
           <div className="profile-area">
-            <h4 className="section-title-medium">{t("Verification")}</h4>
+            {/* <h4 className="section-title-medium">{t("Verification")}</h4> */}
             <div className="section-wrapper">
               <div className="row">
                 <div className="col-lg-12">
@@ -55,7 +58,7 @@ const PersonalVerification: NextPage = () => {
                       </div>
                       <div className="card-bottom">
                         <span className="text-warning">
-                          {t("Not Submitted")}
+                          {kycDetails?.nid?.status}
                         </span>
                         <h5>{t("National Id Card")}</h5>
                       </div>
@@ -77,7 +80,7 @@ const PersonalVerification: NextPage = () => {
                       </div>
                       <div className="card-bottom">
                         <span className="text-warning">
-                          {t("Not Submitted")}
+                          {kycDetails?.passport?.status}
                         </span>
                         <h5>{t("Passport")}</h5>
                       </div>
@@ -99,7 +102,7 @@ const PersonalVerification: NextPage = () => {
                       </div>
                       <div className="card-bottom">
                         <span className="text-warning">
-                          {t("Not Submitted")}
+                          {kycDetails?.driving?.status}
                         </span>
                         <h5>{t("Driving License")}</h5>
                       </div>
