@@ -410,10 +410,8 @@ const MyWallet: NextPage = () => {
                               <td>
                                 <div className="blance-text">
                                   <span className="blance">
-                                    {formateZert(
-                                      Number(item?.balance) +
-                                        Number(item?.on_order)
-                                    )}
+                                    {/* @ts-ignore */}
+                                    {parseFloat(Number(item?.balance) +Number(item?.on_order)).toFixed(8)}
                                   </span>
                                   <span className="usd">
                                     {settings?.currency_symbol}

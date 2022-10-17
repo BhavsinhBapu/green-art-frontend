@@ -146,7 +146,7 @@ const Navbar = () => {
                             />
                           </span>
                           <span className="cp-user-name">
-                            {t("Deposit Wallet")}
+                            {t("Fiat deposit")}
                           </span>
                         </a>
                       </li>

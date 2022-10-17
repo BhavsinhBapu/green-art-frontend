@@ -8,22 +8,6 @@ import {
   getChartOverrides,
   TIME_FRAMES,
 } from "./api/chartConfig";
-import { splitPair } from "common";
-
-const supportedResolutions = [
-  "1",
-  "3",
-  "5",
-  "15",
-  "30",
-  "60",
-  "120",
-  "240",
-  "360",
-  "D",
-  "W",
-  "M",
-];
 
 function getLanguageFromURL() {
   const regex = new RegExp("[\\?&]lang=([^&#]*)");
@@ -46,9 +30,8 @@ export class TVChartContainer extends React.Component<MyProps> {
     chartsStorageUrl: "https://saveload.tradingview.com",
     chartsStorageApiVersion: "1.1",
     clientId: "tradingview.com",
-
-    userId: "public_user_id",
     fullscreen: false,
+    custom_css_url: "css/style.css",
     autosize: true,
     studiesOverrides: {},
   };
@@ -76,7 +59,6 @@ export class TVChartContainer extends React.Component<MyProps> {
       //@ts-ignore
       symbol: this.props.symbol,
       style: 1,
-      theme: "dark",
       //@ts-ignore
       datafeed: Datafeed,
       // datafeed: Datafeed,
@@ -108,12 +90,15 @@ export class TVChartContainer extends React.Component<MyProps> {
       studies_overrides: this.props.studiesOverrides,
       drawings_access: { type: "black", tools: [{ name: "Regression Trend" }] },
       //@ts-ignore
-      enabled_features: ENABLED_FEATURES,
+      // enabled_features: ENABLED_FEATURES,
       //@ts-ignore
       disabled_features: DISABLED_FEATURES,
-
+      //@ts-ignore
+      studies_overrides: this.props.studiesOverrides,
+      custom_css_url: "css/style.css",
       //@ts-ignore
       overrides: getChartOverrides(this.props.theme),
+      theme: "dark",
 
       //@ts-ignore
       time_frames: TIME_FRAMES,
@@ -122,7 +107,7 @@ export class TVChartContainer extends React.Component<MyProps> {
       //@ts-ignore
       // studies_overrides: {
       //   //@ts-ignore
-        
+
       //   "moving average.ma.visible": true,
       //   "volume.volume.color.0": "#ffc107",
       //   "volume.volume.color.1": "#ffffff",
@@ -151,7 +136,6 @@ export class TVChartContainer extends React.Component<MyProps> {
   render() {
     return (
       <>
-        <header className={styles.VersionHeader}></header>
         {/* @ts-ignore */}
         <div ref={this.ref} className={styles.TVChartContainer} />
       </>
