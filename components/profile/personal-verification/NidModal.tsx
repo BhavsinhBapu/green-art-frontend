@@ -11,9 +11,9 @@ const NidModal = ({ type, kycDetails }: any) => {
   const [frontSide, setFrontSide] = useState(null);
   const [showFront, setShowFront] = useState(null);
   const [showBack, setShowBack] = useState(null);
-  const [showSelfe, setShowSelfe] = useState(null);
   const [processing, setProcessing] = useState(false);
   const [backSide, setBackSide] = useState(null);
+  const [showSelfe, setShowSelfe] = useState(null);
   const [selfeSide, setSelfeSide] = useState(null);
   const [existingKyc, setExistingKyc] = useState<any>();
   const { t } = useTranslation("common");
@@ -24,15 +24,17 @@ const NidModal = ({ type, kycDetails }: any) => {
     setSelfeSide(null);
   }
 
+  console.log(type);
+
   const storeSelectedFile = (e: any, setState: any, side: number) => {
     var reader = new FileReader();
     reader.onloadend = function (e) {
       setState(reader.result);
     };
     if (side === 1) {
-      setState(e.target.files[0]);
       // @ts-ignore
       setShowFront(URL.createObjectURL(e.target.files[0]));
+      setState(e.target.files[0]);
     } else if (side === 3) {
       // @ts-ignore
       setShowSelfe(URL.createObjectURL(e.target.files[0]));
@@ -63,15 +65,19 @@ const NidModal = ({ type, kycDetails }: any) => {
   const loadCard = () => {
     if (type === "nid") {
       setExistingKyc(kycDetails?.nid);
-    } else if (type === "driving-licence") {
+    } else if (type === "driving") {
       setExistingKyc(kycDetails?.driving);
     } else if (type === "passport") {
       setExistingKyc(kycDetails?.passport);
+    } else if (type === "voter") {
+      setExistingKyc(kycDetails?.voter);
     }
   };
   useEffect(() => {
     loadCard();
   }, [type]);
+
+  console.log(kycDetails);
 
   return (
     <div
@@ -178,13 +184,12 @@ const NidModal = ({ type, kycDetails }: any) => {
                     <div className="idcard">
                       <h3 className="title">{t("Selfie Image")}</h3>
                       <div className="container cstm-img-picker">
-                        {JSON.stringify(showSelfe)}
                         {showSelfe ? (
                           //@ts-ignore
                           <img src={showSelfe} className="img-fluid" alt="" />
-                        ) : existingKyc?.file_selfie ? (
+                        ) : existingKyc?.selfie ? (
                           <img
-                            src={existingKyc?.file_selfie}
+                            src={existingKyc?.selfie}
                             className="img-fluid"
                             alt=""
                           />

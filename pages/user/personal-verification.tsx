@@ -7,17 +7,28 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getKycDetailsAction } from "state/actions/user";
 import useTranslation from "next-translate/useTranslation";
+import { KycActiveList } from "service/user";
+import {
+  KYC_DRIVING_VERIFICATION,
+  KYC_EMAIL_VERIFICATION,
+  KYC_NID_VERIFICATION,
+  KYC_PASSPORT_VERIFICATION,
+  KYC_PHONE_VERIFICATION,
+  KYC_VOTERS_CARD_VERIFICATION,
+} from "helpers/core-constants";
 
 const PersonalVerification: NextPage = () => {
   const { t } = useTranslation("common");
   const [type, setType] = useState<string>("");
   const [kycDetails, setKycDetails] = useState<any>();
+  const [kycActiveList, setKycActiveList] = useState<any>([]);
   const dispatch = useDispatch();
+
   useEffect(() => {
-    dispatch(getKycDetailsAction(setKycDetails));
+    dispatch(getKycDetailsAction(setKycDetails, setKycActiveList));
   }, []);
 
-  console.log(kycDetails);
+  console.log("kycActiveList", kycActiveList);
 
   return (
     <div className="page-wrap">
@@ -41,7 +52,90 @@ const PersonalVerification: NextPage = () => {
                     <h5>{t("Select Your ID Type")}</h5>
                   </div>
                   <div className="cp-user-profile-info-id-type">
-                    <div
+                    {kycActiveList?.map(
+                      (item: any, index: number) =>
+                        item.type != KYC_PHONE_VERIFICATION &&
+                        item.type != KYC_EMAIL_VERIFICATION && (
+                          <div
+                            key={`kyc${index}`}
+                            className="id-card-type mb-5"
+                            onClick={() => {
+                              {
+                                item.type == KYC_PASSPORT_VERIFICATION &&
+                                  kycDetails?.passport?.status;
+                                setType("passport");
+                              }
+                              {
+                                item.type == KYC_DRIVING_VERIFICATION &&
+                                  setType("driving");
+                              }
+                              {
+                                item.type == KYC_NID_VERIFICATION &&
+                                  setType("nid");
+                              }
+                              {
+                                item.type == KYC_VOTERS_CARD_VERIFICATION &&
+                                  setType("voter");
+                              }
+                            }}
+                          >
+                            <div
+                              className="id-card"
+                              data-toggle="modal"
+                              data-target=".cp-user-idverifymodal"
+                            >
+                              <img
+                                src={item.image ? item.image : "/cards/nid.svg"}
+                                className="img-fluid"
+                                alt=""
+                              />
+                            </div>
+                            <div
+                              className={`card-bottom ${
+                                item.type == KYC_PASSPORT_VERIFICATION
+                                  ? kycDetails?.passport?.status == "Pending"
+                                    ? "pending"
+                                    : kycDetails?.passport?.status == "Approved"
+                                    ? "success"
+                                    : ""
+                                  : item.type == KYC_DRIVING_VERIFICATION
+                                  ? kycDetails?.driving?.status == "Pending"
+                                    ? "pending"
+                                    : kycDetails?.driving?.status == "Approved"
+                                    ? "success"
+                                    : ""
+                                  : item.type == KYC_NID_VERIFICATION
+                                  ? kycDetails?.nid?.status == "Pending"
+                                    ? "pending"
+                                    : kycDetails?.nid?.status == "Approved"
+                                    ? "success"
+                                    : ""
+                                  : item.type == KYC_VOTERS_CARD_VERIFICATION
+                                  ? kycDetails?.voter?.status == "Pending"
+                                    ? "pending"
+                                    : kycDetails?.voter?.status == "Approved"
+                                    ? "success"
+                                    : ""
+                                  : ""
+                              }`}
+                            >
+                              <span className="text-warning">
+                                {item.type == KYC_PASSPORT_VERIFICATION &&
+                                  kycDetails?.passport?.status}
+                                {item.type == KYC_DRIVING_VERIFICATION &&
+                                  kycDetails?.driving?.status}
+                                {item.type == KYC_NID_VERIFICATION &&
+                                  kycDetails?.nid?.status}
+                                {item.type == KYC_VOTERS_CARD_VERIFICATION &&
+                                  kycDetails?.voter?.status}
+                              </span>
+                              <h5>{item.name}</h5>
+                            </div>
+                          </div>
+                        )
+                    )}
+
+                    {/* <div
                       className="id-card-type"
                       onClick={() => setType("nid")}
                     >
@@ -106,7 +200,7 @@ const PersonalVerification: NextPage = () => {
                         </span>
                         <h5>{t("Driving License")}</h5>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>
