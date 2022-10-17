@@ -36,10 +36,10 @@ const ProfileSidebar = () => {
               <a href="/user/security-setting">{t("Security")}</a>
             </li>
           </Link>
-          <Link href="/user/verification-list">
+          <Link href="/user/personal-verification">
             <li
               className={
-                router.pathname == "/user/verification-list" ? "active" : ""
+                router.pathname == "/user/personal-verification" ? "active" : ""
               }
             >
               <a href="/user/profile-verification-list">
@@ -47,7 +47,7 @@ const ProfileSidebar = () => {
               </a>
             </li>
           </Link>
-          <Link href="/user/personal-verification">
+          {/* <Link href="/user/personal-verification">
             <li
               className={
                 router.pathname == "/user/personal-verification" ? "active" : ""
@@ -57,7 +57,7 @@ const ProfileSidebar = () => {
                 {t("Personal Verification")}
               </a>
             </li>
-          </Link>
+          </Link> */}
           <Link href="/user/change-password">
             <li
               className={
