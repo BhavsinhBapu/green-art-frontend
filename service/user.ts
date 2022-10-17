@@ -95,6 +95,10 @@ export const UploadPassport = async (Files: any) => {
   const { data } = await request.post("/upload-passport", Files);
   return data;
 };
+export const UploadVoter = async (Files: any) => {
+  const { data } = await request.post("/upload-voter-card", Files);
+  return data;
+};
 
 export const UploadDrivingLicence = async (Files: any) => {
   const { data } = await request.post("/upload-driving-licence", Files);
