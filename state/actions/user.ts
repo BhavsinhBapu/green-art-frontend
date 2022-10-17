@@ -14,6 +14,7 @@ import {
   KycDetailsApi,
   G2fVerifyApi,
   verifyEmailApi,
+  KycActiveList,
 } from "service/user";
 import request from "lib/request";
 import { login, setAuthenticationState, setUser } from "state/reducer/user";
@@ -426,7 +427,6 @@ export const UploadPassportImageAction = async (
   setProcessing: Dispatch<SetStateAction<boolean>>
 ) => {
   setProcessing(true);
-  console.log("responseeeeeeee", image);
   const response = await UploadPassport(image);
 
   if (response.success === true) {
@@ -485,9 +485,11 @@ export const UploadDrivingLicenceImageAction = async (
   setProcessing(false);
 };
 export const getKycDetailsAction =
-  (setKycDetails: Dispatch<SetStateAction<null>>) => async (dispatch: any) => {
+  (setKycDetails: any, setKyc: any) => async (dispatch: any) => {
     const { data } = await KycDetailsApi();
+    const { data: KycList } = await KycActiveList();
     setKycDetails(data);
+    setKyc(KycList);
   };
 
 export const G2fVerifyAction = (code: any) => async (dispatch: any) => {
