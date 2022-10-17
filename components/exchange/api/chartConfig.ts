@@ -10,13 +10,14 @@ export const ENABLED_FEATURES = [
 ];
 export const DISABLED_FEATURES = [
   "header_symbol_search",
+  "header_widget",
   "symbol_info",
   "header_compare",
   "header_chart_type",
   "display_market_status",
   "symbol_search_hot_key",
   "compare_symbol",
-  "border_around_the_chart",
+  // "border_around_the_chart",
   "remove_library_container_border",
   "header_interval_dialog_button",
   "show_interval_dialog_on_key_press",

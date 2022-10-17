@@ -1,6 +1,6 @@
 :root:not(.theme-dark) {
-  --tv-color-platform-background: #151515 !important;
-  --tv-color-pane-background: #151515 !important;
+  --tv-color-platform-background: #151515;
+  --tv-color-pane-background: #151515;
   --tv-color-pane-background-secondary: #f3d16c;
   --tv-color-toolbar-button-background-hover: #151515;
   --tv-color-toolbar-button-background-secondary-hover: #151515;
@@ -15,8 +15,8 @@
 }
 
 .theme-dark:root {
-  --tv-color-platform-background: #151515 !important;
-  --tv-color-pane-background: #151515 !important;
+  --tv-color-platform-background: #151515;
+  --tv-color-pane-background: #151515;
   --tv-color-pane-background-secondary: #f3d16c;
   --tv-color-toolbar-button-background-hover: #151515;
   --tv-color-toolbar-button-background-secondary-hover: #151515;

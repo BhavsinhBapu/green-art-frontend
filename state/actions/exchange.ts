@@ -31,7 +31,7 @@ import Cookies from "js-cookie";
 export const initialDashboardCallAction =
   (pair: string, dashboard: any, setisLoading?: any) =>
   async (dispatch: any) => {
-    setisLoading && setisLoading(true);
+    // setisLoading && setisLoading(true);
     const token = Cookies.get("token");
 
     let response;
@@ -145,7 +145,7 @@ export const initialDashboardCallAction =
 export const initialDashboardCallActionWithToken =
   (pair: string, dashboard: any, setisLoading?: any) =>
   async (dispatch: any) => {
-    setisLoading && setisLoading(true);
+    // setisLoading && setisLoading(true);
     const token = Cookies.get("token");
 
     if (token) {
@@ -188,7 +188,7 @@ export const initialDashboardCallActionWithToken =
         setAllmarketTrades(marketTradesDashboardResponse.data.transactions)
       );
     }
-    setisLoading && setisLoading(false);
+    // setisLoading && setisLoading(false);
   };
 
 export const buyLimitAppAction = async (
