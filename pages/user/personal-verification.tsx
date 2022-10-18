@@ -28,8 +28,6 @@ const PersonalVerification: NextPage = () => {
     dispatch(getKycDetailsAction(setKycDetails, setKycActiveList));
   }, []);
 
-  console.log("kycActiveList", kycActiveList);
-
   return (
     <div className="page-wrap">
       <ProfileSidebar />
