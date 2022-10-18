@@ -10,9 +10,10 @@ import useTranslation from "next-translate/useTranslation";
 const VerificationList: NextPage = () => {
   const { t } = useTranslation("common");
   const [kycDetails, setKycDetails] = useState<any>();
+  const [kyc, setKyc] = useState<any>(null);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getKycDetailsAction(setKycDetails));
+    dispatch(getKycDetailsAction(setKycDetails, setKyc));
   }, []);
 
   return (
