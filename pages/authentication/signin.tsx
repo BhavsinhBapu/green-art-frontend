@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useState } from "react";
 import { Formik, Field, Form } from "formik";
 //@ts-ignore
-import ReCAPTCHA from "react-google-recaptcha";
+import ReCAPTCHA, { reset } from "react-google-recaptcha";
 
 import Link from "next/link";
 import { authPageRequireCheck } from "middlewares/ssr-authentication-check";
@@ -25,6 +25,17 @@ const Signin: NextPage = () => {
     setRecaptchaData(response.data);
     return response;
   };
+
+  let captcha: any;
+  const setCaptchaRef = (ref: any) => {
+    if (ref) {
+      return (captcha = ref);
+    }
+  };
+  const resetCaptcha = () => {
+    captcha.reset();
+  };
+
   useEffect(() => {
     getRecapcha();
   }, []);
@@ -133,6 +144,7 @@ const Signin: NextPage = () => {
                       {recaptchaData?.NOCAPTCHA_SITEKEY &&
                         recaptchaData?.google_recapcha === "1" && (
                           <ReCAPTCHA
+                            ref={(r: any) => setCaptchaRef(r)}
                             sitekey={recaptchaData?.NOCAPTCHA_SITEKEY}
                             render="explicit"
                             onChange={(response: any) => {
@@ -142,6 +154,7 @@ const Signin: NextPage = () => {
                         )}
 
                       <button
+                        onClick={() => resetCaptcha()}
                         type="submit"
                         disabled={processing}
                         className="btn nimmu-user-sibmit-button mt-3"
