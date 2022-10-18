@@ -84,8 +84,8 @@ const Index = ({ children }: any) => {
     <div>
       {isLoading && <Loading />}
       <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>{metaData?.app_title || process.env.NEXT_PUBLIC_APP_NAME}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta property="og:title" content={settings?.seo_social_title} />
         <meta name="description" content={settings?.seo_meta_description} />
         <meta name="keywords" content={settings?.seo_meta_keywords} />
@@ -115,6 +115,11 @@ const Index = ({ children }: any) => {
     <>
       <Head>
         <title>{metaData?.app_title || process.env.NEXT_PUBLIC_APP_NAME}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta property="og:title" content={settings?.seo_social_title} />
+        <meta name="description" content={settings?.seo_meta_description} />
+        <meta name="keywords" content={settings?.seo_meta_keywords} />
+        <meta property="og:image" content={settings?.seo_image} />
         <link
           rel="shortcut icon"
           href={metaData?.favicon || process.env.NEXT_PUBLIC_FAVICON}
