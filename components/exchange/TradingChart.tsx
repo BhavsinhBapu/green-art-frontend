@@ -75,10 +75,10 @@ export class TVChartContainer extends React.Component<MyProps> {
   componentDidMount() {
     if (this.tvWidget !== null) {
       //@ts-ignore
-      this.tvWidget.applyOverrides({
-        "paneProperties.background": "#151515",
-        "paneProperties.backgroundType": "solid",
-      });
+      // this.tvWidget.applyOverrides({
+      //   "paneProperties.background": "#151515",
+      //   "paneProperties.backgroundType": "solid",
+      // });
     }
 
     const widgetOptions = {
@@ -149,10 +149,10 @@ export class TVChartContainer extends React.Component<MyProps> {
       this.tvWidget.remove();
       this.tvWidget = null;
       //@ts-ignore
-      this.tvWidget.applyOverrides({
-        "paneProperties.background": "#151515",
-        "paneProperties.backgroundType": "solid",
-      });
+      // this.tvWidget.applyOverrides({
+      //   "paneProperties.background": "#151515",
+      //   "paneProperties.backgroundType": "solid",
+      // });
     }
   }
 
