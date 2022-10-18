@@ -49,5 +49,5 @@ export const TIME_FRAMES = [
   { text: "5m", resolution: INTERVAL.MINUTES_5 },
   { text: "15m", resolution: INTERVAL.MINUTES_15 },
   { text: "30m", resolution: INTERVAL.MINUTES_30 },
-  { text: "1h", resolution: INTERVAL.HOUR },
+  { text: "2h", resolution: INTERVAL.HOUR },
 ];
