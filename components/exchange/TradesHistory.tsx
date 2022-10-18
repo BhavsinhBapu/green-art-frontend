@@ -87,7 +87,6 @@ const TradesHistory = ({ marketTrades }: any) => {
                       </th>
                     </tr>
                   </thead>
-                  AllSellOrders
                   <SellTable marketTrades={marketTrades} />
                 </table>
               </div>

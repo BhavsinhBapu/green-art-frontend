@@ -14,6 +14,7 @@ import {
   initialDashboardCallActionWithToken,
 } from "state/actions/exchange";
 import {
+  setAllmarketTrades,
   setCurrentPair,
   setOpenBookBuy,
   setOpenBooksell,
@@ -48,21 +49,22 @@ async function listenMessages(dispatch: any) {
   ).listen(".process", (e: any) => {
     console.log(
       {
-        price: e.trades.transactions[0].price,
-        ts: e.trades.transactions[0].time,
+        price: parseFloat(e.last_trade.price),
+        ts: e.last_trade.time,
         base_coin_id: e.summary.base_coin_id,
         trade_coin_id: e.summary.trade_coin_id,
-        total: e.trades.transactions[0].total,
+        total: parseFloat(e.last_trade.total),
       },
       "trade data"
     );
     console.log(e, "eeee");
+    dispatch(setAllmarketTrades(e.trades.transactions));
     updateChart({
-      price: e.trades.transactions[0].price,
-      ts: e.trades.transactions[0].time,
+      price: parseFloat(e.last_trade.price),
+      ts: e.last_trade.time,
       base_coin_id: e.summary.base_coin_id,
       trade_coin_id: e.summary.trade_coin_id,
-      total: e.trades.transactions[0].total,
+      total: parseFloat(e.last_trade.total),
     });
   });
 }
