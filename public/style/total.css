@@ -5480,7 +5480,7 @@ table.dataTable tbody tr td {
   font-weight: 400;
   line-height: 26px;
   color: #23262f;
-  white-space: nowrap;
+  /* white-space: nowrap; */
   overflow: hidden;
   text-overflow: ellipsis;
 }

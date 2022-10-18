@@ -13,10 +13,8 @@ import { RecapCha } from "service/user";
 import useTranslation from "next-translate/useTranslation";
 import { RootState } from "state/store";
 const Signup: NextPage = () => {
-  const {  logo } = useSelector(
-    (state: RootState) => state.user
-  );
-    const { settings } = useSelector((state: RootState) => state.common);
+  const { logo } = useSelector((state: RootState) => state.user);
+  const { settings } = useSelector((state: RootState) => state.common);
   const dispatch = useDispatch();
   const { t } = useTranslation("common");
   const [recaptchaData, setRecaptchaData] = useState<any>({});
@@ -33,6 +31,17 @@ const Signup: NextPage = () => {
     setRecaptchaData(response.data);
     return response;
   };
+
+  let captcha: any;
+  const setCaptchaRef = (ref: any) => {
+    if (ref) {
+      return (captcha = ref);
+    }
+  };
+  const resetCaptcha = () => {
+    captcha.reset();
+  };
+
   useEffect(() => {
     getRecapcha();
   }, []);
@@ -195,6 +204,7 @@ const Signup: NextPage = () => {
                       {recaptchaData?.NOCAPTCHA_SITEKEY &&
                         recaptchaData?.google_recapcha === "1" && (
                           <ReCAPTCHA
+                            ref={(r: any) => setCaptchaRef(r)}
                             sitekey={recaptchaData?.NOCAPTCHA_SITEKEY}
                             render="explicit"
                             onChange={(response: any) => {
@@ -203,6 +213,7 @@ const Signup: NextPage = () => {
                           />
                         )}
                       <button
+                        onClick={() => resetCaptcha()}
                         type="submit"
                         disabled={processing}
                         className="btn nimmu-user-sibmit-button mt-3"

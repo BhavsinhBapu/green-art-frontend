@@ -16,11 +16,21 @@ const ResetPassword: NextPage = () => {
   const [processing, setProcessing] = useState(false);
   const { logo } = useSelector((state: RootState) => state.user);
   const [recaptchaData, setRecaptchaData] = useState<any>({});
-    const { settings } = useSelector((state: RootState) => state.common);
+  const { settings } = useSelector((state: RootState) => state.common);
   const getRecapcha = async () => {
     const response = await RecapCha();
     setRecaptchaData(response.data);
     return response;
+  };
+
+  let captcha: any;
+  const setCaptchaRef = (ref: any) => {
+    if (ref) {
+      return (captcha = ref);
+    }
+  };
+  const resetCaptcha = () => {
+    captcha.reset();
   };
   useEffect(() => {
     getRecapcha();
@@ -149,6 +159,7 @@ const ResetPassword: NextPage = () => {
                       {recaptchaData?.NOCAPTCHA_SITEKEY &&
                         recaptchaData?.google_recapcha === "1" && (
                           <ReCAPTCHA
+                            ref={(r: any) => setCaptchaRef(r)}
                             sitekey={recaptchaData?.NOCAPTCHA_SITEKEY}
                             render="explicit"
                             onChange={(response: any) => {
@@ -157,6 +168,7 @@ const ResetPassword: NextPage = () => {
                           />
                         )}
                       <button
+                        onClick={() => resetCaptcha()}
                         type="submit"
                         className="btn nimmu-user-sibmit-button mt-3"
                       >
