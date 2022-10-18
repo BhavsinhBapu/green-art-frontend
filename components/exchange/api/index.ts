@@ -69,12 +69,13 @@ export default {
     resolution: any,
     periodParams: any,
     onHistoryCallback: any,
-    onError: any
+    onError: any,
+    interval: any
   ) {
-
     const { from, to } = periodParams;
     const countBack = periodParams.countBack;
     const countForward = periodParams.countForward;
+    console.log(interval, "periodParams");
     //@ts-ignore
     historyProvider
       .getBars(
@@ -115,7 +116,6 @@ export default {
   },
   unsubscribeBars: (subscriberUID: any) => {
     stream.unsubscribeBars(subscriberUID);
-
   },
 
   calculateHistoryDepth: (
@@ -123,6 +123,7 @@ export default {
     resolutionBack: any,
     intervalBack: any
   ) => {
+    console.log("calculateHistoryDepth");
     //optional
 
     // while optional, this makes sure we request 24 hours of minute data at a time
@@ -150,5 +151,4 @@ export default {
     //optional
   },
   getServerTime: (cb: any) => {},
- 
 };
