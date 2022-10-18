@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useState } from "react";
 import { Formik, Field, Form } from "formik";
 //@ts-ignore
-import ReCAPTCHA, { reset } from "react-google-recaptcha";
+import ReCAPTCHA from "react-google-recaptcha";
 
 import Link from "next/link";
 import { authPageRequireCheck } from "middlewares/ssr-authentication-check";
@@ -33,7 +33,7 @@ const Signin: NextPage = () => {
     }
   };
   const resetCaptcha = () => {
-    captcha.reset();
+    captcha?.reset();
   };
 
   useEffect(() => {
