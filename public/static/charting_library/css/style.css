@@ -17,11 +17,11 @@
 .theme-dark:root {
   --tv-color-platform-background: #151515;
   --tv-color-pane-background: #151515;
-  --tv-color-pane-background-secondary: #f3d16c;
+  /* --tv-color-pane-background-secondary: #f3d16c; */
   --tv-color-toolbar-button-background-hover: #151515;
   --tv-color-toolbar-button-background-secondary-hover: #151515;
   --tv-color-toolbar-button-background-expanded: #ffc107;
-  --tv-color-toolbar-button-text: #ffc107;
+  /* --tv-color-toolbar-button-text: #ffc107; */
   --tv-color-toolbar-button-text-hover: #ffc107;
   --tv-color-toolbar-button-text-active: #ffc107;
   --tv-color-toolbar-button-text-active-hover: #ffc107;
