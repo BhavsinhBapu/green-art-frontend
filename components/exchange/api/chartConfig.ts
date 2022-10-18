@@ -1,5 +1,7 @@
 export function getChartOverrides(theme: any) {
-  return {};
+  return {
+
+  };
 }
 
 export const ENABLED_FEATURES = [
@@ -9,18 +11,18 @@ export const ENABLED_FEATURES = [
   "use_localstorage_for_settings",
 ];
 export const DISABLED_FEATURES = [
-  // "header_symbol_search",
+  "header_symbol_search",
   // "header_widget",
-  // "symbol_info",
+  "symbol_info",
   // "header_compare",
   // "header_chart_type",
   // "display_market_status",
   // "symbol_search_hot_key",
-  // "compare_symbol",
+  "compare_symbol",
   // "border_around_the_chart",
   // "remove_library_container_border",
   // "header_interval_dialog_button",
-  // "show_interval_dialog_on_key_press",
+  "show_interval_dialog_on_key_press",
   // "header_saveload",
   // "header_symbol_search_hot_key",
   // "header_interval_dropdown",
