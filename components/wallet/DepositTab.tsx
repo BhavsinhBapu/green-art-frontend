@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Qr from "components/common/qr";
 import { copyTextById, formateZert } from "common";
 import useTranslation from "next-translate/useTranslation";
@@ -9,6 +9,7 @@ const DepositTab = ({ response, TurnoffSetShow, id }: any) => {
   const [selectedNetwork, setSelectedNetwork] = useState(
     response?.data && response?.data[0]
   );
+  const selectAddress: any = useRef();
 
   return (
     <div className={`asset-balances-right visible mb-3`}>
@@ -89,11 +90,29 @@ const DepositTab = ({ response, TurnoffSetShow, id }: any) => {
                 </p>
               </div>
               <div className="input-url">
-                <p id="url-copy" className="address-box">
+                <input
+                  onClick={() => {
+                    copyTextById(
+                      response.wallet.coin_type == "USDT"
+                        ? selectedNetwork?.address
+                        : response?.address
+                    );
+                    selectAddress.current.select();
+                  }}
+                  ref={selectAddress}
+                  className="address-box address-copy-box"
+                  type="text"
+                  value={
+                    response.wallet.coin_type == "USDT"
+                      ? selectedNetwork?.address
+                      : response?.address
+                  }
+                />
+                {/* <p ref={selectAddress} id="url-copy" className="address-box">
                   {response.wallet.coin_type == "USDT"
                     ? selectedNetwork?.address
                     : response?.address}
-                </p>
+                </p> */}
                 <button
                   type="button"
                   className="btn copy-url-btn"
@@ -103,6 +122,7 @@ const DepositTab = ({ response, TurnoffSetShow, id }: any) => {
                         ? selectedNetwork?.address
                         : response?.address
                     );
+                    selectAddress.current.select();
                   }}
                 >
                   <i className="fa fa-clone"></i>
