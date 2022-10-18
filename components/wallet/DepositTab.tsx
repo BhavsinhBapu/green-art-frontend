@@ -85,7 +85,7 @@ const DepositTab = ({ response, TurnoffSetShow, id }: any) => {
                   {t("Only send")} {response?.deposit?.coin_type}{" "}
                   {t("to this address.")}
                   {t(
-                    "Sending any other asset to this address may result in the loss of your deposit!"
+                    "Please note that only supported networks on our platform are shown, if you deposit via another network your assets may be lost."
                   )}
                 </p>
               </div>
