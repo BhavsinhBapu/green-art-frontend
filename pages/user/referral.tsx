@@ -2,7 +2,7 @@ import Loading from "components/common/loading";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import type { GetServerSideProps, NextPage } from "next";
 import useTranslation from "next-translate/useTranslation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { toast } from "react-toastify";
 import { getReferral } from "service/refer";
 const Referral: NextPage = () => {
@@ -10,6 +10,7 @@ const Referral: NextPage = () => {
   const [allData, setAllData] = useState<any>();
   const [loading, setLoading] = useState(true);
   const { t } = useTranslation("common");
+  const selectReference: any = useRef();
 
   useEffect(() => {
     getReferral().then((res) => {
@@ -37,8 +38,14 @@ const Referral: NextPage = () => {
               <h4>{t("Invite your friends")}</h4>
               <div className="input-group">
                 <input
+                  ref={selectReference}
+                  onClick={() => {
+                    navigator.clipboard.writeText(referral);
+                    toast.success(t("Copied to clipboard"));
+                    selectReference.current.select();
+                  }}
                   type="url"
-                  className="form-control"
+                  className="form-control referel-inputfield"
                   id="url"
                   defaultValue={referral}
                   readOnly
@@ -49,6 +56,7 @@ const Referral: NextPage = () => {
                   onClick={() => {
                     navigator.clipboard.writeText(referral);
                     toast.success(t("Copied to clipboard"));
+                    selectReference.current.select();
                   }}
                 >
                   <i className="fa fa-clone" />

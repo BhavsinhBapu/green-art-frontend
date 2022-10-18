@@ -10,3 +10,11 @@ export const FAQ_TYPE_SELL = 5;
 export const FAQ_TYPE_COIN = 6;
 export const FAQ_TYPE_WALLET = 7;
 export const FAQ_TYPE_TRADE = 8;
+
+//kyc list
+export const KYC_PHONE_VERIFICATION = 1;
+export const KYC_EMAIL_VERIFICATION = 2;
+export const KYC_NID_VERIFICATION = 3;
+export const KYC_PASSPORT_VERIFICATION = 4;
+export const KYC_DRIVING_VERIFICATION = 5;
+export const KYC_VOTERS_CARD_VERIFICATION = 6;

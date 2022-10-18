@@ -212,7 +212,9 @@ const TransactionHistory: NextPage = () => {
                                 </a>
                               ) : (
                                 <a
-                                  className="paginate_button paginate-number"
+                                  className={`paginate_button paginate-number ${
+                                    link.active === true && "text-warning"
+                                  }`}
                                   aria-controls="assetBalances"
                                   data-dt-idx="1"
                                   onClick={() => LinkTopaginationString(link)}

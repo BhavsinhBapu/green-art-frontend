@@ -4,6 +4,7 @@ import {
   UploadDrivingLicenceImageAction,
   UploadNidImageAction,
   UploadPassportImageAction,
+  UploadVoterImageAction,
 } from "state/actions/user";
 
 const NidModal = ({ type, kycDetails }: any) => {
@@ -13,13 +14,18 @@ const NidModal = ({ type, kycDetails }: any) => {
   const [showBack, setShowBack] = useState(null);
   const [processing, setProcessing] = useState(false);
   const [backSide, setBackSide] = useState(null);
+  const [showSelfe, setShowSelfe] = useState(null);
+  const [selfeSide, setSelfeSide] = useState(null);
   const [existingKyc, setExistingKyc] = useState<any>();
   const { t } = useTranslation("common");
   if (type !== previousType) {
     setPreviousType(type);
     setFrontSide(null);
     setBackSide(null);
+    setSelfeSide(null);
   }
+
+  console.log(type);
 
   const storeSelectedFile = (e: any, setState: any, side: number) => {
     var reader = new FileReader();
@@ -27,15 +33,20 @@ const NidModal = ({ type, kycDetails }: any) => {
       setState(reader.result);
     };
     if (side === 1) {
-      setState(e.target.files[0]);
       // @ts-ignore
       setShowFront(URL.createObjectURL(e.target.files[0]));
+      setState(e.target.files[0]);
+    } else if (side === 3) {
+      // @ts-ignore
+      setShowSelfe(URL.createObjectURL(e.target.files[0]));
+      setState(e.target.files[0]);
     } else {
       // @ts-ignore
       setShowBack(URL.createObjectURL(e.target.files[0]));
       setState(e.target.files[0]);
     }
   };
+
   const uploadImage = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
@@ -43,26 +54,33 @@ const NidModal = ({ type, kycDetails }: any) => {
     const formData: any = new FormData();
     formData.append("file_two", frontSide);
     formData.append("file_three", backSide);
+    formData.append("file_selfie", selfeSide);
     if (type === "nid") {
       UploadNidImageAction(formData, setProcessing);
-    } else if (type === "driving-licence") {
+    } else if (type === "driving") {
       UploadDrivingLicenceImageAction(formData, setProcessing);
     } else if (type === "passport") {
       UploadPassportImageAction(formData, setProcessing);
+    } else if (type === "voter") {
+      UploadVoterImageAction(formData, setProcessing);
     }
   };
   const loadCard = () => {
     if (type === "nid") {
       setExistingKyc(kycDetails?.nid);
-    } else if (type === "driving-licence") {
+    } else if (type === "driving") {
       setExistingKyc(kycDetails?.driving);
     } else if (type === "passport") {
       setExistingKyc(kycDetails?.passport);
+    } else if (type === "voter") {
+      setExistingKyc(kycDetails?.voter);
     }
   };
   useEffect(() => {
     loadCard();
   }, [type]);
+
+  console.log(kycDetails);
 
   return (
     <div
@@ -164,7 +182,36 @@ const NidModal = ({ type, kycDetails }: any) => {
                       </div>
                     </div>
                   </div>
-                  {!existingKyc?.front_image && !existingKyc?.back_image && (
+
+                  <div className="col-lg-6 mb-lg-0 mb-4 mt-5">
+                    <div className="idcard">
+                      <h3 className="title">{t("Selfie Image")}</h3>
+                      <div className="container cstm-img-picker">
+                        {showSelfe ? (
+                          //@ts-ignore
+                          <img src={showSelfe} className="img-fluid" alt="" />
+                        ) : existingKyc?.selfie ? (
+                          <img
+                            src={existingKyc?.selfie}
+                            className="img-fluid"
+                            alt=""
+                          />
+                        ) : (
+                          <label className="container cstm-img-picker">
+                            <input
+                              type="file"
+                              name="file_selfie"
+                              onChange={(e) => {
+                                storeSelectedFile(e, setSelfeSide, 3);
+                              }}
+                            />
+                            <span>{t("Click to select a file")}</span>
+                          </label>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                  {!existingKyc?.file_selfie && !existingKyc?.file_selfie && (
                     <button
                       type="submit"
                       className="btn nimmu-user-sibmit-button mt-5"
