@@ -33,13 +33,16 @@ const Index = ({ children }: any) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const getCommonSettings = async () => {
-    dispatch(setLoading(true))
+    dispatch(setLoading(true));
     const response = await commomSettings();
     dispatch(setLogo(response.data.logo));
     dispatch(setSettings(response.data));
     setMetaData(response.data);
-    dispatch(setLoading(false))
+    dispatch(setLoading(false));
   };
+
+  console.log("common settings", settings);
+
   useEffect(() => {
     getCommonSettings();
   }, []);
@@ -81,7 +84,13 @@ const Index = ({ children }: any) => {
     <div>
       {isLoading && <Loading />}
       <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>{metaData?.app_title || process.env.NEXT_PUBLIC_APP_NAME}</title>
+        <meta property="og:title" content={settings?.seo_social_title} />
+        <meta name="description" content={settings?.seo_meta_description} />
+        <meta name="keywords" content={settings?.seo_meta_keywords} />
+        <meta property="og:image" content={settings?.seo_image} />
+
         <link
           rel="shortcut icon"
           href={metaData?.favicon || process.env.NEXT_PUBLIC_FAVICON}
