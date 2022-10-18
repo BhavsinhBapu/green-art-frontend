@@ -46,12 +46,23 @@ async function listenMessages(dispatch: any) {
       "trade_coin_id"
     )}`
   ).listen(".process", (e: any) => {
+    console.log(
+      {
+        price: e.trades.transactions[0].price,
+        ts: e.trades.transactions[0].time,
+        base_coin_id: e.summary.base_coin_id,
+        trade_coin_id: e.summary.trade_coin_id,
+        total: e.trades.transactions[0].total,
+      },
+      "trade data"
+    );
+    console.log(e, "eeee");
     updateChart({
-      price: e.summary.buy_price,
-      ts: last(e.chart).time,
+      price: e.trades.transactions[0].price,
+      ts: e.trades.transactions[0].time,
       base_coin_id: e.summary.base_coin_id,
       trade_coin_id: e.summary.trade_coin_id,
-      total: e.summary.total,
+      total: e.trades.transactions[0].total,
     });
   });
 }
