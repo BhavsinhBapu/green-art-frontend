@@ -24,9 +24,6 @@ const NidModal = ({ type, kycDetails }: any) => {
     setBackSide(null);
     setSelfeSide(null);
   }
-
-  console.log(type);
-
   const storeSelectedFile = (e: any, setState: any, side: number) => {
     var reader = new FileReader();
     reader.onloadend = function (e) {
@@ -80,7 +77,6 @@ const NidModal = ({ type, kycDetails }: any) => {
     loadCard();
   }, [type]);
 
-  console.log(kycDetails);
 
   return (
     <div

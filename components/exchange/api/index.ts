@@ -75,7 +75,6 @@ export default {
     const { from, to } = periodParams;
     const countBack = periodParams.countBack;
     const countForward = periodParams.countForward;
-    console.log(interval, "periodParams");
     //@ts-ignore
     historyProvider
       .getBars(
@@ -123,7 +122,6 @@ export default {
     resolutionBack: any,
     intervalBack: any
   ) => {
-    console.log("calculateHistoryDepth");
     //optional
 
     // while optional, this makes sure we request 24 hours of minute data at a time
