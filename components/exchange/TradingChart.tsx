@@ -8,6 +8,22 @@ import {
   getChartOverrides,
   TIME_FRAMES,
 } from "./api/chartConfig";
+import { splitPair } from "common";
+
+const supportedResolutions = [
+  "1",
+  "3",
+  "5",
+  "15",
+  "30",
+  "60",
+  "120",
+  "240",
+  "360",
+  "D",
+  "W",
+  "M",
+];
 
 function getLanguageFromURL() {
   const regex = new RegExp("[\\?&]lang=([^&#]*)");
@@ -24,14 +40,15 @@ localStorage.setItem("tradingview.ChartDrawingToolbarWidget.visible", "false");
 export class TVChartContainer extends React.Component<MyProps> {
   static defaultProps = {
     symbol: `:${pair && pair}`,
-    interval: "5",
+    interval: "1",
     containerId: "tv_chart_container",
     libraryPath: "/static/charting_library/",
     chartsStorageUrl: "https://saveload.tradingview.com",
     chartsStorageApiVersion: "1.1",
     clientId: "tradingview.com",
+
+    userId: "public_user_id",
     fullscreen: false,
-    custom_css_url: "css/style.css",
     autosize: true,
     studiesOverrides: {},
   };
@@ -52,13 +69,13 @@ export class TVChartContainer extends React.Component<MyProps> {
   }
 
   componentDidMount() {
-    console.log(version, "version");
     const widgetOptions = {
       height: 480,
       width: 1400,
       //@ts-ignore
       symbol: this.props.symbol,
       style: 1,
+      theme: "dark",
       //@ts-ignore
       datafeed: Datafeed,
       // datafeed: Datafeed,
@@ -70,10 +87,7 @@ export class TVChartContainer extends React.Component<MyProps> {
       //@ts-ignore
       library_path: this.props.libraryPath,
       //@ts-ignore
-      overrides: {
-        "paneProperties.background": "#151515",
-        "paneProperties.backgroundType": "solid",
-      },
+
       locale: getLanguageFromURL() || "en",
       //@ts-ignore
       charts_storage_url: this.props.chartsStorageUrl,
@@ -84,6 +98,7 @@ export class TVChartContainer extends React.Component<MyProps> {
       client_id: this.props.clientId,
       //@ts-ignore
       user_id: this.props.userId,
+
       //@ts-ignore
       fullscreen: this.props.fullscreen,
       //@ts-ignore
@@ -95,40 +110,20 @@ export class TVChartContainer extends React.Component<MyProps> {
       enabled_features: ENABLED_FEATURES,
       //@ts-ignore
       disabled_features: DISABLED_FEATURES,
-      //@ts-ignore
-      studies_overrides: this.props.studiesOverrides,
-      custom_css_url: "css/style.css",
-      // custom_css_url: "chart-v3-ethfinex-theme.css",
-      //@ts-ignore
-      // overrides: getChartOverrides(this.props.theme),
-      theme: "dark",
 
       //@ts-ignore
+      overrides: getChartOverrides(this.props.theme),
+      custom_css_url: "css/style.css",
+      //@ts-ignore
       time_frames: TIME_FRAMES,
+
       //@ts-ignore
       studies_overrides: {
         "volume.volume.color.0": "#df5e35",
         "volume.volume.color.1": "#6ac955",
         "volume.volume.transparency": 0,
       },
-
       toolbar: false,
-      //@ts-ignore
-      // studies_overrides: {
-      //   //@ts-ignore
-
-      //   "moving average.ma.visible": true,
-      //   "volume.volume.color.0": "#ffc107",
-      //   "volume.volume.color.1": "#ffffff",
-      //   "volume.volume.transparency": 0,
-      //   "volume.volume ma.color": "#ffc107",
-      //   "volume.volume ma.linewidth": 2,
-      //   "volume.volume ma.plottype": "line",
-      //   "volume.volume ma.transparency": 0,
-      //   "volume.volume ma.visible": true,
-      //   "volume.volume.plottype": "column",
-      //   "volume.volume.show ma": true,
-      // },
     };
     //@ts-ignore
     this.chartInit(widgetOptions);
@@ -145,6 +140,7 @@ export class TVChartContainer extends React.Component<MyProps> {
   render() {
     return (
       <>
+        <header className={styles.VersionHeader}></header>
         {/* @ts-ignore */}
         <div ref={this.ref} className={styles.TVChartContainer} />
       </>
