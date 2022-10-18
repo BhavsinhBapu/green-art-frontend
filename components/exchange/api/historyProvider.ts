@@ -26,7 +26,7 @@ export default {
           high: el.high,
           open: el.open,
           close: el.close,
-          volume: el.volume,
+          volume: el.volume+5000,
         }));
         if (first) {
           const lastBar = bars[bars.length - 1];

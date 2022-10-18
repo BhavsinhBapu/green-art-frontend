@@ -70,7 +70,10 @@ export class TVChartContainer extends React.Component<MyProps> {
       //@ts-ignore
       library_path: this.props.libraryPath,
       //@ts-ignore
-
+      overrides: {
+        "paneProperties.background": "#151515",
+        "paneProperties.backgroundType": "solid",
+      },
       locale: getLanguageFromURL() || "en",
       //@ts-ignore
       charts_storage_url: this.props.chartsStorageUrl,
@@ -81,22 +84,6 @@ export class TVChartContainer extends React.Component<MyProps> {
       client_id: this.props.clientId,
       //@ts-ignore
       user_id: this.props.userId,
-      overrides: {
-        "mainSeriesProperties.style": 2,
-        //override background color
-        "paneProperties.background": "#000000",
-        "platformOverrides": {
-          "mainSeriesProperties.style": 2,
-          "paneProperties.background": "#000000",
-          "paneProperties.vertGridProperties.color": "#363c4e",
-          "paneProperties.horzGridProperties.color": "#363c4e",
-          "symbolWatermarkProperties.transparency": 90,
-          "scalesProperties.textColor": "#AAA",
-          "mainSeriesProperties.candleStyle.upColor": "#336854",
-          "mainSeriesProperties.candleStyle.downColor": "#7f323f",
-          "mainSeriesProperties.candleStyle.drawWick": true,
-        }
-      },
       //@ts-ignore
       fullscreen: this.props.fullscreen,
       //@ts-ignore
