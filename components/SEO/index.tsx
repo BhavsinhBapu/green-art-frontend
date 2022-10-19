@@ -1,6 +1,8 @@
 import React from "react";
 
 export const SEO = ({ children, seoData }: any) => {
+  console.log("seoData", seoData);
+
   return (
     <div>
       <head>
