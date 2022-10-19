@@ -100,7 +100,7 @@ const Security: NextPage = () => {
                     )}
                   </div>
                   <div className="security-right">
-                    {user.phone_verified === 0 ? (
+                    {parseInt(user.phone_verified) === 0 ? (
                       <Link href="/user/phone-verification">
                         <a className="action-btn enable-btn">{t("Verify?")}</a>
                       </Link>
