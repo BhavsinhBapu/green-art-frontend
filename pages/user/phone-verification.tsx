@@ -76,9 +76,9 @@ const PhoneVerification: NextPage = () => {
                       ) : (
                         <div className="code-list">
                           <p>
-                            {t("Please add mobile no. first from")}
+                            {t("Please add your mobile number first from ")}
                             <Link href="/user/edit-profile">
-                              {t("edit profile")}
+                              {t(" edit profile")}
                             </Link>
                           </p>
                         </div>
