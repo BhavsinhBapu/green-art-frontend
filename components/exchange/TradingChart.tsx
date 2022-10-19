@@ -52,8 +52,11 @@ export class TVChartContainer extends React.Component<MyProps> {
     autosize: true,
     studiesOverrides: {},
     overrides: {
-      "paneProperties.background": "#151515",
-      "paneProperties.backgroundType": "solid",
+      "mainSeriesProperties.candleStyle.upColor": "#ffffff",
+      "mainSeriesProperties.candleStyle.downColor": "#000000",
+      "mainSeriesProperties.candleStyle.drawBorder": true,
+      "mainSeriesProperties.candleStyle.borderUpColor": "#00ff00",
+      "mainSeriesProperties.candleStyle.borderDownColor": "#ff0000",
     },
   };
   // name = this.props.name;
@@ -73,14 +76,6 @@ export class TVChartContainer extends React.Component<MyProps> {
   }
 
   componentDidMount() {
-    if (this.tvWidget !== null) {
-      //@ts-ignore
-      // this.tvWidget.applyOverrides({
-      //   "paneProperties.background": "#151515",
-      //   "paneProperties.backgroundType": "solid",
-      // });
-    }
-
     const widgetOptions = {
       height: 480,
       width: 1400,
@@ -122,7 +117,13 @@ export class TVChartContainer extends React.Component<MyProps> {
       enabled_features: ENABLED_FEATURES,
       //@ts-ignore
       disabled_features: DISABLED_FEATURES,
-
+      overrides: {
+        "mainSeriesProperties.candleStyle.upColor": "#ffffff",
+        "mainSeriesProperties.candleStyle.downColor": "#000000",
+        "mainSeriesProperties.candleStyle.drawBorder": true,
+        "mainSeriesProperties.candleStyle.borderUpColor": "#00ff00",
+        "mainSeriesProperties.candleStyle.borderDownColor": "#ff0000",
+      },
       //@ts-ignore
       // overrides: getChartOverrides(this.props.theme),
       custom_css_url: "css/style.css",
@@ -130,13 +131,21 @@ export class TVChartContainer extends React.Component<MyProps> {
       time_frames: TIME_FRAMES,
 
       //@ts-ignore
-      // studies_overrides: {
-      //   "volume.volume.color.0": "#dc3545",
-      //   "volume.volume.color.1": "#6ac955",
-      //   "volume.volume.transparency": 0,
-      //   "candleStyle.upColor": "#6ac955",
-      //   "candleStyle.downColor": "#df5e35",
-      // },
+      studies_overrides: {
+        // "volume.volume.color.0": "#dc3545",
+        // "volume.volume.color.1": "#32d777",
+        // "volume.volume.transparency": 0,
+        // "volume.volume ma.color": "#32d777",
+        // "volume.volume ma.transparency": 0,
+        // "mainSeriesProperties.candleStyle.upColor": "#dc3545",
+        // "mainSeriesProperties.candleStyle.downColor": "#32d777",
+        // "mainSeriesProperties.candleStyle.drawBorder": true,
+        // "mainSeriesProperties.candleStyle.borderUpColor": "#dc3545",
+        // "mainSeriesProperties.candleStyle.borderDownColor": "#32d777",
+        // "mainSeriesProperties.candleStyle.wickUpColor": "#dc3545",
+        // "mainSeriesProperties.candleStyle.wickDownColor": "#32d777",
+        // "mainSeriesProperties.candleStyle.barColorsOnPrevClose": false,
+      },
       toolbar: false,
     };
     //@ts-ignore
@@ -148,11 +157,6 @@ export class TVChartContainer extends React.Component<MyProps> {
       //@ts-ignore
       this.tvWidget.remove();
       this.tvWidget = null;
-      //@ts-ignore
-      // this.tvWidget.applyOverrides({
-      //   "paneProperties.background": "#151515",
-      //   "paneProperties.backgroundType": "solid",
-      // });
     }
   }
 
