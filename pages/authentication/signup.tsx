@@ -39,7 +39,7 @@ const Signup: NextPage = () => {
     }
   };
   const resetCaptcha = () => {
-    captcha.reset();
+    captcha?.reset();
   };
 
   useEffect(() => {
