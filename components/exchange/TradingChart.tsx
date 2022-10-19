@@ -51,7 +51,13 @@ export class TVChartContainer extends React.Component<MyProps> {
     fullscreen: false,
     autosize: true,
     studiesOverrides: {},
-   
+    overrides: {
+      "mainSeriesProperties.candleStyle.upColor": "#ffffff",
+      "mainSeriesProperties.candleStyle.downColor": "#000000",
+      "mainSeriesProperties.candleStyle.drawBorder": true,
+      "mainSeriesProperties.candleStyle.borderUpColor": "#00ff00",
+      "mainSeriesProperties.candleStyle.borderDownColor": "#ff0000",
+    },
   };
   // name = this.props.name;
 
@@ -112,8 +118,11 @@ export class TVChartContainer extends React.Component<MyProps> {
       //@ts-ignore
       disabled_features: DISABLED_FEATURES,
       overrides: {
-        "paneProperties.background": "#151515",
-        "paneProperties.backgroundType": "solid",
+        "mainSeriesProperties.candleStyle.upColor": "#ffffff",
+        "mainSeriesProperties.candleStyle.downColor": "#000000",
+        "mainSeriesProperties.candleStyle.drawBorder": true,
+        "mainSeriesProperties.candleStyle.borderUpColor": "#00ff00",
+        "mainSeriesProperties.candleStyle.borderDownColor": "#ff0000",
       },
       //@ts-ignore
       // overrides: getChartOverrides(this.props.theme),
@@ -123,11 +132,19 @@ export class TVChartContainer extends React.Component<MyProps> {
 
       //@ts-ignore
       studies_overrides: {
-        "volume.volume.color.0": "#dc3545",
-        "volume.volume.color.1": "#6ac955",
-        "volume.volume.transparency": 0,
-        "candleStyle.upColor": "#6ac955",
-        "candleStyle.downColor": "#df5e35",
+        // "volume.volume.color.0": "#dc3545",
+        // "volume.volume.color.1": "#32d777",
+        // "volume.volume.transparency": 0,
+        // "volume.volume ma.color": "#32d777",
+        // "volume.volume ma.transparency": 0,
+        // "mainSeriesProperties.candleStyle.upColor": "#dc3545",
+        // "mainSeriesProperties.candleStyle.downColor": "#32d777",
+        // "mainSeriesProperties.candleStyle.drawBorder": true,
+        // "mainSeriesProperties.candleStyle.borderUpColor": "#dc3545",
+        // "mainSeriesProperties.candleStyle.borderDownColor": "#32d777",
+        // "mainSeriesProperties.candleStyle.wickUpColor": "#dc3545",
+        // "mainSeriesProperties.candleStyle.wickDownColor": "#32d777",
+        // "mainSeriesProperties.candleStyle.barColorsOnPrevClose": false,
       },
       toolbar: false,
     };
