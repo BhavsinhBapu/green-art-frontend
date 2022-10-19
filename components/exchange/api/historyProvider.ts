@@ -62,6 +62,7 @@ export default {
             }
             return bars;
           }
+          this.hitted = false;
           return [];
         }
       );
