@@ -5,6 +5,7 @@ import { getChartData } from "service/trading-chart";
 const history: any = {};
 const api_root = "https://min-api.cryptocompare.com";
 
+
 export default {
   history: history,
   //@ts-ignore
