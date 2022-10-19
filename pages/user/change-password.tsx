@@ -45,9 +45,6 @@ const PhoneVerification: NextPage = () => {
             {({ errors, touched }) => (
               <Form>
                 <div className="reset-password-area">
-                  <h4 className="section-title-medium">
-                    {t("Change Password")}
-                  </h4>
                   <div className="section-wrapper">
                     <div className="row">
                       <div className="col-lg-6 col-md-8">
