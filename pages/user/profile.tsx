@@ -22,7 +22,6 @@ const Profile: NextPage = ({ user }: any) => {
             </div>
           </div>
           <div className="profile-area">
-            <h4 className="section-title-medium">{t("Profile Information")}</h4>
             <div className="section-wrapper">
               <div className="user-profile">
                 <div className="row">
@@ -90,7 +89,10 @@ const Profile: NextPage = ({ user }: any) => {
                         <li>
                           <span>{t("Phone")}</span>
                           <span className="cp-user-dot">:</span>
-                          <span> +{user?.phone ? user?.phone : "No phone"}</span>
+                          <span>
+                            {" "}
+                            +{user?.phone ? user?.phone : "No phone"}
+                          </span>
                         </li>
                       </ul>
                     </div>

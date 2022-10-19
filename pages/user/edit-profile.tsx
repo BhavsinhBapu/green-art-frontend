@@ -42,9 +42,6 @@ const Edit: NextPage = () => {
           </div>
 
           <div className="profile-area">
-            <h4 className="section-title-medium">
-              {t("Update Profile Information")}
-            </h4>
             <div className="section-wrapper">
               <div className="user-profile">
                 <div className="row">
