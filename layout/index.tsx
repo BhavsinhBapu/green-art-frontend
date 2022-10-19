@@ -13,10 +13,6 @@ import Head from "next/head";
 import { setLoading, setLogo } from "state/reducer/user";
 import { setSettings } from "state/reducer/common";
 import Loading from "components/common/loading";
-import { landingPage } from "service/landing-page";
-import { GetServerSideProps } from "next";
-import { destroyCookie, parseCookies } from "nookies";
-import { GetUserInfoByTokenServer } from "service/user";
 
 const Index = ({ children }: any) => {
   const [navbarVisible, setNavbarVisible] = useState(false);
@@ -84,7 +80,7 @@ const Index = ({ children }: any) => {
       dispatch(GetUserInfoByTokenAction());
     }
   }, [isLoggedIn, settings.cookie_status]);
-  return navbarVisible ? (  
+  return navbarVisible ? (
     <div>
       {isLoading && <Loading />}
       <Head>
