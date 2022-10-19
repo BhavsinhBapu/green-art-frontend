@@ -51,10 +51,7 @@ export class TVChartContainer extends React.Component<MyProps> {
     fullscreen: false,
     autosize: true,
     studiesOverrides: {},
-    overrides: {
-      "paneProperties.background": "#151515",
-      "paneProperties.backgroundType": "solid",
-    },
+   
   };
   // name = this.props.name;
 
@@ -73,14 +70,6 @@ export class TVChartContainer extends React.Component<MyProps> {
   }
 
   componentDidMount() {
-    if (this.tvWidget !== null) {
-      //@ts-ignore
-      // this.tvWidget.applyOverrides({
-      //   "paneProperties.background": "#151515",
-      //   "paneProperties.backgroundType": "solid",
-      // });
-    }
-
     const widgetOptions = {
       height: 480,
       width: 1400,
@@ -122,7 +111,10 @@ export class TVChartContainer extends React.Component<MyProps> {
       enabled_features: ENABLED_FEATURES,
       //@ts-ignore
       disabled_features: DISABLED_FEATURES,
-
+      overrides: {
+        "paneProperties.background": "#151515",
+        "paneProperties.backgroundType": "solid",
+      },
       //@ts-ignore
       // overrides: getChartOverrides(this.props.theme),
       custom_css_url: "css/style.css",
@@ -130,13 +122,13 @@ export class TVChartContainer extends React.Component<MyProps> {
       time_frames: TIME_FRAMES,
 
       //@ts-ignore
-      // studies_overrides: {
-      //   "volume.volume.color.0": "#dc3545",
-      //   "volume.volume.color.1": "#6ac955",
-      //   "volume.volume.transparency": 0,
-      //   "candleStyle.upColor": "#6ac955",
-      //   "candleStyle.downColor": "#df5e35",
-      // },
+      studies_overrides: {
+        "volume.volume.color.0": "#dc3545",
+        "volume.volume.color.1": "#6ac955",
+        "volume.volume.transparency": 0,
+        "candleStyle.upColor": "#6ac955",
+        "candleStyle.downColor": "#df5e35",
+      },
       toolbar: false,
     };
     //@ts-ignore
@@ -148,11 +140,6 @@ export class TVChartContainer extends React.Component<MyProps> {
       //@ts-ignore
       this.tvWidget.remove();
       this.tvWidget = null;
-      //@ts-ignore
-      // this.tvWidget.applyOverrides({
-      //   "paneProperties.background": "#151515",
-      //   "paneProperties.backgroundType": "solid",
-      // });
     }
   }
 
