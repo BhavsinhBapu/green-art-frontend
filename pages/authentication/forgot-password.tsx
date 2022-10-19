@@ -28,7 +28,7 @@ const ForgotPassword: NextPage = () => {
     }
   };
   const resetCaptcha = () => {
-    captcha.reset();
+    captcha?.reset();
   };
   useEffect(() => {
     getRecapcha();
