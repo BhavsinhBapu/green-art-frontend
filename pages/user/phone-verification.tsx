@@ -37,7 +37,6 @@ const PhoneVerification: NextPage = () => {
             </div>
           </div>
           <div className="reset-password-area">
-            <h4 className="section-title-medium">{t("Verify Phone")} </h4>
             <div className="section-wrapper">
               <div className="row">
                 <div className="col-lg-6 col-md-8">
