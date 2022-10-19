@@ -13,6 +13,11 @@ import Head from "next/head";
 import { setLoading, setLogo } from "state/reducer/user";
 import { setSettings } from "state/reducer/common";
 import Loading from "components/common/loading";
+import { landingPage } from "service/landing-page";
+import { GetServerSideProps } from "next";
+import { destroyCookie, parseCookies } from "nookies";
+import { GetUserInfoByTokenServer } from "service/user";
+
 const Index = ({ children }: any) => {
   const [navbarVisible, setNavbarVisible] = useState(false);
   const [showterms, setShowTerms] = useState(false);
@@ -29,6 +34,7 @@ const Index = ({ children }: any) => {
     (state: RootState) => state.user
   );
   const { settings } = useSelector((state: RootState) => state.common);
+
   const { t } = useTranslation("common");
   const dispatch = useDispatch();
   const router = useRouter();
@@ -40,8 +46,6 @@ const Index = ({ children }: any) => {
     setMetaData(response.data);
     dispatch(setLoading(false));
   };
-
-  console.log("common settings", settings);
 
   useEffect(() => {
     getCommonSettings();
@@ -80,17 +84,11 @@ const Index = ({ children }: any) => {
       dispatch(GetUserInfoByTokenAction());
     }
   }, [isLoggedIn, settings.cookie_status]);
-  return navbarVisible ? (
+  return navbarVisible ? (  
     <div>
       {isLoading && <Loading />}
       <Head>
         <title>{metaData?.app_title || process.env.NEXT_PUBLIC_APP_NAME}</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta property="og:title" content={settings?.seo_social_title} />
-        <meta name="description" content={settings?.seo_meta_description} />
-        <meta name="keywords" content={settings?.seo_meta_keywords} />
-        <meta property="og:image" content={settings?.seo_image} />
-
         <link
           rel="shortcut icon"
           href={metaData?.favicon || process.env.NEXT_PUBLIC_FAVICON}
