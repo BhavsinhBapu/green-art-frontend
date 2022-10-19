@@ -1,8 +1,9 @@
-import type { NextPage } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 import useTranslation from "next-translate/useTranslation";
 import { useState } from "react";
+import { getFaqList } from "service/faq";
 
-const Index: NextPage = () => {
+const Index: NextPage = ({ faq }: any) => {
   const { t } = useTranslation("common");
   const [active, setActive] = useState<number>(1);
   const handleActive = (index: number) => {
@@ -12,6 +13,8 @@ const Index: NextPage = () => {
       setActive(index);
     }
   };
+
+  console.log("faq", faq);
 
   return (
     <div className="container-fluid">
@@ -76,48 +79,49 @@ const Index: NextPage = () => {
           <div className="row align-items-center">
             <div className="col-lg-6">
               <div className="accordion" id="accordionExample">
-                <div className="cp-user-referral-content ">
-                  <div className="card">
-                    <div
-                      className="card-header"
-                      id="headingOne"
-                      onClick={() => handleActive(1)}
-                    >
-                      <h5 className="mb-0 header-align">
-                        <button
-                          className="btn btn-link collapsed"
-                          data-toggle="collapse"
-                          data-target="#collapseOne1"
-                          aria-expanded="true"
-                          aria-controls="collapseOne"
-                        >
-                          {t("What is Codexpro exchange ?")}
-                        </button>
-                        <i
-                          className={`fas ${
-                            active === 1 ? "fa-caret-up" : "fa-caret-down"
-                          } mright-5`}
-                        ></i>
-                      </h5>
-                    </div>
-
-                    {active === 1 && (
+                {faq?.data?.map((item: any, index: number) => (
+                  <div key={`faq${index}`} className="cp-user-referral-content">
+                    <div className="card">
                       <div
-                        id="collapseOne1"
-                        className="collapse  show "
-                        aria-labelledby="headingOne"
-                        data-parent="#accordion"
+                        className="card-header"
+                        id="headingOne"
+                        onClick={() => handleActive(index + 1)}
                       >
-                        <div className="card-body">
-                          {t(
-                            "Aenean condimentum nibh vel enim sodales scelerisque.Mauris quisn pellentesque odio, in vulputate turpis.Integer condimentum eni lorem pellentesque euismod. Nam rutrum accumsan nisl vulputate."
-                          )}
-                        </div>
+                        <h5 className="mb-0 header-align">
+                          <button
+                            className="btn btn-link collapsed"
+                            data-toggle="collapse"
+                            data-target={`#collapseOne1${index + 1}`}
+                            aria-expanded="true"
+                            aria-controls="collapseOne"
+                          >
+                            {item.question}
+                          </button>
+                          <i
+                            className={`fas ${
+                              active === index + 1
+                                ? "fa-caret-up"
+                                : "fa-caret-down"
+                            } mright-5`}
+                          ></i>
+                        </h5>
                       </div>
-                    )}
+
+                      {active === index + 1 && (
+                        <div
+                          id={`collapseOne1${index + 1}`}
+                          className="collapse show"
+                          aria-labelledby="headingOne"
+                          data-parent="#accordion"
+                        >
+                          <div className="card-body">{item.answer}</div>
+                        </div>
+                      )}
+                    </div>
                   </div>
-                </div>
-                <div className="cp-user-referral-content">
+                ))}
+
+                {/* <div className="cp-user-referral-content">
                   <div className="card">
                     <div
                       className="card-header"
@@ -309,7 +313,7 @@ const Index: NextPage = () => {
                       </div>
                     )}
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
             <div className="col-lg-6">
@@ -322,6 +326,15 @@ const Index: NextPage = () => {
       </div>
     </div>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
+  const { data } = await getFaqList();
+  return {
+    props: {
+      faq: data,
+    },
+  };
 };
 
 export default Index;
