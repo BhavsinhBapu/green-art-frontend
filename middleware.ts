@@ -25,13 +25,15 @@ export async function middleware(req: NextRequest) {
     if (curentUrl(req.nextUrl.pathname) === true) {
       return NextResponse.next();
     }
-    return NextResponse.redirect(
-      `${process.env.NEXT_PUBLIC_HOSTED_CLIENT_URL}maintenance`
-    );
+    // return NextResponse.redirect(
+    //   `${process.env.NEXT_PUBLIC_HOSTED_CLIENT_URL}maintenance`
+    // );
+    return NextResponse.redirect(new URL("/maintenance", req.url));
+    // return NextResponse.rewrite(new URL("/maintenance", req.url));
   }
-  return NextResponse.rewrite(req.nextUrl);
+  // return NextResponse.rewrite(req.nextUrl);
 }
 
-// export const config = {
-//   // matcher: "/user/settings",
-// };
+export const config = {
+  matcher: "/",
+};
