@@ -34,6 +34,7 @@ export default {
     onResolveErrorCallback: any
   ) => {
     // expects a symbolInfo object in response
+    console.log("resolveSymbol", symbolName);
 
     var split_data = symbolName.split(/[:/]/);
 
@@ -54,9 +55,9 @@ export default {
       data_status: "streaming",
     };
 
-    if (split_data[2].match(/USD|EUR|JPY|AUD|GBP|KRW|CNY/)) {
-      symbol_stub.pricescale = 100;
-    }
+    // if (split_data[2].match(/USD|EUR|JPY|AUD|GBP|KRW|CNY/)) {
+    //   symbol_stub.pricescale = 100;
+    // }
     setTimeout(function () {
       onSymbolResolvedCallback(symbol_stub);
     }, 0);

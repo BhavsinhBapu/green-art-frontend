@@ -23,11 +23,11 @@ export default {
           // }
           const bars = klines4800.map((el: any) => ({
             time: el.time * 1000,
-            low: el.low,
-            high: el.high,
-            open: el.open,
-            close: el.close,
-            volume: el.volume,
+            low: parseFloat(el.low),
+            high: parseFloat(el.high),
+            open: parseFloat(el.open),
+            close: parseFloat(el.close),
+            volume: parseFloat(el.volume),
           }));
           if (first) {
             const lastBar = bars[bars.length - 1];
@@ -50,11 +50,11 @@ export default {
             // }
             const bars = klines4800.map((el: any) => ({
               time: el.time * 1000,
-              low: el.low,
-              high: el.high,
-              open: el.open,
-              close: el.close,
-              volume: el.volume,
+              low: parseFloat(el.low),
+              high: parseFloat(el.high),
+              open: parseFloat(el.open),
+              close: parseFloat(el.close),
+              volume: parseFloat(el.volume),
             }));
             if (first) {
               const lastBar = bars[bars.length - 1];
