@@ -68,40 +68,44 @@ export class TVChartContainer extends React.Component<MyProps> {
     //@ts-ignore
     this.tvWidget = tvWidget;
     //@ts-ignore
-    this.tvWidget.applyOverrides({
-      "paneProperties.background": "#151515",
-      "paneProperties.backgroundType": "solid",
-      //up and down color change32d777
-      "mainSeriesProperties.candleStyle.upColor": "#32d777",
-      "mainSeriesProperties.candleStyle.downColor": "#dc3545",
-      "mainSeriesProperties.candleStyle.drawBorder": true,
-      "mainSeriesProperties.candleStyle.borderUpColor": "#32d777",
-      "mainSeriesProperties.candleStyle.borderDownColor": "#dc3545",
-      "mainSeriesProperties.candleStyle.wickUpColor": "#32d777",
-      "mainSeriesProperties.candleStyle.wickDownColor": "#dc3545",
-      "mainSeriesProperties.candleStyle.barColorsOnPrevClose": false,
-      "mainSeriesProperties.hollowCandleStyle.upColor": "#32d777",
-      "mainSeriesProperties.hollowCandleStyle.downColor": "#dc3545",
-      "mainSeriesProperties.hollowCandleStyle.drawWick": true,
-      "mainSeriesProperties.hollowCandleStyle.drawBorder": true,
-      "mainSeriesProperties.hollowCandleStyle.borderUpColor": "#32d777",
-      "mainSeriesProperties.hollowCandleStyle.borderDownColor": "#dc3545",
-      "mainSeriesProperties.hollowCandleStyle.wickUpColor": "#32d777",
-      "mainSeriesProperties.hollowCandleStyle.wickDownColor": "#dc3545",
-      "mainSeriesProperties.haStyle.upColor": "#32d777",
-      "mainSeriesProperties.haStyle.downColor": "#dc3545",
-      "mainSeriesProperties.haStyle.drawWick": true,
-      "mainSeriesProperties.haStyle.drawBorder": true,
-      "mainSeriesProperties.haStyle.borderUpColor": "#32d777",
-      "mainSeriesProperties.haStyle.borderDownColor": "#dc3545",
-      "mainSeriesProperties.haStyle.wickUpColor": "#32d777",
-      "mainSeriesProperties.haStyle.wickDownColor": "#dc3545",
-      "mainSeriesProperties.barStyle.upColor": "#32d777",
-      "mainSeriesProperties.barStyle.downColor": "#dc3545",
-      "mainSeriesProperties.barStyle.barColorsOnPrevClose": false,
-      "mainSeriesProperties.barStyle.dontDrawOpen": false,
-      "mainSeriesProperties.lineStyle.color": "#dc3545",
+    this.tvWidget.onChartReady(() => {
+      //@ts-ignore
+      this.tvWidget.applyOverrides({
+        "paneProperties.background": "#151515",
+        "paneProperties.backgroundType": "solid",
+        //up and down color change32d777
+        "mainSeriesProperties.candleStyle.upColor": "#32d777",
+        "mainSeriesProperties.candleStyle.downColor": "#dc3545",
+        "mainSeriesProperties.candleStyle.drawBorder": true,
+        "mainSeriesProperties.candleStyle.borderUpColor": "#32d777",
+        "mainSeriesProperties.candleStyle.borderDownColor": "#dc3545",
+        "mainSeriesProperties.candleStyle.wickUpColor": "#32d777",
+        "mainSeriesProperties.candleStyle.wickDownColor": "#dc3545",
+        "mainSeriesProperties.candleStyle.barColorsOnPrevClose": false,
+        "mainSeriesProperties.hollowCandleStyle.upColor": "#32d777",
+        "mainSeriesProperties.hollowCandleStyle.downColor": "#dc3545",
+        "mainSeriesProperties.hollowCandleStyle.drawWick": true,
+        "mainSeriesProperties.hollowCandleStyle.drawBorder": true,
+        "mainSeriesProperties.hollowCandleStyle.borderUpColor": "#32d777",
+        "mainSeriesProperties.hollowCandleStyle.borderDownColor": "#dc3545",
+        "mainSeriesProperties.hollowCandleStyle.wickUpColor": "#32d777",
+        "mainSeriesProperties.hollowCandleStyle.wickDownColor": "#dc3545",
+        "mainSeriesProperties.haStyle.upColor": "#32d777",
+        "mainSeriesProperties.haStyle.downColor": "#dc3545",
+        "mainSeriesProperties.haStyle.drawWick": true,
+        "mainSeriesProperties.haStyle.drawBorder": true,
+        "mainSeriesProperties.haStyle.borderUpColor": "#32d777",
+        "mainSeriesProperties.haStyle.borderDownColor": "#dc3545",
+        "mainSeriesProperties.haStyle.wickUpColor": "#32d777",
+        "mainSeriesProperties.haStyle.wickDownColor": "#dc3545",
+        "mainSeriesProperties.barStyle.upColor": "#32d777",
+        "mainSeriesProperties.barStyle.downColor": "#dc3545",
+        "mainSeriesProperties.barStyle.barColorsOnPrevClose": false,
+        "mainSeriesProperties.barStyle.dontDrawOpen": false,
+        "mainSeriesProperties.lineStyle.color": "#dc3545",
+      });
     });
+ 
   };
   //@ts-ignore
   constructor(props) {
