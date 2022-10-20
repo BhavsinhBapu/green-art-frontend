@@ -1,7 +1,5 @@
 export function getChartOverrides(theme: any) {
-  return {
-
-  };
+  return {};
 }
 
 export const ENABLED_FEATURES = [
@@ -11,14 +9,15 @@ export const ENABLED_FEATURES = [
   "use_localstorage_for_settings",
 ];
 export const DISABLED_FEATURES = [
-  "header_symbol_search",
+  // "header_symbol_search",
   // "header_widget",
   "symbol_info",
   // "header_compare",
   // "header_chart_type",
   // "display_market_status",
   // "symbol_search_hot_key",
-  "compare_symbol",
+  "volume_force_overlay",
+  // "compare_symbol",
   // "border_around_the_chart",
   // "remove_library_container_border",
   // "header_interval_dialog_button",

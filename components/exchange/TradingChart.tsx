@@ -40,7 +40,7 @@ localStorage.setItem("tradingview.ChartDrawingToolbarWidget.visible", "false");
 export class TVChartContainer extends React.Component<MyProps> {
   static defaultProps = {
     symbol: `:${pair && pair}`,
-    interval: "1",
+    interval: "5",
     containerId: "tv_chart_container",
     libraryPath: "/static/charting_library/",
     chartsStorageUrl: "https://saveload.tradingview.com",
@@ -52,8 +52,11 @@ export class TVChartContainer extends React.Component<MyProps> {
     autosize: true,
     studiesOverrides: {},
     overrides: {
-      "paneProperties.background": "#151515",
-      "paneProperties.backgroundType": "solid",
+      "mainSeriesProperties.candleStyle.upColor": "#ffffff",
+      "mainSeriesProperties.candleStyle.downColor": "#000000",
+      "mainSeriesProperties.candleStyle.drawBorder": true,
+      "mainSeriesProperties.candleStyle.borderUpColor": "#00ff00",
+      "mainSeriesProperties.candleStyle.borderDownColor": "#ff0000",
     },
   };
   // name = this.props.name;
@@ -64,6 +67,45 @@ export class TVChartContainer extends React.Component<MyProps> {
     const tvWidget = new widget(config);
     //@ts-ignore
     this.tvWidget = tvWidget;
+    //@ts-ignore
+    this.tvWidget.onChartReady(() => {
+      //@ts-ignore
+      this.tvWidget.applyOverrides({
+        "paneProperties.background": "#151515",
+        "paneProperties.backgroundType": "solid",
+        //up and down color change32d777
+        "mainSeriesProperties.candleStyle.upColor": "#32d777",
+        "mainSeriesProperties.candleStyle.downColor": "#dc3545",
+        "mainSeriesProperties.candleStyle.drawBorder": true,
+        "mainSeriesProperties.candleStyle.borderUpColor": "#32d777",
+        "mainSeriesProperties.candleStyle.borderDownColor": "#dc3545",
+        "mainSeriesProperties.candleStyle.wickUpColor": "#32d777",
+        "mainSeriesProperties.candleStyle.wickDownColor": "#dc3545",
+        "mainSeriesProperties.candleStyle.barColorsOnPrevClose": false,
+        "mainSeriesProperties.hollowCandleStyle.upColor": "#32d777",
+        "mainSeriesProperties.hollowCandleStyle.downColor": "#dc3545",
+        "mainSeriesProperties.hollowCandleStyle.drawWick": true,
+        "mainSeriesProperties.hollowCandleStyle.drawBorder": true,
+        "mainSeriesProperties.hollowCandleStyle.borderUpColor": "#32d777",
+        "mainSeriesProperties.hollowCandleStyle.borderDownColor": "#dc3545",
+        "mainSeriesProperties.hollowCandleStyle.wickUpColor": "#32d777",
+        "mainSeriesProperties.hollowCandleStyle.wickDownColor": "#dc3545",
+        "mainSeriesProperties.haStyle.upColor": "#32d777",
+        "mainSeriesProperties.haStyle.downColor": "#dc3545",
+        "mainSeriesProperties.haStyle.drawWick": true,
+        "mainSeriesProperties.haStyle.drawBorder": true,
+        "mainSeriesProperties.haStyle.borderUpColor": "#32d777",
+        "mainSeriesProperties.haStyle.borderDownColor": "#dc3545",
+        "mainSeriesProperties.haStyle.wickUpColor": "#32d777",
+        "mainSeriesProperties.haStyle.wickDownColor": "#dc3545",
+        "mainSeriesProperties.barStyle.upColor": "#32d777",
+        "mainSeriesProperties.barStyle.downColor": "#dc3545",
+        "mainSeriesProperties.barStyle.barColorsOnPrevClose": false,
+        "mainSeriesProperties.barStyle.dontDrawOpen": false,
+        "mainSeriesProperties.lineStyle.color": "#dc3545",
+      });
+    });
+ 
   };
   //@ts-ignore
   constructor(props) {
@@ -73,14 +115,6 @@ export class TVChartContainer extends React.Component<MyProps> {
   }
 
   componentDidMount() {
-    if (this.tvWidget !== null) {
-      //@ts-ignore
-      // this.tvWidget.applyOverrides({
-      //   "paneProperties.background": "#151515",
-      //   "paneProperties.backgroundType": "solid",
-      // });
-    }
-
     const widgetOptions = {
       height: 480,
       width: 1400,
@@ -122,7 +156,7 @@ export class TVChartContainer extends React.Component<MyProps> {
       enabled_features: ENABLED_FEATURES,
       //@ts-ignore
       disabled_features: DISABLED_FEATURES,
-
+  
       //@ts-ignore
       // overrides: getChartOverrides(this.props.theme),
       custom_css_url: "css/style.css",
@@ -130,13 +164,23 @@ export class TVChartContainer extends React.Component<MyProps> {
       time_frames: TIME_FRAMES,
 
       //@ts-ignore
-      // studies_overrides: {
-      //   "volume.volume.color.0": "#dc3545",
-      //   "volume.volume.color.1": "#6ac955",
-      //   "volume.volume.transparency": 0,
-      //   "candleStyle.upColor": "#6ac955",
-      //   "candleStyle.downColor": "#df5e35",
-      // },
+      studies_overrides: {
+        "volume.volume.color.0": "#dc3545",
+        "volume.volume.color.1": "#32d777",
+        "volume.volume.transparency": 0,
+        "volume.volume ma.color": "#32d777",
+        "volume.volume ma.transparency": 0,
+        "volume.options.showStudyArguments": false,
+        "volume.options.showStudyTitles": false,
+        "volume.options.showStudyValues": false,
+        "volume.options.showLegend": false,
+        "volume.options.showStudyOutput": false,
+        "volume.options.showStudyOverlay": false,
+        "volume.options.showSeriesTitle": false,
+        "volume.options.showSeriesOHLC": false,
+        "volume.options.showBarChange": false,
+        "volume.options.showCountdown": false,
+      },
       toolbar: false,
     };
     //@ts-ignore
@@ -148,11 +192,6 @@ export class TVChartContainer extends React.Component<MyProps> {
       //@ts-ignore
       this.tvWidget.remove();
       this.tvWidget = null;
-      //@ts-ignore
-      // this.tvWidget.applyOverrides({
-      //   "paneProperties.background": "#151515",
-      //   "paneProperties.backgroundType": "solid",
-      // });
     }
   }
 
