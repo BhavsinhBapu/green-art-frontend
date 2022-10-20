@@ -9935,3 +9935,54 @@ input[type="number"] {
 .referel-inputfield {
   cursor: pointer;
 }
+.maintenance-mode {
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  z-index: -1;
+}
+.maintenance-mode::before {
+  height: 100vh;
+  width: 100%;
+  content: "";
+  background-color: #000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.6;
+  z-index: 0;
+}
+.maintenance-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  justify-items: center;
+  z-index: 999999;
+  height: 100vh;
+  text-align: center;
+  max-width: 50%;
+  margin: 0 auto;
+  position: relative;
+}
+.maintenance-content h2 {
+  font-size: 52px;
+  color: #fff;
+  margin-bottom: 15px;
+}
+.maintenance-content p {
+  font-size: 20px;
+  color: #fff;
+}
+@media (max-width: 769px) {
+  .maintenance-content {
+    max-width: 100%;
+    padding: 0px 15px;
+  }
+  .maintenance-content h2 {
+    font-size: 35px;
+  }
+  .maintenance-content p {
+    font-size: 20px;
+  }
+}

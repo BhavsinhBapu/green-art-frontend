@@ -14,25 +14,33 @@ import Head from "next/head";
 import Layout from "layout/index";
 import NProgress from "nprogress";
 import { useEffect } from "react";
-import Router from "next/router";
+import Router, { useRouter } from "next/router";
 import useTranslation from "next-translate/useTranslation";
 function MyApp({ Component, pageProps }: AppProps) {
   const { t } = useTranslation("common");
+  const router = useRouter();
   useEffect(() => {
     Router.events.on("routeChangeStart", () => NProgress.start());
     Router.events.on("routeChangeComplete", () => NProgress.done());
     Router.events.on("routeChangeError", () => NProgress.done());
   }, []);
-  return (
-    <>
-      
-      <Provider store={store}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </Provider>
-    </>
-  );
+  if (router.pathname === "/maintenance") {
+    return (
+      <>
+        <Component {...pageProps} />
+      </>
+    );
+  } else {
+    return (
+      <>
+        <Provider store={store}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </Provider>
+      </>
+    );
+  }
 }
 
 export default MyApp;
