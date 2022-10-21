@@ -46,7 +46,6 @@ export class TVChartContainer extends React.Component<MyProps> {
     chartsStorageUrl: "https://saveload.tradingview.com",
     chartsStorageApiVersion: "1.1",
     clientId: "tradingview.com",
-
     userId: "public_user_id",
     fullscreen: false,
     autosize: true,
@@ -117,7 +116,7 @@ export class TVChartContainer extends React.Component<MyProps> {
     const widgetOptions = {
       height: 480,
       width: 1400,
-    
+
       //@ts-ignore
       symbol: this.props.symbol,
       style: 1,
