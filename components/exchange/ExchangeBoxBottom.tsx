@@ -17,59 +17,68 @@ const ExchangeBoxBottom = () => {
     (state: RootState) => state.exchange
   );
   const [tradingTab, setTradingTab] = useState<tradingTabType>(1);
-  const [buySellLimitCoinData, setBuySellLimitCoinData] = useState<any>({
-    price:
-      tradingTab === 1
-        ? dashboard?.order_data?.sell_price
-        : dashboard?.order_data?.buy_price,
+  const [buyLimitCoinData, setBuyLimitCoinData] = useState<any>({
+    price: dashboard?.order_data?.sell_price,
     amount: 0.0,
     total: 0.0,
   });
-  const [buySellMarketCoinData, setBuySellMarketCoinData] = useState<any>({
-    price:
-      tradingTab === 1
-        ? dashboard?.order_data?.sell_price
-        : dashboard?.order_data?.buy_price,
+  const [buyMarketCoinData, setBuyMarketCoinData] = useState<any>({
+    price: dashboard?.order_data?.sell_price,
     amount: 0.0,
     total: 0.0,
   });
-  const [buySellStopLimitCoinData, setBuySellStopLimitCoinData] = useState<any>(
-    {
-      amount: 0.0,
-      total: 0,
-      limit: 0,
-      stop: 0,
-    }
-  );
+  const [buyStopLimitCoinData, setBuyStopLimitCoinData] = useState<any>({
+    amount: 0.0,
+    total: 0,
+    limit: 0,
+    stop: 0,
+  });
+  const [SellLimitCoinData, setSellLimitCoinData] = useState<any>({
+    price: dashboard?.order_data?.buy_price,
+    amount: 0.0,
+    total: 0.0,
+  });
+  const [SellMarketCoinData, setSellMarketCoinData] = useState<any>({
+    price: dashboard?.order_data?.buy_price,
+    amount: 0.0,
+    total: 0.0,
+  });
+  const [SellStopLimitCoinData, setSellStopLimitCoinData] = useState<any>({
+    amount: 0.0,
+    total: 0,
+    limit: 0,
+    stop: 0,
+  });
 
   const [buySelectedTab, setBuySelectedTab] = useState<number>(1);
-  const [sellSelectedTab, setSellSelectedTab] = useState<number>(1);
 
-  const handletradingTab = (tab: number) => {
-    setTradingTab(tab);
-  };
+ 
   const initialSetUp = () => {
-    setBuySellLimitCoinData({
-      price:
-        tradingTab === 1
-          ? dashboard?.order_data?.sell_price
-          : dashboard?.order_data?.buy_price,
+    setBuyLimitCoinData({
+      price:dashboard?.order_data?.sell_price,
       amount: 0,
       total: 0,
     });
-    setBuySellMarketCoinData({
-      price:
-        tradingTab === 1
-          ? dashboard?.order_data?.sell_price
-          : dashboard?.order_data?.buy_price,
+    setBuyMarketCoinData({
+      price: dashboard?.order_data?.sell_price,
       amount: 0,
       total: 0,
     });
-    setBuySellStopLimitCoinData({
+    setBuyStopLimitCoinData({
       amount: 0,
       total: 0,
       limit: 0,
       stop: 0,
+    });
+    setSellLimitCoinData({
+      price: dashboard?.order_data?.buy_price,
+      amount: 0,
+      total: 0,
+    });
+    setSellMarketCoinData({
+      price: dashboard?.order_data?.buy_price,
+      amount: 0,
+      total: 0,
     });
   };
 
@@ -142,8 +151,8 @@ const ExchangeBoxBottom = () => {
                 <div className="col-md-6">
                   <Limit
                     dashboard={dashboard}
-                    buySellLimitCoinData={buySellLimitCoinData}
-                    setBuySellLimitCoinData={setBuySellLimitCoinData}
+                    buySellLimitCoinData={buyLimitCoinData}
+                    setBuySellLimitCoinData={setBuyLimitCoinData}
                     isLoggedIn={isLoggedIn}
                     currentPair={currentPair}
                   />
@@ -151,8 +160,8 @@ const ExchangeBoxBottom = () => {
                 <div className="col-md-6">
                   <SellLimit
                     dashboard={dashboard}
-                    buySellLimitCoinData={buySellLimitCoinData}
-                    setBuySellLimitCoinData={setBuySellLimitCoinData}
+                    buySellLimitCoinData={SellLimitCoinData}
+                    setBuySellLimitCoinData={setSellLimitCoinData}
                     isLoggedIn={isLoggedIn}
                     currentPair={currentPair}
                   />
@@ -166,8 +175,8 @@ const ExchangeBoxBottom = () => {
                 <div className="col-md-6">
                   <Market
                     dashboard={dashboard}
-                    buySellMarketCoinData={buySellMarketCoinData}
-                    setBuySellMarketCoinData={setBuySellMarketCoinData}
+                    buySellMarketCoinData={buyMarketCoinData}
+                    setBuySellMarketCoinData={setBuyMarketCoinData}
                     isLoggedIn={isLoggedIn}
                     currentPair={currentPair}
                   />
@@ -176,8 +185,8 @@ const ExchangeBoxBottom = () => {
                 <div className="col-md-6">
                   <SellMarket
                     dashboard={dashboard}
-                    buySellMarketCoinData={buySellMarketCoinData}
-                    setBuySellMarketCoinData={setBuySellMarketCoinData}
+                    buySellMarketCoinData={SellMarketCoinData}
+                    setBuySellMarketCoinData={setSellMarketCoinData}
                     isLoggedIn={isLoggedIn}
                     currentPair={currentPair}
                   />
@@ -191,8 +200,8 @@ const ExchangeBoxBottom = () => {
                 <div className="col-md-6">
                   <StopLimit
                     dashboard={dashboard}
-                    buySellStopLimitCoinData={buySellStopLimitCoinData}
-                    setBuySellStopLimitCoinData={setBuySellStopLimitCoinData}
+                    buySellStopLimitCoinData={buyStopLimitCoinData}
+                    setBuySellStopLimitCoinData={setBuyStopLimitCoinData}
                     isLoggedIn={isLoggedIn}
                     currentPair={currentPair}
                   />
@@ -200,14 +209,14 @@ const ExchangeBoxBottom = () => {
                 <div className="col-md-6">
                   <SellStopLimit
                     dashboard={dashboard}
-                    buySellStopLimitCoinData={buySellStopLimitCoinData}
-                    setBuySellStopLimitCoinData={setBuySellStopLimitCoinData}
+                    buySellStopLimitCoinData={SellStopLimitCoinData}
+                    setBuySellStopLimitCoinData={setSellStopLimitCoinData}
                     isLoggedIn={isLoggedIn}
                     currentPair={currentPair}
                   />
                 </div>
-                </div>
               </div>
+            </div>
           )}
         </div>
       </div>
