@@ -94,10 +94,7 @@ const MyWallet: NextPage = () => {
     });
 
     if (actionType === 1) {
-      const response = await WalletDepositApiAction(
-        id,
-        settransactionProcessing
-      );
+      const response = await WalletDepositApiAction(id);
       if (response.success === true) {
         setResponse({
           ...response,
@@ -109,10 +106,7 @@ const MyWallet: NextPage = () => {
         });
       }
     } else {
-      const response = await WalletWithdrawApiAction(
-        id,
-        settransactionProcessing
-      );
+      const response = await WalletWithdrawApiAction(id);
       if (response.success === true) {
         setResponse({
           ...response,
