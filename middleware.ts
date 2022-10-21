@@ -41,5 +41,6 @@ export const config = {
     "/dashboard/:path*",
     "/user/:path*",
     "/exchange/:path*",
+    "/user/my-wallet/:path*",
   ],
 };

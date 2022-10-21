@@ -5,6 +5,13 @@ import WirhdrawTab from "components/wallet/WirhdrawTab";
 import { toast } from "react-toastify";
 import React, { useEffect, useState } from "react";
 import { formateZert, formatCurrency } from "common";
+import { IoWalletOutline } from "react-icons/io5";
+import { TiArrowRepeat } from "react-icons/ti";
+import {
+  HiOutlineBanknotes,
+  HiOutlinePresentationChartLine,
+} from "react-icons/hi2";
+
 import {
   SearchObjectArrayFuesJS,
   WalletDepositApiAction,
@@ -121,7 +128,6 @@ const MyWallet: NextPage = () => {
 
   useEffect(() => {
     getWalletLists("/wallet-list?page=1&per_page=15");
-
     return () => {
       setWalletList(null);
     };
@@ -209,7 +215,6 @@ const MyWallet: NextPage = () => {
                 <div className="overview-left">
                   <h2 className="section-top-title">{t("Overview")}</h2>
                   <h4 className="blance-title">{t("Total balance")}</h4>
-
                   <h4 className="blance">
                     {allData?.total ? formatCurrency(allData?.total) : 0}
                     {""} {settings?.currency}
@@ -272,7 +277,7 @@ const MyWallet: NextPage = () => {
               </div>
             </div>
 
-            <h4 className="section-title-medium">{t("Asset Balances")}</h4>
+            {/* <h4 className="section-title-medium">{t("Asset Balances")}</h4> */}
 
             <div className="asset-balances-area cstm-loader-area">
               <div className="asset-balances-left">
@@ -343,6 +348,7 @@ const MyWallet: NextPage = () => {
                             <th scope="col">{t("On Order")}</th>
                             <th scope="col">{t("Available Balance")}</th>
                             <th scope="col">{t("Total Balance")}</th>
+                            <th scope="col">{t("Action")}</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -411,12 +417,51 @@ const MyWallet: NextPage = () => {
                                 <div className="blance-text">
                                   <span className="blance">
                                     {/* @ts-ignore */}
-                                    {parseFloat(Number(item?.balance) +Number(item?.on_order)).toFixed(8)}
+                                    {parseFloat(
+                                      Number(item?.balance) +
+                                        Number(item?.on_order)
+                                    ).toFixed(8)}
                                   </span>
                                   <span className="usd">
                                     {settings?.currency_symbol}
                                     {formatCurrency(item?.total_balance_usd)}
                                   </span>
+                                </div>
+                              </td>
+                              <td>
+                                <div className="active-link">
+                                  <ul>
+                                    <Link
+                                      href={`/user/my-wallet/deposit?type=deposit&coin_id=${item.id}`}
+                                    >
+                                      <li className="toolTip" title="Deposit">
+                                        <HiOutlineBanknotes size={25} />
+                                      </li>
+                                    </Link>
+
+                                    <Link
+                                      href={`/user/my-wallet/withdraw?type=withdraw`}
+                                    >
+                                      <li className="toolTip" title="Withdraw">
+                                        <IoWalletOutline size={25} />
+                                      </li>
+                                    </Link>
+
+                                    <Link
+                                      href={`/user/my-wallet/trade?type=trade`}
+                                    >
+                                      <li className="toolTip" title="Trade">
+                                        <HiOutlinePresentationChartLine
+                                          size={25}
+                                        />
+                                      </li>
+                                    </Link>
+                                    <Link href={`/user/swap-coin`}>
+                                      <li className="toolTip" title="swap">
+                                        <TiArrowRepeat size={25} />
+                                      </li>
+                                    </Link>
+                                  </ul>
                                 </div>
                               </td>
                             </tr>
