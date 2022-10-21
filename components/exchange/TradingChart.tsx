@@ -105,7 +105,6 @@ export class TVChartContainer extends React.Component<MyProps> {
         "mainSeriesProperties.lineStyle.color": "#dc3545",
       });
     });
- 
   };
   //@ts-ignore
   constructor(props) {
@@ -118,6 +117,7 @@ export class TVChartContainer extends React.Component<MyProps> {
     const widgetOptions = {
       height: 480,
       width: 1400,
+    
       //@ts-ignore
       symbol: this.props.symbol,
       style: 1,
@@ -125,6 +125,15 @@ export class TVChartContainer extends React.Component<MyProps> {
       //@ts-ignore
       datafeed: Datafeed,
       // datafeed: Datafeed,
+      //add water mark to chart
+      watermark: {
+        color: "rgba(11, 94, 29, 0.4)",
+        visible: true,
+        text: "Crypto Exchange",
+        fontSize: 24,
+        horzAlign: "left",
+        vertAlign: "bottom",
+      },
 
       //@ts-ignore
       interval: this.props.interval,
@@ -156,7 +165,7 @@ export class TVChartContainer extends React.Component<MyProps> {
       enabled_features: ENABLED_FEATURES,
       //@ts-ignore
       disabled_features: DISABLED_FEATURES,
-  
+
       //@ts-ignore
       // overrides: getChartOverrides(this.props.theme),
       custom_css_url: "css/style.css",
