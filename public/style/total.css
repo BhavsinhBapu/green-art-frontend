@@ -5651,13 +5651,13 @@ table.dataTable tbody tr td {
   background: #151515;
 }
 .cp-user-body-bg .main-menu ul li a {
-  color: rgb(188, 188, 188) !important !important;
+  color: rgb(188, 188, 188) !important;
 }
 .cp-user-body-bg .main-menu ul li ul {
   background: #151515 !important;
 }
 .cp-user-body-bg .main-menu ul li ul li a {
-  color: rgb(188, 188, 188) !important !important;
+  color: rgb(188, 188, 188) !important;
 }
 .cp-user-body-bg .main-menu ul li ul li {
   border-bottom: 1px solid rgb(126 126 126 / 20%);
@@ -9275,7 +9275,7 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   -webkit-box-shadow: none !important;
-  -webkit-text-fill-color: rgb(188, 188, 188) !important !important;
+  -webkit-text-fill-color: rgb(188, 188, 188) !important;
   transition: background-color 5000s ease-in-out 0s;
 }
 .forgot-password {
@@ -9371,7 +9371,7 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
 }
 .dark-toast {
   background-color: #000000 !important;
-  color: rgb(188, 188, 188) !important !important;
+  color: rgb(188, 188, 188) !important;
 }
 
 /* preloder-area */
