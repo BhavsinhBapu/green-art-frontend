@@ -106,7 +106,7 @@ const MyWallet: NextPage = () => {
         });
       }
     } else {
-      const response = await WalletWithdrawApiAction(id);
+      const response: any = await WalletWithdrawApiAction(id);
       if (response.success === true) {
         setResponse({
           ...response,
@@ -434,7 +434,7 @@ const MyWallet: NextPage = () => {
                                     </Link>
 
                                     <Link
-                                      href={`/user/my-wallet/withdraw?type=withdraw`}
+                                      href={`/user/my-wallet/withdraw?type=withdraw&coin_id=${item.id}`}
                                     >
                                       <li className="toolTip" title="Withdraw">
                                         <IoWalletOutline size={25} />

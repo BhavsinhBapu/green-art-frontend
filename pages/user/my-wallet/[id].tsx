@@ -14,8 +14,12 @@ import { parseCookies } from "nookies";
 import { GetUserInfoByTokenServer } from "service/user";
 import Link from "next/link";
 import DepositFaq from "components/deposit/DepositFaq";
-import { MY_WALLET_DEPOSIT_TYPE } from "helpers/core-constants";
+import {
+  MY_WALLET_DEPOSIT_TYPE,
+  MY_WALLET_WITHDRAW_TYPE,
+} from "helpers/core-constants";
 import { DipositComponent } from "components/MyWallet/diposit";
+import { WithdrawComponent } from "components/MyWallet/withdraw";
 
 const DeposiAndWithdraw = () => {
   const router = useRouter();
@@ -85,7 +89,7 @@ const DeposiAndWithdraw = () => {
   };
 
   useEffect(() => {
-    console.log("routerrererererer", router.query);
+    console.log("ddfdfdf",responseData,"routerrererererer", router.query);
     handleWithdrawAndDeposit(
       String(router.query.id),
       Number(router.query.coin_id)
@@ -97,7 +101,13 @@ const DeposiAndWithdraw = () => {
       <div className="page-wrap my-wallet-page">
         <div className="container">
           <div className="row">
-            <DipositComponent responseData={responseData} router={router} />
+            {router.query.id === MY_WALLET_DEPOSIT_TYPE && (
+              <DipositComponent responseData={responseData} router={router} />
+            )}
+
+            {router.query.id === MY_WALLET_WITHDRAW_TYPE && (
+              <WithdrawComponent responseData={responseData} router={router} />
+            )}
 
             <div className={`col-md-5`}>
               <div className={`box-one single-box visible`}>
