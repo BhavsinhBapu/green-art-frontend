@@ -22,7 +22,7 @@ const G2fverify = () => {
             </a>
             <h2>{t("Two Factor Authentication")}</h2>
             <p>
-              {t("Open your authentication app and enter the code for Admin")}
+              {t("Open your authentication app and enter the code to verify")}
             </p>
           </div>
           <Formik
