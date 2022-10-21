@@ -8022,7 +8022,7 @@ textarea.form-control.textarea {
   font-size: 16px;
   font-weight: 700;
   border-radius: 7px !important;
-  color: rgb(188, 188, 188) !important !important;
+  color: rgb(188, 188, 188) !important;
   background: #ffce51 !important;
   border-color: #ffce51 !important;
 }
@@ -8030,7 +8030,7 @@ textarea.form-control.textarea {
 .nimmu-user-sibmit-button:active,
 .nimmu-user-sibmit-button:focus,
 .nimmu-user-sibmit-button:hover {
-  color: rgb(188, 188, 188) !important !important;
+  color: rgb(188, 188, 188) !important;
   background: #ffce51 !important;
   border-color: #ffce51 !important;
 }
@@ -8048,7 +8048,7 @@ textarea.form-control.textarea {
   color: #23262f;
   font-size: 20px;
   font-weight: 600;
-  text-transform: capitalize;
+  /* text-transform: capitalize; */
 }
 
 .auth-logo {
