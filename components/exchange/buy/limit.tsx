@@ -75,7 +75,7 @@ const Limit = ({
                               ? dashboard?.order_data?.total?.base_wallet
                                   ?.balance
                               : 0
-                          ).toFixed(8)}
+                          ).toFixed(4)}
                         </span>
                       </span>
                       <span
@@ -99,7 +99,7 @@ const Limit = ({
                               ? dashboard?.order_data?.total?.base_wallet
                                   ?.balance
                               : 0
-                          ).toFixed(8)}
+                          ).toFixed(4)}
                         </span>
                       </span>
                       <span
