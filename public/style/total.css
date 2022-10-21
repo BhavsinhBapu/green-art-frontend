@@ -9987,3 +9987,33 @@ input[type="number"] {
     font-size: 20px;
   }
 }
+.active-link ul li {
+  display: inline-block;
+  margin-right: 15px;
+}
+
+.toolTip {
+  /* font-style: italic; */
+  position: relative;
+}
+
+.toolTip:hover::after {
+  background: var(--primary-color);
+  border-radius: 4px;
+  bottom: 100%;
+  content: attr(title);
+  display: block;
+  left: 0;
+  padding: 5px 10px;
+  position: absolute;
+  z-index: 1;
+  font-size: 12px;
+}
+/* .asset-balances-right.visible.mb-3.mywallet-deposit {
+  width: 50%;
+} */
+.container-fluid.deposit-page {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
