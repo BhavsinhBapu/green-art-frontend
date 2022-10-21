@@ -3752,7 +3752,7 @@ table.dataTable tbody tr.selected td {
   padding: 10px;
   background: #151515;
   /* background: rgba(30, 35, 41, 1); */
-  /* height: 800px; */
+  height: 466px;
 }
 .icon-center {
   display: flex;
@@ -9731,7 +9731,7 @@ table.dataTable thead tr th {
   cursor: pointer;
 }
 #marketTradeTable_wrapper .dataTables_scroll {
-  height: 311px;
+  height: 387px;
   overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
