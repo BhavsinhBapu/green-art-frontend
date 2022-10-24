@@ -16,14 +16,14 @@ const SelectCurrencyRight = () => {
     rows: {
       style: {
         backgroundColor: "#151515",
-        color: "#fff",
+        color: "rgb(183, 189, 198)",
         borderColor: "#151515",
       },
     },
     headCells: {
       style: {
         backgroundColor: "#151515",
-        color: "#fff",
+        color: "rgb(183, 189, 198)",
         borderColor: "#151515",
       },
     },
@@ -31,7 +31,7 @@ const SelectCurrencyRight = () => {
       style: {
         width: "100%",
         backgroundColor: "#151515",
-        color: "#fff",
+        color: "rgb(183, 189, 198)",
         borderColor: "#151515",
         fontSize: "14px",
       },
@@ -91,7 +91,7 @@ const SelectCurrencyRight = () => {
             trigger={["hover"]}
             overlayClassName="rcTooltipOverlay"
           >
-            <span className="text-center w-40 text-white">
+            <span className="text-center w-40">
               {parseFloat(row.last_price).toFixed(4)}
             </span>
           </Tooltip>
