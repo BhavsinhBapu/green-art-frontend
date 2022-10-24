@@ -10022,6 +10022,7 @@ input[type="number"] {
   display: flex;
   align-items: center;
   gap: 8px;
+  cursor: pointer;
 }
 .wallet-back:hover a {
   color: var(--primary-color);
