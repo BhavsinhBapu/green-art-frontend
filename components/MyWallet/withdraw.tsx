@@ -3,6 +3,8 @@ import React from "react";
 import { copyTextById, formateZert } from "common";
 import WalletGoogleAuth from "components/wallet/wallet-google-auth";
 import { UserSettingsApi } from "service/settings";
+import { IoIosArrowBack } from "react-icons/io";
+import Link from "next/link";
 
 export const WithdrawComponent = ({ responseData, router }: any) => {
   const { t } = useTranslation("common");
@@ -54,6 +56,12 @@ export const WithdrawComponent = ({ responseData, router }: any) => {
     <div className={`col-md-7`}>
       <div className="box-two single-box visible">
         <div className="section-wrapper">
+          <div className="wallet-back">
+            <IoIosArrowBack className="wallet-backIcon" size={25} />
+            <Link href="/user/my-wallet">
+              <a href="">{t("My Wallet")}</a>
+            </Link>
+          </div>
           <div className="withdrawal-info-area" id="withdrawal_wallet_area">
             <div className="withdrawal-info-top">
               <div className="balance-box">
