@@ -146,7 +146,8 @@ const SwapCoin: NextPage = ({
                         <div className="swap-wrap-top">
                           <label>{t("From")}</label>
                           <span className="available">
-                            Available : {parseFloat(fromSelected.balamce).toFixed(8)}{" "}
+                            Available :{" "}
+                            {parseFloat(fromSelected.balamce).toFixed(8)}{" "}
                             {fromSelected.selected}
                           </span>
                         </div>
@@ -243,7 +244,8 @@ const SwapCoin: NextPage = ({
                         <div className="swap-wrap-top">
                           <label>{t("To")}</label>
                           <span className="available">
-                            Available : {parseFloat(toSelected.balamce).toFixed(8)}
+                            Available :{" "}
+                            {parseFloat(toSelected.balamce).toFixed(8)}
                             {toSelected.selected}
                           </span>
                         </div>
@@ -405,12 +407,24 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
       },
     };
   }
-  const data = await getRateSsr(
-    walletLists[0].id,
-    walletLists[1].id,
-    1,
-    cookies.token
-  );
+  let data;
+  if (ctx.query.coin_id) {
+    if (ctx.query.coin_id) {
+      data = await getRateSsr(
+        ctx.query.coin_id,
+        walletLists[1].id,
+        1,
+        cookies.token
+      );
+    } else {
+      data = await getRateSsr(
+        walletLists[0].id,
+        walletLists[1].id,
+        1,
+        cookies.token
+      );
+    }
+  }
 
   if (data.success === false) {
     return {

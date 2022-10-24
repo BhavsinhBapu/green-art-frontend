@@ -1,12 +1,7 @@
 import router from "next/router";
 import React from "react";
-import { setCurrentPair } from "state/reducer/exchange";
 
 export const TradeList = ({ coinList }: any) => {
-  function dispatch(arg0: any) {
-    throw new Error("Function not implemented.");
-  }
-
   return (
     <div className="tradeList">
       {coinList?.map((item: any, index: number) => (
