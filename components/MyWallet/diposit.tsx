@@ -3,6 +3,8 @@ import React, { useRef, useState } from "react";
 import { copyTextById, formateZert } from "common";
 import { GetWalletAddressAction } from "state/actions/wallet";
 import Qr from "components/common/qr";
+import { IoIosArrowBack } from "react-icons/io";
+import Link from "next/link";
 
 export const DipositComponent = ({ responseData, router }: any) => {
   const { t } = useTranslation("common");
@@ -15,6 +17,12 @@ export const DipositComponent = ({ responseData, router }: any) => {
     <div className={`col-md-7`}>
       <div className={`box-one single-box visible`}>
         <div className="section-wrapper">
+          <div className="wallet-back">
+            <IoIosArrowBack className="wallet-backIcon" size={25} />
+            <Link href="/user/my-wallet">
+              <a href="">{t("My Wallet")}</a>
+            </Link>
+          </div>
           <div className="deposit-info-area" id="wallet_deposit_area">
             <div className="deposit-info-top">
               <div className="balance-box">

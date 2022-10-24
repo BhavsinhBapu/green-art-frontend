@@ -10017,3 +10017,23 @@ input[type="number"] {
   gap: 10px;
   justify-content: space-between;
 }
+.wallet-back {
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.wallet-back:hover a {
+  color: var(--primary-color);
+  opacity: 1;
+}
+.wallet-back:hover .wallet-backIcon {
+  fill: var(--primary-color);
+  opacity: 1;
+}
+.wallet-back a {
+  font-size: 18px;
+  color: #000;
+  opacity: 0.7;
+  font-weight: 600;
+}
