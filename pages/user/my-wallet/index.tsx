@@ -484,7 +484,9 @@ const MyWallet: NextPage = () => {
                                       )}
                                       {/* </OutsideClickHandler> */}
                                     </li>
-                                    <Link href={`/user/swap-coin`}>
+                                    <Link
+                                      href={`/user/swap-coin?coin_id=${item.id}`}
+                                    >
                                       <li className="toolTip" title="swap">
                                         <TiArrowRepeat size={25} />
                                       </li>
