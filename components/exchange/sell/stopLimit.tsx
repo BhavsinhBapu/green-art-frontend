@@ -61,7 +61,7 @@ const StopLimit = ({
                               ? dashboard?.order_data?.total?.trade_wallet
                                   ?.balance
                               : 0
-                          ).toFixed(8)}
+                          ).toFixed(4)}
                         </span>
                       </span>
                       <span
@@ -84,7 +84,7 @@ const StopLimit = ({
                         <span>
                           {parseFloat(
                             dashboard?.order_data?.total?.trade_wallet?.balance
-                          ).toFixed(8)}
+                          ).toFixed(4)}
                         </span>
                       </span>
                       <span
