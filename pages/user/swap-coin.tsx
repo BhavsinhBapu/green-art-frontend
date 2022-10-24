@@ -20,6 +20,8 @@ const SwapCoin: NextPage = ({
   ssrRate,
   from_wallet,
   to_wallet,
+  from_wallet_details,
+  to_wallet_details,
 }: any) => {
   const { t } = useTranslation("common");
 
@@ -88,17 +90,18 @@ const SwapCoin: NextPage = ({
     });
   }, [rate]);
   React.useEffect(() => {
+    console.log(to_wallet, from_wallet);
     setFromSelected({
       amount: 1,
-      selected: walletLists[0]?.coin_type,
-      coin_id: walletLists[0]?.id,
-      balamce: walletLists[0]?.balance,
+      selected: from_wallet_details?.coin_type,
+      coin_id: from_wallet_details?.id,
+      balamce: from_wallet_details?.balance,
     });
     setToSelected({
       amount: wallet_rate,
-      selected: walletLists[1]?.coin_type,
-      coin_id: walletLists[1]?.id,
-      balamce: walletLists[1]?.balance,
+      selected: to_wallet_details?.coin_type,
+      coin_id: to_wallet_details?.id,
+      balamce: to_wallet_details?.balance,
     });
     setRate({
       wallet_rate: wallet_rate,
@@ -409,21 +412,19 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   }
   let data;
   if (ctx.query.coin_id) {
-    if (ctx.query.coin_id) {
-      data = await getRateSsr(
-        ctx.query.coin_id,
-        walletLists[1].id,
-        1,
-        cookies.token
-      );
-    } else {
-      data = await getRateSsr(
-        walletLists[0].id,
-        walletLists[1].id,
-        1,
-        cookies.token
-      );
-    }
+    data = await getRateSsr(
+      ctx.query.coin_id,
+      walletLists[1].id,
+      1,
+      cookies.token
+    );
+  } else {
+    data = await getRateSsr(
+      walletLists[0].id,
+      walletLists[1].id,
+      1,
+      cookies.token
+    );
   }
 
   if (data.success === false) {
@@ -434,15 +435,19 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
       },
     };
   }
+
   const { wallet_rate, convert_rate, rate, from_wallet, to_wallet } = data;
+
+  console.log(from_wallet, "from_wallet");
   return {
     props: {
       walletLists,
       convert_rate,
       ssrRate: rate,
       from_wallet: from_wallet?.coin_type,
-
       to_wallet: to_wallet?.coin_type,
+      from_wallet_details: from_wallet,
+      to_wallet_details: to_wallet,
       wallet_rate,
     },
   };
