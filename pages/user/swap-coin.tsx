@@ -61,13 +61,25 @@ const SwapCoin: NextPage = ({
   };
   const convertCoin = async (amount: any, from_id: any, to_id: any) => {
     setLoading(true);
-    const convert_rate = await getRateAction(from_id, to_id, amount, setRate);
-    setToSelected({
-      ...toSelected,
-      amount: convert_rate,
-    });
+    const data = await getRateAction(from_id, to_id, amount, setRate);
     setLoading(false);
+    return data;
   };
+  // React.useEffect(() => {
+  //   convertCoin(
+  //     fromSelected.amount,
+  //     fromSelected.coin_id,
+  //     toSelected.coin_id
+  //   ).then((data) => {
+  //     setToSelected({
+  //       ...toSelected,
+  //       coin_id: data?.to_wallet?.id,
+  //       selected: data?.to_wallet?.coin_type,
+  //       balamce: data?.to_wallet?.balance,
+  //       amount: data?.convert_rate,
+  //     });
+  //   });
+  // }, [fromSelected.amount]);
 
   React.useEffect(() => {
     setToSelected({
@@ -134,7 +146,7 @@ const SwapCoin: NextPage = ({
                         <div className="swap-wrap-top">
                           <label>{t("From")}</label>
                           <span className="available">
-                            Available : {formateZert(fromSelected.balamce)}{" "}
+                            Available : {parseFloat(fromSelected.balamce).toFixed(8)}{" "}
                             {fromSelected.selected}
                           </span>
                         </div>
@@ -155,7 +167,15 @@ const SwapCoin: NextPage = ({
                                   e.target.value,
                                   fromSelected.coin_id,
                                   toSelected.coin_id
-                                );
+                                ).then((data) => {
+                                  setToSelected({
+                                    ...toSelected,
+                                    coin_id: data?.to_wallet?.id,
+                                    selected: data?.to_wallet?.coin_type,
+                                    balamce: data?.to_wallet?.balance,
+                                    amount: data?.convert_rate,
+                                  });
+                                });
                               }}
                             />
                           </div>
@@ -164,15 +184,18 @@ const SwapCoin: NextPage = ({
                               className=" form-control "
                               id="currency-one"
                               onChange={(e: any) => {
-                                setFromSelected({
-                                  ...fromSelected,
-                                  coin_id: e.target.value,
-                                });
                                 convertCoin(
                                   fromSelected.amount,
                                   e.target.value,
                                   toSelected.coin_id
-                                );
+                                ).then((data) => {
+                                  setFromSelected({
+                                    ...fromSelected,
+                                    coin_id: data.from_wallet.id,
+                                    selected: data.from_wallet.coin_type,
+                                    balamce: data.from_wallet.balance,
+                                  });
+                                });
                               }}
                             >
                               <option value="" selected disabled hidden>
@@ -220,7 +243,7 @@ const SwapCoin: NextPage = ({
                         <div className="swap-wrap-top">
                           <label>{t("To")}</label>
                           <span className="available">
-                            Available : {formateZert(toSelected.balamce)}{" "}
+                            Available : {parseFloat(toSelected.balamce).toFixed(8)}
                             {toSelected.selected}
                           </span>
                         </div>
@@ -240,15 +263,19 @@ const SwapCoin: NextPage = ({
                               className="form-control"
                               id="currency-two"
                               onChange={(e) => {
-                                setToSelected({
-                                  ...toSelected,
-                                  coin_id: e.target.value,
-                                });
                                 convertCoin(
                                   fromSelected.amount,
                                   fromSelected.coin_id,
                                   e.target.value
-                                );
+                                ).then((data) => {
+                                  console.log(data, "data");
+                                  setToSelected({
+                                    ...fromSelected,
+                                    coin_id: data.to_wallet.id,
+                                    selected: data.to_wallet.coin_type,
+                                    balamce: data.to_wallet.balance,
+                                  });
+                                });
                               }}
                             >
                               <option value="" selected disabled hidden>
@@ -289,7 +316,8 @@ const SwapCoin: NextPage = ({
                           <span>{t("You will spend")}</span>
 
                           <span className="spend">
-                            {rate.convert_rate} {rate.to_wallet}
+                            {parseFloat(rate.convert_rate)}
+                            {rate.to_wallet}
                           </span>
                         </li>
                       </ul>

@@ -85,7 +85,7 @@ const TransactionHistory: NextPage = () => {
       cell: (row: any) => (
         <div className="blance-text">
           <span className="blance market incree">
-            {formatCurrency(row?.fees)}
+            {parseFloat(row?.fees).toFixed(8)}
           </span>
         </div>
       ),

@@ -61,7 +61,7 @@ const Market = ({
                               ? dashboard?.order_data?.total?.trade_wallet
                                   ?.balance
                               : 0
-                          ).toFixed(8)}
+                          ).toFixed(4)}
                         </span>
                       </span>
                       <span
@@ -87,7 +87,7 @@ const Market = ({
                               ? dashboard?.order_data?.total?.trade_wallet
                                   ?.balance
                               : 0
-                          ).toFixed(8)}
+                          ).toFixed(4)}
                         </span>
                       </span>
                       <span
