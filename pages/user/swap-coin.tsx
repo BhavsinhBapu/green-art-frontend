@@ -118,7 +118,7 @@ const SwapCoin: NextPage = ({
           <ul className="left-menu">
             <li>
               <Link href={`/user/my-wallet`}>
-                <a>{t("Wallet Overview")}</a>
+                <a>{t("My wallet")}</a>
               </Link>
             </li>
             <li className="active">
