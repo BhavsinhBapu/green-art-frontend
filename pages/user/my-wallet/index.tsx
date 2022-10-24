@@ -130,7 +130,7 @@ const MyWallet: NextPage = () => {
   return (
     <>
       <div className="page-wrap">
-        <div className="page-left-sidebar">
+        {/* <div className="page-left-sidebar">
           <div className="sidebar-top">
             <ul className="left-menu">
               <li className="active">
@@ -201,7 +201,7 @@ const MyWallet: NextPage = () => {
               )}
             </button>
           </div>
-        </div>
+        </div> */}
         <div className="page-main-content">
           <div className="container-fluid">
             <div className="section-top-wrap mb-25">
@@ -349,11 +349,11 @@ const MyWallet: NextPage = () => {
                           {Changeable?.map((item: any, index: number) => (
                             <tr
                               id=""
-                              className={
-                                index === selectedRow.index
-                                  ? "even active"
-                                  : "odd"
-                              }
+                              // className={
+                              //   index === selectedRow.index
+                              //     ? "even active"
+                              //     : "odd"
+                              // }
                               key={index}
                               onClick={() => {
                                 setShow({

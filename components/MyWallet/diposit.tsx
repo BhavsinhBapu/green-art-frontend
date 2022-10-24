@@ -11,18 +11,19 @@ export const DipositComponent = ({ responseData, router }: any) => {
   const [selectedNetwork, setSelectedNetwork] = useState(
     responseData?.data && responseData?.data[0]
   );
-  const selectAddressCopy: any = React.useRef();
+  const selectAddressCopy: any = React.useRef(null);
 
   return (
     <div className={`col-md-7`}>
       <div className={`box-one single-box visible`}>
         <div className="section-wrapper">
-          <div className="wallet-back">
-            <IoIosArrowBack className="wallet-backIcon" size={25} />
-            <Link href="/user/my-wallet">
+          <Link href="/user/my-wallet">
+            <div className="wallet-back">
+              <IoIosArrowBack className="wallet-backIcon" size={25} />
               <a href="">{t("My Wallet")}</a>
-            </Link>
-          </div>
+            </div>
+          </Link>
+
           <div className="deposit-info-area" id="wallet_deposit_area">
             <div className="deposit-info-top">
               <div className="balance-box">
@@ -47,8 +48,11 @@ export const DipositComponent = ({ responseData, router }: any) => {
               </div>
               <div className="total-balance-right">
                 <h3>
-                  {formateZert(responseData?.deposit?.balance)}
-                  {responseData?.deposit?.coin_type}
+                  {responseData?.deposit?.balance
+                    ? formateZert(responseData?.deposit?.balance) +
+                      " " +
+                      responseData?.deposit?.coin_type
+                    : "Loading..."}
                 </h3>
               </div>
             </div>
@@ -96,7 +100,7 @@ export const DipositComponent = ({ responseData, router }: any) => {
                         ? selectedNetwork?.address
                         : responseData?.address
                     );
-                    selectAddressCopy?.current ? selectAddressCopy : null;
+                    selectAddressCopy?.current.select;
                   }}
                   ref={selectAddressCopy}
                   className="address-box address-copy-box"
@@ -125,7 +129,7 @@ export const DipositComponent = ({ responseData, router }: any) => {
                         ? selectedNetwork?.address
                         : responseData?.address
                     );
-                    selectAddressCopy.current.select();
+                    selectAddressCopy?.current?.select;
                   }}
                 >
                   <i className="fa fa-clone"></i>

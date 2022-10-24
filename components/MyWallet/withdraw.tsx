@@ -56,12 +56,12 @@ export const WithdrawComponent = ({ responseData, router }: any) => {
     <div className={`col-md-7`}>
       <div className="box-two single-box visible">
         <div className="section-wrapper">
-          <div className="wallet-back">
-            <IoIosArrowBack className="wallet-backIcon" size={25} />
-            <Link href="/user/my-wallet">
+          <Link href="/user/my-wallet">
+            <div className="wallet-back">
+              <IoIosArrowBack className="wallet-backIcon" size={25} />
               <a href="">{t("My Wallet")}</a>
-            </Link>
-          </div>
+            </div>
+          </Link>
           <div className="withdrawal-info-area" id="withdrawal_wallet_area">
             <div className="withdrawal-info-top">
               <div className="balance-box">
@@ -95,8 +95,11 @@ export const WithdrawComponent = ({ responseData, router }: any) => {
                   {t("AVAILABLE BALANCE")}
                 </h4>
                 <h2 className="blance">
-                  {formateZert(responseData?.wallet?.balance)}{" "}
-                  {responseData?.wallet?.coin_type}
+                  {responseData?.wallet?.balance
+                    ? formateZert(responseData?.wallet?.balance) +
+                      " " +
+                      responseData?.wallet?.coin_type
+                    : "Loading..."}
                 </h2>
               </div>
               <form>
