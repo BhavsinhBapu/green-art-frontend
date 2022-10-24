@@ -7,6 +7,8 @@ import React, { useEffect, useState } from "react";
 import { formateZert, formatCurrency } from "common";
 import { IoWalletOutline } from "react-icons/io5";
 import { TiArrowRepeat } from "react-icons/ti";
+import OutsideClickHandler from "react-outside-click-handler";
+
 import {
   HiOutlineBanknotes,
   HiOutlinePresentationChartLine,
@@ -23,6 +25,8 @@ import Link from "next/link";
 import useTranslation from "next-translate/useTranslation";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
+import { TradeList } from "components/TradeList";
+import { appDashboardDataWithoutPair } from "service/exchange";
 const MyWallet: NextPage = () => {
   const { t } = useTranslation("common");
   const { settings } = useSelector((state: RootState) => state.common);
@@ -34,6 +38,16 @@ const MyWallet: NextPage = () => {
   const [Changeable, setChangeable] = useState<any[]>([]);
   const [processing, setProcessing] = useState<boolean>(false);
   const [allData, setAllData] = useState<any>();
+  const [tradeList, setTradeList]: any = useState();
+  const [coinList, setCoinList]: any = useState([]);
+  const handleActive = (index: any) => {
+    console.log(index);
+    if (index === tradeList) {
+      setTradeList(index);
+    } else {
+      setTradeList(index);
+    }
+  };
   const [transactionProcessing, settransactionProcessing] = useState<any>({
     deposit: false,
     withdraw: false,
@@ -119,8 +133,13 @@ const MyWallet: NextPage = () => {
       }
     }
   };
+  const coinListApi = async () => {
+    const coinList = await appDashboardDataWithoutPair();
+    setCoinList(coinList);
+  };
 
   useEffect(() => {
+    coinListApi();
     getWalletLists("/wallet-list?page=1&per_page=15");
     return () => {
       setWalletList(null);
@@ -441,15 +460,30 @@ const MyWallet: NextPage = () => {
                                       </li>
                                     </Link>
 
-                                    <Link
-                                      href={`/user/my-wallet/trade?type=trade`}
+                                    <li
+                                      className="toolTip trade-li"
+                                      title="Trade"
+                                      onClick={() =>
+                                        handleActive(
+                                          tradeList ? null : index + 1
+                                        )
+                                      }
                                     >
-                                      <li className="toolTip" title="Trade">
-                                        <HiOutlinePresentationChartLine
-                                          size={25}
-                                        />
-                                      </li>
-                                    </Link>
+                                      <HiOutlinePresentationChartLine
+                                        size={25}
+                                      />
+                                      {/* <OutsideClickHandler
+                                        onOutsideClick={() => handleActive("")}
+                                      > */}
+                                      {tradeList === index + 1 && (
+                                        <div className="trade-select">
+                                          <TradeList
+                                            coinList={coinList.pairs}
+                                          />
+                                        </div>
+                                      )}
+                                      {/* </OutsideClickHandler> */}
+                                    </li>
                                     <Link href={`/user/swap-coin`}>
                                       <li className="toolTip" title="swap">
                                         <TiArrowRepeat size={25} />

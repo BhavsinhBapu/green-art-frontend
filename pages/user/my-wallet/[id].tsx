@@ -89,7 +89,6 @@ const DeposiAndWithdraw = () => {
   };
 
   useEffect(() => {
-    console.log("ddfdfdf",responseData,"routerrererererer", router.query);
     handleWithdrawAndDeposit(
       String(router.query.id),
       Number(router.query.coin_id)
