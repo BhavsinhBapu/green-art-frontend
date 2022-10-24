@@ -408,8 +408,8 @@ const MyWallet: NextPage = () => {
                                     {item?.on_order}
                                   </span>
                                   <span className="usd">
-                                    {settings?.currency_symbol}
-                                    {formatCurrency(item?.on_order_usd)}
+                                    ({settings?.currency_symbol}
+                                    {formatCurrency(item?.on_order_usd)})
                                   </span>
                                 </div>
                               </td>
@@ -419,10 +419,11 @@ const MyWallet: NextPage = () => {
                                     {formatCurrency(item?.balance)}
                                   </span>
                                   <span className="usd">
-                                    {settings?.currency_symbol}
+                                    ( {settings?.currency_symbol}
                                     {formatCurrency(
                                       item?.available_balance_usd
                                     )}
+                                    )
                                   </span>
                                 </div>
                               </td>
@@ -431,13 +432,14 @@ const MyWallet: NextPage = () => {
                                   <span className="blance">
                                     {/* @ts-ignore */}
                                     {parseFloat(
+                                      // @ts-ignore
                                       Number(item?.balance) +
                                         Number(item?.on_order)
                                     ).toFixed(8)}
                                   </span>
                                   <span className="usd">
-                                    {settings?.currency_symbol}
-                                    {formatCurrency(item?.total_balance_usd)}
+                                    ( {settings?.currency_symbol}
+                                    {formatCurrency(item?.total_balance_usd)})
                                   </span>
                                 </div>
                               </td>
