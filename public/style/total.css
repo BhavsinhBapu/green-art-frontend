@@ -10038,3 +10038,39 @@ input[type="number"] {
   opacity: 0.7;
   font-weight: 600;
 }
+.trade-li {
+  position: relative;
+}
+.tradeList {
+  background: #fff;
+  position: absolute;
+  width: 190px;
+  padding: 10px 20px;
+  border-radius: 2px;
+  z-index: 9999;
+  height: 300px;
+  margin-bottom: 50px;
+  overflow-y: scroll;
+  left: -50px;
+  top: 35px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+.tradeList a {
+  color: #000;
+  display: inline-block;
+}
+.tradeList a:hover {
+  color: var(--primary-color);
+}
+.coinList {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-items: center;
+  margin-bottom: 15px;
+}
+.coinList img {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
