@@ -52,10 +52,9 @@ const ExchangeBoxBottom = () => {
 
   const [buySelectedTab, setBuySelectedTab] = useState<number>(1);
 
- 
   const initialSetUp = () => {
     setBuyLimitCoinData({
-      price:dashboard?.order_data?.sell_price,
+      price: dashboard?.order_data?.sell_price,
       amount: 0,
       total: 0,
     });
@@ -83,6 +82,7 @@ const ExchangeBoxBottom = () => {
   };
 
   useEffect(() => {
+    console.log("initial setup calling");
     initialSetUp();
   }, [currentPair, dashboard, tradingTab]);
 
