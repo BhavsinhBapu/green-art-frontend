@@ -13,6 +13,7 @@ import Link from "next/link";
 import useTranslation from "next-translate/useTranslation";
 import SmallLoading from "components/common/smallLoading";
 import { formateZert } from "common";
+import { AiOutlineSwap, AiFillWallet } from "react-icons/ai";
 const SwapCoin: NextPage = ({
   walletLists,
   wallet_rate,
@@ -67,21 +68,6 @@ const SwapCoin: NextPage = ({
     setLoading(false);
     return data;
   };
-  // React.useEffect(() => {
-  //   convertCoin(
-  //     fromSelected.amount,
-  //     fromSelected.coin_id,
-  //     toSelected.coin_id
-  //   ).then((data) => {
-  //     setToSelected({
-  //       ...toSelected,
-  //       coin_id: data?.to_wallet?.id,
-  //       selected: data?.to_wallet?.coin_type,
-  //       balamce: data?.to_wallet?.balance,
-  //       amount: data?.convert_rate,
-  //     });
-  //   });
-  // }, [fromSelected.amount]);
 
   React.useEffect(() => {
     setToSelected({
@@ -118,12 +104,18 @@ const SwapCoin: NextPage = ({
           <ul className="left-menu">
             <li>
               <Link href={`/user/my-wallet`}>
-                <a>{t("My wallet")}</a>
+                <div>
+                  <AiFillWallet />
+                  <a>{t("My wallet")}</a>
+                </div>
               </Link>
             </li>
             <li className="active">
               <Link href={`/user/swap-coin`}>
-                <a>{t("Swap Coin")}</a>
+                <div>
+                  <AiOutlineSwap />
+                  <a>{t("Swap Coin")}</a>
+                </div>
               </Link>
             </li>
           </ul>
