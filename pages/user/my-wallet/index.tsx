@@ -7,7 +7,6 @@ import React, { useEffect, useState } from "react";
 import { formateZert, formatCurrency } from "common";
 import { IoWalletOutline } from "react-icons/io5";
 import { TiArrowRepeat } from "react-icons/ti";
-import OutsideClickHandler from "react-outside-click-handler";
 
 import {
   HiOutlineBanknotes,
@@ -234,60 +233,6 @@ const MyWallet: NextPage = () => {
                   </h4>
                 </div>
               </div>
-              <div className="responsive-thing">
-                <button
-                  value="0"
-                  id="depositId"
-                  type="submit"
-                  className="depositId primary-btn-outline btn-deposite text-white"
-                  onClick={() => {
-                    if (!selectedRow.id) {
-                      toast.info("Please select a wallet");
-                      return;
-                    }
-                    handleWithdrawAndDeposit(1, selectedRow.id);
-                  }}
-                >
-                  {transactionProcessing.deposit ? (
-                    <>
-                      <span
-                        className="spinner-border spinner-border-sm mr-3"
-                        role="status"
-                        aria-hidden="true"
-                      ></span>
-                      <span>{t("Please wait")}</span>
-                    </>
-                  ) : (
-                    t("Deposit")
-                  )}
-                </button>
-                <button
-                  value="0"
-                  id="withdrawalId"
-                  type="submit"
-                  className="withdrawalId primary-btn-outline btn-withdraw text-white"
-                  onClick={() => {
-                    if (!selectedRow.id) {
-                      toast.info("Please select a wallet");
-                      return;
-                    }
-                    handleWithdrawAndDeposit(2, selectedRow.id);
-                  }}
-                >
-                  {transactionProcessing.withdraw ? (
-                    <>
-                      <span
-                        className="spinner-border spinner-border-sm mr-3"
-                        role="status"
-                        aria-hidden="true"
-                      ></span>
-                      <span>{t("Please wait")}</span>
-                    </>
-                  ) : (
-                    t("Withdraw")
-                  )}
-                </button>
-              </div>
             </div>
 
             {/* <h4 className="section-title-medium">{t("Asset Balances")}</h4> */}
@@ -295,58 +240,56 @@ const MyWallet: NextPage = () => {
             <div className="asset-balances-area cstm-loader-area">
               <div className="asset-balances-left">
                 <div className="section-wrapper">
-                  <div className="table-responsive">
-                    <div
-                      id="assetBalances_wrapper"
-                      className="dataTables_wrapper no-footer"
-                    >
-                      <div className="dataTables_head">
-                        <div
-                          className="dataTables_length"
-                          id="assetBalances_length"
-                        >
-                          <label className="">
-                            {t("Show")}
-                            <select
-                              name="assetBalances_length"
-                              aria-controls="assetBalances"
-                              className=""
-                              onChange={async (e) => {
-                                await getWalletLists(
-                                  "/wallet-list?page=1&per_page=" +
-                                    e.target.value
-                                );
-                              }}
-                            >
-                              <option value="15">15</option>
-                              <option value="25">25</option>
-                              <option value="50">50</option>
-                              <option value="100">100</option>
-                            </select>
-                            {t("entries")}
-                          </label>
-                        </div>
-                        <div id="table_filter" className="dataTables_filter">
-                          <label>
-                            {t("Search:")}
-                            <input
-                              type="search"
-                              className="data_table_input"
-                              placeholder=""
-                              aria-controls="table"
-                              onChange={(e) =>
-                                SearchObjectArrayFuesJS(
-                                  walletList,
-                                  setChangeable,
-                                  e.target.value
-                                )
-                              }
-                            />
-                          </label>
-                        </div>
+                  <div
+                    id="assetBalances_wrapper"
+                    className="dataTables_wrapper no-footer"
+                  >
+                    <div className="dataTables_head">
+                      <div
+                        className="dataTables_length"
+                        id="assetBalances_length"
+                      >
+                        <label className="">
+                          {t("Show")}
+                          <select
+                            name="assetBalances_length"
+                            aria-controls="assetBalances"
+                            className=""
+                            onChange={async (e) => {
+                              await getWalletLists(
+                                "/wallet-list?page=1&per_page=" + e.target.value
+                              );
+                            }}
+                          >
+                            <option value="15">15</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                          </select>
+                          {t("entries")}
+                        </label>
+                      </div>
+                      <div id="table_filter" className="dataTables_filter">
+                        <label>
+                          {t("Search:")}
+                          <input
+                            type="search"
+                            className="data_table_input"
+                            placeholder=""
+                            aria-controls="table"
+                            onChange={(e) =>
+                              SearchObjectArrayFuesJS(
+                                walletList,
+                                setChangeable,
+                                e.target.value
+                              )
+                            }
+                          />
+                        </label>
                       </div>
                     </div>
-
+                  </div>
+                  <div className="table-responsive">
                     {processing ? (
                       <Loading />
                     ) : (
@@ -419,7 +362,7 @@ const MyWallet: NextPage = () => {
                                     {formatCurrency(item?.balance)}
                                   </span>
                                   <span className="usd">
-                                    ( {settings?.currency_symbol}
+                                    ({settings?.currency_symbol}
                                     {formatCurrency(
                                       item?.available_balance_usd
                                     )}
@@ -438,7 +381,7 @@ const MyWallet: NextPage = () => {
                                     ).toFixed(8)}
                                   </span>
                                   <span className="usd">
-                                    ( {settings?.currency_symbol}
+                                    ({settings?.currency_symbol}
                                     {formatCurrency(item?.total_balance_usd)})
                                   </span>
                                 </div>
@@ -501,61 +444,47 @@ const MyWallet: NextPage = () => {
                         </tbody>
                       </table>
                     )}
-                    <div
-                      className="pagination-wrapper"
-                      id="assetBalances_paginate"
-                    >
-                      <span>
-                        {walletList?.links?.map((link: any, index: number) =>
-                          link.label === "&laquo; Previous" ? (
-                            <a
-                              className="paginate-button"
-                              onClick={() => LinkTopaginationString(link)}
-                              key={index}
-                            >
-                              <i className="fa fa-angle-left"></i>
-                            </a>
-                          ) : link.label === "Next &raquo;" ? (
-                            <a
-                              className="paginate-button"
-                              onClick={() => LinkTopaginationString(link)}
-                              key={index}
-                            >
-                              <i className="fa fa-angle-right"></i>
-                            </a>
-                          ) : (
-                            <a
-                              className={`paginate_button paginate-number ${
-                                link.active === true && "text-warning"
-                              }`}
-                              aria-controls="assetBalances"
-                              data-dt-idx="1"
-                              onClick={() => LinkTopaginationString(link)}
-                              key={index}
-                            >
-                              {link.label}
-                            </a>
-                          )
-                        )}
-                      </span>
-                    </div>
+                  </div>
+                  <div
+                    className="pagination-wrapper"
+                    id="assetBalances_paginate"
+                  >
+                    <span>
+                      {walletList?.links?.map((link: any, index: number) =>
+                        link.label === "&laquo; Previous" ? (
+                          <a
+                            className="paginate-button"
+                            onClick={() => LinkTopaginationString(link)}
+                            key={index}
+                          >
+                            <i className="fa fa-angle-left"></i>
+                          </a>
+                        ) : link.label === "Next &raquo;" ? (
+                          <a
+                            className="paginate-button"
+                            onClick={() => LinkTopaginationString(link)}
+                            key={index}
+                          >
+                            <i className="fa fa-angle-right"></i>
+                          </a>
+                        ) : (
+                          <a
+                            className={`paginate_button paginate-number ${
+                              link.active === true && "text-warning"
+                            }`}
+                            aria-controls="assetBalances"
+                            data-dt-idx="1"
+                            onClick={() => LinkTopaginationString(link)}
+                            key={index}
+                          >
+                            {link.label}
+                          </a>
+                        )
+                      )}
+                    </span>
                   </div>
                 </div>
               </div>
-
-              {show?.deposit && (
-                <DepositTab
-                  response={response}
-                  TurnoffSetShow={TurnoffSetShow}
-                  id={selectedRow.id}
-                />
-              )}
-              {show?.withdraw && (
-                <WirhdrawTab
-                  response={response}
-                  TurnoffSetShow={TurnoffSetShow}
-                />
-              )}
             </div>
           </div>
         </div>

@@ -39,7 +39,7 @@ const Settings: NextPage = () => {
         </div>
         <div className="setting-area">
           <div className="container">
-            <div className="section-top-wrap ">
+            <div className="setting-bg">
               <div className="row">
                 <div className="col-xl-6 mb-xl-0 mb-4">
                   <div className="cp-user-setting-card">
