@@ -26,7 +26,13 @@ import { useSelector } from "react-redux";
 import { RootState } from "state/store";
 import { TradeList } from "components/TradeList";
 import { appDashboardDataWithoutPair } from "service/exchange";
-const MyWallet: NextPage = () => {
+import Footer from "components/common/footer";
+import { customPage, landingPage } from "service/landing-page";
+const MyWallet: NextPage = ({
+  customPageData,
+  socialData,
+  copyright_text,
+}: any) => {
   const { t } = useTranslation("common");
   const { settings } = useSelector((state: RootState) => state.common);
   const [show, setShow] = useState<any>({
@@ -489,13 +495,25 @@ const MyWallet: NextPage = () => {
           </div>
         </div>
       </div>
+      <Footer
+        customPageData={customPageData}
+        socialData={socialData}
+        copyright_text={copyright_text}
+      />
     </>
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/user/my-wallet");
+
+  const { data } = await landingPage();
+  const { data: customPageData } = await customPage();
   return {
-    props: {},
+    props: {
+      socialData: data.media_list,
+      copyright_text: data?.copyright_text,
+      customPageData: customPageData.data,
+    },
   };
 };
 
