@@ -20,45 +20,49 @@ import {
 } from "helpers/core-constants";
 import { DipositComponent } from "components/MyWallet/diposit";
 import { WithdrawComponent } from "components/MyWallet/withdraw";
+import { getFaqList } from "service/faq";
+import FAQ from "components/FAQ";
 
-const DeposiAndWithdraw = () => {
+const DeposiAndWithdraw = ({ faq }: any) => {
   const router = useRouter();
   const { t } = useTranslation("common");
+  const [faqs, setFaqs] = useState<any>([]);
 
   const [responseData, setResponseData]: any = useState();
+  // console.log("FAQ#####", faqs);
 
-  const faqs = [
-    {
-      id: 1,
-      faq_type_id: 2,
-      answer: t("How to deposit?"),
-      question: t("How to deposit?"),
-    },
-    {
-      id: 2,
-      faq_type_id: 2,
-      answer: t("How to deposit?"),
-      question: t("How to deposit?"),
-    },
-    {
-      id: 3,
-      faq_type_id: 2,
-      answer: t("How to deposit?"),
-      question: t("How to deposit?"),
-    },
-    {
-      id: 4,
-      faq_type_id: 2,
-      answer: t("How to deposit?"),
-      question: t("How to deposit?"),
-    },
-    {
-      id: 5,
-      faq_type_id: 2,
-      answer: t("How to deposit?"),
-      question: t("How to deposit?"),
-    },
-  ];
+  // const faqs = [
+  //   {
+  //     id: 1,
+  //     faq_type_id: 2,
+  //     answer: t("How to deposit?"),
+  //     question: t("How to deposit?"),
+  //   },
+  //   {
+  //     id: 2,
+  //     faq_type_id: 2,
+  //     answer: t("How to deposit?"),
+  //     question: t("How to deposit?"),
+  //   },
+  //   {
+  //     id: 3,
+  //     faq_type_id: 2,
+  //     answer: t("How to deposit?"),
+  //     question: t("How to deposit?"),
+  //   },
+  //   {
+  //     id: 4,
+  //     faq_type_id: 2,
+  //     answer: t("How to deposit?"),
+  //     question: t("How to deposit?"),
+  //   },
+  //   {
+  //     id: 5,
+  //     faq_type_id: 2,
+  //     answer: t("How to deposit?"),
+  //     question: t("How to deposit?"),
+  //   },
+  // ];
 
   const handleWithdrawAndDeposit = async (actionType: string, id: number) => {
     // if (!router.query.id) return;
@@ -89,6 +93,7 @@ const DeposiAndWithdraw = () => {
   };
 
   useEffect(() => {
+    setFaqs(faq.data.data);
     handleWithdrawAndDeposit(
       String(router.query.id),
       Number(router.query.coin_id)
@@ -111,7 +116,7 @@ const DeposiAndWithdraw = () => {
             <div className={`col-md-5`}>
               <div className={`box-one single-box visible`}>
                 <div className="section-wrapper">
-                  <DepositFaq faqs={faqs} />
+                  <FAQ faqs={faqs} type={router.query.id} />
                 </div>
               </div>
             </div>
@@ -127,6 +132,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const cookies = parseCookies(ctx);
   const response = await GetUserInfoByTokenServer(cookies.token);
   const commonRes = await pageAvailabilityCheck();
+  const FAQ = await getFaqList();
   if (parseInt(commonRes.currency_deposit_status) !== 1) {
     return {
       redirect: {
@@ -138,6 +144,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   return {
     props: {
       user: response.user,
+      faq: FAQ,
     },
   };
 };
