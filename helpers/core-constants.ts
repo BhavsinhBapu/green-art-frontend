@@ -2,6 +2,8 @@ export const PAYPAL = 3;
 export const BANK_DEPOSIT = 4;
 export const STRIPE = 5;
 export const WALLET_DEPOSIT = 6;
+
+// FAQ Type List
 export const FAQ_TYPE_MAIN = 1;
 export const FAQ_TYPE_DEPOSIT = 2;
 export const FAQ_TYPE_WITHDRAWN = 3;
