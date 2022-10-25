@@ -3108,7 +3108,7 @@ div.dataTables_wrapper div.dataTables_filter {
 }
 
 .profile-edit-btn.phn-verify-btn {
-  min-width: 140px;
+  min-width: 100%;
   display: inline-block;
   margin-top: 15px;
   font-size: 16px;
@@ -4770,6 +4770,7 @@ select:-webkit-autofill:focus {
 }
 .page-wrap {
   display: flex;
+  height: 90vh;
 }
 .page-main-content {
   flex: 1;
@@ -4778,13 +4779,16 @@ select:-webkit-autofill:focus {
 .section-top-wrap {
   background: #ffffff;
   padding: 25px;
+  background-image: linear-gradient(0deg, #fcd5359e, #0e0b0259),
+    url(https://img.freepik.com/free-vector/abstract-white-shapes-background_79603-1362.jpg?w=1380&t=st=1666683576~exp=1666684176~hmac=4c3552aeeb1bb995a74bf404517b8610ec13d863bef1f158dac4eed6772340fb);
+  background-size: inherit;
 }
 .section-top-title {
   margin-bottom: 15px;
   font-size: 32px;
   font-weight: 500;
   text-transform: capitalize;
-  color: #23262f;
+  color: #fff;
 }
 .section-title-medium {
   margin-bottom: 15px;
@@ -4913,7 +4917,7 @@ select:-webkit-autofill:focus {
 }
 .page-left-sidebar .sidebar-top {
   padding: 30px;
-  border-bottom: 1px solid #dedede;
+  /* border-bottom: 1px solid #dedede; */
 }
 .page-left-sidebar .sidebar-top .left-menu {
   margin: 0;
@@ -4921,53 +4925,33 @@ select:-webkit-autofill:focus {
 }
 .page-left-sidebar .sidebar-top .left-menu li {
   position: relative;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   list-style: none;
-  padding-left: 30px;
+  /* padding-left: 30px; */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 22px;
 }
 .page-left-sidebar .sidebar-top .left-menu li:last-child {
   margin-bottom: 0;
 }
-.page-left-sidebar .sidebar-top .left-menu li::before {
-  position: absolute;
-  content: "";
-  width: 15px;
-  height: 15px;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  background: #f9b507;
-}
-.page-left-sidebar .sidebar-top .left-menu li:nth-child(1):before {
-  background: #f9b507;
-}
-.page-left-sidebar .sidebar-top .left-menu li:nth-child(2):before {
-  background: #93068d;
-}
-.page-left-sidebar .sidebar-top .left-menu li:nth-child(3):before {
-  background: #014b81;
-}
-.page-left-sidebar .sidebar-top .left-menu li:nth-child(4):before {
-  background: #138101;
-}
-.page-left-sidebar .sidebar-top .left-menu li:nth-child(5):before {
-  background: #018179;
-}
-.page-left-sidebar .sidebar-top .left-menu li:nth-child(6):before {
-  background: #c5230d;
-}
+
 .page-left-sidebar .sidebar-top .left-menu li a {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 400;
   text-transform: capitalize;
-  color: #777778;
+  color: #777778 !important;
   transition: all 0.3s;
+  margin-left: 15px !important;
 }
+
 .page-left-sidebar .sidebar-top .left-menu li a:hover {
   color: #23262f;
 }
 .page-left-sidebar .sidebar-top .left-menu li.active a {
-  color: #23262f;
+  color: #23262f !important;
+  margin-left: 5px;
 }
 .page-left-sidebar .sidebar-middle {
   padding: 30px 15px;
@@ -5359,7 +5343,11 @@ table.dataTable tbody tr td {
   font-size: 24px;
   font-weight: 700;
   text-transform: capitalize;
-  color: #777778;
+  color: #23262f;
+}
+.setting-bg{
+  background-color: white;
+  padding: 20px;
 }
 .referral-area .invite-friends .input-group {
   position: relative;
@@ -5378,7 +5366,7 @@ table.dataTable tbody tr td {
   width: 100%;
   height: 70px;
   border-radius: 5px;
-  border: 1px solid #dedede;
+  border: 1px solid #f9b507;
   background: transparent;
   color: black;
 }
@@ -8024,7 +8012,7 @@ textarea.form-control.textarea {
   font-size: 16px;
   font-weight: 700;
   border-radius: 7px !important;
-  color: rgb(188, 188, 188) !important;
+  color: white !important;
   background: #ffce51 !important;
   border-color: #ffce51 !important;
 }
