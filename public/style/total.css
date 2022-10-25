@@ -5345,7 +5345,7 @@ table.dataTable tbody tr td {
   text-transform: capitalize;
   color: #23262f;
 }
-.setting-bg{
+.setting-bg {
   background-color: white;
   padding: 20px;
 }
@@ -10063,4 +10063,12 @@ input[type="number"] {
   width: 20px;
   height: 20px;
   border-radius: 50%;
+}
+.upload-img-btn {
+  position: absolute;
+  bottom: -15px;
+  padding: 10px 20px;
+  background: var(--primary-color);
+  border-radius: 3px;
+  color: #000;
 }
