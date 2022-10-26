@@ -51,7 +51,7 @@ const G2fverify = () => {
                     className={`form-control ${
                       touched.code && errors.code ? "is-invalid" : ""
                     }`}
-                    placeholder="code"
+                    placeholder={t("code")}
                   />
                 </div>
 

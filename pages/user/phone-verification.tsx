@@ -84,7 +84,7 @@ const PhoneVerification: NextPage = ({
                             <p>
                               {t("Please add your mobile number first from ")}
                               <Link href="/user/edit-profile">
-                                {t(" edit profile")}
+                                {t("edit profile")}
                               </Link>
                             </p>
                           </div>

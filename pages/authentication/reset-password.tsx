@@ -51,7 +51,7 @@ const ResetPassword: NextPage = () => {
                   <h2>{t("Forgot Password ?")}</h2>
                   <p>
                     {t(
-                      "Please enter the new password and token to reset the password."
+                      "Please enter the new password and token to reset the password"
                     )}
                   </p>
                 </div>
@@ -98,7 +98,7 @@ const ResetPassword: NextPage = () => {
                           className={`form-control ${
                             touched.email && errors.email ? "is-invalid" : ""
                           }`}
-                          placeholder="Your email here"
+                          placeholder={t("Your email here")}
                         />
                       </div>
 
@@ -112,7 +112,7 @@ const ResetPassword: NextPage = () => {
                               ? "is-invalid"
                               : ""
                           }`}
-                          placeholder="Type your password"
+                          placeholder={t("Type your password")}
                         />
                       </div>
                       {/* <ErrorMessage
@@ -131,7 +131,7 @@ const ResetPassword: NextPage = () => {
                               ? "is-invalid"
                               : ""
                           }`}
-                          placeholder="Reenter your new password"
+                          placeholder={t("Reenter your new password")}
                         />
                       </div>
                       {/* <ErrorMessage

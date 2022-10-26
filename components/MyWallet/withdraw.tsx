@@ -141,7 +141,7 @@ export const WithdrawComponent = ({ responseData, router }: any) => {
                     className="form-control"
                     id="address"
                     name="address"
-                    placeholder="Address"
+                    placeholder={t("Address")}
                     value={withdrawalCredentials.address}
                     onChange={(e) => {
                       setWithdrawalCredentials({
@@ -158,7 +158,7 @@ export const WithdrawComponent = ({ responseData, router }: any) => {
                       className="form-control"
                       id="amountWithdrawal"
                       name="amount"
-                      placeholder="AMOUNT TO WITHDRAW"
+                      placeholder={t("AMOUNT TO WITHDRAW")}
                       value={withdrawalCredentials.amount}
                       onChange={(e) => {
                         setWithdrawalCredentials({
