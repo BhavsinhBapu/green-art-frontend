@@ -189,7 +189,7 @@ const DepositHistory: NextPage = ({
                           </div>
                         </div>
                       </div>
-                      <div className="cp-user-wallet-table table-responsive">
+                      <div className="cp-user-wallet-table table-responsive tableScroll">
                         <DataTable columns={columns} data={history} />
                       </div>
                       {history.length > 0 && (
