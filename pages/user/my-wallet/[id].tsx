@@ -22,47 +22,20 @@ import { DipositComponent } from "components/MyWallet/diposit";
 import { WithdrawComponent } from "components/MyWallet/withdraw";
 import { getFaqList } from "service/faq";
 import FAQ from "components/FAQ";
+import Footer from "components/common/footer";
+import { customPage, landingPage } from "service/landing-page";
 
-const DeposiAndWithdraw = ({ faq }: any) => {
+const DeposiAndWithdraw = ({
+  faq,
+  customPageData,
+  socialData,
+  copyright_text,
+}: any) => {
   const router = useRouter();
   const { t } = useTranslation("common");
   const [faqs, setFaqs] = useState<any>([]);
 
   const [responseData, setResponseData]: any = useState();
-  // console.log("FAQ#####", faqs);
-
-  // const faqs = [
-  //   {
-  //     id: 1,
-  //     faq_type_id: 2,
-  //     answer: t("How to deposit?"),
-  //     question: t("How to deposit?"),
-  //   },
-  //   {
-  //     id: 2,
-  //     faq_type_id: 2,
-  //     answer: t("How to deposit?"),
-  //     question: t("How to deposit?"),
-  //   },
-  //   {
-  //     id: 3,
-  //     faq_type_id: 2,
-  //     answer: t("How to deposit?"),
-  //     question: t("How to deposit?"),
-  //   },
-  //   {
-  //     id: 4,
-  //     faq_type_id: 2,
-  //     answer: t("How to deposit?"),
-  //     question: t("How to deposit?"),
-  //   },
-  //   {
-  //     id: 5,
-  //     faq_type_id: 2,
-  //     answer: t("How to deposit?"),
-  //     question: t("How to deposit?"),
-  //   },
-  // ];
 
   const handleWithdrawAndDeposit = async (actionType: string, id: number) => {
     // if (!router.query.id) return;
@@ -123,6 +96,11 @@ const DeposiAndWithdraw = ({ faq }: any) => {
           </div>
         </div>
       </div>
+      <Footer
+        customPageData={customPageData}
+        socialData={socialData}
+        copyright_text={copyright_text}
+      />
     </>
   );
 };
@@ -133,6 +111,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const response = await GetUserInfoByTokenServer(cookies.token);
   const commonRes = await pageAvailabilityCheck();
   const FAQ = await getFaqList();
+  const { data } = await landingPage();
+  const { data: customPageData } = await customPage();
+
   if (parseInt(commonRes.currency_deposit_status) !== 1) {
     return {
       redirect: {
@@ -145,6 +126,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
     props: {
       user: response.user,
       faq: FAQ,
+      socialData: data.media_list,
+      copyright_text: data?.copyright_text,
+      customPageData: customPageData.data,
     },
   };
 };

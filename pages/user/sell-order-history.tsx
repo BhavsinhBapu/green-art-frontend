@@ -13,7 +13,13 @@ import moment from "moment";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
 import { formatCurrency } from "common";
-const SellOrderHistory: NextPage = () => {
+import { customPage, landingPage } from "service/landing-page";
+import Footer from "components/common/footer";
+const SellOrderHistory: NextPage = ({
+  customPageData,
+  socialData,
+  copyright_text,
+}: any) => {
   type searchType = string;
 
   const [search, setSearch] = useState<searchType>("");
@@ -127,141 +133,156 @@ const SellOrderHistory: NextPage = () => {
     };
   }, []);
   return (
-    <div className="page-wrap">
-      <ReportSidebar />
+    <>
+      <div className="page-wrap">
+        <ReportSidebar />
 
-      <div className="page-main-content">
-        <div className="container-fluid">
-          <div className="section-top-wrap mb-25">
-            <div className="overview-area">
-              <div className="overview-left">
-                <h2 className="section-top-title">{t("Sell Order History")}</h2>
+        <div className="page-main-content">
+          <div className="container-fluid">
+            <div className="section-top-wrap mb-25">
+              <div className="overview-area">
+                <div className="overview-left">
+                  <h2 className="section-top-title">
+                    {t("Sell Order History")}
+                  </h2>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="asset-balances-area">
-            {processing ? (
-              <TableLoading />
-            ) : (
-              <div className="asset-balances-left">
-                <div className="section-wrapper">
-                  <div className="table-responsive">
-                    <div
-                      id="assetBalances_wrapper"
-                      className="dataTables_wrapper no-footer"
-                    >
-                      <div className="dataTables_head">
-                        <div
-                          className="dataTables_length"
-                          id="assetBalances_length"
-                        >
-                          <label className="">
-                            {t("Show")}
-                            <select
-                              name="assetBalances_length"
-                              aria-controls="assetBalances"
-                              className=""
-                              onChange={(e) => {
-                                AllSellOrdersHistoryAction(
-                                  parseInt(e.target.value),
-                                  1,
-                                  setHistory,
-                                  setProcessing,
-                                  setStillHistory,
-                                  sortingInfo.column_name,
-                                  sortingInfo.order_by
-                                );
-                              }}
-                            >
-                              <option value="10">10</option>
-                              <option value="25">25</option>
-                              <option value="50">50</option>
-                              <option value="100">100</option>
-                            </select>
-                            {t("entries")}
-                          </label>
-                        </div>
-                        <div id="table_filter" className="dataTables_filter">
-                          <label>
-                            {t("Search:")}
-                            <input
-                              type="search"
-                              className="data_table_input"
-                              placeholder=""
-                              aria-controls="table"
-                              value={search}
-                              onChange={(e) => {
-                                handleSearchItems(
-                                  e,
-                                  setSearch,
-                                  stillHistory,
-                                  setHistory
-                                );
-                              }}
-                            />
-                          </label>
+            <div className="asset-balances-area">
+              {processing ? (
+                <TableLoading />
+              ) : (
+                <div className="asset-balances-left">
+                  <div className="section-wrapper">
+                    <div className="table-responsive tableScroll">
+                      <div
+                        id="assetBalances_wrapper"
+                        className="dataTables_wrapper no-footer"
+                      >
+                        <div className="dataTables_head">
+                          <div
+                            className="dataTables_length"
+                            id="assetBalances_length"
+                          >
+                            <label className="">
+                              {t("Show")}
+                              <select
+                                name="assetBalances_length"
+                                aria-controls="assetBalances"
+                                className=""
+                                onChange={(e) => {
+                                  AllSellOrdersHistoryAction(
+                                    parseInt(e.target.value),
+                                    1,
+                                    setHistory,
+                                    setProcessing,
+                                    setStillHistory,
+                                    sortingInfo.column_name,
+                                    sortingInfo.order_by
+                                  );
+                                }}
+                              >
+                                <option value="10">10</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                              </select>
+                              {t("entries")}
+                            </label>
+                          </div>
+                          <div id="table_filter" className="dataTables_filter">
+                            <label>
+                              {t("Search:")}
+                              <input
+                                type="search"
+                                className="data_table_input"
+                                placeholder=""
+                                aria-controls="table"
+                                value={search}
+                                onChange={(e) => {
+                                  handleSearchItems(
+                                    e,
+                                    setSearch,
+                                    stillHistory,
+                                    setHistory
+                                  );
+                                }}
+                              />
+                            </label>
+                          </div>
                         </div>
                       </div>
-                    </div>
 
-                    <DataTable columns={columns} data={history} />
+                      <DataTable columns={columns} data={history} />
 
-                    <div
-                      className="pagination-wrapper"
-                      id="assetBalances_paginate"
-                    >
-                      <span>
-                        {stillHistory?.items?.links.map(
-                          (link: any, index: number) =>
-                            link.label === "&laquo; Previous" ? (
-                              <a
-                                className="paginate-button"
-                                onClick={() => {
-                                  if (link.url) LinkTopaginationString(link);
-                                }}
-                                key={index}
-                              >
-                                <i className="fa fa-angle-left"></i>
-                              </a>
-                            ) : link.label === "Next &raquo;" ? (
-                              <a
-                                className="paginate-button"
-                                onClick={() => LinkTopaginationString(link)}
-                                key={index}
-                              >
-                                <i className="fa fa-angle-right"></i>
-                              </a>
-                            ) : (
-                              <a
-                                className={`paginate_button paginate-number ${
-                                  link.active === true && "text-warning"
-                                }`}
-                                aria-controls="assetBalances"
-                                data-dt-idx="1"
-                                onClick={() => LinkTopaginationString(link)}
-                                key={index}
-                              >
-                                {link.label}
-                              </a>
-                            )
-                        )}
-                      </span>
+                      <div
+                        className="pagination-wrapper"
+                        id="assetBalances_paginate"
+                      >
+                        <span>
+                          {stillHistory?.items?.links.map(
+                            (link: any, index: number) =>
+                              link.label === "&laquo; Previous" ? (
+                                <a
+                                  className="paginate-button"
+                                  onClick={() => {
+                                    if (link.url) LinkTopaginationString(link);
+                                  }}
+                                  key={index}
+                                >
+                                  <i className="fa fa-angle-left"></i>
+                                </a>
+                              ) : link.label === "Next &raquo;" ? (
+                                <a
+                                  className="paginate-button"
+                                  onClick={() => LinkTopaginationString(link)}
+                                  key={index}
+                                >
+                                  <i className="fa fa-angle-right"></i>
+                                </a>
+                              ) : (
+                                <a
+                                  className={`paginate_button paginate-number ${
+                                    link.active === true && "text-warning"
+                                  }`}
+                                  aria-controls="assetBalances"
+                                  data-dt-idx="1"
+                                  onClick={() => LinkTopaginationString(link)}
+                                  key={index}
+                                >
+                                  {link.label}
+                                </a>
+                              )
+                          )}
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            )}
+              )}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      <Footer
+        customPageData={customPageData}
+        socialData={socialData}
+        copyright_text={copyright_text}
+      />
+    </>
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/user/sell-order-history");
+  const { data } = await landingPage();
+  const { data: customPageData } = await customPage();
   return {
-    props: {},
+    props: {
+      socialData: data.media_list,
+      copyright_text: data?.copyright_text,
+      customPageData: customPageData.data,
+    },
   };
 };
 
