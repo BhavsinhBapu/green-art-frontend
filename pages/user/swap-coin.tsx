@@ -365,7 +365,7 @@ const SwapCoin: NextPage = ({
                                 className="modal-title"
                                 id="exampleModalLabel"
                               >
-                                Are You sure?
+                                {t("Are You sure?")}
                               </h5>
                             </div>
 
@@ -375,7 +375,7 @@ const SwapCoin: NextPage = ({
                                 className="btn btn-danger"
                                 data-dismiss="modal"
                               >
-                                No
+                                {t("No")}
                               </button>
                               <button
                                 type="button"
@@ -390,7 +390,7 @@ const SwapCoin: NextPage = ({
                                 }}
                                 data-dismiss="modal"
                               >
-                                Yes
+                                {t("Yes")}
                               </button>
                             </div>
                           </div>

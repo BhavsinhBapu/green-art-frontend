@@ -67,7 +67,7 @@ const PhoneVerification: NextPage = ({
                                 name="old_password"
                                 id="old_password"
                                 type="password"
-                                placeholder="Old password"
+                                placeholder={t("Old password")}
                                 className={`form-control ${
                                   touched.old_password && errors.old_password
                                     ? "is-invalid"
@@ -86,7 +86,7 @@ const PhoneVerification: NextPage = ({
                                 name="password"
                                 id="password"
                                 type="password"
-                                placeholder="New Password"
+                                placeholder={t("New Password")}
                                 className={`form-control ${
                                   touched.password && errors.password
                                     ? "is-invalid"
@@ -105,7 +105,7 @@ const PhoneVerification: NextPage = ({
                                 name="password_confirmation"
                                 id="password_confirmation"
                                 type="password"
-                                placeholder="Re Enter New Password"
+                                placeholder={t("Re Enter New Password")}
                                 className={`form-control ${
                                   touched.password_confirmation &&
                                   errors.password_confirmation

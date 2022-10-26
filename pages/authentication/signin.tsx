@@ -104,7 +104,7 @@ const Signin: NextPage = () => {
                               ? "is-invalid"
                               : ""
                           }`}
-                          placeholder="Your password here"
+                          placeholder={t("Your password here")}
                         />
 
                         <span
