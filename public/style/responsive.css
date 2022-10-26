@@ -207,9 +207,3 @@
     font-size: 16px;
   }
 }
-
-.tableScroll {
-  overflow-x: scroll;
-  max-width: 95vw;
-  padding-right: 30px;
-}
