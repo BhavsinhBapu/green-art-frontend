@@ -713,7 +713,7 @@ client-area
 ==================================================*/
 .hero-banner-area {
   padding: 150px 0 80px 0;
-  background-color: var(--background-color-8);
+  background-color: var(--background-color-3);
 }
 .hero-banner-area .banner-title {
   font-size: 60px;
