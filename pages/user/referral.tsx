@@ -41,35 +41,37 @@ const Referral: NextPage = ({
             {loading && <Loading />}
             <div className="container">
               <h2 className="section-top-title">{t("Referrals")}</h2>
-              <div className="invite-friends">
-                <h4>{t("Invite your friends")}</h4>
-                <div className="input-group">
-                  <input
-                    ref={selectReference}
-                    onClick={() => {
-                      navigator.clipboard.writeText(referral);
-                      toast.success(t("Copied to clipboard"));
-                      selectReference.current.select();
-                    }}
-                    type="url"
-                    className="form-control referel-inputfield"
-                    id="url"
-                    defaultValue={referral}
-                    readOnly
-                  />
-                  <button
-                    type="button"
-                    className="btn copy-url-btn"
-                    onClick={() => {
-                      navigator.clipboard.writeText(referral);
-                      toast.success(t("Copied to clipboard"));
-                      selectReference.current.select();
-                    }}
-                  >
-                    <i className="fa fa-clone" />
-                  </button>
-                </div>
-              </div>
+            </div>
+          </div>
+        </div>
+        <div className="container mb-5">
+          <div className="invite-friends">
+            <h4>{t("Invite your friends")}</h4>
+            <div className="input-group">
+              <input
+                ref={selectReference}
+                onClick={() => {
+                  navigator.clipboard.writeText(referral);
+                  toast.success(t("Copied to clipboard"));
+                  selectReference.current.select();
+                }}
+                type="url"
+                className="form-control referel-inputfield"
+                id="url"
+                defaultValue={referral}
+                readOnly
+              />
+              <button
+                type="button"
+                className="btn copy-url-btn"
+                onClick={() => {
+                  navigator.clipboard.writeText(referral);
+                  toast.success(t("Copied to clipboard"));
+                  selectReference.current.select();
+                }}
+              >
+                <i className="fa fa-clone" />
+              </button>
             </div>
           </div>
         </div>
