@@ -23,7 +23,7 @@ const Index: NextPage = ({
 
   return (
     <>
-      <div className="container-fluid">
+      <div className="container-fluid faq-page">
         <div
           className="alert alert-success alert-dismissible fade show d-none"
           role="alert"
