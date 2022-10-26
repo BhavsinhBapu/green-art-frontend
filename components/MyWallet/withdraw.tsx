@@ -169,7 +169,7 @@ export const WithdrawComponent = ({ responseData, router }: any) => {
                     />
                     <small>
                       <span className="mr-2">
-                        Fees
+                        {t("Fees")}
                         {parseFloat(
                           responseData?.wallet?.withdrawal_fees
                         ).toFixed(8)}{" "}
@@ -183,7 +183,7 @@ export const WithdrawComponent = ({ responseData, router }: any) => {
                         {responseData?.wallet?.coin_type}
                       </span>
                       <span className="mr-2">
-                        Max withdraw{" "}
+                        {t("Max withdraw")}{" "}
                         {parseFloat(responseData?.wallet?.maximum_withdrawal)}{" "}
                         {responseData?.wallet?.coin_type}
                       </span>
