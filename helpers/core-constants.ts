@@ -26,3 +26,7 @@ export const EXCHANGE_LAYOUT_TWO = 2;
 
 export const MY_WALLET_DEPOSIT_TYPE = "deposit";
 export const MY_WALLET_WITHDRAW_TYPE = "withdraw";
+
+//Foter Menu
+export const CUSTOM_PAGE_LINK_PAGE = 1;
+export const CUSTOM_PAGE_LINK_URL = 2;
