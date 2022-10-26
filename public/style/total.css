@@ -10081,3 +10081,44 @@ input[type="number"] {
   max-width: 95vw;
   padding-right: 30px;
 }
+.notification-section {
+  margin-top: 30px;
+}
+.notify-grid {
+  background: #fff;
+  margin-bottom: 20px;
+  border-radius: 3px;
+  padding: 20px 40px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.notify-grid:hover {
+  background: rgb(250, 250, 250);
+  cursor: pointer;
+}
+.notify-content {
+  width: 70%;
+}
+.notify-content span {
+  font-size: 20px;
+  font-weight: 500;
+  color: #000;
+}
+.titleUnread {
+  color: rgb(112, 122, 138);
+}
+.notify-content .icon-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.notifyUnread {
+  fill: var(--primary-color);
+}
+
+.notify-date {
+  display: inline-block;
+  max-width: 100%;
+}
