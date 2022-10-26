@@ -53,7 +53,7 @@ const Signin: NextPage = () => {
               <div className="user-form-inner">
                 <div className="form-top">
                   <h2>{t("Sign In")}</h2>
-                  <p>{t("Please Sign In To Your Account.")}</p>
+                  <p>{t("Please Sign In To Your Account")}</p>
                 </div>
                 <Formik
                   initialValues={{
