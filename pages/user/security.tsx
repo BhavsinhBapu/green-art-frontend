@@ -63,7 +63,7 @@ const Security: NextPage = ({
                         />
                         <div className="security-content">
                           <h4>{t("Google Authenticator (Recommended)")}</h4>
-                          <p>{t("Protect your account and transactions.")}</p>
+                          <p>{t("Protect your account and transactions")}</p>
                         </div>
                       </div>
                     </div>
@@ -93,7 +93,7 @@ const Security: NextPage = ({
                         />
                         <div className="security-content">
                           <h4>{t("Phone Number Verification")}</h4>
-                          <p>{t("Protect your account and transactions.")}</p>
+                          <p>{t("Protect your account and transactions")}</p>
                         </div>
                       </div>
                     </div>
@@ -130,7 +130,7 @@ const Security: NextPage = ({
                         />
                         <div className="security-content">
                           <h4>{t("Email Address Verification")}</h4>
-                          <p>{t("Protect your account and transactions.")}</p>
+                          <p>{t("Protect your account and transactions")}</p>
                         </div>
                       </div>
                     </div>
@@ -168,8 +168,8 @@ const Security: NextPage = ({
                           <h4>{t("Login Password")}</h4>
                           <p>
                             {t(
-                              "Login password is used to log in to your account."
-                            )}
+                              "Login password is used to log in to your account"
+                            )}.
                           </p>
                         </div>
                       </div>

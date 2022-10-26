@@ -59,7 +59,7 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
     ) {
       setErrorMessage({
         status: true,
-        message: "Google 2FA is not enabled, Please enable Google 2FA fist",
+        message: t("Google 2FA is not enabled, Please enable Google 2FA fist"),
       });
     }
   };
@@ -159,7 +159,7 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
                           }}
                         >
                           <option value="" selected disabled hidden>
-                            Select one
+                            {t("Select one")}
                           </option>
                           {currencyList.map((currency: any, index: any) => (
                             <option value={currency.code} key={index}>
@@ -214,7 +214,7 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
                           }}
                         >
                           <option value="" selected disabled hidden>
-                            Select one
+                            {t("Select one")}
                           </option>
                           {walletlist.map((wallet: any, index: any) => (
                             <option value={wallet.id} key={index}>
@@ -306,7 +306,7 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
               disabled={errorMessage.status === true}
               data-toggle="modal"
             >
-              Deposit
+              {t("Deposit")}
             </button>
           ) : (
             <button
@@ -317,7 +317,7 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
                 convertCurrency(credential);
               }}
             >
-              Deposit
+              {t("Deposit")}
             </button>
           )}
         </div>
