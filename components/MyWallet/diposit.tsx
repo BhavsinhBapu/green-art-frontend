@@ -1,5 +1,5 @@
 import useTranslation from "next-translate/useTranslation";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { copyTextById, formateZert } from "common";
 import { GetWalletAddressAction } from "state/actions/wallet";
 import Qr from "components/common/qr";
@@ -12,7 +12,11 @@ export const DipositComponent = ({ responseData, router }: any) => {
     responseData?.data && responseData?.data[0]
   );
   const selectAddressCopy: any = React.useRef(null);
-
+  useEffect(() => {
+    if (responseData?.data && responseData?.data[0]) {
+      setSelectedNetwork(responseData?.data[0]);
+    }
+  }, [responseData?.data[0]]);
   return (
     <div className={`col-md-7`}>
       <div className={`box-one single-box visible`}>
