@@ -77,7 +77,6 @@ const NidModal = ({ type, kycDetails }: any) => {
     loadCard();
   }, [type]);
 
-
   return (
     <div
       className="modal fade cp-user-idverifymodal"
@@ -122,31 +121,33 @@ const NidModal = ({ type, kycDetails }: any) => {
                         {t("Front Side")}
                       </h3>
                       <div className="container cstm-img-picker">
-                        {frontSide ? (
-                          //@ts-ignore
-                          <img src={showFront} className="img-fluid" alt="" />
-                        ) : (
-                          <label className="container cstm-img-picker">
-                            {existingKyc?.front_image ? (
-                              <img
-                                src={existingKyc?.front_image}
-                                className="img-fluid"
-                                alt=""
+                        <label className="container cstm-img-picker">
+                          {frontSide && (
+                            //@ts-ignore
+                            <img src={showFront} className="img-fluid" alt="" />
+                          )}
+
+                          {existingKyc?.front_image ? (
+                            <img
+                              src={existingKyc?.front_image}
+                              className="img-fluid"
+                              alt=""
+                            />
+                          ) : (
+                            <>
+                              <input
+                                type="file"
+                                name="front_side"
+                                onChange={(e: any) => {
+                                  storeSelectedFile(e, setFrontSide, 1);
+                                }}
                               />
-                            ) : (
-                              <>
-                                <input
-                                  type="file"
-                                  name="front_side"
-                                  onChange={(e: any) => {
-                                    storeSelectedFile(e, setFrontSide, 1);
-                                  }}
-                                />
-                                <span>{t("Click to select a file")}</span>
-                              </>
-                            )}
-                          </label>
-                        )}
+                              <span className="upload-img-btn">
+                                {t("Upload Image")}
+                              </span>
+                            </>
+                          )}
+                        </label>
                       </div>
                     </div>
                   </div>
@@ -154,27 +155,33 @@ const NidModal = ({ type, kycDetails }: any) => {
                     <div className="idcard">
                       <h3 className="title">{t("Back Side")}</h3>
                       <div className="container cstm-img-picker">
-                        {backSide ? (
-                          //@ts-ignore
-                          <img src={showBack} className="img-fluid" alt="" />
-                        ) : existingKyc?.back_image ? (
-                          <img
-                            src={existingKyc?.back_image}
-                            className="img-fluid"
-                            alt=""
-                          />
-                        ) : (
-                          <label className="container cstm-img-picker">
-                            <input
-                              type="file"
-                              name="front_side"
-                              onChange={(e) => {
-                                storeSelectedFile(e, setBackSide, 2);
-                              }}
+                        <label className="container cstm-img-picker">
+                          {backSide && (
+                            //@ts-ignore
+                            <img src={showBack} className="img-fluid" alt="" />
+                          )}
+
+                          {existingKyc?.back_image ? (
+                            <img
+                              src={existingKyc?.back_image}
+                              className="img-fluid"
+                              alt=""
                             />
-                            <span>{t("Click to select a file")}</span>
-                          </label>
-                        )}
+                          ) : (
+                            <>
+                              <input
+                                type="file"
+                                name="front_side"
+                                onChange={(e) => {
+                                  storeSelectedFile(e, setBackSide, 2);
+                                }}
+                              />
+                              <span className="upload-img-btn">
+                                {t("Upload Image")}
+                              </span>
+                            </>
+                          )}
+                        </label>
                       </div>
                     </div>
                   </div>
@@ -183,27 +190,32 @@ const NidModal = ({ type, kycDetails }: any) => {
                     <div className="idcard">
                       <h3 className="title">{t("Selfie Image")}</h3>
                       <div className="container cstm-img-picker">
-                        {showSelfe ? (
-                          //@ts-ignore
-                          <img src={showSelfe} className="img-fluid" alt="" />
-                        ) : existingKyc?.selfie ? (
-                          <img
-                            src={existingKyc?.selfie}
-                            className="img-fluid"
-                            alt=""
-                          />
-                        ) : (
-                          <label className="container cstm-img-picker">
-                            <input
-                              type="file"
-                              name="file_selfie"
-                              onChange={(e) => {
-                                storeSelectedFile(e, setSelfeSide, 3);
-                              }}
+                        <label className="container cstm-img-picker">
+                          {showSelfe && (
+                            //@ts-ignore
+                            <img src={showSelfe} className="img-fluid" alt="" />
+                          )}
+                          {existingKyc?.selfie ? (
+                            <img
+                              src={existingKyc?.selfie}
+                              className="img-fluid"
+                              alt=""
                             />
-                            <span>{t("Click to select a file")}</span>
-                          </label>
-                        )}
+                          ) : (
+                            <>
+                              <input
+                                type="file"
+                                name="file_selfie"
+                                onChange={(e) => {
+                                  storeSelectedFile(e, setSelfeSide, 3);
+                                }}
+                              />
+                              <span className="upload-img-btn">
+                                {t("Upload Image")}
+                              </span>
+                            </>
+                          )}
+                        </label>
                       </div>
                     </div>
                   </div>

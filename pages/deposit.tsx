@@ -26,8 +26,10 @@ import {
 import { parseCookies } from "nookies";
 import { GetUserInfoByTokenServer } from "service/user";
 import { redirect } from "next/dist/server/api-utils";
+import Footer from "components/common/footer";
+import { commomSettings, customPage, landingPage } from "service/landing-page";
 
-const Deposit = () => {
+const Deposit = ({ customPageData, socialData, copyright_text }: any) => {
   const { t } = useTranslation("common");
   const [loading, setLoading] = useState(false);
   const { settings } = useSelector((state: RootState) => state.common);
@@ -59,65 +61,73 @@ const Deposit = () => {
     getDepositInfo();
   }, []);
   return (
-    <div>
-      <div className="container mb-3">
-        <h2 className="mb-2">{t("Deposit Fiat")}</h2>
-      </div>
-      <div className="container">
-        <div className="deposit-conatiner">
-          <div className="cp-user-title">
-            <h4>{t("Select method")}</h4>
-          </div>
-          <SelectDeposit
-            setSelectedMethod={setSelectedMethod}
-            depositInfo={depositInfo}
-            selectedMethod={selectedMethod}
-          />
-          <div className="row">
-            {loading ? (
-              <ScaletonLoading />
-            ) : (
-              <div className="col-lg-8 col-sm-12">
-                {parseInt(selectedMethod.method) === WALLET_DEPOSIT ? (
-                  <WalletDeposit
-                    walletlist={depositInfo.wallet_list}
-                    method_id={selectedMethod.method_id}
-                  />
-                ) : parseInt(selectedMethod.method) === BANK_DEPOSIT ? (
-                  <BankDeposit
-                    currencyList={depositInfo.currency_list}
-                    walletlist={depositInfo.wallet_list}
-                    method_id={selectedMethod.method_id}
-                    banks={depositInfo.banks}
-                  />
-                ) : parseInt(selectedMethod.method) === STRIPE ? (
-                  <StripeDeposit
-                    currencyList={depositInfo.currency_list}
-                    walletlist={depositInfo.wallet_list}
-                    method_id={selectedMethod.method_id}
-                    banks={depositInfo.banks}
-                  />
-                ) : parseInt(selectedMethod.method) === PAYPAL ? (
-                  // <PaypalButtons />
-                  <PaypalSection
-                    currencyList={depositInfo.currency_list}
-                    walletlist={depositInfo.wallet_list}
-                    method_id={selectedMethod.method_id}
-                    banks={depositInfo.banks}
-                  />
-                ) : (
-                  ""
-                )}
-              </div>
-            )}
+    <>
+      <div>
+        <div className="container mb-3">
+          <h2 className="mb-2">{t("Deposit Fiat")}</h2>
+        </div>
+        <div className="container">
+          <div className="deposit-conatiner">
+            <div className="cp-user-title">
+              <h4>{t("Select method")}</h4>
+            </div>
+            <SelectDeposit
+              setSelectedMethod={setSelectedMethod}
+              depositInfo={depositInfo}
+              selectedMethod={selectedMethod}
+            />
+            <div className="row">
+              {loading ? (
+                <ScaletonLoading />
+              ) : (
+                <div className="col-lg-8 col-sm-12">
+                  {parseInt(selectedMethod.method) === WALLET_DEPOSIT ? (
+                    <WalletDeposit
+                      walletlist={depositInfo.wallet_list}
+                      method_id={selectedMethod.method_id}
+                    />
+                  ) : parseInt(selectedMethod.method) === BANK_DEPOSIT ? (
+                    <BankDeposit
+                      currencyList={depositInfo.currency_list}
+                      walletlist={depositInfo.wallet_list}
+                      method_id={selectedMethod.method_id}
+                      banks={depositInfo.banks}
+                    />
+                  ) : parseInt(selectedMethod.method) === STRIPE ? (
+                    <StripeDeposit
+                      currencyList={depositInfo.currency_list}
+                      walletlist={depositInfo.wallet_list}
+                      method_id={selectedMethod.method_id}
+                      banks={depositInfo.banks}
+                    />
+                  ) : parseInt(selectedMethod.method) === PAYPAL ? (
+                    // <PaypalButtons />
+                    <PaypalSection
+                      currencyList={depositInfo.currency_list}
+                      walletlist={depositInfo.wallet_list}
+                      method_id={selectedMethod.method_id}
+                      banks={depositInfo.banks}
+                    />
+                  ) : (
+                    ""
+                  )}
+                </div>
+              )}
 
-            <div className="col-lg-4 col-sm-12 mt-4">
-              <DepositFaq faqs={faqs} />
+              <div className="col-lg-4 col-sm-12 mt-4">
+                <DepositFaq faqs={faqs} />
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+
+      <Footer
+        customPageData={customPageData}
+        socialData={socialData}
+        copyright_text={copyright_text}
+      />
+    </>
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
@@ -125,6 +135,10 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const cookies = parseCookies(ctx);
   const response = await GetUserInfoByTokenServer(cookies.token);
   const commonRes = await pageAvailabilityCheck();
+
+  const { data } = await landingPage();
+  const { data: customPageData } = await customPage();
+  
   if (parseInt(commonRes.currency_deposit_status) !== 1) {
     return {
       redirect: {
@@ -136,6 +150,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   return {
     props: {
       user: response.user,
+      socialData: data.media_list,
+      copyright_text: data?.copyright_text,
+      customPageData: customPageData.data,
     },
   };
 };
