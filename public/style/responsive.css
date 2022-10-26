@@ -9,10 +9,21 @@
     margin-right: auto;
     margin-left: auto;
   }
+  .walletHistory .dataTables_head {
+    width: 100%;
+  }
+}
+@media (max-width: 1440px) {
+  .walletHistory .dataTables_head {
+    width: 79%;
+  }
 }
 @media (max-width: 1200px) {
   .section {
     overflow: hidden;
+  }
+  .walletHistory .dataTables_head {
+    width: 80%;
   }
 }
 @media (max-width: 1199px) {
@@ -31,6 +42,9 @@
   }
   .cp-user-sidebar.active {
     display: block;
+  }
+  .walletHistory .dataTables_head {
+    width: 100%;
   }
 }
 @media (max-width: 1024px) {
@@ -192,4 +206,10 @@
   .footer-area .footer-bottom .copyright-area p {
     font-size: 16px;
   }
+}
+
+.tableScroll {
+  overflow-x: scroll;
+  max-width: 95vw;
+  padding-right: 30px;
 }
