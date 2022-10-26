@@ -131,7 +131,7 @@ const CurrencyDepositHistory = ({
   }, []);
   return (
     <>
-      <div className="page-wrap">
+      <div className="page-wrap rightMargin">
         <ReportSidebar />
 
         <div className="page-main-content">

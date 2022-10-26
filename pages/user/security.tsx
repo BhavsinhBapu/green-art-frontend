@@ -153,7 +153,7 @@ const Security: NextPage = ({
               </div>
             </div>
             <div className="advanced-security-area">
-              <h4 className="section-title-medium">{t("Advanced Security")}</h4>
+              {/* <h4 className="section-title-medium">{t("Advanced Security")}</h4> */}
               <div className="section-wrapper">
                 <div className="security-list">
                   <div className="single-security">

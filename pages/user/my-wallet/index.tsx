@@ -153,7 +153,7 @@ const MyWallet: NextPage = ({
 
   return (
     <>
-      <div className="page-wrap">
+      <div className="page-wrap rightMargin">
         {/* <div className="page-left-sidebar">
           <div className="sidebar-top">
             <ul className="left-menu">
