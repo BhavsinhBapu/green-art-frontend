@@ -8545,11 +8545,12 @@ table.dataTable.order-column.stripe tbody tr.odd > .sorting_1 {
   margin-left: 5px;
   margin-right: 5px;
   width: 30px;
-  height: 30px;
+  height: auto;
   border-radius: 50%;
   display: inline-block;
   line-height: 1.6;
   margin-bottom: 10px;
+  align-items: center;
 }
 a.paginate_button.paginate-number:hover {
   background: var(--primary-color) !important;
