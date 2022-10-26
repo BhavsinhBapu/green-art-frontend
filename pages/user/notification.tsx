@@ -50,7 +50,7 @@ const NotificationPage = ({
         ))}
       </div> */}
 
-      <div className="notification-section">
+      <div className="notification-section marginLeftRight">
         <div className="container">
           <div className="row">
             {notificationData.map((item: any, index: any) => (
