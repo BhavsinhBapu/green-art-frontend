@@ -4159,7 +4159,8 @@ div.dataTables_wrapper div.dataTables_length label {
 .dataTables_head {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  gap: 20px;
 }
 .idcard h3.title {
   color: #23262f;
@@ -10243,3 +10244,9 @@ input[type="number"] {
   justify-content: flex-start;
   gap: 20px;
 }
+
+/* .tableScroll {
+  overflow-x: scroll;
+  max-width: 95vw;
+  padding-right: 30px;
+} */
