@@ -45,6 +45,7 @@ const MyWallet: NextPage = ({
   const [allData, setAllData] = useState<any>();
   const [tradeList, setTradeList]: any = useState();
   const [coinList, setCoinList]: any = useState([]);
+  const [screenSize, setScreenSize]: any = useState([]);
   const handleActive = (index: any) => {
     console.log(index);
     if (index === tradeList) {
@@ -143,7 +144,12 @@ const MyWallet: NextPage = ({
     setCoinList(coinList);
   };
 
+  console.log(screenSize);
+
   useEffect(() => {
+    let screenSizeGet = screen.width;
+    setScreenSize(screenSizeGet);
+
     coinListApi();
     getWalletLists("/wallet-list?page=1&per_page=15");
     return () => {
@@ -295,7 +301,10 @@ const MyWallet: NextPage = ({
                       </div>
                     </div>
                   </div>
-                  <div className="table-responsive">
+                  <div
+                    className="table-responsive"
+                    style={{ width: screenSize - 40 }}
+                  >
                     {processing ? (
                       <Loading />
                     ) : (
