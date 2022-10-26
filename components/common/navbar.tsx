@@ -540,7 +540,10 @@ const Navbar = () => {
                                     notificationData
                                       ?.slice(0, 5)
                                       ?.map((item: any, index: number) => (
-                                        <div className="notify-icon-title">
+                                        <div
+                                          className="notify-icon-title"
+                                          key={index}
+                                        >
                                           <RiNotificationBadgeLine
                                             size={20}
                                             className="notify-menu-icon"
@@ -564,7 +567,9 @@ const Navbar = () => {
                                         </div>
                                       ))
                                   ) : (
-                                    <p className="notFountNotifyText">{t("No Notification Found!")}</p>
+                                    <p className="notFountNotifyText">
+                                      {t("No Notification Found!")}
+                                    </p>
                                   )}
                                 </div>
                               </div>
