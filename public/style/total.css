@@ -5405,16 +5405,17 @@ table.dataTable tbody tr td {
 }
 .referral-area .invite-friends .input-group {
   position: relative;
-  width: 70%;
+  width: 100%;
 }
 .invite-friends .input-group .copy-url-btn {
   position: absolute;
-  right: 10px;
+  right: -25px;
   top: 50%;
   transform: translateY(-50%);
   color: #f9b507;
   font-size: 20px;
   z-index: 9;
+  width: 30px !important;
 }
 .invite-friends .input-group .form-control {
   width: 100%;
