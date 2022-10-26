@@ -267,7 +267,7 @@ const MyWallet: NextPage = ({
                       </div>
                       <div id="table_filter" className="dataTables_filter">
                         <label>
-                          {t("Search:")}
+                          {t("Search")}:
                           <input
                             type="search"
                             className="data_table_input"

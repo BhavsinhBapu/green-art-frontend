@@ -280,7 +280,7 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
               {/* @ts-ignore */}
               <label htmlFor="upload-photo" onClick={handleClick}>
                 {/* @ts-ignore */}
-                {doc ? doc.name : "Browse..."}
+                {doc ? doc.name : t("Browse")}
               </label>
               <input
                 style={{ display: "none" }}
