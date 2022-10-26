@@ -2351,7 +2351,7 @@ a#submit {
 }
 
 .cp-user-setting-card .cp-user-content .cp-user-setupbtn {
-  background: -webkit-linear-gradient(left, var(--text-primary-color-2), var(--text-primary-color-2) 100%);
+  background: var(--background-color-2);
   color: var(--text-primary-color);
   border-radius: 3px;
   font-weight: 700;
