@@ -41,6 +41,98 @@ const Index = ({ children }: any) => {
     dispatch(setSettings(response.data));
     setMetaData(response.data);
     dispatch(setLoading(false));
+    //   --primary-color: #fcd535;
+    // --text-primary-color: #ffff;
+    // --text-primary-color-2: #000000;
+    // --text-primary-color-3: #23262f;
+    // --text-primary-color-4: #777778;
+    // --text-primary-color-5: #f9b507;
+    // --text-primary-color-6: #212e55;
+    // --text-primary-color-7: #ffba00;
+    // --text-primary-color-8: #cbcfd7;
+
+    // --border-color: #dedede;
+    // --border-color-1: #e6e8ec;
+    // --border-color-2: #353535;
+
+    // --hover-color: #f7cf33;
+    // --font-color: #2a2a2d;
+    // --bColor: #424242;
+    // --title-color: #141414;
+    // --white: #ffffff;
+    // --black: #000000;
+    // --color-pallet-1: #b4b8d7;
+    // --background-color: #151515;
+    // --background-color-2: #f9b507;
+    // --background-color-3: #f7f7f8;
+    // --background-color-4: #ffba00;
+    // --background-color-5: #f3f3f3;
+    // --background-color-6: ##242831;
+    //change global css variable
+    document.documentElement.style.setProperty("--primary-color", "#eb4d4b");
+    document.documentElement.style.setProperty(
+      "--text-primary-color",
+      "#ffff"
+    );
+    document.documentElement.style.setProperty(
+      "--text-primary-color-2",
+      "#303952"
+    );
+    document.documentElement.style.setProperty(
+      "--text-primary-color-3",
+      "#2f3640"
+    );
+    document.documentElement.style.setProperty(
+      "--text-primary-color-4",
+      "#353b48"
+    );
+    document.documentElement.style.setProperty(
+      "--text-primary-color-5",
+      "#535c68"
+    );
+    document.documentElement.style.setProperty(
+      "--text-primary-color-6",
+      "#535c68"
+    );
+    document.documentElement.style.setProperty(
+      "--text-primary-color-7",
+      "#535c68"
+    );
+    document.documentElement.style.setProperty(
+      "--text-primary-color-8",
+      "#535c68"
+    );
+    document.documentElement.style.setProperty("--border-color", "#dedede");
+    document.documentElement.style.setProperty("--border-color-1", "#dedede");
+
+    document.documentElement.style.setProperty("--border-color-2", "#dedede");
+    document.documentElement.style.setProperty("--hover-color", "#ff7979");
+    document.documentElement.style.setProperty("--font-color", "#eb4d4b");
+    document.documentElement.style.setProperty("--bColor", "#151515");
+    document.documentElement.style.setProperty("--title-color", "#151515");
+    document.documentElement.style.setProperty("--white", "#fffff");
+    document.documentElement.style.setProperty("--black", "#151515");
+
+    document.documentElement.style.setProperty("--color-pallet-1", "#b4b8d7");
+    document.documentElement.style.setProperty("--background-color", "#151515");
+    document.documentElement.style.setProperty(
+      "--background-color-2",
+      "#eb4d4b"
+    );
+    document.documentElement.style.setProperty(
+      "--background-color-3",
+      "#f7f7f8"
+    );
+    document.documentElement.style.setProperty(
+      "--background-color-4",
+      "#ffff"
+    );
+    document.documentElement.style.setProperty("--background-color-5", "#ffff");
+    document.documentElement.style.setProperty("--background-color-6", "#ffff");
+    document.documentElement.style.setProperty("--background-color-7", "#ffff");
+    document.documentElement.style.setProperty("--background-color-8", "#ffff");
+    ;
+
   };
 
   useEffect(() => {
