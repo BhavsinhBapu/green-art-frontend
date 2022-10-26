@@ -2724,7 +2724,9 @@ div.dataTables_wrapper div.dataTables_filter input {
 }
 
 div.dataTables_wrapper div.dataTables_filter label {
-  color: #23262f;
+  color: #8d8d8d;
+  font-size: 17px;
+  font-weight: 700;
 }
 
 .cp-user-profile-info textarea.form-control {
@@ -4161,6 +4163,8 @@ div.dataTables_wrapper div.dataTables_length label {
   align-items: center;
   /* justify-content: space-between; */
   gap: 20px;
+  align-content: center;
+  align-items: baseline;
 }
 .idcard h3.title {
   color: #23262f;
