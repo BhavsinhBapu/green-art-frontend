@@ -4,7 +4,16 @@ import { useSelector } from "react-redux";
 import moment from "moment";
 import { notification } from "service/notification";
 import { RootState } from "state/store";
-const NotificationPage = () => {
+import { GetServerSideProps } from "next";
+import { customPage, landingPage } from "service/landing-page";
+import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
+import Footer from "components/common/footer";
+import { IoMdNotificationsOutline } from "react-icons/io";
+const NotificationPage = ({
+  customPageData,
+  socialData,
+  copyright_text,
+}: any) => {
   const { t } = useTranslation("common");
   const [notificationData, setNotification] = useState<any>([]);
   const { isLoggedIn } = useSelector((state: RootState) => state.user);
@@ -20,7 +29,7 @@ const NotificationPage = () => {
       <div className="container notification-continer mb-2">
         <h2 className="section-top-title">{t("All notifications")}</h2>
       </div>
-      <div className="container notification-continer">
+      {/* <div className="container notification-continer">
         {notificationData.map((item: any, index: any) => (
           <div className="notification-container" key={index}>
             <p className="notification-time">
@@ -37,9 +46,55 @@ const NotificationPage = () => {
             </div>
           </div>
         ))}
+      </div> */}
+
+      <div className="notification-section">
+        <div className="container">
+          <div className="row">
+            {notificationData.map((item: any, index: any) => (
+              <div key={`notify${index}`} className="notify-grid">
+                <div className="notify-content">
+                  <p className="icon-title">
+                    <IoMdNotificationsOutline
+                      className={true ? "notifyUnread" : "notifyRead"}
+                      size={25}
+                    />
+                    <span className={true ? "titleUnread" : ""}>
+                      {item?.title}
+                    </span>
+                  </p>
+                  <p className={true ? "titleUnread" : ""}>
+                    {item?.notification_body}
+                  </p>
+                </div>
+                <div className="notify-date">
+                  <p>{moment(item.created_at).format("DD MMM YYYY")}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
+
+      <Footer
+        customPageData={customPageData}
+        socialData={socialData}
+        copyright_text={copyright_text}
+      />
     </>
   );
 };
 
+export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
+  await SSRAuthCheck(ctx, "/user/notification");
+  const { data } = await landingPage();
+  const { data: customPageData } = await customPage();
+  return {
+    props: {
+      socialData: data.media_list,
+      copyright_text: data?.copyright_text,
+      customPageData: customPageData.data,
+    },
+  };
+};
 export default NotificationPage;

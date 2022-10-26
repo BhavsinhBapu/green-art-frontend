@@ -104,27 +104,29 @@ const SwapCoin: NextPage = ({
     });
   }, []);
   return (
-    <div className="page-wrap">
-      <div className="page-left-sidebar">
-        <div className="sidebar-top">
-          <ul className="left-menu">
-            <li>
-              <Link href={`/user/my-wallet`}>
-                <div>
-                  <AiFillWallet />
-                  <a>{t("My wallet")}</a>
-                </div>
-              </Link>
-            </li>
-            <li className="active">
-              <Link href={`/user/swap-coin`}>
-                <div>
-                  <AiOutlineSwap />
-                  <a>{t("Swap Coin")}</a>
-                </div>
-              </Link>
-            </li>
-          </ul>
+    <>
+      <div className="page-wrap">
+        <div className="page-left-sidebar">
+          <div className="sidebar-top">
+            <ul className="left-menu">
+              <li>
+                <Link href={`/user/my-wallet`}>
+                  <div>
+                    <AiFillWallet />
+                    <a>{t("My wallet")}</a>
+                  </div>
+                </Link>
+              </li>
+              <li className="active">
+                <Link href={`/user/swap-coin`}>
+                  <div>
+                    <AiOutlineSwap />
+                    <a>{t("Swap Coin")}</a>
+                  </div>
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
         <div className="page-main-content">
           <div className="container-fluid">
@@ -402,6 +404,7 @@ const SwapCoin: NextPage = ({
           </div>
         </div>
       </div>
+
       <Footer
         customPageData={customPageData}
         socialData={socialData}
