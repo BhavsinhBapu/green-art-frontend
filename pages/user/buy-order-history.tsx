@@ -156,7 +156,7 @@ const BuyOrderHistory: NextPage = ({
               ) : (
                 <div className="asset-balances-left">
                   <div className="section-wrapper">
-                    <div className="table-responsive">
+                    <div className="table-responsive tableScroll">
                       <div
                         id="assetBalances_wrapper"
                         className="dataTables_wrapper no-footer"

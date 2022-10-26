@@ -10076,3 +10076,8 @@ input[type="number"] {
   border-radius: 3px;
   color: #000;
 }
+.tableScroll {
+  overflow-x: scroll;
+  max-width: 95vw;
+  padding-right: 30px;
+}
