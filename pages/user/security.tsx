@@ -110,7 +110,7 @@ const Security: NextPage = ({
                       {parseInt(user.phone_verified) === 0 ? (
                         <Link href="/user/phone-verification">
                           <a className="action-btn enable-btn">
-                            {t("Verify?")}
+                            {t("Verify")}?
                           </a>
                         </Link>
                       ) : (
@@ -169,7 +169,8 @@ const Security: NextPage = ({
                           <p>
                             {t(
                               "Login password is used to log in to your account"
-                            )}.
+                            )}
+                            .
                           </p>
                         </div>
                       </div>

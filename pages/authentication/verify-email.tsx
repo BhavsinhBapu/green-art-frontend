@@ -52,12 +52,12 @@ const Signin: NextPage = () => {
                   }}
                   validationSchema={Yup.object({
                     email: Yup.string()
-                      .email("Invalid email address")
-                      .required("Email is required"),
-                    code: Yup.string().min(6).required("Code is required"),
+                      .email(t("Invalid email address"))
+                      .required(t("Email is required")),
+                    code: Yup.string().min(6).required(t("Code is required")),
                     recapcha: Yup.string()
                       .min(6)
-                      .required("Recapcha is required"),
+                      .required(t("Recapcha is required")),
                   })}
                   onSubmit={async (values) => {
                     await dispatch(VerifyEmailAction(values, setProcessing));

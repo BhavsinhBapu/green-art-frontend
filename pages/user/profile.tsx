@@ -99,7 +99,7 @@ const Profile: NextPage = ({
                             <span className="cp-user-dot">:</span>
                             <span>
                               {" "}
-                              +{user?.phone ? user?.phone : "No phone"}
+                              +{user?.phone ? user?.phone : t("No phone")}
                             </span>
                           </li>
                         </ul>

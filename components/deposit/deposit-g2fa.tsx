@@ -48,7 +48,7 @@ const DepositGoogleAuth = ({
                   }
                 </p>
                 <input
-                  placeholder="Code"
+                  placeholder={t("Code")}
                   required
                   type="text"
                   className="form-control"

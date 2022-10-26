@@ -101,7 +101,7 @@ const Edit: NextPage = ({
                                   type="text"
                                   name="first_name"
                                   className="form-control"
-                                  placeholder="First Name"
+                                  placeholder={t("First Name")}
                                   id="first_name"
                                 />
                               </div>
@@ -111,7 +111,7 @@ const Edit: NextPage = ({
                                   type="text"
                                   name="last_name"
                                   className="form-control"
-                                  placeholder="Last Name"
+                                  placeholder={t("Last Name")}
                                   id="last_name"
                                 />
                               </div>
@@ -164,19 +164,19 @@ const Edit: NextPage = ({
                                     selected={user?.gender === 1}
                                     value={1}
                                   >
-                                    Male
+                                    {t("Male")}
                                   </option>
                                   <option
                                     selected={user?.gender === 2}
                                     value={2}
                                   >
-                                    Female
+                                    {t("Female")}
                                   </option>
                                   <option
                                     selected={user?.gender === 3}
                                     value={3}
                                   >
-                                    Others
+                                    {t("Others")}
                                   </option>
                                 </Field>
                               </div>

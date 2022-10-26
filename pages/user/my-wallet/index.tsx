@@ -67,17 +67,7 @@ const MyWallet: NextPage = ({
     address: null,
   });
 
-  const TurnoffSetShow = () => {
-    setShow({
-      deposit: false,
-      withdraw: false,
-    });
-    setSelectedRow({
-      id: null,
-      index: null,
-      address: null,
-    });
-  };
+  
 
   const getWalletLists = async (url: string) => {
     const response: any = await WalletListApiAction(url, setProcessing);
