@@ -4768,10 +4768,10 @@ select:-webkit-autofill:focus {
   padding-left: 0;
   overflow: hidden;
 }
-.page-wrap {
+/* .page-wrap {
   display: flex;
   height: 90vh;
-}
+} */
 .page-main-content {
   flex: 1;
   padding: 0 15px;
@@ -9986,6 +9986,11 @@ input[type="number"] {
     max-width: 100%;
     padding: 0px 15px;
   }
+  .tableScroll {
+    overflow-x: scroll;
+    max-width: 95vw;
+    padding-right: 30px;
+  }
   .maintenance-content h2 {
     font-size: 35px;
   }
@@ -10088,11 +10093,7 @@ input[type="number"] {
   border-radius: 3px;
   color: #000;
 }
-.tableScroll {
-  overflow-x: scroll;
-  max-width: 95vw;
-  padding-right: 30px;
-}
+
 .notification-section {
   margin-top: 30px;
 }
@@ -10138,4 +10139,7 @@ input[type="number"] {
   color: #000;
   font-size: 25px;
   margin-bottom: 0px;
+}
+.page-wrap {
+  margin-bottom: 20px;
 }
