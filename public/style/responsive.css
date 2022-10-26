@@ -118,6 +118,10 @@
   }
 }
 @media (max-width: 768px) {
+  .active-link ul {
+    display: flex;
+    margin-right: 30px;
+  }
   .cp-user-setting-card-inner-preference {
     min-height: auto;
   }
