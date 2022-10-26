@@ -224,7 +224,7 @@ const Limit = ({
                           role="status"
                           aria-hidden="true"
                         ></span>
-                        {t("Placing Order...")}
+                        {t("Placing Order")}...
                       </span>
                     </button>
                   </div>
