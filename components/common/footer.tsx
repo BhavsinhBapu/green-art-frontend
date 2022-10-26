@@ -33,6 +33,7 @@ const Footer = ({ customPageData, socialData, copyright_text }: any) => {
                               <a
                                 href={`/page-details/${item.key}`}
                                 target="_blank"
+                                rel="noreferrer"
                               >
                                 {item.title}
                               </a>
@@ -63,6 +64,7 @@ const Footer = ({ customPageData, socialData, copyright_text }: any) => {
                               <a
                                 href={`/page-details/${item.key}`}
                                 target="_blank"
+                                rel="noreferrer"
                               >
                                 {item.title}
                               </a>
@@ -93,6 +95,7 @@ const Footer = ({ customPageData, socialData, copyright_text }: any) => {
                               <a
                                 href={`/page-details/${item.key}`}
                                 target="_blank"
+                                rel="noreferrer"
                               >
                                 {item.title}
                               </a>
@@ -113,7 +116,11 @@ const Footer = ({ customPageData, socialData, copyright_text }: any) => {
                   <ul>
                     {socialData?.map((social: any, index: any) => (
                       <li key={index}>
-                        <a href={social.media_link} target="_blank">
+                        <a
+                          href={social.media_link}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
                           <img
                             src={social.media_icon}
                             alt={social.media_title}
