@@ -4768,10 +4768,11 @@ select:-webkit-autofill:focus {
   padding-left: 0;
   overflow: hidden;
 }
-/* .page-wrap {
+.page-wrap {
   display: flex;
-  height: 90vh;
-} */
+  height: auto;
+  margin-bottom: 20px;
+}
 .page-main-content {
   flex: 1;
   padding: 0 15px;
@@ -10133,7 +10134,4 @@ input[type="number"] {
   color: #000;
   font-size: 25px;
   margin-bottom: 0px;
-}
-.page-wrap {
-  margin-bottom: 20px;
 }
