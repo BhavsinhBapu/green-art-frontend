@@ -5909,6 +5909,12 @@ table.dataTable tbody tr td {
   }
 }
 @media (max-width: 575px) {
+  .notify-grid {
+    flex-wrap: wrap;
+  }
+  .notify-content {
+    width: 100% !important;
+  }
   .trades-table .trades-table-row .trades-table-col.total-price {
     font-size: 16px;
   }
@@ -10121,4 +10127,9 @@ input[type="number"] {
 .notify-date {
   display: inline-block;
   max-width: 100%;
+}
+.notification-section-title {
+  color: #000;
+  font-size: 25px;
+  margin-bottom: 0px;
 }
