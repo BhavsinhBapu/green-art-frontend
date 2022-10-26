@@ -27,7 +27,7 @@ const AllBuyOrders = ({ OpenBookBuy }: any) => {
             className="dataTables_processing"
             style={{ display: "none" }}
           >
-            {t("Processing...")}
+            {t("Processing")}...
           </div>
           <div className="dataTables_scroll">
             <div
@@ -112,16 +112,16 @@ const AllBuyOrders = ({ OpenBookBuy }: any) => {
                         overlay={
                           <span>
                             <span>
-                              {t("Avg Price:")} {item.price}
+                              {t("Avg Price")}: {item.price}
                             </span>
                             <br />
                             <span>
-                              {t("Amount:")} {summary.amount}
+                              {t("Amount")}: {summary.amount}
                             </span>
                             <br />
 
                             <span>
-                              {t("Size:")} {summary.total}
+                              {t("Size")}: {summary.total}
                             </span>
                           </span>
                         }
@@ -151,7 +151,7 @@ const AllBuyOrders = ({ OpenBookBuy }: any) => {
                           <td>
                             <div className="asset">
                               <span className="text-success">
-                                {item.price}asdasdasd
+                                {item.price}
                               </span>
                             </div>
                           </td>

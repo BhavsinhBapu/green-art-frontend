@@ -173,7 +173,7 @@ const SelectCurrencyRight = () => {
             className="dataTables_processing"
             style={{ display: "none" }}
           >
-            {t("Processing...")}
+            {t("Processing")}...
           </div>
           <div className="dataTables_scroll">
             <div
