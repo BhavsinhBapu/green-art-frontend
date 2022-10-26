@@ -506,7 +506,7 @@ const Navbar = () => {
                                   <div className="notify-pending">
                                     <p>
                                       <span>{notificationData.length}</span>{" "}
-                                      pending notifications
+                                      {t("pending notifications")}
                                     </p>
                                     <a
                                       onClick={() => {
@@ -515,7 +515,7 @@ const Navbar = () => {
                                       className="clear-all"
                                       href="#"
                                     >
-                                      Clear All
+                                      {t("Clear All")}
                                     </a>
                                   </div>
 
@@ -527,7 +527,7 @@ const Navbar = () => {
                                         // }}
                                         className="view-all"
                                       >
-                                        View All
+                                        {t("View All")}
                                       </a>
                                     </Link>
                                     <HiArrowNarrowRight />
@@ -564,7 +564,7 @@ const Navbar = () => {
                                         </div>
                                       ))
                                   ) : (
-                                    <p className="notFountNotifyText">No Notification Found!</p>
+                                    <p className="notFountNotifyText">{t("No Notification Found!")}</p>
                                   )}
                                 </div>
                               </div>
