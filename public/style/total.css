@@ -10234,3 +10234,7 @@ input[type="number"] {
 .referral-area {
   margin-bottom: 20px;
 }
+.marginLeftRight {
+  margin-left: 15px;
+  margin-right: 15px;
+}
