@@ -104,292 +104,296 @@ const SwapCoin: NextPage = ({
     });
   }, []);
   return (
-    <div className="page-wrap">
-      <div className="page-left-sidebar">
-        <div className="sidebar-top">
-          <ul className="left-menu">
-            <li>
-              <Link href={`/user/my-wallet`}>
-                <div>
-                  <AiFillWallet />
-                  <a>{t("My wallet")}</a>
-                </div>
-              </Link>
-            </li>
-            <li className="active">
-              <Link href={`/user/swap-coin`}>
-                <div>
-                  <AiOutlineSwap />
-                  <a>{t("Swap Coin")}</a>
-                </div>
-              </Link>
-            </li>
-          </ul>
-        </div>
-        <div className="page-main-content">
-          <div className="container-fluid">
-            <div className="section-top-wrap mb-25">
-              <div className="overview-area">
-                <div className="overview-left">
-                  <h2 className="section-top-title">{t("Swap Coin")}</h2>
+    <>
+      <div className="page-wrap">
+        <div className="page-left-sidebar">
+          <div className="sidebar-top">
+            <ul className="left-menu">
+              <li>
+                <Link href={`/user/my-wallet`}>
+                  <div>
+                    <AiFillWallet />
+                    <a>{t("My wallet")}</a>
+                  </div>
+                </Link>
+              </li>
+              <li className="active">
+                <Link href={`/user/swap-coin`}>
+                  <div>
+                    <AiOutlineSwap />
+                    <a>{t("Swap Coin")}</a>
+                  </div>
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <div className="page-main-content">
+            <div className="container-fluid">
+              <div className="section-top-wrap mb-25">
+                <div className="overview-area">
+                  <div className="overview-left">
+                    <h2 className="section-top-title">{t("Swap Coin")}</h2>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div className="row">
-              <div className="col-lg-10">
-                <div className="section-wrapper">
-                  <div className="swap-area">
-                    <div className="swap-area-top">
-                      <div className="form-group">
-                        <div className="swap-wrap">
-                          <div className="swap-wrap-top">
-                            <label>{t("From")}</label>
-                            <span className="available">
-                              Available :{" "}
-                              {parseFloat(fromSelected.balamce).toFixed(8)}{" "}
-                              {fromSelected.selected}
-                            </span>
-                          </div>
-                          <div className="swap-input-wrap">
-                            <div className="form-amount">
-                              <input
-                                type="text"
-                                className="form-control"
-                                id="amount-one"
-                                value={fromSelected ? fromSelected.amount : ""}
-                                placeholder={t("Please enter 10 -2400000")}
-                                onChange={(e) => {
-                                  setFromSelected({
-                                    ...fromSelected,
-                                    amount: e.target.value,
-                                  });
-                                  convertCoin(
-                                    e.target.value,
-                                    fromSelected.coin_id,
-                                    toSelected.coin_id
-                                  ).then((data) => {
-                                    setToSelected({
-                                      ...toSelected,
-                                      coin_id: data?.to_wallet?.id,
-                                      selected: data?.to_wallet?.coin_type,
-                                      balamce: data?.to_wallet?.balance,
-                                      amount: data?.convert_rate,
-                                    });
-                                  });
-                                }}
-                              />
+              <div className="row">
+                <div className="col-lg-10">
+                  <div className="section-wrapper">
+                    <div className="swap-area">
+                      <div className="swap-area-top">
+                        <div className="form-group">
+                          <div className="swap-wrap">
+                            <div className="swap-wrap-top">
+                              <label>{t("From")}</label>
+                              <span className="available">
+                                Available :{" "}
+                                {parseFloat(fromSelected.balamce).toFixed(8)}{" "}
+                                {fromSelected.selected}
+                              </span>
                             </div>
-                            <div className="cp-select-area">
-                              <select
-                                className=" form-control "
-                                id="currency-one"
-                                onChange={(e: any) => {
-                                  convertCoin(
-                                    fromSelected.amount,
-                                    e.target.value,
-                                    toSelected.coin_id
-                                  ).then((data) => {
+                            <div className="swap-input-wrap">
+                              <div className="form-amount">
+                                <input
+                                  type="text"
+                                  className="form-control"
+                                  id="amount-one"
+                                  value={
+                                    fromSelected ? fromSelected.amount : ""
+                                  }
+                                  placeholder={t("Please enter 10 -2400000")}
+                                  onChange={(e) => {
                                     setFromSelected({
                                       ...fromSelected,
-                                      coin_id: data.from_wallet.id,
-                                      selected: data.from_wallet.coin_type,
-                                      balamce: data.from_wallet.balance,
+                                      amount: e.target.value,
                                     });
-                                  });
-                                }}
-                              >
-                                <option value="" selected disabled hidden>
-                                  {fromSelected.selected
-                                    ? fromSelected.selected
-                                    : "Select"}
-                                </option>
-                                {walletLists?.map(
-                                  (item: any, index: number) => (
-                                    <option
-                                      key={index}
-                                      value={item.id}
-                                      selected={
-                                        fromSelected.coin_id ===
-                                        item.id.toString()
-                                      }
-                                    >
-                                      {item.coin_type}
-                                    </option>
-                                  )
-                                )}
-                              </select>
+                                    convertCoin(
+                                      e.target.value,
+                                      fromSelected.coin_id,
+                                      toSelected.coin_id
+                                    ).then((data) => {
+                                      setToSelected({
+                                        ...toSelected,
+                                        coin_id: data?.to_wallet?.id,
+                                        selected: data?.to_wallet?.coin_type,
+                                        balamce: data?.to_wallet?.balance,
+                                        amount: data?.convert_rate,
+                                      });
+                                    });
+                                  }}
+                                />
+                              </div>
+                              <div className="cp-select-area">
+                                <select
+                                  className=" form-control "
+                                  id="currency-one"
+                                  onChange={(e: any) => {
+                                    convertCoin(
+                                      fromSelected.amount,
+                                      e.target.value,
+                                      toSelected.coin_id
+                                    ).then((data) => {
+                                      setFromSelected({
+                                        ...fromSelected,
+                                        coin_id: data.from_wallet.id,
+                                        selected: data.from_wallet.coin_type,
+                                        balamce: data.from_wallet.balance,
+                                      });
+                                    });
+                                  }}
+                                >
+                                  <option value="" selected disabled hidden>
+                                    {fromSelected.selected
+                                      ? fromSelected.selected
+                                      : "Select"}
+                                  </option>
+                                  {walletLists?.map(
+                                    (item: any, index: number) => (
+                                      <option
+                                        key={index}
+                                        value={item.id}
+                                        selected={
+                                          fromSelected.coin_id ===
+                                          item.id.toString()
+                                        }
+                                      >
+                                        {item.coin_type}
+                                      </option>
+                                    )
+                                  )}
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="swap-button-area text-center">
+                          <button
+                            id="swap"
+                            className="swap-button"
+                            onClick={async () => {
+                              setLoading(true);
+                              await swapSelected();
+                              await getRateAction(
+                                toSelected.coin_id,
+                                fromSelected.coin_id,
+                                toSelected.amount,
+                                setRate
+                              );
+                              setLoading(false);
+                            }}
+                          >
+                            <i className="fa fa-refresh" />
+                          </button>
+                        </div>
+                        <div className="form-group">
+                          <div className="swap-wrap">
+                            <div className="swap-wrap-top">
+                              <label>{t("To")}</label>
+                              <span className="available">
+                                Available :{" "}
+                                {parseFloat(toSelected.balamce).toFixed(8)}
+                                {toSelected.selected}
+                              </span>
+                            </div>
+                            <div className="swap-input-wrap">
+                              <div className="form-amount">
+                                <input
+                                  type="text"
+                                  className="form-control"
+                                  id="amount-two"
+                                  value={toSelected.amount}
+                                  placeholder={t("Please enter 0 - 65")}
+                                  disabled
+                                />
+                              </div>
+                              <div className="cp-select-area">
+                                <select
+                                  className="form-control"
+                                  id="currency-two"
+                                  onChange={(e) => {
+                                    convertCoin(
+                                      fromSelected.amount,
+                                      fromSelected.coin_id,
+                                      e.target.value
+                                    ).then((data) => {
+                                      console.log(data, "data");
+                                      setToSelected({
+                                        ...fromSelected,
+                                        coin_id: data.to_wallet.id,
+                                        selected: data.to_wallet.coin_type,
+                                        balamce: data.to_wallet.balance,
+                                      });
+                                    });
+                                  }}
+                                >
+                                  <option value="" selected disabled hidden>
+                                    {toSelected.selected
+                                      ? toSelected.selected
+                                      : "Select"}
+                                  </option>
+                                  {walletLists?.map(
+                                    (item: any, index: number) => (
+                                      <option
+                                        key={index}
+                                        value={item.id}
+                                        selected={
+                                          toSelected.coin_id ===
+                                          item.id.toString()
+                                        }
+                                      >
+                                        {item.coin_type}
+                                      </option>
+                                    )
+                                  )}
+                                </select>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                      <div className="swap-button-area text-center">
+
+                      {!loading ? (
+                        <div className="swap-area-middle">
+                          <ul>
+                            <li>
+                              <span>{t("Price")}</span>
+
+                              <span id="rate">
+                                1 {rate.from_wallet} ={" "}
+                                {rate.rate ? rate.rate : "0"} {rate.to_wallet}
+                              </span>
+                            </li>
+                            <li>
+                              <span>{t("You will spend")}</span>
+
+                              <span className="spend">
+                                {parseFloat(rate.convert_rate)}
+                                {rate.to_wallet}
+                              </span>
+                            </li>
+                          </ul>
+                        </div>
+                      ) : (
+                        <SmallLoading />
+                      )}
+
+                      <div className="swap-area-bottom">
                         <button
-                          id="swap"
-                          className="swap-button"
-                          onClick={async () => {
-                            setLoading(true);
-                            await swapSelected();
-                            await getRateAction(
-                              toSelected.coin_id,
-                              fromSelected.coin_id,
-                              toSelected.amount,
-                              setRate
-                            );
-                            setLoading(false);
-                          }}
+                          className="primary-btn-outline"
+                          disabled={
+                            !fromSelected.amount ||
+                            !fromSelected.coin_id ||
+                            !toSelected.amount ||
+                            !toSelected.coin_id
+                          }
+                          data-toggle="modal"
+                          data-target="#exampleModal"
                         >
-                          <i className="fa fa-refresh" />
+                          {t("convert")}
                         </button>
-                      </div>
-                      <div className="form-group">
-                        <div className="swap-wrap">
-                          <div className="swap-wrap-top">
-                            <label>{t("To")}</label>
-                            <span className="available">
-                              Available :{" "}
-                              {parseFloat(toSelected.balamce).toFixed(8)}
-                              {toSelected.selected}
-                            </span>
-                          </div>
-                          <div className="swap-input-wrap">
-                            <div className="form-amount">
-                              <input
-                                type="text"
-                                className="form-control"
-                                id="amount-two"
-                                value={toSelected.amount}
-                                placeholder={t("Please enter 0 - 65")}
-                                disabled
-                              />
-                            </div>
-                            <div className="cp-select-area">
-                              <select
-                                className="form-control"
-                                id="currency-two"
-                                onChange={(e) => {
-                                  convertCoin(
-                                    fromSelected.amount,
-                                    fromSelected.coin_id,
-                                    e.target.value
-                                  ).then((data) => {
-                                    console.log(data, "data");
-                                    setToSelected({
-                                      ...fromSelected,
-                                      coin_id: data.to_wallet.id,
-                                      selected: data.to_wallet.coin_type,
-                                      balamce: data.to_wallet.balance,
-                                    });
-                                  });
-                                }}
-                              >
-                                <option value="" selected disabled hidden>
-                                  {toSelected.selected
-                                    ? toSelected.selected
-                                    : "Select"}
-                                </option>
-                                {walletLists?.map(
-                                  (item: any, index: number) => (
-                                    <option
-                                      key={index}
-                                      value={item.id}
-                                      selected={
-                                        toSelected.coin_id ===
-                                        item.id.toString()
-                                      }
-                                    >
-                                      {item.coin_type}
-                                    </option>
-                                  )
-                                )}
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
 
-                    {!loading ? (
-                      <div className="swap-area-middle">
-                        <ul>
-                          <li>
-                            <span>{t("Price")}</span>
+                        <div
+                          className="modal fade"
+                          id="exampleModal"
+                          role="dialog"
+                          aria-labelledby="exampleModalLabel"
+                          aria-hidden="true"
+                        >
+                          <div className="modal-dialog" role="document">
+                            <div className="modal-content">
+                              <div className="modal-header">
+                                <h5
+                                  className="modal-title"
+                                  id="exampleModalLabel"
+                                >
+                                  Are You sure?
+                                </h5>
+                              </div>
 
-                            <span id="rate">
-                              1 {rate.from_wallet} ={" "}
-                              {rate.rate ? rate.rate : "0"} {rate.to_wallet}
-                            </span>
-                          </li>
-                          <li>
-                            <span>{t("You will spend")}</span>
-
-                            <span className="spend">
-                              {parseFloat(rate.convert_rate)}
-                              {rate.to_wallet}
-                            </span>
-                          </li>
-                        </ul>
-                      </div>
-                    ) : (
-                      <SmallLoading />
-                    )}
-
-                    <div className="swap-area-bottom">
-                      <button
-                        className="primary-btn-outline"
-                        disabled={
-                          !fromSelected.amount ||
-                          !fromSelected.coin_id ||
-                          !toSelected.amount ||
-                          !toSelected.coin_id
-                        }
-                        data-toggle="modal"
-                        data-target="#exampleModal"
-                      >
-                        {t("convert")}
-                      </button>
-
-                      <div
-                        className="modal fade"
-                        id="exampleModal"
-                        role="dialog"
-                        aria-labelledby="exampleModalLabel"
-                        aria-hidden="true"
-                      >
-                        <div className="modal-dialog" role="document">
-                          <div className="modal-content">
-                            <div className="modal-header">
-                              <h5
-                                className="modal-title"
-                                id="exampleModalLabel"
-                              >
-                                Are You sure?
-                              </h5>
-                            </div>
-
-                            <div className="modal-footer">
-                              <button
-                                type="button"
-                                className="btn btn-danger"
-                                data-dismiss="modal"
-                              >
-                                No
-                              </button>
-                              <button
-                                type="button"
-                                className="btn btn-success"
-                                onClick={() => {
-                                  swapCoinAction(
-                                    fromSelected.amount,
-                                    fromSelected.coin_id,
-                                    toSelected.coin_id,
-                                    setLoading
-                                  );
-                                }}
-                                data-dismiss="modal"
-                              >
-                                Yes
-                              </button>
+                              <div className="modal-footer">
+                                <button
+                                  type="button"
+                                  className="btn btn-danger"
+                                  data-dismiss="modal"
+                                >
+                                  No
+                                </button>
+                                <button
+                                  type="button"
+                                  className="btn btn-success"
+                                  onClick={() => {
+                                    swapCoinAction(
+                                      fromSelected.amount,
+                                      fromSelected.coin_id,
+                                      toSelected.coin_id,
+                                      setLoading
+                                    );
+                                  }}
+                                  data-dismiss="modal"
+                                >
+                                  Yes
+                                </button>
+                              </div>
                             </div>
                           </div>
                         </div>
