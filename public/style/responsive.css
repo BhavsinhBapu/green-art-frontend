@@ -113,9 +113,16 @@
   }
   .footer-area {
     padding-top: 70px;
+    margin-left: 15px;
+    margin-right: 15px;
   }
 }
 @media (max-width: 767px) {
+  .pagination-wrapper {
+    text-align: center !important;
+    margin-top: 25px !important;
+    width: 90%;
+  }
   .about-text h2 {
     font-size: 25px;
   }
@@ -128,7 +135,7 @@
   .footer-area .footer-bottom-wrap {
     padding: 10px 0;
   }
-  
+
   .cp-user-buy-coin-content-area table.dataTable thead tr th {
     padding: 3px 5px;
   }
