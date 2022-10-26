@@ -391,9 +391,9 @@ p {
 .cp-user-top-bar-right .dropdown-menu {
   padding: 0;
   width: 350px;
-  background: #fff;
+  background: #2a2e37;
   color: #fff;
-  border: 1px solid #fff;
+  border: 1px solid #2a2e37;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
   border-radius: 0;
   padding: 15px;
@@ -445,18 +445,18 @@ p {
 .notify-icon-title p {
   font-size: 12px;
   line-height: 1.4;
-  color: var(--title-color);
+  color: var(--white);
 }
 .notify-grid-item h6 {
   font-size: 14px;
   font-weight: normal;
   margin-bottom: 5px;
-  color: var(--title-color);
+  color: var(--white);
 }
 .notify-icon-title span {
   font-size: 12px;
   line-height: 1.4;
-  color: var(--title-color);
+  color: var(--white);
   opacity: 0.7;
 }
 .notification-body {
