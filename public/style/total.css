@@ -6126,6 +6126,10 @@ table.dataTable tbody tr td {
 }
 
 @media screen and (max-width: 768px) {
+  .page-wrap {
+    height: 100%;
+    margin-bottom: 20px;
+  }
   .cp-user-top-bar-status-area {
     padding-left: 0;
   }
