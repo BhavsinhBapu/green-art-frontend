@@ -27,7 +27,7 @@ const NotificationPage = ({
   return (
     <>
       <div className="container notification-continer mb-2">
-        <h2 className="section-top-title">{t("All notifications")}</h2>
+        <h2 className="section-top-title notification-section-title">{t("All notifications")}</h2>
       </div>
       {/* <div className="container notification-continer">
         {notificationData.map((item: any, index: any) => (
