@@ -5004,8 +5004,11 @@ select:-webkit-autofill:focus {
   color: #23262f;
 }
 .page-left-sidebar .sidebar-top .left-menu li.active a {
-  color: #23262f !important;
+  color: var(--primary-color) !important;
   margin-left: 5px;
+}
+.page-left-sidebar .sidebar-top .left-menu li.active svg {
+  fill: var(--primary-color) !important;
 }
 .page-left-sidebar .sidebar-middle {
   padding: 30px 15px;
@@ -10226,6 +10229,8 @@ input[type="number"] {
   margin-right: 15px !important;
   overflow: hidden;
 }
-.faq-page {
+.faq-page,
+.deposit-page,
+.referral-area {
   margin-bottom: 20px;
 }

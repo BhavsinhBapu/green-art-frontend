@@ -62,7 +62,7 @@ const Deposit = ({ customPageData, socialData, copyright_text }: any) => {
   }, []);
   return (
     <>
-      <div>
+      <div className="deposit-page">
         <div className="container mb-3">
           <h2 className="mb-2">{t("Deposit Fiat")}</h2>
         </div>
