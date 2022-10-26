@@ -15,6 +15,7 @@ import SmallLoading from "components/common/smallLoading";
 import { formateZert } from "common";
 import { customPage, landingPage } from "service/landing-page";
 import Footer from "components/common/footer";
+import { AiOutlineSwap, AiFillWallet } from "react-icons/ai";
 const SwapCoin: NextPage = ({
   walletLists,
   wallet_rate,
@@ -73,21 +74,6 @@ const SwapCoin: NextPage = ({
     setLoading(false);
     return data;
   };
-  // React.useEffect(() => {
-  //   convertCoin(
-  //     fromSelected.amount,
-  //     fromSelected.coin_id,
-  //     toSelected.coin_id
-  //   ).then((data) => {
-  //     setToSelected({
-  //       ...toSelected,
-  //       coin_id: data?.to_wallet?.id,
-  //       selected: data?.to_wallet?.coin_type,
-  //       balamce: data?.to_wallet?.balance,
-  //       amount: data?.convert_rate,
-  //     });
-  //   });
-  // }, [fromSelected.amount]);
 
   React.useEffect(() => {
     setToSelected({
@@ -118,23 +104,27 @@ const SwapCoin: NextPage = ({
     });
   }, []);
   return (
-    <>
-      <div className="page-wrap">
-        <div className="page-left-sidebar">
-          <div className="sidebar-top">
-            <ul className="left-menu">
-              <li>
-                <Link href={`/user/my-wallet`}>
+    <div className="page-wrap">
+      <div className="page-left-sidebar">
+        <div className="sidebar-top">
+          <ul className="left-menu">
+            <li>
+              <Link href={`/user/my-wallet`}>
+                <div>
+                  <AiFillWallet />
                   <a>{t("My wallet")}</a>
-                </Link>
-              </li>
-              <li className="active">
-                <Link href={`/user/swap-coin`}>
+                </div>
+              </Link>
+            </li>
+            <li className="active">
+              <Link href={`/user/swap-coin`}>
+                <div>
+                  <AiOutlineSwap />
                   <a>{t("Swap Coin")}</a>
-                </Link>
-              </li>
-            </ul>
-          </div>
+                </div>
+              </Link>
+            </li>
+          </ul>
         </div>
         <div className="page-main-content">
           <div className="container-fluid">
