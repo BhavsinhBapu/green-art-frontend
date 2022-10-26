@@ -6,6 +6,10 @@ import { RootState } from "state/store";
 import { LogoutAction } from "state/actions/user";
 import { notification, notificationSeen } from "service/notification";
 import useTranslation from "next-translate/useTranslation";
+import { HiArrowNarrowRight } from "react-icons/hi";
+import { CgNotifications } from "react-icons/cg";
+import { RiNotificationBadgeLine } from "react-icons/ri";
+import moment from "moment";
 
 const Navbar = () => {
   const { isLoggedIn, user, logo } = useSelector(
@@ -496,7 +500,76 @@ const Navbar = () => {
                             />
                           </button>
                           <div className="dropdown-menu notification-list dropdown-menu-right">
-                            {notificationData[0] && (
+                            <div className="notify-menu">
+                              <div className="notification-list-title">
+                                <div className="notify-counter">
+                                  <div className="notify-pending">
+                                    <p>
+                                      <span>{notificationData.length}</span>{" "}
+                                      pending notifications
+                                    </p>
+                                    <a
+                                      onClick={() => {
+                                        seen();
+                                      }}
+                                      className="clear-all"
+                                      href="#"
+                                    >
+                                      Clear All
+                                    </a>
+                                  </div>
+
+                                  <div className="notifiy-clear">
+                                    <Link href="/user/notification">
+                                      <a
+                                        // onClick={() => {
+                                        //   seen();
+                                        // }}
+                                        className="view-all"
+                                      >
+                                        View All
+                                      </a>
+                                    </Link>
+                                    <HiArrowNarrowRight />
+                                  </div>
+                                </div>
+                              </div>
+                              <div>
+                                <div className="notify-grid-item">
+                                  {notificationData.length > 0 ? (
+                                    notificationData
+                                      ?.slice(0, 5)
+                                      ?.map((item: any, index: number) => (
+                                        <div className="notify-icon-title">
+                                          <RiNotificationBadgeLine
+                                            size={20}
+                                            className="notify-menu-icon"
+                                          />
+                                          <div>
+                                            <h6>
+                                              {item.title.substring(0, 40)}
+                                            </h6>
+                                            <p>
+                                              {item.notification_body.substring(
+                                                0,
+                                                50
+                                              )}
+                                            </p>
+                                            <span>
+                                              {moment(item.created_at).format(
+                                                "DD MMM YYYY"
+                                              )}
+                                            </span>
+                                          </div>
+                                        </div>
+                                      ))
+                                  ) : (
+                                    <p className="notFountNotifyText">No Notification Found!</p>
+                                  )}
+                                </div>
+                              </div>
+                            </div>
+                            {/* {notificationData[0] && (
                               <div className="notification-body-drop">
                                 <div>
                                   <p className="title-notifination">
@@ -553,7 +626,7 @@ const Navbar = () => {
                                   {t("No new notification")}
                                 </span>
                               </div>
-                            )}
+                            )} */}
 
                             <div
                               className="scroll-wrapper scrollbar-inner"
