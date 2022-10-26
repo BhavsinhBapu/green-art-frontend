@@ -44,6 +44,11 @@ export const WithdrawComponent = ({ responseData, router }: any) => {
     }
   };
   React.useEffect(() => {
+    if (responseData?.data && responseData?.data[0]) {
+      setSelectedNetwork(responseData?.data[0]);
+    }
+  }, [responseData?.data[0]]);
+  React.useEffect(() => {
     setWithdrawalCredentials({
       ...withdrawalCredentials,
       wallet_id: responseData?.wallet?.id,
