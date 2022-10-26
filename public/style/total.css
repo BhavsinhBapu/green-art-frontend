@@ -5919,6 +5919,12 @@ table.dataTable tbody tr td {
     flex-direction: column;
     grid-auto-flow: dense !important;
   }
+  .dataTables_head {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
 }
 .code-list .primary-btn {
   display: inline-block;
@@ -8365,7 +8371,7 @@ div.dataTables_wrapper div.dataTables_length select option {
 div.dataTables_wrapper div.dataTables_filter input {
   margin-left: 0.5em;
   display: inline-block;
-  /* width: auto; */
+  width: auto;
   background: transparent;
   /* border-radius: 50px; */
   border: 1px solid #dfdfdf;
