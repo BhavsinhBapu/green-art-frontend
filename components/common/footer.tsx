@@ -9,8 +9,6 @@ const Footer = ({ customPageData, socialData, copyright_text }: any) => {
   const { t } = useTranslation("common");
   const { settings } = useSelector((state: RootState) => state.common);
 
-  console.log(customPageData);
-
   return (
     <footer className="footer-area pt--70">
       <div className="footer-top">
