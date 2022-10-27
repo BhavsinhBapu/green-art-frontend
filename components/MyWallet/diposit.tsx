@@ -6,15 +6,21 @@ import Qr from "components/common/qr";
 import { IoIosArrowBack } from "react-icons/io";
 import Link from "next/link";
 
-export const DipositComponent = ({ responseData, router }: any) => {
+export const DipositComponent = ({
+  responseData,
+  router,
+  setDependecy,
+}: any) => {
   const { t } = useTranslation("common");
   const [selectedNetwork, setSelectedNetwork] = useState(
     responseData?.data && responseData?.data[0]
   );
+  const [initialHit, setInitialHit] = useState(false);
   const selectAddressCopy: any = React.useRef(null);
   useEffect(() => {
-    if (responseData?.data && responseData?.data[0]) {
+    if (responseData?.data && responseData?.data[0] && initialHit === false) {
       setSelectedNetwork(responseData?.data[0]);
+      setInitialHit(true);
     }
   }, [responseData?.data[0]]);
   return (
@@ -69,6 +75,7 @@ export const DipositComponent = ({ responseData, router }: any) => {
                     const findObje = responseData?.data?.find(
                       (x: any) => x.id === parseInt(e.target.value)
                     );
+                    setDependecy(Math.random() * 100);
                     setSelectedNetwork(findObje);
                   }}
                 >
@@ -97,7 +104,7 @@ export const DipositComponent = ({ responseData, router }: any) => {
                 </p>
               </div>
               <div className="input-url">
-                {responseData?.address ? (
+                {selectedNetwork?.address ? (
                   <>
                     <input
                       onClick={() => {
@@ -153,7 +160,8 @@ export const DipositComponent = ({ responseData, router }: any) => {
                           wallet_id: router.query.coin_id,
                           network_type: selectedNetwork?.network_type ?? "",
                         },
-                        setSelectedNetwork
+                        setSelectedNetwork,
+                        setDependecy
                       );
                     }}
                   >

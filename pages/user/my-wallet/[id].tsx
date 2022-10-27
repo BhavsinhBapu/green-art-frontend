@@ -36,7 +36,7 @@ const DeposiAndWithdraw = ({
   const [faqs, setFaqs] = useState<any>([]);
 
   const [responseData, setResponseData]: any = useState();
-
+  const [dependecy, setDependecy] = useState(0);
   const handleWithdrawAndDeposit = async (actionType: string, id: number) => {
     // if (!router.query.id) return;
 
@@ -71,7 +71,7 @@ const DeposiAndWithdraw = ({
       String(router.query.id),
       Number(router.query.coin_id)
     );
-  }, []);
+  }, [dependecy]);
 
   return (
     <>
@@ -79,7 +79,11 @@ const DeposiAndWithdraw = ({
         <div className="container">
           <div className="row">
             {router.query.id === MY_WALLET_DEPOSIT_TYPE && (
-              <DipositComponent responseData={responseData} router={router} />
+              <DipositComponent
+                responseData={responseData}
+                router={router}
+                setDependecy={setDependecy}
+              />
             )}
 
             {router.query.id === MY_WALLET_WITHDRAW_TYPE && (
