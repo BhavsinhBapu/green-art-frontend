@@ -30,7 +30,7 @@ const Profile: NextPage = ({
               </div>
             </div>
             <div className="profile-area">
-              <div className="section-wrapper">
+              <div className="section-wrapper boxShadow">
                 <div className="user-profile">
                   <div className="row">
                     <div className="col-lg-4 col-md-5">

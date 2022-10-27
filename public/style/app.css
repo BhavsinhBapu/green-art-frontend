@@ -64,19 +64,20 @@ Tags: admin, best react admin template, das
   --white: #ffffff;
   --black: #000000;
   --color-pallet-1: #b4b8d7;
+
   --background-color: #151515;
   --background-color-2: #f9b507;
   --background-color-3: #f7f7f8;
+  --main-background-color: #ffffff;
+  --card-background-color: #ffffff;
   --background-color-4: #ffba00;
   --background-color-5: #f3f3f3;
   --background-color-6: #ffffff;
   --background-color-7: #2a2e37;
   --background-color-8: #fafafa;
 
-
   --background-color-hover: #fafafa;
   --background-color-hover2: #ffce51;
-
 }
 html,
 body {

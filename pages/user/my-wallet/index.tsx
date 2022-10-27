@@ -67,8 +67,6 @@ const MyWallet: NextPage = ({
     address: null,
   });
 
-  
-
   const getWalletLists = async (url: string) => {
     const response: any = await WalletListApiAction(url, setProcessing);
     setWalletList(response?.wallets);
@@ -235,7 +233,7 @@ const MyWallet: NextPage = ({
 
             <div className="asset-balances-area cstm-loader-area">
               <div className="asset-balances-left">
-                <div className="section-wrapper">
+                <div className="section-wrapper boxShadow">
                   <div
                     id="assetBalances_wrapper"
                     className="dataTables_wrapper no-footer"

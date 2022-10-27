@@ -219,7 +219,7 @@ p {
 */
 
 .cp-user-top-bar {
-  background: var(--background-color-6);
+  background: var(--card-background-color);
   padding: 10px 0;
   position: fixed;
   z-index: 999;
@@ -381,7 +381,7 @@ p {
   line-height: 22px;
   padding: 13px 5px !important;
   border-bottom: 1px solid var(--border-color-2) !important;
-  background: var(--background-color-6);
+  background: var(--card-background-color);
 }
 
 .cp-user-top-bar-right .dropdown-toggle:after {
@@ -391,7 +391,7 @@ p {
 .cp-user-top-bar-right .dropdown-menu {
   padding: 0;
   width: 350px;
- background: var(--background-color-7);
+  background: var(--background-color-7);
   color: var(--text-primary-color-2);
   border: 1px solid var(--border-color-2);
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
@@ -503,7 +503,7 @@ p {
   content: "";
   height: 59px;
   width: 100%;
-  background: var(--background-color-6);
+  background: var(--card-background-color);
   position: absolute;
   left: 0;
   top: 0;
@@ -612,7 +612,7 @@ ul {
   width: 270px;
   position: fixed;
   height: 100vh;
-  background: var(--background-color-6);
+  background: var(--card-background-color);
   -webkit-transition: left 0.3s ease-in-out 0s;
   transition: left 0.3s ease-in-out 0s;
   left: 0;
@@ -924,7 +924,7 @@ table.dataTable.dtr-inline.collapsed
   box-shadow: 1px 5px 20px 0px rgb(0 0 0 / 8%);
 }
 .status-card .card-body {
-  background: var(--background-color-6);
+  background: var(--card-background-color);
   margin: 1px;
   border-radius: 3px;
 }
@@ -1018,7 +1018,7 @@ table.dataTable.dtr-inline.collapsed
   height: 60px;
   border-radius: 3px;
   border: 1px solid var(--border-color-1);
-  background: var(--background-color-6);
+  background: var(--card-background-color);
   box-shadow: none;
   color: #b1b5c3;
   font-size: 18px;
@@ -1902,7 +1902,7 @@ a#submit {
   border-radius: 16px;
   box-shadow: 0px 64px 64px -48px rgb(15 15 15 / 10%);
   border-radius: 16px;
-  background: var(--background-color-3);
+  background: var(--main-background-color);
 }
 
 .cp-user-profile-header {
@@ -1983,7 +1983,7 @@ a#submit {
   border-radius: 50%;
   display: block;
   margin: auto;
-  background: var(--background-color-6);
+  background: var(--card-background-color);
   border: 4px solid var(--border-color-1);
   position: relative;
   overflow: hidden;
@@ -2463,7 +2463,11 @@ a#submit {
 }
 
 .cp-user-setting-card .cp-user-content input:checked + .slider:before {
-  background: -webkit-linear-gradient(left, var(--text-primary-color-7), #fec939 100%);
+  background: -webkit-linear-gradient(
+    left,
+    var(--text-primary-color-7),
+    #fec939 100%
+  );
 }
 
 .cp-user-setting-card .cp-user-content input:checked + .slider:before {
@@ -2483,7 +2487,7 @@ a#submit {
   height: 45px;
   font-size: 18px;
   box-shadow: none;
-  background: var(--background-color-6);
+  background: var(--card-background-color);
   padding: 5px 15px;
   border-color: transparent;
 }
@@ -2493,7 +2497,7 @@ a#submit {
   height: 45px;
   font-size: 18px;
   box-shadow: none;
-  background: var(--background-color-6);
+  background: var(--card-background-color);
   padding: 5px 15px;
   border-color: var(--border-color);
 }
@@ -2810,7 +2814,12 @@ member club
   -ms-border-radius: 0;
   border-radius: 0;
   position: relative;
-  background: -webkit-linear-gradient(left, var(--text-primary-color-7), #fec939 50%, #bca156);
+  background: -webkit-linear-gradient(
+    left,
+    var(--text-primary-color-7),
+    #fec939 50%,
+    #bca156
+  );
   background-size: 200%, 1px;
   background-position: 0;
   transition: all 0.3s;
@@ -2832,7 +2841,12 @@ member club
   -ms-border-radius: 0;
   border-radius: 4px !important;
   position: relative;
-  background: -webkit-linear-gradient(left, var(--text-primary-color-7), #fec939 50%, #bca156);
+  background: -webkit-linear-gradient(
+    left,
+    var(--text-primary-color-7),
+    #fec939 50%,
+    #bca156
+  );
   background-size: 200%, 1px;
   background-position: 0;
   transition: all 0.3s;
@@ -2957,7 +2971,7 @@ div.dataTables_wrapper div.dataTables_filter {
   display: block;
   width: 100%;
   text-align: left;
-  background: var(--background-color-3);
+  background: var(--main-background-color);
   padding: 20px 15px;
   font-size: 16px;
   color: var(--text-primary-color-3);
@@ -2968,7 +2982,7 @@ div.dataTables_wrapper div.dataTables_filter {
 }
 
 .accordion .card .card-body {
-  background: var(--background-color-3);
+  background: var(--main-background-color);
   font-size: 16px;
   font-weight: 400;
   color: var(--text-primary-color-3);
@@ -3261,10 +3275,10 @@ div.dataTables_wrapper div.dataTables_filter {
 }
 .dark-modal.modal-content {
   border-radius: 16px;
-  background: var(--background-color-3);
+  background: var(--main-background-color);
 }
 .dark-modal.modal-content .modal-header {
-  background: var(--background-color-3);
+  background: var(--main-background-color);
   border-bottom: 1px solid var(--border-color-1);
 }
 .dark-modal.modal-content .modal-header button span,
@@ -3272,7 +3286,7 @@ div.dataTables_wrapper div.dataTables_filter {
   color: var(--text-primary-color-3);
 }
 .dark-modal.modal-content .modal-body {
-  background: var(--background-color-3);
+  background: var(--main-background-color);
   color: var(--text-primary-color-3);
 }
 .dark-modal.modal-content .modal-body h6 {
@@ -3366,7 +3380,7 @@ table.dataTable thead .sorting_desc_disabled:after {
 }
 
 .dark-bg2 {
-  background: var(--background-color-6);
+  background: var(--card-background-color);
 }
 
 .swipe-area {
@@ -3994,7 +4008,7 @@ table.dataTable tbody tr.selected td {
   border-bottom: 1px solid var(--border-color-2);
 }
 .card {
-  background-color: var(--background-color-3);
+  background-color: var(--main-background-color);
   border-radius: 12px;
   border: 0;
 }
@@ -4764,7 +4778,7 @@ select:-webkit-autofill:focus {
 }
 .cp-user-wallet-card {
   border-radius: 16px;
-  background: var(--background-color-6);
+  background: var(--card-background-color);
   box-shadow: 0px 64px 64px -48px rgb(15 15 15 / 10%);
 }
 .cp-user-body-bg .cp-user-card-header-area h4 {
@@ -4772,7 +4786,7 @@ select:-webkit-autofill:focus {
 }
 .card {
   border-radius: 12px;
-  background: var(--background-color-3);
+  background: var(--main-background-color);
   height: 100%;
 }
 .cp-user-body-bg .card {
@@ -4829,14 +4843,15 @@ select:-webkit-autofill:focus {
 .page-wrap {
   display: flex;
   height: auto;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
+  padding-bottom: 20px;
 }
 .page-main-content {
   flex: 1;
   /* padding: 0 15px; */
 }
 .section-top-wrap {
-  background: var(--background-color-6);
+  background: var(--card-background-color);
   padding: 25px;
   background-image: linear-gradient(0deg, var(--primary-color), #0e0b0259),
     url(https://img.freepik.com/free-vector/abstract-white-shapes-background_79603-1362.jpg?w=1380&t=st=1666683576~exp=1666684176~hmac=4c3552aeeb1bb995a74bf404517b8610ec13d863bef1f158dac4eed6772340fb);
@@ -4933,7 +4948,7 @@ select:-webkit-autofill:focus {
   min-width: 186px;
 }
 .section-wrapper {
-  background: var(--background-color-6);
+  background: var(--card-background-color);
   padding: 40px;
   display: flex;
   flex-direction: column;
@@ -4943,7 +4958,7 @@ select:-webkit-autofill:focus {
   border-radius: 10px;
 }
 .section-wrapper-withHtml {
-  background: var(--background-color-6);
+  background: var(--card-background-color);
   padding: 40px;
   display: flex;
   flex-direction: column;
@@ -4970,10 +4985,11 @@ select:-webkit-autofill:focus {
 /* page-left-sidebar */
 .page-left-sidebar {
   width: 300px;
-  background: var(--background-color-6);
+  background: var(--card-background-color);
   border-radius: 5px;
   min-height: 100%;
   min-width: 300px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 .page-left-sidebar .sidebar-top {
   padding: 30px;
@@ -5010,7 +5026,7 @@ select:-webkit-autofill:focus {
   color: var(--text-primary-color-3);
 }
 .page-left-sidebar .sidebar-top .left-menu li.active a {
- color: var(--primary-color) !important;
+  color: var(--primary-color) !important;
   margin-left: 5px;
 }
 .page-left-sidebar .sidebar-top .left-menu li.active svg {
@@ -5105,7 +5121,7 @@ select:-webkit-autofill:focus {
 }
 .user-profile .user-profile-left {
   padding: 45px 25px;
-  background: var(--background-color-3);
+  background: var(--main-background-color);
   border-radius: 7px;
   text-align: center;
 }
@@ -5291,7 +5307,7 @@ select:-webkit-autofill:focus {
   width: 220px;
   height: 45px;
   border-radius: 5px;
-  background: var(--background-color-3);
+  background: var(--main-background-color);
   margin: 0 auto !important;
   padding: 0;
 }
@@ -5408,8 +5424,8 @@ table.dataTable tbody tr td {
   text-transform: capitalize;
   color: var(--text-primary-color-3);
 }
-.setting-bg{
-  background-color: var(--background-color-6);
+.setting-bg {
+  background-color: var(--card-background-color);
   padding: 20px;
 }
 .referral-area .invite-friends .input-group {
@@ -5436,11 +5452,11 @@ table.dataTable tbody tr td {
 }
 /* referral-area */
 .referral-area table.dataTable thead tr th {
-  background: var(--background-color-3);
+  background: var(--main-background-color);
   border-bottom: 1px solid var(--border-color);
 }
 .referral-area table.dataTable tbody tr td {
-  background: var(--background-color-3);
+  background: var(--main-background-color);
 }
 .rewards-inviter {
   display: flex;
@@ -5540,13 +5556,13 @@ table.dataTable tbody tr td {
 }
 .input-url {
   display: flex;
-  background: var(--background-color-6);
+  background: var(--card-background-color);
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
   height: 50px;
   padding: 5px 20px;
-  background: var(--background-color-6);
+  background: var(--card-background-color);
   border-radius: 5px;
   border: none;
   color: black;
@@ -5568,7 +5584,7 @@ table.dataTable tbody tr td {
   height: 100%;
 }
 .datatable-background {
-  background: var(--background-color-3);
+  background: var(--main-background-color);
 }
 .deposit-info-area .bar-code-area {
   margin-top: 20px;
@@ -6599,7 +6615,7 @@ body {
   margin: 0;
   padding: 0;
   color: var(--text-primary-color-3);
-  background-color: var(--background-color-3);
+  background-color: var(--main-background-color);
 }
 
 ul,
@@ -6701,7 +6717,7 @@ p {
   width: 250px;
   position: fixed;
   height: 100%;
-  background: var(--background-color-6);
+  background: var(--card-background-color);
   transition: all 0.3s ease-in-out 0s;
   left: 0;
   top: 0;
@@ -6827,7 +6843,7 @@ p {
 */
 
 .top-bar {
-  background: var(--background-color-6);
+  background: var(--card-background-color);
   margin-left: 250px;
   padding: 10px 5px;
   transition: all 0.3s ease-in-out 0s;
@@ -7227,7 +7243,7 @@ p {
 .user-management-nav .nav-link.active {
   position: relative;
   color: var(--text-primary-color);
-  background: var(--background-color-6);
+  background: var(--card-background-color);
 }
 
 .dataTables_info {
@@ -7540,7 +7556,7 @@ table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th:first-child:b
   padding: 0;
   display: block;
   line-height: 38px;
-  background: var(--background-color-6);
+  background: var(--card-background-color);
   position: absolute;
   top: -5px;
   right: -5px;
@@ -7563,8 +7579,8 @@ table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th:first-child:b
 
 .idverifyrejection .form-control {
   min-height: 150px;
-  background: var(--background-color-6);
-  border: 1px solid var(--background-color-6);
+  background: var(--card-background-color);
+  border: 1px solid var(--card-background-color);
   box-shadow: none;
 }
 
@@ -7923,7 +7939,11 @@ textarea.form-control.textarea {
   height: 48px;
   line-height: 48px;
   text-align: center;
-  background: -webkit-linear-gradient(left, var(--text-primary-color-7), #fec939 100%);
+  background: -webkit-linear-gradient(
+    left,
+    var(--text-primary-color-7),
+    #fec939 100%
+  );
   color: var(--text-primary-color);
   border-radius: 3px;
   font-size: 17px;
@@ -7969,7 +7989,7 @@ textarea.form-control.textarea {
 .user-form {
   display: flex;
   align-items: center;
-  padding: 85px var(--text-primary-color-2)00;
+  padding: 85px var(--text-primary-color-2) 00;
   border: 4px solid var(--text-primary-color-5);
   box-sizing: border-box;
   backdrop-filter: blur(30px);
@@ -8092,7 +8112,6 @@ textarea.form-control.textarea {
   font-weight: 700;
   border-radius: 7px !important;
   color: var(--text-primary-color) !important;
-
 }
 
 .nimmu-user-sibmit-button:active,
@@ -8321,7 +8340,11 @@ textarea.form-control.textarea {
   -ms-border-radius: 0;
   border-radius: 0;
   position: relative;
-  background: -webkit-linear-gradient(left, var(--text-primary-color-7), #fec939 100%);
+  background: -webkit-linear-gradient(
+    left,
+    var(--text-primary-color-7),
+    #fec939 100%
+  );
   background-size: 200%, 1px;
   background-position: 0;
   transition: all 0.3s;
@@ -8492,7 +8515,7 @@ table.dataTable.order-column.stripe tbody tr.odd > .sorting_1 {
   /* background: #f7f7f8; */
   margin: 0 auto !important;
   padding: 0;
-  /* background: var(--background-color-3); */
+  /* background: var(--main-background-color); */
 
   margin-top: 25px !important;
 }
@@ -8659,7 +8682,7 @@ table.dataTable thead .sorting_asc:after {
 .top-bar .dropdown-menu {
   padding: 0;
   width: 270px;
-  background: var(--background-color-6);
+  background: var(--card-background-color);
   color: var(--text-primary-color);
 }
 
@@ -9146,7 +9169,7 @@ table.dataTable thead .sorting_desc_disabled:after {
 }
 
 .config-section .status-card {
-  background: var(--background-color-6);
+  background: var(--card-background-color);
   min-height: 255px;
 }
 
@@ -9200,7 +9223,12 @@ table.dataTable thead .sorting_desc_disabled:after {
   padding: 10px 35px;
   border: 0;
   position: relative;
-  background: -webkit-linear-gradient(left, var(--text-primary-color-7), #f68484 50%, #ee9022);
+  background: -webkit-linear-gradient(
+    left,
+    var(--text-primary-color-7),
+    #f68484 50%,
+    #ee9022
+  );
   background-size: 200%, 1px;
   background-position: 0;
   transition: all 0.3s;
@@ -9254,7 +9282,7 @@ table.dataTable thead .sorting_desc_disabled:after {
 
 /* custome code start here  */
 .card {
-  background: var(--background-color-6);
+  background: var(--card-background-color);
 }
 label {
   color: var(--text-primary-color-8);
@@ -9269,7 +9297,7 @@ label {
   width: 100%;
 }
 .form-control {
-  background: var(--background-color-6);
+  background: var(--card-background-color);
   border: 1px solid var(--border-color-1);
   box-shadow: none;
   color: var(--text-primary-color-8);
@@ -9614,7 +9642,7 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
   z-index: 2;
 }
 .slick-arrow:hover::before {
-  background: var(--background-color-6);
+  background: var(--card-background-color);
   color: var(--text-primary-color-2);
 }
 .slick-list div {
@@ -9641,7 +9669,7 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
   color: var(--text-primary-color);
 }
 .market-trend-area {
-  background: var(--background-color-6);
+  background: var(--card-background-color);
 }
 .market-trend-area .table tr th {
   font-size: 14px;
@@ -9667,7 +9695,7 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
   transition: all 0.3s;
 }
 .sectiob-bg {
-  background: var(--background-color-3);
+  background: var(--main-background-color);
 }
 .trade-anywhere-right .subtitle {
   margin-bottom: 10px;
@@ -9921,7 +9949,7 @@ input[type="number"] {
 }
 .deposit-conatiner {
   width: 100%;
-  background: var(--background-color-6);
+  background: var(--card-background-color);
   min-height: 500px;
   padding: 30px;
 }
@@ -9995,7 +10023,7 @@ input[type="number"] {
   cursor: pointer;
 }
 .faq-body {
-  background-color: var(--background-color-6);
+  background-color: var(--card-background-color);
   color: var(--text-primary-color-2);
   margin-top: 10px;
 }
@@ -10249,6 +10277,9 @@ input[type="number"] {
 .diposit-history .dataTables_head {
   justify-content: flex-start;
   gap: 20px;
+}
+.boxShadow {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 /* .tableScroll {
