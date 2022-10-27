@@ -18,9 +18,9 @@ export const DipositComponent = ({ responseData, router }: any) => {
     }
   }, [responseData?.data[0]]);
   return (
-    <div className={`col-md-7`}>
+    <div className={`col-md-7 `}>
       <div className={`box-one single-box visible`}>
-        <div className="section-wrapper">
+        <div className="section-wrapper boxShadow">
           <Link href="/user/my-wallet">
             <div className="wallet-back">
               <IoIosArrowBack className="wallet-backIcon" size={25} />
