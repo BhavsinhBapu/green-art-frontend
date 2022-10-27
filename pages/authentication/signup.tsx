@@ -152,7 +152,7 @@ const Signup: NextPage = () => {
                               ? "is-invalid"
                               : ""
                           }`}
-                          placeholder="Your password here"
+                          placeholder={t("Your password here")}
                         />
 
                         <span
@@ -247,7 +247,7 @@ const Signup: NextPage = () => {
               </Link>
               <Link href="/authentication/signin">
                 <p>
-                  {t("Already have an accoun ?")} <a href=""> {t("Sign In")}</a>
+                  {t("Already have an account")}? <a href=""> {t("Sign In")}</a>
                 </p>
               </Link>
             </div>

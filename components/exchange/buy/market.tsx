@@ -68,7 +68,7 @@ const Market = ({
                               ? dashboard?.order_data?.total?.base_wallet
                                   ?.balance
                               : 0
-                          ).toFixed(8)}
+                          ).toFixed(4)}
                         </span>
                       </span>
                       <span
@@ -93,7 +93,7 @@ const Market = ({
                               ? dashboard?.order_data?.total?.base_wallet
                                   ?.balance
                               : 0
-                          ).toFixed(8)}
+                          ).toFixed(4)}
                         </span>
                       </span>
                       <span
@@ -201,7 +201,7 @@ const Market = ({
                           role="status"
                           aria-hidden="true"
                         ></span>
-                        {t("Placing Order...")}
+                        {t("Placing Order")}...
                       </span>
                     </button>
                   </div>
@@ -224,7 +224,7 @@ const Market = ({
                         );
                       }}
                     >
-                      <span v-else="">{t("Place Order")}</span>
+                      <span>{t("Place Order")}</span>
                     </button>
                   </div>
                 )}

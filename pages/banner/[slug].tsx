@@ -73,7 +73,7 @@ const Bannerdetails = ({
         <div className="section-wrapper-withHtml ">
           <h1 className="display-4 mb-2">{details.title}</h1>
           <p className="mb-2">
-            Last revised: {formateData(details.updated_at)}
+            {t("Last revised:")} {formateData(details.updated_at)}
           </p>
           <img src={details.image} className="cover-image mb-5" />
           <div

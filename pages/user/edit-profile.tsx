@@ -11,7 +11,13 @@ import { RootState } from "state/store";
 import { Formik, Field, Form } from "formik";
 import { UpdateUserInfoByTokenAction } from "state/actions/user";
 import useTranslation from "next-translate/useTranslation";
-const Edit: NextPage = () => {
+import { customPage, landingPage } from "service/landing-page";
+import Footer from "components/common/footer";
+const Edit: NextPage = ({
+  customPageData,
+  socialData,
+  copyright_text,
+}: any) => {
   const { user } = useSelector((state: RootState) => state.user);
   const { t } = useTranslation("common");
   const dispatch = useDispatch();
@@ -28,166 +34,189 @@ const Edit: NextPage = () => {
     dispatch(UpdateUserInfoByTokenAction(formdata));
   };
   return (
-    <div className="page-wrap">
-      <ProfileSidebar />
-      <div className="page-main-content">
-        <div className="container-fluid">
-          <div className="section-top-wrap mb-25">
-            <div className="profle-are-top">
-              <h2 className="section-top-title">
-                {user?.first_name + " " + user?.last_name}
-              </h2>
-              <h3 className="user-mail">{user?.email}</h3>
+    <>
+      <div className="page-wrap">
+        <ProfileSidebar />
+        <div className="page-main-content">
+          <div className="container-fluid">
+            <div className="section-top-wrap mb-25">
+              <div className="profle-are-top">
+                <h2 className="section-top-title">
+                  {user?.first_name + " " + user?.last_name}
+                </h2>
+                <h3 className="user-mail">{user?.email}</h3>
+              </div>
             </div>
-          </div>
 
-          <div className="profile-area">
-            <div className="section-wrapper">
-              <div className="user-profile">
-                <div className="row">
-                  <div className="col-lg-4">
-                    <div className="user-profile-left">
-                      <div className="user-thumbnail">
-                        <img src={user?.photo} className="img-fluid" alt="" />
-                        <div className="uplode-profile">
-                          <input
-                            type="file"
-                            name="file"
-                            id="upload-user-img"
-                            onChange={(e) => uploadFile(e)}
-                          />
-                          <label
-                            htmlFor="upload-user-img"
-                            className="upload-user-img"
-                          >
-                            <i className="fa fa-pencil" aria-hidden="true" />
-                          </label>
+            <div className="profile-area">
+              <div className="section-wrapper">
+                <div className="user-profile">
+                  <div className="row">
+                    <div className="col-lg-4">
+                      <div className="user-profile-left">
+                        <div className="user-thumbnail">
+                          <img src={user?.photo} className="img-fluid" alt="" />
+                          <div className="uplode-profile">
+                            <input
+                              type="file"
+                              name="file"
+                              id="upload-user-img"
+                              onChange={(e) => uploadFile(e)}
+                            />
+                            <label
+                              htmlFor="upload-user-img"
+                              className="upload-user-img"
+                            >
+                              <i className="fa fa-pencil" aria-hidden="true" />
+                            </label>
+                          </div>
                         </div>
-                      </div>
 
-                      <div className="user-profile-content">
-                        <h2>{user?.first_name + " " + user?.last_name}</h2>
-                        <h4>{user?.email}</h4>
+                        <div className="user-profile-content">
+                          <h2>{user?.first_name + " " + user?.last_name}</h2>
+                          <h4>{user?.email}</h4>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <Formik
-                    enableReinitialize={true}
-                    initialValues={{
-                      first_name: user?.first_name,
-                      last_name: user?.last_name,
-                      country: user?.country,
-                      gender: user?.gender,
-                      phone: user?.phone,
-                    }}
-                    onSubmit={async (values) => {
-                      dispatch(UpdateUserInfoByTokenAction(values));
-                    }}
-                  >
-                    {({ setFieldValue }) => (
-                      <div className="col-lg-8">
-                        <div className="user-profile-form">
-                          <Form>
-                            <div className="form-group">
-                              <label>{t("First Name")}</label>
-                              <Field
-                                type="text"
-                                name="first_name"
-                                className="form-control"
-                                placeholder="First Name"
-                                id="first_name"
-                              />
-                            </div>
-                            <div className="form-group">
-                              <label>{t("Last Name")}</label>
-                              <Field
-                                type="text"
-                                name="last_name"
-                                className="form-control"
-                                placeholder="Last Name"
-                                id="last_name"
-                              />
-                            </div>
-                            <div className="form-group">
-                              <label>{t("Phone")}</label>
+                    <Formik
+                      enableReinitialize={true}
+                      initialValues={{
+                        first_name: user?.first_name,
+                        last_name: user?.last_name,
+                        country: user?.country,
+                        gender: user?.gender,
+                        phone: user?.phone,
+                      }}
+                      onSubmit={async (values) => {
+                        dispatch(UpdateUserInfoByTokenAction(values));
+                      }}
+                    >
+                      {({ setFieldValue }) => (
+                        <div className="col-lg-8">
+                          <div className="user-profile-form">
+                            <Form>
+                              <div className="form-group">
+                                <label>{t("First Name")}</label>
+                                <Field
+                                  type="text"
+                                  name="first_name"
+                                  className="form-control"
+                                  placeholder={t("First Name")}
+                                  id="first_name"
+                                />
+                              </div>
+                              <div className="form-group">
+                                <label>{t("Last Name")}</label>
+                                <Field
+                                  type="text"
+                                  name="last_name"
+                                  className="form-control"
+                                  placeholder={t("Last Name")}
+                                  id="last_name"
+                                />
+                              </div>
+                              <div className="form-group">
+                                <label>{t("Phone")}</label>
 
-                              <PhoneInput
-                                country={"us"}
-                                inputStyle={{ marginLeft: 23 }}
-                                value={user?.phone}
-                                onChange={(phone) => {
-                                  setFieldValue("phone", phone);
-                                }}
-                              />
+                                <PhoneInput
+                                  country={"us"}
+                                  inputStyle={{ marginLeft: 23 }}
+                                  value={user?.phone}
+                                  onChange={(phone) => {
+                                    setFieldValue("phone", phone);
+                                  }}
+                                />
 
-                              <small>
-                                {t(
-                                  "Please add phone number with country phone code but not (+ sign.) Ex. for portugal 351*****"
-                                )}
-                              </small>
-                            </div>
-                            <div className="form-group">
-                              <label>{t("Country")}</label>
-                              <Field
-                                as="select"
-                                name="country"
-                                id="country"
-                                className="form-control"
-                              >
-                                {countries.map((country: any) => (
+                                <small>
+                                  {t(
+                                    "Please add phone number with country phone code but not (+ sign.) Ex. for portugal 351*****"
+                                  )}
+                                </small>
+                              </div>
+                              <div className="form-group">
+                                <label>{t("Country")}</label>
+                                <Field
+                                  as="select"
+                                  name="country"
+                                  id="country"
+                                  className="form-control"
+                                >
+                                  {countries.map((country: any) => (
+                                    <option
+                                      key={country.value}
+                                      value={country.value.toUpperCase()}
+                                      selected={country.value === user?.country}
+                                    >
+                                      {country.name}
+                                    </option>
+                                  ))}
+                                </Field>
+                              </div>
+                              <div className="form-group">
+                                <label>{t("Gender")}</label>
+                                <Field
+                                  className="form-control"
+                                  name="gender"
+                                  id=""
+                                  as="select"
+                                >
                                   <option
-                                    key={country.value}
-                                    value={country.value.toUpperCase()}
-                                    selected={country.value === user?.country}
+                                    selected={user?.gender === 1}
+                                    value={1}
                                   >
-                                    {country.name}
+                                    {t("Male")}
                                   </option>
-                                ))}
-                              </Field>
-                            </div>
-                            <div className="form-group">
-                              <label>{t("Gender")}</label>
-                              <Field
-                                className="form-control"
-                                name="gender"
-                                id=""
-                                as="select"
+                                  <option
+                                    selected={user?.gender === 2}
+                                    value={2}
+                                  >
+                                    {t("Female")}
+                                  </option>
+                                  <option
+                                    selected={user?.gender === 3}
+                                    value={3}
+                                  >
+                                    {t("Others")}
+                                  </option>
+                                </Field>
+                              </div>
+                              <button
+                                type="submit"
+                                className="btn nimmu-user-sibmit-button"
                               >
-                                <option selected={user?.gender === 1} value={1}>
-                                  Male
-                                </option>
-                                <option selected={user?.gender === 2} value={2}>
-                                  Female
-                                </option>
-                                <option selected={user?.gender === 3} value={3}>
-                                  Others
-                                </option>
-                              </Field>
-                            </div>
-                            <button
-                              type="submit"
-                              className="btn nimmu-user-sibmit-button"
-                            >
-                              <span>{t("Update Profile")}</span>
-                            </button>
-                          </Form>
+                                <span>{t("Update Profile")}</span>
+                              </button>
+                            </Form>
+                          </div>
                         </div>
-                      </div>
-                    )}
-                  </Formik>
+                      )}
+                    </Formik>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+
+      <Footer
+        customPageData={customPageData}
+        socialData={socialData}
+        copyright_text={copyright_text}
+      />
+    </>
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/user/edit-profile");
+  const { data } = await landingPage();
+  const { data: customPageData } = await customPage();
   return {
-    props: {},
+    props: {
+      socialData: data.media_list,
+      copyright_text: data?.copyright_text,
+      customPageData: customPageData.data,
+    },
   };
 };
 
