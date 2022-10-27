@@ -142,7 +142,6 @@ const MyWallet: NextPage = ({
   return (
     <>
       <div className="page-wrap rightMargin">
-        {JSON.stringify(allData?.wallets?.current_page)}
         {/* <div className="page-left-sidebar">
           <div className="sidebar-top">
             <ul className="left-menu">
