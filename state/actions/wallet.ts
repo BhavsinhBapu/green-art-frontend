@@ -29,36 +29,15 @@ export const SearchObjectArrayFuesJS = (
   setArray(newArray);
 };
 
-export const WalletDepositApiAction = async (
-  id: number,
-  setProcessing: React.Dispatch<React.SetStateAction<any>>
-) => {
-  setProcessing({
-    withdraw: false,
-    deposit: true,
-  });
-
+export const WalletDepositApiAction = async (id: number) => {
   const response = await WalletDepositApi(id);
-  setProcessing({
-    withdraw: false,
-    deposit: false,
-  });
+
   return response;
 };
 
-export const WalletWithdrawApiAction = async (
-  id: number,
-  setProcessing: React.Dispatch<React.SetStateAction<any>>
-) => {
-  setProcessing({
-    withdraw: true,
-    deposit: false,
-  });
+export const WalletWithdrawApiAction = async (id: number) => {
   const response = await WalletWithdrawApi(id);
-  setProcessing({
-    withdraw: false,
-    deposit: false,
-  });
+
   return response;
 };
 

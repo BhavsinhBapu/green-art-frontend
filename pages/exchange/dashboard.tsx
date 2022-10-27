@@ -21,6 +21,7 @@ import {
 } from "state/reducer/exchange";
 import useTranslation from "next-translate/useTranslation";
 import { last, updateChart } from "components/exchange/api/stream";
+import { EXCHANGE_LAYOUT_ONE, EXCHANGE_LAYOUT_TWO } from "helpers/core-constants";
 let socketCall = 0;
 async function listenMessages(dispatch: any) {
   //@ts-ignore
@@ -65,7 +66,7 @@ const Dashboard: NextPage = () => {
   const { dashboard, currentPair } = useSelector(
     (state: RootState) => state.exchange
   );
-
+ const { settings } = useSelector((state: RootState) => state.common);
   useEffect(() => {
     const pair = localStorage.getItem("current_pair");
     if (pair) {
@@ -228,12 +229,14 @@ const Dashboard: NextPage = () => {
                 </div>
               </div>
             </div>
+            
             <div className="cp-user-custom-card exchange-area">
               <div id="dashboard">
                 <div className="row">
                   <div className="col-xl-12">
                     <div className="cxchange-summary-wrap">
                       <div className="cxchange-summary-name">
+                        
                         <div className="summber-coin-type dropdown">
                           <span
                             className="coin-badge dropdown-toggle"
@@ -242,10 +245,10 @@ const Dashboard: NextPage = () => {
                             aria-haspopup="true"
                             aria-expanded="false"
                           >
+                            
                             {currentPair.replace(/_/g, "/")}
                           </span>
-
-                          <SelectCurrency />
+                        <SelectCurrency />
                         </div>
                       </div>
                       {dashboard?.last_price_data && <CurrencyLevel />}
