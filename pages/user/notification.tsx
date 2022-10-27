@@ -54,7 +54,7 @@ const NotificationPage = ({
         <div className="container">
           <div className="row">
             {notificationData.map((item: any, index: any) => (
-              <div key={`notify${index}`} className="notify-grid">
+              <div key={`notify${index}`} className="notify-grid boxShadow">
                 <div className="notify-content">
                   <p className="icon-title">
                     <div>
