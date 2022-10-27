@@ -41,7 +41,7 @@ const WalletDeposit = ({ walletlist, method_id }: any) => {
     ) {
       setErrorMessage({
         status: true,
-        message: "Google 2FA is not enabled, Please enable Google 2FA fist",
+        message: t("Google 2FA is not enabled, Please enable Google 2FA fist"),
       });
     }
   };
@@ -131,7 +131,7 @@ const WalletDeposit = ({ walletlist, method_id }: any) => {
                           }}
                         >
                           <option value="" selected disabled hidden>
-                            Select one
+                            {t("Select one")}
                           </option>
                           {walletlist.map((wallet: any, index: any) => (
                             <option value={wallet.id} key={index}>
@@ -179,7 +179,7 @@ const WalletDeposit = ({ walletlist, method_id }: any) => {
                           }}
                         >
                           <option value="" selected disabled hidden>
-                            Select one
+                            {t("Select one")}
                           </option>
                           {walletlist.map((wallet: any, index: any) => (
                             <option value={wallet.id} key={index}>

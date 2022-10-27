@@ -56,7 +56,7 @@ export const DipositComponent = ({ responseData, router }: any) => {
                     ? formateZert(responseData?.deposit?.balance) +
                       " " +
                       responseData?.deposit?.coin_type
-                    : "Loading..."}
+                    : "Loading.."}
                 </h3>
               </div>
             </div>
@@ -90,9 +90,9 @@ export const DipositComponent = ({ responseData, router }: any) => {
                 </h3>
                 <p className="text-white">
                   {t("Only send")} {responseData?.deposit?.coin_type}{" "}
-                  {t("to this address.")}
+                  {t("to this address")}
                   {t(
-                    "Please note that only supported networks on our platform are shown, if you deposit via another network your assets may be lost."
+                    "Please note that only supported networks on our platform are shown, if you deposit via another network your assets may be lost"
                   )}
                 </p>
               </div>

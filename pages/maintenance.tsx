@@ -1,8 +1,10 @@
 import React from "react";
 import { GetServerSideProps } from "next";
 import { commomSettings } from "service/landing-page";
+import useTranslation from "next-translate/useTranslation";
 
 const Maintenance = ({ data }: any) => {
+  const {t}=useTranslation("common")
   return (
     <div
       className="maintenance-mode"
@@ -22,7 +24,7 @@ const Maintenance = ({ data }: any) => {
           <h2>
             {data.maintenance_mode_title
               ? data.maintenance_mode_title
-              : "Tradexpro Exchange is temporarily unavailable due to maintenance"}
+              : t("Tradexpro Exchange is temporarily unavailable due to maintenance")}
           </h2>
           <p>
             {data.maintenance_mode_text

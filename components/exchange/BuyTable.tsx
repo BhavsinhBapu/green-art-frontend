@@ -28,16 +28,16 @@ const TradesTable = ({ buy, show }: any) => {
             overlay={
               <span>
                 <span>
-                  {t("Avg Price:")} {parseFloat(item.price).toFixed(8)}
+                  {t("Avg Price")}: {parseFloat(item.price).toFixed(8)}
                 </span>
                 <br />
                 <span>
-                  {t("Amount:")} {parseFloat(summary.amount)}
+                  {t("Amount")}: {parseFloat(summary.amount)}
                 </span>
                 <br />
 
                 <span>
-                  {t("Total:")} {parseFloat(summary.total).toFixed(5)}
+                  {t("Total")}: {parseFloat(summary.total).toFixed(5)}
                 </span>
               </span>
             }
@@ -66,9 +66,7 @@ const TradesTable = ({ buy, show }: any) => {
               <>
                 <td>
                   <div className="asset">
-                    <span className="text-danger">
-                      {(item.price)}
-                    </span>
+                    <span className="text-danger">{item.price}</span>
                   </div>
                 </td>
                 <td>

@@ -63,7 +63,7 @@ const Security: NextPage = ({
                         />
                         <div className="security-content">
                           <h4>{t("Google Authenticator (Recommended)")}</h4>
-                          <p>{t("Protect your account and transactions.")}</p>
+                          <p>{t("Protect your account and transactions")}</p>
                         </div>
                       </div>
                     </div>
@@ -93,7 +93,7 @@ const Security: NextPage = ({
                         />
                         <div className="security-content">
                           <h4>{t("Phone Number Verification")}</h4>
-                          <p>{t("Protect your account and transactions.")}</p>
+                          <p>{t("Protect your account and transactions")}</p>
                         </div>
                       </div>
                     </div>
@@ -110,7 +110,7 @@ const Security: NextPage = ({
                       {parseInt(user.phone_verified) === 0 ? (
                         <Link href="/user/phone-verification">
                           <a className="action-btn enable-btn">
-                            {t("Verify?")}
+                            {t("Verify")}?
                           </a>
                         </Link>
                       ) : (
@@ -130,7 +130,7 @@ const Security: NextPage = ({
                         />
                         <div className="security-content">
                           <h4>{t("Email Address Verification")}</h4>
-                          <p>{t("Protect your account and transactions.")}</p>
+                          <p>{t("Protect your account and transactions")}</p>
                         </div>
                       </div>
                     </div>
@@ -153,7 +153,7 @@ const Security: NextPage = ({
               </div>
             </div>
             <div className="advanced-security-area">
-              <h4 className="section-title-medium">{t("Advanced Security")}</h4>
+              {/* <h4 className="section-title-medium">{t("Advanced Security")}</h4> */}
               <div className="section-wrapper">
                 <div className="security-list">
                   <div className="single-security">
@@ -168,8 +168,9 @@ const Security: NextPage = ({
                           <h4>{t("Login Password")}</h4>
                           <p>
                             {t(
-                              "Login password is used to log in to your account."
+                              "Login password is used to log in to your account"
                             )}
+                            .
                           </p>
                         </div>
                       </div>

@@ -34,7 +34,7 @@ const VerificationList: NextPage = ({
               </h2>
             </div>
             <div className="verification-list-area">
-              <h4 className="section-title-medium">{t("Verification List")}</h4>
+              {/* <h4 className="section-title-medium">{t("Verification List")}</h4> */}
               <div className="section-wrapper">
                 <div className="row">
                   <div className="col-lg-4 col-md-6">
