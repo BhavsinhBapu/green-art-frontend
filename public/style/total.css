@@ -3169,7 +3169,7 @@ div.dataTables_wrapper div.dataTables_filter {
   font-size: 16px;
   text-transform: capitalize;
   padding: 10px 25px;
-  background: var(--background-color-2);
+  background: var(--primary-color);
   color: var(--text-primary-color) !important;
   border-radius: 3px;
 }
@@ -4343,7 +4343,7 @@ select:-webkit-autofill:focus {
   display: block;
 }
 .main-menu ul li.cp-user-active-page a {
-  color: var(--text-primary-color-5);
+  color: var(--hover-color) !important;
 }
 .main-menu ul li ul li.cp-user-active-page a {
   color: var(--text-primary-color-5);
@@ -4927,7 +4927,7 @@ select:-webkit-autofill:focus {
 
 .overview-area .overview-right .primary-btn-outline {
   height: 55px;
-  background: var(--background-color-4);
+  background: var(--primary-color);
   color: var(--text-primary-color) !important;
   cursor: pointer;
   min-width: 186px;
@@ -5010,7 +5010,7 @@ select:-webkit-autofill:focus {
   color: var(--text-primary-color-3);
 }
 .page-left-sidebar .sidebar-top .left-menu li.active a {
- color: var(--text-primary-color-3) !important;
+ color: var(--primary-color) !important;
   margin-left: 5px;
 }
 .page-left-sidebar .sidebar-top .left-menu li.active svg {
@@ -5031,19 +5031,19 @@ select:-webkit-autofill:focus {
   padding: 12px 25px;
   min-width: 150px;
   border-radius: 5px;
-  border: 1px solid var(--border-color);
+  border: none;
   font-size: 16px;
   font-weight: 700;
   text-transform: capitalize;
   color: var(--text-primary-color) !important;
   text-align: center;
   transition: all 0.5s;
-  background: var(--background-color-2);
+  background: var(--primary-color);
   cursor: pointer;
 }
 .primary-btn-outline:hover {
-  color: var(--text-primary-color-8) !important;
-  background: var(--background-color-2);
+  color: var(--text-primary-color) !important;
+  background: var(--hover-color);
 }
 .secendary-table {
   margin: 0;
@@ -5184,7 +5184,7 @@ select:-webkit-autofill:focus {
   height: 40px;
   text-align: center;
   border-radius: 50%;
-  background: var(--background-color-2);
+  background: var(--primary-color);
   color: #fff !important;
   cursor: pointer;
   font-size: 18px;
@@ -5380,7 +5380,7 @@ table.dataTable tbody tr td {
   transition: all 0.3s;
 }
 .action-btn.enable-btn {
-  background: var(--background-color-2);
+  background: var(--primary-color);
 }
 .action-btn.change-btn {
   background: #32d777;
@@ -8085,21 +8085,20 @@ textarea.form-control.textarea {
 
 .nimmu-user-sibmit-button {
   width: 100%;
-  background: var(--background-color-2);
+  background: var(--primary-color);
   height: 60px;
   padding: 0 24px;
   font-size: 16px;
   font-weight: 700;
   border-radius: 7px !important;
   color: var(--text-primary-color) !important;
-  /* background: #ffce51 !important; */
-  /* border-color: #ffce51 !important; */
+
 }
 
 .nimmu-user-sibmit-button:active,
 .nimmu-user-sibmit-button:focus,
 .nimmu-user-sibmit-button:hover {
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color) !important;
   background: var(--background-color-hover2) !important;
   border-color: var(--background-color-hover2) !important;
 }
@@ -8493,7 +8492,7 @@ table.dataTable.order-column.stripe tbody tr.odd > .sorting_1 {
   /* background: #f7f7f8; */
   margin: 0 auto !important;
   padding: 0;
-  background: var(--background-color-3);
+  /* background: var(--background-color-3); */
 
   margin-top: 25px !important;
 }
@@ -9634,11 +9633,12 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
   border: none;
   padding: 10px 15px;
   background: transparent;
-  color: var(--text-primary-color);
+  color: var(--text-primary-color-2);
   border-radius: 5px;
 }
 .exchange-tab-menu .nav-tabs .nav-item .nav-link.active {
   background: var(--primary-color);
+  color: var(--text-primary-color);
 }
 .market-trend-area {
   background: var(--background-color-6);
@@ -10000,7 +10000,7 @@ input[type="number"] {
   margin-top: 10px;
 }
 .faq-head {
-  background-color: var(--background-color-8);
+  /* background-color: var(--background-color-8); */
   border: 1px solid var(--border-color);
   padding: 10px;
   border-radius: 10px;
@@ -10178,7 +10178,7 @@ input[type="number"] {
   padding: 10px 20px;
   background: var(--primary-color);
   border-radius: 3px;
-  color: #000;
+  color: var(--text-primary-color);
 }
 
 .notification-section {
