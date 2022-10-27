@@ -49,7 +49,7 @@ body {
   font-family: "Karla", sans-serif;
   margin: 0;
   padding: 0;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   margin-top: 40px;
 }
 
@@ -161,12 +161,12 @@ p {
 .cp-user-card-header-area h4 {
   font-weight: 600;
   font-size: 20px;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   text-transform: capitalize;
 }
 
 .cp-user-chart-dropdown .btn {
-  color: var(--text-primary-color-8);
+  color: var(--text-primary-color-4);
   font-size: 16px;
   border: 1px dashed #111a35;
   border-radius: 5px;
@@ -226,6 +226,8 @@ p {
   width: 100%;
   top: 0;
   left: 0;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 }
 
 .dark-board {
@@ -260,7 +262,7 @@ p {
 }
 
 .cp-user-top-bar-status-area li {
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 
 .cp-user-top-bar-status-area li .cp-user-title {
@@ -326,11 +328,11 @@ p {
 
 .cp-user-top-bar .cp-user-avater .cp-user-avater-info {
   text-align: left;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 .cp-user-top-bar .cp-user-avater .cp-user-avater-info {
   text-align: left;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 
 .cp-user-top-bar .cp-user-avater .cp-user-avater-info span {
@@ -367,7 +369,7 @@ p {
   white-space: normal;
   padding: 9px 10px;
   line-height: 20px !important;
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
   border-bottom: 1px solid var(--border-color-2);
 }
 .cp-user-top-bar-right .notification-list ul li:last-child a {
@@ -539,7 +541,7 @@ p {
   border-bottom: none;
 }
 .cp-user-top-bar-right .profile-dropdown button a {
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
   text-transform: uppercase;
   display: block;
 }
@@ -573,7 +575,7 @@ ul {
   align-items: center;
 }
 .cp-user-top-bar-right .hm-notify .btn {
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
   min-width: auto;
 }
 .notification-btn img {
@@ -639,7 +641,7 @@ ul {
 .cp-user-sidebar-menu ul li a {
   padding: 12px 15px;
   display: block;
-  color: var(--text-primary-color-8);
+  color: var(--text-primary-color-4);
   font-size: 15px;
 }
 
@@ -649,11 +651,11 @@ ul {
 
 .cp-user-sidebar-menu ul li ul li.sub-active a,
 .cp-user-sidebar-menu ul li ul li:hover a {
-  color: var(--text-primary-color-7);
+  color: var(--primary-color);
 }
 
 .cp-user-sidebar-menu ul li:hover > a {
-  color: var(--text-primary-color-7);
+  color: var(--primary-color);
 }
 
 .cp-user-sidebar-menu ul li:hover > a .cp-user-icon .cp-user-side-bar-icon,
@@ -807,7 +809,7 @@ ul.cp-user-legend li {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   font-size: 16px;
 }
 
@@ -833,7 +835,7 @@ ul.history-legend .cp-user-color-box-2 {
 
 .cp-user-transaction-history-table table tr th,
 .cp-user-transaction-history-table table tr td {
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 
 .cp-user-transaction-history-table table tr th {
@@ -891,10 +893,10 @@ table.dataTable.dtr-inline.collapsed
   left: 4px;
   height: 16px;
   width: 16px;
-  border: 2px solid var(--text-primary-color-7);
+  border: 2px solid var(--primary-color);
   border-radius: 16px;
   line-height: 16px;
-  background-color: var(--text-primary-color-7);
+  background-color: var(--primary-color);
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
 }
@@ -968,7 +970,7 @@ table.dataTable.dtr-inline.collapsed
   position: relative;
   cursor: pointer;
   font-size: 18px;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   margin-bottom: 0;
 }
 
@@ -1007,7 +1009,7 @@ table.dataTable.dtr-inline.collapsed
 }
 
 .cp-user-buy-coin-content-area p {
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   border-bottom: 1px dashed var(--border-color-1);
   padding-bottom: 50px;
   margin-bottom: 50px;
@@ -1022,7 +1024,7 @@ table.dataTable.dtr-inline.collapsed
   box-shadow: none;
   color: #b1b5c3;
   font-size: 18px;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 
 .cp-user-coin-info label {
@@ -1051,7 +1053,7 @@ table.dataTable.dtr-inline.collapsed
 }
 
 .cp-user-coin-info .form-control:-moz-placeholder {
-  color: var(--text-primary-color-8);
+  color: var(--text-primary-color-4);
   font-size: 18px;
   text-transform: capitalize;
 }
@@ -1061,7 +1063,7 @@ table.dataTable.dtr-inline.collapsed
 }
 
 .cp-user-payment-type h3 {
-  color: var(--text-primary-color-8);
+  color: var(--text-primary-color-4);
   font-size: 18px;
   font-weight: 400;
   text-transform: capitalize;
@@ -1085,7 +1087,7 @@ table.dataTable.dtr-inline.collapsed
 }
 
 .cp-user-coin-rate ul li {
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   font-size: 18px;
   font-weight: 700;
 }
@@ -1138,12 +1140,12 @@ table.dataTable.dtr-inline.collapsed
 }
 .cp-user-copy .input-group .btn:hover {
   background: #ffce51;
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
 }
 .cp-user-copy .input-group .form-control {
   background: transparent;
   text-align: center;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 
 .cp-user-copy .input-group .form-control,
@@ -1171,7 +1173,7 @@ table.dataTable.dtr-inline.collapsed
   margin: 30px auto;
 }
 .cp-user-copy .cp-user-buy-btn:hover {
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
   background: #ffce51;
 }
 /* credit card */
@@ -1189,11 +1191,11 @@ table.dataTable.dtr-inline.collapsed
   background: transparent;
   box-shadow: none;
   border: 1px solid #2b3c70;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 
 .cp-user-card-info label {
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   font-size: 18px;
   text-transform: capitalize;
 }
@@ -1255,7 +1257,7 @@ table.dataTable.dtr-inline.collapsed
 }
 
 .cp-user-bank-info ul li {
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   font-size: 18px;
   font-weight: 400;
   border-bottom: 1px solid #253562;
@@ -1289,7 +1291,7 @@ table.dataTable.dtr-inline.collapsed
   border-bottom: none;
   font-size: 16px;
   font-weight: 400;
-  color: var(--text-primary-color-4);
+  color: var(--text-primary-color-3);
 }
 
 .cp-user-wallet-table table tbody tr {
@@ -1299,7 +1301,7 @@ table.dataTable.dtr-inline.collapsed
 .cp-user-wallet-table table tbody tr td {
   font-size: 16px;
   font-weight: 400;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 
 .cp-user-wallet-table table tbody tr td ul li:not(:last-child) {
@@ -1315,7 +1317,7 @@ table.dataTable.dtr-inline.collapsed
 
 .cp-user-body-bg .cp-user-wallet-table table tbody tr td,
 .cp-user-body-bg .cp-user-wallet-table table thead tr th {
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
 }
 .cp-user-wallet-card .cp-user-card-header-area {
   -webkit-box-align: center;
@@ -1382,31 +1384,31 @@ select {
   border: 1px solid #dcdff2;
   border-radius: 3px;
   box-shadow: none;
-  color: var(--text-primary-color-6);
+  color: var(--text-primary-color-2);
 }
 
 .modal .form-control::-webkit-input-placeholder {
-  color: var(--text-primary-color-6) !important;
+  color: var(--text-primary-color-2) !important;
   font-size: 16px !important;
 }
 
 .modal .form-control::-moz-placeholder {
-  color: var(--text-primary-color-6) !important;
+  color: var(--text-primary-color-2) !important;
   font-size: 16px !important;
 }
 
 .modal .form-control:-ms-input-placeholder {
-  color: var(--text-primary-color-6) !important;
+  color: var(--text-primary-color-2) !important;
   font-size: 16px !important;
 }
 
 .modal .form-control:-moz-placeholder {
-  color: var(--text-primary-color-6) !important;
+  color: var(--text-primary-color-2) !important;
   font-size: 16px !important;
 }
 
 .modal label {
-  color: var(--text-primary-color-6);
+  color: var(--text-primary-color-2);
   font-size: 16px;
 }
 
@@ -1496,7 +1498,7 @@ select {
   border: 1px solid #2a3865;
   border-radius: 3px;
   box-shadow: none;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   text-transform: capitalize;
   line-height: 60px;
   padding: 0;
@@ -1756,7 +1758,7 @@ a#submit {
   border: 1px solid #2a3865;
   border-radius: 3px;
   box-shadow: none;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   height: 70px;
 }
 
@@ -1766,7 +1768,7 @@ a#submit {
 }
 
 .cp-user-withdraw-card label {
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   font-size: 16px;
   margin-bottom: 10px;
   text-transform: capitalize;
@@ -1826,7 +1828,7 @@ a#submit {
   .cp-user-card-header-area-2
   .cp-user-chart-dropdown
   .btn {
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   font-size: 16px;
   border: 1px dashed #111a35;
   border-radius: 5px;
@@ -1866,7 +1868,7 @@ a#submit {
 
 .cp-user-profile-nav .nav-link {
   text-align: center;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   font-size: 18px;
   text-transform: capitalize;
   padding: 20px 15px 15px;
@@ -1874,7 +1876,7 @@ a#submit {
 
 .cp-user-profile-nav .nav-link.active,
 .cp-user-profile-nav .nav-item:hover .nav-link {
-  color: var(--text-primary-color-7);
+  color: var(--primary-color);
 }
 
 .cp-user-profile-nav .nav-link.active .cp-user-img .img-active,
@@ -1910,7 +1912,7 @@ a#submit {
 }
 
 .cp-user-profile-header h5 {
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   font-size: 18px;
   font-weight: 700;
   text-transform: capitalize;
@@ -1919,7 +1921,7 @@ a#submit {
 .cp-user-profile-tab-content .cp-user-custom-card .cp-user-profile-info ul li {
   border-bottom: 1px solid var(--border-color-1);
   padding: 20px 0;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   font-size: 16px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1938,7 +1940,7 @@ a#submit {
   ul
   li
   span.pending {
-  color: var(--text-primary-color-7);
+  color: var(--primary-color);
 }
 
 .cp-user-profile-tab-content
@@ -2003,13 +2005,13 @@ a#submit {
 }
 
 .user-cp-user-profile-info h4 {
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   font-weight: 700;
   font-size: 20px;
 }
 
 .user-cp-user-profile-info p {
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   font-size: 16px;
   margin-top: 5px;
 }
@@ -2043,14 +2045,14 @@ a#submit {
   padding: 5px 15px;
   height: 55px;
   box-shadow: none;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 .form-control {
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 .cp-user-profile-info label,
 .cp-user-profile-info .form-control {
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 
 .cp-user-profile-info .profile-edit-btn {
@@ -2064,10 +2066,10 @@ a#submit {
   border-radius: 24px;
 }
 .cp-user-profile-info .form-group small {
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 .cp-user-profile-info .form-group .code-list p {
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 
 /* phone verify */
@@ -2079,7 +2081,7 @@ a#submit {
   height: 70px;
   background: #2a3865;
   width: 150px;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   position: relative;
   font-size: 16px;
   text-align: left;
@@ -2227,7 +2229,7 @@ a#submit {
   border-bottom: 15px solid transparent;
 }
 .id-card-type h5 {
-  color: var(--text-primary-color-4);
+  color: var(--text-primary-color-3);
   font-size: 18px;
   font-weight: 700;
   text-transform: capitalize;
@@ -2390,7 +2392,7 @@ a#submit {
 
 .cp-user-setting-card .cp-user-content h5 {
   font-size: 18px;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   margin-bottom: 0;
 }
 .cp-user-setting-card .cp-user-content h5.modal-title {
@@ -2399,7 +2401,7 @@ a#submit {
 
 .cp-user-setting-card .cp-user-content p {
   font-size: 16px;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   margin-bottom: 15px;
 }
 
@@ -2439,7 +2441,7 @@ a#submit {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: var(--text-primary-color-8) !important;
+  background-color: var(--text-primary-color-4) !important;
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
@@ -2463,11 +2465,7 @@ a#submit {
 }
 
 .cp-user-setting-card .cp-user-content input:checked + .slider:before {
-  background: -webkit-linear-gradient(
-    left,
-    var(--text-primary-color-7),
-    #fec939 100%
-  );
+  background: -webkit-linear-gradient(left, var(--primary-color), #fec939 100%);
 }
 
 .cp-user-setting-card .cp-user-content input:checked + .slider:before {
@@ -2482,7 +2480,7 @@ a#submit {
 }
 
 .cp-user-preferance-setting .form-control {
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   border-radius: 5px;
   height: 45px;
   font-size: 18px;
@@ -2492,7 +2490,7 @@ a#submit {
   border-color: transparent;
 }
 .deposit-conatiner .form-control {
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   border-radius: 5px;
   height: 45px;
   font-size: 18px;
@@ -2520,7 +2518,7 @@ a#submit {
 }
 
 .cp-user-setting-card .cp-user-content label {
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   font-size: 18px;
   margin-bottom: 15px;
 }
@@ -2551,14 +2549,14 @@ a#submit {
   border: 1px solid var(--border-color-1);
   border-radius: 12px;
   text-align: center;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   font-size: 16px;
   box-shadow: none;
 }
 
 .cp-user-referral-content label {
   font-size: 16px;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   margin-bottom: 15px;
 }
 
@@ -2572,7 +2570,7 @@ a#submit {
 }
 .cp-user-referral-content .copy-url-btn:hover {
   background: #ffce51;
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
 }
 .cp-user-card-header-area .cp-user-card-header-bb .cp-user-content-bottom {
   margin-top: 30px;
@@ -2586,7 +2584,7 @@ a#submit {
 
 .cp-user-share-title {
   font-size: 18px;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   margin: 30px 0;
 }
 
@@ -2636,8 +2634,8 @@ a#submit {
 }
 
 .cp-user-myreferral table.dataTable thead tr th {
-  color: var(--text-primary-color-3);
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-2);
+  color: var(--text-primary-color-4) !important;
   font-weight: 500;
   font-size: 18px;
 }
@@ -2649,8 +2647,8 @@ a#submit {
   height: 30px;
 }
 .cp-user-myreferral table.dataTable tbody tr td {
-  color: var(--text-primary-color-3);
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-2);
+  color: var(--text-primary-color-4) !important;
   vertical-align: middle;
 }
 
@@ -2684,14 +2682,14 @@ a#submit {
   margin-top: 0px;
 }
 .user-form .form-control {
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
 }
 .user-form .form-control.invalid-field {
   border-color: #ff0000;
 }
 .user-form .form-control:focus {
   background: transparent;
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
 }
 table.dataTable thead .sorting:before,
 table.dataTable thead .sorting:after,
@@ -2722,13 +2720,13 @@ div.dataTables_wrapper div.dataTables_filter input {
   height: 40px;
   background: transparent;
   border-radius: 5px;
-  color: var(--text-primary-color-4);
+  color: var(--text-primary-color-3);
   font-size: 16px;
   padding: 0 5px;
 }
 
 div.dataTables_wrapper div.dataTables_filter label {
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   font-size: 17px;
   font-weight: 700;
 }
@@ -2754,7 +2752,7 @@ member club
 ====================================*/
 
 .clap-wrap ul li h4 {
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   font-size: 16px;
 }
 
@@ -2771,7 +2769,7 @@ member club
 }
 
 .user-plan-table li h4 {
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   font-size: 16px;
   display: flex;
   justify-content: space-between;
@@ -2816,7 +2814,7 @@ member club
   position: relative;
   background: -webkit-linear-gradient(
     left,
-    var(--text-primary-color-7),
+    var(--primary-color),
     #fec939 50%,
     #bca156
   );
@@ -2843,7 +2841,7 @@ member club
   position: relative;
   background: -webkit-linear-gradient(
     left,
-    var(--text-primary-color-7),
+    var(--primary-color),
     #fec939 50%,
     #bca156
   );
@@ -2887,7 +2885,7 @@ div.dataTables_wrapper div.dataTables_length select {
   width: 75px;
   display: inline-block;
   background: transparent;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   padding: 5px;
   height: 40px;
   border-radius: 5px;
@@ -2907,7 +2905,7 @@ div.dataTables_wrapper div.dataTables_filter {
 .dataTables_wrapper .dataTables_info,
 .dataTables_wrapper .dataTables_processing,
 .dataTables_wrapper .dataTables_paginate {
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 
 .dataTables_length select option {
@@ -2974,7 +2972,7 @@ div.dataTables_wrapper div.dataTables_filter {
   background: var(--main-background-color);
   padding: 20px 15px;
   font-size: 16px;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   text-decoration: none;
   font-weight: 400;
   text-transform: capitalize;
@@ -2985,7 +2983,7 @@ div.dataTables_wrapper div.dataTables_filter {
   background: var(--main-background-color);
   font-size: 16px;
   font-weight: 400;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   padding: 20px 15px;
   margin-top: 10px;
   border-radius: 5px;
@@ -3008,7 +3006,7 @@ div.dataTables_wrapper div.dataTables_filter {
   content: "\f067";
   font-family: fontawesome;
   font-size: 16px;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   right: 15px;
   top: 50%;
   transform: translateY(-50%);
@@ -3019,7 +3017,7 @@ div.dataTables_wrapper div.dataTables_filter {
   content: "\f068";
   font-family: fontawesome;
   font-size: 16px;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   right: 15px;
   top: 50%;
   transform: translateY(-50%);
@@ -3043,7 +3041,7 @@ div.dataTables_wrapper div.dataTables_filter {
   text-transform: uppercase;
   font-size: 16px;
   padding: 10px;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 
 .marquee ul li:not(:last-child) {
@@ -3054,7 +3052,7 @@ div.dataTables_wrapper div.dataTables_filter {
   margin-top: 50px;
 }
 .transfer-coin-option li {
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   display: block;
   position: relative;
   width: 100%;
@@ -3078,7 +3076,7 @@ div.dataTables_wrapper div.dataTables_filter {
 }
 
 .transfer-coin-option li:hover label {
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
 }
 
 .transfer-coin-option li .check {
@@ -3115,7 +3113,7 @@ div.dataTables_wrapper div.dataTables_filter {
 }
 
 .transfer-coin-option li input[type="radio"]:checked ~ .check {
-  border: 2px solid var(--text-primary-color-7);
+  border: 2px solid var(--primary-color);
 }
 
 .transfer-coin-option li input[type="radio"]:checked ~ .check::before {
@@ -3129,13 +3127,13 @@ div.dataTables_wrapper div.dataTables_filter {
 .transfer-tabs .nav-link.active,
 .transfer-tabs .show > .nav-link {
   color: var(--text-primary-color);
-  background-color: var(--text-primary-color-7);
+  background-color: var(--primary-color);
 }
 .transfer-tabs .nav-link {
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   border-radius: 3px;
   padding: 0.5rem 0.3rem;
-  border: 1px solid var(--text-primary-color-7);
+  border: 1px solid var(--primary-color);
 }
 .transfer-tabs .nav-item:not(:last-child) {
   margin-right: 4px;
@@ -3152,10 +3150,10 @@ div.dataTables_wrapper div.dataTables_filter {
 }
 
 .bank-details h3 {
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
 }
 .bank-details .table tr td {
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 .cp-select-area {
   position: relative;
@@ -3168,12 +3166,12 @@ div.dataTables_wrapper div.dataTables_filter {
   transform: translateY(-50%);
   right: 15px;
   font-size: 30px;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 
 .cp-user-active-page ul li:hover a,
 .cp-user-active-page ul li.cp-user-submenu-active a {
-  color: var(--text-primary-color-7);
+  color: var(--primary-color);
 }
 
 .profile-edit-btn.phn-verify-btn {
@@ -3209,7 +3207,7 @@ div.dataTables_wrapper div.dataTables_filter {
   font-size: 14px !important;
 }
 .cp-user-active-notice {
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
   text-align: center;
 }
 
@@ -3225,7 +3223,7 @@ div.dataTables_wrapper div.dataTables_filter {
   justify-content: flex-end;
 }
 .dashboard-tabs .nav-link {
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   text-transform: capitalize;
   margin-left: 5px;
   border-radius: 3px;
@@ -3245,7 +3243,7 @@ div.dataTables_wrapper div.dataTables_filter {
 .dataTables_wrapper .dataTables_paginate .paginate_button {
   font-size: 18px;
   font-weight: 400;
-  color: var(--text-primary-color-4);
+  color: var(--text-primary-color-3);
   padding: 0;
   border: none !important;
   background: transparent !important;
@@ -3268,7 +3266,7 @@ div.dataTables_wrapper div.dataTables_filter {
 .dataTables_wrapper .dataTables_paginate .paginate_button.current,
 .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover,
 .dataTables_wrapper .dataTables_paginate .paginate_button.current:focus {
-  color: var(--text-primary-color-3) !important;
+  color: var(--text-primary-color-2) !important;
   border: none !important;
   background: transparent !important;
   box-shadow: none !important;
@@ -3283,14 +3281,14 @@ div.dataTables_wrapper div.dataTables_filter {
 }
 .dark-modal.modal-content .modal-header button span,
 .dark-modal.modal-content .modal-header .modal-title {
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 .dark-modal.modal-content .modal-body {
   background: var(--main-background-color);
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 .dark-modal.modal-content .modal-body h6 {
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 .font-16 {
   font-size: 16px !important;
@@ -3300,7 +3298,7 @@ div.dataTables_wrapper div.dataTables_filter {
 }
 
 .ico-phase-info-list p {
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 .ico-phase-info-list .ico-phase-ul {
   display: block;
@@ -3325,7 +3323,7 @@ div.dataTables_wrapper div.dataTables_filter {
 }
 
 .ico-phase-amount-title {
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
   margin: 15px 0;
   font-size: 16px;
 }
@@ -3338,7 +3336,7 @@ div.dataTables_wrapper div.dataTables_filter {
   background-color: #eaeaea;
 }
 .ico-phase-progress-bar .progress .progress-bar {
-  background-color: var(--text-primary-color-7);
+  background-color: var(--primary-color);
   border-radius: 15px;
 }
 
@@ -3355,7 +3353,7 @@ div.dataTables_wrapper div.dataTables_filter {
 
 .countdown-section {
   background: #182346;
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
   border-radius: 5px;
   padding: 15px;
   width: 24%;
@@ -3660,7 +3658,7 @@ body._toggle .swipe-area-overlay:before {
   justify-content: center;
   outline: none;
   cursor: pointer;
-  background-color: var(--text-primary-color-7);
+  background-color: var(--primary-color);
   color: var(--text-primary-color);
   border: 1px solid transparent;
   margin: 0 auto;
@@ -3778,7 +3776,7 @@ body._toggle .swipe-area-overlay:before {
   position: absolute;
   margin-top: 10px;
   margin-left: 13px;
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
 }
 .exchange-area .cp-user-card-header-area {
   margin-bottom: 0;
@@ -3860,7 +3858,7 @@ table.dataTable tbody tr.selected td {
 
 .trades-headers h3 {
   font-size: 20px;
-  color: var(--text-primary-color-8);
+  color: var(--text-primary-color-4);
   font-weight: 700;
 }
 .trades-headers .nav-pills .nav-link {
@@ -3868,10 +3866,10 @@ table.dataTable tbody tr.selected td {
   border: none;
   border-bottom: 3px solid transparent;
   border-radius: 0;
-  color: var(--text-primary-color-8);
+  color: var(--text-primary-color-4);
 }
 .trades-headers .nav-pills .nav-link.active {
-  border-bottom: 2px solid var(--text-primary-color-7);
+  border-bottom: 2px solid var(--primary-color);
 }
 
 .trades-section table thead tr th,
@@ -3944,7 +3942,7 @@ table.dataTable tbody tr.selected td {
 
 .exchange-area .cp-user-wallet-table p {
   text-align: center;
-  color: var(--text-primary-color-8);
+  color: var(--text-primary-color-4);
   font-size: 14px;
 }
 .view-btn {
@@ -3979,7 +3977,7 @@ table.dataTable tbody tr.selected td {
   font-weight: 700;
   margin-bottom: 15px;
   text-transform: capitalize;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 
 .address-pagin ul.pagination li.page-item:not(:last-child) {
@@ -4050,7 +4048,7 @@ table.table {
   font-size: 15px;
   font-weight: 700;
   margin-bottom: 10px;
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
 }
 .cxchange-summary-wrap .cxchange-summary-name .coin-badge {
   display: inline-block;
@@ -4088,7 +4086,7 @@ table.table {
   .value {
   font-size: 17px !important;
   font-weight: 500;
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
 }
 .cxchange-summary-wrap
   .cxchange-summary-featured
@@ -4165,12 +4163,12 @@ table.table {
 .dataTables_wrapper .dataTables_paginate .paginate_button.disabled,
 .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover,
 .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active {
-  color: var(--text-primary-color-3) !important;
+  color: var(--text-primary-color-2) !important;
 }
 div.dataTables_wrapper div.dataTables_length label {
   font-size: 18px;
   font-weight: 700;
-  color: var(--text-primary-color-4) !important;
+  color: var(--text-primary-color-3) !important;
 }
 .dataTables_head {
   display: flex;
@@ -4181,7 +4179,7 @@ div.dataTables_wrapper div.dataTables_length label {
   align-items: baseline;
 }
 .idcard h3.title {
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 .dropify-font-upload:before,
 .dropify-wrapper .dropify-message span.file-icon:before {
@@ -4189,7 +4187,7 @@ div.dataTables_wrapper div.dataTables_length label {
   font-family: "FontAwesome";
 }
 .dropify-wrapper {
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   background-color: #f3f3f3;
   border: 2px solid var(--border-color-1);
 }
@@ -4267,7 +4265,7 @@ select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
   border: 1px solid var(--border-color-2);
-  -webkit-text-fill-color: var(--text-primary-color-8);
+  -webkit-text-fill-color: var(--text-primary-color-4);
   -webkit-box-shadow: 0 0 0px 1000px transparent inset;
   transition: background-color 5000s ease-in-out 0s;
 }
@@ -4326,10 +4324,10 @@ select:-webkit-autofill:focus {
   background: transparent;
   font-size: 14px;
   font-weight: 400;
-  color: var(--text-primary-color-4) !important;
+  color: var(--text-primary-color-3) !important;
 }
 .main-menu ul li:hover a {
-  color: var(--text-primary-color-5);
+  color: var(--primary-color);
 }
 .main-menu ul li a span.cp-user-icon {
   display: flex;
@@ -4360,7 +4358,7 @@ select:-webkit-autofill:focus {
   color: var(--hover-color) !important;
 }
 .main-menu ul li ul li.cp-user-active-page a {
-  color: var(--text-primary-color-5);
+  color: var(--primary-color);
 }
 .main-menu ul li.cp-user-active-page a:after {
   display: none;
@@ -4419,7 +4417,7 @@ select:-webkit-autofill:focus {
   width: 33%;
   font-size: 16px;
   font-weight: 500;
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
 }
 .buy-text {
   color: #ff2e2e;
@@ -4449,7 +4447,7 @@ select:-webkit-autofill:focus {
   font-size: 15px !important;
 }
 .value-same {
-  color: var(--text-primary-color-8) !important ;
+  color: var(--text-primary-color-4) !important ;
   font-size: 25px !important;
 }
 .value-increaseicon {
@@ -4472,7 +4470,7 @@ select:-webkit-autofill:focus {
   transition: all 0.3s;
 }
 .more-btn {
-  color: var(--text-primary-color-5);
+  color: var(--primary-color);
 }
 .buy-order table.dataTable tbody tr {
   background-color: transparent;
@@ -4480,7 +4478,7 @@ select:-webkit-autofill:focus {
 .buy-order table.dataTable tbody tr td {
   font-size: 16px;
   font-weight: 500;
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
 }
 .buy-order table.dataTable tbody tr td.price {
   color: #ff2e2e;
@@ -4491,7 +4489,7 @@ select:-webkit-autofill:focus {
 .sell-order table.dataTable tbody tr td {
   font-size: 16px;
   font-weight: 500;
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
 }
 .sell-order table.dataTable tbody tr td.price {
   color: #32d777;
@@ -4520,7 +4518,7 @@ select:-webkit-autofill:focus {
 .primary-table .table-body .table-col {
   font-size: 17px;
   font-weight: 500;
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
 }
 .primary-table .table-body .table-col.buy {
   color: #32d777;
@@ -4543,7 +4541,7 @@ select:-webkit-autofill:focus {
   font-size: 18px;
   font-weight: 600;
   text-transform: capitalize;
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
   padding: 10px 0;
 }
 .order-box .trades-headers .nav-pills .nav-link.active {
@@ -4568,7 +4566,7 @@ select:-webkit-autofill:focus {
   font-size: 16px;
   font-weight: 500;
   text-transform: capitalize;
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
 }
 .exchange-box .form-group .form-control {
   width: 100%;
@@ -4618,7 +4616,7 @@ select:-webkit-autofill:focus {
   font-size: 14px;
   font-weight: 400;
   text-transform: capitalize;
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
 }
 .inner-tabs-menu .nav-item .nav-link.active {
   color: #32d777 !important;
@@ -4637,7 +4635,7 @@ select:-webkit-autofill:focus {
   transition: all 0.3s;
 }
 .fee-lavel {
-  color: var(--text-primary-color-5);
+  color: var(--primary-color);
 }
 /* assets-area */
 .section-wrap {
@@ -4657,7 +4655,7 @@ select:-webkit-autofill:focus {
   font-size: 14px;
   font-weight: 400;
   text-transform: uppercase;
-  color: var(--text-primary-color-5);
+  color: var(--primary-color);
 }
 
 .assets-tabs .nav-tabs {
@@ -4675,7 +4673,7 @@ select:-webkit-autofill:focus {
   font-size: 14px;
   font-weight: 400;
   text-transform: capitalize;
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
   border: none;
 }
 .assets-tabs .assets-list {
@@ -4688,7 +4686,7 @@ select:-webkit-autofill:focus {
   justify-content: space-between;
   font-size: 14px;
   font-weight: 400;
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
   margin-bottom: 10px;
 }
 .assets-tabs .assets-list .assets-single:last-child {
@@ -4747,7 +4745,7 @@ select:-webkit-autofill:focus {
   color: var(--text-primary-color);
 }
 .orders-area .nav-tabs .nav-item .nav-link.active {
-  color: var(--text-primary-color-5);
+  color: var(--primary-color);
 }
 .orders-area .table {
   width: 100%;
@@ -4773,7 +4771,7 @@ select:-webkit-autofill:focus {
   padding: 0;
   border: none;
   background: transparent;
-  color: var(--text-primary-color-5);
+  color: var(--primary-color);
   text-transform: capitalize;
 }
 .cp-user-wallet-card {
@@ -4782,7 +4780,7 @@ select:-webkit-autofill:focus {
   box-shadow: 0px 64px 64px -48px rgb(15 15 15 / 10%);
 }
 .cp-user-body-bg .cp-user-card-header-area h4 {
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
 }
 .card {
   border-radius: 12px;
@@ -4828,7 +4826,7 @@ select:-webkit-autofill:focus {
 }
 .cp-user-body-bg.cp-user-profile-info label,
 .cp-user-profile-info .form-control {
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
 }
 /* style start here  */
 .mb-25 {
@@ -4869,7 +4867,7 @@ select:-webkit-autofill:focus {
   font-size: 16px;
   font-weight: 400;
   text-transform: capitalize;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 .overview-area {
   display: flex;
@@ -4881,19 +4879,19 @@ select:-webkit-autofill:focus {
   font-size: 16px;
   font-weight: 400;
   text-transform: capitalize;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 .overview-area .overview-left .blance {
   margin-bottom: 5px;
   font-size: 24px;
   font-weight: 700;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 .overview-area .overview-left .total-blance {
   margin-bottom: 0;
   font-size: 18px;
   font-weight: 400;
-  color: var(--text-primary-color-4);
+  color: var(--text-primary-color-3);
 }
 .overview-area .overview-right .form-wrap {
   display: flex;
@@ -4905,7 +4903,7 @@ select:-webkit-autofill:focus {
   border: 1px solid var(--border-color);
   font-size: 16px;
   font-weight: 700;
-  color: var(--text-primary-color-4);
+  color: var(--text-primary-color-3);
   border-radius: 5px;
 }
 .overview-area .overview-right .searh-group {
@@ -4917,7 +4915,7 @@ select:-webkit-autofill:focus {
   right: 20px;
   top: 50%;
   transform: translateY(-50%);
-  color: var(--text-primary-color-4);
+  color: var(--text-primary-color-3);
 }
 .overview-area .overview-right .searh-group .form-control {
   width: 500px;
@@ -5017,13 +5015,13 @@ select:-webkit-autofill:focus {
   font-size: 18px;
   font-weight: 400;
   text-transform: capitalize;
-  color: var(--text-primary-color-4) !important;
+  color: var(--text-primary-color-3) !important;
   transition: all 0.3s;
   margin-left: 15px !important;
 }
 
 .page-left-sidebar .sidebar-top .left-menu li a:hover {
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 .page-left-sidebar .sidebar-top .left-menu li.active a {
   color: var(--primary-color) !important;
@@ -5069,18 +5067,18 @@ select:-webkit-autofill:focus {
   font-size: 16px;
   font-weight: 400;
   text-transform: capitalize;
-  color: var(--text-primary-color-4);
+  color: var(--text-primary-color-3);
 }
 .secendary-table tbody tr td {
   font-size: 16px;
   font-weight: 400;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 .secendary-table tbody tr td span {
   display: block;
 }
 .secendary-table tbody tr td .usd {
-  color: var(--text-primary-color-4);
+  color: var(--text-primary-color-3);
 }
 .secendary-table tbody tr td .market.incree {
   color: #32d777;
@@ -5089,7 +5087,7 @@ select:-webkit-autofill:focus {
   color: #ff2e2e;
 }
 .secendary-table tbody tr td .symbol {
-  color: var(--text-primary-color-4);
+  color: var(--text-primary-color-3);
   font-size: 17px;
   font-weight: 500;
   text-transform: uppercase;
@@ -5103,14 +5101,14 @@ select:-webkit-autofill:focus {
   margin-right: 15px;
 }
 .secendary-table tbody tr td .asset .asset-name {
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 /* user-profile */
 .profle-are-top .user-mail {
   margin-bottom: 8px;
   font-size: 16px;
   font-weight: 400;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 .profle-are-top .user-level {
   margin: 0;
@@ -5141,13 +5139,13 @@ select:-webkit-autofill:focus {
   font-size: 32px;
   font-weight: 700;
   text-transform: capitalize;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 .user-profile .user-profile-content h4 {
   margin: 0;
   font-size: 16px;
   font-weight: 400;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 .user-profile .user-profile-info ul {
   margin: 0;
@@ -5160,7 +5158,7 @@ select:-webkit-autofill:focus {
   list-style: none;
   font-size: 18px;
   font-weight: 400;
-  color: var(--text-primary-color-4);
+  color: var(--text-primary-color-3);
   padding: 20px 0;
   border-bottom: 1px solid var(--border-color);
 }
@@ -5176,7 +5174,7 @@ select:-webkit-autofill:focus {
   width: 20px;
 }
 .user-profile .user-profile-info ul li span.pending {
-  color: var(--text-primary-color-7);
+  color: var(--primary-color);
 }
 .user-profile .user-profile-info ul li span .badge {
   display: inline-block;
@@ -5217,14 +5215,14 @@ select:-webkit-autofill:focus {
   font-family: "Karla", sans-serif;
   font-size: 18px;
   font-weight: 400;
-  color: var(--text-primary-color-4);
+  color: var(--text-primary-color-3);
   background: transparent;
 }
 .user-profile-form .form-group label {
   font-size: 18px;
   font-weight: 400;
   text-transform: capitalize;
-  color: var(--text-primary-color-4);
+  color: var(--text-primary-color-3);
 }
 /* verification-list-area */
 .verification-list-area .verification-title {
@@ -5232,7 +5230,7 @@ select:-webkit-autofill:focus {
   font-size: 24px;
   font-weight: 700;
   text-transform: capitalize;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 .verification-list-area .single-verification .verification-list {
   margin: 0;
@@ -5243,7 +5241,7 @@ select:-webkit-autofill:focus {
   list-style: none;
   font-size: 18px;
   font-weight: 400;
-  color: var(--text-primary-color-4);
+  color: var(--text-primary-color-3);
 }
 .verification-list-area .feature-list {
   display: flex;
@@ -5258,13 +5256,13 @@ select:-webkit-autofill:focus {
   font-size: 18px;
   font-weight: 700;
   text-transform: capitalize;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 .verification-list-area .feature-list .single-feature h5 {
   margin: 0;
   font-size: 18px;
   font-weight: 400;
-  color: var(--text-primary-color-4);
+  color: var(--text-primary-color-3);
 }
 .reset-password-area .reset-password-right {
   margin-top: 30px;
@@ -5277,20 +5275,20 @@ select:-webkit-autofill:focus {
 .table-style-two thead tr th {
   font-size: 18px;
   font-weight: 400;
-  color: var(--text-primary-color-4);
+  color: var(--text-primary-color-3);
   text-align: center;
 }
 .table-style-two tbody tr td {
   font-size: 18px;
   font-weight: 400;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   text-align: center;
 }
 .table-style-two tbody tr td .flag {
   max-width: 16px;
 }
 .table-style-two .delet-btn {
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   transition: all 0.3s;
 }
 .table-style-two .delet-btn:hover {
@@ -5331,14 +5329,14 @@ table.dataTable thead tr th {
 table.dataTable tbody tr td {
   font-size: 12px;
   font-weight: 400;
-  color: var(--text-primary-color-8);
+  color: var(--text-primary-color-4);
   /* color: #000 !important; */
 }
 .responsive-thing {
   display: none;
 }
 .referral-text {
-  color: var(--text-primary-color-3) !important;
+  color: var(--text-primary-color-2) !important;
 }
 /* Security page style */
 .security-list .single-security {
@@ -5364,19 +5362,19 @@ table.dataTable tbody tr td {
   font-size: 20px;
   font-weight: 700;
   text-transform: capitalize;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 .security-list .single-security .security-info .security-content p {
   margin: 0;
   font-size: 16px;
   font-weight: 400;
-  color: var(--text-primary-color-4);
+  color: var(--text-primary-color-3);
 }
 .security-list .single-security .security-center span {
   display: block;
   font-size: 16px;
   font-weight: 700;
-  color: var(--text-primary-color-4);
+  color: var(--text-primary-color-3);
 }
 .security-list .single-security .security-center span.off {
   color: #ff2e2e;
@@ -5422,7 +5420,7 @@ table.dataTable tbody tr td {
   font-size: 24px;
   font-weight: 700;
   text-transform: capitalize;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 .setting-bg {
   background-color: var(--card-background-color);
@@ -5437,7 +5435,7 @@ table.dataTable tbody tr td {
   right: -25px;
   top: 50%;
   transform: translateY(-50%);
-  color: var(--text-primary-color-5);
+  color: var(--primary-color);
   font-size: 20px;
   z-index: 9;
   width: 30px !important;
@@ -5446,7 +5444,7 @@ table.dataTable tbody tr td {
   width: 100%;
   height: 70px;
   border-radius: 5px;
-  border: 1px solid var(--text-primary-color-5);
+  border: 1px solid var(--primary-color);
   background: transparent;
   color: black;
 }
@@ -5470,13 +5468,13 @@ table.dataTable tbody tr td {
   font-size: 18px;
   font-weight: 700;
   text-transform: capitalize;
-  color: var(--text-primary-color-4);
+  color: var(--text-primary-color-3);
 }
 .rewards-inviter .single-item h2 {
   margin: 0;
   font-size: 32px;
   font-weight: 700;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 /* deposit-info-area */
 .deposit-info-area .balance-box {
@@ -5495,13 +5493,13 @@ table.dataTable tbody tr td {
   font-size: 24px;
   font-weight: 700;
   text-transform: capitalize;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 .deposit-info-area .balance-box .balance-content h5 {
   margin: 0;
   font-size: 16px;
   font-weight: 400;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 .deposit-info-area .deposit-info-top {
   display: flex;
@@ -5510,7 +5508,7 @@ table.dataTable tbody tr td {
 .deposit-info-area .deposit-info-top .close-btn {
   font-size: 20px;
   font-weight: 400;
-  color: var(--text-primary-color-4);
+  color: var(--text-primary-color-3);
 }
 .deposit-info-area .total-balance {
   display: flex;
@@ -5523,13 +5521,13 @@ table.dataTable tbody tr td {
 .deposit-info-area .total-balance h3 {
   font-size: 24px;
   font-weight: 400;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   text-transform: capitalize;
 }
 .deposit-info-area .total-balance h4 {
   font-size: 16px;
   font-weight: 400;
-  color: var(--text-primary-color-4);
+  color: var(--text-primary-color-3);
   margin: 0;
 }
 .deposit-info-area .address-area {
@@ -5542,14 +5540,14 @@ table.dataTable tbody tr td {
   font-size: 24px;
   font-weight: 400;
   text-transform: capitalize;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 .deposit-info-area .address-area p {
   margin-bottom: 15px;
   font-size: 16px;
   font-weight: 400;
   line-height: 26px;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   /* white-space: nowrap; */
   overflow: hidden;
   text-overflow: ellipsis;
@@ -5570,7 +5568,7 @@ table.dataTable tbody tr td {
 }
 .input-url .copy-url-btn {
   font-size: 20px;
-  color: var(--text-primary-color-5);
+  color: var(--primary-color);
   padding: 0;
   width: 61px !important;
   background: white;
@@ -5596,10 +5594,10 @@ table.dataTable tbody tr td {
   font-size: 16px;
   font-weight: 400;
   line-height: 26px;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 .deposit-info-area .deposits-text span {
-  color: var(--text-primary-color-5);
+  color: var(--primary-color);
 }
 /* withdrawal-info-area */
 
@@ -5619,13 +5617,13 @@ table.dataTable tbody tr td {
   font-size: 24px;
   font-weight: 700;
   text-transform: capitalize;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 .withdrawal-info-area .balance-box .balance-content h5 {
   margin: 0;
   font-size: 16px;
   font-weight: 400;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 .withdrawal-info-area .withdrawal-info-top {
   display: flex;
@@ -5634,7 +5632,7 @@ table.dataTable tbody tr td {
 .withdrawal-info-area .withdrawal-info-top .close-btn {
   font-size: 20px;
   font-weight: 400;
-  color: var(--text-primary-color-4);
+  color: var(--text-primary-color-3);
 }
 .withdrawal-info-area .avable-blance {
   background: #fafafa;
@@ -5647,19 +5645,19 @@ table.dataTable tbody tr td {
   font-size: 16px;
   font-weight: 400;
   text-transform: uppercase;
-  color: var(--text-primary-color-4);
+  color: var(--text-primary-color-3);
 }
 .withdrawal-info-area .avable-blance .blance {
   margin: 5px 0;
   font-size: 24px;
   font-weight: 400;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 .withdrawal-info-area .avable-blance .blance-usd {
   margin: 0;
   font-size: 16px;
   font-weight: 400;
-  color: var(--text-primary-color-4);
+  color: var(--text-primary-color-3);
 }
 .withdrawal-info-area .withdrawal-form {
   margin-top: 20px;
@@ -5677,7 +5675,7 @@ table.dataTable tbody tr td {
   transform: translateY(-50%);
   font-size: 16px;
   font-weight: 400;
-  color: var(--text-primary-color-5);
+  color: var(--primary-color);
 }
 .withdrawal-info-area .withdrawal-form .form-group .form-control {
   width: 100%;
@@ -5688,7 +5686,7 @@ table.dataTable tbody tr td {
   padding: 10px 15px;
   font-size: 16px;
   font-weight: 400;
-  color: var(--text-primary-color-4);
+  color: var(--text-primary-color-3);
 }
 .withdrawal-info-area .withdrawal-form .amount-wrap .form-control {
   border-radius: 5px 5px 0 0;
@@ -5697,7 +5695,7 @@ table.dataTable tbody tr td {
   width: 100%;
   background: var(--background-color-2);
   text-align: center;
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
   font-size: 18px;
   font-weight: 700;
   border-radius: 0 0 5px 5px;
@@ -5709,7 +5707,7 @@ table.dataTable tbody tr td {
   border: none;
   border-radius: 5px;
   background: var(--background-color-2);
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
   font-size: 18px;
   font-weight: 700;
   color: var(--text-primary-color) !important;
@@ -5721,13 +5719,13 @@ table.dataTable tbody tr td {
   background: var(--background-color);
 }
 .cp-user-body-bg .main-menu ul li a {
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
 }
 .cp-user-body-bg .main-menu ul li ul {
   background: var(--background-color) !important;
 }
 .cp-user-body-bg .main-menu ul li ul li a {
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
 }
 .cp-user-body-bg .main-menu ul li ul li {
   border-bottom: 1px solid rgb(126 126 126 / 20%);
@@ -5740,13 +5738,13 @@ table.dataTable tbody tr td {
 }
 .cp-user-body-bg table.dataTable thead tr th {
   font-size: 17px;
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
   border: none;
   padding: 7px 10px;
 }
 .cp-user-body-bg table.dataTable tbody tr td {
   font-size: 16px;
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
   border: none;
   padding: 7px 10px;
 }
@@ -5868,13 +5866,13 @@ table.dataTable tbody tr td {
   margin: 0;
   font-size: 16px;
   font-weight: 400;
-  color: var(--text-primary-color-4);
+  color: var(--text-primary-color-3);
 }
 .swap-area .form-group .swap-wrap-top .available {
   margin: 0;
   font-size: 16px;
   font-weight: 700;
-  color: var(--text-primary-color-4);
+  color: var(--text-primary-color-3);
 }
 .swap-area .form-group .swap-wrap-top {
   margin-bottom: 10px;
@@ -5896,7 +5894,7 @@ table.dataTable tbody tr td {
   border: none;
   border-radius: 0;
   font-size: 16px;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   background-color: transparent;
 }
 .swap-area .form-group .swap-input-wrap .cp-select-area {
@@ -5908,7 +5906,7 @@ table.dataTable tbody tr td {
   height: 100%;
   border: none;
   font-size: 20px;
-  color: var(--text-primary-color-4);
+  color: var(--text-primary-color-3);
   border-radius: 0;
 }
 .swap-area .form-group .swap-input-wrap .cp-select-area .form-control option {
@@ -5918,7 +5916,7 @@ table.dataTable tbody tr td {
   margin: 25px 0 15px 0;
 }
 .swap-area .swap-button-area .swap-button {
-  color: var(--text-primary-color-4);
+  color: var(--text-primary-color-3);
   font-size: 30px;
   border: none;
   padding: 0;
@@ -5945,7 +5943,7 @@ table.dataTable tbody tr td {
   color: var(--text-primary-color-2);
 }
 .swap-area .swap-area-middle ul li span.spend {
-  color: var(--text-primary-color-5);
+  color: var(--primary-color);
   font-weight: 700;
 }
 .swap-area .message-box {
@@ -6019,7 +6017,7 @@ table.dataTable tbody tr td {
   text-transform: capitalize;
   padding: 10px 25px;
   background: var(--background-color-2);
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
   border-radius: 3px;
 }
 .code-list p {
@@ -6271,7 +6269,7 @@ table.dataTable tbody tr td {
     width: 100%;
   }
   .cp-user-body-bg div.dataTables_wrapper div.dataTables_filter input {
-    color: var(--text-primary-color-8) !important;
+    color: var(--text-primary-color-4) !important;
   }
   .user-profile .user-profile-info ul li {
     font-size: 16px;
@@ -6614,7 +6612,7 @@ body {
   font-family: "Karla", sans-serif;
   margin: 0;
   padding: 0;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   background-color: var(--main-background-color);
 }
 
@@ -6753,7 +6751,7 @@ p {
 
 .sidebar-menu ul li ul li.sub-active a,
 .sidebar-menu ul li ul li:hover a {
-  color: var(--text-primary-color-7);
+  color: var(--primary-color);
 }
 
 .sidebar-menu ul li:hover > a {
@@ -6933,7 +6931,7 @@ p {
 .user-profile li a {
   padding: 6px 30px;
   display: block;
-  color: var(--text-primary-color-6);
+  color: var(--text-primary-color-2);
 }
 
 .user-profile li:not(:last-child) a {
@@ -6961,7 +6959,7 @@ p {
   margin-right: 15px;
   flex-basis: 100px;
   font-size: 30px;
-  color: var(--text-primary-color-6);
+  color: var(--text-primary-color-2);
 }
 
 .notification li {
@@ -6987,7 +6985,7 @@ p {
 .notification li a .content h6 {
   font-weight: 700;
   font-size: 16px;
-  color: var(--text-primary-color-6);
+  color: var(--text-primary-color-2);
 }
 
 .notification li a .content p {
@@ -7052,7 +7050,7 @@ p {
 
 .custom-breadcrumb ul li.active-item a,
 .custom-breadcrumb ul li.active-item {
-  color: var(--text-primary-color-8);
+  color: var(--text-primary-color-4);
 }
 
 .custom-breadcrumb ul li:not(:last-child) {
@@ -7089,7 +7087,7 @@ p {
 
 .status-card-inner .content h3,
 .status-card-inner .content p {
-  color: var(--text-primary-color-8);
+  color: var(--text-primary-color-4);
 }
 
 .status-card-inner .content p {
@@ -7171,10 +7169,10 @@ p {
 .user-chart .card-top h4 {
   font-size: 24px;
   font-weight: 700;
-  color: var(--text-primary-color-8);
+  color: var(--text-primary-color-4);
 }
 .subtitle {
-  color: var(--text-primary-color-8);
+  color: var(--text-primary-color-4);
 }
 .user-chart .card-top ul li {
   font-size: 16px;
@@ -7187,7 +7185,7 @@ p {
 }
 
 .user-chart .card-top ul li.active {
-  color: var(--text-primary-color-7);
+  color: var(--primary-color);
 }
 
 #user-chart {
@@ -7230,7 +7228,7 @@ p {
   padding: 10px 15px;
   display: flex;
   align-items: center;
-  color: var(--text-primary-color-8);
+  color: var(--text-primary-color-4);
   font-size: 15px;
   border-bottom: 1px solid var(--border-color-2);
 }
@@ -7257,7 +7255,7 @@ p {
 }
 
 .table-title h3 {
-  color: var(--text-primary-color-8);
+  color: var(--text-primary-color-4);
   font-weight: 700;
   font-size: 23px;
 }
@@ -7319,7 +7317,7 @@ table.dataTable.no-footer {
 }
 .user-management table.table thead tr th,
 .user-management table.table tbody tr td {
-  color: var(--text-primary-color-8);
+  color: var(--text-primary-color-4);
   padding: 15px 30px;
   font-size: 16px;
 }
@@ -7391,7 +7389,7 @@ table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th:first-child:b
     font-family: 'Courier New', Courier, monospace;
     line-height: 16px;
     content: '+';
-    background-color: var(--text-primary-color-6);
+    background-color: var(--text-primary-color-2);
     transform: translateY(-50%);
 }
  */
@@ -7403,7 +7401,7 @@ table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th:first-child:b
 }
 
 .add-user-form label {
-  color: var(--text-primary-color-8);
+  color: var(--text-primary-color-4);
   font-size: 16px;
   text-transform: capitalize;
   margin-bottom: 10px;
@@ -7411,7 +7409,7 @@ table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th:first-child:b
 
 .add-user-form .form-control {
   border-radius: 5px;
-  color: var(--text-primary-color-8);
+  color: var(--text-primary-color-4);
   height: 50px;
   box-shadow: none;
 }
@@ -7713,12 +7711,12 @@ table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th:first-child:b
 
 .user-info h4 {
   word-break: break-all;
-  color: var(--text-primary-color-8);
+  color: var(--text-primary-color-4);
 }
 
 .user-info p,
 .user-info span {
-  color: var(--text-primary-color-8);
+  color: var(--text-primary-color-4);
 }
 
 .profile-info-table ul li {
@@ -7727,7 +7725,7 @@ table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th:first-child:b
   align-items: center;
   height: 70px;
   line-height: 70px;
-  color: var(--text-primary-color-8);
+  color: var(--text-primary-color-4);
   border-bottom: 1px solid var(--border-color-2);
 }
 
@@ -7778,12 +7776,12 @@ table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th:first-child:b
   border: 1px solid var(--border-color-2);
   background: transparent;
   box-shadow: none;
-  color: var(--text-primary-color-8);
+  color: var(--text-primary-color-4);
   padding: 0 10px;
 }
 
 .profile-info-form label {
-  color: var(--text-primary-color-8);
+  color: var(--text-primary-color-4);
   font-size: 14px;
   margin-bottom: 15px;
 }
@@ -7799,7 +7797,7 @@ table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th:first-child:b
   height: 45px;
   text-align: center;
   width: 100%;
-  color: var(--text-primary-color-8);
+  color: var(--text-primary-color-4);
   text-transform: capitalize;
   font-size: 16px;
   font-weight: 500;
@@ -7923,7 +7921,7 @@ label.logo {
   padding: 0 25px;
   background-color: #2a3865;
   border: 1px solid #2a3865;
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
   font-size: 20px;
 }
 
@@ -7939,11 +7937,7 @@ textarea.form-control.textarea {
   height: 48px;
   line-height: 48px;
   text-align: center;
-  background: -webkit-linear-gradient(
-    left,
-    var(--text-primary-color-7),
-    #fec939 100%
-  );
+  background: -webkit-linear-gradient(left, var(--primary-color), #fec939 100%);
   color: var(--text-primary-color);
   border-radius: 3px;
   font-size: 17px;
@@ -7990,7 +7984,7 @@ textarea.form-control.textarea {
   display: flex;
   align-items: center;
   padding: 85px var(--text-primary-color-2) 00;
-  border: 4px solid var(--text-primary-color-5);
+  border: 4px solid var(--primary-color);
   box-sizing: border-box;
   backdrop-filter: blur(30px);
   border-radius: 15px;
@@ -8001,7 +7995,7 @@ textarea.form-control.textarea {
 }
 .user-form .form-top h2 {
   margin-bottom: 15px;
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
   font-size: 32px;
   font-weight: 700;
   text-transform: capitalize;
@@ -8009,7 +8003,7 @@ textarea.form-control.textarea {
 .user-form .form-top p {
   margin: 0;
   font-size: 16px;
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
   font-weight: 400;
 }
 
@@ -8025,7 +8019,7 @@ textarea.form-control.textarea {
   transform: translateY(-50%);
   font-size: 18px;
   cursor: pointer;
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
 }
 
 .user-form .form-group label {
@@ -8038,7 +8032,7 @@ textarea.form-control.textarea {
   border-color: #323232;
   border-radius: 7px;
   background: transparent;
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
   font-family: "Karla", sans-serif;
   font-size: 16px;
   font-weight: 400;
@@ -8048,22 +8042,22 @@ textarea.form-control.textarea {
   padding-right: 35px;
 }
 .user-form .form-control::-webkit-input-placeholder {
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
   font-size: 14px;
 }
 
 .user-form .form-control::-moz-placeholder {
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
   font-size: 14px;
 }
 
 .user-form .form-control:-ms-input-placeholder {
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
   font-size: 14px;
 }
 
 .user-form .form-control:-moz-placeholder {
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   font-size: 14px;
 }
 
@@ -8086,16 +8080,16 @@ textarea.form-control.textarea {
   font-size: 32px;
   font-weight: 700;
   text-transform: capitalize;
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
 }
 .user-content-wrapper .user-content-text p {
   font-size: 24px;
   font-weight: 700;
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
 }
 .user-content-wrapper .user-content-text p a {
   display: inline-block;
-  color: var(--text-primary-color-5);
+  color: var(--primary-color);
 }
 
 .user-content-wrapper-inner {
@@ -8128,11 +8122,11 @@ textarea.form-control.textarea {
 }
 
 .form-top h2 {
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 
 .form-top p {
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   font-size: 20px;
   font-weight: 600;
   /* text-transform: capitalize; */
@@ -8187,11 +8181,11 @@ textarea.form-control.textarea {
 }
 
 .form-bottom p {
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 
 .form-bottom p a {
-  color: var(--text-primary-color-7);
+  color: var(--primary-color);
 }
 
 .social-media {
@@ -8259,7 +8253,7 @@ textarea.form-control.textarea {
 
 .styled-checkbox:hover + label:before {
   background: var(--background-color-4);
-  border-color: var(--text-primary-color-7);
+  border-color: var(--primary-color);
 }
 
 .styled-checkbox:focus + label:before {
@@ -8268,7 +8262,7 @@ textarea.form-control.textarea {
 
 .styled-checkbox:checked + label:before {
   background: var(--background-color-4);
-  border-color: var(--text-primary-color-7);
+  border-color: var(--primary-color);
 }
 
 .styled-checkbox:disabled + label {
@@ -8300,7 +8294,7 @@ textarea.form-control.textarea {
 }
 
 .rememberme a:hover {
-  color: var(--text-primary-color-7);
+  color: var(--primary-color);
 }
 
 /* -------- user-----------------------------------------------------1321). End forms
@@ -8313,13 +8307,13 @@ textarea.form-control.textarea {
 
 .default-access-wrapper .auth-btn {
   margin: 0 5px;
-  color: var(--text-primary-color-7);
+  color: var(--primary-color);
   line-height: 16px;
   cursor: pointer;
 }
 
 .default-access-wrapper .auth-btn.user {
-  border-right: 1px solid var(--text-primary-color-7);
+  border-right: 1px solid var(--primary-color);
   padding-right: 10px;
 }
 
@@ -8328,7 +8322,7 @@ textarea.form-control.textarea {
 }
 
 .theme-btn {
-  color: var(--text-primary-color-8) !important ;
+  color: var(--text-primary-color-4) !important ;
   font-size: 16px;
   font-weight: 500;
   display: inline-block;
@@ -8340,11 +8334,7 @@ textarea.form-control.textarea {
   -ms-border-radius: 0;
   border-radius: 0;
   position: relative;
-  background: -webkit-linear-gradient(
-    left,
-    var(--text-primary-color-7),
-    #fec939 100%
-  );
+  background: -webkit-linear-gradient(left, var(--primary-color), #fec939 100%);
   background-size: 200%, 1px;
   background-position: 0;
   transition: all 0.3s;
@@ -8401,11 +8391,11 @@ textarea.form-control.textarea {
 .uplode-catagory span {
   display: block;
   margin-bottom: 5px;
-  color: var(--text-primary-color-8);
+  color: var(--text-primary-color-4);
 }
 
 .dropify-wrapper .dropify-preview {
-  background-color: var(--text-primary-color-3);
+  background-color: var(--text-primary-color-2);
 }
 
 .fees-wrap {
@@ -8428,24 +8418,24 @@ textarea.form-control.textarea {
 }
 
 .note-editable {
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
 }
 
 .submenu-active > a {
-  color: var(--text-primary-color-7) !important;
+  color: var(--primary-color) !important;
 }
 
 div.dataTables_wrapper div.dataTables_length select {
   background: transparent;
   /* border-radius: 50px; */
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   text-align: center !important;
   padding: 5px 10px;
   border-color: var(--border-color);
 }
 
 div.dataTables_wrapper div.dataTables_length select option {
-  color: var(--text-primary-color-8);
+  color: var(--text-primary-color-4);
 }
 
 .dataTables_wrapper .dataTables_length,
@@ -8453,7 +8443,7 @@ div.dataTables_wrapper div.dataTables_length select option {
 .dataTables_wrapper .dataTables_info,
 .dataTables_wrapper .dataTables_processing,
 .dataTables_wrapper .dataTables_paginate {
-  color: var(--text-primary-color-8);
+  color: var(--text-primary-color-4);
 }
 
 /*div#table_length {*/
@@ -8467,7 +8457,7 @@ div.dataTables_wrapper div.dataTables_filter input {
   /* border-radius: 50px; */
   border: 1px solid #dfdfdf;
   height: 35px;
-  color: var(--text-primary-color-8);
+  color: var(--text-primary-color-4);
   padding: 5px;
 }
 div.dataTables_wrapper div.dataTables_filter {
@@ -8475,7 +8465,7 @@ div.dataTables_wrapper div.dataTables_filter {
   margin-bottom: 15px;
 }
 .dataTables_empty {
-  color: var(--text-primary-color-8);
+  color: var(--text-primary-color-4);
   border: none;
   display: flex;
   align-items: center;
@@ -8551,7 +8541,7 @@ table.dataTable.order-column.stripe tbody tr.odd > .sorting_1 {
 .paginate-button {
   font-size: 18px;
   font-weight: 400 !important;
-  color: var(--text-primary-color-4);
+  color: var(--text-primary-color-3);
   cursor: pointer;
   padding: 0;
   border: none !important;
@@ -8560,7 +8550,7 @@ table.dataTable.order-column.stripe tbody tr.odd > .sorting_1 {
 .paginate-number {
   font-size: 18px;
   font-weight: 400;
-  color: var(--text-primary-color-4);
+  color: var(--text-primary-color-3);
   padding: 0;
   cursor: pointer;
   border: none !important;
@@ -8591,7 +8581,7 @@ a.paginate_button.paginate-number.text-warning {
 
 .dataTables_wrapper .dataTables_paginate .paginate_button.previous:hover,
 .dataTables_wrapper .dataTables_paginate .paginate_button.next:hover {
-  color: var(--text-primary-color-7) !important;
+  color: var(--primary-color) !important;
 }
 
 table tr td .activity-icon ul {
@@ -8613,7 +8603,7 @@ table tr td .activity-icon ul li a img.img-fluid {
 }
 
 .table-title {
-  color: var(--text-primary-color-8);
+  color: var(--text-primary-color-4);
   font-weight: 700;
   font-size: 23px;
 }
@@ -8629,11 +8619,11 @@ table.dataTable.order-column.stripe tbody tr.even > .sorting_1 {
 }
 
 .form-area h4 {
-  color: var(--text-primary-color-8);
+  color: var(--text-primary-color-4);
 }
 
 .profile-name h3 p {
-  color: var(--text-primary-color-8);
+  color: var(--text-primary-color-4);
   margin: 10px 0;
 }
 
@@ -8711,7 +8701,7 @@ table.dataTable thead .sorting_asc:after {
 }
 
 .profile-dropdown button a {
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
   text-transform: uppercase;
   display: block;
 }
@@ -8905,7 +8895,7 @@ table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th:first-child {
 }
 
 .single-phase .card .card-header .top .left p {
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
   text-transform: uppercase;
   font-weight: 700;
   font-size: 14px;
@@ -9116,7 +9106,7 @@ table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th:first-child {
 }
 
 .progress.blue .fill {
-  stroke: var(--text-primary-color-7);
+  stroke: var(--primary-color);
 }
 
 .progress .value {
@@ -9145,7 +9135,7 @@ table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th:first-child {
 }
 
 .activity-menu .viewuser a {
-  color: var(--text-primary-color-8);
+  color: var(--text-primary-color-4);
   font-size: 18px;
   cursor: pointer;
 }
@@ -9225,7 +9215,7 @@ table.dataTable thead .sorting_desc_disabled:after {
   position: relative;
   background: -webkit-linear-gradient(
     left,
-    var(--text-primary-color-7),
+    var(--primary-color),
     #f68484 50%,
     #ee9022
   );
@@ -9271,7 +9261,7 @@ table.dataTable thead .sorting_desc_disabled:after {
 }
 
 .text-theme {
-  color: var(--text-primary-color-7);
+  color: var(--primary-color);
 }
 .bootstrap-select .form-control {
   line-height: unset;
@@ -9285,7 +9275,7 @@ table.dataTable thead .sorting_desc_disabled:after {
   background: var(--card-background-color);
 }
 label {
-  color: var(--text-primary-color-8);
+  color: var(--text-primary-color-4);
 }
 .dataTables_wrapper .dataTables_paginate .paginate_button.disabled,
 .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover,
@@ -9300,7 +9290,7 @@ label {
   background: var(--card-background-color);
   border: 1px solid var(--border-color-1);
   box-shadow: none;
-  color: var(--text-primary-color-8);
+  color: var(--text-primary-color-4);
 }
 .form-control:focus {
   box-shadow: none;
@@ -9321,7 +9311,7 @@ label {
   min-width: 96px;
 }
 .btn:hover {
-  color: var(--text-primary-color-8);
+  color: var(--text-primary-color-4);
 }
 .modal-header {
   border-color: #ededed;
@@ -9330,7 +9320,7 @@ label {
   border-color: #ededed;
 }
 .modal-header .close {
-  color: var(--text-primary-color-8);
+  color: var(--text-primary-color-4);
   box-shadow: none;
   text-shadow: none;
   opacity: 1;
@@ -9354,8 +9344,8 @@ label {
   order: 0;
 }
 .dropify-wrapper {
-  color: var(--text-primary-color-8);
-  background-color: var(--text-primary-color-3);
+  color: var(--text-primary-color-4);
+  background-color: var(--text-primary-color-2);
   border: 2px solid var(--border-color-2);
 }
 .dropify-wrapper:hover {
@@ -9385,7 +9375,7 @@ label {
   border: 1px solid var(--border-color-2);
 }
 .deleteuser a {
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
 }
 .nimmu-user-sibmit-button {
   color: #fafafa;
@@ -9395,18 +9385,18 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   -webkit-box-shadow: none !important;
-  -webkit-text-fill-color: var(--text-primary-color-8) !important;
+  -webkit-text-fill-color: var(--text-primary-color-4) !important;
   transition: background-color 5000s ease-in-out 0s;
 }
 .forgot-password {
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
   font-size: 14px;
   font-weight: 400;
   text-transform: capitalize;
   transition: all 0.3s;
 }
 .forgot-password:hover {
-  color: var(--text-primary-color-7);
+  color: var(--primary-color);
 }
 @media (max-width: 1350px) {
   .user-form {
@@ -9477,7 +9467,7 @@ input:-webkit-autofill:active {
   margin-right: 10px;
 }
 .look-pass {
-  color: var(--text-primary-color-7);
+  color: var(--primary-color);
   font-size: 14px;
   font-weight: 400;
 }
@@ -9491,7 +9481,7 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
 }
 .dark-toast {
   background-color: var(--text-primary-color-2) !important;
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
 }
 
 /* preloder-area */
@@ -9506,7 +9496,7 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
   top: 0;
   z-index: 9999;
   background: rgb(0 0 0 / 83%);
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
 }
 .preloder-area .spinner-border {
   margin-right: 10px;
@@ -9526,7 +9516,7 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
   top: 0;
   z-index: 9999;
   background: rgb(195 195 195 / 50%);
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
 }
 .inside-preloder-area .spinner-border {
   margin-right: 10px;
@@ -9539,7 +9529,7 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
   top: 0;
   z-index: 9999;
   background: var(--background-color-5);
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
   align-items: center;
   justify-content: center;
   overflow: hidden;
@@ -9553,7 +9543,7 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
   width: 100%;
   height: 100%;
   background: var(--background-color-5);
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
   align-items: center;
   justify-content: center;
 }
@@ -9627,7 +9617,7 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
   z-index: 2;
 }
 .slick-arrow::before {
@@ -9638,7 +9628,7 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
   height: 40px;
   border-radius: 50%;
   background: rgba(0, 0, 0, 0.5);
-  color: var(--text-primary-color-8) !important;
+  color: var(--text-primary-color-4) !important;
   z-index: 2;
 }
 .slick-arrow:hover::before {
@@ -9675,12 +9665,12 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
   font-size: 14px;
   font-weight: 400;
   text-transform: capitalize;
-  color: var(--text-primary-color-4);
+  color: var(--text-primary-color-3);
 }
 .market-trend-area .cellMarket {
   font-size: 14px;
   font-weight: 400;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 .market-trend-area .btnTrade {
   display: inline-block;
@@ -9788,7 +9778,7 @@ table.dataTable thead tr th {
   line-height: 1.3;
   font-weight: 400;
   padding: 10px;
-  color: var(--text-primary-color-8);
+  color: var(--text-primary-color-4);
 }
 .value-previous {
   color: #818181;
@@ -9829,7 +9819,7 @@ table.dataTable thead tr th {
   line-height: 1.3;
   font-weight: 400;
   padding: 10px;
-  /* color: var(--text-primary-color-8) !important; */
+  /* color: var(--text-primary-color-4) !important; */
 }
 .cp-select-area::before {
   font-size: 1.2rem;
@@ -9957,7 +9947,7 @@ input[type="number"] {
   margin: 0;
   font-size: 16px;
   font-weight: 400;
-  color: var(--text-primary-color-4);
+  color: var(--text-primary-color-3);
 }
 .select-method {
   display: grid;
