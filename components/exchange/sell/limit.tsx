@@ -61,7 +61,7 @@ const Limit = ({
                               ? dashboard?.order_data?.total?.trade_wallet
                                   ?.balance
                               : 0
-                          ).toFixed(8)}
+                          ).toFixed(4)}
                         </span>
                       </span>
                       <span
@@ -88,7 +88,7 @@ const Limit = ({
                               ? dashboard?.order_data?.total?.trade_wallet
                                   ?.balance
                               : 0
-                          ).toFixed(8)}
+                          ).toFixed(4)}
                         </span>
                       </span>
                       <span
@@ -224,7 +224,7 @@ const Limit = ({
                           role="status"
                           aria-hidden="true"
                         ></span>
-                        {t("Placing Order...")}
+                        {t("Placing Order")}...
                       </span>
                     </button>
                   </div>
