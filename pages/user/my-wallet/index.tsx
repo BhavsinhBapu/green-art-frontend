@@ -423,13 +423,27 @@ const MyWallet: NextPage = ({
                                       )}
                                       {/* </OutsideClickHandler> */}
                                     </li>
-                                    <Link
-                                      href={`/user/swap-coin?coin_id=${item.id}`}
-                                    >
-                                      <li className="toolTip" title="swap">
+                                    {coinList.length > 1 ? (
+                                      <Link
+                                        href={`/user/swap-coin?coin_id=${item.id}`}
+                                      >
+                                        <li className="toolTip" title="swap">
+                                          <TiArrowRepeat size={25} />
+                                        </li>
+                                      </Link>
+                                    ) : (
+                                      <li
+                                        className="toolTip"
+                                        title="swap"
+                                        onClick={() => {
+                                          toast.error(
+                                            "Two coins are required to swap"
+                                          );
+                                        }}
+                                      >
                                         <TiArrowRepeat size={25} />
                                       </li>
-                                    </Link>
+                                    )}
                                   </ul>
                                 </div>
                               </td>
