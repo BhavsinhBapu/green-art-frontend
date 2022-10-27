@@ -111,7 +111,7 @@ const StopLimit = ({
                   </div>
                 </div>
                 <div className="form-group mt-3">
-                  <label className="cstmHead">Stop</label>
+                  <label className="cstmHead">{t("Stop")}</label>
                   <input
                     name="stop"
                     type="number"
@@ -260,7 +260,7 @@ const StopLimit = ({
                           role="status"
                           aria-hidden="true"
                         ></span>
-                        {t("Placing Order...")}
+                        {t("Placing Order")}...
                       </span>
                     </button>
                   </div>

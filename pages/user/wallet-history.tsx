@@ -109,7 +109,7 @@ const DepositHistory: NextPage = ({
   }, [type]);
   return (
     <>
-      <div className="page-wrap">
+      <div className="page-wrap rightMargin">
         <ReportSidebar />
         <div className="page-main-content">
           <div className="container-fluid">
@@ -131,7 +131,7 @@ const DepositHistory: NextPage = ({
               ) : (
                 <div className="asset-balances-left">
                   <div className="section-wrapper">
-                    <div className="table-responsive">
+                    <div className="table-responsive tableScroll">
                       <div
                         id="assetBalances_wrapper"
                         className="dataTables_wrapper no-footer"
@@ -168,7 +168,7 @@ const DepositHistory: NextPage = ({
                           </div>
                           <div id="table_filter" className="dataTables_filter">
                             <label>
-                              {t("Search:")}
+                              {t("Search")}:
                               <input
                                 type="search"
                                 name="search"

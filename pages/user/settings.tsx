@@ -66,11 +66,11 @@ const Settings: NextPage = ({
                           </div>
                           <div className="cp-user-content mb-0">
                             <h5>{t("Authenticator app")}</h5>
-                            <p>
+                            {/* <p>
                               {t(
-                                "Use the Authenticator app to get free verification codes, even when your phone is offline. Available for Android and iPhone."
+                                'Use the Authenticator app to get free verification codes, even when your phone is offline. Available for Android and iPhone'
                               )}
-                            </p>
+                            </p> */}
                           </div>
 
                           <div className="cp-user-content mt-0">

@@ -44,11 +44,11 @@ const DepositGoogleAuth = ({
               <div className="col-12">
                 <p>
                   {
-                    "Open your Google Authenticator app and enter the 6-digit code from the app into the input field to remove the google secret key"
+                    t("Open your Google Authenticator app and enter the 6-digit code from the app into the input field to remove the google secret key")
                   }
                 </p>
                 <input
-                  placeholder="Code"
+                  placeholder={t("Code")}
                   required
                   type="text"
                   className="form-control"

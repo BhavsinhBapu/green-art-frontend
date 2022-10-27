@@ -112,7 +112,7 @@ const TransactionHistory: NextPage = ({
   }, []);
   return (
     <>
-      <div className="page-wrap">
+      <div className="page-wrap rightMargin">
         <ReportSidebar />
 
         <div className="page-main-content">
@@ -169,7 +169,7 @@ const TransactionHistory: NextPage = ({
                           </div>
                           <div id="table_filter" className="dataTables_filter">
                             <label>
-                              {t("Search:")}
+                              {t("Search")}:
                               <input
                                 type="search"
                                 className="data_table_input"
