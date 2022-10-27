@@ -140,6 +140,35 @@ export const DipositComponent = ({
                       <i className="fa fa-clone"></i>
                     </button>
                   </>
+                ) : responseData?.address &&
+                  responseData?.wallet.coin_type !== "USDT" ? (
+                  <>
+                    <input
+                      onClick={() => {
+                        copyTextById(
+                          responseData?.wallet.coin_type == "USDT"
+                            ? selectedNetwork?.address
+                            : responseData?.address
+                        );
+                        selectAddressCopy?.current.select();
+                      }}
+                      ref={selectAddressCopy}
+                      className="address-box address-copy-box"
+                      type="text"
+                      value={responseData?.address}
+                    />
+
+                    <button
+                      type="button"
+                      className="btn copy-url-btn"
+                      onClick={() => {
+                        copyTextById(responseData?.address);
+                        selectAddressCopy?.current?.select();
+                      }}
+                    >
+                      <i className="fa fa-clone"></i>
+                    </button>
+                  </>
                 ) : (
                   <p
                     ref={selectAddressCopy}
