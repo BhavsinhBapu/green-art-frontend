@@ -49,7 +49,7 @@ const ForgotPassword: NextPage = () => {
                   <h2>{t("Forgot Password ?")}</h2>
                   <p>
                     {t(
-                      "Please enter the email address to request a password reset."
+                      "Please enter the email address to request a password reset"
                     )}
                   </p>
                 </div>

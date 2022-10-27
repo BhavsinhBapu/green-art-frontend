@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
+import useTranslation from "next-translate/useTranslation";
 
 const useOptions = () => {
   const options = useMemo(
@@ -28,6 +29,7 @@ const useOptions = () => {
 const CardForm = ({ setCredential, credential }: any) => {
   const stripe = useStripe();
   const elements = useElements();
+  const { t } = useTranslation("common");
   const options = useOptions();
 
   const handleSubmit = async (event: any) => {
@@ -67,7 +69,7 @@ const CardForm = ({ setCredential, credential }: any) => {
         className="primary-btn-outline mb-3 w-100"
         disabled={!stripe}
       >
-        Deposit
+        {t("Deposit")}
       </button>
     </form>
   );

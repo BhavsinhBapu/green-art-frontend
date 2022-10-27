@@ -67,17 +67,7 @@ const MyWallet: NextPage = ({
     address: null,
   });
 
-  const TurnoffSetShow = () => {
-    setShow({
-      deposit: false,
-      withdraw: false,
-    });
-    setSelectedRow({
-      id: null,
-      index: null,
-      address: null,
-    });
-  };
+  
 
   const getWalletLists = async (url: string) => {
     const response: any = await WalletListApiAction(url, setProcessing);
@@ -153,7 +143,7 @@ const MyWallet: NextPage = ({
 
   return (
     <>
-      <div className="page-wrap">
+      <div className="page-wrap rightMargin">
         {/* <div className="page-left-sidebar">
           <div className="sidebar-top">
             <ul className="left-menu">
@@ -277,7 +267,7 @@ const MyWallet: NextPage = ({
                       </div>
                       <div id="table_filter" className="dataTables_filter">
                         <label>
-                          {t("Search:")}
+                          {t("Search")}:
                           <input
                             type="search"
                             className="data_table_input"

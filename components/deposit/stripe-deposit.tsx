@@ -48,7 +48,7 @@ const StripeDeposit = ({ currencyList, walletlist, method_id }: any) => {
     ) {
       setErrorMessage({
         status: true,
-        message: "Google 2FA is not enabled, Please enable Google 2FA fist",
+        message: t("Google 2FA is not enabled, Please enable Google 2FA fist"),
       });
     }
   };

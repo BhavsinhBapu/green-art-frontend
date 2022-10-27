@@ -141,7 +141,7 @@ export const WithdrawComponent = ({ responseData, router }: any) => {
                     className="form-control"
                     id="address"
                     name="address"
-                    placeholder="Address"
+                    placeholder={t("Address")}
                     value={withdrawalCredentials.address}
                     onChange={(e) => {
                       setWithdrawalCredentials({
@@ -158,7 +158,7 @@ export const WithdrawComponent = ({ responseData, router }: any) => {
                       className="form-control"
                       id="amountWithdrawal"
                       name="amount"
-                      placeholder="AMOUNT TO WITHDRAW"
+                      placeholder={t("AMOUNT TO WITHDRAW")}
                       value={withdrawalCredentials.amount}
                       onChange={(e) => {
                         setWithdrawalCredentials({
@@ -169,7 +169,7 @@ export const WithdrawComponent = ({ responseData, router }: any) => {
                     />
                     <small>
                       <span className="mr-2">
-                        Fees
+                        {t("Fees")}
                         {parseFloat(
                           responseData?.wallet?.withdrawal_fees
                         ).toFixed(8)}{" "}
@@ -183,7 +183,7 @@ export const WithdrawComponent = ({ responseData, router }: any) => {
                         {responseData?.wallet?.coin_type}
                       </span>
                       <span className="mr-2">
-                        Max withdraw{" "}
+                        {t("Max withdraw")}{" "}
                         {parseFloat(responseData?.wallet?.maximum_withdrawal)}{" "}
                         {responseData?.wallet?.coin_type}
                       </span>

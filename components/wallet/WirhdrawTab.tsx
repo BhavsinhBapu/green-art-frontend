@@ -28,7 +28,7 @@ const WirhdrawTab = ({ response, TurnoffSetShow }: any) => {
     } else {
       setErrorMessage({
         status: true,
-        message: "Google 2FA is not enabled, Please enable Google 2FA fist",
+        message: t("Google 2FA is not enabled, Please enable Google 2FA fist"),
       });
     }
   };
@@ -121,7 +121,7 @@ const WirhdrawTab = ({ response, TurnoffSetShow }: any) => {
                     className="form-control"
                     id="address"
                     name="address"
-                    placeholder="Address"
+                    placeholder={t("Address")}
                     value={withdrawalCredentials.address}
                     onChange={(e) => {
                       setWithdrawalCredentials({
@@ -138,7 +138,7 @@ const WirhdrawTab = ({ response, TurnoffSetShow }: any) => {
                       className="form-control"
                       id="amountWithdrawal"
                       name="amount"
-                      placeholder="AMOUNT TO WITHDRAW"
+                      placeholder={t("AMOUNT TO WITHDRAW")}
                       value={withdrawalCredentials.amount}
                       onChange={(e) => {
                         setWithdrawalCredentials({

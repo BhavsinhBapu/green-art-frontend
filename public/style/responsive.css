@@ -9,10 +9,21 @@
     margin-right: auto;
     margin-left: auto;
   }
+  .walletHistory .dataTables_head {
+    width: 100%;
+  }
+}
+@media (max-width: 1440px) {
+  .walletHistory .dataTables_head {
+    width: 79%;
+  }
 }
 @media (max-width: 1200px) {
   .section {
     overflow: hidden;
+  }
+  .walletHistory .dataTables_head {
+    width: 80%;
   }
 }
 @media (max-width: 1199px) {
@@ -31,6 +42,9 @@
   }
   .cp-user-sidebar.active {
     display: block;
+  }
+  .walletHistory .dataTables_head {
+    width: 100%;
   }
 }
 @media (max-width: 1024px) {
@@ -113,9 +127,23 @@
   }
   .footer-area {
     padding-top: 70px;
+    margin-left: 15px;
+    margin-right: 15px;
   }
 }
-@media (max-width: 767px) {
+@media (max-width: 768px) {
+  .active-link ul {
+    display: flex;
+    margin-right: 30px;
+  }
+  .cp-user-setting-card-inner-preference {
+    min-height: auto;
+  }
+  .pagination-wrapper {
+    text-align: center !important;
+    margin-top: 25px !important;
+    width: 90%;
+  }
   .about-text h2 {
     font-size: 25px;
   }
@@ -128,7 +156,7 @@
   .footer-area .footer-bottom-wrap {
     padding: 10px 0;
   }
-  
+
   .cp-user-buy-coin-content-area table.dataTable thead tr th {
     padding: 3px 5px;
   }
