@@ -7989,6 +7989,7 @@ textarea.form-control.textarea {
   backdrop-filter: blur(30px);
   border-radius: 15px;
   min-height: 800px;
+  padding: 20px;
 }
 .user-form-inner {
   width: 100%;
