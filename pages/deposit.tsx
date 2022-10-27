@@ -64,10 +64,10 @@ const Deposit = ({ customPageData, socialData, copyright_text }: any) => {
     <>
       <div className="deposit-page">
         <div className="container mb-3">
-          <h2 className="mb-2">{t("Deposit Fiat")}</h2>
+          {/* <h2 className="mb-2">{t("Deposit Fiat")}</h2> */}
         </div>
         <div className="container">
-          <div className="deposit-conatiner">
+          <div className="deposit-conatiner boxShadow">
             <div className="cp-user-title">
               <h4>{t("Select method")}</h4>
             </div>
@@ -138,7 +138,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
 
   const { data } = await landingPage();
   const { data: customPageData } = await customPage();
-  
+
   if (parseInt(commonRes.currency_deposit_status) !== 1) {
     return {
       redirect: {
