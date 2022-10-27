@@ -559,7 +559,7 @@ client-area
   font-weight: 400;
   font-size: 14px;
   line-height: 28px;
-  color: var(--text-primary-color-4);
+  color: var(--text-primary-color-3);
 
   text-transform: capitalize;
   -webkit-transition: all 0.5s;
