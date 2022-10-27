@@ -45,13 +45,14 @@ Tags: admin, best react admin template, das
 :root {
   --primary-color: #fcd535;
   --text-primary-color: #ffff;
-  --text-primary-color-2: #000000;
-  --text-primary-color-3: #23262f;
-  --text-primary-color-4: #777778;
-  --text-primary-color-5: #f9b507;
-  --text-primary-color-6: #212e55;
-  --text-primary-color-7: #ffba00;
-  --text-primary-color-8: #cbcfd7;
+  --text-primary-color-2: #23262f;
+  --text-primary-color-3: #777778;
+  --text-primary-color-4: #cbcfd7;
+
+  /* --text-primary-color-3: #23262f; */
+  /* --text-primary-color-5: #f9b507; */
+  /* --text-primary-color-6: #212e55; */
+  /* --text-primary-color-7: #ffba00; */
 
   --border-color: #dedede;
   --border-color-1: #e6e8ec;
@@ -70,6 +71,7 @@ Tags: admin, best react admin template, das
   --background-color-3: #f7f7f8;
   --main-background-color: #ffffff;
   --card-background-color: #ffffff;
+  --footer-background-color: #f7f7f8;
   --background-color-4: #ffba00;
   --background-color-5: #f3f3f3;
   --background-color-6: #ffffff;
@@ -527,7 +529,7 @@ client-area
 #.footer-area
 -----------------------------*/
 .footer-area {
-  background: var(--white);
+  background: var(--footer-background-color);
 }
 .footer-area .footer-top {
   padding-bottom: 35px;
@@ -1080,7 +1082,7 @@ client-area
   font-size: 14px;
   line-height: 20px;
   font-weight: 400;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 /*=================================================
     #.start-trading-area
