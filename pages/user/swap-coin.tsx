@@ -139,7 +139,7 @@ const SwapCoin: NextPage = ({
             </div>
 
             <div className="row">
-              <div className="col-lg-10">
+              <div className="col-lg-12">
                 <div className="section-wrapper boxShadow">
                   <div className="swap-area">
                     <div className="swap-area-top">

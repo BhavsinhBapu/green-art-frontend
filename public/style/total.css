@@ -393,7 +393,7 @@ p {
 .cp-user-top-bar-right .dropdown-menu {
   padding: 0;
   width: 350px;
-  background: var(--background-color-7);
+  background: var(--background-color);
   color: var(--text-primary-color-2);
   border: 1px solid var(--border-color-2);
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
@@ -695,7 +695,7 @@ ul {
   content: "";
   height: 8px;
   width: 8px;
-  background: var(--background-color-4);
+  background: var(--primary-color);
   right: 4px;
   top: 50%;
   border-radius: 10px;
@@ -822,7 +822,7 @@ ul.cp-user-legend .cp-user-color-box-1 {
 }
 
 ul.cp-user-legend .cp-user-color-box-2 {
-  background: var(--background-color-4);
+  background: var(--primary-color);
 }
 
 ul.history-legend .cp-user-color-box-2 {
@@ -1133,7 +1133,7 @@ table.dataTable.dtr-inline.collapsed
 }
 
 .cp-user-copy .input-group .btn {
-  background: var(--background-color-4);
+  background: var(--primary-color);
   width: 130px;
   color: var(--text-primary-color);
   text-transform: capitalize;
@@ -1291,7 +1291,7 @@ table.dataTable.dtr-inline.collapsed
   border-bottom: none;
   font-size: 16px;
   font-weight: 400;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 
 .cp-user-wallet-table table tbody tr {
@@ -1336,7 +1336,7 @@ table.dataTable.dtr-inline.collapsed
 }
 
 .cp-user-wallet-card .btn.cp-user-add-pocket {
-  background: var(--background-color-4);
+  background: var(--primary-color);
   margin-right: 10px;
 }
 
@@ -1419,7 +1419,7 @@ select {
   text-align: center;
   font-size: 20px;
   font-weight: 700;
-  background: var(--background-color-4);
+  background: var(--primary-color);
   text-transform: capitalize;
 }
 
@@ -1848,7 +1848,7 @@ a#submit {
 */
 
 .cp-user-profile-nav {
-  background: var(--background-color-5);
+  background: var(--card-background-color);
   border-radius: 5px;
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
@@ -2026,7 +2026,7 @@ a#submit {
   height: 40px;
   line-height: 40px;
   border-radius: 24px;
-  background: var(--background-color-4);
+  background: var(--primary-color);
   box-shadow: 0 10px 20px rgb(255 186 0 / 22%);
   color: var(--text-primary-color);
   font-size: 16px;
@@ -2059,7 +2059,7 @@ a#submit {
   min-width: 150px;
   height: 55px;
   border-radius: 3px;
-  background: var(--background-color-4);
+  background: var(--primary-color);
   color: var(--text-primary-color);
   font-weight: 700;
   font-size: 18px;
@@ -2229,14 +2229,14 @@ a#submit {
   border-bottom: 15px solid transparent;
 }
 .id-card-type h5 {
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   font-size: 18px;
   font-weight: 700;
   text-transform: capitalize;
 }
 
 .id-card-type .id-card {
-  background: var(--background-color-5);
+  background: var(--card-background-color);
   border-radius: 12px;
   height: 250px;
   width: 100%;
@@ -2253,7 +2253,7 @@ a#submit {
   cursor: pointer;
 }
 .id-card-type .id-card img {
-  background: var(--background-color-5);
+  background: var(--card-background-color);
   border-radius: 12px;
   width: 250px;
   padding: 15px;
@@ -2311,7 +2311,7 @@ a#submit {
 }
 
 .carduploadbtn {
-  background: var(--background-color-4);
+  background: var(--primary-color);
   height: 60px;
   text-align: center;
   line-height: 60px;
@@ -2406,7 +2406,7 @@ a#submit {
 }
 
 .cp-user-setting-card .cp-user-content .cp-user-setupbtn {
-  background: var(--background-color-2);
+  background: var(--primary-color);
   color: var(--text-primary-color);
   border-radius: 3px;
   font-weight: 700;
@@ -2561,7 +2561,7 @@ a#submit {
 }
 
 .cp-user-referral-content .copy-url-btn {
-  background: var(--background-color-4);
+  background: var(--primary-color);
   color: var(--text-primary-color);
   font-size: 18px;
   font-weight: 700;
@@ -2720,7 +2720,7 @@ div.dataTables_wrapper div.dataTables_filter input {
   height: 40px;
   background: transparent;
   border-radius: 5px;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   font-size: 16px;
   padding: 0 5px;
 }
@@ -2913,7 +2913,7 @@ div.dataTables_wrapper div.dataTables_filter {
 }
 
 .cp-user-active-page a {
-  background: var(--background-color-7);
+  background: var(--background-color);
   position: relative;
 }
 
@@ -3117,7 +3117,7 @@ div.dataTables_wrapper div.dataTables_filter {
 }
 
 .transfer-coin-option li input[type="radio"]:checked ~ .check::before {
-  background: var(--background-color-4);
+  background: var(--primary-color);
 }
 
 .dataTables_length label select {
@@ -3233,7 +3233,7 @@ div.dataTables_wrapper div.dataTables_filter {
 .dashboard-tabs .nav-link.active {
   color: var(--text-primary-color);
   border-color: transparent;
-  background: var(--background-color-4);
+  background: var(--primary-color);
 }
 .dash-chart {
   width: 100% !important;
@@ -3243,7 +3243,7 @@ div.dataTables_wrapper div.dataTables_filter {
 .dataTables_wrapper .dataTables_paginate .paginate_button {
   font-size: 18px;
   font-weight: 400;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   padding: 0;
   border: none !important;
   background: transparent !important;
@@ -3751,7 +3751,7 @@ body._toggle .swipe-area-overlay:before {
   justify-content: space-between;
   padding: 12px 15px;
   border-radius: 2px;
-  background: var(--background-color-7);
+  background: var(--background-color);
 }
 
 .exchange-area .cp-user-profile-info .form-control {
@@ -4168,7 +4168,7 @@ table.table {
 div.dataTables_wrapper div.dataTables_length label {
   font-size: 18px;
   font-weight: 700;
-  color: var(--text-primary-color-3) !important;
+  color: var(--text-primary-color-2) !important;
 }
 .dataTables_head {
   display: flex;
@@ -4223,7 +4223,7 @@ div.dataTables_wrapper div.dataTables_length label {
   line-height: 38px;
   top: -15px;
   right: -15px;
-  background: var(--background-color-5);
+  background: var(--card-background-color);
   padding: 0;
   opacity: 1;
 }
@@ -4324,7 +4324,7 @@ select:-webkit-autofill:focus {
   background: transparent;
   font-size: 14px;
   font-weight: 400;
-  color: var(--text-primary-color-3) !important;
+  color: var(--text-primary-color-2) !important;
 }
 .main-menu ul li:hover a {
   color: var(--primary-color);
@@ -4891,7 +4891,7 @@ select:-webkit-autofill:focus {
   margin-bottom: 0;
   font-size: 18px;
   font-weight: 400;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 .overview-area .overview-right .form-wrap {
   display: flex;
@@ -4903,7 +4903,7 @@ select:-webkit-autofill:focus {
   border: 1px solid var(--border-color);
   font-size: 16px;
   font-weight: 700;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   border-radius: 5px;
 }
 .overview-area .overview-right .searh-group {
@@ -4915,7 +4915,7 @@ select:-webkit-autofill:focus {
   right: 20px;
   top: 50%;
   transform: translateY(-50%);
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 .overview-area .overview-right .searh-group .form-control {
   width: 500px;
@@ -4967,7 +4967,7 @@ select:-webkit-autofill:focus {
   padding: 10px;
   min-width: 150px;
   border-radius: 5px;
-  background: var(--background-color-2);
+  background: var(--primary-color);
   color: #fff !important;
   font-size: 18px;
   line-height: 1.3;
@@ -4978,7 +4978,7 @@ select:-webkit-autofill:focus {
 }
 .primary-btn-sm:hover {
   color: #fff !important;
-  background: var(--background-color-2);
+  background: var(--primary-color);
 }
 /* page-left-sidebar */
 .page-left-sidebar {
@@ -5015,7 +5015,7 @@ select:-webkit-autofill:focus {
   font-size: 18px;
   font-weight: 400;
   text-transform: capitalize;
-  color: var(--text-primary-color-3) !important;
+  color: var(--text-primary-color-2) !important;
   transition: all 0.3s;
   margin-left: 15px !important;
 }
@@ -5067,7 +5067,7 @@ select:-webkit-autofill:focus {
   font-size: 16px;
   font-weight: 400;
   text-transform: capitalize;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 .secendary-table tbody tr td {
   font-size: 16px;
@@ -5078,7 +5078,7 @@ select:-webkit-autofill:focus {
   display: block;
 }
 .secendary-table tbody tr td .usd {
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 .secendary-table tbody tr td .market.incree {
   color: #32d777;
@@ -5087,7 +5087,7 @@ select:-webkit-autofill:focus {
   color: #ff2e2e;
 }
 .secendary-table tbody tr td .symbol {
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   font-size: 17px;
   font-weight: 500;
   text-transform: uppercase;
@@ -5158,7 +5158,7 @@ select:-webkit-autofill:focus {
   list-style: none;
   font-size: 18px;
   font-weight: 400;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   padding: 20px 0;
   border-bottom: 1px solid var(--border-color);
 }
@@ -5215,14 +5215,14 @@ select:-webkit-autofill:focus {
   font-family: "Karla", sans-serif;
   font-size: 18px;
   font-weight: 400;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   background: transparent;
 }
 .user-profile-form .form-group label {
   font-size: 18px;
   font-weight: 400;
   text-transform: capitalize;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 /* verification-list-area */
 .verification-list-area .verification-title {
@@ -5241,7 +5241,7 @@ select:-webkit-autofill:focus {
   list-style: none;
   font-size: 18px;
   font-weight: 400;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 .verification-list-area .feature-list {
   display: flex;
@@ -5262,7 +5262,7 @@ select:-webkit-autofill:focus {
   margin: 0;
   font-size: 18px;
   font-weight: 400;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 .reset-password-area .reset-password-right {
   margin-top: 30px;
@@ -5275,7 +5275,7 @@ select:-webkit-autofill:focus {
 .table-style-two thead tr th {
   font-size: 18px;
   font-weight: 400;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   text-align: center;
 }
 .table-style-two tbody tr td {
@@ -5368,13 +5368,13 @@ table.dataTable tbody tr td {
   margin: 0;
   font-size: 16px;
   font-weight: 400;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 .security-list .single-security .security-center span {
   display: block;
   font-size: 16px;
   font-weight: 700;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 .security-list .single-security .security-center span.off {
   color: #ff2e2e;
@@ -5383,7 +5383,7 @@ table.dataTable tbody tr td {
   display: inline-block;
   min-width: 145px;
   padding: 8px 10px;
-  background: var(--background-color-2);
+  background: var(--primary-color);
   text-align: center;
   border-radius: 5px;
   font-size: 18px;
@@ -5450,11 +5450,11 @@ table.dataTable tbody tr td {
 }
 /* referral-area */
 .referral-area table.dataTable thead tr th {
-  background: var(--main-background-color);
+  background: var(--table-background-color);
   border-bottom: 1px solid var(--border-color);
 }
 .referral-area table.dataTable tbody tr td {
-  background: var(--main-background-color);
+  background: var(--table-background-color);
 }
 .rewards-inviter {
   display: flex;
@@ -5468,7 +5468,7 @@ table.dataTable tbody tr td {
   font-size: 18px;
   font-weight: 700;
   text-transform: capitalize;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 .rewards-inviter .single-item h2 {
   margin: 0;
@@ -5508,7 +5508,7 @@ table.dataTable tbody tr td {
 .deposit-info-area .deposit-info-top .close-btn {
   font-size: 20px;
   font-weight: 400;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 .deposit-info-area .total-balance {
   display: flex;
@@ -5527,7 +5527,7 @@ table.dataTable tbody tr td {
 .deposit-info-area .total-balance h4 {
   font-size: 16px;
   font-weight: 400;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   margin: 0;
 }
 .deposit-info-area .address-area {
@@ -5632,7 +5632,7 @@ table.dataTable tbody tr td {
 .withdrawal-info-area .withdrawal-info-top .close-btn {
   font-size: 20px;
   font-weight: 400;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 .withdrawal-info-area .avable-blance {
   background: #fafafa;
@@ -5645,7 +5645,7 @@ table.dataTable tbody tr td {
   font-size: 16px;
   font-weight: 400;
   text-transform: uppercase;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 .withdrawal-info-area .avable-blance .blance {
   margin: 5px 0;
@@ -5657,7 +5657,7 @@ table.dataTable tbody tr td {
   margin: 0;
   font-size: 16px;
   font-weight: 400;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 .withdrawal-info-area .withdrawal-form {
   margin-top: 20px;
@@ -5686,14 +5686,14 @@ table.dataTable tbody tr td {
   padding: 10px 15px;
   font-size: 16px;
   font-weight: 400;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 .withdrawal-info-area .withdrawal-form .amount-wrap .form-control {
   border-radius: 5px 5px 0 0;
 }
 .withdrawal-limit {
   width: 100%;
-  background: var(--background-color-2);
+  background: var(--primary-color);
   text-align: center;
   color: var(--text-primary-color-4) !important;
   font-size: 18px;
@@ -5706,7 +5706,7 @@ table.dataTable tbody tr td {
   width: 100%;
   border: none;
   border-radius: 5px;
-  background: var(--background-color-2);
+  background: var(--primary-color);
   color: var(--text-primary-color-4) !important;
   font-size: 18px;
   font-weight: 700;
@@ -5866,13 +5866,13 @@ table.dataTable tbody tr td {
   margin: 0;
   font-size: 16px;
   font-weight: 400;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 .swap-area .form-group .swap-wrap-top .available {
   margin: 0;
   font-size: 16px;
   font-weight: 700;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 .swap-area .form-group .swap-wrap-top {
   margin-bottom: 10px;
@@ -5906,7 +5906,7 @@ table.dataTable tbody tr td {
   height: 100%;
   border: none;
   font-size: 20px;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   border-radius: 0;
 }
 .swap-area .form-group .swap-input-wrap .cp-select-area .form-control option {
@@ -5916,7 +5916,7 @@ table.dataTable tbody tr td {
   margin: 25px 0 15px 0;
 }
 .swap-area .swap-button-area .swap-button {
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   font-size: 30px;
   border: none;
   padding: 0;
@@ -6016,7 +6016,7 @@ table.dataTable tbody tr td {
   font-size: 16px;
   text-transform: capitalize;
   padding: 10px 25px;
-  background: var(--background-color-2);
+  background: var(--primary-color);
   color: var(--text-primary-color-4) !important;
   border-radius: 3px;
 }
@@ -8113,8 +8113,8 @@ textarea.form-control.textarea {
 .nimmu-user-sibmit-button:focus,
 .nimmu-user-sibmit-button:hover {
   color: var(--text-primary-color) !important;
-  background: var(--background-color-hover2) !important;
-  border-color: var(--background-color-hover2) !important;
+  background: var(--hover-color) !important;
+  border-color: var(--hover-color) !important;
 }
 
 .form-top {
@@ -8253,7 +8253,7 @@ textarea.form-control.textarea {
 }
 
 .styled-checkbox:hover + label:before {
-  background: var(--background-color-4);
+  background: var(--primary-color);
   border-color: var(--primary-color);
 }
 
@@ -8262,7 +8262,7 @@ textarea.form-control.textarea {
 }
 
 .styled-checkbox:checked + label:before {
-  background: var(--background-color-4);
+  background: var(--primary-color);
   border-color: var(--primary-color);
 }
 
@@ -8491,7 +8491,7 @@ table.dataTable.order-column.stripe tbody tr.odd > .sorting_1 {
 .dataTables_wrapper .dataTables_paginate .paginate_button.current,
 .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
   color: var(--text-primary-color) !important;
-  background: var(--background-color-4);
+  background: var(--primary-color);
   padding: 0;
 }
 .pagination-wrapper {
@@ -8542,7 +8542,7 @@ table.dataTable.order-column.stripe tbody tr.odd > .sorting_1 {
 .paginate-button {
   font-size: 18px;
   font-weight: 400 !important;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   cursor: pointer;
   padding: 0;
   border: none !important;
@@ -8551,11 +8551,11 @@ table.dataTable.order-column.stripe tbody tr.odd > .sorting_1 {
 .paginate-number {
   font-size: 18px;
   font-weight: 400;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
   padding: 0;
   cursor: pointer;
   border: none !important;
-  background: #f1f3f4 !important;
+  background: var(--border-color-1) !important;
   margin-left: 5px;
   margin-right: 5px;
   width: 30px;
@@ -8903,7 +8903,7 @@ table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th:first-child {
 }
 
 .single-phase .card .card-header .top .left p span {
-  background: var(--background-color-4);
+  background: var(--primary-color);
   font-size: 12px;
   padding: 0 8px;
   margin-left: 5px;
@@ -9529,7 +9529,7 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
   left: 0;
   top: 0;
   z-index: 9999;
-  background: var(--background-color-5);
+  background: var(--footer-background-color);
   color: var(--text-primary-color-4) !important;
   align-items: center;
   justify-content: center;
@@ -9543,7 +9543,7 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
   overflow: hidden;
   width: 100%;
   height: 100%;
-  background: var(--background-color-5);
+  background: var(--card-background-color);
   color: var(--text-primary-color-4) !important;
   align-items: center;
   justify-content: center;
@@ -9666,7 +9666,7 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
   font-size: 14px;
   font-weight: 400;
   text-transform: capitalize;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 .market-trend-area .cellMarket {
   font-size: 14px;
@@ -9948,7 +9948,7 @@ input[type="number"] {
   margin: 0;
   font-size: 16px;
   font-weight: 400;
-  color: var(--text-primary-color-3);
+  color: var(--text-primary-color-2);
 }
 .select-method {
   display: grid;
