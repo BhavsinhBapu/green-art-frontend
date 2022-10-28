@@ -222,7 +222,7 @@ const MyWallet: NextPage = ({
                   <h2 className="section-top-title">{t("Overview")}</h2>
                   <h4 className="blance-title">{t("Total balance")}</h4>
                   <h4 className="blance">
-                    {allData?.total ? parseFloat(allData?.total) : 0}
+                    {allData?.total ? parseFloat(allData?.total).toFixed(8) : 0}
                     {""} {settings?.currency}
                   </h4>
                 </div>
