@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { BsBarChartLine } from "react-icons/bs";
+import { BiNetworkChart } from "react-icons/bi";
+import { IoLanguageSharp } from "react-icons/io5";
+import { FiSettings } from "react-icons/fi";
+import { CgProfile } from "react-icons/cg";
+import { HiOutlineDocumentReport } from "react-icons/hi";
+import { BiWalletAlt } from "react-icons/bi";
+import { RiWallet3Line } from "react-icons/ri";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "state/store";
 import { LogoutAction } from "state/actions/user";
@@ -74,7 +82,7 @@ const Navbar = () => {
                       }
                     >
                       <span className="cp-user-icon">
-                        <img
+                        {/* <img
                           src="/sidebar-icons/dashboard.svg"
                           className="img-fluid cp-user-side-bar-icon"
                           alt=""
@@ -83,7 +91,8 @@ const Navbar = () => {
                           src="/sidebar-icons/hover/dashboard.svg"
                           className="img-fluid cp-user-side-bar-icon-hover"
                           alt=""
-                        />
+                        /> */}
+                        <BsBarChartLine />
                       </span>
                       <span className="cp-user-name">{t("Trade")}</span>
                     </a>
@@ -106,7 +115,7 @@ const Navbar = () => {
                     >
                       <a href="">
                         <span className="cp-user-icon">
-                          <img
+                          {/* <img
                             src="/sidebar-icons/Wallet.svg"
                             className="img-fluid cp-user-side-bar-icon"
                             alt=""
@@ -115,7 +124,8 @@ const Navbar = () => {
                             src="/sidebar-icons/Wallet.svg"
                             className="img-fluid cp-user-side-bar-icon-hover"
                             alt=""
-                          />
+                          /> */}
+                          <BiWalletAlt />
                         </span>
                         <span className="cp-user-name">{t("Wallet")}</span>
                       </a>
@@ -138,16 +148,7 @@ const Navbar = () => {
                       >
                         <a href="">
                           <span className="cp-user-icon">
-                            <img
-                              src="/sidebar-icons/Wallet.svg"
-                              className="img-fluid cp-user-side-bar-icon"
-                              alt=""
-                            />
-                            <img
-                              src="/sidebar-icons/Wallet.svg"
-                              className="img-fluid cp-user-side-bar-icon-hover"
-                              alt=""
-                            />
+                            <RiWallet3Line />
                           </span>
                           <span className="cp-user-name">
                             {t("Fiat Deposit")}
@@ -183,7 +184,7 @@ const Navbar = () => {
                     >
                       <a className="arrow-icon" href="#" aria-expanded="true">
                         <span className="cp-user-icon">
-                          <img
+                          {/* <img
                             src="/sidebar-icons/Membership.svg"
                             className="img-fluid cp-user-side-bar-icon"
                             alt=""
@@ -192,7 +193,8 @@ const Navbar = () => {
                             src="/sidebar-icons/hover/Membership-1.svg"
                             className="img-fluid cp-user-side-bar-icon-hover"
                             alt=""
-                          />
+                          /> */}
+                          <HiOutlineDocumentReport />
                         </span>
                         <span className="cp-user-name">{t("Reports")}</span>
                       </a>
@@ -335,7 +337,7 @@ const Navbar = () => {
                     >
                       <a href="">
                         <span className="cp-user-icon">
-                          <img
+                          {/* <img
                             src="/sidebar-icons/user.svg"
                             className="img-fluid cp-user-side-bar-icon"
                             alt=""
@@ -344,7 +346,8 @@ const Navbar = () => {
                             src="/sidebar-icons/hover/user.svg"
                             className="img-fluid cp-user-side-bar-icon-hover"
                             alt=""
-                          />
+                          /> */}
+                          <CgProfile />
                         </span>
                         <span className="cp-user-name">{t("My Profile")}</span>
                       </a>
@@ -364,7 +367,7 @@ const Navbar = () => {
                     >
                       <a href="">
                         <span className="cp-user-icon">
-                          <img
+                          {/* <img
                             src="/sidebar-icons/referral.svg"
                             className="img-fluid cp-user-side-bar-icon"
                             alt=""
@@ -373,7 +376,8 @@ const Navbar = () => {
                             src="/sidebar-icons/hover/referral.svg"
                             className="img-fluid cp-user-side-bar-icon-hover"
                             alt=""
-                          />
+                          /> */}
+                          <BiNetworkChart />
                         </span>
                         <span className="cp-user-name">{t("My Referral")}</span>
                       </a>
@@ -395,7 +399,7 @@ const Navbar = () => {
                     >
                       <a className="arrow-icon" href="#" aria-expanded="true">
                         <span className="cp-user-icon">
-                          <img
+                          {/* <img
                             src="/sidebar-icons/settings.svg"
                             className="img-fluid cp-user-side-bar-icon"
                             alt=""
@@ -404,7 +408,8 @@ const Navbar = () => {
                             src="/sidebar-icons/hover/settings.svg"
                             className="img-fluid cp-user-side-bar-icon-hover"
                             alt=""
-                          />
+                          /> */}
+                          <FiSettings />
                         </span>
                         <span className="cp-user-name">{t("Settings")}</span>
                       </a>
@@ -441,7 +446,7 @@ const Navbar = () => {
                   <li>
                     <a className="arrow-icon" href="#" aria-expanded="true">
                       <span className="cp-user-icon">
-                        <img
+                        {/* <img
                           src="/sidebar-icons/Membership.svg"
                           className="img-fluid cp-user-side-bar-icon"
                           alt=""
@@ -450,7 +455,8 @@ const Navbar = () => {
                           src="/sidebar-icons/hover/Membership-1.svg"
                           className="img-fluid cp-user-side-bar-icon-hover"
                           alt=""
-                        />
+                        /> */}
+                        <IoLanguageSharp />
                       </span>
                       <span className="cp-user-name">
                         {router.locale?.toLocaleUpperCase()}
