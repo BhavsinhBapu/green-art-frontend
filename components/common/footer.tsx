@@ -8,6 +8,7 @@ import { RootState } from "state/store";
 const Footer = ({ customPageData, socialData, copyright_text }: any) => {
   const { t } = useTranslation("common");
   const { settings } = useSelector((state: RootState) => state.common);
+  console.log(customPageData);
 
   return (
     <footer className="footer-area pt--70">
@@ -31,7 +32,7 @@ const Footer = ({ customPageData, socialData, copyright_text }: any) => {
                               </Link>
                             ) : (
                               <a
-                                href={`/page-details/${item.key}`}
+                                href={item.page_link}
                                 target="_blank"
                                 rel="noreferrer"
                               >
@@ -62,7 +63,7 @@ const Footer = ({ customPageData, socialData, copyright_text }: any) => {
                               </Link>
                             ) : (
                               <a
-                                href={`/page-details/${item.key}`}
+                                href={item.page_link}
                                 target="_blank"
                                 rel="noreferrer"
                               >
@@ -93,7 +94,7 @@ const Footer = ({ customPageData, socialData, copyright_text }: any) => {
                               </Link>
                             ) : (
                               <a
-                                href={`/page-details/${item.key}`}
+                                href={item.page_link}
                                 target="_blank"
                                 rel="noreferrer"
                               >
