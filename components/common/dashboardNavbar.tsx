@@ -6,15 +6,16 @@ import { BiNetworkChart } from "react-icons/bi";
 import { IoLanguageSharp } from "react-icons/io5";
 import { FiSettings } from "react-icons/fi";
 import { CgProfile } from "react-icons/cg";
-import { HiOutlineDocumentReport } from "react-icons/hi";
+import { HiArrowNarrowRight, HiOutlineDocumentReport } from "react-icons/hi";
 import { BiWalletAlt } from "react-icons/bi";
-import { RiWallet3Line } from "react-icons/ri";
+import { RiNotificationBadgeLine, RiWallet3Line } from "react-icons/ri";
 import { RootState } from "state/store";
 import { LogoutAction } from "state/actions/user";
 import useTranslation from "next-translate/useTranslation";
 import { notification, notificationSeen } from "service/notification";
 import { LanguageList } from "helpers/lang";
 import { useRouter } from "next/router";
+import moment from "moment";
 const DashboardNavbar = () => {
   const { isLoggedIn, user, logo } = useSelector(
     (state: RootState) => state.user
@@ -438,8 +439,82 @@ const DashboardNavbar = () => {
                               alt=""
                             />
                           </button>
-                          <div className="dropdown-menu notification-list dropdown-menu-right">
-                            {notificationData[0] && (
+                          <div className="dropdown-menu notification-list dropdown-menu-right dark-trade-notify">
+                            <div className="notify-menu">
+                              <div className="notification-list-title">
+                                <div className="notify-counter">
+                                  <div className="notify-pending">
+                                    <p>
+                                      <span>{notificationData.length}</span>{" "}
+                                      {t("pending notifications")}
+                                    </p>
+                                    <a
+                                      onClick={() => {
+                                        seen();
+                                      }}
+                                      className="clear-all"
+                                      href="#"
+                                    >
+                                      {t("Clear All")}
+                                    </a>
+                                  </div>
+
+                                  <div className="notifiy-clear">
+                                    <Link href="/user/notification">
+                                      <a
+                                        // onClick={() => {
+                                        //   seen();
+                                        // }}
+                                        className="view-all"
+                                      >
+                                        {t("View All")}
+                                      </a>
+                                    </Link>
+                                    <HiArrowNarrowRight />
+                                  </div>
+                                </div>
+                              </div>
+                              <div>
+                                <div className="notify-grid-item">
+                                  {notificationData.length > 0 ? (
+                                    notificationData
+                                      ?.slice(0, 5)
+                                      ?.map((item: any, index: number) => (
+                                        <div
+                                          className="notify-icon-title"
+                                          key={index}
+                                        >
+                                          <RiNotificationBadgeLine
+                                            size={20}
+                                            className="notify-menu-icon"
+                                          />
+                                          <div>
+                                            <h6>
+                                              {item.title.substring(0, 40)}
+                                            </h6>
+                                            <p>
+                                              {item.notification_body.substring(
+                                                0,
+                                                50
+                                              )}
+                                            </p>
+                                            <span>
+                                              {moment(item.created_at).format(
+                                                "DD MMM YYYY"
+                                              )}
+                                            </span>
+                                          </div>
+                                        </div>
+                                      ))
+                                  ) : (
+                                    <p className="notFountNotifyText">
+                                      {t("No Notification Found!")}
+                                    </p>
+                                  )}
+                                </div>
+                              </div>
+                            </div>
+                            {/* {notificationData[0] && (
                               <div className="notification-body-drop">
                                 <div>
                                   <p className="title-notifination">
@@ -527,7 +602,7 @@ const DashboardNavbar = () => {
                                   <div className="scroll-bar"></div>
                                 </div>
                               </div>
-                            </div>
+                            </div> */}
                           </div>
                         </div>
                       </li>
@@ -582,7 +657,7 @@ const DashboardNavbar = () => {
                             <Link href="/user/profile">
                               <button className="dropdown-item" type="button">
                                 <a href="">
-                                  <i className="fa fa-user-circle-o"></i>{" "}
+                                  <i className="fa-regular fa-user"></i>{" "}
                                   {t("Profile")}
                                 </a>
                               </button>

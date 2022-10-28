@@ -727,7 +727,7 @@ const Navbar = () => {
                             <Link href="/user/profile">
                               <button className="dropdown-item" type="button">
                                 <a href="">
-                                  <i className="fa fa-user-circle-o"></i>{" "}
+                                  <i className="fa-regular fa-user"></i>{" "}
                                   {t("Profile")}
                                 </a>
                               </button>
