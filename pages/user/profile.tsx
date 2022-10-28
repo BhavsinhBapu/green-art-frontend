@@ -118,7 +118,7 @@ const Profile: NextPage = ({
               </div>
             </div>
 
-            <div className="profile-status-area boxShadow">
+            <div className="profile-status-area boxShadow tableScroll">
               <h5>{t("Profile Activity")}</h5>
               <table className="table">
                 <thead className="thead-light">
