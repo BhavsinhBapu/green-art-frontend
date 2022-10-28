@@ -10325,6 +10325,26 @@ input[type="number"] {
   position: absolute;
   border-radius: 50%;
 }
+.tradeUserActive:after {
+  content: "";
+  background: #3ee73e;
+  height: 15px;
+  width: 15px;
+  position: absolute;
+  right: 8px;
+  top: 0;
+  border-radius: 50%;
+}
+.tradeUserDeactive:after {
+  content: "";
+  background: #808080;
+  height: 15px;
+  width: 15px;
+  position: absolute;
+  right: 8px;
+  top: 0;
+  border-radius: 50%;
+}
 
 /* .tableScroll {
   overflow-x: scroll;

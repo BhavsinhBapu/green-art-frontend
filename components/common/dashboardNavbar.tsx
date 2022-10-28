@@ -542,7 +542,13 @@ const DashboardNavbar = () => {
                             aria-expanded="false"
                           >
                             <span className="cp-user-avater">
-                              <span className="cp-user-img">
+                              <span
+                                className={`${
+                                  user?.online_status?.online_status
+                                    ? "tradeUserActive"
+                                    : "tradeUserDeactive"
+                                } cp-user-img`}
+                              >
                                 {user?.photo && (
                                   <img
                                     src={user?.photo}
@@ -555,7 +561,13 @@ const DashboardNavbar = () => {
                             </span>
                           </button>
                           <div className="dropdown-menu dropdown-menu-right">
-                            <span className="big-user-thumb">
+                            <span
+                              className={`${
+                                user?.online_status?.online_status
+                                  ? "userActive"
+                                  : "userDeactive"
+                              } big-user-thumb`}
+                            >
                               <img
                                 src={user?.photo}
                                 className="img-fluid"
@@ -563,7 +575,9 @@ const DashboardNavbar = () => {
                               />
                             </span>
                             <div className="user-name">
-                              <p>{user?.first_name!}</p>
+                              <p className="nav-userName">
+                                {user?.first_name!} {user?.last_name!}
+                              </p>
                             </div>
                             <Link href="/user/profile">
                               <button className="dropdown-item" type="button">
