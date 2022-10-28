@@ -16,7 +16,6 @@ const Profile: NextPage = ({
   profileActivity,
 }: any) => {
   const { t } = useTranslation("common");
-  console.log(profileActivity);
 
   return (
     <>
