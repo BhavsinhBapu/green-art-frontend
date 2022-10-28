@@ -80,8 +80,8 @@ const Index: NextPage = ({
             <h2 className="section-top-title mb-0">{t("FAQ")}</h2>
           </div>
         </div>
-        <div className="container">
-          <div className="section-wrapper">
+        <div className="container mb-25">
+          <div className="section-wrapper boxShadow">
             <div className="row align-items-center">
               <div className="col-lg-6">
                 <div className="accordion" id="accordionExample">
