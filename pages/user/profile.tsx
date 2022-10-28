@@ -8,6 +8,7 @@ import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import useTranslation from "next-translate/useTranslation";
 import Footer from "components/common/footer";
 import { customPage, landingPage } from "service/landing-page";
+import moment from "moment";
 const Profile: NextPage = ({
   user,
   customPageData,
@@ -137,7 +138,7 @@ const Profile: NextPage = ({
                       <td>{t("Login")}</td>
                       <td>{item.source}</td>
                       <td>{item.ip_address}</td>
-                      <td>{item.updated_at}</td>
+                      <td>{moment(item.created_at).format("DD MMM YYYY")}</td>
                     </tr>
                   ))}
                 </tbody>
