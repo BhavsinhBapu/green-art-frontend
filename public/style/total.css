@@ -641,7 +641,7 @@ ul {
 .cp-user-sidebar-menu ul li a {
   padding: 12px 15px;
   display: block;
-  color: var(--text-primary-color-4);
+  color: var(--text-primary-color-2);
   font-size: 15px;
 }
 
@@ -4896,12 +4896,11 @@ select:-webkit-autofill:focus {
 .total-blance span {
   color: var(--primary-color);
 }
-.trade_coin_type  {
+.trade_coin_type {
   color: var(--primary-color);
 }
-.base_coin_type{
+.base_coin_type {
   color: var(--primary-color);
-
 }
 
 .avilable-blance span {
