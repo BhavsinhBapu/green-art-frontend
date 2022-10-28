@@ -346,21 +346,18 @@ const MyWallet: NextPage = ({
                                   </span>
                                   <span className="usd">
                                     ({settings?.currency_symbol}
-                                    {formatCurrency(item?.on_order_usd)})
+                                    {parseFloat(item?.on_order_usd).toFixed(8)})
                                   </span>
                                 </div>
                               </td>
                               <td>
                                 <div className="blance-text">
                                   <span className="blance">
-                                    {formatCurrency(item?.balance)}
+                                    {parseFloat(item?.balance).toFixed(8)}
                                   </span>
                                   <span className="usd">
                                     ({settings?.currency_symbol}
-                                    {formatCurrency(
-                                      item?.available_balance_usd
-                                    )}
-                                    )
+                                    {parseFloat(item?.available_balance_usd).toFixed(8)})
                                   </span>
                                 </div>
                               </td>
