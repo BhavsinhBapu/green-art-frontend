@@ -767,7 +767,10 @@ const Navbar = () => {
       </div>
 
       <div className={`cp-user-sidebar ${active ? "active" : ""}`}>
-        <div className="cp-user-sidebar-menu scrollbar-inner">
+        <div
+          onClick={() => setActive(false)}
+          className="cp-user-sidebar-menu scrollbar-inner"
+        >
           <nav>
             <ul id="metismenu">
               <li className=" cp-user-active-page ">
