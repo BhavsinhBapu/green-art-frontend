@@ -76,7 +76,7 @@ const Referral: NextPage = ({
           </div>
         </div>
         <div className="container">
-          <div className="section-wrapper rounded-sm">
+          <div className="section-wrapper rounded-sm boxShadow">
             <div className="rewards-inviter mb-25">
               <div className="single-item">
                 <h4>{t("Total Rewards")}</h4>
