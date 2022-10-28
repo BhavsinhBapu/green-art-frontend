@@ -224,7 +224,11 @@ const Market = ({
                         );
                       }}
                     >
-                      <span>{t("Place Order")}</span>
+                      <span>
+                        {" "}
+                        {t("Buy")}{" "}
+                        {dashboard?.order_data?.total?.trade_wallet?.coin_type}
+                      </span>
                     </button>
                   </div>
                 )}
