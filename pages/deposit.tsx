@@ -46,7 +46,6 @@ const Deposit = ({ customPageData, socialData, copyright_text }: any) => {
     const responseFaq = await getFaqList();
     setFaqs(responseFaq.data.data);
     setDepositInfo(response.data);
-
     setSelectedMethod({
       method:
         response?.data?.payment_methods[0] &&
@@ -80,7 +79,13 @@ const Deposit = ({ customPageData, socialData, copyright_text }: any) => {
               {loading ? (
                 <ScaletonLoading />
               ) : (
-                <div className="col-lg-8 col-sm-12">
+                <div
+                  className={`${
+                    parseInt(settings.currency_deposit_faq_status) == 1
+                      ? "col-lg-8 col-sm-12"
+                      : "col-lg-12 col-sm-12"
+                  }`}
+                >
                   {parseInt(selectedMethod.method) === WALLET_DEPOSIT ? (
                     <WalletDeposit
                       walletlist={depositInfo.wallet_list}
@@ -114,9 +119,11 @@ const Deposit = ({ customPageData, socialData, copyright_text }: any) => {
                 </div>
               )}
 
-              <div className="col-lg-4 col-sm-12 mt-4">
-                <DepositFaq faqs={faqs} />
-              </div>
+              {parseInt(settings.currency_deposit_faq_status) == 1 && (
+                <div className="col-lg-4 col-sm-12 mt-4">
+                  <DepositFaq faqs={faqs} />
+                </div>
+              )}
             </div>
           </div>
         </div>
