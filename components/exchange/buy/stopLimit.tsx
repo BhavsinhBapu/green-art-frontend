@@ -285,7 +285,11 @@ const StopLimit = ({
                         );
                       }}
                     >
-                      <span v-else="">{t("Place Order")}</span>
+                      <span v-else="">
+                        {" "}
+                        {t("Buy")}{" "}
+                        {dashboard?.order_data?.total?.trade_wallet?.coin_type}
+                      </span>
                     </button>
                   </div>
                 )}
