@@ -10367,7 +10367,9 @@ input[type="number"] {
   top: 0;
   border-radius: 50%;
 }
-
+.dark-trade-notify {
+  box-shadow: rgba(213, 212, 212, 0.1) 0px 4px 12px !important;
+}
 /* .tableScroll {
   overflow-x: scroll;
   max-width: 95vw;
