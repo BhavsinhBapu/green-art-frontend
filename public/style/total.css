@@ -4892,6 +4892,20 @@ select:-webkit-autofill:focus {
   font-weight: 400;
   color: var(--text-primary-color-2);
 }
+.total-blance span {
+  color: var(--primary-color);
+}
+.trade_coin_type  {
+  color: var(--primary-color);
+}
+.base_coin_type{
+  color: var(--primary-color);
+
+}
+
+.avilable-blance span {
+  color: var(--primary-color);
+}
 .overview-area .overview-right .form-wrap {
   display: flex;
   align-items: center;
