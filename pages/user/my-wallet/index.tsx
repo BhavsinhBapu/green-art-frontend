@@ -222,7 +222,7 @@ const MyWallet: NextPage = ({
                   <h2 className="section-top-title">{t("Overview")}</h2>
                   <h4 className="blance-title">{t("Total balance")}</h4>
                   <h4 className="blance">
-                    {allData?.total ? formatCurrency(allData?.total) : 0}
+                    {allData?.total ? parseFloat(allData?.total).toFixed(8) : 0}
                     {""} {settings?.currency}
                   </h4>
                 </div>
@@ -346,21 +346,18 @@ const MyWallet: NextPage = ({
                                   </span>
                                   <span className="usd">
                                     ({settings?.currency_symbol}
-                                    {formatCurrency(item?.on_order_usd)})
+                                    {parseFloat(item?.on_order_usd).toFixed(8)})
                                   </span>
                                 </div>
                               </td>
                               <td>
                                 <div className="blance-text">
                                   <span className="blance">
-                                    {formatCurrency(item?.balance)}
+                                    {parseFloat(item?.balance).toFixed(8)}
                                   </span>
                                   <span className="usd">
                                     ({settings?.currency_symbol}
-                                    {formatCurrency(
-                                      item?.available_balance_usd
-                                    )}
-                                    )
+                                    {parseFloat(item?.available_balance_usd).toFixed(8)})
                                   </span>
                                 </div>
                               </td>
@@ -376,7 +373,7 @@ const MyWallet: NextPage = ({
                                   </span>
                                   <span className="usd">
                                     ({settings?.currency_symbol}
-                                    {formatCurrency(item?.total_balance_usd)})
+                                    {parseFloat(item?.total_balance_usd).toFixed(8)})
                                   </span>
                                 </div>
                               </td>
@@ -423,7 +420,7 @@ const MyWallet: NextPage = ({
                                       )}
                                       {/* </OutsideClickHandler> */}
                                     </li>
-                                    {coinList.length > 1 ? (
+                                    {Changeable.length >= 2 ? (
                                       <Link
                                         href={`/user/swap-coin?coin_id=${item.id}`}
                                       >
