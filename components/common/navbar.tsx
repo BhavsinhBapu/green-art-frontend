@@ -18,6 +18,7 @@ import { HiArrowNarrowRight } from "react-icons/hi";
 import { CgNotifications } from "react-icons/cg";
 import { RiNotificationBadgeLine } from "react-icons/ri";
 import moment from "moment";
+import OutsideClickHandler from "react-outside-click-handler";
 
 const Navbar = () => {
   const { isLoggedIn, user, logo } = useSelector(
@@ -774,262 +775,22 @@ const Navbar = () => {
         </div>
       </div>
 
-      <div className={`cp-user-sidebar ${active ? "active" : ""}`}>
-        <div
-          onClick={() => setActive(false)}
-          className="cp-user-sidebar-menu scrollbar-inner"
-        >
-          <nav>
-            <ul id="metismenu">
-              <li className=" cp-user-active-page ">
-                <a
-                  href={
-                    router.locale !== "en"
-                      ? `/${router.locale}/exchange/dashboard`
-                      : "/exchange/dashboard"
-                  }
-                >
-                  <span className="cp-user-icon">
-                    <img
-                      src=""
-                      className="img-fluid cp-user-side-bar-icon"
-                      alt=""
-                    />
-                    <img
-                      src=""
-                      className="img-fluid cp-user-side-bar-icon-hover"
-                      alt=""
-                    />
-                  </span>
-                  <span className="cp-user-name">{t("Dashboard")}</span>
-                </a>
-              </li>
-
-              <li>
-                <a className="arrow-icon" href="#" aria-expanded="true">
-                  <span className="cp-user-icon">
-                    <img
-                      src=""
-                      className="img-fluid cp-user-side-bar-icon"
-                      alt=""
-                    />
-                    <img
-                      src=""
-                      className="img-fluid cp-user-side-bar-icon-hover"
-                      alt=""
-                    />
-                  </span>
-                  <span className="cp-user-name">{t("Wallet")}</span>
-                </a>
-                <ul>
-                  <Link
+      <OutsideClickHandler onOutsideClick={() => setActive(false)}>
+        <div className={`cp-user-sidebar ${active ? "active" : ""}`}>
+          <div
+            onClick={() => setActive(false)}
+            className="cp-user-sidebar-menu scrollbar-inner"
+          >
+            <nav>
+              <ul id="metismenu">
+                <li className=" cp-user-active-page ">
+                  <a
                     href={
-                      isLoggedIn ? "/user/my-wallet" : "/authentication/signin"
+                      router.locale !== "en"
+                        ? `/${router.locale}/exchange/dashboard`
+                        : "/exchange/dashboard"
                     }
                   >
-                    <li>
-                      <a href="">{t("My Wallet")}</a>
-                    </li>
-                  </Link>
-                  <Link
-                    href={isLoggedIn ? "/deposit" : "/authentication/signin"}
-                  >
-                    <li>
-                      <a href="">{t("Swap Coin")}</a>
-                    </li>
-                  </Link>
-
-                  <Link
-                    href={
-                      isLoggedIn ? "/user/swap-coin" : "/authentication/signin"
-                    }
-                  >
-                    <li>
-                      <a href="">{t("Fiat Deposit")}</a>
-                    </li>
-                  </Link>
-                </ul>
-              </li>
-              <li>
-                <a className="arrow-icon" href="#" aria-expanded="true">
-                  <span className="cp-user-icon">
-                    <img
-                      src=""
-                      className="img-fluid cp-user-side-bar-icon"
-                      alt=""
-                    />
-                    <img
-                      src=""
-                      className="img-fluid cp-user-side-bar-icon-hover"
-                      alt=""
-                    />
-                  </span>
-                  <span className="cp-user-name">{t("Reports")}</span>
-                </a>
-                <ul>
-                  <Link
-                    href={
-                      isLoggedIn
-                        ? "/user/wallet-history?type=deposit"
-                        : "/authentication/signin"
-                    }
-                  >
-                    <li>
-                      <a href="">{t("Deposit History")}</a>
-                    </li>
-                  </Link>
-                  <Link
-                    href={
-                      isLoggedIn
-                        ? "/user/wallet-history?type=withdrawal"
-                        : "/authentication/signin"
-                    }
-                  >
-                    <li>
-                      <a href="">{t("Withdrawal History")}</a>
-                    </li>
-                  </Link>
-                  <Link
-                    href={
-                      isLoggedIn
-                        ? "/user/swap-history"
-                        : "/authentication/signin"
-                    }
-                  >
-                    <li>
-                      <a href="">{t("Swap History")}</a>
-                    </li>
-                  </Link>
-                  <Link
-                    href={
-                      isLoggedIn
-                        ? "/user/buy-order-history"
-                        : "/authentication/signin"
-                    }
-                  >
-                    <li>
-                      <a href="">{t("Buy Order History")}</a>
-                    </li>
-                  </Link>
-                  <Link
-                    href={
-                      isLoggedIn
-                        ? "/user/sell-order-history"
-                        : "/authentication/signin"
-                    }
-                  >
-                    <li>
-                      <a href="">{t("Sell Order History")}</a>
-                    </li>
-                  </Link>
-                  <Link
-                    href={
-                      isLoggedIn
-                        ? "/user/transaction-history"
-                        : "/authentication/signin"
-                    }
-                  >
-                    <li>
-                      <a href="">{t("Transaction History")}</a>
-                    </li>
-                  </Link>
-                </ul>
-              </li>
-              <li>
-                <a className="arrow-icon" href="#" aria-expanded="true">
-                  <span className="cp-user-icon">
-                    <img
-                      src=""
-                      className="img-fluid cp-user-side-bar-icon"
-                      alt=""
-                    />
-                    <img
-                      src=""
-                      className="img-fluid cp-user-side-bar-icon-hover"
-                      alt=""
-                    />
-                  </span>
-                  <span className="cp-user-name">{t("My Profile")}</span>
-                </a>
-                <ul>
-                  <Link
-                    href={
-                      isLoggedIn ? "/user/profile" : "/authentication/signin"
-                    }
-                  >
-                    <li>
-                      <a href="">{t("Profile")}</a>
-                    </li>
-                  </Link>
-                  <Link
-                    href={
-                      isLoggedIn
-                        ? "/user/edit-profile"
-                        : "/authentication/signin"
-                    }
-                  >
-                    <li>
-                      <a href="">{t("Edit Profile")}</a>
-                    </li>
-                  </Link>
-                  <Link
-                    href={
-                      isLoggedIn
-                        ? "/user/phone-verification"
-                        : "/authentication/signin"
-                    }
-                  >
-                    <li>
-                      <a href="">{t("Phone Verification")}</a>
-                    </li>
-                  </Link>
-                  <Link
-                    href={
-                      isLoggedIn ? "/user/security" : "/authentication/signin"
-                    }
-                  >
-                    <li>
-                      <a href="">{t("Security")}</a>
-                    </li>
-                  </Link>
-                  <Link
-                    href={
-                      isLoggedIn
-                        ? "/user/verification-list"
-                        : "/authentication/signin"
-                    }
-                  >
-                    <li>
-                      <a href="">{t("Verification List")}</a>
-                    </li>
-                  </Link>
-                  <Link
-                    href={
-                      isLoggedIn
-                        ? "/user/personal-verification"
-                        : "/authentication/signin"
-                    }
-                  >
-                    <li>
-                      <a href="">{t("Personal Verification")}</a>
-                    </li>
-                  </Link>
-                  <Link
-                    href={
-                      isLoggedIn
-                        ? "/user/change-password"
-                        : "/authentication/signin"
-                    }
-                  >
-                    <li>
-                      <a href="">{t("Change Password")}</a>
-                    </li>
-                  </Link>
-                </ul>
-              </li>
-              <li>
-                <Link href="/user/referral">
-                  <a>
                     <span className="cp-user-icon">
                       <img
                         src=""
@@ -1042,49 +803,295 @@ const Navbar = () => {
                         alt=""
                       />
                     </span>
-                    <span className="cp-user-name">{t("My Referral")}</span>
+                    <span className="cp-user-name">{t("Dashboard")}</span>
                   </a>
-                </Link>
-              </li>
-              <li>
-                <a className="arrow-icon" href="#" aria-expanded="true">
-                  <span className="cp-user-icon">
-                    <img
-                      src=""
-                      className="img-fluid cp-user-side-bar-icon"
-                      alt=""
-                    />
-                    <img
-                      src=""
-                      className="img-fluid cp-user-side-bar-icon-hover"
-                      alt=""
-                    />
-                  </span>
-                  <span className="cp-user-name">{t("Settings")}</span>
-                </a>
-                <ul>
-                  <Link
-                    href={
-                      isLoggedIn ? "/user/settings" : "/authentication/signin"
-                    }
-                  >
-                    <li>
-                      <a href="">{t("My Settings")}</a>
-                    </li>
+                </li>
+
+                <li>
+                  <a className="arrow-icon" href="#" aria-expanded="true">
+                    <span className="cp-user-icon">
+                      <img
+                        src=""
+                        className="img-fluid cp-user-side-bar-icon"
+                        alt=""
+                      />
+                      <img
+                        src=""
+                        className="img-fluid cp-user-side-bar-icon-hover"
+                        alt=""
+                      />
+                    </span>
+                    <span className="cp-user-name">{t("Wallet")}</span>
+                  </a>
+                  <ul>
+                    <Link
+                      href={
+                        isLoggedIn
+                          ? "/user/my-wallet"
+                          : "/authentication/signin"
+                      }
+                    >
+                      <li>
+                        <a href="">{t("My Wallet")}</a>
+                      </li>
+                    </Link>
+                    <Link
+                      href={isLoggedIn ? "/deposit" : "/authentication/signin"}
+                    >
+                      <li>
+                        <a href="">{t("Swap Coin")}</a>
+                      </li>
+                    </Link>
+
+                    <Link
+                      href={
+                        isLoggedIn
+                          ? "/user/swap-coin"
+                          : "/authentication/signin"
+                      }
+                    >
+                      <li>
+                        <a href="">{t("Fiat Deposit")}</a>
+                      </li>
+                    </Link>
+                  </ul>
+                </li>
+                <li>
+                  <a className="arrow-icon" href="#" aria-expanded="true">
+                    <span className="cp-user-icon">
+                      <img
+                        src=""
+                        className="img-fluid cp-user-side-bar-icon"
+                        alt=""
+                      />
+                      <img
+                        src=""
+                        className="img-fluid cp-user-side-bar-icon-hover"
+                        alt=""
+                      />
+                    </span>
+                    <span className="cp-user-name">{t("Reports")}</span>
+                  </a>
+                  <ul>
+                    <Link
+                      href={
+                        isLoggedIn
+                          ? "/user/wallet-history?type=deposit"
+                          : "/authentication/signin"
+                      }
+                    >
+                      <li>
+                        <a href="">{t("Deposit History")}</a>
+                      </li>
+                    </Link>
+                    <Link
+                      href={
+                        isLoggedIn
+                          ? "/user/wallet-history?type=withdrawal"
+                          : "/authentication/signin"
+                      }
+                    >
+                      <li>
+                        <a href="">{t("Withdrawal History")}</a>
+                      </li>
+                    </Link>
+                    <Link
+                      href={
+                        isLoggedIn
+                          ? "/user/swap-history"
+                          : "/authentication/signin"
+                      }
+                    >
+                      <li>
+                        <a href="">{t("Swap History")}</a>
+                      </li>
+                    </Link>
+                    <Link
+                      href={
+                        isLoggedIn
+                          ? "/user/buy-order-history"
+                          : "/authentication/signin"
+                      }
+                    >
+                      <li>
+                        <a href="">{t("Buy Order History")}</a>
+                      </li>
+                    </Link>
+                    <Link
+                      href={
+                        isLoggedIn
+                          ? "/user/sell-order-history"
+                          : "/authentication/signin"
+                      }
+                    >
+                      <li>
+                        <a href="">{t("Sell Order History")}</a>
+                      </li>
+                    </Link>
+                    <Link
+                      href={
+                        isLoggedIn
+                          ? "/user/transaction-history"
+                          : "/authentication/signin"
+                      }
+                    >
+                      <li>
+                        <a href="">{t("Transaction History")}</a>
+                      </li>
+                    </Link>
+                  </ul>
+                </li>
+                <li>
+                  <a className="arrow-icon" href="#" aria-expanded="true">
+                    <span className="cp-user-icon">
+                      <img
+                        src=""
+                        className="img-fluid cp-user-side-bar-icon"
+                        alt=""
+                      />
+                      <img
+                        src=""
+                        className="img-fluid cp-user-side-bar-icon-hover"
+                        alt=""
+                      />
+                    </span>
+                    <span className="cp-user-name">{t("My Profile")}</span>
+                  </a>
+                  <ul>
+                    <Link
+                      href={
+                        isLoggedIn ? "/user/profile" : "/authentication/signin"
+                      }
+                    >
+                      <li>
+                        <a href="">{t("Profile")}</a>
+                      </li>
+                    </Link>
+                    <Link
+                      href={
+                        isLoggedIn
+                          ? "/user/edit-profile"
+                          : "/authentication/signin"
+                      }
+                    >
+                      <li>
+                        <a href="">{t("Edit Profile")}</a>
+                      </li>
+                    </Link>
+                    <Link
+                      href={
+                        isLoggedIn
+                          ? "/user/phone-verification"
+                          : "/authentication/signin"
+                      }
+                    >
+                      <li>
+                        <a href="">{t("Phone Verification")}</a>
+                      </li>
+                    </Link>
+                    <Link
+                      href={
+                        isLoggedIn ? "/user/security" : "/authentication/signin"
+                      }
+                    >
+                      <li>
+                        <a href="">{t("Security")}</a>
+                      </li>
+                    </Link>
+                    <Link
+                      href={
+                        isLoggedIn
+                          ? "/user/verification-list"
+                          : "/authentication/signin"
+                      }
+                    >
+                      <li>
+                        <a href="">{t("Verification List")}</a>
+                      </li>
+                    </Link>
+                    <Link
+                      href={
+                        isLoggedIn
+                          ? "/user/personal-verification"
+                          : "/authentication/signin"
+                      }
+                    >
+                      <li>
+                        <a href="">{t("Personal Verification")}</a>
+                      </li>
+                    </Link>
+                    <Link
+                      href={
+                        isLoggedIn
+                          ? "/user/change-password"
+                          : "/authentication/signin"
+                      }
+                    >
+                      <li>
+                        <a href="">{t("Change Password")}</a>
+                      </li>
+                    </Link>
+                  </ul>
+                </li>
+                <li>
+                  <Link href="/user/referral">
+                    <a>
+                      <span className="cp-user-icon">
+                        <img
+                          src=""
+                          className="img-fluid cp-user-side-bar-icon"
+                          alt=""
+                        />
+                        <img
+                          src=""
+                          className="img-fluid cp-user-side-bar-icon-hover"
+                          alt=""
+                        />
+                      </span>
+                      <span className="cp-user-name">{t("My Referral")}</span>
+                    </a>
                   </Link>
-                  <Link
-                    href={isLoggedIn ? "/user/faq" : "/authentication/signin"}
-                  >
-                    <li>
-                      <a href="">{t("FAQ")}</a>
-                    </li>
-                  </Link>
-                </ul>
-              </li>
-            </ul>
-          </nav>
+                </li>
+                <li>
+                  <a className="arrow-icon" href="#" aria-expanded="true">
+                    <span className="cp-user-icon">
+                      <img
+                        src=""
+                        className="img-fluid cp-user-side-bar-icon"
+                        alt=""
+                      />
+                      <img
+                        src=""
+                        className="img-fluid cp-user-side-bar-icon-hover"
+                        alt=""
+                      />
+                    </span>
+                    <span className="cp-user-name">{t("Settings")}</span>
+                  </a>
+                  <ul>
+                    <Link
+                      href={
+                        isLoggedIn ? "/user/settings" : "/authentication/signin"
+                      }
+                    >
+                      <li>
+                        <a href="">{t("My Settings")}</a>
+                      </li>
+                    </Link>
+                    <Link
+                      href={isLoggedIn ? "/user/faq" : "/authentication/signin"}
+                    >
+                      <li>
+                        <a href="">{t("FAQ")}</a>
+                      </li>
+                    </Link>
+                  </ul>
+                </li>
+              </ul>
+            </nav>
+          </div>
         </div>
-      </div>
+      </OutsideClickHandler>
     </>
   );
 };
