@@ -222,7 +222,7 @@ const MyWallet: NextPage = ({
                   <h2 className="section-top-title">{t("Overview")}</h2>
                   <h4 className="blance-title">{t("Total balance")}</h4>
                   <h4 className="blance">
-                    {allData?.total ? formatCurrency(allData?.total) : 0}
+                    {allData?.total ? parseFloat(allData?.total) : 0}
                     {""} {settings?.currency}
                   </h4>
                 </div>
@@ -373,7 +373,7 @@ const MyWallet: NextPage = ({
                                   </span>
                                   <span className="usd">
                                     ({settings?.currency_symbol}
-                                    {formatCurrency(item?.total_balance_usd)})
+                                    {parseFloat(item?.total_balance_usd).toFixed(8)})
                                   </span>
                                 </div>
                               </td>
