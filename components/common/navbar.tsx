@@ -699,15 +699,23 @@ const Navbar = () => {
                             </span>
                           </button>
                           <div className="dropdown-menu dropdown-menu-right">
-                            <span className="big-user-thumb">
+                            <p
+                              className={`${
+                                user?.online_status?.online_status
+                                  ? "userActive"
+                                  : "userDeactive"
+                              } big-user-thumb`}
+                            >
                               <img
                                 src={user?.photo}
-                                className="img-fluid"
+                                className="img-fluid profile-avatar"
                                 alt=""
                               />
-                            </span>
+                            </p>
                             <div className="user-name">
-                              <p>{user?.first_name!}</p>
+                              <p className="nav-userName">
+                                {user?.first_name!} {user?.last_name!}
+                              </p>
                             </div>
                             <Link href="/user/profile">
                               <button className="dropdown-item" type="button">
