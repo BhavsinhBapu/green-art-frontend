@@ -365,9 +365,10 @@ const Navbar = () => {
                           : ""
                       }
                     >
-                      <a href="">
-                        <span className="cp-user-icon">
-                          {/* <img
+                      <Link href="/user/referral">
+                        <a>
+                          <span className="cp-user-icon">
+                            {/* <img
                             src="/sidebar-icons/referral.svg"
                             className="img-fluid cp-user-side-bar-icon"
                             alt=""
@@ -377,10 +378,13 @@ const Navbar = () => {
                             className="img-fluid cp-user-side-bar-icon-hover"
                             alt=""
                           /> */}
-                          <BiNetworkChart />
-                        </span>
-                        <span className="cp-user-name">{t("My Referral")}</span>
-                      </a>
+                            <BiNetworkChart />
+                          </span>
+                          <span className="cp-user-name">
+                            {t("My Referral")}
+                          </span>
+                        </a>
+                      </Link>
                     </li>
                   </Link>
                   <li
@@ -817,12 +821,20 @@ const Navbar = () => {
                     </li>
                   </Link>
                   <Link
+                    href={isLoggedIn ? "/deposit" : "/authentication/signin"}
+                  >
+                    <li>
+                      <a href="">{t("Swap Coin")}</a>
+                    </li>
+                  </Link>
+
+                  <Link
                     href={
                       isLoggedIn ? "/user/swap-coin" : "/authentication/signin"
                     }
                   >
                     <li>
-                      <a href="">{t("Swap Coin")}</a>
+                      <a href="">{t("Fiat Deposit")}</a>
                     </li>
                   </Link>
                 </ul>
@@ -1005,21 +1017,23 @@ const Navbar = () => {
                 </ul>
               </li>
               <li>
-                <a href="">
-                  <span className="cp-user-icon">
-                    <img
-                      src=""
-                      className="img-fluid cp-user-side-bar-icon"
-                      alt=""
-                    />
-                    <img
-                      src=""
-                      className="img-fluid cp-user-side-bar-icon-hover"
-                      alt=""
-                    />
-                  </span>
-                  <span className="cp-user-name">{t("My Referral")}</span>
-                </a>
+                <Link href="/user/referral">
+                  <a>
+                    <span className="cp-user-icon">
+                      <img
+                        src=""
+                        className="img-fluid cp-user-side-bar-icon"
+                        alt=""
+                      />
+                      <img
+                        src=""
+                        className="img-fluid cp-user-side-bar-icon-hover"
+                        alt=""
+                      />
+                    </span>
+                    <span className="cp-user-name">{t("My Referral")}</span>
+                  </a>
+                </Link>
               </li>
               <li>
                 <a className="arrow-icon" href="#" aria-expanded="true">
