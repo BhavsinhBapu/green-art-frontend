@@ -92,7 +92,7 @@ const DeposiAndWithdraw = ({
 
             <div className={`col-md-5`}>
               <div className={`box-one single-box visible`}>
-                <div className="section-wrapper">
+                <div className="section-wrapper boxShadow">
                   <FAQ faqs={faqs} type={router.query.id} />
                 </div>
               </div>
