@@ -46,7 +46,7 @@ const Settings: NextPage = ({
           </div>
           <div className="setting-area">
             <div className="container">
-              <div className="setting-bg">
+              <div className="setting-bg boxShadow  ">
                 <div className="row">
                   <div className="col-xl-6 mb-xl-0 mb-4">
                     <div className="cp-user-setting-card">

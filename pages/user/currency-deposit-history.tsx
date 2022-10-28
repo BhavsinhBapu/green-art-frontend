@@ -147,7 +147,7 @@ const CurrencyDepositHistory = ({
             </div>
             <div className="asset-balances-area">
               <div className="asset-balances-left">
-                <div className="section-wrapper">
+                <div className="section-wrapper boxShadow">
                   <div className="table-responsive tableScroll">
                     <div
                       id="assetBalances_wrapper"
