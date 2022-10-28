@@ -39,6 +39,7 @@ const Index = ({ children }: any) => {
     const response = await commomSettings();
     dispatch(setLogo(response.data.logo));
     dispatch(setSettings(response.data));
+    console.log(response.data.theme_color, "response.data.theme_color");
     setMetaData(response.data);
     dispatch(setLoading(false));
     //  --primary-color: #fcd535;
@@ -68,6 +69,15 @@ const Index = ({ children }: any) => {
 
     // --background-color-hover: #fafafa;
 
+    response.data.theme_color.map((themeColors: any) => {
+      if (!themeColors.value) {
+        return;
+      }
+      document.documentElement.style.setProperty(
+        themeColors.name,
+        themeColors.value
+      );
+    });
     // document.documentElement.style.setProperty("--primary-color", "#e17055");
     // document.documentElement.style.setProperty("--hover-color", "#e17055");
   };
