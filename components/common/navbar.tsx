@@ -687,7 +687,13 @@ const Navbar = () => {
                             aria-expanded="false"
                           >
                             <span className="cp-user-avater">
-                              <span className="cp-user-img">
+                              <span
+                                className={`${
+                                  user?.online_status?.online_status
+                                    ? "tradeUserActive"
+                                    : "tradeUserDeactive"
+                                } cp-user-img`}
+                              >
                                 {user?.photo && (
                                   <img
                                     src={user?.photo}
