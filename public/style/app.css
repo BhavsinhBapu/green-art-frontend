@@ -43,7 +43,7 @@ Tags: admin, best react admin template, das
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 :root {
-  --primary-color: #9b59b6;
+  --primary-color: #fcd535;
   --text-primary-color: #ffff;
   --text-primary-color-2: #23262f;
   --text-primary-color-3: #777778;
@@ -53,7 +53,7 @@ Tags: admin, best react admin template, das
   --border-color-1: #e6e8ec;
   --border-color-2: #353535;
 
-  --hover-color: #8e44ad;
+  --hover-color: #f7cf33;
   --font-color: #2a2a2d;
   --bColor: #424242;
   --title-color: #141414;
@@ -62,6 +62,7 @@ Tags: admin, best react admin template, das
   --color-pallet-1: #b4b8d7;
 
   --background-color: #151515;
+  --background-color-trade: #2a2e37;
   --main-background-color: #ffff;
   --card-background-color: #ffffff;
   --table-background-color: #dad6d6;

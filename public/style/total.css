@@ -226,8 +226,7 @@ p {
   width: 100%;
   top: 0;
   left: 0;
-  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
-    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  box-shadow: rgb(99 99 99 / 20%) 0px 2px 8px 0px;
 }
 
 .dark-board {
@@ -3751,7 +3750,7 @@ body._toggle .swipe-area-overlay:before {
   justify-content: space-between;
   padding: 12px 15px;
   border-radius: 2px;
-  background: var(--background-color);
+  background: var(--background-color-trade);
 }
 
 .exchange-area .cp-user-profile-info .form-control {
@@ -4316,7 +4315,7 @@ select:-webkit-autofill:focus {
   transition: all 0.3s;
 }
 .main-menu ul li ul li a:hover {
-  color: #ffc107 !important;
+  color: var(--primary-color) !important;
 }
 .main-menu ul li a {
   display: flex;
@@ -4324,7 +4323,7 @@ select:-webkit-autofill:focus {
   background: transparent;
   font-size: 14px;
   font-weight: 400;
-  color: var(--text-primary-color-2) !important;
+  color: var(--text-primary-color-3) !important;
 }
 .main-menu ul li:hover a {
   color: var(--primary-color);
@@ -4355,7 +4354,7 @@ select:-webkit-autofill:focus {
   display: block;
 }
 .main-menu ul li.cp-user-active-page a {
-  color: var(--hover-color) !important;
+  color: var(--primary-color) !important;
 }
 .main-menu ul li ul li.cp-user-active-page a {
   color: var(--primary-color);
@@ -8572,7 +8571,7 @@ a.paginate_button.paginate-number:hover {
 }
 a.paginate_button.paginate-number.text-warning {
   background: var(--primary-color) !important;
-  color: var(--title-color) !important;
+  color: var(--text-primary-color-4) !important;
 }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button.previous,
@@ -9242,7 +9241,7 @@ table.dataTable thead .sorting_desc_disabled:after {
 .percent-btn {
   color: var(--text-primary-color);
   width: 10px !important;
-  border: 1px solid #ffc107;
+  border: 1px solid var(--primary-color);
   display: flex;
   cursor: pointer;
   align-items: center;
@@ -9496,7 +9495,7 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
   left: 0;
   top: 0;
   z-index: 9999;
-  background: rgb(0 0 0 / 83%);
+  background: rgb(0 0 0 / 95%);
   color: var(--text-primary-color-4) !important;
 }
 .preloder-area .spinner-border {
@@ -9712,7 +9711,7 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
 }
 table.dataTable thead tr th {
   font-size: 12px;
-  color: rgb(132, 142, 156);
+  color: rgb(132, 142, 156) !important;
 }
 .buy-order table.dataTable tbody tr td {
   font-size: 12px;
