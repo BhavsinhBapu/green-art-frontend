@@ -423,7 +423,7 @@ const MyWallet: NextPage = ({
                                       )}
                                       {/* </OutsideClickHandler> */}
                                     </li>
-                                    {coinList.length > 1 ? (
+                                    {Changeable.length >= 2 ? (
                                       <Link
                                         href={`/user/swap-coin?coin_id=${item.id}`}
                                       >
