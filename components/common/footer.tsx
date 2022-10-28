@@ -8,7 +8,6 @@ import { RootState } from "state/store";
 const Footer = ({ customPageData, socialData, copyright_text }: any) => {
   const { t } = useTranslation("common");
   const { settings } = useSelector((state: RootState) => state.common);
-  console.log(customPageData);
 
   return (
     <footer className="footer-area pt--70">
