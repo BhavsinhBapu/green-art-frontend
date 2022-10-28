@@ -40,8 +40,8 @@ const Profile: NextPage = ({
                         <div
                           className={`${
                             user?.online_status?.online_status
-                              ? "userActive"
-                              : "userDeactive"
+                              ? "userProfileActive"
+                              : "userProfileDeactive"
                           } user-thumbnail`}
                         >
                           <img
