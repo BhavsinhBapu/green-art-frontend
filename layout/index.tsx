@@ -68,8 +68,8 @@ const Index = ({ children }: any) => {
 
     // --background-color-hover: #fafafa;
 
-    document.documentElement.style.setProperty("--primary-color", "#e17055");
-    document.documentElement.style.setProperty("--hover-color", "#e17055");
+    // document.documentElement.style.setProperty("--primary-color", "#e17055");
+    // document.documentElement.style.setProperty("--hover-color", "#e17055");
   };
 
   useEffect(() => {
