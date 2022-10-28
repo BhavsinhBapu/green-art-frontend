@@ -520,10 +520,11 @@ p {
 .cp-user-top-bar-right .profile-dropdown .dropdown-menu .big-user-thumb {
   width: 80px;
   height: 80px;
-  overflow: hidden;
+  /* overflow: hidden; */
   display: block;
   object-fit: cover;
   margin: 12px auto 14px;
+  position: relative;
 }
 .profile-dropdown .dropdown-menu .big-user-thumb img {
   vertical-align: baseline;
@@ -8693,7 +8694,7 @@ table.dataTable thead .sorting_asc:after {
 .profile-dropdown .dropdown-menu .big-user-thumb {
   width: 80px;
   height: 80px;
-  overflow: hidden;
+  /* overflow: hidden; */
   display: block;
   object-fit: cover;
   margin: 12px auto 14px;
@@ -10284,6 +10285,46 @@ input[type="number"] {
 }
 .boxShadow {
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.nav-userName {
+  color: var(--text-primary-color);
+}
+.profile-status-area {
+  padding: 30px;
+  margin-top: 20px;
+}
+.profile-status-area h5 {
+  margin-bottom: 20px;
+}
+.activeStatus {
+  height: 20px;
+  width: 20px;
+  background: #0de06d;
+  position: absolute;
+  right: 0;
+  border-radius: 50%;
+  z-index: 9999999;
+}
+.userActive:before {
+  height: 20px;
+  width: 20px;
+  background: #3ee73e;
+  content: "";
+  top: 55px;
+  right: 0;
+  position: absolute;
+  border-radius: 50%;
+}
+
+.userDeactive:before {
+  height: 20px;
+  width: 20px;
+  background: #808080;
+  content: "";
+  top: 50px;
+  right: 0;
+  position: absolute;
+  border-radius: 50%;
 }
 
 /* .tableScroll {
