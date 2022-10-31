@@ -33,7 +33,7 @@ const SelectCurrencyRight = () => {
         backgroundColor: "#151515",
         color: "rgb(183, 189, 198)",
         borderColor: "#151515",
-        fontSize: "14px",
+        fontSize: "12px",
       },
     },
   };
