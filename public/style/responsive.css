@@ -132,6 +132,10 @@
   }
 }
 @media (max-width: 768px) {
+  .faq-wallet-section {
+    margin-top: 20px;
+  }
+
   .userActive:before {
     height: 20px;
     width: 20px;
