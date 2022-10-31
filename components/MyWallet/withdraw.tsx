@@ -13,7 +13,7 @@ import {
   WITHDRAW_FESS_PERCENT,
 } from "helpers/core-constants";
 
-export const WithdrawComponent = ({ responseData, router }: any) => {
+export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
   const { t } = useTranslation("common");
   const { settings } = useSelector((state: RootState) => state.common);
   const [selectedNetwork, setSelectedNetwork] = React.useState(
@@ -68,7 +68,7 @@ export const WithdrawComponent = ({ responseData, router }: any) => {
   }, [selectedNetwork?.network_type]);
 
   return (
-    <div className={`col-md-7`}>
+    <div className={fullPage ? "col-md-12" : `col-md-7`}>
       <div className="single-wallet boxShadow">
         <div className="box-two single-box visible">
           <div className="">
