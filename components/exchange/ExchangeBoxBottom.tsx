@@ -82,7 +82,6 @@ const ExchangeBoxBottom = () => {
   };
 
   useEffect(() => {
-    console.log("initial setup calling");
     initialSetUp();
   }, [currentPair, dashboard, tradingTab]);
 

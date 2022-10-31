@@ -162,7 +162,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const { data: customPageData } = await customPage();
   const cookies = parseCookies(ctx);
   const response = await GetUserInfoByTokenServer(cookies.token);
-  console.log(response.activityLog, "user data ####");
 
   return {
     props: {

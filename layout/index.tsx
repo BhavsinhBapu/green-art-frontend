@@ -39,7 +39,6 @@ const Index = ({ children }: any) => {
     const response = await commomSettings();
     dispatch(setLogo(response.data.logo));
     dispatch(setSettings(response.data));
-    console.log(response.data.theme_color, "response.data.theme_color");
     setMetaData(response.data);
     dispatch(setLoading(false));
     //  --primary-color: #fcd535;
