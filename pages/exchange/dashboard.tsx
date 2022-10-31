@@ -38,9 +38,15 @@ async function listenMessages(dispatch: any) {
     enabledTransports: ["ws", "wss"],
   });
   //@ts-ignore
-  window.Echo.channel("dashboard").listen(".order_place", (e) => {
+  // dashboard-base_coin_id-trade_coin_id
+  window.Echo.channel(
+    `dashboard-${localStorage.getItem("base_coin_id")}-${localStorage.getItem(
+      "trade_coin_id"
+    )}`
+  ).listen(".order_place", (e: any) => {
     if (e.order_type === "buy") dispatch(setOpenBookBuy(e.orders));
     if (e.order_type === "sell") dispatch(setOpenBooksell(e.orders));
+
   });
   //@ts-ignore
   window.Echo.channel(
