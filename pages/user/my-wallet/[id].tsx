@@ -24,6 +24,8 @@ import { getFaqList } from "service/faq";
 import FAQ from "components/FAQ";
 import Footer from "components/common/footer";
 import { customPage, landingPage } from "service/landing-page";
+import { RootState } from "state/store";
+import { useSelector } from "react-redux";
 
 const DeposiAndWithdraw = ({
   faq,
@@ -32,6 +34,8 @@ const DeposiAndWithdraw = ({
   copyright_text,
 }: any) => {
   const router = useRouter();
+  const [fullPage, setFullPage] = useState(false);
+  const { settings } = useSelector((state: RootState) => state.common);
   const { t } = useTranslation("common");
   const [faqs, setFaqs] = useState<any>([]);
 
@@ -64,9 +68,19 @@ const DeposiAndWithdraw = ({
       }
     }
   };
-
+  const checkFullPageStatus = () => {
+    if (
+      parseInt(settings.withdrawal_faq_status) !== 1 &&
+      router.query.id === MY_WALLET_WITHDRAW_TYPE
+    ) {
+      setFullPage(true);
+    } else if (parseInt(settings.coin_deposit_faq_status) !== 1) {
+      setFullPage(true);
+    }
+  };
   useEffect(() => {
     setFaqs(faq.data.data);
+    checkFullPageStatus();
     handleWithdrawAndDeposit(
       String(router.query.id),
       Number(router.query.coin_id)
@@ -83,20 +97,39 @@ const DeposiAndWithdraw = ({
                 responseData={responseData}
                 router={router}
                 setDependecy={setDependecy}
+                fullPage={fullPage}
               />
             )}
 
             {router.query.id === MY_WALLET_WITHDRAW_TYPE && (
-              <WithdrawComponent responseData={responseData} router={router} />
+              <WithdrawComponent
+                responseData={responseData}
+                router={router}
+                fullPage={fullPage}
+              />
             )}
 
-            <div className={`col-md-5 faq-wallet-section`}>
-              <div className={`box-one single-box visible`}>
-                <div className="section-wrapper boxShadow">
-                  <FAQ faqs={faqs} type={router.query.id} />
+            {parseInt(settings.withdrawal_faq_status) === 1 &&
+            router.query.id === MY_WALLET_WITHDRAW_TYPE ? (
+              <div className={`col-md-5 faq-wallet-section`}>
+                <div className={`box-one single-box visible`}>
+                  <div className="section-wrapper boxShadow">
+                    <FAQ faqs={faqs} type={router.query.id} />
+                  </div>
                 </div>
               </div>
-            </div>
+            ) : parseInt(settings.coin_deposit_faq_status) === 1 &&
+              router.query.id === MY_WALLET_DEPOSIT_TYPE ? (
+              <div className={`col-md-5 faq-wallet-section`}>
+                <div className={`box-one single-box visible`}>
+                  <div className="section-wrapper boxShadow">
+                    <FAQ faqs={faqs} type={router.query.id} />
+                  </div>
+                </div>
+              </div>
+            ) : (
+              ""
+            )}
           </div>
         </div>
       </div>
