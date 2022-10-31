@@ -11,6 +11,7 @@ export const DipositComponent = ({
   responseData,
   router,
   setDependecy,
+  fullPage,
 }: any) => {
   const { t } = useTranslation("common");
   const [selectedNetwork, setSelectedNetwork] = useState(
@@ -25,7 +26,7 @@ export const DipositComponent = ({
     }
   }, [responseData?.data[0]]);
   return (
-    <div className={`col-md-7`}>
+    <div className={fullPage ? "col-md-12" : `col-md-7`}>
       <div className="single-wallet boxShadow">
         <div className={`box-one single-box visible`}>
           <div className="">
