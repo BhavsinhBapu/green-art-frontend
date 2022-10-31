@@ -75,8 +75,8 @@ const DeposiAndWithdraw = ({
 
   return (
     <>
-      <div className="page-wrap my-wallet-page rightMargin">
-        <div className="container ">
+      <div className="page-wrap my-wallet-page">
+        <div className="container">
           <div className="row">
             {router.query.id === MY_WALLET_DEPOSIT_TYPE && (
               <DipositComponent
@@ -90,7 +90,7 @@ const DeposiAndWithdraw = ({
               <WithdrawComponent responseData={responseData} router={router} />
             )}
 
-            <div className={`col-md-5`}>
+            <div className={`col-md-5 faq-wallet-section`}>
               <div className={`box-one single-box visible`}>
                 <div className="section-wrapper boxShadow">
                   <FAQ faqs={faqs} type={router.query.id} />

@@ -5,6 +5,7 @@ import { GetWalletAddressAction } from "state/actions/wallet";
 import Qr from "components/common/qr";
 import { IoIosArrowBack } from "react-icons/io";
 import Link from "next/link";
+import QRCode from "react-qr-code";
 
 export const DipositComponent = ({
   responseData,
@@ -24,17 +25,141 @@ export const DipositComponent = ({
     }
   }, [responseData?.data[0]]);
   return (
-    <div className={`col-md-7 `}>
-      <div className={`box-one single-box visible`}>
-        <div className="section-wrapper boxShadow">
-          <Link href="/user/my-wallet">
-            <div className="wallet-back">
-              <IoIosArrowBack className="wallet-backIcon" size={25} />
-              <a href="">{t("My Wallet")}</a>
-            </div>
-          </Link>
+    <div className={`col-md-7`}>
+      <div className="single-wallet boxShadow">
+        <div className={`box-one single-box visible`}>
+          <div className="">
+            <Link href="/user/my-wallet">
+              <div className="wallet-back">
+                <IoIosArrowBack className="wallet-backIcon" size={25} />
+                <a href="">{t("My Wallet")}</a>
+              </div>
+            </Link>
 
-          <div className="deposit-info-area" id="wallet_deposit_area">
+            <div className="my-wallet-new">
+              <h5>{t("Total Balance")}</h5>
+              <div className="coin-list-item">
+                <div className="coint-flex">
+                  <img
+                    className="icon"
+                    src={responseData?.deposit?.coin_icon || "/bitcoin.png"}
+                    alt="coin"
+                    width="25px"
+                    height="25px"
+                  />
+                  <h6>{responseData?.deposit?.coin_type}</h6>
+                </div>
+
+                <p className="coin-price">
+                  {responseData?.deposit?.balance
+                    ? formateZert(responseData?.deposit?.balance) +
+                      " " +
+                      responseData?.deposit?.coin_type
+                    : "Loading.."}
+                </p>
+              </div>
+
+              <div className="wallet-addres">
+                <h5>{t("Address")}</h5>
+                <div className="coin-list-item">
+                  <p className="waring-wallet-text">
+                    {t(
+                      `Only send ${responseData?.deposit?.coin_type} to this address. Sending any others asset to this adress may result in the loss of your deposit!`
+                    )}
+                  </p>
+                </div>
+              </div>
+
+              <div className="wallet-addres-generate">
+                <div className="coin-list-item">
+                  <div className="wallet-bar-code">
+                    {responseData?.address &&
+                      responseData?.wallet.coin_type !== "USDT" && (
+                        <QRCode value={responseData?.address} size={150} />
+                      )}
+
+                    <div className="copy-box">
+                      <div className="input-url input-copy">
+                        {selectedNetwork?.address ? (
+                          <>
+                            <input
+                              onClick={() => {
+                                copyTextById(
+                                  responseData?.wallet.coin_type == "USDT"
+                                    ? selectedNetwork?.address
+                                    : responseData?.address
+                                );
+                                selectAddressCopy?.current.select();
+                              }}
+                              ref={selectAddressCopy}
+                              className="address-box address-copy-box"
+                              type="text"
+                              value={
+                                responseData?.wallet.coin_type == "USDT"
+                                  ? selectedNetwork?.address
+                                  : responseData?.address
+                              }
+                            />
+
+                            <span
+                              className="btn copy-url-btn"
+                              onClick={() => {
+                                copyTextById(
+                                  responseData?.wallet.coin_type == "USDT"
+                                    ? selectedNetwork?.address
+                                    : responseData?.address
+                                );
+                                selectAddressCopy?.current?.select();
+                              }}
+                            >
+                              <i className="fa fa-clone"></i>
+                            </span>
+                          </>
+                        ) : responseData?.address &&
+                          responseData?.wallet.coin_type !== "USDT" ? (
+                          <>
+                            <input
+                              onClick={() => {
+                                copyTextById(
+                                  responseData?.wallet.coin_type == "USDT"
+                                    ? selectedNetwork?.address
+                                    : responseData?.address
+                                );
+                                selectAddressCopy?.current.select();
+                              }}
+                              ref={selectAddressCopy}
+                              className="address-box address-copy-box"
+                              type="text"
+                              value={responseData?.address}
+                            />
+
+                            <span
+                              className="copy-url-btn cp-button"
+                              onClick={() => {
+                                copyTextById(responseData?.address);
+                                selectAddressCopy?.current?.select();
+                              }}
+                            >
+                              <i className="fa fa-clone"></i>
+                            </span>
+                          </>
+                        ) : (
+                          <p
+                            ref={selectAddressCopy}
+                            id="url-copy"
+                            className="address-box"
+                          >
+                            {t("No address found!")}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* <div className="deposit-info-area" id="wallet_deposit_area">
             <div className="deposit-info-top">
               <div className="balance-box">
                 <img
@@ -210,6 +335,7 @@ export const DipositComponent = ({
                   )}
               </div>
             </div>
+          </div> */}
           </div>
         </div>
       </div>
