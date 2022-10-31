@@ -10375,3 +10375,63 @@ input[type="number"] {
   max-width: 95vw;
   padding-right: 30px;
 } */
+.single-wallet {
+  margin: 0 auto;
+  background: #fbfbfb;
+  padding: 50px 20px 50px 20px;
+}
+.my-wallet-new {
+  padding: 20px;
+}
+.coin-list-item {
+  margin-top: 20px;
+  display: flex;
+  color: var(--font-color);
+  font-size: 16px;
+  font-weight: 600;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--white);
+  padding: 20px 20px;
+  border-radius: 5px;
+  border: 1px solid var(--border-color);
+}
+.coin-list-item .coint-flex {
+  display: flex;
+  align-items: center;
+}
+.coin-list-item .coint-flex h6 {
+  margin-left: 10px;
+  font-size: 16px;
+}
+.coin-list-item .coin-price {
+  font-size: 16px;
+  font-weight: 600;
+}
+.wallet-addres {
+  margin-top: 40px;
+}
+.waring-wallet-text {
+  line-height: 1.4;
+  font-weight: 500;
+}
+.wallet-bar-code {
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+  padding: 20px 0px 10px 0px;
+}
+.input-copy {
+  max-width: 350px;
+  align-items: center;
+  padding: 0;
+  justify-content: flex-start;
+  margin: 0 auto;
+}
+.input-copy .cp-button {
+  display: inline-block;
+}
+.input-copy .address-box {
+  font-size: 16px;
+}
+
