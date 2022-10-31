@@ -30,3 +30,7 @@ export const MY_WALLET_WITHDRAW_TYPE = "withdraw";
 //Foter Menu
 export const CUSTOM_PAGE_LINK_PAGE = 1;
 export const CUSTOM_PAGE_LINK_URL = 2;
+
+// Wallet Type
+export const WITHDRAW_FESS_FIXED = 1;
+export const WITHDRAW_FESS_PERCENT = 2;
