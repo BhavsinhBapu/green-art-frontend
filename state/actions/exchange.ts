@@ -37,9 +37,11 @@ export const initialDashboardCallAction =
     let response;
     if (pair) {
       response = await appDashboardData(pair);
+      if (response.success === false) {
+        response = await appDashboardDataWithoutPair();
+      }
     } else {
       response = await appDashboardDataWithoutPair();
-    
     }
 
     if (pair) {
@@ -51,6 +53,8 @@ export const initialDashboardCallAction =
         "trade_coin_id",
         response.order_data.trade_coin_id
       );
+      await localStorage.setItem("current_pair", response.pairs[0].coin_pair);
+      dispatch(setCurrentPair(response.pairs[0].coin_pair));
     } else {
       await localStorage.setItem(
         "base_coin_id",
