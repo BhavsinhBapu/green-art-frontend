@@ -187,16 +187,21 @@ const SwapCoin: NextPage = ({
                                 className=" form-control "
                                 id="currency-one"
                                 onChange={(e: any) => {
+                                  setFromSelected({
+                                    ...fromSelected,
+                                    coin_id: e.target.value,
+                                  });
                                   convertCoin(
                                     fromSelected.amount,
                                     e.target.value,
                                     toSelected.coin_id
                                   ).then((data) => {
-                                    setFromSelected({
-                                      ...fromSelected,
-                                      coin_id: data.from_wallet.id,
-                                      selected: data.from_wallet.coin_type,
-                                      balamce: data.from_wallet.balance,
+                                    setToSelected({
+                                      ...toSelected,
+                                      coin_id: data?.to_wallet?.id,
+                                      selected: data?.to_wallet?.coin_type,
+                                      balamce: data?.to_wallet?.balance,
+                                      amount: data?.convert_rate,
                                     });
                                   });
                                 }}
@@ -275,12 +280,12 @@ const SwapCoin: NextPage = ({
                                     fromSelected.coin_id,
                                     e.target.value
                                   ).then((data) => {
-                                    console.log(data, "data");
                                     setToSelected({
-                                      ...fromSelected,
-                                      coin_id: data.to_wallet.id,
-                                      selected: data.to_wallet.coin_type,
-                                      balamce: data.to_wallet.balance,
+                                      ...toSelected,
+                                      coin_id: data?.to_wallet?.id,
+                                      selected: data?.to_wallet?.coin_type,
+                                      balamce: data?.to_wallet?.balance,
+                                      amount: data?.convert_rate,
                                     });
                                   });
                                 }}
