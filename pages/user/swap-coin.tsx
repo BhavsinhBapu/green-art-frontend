@@ -186,14 +186,6 @@ const SwapCoin: NextPage = ({
                                 className=" form-control "
                                 id="currency-one"
                                 onChange={(e: any) => {
-                                  console.log(
-                                    walletLists.find(
-                                      (wallet: any) =>
-                                        parseInt(wallet.id) ===
-                                        parseInt(e.target.value)
-                                    ).coin_type,
-                                    "Available"
-                                  );
                                   setFromSelected({
                                     ...fromSelected,
                                     coin_id: e.target.value,
