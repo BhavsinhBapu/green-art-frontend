@@ -82,7 +82,6 @@ const SwapCoin: NextPage = ({
     });
   }, [rate]);
   React.useEffect(() => {
-    console.log(to_wallet, from_wallet);
     setFromSelected({
       amount: 1,
       selected: from_wallet_details?.coin_type,
@@ -460,7 +459,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
 
   const { wallet_rate, convert_rate, rate, from_wallet, to_wallet } = data;
 
-  console.log(from_wallet, "from_wallet");
   return {
     props: {
       walletLists,

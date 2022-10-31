@@ -35,7 +35,6 @@ export const WithdrawComponent = ({ responseData, router }: any) => {
   const CheckG2faEnabled = async () => {
     const { data } = await UserSettingsApi();
     const { user } = data;
-    console.log(settings.two_factor_withdraw, "settings.two_factor_withdraw");
     if (user.google2fa !== 1 && parseInt(settings.two_factor_withdraw) === 1) {
       setErrorMessage({
         status: true,

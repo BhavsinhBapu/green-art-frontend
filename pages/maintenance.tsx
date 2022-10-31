@@ -39,7 +39,6 @@ const Maintenance = ({ data }: any) => {
 
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const { data } = await commomSettings();
-  console.log(data);
   return {
     props: { data },
   };

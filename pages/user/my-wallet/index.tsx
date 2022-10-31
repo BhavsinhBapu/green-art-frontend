@@ -46,7 +46,6 @@ const MyWallet: NextPage = ({
   const [tradeList, setTradeList]: any = useState();
   const [coinList, setCoinList]: any = useState([]);
   const handleActive = (index: any) => {
-    console.log(index);
     if (index === tradeList) {
       setTradeList(index);
     } else {

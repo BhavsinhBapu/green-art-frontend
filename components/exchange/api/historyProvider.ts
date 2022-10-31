@@ -9,7 +9,6 @@ export default {
   getBars: function (symbolInfo, resolution, from, to, first, limit) {
     const base = localStorage.getItem("base_coin_id");
     const trade = localStorage.getItem("trade_coin_id");
-    console.log(this.hitted, "this.hitted");
     if (this.hitted === false) {
       this.hitted = true;
       return getChartData(5, from, to, base, trade).then((data: any) => {
