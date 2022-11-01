@@ -10869,3 +10869,10 @@ input[type="number"] {
     padding: 15px;
   }
 }
+.my-wallet-page {
+  display: flex;
+  flex-direction: column;
+}
+.wallet-border-history {
+  border: 1px solid var(--border-color-1);
+}
