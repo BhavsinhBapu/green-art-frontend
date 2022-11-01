@@ -28,6 +28,7 @@ import Footer from "components/common/footer";
 import { customPage, landingPage } from "service/landing-page";
 import { RootState } from "state/store";
 import { useSelector } from "react-redux";
+import Wallethistory from "components/wallet/wallet-history";
 
 const DeposiAndWithdraw = ({
   withdrawFaq,
@@ -103,11 +104,7 @@ const DeposiAndWithdraw = ({
     <>
       <div className="page-wrap my-wallet-page">
         <div className="container">
-          <div
-            className={
-              fullPage === false ? "row" : "d-flex justify-content-center"
-            }
-          >
+          <div className={"row"}>
             {router.query.id === MY_WALLET_DEPOSIT_TYPE && (
               <DipositComponent
                 responseData={responseData}
@@ -124,17 +121,64 @@ const DeposiAndWithdraw = ({
                 fullPage={fullPage}
               />
             )}
-
-            {fullPage === false && (
-              <div className={`col-md-5 faq-wallet-section`}>
+            <div className={`col-md-5 faq-wallet-section`}>
+              {fullPage === false && (
                 <div className={`box-one single-box visible`}>
                   <div className="section-wrapper boxShadow">
                     <FAQ faqs={faqs} type={router.query.id} />
                   </div>
                 </div>
+              )}
+              <div className="mt-3">
+                <h4>{t("How it works?")}</h4>
+                <div className="flexItem">
+                  <div>
+                    <div className="timeLineLists">
+                      <div className="timeLineIcon">
+                        <i className="fa-sharp fa-solid fa-circle-check active"></i>
+                      </div>
+                      <div>
+                        <h5>This is a First step</h5>
+                        <span>You will do this</span>
+                      </div>
+                    </div>
+
+                    <div className="timeLineLists">
+                      <div className="timeLineIcon">
+                        <i className="fa-sharp fa-solid fa-circle-check active"></i>
+                      </div>
+                      <div>
+                        <h5>This is a Second step</h5>
+                        <span>You will do this</span>
+                      </div>
+                    </div>
+
+                    <div className="timeLineLists">
+                      <div className="timeLineIcon">
+                        <i className="fa-sharp fa-solid fa-circle-check active"></i>
+                      </div>
+                      <div>
+                        <h5>This is a Third step</h5>
+                        <span>You will do this</span>
+                      </div>
+                    </div>
+                    <div className="timeLineLists">
+                      <div className="">
+                        <i className="fa-sharp fa-solid fa-circle-check active"></i>
+                      </div>
+                      <div>
+                        <h5>This is a Fourth step</h5>
+                        <p>do this</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-            )}
+            </div>
           </div>
+          {router.query.id && (
+            <Wallethistory type={router.query.id === MY_WALLET_WITHDRAW_TYPE?"withdrawal":"deposit"} />
+          )}
         </div>
       </div>
       <Footer
