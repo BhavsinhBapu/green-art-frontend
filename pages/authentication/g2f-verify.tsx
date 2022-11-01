@@ -9,7 +9,7 @@ import { GetServerSideProps } from "next";
 import useTranslation from "next-translate/useTranslation";
 import { RootState } from "state/store";
 const G2fverify = () => {
- const { settings } = useSelector((state: RootState) => state.common);
+  const { settings } = useSelector((state: RootState) => state.common);
   const { t } = useTranslation("common");
   const dispatch = useDispatch();
   return (
@@ -22,7 +22,7 @@ const G2fverify = () => {
             </a>
             <h2>{t("Two Factor Authentication")}</h2>
             <p>
-              {t("Open your authentication app and enter the code for Admin")}
+              {t("Open your authentication app and enter the code to verify")}
             </p>
           </div>
           <Formik
@@ -51,7 +51,7 @@ const G2fverify = () => {
                     className={`form-control ${
                       touched.code && errors.code ? "is-invalid" : ""
                     }`}
-                    placeholder="code"
+                    placeholder={t("code")}
                   />
                 </div>
 

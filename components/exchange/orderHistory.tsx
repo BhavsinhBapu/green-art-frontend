@@ -96,7 +96,7 @@ const OrderHistory = ({
                       </td>
                       <td>{item.price}</td>
                       <td>{item.amount}</td>
-                      <td>{item.fees}</td>
+                      <td>{parseFloat(item.fees).toFixed(8)}</td>
                       <td>{item.total}</td>
                       <td>{formateData(item.created_at)}</td>
                     </tr>

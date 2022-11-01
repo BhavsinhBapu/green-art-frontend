@@ -1,4 +1,5 @@
 import { parseCookies } from "nookies";
+import { commomSettings } from "service/landing-page";
 import { GetUserInfoByTokenServer } from "service/user";
 
 export const SSRAuthCheck = async (ctx: any, redirect: string) => {
@@ -56,4 +57,9 @@ export const g2fPageRequireCheck = async (ctx: any) => {
     });
     ctx.res.end();
   }
+};
+
+export const pageAvailabilityCheck = async () => {
+  const response = await commomSettings();
+  return response.data;
 };

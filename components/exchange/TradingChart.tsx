@@ -38,21 +38,25 @@ type MyProps = {
 const pair = localStorage.getItem("current_pair")?.replace("_", "/");
 localStorage.setItem("tradingview.ChartDrawingToolbarWidget.visible", "false");
 export class TVChartContainer extends React.Component<MyProps> {
- 
   static defaultProps = {
     symbol: `:${pair && pair}`,
     interval: "5",
-
     containerId: "tv_chart_container",
     libraryPath: "/static/charting_library/",
     chartsStorageUrl: "https://saveload.tradingview.com",
     chartsStorageApiVersion: "1.1",
     clientId: "tradingview.com",
-
     userId: "public_user_id",
     fullscreen: false,
     autosize: true,
     studiesOverrides: {},
+    overrides: {
+      "mainSeriesProperties.candleStyle.upColor": "#ffffff",
+      "mainSeriesProperties.candleStyle.downColor": "#000000",
+      "mainSeriesProperties.candleStyle.drawBorder": true,
+      "mainSeriesProperties.candleStyle.borderUpColor": "#00ff00",
+      "mainSeriesProperties.candleStyle.borderDownColor": "#ff0000",
+    },
   };
   // name = this.props.name;
 
@@ -62,6 +66,44 @@ export class TVChartContainer extends React.Component<MyProps> {
     const tvWidget = new widget(config);
     //@ts-ignore
     this.tvWidget = tvWidget;
+    //@ts-ignore
+    this.tvWidget.onChartReady(() => {
+      //@ts-ignore
+      this.tvWidget.applyOverrides({
+        "paneProperties.background": "#151515",
+        "paneProperties.backgroundType": "solid",
+        //up and down color change32d777
+        "mainSeriesProperties.candleStyle.upColor": "#32d777",
+        "mainSeriesProperties.candleStyle.downColor": "#dc3545",
+        "mainSeriesProperties.candleStyle.drawBorder": true,
+        "mainSeriesProperties.candleStyle.borderUpColor": "#32d777",
+        "mainSeriesProperties.candleStyle.borderDownColor": "#dc3545",
+        "mainSeriesProperties.candleStyle.wickUpColor": "#32d777",
+        "mainSeriesProperties.candleStyle.wickDownColor": "#dc3545",
+        "mainSeriesProperties.candleStyle.barColorsOnPrevClose": false,
+        "mainSeriesProperties.hollowCandleStyle.upColor": "#32d777",
+        "mainSeriesProperties.hollowCandleStyle.downColor": "#dc3545",
+        "mainSeriesProperties.hollowCandleStyle.drawWick": true,
+        "mainSeriesProperties.hollowCandleStyle.drawBorder": true,
+        "mainSeriesProperties.hollowCandleStyle.borderUpColor": "#32d777",
+        "mainSeriesProperties.hollowCandleStyle.borderDownColor": "#dc3545",
+        "mainSeriesProperties.hollowCandleStyle.wickUpColor": "#32d777",
+        "mainSeriesProperties.hollowCandleStyle.wickDownColor": "#dc3545",
+        "mainSeriesProperties.haStyle.upColor": "#32d777",
+        "mainSeriesProperties.haStyle.downColor": "#dc3545",
+        "mainSeriesProperties.haStyle.drawWick": true,
+        "mainSeriesProperties.haStyle.drawBorder": true,
+        "mainSeriesProperties.haStyle.borderUpColor": "#32d777",
+        "mainSeriesProperties.haStyle.borderDownColor": "#dc3545",
+        "mainSeriesProperties.haStyle.wickUpColor": "#32d777",
+        "mainSeriesProperties.haStyle.wickDownColor": "#dc3545",
+        "mainSeriesProperties.barStyle.upColor": "#32d777",
+        "mainSeriesProperties.barStyle.downColor": "#dc3545",
+        "mainSeriesProperties.barStyle.barColorsOnPrevClose": false,
+        "mainSeriesProperties.barStyle.dontDrawOpen": false,
+        "mainSeriesProperties.lineStyle.color": "#dc3545",
+      });
+    });
   };
   //@ts-ignore
   constructor(props) {
@@ -74,6 +116,7 @@ export class TVChartContainer extends React.Component<MyProps> {
     const widgetOptions = {
       height: 480,
       width: 1400,
+
       //@ts-ignore
       symbol: this.props.symbol,
       style: 1,
@@ -81,6 +124,15 @@ export class TVChartContainer extends React.Component<MyProps> {
       //@ts-ignore
       datafeed: Datafeed,
       // datafeed: Datafeed,
+      //add water mark to chart
+      watermark: {
+        color: "rgba(11, 94, 29, 0.4)",
+        visible: true,
+        text: "Crypto Exchange",
+        fontSize: 24,
+        horzAlign: "left",
+        vertAlign: "bottom",
+      },
 
       //@ts-ignore
       interval: this.props.interval,
@@ -107,15 +159,6 @@ export class TVChartContainer extends React.Component<MyProps> {
       autosize: this.props.autosize,
       //@ts-ignore
       studies_overrides: this.props.studiesOverrides,
-      overrides: {
-        "paneProperties.background": "#131722",
-        "paneProperties.vertGridProperties.color": "#363c4e",
-
-        "paneProperties.horzGridProperties.color": "#363c4e",
-        "symbolWatermarkProperties.transparency": 90,
-        "scalesProperties.textColor": "#AAA",
-        //background dark
-      },
       drawings_access: { type: "black", tools: [{ name: "Regression Trend" }] },
       //@ts-ignore
       enabled_features: ENABLED_FEATURES,
@@ -123,11 +166,29 @@ export class TVChartContainer extends React.Component<MyProps> {
       disabled_features: DISABLED_FEATURES,
 
       //@ts-ignore
-      overrides: getChartOverrides(this.props.theme),
-
+      // overrides: getChartOverrides(this.props.theme),
+      custom_css_url: "css/style.css",
       //@ts-ignore
       time_frames: TIME_FRAMES,
 
+      //@ts-ignore
+      studies_overrides: {
+        "volume.volume.color.0": "#dc3545",
+        "volume.volume.color.1": "#32d777",
+        "volume.volume.transparency": 0,
+        "volume.volume ma.color": "#32d777",
+        "volume.volume ma.transparency": 0,
+        "volume.options.showStudyArguments": false,
+        "volume.options.showStudyTitles": false,
+        "volume.options.showStudyValues": false,
+        "volume.options.showLegend": false,
+        "volume.options.showStudyOutput": false,
+        "volume.options.showStudyOverlay": false,
+        "volume.options.showSeriesTitle": false,
+        "volume.options.showSeriesOHLC": false,
+        "volume.options.showBarChange": false,
+        "volume.options.showCountdown": false,
+      },
       toolbar: false,
     };
     //@ts-ignore
@@ -145,12 +206,7 @@ export class TVChartContainer extends React.Component<MyProps> {
   render() {
     return (
       <>
-        <header className={styles.VersionHeader}>
-          <h1>
-            TradingView Charting Library and Next.js Integration Example{" "}
-            {version()}
-          </h1>
-        </header>
+        <header className={styles.VersionHeader}></header>
         {/* @ts-ignore */}
         <div ref={this.ref} className={styles.TVChartContainer} />
       </>
