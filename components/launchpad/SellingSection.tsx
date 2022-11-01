@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 
 const SellingSection = () => {
   return (
     <section className="mt-5">
       <div className="container">
         <div className="section-title">
-          <h2 className="title">Why choose us?</h2>
+          <h2>Why choose us?</h2>
         </div>
         <div className="row">
           <div className="col-lg-3 col-md-6">
@@ -51,6 +51,6 @@ const SellingSection = () => {
       </div>
     </section>
   );
-}
+};
 
-export default SellingSection
+export default SellingSection;
