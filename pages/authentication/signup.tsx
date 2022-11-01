@@ -13,10 +13,8 @@ import { RecapCha } from "service/user";
 import useTranslation from "next-translate/useTranslation";
 import { RootState } from "state/store";
 const Signup: NextPage = () => {
-  const {  logo } = useSelector(
-    (state: RootState) => state.user
-  );
-    const { settings } = useSelector((state: RootState) => state.common);
+  const { logo } = useSelector((state: RootState) => state.user);
+  const { settings } = useSelector((state: RootState) => state.common);
   const dispatch = useDispatch();
   const { t } = useTranslation("common");
   const [recaptchaData, setRecaptchaData] = useState<any>({});
@@ -33,6 +31,17 @@ const Signup: NextPage = () => {
     setRecaptchaData(response.data);
     return response;
   };
+
+  let captcha: any;
+  const setCaptchaRef = (ref: any) => {
+    if (ref) {
+      return (captcha = ref);
+    }
+  };
+  const resetCaptcha = () => {
+    captcha?.reset();
+  };
+
   useEffect(() => {
     getRecapcha();
   }, []);
@@ -88,7 +97,6 @@ const Signup: NextPage = () => {
                       .required(t("Recapcha is required")),
                   })}
                   onSubmit={async (values) => {
-                    console.log(values, "values");
                     dispatch(SignupAction(values, setProcessing, ref_code));
                   }}
                 >
@@ -144,7 +152,7 @@ const Signup: NextPage = () => {
                               ? "is-invalid"
                               : ""
                           }`}
-                          placeholder="Your password here"
+                          placeholder={t("Your password here")}
                         />
 
                         <span
@@ -196,6 +204,7 @@ const Signup: NextPage = () => {
                       {recaptchaData?.NOCAPTCHA_SITEKEY &&
                         recaptchaData?.google_recapcha === "1" && (
                           <ReCAPTCHA
+                            ref={(r: any) => setCaptchaRef(r)}
                             sitekey={recaptchaData?.NOCAPTCHA_SITEKEY}
                             render="explicit"
                             onChange={(response: any) => {
@@ -204,6 +213,7 @@ const Signup: NextPage = () => {
                           />
                         )}
                       <button
+                        onClick={() => resetCaptcha()}
                         type="submit"
                         disabled={processing}
                         className="btn nimmu-user-sibmit-button mt-3"
@@ -237,7 +247,7 @@ const Signup: NextPage = () => {
               </Link>
               <Link href="/authentication/signin">
                 <p>
-                  {t("Already have an accoun ?")} <a href=""> {t("Sign In")}</a>
+                  {t("Already have an account")}? <a href=""> {t("Sign In")}</a>
                 </p>
               </Link>
             </div>

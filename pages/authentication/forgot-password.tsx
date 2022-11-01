@@ -21,6 +21,15 @@ const ForgotPassword: NextPage = () => {
     setRecaptchaData(response.data);
     return response;
   };
+  let captcha: any;
+  const setCaptchaRef = (ref: any) => {
+    if (ref) {
+      return (captcha = ref);
+    }
+  };
+  const resetCaptcha = () => {
+    captcha?.reset();
+  };
   useEffect(() => {
     getRecapcha();
   }, []);
@@ -40,7 +49,7 @@ const ForgotPassword: NextPage = () => {
                   <h2>{t("Forgot Password ?")}</h2>
                   <p>
                     {t(
-                      "Please enter the email address to request a password reset."
+                      "Please enter the email address to request a password reset"
                     )}
                   </p>
                 </div>
@@ -81,6 +90,7 @@ const ForgotPassword: NextPage = () => {
                       {recaptchaData?.NOCAPTCHA_SITEKEY &&
                         recaptchaData?.google_recapcha === "1" && (
                           <ReCAPTCHA
+                            ref={(r: any) => setCaptchaRef(r)}
                             sitekey={recaptchaData?.NOCAPTCHA_SITEKEY}
                             render="explicit"
                             onChange={(response: any) => {
@@ -89,6 +99,7 @@ const ForgotPassword: NextPage = () => {
                           />
                         )}
                       <button
+                        onClick={() => resetCaptcha()}
                         type="submit"
                         className="btn nimmu-user-sibmit-button mt-3"
                       >

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Qr from "components/common/qr";
 import { copyTextById, formateZert } from "common";
 import useTranslation from "next-translate/useTranslation";
@@ -9,6 +9,7 @@ const DepositTab = ({ response, TurnoffSetShow, id }: any) => {
   const [selectedNetwork, setSelectedNetwork] = useState(
     response?.data && response?.data[0]
   );
+  const selectAddress: any = useRef();
 
   return (
     <div className={`asset-balances-right visible mb-3`}>
@@ -62,7 +63,6 @@ const DepositTab = ({ response, TurnoffSetShow, id }: any) => {
                       (x: any) => x.id === parseInt(e.target.value)
                     );
                     setSelectedNetwork(findObje);
-                    console.log(parseInt(e.target.value));
                   }}
                 >
                   {response?.data?.map((item: any, index: number) => (
@@ -83,18 +83,36 @@ const DepositTab = ({ response, TurnoffSetShow, id }: any) => {
                 </h3>
                 <p className="text-white">
                   {t("Only send")} {response?.deposit?.coin_type}{" "}
-                  {t("to this address.")}
+                  {t("to this address")}
                   {t(
-                    "Sending any other asset to this address may result in the loss of your deposit!"
+                    "Please note that only supported networks on our platform are shown, if you deposit via another network your assets may be lost"
                   )}
                 </p>
               </div>
               <div className="input-url">
-                <p id="url-copy" className="address-box">
+                <input
+                  onClick={() => {
+                    copyTextById(
+                      response.wallet.coin_type == "USDT"
+                        ? selectedNetwork?.address
+                        : response?.address
+                    );
+                    selectAddress.current.select();
+                  }}
+                  ref={selectAddress}
+                  className="address-box address-copy-box"
+                  type="text"
+                  value={
+                    response.wallet.coin_type == "USDT"
+                      ? selectedNetwork?.address
+                      : response?.address
+                  }
+                />
+                {/* <p ref={selectAddress} id="url-copy" className="address-box">
                   {response.wallet.coin_type == "USDT"
                     ? selectedNetwork?.address
                     : response?.address}
-                </p>
+                </p> */}
                 <button
                   type="button"
                   className="btn copy-url-btn"
@@ -104,6 +122,7 @@ const DepositTab = ({ response, TurnoffSetShow, id }: any) => {
                         ? selectedNetwork?.address
                         : response?.address
                     );
+                    selectAddress.current.select();
                   }}
                 >
                   <i className="fa fa-clone"></i>
@@ -114,20 +133,29 @@ const DepositTab = ({ response, TurnoffSetShow, id }: any) => {
                   <button
                     className=" primary-btn-outline btn-withdraw text-white w-100 mt-2"
                     onClick={() => {
-                      GetWalletAddressAction(
-                        {
-                          wallet_id: id,
-                          network_type: selectedNetwork?.network_type ?? "",
-                        },
-                        setSelectedNetwork
-                      );
+                      // GetWalletAddressAction(
+                      //   {
+                      //     wallet_id: id,
+                      //     network_type: selectedNetwork?.network_type ?? "",
+                      //   },
+                      //   setSelectedNetwork,
+                      //   setDependecy
+                      // );
                     }}
                   >
-                    Get address
+                    {t("Get address")}
                   </button>
                 )}
               <div className="bar-code-area">
-                {response?.address && <Qr value={response?.address} />}
+                {response?.address && response.wallet.coin_type !== "USDT" && (
+                  <Qr value={response?.address} />
+                )}
+              </div>
+              <div className="bar-code-area">
+                {selectedNetwork?.address &&
+                  response.wallet.coin_type === "USDT" && (
+                    <Qr value={selectedNetwork?.address} />
+                  )}
               </div>
             </div>
           </div>

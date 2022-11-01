@@ -2,47 +2,26 @@ import historyProvider from "./historyProvider";
 import Echo from "laravel-echo";
 import Pusher from "pusher-js";
 
-const _subs: any = [];
+var _subs: any = [];
 
 export default {
-  subscribeBars(
+  subscribeBars: function (
     symbolInfo: any,
     resolution: any,
     updateCb: any,
     uid: any,
     resetCache: any
   ) {
-    //@ts-ignore
-    window.Pusher = Pusher;
-    //@ts-ignore
-    window.Echo = new Echo({
-      broadcaster: "pusher",
-      key: "test",
-      wsHost: process.env.NEXT_PUBLIC_HOST_SOCKET,
-      wsPort: 6006,
-      wssPort: 443,
-      cluster: "mt1",
-      disableStats: true,
-      enabledTransports: ["ws", "wss"],
-    });
-
-    //@ts-ignore
-    window.Echo.channel(
-      `trade-info-${localStorage.getItem(
-        "base_coin_id"
-      )}-${localStorage.getItem("trade_coin_id")}`
-    ).listen(".process", (e: any) => {
-      const channelString = createChannelString(symbolInfo);
-      const newSub = {
-        channelString,
-        uid,
-        resolution,
-        symbolInfo,
-        lastBar: historyProvider.history[symbolInfo.name].lastBar,
-        listener: updateCb,
-      };
-      _subs.push(newSub);
-    });
+    const channelString = createChannelString(symbolInfo);
+    const newSub = {
+      channelString,
+      uid,
+      resolution,
+      symbolInfo,
+      lastBar: historyProvider.history[symbolInfo.name].lastBar,
+      listener: updateCb,
+    };
+    _subs.push(newSub);
   },
   unsubscribeBars(uid: any) {
     const subIndex = _subs.findIndex((e: any) => e.uid === uid);
@@ -63,15 +42,16 @@ export function updateChart(e: any) {
     trade_coin_id: e.trade_coin_id,
   };
 
-  const sub = _subs.find(
-    (obj: any) =>
-      obj.channelString === `${data.base_coin_id}~${data.trade_coin_id}`
-  );
+  // const sub = _subs.find(
+  //   (obj: any) =>
+  //     obj.channelString === `${data.base_coin_id}~${data.trade_coin_id}`
+  // );
+  const sub = _subs[0];
   if (sub) {
     // disregard the initial catchup snapshot of trades for already closed candles
-    if (data.ts < sub.lastBar.time / 1000) {
-      return;
-    }
+    // if (data.ts < sub.lastBar.time / 1000) {
+    //   return;
+    // }
 
     const _lastBar = updateBar(data, sub);
     // send the most recent bar back to TV's realtimeUpdate callback
@@ -80,6 +60,7 @@ export function updateChart(e: any) {
     sub.lastBar = _lastBar;
   }
 }
+
 // Take a single trade, and subscription record, return updated bar
 function updateBar(data: any, sub: any) {
   const lastBar = sub.lastBar;
@@ -103,6 +84,7 @@ function updateBar(data: any, sub: any) {
       close: data.price,
       volume: parseFloat(data.total),
     };
+
     if (data.price < _lastBar.low) {
       _lastBar.low = data.price;
     } else if (data.price > _lastBar.high) {
@@ -132,4 +114,7 @@ function createChannelString(symbolInfo: any) {
   const from = channel[0];
   // subscribe to the CryptoCompare trade channel for the pair and exchange
   return `${from}~${to}`;
+}
+export function last(array: any) {
+  return array[array.length - 1];
 }

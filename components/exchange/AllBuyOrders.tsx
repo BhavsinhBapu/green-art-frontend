@@ -118,16 +118,16 @@ const AllBuyOrders = ({ OpenBookBuy, show }: any) => {
                         overlay={
                           <span>
                             <span>
-                              {t("Avg Price:")} {item.price}
+                              {t("Avg Price")}: {item.price}
                             </span>
                             <br />
                             <span>
-                              {t("Amount:")} {summary.amount}
+                              {t("Amount")}: {summary.amount}
                             </span>
                             <br />
 
                             <span>
-                              {t("Size:")} {summary.total}
+                              {t("Size")}: {summary.total}
                             </span>
                           </span>
                         }

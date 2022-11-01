@@ -21,7 +21,6 @@ export const UserSettingsAction =
   };
 
 export const UpdateCurrencyAction = (code: any) => async (dispatch: any) => {
-  console.log("code from action", code);
   await UpdateCurrency(code);
   const settingResponse = await commomSettings();
   dispatch(setSettings(settingResponse.data));
