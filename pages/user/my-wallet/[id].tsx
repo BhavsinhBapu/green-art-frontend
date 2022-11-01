@@ -15,6 +15,8 @@ import { GetUserInfoByTokenServer } from "service/user";
 import Link from "next/link";
 import DepositFaq from "components/deposit/DepositFaq";
 import {
+  FAQ_TYPE_DEPOSIT,
+  FAQ_TYPE_WITHDRAWN,
   MY_WALLET_DEPOSIT_TYPE,
   MY_WALLET_WITHDRAW_TYPE,
 } from "helpers/core-constants";
@@ -28,7 +30,8 @@ import { RootState } from "state/store";
 import { useSelector } from "react-redux";
 
 const DeposiAndWithdraw = ({
-  faq,
+  withdrawFaq,
+  depositFaq,
   customPageData,
   socialData,
   copyright_text,
@@ -42,8 +45,6 @@ const DeposiAndWithdraw = ({
   const [responseData, setResponseData]: any = useState();
   const [dependecy, setDependecy] = useState(0);
   const handleWithdrawAndDeposit = async (actionType: string, id: number) => {
-    // if (!router.query.id) return;
-
     if (actionType === MY_WALLET_DEPOSIT_TYPE) {
       const response = await WalletDepositApiAction(
         Number(router.query.coin_id)
@@ -74,24 +75,39 @@ const DeposiAndWithdraw = ({
       router.query.id === MY_WALLET_WITHDRAW_TYPE
     ) {
       setFullPage(true);
-    } else if (parseInt(settings.coin_deposit_faq_status) !== 1) {
+    } else if (
+      parseInt(settings.coin_deposit_faq_status) !== 1 &&
+      router.query.id === MY_WALLET_DEPOSIT_TYPE
+    ) {
+      setFullPage(true);
+    } else if (!faqs?.length) {
       setFullPage(true);
     }
   };
   useEffect(() => {
-    setFaqs(faq.data.data);
-    checkFullPageStatus();
+    setFaqs(
+      router.query.id === MY_WALLET_DEPOSIT_TYPE ? depositFaq : withdrawFaq
+    );
+
     handleWithdrawAndDeposit(
       String(router.query.id),
       Number(router.query.coin_id)
     );
   }, [dependecy]);
-
+  useEffect(() => {
+    if (settings.withdrawal_faq_status && router.query.id) {
+      checkFullPageStatus();
+    }
+  }, [settings.withdrawal_faq_status, router.query.id, faqs?.length]);
   return (
     <>
       <div className="page-wrap my-wallet-page">
         <div className="container">
-          <div className="row">
+          <div
+            className={
+              fullPage === false ? "row" : "d-flex justify-content-center"
+            }
+          >
             {router.query.id === MY_WALLET_DEPOSIT_TYPE && (
               <DipositComponent
                 responseData={responseData}
@@ -109,8 +125,7 @@ const DeposiAndWithdraw = ({
               />
             )}
 
-            {parseInt(settings.withdrawal_faq_status) === 1 &&
-            router.query.id === MY_WALLET_WITHDRAW_TYPE ? (
+            {fullPage === false && (
               <div className={`col-md-5 faq-wallet-section`}>
                 <div className={`box-one single-box visible`}>
                   <div className="section-wrapper boxShadow">
@@ -118,17 +133,6 @@ const DeposiAndWithdraw = ({
                   </div>
                 </div>
               </div>
-            ) : parseInt(settings.coin_deposit_faq_status) === 1 &&
-              router.query.id === MY_WALLET_DEPOSIT_TYPE ? (
-              <div className={`col-md-5 faq-wallet-section`}>
-                <div className={`box-one single-box visible`}>
-                  <div className="section-wrapper boxShadow">
-                    <FAQ faqs={faqs} type={router.query.id} />
-                  </div>
-                </div>
-              </div>
-            ) : (
-              ""
             )}
           </div>
         </div>
@@ -148,6 +152,16 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const response = await GetUserInfoByTokenServer(cookies.token);
   const commonRes = await pageAvailabilityCheck();
   const FAQ = await getFaqList();
+  let withdrawFaq: any[] = [];
+  let depositFaq: any[] = [];
+  FAQ.data?.data?.map((faq: any) => {
+    if (faq?.faq_type_id === FAQ_TYPE_DEPOSIT) {
+      depositFaq.push(faq);
+    } else if (faq?.faq_type_id === FAQ_TYPE_WITHDRAWN) {
+      withdrawFaq.push(faq);
+    }
+  });
+
   const { data } = await landingPage();
   const { data: customPageData } = await customPage();
 
@@ -162,7 +176,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   return {
     props: {
       user: response.user,
-      faq: FAQ,
+      withdrawFaq: withdrawFaq,
+      depositFaq: depositFaq,
       socialData: data.media_list,
       copyright_text: data?.copyright_text,
       customPageData: customPageData.data,
