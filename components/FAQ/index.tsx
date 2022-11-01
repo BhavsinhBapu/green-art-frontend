@@ -8,8 +8,8 @@ const FAQ = ({ faqs, type }: any) => {
     <div className="m-3">
       <div id="accordion">
         <h4>{t("FAQ")}</h4>
-        {faqs.map((faq: any) => (
-          <div className="faq-body">
+        {faqs.map((faq: any, index: any) => (
+          <div key={`faqspage${index}`} className="faq-body">
             <div className="faq-head" id={"headingOne" + faq?.id}>
               <h5 className="mb-0">
                 <button
