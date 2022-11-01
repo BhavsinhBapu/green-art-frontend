@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
+import useTranslation from "next-translate/useTranslation";
 
 const useOptions = () => {
   const options = useMemo(
@@ -9,10 +10,10 @@ const useOptions = () => {
           fontSize: 22,
           color: "#424770",
           letterSpacing: "0.025em",
-          fontFamily: "Source Code Pro, monospace",
-          "::placeholder": {
-            color: "#aab7c4",
-          },
+          // fontFamily: "Source Code Pro, monospace",
+          // "::placeholder": {
+          //   color: "#aab7c4",
+          // },
         },
         invalid: {
           color: "#9e2146",
@@ -28,6 +29,7 @@ const useOptions = () => {
 const CardForm = ({ setCredential, credential }: any) => {
   const stripe = useStripe();
   const elements = useElements();
+  const { t } = useTranslation("common");
   const options = useOptions();
 
   const handleSubmit = async (event: any) => {
@@ -40,11 +42,6 @@ const CardForm = ({ setCredential, credential }: any) => {
     }
     const cardElement = elements.getElement("card");
 
-    // const payload = await stripe.createPaymentMethod({
-    //   type: "card",
-    //   //@ts-ignore
-    //   card: elements.getElement(CardElement),
-    // });
     //@ts-ignore
     const payload = await stripe.createToken(cardElement);
 
@@ -61,26 +58,18 @@ const CardForm = ({ setCredential, credential }: any) => {
         <CardElement
           //@ts-ignore
           options={options}
-          onReady={() => {
-            console.log("CardElement [ready]");
-          }}
-          onChange={(event) => {
-            console.log("CardElement [change]", event);
-          }}
-          onBlur={() => {
-            console.log("CardElement [blur]");
-          }}
-          onFocus={() => {
-            console.log("CardElement [focus]");
-          }}
+          onReady={() => {}}
+          onChange={(event) => {}}
+          onBlur={() => {}}
+          onFocus={() => {}}
         />
       </label>
       <button
         type="submit"
-        className="primary-btn-outline mb-3 "
+        className="primary-btn-outline mb-3 w-100"
         disabled={!stripe}
       >
-        Submit
+        {t("Deposit")}
       </button>
     </form>
   );

@@ -1,4 +1,3 @@
-import { formateZert } from "common";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import React from "react";
@@ -61,7 +60,7 @@ const Market = ({
                               ? dashboard?.order_data?.total?.trade_wallet
                                   ?.balance
                               : 0
-                          ).toFixed(8)}
+                          ).toFixed(4)}
                         </span>
                       </span>
                       <span
@@ -87,7 +86,7 @@ const Market = ({
                               ? dashboard?.order_data?.total?.trade_wallet
                                   ?.balance
                               : 0
-                          ).toFixed(8)}
+                          ).toFixed(4)}
                         </span>
                       </span>
                       <span
@@ -219,7 +218,11 @@ const Market = ({
                         );
                       }}
                     >
-                      <span v-else="">{t("Place Order")}</span>
+                      <span v-else="">
+                        {" "}
+                        {t("Sell")}{" "}
+                        {dashboard?.order_data?.total?.trade_wallet?.coin_type}
+                      </span>
                     </button>
                   </div>
                 )}

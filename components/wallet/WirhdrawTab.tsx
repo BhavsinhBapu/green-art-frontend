@@ -3,12 +3,16 @@ import WalletGoogleAuth from "components/wallet/wallet-google-auth";
 import { UserSettingsApi } from "service/settings";
 import { formateZert } from "common";
 import useTranslation from "next-translate/useTranslation";
+import { useSelector } from "react-redux";
+import { RootState } from "state/store";
+import { WalletWithdrawProcessApiAction } from "state/actions/wallet";
 
 const WirhdrawTab = ({ response, TurnoffSetShow }: any) => {
-  const [selectedNetwork, setSelectedNetwork] = useState(
+  const { t } = useTranslation("common");
+  const { settings } = useSelector((state: RootState) => state.common);
+  const [selectedNetwork, setSelectedNetwork] = React.useState(
     response?.data && response?.data[0]
   );
-  const { t } = useTranslation("common");
   const [withdrawalCredentials, setWithdrawalCredentials] = React.useState({
     wallet_id: response?.wallet?.id,
     code: "",
@@ -21,14 +25,18 @@ const WirhdrawTab = ({ response, TurnoffSetShow }: any) => {
     status: false,
     message: "",
   });
+  const [processing, setProcessing] = React.useState(false);
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    WalletWithdrawProcessApiAction(withdrawalCredentials, setProcessing);
+  };
   const CheckG2faEnabled = async () => {
     const { data } = await UserSettingsApi();
     const { user } = data;
-    if (user.google2fa === 1) {
-    } else {
+    if (user.google2fa !== 1 && parseInt(settings.two_factor_withdraw) === 1) {
       setErrorMessage({
         status: true,
-        message: "Google 2FA is not enabled, Please enable Google 2FA fist",
+        message: t("Google 2FA is not enabled, Please enable Google 2FA fist"),
       });
     }
   };
@@ -47,7 +55,6 @@ const WirhdrawTab = ({ response, TurnoffSetShow }: any) => {
       network_type: selectedNetwork?.network_type,
     });
   }, [selectedNetwork?.network_type]);
-
   return (
     <div className="asset-balances-right visible mb-2">
       <div className="box-one single-box">
@@ -121,7 +128,7 @@ const WirhdrawTab = ({ response, TurnoffSetShow }: any) => {
                     className="form-control"
                     id="address"
                     name="address"
-                    placeholder="Address"
+                    placeholder={t("Address")}
                     value={withdrawalCredentials.address}
                     onChange={(e) => {
                       setWithdrawalCredentials({
@@ -138,7 +145,7 @@ const WirhdrawTab = ({ response, TurnoffSetShow }: any) => {
                       className="form-control"
                       id="amountWithdrawal"
                       name="amount"
-                      placeholder="AMOUNT TO WITHDRAW"
+                      placeholder={t("AMOUNT TO WITHDRAW")}
                       value={withdrawalCredentials.amount}
                       onChange={(e) => {
                         setWithdrawalCredentials({
@@ -181,25 +188,36 @@ const WirhdrawTab = ({ response, TurnoffSetShow }: any) => {
                   </div>
                 )}
 
-                <button
-                  type="button"
-                  className="withdraw-btn"
-                  data-target="#exampleModal"
-                  disabled={
-                    withdrawalCredentials.address === "" ||
-                    withdrawalCredentials.amount === "" ||
-                    errorMessage.status === true
-                  }
-                  data-toggle="modal"
-                  onClick={() => {
-                    setErrorMessage({
-                      status: false,
-                      message: "",
-                    });
-                  }}
-                >
-                  {t("Withdraw")}
-                </button>
+                {parseInt(settings.two_factor_withdraw) === 1 ? (
+                  <button
+                    type="button"
+                    className="withdraw-btn"
+                    data-target="#exampleModal"
+                    disabled={
+                      withdrawalCredentials.address === "" ||
+                      withdrawalCredentials.amount === "" ||
+                      errorMessage.status === true
+                    }
+                    data-toggle="modal"
+                    onClick={() => {
+                      setErrorMessage({
+                        status: false,
+                        message: "",
+                      });
+                    }}
+                  >
+                    {t("Withdraw")}
+                  </button>
+                ) : (
+                  <button
+                    className="primary-btn-outline w-100"
+                    type="button"
+                    disabled={errorMessage.status === true}
+                    onClick={handleSubmit}
+                  >
+                    {t("Withdraw")}
+                  </button>
+                )}
               </form>
             </div>
           </div>

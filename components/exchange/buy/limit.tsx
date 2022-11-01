@@ -75,7 +75,7 @@ const Limit = ({
                               ? dashboard?.order_data?.total?.base_wallet
                                   ?.balance
                               : 0
-                          ).toFixed(8)}
+                          ).toFixed(4)}
                         </span>
                       </span>
                       <span
@@ -99,7 +99,7 @@ const Limit = ({
                               ? dashboard?.order_data?.total?.base_wallet
                                   ?.balance
                               : 0
-                          ).toFixed(8)}
+                          ).toFixed(4)}
                         </span>
                       </span>
                       <span
@@ -258,7 +258,11 @@ const Limit = ({
                         );
                       }}
                     >
-                      <span v-else="">{t("Place Order")}</span>
+                      <span v-else="">
+                        {" "}
+                        {t("Buy")}{" "}
+                        {dashboard?.order_data?.total?.trade_wallet?.coin_type}
+                      </span>
                     </button>
                   </div>
                 )}
