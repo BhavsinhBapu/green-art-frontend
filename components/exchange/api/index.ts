@@ -54,9 +54,9 @@ export default {
       data_status: "streaming",
     };
 
-    if (split_data[2].match(/USD|EUR|JPY|AUD|GBP|KRW|CNY/)) {
-      symbol_stub.pricescale = 100;
-    }
+    // if (split_data[2].match(/USD|EUR|JPY|AUD|GBP|KRW|CNY/)) {
+    //   symbol_stub.pricescale = 100;
+    // }
     setTimeout(function () {
       onSymbolResolvedCallback(symbol_stub);
     }, 0);
@@ -69,7 +69,8 @@ export default {
     resolution: any,
     periodParams: any,
     onHistoryCallback: any,
-    onError: any
+    onError: any,
+    interval: any
   ) {
     const { from, to } = periodParams;
     const countBack = periodParams.countBack;
@@ -112,7 +113,10 @@ export default {
       onResetCacheNeededCallback
     );
   },
-  unsubscribeBars: (subscriberUID: any) => {},
+  unsubscribeBars: (subscriberUID: any) => {
+    stream.unsubscribeBars(subscriberUID);
+  },
+
   calculateHistoryDepth: (
     resolution: any,
     resolutionBack: any,

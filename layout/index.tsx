@@ -13,6 +13,7 @@ import Head from "next/head";
 import { setLoading, setLogo } from "state/reducer/user";
 import { setSettings } from "state/reducer/common";
 import Loading from "components/common/loading";
+
 const Index = ({ children }: any) => {
   const [navbarVisible, setNavbarVisible] = useState(false);
   const [showterms, setShowTerms] = useState(false);
@@ -29,17 +30,57 @@ const Index = ({ children }: any) => {
     (state: RootState) => state.user
   );
   const { settings } = useSelector((state: RootState) => state.common);
+
   const { t } = useTranslation("common");
   const dispatch = useDispatch();
   const router = useRouter();
   const getCommonSettings = async () => {
-    dispatch(setLoading(true))
+    dispatch(setLoading(true));
     const response = await commomSettings();
     dispatch(setLogo(response.data.logo));
     dispatch(setSettings(response.data));
     setMetaData(response.data);
-    dispatch(setLoading(false))
+    dispatch(setLoading(false));
+    //  --primary-color: #fcd535;
+    // --text-primary-color: #ffff;
+    // --text-primary-color-2: #23262f;
+    // --text-primary-color-3: #777778;
+    // --text-primary-color-4: #cbcfd7;
+
+    // --border-color: #dedede;
+    // --border-color-1: #e6e8ec;
+    // --border-color-2: #353535;
+
+    // --hover-color: #f7cf33;
+    // --font-color: #2a2a2d;
+    // --bColor: #424242;
+    // --title-color: #141414;
+    // --white: #ffffff;
+    // --black: #000000;
+    // --color-pallet-1: #b4b8d7;
+
+    // --background-color: #151515;
+    // --background-color-trade: #2a2e37;
+    // --main-background-color: #ffff;
+    // --card-background-color: #ffffff;
+    // --table-background-color: #dad6d6;
+    // --footer-background-color: #f7f7f8;
+
+    // --background-color-hover: #fafafa;
+
+    response.data.theme_color.map((themeColors: any) => {
+      if (!themeColors.value) {
+        return;
+      }
+      document.documentElement.style.setProperty(
+        themeColors.name,
+        themeColors.value
+      );
+    });
+    // document.documentElement.style.setProperty("--primary-color", "#e17055");
+    // document.documentElement.style.setProperty("--hover-color", "#e17055");
   };
+
   useEffect(() => {
     getCommonSettings();
   }, []);
@@ -106,6 +147,11 @@ const Index = ({ children }: any) => {
     <>
       <Head>
         <title>{metaData?.app_title || process.env.NEXT_PUBLIC_APP_NAME}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta property="og:title" content={settings?.seo_social_title} />
+        <meta name="description" content={settings?.seo_meta_description} />
+        <meta name="keywords" content={settings?.seo_meta_keywords} />
+        <meta property="og:image" content={settings?.seo_image} />
         <link
           rel="shortcut icon"
           href={metaData?.favicon || process.env.NEXT_PUBLIC_FAVICON}

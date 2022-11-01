@@ -7,7 +7,13 @@ import Link from "next/link";
 import { UserSettingsAction } from "state/actions/settings";
 import { useEffect, useState } from "react";
 import useTranslation from "next-translate/useTranslation";
-const Security: NextPage = () => {
+import { customPage, landingPage } from "service/landing-page";
+import Footer from "components/common/footer";
+const Security: NextPage = ({
+  customPageData,
+  socialData,
+  copyright_text,
+}: any) => {
   const { user } = useSelector((state: RootState) => state.user);
   const { t } = useTranslation("common");
   const [languageList, setLanguageList] = useState<any>([]);
@@ -30,141 +36,150 @@ const Security: NextPage = () => {
     };
   }, []);
   return (
-    <div className="page-wrap">
-      <ProfileSidebar />
+    <>
+      <div className="page-wrap">
+        <ProfileSidebar />
 
-      <div className="page-main-content">
-        <div className="container-fluid">
-          <div className="section-top-wrap mb-25">
-            <div className="profle-are-top">
-              <h2 className="section-top-title mb-0">
-                {t("Profile Security Status")}
-              </h2>
+        <div className="page-main-content">
+          <div className="container-fluid">
+            <div className="section-top-wrap mb-25">
+              <div className="profle-are-top">
+                <h2 className="section-top-title mb-0">
+                  {t("Profile Security Status")}
+                </h2>
+              </div>
             </div>
-          </div>
-          <div className="two-factor-area mb-25">
-            <h4 className="section-title-medium" />
-            <div className="section-wrapper">
-              <div className="security-list">
-                <div className="single-security">
-                  <div className="security-left">
-                    <div className="security-info">
-                      <img
-                        src="/fingerprint-scan.svg"
-                        alt="fingerprint"
-                        className="security-icon"
-                      />
-                      <div className="security-content">
-                        <h4>{t("Google Authenticator (Recommended)")}</h4>
-                        <p>{t("Protect your account and transactions.")}</p>
+            <div className="two-factor-area mb-25">
+              <h4 className="section-title-medium" />
+              <div className="section-wrapper">
+                <div className="security-list">
+                  <div className="single-security">
+                    <div className="security-left">
+                      <div className="security-info">
+                        <img
+                          src="/fingerprint-scan.svg"
+                          alt="fingerprint"
+                          className="security-icon"
+                        />
+                        <div className="security-content">
+                          <h4>{t("Google Authenticator (Recommended)")}</h4>
+                          <p>{t("Protect your account and transactions")}</p>
+                        </div>
                       </div>
                     </div>
+                    <div className="security-right">
+                      {settings?.user?.google2fa === 1 ? (
+                        <Link href="/user/settings">
+                          <a href="" className="action-btn remove-btn">
+                            {t("Disable")}
+                          </a>
+                        </Link>
+                      ) : (
+                        <Link href="/user/settings">
+                          <a href="" className="action-btn change-btn">
+                            {t("Enable")}
+                          </a>
+                        </Link>
+                      )}
+                    </div>
                   </div>
-                  <div className="security-right">
-                    {settings?.user?.google2fa === 1 ? (
-                      <Link href="/user/settings">
-                        <a href="" className="action-btn remove-btn">
-                          {t("Disable")}
-                        </a>
-                      </Link>
-                    ) : (
-                      <Link href="/user/settings">
+                  <div className="single-security">
+                    <div className="security-left">
+                      <div className="security-info">
+                        <img
+                          src="/smartphone.svg"
+                          alt="smartphone"
+                          className="security-icon"
+                        />
+                        <div className="security-content">
+                          <h4>{t("Phone Number Verification")}</h4>
+                          <p>{t("Protect your account and transactions")}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="security-center">
+                      {user.phone ? (
+                        <span>{makePhoneNumberSecure(user?.phone)}</span>
+                      ) : (
+                        <span className="text-danger">
+                          {t("No phone number added")}
+                        </span>
+                      )}
+                    </div>
+                    <div className="security-right">
+                      {parseInt(user.phone_verified) === 0 ? (
+                        <Link href="/user/phone-verification">
+                          <a className="action-btn enable-btn">
+                            {t("Verify")}?
+                          </a>
+                        </Link>
+                      ) : (
                         <a href="" className="action-btn change-btn">
-                          {t("Enable")}
+                          {t("Verified")}
                         </a>
-                      </Link>
-                    )}
-                  </div>
-                </div>
-                <div className="single-security">
-                  <div className="security-left">
-                    <div className="security-info">
-                      <img
-                        src="/smartphone.svg"
-                        alt="smartphone"
-                        className="security-icon"
-                      />
-                      <div className="security-content">
-                        <h4>{t("Phone Number Verification")}</h4>
-                        <p>{t("Protect your account and transactions.")}</p>
-                      </div>
+                      )}
                     </div>
                   </div>
-                  <div className="security-center">
-                    {user.phone ? (
-                      <span>{makePhoneNumberSecure(user?.phone)}</span>
-                    ) : (
-                      <span className="text-danger">
-                        {t("No phone number added")}
-                      </span>
-                    )}
-                  </div>
-                  <div className="security-right">
-                    {user.phone_verified === 0 ? (
-                      <Link href="/user/phone-verification">
-                        <a className="action-btn enable-btn">{t("Verify?")}</a>
-                      </Link>
-                    ) : (
-                      <a href="" className="action-btn change-btn">
+                  <div className="single-security">
+                    <div className="security-left">
+                      <div className="security-info">
+                        <img
+                          src="/email.svg"
+                          alt="email"
+                          className="security-icon"
+                        />
+                        <div className="security-content">
+                          <h4>{t("Email Address Verification")}</h4>
+                          <p>{t("Protect your account and transactions")}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="security-center">
+                      {user.email ? (
+                        <span>{makeEmailSecure(user.email)}</span>
+                      ) : (
+                        <span className="text-danger">
+                          {t("No email address added")}
+                        </span>
+                      )}
+                    </div>
+                    <div className="security-right">
+                      <a href="#" className="action-btn change-btn" hidden>
                         {t("Verified")}
                       </a>
-                    )}
-                  </div>
-                </div>
-                <div className="single-security">
-                  <div className="security-left">
-                    <div className="security-info">
-                      <img
-                        src="/email.svg"
-                        alt="email"
-                        className="security-icon"
-                      />
-                      <div className="security-content">
-                        <h4>{t("Email Address Verification")}</h4>
-                        <p>{t("Protect your account and transactions.")}</p>
-                      </div>
                     </div>
-                  </div>
-                  <div className="security-center">
-                    {user.email ? (
-                      <span>{makeEmailSecure(user.email)}</span>
-                    ) : (
-                      <span className="text-danger">
-                        {t("No email address added")}
-                      </span>
-                    )}
-                  </div>
-                  <div className="security-right">
-                    <a href="#" className="action-btn change-btn" hidden>
-                      {t("Verified")}
-                    </a>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="advanced-security-area">
-            <h4 className="section-title-medium">{t("Advanced Security")}</h4>
-            <div className="section-wrapper">
-              <div className="security-list">
-                <div className="single-security">
-                  <div className="security-left">
-                    <div className="security-info">
-                      <img src="/key.svg" alt="key" className="security-icon" />
-                      <div className="security-content">
-                        <h4>{t("Login Password")}</h4>
-                        <p>
-                          {t(
-                            "Login password is used to log in to your account."
-                          )}
-                        </p>
+            <div className="advanced-security-area">
+              {/* <h4 className="section-title-medium">{t("Advanced Security")}</h4> */}
+              <div className="section-wrapper boxShadow">
+                <div className="security-list">
+                  <div className="single-security">
+                    <div className="security-left">
+                      <div className="security-info">
+                        <img
+                          src="/key.svg"
+                          alt="key"
+                          className="security-icon"
+                        />
+                        <div className="security-content">
+                          <h4>{t("Login Password")}</h4>
+                          <p>
+                            {t(
+                              "Login password is used to log in to your account"
+                            )}
+                            .
+                          </p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="security-right">
-                    <Link href="/user/change-password">
-                      <a className="action-btn enable-btn">{t("Change")}</a>
-                    </Link>
+                    <div className="security-right">
+                      <Link href="/user/change-password">
+                        <a className="action-btn enable-btn">{t("Change")}</a>
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -172,13 +187,24 @@ const Security: NextPage = () => {
           </div>
         </div>
       </div>
-    </div>
+      <Footer
+        customPageData={customPageData}
+        socialData={socialData}
+        copyright_text={copyright_text}
+      />
+    </>
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/user/security");
+  const { data } = await landingPage();
+  const { data: customPageData } = await customPage();
   return {
-    props: {},
+    props: {
+      socialData: data.media_list,
+      copyright_text: data?.copyright_text,
+      customPageData: customPageData.data,
+    },
   };
 };
 export default Security;

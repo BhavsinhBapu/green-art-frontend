@@ -14,11 +14,14 @@ import {
   initialDashboardCallActionWithToken,
 } from "state/actions/exchange";
 import {
+  setAllmarketTrades,
   setCurrentPair,
   setOpenBookBuy,
   setOpenBooksell,
 } from "state/reducer/exchange";
 import useTranslation from "next-translate/useTranslation";
+import { last, updateChart } from "components/exchange/api/stream";
+import { EXCHANGE_LAYOUT_ONE, EXCHANGE_LAYOUT_TWO } from "helpers/core-constants";
 let socketCall = 0;
 async function listenMessages(dispatch: any) {
   //@ts-ignore
@@ -35,16 +38,31 @@ async function listenMessages(dispatch: any) {
     enabledTransports: ["ws", "wss"],
   });
   //@ts-ignore
-  window.Echo.channel("dashboard").listen(".order_place", (e) => {
+  // dashboard-base_coin_id-trade_coin_id
+  window.Echo.channel(
+    `dashboard-${localStorage.getItem("base_coin_id")}-${localStorage.getItem(
+      "trade_coin_id"
+    )}`
+  ).listen(".order_place", (e: any) => {
     if (e.order_type === "buy") dispatch(setOpenBookBuy(e.orders));
     if (e.order_type === "sell") dispatch(setOpenBooksell(e.orders));
+
   });
   //@ts-ignore
   window.Echo.channel(
     `trade-info-${localStorage.getItem("base_coin_id")}-${localStorage.getItem(
       "trade_coin_id"
     )}`
-  ).listen(".process", (e: any) => {});
+  ).listen(".process", (e: any) => {
+    dispatch(setAllmarketTrades(e.trades.transactions));
+    updateChart({
+      price: parseFloat(e.last_trade.price),
+      ts: e.last_trade.time,
+      base_coin_id: e.summary.base_coin_id,
+      trade_coin_id: e.summary.trade_coin_id,
+      total: parseFloat(e.last_trade.total),
+    });
+  });
 }
 const Dashboard: NextPage = () => {
   const { t } = useTranslation("common");
@@ -54,7 +72,7 @@ const Dashboard: NextPage = () => {
   const { dashboard, currentPair } = useSelector(
     (state: RootState) => state.exchange
   );
-
+ const { settings } = useSelector((state: RootState) => state.common);
   useEffect(() => {
     const pair = localStorage.getItem("current_pair");
     if (pair) {
@@ -217,12 +235,14 @@ const Dashboard: NextPage = () => {
                 </div>
               </div>
             </div>
+            
             <div className="cp-user-custom-card exchange-area">
               <div id="dashboard">
                 <div className="row">
                   <div className="col-xl-12">
                     <div className="cxchange-summary-wrap">
                       <div className="cxchange-summary-name">
+                        
                         <div className="summber-coin-type dropdown">
                           <span
                             className="coin-badge dropdown-toggle"
@@ -231,10 +251,10 @@ const Dashboard: NextPage = () => {
                             aria-haspopup="true"
                             aria-expanded="false"
                           >
+                            
                             {currentPair.replace(/_/g, "/")}
                           </span>
-
-                          <SelectCurrency />
+                        <SelectCurrency />
                         </div>
                       </div>
                       {dashboard?.last_price_data && <CurrencyLevel />}

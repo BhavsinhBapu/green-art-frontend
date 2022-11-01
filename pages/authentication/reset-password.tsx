@@ -16,11 +16,21 @@ const ResetPassword: NextPage = () => {
   const [processing, setProcessing] = useState(false);
   const { logo } = useSelector((state: RootState) => state.user);
   const [recaptchaData, setRecaptchaData] = useState<any>({});
-    const { settings } = useSelector((state: RootState) => state.common);
+  const { settings } = useSelector((state: RootState) => state.common);
   const getRecapcha = async () => {
     const response = await RecapCha();
     setRecaptchaData(response.data);
     return response;
+  };
+
+  let captcha: any;
+  const setCaptchaRef = (ref: any) => {
+    if (ref) {
+      return (captcha = ref);
+    }
+  };
+  const resetCaptcha = () => {
+    captcha?.reset();
   };
   useEffect(() => {
     getRecapcha();
@@ -41,7 +51,7 @@ const ResetPassword: NextPage = () => {
                   <h2>{t("Forgot Password ?")}</h2>
                   <p>
                     {t(
-                      "Please enter the email address to request a password reset."
+                      "Please enter the new password and token to reset the password"
                     )}
                   </p>
                 </div>
@@ -88,7 +98,7 @@ const ResetPassword: NextPage = () => {
                           className={`form-control ${
                             touched.email && errors.email ? "is-invalid" : ""
                           }`}
-                          placeholder="Your email here"
+                          placeholder={t("Your email here")}
                         />
                       </div>
 
@@ -102,7 +112,7 @@ const ResetPassword: NextPage = () => {
                               ? "is-invalid"
                               : ""
                           }`}
-                          placeholder="Type your password"
+                          placeholder={t("Type your password")}
                         />
                       </div>
                       {/* <ErrorMessage
@@ -121,7 +131,7 @@ const ResetPassword: NextPage = () => {
                               ? "is-invalid"
                               : ""
                           }`}
-                          placeholder="Type your confirm password"
+                          placeholder={t("Reenter your new password")}
                         />
                       </div>
                       {/* <ErrorMessage
@@ -149,6 +159,7 @@ const ResetPassword: NextPage = () => {
                       {recaptchaData?.NOCAPTCHA_SITEKEY &&
                         recaptchaData?.google_recapcha === "1" && (
                           <ReCAPTCHA
+                            ref={(r: any) => setCaptchaRef(r)}
                             sitekey={recaptchaData?.NOCAPTCHA_SITEKEY}
                             render="explicit"
                             onChange={(response: any) => {
@@ -157,6 +168,7 @@ const ResetPassword: NextPage = () => {
                           />
                         )}
                       <button
+                        onClick={() => resetCaptcha()}
                         type="submit"
                         className="btn nimmu-user-sibmit-button mt-3"
                       >
