@@ -25,7 +25,7 @@ export const SignupApi = async (
     first_name: credentials.first_name,
     last_name: credentials.last_name,
     password_confirmation: credentials.password_confirmation,
-    recapcha:credentials.recapcha,
+    recapcha: credentials.recapcha,
     ref_code: ref_code,
   };
   const { data } = await request.post("/sign-up", finalCredential);
@@ -95,6 +95,10 @@ export const UploadPassport = async (Files: any) => {
   const { data } = await request.post("/upload-passport", Files);
   return data;
 };
+export const UploadVoter = async (Files: any) => {
+  const { data } = await request.post("/upload-voter-card", Files);
+  return data;
+};
 
 export const UploadDrivingLicence = async (Files: any) => {
   const { data } = await request.post("/upload-driving-licence", Files);
@@ -121,5 +125,9 @@ export const verifyEmailApi = async (credential: any) => {
     verify_code: credential.code,
     recapcha: credential.recapcha,
   });
+  return data;
+};
+export const KycActiveList = async () => {
+  const { data } = await request.get("/kyc-active-list");
   return data;
 };

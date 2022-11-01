@@ -1,3 +1,4 @@
+import { CUSTOM_PAGE_LINK_PAGE } from "helpers/core-constants";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import React from "react";
@@ -24,9 +25,19 @@ const Footer = ({ customPageData, socialData, copyright_text }: any) => {
                       (item: any) =>
                         item.type === 1 && (
                           <li>
-                            <Link href={"/page-details/" + item.key}>
-                              {item.title}
-                            </Link>
+                            {item.page_type === CUSTOM_PAGE_LINK_PAGE ? (
+                              <Link href={"/page-details/" + item.key}>
+                                {item.title}
+                              </Link>
+                            ) : (
+                              <a
+                                href={item.page_link}
+                                target="_blank"
+                                rel="noreferrer"
+                              >
+                                {item.title}
+                              </a>
+                            )}
                           </li>
                         )
                     )}
@@ -45,9 +56,19 @@ const Footer = ({ customPageData, socialData, copyright_text }: any) => {
                       (item: any) =>
                         item.type === 2 && (
                           <li>
-                            <Link href={"/page-details/" + item.key}>
-                              {item.title}
-                            </Link>
+                            {item.page_type === CUSTOM_PAGE_LINK_PAGE ? (
+                              <Link href={"/page-details/" + item.key}>
+                                {item.title}
+                              </Link>
+                            ) : (
+                              <a
+                                href={item.page_link}
+                                target="_blank"
+                                rel="noreferrer"
+                              >
+                                {item.title}
+                              </a>
+                            )}
                           </li>
                         )
                     )}
@@ -66,9 +87,19 @@ const Footer = ({ customPageData, socialData, copyright_text }: any) => {
                       (item: any) =>
                         item.type === 3 && (
                           <li>
-                            <Link href={"/page-details/" + item.key}>
-                              {item.title}
-                            </Link>
+                            {item.page_type === CUSTOM_PAGE_LINK_PAGE ? (
+                              <Link href={"/page-details/" + item.key}>
+                                {item.title}
+                              </Link>
+                            ) : (
+                              <a
+                                href={item.page_link}
+                                target="_blank"
+                                rel="noreferrer"
+                              >
+                                {item.title}
+                              </a>
+                            )}
                           </li>
                         )
                     )}
@@ -85,7 +116,11 @@ const Footer = ({ customPageData, socialData, copyright_text }: any) => {
                   <ul>
                     {socialData?.map((social: any, index: any) => (
                       <li key={index}>
-                        <a href={social.media_link}>
+                        <a
+                          href={social.media_link}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
                           <img
                             src={social.media_icon}
                             alt={social.media_title}

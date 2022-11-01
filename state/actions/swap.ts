@@ -26,7 +26,7 @@ export const getRateAction = async (
     from_wallet: data.from_wallet?.coin_type,
     to_wallet: data.to_wallet?.coin_type,
   });
-  return data.convert_rate;
+  return data;
 };
 export const swapCoinAction = async (
   amount: number,

@@ -1,11 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { BsBarChartLine } from "react-icons/bs";
+import { BiNetworkChart } from "react-icons/bi";
+import { IoLanguageSharp } from "react-icons/io5";
+import { FiSettings } from "react-icons/fi";
+import { CgProfile } from "react-icons/cg";
+import { HiOutlineDocumentReport } from "react-icons/hi";
+import { BiWalletAlt } from "react-icons/bi";
+import { RiWallet3Line } from "react-icons/ri";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "state/store";
 import { LogoutAction } from "state/actions/user";
 import { notification, notificationSeen } from "service/notification";
 import useTranslation from "next-translate/useTranslation";
+import { HiArrowNarrowRight } from "react-icons/hi";
+import { CgNotifications } from "react-icons/cg";
+import { RiNotificationBadgeLine } from "react-icons/ri";
+import moment from "moment";
+import OutsideClickHandler from "react-outside-click-handler";
 
 const Navbar = () => {
   const { isLoggedIn, user, logo } = useSelector(
@@ -70,7 +83,7 @@ const Navbar = () => {
                       }
                     >
                       <span className="cp-user-icon">
-                        <img
+                        {/* <img
                           src="/sidebar-icons/dashboard.svg"
                           className="img-fluid cp-user-side-bar-icon"
                           alt=""
@@ -79,7 +92,8 @@ const Navbar = () => {
                           src="/sidebar-icons/hover/dashboard.svg"
                           className="img-fluid cp-user-side-bar-icon-hover"
                           alt=""
-                        />
+                        /> */}
+                        <BsBarChartLine />
                       </span>
                       <span className="cp-user-name">{t("Trade")}</span>
                     </a>
@@ -102,7 +116,7 @@ const Navbar = () => {
                     >
                       <a href="">
                         <span className="cp-user-icon">
-                          <img
+                          {/* <img
                             src="/sidebar-icons/Wallet.svg"
                             className="img-fluid cp-user-side-bar-icon"
                             alt=""
@@ -111,45 +125,40 @@ const Navbar = () => {
                             src="/sidebar-icons/Wallet.svg"
                             className="img-fluid cp-user-side-bar-icon-hover"
                             alt=""
-                          />
+                          /> */}
+                          <BiWalletAlt />
                         </span>
                         <span className="cp-user-name">{t("Wallet")}</span>
                       </a>
                     </li>
                   </Link>
-                  <Link
-                    href={
-                      isLoggedIn === true
-                        ? "/deposit"
-                        : "/authentication/signin"
-                    }
-                  >
-                    <li
-                      className={
-                        router.pathname == "/deposit"
-                          ? "cp-user-active-page"
-                          : ""
+                  {parseInt(settings.currency_deposit_status) === 1 && (
+                    <Link
+                      href={
+                        isLoggedIn === true
+                          ? "/deposit"
+                          : "/authentication/signin"
                       }
                     >
-                      <a href="">
-                        <span className="cp-user-icon">
-                          <img
-                            src="/sidebar-icons/Wallet.svg"
-                            className="img-fluid cp-user-side-bar-icon"
-                            alt=""
-                          />
-                          <img
-                            src="/sidebar-icons/Wallet.svg"
-                            className="img-fluid cp-user-side-bar-icon-hover"
-                            alt=""
-                          />
-                        </span>
-                        <span className="cp-user-name">
-                          {t("Deposit Wallet")}
-                        </span>
-                      </a>
-                    </li>
-                  </Link>
+                      <li
+                        className={
+                          router.pathname == "/deposit"
+                            ? "cp-user-active-page"
+                            : ""
+                        }
+                      >
+                        <a href="">
+                          <span className="cp-user-icon">
+                            <RiWallet3Line />
+                          </span>
+                          <span className="cp-user-name">
+                            {t("Fiat Deposit")}
+                          </span>
+                        </a>
+                      </li>
+                    </Link>
+                  )}
+
                   <li
                     className={
                       router.pathname == "/user/wallet-history"
@@ -161,6 +170,8 @@ const Navbar = () => {
                         : router.pathname == "/user/sell-order-history"
                         ? "cp-user-active-page"
                         : router.pathname == "/user/transaction-history"
+                        ? "cp-user-active-page"
+                        : router.pathname == "/user/currency-deposit-history"
                         ? "cp-user-active-page"
                         : ""
                     }
@@ -174,7 +185,7 @@ const Navbar = () => {
                     >
                       <a className="arrow-icon" href="#" aria-expanded="true">
                         <span className="cp-user-icon">
-                          <img
+                          {/* <img
                             src="/sidebar-icons/Membership.svg"
                             className="img-fluid cp-user-side-bar-icon"
                             alt=""
@@ -183,7 +194,8 @@ const Navbar = () => {
                             src="/sidebar-icons/hover/Membership-1.svg"
                             className="img-fluid cp-user-side-bar-icon-hover"
                             alt=""
-                          />
+                          /> */}
+                          <HiOutlineDocumentReport />
                         </span>
                         <span className="cp-user-name">{t("Reports")}</span>
                       </a>
@@ -292,6 +304,23 @@ const Navbar = () => {
                         >
                           <a href="">{t("Transaction History")}</a>
                         </li>
+                      </Link>{" "}
+                      <Link
+                        href={
+                          isLoggedIn
+                            ? "/user/currency-deposit-history"
+                            : "/authentication/signin"
+                        }
+                      >
+                        <li
+                          className={
+                            router.pathname == "/user/currency-deposit-history"
+                              ? "cp-user-active-page"
+                              : ""
+                          }
+                        >
+                          <a href="">{t("Fiat Deposit History")}</a>
+                        </li>
                       </Link>
                     </ul>
                   </li>
@@ -309,7 +338,7 @@ const Navbar = () => {
                     >
                       <a href="">
                         <span className="cp-user-icon">
-                          <img
+                          {/* <img
                             src="/sidebar-icons/user.svg"
                             className="img-fluid cp-user-side-bar-icon"
                             alt=""
@@ -318,7 +347,8 @@ const Navbar = () => {
                             src="/sidebar-icons/hover/user.svg"
                             className="img-fluid cp-user-side-bar-icon-hover"
                             alt=""
-                          />
+                          /> */}
+                          <CgProfile />
                         </span>
                         <span className="cp-user-name">{t("My Profile")}</span>
                       </a>
@@ -336,9 +366,10 @@ const Navbar = () => {
                           : ""
                       }
                     >
-                      <a href="">
-                        <span className="cp-user-icon">
-                          <img
+                      <Link href="/user/referral">
+                        <a>
+                          <span className="cp-user-icon">
+                            {/* <img
                             src="/sidebar-icons/referral.svg"
                             className="img-fluid cp-user-side-bar-icon"
                             alt=""
@@ -347,10 +378,14 @@ const Navbar = () => {
                             src="/sidebar-icons/hover/referral.svg"
                             className="img-fluid cp-user-side-bar-icon-hover"
                             alt=""
-                          />
-                        </span>
-                        <span className="cp-user-name">{t("My Referral")}</span>
-                      </a>
+                          /> */}
+                            <BiNetworkChart />
+                          </span>
+                          <span className="cp-user-name">
+                            {t("My Referral")}
+                          </span>
+                        </a>
+                      </Link>
                     </li>
                   </Link>
                   <li
@@ -369,7 +404,7 @@ const Navbar = () => {
                     >
                       <a className="arrow-icon" href="#" aria-expanded="true">
                         <span className="cp-user-icon">
-                          <img
+                          {/* <img
                             src="/sidebar-icons/settings.svg"
                             className="img-fluid cp-user-side-bar-icon"
                             alt=""
@@ -378,7 +413,8 @@ const Navbar = () => {
                             src="/sidebar-icons/hover/settings.svg"
                             className="img-fluid cp-user-side-bar-icon-hover"
                             alt=""
-                          />
+                          /> */}
+                          <FiSettings />
                         </span>
                         <span className="cp-user-name">{t("Settings")}</span>
                       </a>
@@ -415,7 +451,7 @@ const Navbar = () => {
                   <li>
                     <a className="arrow-icon" href="#" aria-expanded="true">
                       <span className="cp-user-icon">
-                        <img
+                        {/* <img
                           src="/sidebar-icons/Membership.svg"
                           className="img-fluid cp-user-side-bar-icon"
                           alt=""
@@ -424,7 +460,8 @@ const Navbar = () => {
                           src="/sidebar-icons/hover/Membership-1.svg"
                           className="img-fluid cp-user-side-bar-icon-hover"
                           alt=""
-                        />
+                        /> */}
+                        <IoLanguageSharp />
                       </span>
                       <span className="cp-user-name">
                         {router.locale?.toLocaleUpperCase()}
@@ -474,7 +511,81 @@ const Navbar = () => {
                             />
                           </button>
                           <div className="dropdown-menu notification-list dropdown-menu-right">
-                            {notificationData[0] && (
+                            <div className="notify-menu">
+                              <div className="notification-list-title">
+                                <div className="notify-counter">
+                                  <div className="notify-pending">
+                                    <p>
+                                      <span>{notificationData.length}</span>{" "}
+                                      {t("pending notifications")}
+                                    </p>
+                                    <a
+                                      onClick={() => {
+                                        seen();
+                                      }}
+                                      className="clear-all"
+                                      href="#"
+                                    >
+                                      {t("Clear All")}
+                                    </a>
+                                  </div>
+
+                                  <div className="notifiy-clear">
+                                    <Link href="/user/notification">
+                                      <a
+                                        // onClick={() => {
+                                        //   seen();
+                                        // }}
+                                        className="view-all"
+                                      >
+                                        {t("View All")}
+                                      </a>
+                                    </Link>
+                                    <HiArrowNarrowRight />
+                                  </div>
+                                </div>
+                              </div>
+                              <div>
+                                <div className="notify-grid-item">
+                                  {notificationData.length > 0 ? (
+                                    notificationData
+                                      ?.slice(0, 5)
+                                      ?.map((item: any, index: number) => (
+                                        <div
+                                          className="notify-icon-title"
+                                          key={index}
+                                        >
+                                          <RiNotificationBadgeLine
+                                            size={20}
+                                            className="notify-menu-icon"
+                                          />
+                                          <div>
+                                            <h6>
+                                              {item.title.substring(0, 40)}
+                                            </h6>
+                                            <p>
+                                              {item.notification_body.substring(
+                                                0,
+                                                50
+                                              )}
+                                            </p>
+                                            <span>
+                                              {moment(item.created_at).format(
+                                                "DD MMM YYYY"
+                                              )}
+                                            </span>
+                                          </div>
+                                        </div>
+                                      ))
+                                  ) : (
+                                    <p className="notFountNotifyText">
+                                      {t("No Notification Found!")}
+                                    </p>
+                                  )}
+                                </div>
+                              </div>
+                            </div>
+                            {/* {notificationData[0] && (
                               <div className="notification-body-drop">
                                 <div>
                                   <p className="title-notifination">
@@ -531,7 +642,7 @@ const Navbar = () => {
                                   {t("No new notification")}
                                 </span>
                               </div>
-                            )}
+                            )} */}
 
                             <div
                               className="scroll-wrapper scrollbar-inner"
@@ -576,7 +687,13 @@ const Navbar = () => {
                             aria-expanded="false"
                           >
                             <span className="cp-user-avater">
-                              <span className="cp-user-img">
+                              <span
+                                className={`${
+                                  user?.online_status?.online_status
+                                    ? "tradeUserActive"
+                                    : "tradeUserDeactive"
+                                } cp-user-img`}
+                              >
                                 {user?.photo && (
                                   <img
                                     src={user?.photo}
@@ -589,20 +706,28 @@ const Navbar = () => {
                             </span>
                           </button>
                           <div className="dropdown-menu dropdown-menu-right">
-                            <span className="big-user-thumb">
+                            <p
+                              className={`${
+                                user?.online_status?.online_status
+                                  ? "userActive"
+                                  : "userDeactive"
+                              } big-user-thumb`}
+                            >
                               <img
                                 src={user?.photo}
-                                className="img-fluid"
+                                className="img-fluid profile-avatar"
                                 alt=""
                               />
-                            </span>
+                            </p>
                             <div className="user-name">
-                              <p>{user?.first_name!}</p>
+                              <p className="nav-userName">
+                                {user?.first_name!} {user?.last_name!}
+                              </p>
                             </div>
                             <Link href="/user/profile">
                               <button className="dropdown-item" type="button">
                                 <a href="">
-                                  <i className="fa fa-user-circle-o"></i>{" "}
+                                  <i className="fa-regular fa-user"></i>{" "}
                                   {t("Profile")}
                                 </a>
                               </button>
@@ -656,304 +781,323 @@ const Navbar = () => {
         </div>
       </div>
 
-      <div className={`cp-user-sidebar ${active ? "active" : ""}`}>
-        <div className="cp-user-sidebar-menu scrollbar-inner">
-          <nav>
-            <ul id="metismenu">
-              <li className=" cp-user-active-page ">
-                <a
-                  href={
-                    router.locale !== "en"
-                      ? `/${router.locale}/exchange/dashboard`
-                      : "/exchange/dashboard"
-                  }
-                >
-                  <span className="cp-user-icon">
-                    <img
-                      src=""
-                      className="img-fluid cp-user-side-bar-icon"
-                      alt=""
-                    />
-                    <img
-                      src=""
-                      className="img-fluid cp-user-side-bar-icon-hover"
-                      alt=""
-                    />
-                  </span>
-                  <span className="cp-user-name">{t("Dashboard")}</span>
-                </a>
-              </li>
+      <OutsideClickHandler onOutsideClick={() => setActive(false)}>
+        <div className={`cp-user-sidebar ${active ? "active" : ""}`}>
+          <div
+            onClick={() => setActive(false)}
+            className="cp-user-sidebar-menu scrollbar-inner"
+          >
+            <nav>
+              <ul id="metismenu">
+                <li className=" cp-user-active-page ">
+                  <a
+                    href={
+                      router.locale !== "en"
+                        ? `/${router.locale}/exchange/dashboard`
+                        : "/exchange/dashboard"
+                    }
+                  >
+                    <span className="cp-user-icon">
+                      <img
+                        src=""
+                        className="img-fluid cp-user-side-bar-icon"
+                        alt=""
+                      />
+                      <img
+                        src=""
+                        className="img-fluid cp-user-side-bar-icon-hover"
+                        alt=""
+                      />
+                    </span>
+                    <span className="cp-user-name">{t("Dashboard")}</span>
+                  </a>
+                </li>
 
-              <li>
-                <a className="arrow-icon" href="#" aria-expanded="true">
-                  <span className="cp-user-icon">
-                    <img
-                      src=""
-                      className="img-fluid cp-user-side-bar-icon"
-                      alt=""
-                    />
-                    <img
-                      src=""
-                      className="img-fluid cp-user-side-bar-icon-hover"
-                      alt=""
-                    />
-                  </span>
-                  <span className="cp-user-name">{t("Wallet")}</span>
-                </a>
-                <ul>
-                  <Link
-                    href={
-                      isLoggedIn ? "/user/my-wallet" : "/authentication/signin"
-                    }
-                  >
-                    <li>
-                      <a href="">{t("My Wallet")}</a>
-                    </li>
+                <li>
+                  <a className="arrow-icon" href="#" aria-expanded="true">
+                    <span className="cp-user-icon">
+                      <img
+                        src=""
+                        className="img-fluid cp-user-side-bar-icon"
+                        alt=""
+                      />
+                      <img
+                        src=""
+                        className="img-fluid cp-user-side-bar-icon-hover"
+                        alt=""
+                      />
+                    </span>
+                    <span className="cp-user-name">{t("Wallet")}</span>
+                  </a>
+                  <ul>
+                    <Link
+                      href={
+                        isLoggedIn
+                          ? "/user/my-wallet"
+                          : "/authentication/signin"
+                      }
+                    >
+                      <li>
+                        <a href="">{t("My Wallet")}</a>
+                      </li>
+                    </Link>
+                    <Link
+                      href={isLoggedIn ? "/deposit" : "/authentication/signin"}
+                    >
+                      <li>
+                        <a href="">{t("Swap Coin")}</a>
+                      </li>
+                    </Link>
+
+                    <Link
+                      href={
+                        isLoggedIn
+                          ? "/user/swap-coin"
+                          : "/authentication/signin"
+                      }
+                    >
+                      <li>
+                        <a href="">{t("Fiat Deposit")}</a>
+                      </li>
+                    </Link>
+                  </ul>
+                </li>
+                <li>
+                  <a className="arrow-icon" href="#" aria-expanded="true">
+                    <span className="cp-user-icon">
+                      <img
+                        src=""
+                        className="img-fluid cp-user-side-bar-icon"
+                        alt=""
+                      />
+                      <img
+                        src=""
+                        className="img-fluid cp-user-side-bar-icon-hover"
+                        alt=""
+                      />
+                    </span>
+                    <span className="cp-user-name">{t("Reports")}</span>
+                  </a>
+                  <ul>
+                    <Link
+                      href={
+                        isLoggedIn
+                          ? "/user/wallet-history?type=deposit"
+                          : "/authentication/signin"
+                      }
+                    >
+                      <li>
+                        <a href="">{t("Deposit History")}</a>
+                      </li>
+                    </Link>
+                    <Link
+                      href={
+                        isLoggedIn
+                          ? "/user/wallet-history?type=withdrawal"
+                          : "/authentication/signin"
+                      }
+                    >
+                      <li>
+                        <a href="">{t("Withdrawal History")}</a>
+                      </li>
+                    </Link>
+                    <Link
+                      href={
+                        isLoggedIn
+                          ? "/user/swap-history"
+                          : "/authentication/signin"
+                      }
+                    >
+                      <li>
+                        <a href="">{t("Swap History")}</a>
+                      </li>
+                    </Link>
+                    <Link
+                      href={
+                        isLoggedIn
+                          ? "/user/buy-order-history"
+                          : "/authentication/signin"
+                      }
+                    >
+                      <li>
+                        <a href="">{t("Buy Order History")}</a>
+                      </li>
+                    </Link>
+                    <Link
+                      href={
+                        isLoggedIn
+                          ? "/user/sell-order-history"
+                          : "/authentication/signin"
+                      }
+                    >
+                      <li>
+                        <a href="">{t("Sell Order History")}</a>
+                      </li>
+                    </Link>
+                    <Link
+                      href={
+                        isLoggedIn
+                          ? "/user/transaction-history"
+                          : "/authentication/signin"
+                      }
+                    >
+                      <li>
+                        <a href="">{t("Transaction History")}</a>
+                      </li>
+                    </Link>
+                  </ul>
+                </li>
+                <li>
+                  <a className="arrow-icon" href="#" aria-expanded="true">
+                    <span className="cp-user-icon">
+                      <img
+                        src=""
+                        className="img-fluid cp-user-side-bar-icon"
+                        alt=""
+                      />
+                      <img
+                        src=""
+                        className="img-fluid cp-user-side-bar-icon-hover"
+                        alt=""
+                      />
+                    </span>
+                    <span className="cp-user-name">{t("My Profile")}</span>
+                  </a>
+                  <ul>
+                    <Link
+                      href={
+                        isLoggedIn ? "/user/profile" : "/authentication/signin"
+                      }
+                    >
+                      <li>
+                        <a href="">{t("Profile")}</a>
+                      </li>
+                    </Link>
+                    <Link
+                      href={
+                        isLoggedIn
+                          ? "/user/edit-profile"
+                          : "/authentication/signin"
+                      }
+                    >
+                      <li>
+                        <a href="">{t("Edit Profile")}</a>
+                      </li>
+                    </Link>
+                    <Link
+                      href={
+                        isLoggedIn
+                          ? "/user/phone-verification"
+                          : "/authentication/signin"
+                      }
+                    >
+                      <li>
+                        <a href="">{t("Phone Verification")}</a>
+                      </li>
+                    </Link>
+                    <Link
+                      href={
+                        isLoggedIn ? "/user/security" : "/authentication/signin"
+                      }
+                    >
+                      <li>
+                        <a href="">{t("Security")}</a>
+                      </li>
+                    </Link>
+                    <Link
+                      href={
+                        isLoggedIn
+                          ? "/user/verification-list"
+                          : "/authentication/signin"
+                      }
+                    >
+                      <li>
+                        <a href="">{t("Verification List")}</a>
+                      </li>
+                    </Link>
+                    <Link
+                      href={
+                        isLoggedIn
+                          ? "/user/personal-verification"
+                          : "/authentication/signin"
+                      }
+                    >
+                      <li>
+                        <a href="">{t("Personal Verification")}</a>
+                      </li>
+                    </Link>
+                    <Link
+                      href={
+                        isLoggedIn
+                          ? "/user/change-password"
+                          : "/authentication/signin"
+                      }
+                    >
+                      <li>
+                        <a href="">{t("Change Password")}</a>
+                      </li>
+                    </Link>
+                  </ul>
+                </li>
+                <li>
+                  <Link href="/user/referral">
+                    <a>
+                      <span className="cp-user-icon">
+                        <img
+                          src=""
+                          className="img-fluid cp-user-side-bar-icon"
+                          alt=""
+                        />
+                        <img
+                          src=""
+                          className="img-fluid cp-user-side-bar-icon-hover"
+                          alt=""
+                        />
+                      </span>
+                      <span className="cp-user-name">{t("My Referral")}</span>
+                    </a>
                   </Link>
-                  <Link
-                    href={
-                      isLoggedIn ? "/user/swap-coin" : "/authentication/signin"
-                    }
-                  >
-                    <li>
-                      <a href="">{t("Swap Coin")}</a>
-                    </li>
-                  </Link>
-                </ul>
-              </li>
-              <li>
-                <a className="arrow-icon" href="#" aria-expanded="true">
-                  <span className="cp-user-icon">
-                    <img
-                      src=""
-                      className="img-fluid cp-user-side-bar-icon"
-                      alt=""
-                    />
-                    <img
-                      src=""
-                      className="img-fluid cp-user-side-bar-icon-hover"
-                      alt=""
-                    />
-                  </span>
-                  <span className="cp-user-name">{t("Reports")}</span>
-                </a>
-                <ul>
-                  <Link
-                    href={
-                      isLoggedIn
-                        ? "/user/wallet-history?type=deposit"
-                        : "/authentication/signin"
-                    }
-                  >
-                    <li>
-                      <a href="">{t("Deposit History")}</a>
-                    </li>
-                  </Link>
-                  <Link
-                    href={
-                      isLoggedIn
-                        ? "/user/wallet-history?type=withdrawal"
-                        : "/authentication/signin"
-                    }
-                  >
-                    <li>
-                      <a href="">{t("Withdrawal History")}</a>
-                    </li>
-                  </Link>
-                  <Link
-                    href={
-                      isLoggedIn
-                        ? "/user/swap-history"
-                        : "/authentication/signin"
-                    }
-                  >
-                    <li>
-                      <a href="">{t("Swap History")}</a>
-                    </li>
-                  </Link>
-                  <Link
-                    href={
-                      isLoggedIn
-                        ? "/user/buy-order-history"
-                        : "/authentication/signin"
-                    }
-                  >
-                    <li>
-                      <a href="">{t("Buy Order History")}</a>
-                    </li>
-                  </Link>
-                  <Link
-                    href={
-                      isLoggedIn
-                        ? "/user/sell-order-history"
-                        : "/authentication/signin"
-                    }
-                  >
-                    <li>
-                      <a href="">{t("Sell Order History")}</a>
-                    </li>
-                  </Link>
-                  <Link
-                    href={
-                      isLoggedIn
-                        ? "/user/transaction-history"
-                        : "/authentication/signin"
-                    }
-                  >
-                    <li>
-                      <a href="">{t("Transaction History")}</a>
-                    </li>
-                  </Link>
-                </ul>
-              </li>
-              <li>
-                <a className="arrow-icon" href="#" aria-expanded="true">
-                  <span className="cp-user-icon">
-                    <img
-                      src=""
-                      className="img-fluid cp-user-side-bar-icon"
-                      alt=""
-                    />
-                    <img
-                      src=""
-                      className="img-fluid cp-user-side-bar-icon-hover"
-                      alt=""
-                    />
-                  </span>
-                  <span className="cp-user-name">{t("My Profile")}</span>
-                </a>
-                <ul>
-                  <Link
-                    href={
-                      isLoggedIn ? "/user/profile" : "/authentication/signin"
-                    }
-                  >
-                    <li>
-                      <a href="">{t("Profile")}</a>
-                    </li>
-                  </Link>
-                  <Link
-                    href={
-                      isLoggedIn
-                        ? "/user/edit-profile"
-                        : "/authentication/signin"
-                    }
-                  >
-                    <li>
-                      <a href="">{t("Edit Profile")}</a>
-                    </li>
-                  </Link>
-                  <Link
-                    href={
-                      isLoggedIn
-                        ? "/user/phone-verification"
-                        : "/authentication/signin"
-                    }
-                  >
-                    <li>
-                      <a href="">{t("Phone Verification")}</a>
-                    </li>
-                  </Link>
-                  <Link
-                    href={
-                      isLoggedIn ? "/user/security" : "/authentication/signin"
-                    }
-                  >
-                    <li>
-                      <a href="">{t("Security")}</a>
-                    </li>
-                  </Link>
-                  <Link
-                    href={
-                      isLoggedIn
-                        ? "/user/verification-list"
-                        : "/authentication/signin"
-                    }
-                  >
-                    <li>
-                      <a href="">{t("Verification List")}</a>
-                    </li>
-                  </Link>
-                  <Link
-                    href={
-                      isLoggedIn
-                        ? "/user/personal-verification"
-                        : "/authentication/signin"
-                    }
-                  >
-                    <li>
-                      <a href="">{t("Personal Verification")}</a>
-                    </li>
-                  </Link>
-                  <Link
-                    href={
-                      isLoggedIn
-                        ? "/user/change-password"
-                        : "/authentication/signin"
-                    }
-                  >
-                    <li>
-                      <a href="">{t("Change Password")}</a>
-                    </li>
-                  </Link>
-                </ul>
-              </li>
-              <li>
-                <a href="">
-                  <span className="cp-user-icon">
-                    <img
-                      src=""
-                      className="img-fluid cp-user-side-bar-icon"
-                      alt=""
-                    />
-                    <img
-                      src=""
-                      className="img-fluid cp-user-side-bar-icon-hover"
-                      alt=""
-                    />
-                  </span>
-                  <span className="cp-user-name">{t("My Referral")}</span>
-                </a>
-              </li>
-              <li>
-                <a className="arrow-icon" href="#" aria-expanded="true">
-                  <span className="cp-user-icon">
-                    <img
-                      src=""
-                      className="img-fluid cp-user-side-bar-icon"
-                      alt=""
-                    />
-                    <img
-                      src=""
-                      className="img-fluid cp-user-side-bar-icon-hover"
-                      alt=""
-                    />
-                  </span>
-                  <span className="cp-user-name">{t("Settings")}</span>
-                </a>
-                <ul>
-                  <Link
-                    href={
-                      isLoggedIn ? "/user/settings" : "/authentication/signin"
-                    }
-                  >
-                    <li>
-                      <a href="">{t("My Settings")}</a>
-                    </li>
-                  </Link>
-                  <Link
-                    href={isLoggedIn ? "/user/faq" : "/authentication/signin"}
-                  >
-                    <li>
-                      <a href="">{t("FAQ")}</a>
-                    </li>
-                  </Link>
-                </ul>
-              </li>
-            </ul>
-          </nav>
+                </li>
+                <li>
+                  <a className="arrow-icon" href="#" aria-expanded="true">
+                    <span className="cp-user-icon">
+                      <img
+                        src=""
+                        className="img-fluid cp-user-side-bar-icon"
+                        alt=""
+                      />
+                      <img
+                        src=""
+                        className="img-fluid cp-user-side-bar-icon-hover"
+                        alt=""
+                      />
+                    </span>
+                    <span className="cp-user-name">{t("Settings")}</span>
+                  </a>
+                  <ul>
+                    <Link
+                      href={
+                        isLoggedIn ? "/user/settings" : "/authentication/signin"
+                      }
+                    >
+                      <li>
+                        <a href="">{t("My Settings")}</a>
+                      </li>
+                    </Link>
+                    <Link
+                      href={isLoggedIn ? "/user/faq" : "/authentication/signin"}
+                    >
+                      <li>
+                        <a href="">{t("FAQ")}</a>
+                      </li>
+                    </Link>
+                  </ul>
+                </li>
+              </ul>
+            </nav>
+          </div>
         </div>
-      </div>
+      </OutsideClickHandler>
     </>
   );
 };
