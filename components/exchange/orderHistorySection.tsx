@@ -6,7 +6,7 @@ import OpenOrders from "./openOrders";
 import OrderHistory from "./orderHistory";
 import TradeOrder from "./tradeOrder";
 
-const OrderHistorySection = () => {
+const OrderHistorySection = ({ bottom }: any) => {
   type activeTabType = {
     openOrders: boolean;
     orderHistory: boolean;
@@ -28,10 +28,10 @@ const OrderHistorySection = () => {
   } = useSelector((state: RootState) => state.exchange);
 
   React.useEffect(() => {
-    return () => {};
+    return () => { };
   }, [currentPair, dashboard]);
   return (
-    <div className="orders-area mt-4">
+    <div className={`orders-area mt-4 ${bottom===true&&"ml-3 mr-3"}`}>
       <div className="orders-area-top">
         <div className="top-left">
           <ul id="ordersTab" role="tablist" className="nav nav-tabs">

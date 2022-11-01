@@ -29,36 +29,15 @@ export const SearchObjectArrayFuesJS = (
   setArray(newArray);
 };
 
-export const WalletDepositApiAction = async (
-  id: number,
-  setProcessing: React.Dispatch<React.SetStateAction<any>>
-) => {
-  setProcessing({
-    withdraw: false,
-    deposit: true,
-  });
-
+export const WalletDepositApiAction = async (id: number) => {
   const response = await WalletDepositApi(id);
-  setProcessing({
-    withdraw: false,
-    deposit: false,
-  });
+
   return response;
 };
 
-export const WalletWithdrawApiAction = async (
-  id: number,
-  setProcessing: React.Dispatch<React.SetStateAction<any>>
-) => {
-  setProcessing({
-    withdraw: true,
-    deposit: false,
-  });
+export const WalletWithdrawApiAction = async (id: number) => {
   const response = await WalletWithdrawApi(id);
-  setProcessing({
-    withdraw: false,
-    deposit: false,
-  });
+
   return response;
 };
 
@@ -78,16 +57,16 @@ export const WalletWithdrawProcessApiAction = async (
 };
 export const GetWalletAddressAction = async (
   credential: any,
-  setNetwork: any
+  setNetwork: any,
+  setDependecy: any
 ) => {
   const response = await GetWalletAddress(credential);
   if (response.success === true) {
     toast.success(response.message);
     setNetwork(response.data);
-    console.log(response.data, "vasda,;ds'as");
+    setDependecy(Math.random() * 1000);
   } else {
     toast.error(response.message);
-    console.log(response.data, "vasda,;ds'as");
   }
   return response;
 };

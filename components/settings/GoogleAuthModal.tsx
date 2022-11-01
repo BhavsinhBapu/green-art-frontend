@@ -58,7 +58,7 @@ const GoogleAuthModal = ({ settings, setSettings }: any) => {
                     )}
                   </p>
                   <input
-                    placeholder="Code"
+                    placeholder={t("Code")}
                     type="text"
                     className="form-control"
                     name="code"
