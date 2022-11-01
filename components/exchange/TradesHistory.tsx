@@ -12,7 +12,7 @@ const TradesHistory = ({ marketTrades }: any) => {
   return (
     <div className="trades-section1 mt-4">
       <div className="trades-headers mb-3">
-        <h3>{t("Trades")}</h3>
+        <h3>{t("Market Trades")}</h3>
       </div>
       <div className="primary-table">
         <div className="table-header">
@@ -28,7 +28,7 @@ const TradesHistory = ({ marketTrades }: any) => {
             className="dataTables_processing"
             style={{ display: "none" }}
           >
-            {t("Processing...")}
+            {t("Processing")}...
           </div>
           <div className="dataTables_scroll">
             <div
@@ -87,7 +87,6 @@ const TradesHistory = ({ marketTrades }: any) => {
                       </th>
                     </tr>
                   </thead>
-                  AllSellOrders
                   <SellTable marketTrades={marketTrades} />
                 </table>
               </div>

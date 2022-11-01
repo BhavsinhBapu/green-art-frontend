@@ -62,7 +62,7 @@ const OpenOrders = ({ openOrders, openOrderHistory }: any) => {
                 </td>
 
                 <td>{order.amount}</td>
-                <td>{order.fees}</td>
+                <td>{parseFloat(order.fees).toFixed(8)}</td>
                 <td>{order.price}</td>
                 <td>{order.processed}</td>
                 <td>{order.total}</td>
