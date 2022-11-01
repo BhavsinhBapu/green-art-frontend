@@ -1,6 +1,4 @@
-import Cookies from "js-cookie";
 import { getChartData } from "service/trading-chart";
-import { apiRequest } from "lib/request";
 const history: any = {};
 
 export default {
@@ -9,14 +7,6 @@ export default {
 
   //@ts-ignore
   getBars: function (symbolInfo, resolution, from, to, first, limit) {
-    var split_symbol = symbolInfo.name.split(/[:/]/);
-    const url =
-      resolution === "D"
-        ? "/data/histoday"
-        : resolution >= 60
-        ? "/data/histohour"
-        : "/data/histominute";
-
     const base = localStorage.getItem("base_coin_id");
     const trade = localStorage.getItem("trade_coin_id");
 

@@ -14,10 +14,7 @@ import useTranslation from "next-translate/useTranslation";
 import { destroyCookie } from "nookies";
 import { RootState } from "state/store";
 const Signin: NextPage = () => {
-  const {  logo } = useSelector(
-    (state: RootState) => state.user
-  );
-   const { settings } = useSelector((state: RootState) => state.common);
+  const { settings } = useSelector((state: RootState) => state.common);
   const { t } = useTranslation("common");
   const [showPassword, setShowPassword] = useState(false);
   const [processing, setProcessing] = useState<any>(false);
@@ -28,6 +25,17 @@ const Signin: NextPage = () => {
     setRecaptchaData(response.data);
     return response;
   };
+
+  let captcha: any;
+  const setCaptchaRef = (ref: any) => {
+    if (ref) {
+      return (captcha = ref);
+    }
+  };
+  const resetCaptcha = () => {
+    captcha?.reset();
+  };
+
   useEffect(() => {
     getRecapcha();
   }, []);
@@ -45,7 +53,7 @@ const Signin: NextPage = () => {
               <div className="user-form-inner">
                 <div className="form-top">
                   <h2>{t("Sign In")}</h2>
-                  <p>{t("Please Sign In To Your Account.")}</p>
+                  <p>{t("Please Sign In To Your Account")}</p>
                 </div>
                 <Formik
                   initialValues={{
@@ -96,7 +104,7 @@ const Signin: NextPage = () => {
                               ? "is-invalid"
                               : ""
                           }`}
-                          placeholder="Your password here"
+                          placeholder={t("Your password here")}
                         />
 
                         <span
@@ -136,6 +144,7 @@ const Signin: NextPage = () => {
                       {recaptchaData?.NOCAPTCHA_SITEKEY &&
                         recaptchaData?.google_recapcha === "1" && (
                           <ReCAPTCHA
+                            ref={(r: any) => setCaptchaRef(r)}
                             sitekey={recaptchaData?.NOCAPTCHA_SITEKEY}
                             render="explicit"
                             onChange={(response: any) => {
@@ -145,6 +154,7 @@ const Signin: NextPage = () => {
                         )}
 
                       <button
+                        onClick={() => resetCaptcha()}
                         type="submit"
                         disabled={processing}
                         className="btn nimmu-user-sibmit-button mt-3"
@@ -194,7 +204,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
     await authPageRequireCheck(ctx);
   } catch (error) {
     destroyCookie(ctx, "token");
-    console.log(error, "error");
   }
   return {
     props: {},

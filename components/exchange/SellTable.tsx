@@ -6,7 +6,6 @@ const TradesTable = ({ marketTrades }: any) => {
   const [trades, setTrades] = React.useState<any>([]);
   const setTradeData = () => {
     let allTradeData = [];
-    console.log(marketTrades, "marketTrades");
     marketTrades.length &&
       allTradeData.push(marketTrades[marketTrades.length - 1]);
     for (let i = marketTrades.length; i >= 0; i--) {
@@ -42,7 +41,6 @@ const TradesTable = ({ marketTrades }: any) => {
         });
       }
     }
-    console.log(allTradeData, "allTradeData");
     setTrades(allTradeData.reverse());
   };
   useEffect(() => {

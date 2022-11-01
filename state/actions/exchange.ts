@@ -31,18 +31,17 @@ import Cookies from "js-cookie";
 export const initialDashboardCallAction =
   (pair: string, dashboard: any, setisLoading?: any) =>
   async (dispatch: any) => {
-    setisLoading && setisLoading(true);
+    // setisLoading && setisLoading(true);
     const token = Cookies.get("token");
 
     let response;
     if (pair) {
       response = await appDashboardData(pair);
+      if (response.success === false) {
+        response = await appDashboardDataWithoutPair();
+      }
     } else {
       response = await appDashboardDataWithoutPair();
-      console.log(
-        response.pairs[0].parent_coin_id,
-        "asdasdsasdasdasdassdfsdgsrg"
-      );
     }
 
     if (pair) {
@@ -54,6 +53,7 @@ export const initialDashboardCallAction =
         "trade_coin_id",
         response.order_data.trade_coin_id
       );
+    
     } else {
       await localStorage.setItem(
         "base_coin_id",
@@ -148,7 +148,7 @@ export const initialDashboardCallAction =
 export const initialDashboardCallActionWithToken =
   (pair: string, dashboard: any, setisLoading?: any) =>
   async (dispatch: any) => {
-    setisLoading && setisLoading(true);
+    // setisLoading && setisLoading(true);
     const token = Cookies.get("token");
 
     if (token) {
@@ -191,7 +191,7 @@ export const initialDashboardCallActionWithToken =
         setAllmarketTrades(marketTradesDashboardResponse.data.transactions)
       );
     }
-    setisLoading && setisLoading(false);
+    // setisLoading && setisLoading(false);
   };
 
 export const buyLimitAppAction = async (

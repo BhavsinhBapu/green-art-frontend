@@ -44,11 +44,31 @@ Tags: admin, best react admin template, das
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 :root {
   --primary-color: #fcd535;
+  --text-primary-color: #ffff;
+  --text-primary-color-2: #23262f;
+  --text-primary-color-3: #777778;
+  --text-primary-color-4: #cbcfd7;
+
+  --border-color: #dedede;
+  --border-color-1: #e6e8ec;
+  --border-color-2: #353535;
+
   --hover-color: #f7cf33;
+  --font-color: #2a2a2d;
   --bColor: #424242;
   --title-color: #141414;
   --white: #ffffff;
   --black: #000000;
+  --color-pallet-1: #b4b8d7;
+
+  --background-color: #151515;
+  --background-color-trade: #2a2e37;
+  --main-background-color: #ffff;
+  --card-background-color: #ffffff;
+  --table-background-color: #dad6d6;
+  --footer-background-color: #f7f7f8;
+
+  --background-color-hover: #fafafa;
 }
 html,
 body {
@@ -437,7 +457,7 @@ client-area
   font-weight: 600;
   font-size: 16px;
   line-height: 28px;
-  color: #fff;
+  color: var(--text-primary-color);
   text-transform: capitalize;
   text-align: center;
   -webkit-transition: all 0.5s;
@@ -498,16 +518,16 @@ client-area
 #.footer-area
 -----------------------------*/
 .footer-area {
-  background: var(--white);
+  background: var(--footer-background-color);
 }
 .footer-area .footer-top {
   padding-bottom: 35px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+  border-bottom: 1px solid var(--border-color);
 }
 .footer-area .footer-top .single-wedgets .widget-title h4 {
   font-weight: 500;
   font-size: 20px;
-  color: #1e2329;
+  color: var(--text-primary-color-2);
   margin-bottom: 10px;
 }
 .footer-area .footer-top .single-wedgets .widget-inner ul {
@@ -528,7 +548,8 @@ client-area
   font-weight: 400;
   font-size: 14px;
   line-height: 28px;
-  color: #707a8a;
+  color: var(--text-primary-color-3);
+
   text-transform: capitalize;
   -webkit-transition: all 0.5s;
   -o-transition: all 0.5s;
@@ -553,7 +574,8 @@ client-area
 .footer-area .footer-top .social-link .widget-inner ul li a {
   margin-bottom: 15px;
   margin-right: 18px;
-  color: #707a8a;
+  color: var(--text-primary-color-4);
+
   font-size: 20px;
   transition: all 0.3s;
 }
@@ -683,7 +705,7 @@ client-area
 ==================================================*/
 .hero-banner-area {
   padding: 150px 0 80px 0;
-  background-color: #FAFAFA;
+  background-color: var(--background-color-3);
 }
 .hero-banner-area .banner-title {
   font-size: 60px;
@@ -824,17 +846,19 @@ client-area
   width: 20px;
   font-size: 20px;
   fill: #707a8a;
-  color: #707a8a;
+  color: var(--text-primary-color-4);
+
   margin-right: 10px;
   top: -2px;
 }
 .about-info .single-info a {
-  color: #707a8a;
+  color: var(--text-primary-color-4);
+
   font-size: 14px;
   font-weight: 400;
 }
 .about-info .single-info p {
-  color: #707a8a;
+  color: var(--text-primary-color-4);
   font-size: 14px;
   font-weight: 400;
   margin: 0;
@@ -879,7 +903,8 @@ client-area
   text-align: right;
 }
 .trend-table-header .trend-row {
-  color: #707a8a;
+  color: var(--text-primary-color-4);
+
   font-size: 14px;
   font-weight: 400;
   text-transform: capitalize;
@@ -918,7 +943,8 @@ client-area
 }
 .trend-info .curancy-fullname {
   text-transform: capitalize;
-  color: #707a8a;
+  color: var(--text-primary-color-4);
+
   margin-left: 5px;
 }
 .view-more {
@@ -929,7 +955,8 @@ client-area
   font-size: 14px;
   font-weight: 400;
   text-transform: capitalize;
-  color: #707a8a;
+  color: var(--text-primary-color-4);
+
   transition: all 0.3s;
 }
 .view-btn i {
@@ -948,7 +975,7 @@ client-area
 ==================================================*/
 .trade-anywhere-area {
   padding: 60px 0;
-  background: #ffffff;
+  background: var(--background-color-6);
 }
 .trade-anywhere-area .qr-code-area {
   display: flex;
@@ -1018,7 +1045,7 @@ client-area
 ==================================================*/
 .get-touch-area {
   padding: 40px 0;
-  background: #ffffff;
+  background: var(--background-color-6);
 }
 .single-card {
   display: block;
@@ -1037,21 +1064,21 @@ client-area
   margin-bottom: 10px;
   font-size: 18px;
   font-weight: 500;
-  color: #1e2329;
+  color: var(--text-primary-color-2);
 }
 .single-card .card-content {
   margin-bottom: 0;
   font-size: 14px;
   line-height: 20px;
   font-weight: 400;
-  color: #474d57;
+  color: var(--text-primary-color-2);
 }
 /*=================================================
     #.start-trading-area
 ==================================================*/
 .start-trading-area {
   padding: 40px 0;
-  background: #fafafa;
+  background: var(--background-color-9);
 }
 @media (max-width: 375px) {
   .primary-btn.mr-3 {

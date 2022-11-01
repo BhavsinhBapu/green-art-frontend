@@ -14,6 +14,8 @@ import {
   KycDetailsApi,
   G2fVerifyApi,
   verifyEmailApi,
+  KycActiveList,
+  UploadVoter,
 } from "service/user";
 import request from "lib/request";
 import { login, setAuthenticationState, setUser } from "state/reducer/user";
@@ -29,7 +31,10 @@ import {
 } from "state/reducer/exchange";
 
 export const VerifyEmailAction =
-  (credentials: { email: string; code: any; recapcha:string }, setProcessing: any) =>
+  (
+    credentials: { email: string; code: any; recapcha: string },
+    setProcessing: any
+  ) =>
   async (dispatch: any) => {
     setProcessing(true);
     const response: any = await verifyEmailApi(credentials);
@@ -424,6 +429,7 @@ export const UploadPassportImageAction = async (
 ) => {
   setProcessing(true);
   const response = await UploadPassport(image);
+
   if (response.success === true) {
     toast.success(response.message, {
       position: "top-right",
@@ -449,6 +455,37 @@ export const UploadPassportImageAction = async (
   setProcessing(false);
 };
 
+export const UploadVoterImageAction = async (
+  image: any,
+  setProcessing: Dispatch<SetStateAction<boolean>>
+) => {
+  setProcessing(true);
+  const response = await UploadVoter(image);
+
+  if (response.success === true) {
+    toast.success(response.message, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      className: "dark-toast",
+    });
+  } else {
+    toast.error(response.message, {
+      position: "top-right",
+      autoClose: 10000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  }
+  setProcessing(false);
+};
 export const UploadDrivingLicenceImageAction = async (
   image: any,
   setProcessing: Dispatch<SetStateAction<boolean>>
@@ -480,9 +517,11 @@ export const UploadDrivingLicenceImageAction = async (
   setProcessing(false);
 };
 export const getKycDetailsAction =
-  (setKycDetails: Dispatch<SetStateAction<null>>) => async (dispatch: any) => {
+  (setKycDetails: any, setKyc: any) => async (dispatch: any) => {
     const { data } = await KycDetailsApi();
+    const { data: KycList } = await KycActiveList();
     setKycDetails(data);
+    setKyc(KycList);
   };
 
 export const G2fVerifyAction = (code: any) => async (dispatch: any) => {
