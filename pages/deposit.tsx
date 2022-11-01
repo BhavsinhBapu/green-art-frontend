@@ -3,6 +3,7 @@ import WalletDeposit from "components/deposit/wallet-deposit";
 import StripeDeposit from "components/deposit/stripe-deposit";
 import {
   BANK_DEPOSIT,
+  FAQ_TYPE_DEPOSIT,
   PAYPAL,
   STRIPE,
   WALLET_DEPOSIT,
@@ -34,6 +35,7 @@ const Deposit = ({ customPageData, socialData, copyright_text }: any) => {
   const [loading, setLoading] = useState(false);
   const { settings } = useSelector((state: RootState) => state.common);
   const [faqs, setFaqs] = useState([]);
+  const [fullScreen, setFullScreen] = useState(false);
   const [selectedMethod, setSelectedMethod] = useState<any>({
     method: null,
     method_id: null,
@@ -44,7 +46,20 @@ const Deposit = ({ customPageData, socialData, copyright_text }: any) => {
     setLoading(true);
     const response = await currencyDeposit();
     const responseFaq = await getFaqList();
-    setFaqs(responseFaq.data.data);
+    let tempFaq: any = [];
+    responseFaq.data.data.map((faq: any) => {
+      if (faq.faq_type_id === FAQ_TYPE_DEPOSIT) {
+        tempFaq.push(faq);
+      }
+    });
+    setFaqs(tempFaq);
+    if (parseInt(settings.currency_deposit_faq_status) === 1) {
+      setFullScreen(true);
+      console.log("one");
+    } else if (tempFaq.length === 0) {
+      setFullScreen(true);
+      console.log("two");
+    }
     setDepositInfo(response.data);
     setSelectedMethod({
       method:
@@ -119,7 +134,7 @@ const Deposit = ({ customPageData, socialData, copyright_text }: any) => {
                 </div>
               )}
 
-              {parseInt(settings.currency_deposit_faq_status) == 1 && (
+              {fullScreen === false && (
                 <div className="col-lg-4 col-sm-12 mt-4">
                   <DepositFaq faqs={faqs} />
                 </div>
