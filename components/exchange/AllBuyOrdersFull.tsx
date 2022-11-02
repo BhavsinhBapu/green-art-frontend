@@ -150,9 +150,7 @@ const AllBuyOrders = ({ OpenBookBuy }: any) => {
                         >
                           <td>
                             <div className="asset">
-                              <span className="text-success">
-                                {item.price}
-                              </span>
+                              <span className="text-success">{item.price}</span>
                             </div>
                           </td>
                           <td>
@@ -167,6 +165,16 @@ const AllBuyOrders = ({ OpenBookBuy }: any) => {
                               </span>
                             </div>
                           </td>
+                          <div
+                            className="progress-red"
+                            style={{
+                              width: `${
+                                parseFloat(item?.percentage)
+                                  ? parseFloat(item?.percentage)
+                                  : 0
+                              }%`,
+                            }}
+                          ></div>
                         </tr>
                       </Tooltip>
                     ))
