@@ -174,6 +174,10 @@ const AllBuyOrders = ({ OpenBookBuy, show }: any) => {
                               </span>
                             </div>
                           </td>
+                          <div
+                            className="progress-green"
+                            style={{ width: "50%" }}
+                          ></div>
                         </tr>
                       </Tooltip>
                     ))
