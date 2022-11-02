@@ -17,11 +17,17 @@ import {
   setAllmarketTrades,
   setCurrentPair,
   setOpenBookBuy,
+  setOrderData,
   setOpenBooksell,
+  setDashboard,
+  setLastPriceData,
 } from "state/reducer/exchange";
 import useTranslation from "next-translate/useTranslation";
 import { last, updateChart } from "components/exchange/api/stream";
-import { EXCHANGE_LAYOUT_ONE, EXCHANGE_LAYOUT_TWO } from "helpers/core-constants";
+import {
+  EXCHANGE_LAYOUT_ONE,
+  EXCHANGE_LAYOUT_TWO,
+} from "helpers/core-constants";
 let socketCall = 0;
 async function listenMessages(dispatch: any) {
   //@ts-ignore
@@ -44,9 +50,15 @@ async function listenMessages(dispatch: any) {
       "trade_coin_id"
     )}`
   ).listen(".order_place", (e: any) => {
-    if (e.order_type === "buy") dispatch(setOpenBookBuy(e.orders));
-    if (e.order_type === "sell") dispatch(setOpenBooksell(e.orders));
+    if (e.orders.order_type === "buy")
+      dispatch(setOpenBookBuy(e.orders.orders));
+    if (e.orders.order_type === "sell")
+      dispatch(setOpenBooksell(e.orders.orders));
+    e.order_data && dispatch(setOrderData(e.order_data));
+    e.last_price_data && dispatch(setLastPriceData(e.last_price_data));
 
+    dispatch(setDashboard(e));
+    console.log(e, "all printed");
   });
   //@ts-ignore
   window.Echo.channel(
@@ -72,7 +84,7 @@ const Dashboard: NextPage = () => {
   const { dashboard, currentPair } = useSelector(
     (state: RootState) => state.exchange
   );
- const { settings } = useSelector((state: RootState) => state.common);
+  const { settings } = useSelector((state: RootState) => state.common);
   useEffect(() => {
     const pair = localStorage.getItem("current_pair");
     if (pair) {
@@ -235,14 +247,13 @@ const Dashboard: NextPage = () => {
                 </div>
               </div>
             </div>
-            
+
             <div className="cp-user-custom-card exchange-area">
               <div id="dashboard">
                 <div className="row">
                   <div className="col-xl-12">
                     <div className="cxchange-summary-wrap">
                       <div className="cxchange-summary-name">
-                        
                         <div className="summber-coin-type dropdown">
                           <span
                             className="coin-badge dropdown-toggle"
@@ -251,10 +262,9 @@ const Dashboard: NextPage = () => {
                             aria-haspopup="true"
                             aria-expanded="false"
                           >
-                            
                             {currentPair.replace(/_/g, "/")}
                           </span>
-                        <SelectCurrency />
+                          <SelectCurrency />
                         </div>
                       </div>
                       {dashboard?.last_price_data && <CurrencyLevel />}

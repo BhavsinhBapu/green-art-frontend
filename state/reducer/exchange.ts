@@ -44,11 +44,17 @@ export const exchangeSlice = createSlice({
     setOpenBookBuy: (state: any, action: PayloadAction<Array<any>>) => {
       state.OpenBookBuy = action.payload;
     },
+    setLastPriceData: (state: any, action: PayloadAction<Array<any>>) => {
+      state.dashboard.last_price_data = action.payload;
+    },
     setOpenBooksell: (state: any, action: PayloadAction<Array<any>>) => {
       state.OpenBooksell = action.payload;
     },
     setOpenOrderHistory: (state: any, action: PayloadAction<Array<any>>) => {
       state.openOrderHistory = action.payload;
+    },
+    setOrderData: (state: any, action: PayloadAction<Array<any>>) => {
+      state.dashboard.order_data = action.payload;
     },
     setSellOrderHistory: (state: any, action: PayloadAction<Array<any>>) => {
       state.sellOrderHistory = action.payload;
@@ -77,6 +83,8 @@ export const {
   setDashboard,
   setCurrentPair,
   setOpenBookBuy,
+  setLastPriceData,
+  setOrderData,
   setOpenBooksell,
   setOpenOrderHistory,
   setSellOrderHistory,
