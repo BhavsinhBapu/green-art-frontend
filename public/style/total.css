@@ -4479,12 +4479,12 @@ select:-webkit-autofill:focus {
   background-color: transparent;
   position: relative;
 }
-.progress-red{
-    position: absolute;
-    background-color: rgb(255 46 46 / 25%);
-    height: 100%;
-    top: 0;
-    right: 0;
+.progress-red {
+  position: absolute;
+  background-color: rgb(255 46 46 / 25%);
+  height: 100%;
+  top: 0;
+  right: 0;
 }
 .buy-order table.dataTable tbody tr td {
   font-size: 16px;
@@ -4497,6 +4497,7 @@ select:-webkit-autofill:focus {
 .sell-order table.dataTable tbody tr {
   background-color: transparent;
   position: relative;
+  margin-bottom: 3px;
 }
 .sell-order table.dataTable tbody tr td {
   font-size: 16px;
@@ -4506,12 +4507,12 @@ select:-webkit-autofill:focus {
 .sell-order table.dataTable tbody tr td.price {
   color: #32d777;
 }
-.progress-green{
-    position: absolute;
-    background-color: #32d7778c;
-    height: 100%;
-    top: 0;
-    right: 0;
+.progress-green {
+  position: absolute;
+  background-color: #32d7778c;
+  height: 100%;
+  top: 0;
+  right: 0;
 }
 .dataTables_wrapper.no-footer .dataTables_scrollBody {
   border-bottom: none;
