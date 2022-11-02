@@ -4481,7 +4481,7 @@ select:-webkit-autofill:focus {
 }
 .progress-red {
   position: absolute;
-  background-color: rgb(255 46 46 / 25%);
+  background-color: rgb(255 46 46 / 9%);
   height: 100%;
   top: 0;
   right: 0;
@@ -4505,7 +4505,7 @@ select:-webkit-autofill:focus {
   color: var(--text-primary-color-4) !important;
 }
 .sell-order table.dataTable tbody tr td.price {
-  color: #32d777;
+  color: #32d7771f;
 }
 .progress-green {
   position: absolute;
