@@ -33,16 +33,17 @@ async function listenMessages(dispatch: any) {
   //@ts-ignore
   window.Pusher = Pusher;
   //@ts-ignore
-  window.Echo = new Echo({
-    broadcaster: "pusher",
-    key: "test",
-    wsHost: process.env.NEXT_PUBLIC_HOST_SOCKET,
-    wsPort: 6006,
-    wssPort: 443,
-    cluster: "mt1",
-    disableStats: true,
-    enabledTransports: ["ws", "wss"],
-  });
+window.Echo = new Echo({
+  broadcaster: "pusher",
+  key: "test",
+  wsHost: process.env.NEXT_PUBLIC_HOST_SOCKET,
+  wsPort: 6006,
+  wssPort: 443,
+  forceTLS: false,
+  cluster: "mt1",
+  disableStats: true,
+  enabledTransports: ["ws", "wss"],
+});
   //@ts-ignore
   // dashboard-base_coin_id-trade_coin_id
   window.Echo.channel(
