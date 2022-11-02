@@ -81,6 +81,16 @@ const TradesTable = ({ buy, show }: any) => {
                     </span>
                   </div>
                 </td>
+                <div
+                  className="progress-red"
+                  style={{
+                    width: `${
+                      parseFloat(item?.percentage)
+                        ? parseFloat(item?.percentage)
+                        : 0
+                    }%`,
+                  }}
+                ></div>
               </>
             </tr>
           </Tooltip>
