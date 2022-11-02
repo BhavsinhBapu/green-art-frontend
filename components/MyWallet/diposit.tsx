@@ -61,6 +61,31 @@ export const DipositComponent = ({
               </div>
 
               <div className="wallet-addres">
+                {responseData?.wallet.coin_type == "USDT" && (
+                  <div className="total-balance">
+                    <h5>{t("Select Network")}</h5>
+                    <select
+                      name="currency"
+                      className="form-control coin-list-item"
+                      onChange={(e) => {
+                        const findObje = responseData?.data?.find(
+                          (x: any) => x.id === parseInt(e.target.value)
+                        );
+                        setDependecy(Math.random() * 100);
+                        setSelectedNetwork(findObje);
+                      }}
+                    >
+                      {responseData?.data?.map((item: any, index: number) => (
+                        <option value={item.id} key={index}>
+                          {item?.network_name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                )}
+              </div>
+
+              <div className="wallet-addres">
                 <h5>{t("Address")}</h5>
                 <div className="coin-list-item">
                   <p className="waring-wallet-text">
