@@ -182,6 +182,24 @@ export const DipositComponent = ({
                     </div>
                   </div>
                 </div>
+                {!selectedNetwork?.address &&
+                  responseData?.wallet.coin_type == "USDT" && (
+                    <button
+                      className=" primary-btn-outline btn-withdraw text-white w-100 mt-4"
+                      onClick={() => {
+                        GetWalletAddressAction(
+                          {
+                            wallet_id: router.query.coin_id,
+                            network_type: selectedNetwork?.network_type ?? "",
+                          },
+                          setSelectedNetwork,
+                          setDependecy
+                        );
+                      }}
+                    >
+                      {t("Get address")}
+                    </button>
+                  )}
               </div>
             </div>
 
