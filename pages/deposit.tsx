@@ -55,7 +55,7 @@ const Deposit = ({ customPageData, socialData, copyright_text }: any) => {
     setFaqs(tempFaq);
     if (parseInt(settings.currency_deposit_faq_status) === 1) {
       setFullScreen(true);
-      console.log("one");
+      console.log("one", settings.currency_deposit_faq_status);
     } else if (tempFaq.length === 0) {
       setFullScreen(true);
       console.log("two");
@@ -96,7 +96,7 @@ const Deposit = ({ customPageData, socialData, copyright_text }: any) => {
               ) : (
                 <div
                   className={`${
-                    parseInt(settings.currency_deposit_faq_status) == 1
+                    fullScreen === false
                       ? "col-lg-8 col-sm-12"
                       : "col-lg-12 col-sm-12"
                   }`}
