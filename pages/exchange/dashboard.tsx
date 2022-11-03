@@ -59,8 +59,8 @@ async function listenMessages(dispatch: any) {
       dispatch(setOpenBooksell(e.orders.orders));
     e.order_data && dispatch(setOrderData(e.order_data));
     e.last_price_data && dispatch(setLastPriceData(e.last_price_data));
-    console.log(e.order_data, "e.order_data");
     // dispatch(setDashboard(e));
+    console.log(e, "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
   });
   //@ts-ignore
   window.Echo.channel(
