@@ -71,20 +71,19 @@ export const exchangeSlice = createSlice({
         trade_coin_id: action.payload?.trade_coin_id,
         on_order: action.payload?.on_order,
       };
-      console.log(action.payload, "action.payload");
-      console.log(latestData, "latestData");
-      // state.dashboard.order_data = {
-      //   ...state.dashboard.order_data,
-      //   base_coin: action.payload?.base_coin,
-      //   base_coin_id: action.payload?.base_coin_id,
-      //   exchange_coin_pair: action.payload?.exchange_coin_pair,
-      //   exchange_pair: action.payload?.exchange_pair,
-      //   fees: action.payload?.fees,
-      //   total: action.payload?.total,
-      //   trade_coin: action.payload?.trade_coin,
-      //   trade_coin_id: action.payload?.trade_coin_id,
-      //   on_order: action.payload?.on_order,
-      // };
+
+      state.dashboard.order_data = {
+        ...state.dashboard.order_data,
+        base_coin: action.payload?.base_coin,
+        base_coin_id: action.payload?.base_coin_id,
+        exchange_coin_pair: action.payload?.exchange_coin_pair,
+        exchange_pair: action.payload?.exchange_pair,
+        fees: action.payload?.fees,
+        total: action.payload?.total,
+        trade_coin: action.payload?.trade_coin,
+        trade_coin_id: action.payload?.trade_coin_id,
+        on_order: action.payload?.on_order,
+      };
     },
     setSellOrderHistory: (state: any, action: PayloadAction<Array<any>>) => {
       state.sellOrderHistory = action.payload;
