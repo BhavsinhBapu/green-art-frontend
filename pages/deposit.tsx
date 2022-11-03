@@ -55,10 +55,8 @@ const Deposit = ({ customPageData, socialData, copyright_text }: any) => {
     setFaqs(tempFaq);
     if (parseInt(settings.currency_deposit_faq_status) === 1) {
       setFullScreen(true);
-      console.log("one");
     } else if (tempFaq.length === 0) {
       setFullScreen(true);
-      console.log("two");
     }
     setDepositInfo(response.data);
     setSelectedMethod({
@@ -96,7 +94,7 @@ const Deposit = ({ customPageData, socialData, copyright_text }: any) => {
               ) : (
                 <div
                   className={`${
-                    parseInt(settings.currency_deposit_faq_status) == 1
+                    fullScreen === false
                       ? "col-lg-8 col-sm-12"
                       : "col-lg-12 col-sm-12"
                   }`}

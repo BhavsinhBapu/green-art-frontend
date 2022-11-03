@@ -117,8 +117,7 @@ export const initialDashboardCallAction =
         "dashboard",
         "buy_sell"
       );
-      dispatch(setOpenOrderHistory(ordersHistoryResponse?.data?.orders));
-      const sellOrderHistoryresponse = await ordersHistoryDashboard(
+      dispatch(setOpenOrderHistory(ordersHistoryResponse?.data?.orders));      const sellOrderHistoryresponse = await ordersHistoryDashboard(
         response.order_data.base_coin_id,
         response.order_data.trade_coin_id,
         "dashboard",
