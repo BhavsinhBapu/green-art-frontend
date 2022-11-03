@@ -61,6 +61,31 @@ export const DipositComponent = ({
               </div>
 
               <div className="wallet-addres">
+                {responseData?.wallet.coin_type == "USDT" && (
+                  <div className="total-balance">
+                    <h5>{t("Select Network")}</h5>
+                    <select
+                      name="currency"
+                      className="form-control coin-list-item"
+                      onChange={(e) => {
+                        const findObje = responseData?.data?.find(
+                          (x: any) => x.id === parseInt(e.target.value)
+                        );
+                        setDependecy(Math.random() * 100);
+                        setSelectedNetwork(findObje);
+                      }}
+                    >
+                      {responseData?.data?.map((item: any, index: number) => (
+                        <option value={item.id} key={index}>
+                          {item?.network_name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                )}
+              </div>
+
+              <div className="wallet-addres">
                 <h5>{t("Address")}</h5>
                 <div className="coin-list-item">
                   <p className="waring-wallet-text">
@@ -157,6 +182,24 @@ export const DipositComponent = ({
                     </div>
                   </div>
                 </div>
+                {!selectedNetwork?.address &&
+                  responseData?.wallet.coin_type == "USDT" && (
+                    <button
+                      className=" primary-btn-outline btn-withdraw text-white w-100 mt-4"
+                      onClick={() => {
+                        GetWalletAddressAction(
+                          {
+                            wallet_id: router.query.coin_id,
+                            network_type: selectedNetwork?.network_type ?? "",
+                          },
+                          setSelectedNetwork,
+                          setDependecy
+                        );
+                      }}
+                    >
+                      {t("Get address")}
+                    </button>
+                  )}
               </div>
             </div>
 
