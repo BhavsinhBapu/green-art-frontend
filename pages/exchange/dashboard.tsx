@@ -28,22 +28,24 @@ import {
   EXCHANGE_LAYOUT_ONE,
   EXCHANGE_LAYOUT_TWO,
 } from "helpers/core-constants";
+import Head from "next/head";
+import { formatCurrency } from "common";
 let socketCall = 0;
 async function listenMessages(dispatch: any) {
   //@ts-ignore
   window.Pusher = Pusher;
   //@ts-ignore
-window.Echo = new Echo({
-  broadcaster: "pusher",
-  key: "test",
-  wsHost: process.env.NEXT_PUBLIC_HOST_SOCKET,
-  wsPort: 6006,
-  wssPort: 443,
-  forceTLS: false,
-  cluster: "mt1",
-  disableStats: true,
-  enabledTransports: ["ws", "wss"],
-});
+  window.Echo = new Echo({
+    broadcaster: "pusher",
+    key: "test",
+    wsHost: process.env.NEXT_PUBLIC_HOST_SOCKET,
+    wsPort: 6006,
+    wssPort: 443,
+    forceTLS: false,
+    cluster: "mt1",
+    disableStats: true,
+    enabledTransports: ["ws", "wss"],
+  });
   //@ts-ignore
   // dashboard-base_coin_id-trade_coin_id
   window.Echo.channel(
@@ -120,6 +122,17 @@ const Dashboard: NextPage = () => {
   return (
     <div className="container-dashboard">
       <div className="background-col">
+        <Head>
+          <title>
+            {dashboard?.last_price_data
+              ? formatCurrency(dashboard?.last_price_data[0]?.last_price)
+              : 0.00000}{" "}
+            |{" "}
+            {currentPair
+              ? currentPair.replace("_", "")
+              : "----"}
+          </title>
+        </Head>
         <DashboardNavbar />
         {isLoading && <Loading />}
         <div className="mt-5"></div>
