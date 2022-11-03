@@ -55,10 +55,8 @@ const Deposit = ({ customPageData, socialData, copyright_text }: any) => {
     setFaqs(tempFaq);
     if (parseInt(settings.currency_deposit_faq_status) === 1) {
       setFullScreen(true);
-      console.log("one", settings.currency_deposit_faq_status);
     } else if (tempFaq.length === 0) {
       setFullScreen(true);
-      console.log("two");
     }
     setDepositInfo(response.data);
     setSelectedMethod({
