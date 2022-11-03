@@ -174,6 +174,16 @@ const AllBuyOrders = ({ OpenBookBuy, show }: any) => {
                               </span>
                             </div>
                           </td>
+                          <div
+                            className="progress-green"
+                            style={{
+                              width: `${
+                                parseFloat(item?.percentage)
+                                  ? parseFloat(item?.percentage)
+                                  : 0
+                              }%`,
+                            }}
+                          ></div>
                         </tr>
                       </Tooltip>
                     ))
