@@ -59,9 +59,8 @@ async function listenMessages(dispatch: any) {
       dispatch(setOpenBooksell(e.orders.orders));
     e.order_data && dispatch(setOrderData(e.order_data));
     e.last_price_data && dispatch(setLastPriceData(e.last_price_data));
-
-    dispatch(setDashboard(e));
-    console.log(e, "all printed");
+    console.log(e.order_data, "e.order_data");
+    // dispatch(setDashboard(e));
   });
   //@ts-ignore
   window.Echo.channel(
@@ -78,8 +77,24 @@ async function listenMessages(dispatch: any) {
       total: parseFloat(e.last_trade.total),
     });
   });
+  //@ts-ignore
+  window.Echo.channel("tradexpro_public_chanel").listen(
+    ".process",
+    (e: any) => {
+      // dispatch(setAllmarketTrades(e.trades.transactions));
+      // updateChart({
+      //   price: parseFloat(e.last_trade.price),
+      //   ts: e.last_trade.time,
+      //   base_coin_id: e.summary.base_coin_id,
+      //   trade_coin_id: e.summary.trade_coin_id,
+      //   total: parseFloat(e.last_trade.total),
+      // });
+      console.log(e, "order done done done");
+    }
+  );
 }
 const Dashboard: NextPage = () => {
+  const { settings } = useSelector((state: RootState) => state.common);
   const { t } = useTranslation("common");
   const dispatch = useDispatch();
   const [isLoading, setisLoading] = useState(true);
@@ -87,7 +102,6 @@ const Dashboard: NextPage = () => {
   const { dashboard, currentPair } = useSelector(
     (state: RootState) => state.exchange
   );
-  const { settings } = useSelector((state: RootState) => state.common);
   useEffect(() => {
     const pair = localStorage.getItem("current_pair");
     if (pair) {
@@ -125,12 +139,11 @@ const Dashboard: NextPage = () => {
         <Head>
           <title>
             {dashboard?.last_price_data
-              ? formatCurrency(dashboard?.last_price_data[0]?.last_price)
-              : 0.00000}{" "}
-            |{" "}
-            {currentPair
-              ? currentPair.replace("_", "")
-              : "----"}
+              ? formatCurrency(
+                  dashboard?.order_data?.total?.trade_wallet?.last_price
+                )
+              : 0.0}{" "}
+            | {currentPair ? currentPair.replace("_", "") : "----"}
           </title>
         </Head>
         <DashboardNavbar />
