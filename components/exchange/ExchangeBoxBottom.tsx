@@ -83,7 +83,7 @@ const ExchangeBoxBottom = () => {
 
   useEffect(() => {
     initialSetUp();
-  }, [currentPair, dashboard, tradingTab]);
+  }, [dashboard?.order_data?.buy_price, dashboard?.order_data?.sell_price]);
 
   return (
     <div className="exchange-box order-box mt-4">
