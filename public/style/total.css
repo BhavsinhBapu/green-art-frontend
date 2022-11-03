@@ -4477,6 +4477,14 @@ select:-webkit-autofill:focus {
 }
 .buy-order table.dataTable tbody tr {
   background-color: transparent;
+  position: relative;
+}
+.progress-red {
+  position: absolute;
+  background-color: rgb(255 46 46 / 9%);
+  height: 100%;
+  top: 0;
+  right: 0;
 }
 .buy-order table.dataTable tbody tr td {
   font-size: 16px;
@@ -4488,6 +4496,8 @@ select:-webkit-autofill:focus {
 }
 .sell-order table.dataTable tbody tr {
   background-color: transparent;
+  position: relative;
+  margin-bottom: 3px;
 }
 .sell-order table.dataTable tbody tr td {
   font-size: 16px;
@@ -4495,7 +4505,14 @@ select:-webkit-autofill:focus {
   color: var(--text-primary-color-4) !important;
 }
 .sell-order table.dataTable tbody tr td.price {
-  color: #32d777;
+  color: #32d7771f;
+}
+.progress-green {
+  position: absolute;
+  background-color: #32d7771a;
+  height: 100%;
+  top: 0;
+  right: 0;
 }
 .dataTables_wrapper.no-footer .dataTables_scrollBody {
   border-bottom: none;
@@ -10571,7 +10588,7 @@ input[type="number"] {
   max-width: 370px;
   align-items: center;
   padding: 0;
-  justify-content: flex-start;
+  justify-content: center;
   margin: 0 auto;
 }
 .input-copy .cp-button {
