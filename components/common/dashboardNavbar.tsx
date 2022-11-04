@@ -41,7 +41,6 @@ const DashboardNavbar = () => {
   };
   useEffect(() => {
     isLoggedIn && getNotifications();
-    console.log("1")
   }, [isLoggedIn]);
   return (
     <>

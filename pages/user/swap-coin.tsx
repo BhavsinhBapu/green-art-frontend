@@ -76,16 +76,12 @@ const SwapCoin: NextPage = ({
   };
 
   React.useEffect(() => {
-    console.log("48");
-
     setToSelected({
       ...toSelected,
       amount: rate.convert_rate,
     });
   }, [rate]);
   React.useEffect(() => {
-    console.log("49");
-
     setFromSelected({
       amount: 1,
       selected: from_wallet_details?.coin_type,

@@ -18,8 +18,6 @@ const TradesTable = ({ buy, show }: any) => {
   useEffect(() => {
     const Array = show ? [...buy].reverse().slice(-show) : [...buy].reverse();
     setBuyData(Array);
-    console.log("9");
-
   }, [buy]);
   return (
     <tbody>

@@ -82,8 +82,6 @@ const StripeDeposit = ({ currencyList, walletlist, method_id }: any) => {
   useEffect(() => {
     getCurrencyRate();
     CheckG2faEnabled();
-    console.log("5");
-
   }, [credential]);
   return (
     <div>

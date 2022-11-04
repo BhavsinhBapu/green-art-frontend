@@ -83,8 +83,6 @@ const ExchangeBoxBottom = () => {
 
   useEffect(() => {
     initialSetUp();
-    console.log("12");
-
   }, [dashboard?.order_data?.buy_price, dashboard?.order_data?.sell_price]);
 
   return (

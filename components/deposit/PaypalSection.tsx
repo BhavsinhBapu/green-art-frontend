@@ -59,8 +59,6 @@ const PaypalSection = ({ currencyList, walletlist, method_id }: any) => {
   };
   useEffect(() => {
     getCurrencyRate();
-    console.log("4");
-
   }, [credential]);
   return (
     <div>
