@@ -87,7 +87,6 @@ const Wallethistory = ({ type }: any) => {
   ];
   React.useEffect(() => {
     getReport();
-    console.log("24");
 
     return () => {
       setHistory([]);

@@ -28,8 +28,6 @@ const OrderHistorySection = ({ bottom }: any) => {
   } = useSelector((state: RootState) => state.exchange);
 
   React.useEffect(() => {
-    console.log("14");
-
     return () => {};
   }, [currentPair, dashboard]);
   return (
