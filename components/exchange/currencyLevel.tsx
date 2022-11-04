@@ -48,10 +48,8 @@ const CurrencyLevel = () => {
                 : "value"
             }
           >
-            {dashboard?.order_data?.total?.trade_wallet?.last_price
-              ? formatCurrency(
-                  dashboard?.order_data?.total?.trade_wallet?.last_price
-                )
+            {dashboard?.last_price_data[0]?.last_price
+              ? formatCurrency(dashboard?.last_price_data[0]?.last_price)
               : 0}
             {parseFloat(
               dashboard?.last_price_data && dashboard?.last_price_data[0]?.price
