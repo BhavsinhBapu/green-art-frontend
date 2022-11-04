@@ -100,7 +100,7 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
                     ? formateZert(responseData?.wallet?.balance) +
                       " " +
                       responseData?.wallet?.coin_type
-                    : "Loading..."}
+                    : "Loading"}
                 </p>
               </div>
 
