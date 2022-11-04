@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Tooltip from "rc-tooltip";
 import "rc-tooltip/assets/bootstrap.css";
 import { useDispatch } from "react-redux";
 import { setBuyPrice } from "state/reducer/exchange";
 import useTranslation from "next-translate/useTranslation";
-const AllBuyOrders = ({ OpenBookBuy }: any) => {
+const AllBuyOrders = ({ buy, show }: any) => {
   const { t } = useTranslation("common");
+  const [OpenBookBuy, setopenBookBuy] = useState<any>([]);
   const dispatch = useDispatch();
   const changeSellPrice = (price: number) => {
     dispatch(setBuyPrice(price));
@@ -14,6 +15,10 @@ const AllBuyOrders = ({ OpenBookBuy }: any) => {
     amount: 0,
     total: 0,
   });
+  useEffect(() => {
+    const Array = show ? [...buy].reverse().slice(-show) : [...buy].reverse();
+    setopenBookBuy(Array);
+  }, [buy]);
   return (
     <div className="sell-order">
       <div className="trades-table">
@@ -166,7 +171,7 @@ const AllBuyOrders = ({ OpenBookBuy }: any) => {
                             </div>
                           </td>
                           <div
-                            className="progress-red"
+                            className="progress-green"
                             style={{
                               width: `${
                                 parseFloat(item?.percentage)
