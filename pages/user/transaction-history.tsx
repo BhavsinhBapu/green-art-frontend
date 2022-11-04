@@ -105,8 +105,6 @@ const TransactionHistory: NextPage = ({
     },
   ];
   React.useEffect(() => {
-    console.log("51");
-
     getReport();
     return () => {
       setHistory([]);

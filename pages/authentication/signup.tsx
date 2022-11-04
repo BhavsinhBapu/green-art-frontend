@@ -44,8 +44,6 @@ const Signup: NextPage = () => {
 
   useEffect(() => {
     getRecapcha();
-    console.log("35");
-
   }, []);
   return (
     <div

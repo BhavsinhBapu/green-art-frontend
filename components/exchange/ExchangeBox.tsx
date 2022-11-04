@@ -75,8 +75,6 @@ const ExchangeBox = () => {
 
   useEffect(() => {
     initialSetUp();
-    console.log("11");
-
   }, [currentPair, dashboard, tradingTab]);
 
   return (

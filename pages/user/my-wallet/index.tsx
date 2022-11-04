@@ -131,8 +131,6 @@ const MyWallet: NextPage = ({
   };
 
   useEffect(() => {
-    console.log("54");
-
     coinListApi();
     getWalletLists("/wallet-list?page=1&per_page=15");
     return () => {

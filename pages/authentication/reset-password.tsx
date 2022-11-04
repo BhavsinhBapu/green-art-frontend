@@ -34,8 +34,6 @@ const ResetPassword: NextPage = () => {
   };
   useEffect(() => {
     getRecapcha();
-    console.log("34");
-
   }, []);
   return (
     <div
