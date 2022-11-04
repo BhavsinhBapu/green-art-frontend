@@ -45,8 +45,6 @@ const WirhdrawTab = ({ response, TurnoffSetShow }: any) => {
       ...withdrawalCredentials,
       wallet_id: response?.wallet?.id,
     });
-    console.log("26");
-
     CheckG2faEnabled();
   }, [response?.wallet?.id]);
 
@@ -55,8 +53,6 @@ const WirhdrawTab = ({ response, TurnoffSetShow }: any) => {
       ...withdrawalCredentials,
       network_type: selectedNetwork?.network_type,
     });
-    console.log("27");
-
   }, [selectedNetwork?.network_type]);
   return (
     <div className="asset-balances-right visible mb-2">

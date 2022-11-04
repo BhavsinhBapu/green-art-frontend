@@ -30,10 +30,10 @@ const SelectCurrencyRight = () => {
     cells: {
       style: {
         width: "100%",
-        backgroundColor: "#151515",
-        color: "rgb(183, 189, 198)",
+        // backgroundColor: "#151515",
+        // color: "rgb(183, 189, 198)",
         borderColor: "#151515",
-        fontSize: "12px",
+        fontSize: "11px",
         cursor: "pointer",
       },
     },
@@ -68,7 +68,12 @@ const SelectCurrencyRight = () => {
                 router.reload();
               }}
             >
-              <span className="coin-name">{row?.coin_pair_name}</span>
+              <span className="text-white">
+                {row?.coin_pair_name.split("/")[0]}
+              </span>
+              <span className="coin-name">
+                /{row?.coin_pair_name.split("/")[1]}
+              </span>
             </div>
           </Tooltip>
         );
@@ -137,7 +142,6 @@ const SelectCurrencyRight = () => {
     if (dashboard?.pairs) {
       setPairs(dashboard.pairs);
     }
-    console.log("16");
   }, [dashboard]);
   return (
     <div
@@ -209,7 +213,6 @@ const SelectCurrencyRight = () => {
                 columns={columns}
                 data={pairs}
                 customStyles={customStyles}
-                
               />
             </div>
           </div>

@@ -18,8 +18,6 @@ const AllBuyOrders = ({ buy, show }: any) => {
   useEffect(() => {
     const Array = show ? [...buy].reverse().slice(-show) : [...buy].reverse();
     setopenBookBuy(Array);
-    console.log("8");
-
   }, [buy]);
   return (
     <div className="sell-order">

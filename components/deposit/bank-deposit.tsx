@@ -115,8 +115,6 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
   useEffect(() => {
     getCurrencyRate();
     CheckG2faEnabled();
-    console.log("3");
-
   }, [credential]);
   return (
     <div>
