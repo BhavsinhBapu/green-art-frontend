@@ -19,6 +19,8 @@ const Referral: NextPage = ({
   const selectReference: any = useRef();
 
   useEffect(() => {
+    console.log("44");
+
     getReferral().then((res) => {
       const code = res.data.data.url;
       setReferral(

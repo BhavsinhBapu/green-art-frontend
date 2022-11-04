@@ -102,6 +102,8 @@ const Dashboard: NextPage = () => {
     (state: RootState) => state.exchange
   );
   useEffect(() => {
+    console.log("37");
+
     const pair = localStorage.getItem("current_pair");
     if (pair) {
       dispatch(setCurrentPair(pair));
@@ -113,6 +115,8 @@ const Dashboard: NextPage = () => {
     }
   }, [isLoggedIn, currentPair]);
   useEffect(() => {
+    console.log("38");
+
     if (
       dashboard?.order_data?.base_coin_id &&
       dashboard?.order_data?.trade_coin_id
@@ -127,6 +131,7 @@ const Dashboard: NextPage = () => {
     }
   }, [dashboard?.order_data?.base_coin_id]);
   useEffect(() => {
+    console.log("39");
     if (socketCall === 0) {
       listenMessages(dispatch);
     }
