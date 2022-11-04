@@ -22,6 +22,8 @@ const NotificationPage = ({
     setNotification(data.data.data);
   };
   useEffect(() => {
+    console.log("42");
+
     isLoggedIn && getNotifications();
   }, [isLoggedIn]);
   return (
