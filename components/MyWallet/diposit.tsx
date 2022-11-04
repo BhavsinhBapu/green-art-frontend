@@ -24,6 +24,8 @@ export const DipositComponent = ({
       setSelectedNetwork(responseData?.data[0]);
       setInitialHit(true);
     }
+    console.log("18");
+
   }, [responseData?.data[0]]);
   return (
     <div className={fullPage ? "col-md-7" : `col-md-7`}>

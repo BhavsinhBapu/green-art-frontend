@@ -77,6 +77,8 @@ const WalletDeposit = ({ walletlist, method_id }: any) => {
   useEffect(() => {
     getCurrencyRate();
     CheckG2faEnabled();
+    console.log("6");
+
   }, [credential]);
   return (
     <div>

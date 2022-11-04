@@ -127,6 +127,8 @@ const SellOrderHistory: NextPage = ({
     },
   ];
   React.useEffect(() => {
+    console.log("46");
+
     getReport();
     return () => {
       setHistory([]);

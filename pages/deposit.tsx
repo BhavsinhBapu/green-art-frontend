@@ -71,6 +71,8 @@ const Deposit = ({ customPageData, socialData, copyright_text }: any) => {
   };
   useEffect(() => {
     getDepositInfo();
+    console.log("31");
+
   }, []);
   return (
     <>
