@@ -50,7 +50,7 @@ const SelectCurrencyRight = () => {
             overlay={
               <span>
                 <span>
-                  {t("Last Price:")} {row.last_price}
+                  {t("Last Price")}: {row.last_price}
                 </span>
               </span>
             }
@@ -85,7 +85,7 @@ const SelectCurrencyRight = () => {
             overlay={
               <span>
                 <span>
-                  {t("Last Price:")} {row.last_price}
+                  {t("Last Price")}: {row.last_price}
                 </span>
               </span>
             }
@@ -111,7 +111,7 @@ const SelectCurrencyRight = () => {
             overlay={
               <span>
                 <span>
-                  {t("Last Price:")} {row.last_price}
+                  {t("Last Price")}: {row.last_price}
                 </span>
               </span>
             }
