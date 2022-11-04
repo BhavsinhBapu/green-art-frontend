@@ -60,7 +60,6 @@ async function listenMessages(dispatch: any) {
     e.order_data && dispatch(setOrderData(e.order_data));
     e.last_price_data && dispatch(setLastPriceData(e.last_price_data));
     // dispatch(setDashboard(e));
-    console.log(e, "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
   });
   //@ts-ignore
   window.Echo.channel(
