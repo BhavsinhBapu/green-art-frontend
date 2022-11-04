@@ -12,7 +12,7 @@ export const DISABLED_FEATURES = [
   // "header_symbol_search",
   // "header_widget",
   "symbol_info",
-  // "header_compare",
+  "header_compare",
   // "header_chart_type",
   // "display_market_status",
   // "symbol_search_hot_key",
