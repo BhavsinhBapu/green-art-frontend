@@ -46,6 +46,9 @@ export const exchangeSlice = createSlice({
     setCurrentPair: (state: any, action: PayloadAction<string>) => {
       state.currentPair = action.payload;
     },
+    setPairs: (state: any, action: PayloadAction<string>) => {
+      state.dashboard.pairs = action.payload;
+    },
     setOpenBookBuy: (state: any, action: PayloadAction<Array<any>>) => {
       state.OpenBookBuy = action.payload;
     },
@@ -108,6 +111,7 @@ export const {
   setTradeOrderHistory,
   setPublicTradesDashboard,
   setAllmarketTrades,
+  setPairs,
 } = exchangeSlice.actions;
 
 export default exchangeSlice.reducer;
