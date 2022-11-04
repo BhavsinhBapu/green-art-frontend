@@ -52,15 +52,12 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
     if (responseData?.data && responseData?.data[0]) {
       setSelectedNetwork(responseData?.data[0]);
     }
-    console.log("20");
-
   }, [responseData?.data[0]]);
   React.useEffect(() => {
     setWithdrawalCredentials({
       ...withdrawalCredentials,
       wallet_id: responseData?.wallet?.id,
     });
-    console.log("21");
 
     CheckG2faEnabled();
   }, [responseData?.wallet?.id]);
@@ -70,8 +67,6 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
       ...withdrawalCredentials,
       network_type: selectedNetwork?.network_type,
     });
-    console.log("22");
-
   }, [selectedNetwork?.network_type]);
 
   return (

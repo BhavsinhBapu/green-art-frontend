@@ -136,8 +136,6 @@ const SelectCurrency = () => {
     if (dashboard?.pairs) {
       setPairs(dashboard.pairs);
     }
-    console.log("15");
-
   }, [dashboard]);
   return (
     <div

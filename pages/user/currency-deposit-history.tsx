@@ -124,8 +124,6 @@ const CurrencyDepositHistory = ({
     },
   ];
   React.useEffect(() => {
-    console.log("41");
-
     getReport();
     return () => {
       setHistory([]);

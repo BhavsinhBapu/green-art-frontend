@@ -86,8 +86,6 @@ const DeposiAndWithdraw = ({
     }
   };
   useEffect(() => {
-    console.log("52");
-
     setFaqs(
       router.query.id === MY_WALLET_DEPOSIT_TYPE ? depositFaq : withdrawFaq
     );
@@ -98,8 +96,6 @@ const DeposiAndWithdraw = ({
     );
   }, [dependecy]);
   useEffect(() => {
-    console.log("53");
-
     if (settings.withdrawal_faq_status && router.query.id) {
       checkFullPageStatus();
     }
