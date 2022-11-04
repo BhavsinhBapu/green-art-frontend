@@ -97,6 +97,8 @@ const SwapHistory: NextPage = ({
     },
   ];
   React.useEffect(() => {
+    console.log("50");
+
     getReport();
     return () => {
       setHistory([]);

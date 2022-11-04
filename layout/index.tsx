@@ -82,10 +82,14 @@ const Index = ({ children }: any) => {
   };
 
   useEffect(() => {
+    console.log("28");
+
     getCommonSettings();
   }, []);
   useEffect(() => {
     const path = router.pathname;
+    console.log("29");
+
     if (
       path === "/authentication/signup" ||
       path === "/authentication/signin" ||
@@ -107,6 +111,8 @@ const Index = ({ children }: any) => {
     setShowTerms(false);
   };
   useEffect(() => {
+    console.log("30");
+
     const token = Cookies.get("token");
     const terms = Cookies.get("terms");
     if (terms === "yes" && settings.cookie_status == "0") {
