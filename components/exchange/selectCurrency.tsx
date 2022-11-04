@@ -49,7 +49,7 @@ const SelectCurrency = () => {
             overlay={
               <span>
                 <span>
-                  {t("Last Price:")} {row.last_price}
+                  {t("Last Price")}: {row.last_price}
                 </span>
               </span>
             }
@@ -84,7 +84,7 @@ const SelectCurrency = () => {
             overlay={
               <span>
                 <span>
-                  {t("Last Price:")} {row.last_price}
+                  {t("Last Price")}: {row.last_price}
                 </span>
               </span>
             }
@@ -110,7 +110,7 @@ const SelectCurrency = () => {
             overlay={
               <span>
                 <span>
-                  {t("Last Price:")} {row.last_price}
+                  {t("Last Price")}: {row.last_price}
                 </span>
               </span>
             }
@@ -173,7 +173,7 @@ const SelectCurrency = () => {
             className="dataTables_processing"
             style={{ display: "none" }}
           >
-            {t("Processing...")}
+            {t("Processing")}...
           </div>
           <div className="dataTables_scroll">
             <div
