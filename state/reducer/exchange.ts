@@ -69,7 +69,7 @@ export const exchangeSlice = createSlice({
         exchange_coin_pair: action.payload?.exchange_coin_pair,
         exchange_pair: action.payload?.exchange_pair,
         fees: action.payload?.fees,
-        // total: action.payload?.total,
+        total: action.payload?.total,
         trade_coin: action.payload?.trade_coin,
         trade_coin_id: action.payload?.trade_coin_id,
         on_order: action.payload?.on_order,
