@@ -17,6 +17,8 @@ const CurrencyLevel = () => {
       parseFloat(dashboard?.order_data?.total?.trade_wallet?.volume) *
         parseFloat(dashboard?.order_data?.total?.trade_wallet?.last_price)
     );
+    console.log("10");
+
   }, [
     dashboard?.order_data?.total?.trade_wallet?.volume,
     dashboard?.order_data?.total?.trade_wallet?.last_price,

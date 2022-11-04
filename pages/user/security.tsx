@@ -29,6 +29,8 @@ const Security: NextPage = ({
   };
 
   useEffect(() => {
+    console.log("45");
+
     dispatch(UserSettingsAction(setSettings));
     return () => {
       setSettings(null);
