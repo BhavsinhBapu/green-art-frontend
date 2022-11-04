@@ -75,6 +75,8 @@ const NidModal = ({ type, kycDetails }: any) => {
   };
   useEffect(() => {
     loadCard();
+    console.log("23");
+
   }, [type]);
 
   return (

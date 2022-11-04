@@ -25,6 +25,8 @@ const Signin: NextPage = () => {
   };
   useEffect(() => {
     getRecapcha();
+    console.log("36");
+
   }, []);
   return (
     <div

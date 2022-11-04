@@ -18,8 +18,12 @@ const AllBuyOrders = ({ OpenBookBuy, show }: any) => {
   useEffect(() => {
     const Array = show ? [...OpenBookBuy].slice(0, show) : [...OpenBookBuy];
     setBuyData(Array);
-  }),
-    [OpenBookBuy];
+    console.log("7");
+    return () => {
+      console.log("cleaned up");
+    };
+  }, [OpenBookBuy]);
+
   return (
     <div className="sell-order">
       <div className="trades-table">

@@ -25,6 +25,8 @@ const Settings: NextPage = ({
     (state: RootState) => state.common
   );
   useEffect(() => {
+    console.log("47");
+
     dispatch(UserSettingsAction(setSettings));
 
     return () => {
