@@ -46,8 +46,6 @@ const Navbar = () => {
   };
   useEffect(() => {
     isLoggedIn && getNotifications();
-    console.log("2");
-
   }, [isLoggedIn]);
   return (
     <>

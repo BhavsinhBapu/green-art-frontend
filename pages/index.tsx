@@ -68,8 +68,6 @@ const Home: NextPage = ({
     ],
   };
   useEffect(() => {
-    console.log("32");
-
     //@ts-ignore
     window.$crisp = [];
     //@ts-ignore

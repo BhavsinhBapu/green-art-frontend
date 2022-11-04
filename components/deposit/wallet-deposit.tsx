@@ -56,7 +56,7 @@ const WalletDeposit = ({ walletlist, method_id }: any) => {
       setCalculatedValue(response.data);
     }
   };
-   const convertCurrency = async (credential: any) => {
+  const convertCurrency = async (credential: any) => {
     if (
       credential.wallet_id &&
       credential.payment_method_id &&
@@ -77,8 +77,6 @@ const WalletDeposit = ({ walletlist, method_id }: any) => {
   useEffect(() => {
     getCurrencyRate();
     CheckG2faEnabled();
-    console.log("6");
-
   }, [credential]);
   return (
     <div>

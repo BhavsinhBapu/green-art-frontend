@@ -45,8 +45,6 @@ const TradesTable = ({ marketTrades }: any) => {
   };
   useEffect(() => {
     setTradeData();
-    console.log("17");
-
   }, [marketTrades]);
   return (
     <tbody>

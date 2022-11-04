@@ -18,7 +18,6 @@ const AllBuyOrders = ({ OpenBookBuy, show }: any) => {
   useEffect(() => {
     const Array = show ? [...OpenBookBuy].slice(0, show) : [...OpenBookBuy];
     setBuyData(Array);
-    console.log("7");
     return () => {
       console.log("cleaned up");
     };
