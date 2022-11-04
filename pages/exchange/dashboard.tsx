@@ -21,6 +21,7 @@ import {
   setOpenBooksell,
   setDashboard,
   setLastPriceData,
+  setPairs,
 } from "state/reducer/exchange";
 import useTranslation from "next-translate/useTranslation";
 import { last, updateChart } from "components/exchange/api/stream";
@@ -59,7 +60,9 @@ async function listenMessages(dispatch: any) {
       dispatch(setOpenBooksell(e.orders.orders));
     e.order_data && dispatch(setOrderData(e.order_data));
     e.last_price_data && dispatch(setLastPriceData(e.last_price_data));
-    // dispatch(setDashboard(e));
+    console.log(e, "from dashboardsss");
+
+    dispatch(setPairs(e.pairs));
   });
   //@ts-ignore
   window.Echo.channel(
@@ -77,20 +80,18 @@ async function listenMessages(dispatch: any) {
     });
   });
   //@ts-ignore
-  window.Echo.channel("tradexpro_public_chanel").listen(
-    ".process",
-    (e: any) => {
-      // dispatch(setAllmarketTrades(e.trades.transactions));
-      // updateChart({
-      //   price: parseFloat(e.last_trade.price),
-      //   ts: e.last_trade.time,
-      //   base_coin_id: e.summary.base_coin_id,
-      //   trade_coin_id: e.summary.trade_coin_id,
-      //   total: parseFloat(e.last_trade.total),
-      // });
-      console.log(e, "order done done done");
-    }
-  );
+  window.Echo.channel(
+    `dashboard-${localStorage.getItem("base_coin_id")}-${localStorage.getItem(
+      "trade_coin_id"
+    )}`
+  ).listen(".order_removed", (e: any) => {
+    if (e.orders.order_type === "buy")
+      dispatch(setOpenBookBuy(e.orders.orders));
+    if (e.orders.order_type === "sell")
+      dispatch(setOpenBooksell(e.orders.orders));
+    e.order_data && dispatch(setOrderData(e.order_data));
+    e.last_price_data && dispatch(setLastPriceData(e.last_price_data));
+  });
 }
 const Dashboard: NextPage = () => {
   const { settings } = useSelector((state: RootState) => state.common);
