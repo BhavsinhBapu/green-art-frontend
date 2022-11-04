@@ -128,8 +128,6 @@ const BuyOrderHistory: NextPage = ({
   ];
 
   React.useEffect(() => {
-    console.log("40");
-
     getReport();
     return () => {
       setHistory([]);

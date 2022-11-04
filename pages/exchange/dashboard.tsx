@@ -60,8 +60,6 @@ async function listenMessages(dispatch: any) {
       dispatch(setOpenBooksell(e.orders.orders));
     e.order_data && dispatch(setOrderData(e.order_data));
     e.last_price_data && dispatch(setLastPriceData(e.last_price_data));
-    console.log(e, "from dashboardsss");
-
     dispatch(setPairs(e.pairs));
   });
   //@ts-ignore
@@ -103,8 +101,6 @@ const Dashboard: NextPage = () => {
     (state: RootState) => state.exchange
   );
   useEffect(() => {
-    console.log("37");
-
     const pair = localStorage.getItem("current_pair");
     if (pair) {
       dispatch(setCurrentPair(pair));
@@ -116,8 +112,6 @@ const Dashboard: NextPage = () => {
     }
   }, [isLoggedIn, currentPair]);
   useEffect(() => {
-    console.log("38");
-
     if (
       dashboard?.order_data?.base_coin_id &&
       dashboard?.order_data?.trade_coin_id
@@ -132,7 +126,6 @@ const Dashboard: NextPage = () => {
     }
   }, [dashboard?.order_data?.base_coin_id]);
   useEffect(() => {
-    console.log("39");
     if (socketCall === 0) {
       listenMessages(dispatch);
     }
