@@ -31,6 +31,8 @@ const ForgotPassword: NextPage = () => {
     captcha?.reset();
   };
   useEffect(() => {
+    console.log("33");
+
     getRecapcha();
   }, []);
   return (

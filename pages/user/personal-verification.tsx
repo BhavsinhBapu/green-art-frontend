@@ -31,6 +31,8 @@ const PersonalVerification: NextPage = ({
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log("43");
+
     dispatch(getKycDetailsAction(setKycDetails, setKycActiveList));
   }, []);
 
