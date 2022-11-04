@@ -233,7 +233,7 @@ const DashboardBody = () => {
                   </span>
                 </div>
               </div>
-              <AllBuyOrdersFull OpenBookBuy={OpenBookBuy} />
+              <AllBuyOrdersFull buy={OpenBookBuy} show={38} />
             </>
           )}
           {select === 3 && (
