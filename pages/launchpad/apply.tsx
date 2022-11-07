@@ -1,4 +1,4 @@
-import { FORM_INPUT_TEXT } from "helpers/core-constants";
+import { FORM_INPUT_TEXT, FORM_RADIO } from "helpers/core-constants";
 import React, { useEffect, useState } from "react";
 import { launchpadDynamicFromAction } from "state/actions/launchpad";
 
@@ -11,11 +11,16 @@ const Apply = () => {
     <div className="container">
       {JSON.stringify(launchpadForm)}
       <input type="number" className="form-control" id="amount-one" />
-      {launchpadForm?.map(
-        (item: any) =>
-          item.type === FORM_INPUT_TEXT && (
-            <input type="number" className="form-control" id="amount-one" />
-          )
+      {launchpadForm?.map((item: any) =>
+        item.type === FORM_INPUT_TEXT ? (
+          <input type="number" className="form-control" id="amount-one" />
+        ) : item.type === FORM_RADIO ? (
+          <input type="number" className="form-control" id="amount-one" />
+        ) : item.type === FORM_RADIO ? (
+          <input type="number" className="form-control" id="amount-one" />
+        ) : (
+          ""
+        )
       )}
     </div>
   );
