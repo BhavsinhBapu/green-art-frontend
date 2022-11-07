@@ -85,8 +85,8 @@ async function listenMessages(dispatch: any, user: any) {
     `dashboard-${localStorage.getItem("base_coin_id")}-${localStorage.getItem(
       "trade_coin_id"
     )}`
-  ).listen(`.order_place_2`, (e: any) => {
-    // console.log(e.open_orders.orders, "klaslkdalskmdlkasmdlkmsa");
+  ).listen(`.order_place_${user.id}`, (e: any) => {
+    console.log(e.open_orders.orders, "klaslkdalskmdlkasmdlkmsa");
     dispatch(setOpenOrderHistory(e.open_orders.orders));
     dispatch(setSellOrderHistory(e.open_orders.sell_orders));
     dispatch(setBuyOrderHistory(e.open_orders.buy_orders));
