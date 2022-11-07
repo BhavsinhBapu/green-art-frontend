@@ -253,9 +253,9 @@ const Limit = ({
                           setLoading,
                           setBuySellLimitCoinData
                         );
-                        await dispatch(
-                          initialDashboardCallAction(currentPair, dashboard)
-                        );
+                        // await dispatch(
+                        //   initialDashboardCallAction(currentPair, dashboard)
+                        // );
                       }}
                     >
                       <span v-else="">
