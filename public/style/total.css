@@ -10893,3 +10893,8 @@ input[type="number"] {
 .wallet-border-history {
   border: 1px solid var(--border-color-1);
 }
+.notificationNotFound {
+  width: 100%;
+  margin-bottom: 30px;
+  font-size: 18px;
+}
