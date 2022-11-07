@@ -219,9 +219,9 @@ const Market = ({
                           dashboard?.order_data?.base_coin_id,
                           setLoading
                         );
-                        await dispatch(
-                          initialDashboardCallAction(currentPair, dashboard)
-                        );
+                        // await dispatch(
+                        //   initialDashboardCallAction(currentPair, dashboard)
+                        // );
                       }}
                     >
                       <span>
