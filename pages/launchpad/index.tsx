@@ -20,8 +20,8 @@ const Index = ({ socialData, customPageData, copyright_text }: any) => {
           <Hero />
           <h2 className="mb-5">Launchpad</h2>
           <LaunchPad viewMore={true} />
-          <h2 className="mb-5">Launchpool</h2>
-          <Launchpool viewMore={true} />
+          {/* <h2 className="mb-5">Launchpool</h2> */}
+          {/* <Launchpool viewMore={true} /> */}
           <SellingSection />
         </div>
       </div>
