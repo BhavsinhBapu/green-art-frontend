@@ -85,8 +85,7 @@ async function listenMessages(dispatch: any, user: any) {
     `dashboard-${localStorage.getItem("base_coin_id")}-${localStorage.getItem(
       "trade_coin_id"
     )}`
-  ).listen(`.order_place_${user.id}`, (e: any) => {
-    console.log(e.open_orders.orders, "coming from socket");
+  ).listen(`.order_place_${localStorage.getItem("user_id")}`, (e: any) => {
     dispatch(setOpenOrderHistory(e.open_orders.orders));
     dispatch(setSellOrderHistory(e.open_orders.sell_orders));
     dispatch(setBuyOrderHistory(e.open_orders.buy_orders));
@@ -140,7 +139,7 @@ const Dashboard: NextPage = () => {
     }
   }, [dashboard?.order_data?.base_coin_id]);
   useEffect(() => {
-    if (socketCall === 0 && user) {
+    if (socketCall === 0) {
       listenMessages(dispatch, user);
     }
     socketCall = 1;
