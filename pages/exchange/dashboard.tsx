@@ -86,7 +86,7 @@ async function listenMessages(dispatch: any, user: any) {
       "trade_coin_id"
     )}`
   ).listen(`.order_place_${user.id}`, (e: any) => {
-    console.log(e.open_orders.orders, "klaslkdalskmdlkasmdlkmsa");
+    console.log(e.open_orders.orders, "coming from socket");
     dispatch(setOpenOrderHistory(e.open_orders.orders));
     dispatch(setSellOrderHistory(e.open_orders.sell_orders));
     dispatch(setBuyOrderHistory(e.open_orders.buy_orders));
