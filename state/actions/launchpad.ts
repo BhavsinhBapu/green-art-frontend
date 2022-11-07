@@ -5,9 +5,9 @@ import {
   launchpadDynamicFromSubmit,
 } from "service/launchpad";
 
-export const getLaunchpadListAction = async () => {
+export const getLaunchpadListAction = async (setLaunchpadList: any) => {
   const response = await getLaunchpadList();
-  return response;
+  setLaunchpadList(response);
 };
 
 export const launchpadBuyIcoTokenAction = async () => {
