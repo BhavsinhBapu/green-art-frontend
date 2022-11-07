@@ -1,18 +1,18 @@
-import request from "lib/request";
+import launchpadRequest from "lib/launchpadRequest";
 
 export const getLaunchpadList = async () => {
-  const { data } = await request.get("/ico-active-list");
+  const { data } = await launchpadRequest.get("/ico-active-list");
   return data;
 };
 export const launchpadBuyIcoToken = async () => {
-  const { data } = await request.get("/buy-ico-token");
+  const { data } = await launchpadRequest.get("/buy-ico-token");
   return data;
 };
 export const launchpadDynamicFromSubmit = async () => {
-  const { data } = await request.get("/dynamic-form-submit");
+  const { data } = await launchpadRequest.get("/dynamic-form-submit");
   return data;
 };
 export const launchpadDynamicFrom = async () => {
-  const { data } = await request.get("/dynamic-form");
+  const { data } = await launchpadRequest.get("/dynamic-form");
   return data;
 };
