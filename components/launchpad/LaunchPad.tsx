@@ -3,11 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const LaunchPad = ({ viewMore }: any) => {
+const LaunchPad = ({ viewMore, data }: any) => {
   const { t } = useTranslation("common");
   return (
     <>
-      <Link href="/launchpad/subscription/dfdf">
+      <Link href={`/launchpad/subscription/${data?.id}`}>
         <div className="mt-3 mb-5 row launchpad-container">
           <div className="col-lg-4 col-12  mb-2">
             <Image
@@ -24,15 +24,15 @@ const LaunchPad = ({ viewMore }: any) => {
               <div className="status-launchpool">
                 <p>{t("SUBSCRIPTION")}</p>
               </div>
-              <h3 className="mt-1">{t("APPLE")}</h3>
-              <p>
-                {t("APPLE - A Move-to-Earn Health and Fitness Application")}
-              </p>
+              <h3 className="mt-1">{data?.title}</h3>
+              <p>{data?.project_introduction}</p>
 
               <div className="row">
                 <div className="col-lg-6 col-md-12 pool-row">
                   <p className="pool-title">{t("Tokens Offered:")}</p>
-                  <p className="pool-value">{t("420,000,000.0000 GMT")}</p>
+                  <p className="pool-value">
+                    {parseFloat(data?.total_token_supply).toFixed(8)}
+                  </p>
                 </div>
                 <div className="col-lg-6 col-md-12 pool-row">
                   <p className="pool-title">{t("Participants:")}</p>
@@ -40,7 +40,11 @@ const LaunchPad = ({ viewMore }: any) => {
                 </div>{" "}
                 <div className="col-lg-6 col-md-12 pool-row">
                   <p className="pool-title">{t("Sale Price:")}</p>
-                  <p className="pool-value">{t("1 GMT = 0.00002514 BNB")}</p>
+                  <p className="pool-value">{`1 ${
+                    data?.coin_name
+                  } = ${parseFloat(data?.coin_price).toFixed(2)} ${
+                    data?.coin_type
+                  }`}</p>
                 </div>
                 <div className="col-lg-6 col-md-12 pool-row">
                   <p className="pool-title">{t("Total committed:")}</p>
@@ -51,7 +55,7 @@ const LaunchPad = ({ viewMore }: any) => {
               <div className="row">
                 <div className="col-6 pool-row">
                   <p className="pool-title">{t("End time:")}</p>
-                  <p className="pool-value">{t("2022-03-09")}</p>
+                  <p className="pool-value">{data?.end_date}</p>
                 </div>
               </div>
             </div>
