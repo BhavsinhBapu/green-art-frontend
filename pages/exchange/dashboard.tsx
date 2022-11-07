@@ -22,6 +22,9 @@ import {
   setDashboard,
   setLastPriceData,
   setPairs,
+  setOpenOrderHistory,
+  setSellOrderHistory,
+  setBuyOrderHistory,
 } from "state/reducer/exchange";
 import useTranslation from "next-translate/useTranslation";
 import { last, updateChart } from "components/exchange/api/stream";
@@ -32,7 +35,7 @@ import {
 import Head from "next/head";
 import { formatCurrency } from "common";
 let socketCall = 0;
-async function listenMessages(dispatch: any) {
+async function listenMessages(dispatch: any, user: any) {
   //@ts-ignore
   window.Pusher = Pusher;
   //@ts-ignore
@@ -82,6 +85,17 @@ async function listenMessages(dispatch: any) {
     `dashboard-${localStorage.getItem("base_coin_id")}-${localStorage.getItem(
       "trade_coin_id"
     )}`
+  ).listen(`.order_place_2`, (e: any) => {
+    // console.log(e.open_orders.orders, "klaslkdalskmdlkasmdlkmsa");
+    dispatch(setOpenOrderHistory(e.open_orders.orders));
+    dispatch(setSellOrderHistory(e.open_orders.sell_orders));
+    dispatch(setBuyOrderHistory(e.open_orders.buy_orders));
+  });
+  //@ts-ignore
+  window.Echo.channel(
+    `dashboard-${localStorage.getItem("base_coin_id")}-${localStorage.getItem(
+      "trade_coin_id"
+    )}`
   ).listen(".order_removed", (e: any) => {
     if (e.orders.order_type === "buy")
       dispatch(setOpenBookBuy(e.orders.orders));
@@ -96,7 +110,7 @@ const Dashboard: NextPage = () => {
   const { t } = useTranslation("common");
   const dispatch = useDispatch();
   const [isLoading, setisLoading] = useState(true);
-  const { isLoggedIn } = useSelector((state: RootState) => state.user);
+  const { isLoggedIn, user } = useSelector((state: RootState) => state.user);
   const { dashboard, currentPair } = useSelector(
     (state: RootState) => state.exchange
   );
@@ -126,8 +140,8 @@ const Dashboard: NextPage = () => {
     }
   }, [dashboard?.order_data?.base_coin_id]);
   useEffect(() => {
-    if (socketCall === 0) {
-      listenMessages(dispatch);
+    if (socketCall === 0 && user) {
+      listenMessages(dispatch, user);
     }
     socketCall = 1;
   });
