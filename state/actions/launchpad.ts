@@ -1,5 +1,6 @@
 import {
   getLaunchpadList,
+  getLaunchpadListDetails,
   launchpadBuyIcoToken,
   launchpadDynamicFrom,
   launchpadDynamicFromSubmit,
@@ -8,6 +9,13 @@ import {
 export const getLaunchpadListAction = async (setLaunchpadList: any) => {
   const response = await getLaunchpadList();
   setLaunchpadList(response);
+};
+export const getLaunchpadListDetailsAction = async (
+  setLaunchpadListDetails: any,
+  id: any
+) => {
+  const response = await getLaunchpadListDetails(id);
+  setLaunchpadListDetails(response);
 };
 
 export const launchpadBuyIcoTokenAction = async () => {

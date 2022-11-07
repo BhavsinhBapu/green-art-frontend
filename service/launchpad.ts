@@ -4,6 +4,10 @@ export const getLaunchpadList = async () => {
   const { data } = await launchpadRequest.get("/ico-active-list");
   return data;
 };
+export const getLaunchpadListDetails = async (id: number) => {
+  const { data } = await launchpadRequest.get(`ico-details?id=${id}`);
+  return data;
+};
 export const launchpadBuyIcoToken = async () => {
   const { data } = await launchpadRequest.get("/buy-ico-token");
   return data;
