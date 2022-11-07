@@ -1,4 +1,5 @@
 import useTranslation from "next-translate/useTranslation";
+import Link from "next/link";
 import React from "react";
 
 const Hero = () => {
@@ -15,7 +16,9 @@ const Hero = () => {
               "Tradexpro Launchpad and Launchpool are platforms that help and advise project teams on how to best issue and launch their token.We provide a full service offering starting from advisory services"
             )}
           </p>
-          <button className="primary-btn">{t("Apply to launch")}</button>
+          <Link href="/launchpad/apply">
+            <button className="primary-btn">{t("Apply to launch")}</button>
+          </Link>
         </div>
         <div className="col-md-7">
           <img src="/altcoins-removebg-preview.png" />
