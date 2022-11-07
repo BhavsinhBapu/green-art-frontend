@@ -96,6 +96,7 @@ export const SigninAction =
         ] = `Bearer ${response.access_token}`;
       }
 
+      localStorage.setItem("user_id", response.user.id);
       toast.success(responseMessage, {
         position: "top-right",
         autoClose: 5000,
