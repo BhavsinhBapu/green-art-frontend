@@ -4,21 +4,19 @@ import React, { useEffect, useState } from "react";
 import { getLaunchpadListAction } from "state/actions/launchpad";
 
 export default function viewAll() {
-  const [launchpadList, setLaunchpadList] = useState([]);
+  const [launchpadList, setLaunchpadList]: any = useState([]);
 
   useEffect(() => {
     getLaunchpadListAction(setLaunchpadList);
   }, []);
 
-  console.log(launchpadList);
   return (
     <div>
       <SingleHero />
       <div className="container">
-        <LaunchPad />
-        <LaunchPad />
-        <LaunchPad />
-        <LaunchPad />
+        {launchpadList?.data?.map((item: any, index: number) => (
+          <LaunchPad data={item} />
+        ))}
       </div>
     </div>
   );

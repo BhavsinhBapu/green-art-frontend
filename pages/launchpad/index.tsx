@@ -7,11 +7,17 @@ import SellingSection from "components/launchpad/SellingSection";
 import { GetServerSideProps } from "next";
 import useTranslation from "next-translate/useTranslation";
 import { parseCookies } from "nookies";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { customPage, landingPage } from "service/landing-page";
+import { getLaunchpadListAction } from "state/actions/launchpad";
 
 const Index = ({ socialData, customPageData, copyright_text }: any) => {
   const { t } = useTranslation("common");
+  const [launchpadList, setLaunchpadList]: any = useState([]);
+
+  useEffect(() => {
+    getLaunchpadListAction(setLaunchpadList);
+  }, []);
   return (
     <div>
       <div className="launchPad">
@@ -19,7 +25,11 @@ const Index = ({ socialData, customPageData, copyright_text }: any) => {
         <div className="launch-body container">
           <Hero />
           <h2 className="mb-5">Launchpad</h2>
-          <LaunchPad viewMore={true} />
+          {/* <LaunchPad viewMore={true} /> */}
+          {launchpadList?.data?.map(
+            (item: any, index: number) =>
+              item.is_featured == 1 && <LaunchPad viewMore={true} data={item} />
+          )}
           {/* <h2 className="mb-5">Launchpool</h2> */}
           {/* <Launchpool viewMore={true} /> */}
           <SellingSection />
