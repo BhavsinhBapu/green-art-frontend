@@ -282,6 +282,13 @@ const StopLimit = ({
                           setLoading
                         );
                         await dispatch(getDashboardData(currentPair));
+                        setBuySellStopLimitCoinData({
+                          ...buySellStopLimitCoinData,
+                          amount: 0,
+                          total: 0,
+                          limit: 0,
+                          stop: 0,
+                        });
                       }}
                     >
                       <span v-else="">
