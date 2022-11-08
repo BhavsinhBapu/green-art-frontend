@@ -255,6 +255,11 @@ const Limit = ({
                           setBuySellLimitCoinData
                         );
                         await dispatch(getDashboardData(currentPair));
+                        setBuySellLimitCoinData({
+                          ...buySellLimitCoinData,
+                          amount: 0,
+                          total: 0,
+                        });
                       }}
                     >
                       <span v-else="">
