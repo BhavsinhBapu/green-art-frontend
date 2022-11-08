@@ -124,21 +124,19 @@ const Profile: NextPage = ({
               <table className="table">
                 <thead className="thead-light">
                   <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Action</th>
-                    <th scope="col">Source</th>
-                    <th scope="col">Ip Address:</th>
-                    <th scope="col">Time:</th>
+                    <th scope="col">{t("Source")}</th>
+                    <th scope="col">{t("Ip Address")}:</th>
+                    <th scope="col">{t("Time:")}</th>
+                    <th scope="col">{t("Action")}</th>
                   </tr>
                 </thead>
                 <tbody>
                   {profileActivity?.map((item: any, index: number) => (
                     <tr key={`userAct${index}`}>
-                      <th scope="row">{item.id}</th>
-                      <td>{t("Login")}</td>
                       <td>{item.source}</td>
                       <td>{item.ip_address}</td>
                       <td>{moment(item.created_at).format("DD MMM YYYY")}</td>
+                      <td>{t("Login")}</td>
                     </tr>
                   ))}
                 </tbody>
