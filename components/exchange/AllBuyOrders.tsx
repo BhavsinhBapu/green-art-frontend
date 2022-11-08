@@ -19,7 +19,7 @@ const AllBuyOrders = ({ OpenBookBuy, show }: any) => {
     const Array = show ? [...OpenBookBuy].slice(0, show) : [...OpenBookBuy];
     setBuyData(Array);
     return () => {
-      console.log("cleaned up");
+      // console.log("cleaned up");
     };
   }, [OpenBookBuy]);
 
