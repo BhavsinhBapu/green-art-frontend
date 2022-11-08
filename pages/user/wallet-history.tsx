@@ -13,6 +13,9 @@ import useTranslation from "next-translate/useTranslation";
 import moment from "moment";
 import Footer from "components/common/footer";
 import { customPage, landingPage } from "service/landing-page";
+import { useRef } from "react";
+import { toast } from "react-toastify";
+import { BiCopy } from "react-icons/bi";
 const DepositHistory: NextPage = ({
   customPageData,
   socialData,
@@ -75,13 +78,28 @@ const DepositHistory: NextPage = ({
     },
     {
       name: t("Fees"),
-      selector: (row: any) => row.fees,
+      selector: (row: any) => parseFloat(row.fees).toFixed(8),
       sortable: true,
     },
     {
       name: type === t("deposit") ? t("Transaction Id") : t("Transaction Hash"),
-      selector: (row: any) =>
-        type === "deposit" ? row.transaction_id : row.transaction_hash,
+      cell: (row: any) => (
+        <div>
+          <span className="withdrawTransactionCopy"
+            onClick={() => {
+              navigator.clipboard.writeText(
+                type === "deposit" ? row.transaction_id : row.transaction_hash
+              );
+              toast.success(t("Copied to clipboard"));
+            }}
+          >
+            {type === "deposit" ? row.transaction_id : row.transaction_hash}
+          </span>
+          <BiCopy className="copyIcon" />
+        </div>
+      ),
+      // selector: (row: any) =>
+      //   type === "deposit" ? row.transaction_id : row.transaction_hash,
       sortable: true,
     },
     {
