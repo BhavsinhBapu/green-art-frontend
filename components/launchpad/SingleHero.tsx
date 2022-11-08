@@ -13,12 +13,12 @@ export const SingleHero = () => {
             </div>
           </Link>
 
-          <Link href={"/launchpad"}>
+          {/* <Link href={"/launchpad"}>
             <div className="launchPadSingleHeroright">
               <h2>Launchpool</h2>
               <i className="fa-solid fa-chevron-right"></i>
             </div>
-          </Link>
+          </Link> */}
         </div>
       </div>
 
