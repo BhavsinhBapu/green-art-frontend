@@ -10905,3 +10905,13 @@ input[type="number"] {
   margin-right: 5px;
   cursor: pointer;
 }
+.launchpad-container img {
+  height: 300px;
+  width: 300px;
+  object-fit: cover;
+}
+.icoImage {
+  height: 200px;
+  width: 300px;
+  object-fit: cover;
+}
