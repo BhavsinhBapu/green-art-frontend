@@ -28,6 +28,11 @@ import { toast } from "react-toastify";
 import { Dispatch, SetStateAction } from "react";
 import Cookies from "js-cookie";
 
+export const getDashboardData = (pair: string) => async (dispatch: any) => {
+  const response = await appDashboardData(pair);
+  await dispatch(setDashboard(response));
+};
+
 export const initialDashboardCallAction =
   (pair: string, dashboard: any, setisLoading?: any) =>
   async (dispatch: any) => {
