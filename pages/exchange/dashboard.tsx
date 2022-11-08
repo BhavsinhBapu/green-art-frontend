@@ -61,6 +61,13 @@ async function listenMessages(dispatch: any, user: any) {
       dispatch(setOpenBookBuy(e.orders.orders));
     if (e.orders.order_type === "sell")
       dispatch(setOpenBooksell(e.orders.orders));
+    // if (e.orders.order_type === "buy") {
+    //   console.log("buy", e.orders.orders);
+    // }
+    // if (e.orders.order_type === "sell") {
+    //   console.log("sell", e.orders.orders);
+    // }
+
     e.order_data && dispatch(setOrderData(e.order_data));
     e.last_price_data && dispatch(setLastPriceData(e.last_price_data));
     dispatch(setPairs(e.pairs));
@@ -85,11 +92,12 @@ async function listenMessages(dispatch: any, user: any) {
     `dashboard-${localStorage.getItem("base_coin_id")}-${localStorage.getItem(
       "trade_coin_id"
     )}`
-  ).listen(`.order_place_2`, (e: any) => {
-    // console.log(e.open_orders.orders, "klaslkdalskmdlkasmdlkmsa");
+  ).listen(`.order_place_${localStorage.getItem("user_id")}`, (e: any) => {
     dispatch(setOpenOrderHistory(e.open_orders.orders));
     dispatch(setSellOrderHistory(e.open_orders.sell_orders));
     dispatch(setBuyOrderHistory(e.open_orders.buy_orders));
+    e.order_data && dispatch(setOrderData(e.order_data));
+    console.log(e, "eeeeeeeeeeeeeeeeeeeeeee");
   });
   //@ts-ignore
   window.Echo.channel(
@@ -140,7 +148,7 @@ const Dashboard: NextPage = () => {
     }
   }, [dashboard?.order_data?.base_coin_id]);
   useEffect(() => {
-    if (socketCall === 0 && user) {
+    if (socketCall === 0) {
       listenMessages(dispatch, user);
     }
     socketCall = 1;
@@ -150,7 +158,7 @@ const Dashboard: NextPage = () => {
       <div className="background-col">
         <Head>
           <title>
-            {dashboard?.last_price_data
+            {dashboard?.last_price_data[0]?.last_price
               ? formatCurrency(dashboard?.last_price_data[0]?.last_price)
               : 0.0}{" "}
             | {currentPair ? currentPair.replace("_", "") : "----"}

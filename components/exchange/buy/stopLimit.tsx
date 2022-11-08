@@ -7,6 +7,7 @@ import {
   initialDashboardCallAction,
   buyMarketAppAction,
   buyStopLimitAppAction,
+  getDashboardData,
 } from "state/actions/exchange";
 
 const StopLimit = ({
@@ -280,9 +281,14 @@ const StopLimit = ({
                           dashboard?.order_data?.base_coin_id,
                           setLoading
                         );
-                        // await dispatch(
-                        //   initialDashboardCallAction(currentPair, dashboard)
-                        // );
+                        await dispatch(getDashboardData(currentPair));
+                        setBuySellStopLimitCoinData({
+                          ...buySellStopLimitCoinData,
+                          amount: 0,
+                          total: 0,
+                          limit: 0,
+                          stop: 0,
+                        });
                       }}
                     >
                       <span v-else="">
