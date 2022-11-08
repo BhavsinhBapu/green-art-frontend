@@ -1,4 +1,11 @@
-import { FORM_INPUT_TEXT, FORM_RADIO } from "helpers/core-constants";
+import {
+  FORM_CHECKBOX,
+  FORM_FILE,
+  FORM_INPUT_TEXT,
+  FORM_RADIO,
+  FORM_SELECT,
+  FORM_TEXT_AREA,
+} from "helpers/core-constants";
 import React, { useEffect, useState } from "react";
 import { launchpadDynamicFromAction } from "state/actions/launchpad";
 
@@ -6,69 +13,69 @@ const Apply = () => {
   const [launchpadForm, setLaunchpadForm] = useState([]);
   useEffect(() => {
     launchpadDynamicFromAction(setLaunchpadForm);
+    console.log(launchpadForm, "launchpadForm");
   }, []);
   return (
     <div className="container">
-      {JSON.stringify(launchpadForm)}
       <div className="appy-form">
-
-        <div className="form-div">
-          <label htmlFor="">
-            There are many variations of passages of Lorem Ipsum available, but
-            the majority
-          </label>
-          <input type="number" className="form-control apply-input" id="" />
-        </div>
-
-        <div className="form-div">
-          <label htmlFor="">
-            There are many variations of passages of Lorem Ipsum available, but
-            the majority
-          </label>
-          <select className="form-control apply-select-field" name="" id="">
-            <option value="">A</option>
-            <option value="">B</option>
-            <option value="">C</option>
-            <option value="">D</option>
-          </select>
-        </div>
-
-        <div className="form-div">
-          <label htmlFor="">
-            There are many variations of passages of Lorem Ipsum available, but
-            the majority
-          </label>
-          <input
-            className="form-control apply-checkbox-input"
-            type="checkbox"
-          />
-        </div>
-
-        <div className="form-div">
-          <label htmlFor="">
-            There are many variations of passages of Lorem Ipsum available, but
-            the majority
-          </label>
-          <input className="form-control apply-radio-input" type="radio" />
-        </div>
-
-        <div className="form-div">
-          <label htmlFor="">
-            There are many variations of passages of Lorem Ipsum available, but
-            the majority
-          </label>
-          <input className="apply-file-input" type="file" />
-        </div>
-
-
-      </div>
-
-      {/* {launchpadForm?.map(
-        (item: any) =>
-          item.type === FORM_INPUT_TEXT && (
-            <input type="number" className="form-control" id="amount-one" />
+        {launchpadForm?.map((item: any) =>
+          item.type === FORM_INPUT_TEXT ? (
+            <div className="form-div">
+              <label htmlFor="">{item?.title}</label>
+              <input type="text" className="form-control apply-input" id="" />
+            </div>
+          ) : item.type === FORM_SELECT ? (
+            <div className="form-div">
+              <label htmlFor="">{item?.title}</label>
+              <select className="form-control apply-select-field" name="" id="">
+                {item.optionList.map((radioItem: any) => (
+                  <>
+                    <option value="">{radioItem}</option>
+                  </>
+                ))}
+              </select>
+            </div>
+          ) : item.type === FORM_RADIO ? (
+            <div className="form-div">
+              <label htmlFor="">{item?.title}</label>
+              {item.optionList.map((radioItem: any) => (
+                <>
+                  <input
+                    className="form-control apply-radio-input"
+                    type="radio"
+                  />
+                  <span>{radioItem}</span>
+                </>
+              ))}
+            </div>
+          ) : item.type === FORM_CHECKBOX ? (
+            <div className="form-div">
+              <label htmlFor="">{item?.title}</label>
+              {item.optionList.map((radioItem: any) => (
+                <>
+                  <input
+                    className="form-control apply-radio-input"
+                    type="checkbox"
+                  />
+                  <span>{radioItem}</span>
+                </>
+              ))}
+            </div>
+          ) : item.type === FORM_FILE ? (
+            <div className="form-div">
+              <label htmlFor="">{item?.title}</label>
+              <input className="apply-file-input" type="file" />
+            </div>
+          ) : item.type === FORM_TEXT_AREA ? (
+            <div className="form-div">
+              <label htmlFor="">{item?.title}</label>
+              <textarea className="apply-file-input" />
+            </div>
+          ) : (
+            ""
           )
-      )} */}
+        )}
+      </div>
     </div>
   );
 };

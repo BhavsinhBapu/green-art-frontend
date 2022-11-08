@@ -36,8 +36,6 @@ export const launchpadDynamicFromSubmitAction = async () => {
 };
 export const launchpadDynamicFromAction = async (setLaunchpadForm: any) => {
   const response = await launchpadDynamicFrom();
-  console.log(response.data, "setLaunchpadForm");
-  if (response.success === true) {
-    setLaunchpadForm(response.data);
-  }
+  console.log(response, "setLaunchpadForm");
+    setLaunchpadForm(response);
 };
