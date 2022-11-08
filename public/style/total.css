@@ -10915,3 +10915,26 @@ input[type="number"] {
   width: 300px;
   object-fit: cover;
 }
+.appy-form {
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
+  padding: 50px 50px;
+  margin-bottom: 50px;
+  border-radius: 10px;
+}
+.form-div {
+  margin-bottom: 30px;
+}
+.form-div label {
+  font-size: 15px;
+  color: var(--text-primary-color-2);
+  display: block;
+}
+.apply-select-field {
+  color: var(--text-primary-color-2);
+  font-size: 17px;
+  padding: 0px 20px;
+}
+.apply-checkbox-input,
+.apply-radio-input {
+  width: 20px;
+}
