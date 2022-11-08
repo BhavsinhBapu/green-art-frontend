@@ -25,6 +25,7 @@ import {
   setOpenOrderHistory,
   setSellOrderHistory,
   setBuyOrderHistory,
+  setTotalData,
 } from "state/reducer/exchange";
 import useTranslation from "next-translate/useTranslation";
 import { last, updateChart } from "components/exchange/api/stream";
@@ -96,7 +97,7 @@ async function listenMessages(dispatch: any, user: any) {
     dispatch(setOpenOrderHistory(e.open_orders.orders));
     dispatch(setSellOrderHistory(e.open_orders.sell_orders));
     dispatch(setBuyOrderHistory(e.open_orders.buy_orders));
-    e.order_data && dispatch(setOrderData(e.order_data));
+    e?.order_data?.total && dispatch(setTotalData(e?.order_data?.total));
     console.log(e, "eeeeeeeeeeeeeeeeeeeeeee");
   });
   //@ts-ignore
