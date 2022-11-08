@@ -31,7 +31,7 @@ const LaunchPad = ({ viewMore, data }: any) => {
                 <div className="col-lg-6 col-md-12 pool-row">
                   <p className="pool-title">{t("Tokens Offered:")}</p>
                   <p className="pool-value">
-                    {parseFloat(data?.total_token_supply).toFixed(8)}
+                    {parseFloat(data?.total_token_supply)}
                   </p>
                 </div>
                 <div className="col-lg-6 col-md-12 pool-row">
