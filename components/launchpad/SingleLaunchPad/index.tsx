@@ -1,26 +1,26 @@
+import useTranslation from "next-translate/useTranslation";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-export const SingleLaunchPad = () => {
+export const SingleLaunchPad = ({ data }: any) => {
+  const { t } = useTranslation("common");
   return (
     <>
+      {/* {JSON.stringify(data)} */}
       <div className="container singleLaunch">
         <div className="singleLaunchPadHero">
           <div className="singleLaunchPadHeroFlex">
             <div className="">
-              <Image
-                className="singleLaunchPadImg"
-                src="/launchpad.png"
-                height={150}
-                width={205}
-                layout="fixed"
+              <img
+                className="singleLaunchPadImg icoImage"
+                src={data?.image ? data?.image : "/launchpad.png"}
                 alt="---"
               />
             </div>
             <div className="">
               <div className="singleLaunchPadTitle">
-                <h2>STEPN</h2>
+                <h2>{data?.title}</h2>
                 <div className="singleLaunchPadStatus">
                   <i className="fa-sharp fa-solid fa-circle-check"></i>
                   <p> FINISHED</p>
@@ -28,33 +28,33 @@ export const SingleLaunchPad = () => {
               </div>
 
               <div className="singleLaunchPadLinkList">
-                <p>STEPN - A Move-to-Earn Health and Fitness Application</p>
+                <p>{data?.project_introduction}</p>
                 <div className="linkLists">
                   <Link href="/">
                     <div>
                       <i className="fa-sharp fa-solid fa-link"></i>
-                      <p>Website</p>
+                      <p>{t("Website")}</p>
                     </div>
                   </Link>
 
                   <Link href="/">
                     <div>
                       <i className="fa-solid fa-receipt"></i>
-                      <p>Whitepaper</p>
+                      <p>{t("Whitepaper")}</p>
                     </div>
                   </Link>
 
                   <Link href="/">
                     <div>
                       <i className="fa-sharp fa-solid fa-lightbulb"></i>
-                      <p>GMT Research Report</p>
+                      <p>{t("GMT Research Report")}</p>
                     </div>
                   </Link>
 
                   <Link href="/">
                     <div>
                       <i className="fa-sharp fa-solid fa-book"></i>
-                      <p>View detailed rules</p>
+                      <p>{t("View detailed rules")}</p>
                     </div>
                   </Link>
                 </div>
@@ -62,23 +62,23 @@ export const SingleLaunchPad = () => {
             </div>
           </div>
           <div className="endtimeSingleLaunch">
-            <p>End Time :</p>
-            <p>2022-03-09</p>
+            <p>{t("End Time :")}</p>
+            <p>{data?.end_date}</p>
           </div>
         </div>
 
         <div className="launchCoinDetails">
           <div>
-            <p>Type</p>
-            <span>Subscription</span>
+            <p>{t("Type")}</p>
+            <span>{t("Subscription")}</span>
           </div>
           <div>
-            <p>Sale Price</p>
-            <span>1 GMT = 0.00002514 BNB</span>
+            <p>{t("Sale Price")}</p>
+            <span>{`1 ${data?.coin_name} = ${data?.coin_price} ${data?.coin_type}`}</span>
           </div>
           <div>
-            <p>Tokens Offered</p>
-            <span>420,000,000.0000 GMT</span>
+            <p>{t("Tokens Offered")}</p>
+            <span>{`${parseFloat(data?.total_token_supply)} `}</span>
           </div>
           <div>
             <p>Single Initial Investment</p>
