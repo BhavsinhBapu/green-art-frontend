@@ -121,6 +121,9 @@ export const SigninAction =
         progress: undefined,
         className: "dark-toast",
       });
+      if (response.email_verified === 0) {
+        Router.push("/authentication/verify-email");
+      }
     }
     setProcessing(false);
     return response;

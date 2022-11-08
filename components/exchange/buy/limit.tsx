@@ -5,6 +5,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import {
   buyLimitAppAction,
+  getDashboardData,
   initialDashboardCallAction,
   initialDashboardCallActionWithToken,
 } from "state/actions/exchange";
@@ -253,9 +254,7 @@ const Limit = ({
                           setLoading,
                           setBuySellLimitCoinData
                         );
-                        // await dispatch(
-                        //   initialDashboardCallAction(currentPair, dashboard)
-                        // );
+                        await dispatch(getDashboardData(currentPair));
                       }}
                     >
                       <span v-else="">
