@@ -34,7 +34,7 @@ const Index = ({ socialData, customPageData, copyright_text }: any) => {
               {launchpadFeatureItem.map((item: any, index: number) => (
                 <LaunchPad
                   viewMore={
-                    launchpadList?.data?.length == index + 1 ? true : false
+                    launchpadFeatureItem?.length == index + 1 ? true : false
                   }
                   data={item}
                 />
