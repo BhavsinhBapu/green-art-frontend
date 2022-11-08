@@ -214,7 +214,7 @@ const Market = ({
                           dashboard?.order_data?.base_coin_id,
                           setLoading
                         );
-                        await dispatch(getDashboardData(currentPair));
+                        // await dispatch(getDashboardData(currentPair));
                         setBuySellMarketCoinData({
                           ...buySellMarketCoinData,
                           amount: 0,
