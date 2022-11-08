@@ -30,7 +30,7 @@ import Cookies from "js-cookie";
 
 export const getDashboardData = (pair: string) => async (dispatch: any) => {
   const response = await appDashboardData(pair);
-  await dispatch(setDashboard(response));
+  dispatch(setDashboard(response));
 };
 
 export const initialDashboardCallAction =
@@ -224,11 +224,11 @@ export const buyLimitAppAction = async (
       progress: undefined,
       className: "dark-toast",
     });
-    setBuyCoinData({
-      amount: 0,
-      price: 0,
-      total: 0,
-    });
+    // setBuyCoinData({
+    //   amount: 0,
+    //   price: 0,
+    //   total: 0,
+    // });
   } else {
     toast.error(response.message, {
       position: "top-right",
@@ -350,11 +350,11 @@ export const sellLimitAppAction = async (
       progress: undefined,
       className: "dark-toast",
     });
-    setsellCoinData({
-      amount: 0,
-      price: 0,
-      total: 0,
-    });
+    // setsellCoinData({
+    //   amount: 0,
+    //   price: 0,
+    //   total: 0,
+    // });
   } else {
     toast.error(response.message, {
       position: "top-right",
