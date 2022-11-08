@@ -5,19 +5,16 @@ import React from "react";
 
 export const SingleLaunchPad = ({ data }: any) => {
   const { t } = useTranslation("common");
-
   return (
     <>
+      {/* {JSON.stringify(data)} */}
       <div className="container singleLaunch">
         <div className="singleLaunchPadHero">
           <div className="singleLaunchPadHeroFlex">
             <div className="">
-              <Image
-                className="singleLaunchPadImg"
-                src="/launchpad.png"
-                height={150}
-                width={205}
-                layout="fixed"
+              <img
+                className="singleLaunchPadImg icoImage"
+                src={data?.image ? data?.image : "/launchpad.png"}
                 alt="---"
               />
             </div>
