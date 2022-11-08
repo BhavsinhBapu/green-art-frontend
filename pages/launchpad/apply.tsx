@@ -11,6 +11,7 @@ const Apply = () => {
     <div className="container">
       {JSON.stringify(launchpadForm)}
       <div className="appy-form">
+
         <div className="form-div">
           <label htmlFor="">
             There are many variations of passages of Lorem Ipsum available, but
@@ -58,6 +59,8 @@ const Apply = () => {
           </label>
           <input className="apply-file-input" type="file" />
         </div>
+
+
       </div>
 
       {/* {launchpadForm?.map(
