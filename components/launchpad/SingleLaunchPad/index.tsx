@@ -81,7 +81,7 @@ export const SingleLaunchPad = ({ data }: any) => {
           </div>
           <div>
             <p>{t("Tokens Offered")}</p>
-            <span>{`${data?.total_sell_token_supply} `}</span>
+            <span>{`${parseFloat(data?.total_token_supply)} `}</span>
           </div>
           <div>
             <p>Single Initial Investment</p>
