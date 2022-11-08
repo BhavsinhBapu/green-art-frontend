@@ -96,6 +96,8 @@ async function listenMessages(dispatch: any, user: any) {
     dispatch(setOpenOrderHistory(e.open_orders.orders));
     dispatch(setSellOrderHistory(e.open_orders.sell_orders));
     dispatch(setBuyOrderHistory(e.open_orders.buy_orders));
+    e.order_data && dispatch(setOrderData(e.order_data));
+    console.log(e, "eeeeeeeeeeeeeeeeeeeeeee");
   });
   //@ts-ignore
   window.Echo.channel(
