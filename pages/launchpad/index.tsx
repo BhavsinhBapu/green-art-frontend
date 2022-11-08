@@ -7,19 +7,41 @@ import SellingSection from "components/launchpad/SellingSection";
 import { GetServerSideProps } from "next";
 import useTranslation from "next-translate/useTranslation";
 import { parseCookies } from "nookies";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { customPage, landingPage } from "service/landing-page";
+import { getLaunchpadListAction } from "state/actions/launchpad";
 
 const Index = ({ socialData, customPageData, copyright_text }: any) => {
   const { t } = useTranslation("common");
+  const [launchpadList, setLaunchpadList]: any = useState([]);
+  const [launchpadFeatureItem, setLaunchpadFeatureItem]: any = useState([]);
+  const [aaaa, setaaaa]: any = useState(false);
+  let hideSection = false;
+  useEffect(() => {
+    getLaunchpadListAction(setLaunchpadList, setLaunchpadFeatureItem);
+  }, []);
+
+  console.log(hideSection);
   return (
     <div>
       <div className="launchPad">
         <LaunchTop />
         <div className="launch-body container">
           <Hero />
-          <h2 className="mb-5">Launchpad</h2>
-          <LaunchPad viewMore={true} />
+          {launchpadFeatureItem.length > 0 && (
+            <>
+              <h2 className="mb-5">{t("Launchpad")}</h2>
+              {launchpadFeatureItem.map((item: any, index: number) => (
+                <LaunchPad
+                  viewMore={
+                    launchpadFeatureItem?.length == index + 1 ? true : false
+                  }
+                  data={item}
+                />
+              ))}
+            </>
+          )}
+
           {/* <h2 className="mb-5">Launchpool</h2> */}
           {/* <Launchpool viewMore={true} /> */}
           <SellingSection />
