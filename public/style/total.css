@@ -2764,7 +2764,7 @@ member club
 }
 .text-warning {
   color: #ffc107 !important;
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .user-plan-table {
@@ -10892,4 +10892,49 @@ input[type="number"] {
 }
 .wallet-border-history {
   border: 1px solid var(--border-color-1);
+}
+.notificationNotFound {
+  width: 100%;
+  margin-bottom: 30px;
+  font-size: 18px;
+}
+.text-success {
+  font-size: 13px;
+}
+.withdrawTransactionCopy {
+  margin-right: 5px;
+  cursor: pointer;
+}
+.launchpad-container img {
+  height: 300px;
+  width: 300px;
+  object-fit: cover;
+}
+.icoImage {
+  height: 200px;
+  width: 300px;
+  object-fit: cover;
+}
+.appy-form {
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
+  padding: 50px 50px;
+  margin-bottom: 50px;
+  border-radius: 10px;
+}
+.form-div {
+  margin-bottom: 30px;
+}
+.form-div label {
+  font-size: 15px;
+  color: var(--text-primary-color-2);
+  display: block;
+}
+.apply-select-field {
+  color: var(--text-primary-color-2);
+  font-size: 17px;
+  padding: 0px 20px;
+}
+.apply-checkbox-input,
+.apply-radio-input {
+  width: 20px;
 }
