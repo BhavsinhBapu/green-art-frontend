@@ -138,8 +138,8 @@ const DeposiAndWithdraw = ({
                         <i className="fa-sharp fa-solid fa-circle-check active"></i>
                       </div>
                       <div>
-                        <h5>This is a First step</h5>
-                        <span>You will do this</span>
+                        <h5>{t("This is a First step")}</h5>
+                        <span>{t("You will do this")}</span>
                       </div>
                     </div>
 
@@ -148,8 +148,8 @@ const DeposiAndWithdraw = ({
                         <i className="fa-sharp fa-solid fa-circle-check active"></i>
                       </div>
                       <div>
-                        <h5>This is a Second step</h5>
-                        <span>You will do this</span>
+                        <h5>{t("This is a Second step")}</h5>
+                        <span>{t("You will do this")}</span>
                       </div>
                     </div>
 
@@ -158,8 +158,8 @@ const DeposiAndWithdraw = ({
                         <i className="fa-sharp fa-solid fa-circle-check active"></i>
                       </div>
                       <div>
-                        <h5>This is a Third step</h5>
-                        <span>You will do this</span>
+                        <h5>{t("This is a Third step")}</h5>
+                        <span>{t("You will do this")}</span>
                       </div>
                     </div>
                     <div className="timeLineLists">
@@ -167,8 +167,8 @@ const DeposiAndWithdraw = ({
                         <i className="fa-sharp fa-solid fa-circle-check active"></i>
                       </div>
                       <div>
-                        <h5>This is a Fourth step</h5>
-                        <p>do this</p>
+                        <h5>{t("This is a Fourth step")}</h5>
+                        <p>{t("do this")}</p>
                       </div>
                     </div>
                   </div>
@@ -177,7 +177,13 @@ const DeposiAndWithdraw = ({
             </div>
           </div>
           {router.query.id && (
-            <Wallethistory type={router.query.id === MY_WALLET_WITHDRAW_TYPE?"withdrawal":"deposit"} />
+            <Wallethistory
+              type={
+                router.query.id === MY_WALLET_WITHDRAW_TYPE
+                  ? "withdrawal"
+                  : "deposit"
+              }
+            />
           )}
         </div>
       </div>
