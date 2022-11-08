@@ -2764,7 +2764,7 @@ member club
 }
 .text-warning {
   color: #ffc107 !important;
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .user-plan-table {
@@ -10897,4 +10897,11 @@ input[type="number"] {
   width: 100%;
   margin-bottom: 30px;
   font-size: 18px;
+}
+.text-success {
+  font-size: 13px;
+}
+.withdrawTransactionCopy {
+  margin-right: 5px;
+  cursor: pointer;
 }
