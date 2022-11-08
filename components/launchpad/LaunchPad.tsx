@@ -10,12 +10,11 @@ const LaunchPad = ({ viewMore, data }: any) => {
       <Link href={`/launchpad/subscription/${data?.id}`}>
         <div className="mt-3 mb-5 row launchpad-container">
           <div className="col-lg-4 col-12  mb-2">
-            <Image
-              src="/binance-logo-6219389_960_720.webp"
+            <img
+              src={
+                data?.image ? data?.image : "/binance-logo-6219389_960_720.webp"
+              }
               alt=""
-              layout="responsive"
-              height={150}
-              width={200}
               className="launchpad-cover"
             />
           </div>
