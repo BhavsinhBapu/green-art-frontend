@@ -6,9 +6,17 @@ import {
   launchpadDynamicFromSubmit,
 } from "service/launchpad";
 
-export const getLaunchpadListAction = async (setLaunchpadList: any) => {
+export const getLaunchpadListAction = async (
+  setLaunchpadList: any,
+  setLaunchpadFeatureItem: any
+) => {
+  let featuredItem: any = [];
   const response = await getLaunchpadList();
+  response?.data?.map((item: any, index: number) => {
+    item.is_featured == 1 && featuredItem.push(item);
+  });
   setLaunchpadList(response);
+  setLaunchpadFeatureItem(featuredItem);
 };
 export const getLaunchpadListDetailsAction = async (
   setLaunchpadListDetails: any,
