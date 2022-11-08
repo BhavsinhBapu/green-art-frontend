@@ -3,6 +3,7 @@ import Link from "next/link";
 import React from "react";
 import { useDispatch } from "react-redux";
 import {
+  getDashboardData,
   initialDashboardCallAction,
   sellMarketAppAction,
 } from "state/actions/exchange";
@@ -213,9 +214,12 @@ const Market = ({
                           dashboard?.order_data?.base_coin_id,
                           setLoading
                         );
-                        // await dispatch(
-                        //   initialDashboardCallAction(currentPair, dashboard)
-                        // );
+                        await dispatch(getDashboardData(currentPair));
+                        setBuySellMarketCoinData({
+                          ...buySellMarketCoinData,
+                          amount: 0,
+                          total: 0,
+                        });
                       }}
                     >
                       <span v-else="">
