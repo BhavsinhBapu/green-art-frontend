@@ -3,7 +3,7 @@ import { SingleHero } from "components/launchpad/SingleHero";
 import React, { useEffect, useState } from "react";
 import { getLaunchpadListAction } from "state/actions/launchpad";
 
-export default function viewAll() {
+export default function ViewAll() {
   const [launchpadList, setLaunchpadList]: any = useState([]);
   const [launchpadFeatureItem, setLaunchpadFeatureItem]: any = useState([]);
 
@@ -17,7 +17,7 @@ export default function viewAll() {
       <SingleHero />
       <div className="container">
         {launchpadList?.data?.map((item: any, index: number) => (
-          <LaunchPad data={item} />
+          <LaunchPad data={item} key={index} />
         ))}
       </div>
     </div>

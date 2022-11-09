@@ -61,6 +61,9 @@ export const exchangeSlice = createSlice({
     setOpenOrderHistory: (state: any, action: PayloadAction<Array<any>>) => {
       state.openOrderHistory = action.payload;
     },
+    setTotalData: (state: any, action: any) => {
+      state.dashboard.order_data.total = action.payload;
+    },
     setOrderData: (state: any, action: any) => {
       state.dashboard.order_data = {
         ...state.dashboard.order_data,
@@ -120,6 +123,7 @@ export const {
   setOpenBookBuy,
   setLastPriceData,
   setOrderData,
+  setTotalData,
   setOpenBooksell,
   setOpenOrderHistory,
   setSellOrderHistory,
