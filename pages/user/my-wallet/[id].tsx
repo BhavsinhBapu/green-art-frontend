@@ -215,7 +215,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const { data } = await landingPage();
   const { data: customPageData } = await customPage();
 
-  if (parseInt(commonRes.currency_deposit_status) !== 1) {
+  if (parseInt(commonRes.currency_deposit_status) !== 1) {9
     return {
       redirect: {
         destination: "/",
