@@ -28,9 +28,9 @@ const Apply = () => {
             <div className="form-div">
               <label htmlFor="">{item?.title}</label>
               <select className="form-control apply-select-field" name="" id="">
-                {item.optionList.map((radioItem: any) => (
+                {item.optionList.map((select: any) => (
                   <>
-                    <option value="">{radioItem}</option>
+                    <option value="">{select}</option>
                   </>
                 ))}
               </select>
@@ -39,13 +39,14 @@ const Apply = () => {
             <div className="form-div">
               <label htmlFor="">{item?.title}</label>
               {item.optionList.map((radioItem: any) => (
-                <>
+                <fieldset id="group1">
                   <input
                     className="form-control apply-radio-input"
                     type="radio"
+                    name="radio"
                   />
                   <span>{radioItem}</span>
-                </>
+                </fieldset>
               ))}
             </div>
           ) : item.type === FORM_CHECKBOX ? (
