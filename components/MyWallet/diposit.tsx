@@ -26,7 +26,7 @@ export const DipositComponent = ({
     }
   }, [responseData?.data[0]]);
   return (
-    <div className={fullPage ? "col-md-7" : `col-md-7 no-sidebar`}>
+    <div className={fullPage ? "col-md-7  no-sidebar" : `col-md-7`}>
       <div className="single-wallet boxShadow">
         <div className={`box-one single-box visible`}>
           <div className="">
