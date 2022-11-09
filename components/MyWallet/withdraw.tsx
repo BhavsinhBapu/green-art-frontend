@@ -70,7 +70,7 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
   }, [selectedNetwork?.network_type]);
 
   return (
-    <div className={fullPage ? "col-md-7" : `col-md-7`}>
+    <div className={fullPage ? "col-md-7 no-sidebar" : `col-md-7`}>
       <div className="single-wallet boxShadow">
         <div className="box-two single-box visible">
           <div className="">
