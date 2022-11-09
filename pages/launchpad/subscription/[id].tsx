@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { getLaunchpadListDetailsAction } from "state/actions/launchpad";
 
-export default function singleLaunchPadPage() {
+export default function SingleLaunchPadPage() {
   const router = useRouter();
   const [launchpadListDetails, setLaunchpadListDetails]: any = useState([]);
   useEffect(() => {
