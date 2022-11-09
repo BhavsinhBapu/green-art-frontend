@@ -10938,3 +10938,6 @@ input[type="number"] {
 .apply-radio-input {
   width: 20px;
 }
+.no-sidebar {
+  margin: 0 auto;
+}
