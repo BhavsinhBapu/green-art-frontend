@@ -87,10 +87,7 @@ const DeposiAndWithdraw = ({
     ) {
       console.log("2");
       setFullPage(true);
-    } else if (
-      faqs?.length < 0 &&
-      getProcessData?.data?.progress_status_list?.length < 0
-    ) {
+    } else if (faqs?.length < 0) {
       console.log(faqs?.length);
       setFullPage(true);
     }
@@ -100,6 +97,7 @@ const DeposiAndWithdraw = ({
     const processData = await MyWalletProcessSidebar(String(router.query.id));
     setProcessData(processData);
     console.log("#######", fullPage);
+    console.log("#######", processData);
   };
   useEffect(() => {
     setFaqs(
@@ -141,7 +139,7 @@ const DeposiAndWithdraw = ({
             )}
 
             {fullPage === false && (
-              <div className={`col-md-5 faq-wallet-section`}>
+              <div className="col-md-5 faq-wallet-section">
                 {faqs?.length > 0 && (
                   <div className={`box-one single-box visible mb-25`}>
                     <div className="section-wrapper boxShadow">
