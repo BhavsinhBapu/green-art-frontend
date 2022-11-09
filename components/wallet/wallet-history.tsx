@@ -164,7 +164,7 @@ const Wallethistory = ({ type }: any) => {
                       <div className="cp-user-wallet-table table-responsive tableScroll">
                         <DataTable columns={columns} data={history} />
                       </div>
-                      {history.length > 0 && (
+                      {history?.length > 0 && (
                         <div
                           className="pagination-wrapper"
                           id="assetBalances_paginate"
