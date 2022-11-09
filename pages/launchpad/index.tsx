@@ -33,6 +33,7 @@ const Index = ({ socialData, customPageData, copyright_text }: any) => {
               <h2 className="mb-5">{t("Launchpad")}</h2>
               {launchpadFeatureItem.map((item: any, index: number) => (
                 <LaunchPad
+                  key={index}
                   viewMore={
                     launchpadFeatureItem?.length == index + 1 ? true : false
                   }

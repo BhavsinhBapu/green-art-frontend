@@ -244,7 +244,7 @@ const Limit = ({
                           setLoading,
                           setBuySellLimitCoinData
                         );
-                        await dispatch(getDashboardData(currentPair));
+                        // await dispatch(getDashboardData(currentPair));
                         setBuySellLimitCoinData({
                           ...buySellLimitCoinData,
                           amount: 0,
