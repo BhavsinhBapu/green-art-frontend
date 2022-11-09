@@ -3,15 +3,13 @@ import Slider from "react-slick";
 import Link from "next/link";
 import { landingPage, customPage, commomSettings } from "service/landing-page";
 import useTranslation from "next-translate/useTranslation";
-
 import Navbar from "components/common/navbar";
 import { GetUserInfoByTokenServer } from "service/user";
 import { parseCookies, destroyCookie } from "nookies";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import Footer from "components/common/footer";
-import { setLogo } from "state/reducer/user";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "state/store";
 import { SEO } from "components/SEO";
 const Home: NextPage = ({
@@ -170,44 +168,45 @@ const Home: NextPage = ({
               </div>
             </div>
           </section>
-
-          <section className="about-area">
-            <div className="container">
-              <Slider {...settings}>
-                {bannerListdata?.map((item: any, index: number) => (
-                  <div className="single-banner" key={index}>
-                    <Link href={`/banner/${item.slug}`}>
-                      <img
-                        src={item.image}
-                        alt="about-image-phone"
-                        className="slider-image-class"
-                      />
-                    </Link>
-                  </div>
-                ))}
-              </Slider>
-              <div className="about-info">
-                {announcementListdata?.map((item: any, index: number) => (
-                  <div className="single-info" key={index}>
-                    <p>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        className="mirror css-1w66k1s"
-                      >
-                        <path
-                          d="M12.867 18.47l5.13-.94L15.517 4l-5.18.95-3.25 3.94-4.85.89.5 2.71-1.97.36.36 1.97 1.97-.36.44 2.42 1.97-.36.79 4.28 1.97-.36-.79-4.28.98-.18 4.41 2.49zm-5.76-4.28l-1.97.36-.58-3.17 3.61-.66 3.25-3.92 2.5-.46 1.76 9.59-2.46.45-4.4-2.51-1.71.32zM22.871 8.792l-2.99.55.362 1.967 2.99-.55-.362-1.967zM19.937 13.183l-1.135 1.647 2.503 1.725 1.135-1.646-2.503-1.726zM19.006 4.052l-1.725 2.503 1.646 1.135 1.726-2.503-1.647-1.135z"
-                          fill="currentColor"
+          {bannerListdata.length > 0 && (
+            <section className="about-area">
+              <div className="container">
+                <Slider {...settings}>
+                  {bannerListdata?.map((item: any, index: number) => (
+                    <div className="single-banner" key={index}>
+                      <Link href={`/banner/${item.slug}`}>
+                        <img
+                          src={item.image}
+                          alt="about-image-phone"
+                          className="slider-image-class"
                         />
-                      </svg>
-                      {item.title}
-                    </p>
-                  </div>
-                ))}
+                      </Link>
+                    </div>
+                  ))}
+                </Slider>
+                <div className="about-info">
+                  {announcementListdata?.map((item: any, index: number) => (
+                    <div className="single-info" key={index}>
+                      <p>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          className="mirror css-1w66k1s"
+                        >
+                          <path
+                            d="M12.867 18.47l5.13-.94L15.517 4l-5.18.95-3.25 3.94-4.85.89.5 2.71-1.97.36.36 1.97 1.97-.36.44 2.42 1.97-.36.79 4.28 1.97-.36-.79-4.28.98-.18 4.41 2.49zm-5.76-4.28l-1.97.36-.58-3.17 3.61-.66 3.25-3.92 2.5-.46 1.76 9.59-2.46.45-4.4-2.51-1.71.32zM22.871 8.792l-2.99.55.362 1.967 2.99-.55-.362-1.967zM19.937 13.183l-1.135 1.647 2.503 1.725 1.135-1.646-2.503-1.726zM19.006 4.052l-1.725 2.503 1.646 1.135 1.726-2.503-1.647-1.135z"
+                            fill="currentColor"
+                          />
+                        </svg>
+                        {item.title}
+                      </p>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-          </section>
+            </section>
+          )}
 
           <section className="market-trend-area">
             <div className="container">
@@ -755,15 +754,15 @@ const Home: NextPage = ({
                 </div>
                 <div className="col-lg-6">
                   <div className="trade-anywhere-right">
-                    <div className="qr-code-area">
+                    {/* <div className="qr-code-area">
                       <div className="qr-image">
                         <img className="img-fluid" src="/qr-code.png" alt="" />
                       </div>
                       <div className="qr-info">
                         <h4>{"Scan to Download"}</h4>
-                        <h5>iOS &amp; Android</h5>
+                        <h5>{t("iOS")} &amp; {t("Android")}</h5>
                       </div>
-                    </div>
+                    </div> */}
                     <div className="avable-items">
                       <ul className="item-lsit">
                         {landing?.apple_store_link && (
@@ -856,12 +855,12 @@ const Home: NextPage = ({
                   </div>
                 </div>
               </div>
-              <div className="view-more text-center">
+              {/* <div className="view-more text-center">
                 <a href="https://play.google.com/" className="view-btn">
                   {t("More Download Options")}
                   <i className="fa fa-angle-right" aria-hidden="true" />
                 </a>
-              </div>
+              </div> */}
             </div>
           </section>
 
@@ -899,7 +898,7 @@ const Home: NextPage = ({
           <section className="get-touch-area">
             <div className="container">
               <div className="section-title">
-                <h2 className="title">{landing?.landing_feature_title}.</h2>
+                <h2 className="title">{landing?.landing_feature_title}</h2>
               </div>
 
               <div className="row">
