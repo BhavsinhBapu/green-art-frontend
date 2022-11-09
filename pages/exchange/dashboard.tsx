@@ -160,7 +160,7 @@ const Dashboard: NextPage = () => {
         <Head>
           <title>
             {dashboard?.last_price_data?.length > 0
-              ? formatCurrency(dashboard?.last_price_data[0]?.last_price)
+              ? (dashboard?.last_price_data[0]?.last_price)
               : 0.0}{" "}
             | {currentPair ? currentPair.replace("_", "") : "----"}
           </title>
