@@ -132,7 +132,7 @@ const CurrencyLevel = () => {
             {" "}
             {t("24h volume")}({dashboard?.order_data?.base_coin}){" "}
           </span>
-          <span className="value">{formatCurrency(volume ? volume : 0)}</span>
+          <span className="value">{(volume ? volume : 0)}</span>
         </li>
       </ul>
     </div>
