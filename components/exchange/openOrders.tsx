@@ -72,7 +72,7 @@ const OpenOrders = ({ openOrders, openOrderHistory }: any) => {
                   <button
                     className="cancel"
                     onClick={async () => {
-                      await cancelOrderAppAction("buy", order.id);
+                      await cancelOrderAppAction(order.type, order.id);
                       if (currentPair && dashboard) {
                         await dispatch(
                           initialDashboardCallActionWithToken(
