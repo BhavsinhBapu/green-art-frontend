@@ -73,52 +73,70 @@ const DeposiAndWithdraw = ({
     }
   };
   const checkFullPageStatus = () => {
+    console.log(
+      typeof getProcessData?.data?.progress_status_list,
+      "getProcessData?.data?.progress_status_list"
+    );
     if (
       parseInt(settings.withdrawal_faq_status) !== 1 &&
       router.query.id === MY_WALLET_WITHDRAW_TYPE &&
       parseInt(getProcessData?.data?.progress_status_for_withdrawal) !== 1
     ) {
-      console.log("1");
+      console.log("this is 1");
       setFullPage(true);
     } else if (
       parseInt(settings.coin_deposit_faq_status) !== 1 &&
       router.query.id === MY_WALLET_DEPOSIT_TYPE &&
       parseInt(getProcessData?.data?.progress_status_for_deposit) !== 1
     ) {
-      console.log("2");
+      console.log("this is 2");
       setFullPage(true);
     } else if (
-      faqs?.length < 0 &&
-      getProcessData?.data?.progress_status_list !== undefined
+      faqs?.length <= 0 &&
+      typeof getProcessData?.data?.progress_status_list === "undefined"
+    ) {
+      console.log("this is 3", getProcessData?.data?.progress_status_list);
+
+      setFullPage(true);
+    } else if (
+      faqs?.length <= 0 &&
+      getProcessData?.data?.progress_status_list?.length <= 0
     ) {
       console.log(faqs?.length);
       setFullPage(true);
+      console.log("this is 4");
     }
   };
 
   const getProcess = async () => {
     const processData = await MyWalletProcessSidebar(String(router.query.id));
     setProcessData(processData);
-    console.log("#######", fullPage);
-    console.log("#######", processData);
-    console.log("#######", faqs?.length);
   };
   useEffect(() => {
     setFaqs(
       router.query.id === MY_WALLET_DEPOSIT_TYPE ? depositFaq : withdrawFaq
     );
+    getProcess();
 
     handleWithdrawAndDeposit(
       String(router.query.id),
       Number(router.query.coin_id)
     );
-    getProcess();
   }, [dependecy]);
   useEffect(() => {
-    if (settings.withdrawal_faq_status && router.query.id) {
+    if (
+      settings.withdrawal_faq_status &&
+      router.query.id &&
+      getProcessData?.data?.progress_status_list
+    ) {
       checkFullPageStatus();
     }
-  }, [settings.withdrawal_faq_status, router.query.id, faqs?.length]);
+  }, [
+    settings.withdrawal_faq_status,
+    router.query.id,
+    faqs?.length,
+    getProcessData?.data?.progress_status_list,
+  ]);
 
   return (
     <>
@@ -141,7 +159,7 @@ const DeposiAndWithdraw = ({
                 fullPage={fullPage}
               />
             )}
-
+            {/* {fullPage ? "true" : "false"} */}
             {fullPage === false && (
               <div className="col-md-5 faq-wallet-section">
                 {faqs?.length > 0 && (
@@ -153,7 +171,11 @@ const DeposiAndWithdraw = ({
                 )}
                 {getProcessData?.data?.progress_status_list?.length > 0 && (
                   <div className="mt-3">
-                    <h4>{t("How it works?")}</h4>
+                    <h4>
+                      {getProcessData?.data.title
+                        ? getProcessData?.data.title
+                        : t("How it works?")}
+                    </h4>
                     <div className="flexItem">
                       <div>
                         {getProcessData?.data?.progress_status_list?.map(
