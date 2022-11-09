@@ -1,3 +1,4 @@
+import { Formik } from "formik";
 import {
   FORM_CHECKBOX,
   FORM_FILE,
@@ -11,6 +12,7 @@ import { launchpadDynamicFromAction } from "state/actions/launchpad";
 
 const Apply = () => {
   const [launchpadForm, setLaunchpadForm] = useState([]);
+  // const [formFields,]
   useEffect(() => {
     launchpadDynamicFromAction(setLaunchpadForm);
     console.log(launchpadForm, "launchpadForm");
@@ -38,29 +40,33 @@ const Apply = () => {
           ) : item.type === FORM_RADIO ? (
             <div className="form-div">
               <label htmlFor="">{item?.title}</label>
-              {item.optionList.map((radioItem: any) => (
-                <fieldset id="group1">
-                  <input
-                    className="form-control apply-radio-input"
-                    type="radio"
-                    name="radio"
-                  />
-                  <span>{radioItem}</span>
-                </fieldset>
-              ))}
+              <div className="d-flex ">
+                {item.optionList.map((radioItem: any) => (
+                  <fieldset className="w-100">
+                    <input
+                      className="form-control apply-radio-input"
+                      type="radio"
+                      name="radio"
+                    />
+                    <span>{radioItem}</span>
+                  </fieldset>
+                ))}
+              </div>
             </div>
           ) : item.type === FORM_CHECKBOX ? (
             <div className="form-div">
               <label htmlFor="">{item?.title}</label>
-              {item.optionList.map((radioItem: any) => (
-                <>
-                  <input
-                    className="form-control apply-radio-input"
-                    type="checkbox"
-                  />
-                  <span>{radioItem}</span>
-                </>
-              ))}
+              <div className="d-flex ">
+                {item.optionList.map((radioItem: any) => (
+                  <div className="w-100 d-flex ">
+                    <input
+                      className="form-control apply-radio-input"
+                      type="checkbox"
+                    />
+                    <span>{radioItem}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           ) : item.type === FORM_FILE ? (
             <div className="form-div">
