@@ -29,6 +29,7 @@ import { customPage, landingPage } from "service/landing-page";
 import { RootState } from "state/store";
 import { useSelector } from "react-redux";
 import Wallethistory from "components/wallet/wallet-history";
+import { MyWalletProcessSidebar } from "service/wallet";
 
 const DeposiAndWithdraw = ({
   withdrawFaq,
@@ -42,9 +43,10 @@ const DeposiAndWithdraw = ({
   const { settings } = useSelector((state: RootState) => state.common);
   const { t } = useTranslation("common");
   const [faqs, setFaqs] = useState<any>([]);
-
   const [responseData, setResponseData]: any = useState();
   const [dependecy, setDependecy] = useState(0);
+  const [getProcessData, setProcessData]: any = useState([]);
+
   const handleWithdrawAndDeposit = async (actionType: string, id: number) => {
     if (actionType === MY_WALLET_DEPOSIT_TYPE) {
       const response = await WalletDepositApiAction(
@@ -71,24 +73,50 @@ const DeposiAndWithdraw = ({
     }
   };
   const checkFullPageStatus = () => {
+    console.log(
+      typeof getProcessData?.data?.progress_status_list,
+      "getProcessData?.data?.progress_status_list"
+    );
     if (
       parseInt(settings.withdrawal_faq_status) !== 1 &&
-      router.query.id === MY_WALLET_WITHDRAW_TYPE
+      router.query.id === MY_WALLET_WITHDRAW_TYPE &&
+      parseInt(getProcessData?.data?.progress_status_for_withdrawal) !== 1
     ) {
+      console.log("this is 1");
       setFullPage(true);
     } else if (
       parseInt(settings.coin_deposit_faq_status) !== 1 &&
-      router.query.id === MY_WALLET_DEPOSIT_TYPE
+      router.query.id === MY_WALLET_DEPOSIT_TYPE &&
+      parseInt(getProcessData?.data?.progress_status_for_deposit) !== 1
     ) {
+      console.log("this is 2");
       setFullPage(true);
-    } else if (!faqs?.length) {
+    } else if (
+      faqs?.length <= 0 &&
+      typeof getProcessData?.data?.progress_status_list === "undefined"
+    ) {
+      console.log("this is 3", getProcessData?.data?.progress_status_list);
+
       setFullPage(true);
+    } else if (
+      faqs?.length <= 0 &&
+      getProcessData?.data?.progress_status_list?.length <= 0
+    ) {
+      console.log(faqs?.length);
+      setFullPage(true);
+      console.log("this is 4");
     }
+  };
+
+  const getProcess = async () => {
+    const processData = await MyWalletProcessSidebar(String(router.query.id));
+    setProcessData(processData);
   };
   useEffect(() => {
     setFaqs(
       router.query.id === MY_WALLET_DEPOSIT_TYPE ? depositFaq : withdrawFaq
     );
+    getProcess();
 
     handleWithdrawAndDeposit(
       String(router.query.id),
@@ -96,15 +124,25 @@ const DeposiAndWithdraw = ({
     );
   }, [dependecy]);
   useEffect(() => {
-    if (settings.withdrawal_faq_status && router.query.id) {
+    if (
+      settings.withdrawal_faq_status &&
+      router.query.id &&
+      getProcessData?.data?.progress_status_list
+    ) {
       checkFullPageStatus();
     }
-  }, [settings.withdrawal_faq_status, router.query.id, faqs?.length]);
+  }, [
+    settings.withdrawal_faq_status,
+    router.query.id,
+    faqs?.length,
+    getProcessData?.data?.progress_status_list,
+  ]);
+
   return (
     <>
       <div className="page-wrap my-wallet-page">
         <div className="container">
-          <div className={"row"}>
+          <div className={`row`}>
             {router.query.id === MY_WALLET_DEPOSIT_TYPE && (
               <DipositComponent
                 responseData={responseData}
@@ -121,60 +159,47 @@ const DeposiAndWithdraw = ({
                 fullPage={fullPage}
               />
             )}
-            <div className={`col-md-5 faq-wallet-section`}>
-              {fullPage === false && (
-                <div className={`box-one single-box visible`}>
-                  <div className="section-wrapper boxShadow">
-                    <FAQ faqs={faqs} type={router.query.id} />
+            {/* {fullPage ? "true" : "false"} */}
+            {fullPage === false && (
+              <div className="col-md-5 faq-wallet-section">
+                {faqs?.length > 0 && (
+                  <div className={`box-one single-box visible mb-25`}>
+                    <div className="section-wrapper boxShadow">
+                      <FAQ faqs={faqs} type={router.query.id} />
+                    </div>
                   </div>
-                </div>
-              )}
-              <div className="mt-3">
-                <h4>{t("How it works?")}</h4>
-                <div className="flexItem">
-                  <div>
-                    <div className="timeLineLists">
-                      <div className="timeLineIcon">
-                        <i className="fa-sharp fa-solid fa-circle-check active"></i>
-                      </div>
+                )}
+                {getProcessData?.data?.progress_status_list?.length > 0 && (
+                  <div className="mt-3">
+                    <h4>
+                      {getProcessData?.data.title
+                        ? getProcessData?.data.title
+                        : t("How it works?")}
+                    </h4>
+                    <div className="flexItem">
                       <div>
-                        <h5>{t("This is a First step")}</h5>
-                        <span>{t("You will do this")}</span>
-                      </div>
-                    </div>
-
-                    <div className="timeLineLists">
-                      <div className="timeLineIcon">
-                        <i className="fa-sharp fa-solid fa-circle-check active"></i>
-                      </div>
-                      <div>
-                        <h5>{t("This is a Second step")}</h5>
-                        <span>{t("You will do this")}</span>
-                      </div>
-                    </div>
-
-                    <div className="timeLineLists">
-                      <div className="timeLineIcon">
-                        <i className="fa-sharp fa-solid fa-circle-check active"></i>
-                      </div>
-                      <div>
-                        <h5>{t("This is a Third step")}</h5>
-                        <span>{t("You will do this")}</span>
-                      </div>
-                    </div>
-                    <div className="timeLineLists">
-                      <div className="">
-                        <i className="fa-sharp fa-solid fa-circle-check active"></i>
-                      </div>
-                      <div>
-                        <h5>{t("This is a Fourth step")}</h5>
-                        <p>{t("do this")}</p>
+                        {getProcessData?.data?.progress_status_list?.map(
+                          (item: any, index: number) => (
+                            <div
+                              key={`progress${index}`}
+                              className="timeLineLists"
+                            >
+                              <div className="timeLineIcon">
+                                <i className="fa-sharp fa-solid fa-circle-check active"></i>
+                              </div>
+                              <div>
+                                <h5>{item.title}</h5>
+                                <span>{item.description}</span>
+                              </div>
+                            </div>
+                          )
+                        )}
                       </div>
                     </div>
                   </div>
-                </div>
+                )}
               </div>
-            </div>
+            )}
           </div>
           {router.query.id && (
             <Wallethistory
