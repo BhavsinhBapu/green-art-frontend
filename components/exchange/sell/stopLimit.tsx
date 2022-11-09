@@ -270,7 +270,7 @@ const StopLimit = ({
                           dashboard?.order_data?.base_coin_id,
                           setLoading
                         );
-                        await dispatch(getDashboardData(currentPair));
+                        // await dispatch(getDashboardData(currentPair));
                         setBuySellStopLimitCoinData({
                           ...buySellStopLimitCoinData,
                           amount: 0,
