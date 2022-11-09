@@ -87,7 +87,10 @@ const DeposiAndWithdraw = ({
     ) {
       console.log("2");
       setFullPage(true);
-    } else if (faqs?.length < 0) {
+    } else if (
+      faqs?.length < 0 &&
+      getProcessData?.data?.progress_status_list !== undefined
+    ) {
       console.log(faqs?.length);
       setFullPage(true);
     }
@@ -98,6 +101,7 @@ const DeposiAndWithdraw = ({
     setProcessData(processData);
     console.log("#######", fullPage);
     console.log("#######", processData);
+    console.log("#######", faqs?.length);
   };
   useEffect(() => {
     setFaqs(
