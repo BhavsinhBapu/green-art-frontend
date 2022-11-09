@@ -100,14 +100,14 @@ const CurrencyLevel = () => {
           <span className="label">{t("24h high")}</span>
           <span className="value">
             {dashboard?.order_data?.total?.trade_wallet?.high
-              ? (dashboard?.order_data?.total?.trade_wallet?.high)
+              ? formatCurrency(dashboard?.order_data?.total?.trade_wallet?.high)
               : 0}
           </span>
         </li>
         <li>
           <span className="label">{t("24h Low")}</span>
           <span className="value">
-            {(
+            {formatCurrency(
               dashboard?.order_data?.total?.trade_wallet?.low
                 ? dashboard?.order_data?.total?.trade_wallet?.low
                 : 0
@@ -132,7 +132,7 @@ const CurrencyLevel = () => {
             {" "}
             {t("24h volume")}({dashboard?.order_data?.base_coin}){" "}
           </span>
-          <span className="value">{(volume ? volume : 0)}</span>
+          <span className="value">{formatCurrency(volume ? volume : 0)}</span>
         </li>
       </ul>
     </div>
