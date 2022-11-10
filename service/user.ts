@@ -127,6 +127,12 @@ export const verifyEmailApi = async (credential: any) => {
   });
   return data;
 };
+export const resendEmailApi = async (email: string) => {
+  const { data } = await request.post("/resend-verify-email-code", {
+    email: email,
+  });
+  return data;
+};
 export const KycActiveList = async () => {
   const { data } = await request.get("/kyc-active-list");
   return data;

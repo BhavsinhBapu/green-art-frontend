@@ -2,30 +2,61 @@ import type { GetServerSideProps, NextPage } from "next";
 import * as Yup from "yup";
 import { VerifyEmailAction } from "state/actions/user";
 import { useDispatch, useSelector } from "react-redux";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
+import { toast } from "react-toastify";
 //@ts-ignore
 import ReCAPTCHA from "react-google-recaptcha";
 import Link from "next/link";
 import { authPageRequireCheck } from "middlewares/ssr-authentication-check";
-import { RecapCha } from "service/user";
+import { RecapCha, resendEmailApi } from "service/user";
 import useTranslation from "next-translate/useTranslation";
 import { RootState } from "state/store";
 const Signin: NextPage = () => {
   const { t } = useTranslation("common");
   const { logo } = useSelector((state: RootState) => state.user);
+  const [dependency, setDependency] = useState<any>("");
   const { settings } = useSelector((state: RootState) => state.common);
   const [processing, setProcessing] = useState(false);
   const dispatch = useDispatch();
   const [recaptchaData, setRecaptchaData] = useState<any>({});
+  const [seconds, setSeconds] = useState(0);
+  const [done, setDone] = useState(false);
+  const foo = useRef();
+
   const getRecapcha = async () => {
     const response = await RecapCha();
     setRecaptchaData(response.data);
     return response;
   };
+  const resendEmail = async (email: string) => {
+    const response = await resendEmailApi(email);
+    setDependency(Math.random);
+    setSeconds(10);
+    if (response.success) {
+      toast.success(response.message);
+    } else {
+      toast.error(response.message);
+    }
+  };
   useEffect(() => {
     getRecapcha();
   }, []);
+
+  useEffect(() => {
+    function tick() {
+      setSeconds((prevSeconds) => prevSeconds - 1);
+    }
+    //@ts-ignore
+    foo.current = setInterval(() => tick(), 1000);
+  }, [dependency]);
+
+  useEffect(() => {
+    if (seconds === 0) {
+      clearInterval(foo.current);
+      setDone(true);
+    }
+  }, [seconds]);
   return (
     <div
       className="user-content-wrapper"
@@ -63,7 +94,7 @@ const Signin: NextPage = () => {
                     await dispatch(VerifyEmailAction(values, setProcessing));
                   }}
                 >
-                  {({ errors, touched, setFieldValue }) => (
+                  {({ errors, touched, setFieldValue, values }) => (
                     <Form>
                       <div className="form-group">
                         <Field
@@ -76,6 +107,22 @@ const Signin: NextPage = () => {
                           placeholder={t("Your email here")}
                         />
                       </div>
+                      {values.email && (
+                        <div className="resend-container">
+                          <button
+                            className="btn"
+                            type="button"
+                            disabled={seconds !== 0}
+                            onClick={() => {
+                              resendEmail(values.email);
+                            }}
+                          >
+                            {seconds !== 0
+                              ? t(`Wait until ${seconds} sec`)
+                              : t("Resend email")}
+                          </button>
+                        </div>
+                      )}
 
                       <div className="form-group">
                         <Field
@@ -134,7 +181,7 @@ const Signin: NextPage = () => {
           </div>
           <div className="col-md-6">
             <div className="user-content-text text-center">
-              <h3>Welcome To</h3>
+              <h3>{t("Welcome To")}</h3>
               <Link href="/">
                 <a className="auth-logo" href="">
                   <img src={settings.logo || ""} className="img-fluid" alt="" />
