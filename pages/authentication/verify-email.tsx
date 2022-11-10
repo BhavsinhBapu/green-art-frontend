@@ -32,7 +32,7 @@ const Signin: NextPage = () => {
   const resendEmail = async (email: string) => {
     const response = await resendEmailApi(email);
     setDependency(Math.random);
-    setSeconds(10);
+    setSeconds(60);
     if (response.success) {
       toast.success(response.message);
     } else {
@@ -118,7 +118,7 @@ const Signin: NextPage = () => {
                             }}
                           >
                             {seconds !== 0
-                              ? t(`Wait until ${seconds} sec`)
+                              ? t(`Resend after ${seconds} sec`)
                               : t("Resend email")}
                           </button>
                         </div>
