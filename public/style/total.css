@@ -5051,7 +5051,16 @@ select:-webkit-autofill:focus {
 .page-left-sidebar .sidebar-top .left-menu li:last-child {
   margin-bottom: 0;
 }
-
+.resend-container{
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+.resend-container button{
+ background-color: var(--primary-color);
+ margin-bottom: 10px;
+}
 .page-left-sidebar .sidebar-top .left-menu li a {
   font-size: 18px;
   font-weight: 400;
