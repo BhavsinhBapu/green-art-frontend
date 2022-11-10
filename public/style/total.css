@@ -6101,6 +6101,9 @@ table.dataTable tbody tr td {
   .cp-user-transaction-history-table table thead tr th {
     height: 72px;
   }
+  .cxchange-summary-wrap .cxchange-summary-name{
+    width: 200px;
+  }
   .cp-user-profile-info .profile-edit-btn,
   .input-group-prepend-phone-verify .btn,
   .cp-user-profile-info .form-control {
