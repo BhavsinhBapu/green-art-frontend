@@ -34,8 +34,14 @@ export const exchangeSlice = createSlice({
     setSellPrice: (state: any, action: any) => {
       state.dashboard.order_data.sell_price = action.payload;
     },
+    setSellAmount: (state: any, action: any) => {
+      state.dashboard.order_data.sell_amount = action.payload;
+    },
     setBuyPrice: (state: any, action: any) => {
       state.dashboard.order_data.buy_price = action.payload;
+    },
+    setBuyAmount: (state: any, action: any) => {
+      state.dashboard.order_data.buy_amount = action.payload;
     },
     setTotalVolume: (state: any, action: any) => {
       state.total_volume = action.payload;
@@ -119,6 +125,8 @@ export const {
   setSellPrice,
   setBuyPrice,
   setDashboard,
+  setSellAmount,
+  setBuyAmount,
   setCurrentPair,
   setOpenBookBuy,
   setLastPriceData,
