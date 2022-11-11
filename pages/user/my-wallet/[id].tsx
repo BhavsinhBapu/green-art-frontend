@@ -200,7 +200,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/user/my-wallet/deposit");
   const cookies = parseCookies(ctx);
   const response = await GetUserInfoByTokenServer(cookies.token);
-  const commonRes = await pageAvailabilityCheck();
   const FAQ = await getFaqList();
   let withdrawFaq: any[] = [];
   let depositFaq: any[] = [];
@@ -215,14 +214,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const { data } = await landingPage();
   const { data: customPageData } = await customPage();
 
-  if (parseInt(commonRes.currency_deposit_status) !== 1) {9
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  }
+
   return {
     props: {
       user: response.user,
