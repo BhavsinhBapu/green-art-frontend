@@ -162,13 +162,25 @@ const DeposiAndWithdraw = ({
             {/* {fullPage ? "true" : "false"} */}
             {fullPage === false && (
               <div className="col-md-5 faq-wallet-section">
-                {faqs?.length > 0 && (
-                  <div className={`box-one single-box visible mb-25`}>
-                    <div className="section-wrapper boxShadow">
-                      <FAQ faqs={faqs} type={router.query.id} />
+                {parseInt(settings.withdrawal_faq_status) === 1 &&
+                  router.query.id === MY_WALLET_WITHDRAW_TYPE &&
+                  faqs?.length > 0 && (
+                    <div className={`box-one single-box visible mb-25`}>
+                      <div className="section-wrapper boxShadow">
+                        <FAQ faqs={faqs} type={router.query.id} />
+                      </div>
                     </div>
-                  </div>
-                )}
+                  )}
+                {parseInt(settings.coin_deposit_faq_status) === 1 &&
+                  router.query.id === MY_WALLET_DEPOSIT_TYPE &&
+                  faqs?.length > 0 && (
+                    <div className={`box-one single-box visible mb-25`}>
+                      <div className="section-wrapper boxShadow">
+                        <FAQ faqs={faqs} type={router.query.id} />
+                      </div>
+                    </div>
+                  )}
+
                 {getProcessData?.data?.progress_status_list?.length > 0 && (
                   <div className="mt-3">
                     <h4>
