@@ -3,9 +3,7 @@ import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import React from "react";
 import { useDispatch } from "react-redux";
-import {
-  buyLimitAppAction,
-} from "state/actions/exchange";
+import { buyLimitAppAction } from "state/actions/exchange";
 
 const Limit = ({
   dashboard,
@@ -177,7 +175,13 @@ const Limit = ({
                     type="text"
                     placeholder=""
                     className="form-control number_only input_3"
-                    value={buySellLimitCoinData.total}
+                    value={
+                      Number(parseFloat(buySellLimitCoinData.total).toFixed(8))
+                        ? Number(
+                            parseFloat(buySellLimitCoinData.total).toFixed(8)
+                          )
+                        : 0
+                    }
                   />
                   <span
                     className="text-warning blns"

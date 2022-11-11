@@ -30,6 +30,7 @@ const SelectCurrency = () => {
     cells: {
       style: {
         width: "100%",
+        cursor: "pointer",
         backgroundColor: "#151515",
         color: "#fff",
         borderColor: "#151515",
