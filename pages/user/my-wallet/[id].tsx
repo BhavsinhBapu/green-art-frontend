@@ -184,9 +184,12 @@ const DeposiAndWithdraw = ({
                 {getProcessData?.data?.progress_status_list?.length > 0 && (
                   <div className="mt-3">
                     <h4>
-                      {getProcessData?.data.title
+                      {/* {getProcessData?.data.title
                         ? getProcessData?.data.title
-                        : t("How it works?")}
+                        : t("How it works?")} */}
+                      {router.query.id === "deposit"
+                        ? "Deposit" + " Step's"
+                        : "Withdrawal" + " Step's"}
                     </h4>
                     <div className="flexItem">
                       <div>
