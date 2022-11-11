@@ -182,12 +182,20 @@ const DeposiAndWithdraw = ({
                           (item: any, index: number) => (
                             <div
                               key={`progress${index}`}
-                              className="timeLineLists"
+                              className={"timeLineLists"}
                             >
-                              <div className="timeLineIcon">
+                              <div
+                                className={`${
+                                  getProcessData?.data?.progress_status_list
+                                    ?.length ==
+                                  index + 1
+                                    ? "timeLineIcon removeBeforeCSS"
+                                    : "timeLineIcon"
+                                }`}
+                              >
                                 <i className="fa-sharp fa-solid fa-circle-check active"></i>
                               </div>
-                              <div>
+                              <div className="progressContent">
                                 <h5>{item.title}</h5>
                                 <span>{item.description}</span>
                               </div>
@@ -238,7 +246,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
 
   const { data } = await landingPage();
   const { data: customPageData } = await customPage();
-
 
   return {
     props: {
