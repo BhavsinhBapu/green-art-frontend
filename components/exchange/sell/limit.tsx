@@ -168,10 +168,16 @@ const Limit = ({
                   <input
                     disabled
                     name="total_amount"
-                    type="text"
+                    type="number"
                     placeholder=""
                     className="form-control number_only"
-                    value={buySellLimitCoinData.total}
+                    value={
+                      Number(parseFloat(buySellLimitCoinData.total).toFixed(8))
+                        ? Number(
+                            parseFloat(buySellLimitCoinData.total).toFixed(8)
+                          )
+                        : 0
+                    }
                   />
                   <span
                     className="text-warning blns"

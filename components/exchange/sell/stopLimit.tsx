@@ -195,7 +195,7 @@ const StopLimit = ({
                     type="number"
                     placeholder=""
                     className="form-control number_only"
-                    value={buySellStopLimitCoinData.total}
+                    value={parseFloat(buySellStopLimitCoinData.total).toFixed(8)}
                   />
                   <span
                     className="text-warning blns"
