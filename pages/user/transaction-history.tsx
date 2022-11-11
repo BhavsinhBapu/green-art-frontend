@@ -190,14 +190,13 @@ const TransactionHistory: NextPage = ({
                         </div>
                       </div>
                       <DataTable columns={columns} data={history} />
-
-                      <div
-                        className="pagination-wrapper"
-                        id="assetBalances_paginate"
-                      >
-                        <span>
-                          {history.length > 0 &&
-                            stillHistory?.items?.links.map(
+                      {history?.length > 0 && (
+                        <div
+                          className="pagination-wrapper"
+                          id="assetBalances_paginate"
+                        >
+                          <span>
+                            {stillHistory?.items?.links.map(
                               (link: any, index: number) =>
                                 link.label === "&laquo; Previous" ? (
                                   <a
@@ -232,8 +231,9 @@ const TransactionHistory: NextPage = ({
                                   </a>
                                 )
                             )}
-                        </span>
-                      </div>
+                          </span>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
