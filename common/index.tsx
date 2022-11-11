@@ -16,6 +16,9 @@ export const splitPair = (word: any) => {
     return word;
   }
 };
+export function capitalizeFirstLetter(string: any) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
 export const formatCurrency = (value: any) => {
   return new Intl.NumberFormat("en-US").format(value);
 };
