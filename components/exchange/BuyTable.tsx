@@ -2,13 +2,19 @@ import React, { useEffect } from "react";
 import Tooltip from "rc-tooltip";
 import "rc-tooltip/assets/bootstrap.css";
 import { useDispatch } from "react-redux";
-import { setSellPrice } from "state/reducer/exchange";
+import {
+  setBuyAmount,
+  setSellAmount,
+  setSellPrice,
+} from "state/reducer/exchange";
 import useTranslation from "next-translate/useTranslation";
 const TradesTable = ({ buy, show }: any) => {
   const dispatch = useDispatch();
   const { t } = useTranslation("common");
-  const changeSellPrice = (price: number) => {
+  const changeSellPrice = (price: number, amount: number) => {
     dispatch(setSellPrice(price));
+    dispatch(setSellAmount(amount));
+    dispatch(setBuyAmount(0));
   };
   const [buyData, setBuyData] = React.useState<any>([]);
   const [summary, setSummary] = React.useState<any>({
@@ -47,7 +53,7 @@ const TradesTable = ({ buy, show }: any) => {
           >
             <tr
               className="odd"
-              onClick={() => changeSellPrice(item.price)}
+              onClick={() => changeSellPrice(item.price, item.amount)}
               onMouseEnter={() => {
                 const selectedIndex = index;
                 const lastIndex = buy.length - 1;
