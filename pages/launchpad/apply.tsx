@@ -41,8 +41,8 @@ const Apply = () => {
             <div className="form-div">
               <label htmlFor="">{item?.title}</label>
               <div className="d-flex ">
-                {item.optionList.map((radioItem: any) => (
-                  <fieldset className="w-100">
+                {item.optionList.map((radioItem: any, index: number) => (
+                  <fieldset className="w-100" key={index}>
                     <input
                       className="form-control apply-radio-input"
                       type="radio"
