@@ -19,12 +19,12 @@ const ExchangeBoxBottom = () => {
   const [tradingTab, setTradingTab] = useState<tradingTabType>(1);
   const [buyLimitCoinData, setBuyLimitCoinData] = useState<any>({
     price: dashboard?.order_data?.sell_price,
-    amount: 0.0,
+    amount: dashboard?.order_data?.sell_amount ?? 0,
     total: 0.0,
   });
   const [buyMarketCoinData, setBuyMarketCoinData] = useState<any>({
     price: dashboard?.order_data?.sell_price,
-    amount: 0.0,
+    amount: dashboard?.order_data?.sell_amount ?? 0,
     total: 0.0,
   });
   const [buyStopLimitCoinData, setBuyStopLimitCoinData] = useState<any>({
@@ -35,12 +35,12 @@ const ExchangeBoxBottom = () => {
   });
   const [SellLimitCoinData, setSellLimitCoinData] = useState<any>({
     price: dashboard?.order_data?.buy_price,
-    amount: 0.0,
+    amount: dashboard?.order_data?.buy_amount ?? 0,
     total: 0.0,
   });
   const [SellMarketCoinData, setSellMarketCoinData] = useState<any>({
     price: dashboard?.order_data?.buy_price,
-    amount: 0.0,
+    amount: dashboard?.order_data?.buy_amount ?? 0,
     total: 0.0,
   });
   const [SellStopLimitCoinData, setSellStopLimitCoinData] = useState<any>({
@@ -55,13 +55,15 @@ const ExchangeBoxBottom = () => {
   const initialSetUp = () => {
     setBuyLimitCoinData({
       price: dashboard?.order_data?.sell_price,
-      amount: 0,
-      total: 0,
+      amount: dashboard?.order_data?.sell_amount ?? 0,
+      total:
+        dashboard?.order_data?.sell_price * dashboard?.order_data?.sell_amount>0?dashboard?.order_data?.sell_price * dashboard?.order_data?.sell_amount:0,
     });
     setBuyMarketCoinData({
       price: dashboard?.order_data?.sell_price,
-      amount: 0,
-      total: 0,
+      amount: dashboard?.order_data?.sell_amount ?? 0,
+      total:
+        dashboard?.order_data?.sell_price * dashboard?.order_data?.sell_amount>0?dashboard?.order_data?.sell_price * dashboard?.order_data?.sell_amount:0,
     });
     setBuyStopLimitCoinData({
       amount: 0,
@@ -71,19 +73,26 @@ const ExchangeBoxBottom = () => {
     });
     setSellLimitCoinData({
       price: dashboard?.order_data?.buy_price,
-      amount: 0,
-      total: 0,
+      amount: dashboard?.order_data?.buy_amount ?? 0,
+      total:
+        dashboard?.order_data?.buy_price * dashboard?.order_data?.buy_amount,
     });
     setSellMarketCoinData({
       price: dashboard?.order_data?.buy_price,
-      amount: 0,
-      total: 0,
+      amount: dashboard?.order_data?.buy_amount ?? 0,
+      total:
+        dashboard?.order_data?.buy_price * dashboard?.order_data?.buy_amount,
     });
   };
 
   useEffect(() => {
     initialSetUp();
-  }, [dashboard?.order_data?.buy_price, dashboard?.order_data?.sell_price]);
+  }, [
+    dashboard?.order_data?.buy_price,
+    dashboard?.order_data?.sell_price,
+    dashboard?.order_data?.buy_amount,
+    dashboard?.order_data?.sell_amount,
+  ]);
 
   return (
     <div className="exchange-box order-box mt-4">
