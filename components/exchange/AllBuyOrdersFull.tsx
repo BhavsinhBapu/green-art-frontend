@@ -2,14 +2,16 @@ import React, { useEffect, useState } from "react";
 import Tooltip from "rc-tooltip";
 import "rc-tooltip/assets/bootstrap.css";
 import { useDispatch } from "react-redux";
-import { setBuyPrice } from "state/reducer/exchange";
+import { setBuyAmount, setBuyPrice, setSellAmount } from "state/reducer/exchange";
 import useTranslation from "next-translate/useTranslation";
 const AllBuyOrders = ({ buy, show }: any) => {
   const { t } = useTranslation("common");
   const [OpenBookBuy, setopenBookBuy] = useState<any>([]);
   const dispatch = useDispatch();
-  const changeSellPrice = (price: number) => {
+  const changeBuyPrice = (price: number, amount: number) => {
     dispatch(setBuyPrice(price));
+    dispatch(setBuyAmount(amount));
+    dispatch(setSellAmount(0));
   };
   const [summary, setSummary] = React.useState({
     amount: 0,
@@ -136,7 +138,7 @@ const AllBuyOrders = ({ buy, show }: any) => {
                         <tr
                           className="odd"
                           onClick={() => {
-                            changeSellPrice(item.price);
+                            changeBuyPrice(item.price, item.amount);
                           }}
                           onMouseEnter={() => {
                             const selectedIndex = index;
