@@ -18,7 +18,7 @@ export const WithdrawAndDepositHistoryAction = async (
 ) => {
   setProcessing(true);
   const response = await WithdrawAndDepositHistoryApi(type, per_page, page);
-  setReport(response.data.histories.data);
+  setReport(response?.data?.histories?.data);
   setStillHistory(response.data);
   setProcessing(false);
   return response;

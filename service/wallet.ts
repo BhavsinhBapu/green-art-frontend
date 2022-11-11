@@ -13,6 +13,12 @@ export const WalletWithdrawApi = async (id: number) => {
   const { data } = await request.get(`/wallet-withdrawal-${id}`);
   return data;
 };
+export const MyWalletProcessSidebar = async (id: string) => {
+  const { data } = await request.get(
+    `/wallet-history-app?type=${id}&per_page=20&page=1`
+  );
+  return data;
+};
 export const WalletWithdrawProcessApi = async (credential: any) => {
   const { data } = await request.post("/wallet-withdrawal-process", credential);
   return data;
