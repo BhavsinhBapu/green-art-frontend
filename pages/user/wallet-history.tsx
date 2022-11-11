@@ -85,7 +85,8 @@ const DepositHistory: NextPage = ({
       name: type === t("deposit") ? t("Transaction Id") : t("Transaction Hash"),
       cell: (row: any) => (
         <div>
-          <span className="withdrawTransactionCopy"
+          <span
+            className="withdrawTransactionCopy"
             onClick={() => {
               navigator.clipboard.writeText(
                 type === "deposit" ? row.transaction_id : row.transaction_hash

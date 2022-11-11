@@ -5051,15 +5051,15 @@ select:-webkit-autofill:focus {
 .page-left-sidebar .sidebar-top .left-menu li:last-child {
   margin-bottom: 0;
 }
-.resend-container{
+.resend-container {
   width: 100%;
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
 }
-.resend-container button{
- background-color: var(--primary-color);
- margin-bottom: 10px;
+.resend-container button {
+  background-color: var(--primary-color);
+  margin-bottom: 10px;
 }
 .page-left-sidebar .sidebar-top .left-menu li a {
   font-size: 18px;
@@ -6101,7 +6101,7 @@ table.dataTable tbody tr td {
   .cp-user-transaction-history-table table thead tr th {
     height: 72px;
   }
-  .cxchange-summary-wrap .cxchange-summary-name{
+  .cxchange-summary-wrap .cxchange-summary-name {
     width: 200px;
   }
   .cp-user-profile-info .profile-edit-btn,
@@ -10751,8 +10751,8 @@ input[type="number"] {
   top: 35px;
   left: 14px;
 }
-.timeLineIcon::last-child {
-  display: none;
+.removeBeforeCSS::before {
+  content: none !important;
 }
 
 .timeLineLists i {
