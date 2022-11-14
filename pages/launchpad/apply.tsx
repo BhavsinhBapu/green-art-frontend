@@ -9,6 +9,7 @@ import {
 } from "helpers/core-constants";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
+import useTranslation from "next-translate/useTranslation";
 import React, { useEffect, useState } from "react";
 import { customPage, landingPage } from "service/landing-page";
 import { launchpadDynamicFromAction } from "state/actions/launchpad";
@@ -16,6 +17,8 @@ import { launchpadDynamicFromAction } from "state/actions/launchpad";
 const Apply = () => {
   const [launchpadForm, setLaunchpadForm] = useState([]);
   const [formFields, setFormFields] = useState([]);
+  const { t } = useTranslation("common");
+
   useEffect(() => {
     launchpadDynamicFromAction(setLaunchpadForm, formFields, setFormFields);
   }, []);
@@ -23,6 +26,12 @@ const Apply = () => {
     <div className="container">
       {JSON.stringify(formFields)}
       <div className="appy-form">
+        <h2 className="launchpadTitle">{t("Apply For Launchpad")}</h2>
+        <p className="launchpadDescription">
+          {t(
+            "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, "
+          )}
+        </p>
         {launchpadForm?.map((item: any) =>
           item.type === FORM_INPUT_TEXT ? (
             <div className="form-div">
@@ -43,9 +52,9 @@ const Apply = () => {
           ) : item.type === FORM_RADIO ? (
             <div className="form-div">
               <label htmlFor="">{item?.title}</label>
-              <div className="d-flex ">
+              <div className="radio-item">
                 {item.optionList.map((radioItem: any, index: number) => (
-                  <fieldset className="w-100" key={index}>
+                  <fieldset className="radio-inline" key={index}>
                     <input
                       className="form-control apply-radio-input"
                       type="radio"
@@ -59,9 +68,9 @@ const Apply = () => {
           ) : item.type === FORM_CHECKBOX ? (
             <div className="form-div">
               <label htmlFor="">{item?.title}</label>
-              <div className="d-flex ">
+              <div className="radio-item">
                 {item.optionList.map((radioItem: any, index: number) => (
-                  <div className="w-100 d-flex " key={index}>
+                  <div className="radio-inline" key={index}>
                     <input
                       className="form-control apply-radio-input"
                       type="checkbox"
@@ -85,6 +94,9 @@ const Apply = () => {
             ""
           )
         )}
+        <div className="applyButton">
+          <button className="primary-btn">{t("Apply Now")}</button>
+        </div>
       </div>
     </div>
   );
