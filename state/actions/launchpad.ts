@@ -1,3 +1,4 @@
+import { FORM_CHECKBOX, FORM_RADIO, FORM_SELECT } from "helpers/core-constants";
 import {
   getLaunchpadList,
   getLaunchpadListDetails,
@@ -40,11 +41,20 @@ export const launchpadDynamicFromAction = async (
   setFormFields: any
 ) => {
   const response = await launchpadDynamicFrom();
-  // console.log(response, "setLaunchpadForm");
   setLaunchpadForm(response);
   let tempJson: any = {};
   response.map((item: any) => {
-    tempJson[item.id] = item.id;
+    tempJson[item.id] = {
+      value:
+        item.type === FORM_RADIO
+          ? []
+          : item.type === FORM_SELECT
+          ? []
+          : item.type === FORM_CHECKBOX
+          ? []
+          : "",
+      form_id: item.id,
+    };
   });
   setFormFields(tempJson);
 };
