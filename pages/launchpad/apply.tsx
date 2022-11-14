@@ -7,18 +7,21 @@ import {
   FORM_SELECT,
   FORM_TEXT_AREA,
 } from "helpers/core-constants";
+import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
+import { GetServerSideProps } from "next";
 import React, { useEffect, useState } from "react";
+import { customPage, landingPage } from "service/landing-page";
 import { launchpadDynamicFromAction } from "state/actions/launchpad";
 
 const Apply = () => {
   const [launchpadForm, setLaunchpadForm] = useState([]);
-  // const [formFields,]
+  const [formFields, setFormFields] = useState([]);
   useEffect(() => {
-    launchpadDynamicFromAction(setLaunchpadForm);
-    console.log(launchpadForm, "launchpadForm");
+    launchpadDynamicFromAction(setLaunchpadForm, formFields, setFormFields);
   }, []);
   return (
     <div className="container">
+      {JSON.stringify(formFields)}
       <div className="appy-form">
         {launchpadForm?.map((item: any) =>
           item.type === FORM_INPUT_TEXT ? (
@@ -85,6 +88,18 @@ const Apply = () => {
       </div>
     </div>
   );
+};
+export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
+  await SSRAuthCheck(ctx, "/user/buy-order-history");
+  const { data } = await landingPage();
+  const { data: customPageData } = await customPage();
+  return {
+    props: {
+      socialData: data.media_list,
+      copyright_text: data?.copyright_text,
+      customPageData: customPageData.data,
+    },
+  };
 };
 
 export default Apply;

@@ -34,8 +34,17 @@ export const launchpadDynamicFromSubmitAction = async () => {
   const response = await launchpadDynamicFromSubmit();
   return response;
 };
-export const launchpadDynamicFromAction = async (setLaunchpadForm: any) => {
+export const launchpadDynamicFromAction = async (
+  setLaunchpadForm: any,
+  formFields: any,
+  setFormFields: any
+) => {
   const response = await launchpadDynamicFrom();
   console.log(response, "setLaunchpadForm");
-    setLaunchpadForm(response);
+  setLaunchpadForm(response);
+  let tempJson: any = {};
+  response.map((item: any) => {
+    tempJson[item.id] = item.id;
+  });
+  setFormFields(tempJson);
 };
