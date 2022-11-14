@@ -15,7 +15,7 @@ import { launchpadDynamicFromAction } from "state/actions/launchpad";
 
 const Apply = () => {
   const [launchpadForm, setLaunchpadForm] = useState([]);
-  const [formFields, setFormFields] = useState([]);
+  const [formFields, setFormFields] = useState<any>([]);
   useEffect(() => {
     launchpadDynamicFromAction(setLaunchpadForm, formFields, setFormFields);
   }, []);
@@ -27,7 +27,17 @@ const Apply = () => {
           item.type === FORM_INPUT_TEXT ? (
             <div className="form-div">
               <label htmlFor="">{item?.title}</label>
-              <input type="text" className="form-control apply-input" id="" />
+              <input
+                type="text"
+                className="form-control apply-input"
+                id=""
+                onChange={(e) => {
+                  setFormFields({
+                    ...formFields,
+                    [item.id]: e.target.value,
+                  });
+                }}
+              />
             </div>
           ) : item.type === FORM_SELECT ? (
             <div className="form-div">
@@ -79,7 +89,15 @@ const Apply = () => {
           ) : item.type === FORM_TEXT_AREA ? (
             <div className="form-div">
               <label htmlFor="">{item?.title}</label>
-              <textarea className="apply-file-input" />
+              <textarea
+                className="apply-file-input"
+                onChange={(e) => {
+                  setFormFields({
+                    ...formFields,
+                    [item.id]: e.target.value,
+                  });
+                }}
+              />
             </div>
           ) : (
             ""
