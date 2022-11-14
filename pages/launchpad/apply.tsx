@@ -21,7 +21,7 @@ const Apply = () => {
   }, []);
   return (
     <div className="container">
-      {JSON.stringify(formFields)}
+      {/* {JSON.stringify(formFields)} */}
       <div className="appy-form">
         {launchpadForm?.map((item: any) =>
           item.type === FORM_INPUT_TEXT ? (
