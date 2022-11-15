@@ -16,6 +16,8 @@ const DynamicLoading = ({ count, width }: any) => {
         height={40}
         count={count ?? 5}
         borderRadius={10}
+        direction="rtl"
+        duration={2}
       />
     </div>
   );
