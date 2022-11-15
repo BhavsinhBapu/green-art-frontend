@@ -81,7 +81,7 @@ const Referral: NextPage = ({
               <div className="single-item">
                 <h4>{t("Total Rewards")}</h4>
                 <h2>
-                  {allData?.total_reward} <span />
+                  {parseFloat(allData?.total_reward).toFixed(6)} <span />
                 </h2>
               </div>
               <div className="single-item">
