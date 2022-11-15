@@ -31,10 +31,24 @@ export const launchpadBuyIcoTokenAction = async () => {
   const response = await launchpadBuyIcoToken();
   return response;
 };
-export const launchpadDynamicFromSubmitAction = async () => {
-  const response = await launchpadDynamicFromSubmit();
+export const launchpadDynamicFromSubmitAction = async (
+  payload: any,
+  launchpadForm: any
+) => {
+  const formData = new FormData();
+  let arrayData: any = [];
+  launchpadForm.map((item: any) => {
+    console.log(payload[item.id], "payload");
+    // formData.append(payload[item.id].form_id, payload[item.id]);
+    arrayData.push(payload[item.id]);
+  });
+  formData.append("data", arrayData);
+  console.log(arrayData, "arrayData");
+
+  const response = await launchpadDynamicFromSubmit(formData);
   return response;
 };
+
 export const launchpadDynamicFromAction = async (
   setLaunchpadForm: any,
   formFields: any,
