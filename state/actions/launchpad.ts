@@ -52,7 +52,8 @@ export const launchpadDynamicFromSubmitAction = async (
 export const launchpadDynamicFromAction = async (
   setLaunchpadForm: any,
   formFields: any,
-  setFormFields: any
+  setFormFields: any,
+  setLoading: any
 ) => {
   const response = await launchpadDynamicFrom();
   setLaunchpadForm(response);
@@ -71,4 +72,5 @@ export const launchpadDynamicFromAction = async (
     };
   });
   setFormFields(tempJson);
+  // setLoading(false);
 };
