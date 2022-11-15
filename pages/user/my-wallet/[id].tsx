@@ -6,14 +6,9 @@ import {
 } from "state/actions/wallet";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
-import {
-  pageAvailabilityCheck,
-  SSRAuthCheck,
-} from "middlewares/ssr-authentication-check";
+import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { parseCookies } from "nookies";
 import { GetUserInfoByTokenServer } from "service/user";
-import Link from "next/link";
-import DepositFaq from "components/deposit/DepositFaq";
 import {
   FAQ_TYPE_DEPOSIT,
   FAQ_TYPE_WITHDRAWN,
@@ -58,45 +53,42 @@ const DeposiAndWithdraw = ({
           deposit: response.wallet,
           address: response.address ? response.address : null,
         });
+      } else if (response.success === false) {
+        router.push("/user/my-wallet");
       }
     } else {
       const response = await WalletWithdrawApiAction(
         Number(router.query.coin_id)
       );
+
       if (response.success === true) {
         setResponseData({
           ...response,
           withdraw: response.wallet,
           address: response.address,
         });
+      } else if (response.success === false) {
+      router.push("/user/my-wallet");
       }
     }
   };
   const checkFullPageStatus = () => {
-    console.log(
-      typeof getProcessData?.data?.progress_status_list,
-      "getProcessData?.data?.progress_status_list"
-    );
     if (
       parseInt(settings.withdrawal_faq_status) !== 1 &&
       router.query.id === MY_WALLET_WITHDRAW_TYPE &&
       parseInt(getProcessData?.data?.progress_status_for_withdrawal) !== 1
     ) {
-      console.log("this is 1");
       setFullPage(true);
     } else if (
       parseInt(settings.coin_deposit_faq_status) !== 1 &&
       router.query.id === MY_WALLET_DEPOSIT_TYPE &&
       parseInt(getProcessData?.data?.progress_status_for_deposit) !== 1
     ) {
-      console.log("this is 2");
       setFullPage(true);
     } else if (
       faqs?.length <= 0 &&
       typeof getProcessData?.data?.progress_status_list === "undefined"
     ) {
-      console.log("this is 3", getProcessData?.data?.progress_status_list);
-
       setFullPage(true);
     } else if (
       faqs?.length <= 0 &&
@@ -104,7 +96,6 @@ const DeposiAndWithdraw = ({
     ) {
       console.log(faqs?.length);
       setFullPage(true);
-      console.log("this is 4");
     }
   };
 
