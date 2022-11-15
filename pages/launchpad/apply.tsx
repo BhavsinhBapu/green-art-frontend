@@ -22,7 +22,7 @@ import {
 
 const Apply = () => {
   const [loading, setLoading] = useState(true);
-  const [launchpadForm, setLaunchpadForm] = useState([]);
+  const [launchpadForm, setLaunchpadForm] = useState<any>([]);
   const [formFields, setFormFields] = useState<any>([]);
 
   const { t } = useTranslation("common");
@@ -44,7 +44,10 @@ const Apply = () => {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            launchpadDynamicFromSubmitAction(formFields, launchpadForm);
+            launchpadDynamicFromSubmitAction(
+              formFields,
+              launchpadForm.dynamic_form
+            );
           }}
         >
           <div className="appy-form">
@@ -55,7 +58,7 @@ const Apply = () => {
               )}
             </p>
 
-            {launchpadForm?.map((item: any) =>
+            {launchpadForm?.dynamic_form.map((item: any) =>
               item.type === FORM_INPUT_TEXT ? (
                 <div className="form-div">
                   <label htmlFor="">{item?.title}</label>

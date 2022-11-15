@@ -36,14 +36,14 @@ export const launchpadDynamicFromSubmitAction = async (
   launchpadForm: any
 ) => {
   const formData = new FormData();
-  let arrayData: any = [];
+  // let arrayData: any = [];
   launchpadForm.map((item: any) => {
-    console.log(payload[item.id], "payload");
-    // formData.append(payload[item.id].form_id, payload[item.id]);
-    arrayData.push(payload[item.id]);
+    // console.log(payload[item.id], "payload");
+    formData.append(payload[item.id].form_id, payload[item.id]);
+    // arrayData.push(payload[item.id]);
   });
-  formData.append("data", arrayData);
-  console.log(arrayData, "arrayData");
+  // formData.append("data", arrayData);
+  // console.log(arrayData, "arrayData");
 
   const response = await launchpadDynamicFromSubmit(formData);
   return response;
@@ -56,9 +56,9 @@ export const launchpadDynamicFromAction = async (
   setLoading: any
 ) => {
   const response = await launchpadDynamicFrom();
-  setLaunchpadForm(response);
+  setLaunchpadForm(response.data);
   let tempJson: any = {};
-  response.map((item: any) => {
+  response?.data?.dynamic_form?.map((item: any) => {
     tempJson[item.id] = {
       value:
         item.type === FORM_RADIO
@@ -71,6 +71,7 @@ export const launchpadDynamicFromAction = async (
       form_id: item.id,
     };
   });
+
   setFormFields(tempJson);
-  // setLoading(false);
+  setLoading(false);
 };
