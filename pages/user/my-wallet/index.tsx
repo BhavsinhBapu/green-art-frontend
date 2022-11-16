@@ -35,10 +35,7 @@ const MyWallet: NextPage = ({
 }: any) => {
   const { t } = useTranslation("common");
   const { settings } = useSelector((state: RootState) => state.common);
-  const [show, setShow] = useState<any>({
-    deposit: false,
-    withdraw: false,
-  });
+
   const [walletList, setWalletList] = useState<any>([]);
   const [Changeable, setChangeable] = useState<any[]>([]);
   const [processing, setProcessing] = useState<boolean>(false);
@@ -52,19 +49,6 @@ const MyWallet: NextPage = ({
       setTradeList(index);
     }
   };
-  const [transactionProcessing, settransactionProcessing] = useState<any>({
-    deposit: false,
-    withdraw: false,
-  });
-  const [selectedRow, setSelectedRow] = useState<any>({
-    id: null,
-    index: null,
-  });
-  const [response, setResponse] = useState<any>({
-    deposit: null,
-    withdraw: null,
-    address: null,
-  });
 
   const getWalletLists = async (url: string) => {
     const response: any = await WalletListApiAction(url, setProcessing);
@@ -84,47 +68,7 @@ const MyWallet: NextPage = ({
     setWalletList(response?.wallets);
     setChangeable(response?.wallets?.data);
   };
-  const handleWithdrawAndDeposit = async (actionType: number, id: number) => {
-    if (selectedRow.index === null) return;
-    if (
-      (show.withdraw === true && show.deposit === true) ||
-      (show.deposit === true && show.withdraw === false)
-    ) {
-      toast.error(t("Please select a wallet"));
-      return;
-    }
 
-    setShow({
-      deposit: false,
-      withdraw: false,
-    });
-
-    if (actionType === 1) {
-      const response = await WalletDepositApiAction(id);
-      if (response.success === true) {
-        setResponse({
-          ...response,
-          deposit: response.wallet,
-          address: response.address ? response.address : null,
-        });
-        setShow({
-          deposit: true,
-        });
-      }
-    } else {
-      const response: any = await WalletWithdrawApiAction(id);
-      if (response.success === true) {
-        setResponse({
-          ...response,
-          withdraw: response.wallet,
-          address: response.address,
-        });
-        setShow({
-          withdraw: true,
-        });
-      }
-    }
-  };
   const coinListApi = async () => {
     const coinList = await appDashboardDataWithoutPair();
     setCoinList(coinList);
@@ -141,78 +85,6 @@ const MyWallet: NextPage = ({
   return (
     <>
       <div className="page-wrap rightMargin">
-        {/* <div className="page-left-sidebar">
-          <div className="sidebar-top">
-            <ul className="left-menu">
-              <li className="active">
-                <Link href={`/user/my-wallet`}>
-                  <a>{t("Wallet Overview")}</a>
-                </Link>
-              </li>
-              {parseInt(settings.swap_status) === 1 && (
-                <li className="">
-                  <Link href={`/user/swap-coin`}>
-                    <a>{t("Swap Coin")}</a>
-                  </Link>
-                </li>
-              )}
-            </ul>
-          </div>
-          <div className="sidebar-middle">
-            <button
-              value="0"
-              id="depositId"
-              type="submit"
-              className="depositId primary-btn-outline btn-deposite text-white"
-              onClick={() => {
-                if (!selectedRow.id) {
-                  toast.info("Please select a wallet");
-                  return;
-                }
-                handleWithdrawAndDeposit(1, selectedRow.id);
-              }}
-            >
-              {transactionProcessing.deposit ? (
-                <>
-                  <span
-                    className="spinner-border spinner-border-sm mr-3"
-                    role="status"
-                    aria-hidden="true"
-                  ></span>
-                  <span>{t("Please wait")}</span>
-                </>
-              ) : (
-                t("Deposit")
-              )}
-            </button>
-            <button
-              value="0"
-              id="withdrawalId"
-              type="submit"
-              className="withdrawalId primary-btn-outline btn-withdraw text-white"
-              onClick={() => {
-                if (!selectedRow.id) {
-                  toast.info("Please select a wallet");
-                  return;
-                }
-                handleWithdrawAndDeposit(2, selectedRow.id);
-              }}
-            >
-              {transactionProcessing.withdraw ? (
-                <>
-                  <span
-                    className="spinner-border spinner-border-sm mr-3"
-                    role="status"
-                    aria-hidden="true"
-                  ></span>
-                  <span>{t("Please wait")}</span>
-                </>
-              ) : (
-                t("Withdraw")
-              )}
-            </button>
-          </div>
-        </div> */}
         <div className="page-main-content">
           <div className="container-fluid">
             <div className="section-top-wrap mb-25">
@@ -227,9 +99,6 @@ const MyWallet: NextPage = ({
                 </div>
               </div>
             </div>
-
-            {/* <h4 className="section-title-medium">{t("Asset Balances")}</h4> */}
-
             <div className="asset-balances-area cstm-loader-area">
               <div className="asset-balances-left">
                 <div className="section-wrapper boxShadow">
@@ -302,25 +171,7 @@ const MyWallet: NextPage = ({
                         </thead>
                         <tbody>
                           {Changeable?.map((item: any, index: number) => (
-                            <tr
-                              id=""
-                              // className={
-                              //   index === selectedRow.index
-                              //     ? "even active"
-                              //     : "odd"
-                              // }
-                              key={index}
-                              onClick={() => {
-                                setShow({
-                                  deposit: false,
-                                  withdraw: false,
-                                });
-                                setSelectedRow({
-                                  id: item.id,
-                                  index: index,
-                                });
-                              }}
-                            >
+                            <tr id="" key={index}>
                               <td>
                                 <div className="asset">
                                   <img
@@ -356,7 +207,10 @@ const MyWallet: NextPage = ({
                                   </span>
                                   <span className="usd">
                                     ({settings?.currency_symbol}
-                                    {parseFloat(item?.available_balance_usd).toFixed(8)})
+                                    {parseFloat(
+                                      item?.available_balance_usd
+                                    ).toFixed(8)}
+                                    )
                                   </span>
                                 </div>
                               </td>
@@ -372,28 +226,37 @@ const MyWallet: NextPage = ({
                                   </span>
                                   <span className="usd">
                                     ({settings?.currency_symbol}
-                                    {parseFloat(item?.total_balance_usd).toFixed(8)})
+                                    {parseFloat(
+                                      item?.total_balance_usd
+                                    ).toFixed(8)}
+                                    )
                                   </span>
                                 </div>
                               </td>
                               <td>
                                 <div className="active-link">
                                   <ul>
-                                    <Link
-                                      href={`/user/my-wallet/deposit?type=deposit&coin_id=${item.id}`}
-                                    >
-                                      <li className="toolTip" title="Deposit">
-                                        <HiOutlineBanknotes size={25} />
-                                      </li>
-                                    </Link>
-
-                                    <Link
-                                      href={`/user/my-wallet/withdraw?type=withdraw&coin_id=${item.id}`}
-                                    >
-                                      <li className="toolTip" title="Withdraw">
-                                        <IoWalletOutline size={25} />
-                                      </li>
-                                    </Link>
+                                    {item.is_deposit === 1 && (
+                                      <Link
+                                        href={`/user/my-wallet/deposit?type=deposit&coin_id=${item.id}`}
+                                      >
+                                        <li className="toolTip" title="Deposit">
+                                          <HiOutlineBanknotes size={25} />
+                                        </li>
+                                      </Link>
+                                    )}
+                                    {item.is_withdrawal === 1 && (
+                                      <Link
+                                        href={`/user/my-wallet/withdraw?type=withdraw&coin_id=${item.id}`}
+                                      >
+                                        <li
+                                          className="toolTip"
+                                          title="Withdraw"
+                                        >
+                                          <IoWalletOutline size={25} />
+                                        </li>
+                                      </Link>
+                                    )}
 
                                     <li
                                       className="toolTip trade-li"
@@ -407,9 +270,6 @@ const MyWallet: NextPage = ({
                                       <HiOutlinePresentationChartLine
                                         size={25}
                                       />
-                                      {/* <OutsideClickHandler
-                                        onOutsideClick={() => handleActive("")}
-                                      > */}
                                       {tradeList === index + 1 && (
                                         <div className="trade-select">
                                           <TradeList
@@ -417,7 +277,6 @@ const MyWallet: NextPage = ({
                                           />
                                         </div>
                                       )}
-                                      {/* </OutsideClickHandler> */}
                                     </li>
                                     {Changeable.length >= 2 ? (
                                       <Link
