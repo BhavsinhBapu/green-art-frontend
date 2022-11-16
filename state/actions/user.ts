@@ -96,6 +96,7 @@ export const SigninAction =
         ] = `Bearer ${response.access_token}`;
       }
 
+      localStorage.setItem("user_id", response.user.id);
       toast.success(responseMessage, {
         position: "top-right",
         autoClose: 5000,
@@ -120,6 +121,9 @@ export const SigninAction =
         progress: undefined,
         className: "dark-toast",
       });
+      if (response.email_verified === 0) {
+        Router.push("/authentication/verify-email");
+      }
     }
     setProcessing(false);
     return response;

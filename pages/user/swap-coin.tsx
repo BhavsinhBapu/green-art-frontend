@@ -82,7 +82,6 @@ const SwapCoin: NextPage = ({
     });
   }, [rate]);
   React.useEffect(() => {
-    console.log(to_wallet, from_wallet);
     setFromSelected({
       amount: 1,
       selected: from_wallet_details?.coin_type,
@@ -139,8 +138,8 @@ const SwapCoin: NextPage = ({
             </div>
 
             <div className="row">
-              <div className="col-lg-10">
-                <div className="section-wrapper">
+              <div className="col-lg-12">
+                <div className="section-wrapper boxShadow">
                   <div className="swap-area">
                     <div className="swap-area-top">
                       <div className="form-group">
@@ -187,16 +186,26 @@ const SwapCoin: NextPage = ({
                                 className=" form-control "
                                 id="currency-one"
                                 onChange={(e: any) => {
+                                  setFromSelected({
+                                    ...fromSelected,
+                                    coin_id: e.target.value,
+                                    selected: walletLists.find(
+                                      (wallet: any) =>
+                                        parseInt(wallet.id) ===
+                                        parseInt(e.target.value)
+                                    ).coin_type,
+                                  });
                                   convertCoin(
                                     fromSelected.amount,
                                     e.target.value,
                                     toSelected.coin_id
                                   ).then((data) => {
-                                    setFromSelected({
-                                      ...fromSelected,
-                                      coin_id: data.from_wallet.id,
-                                      selected: data.from_wallet.coin_type,
-                                      balamce: data.from_wallet.balance,
+                                    setToSelected({
+                                      ...toSelected,
+                                      coin_id: data?.to_wallet?.id,
+                                      selected: data?.to_wallet?.coin_type,
+                                      balamce: data?.to_wallet?.balance,
+                                      amount: data?.convert_rate,
                                     });
                                   });
                                 }}
@@ -275,12 +284,12 @@ const SwapCoin: NextPage = ({
                                     fromSelected.coin_id,
                                     e.target.value
                                   ).then((data) => {
-                                    console.log(data, "data");
                                     setToSelected({
-                                      ...fromSelected,
-                                      coin_id: data.to_wallet.id,
-                                      selected: data.to_wallet.coin_type,
-                                      balamce: data.to_wallet.balance,
+                                      ...toSelected,
+                                      coin_id: data?.to_wallet?.id,
+                                      selected: data?.to_wallet?.coin_type,
+                                      balamce: data?.to_wallet?.balance,
+                                      amount: data?.convert_rate,
                                     });
                                   });
                                 }}
@@ -455,7 +464,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
 
   const { wallet_rate, convert_rate, rate, from_wallet, to_wallet } = data;
 
-  console.log(from_wallet, "from_wallet");
   return {
     props: {
       walletLists,

@@ -2,14 +2,16 @@ import React, { useEffect } from "react";
 import Tooltip from "rc-tooltip";
 import "rc-tooltip/assets/bootstrap.css";
 import { useDispatch } from "react-redux";
-import { setBuyPrice } from "state/reducer/exchange";
+import { setBuyAmount, setBuyPrice, setSellAmount } from "state/reducer/exchange";
 import useTranslation from "next-translate/useTranslation";
 const AllBuyOrders = ({ OpenBookBuy, show }: any) => {
   const { t } = useTranslation("common");
   const [buyData, setBuyData] = React.useState<any>([]);
   const dispatch = useDispatch();
-  const changeSellPrice = (price: number) => {
+  const changeSellPrice = (price: number, amount: number) => {
     dispatch(setBuyPrice(price));
+    dispatch(setBuyAmount(amount));
+    dispatch(setSellAmount(0));
   };
   const [summary, setSummary] = React.useState({
     amount: 0,
@@ -18,8 +20,11 @@ const AllBuyOrders = ({ OpenBookBuy, show }: any) => {
   useEffect(() => {
     const Array = show ? [...OpenBookBuy].slice(0, show) : [...OpenBookBuy];
     setBuyData(Array);
-  }),
-    [OpenBookBuy];
+    return () => {
+      // console.log("cleaned up");
+    };
+  }, [OpenBookBuy]);
+
   return (
     <div className="sell-order">
       <div className="trades-table">
@@ -33,7 +38,7 @@ const AllBuyOrders = ({ OpenBookBuy, show }: any) => {
             className="dataTables_processing"
             style={{ display: "none" }}
           >
-            {t("Processing...")}
+            {t("Processing")}...
           </div>
           <div className="dataTables_scroll">
             <div
@@ -137,7 +142,7 @@ const AllBuyOrders = ({ OpenBookBuy, show }: any) => {
                         <tr
                           className="odd"
                           onClick={() => {
-                            changeSellPrice(item.price);
+                            changeSellPrice(item.price, item.amount);
                           }}
                           onMouseEnter={() => {
                             const selectedIndex = index;
@@ -174,6 +179,16 @@ const AllBuyOrders = ({ OpenBookBuy, show }: any) => {
                               </span>
                             </div>
                           </td>
+                          <div
+                            className="progress-green"
+                            style={{
+                              width: `${
+                                parseFloat(item?.percentage)
+                                  ? parseFloat(item?.percentage)
+                                  : 0
+                              }%`,
+                            }}
+                          ></div>
                         </tr>
                       </Tooltip>
                     ))

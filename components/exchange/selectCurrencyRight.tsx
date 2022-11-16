@@ -30,10 +30,11 @@ const SelectCurrencyRight = () => {
     cells: {
       style: {
         width: "100%",
-        backgroundColor: "#151515",
-        color: "rgb(183, 189, 198)",
+        // backgroundColor: "#151515",
+        // color: "rgb(183, 189, 198)",
         borderColor: "#151515",
-        fontSize: "14px",
+        fontSize: "11px",
+        cursor: "pointer",
       },
     },
   };
@@ -49,7 +50,7 @@ const SelectCurrencyRight = () => {
             overlay={
               <span>
                 <span>
-                  {t("Last Price:")} {row.last_price}
+                  {t("Last Price")}: {row.last_price}
                 </span>
               </span>
             }
@@ -67,7 +68,12 @@ const SelectCurrencyRight = () => {
                 router.reload();
               }}
             >
-              <span className="coin-name">{row?.coin_pair_name}</span>
+              <span className="text-white">
+                {row?.coin_pair_name.split("/")[0]}
+              </span>
+              <span className="coin-name">
+                /{row?.coin_pair_name.split("/")[1]}
+              </span>
             </div>
           </Tooltip>
         );
@@ -84,7 +90,7 @@ const SelectCurrencyRight = () => {
             overlay={
               <span>
                 <span>
-                  {t("Last Price:")} {row.last_price}
+                  {t("Last Price")}: {row.last_price}
                 </span>
               </span>
             }
@@ -110,7 +116,7 @@ const SelectCurrencyRight = () => {
             overlay={
               <span>
                 <span>
-                  {t("Last Price:")} {row.last_price}
+                  {t("Last Price")}: {row.last_price}
                 </span>
               </span>
             }

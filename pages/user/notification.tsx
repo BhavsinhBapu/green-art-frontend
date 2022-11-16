@@ -53,32 +53,38 @@ const NotificationPage = ({
       <div className="notification-section marginLeftRight">
         <div className="container">
           <div className="row">
-            {notificationData.map((item: any, index: any) => (
-              <div key={`notify${index}`} className="notify-grid">
-                <div className="notify-content">
-                  <p className="icon-title">
-                    <div>
-                      <IoMdNotificationsOutline
-                        className={
-                          true ? "notifyUnread notifyUnreadIcon" : "notifyRead"
-                        }
-                        size={25}
-                      />
-                    </div>
+            {notificationData?.length > 0 ? (
+              notificationData?.map((item: any, index: any) => (
+                <div key={`notify${index}`} className="notify-grid boxShadow">
+                  <div className="notify-content">
+                    <p className="icon-title">
+                      <div>
+                        <IoMdNotificationsOutline
+                          className={
+                            true
+                              ? "notifyUnread notifyUnreadIcon"
+                              : "notifyRead"
+                          }
+                          size={25}
+                        />
+                      </div>
 
-                    <span className={true ? "titleUnread" : ""}>
-                      {item?.title}
-                    </span>
-                  </p>
-                  <p className={true ? "titleUnread" : ""}>
-                    {item?.notification_body}
-                  </p>
+                      <span className={true ? "titleUnread" : ""}>
+                        {item?.title}
+                      </span>
+                    </p>
+                    <p className={true ? "titleUnread" : ""}>
+                      {item?.notification_body}
+                    </p>
+                  </div>
+                  <div className="notify-date">
+                    <p>{moment(item.created_at).format("DD MMM YYYY")}</p>
+                  </div>
                 </div>
-                <div className="notify-date">
-                  <p>{moment(item.created_at).format("DD MMM YYYY")}</p>
-                </div>
-              </div>
-            ))}
+              ))
+            ) : (
+              <p className="text-center notificationNotFound">{t("No data found!")}</p>
+            )}
           </div>
         </div>
       </div>
