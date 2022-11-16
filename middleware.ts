@@ -8,7 +8,7 @@ export function curentUrl(path: any) {
 
 export async function middleware(req: NextRequest) {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/common-settings`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/common-settings`,
     {
       method: "get",
       headers: {
@@ -20,7 +20,6 @@ export async function middleware(req: NextRequest) {
     }
   );
   const data = await res.json();
-  // console.log("sssss", req.nextUrl.pathname);
   if (parseInt(data?.data?.maintenance_mode_status) === 1) {
     if (curentUrl(req.nextUrl.pathname) === true) {
       return NextResponse.next();

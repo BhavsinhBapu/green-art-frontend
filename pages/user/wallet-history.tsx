@@ -13,6 +13,9 @@ import useTranslation from "next-translate/useTranslation";
 import moment from "moment";
 import Footer from "components/common/footer";
 import { customPage, landingPage } from "service/landing-page";
+import { useRef } from "react";
+import { toast } from "react-toastify";
+import { BiCopy } from "react-icons/bi";
 const DepositHistory: NextPage = ({
   customPageData,
   socialData,
@@ -75,13 +78,29 @@ const DepositHistory: NextPage = ({
     },
     {
       name: t("Fees"),
-      selector: (row: any) => row.fees,
+      selector: (row: any) => parseFloat(row.fees).toFixed(8),
       sortable: true,
     },
     {
       name: type === t("deposit") ? t("Transaction Id") : t("Transaction Hash"),
-      selector: (row: any) =>
-        type === "deposit" ? row.transaction_id : row.transaction_hash,
+      cell: (row: any) => (
+        <div>
+          <span
+            className="withdrawTransactionCopy"
+            onClick={() => {
+              navigator.clipboard.writeText(
+                type === "deposit" ? row.transaction_id : row.transaction_hash
+              );
+              toast.success(t("Copied to clipboard"));
+            }}
+          >
+            {type === "deposit" ? row.transaction_id : row.transaction_hash}
+          </span>
+          <BiCopy className="copyIcon" />
+        </div>
+      ),
+      // selector: (row: any) =>
+      //   type === "deposit" ? row.transaction_id : row.transaction_hash,
       sortable: true,
     },
     {
@@ -130,7 +149,7 @@ const DepositHistory: NextPage = ({
                 <Loading />
               ) : (
                 <div className="asset-balances-left">
-                  <div className="section-wrapper">
+                  <div className="section-wrapper boxShadow">
                     <div className="table-responsive tableScroll">
                       <div
                         id="assetBalances_wrapper"
@@ -192,7 +211,7 @@ const DepositHistory: NextPage = ({
                       <div className="cp-user-wallet-table table-responsive tableScroll">
                         <DataTable columns={columns} data={history} />
                       </div>
-                      {history.length > 0 && (
+                      {history?.length > 0 && (
                         <div
                           className="pagination-wrapper"
                           id="assetBalances_paginate"

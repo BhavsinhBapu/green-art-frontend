@@ -57,12 +57,14 @@ export const WalletWithdrawProcessApiAction = async (
 };
 export const GetWalletAddressAction = async (
   credential: any,
-  setNetwork: any
+  setNetwork: any,
+  setDependecy: any
 ) => {
   const response = await GetWalletAddress(credential);
   if (response.success === true) {
     toast.success(response.message);
     setNetwork(response.data);
+    setDependecy(Math.random() * 1000);
   } else {
     toast.error(response.message);
   }
