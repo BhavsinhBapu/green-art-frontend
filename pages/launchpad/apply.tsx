@@ -35,7 +35,6 @@ const Apply = () => {
 
   return (
     <div className="container">
-      {JSON.stringify(formFields)}
       {loading ? (
         <DynamicLoading count={13} width={"80%"} />
       ) : (
