@@ -8,7 +8,7 @@ export function curentUrl(path: any) {
 
 export async function middleware(req: NextRequest) {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/common-settings`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/common-settings`,
     {
       method: "get",
       headers: {
