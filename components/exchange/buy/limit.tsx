@@ -3,11 +3,7 @@ import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import React from "react";
 import { useDispatch } from "react-redux";
-import {
-  buyLimitAppAction,
-  initialDashboardCallAction,
-  initialDashboardCallActionWithToken,
-} from "state/actions/exchange";
+import { buyLimitAppAction } from "state/actions/exchange";
 
 const Limit = ({
   dashboard,
@@ -179,7 +175,13 @@ const Limit = ({
                     type="text"
                     placeholder=""
                     className="form-control number_only input_3"
-                    value={buySellLimitCoinData.total}
+                    value={
+                      Number(parseFloat(buySellLimitCoinData.total).toFixed(8))
+                        ? Number(
+                            parseFloat(buySellLimitCoinData.total).toFixed(8)
+                          )
+                        : 0
+                    }
                   />
                   <span
                     className="text-warning blns"
@@ -253,12 +255,19 @@ const Limit = ({
                           setLoading,
                           setBuySellLimitCoinData
                         );
-                        await dispatch(
-                          initialDashboardCallAction(currentPair, dashboard)
-                        );
+                        // await dispatch(getDashboardData(currentPair));
+                        setBuySellLimitCoinData({
+                          ...buySellLimitCoinData,
+                          amount: 0,
+                          total: 0,
+                        });
                       }}
                     >
-                      <span v-else="">{t("Place Order")}</span>
+                      <span v-else="">
+                        {" "}
+                        {t("Buy")}{" "}
+                        {dashboard?.order_data?.total?.trade_wallet?.coin_type}
+                      </span>
                     </button>
                   </div>
                 )}

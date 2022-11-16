@@ -3,6 +3,7 @@ import WalletDeposit from "components/deposit/wallet-deposit";
 import StripeDeposit from "components/deposit/stripe-deposit";
 import {
   BANK_DEPOSIT,
+  FAQ_TYPE_DEPOSIT,
   PAYPAL,
   STRIPE,
   WALLET_DEPOSIT,
@@ -34,6 +35,7 @@ const Deposit = ({ customPageData, socialData, copyright_text }: any) => {
   const [loading, setLoading] = useState(false);
   const { settings } = useSelector((state: RootState) => state.common);
   const [faqs, setFaqs] = useState([]);
+  const [fullScreen, setFullScreen] = useState(false);
   const [selectedMethod, setSelectedMethod] = useState<any>({
     method: null,
     method_id: null,
@@ -44,9 +46,19 @@ const Deposit = ({ customPageData, socialData, copyright_text }: any) => {
     setLoading(true);
     const response = await currencyDeposit();
     const responseFaq = await getFaqList();
-    setFaqs(responseFaq.data.data);
+    let tempFaq: any = [];
+    responseFaq.data.data.map((faq: any) => {
+      if (faq.faq_type_id === FAQ_TYPE_DEPOSIT) {
+        tempFaq.push(faq);
+      }
+    });
+    setFaqs(tempFaq);
+    if (parseInt(settings.currency_deposit_faq_status) === 1) {
+      setFullScreen(true);
+    } else if (tempFaq.length === 0) {
+      setFullScreen(true);
+    }
     setDepositInfo(response.data);
-
     setSelectedMethod({
       method:
         response?.data?.payment_methods[0] &&
@@ -64,10 +76,10 @@ const Deposit = ({ customPageData, socialData, copyright_text }: any) => {
     <>
       <div className="deposit-page">
         <div className="container mb-3">
-          <h2 className="mb-2">{t("Deposit Fiat")}</h2>
+          {/* <h2 className="mb-2">{t("Deposit Fiat")}</h2> */}
         </div>
         <div className="container">
-          <div className="deposit-conatiner">
+          <div className="deposit-conatiner boxShadow">
             <div className="cp-user-title">
               <h4>{t("Select method")}</h4>
             </div>
@@ -80,7 +92,13 @@ const Deposit = ({ customPageData, socialData, copyright_text }: any) => {
               {loading ? (
                 <ScaletonLoading />
               ) : (
-                <div className="col-lg-8 col-sm-12">
+                <div
+                  className={`${
+                    fullScreen === false
+                      ? "col-lg-8 col-sm-12"
+                      : "col-lg-12 col-sm-12"
+                  }`}
+                >
                   {parseInt(selectedMethod.method) === WALLET_DEPOSIT ? (
                     <WalletDeposit
                       walletlist={depositInfo.wallet_list}
@@ -114,9 +132,11 @@ const Deposit = ({ customPageData, socialData, copyright_text }: any) => {
                 </div>
               )}
 
-              <div className="col-lg-4 col-sm-12 mt-4">
-                <DepositFaq faqs={faqs} />
-              </div>
+              {fullScreen === false && (
+                <div className="col-lg-4 col-sm-12 mt-4">
+                  <DepositFaq faqs={faqs} />
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -138,7 +158,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
 
   const { data } = await landingPage();
   const { data: customPageData } = await customPage();
-  
+
   if (parseInt(commonRes.currency_deposit_status) !== 1) {
     return {
       redirect: {

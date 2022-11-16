@@ -133,13 +133,14 @@ const DepositTab = ({ response, TurnoffSetShow, id }: any) => {
                   <button
                     className=" primary-btn-outline btn-withdraw text-white w-100 mt-2"
                     onClick={() => {
-                      GetWalletAddressAction(
-                        {
-                          wallet_id: id,
-                          network_type: selectedNetwork?.network_type ?? "",
-                        },
-                        setSelectedNetwork
-                      );
+                      // GetWalletAddressAction(
+                      //   {
+                      //     wallet_id: id,
+                      //     network_type: selectedNetwork?.network_type ?? "",
+                      //   },
+                      //   setSelectedNetwork,
+                      //   setDependecy
+                      // );
                     }}
                   >
                     {t("Get address")}

@@ -30,6 +30,7 @@ const SelectCurrency = () => {
     cells: {
       style: {
         width: "100%",
+        cursor: "pointer",
         backgroundColor: "#151515",
         color: "#fff",
         borderColor: "#151515",
@@ -49,7 +50,7 @@ const SelectCurrency = () => {
             overlay={
               <span>
                 <span>
-                  {t("Last Price:")} {row.last_price}
+                  {t("Last Price")}: {row.last_price}
                 </span>
               </span>
             }
@@ -84,7 +85,7 @@ const SelectCurrency = () => {
             overlay={
               <span>
                 <span>
-                  {t("Last Price:")} {row.last_price}
+                  {t("Last Price")}: {row.last_price}
                 </span>
               </span>
             }
@@ -110,7 +111,7 @@ const SelectCurrency = () => {
             overlay={
               <span>
                 <span>
-                  {t("Last Price:")} {row.last_price}
+                  {t("Last Price")}: {row.last_price}
                 </span>
               </span>
             }
@@ -173,7 +174,7 @@ const SelectCurrency = () => {
             className="dataTables_processing"
             style={{ display: "none" }}
           >
-            {t("Processing...")}
+            {t("Processing")}...
           </div>
           <div className="dataTables_scroll">
             <div
