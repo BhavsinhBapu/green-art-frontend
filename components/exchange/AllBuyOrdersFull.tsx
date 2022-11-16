@@ -1,19 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Tooltip from "rc-tooltip";
 import "rc-tooltip/assets/bootstrap.css";
 import { useDispatch } from "react-redux";
-import { setBuyPrice } from "state/reducer/exchange";
+import { setBuyAmount, setBuyPrice, setSellAmount } from "state/reducer/exchange";
 import useTranslation from "next-translate/useTranslation";
-const AllBuyOrders = ({ OpenBookBuy }: any) => {
+const AllBuyOrders = ({ buy, show }: any) => {
   const { t } = useTranslation("common");
+  const [OpenBookBuy, setopenBookBuy] = useState<any>([]);
   const dispatch = useDispatch();
-  const changeSellPrice = (price: number) => {
+  const changeBuyPrice = (price: number, amount: number) => {
     dispatch(setBuyPrice(price));
+    dispatch(setBuyAmount(amount));
+    dispatch(setSellAmount(0));
   };
   const [summary, setSummary] = React.useState({
     amount: 0,
     total: 0,
   });
+  useEffect(() => {
+    const Array = show ? [...buy].reverse().slice(-show) : [...buy].reverse();
+    setopenBookBuy(Array);
+  }, [buy]);
   return (
     <div className="sell-order">
       <div className="trades-table">
@@ -131,7 +138,7 @@ const AllBuyOrders = ({ OpenBookBuy }: any) => {
                         <tr
                           className="odd"
                           onClick={() => {
-                            changeSellPrice(item.price);
+                            changeBuyPrice(item.price, item.amount);
                           }}
                           onMouseEnter={() => {
                             const selectedIndex = index;
@@ -150,9 +157,7 @@ const AllBuyOrders = ({ OpenBookBuy }: any) => {
                         >
                           <td>
                             <div className="asset">
-                              <span className="text-success">
-                                {item.price}
-                              </span>
+                              <span className="text-success">{item.price}</span>
                             </div>
                           </td>
                           <td>
@@ -167,6 +172,16 @@ const AllBuyOrders = ({ OpenBookBuy }: any) => {
                               </span>
                             </div>
                           </td>
+                          <div
+                            className="progress-green"
+                            style={{
+                              width: `${
+                                parseFloat(item?.percentage)
+                                  ? parseFloat(item?.percentage)
+                                  : 0
+                              }%`,
+                            }}
+                          ></div>
                         </tr>
                       </Tooltip>
                     ))

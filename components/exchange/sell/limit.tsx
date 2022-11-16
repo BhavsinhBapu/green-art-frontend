@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import {
   sellLimitAppAction,
   initialDashboardCallAction,
+  getDashboardData,
 } from "state/actions/exchange";
 
 const Limit = ({
@@ -167,10 +168,16 @@ const Limit = ({
                   <input
                     disabled
                     name="total_amount"
-                    type="text"
+                    type="number"
                     placeholder=""
                     className="form-control number_only"
-                    value={buySellLimitCoinData.total}
+                    value={
+                      Number(parseFloat(buySellLimitCoinData.total).toFixed(8))
+                        ? Number(
+                            parseFloat(buySellLimitCoinData.total).toFixed(8)
+                          )
+                        : 0
+                    }
                   />
                   <span
                     className="text-warning blns"
@@ -243,12 +250,19 @@ const Limit = ({
                           setLoading,
                           setBuySellLimitCoinData
                         );
-                        await dispatch(
-                          initialDashboardCallAction(currentPair, dashboard)
-                        );
+                        // await dispatch(getDashboardData(currentPair));
+                        setBuySellLimitCoinData({
+                          ...buySellLimitCoinData,
+                          amount: 0,
+                          total: 0,
+                        });
                       }}
                     >
-                      <span v-else="">{t("Place Order")}</span>
+                      <span v-else="">
+                        {" "}
+                        {t("Sell")}{" "}
+                        {dashboard?.order_data?.total?.trade_wallet?.coin_type}
+                      </span>
                     </button>
                   </div>
                 )}

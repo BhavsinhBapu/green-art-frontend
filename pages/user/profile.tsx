@@ -8,13 +8,16 @@ import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import useTranslation from "next-translate/useTranslation";
 import Footer from "components/common/footer";
 import { customPage, landingPage } from "service/landing-page";
+import moment from "moment";
 const Profile: NextPage = ({
   user,
   customPageData,
   socialData,
   copyright_text,
+  profileActivity,
 }: any) => {
   const { t } = useTranslation("common");
+
   return (
     <>
       <div className="page-wrap">
@@ -30,12 +33,18 @@ const Profile: NextPage = ({
               </div>
             </div>
             <div className="profile-area">
-              <div className="section-wrapper">
+              <div className="section-wrapper boxShadow">
                 <div className="user-profile">
                   <div className="row">
                     <div className="col-lg-4 col-md-5">
                       <div className="user-profile-left">
-                        <div className="user-thumbnail">
+                        <div
+                          className={`${
+                            user?.online_status?.online_status
+                              ? "userProfileActive"
+                              : "userProfileDeactive"
+                          } user-thumbnail`}
+                        >
                           <img
                             src={user?.photo}
                             className="img-fluid"
@@ -109,6 +118,30 @@ const Profile: NextPage = ({
                 </div>
               </div>
             </div>
+
+            <div className="profile-status-area boxShadow tableScroll">
+              <h5>{t("Profile Activity")}</h5>
+              <table className="table">
+                <thead className="thead-light">
+                  <tr>
+                    <th scope="col">{t("Source")}</th>
+                    <th scope="col">{t("Ip Address")}:</th>
+                    <th scope="col">{t("Time:")}</th>
+                    <th scope="col">{t("Action")}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {profileActivity?.map((item: any, index: number) => (
+                    <tr key={`userAct${index}`}>
+                      <td>{item.source}</td>
+                      <td>{item.ip_address}</td>
+                      <td>{moment(item.created_at).format("DD MMM YYYY")}</td>
+                      <td>{t("Login")}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
@@ -127,9 +160,11 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const { data: customPageData } = await customPage();
   const cookies = parseCookies(ctx);
   const response = await GetUserInfoByTokenServer(cookies.token);
+
   return {
     props: {
       user: response.user,
+      profileActivity: response.activityLog,
       socialData: data.media_list,
       copyright_text: data?.copyright_text,
       customPageData: customPageData.data,
