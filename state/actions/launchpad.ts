@@ -44,12 +44,12 @@ export const launchpadDynamicFromSubmitAction = async (
   launchpadForm.map((item: any) => {
     if (item.type === FORM_CHECKBOX) {
       // payload[item.id].form_id}
-      formData.append(`id[${i}]`, payload[item.id].form_id);
+      formData.append(`ids[${i}]`, payload[item.id].form_id);
       formData.append(`values[${i}]`, String(payload[item.id].value));
       i++;
       return;
     }
-    formData.append(`id[${i}]`, payload[item.id].form_id);
+    formData.append(`ids[${i}]`, payload[item.id].form_id);
     formData.append(`values[${i}]`, payload[item.id].value);
     i++;
     // formData.append(payload[item.id].form_id, payload[item.id].value);
