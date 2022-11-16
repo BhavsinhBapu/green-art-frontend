@@ -48,11 +48,18 @@ const Apply = () => {
           }}
         >
           <div className="appy-form">
-            <h2 className="launchpadTitle">{t("Apply For Launchpad")}</h2>
+            <h2 className="launchpadTitle">
+              {launchpadForm?.dynamic_form_for_ico_title === false
+                ? t("Apply For Launchpad")
+                : launchpadForm.dynamic_form_for_ico_title}
+            </h2>
             <p className="launchpadDescription">
-              {t(
-                "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, "
-              )}
+              {launchpadForm?.dynamic_form_for_ico_description === false
+                ? t(
+                    "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, "
+                  )
+                : launchpadForm.dynamic_form_for_ico_description}
+              {}
             </p>
 
             {launchpadForm?.dynamic_form.map((item: any) =>
