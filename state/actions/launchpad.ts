@@ -35,24 +35,18 @@ export const launchpadBuyIcoTokenAction = async () => {
 
 //find binary search in javascript.
 
-
-
-
 export const launchpadDynamicFromSubmitAction = async (
   payload: any,
   launchpadForm: any
 ) => {
   const formData = new FormData();
-  // console.log(launchpadForm, "launchpadForm");
-  // let arrayData: any = [];
   launchpadForm.map((item: any) => {
-    console.log(payload[item.id].form_id, payload[item.id], "made data");
+    if (item.type === FORM_CHECKBOX) {
+      formData.append(payload[item.id].form_id, String(payload[item.id].value));
+      return;
+    }
     formData.append(payload[item.id].form_id, payload[item.id]);
-    // arrayData.push(payload[item.id]);
   });
-  // formData.append("data", arrayData);
-  // console.log(arrayData, "arrayData");
-
   const response = await launchpadDynamicFromSubmit(formData);
   if (response.success === true) {
     toast.success(response.message);
@@ -72,19 +66,17 @@ export const launchpadDynamicFromAction = async (
   setLaunchpadForm(response.data);
   let tempJson: any = {};
   response?.data?.dynamic_form?.map((item: any) => {
+    console.log(item, "item.type === FORM_RADIOitem.type === FORM_RADIO");
     tempJson[item.id] = {
       value:
-        item.type === FORM_RADIO
+        item.type === FORM_CHECKBOX
           ? []
-          : item.type === FORM_SELECT
-          ? []
-          : item.type === FORM_CHECKBOX
-          ? []
+          : item.type === FORM_RADIO
+          ? [item?.optionList.length > 0 && item?.optionList[0]]
           : "",
       form_id: item.id,
     };
   });
-
   setFormFields(tempJson);
   setLoading(false);
 };
