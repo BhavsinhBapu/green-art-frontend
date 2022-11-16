@@ -35,6 +35,7 @@ const Apply = () => {
 
   return (
     <div className="container">
+      {JSON.stringify(formFields)}
       {loading ? (
         <DynamicLoading count={13} width={"80%"} />
       ) : (
@@ -63,6 +64,7 @@ const Apply = () => {
                     type="text"
                     className="form-control apply-input"
                     id=""
+                    required={item?.required === 1 ? true : false}
                     onChange={(e) => {
                       setFormFields({
                         ...formFields,
@@ -81,17 +83,19 @@ const Apply = () => {
                     className="form-control apply-select-field"
                     name=""
                     id=""
+                    required={item?.required === 1 ? true : false}
                     onChange={(e) => {
                       setFormFields({
                         ...formFields,
                         [item.id]: {
-                          ...[item.id],
-                          value: [e.target.value],
+                          value: e.target.value,
                           form_id: item.id,
                         },
                       });
                     }}
                   >
+                    <option value="">{t("Select one")}</option>
+
                     {item.optionList.map((select: any) => (
                       <>
                         <option value={select}>{select}</option>
@@ -103,18 +107,20 @@ const Apply = () => {
                 <div className="form-div">
                   <label htmlFor="">{item?.title}</label>
                   <div className="radio-item">
-                    {item.optionList.map((radioItem: any, index: number) => (
+                    {item?.optionList?.map((radioItem: any, index: number) => (
                       <fieldset className="radio-inline" key={index}>
                         <input
                           className="form-control apply-radio-input"
                           type="radio"
                           name="radio"
-                          onChange={(e) => {
+                          defaultChecked={index === 0}
+                          required={item?.required === 1 ? true : false}
+                          onClick={(e) => {
                             setFormFields({
                               ...formFields,
                               [item.id]: {
-                                ...[item.id],
-                                value: [radioItem],
+                                value: radioItem,
+                                form_id: item.id,
                               },
                             });
                           }}
@@ -128,11 +134,17 @@ const Apply = () => {
                 <div className="form-div">
                   <label htmlFor="">{item?.title}</label>
                   <div className="radio-item">
-                    {item.optionList.map((CheckItem: any, index: number) => (
+                    {item?.optionList?.map((CheckItem: any, index: number) => (
                       <div className="radio-inline" key={index}>
                         <input
                           className="form-control apply-radio-input"
                           type="checkbox"
+                          required={
+                            formFields[item.id].value.length === 0 &&
+                            item.required === 1
+                              ? true
+                              : false
+                          }
                           onChange={(e) => {
                             let allChecked = formFields[item.id].value;
                             if (e.target.checked === false) {
@@ -145,12 +157,10 @@ const Apply = () => {
                             setFormFields({
                               ...formFields,
                               [item.id]: {
-                                ...[item.id],
                                 value: allChecked,
                                 form_id: item.id,
                               },
                             });
-                            console.log(e.target.checked);
                           }}
                         />
                         <span>{CheckItem}</span>
@@ -164,6 +174,7 @@ const Apply = () => {
                   <input
                     className="apply-file-input"
                     type="file"
+                    required={item?.required === 1 ? true : false}
                     onChange={(e: any) => {
                       setFormFields({
                         ...formFields,
@@ -180,6 +191,7 @@ const Apply = () => {
                   <label htmlFor="">{item?.title}</label>
                   <textarea
                     className="apply-file-input"
+                    required
                     onChange={(e) => {
                       setFormFields({
                         ...formFields,
@@ -207,7 +219,7 @@ const Apply = () => {
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
-  await SSRAuthCheck(ctx, "/user/buy-order-history");
+  await SSRAuthCheck(ctx, "/launchpad/apply");
   const { data } = await landingPage();
   const { data: customPageData } = await customPage();
   return {
