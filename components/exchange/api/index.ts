@@ -34,7 +34,6 @@ export default {
     onResolveErrorCallback: any
   ) => {
     // expects a symbolInfo object in response
-    console.log("resolveSymbol", symbolName);
 
     var split_data = symbolName.split(/[:/]/);
 

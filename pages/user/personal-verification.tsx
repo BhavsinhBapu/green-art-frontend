@@ -50,7 +50,7 @@ const PersonalVerification: NextPage = ({
             <NidModal type={type} kycDetails={kycDetails} />
             <div className="profile-area">
               {/* <h4 className="section-title-medium">{t("Verification")}</h4> */}
-              <div className="section-wrapper">
+              <div className="section-wrapper boxShadow">
                 <div className="row">
                   <div className="col-lg-12">
                     <div className="cp-user-profile-header">

@@ -47,7 +47,6 @@ function Button({ credential, setCredential }: any) {
        *   facilitatorAccesstoken: string;
        * }
        */
-      //   console.log(data, "datadatadatadata");
       //   alert("Data details: " + JSON.stringify(data, null, 2));
 
       return actions.order.capture({}).then(async (details: any) => {

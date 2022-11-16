@@ -41,6 +41,42 @@ const Index = ({ children }: any) => {
     dispatch(setSettings(response.data));
     setMetaData(response.data);
     dispatch(setLoading(false));
+    //  --primary-color: #fcd535;
+    // --text-primary-color: #ffff;
+    // --text-primary-color-2: #23262f;
+    // --text-primary-color-3: #777778;
+    // --text-primary-color-4: #cbcfd7;
+
+    // --border-color: #dedede;
+    // --border-color-1: #e6e8ec;
+    // --border-color-2: #353535;
+
+    // --hover-color: #f7cf33;
+    // --font-color: #2a2a2d;
+    // --bColor: #424242;
+    // --title-color: #141414;
+    // --white: #ffffff;
+    // --black: #000000;
+    // --color-pallet-1: #b4b8d7;
+
+    // --background-color: #151515;
+    // --background-color-trade: #2a2e37;
+    // --main-background-color: #ffff;
+    // --card-background-color: #ffffff;
+    // --table-background-color: #dad6d6;
+    // --footer-background-color: #f7f7f8;
+
+    // --background-color-hover: #fafafa;
+
+    response.data.theme_color.map((themeColors: any) => {
+      if (!themeColors.value) {
+        return;
+      }
+      document.documentElement.style.setProperty(
+        themeColors.name,
+        themeColors.value
+      );
+    });
   };
 
   useEffect(() => {

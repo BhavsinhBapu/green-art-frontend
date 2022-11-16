@@ -28,6 +28,11 @@ import { toast } from "react-toastify";
 import { Dispatch, SetStateAction } from "react";
 import Cookies from "js-cookie";
 
+export const getDashboardData = (pair: string) => async (dispatch: any) => {
+  const response = await appDashboardData(pair);
+  dispatch(setDashboard(response));
+};
+
 export const initialDashboardCallAction =
   (pair: string, dashboard: any, setisLoading?: any) =>
   async (dispatch: any) => {
@@ -37,9 +42,11 @@ export const initialDashboardCallAction =
     let response;
     if (pair) {
       response = await appDashboardData(pair);
+      if (response.success === false) {
+        response = await appDashboardDataWithoutPair();
+      }
     } else {
       response = await appDashboardDataWithoutPair();
-    
     }
 
     if (pair) {
@@ -217,11 +224,11 @@ export const buyLimitAppAction = async (
       progress: undefined,
       className: "dark-toast",
     });
-    setBuyCoinData({
-      amount: 0,
-      price: 0,
-      total: 0,
-    });
+    // setBuyCoinData({
+    //   amount: 0,
+    //   price: 0,
+    //   total: 0,
+    // });
   } else {
     toast.error(response.message, {
       position: "top-right",
@@ -343,11 +350,11 @@ export const sellLimitAppAction = async (
       progress: undefined,
       className: "dark-toast",
     });
-    setsellCoinData({
-      amount: 0,
-      price: 0,
-      total: 0,
-    });
+    // setsellCoinData({
+    //   amount: 0,
+    //   price: 0,
+    //   total: 0,
+    // });
   } else {
     toast.error(response.message, {
       position: "top-right",
