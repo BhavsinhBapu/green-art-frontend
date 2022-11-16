@@ -1,7 +1,4 @@
 import DynamicLoading from "components/common/dynamicLoading";
-import SmallLoading from "components/common/smallLoading";
-import TableLoading from "components/common/TableLoading";
-import { Formik } from "formik";
 import {
   FORM_CHECKBOX,
   FORM_FILE,
