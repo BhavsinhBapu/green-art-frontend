@@ -17,13 +17,26 @@ import {
   setAllmarketTrades,
   setCurrentPair,
   setOpenBookBuy,
+  setOrderData,
   setOpenBooksell,
+  setDashboard,
+  setLastPriceData,
+  setPairs,
+  setOpenOrderHistory,
+  setSellOrderHistory,
+  setBuyOrderHistory,
+  setTotalData,
 } from "state/reducer/exchange";
 import useTranslation from "next-translate/useTranslation";
 import { last, updateChart } from "components/exchange/api/stream";
-import { EXCHANGE_LAYOUT_ONE, EXCHANGE_LAYOUT_TWO } from "helpers/core-constants";
+import {
+  EXCHANGE_LAYOUT_ONE,
+  EXCHANGE_LAYOUT_TWO,
+} from "helpers/core-constants";
+import Head from "next/head";
+import { formatCurrency } from "common";
 let socketCall = 0;
-async function listenMessages(dispatch: any) {
+async function listenMessages(dispatch: any, user: any) {
   //@ts-ignore
   window.Pusher = Pusher;
   //@ts-ignore
@@ -33,14 +46,32 @@ async function listenMessages(dispatch: any) {
     wsHost: process.env.NEXT_PUBLIC_HOST_SOCKET,
     wsPort: 6006,
     wssPort: 443,
+    forceTLS: false,
     cluster: "mt1",
     disableStats: true,
     enabledTransports: ["ws", "wss"],
   });
   //@ts-ignore
-  window.Echo.channel("dashboard").listen(".order_place", (e) => {
-    if (e.order_type === "buy") dispatch(setOpenBookBuy(e.orders));
-    if (e.order_type === "sell") dispatch(setOpenBooksell(e.orders));
+  // dashboard-base_coin_id-trade_coin_id
+  window.Echo.channel(
+    `dashboard-${localStorage.getItem("base_coin_id")}-${localStorage.getItem(
+      "trade_coin_id"
+    )}`
+  ).listen(".order_place", (e: any) => {
+    if (e.orders.order_type === "buy")
+      dispatch(setOpenBookBuy(e.orders.orders));
+    if (e.orders.order_type === "sell")
+      dispatch(setOpenBooksell(e.orders.orders));
+    // if (e.orders.order_type === "buy") {
+    //   console.log("buy", e.orders.orders);
+    // }
+    // if (e.orders.order_type === "sell") {
+    //   console.log("sell", e.orders.orders);
+    // }
+
+    e.order_data && dispatch(setOrderData(e.order_data));
+    e.last_price_data && dispatch(setLastPriceData(e.last_price_data));
+    dispatch(setPairs(e.pairs));
   });
   //@ts-ignore
   window.Echo.channel(
@@ -57,16 +88,40 @@ async function listenMessages(dispatch: any) {
       total: parseFloat(e.last_trade.total),
     });
   });
+  //@ts-ignore
+  window.Echo.channel(
+    `dashboard-${localStorage.getItem("base_coin_id")}-${localStorage.getItem(
+      "trade_coin_id"
+    )}`
+  ).listen(`.order_place_${localStorage.getItem("user_id")}`, (e: any) => {
+    dispatch(setOpenOrderHistory(e.open_orders.orders));
+    dispatch(setSellOrderHistory(e.open_orders.sell_orders));
+    dispatch(setBuyOrderHistory(e.open_orders.buy_orders));
+    e?.order_data?.total && dispatch(setTotalData(e?.order_data?.total));
+  });
+  //@ts-ignore
+  window.Echo.channel(
+    `dashboard-${localStorage.getItem("base_coin_id")}-${localStorage.getItem(
+      "trade_coin_id"
+    )}`
+  ).listen(".order_removed", (e: any) => {
+    if (e.orders.order_type === "buy")
+      dispatch(setOpenBookBuy(e.orders.orders));
+    if (e.orders.order_type === "sell")
+      dispatch(setOpenBooksell(e.orders.orders));
+    e.order_data && dispatch(setOrderData(e.order_data));
+    e.last_price_data && dispatch(setLastPriceData(e.last_price_data));
+  });
 }
 const Dashboard: NextPage = () => {
+  const { settings } = useSelector((state: RootState) => state.common);
   const { t } = useTranslation("common");
   const dispatch = useDispatch();
   const [isLoading, setisLoading] = useState(true);
-  const { isLoggedIn } = useSelector((state: RootState) => state.user);
+  const { isLoggedIn, user } = useSelector((state: RootState) => state.user);
   const { dashboard, currentPair } = useSelector(
     (state: RootState) => state.exchange
   );
- const { settings } = useSelector((state: RootState) => state.common);
   useEffect(() => {
     const pair = localStorage.getItem("current_pair");
     if (pair) {
@@ -94,13 +149,21 @@ const Dashboard: NextPage = () => {
   }, [dashboard?.order_data?.base_coin_id]);
   useEffect(() => {
     if (socketCall === 0) {
-      listenMessages(dispatch);
+      listenMessages(dispatch, user);
     }
     socketCall = 1;
   });
   return (
     <div className="container-dashboard">
       <div className="background-col">
+        <Head>
+          <title>
+            {dashboard?.last_price_data?.length > 0
+              ? formatCurrency(dashboard?.last_price_data[0]?.last_price)
+              : 0.0}{" "}
+            | {currentPair ? currentPair.replace("_", "") : "----"}
+          </title>
+        </Head>
         <DashboardNavbar />
         {isLoading && <Loading />}
         <div className="mt-5"></div>
@@ -229,14 +292,13 @@ const Dashboard: NextPage = () => {
                 </div>
               </div>
             </div>
-            
+
             <div className="cp-user-custom-card exchange-area">
               <div id="dashboard">
                 <div className="row">
                   <div className="col-xl-12">
                     <div className="cxchange-summary-wrap">
                       <div className="cxchange-summary-name">
-                        
                         <div className="summber-coin-type dropdown">
                           <span
                             className="coin-badge dropdown-toggle"
@@ -245,10 +307,9 @@ const Dashboard: NextPage = () => {
                             aria-haspopup="true"
                             aria-expanded="false"
                           >
-                            
                             {currentPair.replace(/_/g, "/")}
                           </span>
-                        <SelectCurrency />
+                          <SelectCurrency />
                         </div>
                       </div>
                       {dashboard?.last_price_data && <CurrencyLevel />}

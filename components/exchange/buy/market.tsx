@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import {
   initialDashboardCallAction,
   buyMarketAppAction,
+  getDashboardData,
 } from "state/actions/exchange";
 
 const Market = ({
@@ -219,12 +220,19 @@ const Market = ({
                           dashboard?.order_data?.base_coin_id,
                           setLoading
                         );
-                        await dispatch(
-                          initialDashboardCallAction(currentPair, dashboard)
-                        );
+                        // await dispatch(getDashboardData(currentPair));
+                         setBuySellMarketCoinData({
+                           ...buySellMarketCoinData,
+                           amount: 0,
+                           total: 0,
+                         });
                       }}
                     >
-                      <span>{t("Place Order")}</span>
+                      <span>
+                        {" "}
+                        {t("Buy")}{" "}
+                        {dashboard?.order_data?.total?.trade_wallet?.coin_type}
+                      </span>
                     </button>
                   </div>
                 )}

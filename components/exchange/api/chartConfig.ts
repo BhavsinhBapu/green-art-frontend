@@ -12,7 +12,7 @@ export const DISABLED_FEATURES = [
   // "header_symbol_search",
   // "header_widget",
   "symbol_info",
-  // "header_compare",
+  "header_compare",
   // "header_chart_type",
   // "display_market_status",
   // "symbol_search_hot_key",
@@ -48,5 +48,5 @@ export const TIME_FRAMES = [
   { text: "5m", resolution: INTERVAL.MINUTES_5 },
   { text: "15m", resolution: INTERVAL.MINUTES_15 },
   { text: "30m", resolution: INTERVAL.MINUTES_30 },
-  { text: "2h", resolution: INTERVAL.HOUR },
+  { text: "3h", resolution: INTERVAL.HOURS_3 },
 ];

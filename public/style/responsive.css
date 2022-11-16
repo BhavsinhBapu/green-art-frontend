@@ -132,6 +132,40 @@
   }
 }
 @media (max-width: 768px) {
+  .faq-wallet-section {
+    margin-top: 20px;
+  }
+
+  .userActive:before {
+    height: 20px;
+    width: 20px;
+    background: #3ee73e;
+    content: "";
+    top: 55px;
+    right: 0;
+    position: absolute;
+    border-radius: 50%;
+  }
+
+  .userDeactive:before {
+    height: 20px;
+    width: 20px;
+    background: #808080;
+    content: "";
+    top: 50px;
+    right: 0;
+    position: absolute;
+    border-radius: 50%;
+  }
+
+  .tradeUserActive:after {
+    height: 10px;
+    width: 10px;
+  }
+  .tradeUserDeactive:after {
+    height: 10px;
+    width: 10px;
+  }
   .active-link ul {
     display: flex;
     margin-right: 30px;

@@ -4,6 +4,7 @@ import Link from "next/link";
 import React from "react";
 import { useDispatch } from "react-redux";
 import {
+  getDashboardData,
   initialDashboardCallAction,
   sellStopLimitAppAction,
 } from "state/actions/exchange";
@@ -194,7 +195,7 @@ const StopLimit = ({
                     type="number"
                     placeholder=""
                     className="form-control number_only"
-                    value={buySellStopLimitCoinData.total}
+                    value={parseFloat(buySellStopLimitCoinData.total).toFixed(8)}
                   />
                   <span
                     className="text-warning blns"
@@ -269,12 +270,20 @@ const StopLimit = ({
                           dashboard?.order_data?.base_coin_id,
                           setLoading
                         );
-                        await dispatch(
-                          initialDashboardCallAction(currentPair, dashboard)
-                        );
+                        // await dispatch(getDashboardData(currentPair));
+                        setBuySellStopLimitCoinData({
+                          ...buySellStopLimitCoinData,
+                          amount: 0,
+                          total: 0,
+                          limit: 0,
+                          stop: 0,
+                        });
                       }}
                     >
-                      <span v-else="">{t("Place Order")}</span>
+                      <span v-else="">
+                        {t("Sell")}{" "}
+                        {dashboard?.order_data?.total?.trade_wallet?.coin_type}
+                      </span>
                     </button>
                   </div>
                 )}
