@@ -7,7 +7,7 @@ const SellingSection = ({ data }: any) => {
     <section className="mt-5">
       <div className="container">
         <div className="section-title">
-          <h2>Why choose us?</h2>
+          <h2>{data?.launchpad_why_choose_us_text}</h2>
         </div>
         <div className="row">
           {data?.feature_list?.map((item: any, index: number) => (
