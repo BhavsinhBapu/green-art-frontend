@@ -109,7 +109,7 @@ const Home: NextPage = ({
                       <nav className="main-menu mobile-menu">
                         <ul id="nav">
                           <li>
-                            <a href="/exchange/dashboard">{t("Exchange")}</a>
+                            <a href="/exchange/dashboard">{t("Buy / Sell")}</a>
                           </li>
                           <li>
                             <Link href="/authentication/signin">
@@ -923,7 +923,7 @@ const Home: NextPage = ({
           <section className="start-trading-area">
             <div className="container">
               <div className="section-title text-center">
-                <h2 className="title">{t("Start trading now")}</h2>
+                <h2 className="title">{t("Start Buy/Sell now")}</h2>
               </div>
               <div className="trading-button text-center">
                 {!loggedin && (
