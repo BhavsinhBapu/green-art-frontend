@@ -102,13 +102,11 @@ const TradesTable = ({ buy, show }: any) => {
           </Tooltip>
         ))
       ) : (
-        <tbody className="w-100">
           <tr className="odd">
-            <td valign="top" colSpan={3} className="dataTables_empty">
+            <td valign="top" colSpan={12} className="dataTables_empty">
               {t("No data available in table")}
             </td>
           </tr>
-        </tbody>
       )}
     </tbody>
   );
