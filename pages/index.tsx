@@ -211,7 +211,7 @@ const Home: NextPage = ({
           <section className="market-trend-area">
             <div className="container">
               <div className="section-title">
-                <Link href={"/"} locale={"es"}>
+                <Link href={"/"}>
                   <h2 className="title">
                     {landing?.market_trend_title || t("Market Trend")}
                   </h2>
