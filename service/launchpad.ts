@@ -12,8 +12,8 @@ export const launchpadBuyIcoToken = async () => {
   const { data } = await launchpadRequest.get("/buy-ico-token");
   return data;
 };
-export const launchpadDynamicFromSubmit = async () => {
-  const { data } = await launchpadRequest.get("/dynamic-form-submit");
+export const launchpadDynamicFromSubmit = async (payload: any) => {
+  const { data } = await launchpadRequest.post("/dynamic-form-submit", payload);
   return data;
 };
 export const launchpadDynamicFrom = async () => {
