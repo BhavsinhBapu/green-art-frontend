@@ -13,7 +13,9 @@ const Hero = ({ data }: any) => {
             {data?.launchpad_second_description}
           </p>
           <Link href="/launchpad/apply">
-            <button className="primary-btn">{t("Apply to launch")}</button>
+            <button className="primary-btn">
+              {data?.launchpad_apply_to_button_text}
+            </button>
           </Link>
         </div>
         <div className="col-md-7">
