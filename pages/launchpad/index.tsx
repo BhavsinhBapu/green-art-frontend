@@ -27,8 +27,6 @@ const Index = ({ socialData, customPageData, copyright_text }: any) => {
     getLaunchpadLandingPageAction(setLaunchpadLandingPage);
   }, []);
 
-  console.log(launchpadLandingPage, "dfdfdfdf");
-
   return (
     <div>
       <div className="launchPad">
