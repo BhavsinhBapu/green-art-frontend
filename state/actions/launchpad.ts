@@ -4,10 +4,12 @@ import {
   getLaunchpadList,
   getLaunchpadListDetails,
   launchpadBuyIcoToken,
+  launchpadCreateUpdateToken,
   launchpadDynamicFrom,
   launchpadDynamicFromSubmit,
   launchpadLandingPage,
 } from "service/launchpad";
+import Router from "next/router";
 
 export const getLaunchpadListAction = async (
   setLaunchpadList: any,
@@ -15,7 +17,7 @@ export const getLaunchpadListAction = async (
 ) => {
   let featuredItem: any = [];
   const response = await getLaunchpadList();
-  response?.data?.map((item: any, index: number) => {
+  response?.data?.data?.map((item: any, index: number) => {
     item.is_featured == 1 && featuredItem.push(item);
   });
   setLaunchpadList(response);
@@ -93,4 +95,33 @@ export const getLaunchpadLandingPageAction = async (
 ) => {
   const response = await launchpadLandingPage();
   setLaunchpadLandingPage(response);
+};
+export const launchpadCreateUpdateTokenAction = async (
+  payload: any,
+  setLoading: any
+) => {
+  setLoading(true);
+  if (Object.keys(payload).length > 0) {
+    const formData: any = new FormData();
+    formData.append("form_id", payload.form_id);
+    formData.append("base_coin", payload.base_coin);
+    formData.append("token_name", payload.token_name);
+    formData.append("network", payload.network);
+    formData.append("wallet_address", payload.wallet_address);
+    formData.append("contract_address", payload.contract_address);
+    formData.append("wallet_private_key", payload.wallet_private_key);
+    formData.append("chain_id", payload.chain_id);
+    formData.append("decimal", payload.decimal);
+    formData.append("chain_link", payload.chain_link);
+    formData.append("gas_limit", payload.gas_limit);
+    const response = await launchpadCreateUpdateToken(formData);
+    setLoading(false);
+    if (response.success === true) {
+      toast.success(response.message);
+      Router.push("/ico/ico-tokens");
+    } else if (response.success === false) {
+      toast.error(response.message);
+    }
+    return response;
+  }
 };
