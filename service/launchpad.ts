@@ -16,11 +16,19 @@ export const launchpadDynamicFromSubmit = async (payload: any) => {
   const { data } = await launchpadRequest.post("/dynamic-form-submit", payload);
   return data;
 };
+
 export const launchpadDynamicFrom = async () => {
   const { data } = await launchpadRequest.get("/dynamic-form");
   return data;
 };
 export const launchpadLandingPage = async () => {
   const { data } = await launchpadRequest.get("/launchpad-settings");
+  return data;
+};
+export const launchpadCreateUpdateToken = async (payload: any) => {
+  const { data } = await launchpadRequest.post(
+    "/create-update-ico-token",
+    payload
+  );
   return data;
 };
