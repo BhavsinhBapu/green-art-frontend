@@ -15,9 +15,7 @@ import {
 
 import {
   SearchObjectArrayFuesJS,
-  WalletDepositApiAction,
   WalletListApiAction,
-  WalletWithdrawApiAction,
 } from "state/actions/wallet";
 import Loading from "components/common/TableLoading";
 import Link from "next/link";
