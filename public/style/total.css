@@ -11007,6 +11007,7 @@ textarea.apply-file-input {
   padding: 15px 10px;
   border-radius: 5px;
   font-size: 16px;
+  outline: none;
 }
 .form-input-div {
   margin-bottom: 20px;
@@ -11014,4 +11015,7 @@ textarea.apply-file-input {
 label.ico-label-box {
   color: var(--text-primary-color-2);
   font-size: 16px;
+}
+.is-invalid {
+  border: 1px solid red;
 }
