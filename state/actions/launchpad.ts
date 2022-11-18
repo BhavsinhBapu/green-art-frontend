@@ -6,6 +6,7 @@ import {
   launchpadBuyIcoToken,
   launchpadDynamicFrom,
   launchpadDynamicFromSubmit,
+  launchpadLandingPage,
 } from "service/launchpad";
 
 export const getLaunchpadListAction = async (
@@ -86,4 +87,10 @@ export const launchpadDynamicFromAction = async (
   });
   setFormFields(tempJson);
   setLoading(false);
+};
+export const getLaunchpadLandingPageAction = async (
+  setLaunchpadLandingPage: any
+) => {
+  const response = await launchpadLandingPage();
+  setLaunchpadLandingPage(response);
 };
