@@ -1,18 +1,23 @@
 import useTranslation from "next-translate/useTranslation";
 import React from "react";
 
-const LaunchTop = () => {
+const LaunchTop = ({ data }: any) => {
   const { t } = useTranslation("common");
   return (
-    <div className="section-top-wrap mb-25 background-image-class">
+    <div
+      style={{
+        backgroundImage: `url(${data?.launchpad_cover_image})`,
+      }}
+      className="section-top-wrap mb-25 background-image-class"
+    >
       <div className="container">
         <div className="overview-area">
           <div className="overview-left ">
             <h1 className="big-top-title text-white">
-              {t("Tradexpro Token Launch Platform")}
+              {data?.launchpad_first_title}
             </h1>
             <h4 className="blance-title text-white">
-              {t("Buy or earn new tokens directly on Binance.")}
+              {data?.launchpad_first_description}
             </h4>
           </div>
         </div>
