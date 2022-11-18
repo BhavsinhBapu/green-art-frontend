@@ -7,9 +7,9 @@ import { IoLanguageSharp } from "react-icons/io5";
 import { FiSettings } from "react-icons/fi";
 import { CgProfile } from "react-icons/cg";
 import { HiOutlineDocumentReport } from "react-icons/hi";
-import { BsFillCalendarEventFill } from "react-icons/bs";
+
 import { BiWalletAlt } from "react-icons/bi";
-import { RiWallet3Line } from "react-icons/ri";
+import { RiCalendarEventLine, RiWallet3Line } from "react-icons/ri";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "state/store";
 import { LogoutAction } from "state/actions/user";
@@ -123,18 +123,20 @@ const Navbar = () => {
                     </li>
                   </Link>
                   <Link
-                    href={isLoggedIn ? "/launchpad" : "/authentication/signin"}
+                    href={isLoggedIn ? "/ico" : "/authentication/signin"}
                   >
                     <li
                       className={
-                        router.pathname == "/launchpad"
+                        router.pathname == "/ico" ||
+                        "/ico/ico-tokens" ||
+                        "/ico/applied-launchpad"
                           ? "cp-user-active-page"
                           : ""
                       }
                     >
                       <a href="">
                         <span className="cp-user-icon">
-                          <BsFillCalendarEventFill />
+                          <RiCalendarEventLine />
                         </span>
                         <span className="cp-user-name">{t("ICO")}</span>
                       </a>

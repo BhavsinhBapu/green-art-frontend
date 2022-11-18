@@ -1,9 +1,9 @@
 import Footer from "components/common/footer";
-import Hero from "components/launchpad/Hero";
-import LaunchPad from "components/launchpad/LaunchPad";
-import Launchpool from "components/launchpad/Launchpool";
-import LaunchTop from "components/launchpad/LaunchTop";
-import SellingSection from "components/launchpad/SellingSection";
+import Hero from "components/ico/Hero";
+import LaunchPad from "components/ico/LaunchPad";
+import Launchpool from "components/ico/Launchpool";
+import LaunchTop from "components/ico/LaunchTop";
+import SellingSection from "components/ico/SellingSection";
 import { GetServerSideProps } from "next";
 import useTranslation from "next-translate/useTranslation";
 import { parseCookies } from "nookies";
@@ -47,9 +47,6 @@ const Index = ({ socialData, customPageData, copyright_text }: any) => {
               ))}
             </>
           )}
-
-          {/* <h2 className="mb-5">Launchpool</h2> */}
-          {/* <Launchpool viewMore={true} /> */}
           <SellingSection data={launchpadLandingPage?.data} />
         </div>
       </div>
