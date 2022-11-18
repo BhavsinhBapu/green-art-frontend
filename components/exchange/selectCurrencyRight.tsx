@@ -98,7 +98,7 @@ const SelectCurrencyRight = () => {
             overlayClassName="rcTooltipOverlay"
           >
             <span className="text-center w-40">
-              {parseFloat(row.last_price).toFixed(4)}
+              {parseFloat(row.last_price).toFixed(8)}
             </span>
           </Tooltip>
         );
