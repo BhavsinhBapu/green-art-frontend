@@ -7,6 +7,7 @@ import { IoLanguageSharp } from "react-icons/io5";
 import { FiSettings } from "react-icons/fi";
 import { CgProfile } from "react-icons/cg";
 import { HiOutlineDocumentReport } from "react-icons/hi";
+import { BsFillCalendarEventFill } from "react-icons/bs";
 import { BiWalletAlt } from "react-icons/bi";
 import { RiWallet3Line } from "react-icons/ri";
 import { useSelector, useDispatch } from "react-redux";
@@ -15,7 +16,6 @@ import { LogoutAction } from "state/actions/user";
 import { notification, notificationSeen } from "service/notification";
 import useTranslation from "next-translate/useTranslation";
 import { HiArrowNarrowRight } from "react-icons/hi";
-import { CgNotifications } from "react-icons/cg";
 import { RiNotificationBadgeLine } from "react-icons/ri";
 import moment from "moment";
 import OutsideClickHandler from "react-outside-click-handler";
@@ -116,19 +116,27 @@ const Navbar = () => {
                     >
                       <a href="">
                         <span className="cp-user-icon">
-                          {/* <img
-                            src="/sidebar-icons/Wallet.svg"
-                            className="img-fluid cp-user-side-bar-icon"
-                            alt=""
-                          />
-                          <img
-                            src="/sidebar-icons/Wallet.svg"
-                            className="img-fluid cp-user-side-bar-icon-hover"
-                            alt=""
-                          /> */}
                           <BiWalletAlt />
                         </span>
                         <span className="cp-user-name">{t("Wallet")}</span>
+                      </a>
+                    </li>
+                  </Link>
+                  <Link
+                    href={isLoggedIn ? "/launchpad" : "/authentication/signin"}
+                  >
+                    <li
+                      className={
+                        router.pathname == "/launchpad"
+                          ? "cp-user-active-page"
+                          : ""
+                      }
+                    >
+                      <a href="">
+                        <span className="cp-user-icon">
+                          <BsFillCalendarEventFill />
+                        </span>
+                        <span className="cp-user-name">{t("ICO")}</span>
                       </a>
                     </li>
                   </Link>
@@ -185,16 +193,6 @@ const Navbar = () => {
                     >
                       <a className="arrow-icon" href="#" aria-expanded="true">
                         <span className="cp-user-icon">
-                          {/* <img
-                            src="/sidebar-icons/Membership.svg"
-                            className="img-fluid cp-user-side-bar-icon"
-                            alt=""
-                          />
-                          <img
-                            src="/sidebar-icons/hover/Membership-1.svg"
-                            className="img-fluid cp-user-side-bar-icon-hover"
-                            alt=""
-                          /> */}
                           <HiOutlineDocumentReport />
                         </span>
                         <span className="cp-user-name">{t("Reports")}</span>
@@ -338,22 +336,13 @@ const Navbar = () => {
                     >
                       <a href="">
                         <span className="cp-user-icon">
-                          {/* <img
-                            src="/sidebar-icons/user.svg"
-                            className="img-fluid cp-user-side-bar-icon"
-                            alt=""
-                          />
-                          <img
-                            src="/sidebar-icons/hover/user.svg"
-                            className="img-fluid cp-user-side-bar-icon-hover"
-                            alt=""
-                          /> */}
                           <CgProfile />
                         </span>
                         <span className="cp-user-name">{t("My Profile")}</span>
                       </a>
                     </li>
                   </Link>
+
                   <Link
                     href={
                       isLoggedIn ? "/user/referral" : "/authentication/signin"
@@ -369,16 +358,6 @@ const Navbar = () => {
                       <Link href="/user/referral">
                         <a>
                           <span className="cp-user-icon">
-                            {/* <img
-                            src="/sidebar-icons/referral.svg"
-                            className="img-fluid cp-user-side-bar-icon"
-                            alt=""
-                          />
-                          <img
-                            src="/sidebar-icons/hover/referral.svg"
-                            className="img-fluid cp-user-side-bar-icon-hover"
-                            alt=""
-                          /> */}
                             <BiNetworkChart />
                           </span>
                           <span className="cp-user-name">
