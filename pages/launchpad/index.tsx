@@ -9,25 +9,30 @@ import useTranslation from "next-translate/useTranslation";
 import { parseCookies } from "nookies";
 import React, { useEffect, useState } from "react";
 import { customPage, landingPage } from "service/landing-page";
-import { getLaunchpadListAction } from "state/actions/launchpad";
+import {
+  getLaunchpadLandingPageAction,
+  getLaunchpadListAction,
+} from "state/actions/launchpad";
 
 const Index = ({ socialData, customPageData, copyright_text }: any) => {
   const { t } = useTranslation("common");
   const [launchpadList, setLaunchpadList]: any = useState([]);
+  const [launchpadLandingPage, setLaunchpadLandingPage]: any = useState([]);
   const [launchpadFeatureItem, setLaunchpadFeatureItem]: any = useState([]);
   const [aaaa, setaaaa]: any = useState(false);
   let hideSection = false;
+
   useEffect(() => {
     getLaunchpadListAction(setLaunchpadList, setLaunchpadFeatureItem);
+    getLaunchpadLandingPageAction(setLaunchpadLandingPage);
   }, []);
 
-  console.log(hideSection);
   return (
     <div>
       <div className="launchPad">
-        <LaunchTop />
+        <LaunchTop data={launchpadLandingPage?.data} />
         <div className="launch-body container">
-          <Hero />
+          <Hero data={launchpadLandingPage?.data} />
           {launchpadFeatureItem.length > 0 && (
             <>
               <h2 className="mb-5">{t("Launchpad")}</h2>
@@ -45,7 +50,7 @@ const Index = ({ socialData, customPageData, copyright_text }: any) => {
 
           {/* <h2 className="mb-5">Launchpool</h2> */}
           {/* <Launchpool viewMore={true} /> */}
-          <SellingSection />
+          <SellingSection data={launchpadLandingPage?.data} />
         </div>
       </div>
       <Footer

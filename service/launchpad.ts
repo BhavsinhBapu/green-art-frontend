@@ -20,3 +20,7 @@ export const launchpadDynamicFrom = async () => {
   const { data } = await launchpadRequest.get("/dynamic-form");
   return data;
 };
+export const launchpadLandingPage = async () => {
+  const { data } = await launchpadRequest.get("/launchpad-settings");
+  return data;
+};
