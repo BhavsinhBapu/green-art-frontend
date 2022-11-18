@@ -1,5 +1,5 @@
-import LaunchPad from "components/launchpad/LaunchPad";
-import { SingleHero } from "components/launchpad/SingleHero";
+import LaunchPad from "components/ico/LaunchPad";
+import { SingleHero } from "components/ico/SingleHero";
 import React, { useEffect, useState } from "react";
 import { getLaunchpadListAction } from "state/actions/launchpad";
 

@@ -1,5 +1,5 @@
 import { Breadcrumb } from "components/Breadcrumb";
-import { SingleLaunchPool } from "components/launchpad/SingleLaunchPool";
+import { SingleLaunchPool } from "components/ico/SingleLaunchPool";
 import React from "react";
 
 export default function singleLaunchPoolPage() {

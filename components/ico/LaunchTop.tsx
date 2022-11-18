@@ -1,4 +1,5 @@
 import useTranslation from "next-translate/useTranslation";
+import Link from "next/link";
 import React from "react";
 
 const LaunchTop = ({ data }: any) => {
@@ -47,6 +48,11 @@ const LaunchTop = ({ data }: any) => {
             </h5>
           </div>
         </div>
+        <Link href="/ico/applied-launchpad">
+          <button className="primary-btn mt-5">
+            {t("Launchpad dashboard")}
+          </button>
+        </Link>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import { Breadcrumb } from "components/Breadcrumb";
-import { SingleLaunchPad } from "components/launchpad/SingleLaunchPad";
+import { SingleLaunchPad } from "components/ico/SingleLaunchPad";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { getLaunchpadListDetailsAction } from "state/actions/launchpad";
