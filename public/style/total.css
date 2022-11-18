@@ -11003,7 +11003,6 @@ textarea.apply-file-input {
 .ico-input-box {
   width: 100%;
   background: var(--footer-background-color);
-  /* border: 1px solid var(--primary-color); */
   border: 1px solid var(--footer-background-color);
   padding: 15px 10px;
   border-radius: 5px;

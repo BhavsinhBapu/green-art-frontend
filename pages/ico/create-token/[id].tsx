@@ -41,7 +41,7 @@ const TokenCreate = () => {
                   {t("Network")}
                 </label>
                 <select name="" className="ico-input-box">
-                  <option value="">{"Select Base Coin"}</option>
+                  <option value="">{"Select Your Network"}</option>
                   <option value="4">{"ERC20 Token Api"}</option>
                   <option value="5">{"BEP20 Token Api"}</option>
                 </select>
