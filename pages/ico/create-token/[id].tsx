@@ -84,9 +84,9 @@ const TokenCreate = () => {
                           : ""
                       }`}
                     >
-                      <option value="">{"Select Base Coin"}</option>
-                      <option value="BND">{"BND"}</option>
-                      <option value="ETH">{"ETH"}</option>
+                      <option value="">{t("Select Base Coin")}</option>
+                      <option value="BND">{t("BND")}</option>
+                      <option value="ETH">{t("ETH")}</option>
                     </Field>
                   </div>
                   <div className="col-md-6 form-input-div">
@@ -114,9 +114,9 @@ const TokenCreate = () => {
                         touched.network && errors.network ? "is-invalid" : ""
                       }`}
                     >
-                      <option value="">{"Select Your Network"}</option>
-                      <option value="4">{"ERC20 Token Api"}</option>
-                      <option value="5">{"BEP20 Token Api"}</option>
+                      <option value="">{t("Select Your Network")}</option>
+                      <option value="4">{t("ERC20 Token Api")}</option>
+                      <option value="5">{t("BEP20 Token Api")}</option>
                     </Field>
                   </div>
                   <div className="col-md-6 form-input-div">
@@ -198,15 +198,15 @@ const TokenCreate = () => {
                         touched.decimal && errors.decimal ? "is-invalid" : ""
                       }`}
                     >
-                      <option value="">{"Select Your Decimal"}</option>
-                      <option value={6}>{"6"}</option>
-                      <option value={12}>{"12"}</option>
-                      <option value={15}>{"15"}</option>
-                      <option value={18}>{"18"}</option>
-                      <option value={21}>{"21"}</option>
-                      <option value={24}>{"24"}</option>
-                      <option value={27}>{"27"}</option>
-                      <option value={30}>{"30"}</option>
+                      <option value="">{t("Select Your Decimal")}</option>
+                      <option value={6}>{t("6")}</option>
+                      <option value={12}>{t("12")}</option>
+                      <option value={15}>{t("15")}</option>
+                      <option value={18}>{t("18")}</option>
+                      <option value={21}>{t("21")}</option>
+                      <option value={24}>{t("24")}</option>
+                      <option value={27}>{t("27")}</option>
+                      <option value={30}>{t("30")}</option>
                     </Field>
                   </div>
                   <div className="col-md-6 form-input-div">
