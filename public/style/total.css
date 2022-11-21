@@ -10283,7 +10283,7 @@ input[type="number"] {
 
 .toolTip {
   /* font-style: italic; */
-  position: relative;
+  /* position: relative; */
 }
 
 .toolTip:hover::after {

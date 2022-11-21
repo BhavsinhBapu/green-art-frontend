@@ -74,9 +74,7 @@ const Profile: NextPage = ({
       cell: (row: any) => (
         <div className="blance-text">
           {row?.status === 1 && (
-            <Link
-              href={`/user/my-wallet/withdraw?type=withdraw&coin_id=${row?.id}`}
-            >
+            <Link href={`/ico/create-token/${row?.id}`}>
               <li className="toolTip" title="Withdraw">
                 <IoWalletOutline size={25} />
               </li>
@@ -131,37 +129,6 @@ const Profile: NextPage = ({
                       className="dataTables_wrapper no-footer"
                     >
                       <div className="dataTables_head">
-                        <div
-                          className="dataTables_length"
-                          id="assetBalances_length"
-                        >
-                          <label className="">
-                            {t("Show")}
-                            <select
-                              name="assetBalances_length"
-                              aria-controls="assetBalances"
-                              className=""
-                              // onChange={(e) => {
-                              //   CoinConvertHistoryAction(
-                              //     parseInt(e.target.value),
-                              //     1,
-                              //     setHistory,
-                              //     setProcessing,
-                              //     setStillHistory
-                              //   );
-                              // }}
-                            >
-                              <option selected disabled hidden>
-                                10
-                              </option>
-                              <option value="10">10</option>
-                              <option value="25">25</option>
-                              <option value="50">50</option>
-                              <option value="100">100</option>
-                            </select>
-                            {t("entries")}
-                          </label>
-                        </div>
                         <div id="table_filter" className="dataTables_filter">
                           <label>
                             {t("Search:")}

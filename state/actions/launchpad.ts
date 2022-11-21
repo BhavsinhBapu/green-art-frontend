@@ -4,6 +4,7 @@ import {
   DynamicSubmittedFormList,
   getLaunchpadList,
   getLaunchpadListDetails,
+  GetTokenList,
   launchpadBuyIcoToken,
   launchpadCreateUpdateToken,
   launchpadDynamicFrom,
@@ -145,5 +146,20 @@ export const launchpadCreateUpdateTokenAction = async (
       toast.error(response.message);
     }
     return response;
+  }
+};
+export const GetTokenListAction = async (
+  per_page: number,
+  page: number,
+  setReport: any,
+  setProcessing: any,
+  setStillHistory: any,
+  column_name: string,
+  order_by: string
+) => {
+  const response = await GetTokenList(per_page, page, column_name, order_by);
+  if (response.success === true) {
+    setReport(response.data.data);
+    setStillHistory(response.data);
   }
 };
