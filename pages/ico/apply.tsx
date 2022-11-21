@@ -225,7 +225,7 @@ const Apply = () => {
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
-  await SSRAuthCheck(ctx, "/launchpad/apply");
+  await SSRAuthCheck(ctx, "/ico/apply");
   const { data } = await landingPage();
   const { data: customPageData } = await customPage();
   return {

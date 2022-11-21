@@ -1,8 +1,10 @@
 import { FORM_CHECKBOX, FORM_RADIO, FORM_SELECT } from "helpers/core-constants";
 import { toast } from "react-toastify";
 import {
+  DynamicSubmittedFormList,
   getLaunchpadList,
   getLaunchpadListDetails,
+  GetTokenList,
   launchpadBuyIcoToken,
   launchpadCreateUpdateToken,
   launchpadDynamicFrom,
@@ -96,6 +98,27 @@ export const getLaunchpadLandingPageAction = async (
   const response = await launchpadLandingPage();
   setLaunchpadLandingPage(response);
 };
+export const DynamicSubmittedFormListAction = async (
+  per_page: number,
+  page: number,
+  setReport: any,
+  setProcessing: any,
+  setStillHistory: any,
+  column_name: string,
+  order_by: string
+) => {
+  const response = await DynamicSubmittedFormList(
+    per_page,
+    page,
+    column_name,
+    order_by
+  );
+  if (response.success === true) {
+    setReport(response.data.data);
+    setStillHistory(response.data);
+  }
+};
+
 export const launchpadCreateUpdateTokenAction = async (
   payload: any,
   setLoading: any
@@ -123,5 +146,20 @@ export const launchpadCreateUpdateTokenAction = async (
       toast.error(response.message);
     }
     return response;
+  }
+};
+export const GetTokenListAction = async (
+  per_page: number,
+  page: number,
+  setReport: any,
+  setProcessing: any,
+  setStillHistory: any,
+  column_name: string,
+  order_by: string
+) => {
+  const response = await GetTokenList(per_page, page, column_name, order_by);
+  if (response.success === true) {
+    setReport(response.data.data);
+    setStillHistory(response.data);
   }
 };
