@@ -78,7 +78,7 @@ const Profile: NextPage = ({
       sortable: true,
       cell: (row: any) => (
         <div className="blance-text">
-          <Link href={`/ico/create-token/${row?.id}`}>
+          <Link href={`/ico/create-edit-phase/${row?.id}`}>
             <li className="toolTip" title="Create Phase">
               <MdCreateNewFolder size={20} />
             </li>
