@@ -6,8 +6,10 @@ import * as Yup from "yup";
 import { GetServerSideProps } from "next";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { useRouter } from "next/router";
+import { icoListDetails } from "service/launchpad";
+import Edit from "pages/user/edit-profile";
 
-const TokenCreate = ({ id }: any) => {
+const TokenCreate = ({ id, edit, data }: any) => {
   const { t } = useTranslation("common");
   const [launchpadForm, setLaunchpadForm]: any = useState<any>([]);
   const [loading, setLoading]: any = useState<any>(false);
@@ -29,17 +31,18 @@ const TokenCreate = ({ id }: any) => {
           <div className="ico-create-form col-12">
             <Formik
               initialValues={{
+                id: edit ? data.id : "",
                 form_id: id,
-                base_coin: "",
-                token_name: "",
-                network: "",
-                wallet_address: "",
-                contract_address: "",
-                wallet_private_key: "",
-                chain_id: "",
-                chain_link: "",
-                decimal: "",
-                gas_limit: "",
+                base_coin: edit ? data.base_coin : "",
+                token_name: edit ? data?.token_name : "",
+                network: edit ? data?.network : "",
+                wallet_address: edit ? data?.wallet_address : "",
+                contract_address: edit ? data?.contract_address : "",
+                wallet_private_key: edit ? data?.wallet_private_key : "",
+                chain_id: edit ? data?.chain_id : "",
+                chain_link: edit ? data?.chain_link : "",
+                decimal: edit ? data?.decimal : "",
+                gas_limit: edit ? data?.gas_limit : "",
               }}
               validationSchema={Yup.object({
                 form_id: Yup.number().required(
@@ -237,11 +240,15 @@ const TokenCreate = ({ id }: any) => {
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
-  const { id } = ctx.query;
+  const { id, edit } = ctx.query;
   await SSRAuthCheck(ctx, "/ico/applied-launchpad");
+  const icoList = await icoListDetails(id);
+
   return {
     props: {
       id: id,
+      edit: edit ? edit : null,
+      data: icoList?.data ? icoList?.data : null,
     },
   };
 };

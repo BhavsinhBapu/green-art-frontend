@@ -137,6 +137,9 @@ export const launchpadCreateUpdateTokenAction = async (
     formData.append("decimal", payload.decimal);
     formData.append("chain_link", payload.chain_link);
     formData.append("gas_limit", payload.gas_limit);
+    formData.append("id", payload.id);
+
+    console.log("########", payload);
     const response = await launchpadCreateUpdateToken(formData);
     setLoading(false);
     if (response.success === true) {
