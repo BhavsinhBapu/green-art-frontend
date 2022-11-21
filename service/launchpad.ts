@@ -54,3 +54,7 @@ export const GetTokenList = async (
   );
   return data;
 };
+export const icoListDetails = async (id: any) => {
+  const { data } = await launchpadRequest.get(`/ico-details?id=${id}`);
+  return data;
+};
