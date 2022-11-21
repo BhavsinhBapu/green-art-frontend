@@ -5,18 +5,26 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { GetServerSideProps } from "next";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
+import { useRouter } from "next/router";
 
 const TokenCreate = ({ id }: any) => {
   const { t } = useTranslation("common");
   const [launchpadForm, setLaunchpadForm]: any = useState<any>([]);
   const [loading, setLoading]: any = useState<any>(false);
+  const router = useRouter();
 
   return (
     <div className="container">
       <div className="row">
         <div className="ico-tokenCreate">
           <div className="col-12">
-            <h2>{t("Add New ICO Token")}</h2>
+            <h2>
+              {t(
+                `${
+                  router.query.edit === "true" ? "Edit" : "Add New"
+                }  ICO Token`
+              )}
+            </h2>
           </div>
           <div className="ico-create-form col-12">
             <Formik
