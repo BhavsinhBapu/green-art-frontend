@@ -227,7 +227,11 @@ const TokenCreate = ({ id, edit, data }: any) => {
 
                   <div className="col-md-12 form-input-div">
                     <button type="submit" className="primary-btn">
-                      {loading ? t("Loading..") : t("Apply To Launch")}
+                      {loading
+                        ? t("Loading..")
+                        : edit
+                        ? t("Edit")
+                        : t("Apply To Launch")}
                     </button>
                   </div>
                 </Form>
