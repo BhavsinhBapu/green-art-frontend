@@ -3,8 +3,10 @@ import React, { useEffect, useState } from "react";
 import { launchpadCreateUpdateTokenAction } from "state/actions/launchpad";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
+import { GetServerSideProps } from "next";
+import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 
-const TokenCreate = () => {
+const TokenCreate = ({ id }: any) => {
   const { t } = useTranslation("common");
   const [launchpadForm, setLaunchpadForm]: any = useState<any>([]);
   const [loading, setLoading]: any = useState<any>(false);
@@ -14,12 +16,12 @@ const TokenCreate = () => {
       <div className="row">
         <div className="ico-tokenCreate">
           <div className="col-12">
-            <h2>Add New ICO Token</h2>
+            <h2>{t("Add New ICO Token")}</h2>
           </div>
           <div className="ico-create-form col-12">
             <Formik
               initialValues={{
-                form_id: "",
+                form_id: id,
                 base_coin: "",
                 token_name: "",
                 network: "",
@@ -59,18 +61,6 @@ const TokenCreate = () => {
             >
               {({ errors, touched, setFieldValue }) => (
                 <Form className="row">
-                  <div className="col-md-6 form-input-div">
-                    <label className="ico-label-box" htmlFor="">
-                      {t(" ICO Submit Form ID")}
-                    </label>
-                    <Field
-                      type="number"
-                      name="form_id"
-                      className={`ico-input-box ${
-                        touched.form_id && errors.form_id ? "is-invalid" : ""
-                      }`}
-                    />
-                  </div>
                   <div className="col-md-6 form-input-div">
                     <label className="ico-label-box" htmlFor="">
                       {t(" Base Coin")}
@@ -238,5 +228,13 @@ const TokenCreate = () => {
     </div>
   );
 };
-
+export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
+  const { id } = ctx.query;
+  await SSRAuthCheck(ctx, "/ico/applied-launchpad");
+  return {
+    props: {
+      id: id,
+    },
+  };
+};
 export default TokenCreate;
