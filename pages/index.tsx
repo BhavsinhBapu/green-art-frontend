@@ -69,7 +69,9 @@ const Home: NextPage = ({
     //@ts-ignore
     window.$crisp = [];
     //@ts-ignore
-    window.CRISP_WEBSITE_ID = process.env.NEXT_PUBLIC_CRISP_ID;
+    // window.CRISP_WEBSITE_ID = process.env.NEXT_PUBLIC_CRISP_ID;
+    window.CRISP_WEBSITE_ID = common.live_chat_key;
+    // live_chat_key
     (function () {
       //@ts-ignore
       if (common.live_chat_status == "1") {
