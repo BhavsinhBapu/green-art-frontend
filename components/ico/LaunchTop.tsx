@@ -1,9 +1,12 @@
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import React from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "state/store";
 
 const LaunchTop = ({ data }: any) => {
   const { t } = useTranslation("common");
+  const { isLoggedIn } = useSelector((state: RootState) => state.user);
   return (
     <div
       style={{
@@ -48,11 +51,13 @@ const LaunchTop = ({ data }: any) => {
             </h5>
           </div>
         </div>
-        <Link href="/ico/applied-launchpad">
-          <button className="primary-btn mt-5">
-            {t("Launchpad dashboard")}
-          </button>
-        </Link>
+        {isLoggedIn && (
+          <Link href="/ico/applied-launchpad">
+            <button className="primary-btn mt-5">
+              {t("Launchpad dashboard")}
+            </button>
+          </Link>
+        )}
       </div>
     </div>
   );
