@@ -122,16 +122,10 @@ const Navbar = () => {
                       </a>
                     </li>
                   </Link>
-                  <Link
-                    href={isLoggedIn ? "/ico" : "/authentication/signin"}
-                  >
+                  <Link href={isLoggedIn ? "/ico" : "/authentication/signin"}>
                     <li
                       className={
-                        router.pathname == "/ico" ||
-                        "/ico/ico-tokens" ||
-                        "/ico/applied-launchpad"
-                          ? "cp-user-active-page"
-                          : ""
+                        router.pathname == "/ico" ? "cp-user-active-page" : ""
                       }
                     >
                       <a href="">

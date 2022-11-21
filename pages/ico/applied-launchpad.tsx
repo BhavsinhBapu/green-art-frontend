@@ -17,6 +17,7 @@ import DataTable from "react-data-table-component";
 import { handleSwapHistorySearch } from "state/actions/reports";
 import Link from "next/link";
 import { IoWalletOutline } from "react-icons/io5";
+import { GiToken } from "react-icons/gi";
 const Profile: NextPage = ({
   user,
   customPageData,
@@ -68,15 +69,15 @@ const Profile: NextPage = ({
       sortable: true,
     },
     {
-      name: t("Status"),
+      name: t("Actions"),
       selector: (row: any) => row?.status,
       sortable: true,
       cell: (row: any) => (
         <div className="blance-text">
           {row?.status === 1 && (
             <Link href={`/ico/create-token/${row?.id}`}>
-              <li className="toolTip" title="Withdraw">
-                <IoWalletOutline size={25} />
+              <li className="toolTip" title="Create Token">
+                <GiToken size={25} />
               </li>
             </Link>
           )}

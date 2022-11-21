@@ -10284,6 +10284,7 @@ input[type="number"] {
 .toolTip {
   /* font-style: italic; */
   /* position: relative; */
+  display: inline-block;
 }
 
 .toolTip:hover::after {
