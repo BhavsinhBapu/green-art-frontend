@@ -16,6 +16,7 @@ export const launchpadDynamicFromSubmit = async (payload: any) => {
   const { data } = await launchpadRequest.post("/dynamic-form-submit", payload);
   return data;
 };
+
 export const launchpadDynamicFrom = async () => {
   const { data } = await launchpadRequest.get("/dynamic-form");
   return data;
@@ -32,6 +33,13 @@ export const DynamicSubmittedFormList = async (
 ) => {
   const { data } = await launchpadRequest.get(
     `/submitted-dynamic-form-list?per_page=${per_page}&page=${page}&column_name=${column_name}&order_by=${order_by}`
+  );
+  return data;
+};
+export const launchpadCreateUpdateToken = async (payload: any) => {
+  const { data } = await launchpadRequest.post(
+    "/create-update-ico-token",
+    payload
   );
   return data;
 };
