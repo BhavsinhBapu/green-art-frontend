@@ -52,6 +52,7 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
     if (responseData?.data && responseData?.data[0]) {
       setSelectedNetwork(responseData?.data[0]);
     }
+    console.log(responseData, "responseData");
   }, [responseData?.data[0]]);
   React.useEffect(() => {
     setWithdrawalCredentials({
@@ -132,6 +133,16 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
                     )}
                   </div>
                 </div>
+                {responseData?.wallet.coin_type !== "USDT" && (
+                  <div className="wallet-addres">
+                    <h5>{t("Network Name")}</h5>
+                    <div className="coin-list-item">
+                      <p className="waring-wallet-text">
+                        {responseData?.withdraw?.network_name}
+                      </p>
+                    </div>
+                  </div>
+                )}
 
                 <div className="wallet-addres">
                   <h5>{t("Address")}</h5>

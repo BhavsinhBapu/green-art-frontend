@@ -110,6 +110,7 @@ async function listenMessages(dispatch: any, user: any) {
     if (e.orders.order_type === "sell")
       dispatch(setOpenBooksell(e.orders.orders));
     e.order_data && dispatch(setOrderData(e.order_data));
+    e?.order_data?.total && dispatch(setTotalData(e?.order_data?.total));
     e.last_price_data && dispatch(setLastPriceData(e.last_price_data));
   });
 }
