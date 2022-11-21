@@ -24,7 +24,6 @@ export const DipositComponent = ({
       setSelectedNetwork(responseData?.data[0]);
       setInitialHit(true);
     }
-    console.log(responseData, "responseData");
   }, [responseData?.data[0]]);
   return (
     <div className={fullPage ? "col-md-7  no-sidebar" : `col-md-7`}>
@@ -90,7 +89,7 @@ export const DipositComponent = ({
                   <h5>{t("Network Name")}</h5>
                   <div className="coin-list-item">
                     <p className="waring-wallet-text">
-                      {responseData?.withdraw?.network_name}
+                      {responseData?.deposit?.network_name}
                     </p>
                   </div>
                 </div>
