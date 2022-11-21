@@ -13,9 +13,10 @@ import LaunchpadSidebar from "layout/launchpad-sidebar";
 import { useEffect, useState } from "react";
 import { GetTokenListAction } from "state/actions/launchpad";
 import Link from "next/link";
-import { IoWalletOutline } from "react-icons/io5";
 import DataTable from "react-data-table-component";
 import { handleSwapHistorySearch } from "state/actions/reports";
+import { MdCreateNewFolder } from "react-icons/md";
+import { IoCreateOutline } from "react-icons/io5";
 const Profile: NextPage = ({
   user,
   customPageData,
@@ -70,6 +71,25 @@ const Profile: NextPage = ({
       name: t("Wallet Address"),
       selector: (row: any) => row?.wallet_address,
       sortable: true,
+    },
+    {
+      name: t("Actions"),
+      selector: (row: any) => row?.status,
+      sortable: true,
+      cell: (row: any) => (
+        <div className="blance-text">
+          <Link href={`/ico/create-token/${row?.id}`}>
+            <li className="toolTip" title="Create Phase">
+              <MdCreateNewFolder size={20} />
+            </li>
+          </Link>
+          <Link href={`/ico/create-edit-token/${row?.id}?edit=true`}>
+            <li className="toolTip ml-2" title="Edit token">
+              <IoCreateOutline size={20} />
+            </li>
+          </Link>
+        </div>
+      ),
     },
   ];
   const LinkTopaginationString = (page: any) => {
