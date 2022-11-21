@@ -1,9 +1,12 @@
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import React from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "state/store";
 
 const Hero = ({ data }: any) => {
   const { t } = useTranslation("common");
+   const { isLoggedIn } = useSelector((state: RootState) => state.user);
   return (
     <section className="hero-banner-area-pool">
       <div className="row">
@@ -12,7 +15,7 @@ const Hero = ({ data }: any) => {
           <p className="banner-content mb-2">
             {data?.launchpad_second_description}
           </p>
-          <Link href="/launchpad/apply">
+          <Link href={isLoggedIn?"/ico/apply":"/authentication/signin"}>
             <button className="primary-btn">
               {data?.launchpad_apply_to_button_text}
             </button>
