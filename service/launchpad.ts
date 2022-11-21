@@ -43,3 +43,14 @@ export const launchpadCreateUpdateToken = async (payload: any) => {
   );
   return data;
 };
+export const GetTokenList = async (
+  per_page: number,
+  page: number,
+  column_name: string,
+  order_by: string
+) => {
+  const { data } = await launchpadRequest.get(
+    `/ico-list-user?per_page=${per_page}&page=${page}&column_name=${column_name}&order_by=${order_by}`
+  );
+  return data;
+};
