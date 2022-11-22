@@ -68,7 +68,7 @@ const DeposiAndWithdraw = ({
           address: response.address,
         });
       } else if (response.success === false) {
-      router.push("/user/my-wallet");
+        router.push("/user/my-wallet");
       }
     }
   };

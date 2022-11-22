@@ -43,6 +43,13 @@ export const launchpadCreateUpdateToken = async (payload: any) => {
   );
   return data;
 };
+export const launchpadCreateUpdatePhase = async (payload: any) => {
+  const { data } = await launchpadRequest.post(
+    "/create-update-ico-token-phase",
+    payload
+  );
+  return data;
+};
 export const GetTokenList = async (
   per_page: number,
   page: number,
@@ -56,5 +63,17 @@ export const GetTokenList = async (
 };
 export const icoListDetails = async (id: any) => {
   const { data } = await launchpadRequest.get(`/ico-details?id=${id}`);
+  return data;
+};
+export const IcoTokenPhaseList = async (
+  per_page: number,
+  page: number,
+  column_name: string,
+  order_by: string,
+  id: any
+) => {
+  const { data } = await launchpadRequest.get(
+    `/ico-token-phase-list?ico_token_id=${id}&per_page=${per_page}&page=${page}&column_name=${column_name}&order_by=${order_by}`
+  );
   return data;
 };

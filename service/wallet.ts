@@ -4,7 +4,10 @@ export const WalletListApi = async (url: string) => {
   const { data } = await request.get(url);
   return data;
 };
-
+export const GetCoinListApi = async () => {
+  const { data } = await request.get("get-coin-list");
+  return data;
+};
 export const WalletDepositApi = async (id: number) => {
   const { data } = await request.get(`/wallet-deposit-${id}`);
   return data;

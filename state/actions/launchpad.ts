@@ -5,13 +5,16 @@ import {
   getLaunchpadList,
   getLaunchpadListDetails,
   GetTokenList,
+  IcoTokenPhaseList,
   launchpadBuyIcoToken,
+  launchpadCreateUpdatePhase,
   launchpadCreateUpdateToken,
   launchpadDynamicFrom,
   launchpadDynamicFromSubmit,
   launchpadLandingPage,
 } from "service/launchpad";
 import Router from "next/router";
+import { GetCoinListApi } from "service/wallet";
 
 export const getLaunchpadListAction = async (
   setLaunchpadList: any,
@@ -138,8 +141,6 @@ export const launchpadCreateUpdateTokenAction = async (
     formData.append("chain_link", payload.chain_link);
     formData.append("gas_limit", payload.gas_limit);
     formData.append("id", payload.id);
-
-    console.log("########", payload);
     const response = await launchpadCreateUpdateToken(formData);
     setLoading(false);
     if (response.success === true) {
@@ -149,6 +150,62 @@ export const launchpadCreateUpdateTokenAction = async (
       toast.error(response.message);
     }
     return response;
+  }
+};
+export const launchpadCreateUpdatePhaseAction = async (
+  payload: any,
+  setLoading: any
+) => {
+  setLoading(true);
+  if (Object.keys(payload).length > 0) {
+    const formData: any = new FormData();
+    formData.append("ico_token_id", payload.ico_token_id);
+    formData.append("coin_price", payload.coin_price);
+    formData.append("coin_currency", payload.coin_currency);
+    formData.append("phase_title", payload.phase_title);
+    formData.append("start_date", payload.start_date);
+    formData.append("end_date", payload.end_date);
+    formData.append("description", payload.description);
+    formData.append("video_link", payload.video_link);
+    formData.append("image", payload.image);
+    formData.append("social_link", payload.social_link);
+    formData.append("id", payload.id);
+    formData.append("total_token_supply", payload.total_token_supply);
+
+    const response = await launchpadCreateUpdatePhase(formData);
+    setLoading(false);
+
+    if (response.success === true) {
+      toast.success(response.message);
+      Router.push("/ico/ico-tokens");
+    } else if (response.success === false) {
+      toast.error(response.message);
+    }
+    return response;
+  }
+};
+
+// IcoTokenPhaseList;
+export const IcoTokenPhaseListAction = async (
+  per_page: number,
+  page: number,
+  setReport: any,
+  setProcessing: any,
+  setStillHistory: any,
+  column_name: string,
+  order_by: string,
+  id: number
+) => {
+  const response = await IcoTokenPhaseList(
+    per_page,
+    page,
+    column_name,
+    order_by,
+    id
+  );
+  if (response.success === true) {
+    setReport(response.data.data);
+    setStillHistory(response.data);
   }
 };
 export const GetTokenListAction = async (
