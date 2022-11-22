@@ -168,7 +168,7 @@ export const launchpadCreateUpdatePhaseAction = async (
     formData.append("description", payload.description);
     formData.append("video_link", payload.video_link);
     formData.append("image", payload.image);
-    formData.append("social_link", payload.social_link);
+    formData.append("social_link", JSON.stringify(payload.social_link));
     formData.append("id", payload.id);
     formData.append("total_token_supply", payload.total_token_supply);
 
