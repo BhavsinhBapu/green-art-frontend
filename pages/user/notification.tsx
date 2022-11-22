@@ -83,7 +83,9 @@ const NotificationPage = ({
                 </div>
               ))
             ) : (
-              <p className="text-center notificationNotFound">{t("No data found!")}</p>
+              <p className="text-center notificationNotFound">
+                {t("No data found!")}
+              </p>
             )}
           </div>
         </div>

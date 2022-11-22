@@ -1,29 +1,24 @@
-import type { GetServerSideProps, NextPage } from "next";
-import ProfileComp from "components/profile/profile";
-import { parseCookies } from "nookies";
-
-import { GetUserInfoByTokenServer } from "service/user";
-import ProfileSidebar from "layout/profile-sidebar";
-import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
-import useTranslation from "next-translate/useTranslation";
 import Footer from "components/common/footer";
-import { customPage, landingPage } from "service/landing-page";
-import moment from "moment";
 import LaunchpadSidebar from "layout/launchpad-sidebar";
-import { useEffect, useState } from "react";
-import { GetTokenListAction } from "state/actions/launchpad";
-import Link from "next/link";
+import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
+import moment from "moment";
+import { GetServerSideProps } from "next";
+import useTranslation from "next-translate/useTranslation";
+import { parseCookies } from "nookies";
+import React, { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
+import { customPage, landingPage } from "service/landing-page";
+import { GetUserInfoByTokenServer } from "service/user";
+import { IcoTokenPhaseListAction } from "state/actions/launchpad";
 import { handleSwapHistorySearch } from "state/actions/reports";
-import { MdCreateNewFolder } from "react-icons/md";
-import { IoCreateOutline } from "react-icons/io5";
-import { AiOutlineOrderedList } from "react-icons/ai";
-const Profile: NextPage = ({
+
+const IcoTokenPhaseList = ({
   user,
   customPageData,
   socialData,
   copyright_text,
   profileActivity,
+  id,
 }: any) => {
   const [history, setHistory] = useState<any>([]);
   const { t } = useTranslation("common");
@@ -68,58 +63,31 @@ const Profile: NextPage = ({
         moment(row.created_at).format("YYYY-MM-DD HH:mm:ss"),
       sortable: true,
     },
-    {
-      name: t("Wallet Address"),
-      selector: (row: any) => row?.wallet_address,
-      sortable: true,
-    },
-    {
-      name: t("Actions"),
-      selector: (row: any) => row?.status,
-      sortable: true,
-      cell: (row: any) => (
-        <div className="blance-text">
-          <Link href={`/ico/create-edit-phase/${row?.id}`}>
-            <li className="toolTip" title="Create Phase">
-              <MdCreateNewFolder size={20} />
-            </li>
-          </Link>
-          <Link href={`/ico/create-edit-token/${row?.id}?edit=true`}>
-            <li className="toolTip ml-2" title="Edit token">
-              <IoCreateOutline size={20} />
-            </li>
-          </Link>
-          <Link href={`/ico/token-phase-list/${row?.id}`}>
-            <li className="toolTip ml-2" title="Phase List">
-              <AiOutlineOrderedList size={20} />
-            </li>
-          </Link>
-        </div>
-      ),
-    },
   ];
   const LinkTopaginationString = (page: any) => {
     const url = page.url.split("?")[1];
     const number = url.split("=")[1];
-    GetTokenListAction(
+    IcoTokenPhaseListAction(
       10,
       parseInt(number),
       setHistory,
       setProcessing,
       setStillHistory,
       sortingInfo.column_name,
-      sortingInfo.order_by
+      sortingInfo.order_by,
+      id
     );
   };
   useEffect(() => {
-    GetTokenListAction(
+    IcoTokenPhaseListAction(
       10,
       1,
       setHistory,
       setProcessing,
       setStillHistory,
       sortingInfo.column_name,
-      sortingInfo.order_by
+      sortingInfo.order_by,
+      id
     );
   }, []);
   return (
@@ -130,7 +98,7 @@ const Profile: NextPage = ({
           <div className="container-fluid">
             <div className="section-top-wrap mb-25">
               <div className="profle-are-top">
-                <h2 className="section-top-title">{t("ICO Token")}</h2>
+                <h2 className="section-top-title">{t("Token Phase List")}</h2>
               </div>
             </div>
             <div className="asset-balances-area">
@@ -220,14 +188,18 @@ const Profile: NextPage = ({
 
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/user/profile");
+  const { id } = ctx.query;
   const { data } = await landingPage();
   const { data: customPageData } = await customPage();
+  const cookies = parseCookies(ctx);
+
   return {
     props: {
+      id: id,
       socialData: data.media_list,
       copyright_text: data?.copyright_text,
       customPageData: customPageData.data,
     },
   };
 };
-export default Profile;
+export default IcoTokenPhaseList;
