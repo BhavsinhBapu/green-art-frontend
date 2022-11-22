@@ -52,7 +52,6 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
     if (responseData?.data && responseData?.data[0]) {
       setSelectedNetwork(responseData?.data[0]);
     }
-    console.log(responseData, "responseData");
   }, [responseData?.data[0]]);
   React.useEffect(() => {
     setWithdrawalCredentials({

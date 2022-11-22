@@ -168,10 +168,11 @@ export const launchpadCreateUpdatePhaseAction = async (
     formData.append("description", payload.description);
     formData.append("video_link", payload.video_link);
     formData.append("image", payload.image);
-    formData.append("social_link", JSON.stringify(payload.social_link));
-    formData.append("id", payload.id);
+    formData.append("social_link[1]", payload.social_link["1"]);
+    formData.append("social_link[2]", payload.social_link["2"]);
+    formData.append("id", payload.id === null ? null : payload.id);
     formData.append("total_token_supply", payload.total_token_supply);
-
+    console.log(payload.id, "payload.id");
     const response = await launchpadCreateUpdatePhase(formData);
     setLoading(false);
 
@@ -204,6 +205,7 @@ export const IcoTokenPhaseListAction = async (
     id
   );
   if (response.success === true) {
+    console.log(response.data.data, "response.data.data");
     setReport(response.data.data);
     setStillHistory(response.data);
   }

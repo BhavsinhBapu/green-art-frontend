@@ -4,9 +4,11 @@ import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import moment from "moment";
 import { GetServerSideProps } from "next";
 import useTranslation from "next-translate/useTranslation";
+import Link from "next/link";
 import { parseCookies } from "nookies";
 import React, { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
+import { GiToken } from "react-icons/gi";
 import { customPage, landingPage } from "service/landing-page";
 import { GetUserInfoByTokenServer } from "service/user";
 import { IcoTokenPhaseListAction } from "state/actions/launchpad";
@@ -31,16 +33,15 @@ const IcoTokenPhaseList = ({
   const [stillHistory, setStillHistory] = useState<any>([]);
   const columns = [
     {
-      name: t("Base Coin"),
-      selector: (row: any) => row?.base_coin,
+      name: t("Phase title"),
+      selector: (row: any) => row?.phase_title,
       sortable: true,
     },
     {
-      name: t("Token Name"),
-      selector: (row: any) => row?.token_name,
+      name: t("Coin Price"),
+      selector: (row: any) => row?.coin_price,
       sortable: true,
     },
-
     {
       name: t("Status"),
       selector: (row: any) => row?.status,
@@ -62,6 +63,19 @@ const IcoTokenPhaseList = ({
       selector: (row: any) =>
         moment(row.created_at).format("YYYY-MM-DD HH:mm:ss"),
       sortable: true,
+    },
+    {
+      name: t("Actions"),
+      sortable: true,
+      cell: (row: any) => (
+        <div className="blance-text">
+          <Link href={`/ico/create-edit-phase/${row?.id}?edit=true`}>
+            <li className="toolTip" title="Edit Phase">
+              <GiToken size={25} />
+            </li>
+          </Link>
+        </div>
+      ),
     },
   ];
   const LinkTopaginationString = (page: any) => {
@@ -188,7 +202,7 @@ const IcoTokenPhaseList = ({
 
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/user/profile");
-  const { id } = ctx.query;
+  const { id, edit } = ctx.query;
   const { data } = await landingPage();
   const { data: customPageData } = await customPage();
   const cookies = parseCookies(ctx);
@@ -196,6 +210,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   return {
     props: {
       id: id,
+      edit: edit ? edit : null,
       socialData: data.media_list,
       copyright_text: data?.copyright_text,
       customPageData: customPageData.data,
