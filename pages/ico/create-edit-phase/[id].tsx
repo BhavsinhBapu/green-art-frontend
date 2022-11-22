@@ -5,37 +5,45 @@ import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { useRouter } from "next/router";
 import { launchpadCreateUpdatePhaseAction } from "state/actions/launchpad";
 import { GetCoinListApi } from "service/wallet";
+import { icoListDetails, phaseListDetails } from "service/launchpad";
+import { parseCookies } from "nookies";
 
-const CreateEditPhase = ({ id }: any) => {
+const CreateEditPhase = ({ id, edit, data }: any) => {
   const { t } = useTranslation("common");
   const [coinList, setCoinList] = useState([]);
   const [phaseForm, setphaseForm]: any = useState<any>({
-    id: null,
-    ico_token_id: id,
-    coin_price: "",
-    coin_currency: "",
-    total_token_supply: "",
-    phase_title: "",
-    start_date: "",
-    end_date: "",
-    description: "",
-    video_link: "",
-    image: "",
+    id: edit ? data.id : null,
+    ico_token_id: edit ? data.ico_token_id : id,
+    coin_price: edit ? data.coin_price : "",
+    coin_currency: edit ? data.coin_currency : "",
+    total_token_supply: edit ? data.total_token_supply : "",
+    phase_title: edit ? data.phase_title : "",
+    start_date: edit ? data.start_date : "",
+    end_date: edit ? data.end_date : "",
+    description: edit ? data.description : "",
+    video_link: edit ? data.video_link : "",
+    image: edit ? data.image : "",
     social_link: {
-      1: "",
-      2: "",
-      3: "",
+      1: JSON.parse(data.social_link).Facebook
+        ? JSON.parse(data.social_link).Facebook
+        : "",
+      2: JSON.parse(data.social_link).Twitter
+        ? JSON.parse(data.social_link).Twitter
+        : "",
+      3: JSON.parse(data.social_link).Instagram
+        ? JSON.parse(data.social_link).Instagram
+        : "",
     },
   });
   const [loading, setLoading]: any = useState<any>(false);
   const router = useRouter();
   const getCoinList = async () => {
     const coinResponse = await GetCoinListApi();
-    console.log(coinResponse, "coinResponse");
     setCoinList(coinResponse.data);
   };
   useEffect(() => {
     getCoinList();
+    console.log(data, "datadatadatadatadata");
   }, []);
   return (
     <div className="container">
@@ -248,7 +256,7 @@ const CreateEditPhase = ({ id }: any) => {
               </div>
               <div className="col-md-6 form-input-div">
                 <label className="ico-label-box" htmlFor="">
-                  {t("Instagram Link")}
+                  {t("Twitter Link")}
                 </label>
                 <input
                   type="text"
@@ -269,7 +277,7 @@ const CreateEditPhase = ({ id }: any) => {
               </div>
               <div className="col-md-6 form-input-div">
                 <label className="ico-label-box" htmlFor="">
-                  {t("Linkedin Link")}
+                  {t("Instagram Link")}
                 </label>
                 <input
                   type="text"
@@ -304,13 +312,13 @@ const CreateEditPhase = ({ id }: any) => {
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const { id, edit } = ctx.query;
   await SSRAuthCheck(ctx, "/ico/applied-launchpad");
-  // const icoList = await icoListDetails(id);
-
+  const cookies = parseCookies(ctx);
+  const icoList = await phaseListDetails(id, cookies.token);
   return {
     props: {
       id: id,
       edit: edit ? edit : null,
-      // data: icoList?.data ? icoList?.data : null,
+      data: edit ? icoList.data : {},
     },
   };
 };

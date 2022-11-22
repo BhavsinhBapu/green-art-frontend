@@ -65,6 +65,17 @@ export const icoListDetails = async (id: any) => {
   const { data } = await launchpadRequest.get(`/ico-details?id=${id}`);
   return data;
 };
+export const phaseListDetails = async (id: any, ctxCookie: any) => {
+  const { data } = await launchpadRequest.get(
+    `/ico-token-phase-details?id=${id}`,
+    {
+      headers: {
+        Authorization: `Bearer ${ctxCookie}`,
+      },
+    }
+  );
+  return data;
+};
 export const IcoTokenPhaseList = async (
   per_page: number,
   page: number,
