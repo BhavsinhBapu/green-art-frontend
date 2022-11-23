@@ -8,7 +8,9 @@ import Link from "next/link";
 import { parseCookies } from "nookies";
 import React, { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
+import { AiOutlineAppstoreAdd } from "react-icons/ai";
 import { GiToken } from "react-icons/gi";
+import { IoCreateOutline } from "react-icons/io5";
 import { customPage, landingPage } from "service/landing-page";
 import { GetUserInfoByTokenServer } from "service/user";
 import { IcoTokenPhaseListAction } from "state/actions/launchpad";
@@ -71,7 +73,12 @@ const IcoTokenPhaseList = ({
         <div className="blance-text">
           <Link href={`/ico/create-edit-phase/${row?.id}?edit=true`}>
             <li className="toolTip" title="Edit Phase">
-              <GiToken size={25} />
+              <IoCreateOutline size={20} />
+            </li>
+          </Link>
+          <Link href={`/ico/create-edit-additional-phase/${row?.id}`}>
+            <li className="toolTip ml-3" title="Add Edit Additional phase">
+              <AiOutlineAppstoreAdd size={20} />
             </li>
           </Link>
         </div>

@@ -22,19 +22,15 @@ const CreateEditPhase = ({ id, edit, data }: any) => {
     end_date: edit ? data.end_date : "",
     description: edit ? data.description : "",
     video_link: edit ? data.video_link : "",
-    image: edit ? data.image : "",
+    image: "",
+    editImage: edit ? data.image : "",
     social_link: {
-      1: JSON.parse(data.social_link).Facebook
-        ? JSON.parse(data.social_link).Facebook
-        : "",
-      2: JSON.parse(data.social_link).Twitter
-        ? JSON.parse(data.social_link).Twitter
-        : "",
-      3: JSON.parse(data.social_link).Instagram
-        ? JSON.parse(data.social_link).Instagram
-        : "",
+      1: edit ? JSON.parse(data.social_link).Facebook : "",
+      2: edit ? JSON.parse(data.social_link).Twitter : "",
+      3: edit ? JSON.parse(data.social_link).Linkedin : "",
     },
   });
+  const [formFields, setFormFields] = useState<any>([]);
   const [loading, setLoading]: any = useState<any>(false);
   const router = useRouter();
   const getCoinList = async () => {
@@ -43,7 +39,6 @@ const CreateEditPhase = ({ id, edit, data }: any) => {
   };
   useEffect(() => {
     getCoinList();
-    console.log(data, "datadatadatadatadata");
   }, []);
   return (
     <div className="container">
@@ -99,7 +94,12 @@ const CreateEditPhase = ({ id, edit, data }: any) => {
                 >
                   <option value="">{t("Select currency")}</option>
                   {coinList.map((item: any) => (
-                    <option value={item.coin_type}>{item?.name}</option>
+                    <option
+                      selected={phaseForm.coin_currency === item.coin_type}
+                      value={item.coin_type}
+                    >
+                      {item?.name}
+                    </option>
                   ))}
                 </select>
               </div>
@@ -209,30 +209,7 @@ const CreateEditPhase = ({ id, edit, data }: any) => {
                   className={`ico-input-box`}
                 />
               </div>
-              <div className="col-md-6 form-input-div">
-                <label className="ico-label-box" htmlFor="">
-                  {t("Upload Image")}
-                </label>
-                <input
-                  type="file"
-                  name="image"
-                  required
-                  className={`ico-input-box`}
-                  // value={phaseForm.image}
-                  // onChange={(e: any) => {
-                  //   setphaseForm({
-                  //     ...phaseForm,
-                  //     image: e.target.file[0],
-                  //   });
-                  // }}
-                  onChange={(e: any) => {
-                    setphaseForm({
-                      ...phaseForm,
-                      image: e.target.files[0],
-                    });
-                  }}
-                />
-              </div>
+
               <div className="col-md-6 form-input-div">
                 <label className="ico-label-box" htmlFor="">
                   {t("Facebook Link")}
@@ -277,7 +254,7 @@ const CreateEditPhase = ({ id, edit, data }: any) => {
               </div>
               <div className="col-md-6 form-input-div">
                 <label className="ico-label-box" htmlFor="">
-                  {t("Instagram Link")}
+                  {t("Linkedin Link")}
                 </label>
                 <input
                   type="text"
@@ -295,6 +272,24 @@ const CreateEditPhase = ({ id, edit, data }: any) => {
                     });
                   }}
                 />
+              </div>
+              <div className="col-md-6 form-input-div">
+                <label className="ico-label-box" htmlFor="">
+                  {t("Upload Image")}
+                </label>
+                <input
+                  type="file"
+                  name="image"
+                  required={!phaseForm.editImage}
+                  className={`ico-input-box`}
+                  onChange={(e: any) => {
+                    setphaseForm({
+                      ...phaseForm,
+                      image: e.target.files[0],
+                    });
+                  }}
+                />
+                <img src={phaseForm.editImage} className="img-fluid mt-2" />
               </div>
               <div className="col-md-12 form-input-div">
                 <button type="submit" className="primary-btn">
