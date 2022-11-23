@@ -50,6 +50,13 @@ export const launchpadCreateUpdatePhase = async (payload: any) => {
   );
   return data;
 };
+export const launchpadCreateUpdatePhaseAdditional = async (payload: any) => {
+  const { data } = await launchpadRequest.post(
+    "/create-update-ico-token-phase-additional",
+    payload
+  );
+  return data;
+};
 export const GetTokenList = async (
   per_page: number,
   page: number,

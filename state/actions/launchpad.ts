@@ -8,6 +8,7 @@ import {
   IcoTokenPhaseList,
   launchpadBuyIcoToken,
   launchpadCreateUpdatePhase,
+  launchpadCreateUpdatePhaseAdditional,
   launchpadCreateUpdateToken,
   launchpadDynamicFrom,
   launchpadDynamicFromSubmit,
@@ -42,7 +43,31 @@ export const launchpadBuyIcoTokenAction = async () => {
 };
 
 //find binary search in javascript.
-
+// launchpadCreateUpdatePhaseAdditional;
+export const launchpadCreateUpdatePhaseAdditionalAction = async (
+  inputFields: any,
+  ico_phase_id: any,
+  setLoading: any
+) => {
+  setLoading(true);
+  const formData = new FormData();
+  let i = 0;
+  formData.append("ico_phase_id", ico_phase_id);
+  inputFields.map((item: any) => {
+    formData.append(`titles[${i}]`, item.title);
+    formData.append(`values[${i}]`, item.value);
+    formData.append(`file_values[${i}]`, item.file ? item.file : null);
+    console.log(item);
+    i++;
+  });
+  const response = await launchpadCreateUpdatePhaseAdditional(formData);
+  if (response.success === true) {
+    toast.success(response.message);
+  } else if (response.success === false) {
+    toast.error(response.message);
+  }
+  setLoading(false);
+};
 export const launchpadDynamicFromSubmitAction = async (
   payload: any,
   launchpadForm: any
@@ -81,7 +106,6 @@ export const launchpadDynamicFromAction = async (
   setLaunchpadForm(response.data);
   let tempJson: any = {};
   response?.data?.dynamic_form?.map((item: any) => {
-    console.log(item, "item.type === FORM_RADIOitem.type === FORM_RADIO");
     tempJson[item.id] = {
       value:
         item.type === FORM_CHECKBOX
@@ -170,9 +194,9 @@ export const launchpadCreateUpdatePhaseAction = async (
     formData.append("image", payload.image);
     formData.append("social_link[1]", payload.social_link["1"]);
     formData.append("social_link[2]", payload.social_link["2"]);
+    formData.append("social_link[3]", payload.social_link["3"]);
     formData.append("id", payload.id === null ? null : payload.id);
     formData.append("total_token_supply", payload.total_token_supply);
-    console.log(payload.id, "payload.id");
     const response = await launchpadCreateUpdatePhase(formData);
     setLoading(false);
 
