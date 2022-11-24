@@ -90,6 +90,7 @@ export const launchpadDynamicFromSubmitAction = async (
   const response = await launchpadDynamicFromSubmit(formData);
   if (response.success === true) {
     toast.success(response.message);
+    Router.push("/ico/applied-launchpad");
   } else if (response.success === false) {
     toast.error(response.message);
   }
@@ -102,8 +103,10 @@ export const launchpadDynamicFromAction = async (
   setFormFields: any,
   setLoading: any
 ) => {
+  setLoading(true);
   const response = await launchpadDynamicFrom();
   setLaunchpadForm(response.data);
+  console.log(response.data, "response.data");
   let tempJson: any = {};
   response?.data?.dynamic_form?.map((item: any) => {
     tempJson[item.id] = {
