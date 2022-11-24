@@ -76,7 +76,7 @@ const IcoTokenPhaseList = ({
               <IoCreateOutline size={20} />
             </li>
           </Link>
-          <Link href={`/ico/create-edit-additional-phase/${row?.id}`}>
+          <Link href={`/ico/create-edit-additional-phase/${row?.id}?edit=true`}>
             <li className="toolTip ml-3" title="Add Edit Additional phase">
               <AiOutlineAppstoreAdd size={20} />
             </li>

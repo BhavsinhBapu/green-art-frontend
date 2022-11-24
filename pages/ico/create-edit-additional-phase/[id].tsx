@@ -8,7 +8,11 @@ import {
   launchpadCreateUpdatePhaseAdditionalAction,
 } from "state/actions/launchpad";
 import { GetCoinListApi } from "service/wallet";
-import { icoListDetails, phaseListDetails } from "service/launchpad";
+import {
+  getAdditionalPhaseDetails,
+  icoListDetails,
+  phaseListDetails,
+} from "service/launchpad";
 import { parseCookies } from "nookies";
 
 const CreateEditAdditionalPhase = ({ id, edit, data }: any) => {
@@ -33,6 +37,17 @@ const CreateEditAdditionalPhase = ({ id, edit, data }: any) => {
     let newfield = { value: "", title: "", file: "" };
     setInputFields([...inputFields, newfield]);
   };
+
+  const getEditData = () => {
+    let tempArray: any = [];
+    data.map((item: any) => {
+      tempArray.push({ value: item.value, title: item.title, file: item.file });
+    });
+    setInputFields(tempArray);
+  };
+  useEffect(() => {
+    if (edit) getEditData();
+  }, []);
   return (
     <div className="container">
       <div className="row">
@@ -94,7 +109,7 @@ const CreateEditAdditionalPhase = ({ id, edit, data }: any) => {
                   </div>
                   <div className="col-md-4 form-input-div">
                     <label className="ico-label-box" htmlFor="">
-                      {t("Value")}
+                      {t("File")}
                     </label>
                     <input
                       type="file"
@@ -128,11 +143,15 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const { id, edit } = ctx.query;
   await SSRAuthCheck(ctx, "/ico/applied-launchpad");
   const cookies = parseCookies(ctx);
+  let additionalDetails;
+  if (edit) {
+    additionalDetails = await getAdditionalPhaseDetails(id, cookies.token);
+  }
   return {
     props: {
       id: id,
-      edit: edit ? edit : null,
-      data: {},
+      edit: additionalDetails.data.length > 0 ? true : false,
+      data: additionalDetails.data.length > 0 ? additionalDetails.data : [],
     },
   };
 };
