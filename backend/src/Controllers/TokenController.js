@@ -681,6 +681,74 @@ async function getBlockDetails(contract,fromBlockNumber,toBlockNumber)
   }
 }
 
+async function getContractDetails(req, res)
+{
+    try {
+        const network = req.headers.chainlinks;
+        let contractJsons = contractJson();
+
+        if (network) {
+            const contractAddress = req.body.contract_address;
+            const address = req.body.address;
+
+            let symbol = '';
+            let name = '';
+            let tokenBalance = 0;
+            let tokenDecimal = 0;
+            const web3 = new Web3(network);
+            const netID = await web3.eth.net.getId();
+            if (contractAddress) {
+                const contractInstance = new web3.eth.Contract(contractJsons, contractAddress);
+                 symbol = await contractInstance.methods.symbol().call();
+                 name = await contractInstance.methods.name().call();
+                tokenDecimal = await contractInstance.methods.decimals().call();
+                if (address) {
+                     tokenBalance = await contractInstance.methods.balanceOf(address).call();
+                     if(tokenDecimal == 8) {
+                         tokenBalance = customFromWei(tokenBalance, tokenDecimal);
+                     } else {
+                         tokenBalance = Web3.utils.fromWei(tokenBalance.toString(), contract_decimals(tokenDecimal));
+                     }
+                 }
+
+            } else {
+                res.json({
+                    status: false,
+                    message: "Contract address required",
+                    data: {}
+                });
+            }
+
+            const data = {
+                chain_id : netID,
+                symbol : symbol,
+                name : name,
+                token_balance : tokenBalance,
+                token_decimal : tokenDecimal
+            }
+
+            res.send({
+                status: true,
+                message: "process successfully",
+                data: data
+            });
+
+        } else {
+            res.json({
+                status: false,
+                message: "No chain provided",
+                data: {}
+            });
+        }
+    } catch(e){
+        res.json({
+            status: false,
+            message: e.message,
+            data: {}
+        });
+    }
+}
+
 module.exports = {
     getData,
     generateAddress,
@@ -690,5 +758,6 @@ module.exports = {
     checkEstimateGasFees,
     getTransactionByContractAddress,
     getDataByTransactionHash,
-    getLatestEvents
+    getLatestEvents,
+    getContractDetails
 }
