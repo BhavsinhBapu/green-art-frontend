@@ -14,7 +14,7 @@ const TokenCreate = ({ id, edit, data }: any) => {
   const [launchpadForm, setLaunchpadForm]: any = useState<any>([]);
   const [loading, setLoading]: any = useState<any>(false);
   const router = useRouter();
-
+  console.log(data, "datadatadatadata");
   return (
     <div className="container">
       <div className="row">
