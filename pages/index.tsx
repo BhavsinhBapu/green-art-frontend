@@ -83,6 +83,7 @@ const Home: NextPage = ({
         d.getElementsByTagName("head")[0].appendChild(s);
       }
     })();
+    console.log(asset_coin_pairs, "asset_coin_pairs");
   }, [common.live_chat_status]);
 
   return (
@@ -343,7 +344,14 @@ const Home: NextPage = ({
                             {asset_coin_pairs?.map(
                               (item: any, index: number) => (
                                 <tr role="row" className="odd" key={index}>
-                                  <td>
+                                  <td className="d-flex">
+                                    <img
+                                      className="icon mr-3"
+                                      src={item?.coin_icon || "/bitcoin.png"}
+                                      alt="coin"
+                                      width="25px"
+                                      height="25px"
+                                    />
                                     <a className="cellMarket" href="#">
                                       <div className="marketSymbols">
                                         <span className="quoteSymbol">
@@ -503,7 +511,14 @@ const Home: NextPage = ({
                             {hourly_coin_pairs?.map(
                               (item: any, index: number) => (
                                 <tr role="row" className="odd" key={index}>
-                                  <td>
+                                  <td className="d-flex">
+                                    <img
+                                      className="icon mr-3"
+                                      src={item?.coin_icon || "/bitcoin.png"}
+                                      alt="coin"
+                                      width="25px"
+                                      height="25px"
+                                    />
                                     <a className="cellMarket" href="#">
                                       <div className="marketSymbols">
                                         <span className="quoteSymbol">
@@ -659,7 +674,14 @@ const Home: NextPage = ({
                             {latest_coin_pairs?.map(
                               (item: any, index: number) => (
                                 <tr role="row" className="odd" key={index}>
-                                  <td>
+                                  <td className="d-flex">
+                                    <img
+                                      className="icon mr-3"
+                                      src={item?.coin_icon || "/bitcoin.png"}
+                                      alt="coin"
+                                      width="25px"
+                                      height="25px"
+                                    />
                                     <a className="cellMarket" href="#">
                                       <div className="marketSymbols">
                                         <span className="quoteSymbol">
