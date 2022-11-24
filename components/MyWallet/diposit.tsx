@@ -89,7 +89,7 @@ export const DipositComponent = ({
                   <h5>{t("Network Name")}</h5>
                   <div className="coin-list-item">
                     <p className="waring-wallet-text">
-                      {responseData?.withdraw?.network_name}
+                      {responseData?.deposit?.network_name}
                     </p>
                   </div>
                 </div>
