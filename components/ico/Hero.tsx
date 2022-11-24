@@ -6,7 +6,8 @@ import { RootState } from "state/store";
 
 const Hero = ({ data }: any) => {
   const { t } = useTranslation("common");
-   const { isLoggedIn } = useSelector((state: RootState) => state.user);
+  const { isLoggedIn } = useSelector((state: RootState) => state.user);
+  console.log(data, "data");
   return (
     <section className="hero-banner-area-pool">
       <div className="row">
@@ -15,11 +16,13 @@ const Hero = ({ data }: any) => {
           <p className="banner-content mb-2">
             {data?.launchpad_second_description}
           </p>
-          <Link href={isLoggedIn?"/ico/apply":"/authentication/signin"}>
-            <button className="primary-btn">
-              {data?.launchpad_apply_to_button_text}
-            </button>
-          </Link>
+          {parseInt(data?.launchpad_apply_to_status) === 1 && (
+            <Link href={isLoggedIn ? "/ico/apply" : "/authentication/signin"}>
+              <button className="primary-btn">
+                {data?.launchpad_apply_to_button_text}
+              </button>
+            </Link>
+          )}
         </div>
         <div className="col-md-7">
           <img src={data?.launchpad_main_image} />

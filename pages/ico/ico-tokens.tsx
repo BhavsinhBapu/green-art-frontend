@@ -18,6 +18,7 @@ import { handleSwapHistorySearch } from "state/actions/reports";
 import { MdCreateNewFolder } from "react-icons/md";
 import { IoCreateOutline } from "react-icons/io5";
 import { AiOutlineOrderedList } from "react-icons/ai";
+import { toast } from "react-toastify";
 const Profile: NextPage = ({
   user,
   customPageData,
@@ -79,11 +80,26 @@ const Profile: NextPage = ({
       sortable: true,
       cell: (row: any) => (
         <div className="blance-text">
-          <Link href={`/ico/create-edit-phase/${row?.id}`}>
-            <li className="toolTip" title="Create Phase">
+          {row.approved_status === 1 ? (
+            <Link href={`/ico/create-edit-phase/${row?.id}`}>
+              <li className="toolTip" title="Create Phase">
+                <MdCreateNewFolder size={20} />
+              </li>
+            </Link>
+          ) : (
+            <li
+              className="toolTip"
+              title="Create Phase"
+              onClick={() => {
+                toast.warning(
+                  t("Cannot create phase,Please wait for token approval!")
+                );
+              }}
+            >
               <MdCreateNewFolder size={20} />
             </li>
-          </Link>
+          )}
+
           <Link href={`/ico/create-edit-token/${row?.id}?edit=true`}>
             <li className="toolTip ml-2" title="Edit token">
               <IoCreateOutline size={20} />
@@ -121,6 +137,7 @@ const Profile: NextPage = ({
       sortingInfo.column_name,
       sortingInfo.order_by
     );
+    console.log(history, "historyhistoryhistory");
   }, []);
   return (
     <>
