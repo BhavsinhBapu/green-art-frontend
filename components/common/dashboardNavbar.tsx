@@ -8,7 +8,11 @@ import { FiSettings } from "react-icons/fi";
 import { CgProfile } from "react-icons/cg";
 import { HiArrowNarrowRight, HiOutlineDocumentReport } from "react-icons/hi";
 import { BiWalletAlt } from "react-icons/bi";
-import { RiNotificationBadgeLine, RiWallet3Line } from "react-icons/ri";
+import {
+  RiCalendarEventLine,
+  RiNotificationBadgeLine,
+  RiWallet3Line,
+} from "react-icons/ri";
 import { RootState } from "state/store";
 import { LogoutAction } from "state/actions/user";
 import useTranslation from "next-translate/useTranslation";
@@ -114,6 +118,20 @@ const DashboardNavbar = () => {
                           <BiWalletAlt />
                         </span>
                         <span className="cp-user-name">{t("Wallet")}</span>
+                      </a>
+                    </li>
+                  </Link>
+                  <Link href={isLoggedIn ? "/ico" : "/authentication/signin"}>
+                    <li
+                      className={
+                        router.pathname == "/ico" ? "cp-user-active-page" : ""
+                      }
+                    >
+                      <a href="">
+                        <span className="cp-user-icon">
+                          <RiCalendarEventLine />
+                        </span>
+                        <span className="cp-user-name">{t("ICO")}</span>
                       </a>
                     </li>
                   </Link>

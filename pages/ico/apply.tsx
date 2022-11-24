@@ -47,7 +47,6 @@ const Apply = () => {
             );
           }}
         >
-          {JSON.stringify(formFields)}
           <div className="appy-form">
             <h2 className="launchpadTitle">
               {launchpadForm?.dynamic_form_for_ico_title === false
