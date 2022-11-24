@@ -9,7 +9,8 @@ const {
         sendEth, 
         getTransactionByContractAddress,
         getDataByTransactionHash,
-        getLatestEvents
+        getLatestEvents,
+        getContractDetails
     } = require("../Controllers/TokenController");
     
 const { checkSecurity } = require("../middleware/common/SecurityCheck");
@@ -28,5 +29,6 @@ route.post("/send-token",sendToken);
 route.post("/check-estimate-gas", checkEstimateGasFees);
 route.post("/get-transaction-data", getDataByTransactionHash);
 route.post("/get-transfer-event", getLatestEvents);
+route.post("/get-contract-details", getContractDetails);
 
 module.exports = route;
