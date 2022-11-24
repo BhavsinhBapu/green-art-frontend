@@ -151,8 +151,8 @@ const Home: NextPage = ({
                     <a
                       href={
                         router.locale !== "en"
-                          ? `/${router.locale}/exchange/dashboard`
-                          : "/exchange/dashboard"
+                          ? `/${router.locale}/authentication/signup`
+                          : "/authentication/signup"
                       }
                       className="primary-btn"
                     >
