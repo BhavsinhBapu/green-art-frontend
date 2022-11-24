@@ -308,7 +308,10 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const { id, edit } = ctx.query;
   await SSRAuthCheck(ctx, "/ico/applied-launchpad");
   const cookies = parseCookies(ctx);
-  const icoList = await phaseListDetails(id, cookies.token);
+  let icoList: any;
+  if (edit) {
+    icoList = await phaseListDetails(id, cookies.token);
+  }
   return {
     props: {
       id: id,
