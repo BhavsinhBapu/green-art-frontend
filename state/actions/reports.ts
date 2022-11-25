@@ -254,6 +254,7 @@ export const CurrencyWithdrawHistoryAction = async (
   column_name: string,
   order_by: string
 ) => {
+  console.log("akmdksamlkdmaslkdmlkasmdlkamsdkl");
   setProcessing(true);
   const response = await currencyWithdrawHistory(
     per_page,
@@ -261,8 +262,9 @@ export const CurrencyWithdrawHistoryAction = async (
     column_name,
     order_by
   );
-  setReport(response?.data?.data);
-  setStillHistory(response.data);
+  console.log(response, "response?.data?.data");
+  setReport(response?.data?.data?.data);
+  setStillHistory(response?.data?.data);
   setProcessing(false);
   return response;
 };
