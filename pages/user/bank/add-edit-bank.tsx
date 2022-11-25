@@ -1,24 +1,31 @@
-import { formatCurrency } from "common";
 import Footer from "components/common/footer";
-import TableLoading from "components/common/TableLoading";
 import ProfileSidebar from "layout/profile-sidebar";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
-import moment from "moment";
 import { GetServerSideProps } from "next";
 import useTranslation from "next-translate/useTranslation";
-import Link from "next/link";
 import { parseCookies } from "nookies";
 import React, { useState } from "react";
-import DataTable from "react-data-table-component";
 import { customPage, landingPage } from "service/landing-page";
 import { GetUserInfoByTokenServer } from "service/user";
 import { useRouter } from "next/router";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
+import {
+  addEditBankDetailsAction,
+  deleteBankAction,
+} from "state/actions/fiat-deposit-withawal";
+import { getBankList, getBankListSSr } from "service/deposit";
 
-const AddBank = ({ customPageData, socialData, copyright_text }: any) => {
+const AddBank = ({
+  customPageData,
+  socialData,
+  copyright_text,
+  id,
+  data,
+}: any) => {
   const { t } = useTranslation("common");
   const [loading, setLoading]: any = useState<any>(false);
+  const [deleteloading, setdeleteloading]: any = useState<any>(false);
   const router = useRouter();
 
   return (
@@ -40,27 +47,28 @@ const AddBank = ({ customPageData, socialData, copyright_text }: any) => {
                     <div className="ico-tokenCreate">
                       <div className="col-12">
                         <h2>
-                          {t(
-                            `${
-                              router.query.edit === "true" ? "Edit" : "Add New"
-                            }  Bank`
-                          )}
+                          {t(`${router.query.id ? "Edit" : "Add New"}  Bank`)}
                         </h2>
                       </div>
                       <div className="ico-create-form col-12">
                         <Formik
                           initialValues={{
-                            acount_holder_name: "",
-                            account_holder_address: "",
-                            bank_name: "",
-                            bank_address: "",
-                            country: "",
-                            swift_code: "",
-                            iban: "",
-                            note: "",
+                            id: id ? id : null,
+                            account_holder_name: id
+                              ? data.account_holder_name
+                              : "",
+                            account_holder_address: id
+                              ? data.account_holder_address
+                              : "",
+                            bank_name: id ? data.account_holder_address : "",
+                            bank_address: id ? data.bank_address : "",
+                            country: id ? data.country : "",
+                            swift_code: id ? data.swift_code : "",
+                            iban: id ? data.iban : "",
+                            note: id ? data.note : "",
                           }}
                           validationSchema={Yup.object({
-                            acount_holder_name: Yup.string().required(
+                            account_holder_name: Yup.string().required(
                               t("Field is required")
                             ),
                             account_holder_address: Yup.string().required(
@@ -83,6 +91,7 @@ const AddBank = ({ customPageData, socialData, copyright_text }: any) => {
                           })}
                           onSubmit={(values) => {
                             console.log(values);
+                            addEditBankDetailsAction(values, setLoading);
                           }}
                         >
                           {({ errors, touched, setFieldValue }) => (
@@ -93,10 +102,10 @@ const AddBank = ({ customPageData, socialData, copyright_text }: any) => {
                                 </label>
                                 <Field
                                   type="text"
-                                  name="acount_holder_name"
+                                  name="account_holder_name"
                                   className={`ico-input-box ${
-                                    touched.acount_holder_name &&
-                                    errors.acount_holder_name
+                                    touched.account_holder_name &&
+                                    errors.account_holder_name
                                       ? "is-invalid"
                                       : ""
                                   }`}
@@ -203,7 +212,20 @@ const AddBank = ({ customPageData, socialData, copyright_text }: any) => {
                               </div>
                               <div className="col-md-12 form-input-div">
                                 <button type="submit" className="primary-btn">
-                                  {loading ? t("Loading..") : t("Create Bank")}
+                                  {loading
+                                    ? t("Submitting..")
+                                    : t(`${id ? "Edit" : "Create"} Bank`)}
+                                </button>
+                                <button
+                                  type="button"
+                                  className="primary-btn ml-3"
+                                  onClick={() =>
+                                    deleteBankAction(setdeleteloading, id)
+                                  }
+                                >
+                                  {deleteloading
+                                    ? t("Submitting..")
+                                    : t(`${"Delete"} Bank`)}
                                 </button>
                               </div>
                             </Form>
@@ -233,11 +255,19 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const { data: customPageData } = await customPage();
   const cookies = parseCookies(ctx);
 
+  const { id } = ctx.query;
+  let listRes;
+  if (id) {
+    listRes = await getBankListSSr(id, cookies.token);
+  }
+
   return {
     props: {
       socialData: data.media_list,
       copyright_text: data?.copyright_text,
       customPageData: customPageData.data,
+      id: id ? id : null,
+      data: id ? listRes.data : null,
     },
   };
 };

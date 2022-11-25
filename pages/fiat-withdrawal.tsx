@@ -5,13 +5,17 @@ import {
 } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
 import { parseCookies } from "nookies";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { customPage, landingPage } from "service/landing-page";
 import { GetUserInfoByTokenServer } from "service/user";
 import useTranslation from "next-translate/useTranslation";
-import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import Footer from "components/common/footer";
+import {
+  apiFiatWithdrawalAction,
+  fiatWithdrawProcessAction,
+  getFiatWithdrawalRateAction,
+} from "state/actions/fiat-deposit-withawal";
 
 const fiatWithdrawal = ({
   customPageData,
@@ -20,7 +24,33 @@ const fiatWithdrawal = ({
 }: any) => {
   const { t } = useTranslation("common");
   const [loading, setLoading]: any = useState<any>(false);
-
+  const [initialData, setInitialData]: any = useState<any>([]);
+  const [rateCred, setRateCred]: any = useState<any>({
+    wallet_id: "",
+    currency: "",
+    amount: "",
+    type: "fiat",
+    bank_id: "",
+  });
+  const [converted_value, setConverted_value] = useState(0);
+  const [fees, setFees] = useState(0);
+  const getRate = async () => {
+    if (rateCred.wallet_id && rateCred.currency && rateCred.amount) {
+      const response = await getFiatWithdrawalRateAction({
+        wallet_id: rateCred.wallet_id,
+        currency: rateCred.currency,
+        amount: rateCred.amount,
+      });
+      setConverted_value(response.data.convert_amount);
+      setFees(response.data.fees);
+    }
+  };
+  useEffect(() => {
+    getRate();
+  }, [rateCred]);
+  useEffect(() => {
+    apiFiatWithdrawalAction(setInitialData, setLoading);
+  }, []);
   return (
     <>
       <div className="page-wrap">
@@ -38,141 +68,125 @@ const fiatWithdrawal = ({
                 <div className="container">
                   <div className="row">
                     <div className="ico-tokenCreate">
-                      <div className="col-12">
-                        <h2>{t("Add New")}</h2>
-                      </div>
                       <div className="ico-create-form col-12">
-                        <Formik
-                          initialValues={{
-                            wallet: "",
-                            coin_list: "",
-                            amount: "",
-                            convert_price: "",
-                            bank_list: "",
-                          }}
-                          validationSchema={Yup.object({
-                            wallet: Yup.string().required(
-                              t("Field is required")
-                            ),
-                            amount: Yup.string().required(
-                              t("Field is required")
-                            ),
-                            coin_list: Yup.string().required(
-                              t("Field is required")
-                            ),
-                            bank_list: Yup.string().required(
-                              t("Field is required")
-                            ),
-                          })}
-                          onSubmit={(values) => {
-                            console.log(values);
+                        <form
+                          className="row"
+                          onSubmit={(e) => {
+                            e.preventDefault();
+                            fiatWithdrawProcessAction(rateCred, setLoading);
                           }}
                         >
-                          {({ errors, touched, setFieldValue }) => (
-                            <Form className="row">
-                              <div className="col-md-6 form-input-div">
-                                <label className="ico-label-box" htmlFor="">
-                                  {t("Select Wallet")}
-                                </label>
-                                <Field
-                                  as="select"
-                                  name="wallet"
-                                  className={`ico-input-box ${
-                                    touched.wallet && errors.wallet
-                                      ? "is-invalid"
-                                      : ""
-                                  }`}
-                                >
-                                  <option value="">
-                                    {t("Select Your Wallet")}
-                                  </option>
-                                  <option value="a">{t("A Wallet")}</option>
-                                  <option value="b">{t("B Wallet")}</option>
-                                </Field>
-                              </div>
+                          <div className="col-md-6 form-input-div">
+                            <label className="ico-label-box" htmlFor="">
+                              {t("Select Wallet")}
+                            </label>
+                            <select
+                              name="wallet"
+                              className={`ico-input-box `}
+                              required
+                              onChange={(e: any) => {
+                                setRateCred({
+                                  ...rateCred,
+                                  wallet_id: e.target.value,
+                                });
+                              }}
+                            >
+                              <option value="">
+                                {t("Select Your Wallet")}
+                              </option>
+                              {initialData?.my_wallet?.map((item: any) => (
+                                <option value={item.encryptId}>
+                                  {item.coin_type}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+                          <div className="col-md-6 form-input-div">
+                            <label className="ico-label-box" htmlFor="">
+                              {t("Select Currency")}
+                            </label>
+                            <select
+                              name="coin_list"
+                              required
+                              className={`ico-input-box `}
+                              onChange={(e: any) => {
+                                setRateCred({
+                                  ...rateCred,
+                                  currency: e.target.value,
+                                });
+                              }}
+                            >
+                              <option value="">{t("Select Currency")}</option>
+                              {initialData?.currency?.map((item: any) => (
+                                <option value={item.code}>{item.name}</option>
+                              ))}
+                            </select>
+                          </div>
 
-                              <div className="col-md-6 form-input-div">
-                                <label className="ico-label-box" htmlFor="">
-                                  {t("Select Coin")}
-                                </label>
-                                <Field
-                                  as="select"
-                                  name="coin_list"
-                                  className={`ico-input-box ${
-                                    touched.coin_list && errors.coin_list
-                                      ? "is-invalid"
-                                      : ""
-                                  }`}
-                                >
-                                  <option value="">
-                                    {t("Select Coin List")}
-                                  </option>
-                                  <option value="a">{t("A Coin")}</option>
-                                  <option value="b">{t("B Coin")}</option>
-                                </Field>
-                              </div>
+                          <div className="col-md-6 form-input-div">
+                            <label className="ico-label-box" htmlFor="">
+                              {t("Amount")}
+                            </label>
+                            <input
+                              type="text"
+                              required
+                              onChange={(e) => {
+                                setRateCred({
+                                  ...rateCred,
+                                  amount: e.target.value,
+                                });
+                                // getFiatWithdrawalRateAction(rateCred);
+                              }}
+                              name="amount"
+                              className={`ico-input-box`}
+                            />
+                          </div>
 
-                              <div className="col-md-6 form-input-div">
-                                <label className="ico-label-box" htmlFor="">
-                                  {t("Amount")}
-                                </label>
-                                <Field
-                                  type="text"
-                                  name="amount"
-                                  className={`ico-input-box ${
-                                    touched.amount && errors.amount
-                                      ? "is-invalid"
-                                      : ""
-                                  }`}
-                                />
-                              </div>
+                          <div className="col-md-6 form-input-div">
+                            <label className="ico-label-box" htmlFor="">
+                              {t("Amount Convert Price")}
+                            </label>
+                            <input
+                              type="text"
+                              disabled
+                              value={converted_value}
+                              required
+                              name="convert_price"
+                              className={`ico-input-box `}
+                            />
+                            {t("Fees:")}
+                            {fees}
+                          </div>
 
-                              <div className="col-md-6 form-input-div">
-                                <label className="ico-label-box" htmlFor="">
-                                  {t("Amount Convert Price")}
-                                </label>
-                                <Field
-                                  type="text"
-                                  name="convert_price"
-                                  className={`ico-input-box ${
-                                    touched.convert_price &&
-                                    errors.convert_price
-                                      ? "is-invalid"
-                                      : ""
-                                  }`}
-                                />
-                              </div>
-
-                              <div className="col-md-6 form-input-div">
-                                <label className="ico-label-box" htmlFor="">
-                                  {t("Select Bank")}
-                                </label>
-                                <Field
-                                  as="select"
-                                  name="bank_list"
-                                  className={`ico-input-box ${
-                                    touched.bank_list && errors.bank_list
-                                      ? "is-invalid"
-                                      : ""
-                                  }`}
-                                >
-                                  <option value="">
-                                    {t("Select Bank List")}
-                                  </option>
-                                  <option value="a">{t("A Bank")}</option>
-                                  <option value="b">{t("B Bank")}</option>
-                                </Field>
-                              </div>
-                              <div className="col-md-12 form-input-div">
-                                <button type="submit" className="primary-btn">
-                                  {loading
-                                    ? t("Loading..")
-                                    : t("Submit Withdrawl")}
-                                </button>
-                              </div>
-                            </Form>
-                          )}
-                        </Formik>
+                          <div className="col-md-6 form-input-div">
+                            <label className="ico-label-box" htmlFor="">
+                              {t("Select Bank")}
+                            </label>
+                            <select
+                              name="bank_list"
+                              className={`ico-input-box `}
+                              required
+                              onChange={(e) => {
+                                setRateCred({
+                                  ...rateCred,
+                                  bank_id: e.target.value,
+                                });
+                              }}
+                            >
+                              <option value="">{t("Select Bank List")}</option>
+                              {initialData?.my_bank?.map((item: any) => (
+                                <option value={item.id}>
+                                  {item.bank_name}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+                          <div className="col-md-12 form-input-div">
+                            <button type="submit" className="primary-btn">
+                              {loading ? t("Loading..") : t("Submit Withdrawl")}
+                            </button>
+                          </div>
+                        </form>
                       </div>
                     </div>
                   </div>
