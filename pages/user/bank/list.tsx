@@ -8,17 +8,62 @@ import { GetServerSideProps } from "next";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import { parseCookies } from "nookies";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
+import { AiOutlineEdit } from "react-icons/ai";
+import { TiArrowRepeat } from "react-icons/ti";
 import { customPage, landingPage } from "service/landing-page";
 import { GetUserInfoByTokenServer } from "service/user";
+import { geyBankListAction } from "state/actions/fiat-deposit-withawal";
 
 const List = ({ customPageData, socialData, copyright_text }: any) => {
   const { t } = useTranslation("common");
   const [processing, setProcessing] = React.useState<boolean>(false);
   type searchType = string;
+  const [bankList, setBankList] = useState([]);
   const [search, setSearch] = React.useState<searchType>("");
+  const columns = [
+    {
+      name: t("Account holder name"),
+      selector: (row: any) => row?.account_holder_name,
+      sortable: true,
+    },
+    {
+      name: t("Bank name"),
+      selector: (row: any) => row?.bank_name,
+      sortable: true,
+    },
 
+    {
+      name: t("Country"),
+      selector: (row: any) => row?.country,
+      sortable: true,
+    },
+    {
+      name: t("Date"),
+      selector: (row: any) =>
+        moment(row.created_at).format("YYYY-MM-DD HH:mm:ss"),
+      sortable: true,
+    },
+    {
+      name: t("Actions"),
+      cell: (row: any) => (
+        <td>
+          <div className="active-link">
+            <Link href={`/user/bank/add-edit-bank?id=${row.id}`}>
+              <span className="toolTip" title="Edit bank">
+                <AiOutlineEdit size={20} />
+              </span>
+            </Link>
+         
+          </div>
+        </td>
+      ),
+    },
+  ];
+  useEffect(() => {
+    geyBankListAction(setBankList, setProcessing);
+  }, []);
   return (
     <>
       <div className="page-wrap">
@@ -101,16 +146,16 @@ const List = ({ customPageData, socialData, copyright_text }: any) => {
 
                           <div className="dataTables_head">
                             <div className="">
-                              <Link href={"/user/bank/add-bank"}>
+                              <Link href={"/user/bank/add-edit-bank"}>
                                 <button className="add-bank-btn">
-                                  <span>Add Bank</span>
+                                  <span>{t("Add Bank")}</span>
                                 </button>
                               </Link>
                             </div>
                           </div>
                         </div>
                       </div>
-                      {/* <DataTable columns={columns} data={history} /> */}
+                      <DataTable columns={columns} data={bankList} />
                       {/* {history?.length > 0 && (
                         <div
                           className="pagination-wrapper"
