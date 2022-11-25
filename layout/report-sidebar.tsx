@@ -87,6 +87,22 @@ const ReportSidebar = () => {
               </li>
             </Link>
           )}
+          {parseInt(settings.currency_deposit_status) === 1 && (
+            <Link href="/user/currency-withdraw-history">
+              <li
+                className={
+                  router.pathname == "/user/currency-withdraw-history"
+                    ? "active"
+                    : ""
+                }
+              >
+                <SiFiat />
+                <a href="getAllTransactionHistory">
+                  {t("Fiat withdrawal History")}
+                </a>
+              </li>
+            </Link>
+          )}
         </ul>
       </div>
     </div>

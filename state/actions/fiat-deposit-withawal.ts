@@ -52,7 +52,7 @@ export const fiatWithdrawProcessAction = async (
   setLoading(false);
   if (response.success === true) {
     toast.success(response.message);
-    Router.push("/user/bank/list");
+    Router.push("/user/currency-withdraw-history");
   } else if (response.success === false) {
     toast.error(response.message);
   }
@@ -65,7 +65,7 @@ export const apiFiatWithdrawalAction = async (
   setLoading(true);
   const response = await apiFiatWithdrawal();
   setLoading(false);
-  console.log(response.data, "response.data");
+
   setInitialData(response.data);
 };
 export const getFiatWithdrawalRateAction = async (payload: any) => {
