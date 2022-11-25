@@ -105,19 +105,19 @@ async function listenMessages(dispatch: any, user: any) {
     e?.order_data?.total && dispatch(setTotalData(e?.order_data?.total));
   });
   //@ts-ignore
-  window.Echo.channel(
-    `dashboard-${localStorage.getItem("base_coin_id")}-${localStorage.getItem(
-      "trade_coin_id"
-    )}`
-  ).listen(".order_removed", (e: any) => {
-    if (e.orders.order_type === "buy")
-      dispatch(setOpenBookBuy(e.orders.orders));
-    if (e.orders.order_type === "sell")
-      dispatch(setOpenBooksell(e.orders.orders));
-    e.order_data && dispatch(setOrderData(e.order_data));
-    e?.order_data?.total && dispatch(setTotalData(e?.order_data?.total));
-    e.last_price_data && dispatch(setLastPriceData(e.last_price_data));
-  });
+  // window.Echo.channel(
+  //   `dashboard-${localStorage.getItem("base_coin_id")}-${localStorage.getItem(
+  //     "trade_coin_id"
+  //   )}`
+  // ).listen(".order_removed", (e: any) => {
+  //   if (e.orders.order_type === "buy")
+  //     dispatch(setOpenBookBuy(e.orders.orders));
+  //   if (e.orders.order_type === "sell")
+  //     dispatch(setOpenBooksell(e.orders.orders));
+  //   e.order_data && dispatch(setOrderData(e.order_data));
+  //   e?.order_data?.total && dispatch(setTotalData(e?.order_data?.total));
+  //   e.last_price_data && dispatch(setLastPriceData(e.last_price_data));
+  // });
 }
 const Dashboard: NextPage = () => {
   const { settings } = useSelector((state: RootState) => state.common);
