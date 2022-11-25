@@ -352,6 +352,23 @@ const Navbar = () => {
                           <a href="">{t("Fiat Deposit History")}</a>
                         </li>
                       </Link>
+                      <Link
+                        href={
+                          isLoggedIn
+                            ? "/user/currency-withdraw-history"
+                            : "/authentication/signin"
+                        }
+                      >
+                        <li
+                          className={
+                            router.pathname == "/user/currency-withdraw-history"
+                              ? "cp-user-active-page"
+                              : ""
+                          }
+                        >
+                          <a href="">{t("Fiat Withdrawal History")}</a>
+                        </li>
+                      </Link>
                     </ul>
                   </li>
                   <Link

@@ -5,9 +5,11 @@ import {
   AllTransactionHistoryApi,
   CoinConvertHistoryApi,
   currencyDepositHistory,
+  currencyWithdrawHistory,
 } from "service/reports";
 import React, { Dispatch, SetStateAction } from "react";
 import FuzzySearch from "fuzzy-search";
+import CurrencyWithdrawHistory from "pages/user/currency-withdraw-history";
 export const WithdrawAndDepositHistoryAction = async (
   type: string,
   per_page: number,
@@ -243,7 +245,27 @@ export const CurrencyDepositHistoryAction = async (
   setProcessing(false);
   return response;
 };
-
+export const CurrencyWithdrawHistoryAction = async (
+  per_page: number,
+  page: number,
+  setReport: React.Dispatch<SetStateAction<object>>,
+  setProcessing: React.Dispatch<SetStateAction<boolean>>,
+  setStillHistory: React.Dispatch<SetStateAction<boolean>>,
+  column_name: string,
+  order_by: string
+) => {
+  setProcessing(true);
+  const response = await currencyWithdrawHistory(
+    per_page,
+    page,
+    column_name,
+    order_by
+  );
+  setReport(response?.data?.data);
+  setStillHistory(response.data);
+  setProcessing(false);
+  return response;
+};
 export const AllTransactionHistoryAction = async (
   per_page: number,
   page: number,
