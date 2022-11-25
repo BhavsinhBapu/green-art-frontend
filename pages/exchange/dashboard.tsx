@@ -69,9 +69,10 @@ async function listenMessages(dispatch: any, user: any) {
     //   console.log("sell", e.orders.orders);
     // }
 
-    e.order_data && dispatch(setOrderData(e.order_data));
-    e.last_price_data && dispatch(setLastPriceData(e.last_price_data));
-    dispatch(setPairs(e.pairs));
+    //last optimised
+    // e.order_data && dispatch(setOrderData(e.order_data));
+    // e.last_price_data && dispatch(setLastPriceData(e.last_price_data));
+    // dispatch(setPairs(e.pairs));
   });
   //@ts-ignore
   window.Echo.channel(
@@ -87,6 +88,10 @@ async function listenMessages(dispatch: any, user: any) {
       trade_coin_id: e.summary.trade_coin_id,
       total: parseFloat(e.last_trade.total),
     });
+    dispatch(setPairs(e.pairs));
+    e.last_price_data && dispatch(setLastPriceData(e.last_price_data));
+    e.order_data && dispatch(setOrderData(e.order_data));
+
   });
   //@ts-ignore
   window.Echo.channel(
