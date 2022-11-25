@@ -17,7 +17,7 @@ import {
   getFiatWithdrawalRateAction,
 } from "state/actions/fiat-deposit-withawal";
 
-const fiatWithdrawal = ({
+const FiatWithdrawal = ({
   customPageData,
   socialData,
   copyright_text,
@@ -98,11 +98,13 @@ const fiatWithdrawal = ({
                               <option value="">
                                 {t("Select Your Wallet")}
                               </option>
-                              {initialData?.my_wallet?.map((item: any) => (
-                                <option value={item.encryptId}>
-                                  {item.coin_type}
-                                </option>
-                              ))}
+                              {initialData?.my_wallet?.map(
+                                (item: any, index: number) => (
+                                  <option value={item.encryptId} key={index}>
+                                    {item.coin_type}
+                                  </option>
+                                )
+                              )}
                             </select>
                           </div>
                           <div className="col-md-6 form-input-div">
@@ -121,9 +123,13 @@ const fiatWithdrawal = ({
                               }}
                             >
                               <option value="">{t("Select Currency")}</option>
-                              {initialData?.currency?.map((item: any) => (
-                                <option value={item.code}>{item.name}</option>
-                              ))}
+                              {initialData?.currency?.map(
+                                (item: any, index: number) => (
+                                  <option key={index} value={item.code}>
+                                    {item.name}
+                                  </option>
+                                )
+                              )}
                             </select>
                           </div>
 
@@ -187,11 +193,13 @@ const fiatWithdrawal = ({
                               }}
                             >
                               <option value="">{t("Select Bank List")}</option>
-                              {initialData?.my_bank?.map((item: any) => (
-                                <option value={item.id}>
-                                  {item.bank_name}
-                                </option>
-                              ))}
+                              {initialData?.my_bank?.map(
+                                (item: any, index: number) => (
+                                  <option value={item.id} key={index}>
+                                    {item.bank_name}
+                                  </option>
+                                )
+                              )}
                             </select>
                           </div>
                           <div className="col-md-12 form-input-div">
@@ -243,4 +251,4 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
     },
   };
 };
-export default fiatWithdrawal;
+export default FiatWithdrawal;
