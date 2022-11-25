@@ -34,6 +34,8 @@ const fiatWithdrawal = ({
   });
   const [converted_value, setConverted_value] = useState(0);
   const [fees, setFees] = useState(0);
+  const [netAmount, setNetAmount] = useState(0);
+  const [currency, setcurrency] = useState("");
   const getRate = async () => {
     if (rateCred.wallet_id && rateCred.currency && rateCred.amount) {
       const response = await getFiatWithdrawalRateAction({
@@ -43,6 +45,8 @@ const fiatWithdrawal = ({
       });
       setConverted_value(response.data.convert_amount);
       setFees(response.data.fees);
+      setNetAmount(response.data.net_amount);
+      setcurrency(response.data.currency);
     }
   };
   useEffect(() => {
@@ -154,8 +158,17 @@ const fiatWithdrawal = ({
                               name="convert_price"
                               className={`ico-input-box `}
                             />
-                            {t("Fees:")}
-                            {fees}
+                            <div>
+                              <span>
+                                {t("Fees:")}
+                                {fees}
+                              </span>
+                              <span className="float-right">
+                                {t("Net Amount:")}
+                                {netAmount}
+                                {currency}
+                              </span>
+                            </div>
                           </div>
 
                           <div className="col-md-6 form-input-div">
