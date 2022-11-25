@@ -6,6 +6,7 @@ import {
   AiTwotoneEdit,
   AiTwotonePhone,
   AiFillSecurityScan,
+  AiOutlineBank,
 } from "react-icons/ai";
 import { useRouter } from "next/router";
 const ProfileSidebar = () => {
@@ -57,6 +58,15 @@ const ProfileSidebar = () => {
               <a href="/user/profile-verification-list">
                 {t("KYC Verification")}
               </a>
+            </li>
+          </Link>
+
+          <Link href="/user/bank/list">
+            <li
+              className={router.pathname == "/user/bank/list" ? "active" : ""}
+            >
+              <AiOutlineBank />
+              <a href="/user/bank/list">{t("Bank List")}</a>
             </li>
           </Link>
           {/* <Link href="/user/personal-verification">
