@@ -77,67 +77,80 @@ const Deposit = ({ customPageData, socialData, copyright_text }: any) => {
     <div className="page-wrap">
       <FiatSidebar />
       <div className="page-main-content">
-        <div className="deposit-page">
-         
-          <div className="container">
-            <div className="deposit-conatiner boxShadow">
-              <div className="cp-user-title">
-                <h4>{t("Select method")}</h4>
+        <div className="container-fluid">
+          <div className="deposit-page">
+            <div className="section-top-wrap mb-25">
+              <div className="profle-are-top">
+                <h2 className="section-top-title">{t("Fiat Deposit")}</h2>
               </div>
-              <SelectDeposit
-                setSelectedMethod={setSelectedMethod}
-                depositInfo={depositInfo}
-                selectedMethod={selectedMethod}
-              />
-              <div className="row">
-                {loading ? (
-                  <ScaletonLoading />
-                ) : (
-                  <div
-                    className={`${
-                      fullScreen === false
-                        ? "col-lg-8 col-sm-12"
-                        : "col-lg-12 col-sm-12"
-                    }`}
-                  >
-                    {parseInt(selectedMethod.method) === WALLET_DEPOSIT ? (
-                      <WalletDeposit
-                        walletlist={depositInfo.wallet_list}
-                        method_id={selectedMethod.method_id}
-                      />
-                    ) : parseInt(selectedMethod.method) === BANK_DEPOSIT ? (
-                      <BankDeposit
-                        currencyList={depositInfo.currency_list}
-                        walletlist={depositInfo.wallet_list}
-                        method_id={selectedMethod.method_id}
-                        banks={depositInfo.banks}
-                      />
-                    ) : parseInt(selectedMethod.method) === STRIPE ? (
-                      <StripeDeposit
-                        currencyList={depositInfo.currency_list}
-                        walletlist={depositInfo.wallet_list}
-                        method_id={selectedMethod.method_id}
-                        banks={depositInfo.banks}
-                      />
-                    ) : parseInt(selectedMethod.method) === PAYPAL ? (
-                      // <PaypalButtons />
-                      <PaypalSection
-                        currencyList={depositInfo.currency_list}
-                        walletlist={depositInfo.wallet_list}
-                        method_id={selectedMethod.method_id}
-                        banks={depositInfo.banks}
-                      />
-                    ) : (
-                      ""
-                    )}
-                  </div>
-                )}
+            </div>
 
-                {fullScreen === false && (
-                  <div className="col-lg-4 col-sm-12 mt-4">
-                    <DepositFaq faqs={faqs} />
+            <div className="asset-balances-area">
+              <div className="section-wrapper boxShadow bank-section">
+                <div className="container">
+                  <div className="deposit-conatiner">
+                    <div className="cp-user-title">
+                      <h4>{t("Select method")}</h4>
+                    </div>
+                    <SelectDeposit
+                      setSelectedMethod={setSelectedMethod}
+                      depositInfo={depositInfo}
+                      selectedMethod={selectedMethod}
+                    />
+                    <div className="row">
+                      {loading ? (
+                        <ScaletonLoading />
+                      ) : (
+                        <div
+                          className={`${
+                            fullScreen === false
+                              ? "col-lg-8 col-sm-12"
+                              : "col-lg-12 col-sm-12"
+                          }`}
+                        >
+                          {parseInt(selectedMethod.method) ===
+                          WALLET_DEPOSIT ? (
+                            <WalletDeposit
+                              walletlist={depositInfo.wallet_list}
+                              method_id={selectedMethod.method_id}
+                            />
+                          ) : parseInt(selectedMethod.method) ===
+                            BANK_DEPOSIT ? (
+                            <BankDeposit
+                              currencyList={depositInfo.currency_list}
+                              walletlist={depositInfo.wallet_list}
+                              method_id={selectedMethod.method_id}
+                              banks={depositInfo.banks}
+                            />
+                          ) : parseInt(selectedMethod.method) === STRIPE ? (
+                            <StripeDeposit
+                              currencyList={depositInfo.currency_list}
+                              walletlist={depositInfo.wallet_list}
+                              method_id={selectedMethod.method_id}
+                              banks={depositInfo.banks}
+                            />
+                          ) : parseInt(selectedMethod.method) === PAYPAL ? (
+                            // <PaypalButtons />
+                            <PaypalSection
+                              currencyList={depositInfo.currency_list}
+                              walletlist={depositInfo.wallet_list}
+                              method_id={selectedMethod.method_id}
+                              banks={depositInfo.banks}
+                            />
+                          ) : (
+                            ""
+                          )}
+                        </div>
+                      )}
+
+                      {fullScreen === false && (
+                        <div className="col-lg-4 col-sm-12 mt-4">
+                          <DepositFaq faqs={faqs} />
+                        </div>
+                      )}
+                    </div>
                   </div>
-                )}
+                </div>
               </div>
             </div>
           </div>
