@@ -79,16 +79,6 @@ const CurrencyWithdrawHistory = ({
       sortable: true,
     },
     {
-      name: t("Transaction id"),
-      selector: (row: any) => row?.transaction_id,
-      sortable: true,
-      cell: (row: any) => (
-        <div className="blance-text">
-          <span className="blance market incree">{row?.transaction_id}</span>
-        </div>
-      ),
-    },
-    {
       name: t("Rate"),
       // selector: (row: any) => row?.rate,
       sortable: true,
