@@ -216,17 +216,19 @@ const AddBank = ({
                                     ? t("Submitting..")
                                     : t(`${id ? "Edit" : "Create"} Bank`)}
                                 </button>
-                                <button
-                                  type="button"
-                                  className="primary-btn ml-3"
-                                  onClick={() =>
-                                    deleteBankAction(setdeleteloading, id)
-                                  }
-                                >
-                                  {deleteloading
-                                    ? t("Submitting..")
-                                    : t(`${"Delete"} Bank`)}
-                                </button>
+                                {id && (
+                                  <button
+                                    type="button"
+                                    className="primary-btn ml-3"
+                                    onClick={() =>
+                                      deleteBankAction(setdeleteloading, id)
+                                    }
+                                  >
+                                    {deleteloading
+                                      ? t("Submitting..")
+                                      : t(`${"Delete"} Bank`)}
+                                  </button>
+                                )}
                               </div>
                             </Form>
                           )}
