@@ -47,6 +47,13 @@ const Navbar = () => {
   useEffect(() => {
     isLoggedIn && getNotifications();
   }, [isLoggedIn]);
+  useEffect(() => {
+    if (router.locale === "ar") {
+      document.body.classList.add("rtl-style");
+    } else {
+      document.body.classList.remove("rtl-style");
+    }
+  }, [router.locale]);
   return (
     <>
       <div className="cp-user-top-bar">
