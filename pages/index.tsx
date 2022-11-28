@@ -112,7 +112,7 @@ const Home: NextPage = ({
                       <nav className="main-menu mobile-menu">
                         <ul id="nav">
                           <li>
-                            <a href="/exchange/dashboard">{t("Exchange")}</a>
+                            <a href="/exchange/dashboard">{t("Buy / Sell")}</a>
                           </li>
                           <li>
                             <Link href="/authentication/signin">
