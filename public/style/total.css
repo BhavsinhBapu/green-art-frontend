@@ -705,7 +705,9 @@ ul {
 .cp-user-sidebar-menu ul li a {
   position: relative;
 }
-
+.rtl-style{
+  direction: rtl;
+}
 span.cp-user-icon {
   background: transparent;
   padding: 8px;
