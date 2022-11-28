@@ -113,6 +113,11 @@ export const DipositComponent = ({
                         <QRCode value={responseData?.address} size={150} />
                       )}
 
+                    {selectedNetwork?.address &&
+                      responseData?.wallet.coin_type === "USDT" && (
+                        <QRCode value={selectedNetwork?.address} size={150} />
+                      )}
+
                     <div className="copy-box">
                       <div className="input-url input-copy">
                         {selectedNetwork?.address ? (
