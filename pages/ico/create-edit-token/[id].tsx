@@ -7,14 +7,12 @@ import { GetServerSideProps } from "next";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { useRouter } from "next/router";
 import { icoListDetails } from "service/launchpad";
-import Edit from "pages/user/edit-profile";
 
 const TokenCreate = ({ id, edit, data }: any) => {
   const { t } = useTranslation("common");
   const [launchpadForm, setLaunchpadForm]: any = useState<any>([]);
   const [loading, setLoading]: any = useState<any>(false);
   const router = useRouter();
-  console.log(data, "datadatadatadata");
   return (
     <div className="container">
       <div className="row">
@@ -74,38 +72,6 @@ const TokenCreate = ({ id, edit, data }: any) => {
                 <Form className="row">
                   <div className="col-md-6 form-input-div">
                     <label className="ico-label-box" htmlFor="">
-                      {t(" Base Coin")}
-                    </label>
-                    <Field
-                      as="select"
-                      name="base_coin"
-                      className={`ico-input-box ${
-                        touched.base_coin && errors.base_coin
-                          ? "is-invalid"
-                          : ""
-                      }`}
-                    >
-                      <option value="">{t("Select Base Coin")}</option>
-                      <option value="BND">{t("BND")}</option>
-                      <option value="ETH">{t("ETH")}</option>
-                    </Field>
-                  </div>
-                  <div className="col-md-6 form-input-div">
-                    <label className="ico-label-box" htmlFor="">
-                      {t("Token Name")}
-                    </label>
-                    <Field
-                      type="text"
-                      name="token_name"
-                      className={`ico-input-box ${
-                        touched.token_name && errors.token_name
-                          ? "is-invalid"
-                          : ""
-                      }`}
-                    />
-                  </div>
-                  <div className="col-md-6 form-input-div">
-                    <label className="ico-label-box" htmlFor="">
                       {t("Network")}
                     </label>
                     <Field
@@ -114,12 +80,42 @@ const TokenCreate = ({ id, edit, data }: any) => {
                       className={`ico-input-box ${
                         touched.network && errors.network ? "is-invalid" : ""
                       }`}
+                      onChange={(e: any) => {
+                        setFieldValue("network", e.target.value);
+                        //    <option value="BND">{t("BND")}</option>
+                        // <option value="ETH">{t("ETH")}</option>
+                        if (e.target.value == 4) {
+                          setFieldValue("base_coin", "ETH");
+                        } else {
+                          setFieldValue("base_coin", "BND");
+                        }
+                      }}
                     >
                       <option value="">{t("Select Your Network")}</option>
                       <option value="4">{t("ERC20 Token Api")}</option>
                       <option value="5">{t("BEP20 Token Api")}</option>
                     </Field>
                   </div>
+                  <div className="col-md-6 form-input-div">
+                    <label className="ico-label-box" htmlFor="">
+                      {t(" Base Coin")}
+                    </label>
+                    <Field
+                      as="select"
+                      name="base_coin"
+                      disabled
+                      className={`ico-input-box ${
+                        touched.base_coin && errors.base_coin
+                          ? "is-invalid"
+                          : ""
+                      }`}
+                    >
+                      <option value="">{t("Select A Network")}</option>
+                      <option value="BND">{t("BND")}</option>
+                      <option value="ETH">{t("ETH")}</option>
+                    </Field>
+                  </div>
+
                   <div className="col-md-6 form-input-div">
                     <label className="ico-label-box" htmlFor="">
                       {t("Wallet Address")}
@@ -129,20 +125,6 @@ const TokenCreate = ({ id, edit, data }: any) => {
                       name="wallet_address"
                       className={`ico-input-box ${
                         touched.wallet_address && errors.wallet_address
-                          ? "is-invalid"
-                          : ""
-                      }`}
-                    />
-                  </div>
-                  <div className="col-md-6 form-input-div">
-                    <label className="ico-label-box" htmlFor="">
-                      {t("Contract Address")}
-                    </label>
-                    <Field
-                      type="text"
-                      name="contract_address"
-                      className={`ico-input-box ${
-                        touched.contract_address && errors.contract_address
                           ? "is-invalid"
                           : ""
                       }`}
@@ -164,13 +146,15 @@ const TokenCreate = ({ id, edit, data }: any) => {
                   </div>
                   <div className="col-md-6 form-input-div">
                     <label className="ico-label-box" htmlFor="">
-                      {t("Chain Id")}
+                      {t("Gas Limit")}
                     </label>
                     <Field
-                      type="text"
-                      name="chain_id"
+                      type="number"
+                      name="gas_limit"
                       className={`ico-input-box ${
-                        touched.chain_id && errors.chain_id ? "is-invalid" : ""
+                        touched.gas_limit && errors.gas_limit
+                          ? "is-invalid"
+                          : ""
                       }`}
                     />
                   </div>
@@ -190,37 +174,56 @@ const TokenCreate = ({ id, edit, data }: any) => {
                   </div>
                   <div className="col-md-6 form-input-div">
                     <label className="ico-label-box" htmlFor="">
+                      {t("Contract Address")}
+                    </label>
+                    <Field
+                      type="text"
+                      name="contract_address"
+                      className={`ico-input-box ${
+                        touched.contract_address && errors.contract_address
+                          ? "is-invalid"
+                          : ""
+                      }`}
+                    />
+                  </div>
+
+                  <div className="col-md-6 form-input-div">
+                    <label className="ico-label-box" htmlFor="">
+                      {t("Token Name")}
+                    </label>
+                    <Field
+                      type="text"
+                      name="token_name"
+                      className={`ico-input-box ${
+                        touched.token_name && errors.token_name
+                          ? "is-invalid"
+                          : ""
+                      }`}
+                    />
+                  </div>
+
+                  <div className="col-md-6 form-input-div">
+                    <label className="ico-label-box" htmlFor="">
+                      {t("Chain Id")}
+                    </label>
+                    <Field
+                      type="text"
+                      name="chain_id"
+                      className={`ico-input-box ${
+                        touched.chain_id && errors.chain_id ? "is-invalid" : ""
+                      }`}
+                    />
+                  </div>
+
+                  <div className="col-md-6 form-input-div">
+                    <label className="ico-label-box" htmlFor="">
                       {t("Decimal")}
                     </label>
                     <Field
-                      name="decimal"
-                      as="select"
+                      type="text"
+                      name="chain_id"
                       className={`ico-input-box ${
-                        touched.decimal && errors.decimal ? "is-invalid" : ""
-                      }`}
-                    >
-                      <option value="">{t("Select Your Decimal")}</option>
-                      <option value={6}>{t("6")}</option>
-                      <option value={12}>{t("12")}</option>
-                      <option value={15}>{t("15")}</option>
-                      <option value={18}>{t("18")}</option>
-                      <option value={21}>{t("21")}</option>
-                      <option value={24}>{t("24")}</option>
-                      <option value={27}>{t("27")}</option>
-                      <option value={30}>{t("30")}</option>
-                    </Field>
-                  </div>
-                  <div className="col-md-6 form-input-div">
-                    <label className="ico-label-box" htmlFor="">
-                      {t("Gas Limit")}
-                    </label>
-                    <Field
-                      type="number"
-                      name="gas_limit"
-                      className={`ico-input-box ${
-                        touched.gas_limit && errors.gas_limit
-                          ? "is-invalid"
-                          : ""
+                        touched.chain_id && errors.chain_id ? "is-invalid" : ""
                       }`}
                     />
                   </div>
