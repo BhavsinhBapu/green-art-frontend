@@ -19,6 +19,11 @@ import { MdCreateNewFolder } from "react-icons/md";
 import { IoCreateOutline } from "react-icons/io5";
 import { AiOutlineOrderedList } from "react-icons/ai";
 import { toast } from "react-toastify";
+import {
+  STATUS_ACCEPTED,
+  STATUS_MODIFICATION,
+  STATUS_PENDING,
+} from "helpers/core-constants";
 const Profile: NextPage = ({
   user,
   customPageData,
@@ -48,17 +53,19 @@ const Profile: NextPage = ({
     },
 
     {
-      name: t("Status"),
-      selector: (row: any) => row?.status,
+      name: t("Approved Status"),
+      selector: (row: any) => row?.approved_status,
       sortable: true,
       cell: (row: any) => (
         <div>
-          {row.status === 0 ? (
+          {row.approved_status === STATUS_PENDING ? (
             <span className="text-warning">{t("Pending")}</span>
-          ) : row.status === 1 ? (
-            <span className="text-success"> {t("Success")}</span>
+          ) : row.approved_status === STATUS_ACCEPTED ? (
+            <span className="text-success"> {t("Accepted")}</span>
+          ) : row.approved_status === STATUS_MODIFICATION ? (
+            <span className="text-warning"> {t("Modification request")}</span>
           ) : (
-            <span className="text-danger">{t("Failed")}</span>
+            <span className="text-danger">{t("Rejected")}</span>
           )}
         </div>
       ),

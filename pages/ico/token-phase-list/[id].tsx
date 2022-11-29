@@ -9,9 +9,11 @@ import { parseCookies } from "nookies";
 import React, { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 import { AiOutlineAppstoreAdd } from "react-icons/ai";
+import { BsToggle2Off, BsToggle2On } from "react-icons/bs";
 import { GiToken } from "react-icons/gi";
 import { IoCreateOutline } from "react-icons/io5";
 import { customPage, landingPage } from "service/landing-page";
+import { SaveIcoPhaseStatus } from "service/launchpad";
 import { GetUserInfoByTokenServer } from "service/user";
 import { IcoTokenPhaseListAction } from "state/actions/launchpad";
 import { handleSwapHistorySearch } from "state/actions/reports";
@@ -51,9 +53,9 @@ const IcoTokenPhaseList = ({
       cell: (row: any) => (
         <div>
           {row.status === 0 ? (
-            <span className="text-warning">{t("Pending")}</span>
+            <span className="text-danger">{t("OFF")}</span>
           ) : row.status === 1 ? (
-            <span className="text-success"> {t("Success")}</span>
+            <span className="text-success"> {t("ON")}</span>
           ) : (
             <span className="text-danger">{t("Failed")}</span>
           )}
@@ -81,6 +83,29 @@ const IcoTokenPhaseList = ({
               <AiOutlineAppstoreAdd size={20} />
             </li>
           </Link>
+          <li
+            className="toolTip ml-3"
+            title={row.status === 0 ? "Turn on" : "Turn off"}
+            onClick={async () => {
+              await SaveIcoPhaseStatus(row.id);
+              await IcoTokenPhaseListAction(
+                10,
+                1,
+                setHistory,
+                setProcessing,
+                setStillHistory,
+                sortingInfo.column_name,
+                sortingInfo.order_by,
+                id
+              );
+            }}
+          >
+            {row.status === 0 ? (
+              <BsToggle2Off size={20} />
+            ) : (
+              <BsToggle2On size={20} />
+            )}
+          </li>
         </div>
       ),
     },
