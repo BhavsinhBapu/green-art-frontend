@@ -293,7 +293,11 @@ const CreateEditPhase = ({ id, edit, data }: any) => {
               </div>
               <div className="col-md-12 form-input-div">
                 <button type="submit" className="primary-btn">
-                  {loading ? t("Loading..") : t("Create Phase")}
+                  {loading
+                    ? t("Loading..")
+                    : edit
+                    ? t("Edit Phase")
+                    : t("Create Phase")}
                 </button>
               </div>
             </form>

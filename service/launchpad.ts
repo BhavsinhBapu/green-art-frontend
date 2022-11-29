@@ -43,6 +43,14 @@ export const launchpadCreateUpdateToken = async (payload: any) => {
   );
   return data;
 };
+// get-contract-address-details
+export const getContractAddressDetails = async (payload: any) => {
+  const { data } = await launchpadRequest.post(
+    "/get-contract-address-details",
+    payload
+  );
+  return data;
+};
 export const launchpadCreateUpdatePhase = async (payload: any) => {
   const { data } = await launchpadRequest.post(
     "/create-update-ico-token-phase",
@@ -92,6 +100,14 @@ export const getAdditionalPhaseDetails = async (id: any, ctxCookie: any) => {
       },
     }
   );
+  return data;
+};
+//127.0.0.1:8000/dynamic-form/api/save-ico-phase-status
+
+export const SaveIcoPhaseStatus = async (id: any) => {
+  const { data } = await launchpadRequest.post(`/save-ico-phase-status`, {
+    id,
+  });
   return data;
 };
 export const IcoTokenPhaseList = async (
