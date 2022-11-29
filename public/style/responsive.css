@@ -135,6 +135,15 @@
   .faq-wallet-section {
     margin-top: 20px;
   }
+  .bank-table-header {
+    flex-wrap: wrap;
+  }
+  .deposit-conatiner {
+    padding: 0px;
+  }
+  .section-wrapper {
+    padding: 15px;
+  }
 
   .appy-form {
     width: 100%;

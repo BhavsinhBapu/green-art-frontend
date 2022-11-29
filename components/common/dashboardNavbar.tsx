@@ -46,6 +46,13 @@ const DashboardNavbar = () => {
   useEffect(() => {
     isLoggedIn && getNotifications();
   }, [isLoggedIn]);
+    useEffect(() => {
+      if (router.locale === "ar") {
+        document.body.classList.add("rtl-style");
+      } else {
+        document.body.classList.remove("rtl-style");
+      }
+    }, [router.locale]);
   return (
     <>
       <div className="cp-user-top-bar dark-board">
@@ -136,30 +143,60 @@ const DashboardNavbar = () => {
                     </li>
                   </Link>
                   {parseInt(settings.currency_deposit_status) === 1 && (
-                    <Link
-                      href={
-                        isLoggedIn === true
-                          ? "/deposit"
-                          : "/authentication/signin"
+                    <li
+                      className={
+                        router.pathname == "/fiat-deposit"
+                          ? "cp-user-active-page"
+                          : router.pathname == "/fiat-withdrawal"
+                          ? "cp-user-active-page"
+                          : ""
                       }
                     >
-                      <li
-                        className={
-                          router.pathname == "/deposit"
-                            ? "cp-user-active-page"
-                            : ""
+                      <Link
+                        href={
+                          isLoggedIn === true
+                            ? "/fiat-deposit"
+                            : "/authentication/signin"
                         }
                       >
-                        <a href="">
+                        <a className="arrow-icon" href="#" aria-expanded="true">
                           <span className="cp-user-icon">
-                            <RiWallet3Line />
+                            <FiSettings />
                           </span>
-                          <span className="cp-user-name">
-                            {t("Fiat Deposit")}
-                          </span>
+                          <span className="cp-user-name">{t("Fiat")}</span>
                         </a>
-                      </li>
-                    </Link>
+                      </Link>
+                      <ul className="">
+                        <Link
+                          href={
+                            isLoggedIn
+                              ? "/fiat-deposit"
+                              : "/authentication/signin"
+                          }
+                        >
+                          <li>
+                            <a href="">{t("Deposit")}</a>
+                          </li>
+                        </Link>
+                        <Link
+                          href={
+                            isLoggedIn
+                              ? "/fiat-withdrawal"
+                              : "/authentication/signin"
+                          }
+                        >
+                          <li
+                            className={
+                              router.pathname == "/fiat-withdrawal"
+                                ? "cp-user-active-page"
+                                : ""
+                            }
+                          >
+                            <a href="">{t("Withdrawal")}</a>
+                          </li>
+                        </Link>
+                      </ul>
+                    </li>
                   )}
                   <li
                     className={
