@@ -1,10 +1,7 @@
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import type { GetServerSideProps, NextPage } from "next";
-import DepositTab from "components/wallet/DepositTab";
-import WirhdrawTab from "components/wallet/WirhdrawTab";
 import { toast } from "react-toastify";
 import React, { useEffect, useState } from "react";
-import { formateZert, formatCurrency } from "common";
 import { IoWalletOutline } from "react-icons/io5";
 import { TiArrowRepeat } from "react-icons/ti";
 

@@ -705,7 +705,9 @@ ul {
 .cp-user-sidebar-menu ul li a {
   position: relative;
 }
-
+.rtl-style{
+  direction: rtl;
+}
 span.cp-user-icon {
   background: transparent;
   padding: 8px;
@@ -10995,6 +10997,17 @@ textarea.apply-file-input {
   margin: 20px 0px 50px 0px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   padding: 50px;
+}
+.bank-table-header {
+  display: flex;
+  justify-content: space-between;
+}
+.add-bank-btn {
+  border: none;
+  background: var(--primary-color);
+  padding: 10px 20px;
+  color: var(--text-primary-color);
+  font-weight: 600;
   border-radius: 5px;
 }
 .ico-create-form {
@@ -11019,4 +11032,7 @@ label.ico-label-box {
 }
 .is-invalid {
   border: 1px solid red;
+}
+.bank-section {
+  width: 100%;
 }
