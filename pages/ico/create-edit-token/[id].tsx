@@ -6,7 +6,8 @@ import * as Yup from "yup";
 import { GetServerSideProps } from "next";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { useRouter } from "next/router";
-import { icoListDetails } from "service/launchpad";
+import { getContractAddressDetails, icoListDetails } from "service/launchpad";
+import { toast } from "react-toastify";
 
 const TokenCreate = ({ id, edit, data }: any) => {
   const { t } = useTranslation("common");
@@ -68,7 +69,7 @@ const TokenCreate = ({ id, edit, data }: any) => {
                 launchpadCreateUpdateTokenAction(values, setLoading);
               }}
             >
-              {({ errors, touched, setFieldValue }) => (
+              {({ errors, touched, setFieldValue, values }) => (
                 <Form className="row">
                   <div className="col-md-6 form-input-div">
                     <label className="ico-label-box" htmlFor="">
@@ -184,6 +185,31 @@ const TokenCreate = ({ id, edit, data }: any) => {
                           ? "is-invalid"
                           : ""
                       }`}
+                      // disabled={!values.chain_link}
+                      onClick={() => {
+                        if (!values.chain_link) {
+                          toast.warning("Please fill the chain link");
+                        }
+                      }}
+                      onBlur={async (e: any) => {
+                        if (values.chain_link && values.contract_address) {
+                          const response = await getContractAddressDetails({
+                            contract_address: values.contract_address,
+                            chain_link: values.chain_link,
+                          });
+
+                          if (response.success == false) {
+                            console.log(
+                              response.message,
+                              "responseresponseresponse"
+                            );
+                            toast.error(response.message);
+                          }
+                          setFieldValue("decimal", response.data.token_decimal);
+                          setFieldValue("token_name", response.data.name);
+                          setFieldValue("chain_id", response.data.chain_id);
+                        }
+                      }}
                     />
                   </div>
 
@@ -194,6 +220,7 @@ const TokenCreate = ({ id, edit, data }: any) => {
                     <Field
                       type="text"
                       name="token_name"
+                      disabled
                       className={`ico-input-box ${
                         touched.token_name && errors.token_name
                           ? "is-invalid"
@@ -208,6 +235,7 @@ const TokenCreate = ({ id, edit, data }: any) => {
                     </label>
                     <Field
                       type="text"
+                      disabled
                       name="chain_id"
                       className={`ico-input-box ${
                         touched.chain_id && errors.chain_id ? "is-invalid" : ""
@@ -221,9 +249,9 @@ const TokenCreate = ({ id, edit, data }: any) => {
                     </label>
                     <Field
                       type="text"
-                      name="chain_id"
+                      name="decimal"
                       className={`ico-input-box ${
-                        touched.chain_id && errors.chain_id ? "is-invalid" : ""
+                        touched.decimal && errors.decimal ? "is-invalid" : ""
                       }`}
                     />
                   </div>

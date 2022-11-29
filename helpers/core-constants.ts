@@ -35,7 +35,6 @@ export const CUSTOM_PAGE_LINK_URL = 2;
 export const WITHDRAW_FESS_FIXED = 1;
 export const WITHDRAW_FESS_PERCENT = 2;
 
-
 //ICO Form input type
 export const FORM_INPUT_TEXT = 1;
 export const FORM_SELECT = 2;
@@ -43,3 +42,10 @@ export const FORM_RADIO = 3;
 export const FORM_CHECKBOX = 4;
 export const FORM_TEXT_AREA = 5;
 export const FORM_FILE = 6;
+
+
+
+export const STATUS_MODIFICATION = 3;
+export const STATUS_PENDING = 0;
+export const STATUS_ACCEPTED = 1;
+export const STATUS_REJECTED = 2;
