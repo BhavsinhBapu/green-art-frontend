@@ -4,6 +4,11 @@ import LaunchPad from "components/ico/LaunchPad";
 import Launchpool from "components/ico/Launchpool";
 import LaunchTop from "components/ico/LaunchTop";
 import SellingSection from "components/ico/SellingSection";
+import {
+  PHASE_SORT_BY_FEATURED,
+  PHASE_SORT_BY_FUTURE,
+  PHASE_SORT_BY_RECENT,
+} from "helpers/core-constants";
 import { GetServerSideProps } from "next";
 import useTranslation from "next-translate/useTranslation";
 import { parseCookies } from "nookies";
@@ -16,14 +21,16 @@ import {
 
 const Index = ({ socialData, customPageData, copyright_text }: any) => {
   const { t } = useTranslation("common");
-  const [launchpadList, setLaunchpadList]: any = useState([]);
   const [launchpadLandingPage, setLaunchpadLandingPage]: any = useState([]);
   const [launchpadFeatureItem, setLaunchpadFeatureItem]: any = useState([]);
-  const [aaaa, setaaaa]: any = useState(false);
-  let hideSection = false;
-
+  const [launchpadUpcomingItem, setLaunchpadUpcomingItem]: any = useState([]);
+  const [launchpadRecentItem, setLaunchpadRecentItem]: any = useState([]);
   useEffect(() => {
-    getLaunchpadListAction(setLaunchpadList, setLaunchpadFeatureItem);
+    getLaunchpadListAction(
+      setLaunchpadRecentItem,
+      setLaunchpadFeatureItem,
+      setLaunchpadUpcomingItem
+    );
     getLaunchpadLandingPageAction(setLaunchpadLandingPage);
   }, []);
 
@@ -35,44 +42,104 @@ const Index = ({ socialData, customPageData, copyright_text }: any) => {
           <Hero data={launchpadLandingPage?.data} />
           {launchpadFeatureItem.length > 0 && (
             <>
-              <h2 className="mb-5">{t("Launchpad")}</h2>
-              {launchpadFeatureItem.map((item: any, index: number) => (
-                <LaunchPad
-                  key={index}
-                  viewMore={
-                    launchpadFeatureItem?.length == index + 1 ? true : false
-                  }
-                  data={item}
-                />
-              ))}
+              <div
+                id="carouselExampleControls"
+                className="carousel slide "
+                data-ride="carousel"
+              >
+                <div className="carousel-inner">
+                  <h2 className="mb-5">{t("Featured Item")}</h2>
+                  {launchpadFeatureItem.map((item: any, index: number) => (
+                    <div className="carousel-item active px-5">
+                      <LaunchPad
+                        key={index}
+                        viewMore={
+                          launchpadFeatureItem?.length == index + 1
+                            ? true
+                            : false
+                        }
+                        data={item}
+                        core={PHASE_SORT_BY_FEATURED}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
             </>
           )}
-          <div
+          {launchpadRecentItem.length > 0 && (
+            <>
+              <div
+                id="carouselExampleControls"
+                className="carousel slide "
+                data-ride="carousel"
+              >
+                <div className="carousel-inner">
+                  <h2 className="mb-5">{t("Recent Item")}</h2>
+                  {launchpadRecentItem.map((item: any, index: number) => (
+                    <div className="carousel-item active px-5">
+                      <LaunchPad
+                        key={index}
+                        viewMore={
+                          launchpadRecentItem?.length == index + 1
+                            ? true
+                            : false
+                        }
+                        data={item}
+                        core={PHASE_SORT_BY_RECENT}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </>
+          )}
+          {launchpadUpcomingItem.length > 0 && (
+            <>
+              <div
+                id="carouselExampleControls"
+                className="carousel slide "
+                data-ride="carousel"
+              >
+                <div className="carousel-inner">
+                  <h2 className="mb-5">{t("Upcoming Item")}</h2>
+                  {launchpadUpcomingItem.map((item: any, index: number) => (
+                    <div className="carousel-item active px-5">
+                      <LaunchPad
+                        key={index}
+                        viewMore={
+                          launchpadUpcomingItem?.length == index + 1
+                            ? true
+                            : false
+                        }
+                        data={item}
+                        core={PHASE_SORT_BY_FUTURE}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </>
+          )}
+          {/* <div
             id="carouselExampleControls"
             className="carousel slide"
             data-ride="carousel"
           >
             <div className="carousel-inner">
               <div className="carousel-item active">
-                <img
-                  className="d-block w-100"
-                  src="/altcoins-removebg-preview.png"
-                  alt="First slide"
-                />
+                <LaunchPad key={1} viewMore={false} data={{}} />
               </div>
               <div className="carousel-item">
-                <img
-                  className="d-block w-100"
-                  src="/altcoins-removebg-preview.png"
-                  alt="Second slide"
-                />
+                <LaunchPad key={1} viewMore={false} data={{}} />
               </div>
+
               <div className="carousel-item">
-                <img
-                  className="d-block w-100"
-                  src="/altcoins-removebg-preview.png"
-                  alt="Third slide"
-                />
+                <LaunchPad key={1} viewMore={false} data={{}} />
+                <div className="carousel-caption d-none d-md-block">
+                  <h5>This is a header</h5>
+                  <p>This is paragraph</p>
+                </div>
               </div>
             </div>
             <a
@@ -99,7 +166,7 @@ const Index = ({ socialData, customPageData, copyright_text }: any) => {
               ></span>
               <span className="sr-only">Next</span>
             </a>
-          </div>
+          </div> */}
           <SellingSection data={launchpadLandingPage?.data} />
         </div>
       </div>

@@ -53,13 +53,7 @@ const CreateEditAdditionalPhase = ({ id, edit, data }: any) => {
       <div className="row">
         <div className="ico-tokenCreate">
           <div className="col-12">
-            <h2>
-              {t(
-                `${
-                  router.query.edit === "true" ? "Edit" : "Add"
-                }  Additional Info`
-              )}
-            </h2>
+            <h2>{t(`${edit ? "Edit" : "Add"}  Additional Info`)}</h2>
             <button className="primary-btn" onClick={addFields}>
               {t("Add Field")}
             </button>
@@ -128,7 +122,9 @@ const CreateEditAdditionalPhase = ({ id, edit, data }: any) => {
                   disabled={loading}
                   className="primary-btn"
                 >
-                  {loading ? t("Loading..") : t("Add aditional data")}
+                  {loading
+                    ? t("Loading..")
+                    : t(`${edit ? "Edit" : "Add"} aditional data`)}
                 </button>
               </div>
             </form>
@@ -143,10 +139,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const { id, edit } = ctx.query;
   await SSRAuthCheck(ctx, "/ico/applied-launchpad");
   const cookies = parseCookies(ctx);
-  let additionalDetails;
-  if (edit) {
-    additionalDetails = await getAdditionalPhaseDetails(id, cookies.token);
-  }
+  let additionalDetails = await getAdditionalPhaseDetails(id, cookies.token);
+
   return {
     props: {
       id: id,
