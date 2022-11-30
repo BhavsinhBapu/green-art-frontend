@@ -1,12 +1,18 @@
+import {
+  PHASE_SORT_BY_FEATURED,
+  PHASE_SORT_BY_RECENT,
+} from "helpers/core-constants";
+import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import React from "react";
 
-export const SingleHero = () => {
+export const SingleHero = ({ type }: any) => {
+  const { t } = useTranslation("common");
   return (
     <>
       <div className="launchPadSingleHero">
         <div className="container launchPadSingleHeroFlex">
-          <Link href={"/launchpad"}>
+          <Link href={"/ico"}>
             <div className="launchPadSingleHeroTitle">
               <i className="fa-solid fa-chevron-left"></i>
               <h2>Homepage</h2>
@@ -24,8 +30,20 @@ export const SingleHero = () => {
 
       <div className="launchPadSingleSectionTitle">
         <div className="container ">
-          <h2>Binance Launchpad</h2>
-          <p>A token launch platform for transformative projects.</p>
+          <h2>
+            {t(
+              `${
+                PHASE_SORT_BY_FEATURED === parseInt(type)
+                  ? "Featured"
+                  : PHASE_SORT_BY_RECENT === parseInt(type)
+                  ? "Recent"
+                  : PHASE_SORT_BY_FEATURED === parseInt(type)
+                  ? "Upcoming"
+                  : ""
+              } List`
+            )}
+          </h2>
+          <p>{t("A token launch platform for transformative projects.")}</p>
         </div>
       </div>
     </>

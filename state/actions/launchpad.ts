@@ -1,4 +1,11 @@
-import { FORM_CHECKBOX, FORM_RADIO, FORM_SELECT } from "helpers/core-constants";
+import {
+  FORM_CHECKBOX,
+  FORM_RADIO,
+  FORM_SELECT,
+  PHASE_SORT_BY_FEATURED,
+  PHASE_SORT_BY_FUTURE,
+  PHASE_SORT_BY_RECENT,
+} from "helpers/core-constants";
 import { toast } from "react-toastify";
 import {
   DynamicSubmittedFormList,
@@ -18,22 +25,31 @@ import Router from "next/router";
 import { GetCoinListApi } from "service/wallet";
 
 export const getLaunchpadListAction = async (
-  setLaunchpadList: any,
-  setLaunchpadFeatureItem: any
+  setLaunchpadRecentItem: any,
+  setLaunchpadFeatureItem: any,
+  setLaunchpadUpcomingItem: any
 ) => {
-  let featuredItem: any = [];
-  const response = await getLaunchpadList();
-  response?.data?.data?.map((item: any, index: number) => {
-    item.is_featured == 1 && featuredItem.push(item);
-  });
-  setLaunchpadList(response);
-  setLaunchpadFeatureItem(featuredItem);
+  const response = await getLaunchpadList(3, PHASE_SORT_BY_FEATURED);
+  const recentResponse = await getLaunchpadList(3, PHASE_SORT_BY_RECENT);
+  const upcomingResponse = await getLaunchpadList(3, PHASE_SORT_BY_FUTURE);
+  setLaunchpadRecentItem(recentResponse.data);
+  setLaunchpadFeatureItem(response.data);
+  setLaunchpadUpcomingItem(upcomingResponse.data);
+};
+export const getLaunchpadListPageAction = async (
+  setLaunchpadList: any,
+  constant: any
+) => {
+  const response = await getLaunchpadList(3, constant);
+  console.log("response.data", response.data);
+  setLaunchpadList(response.data);
 };
 export const getLaunchpadListDetailsAction = async (
   setLaunchpadListDetails: any,
   id: any
 ) => {
   const response = await getLaunchpadListDetails(id);
+  console.log(response, "responseresponseresponseresponse");
   setLaunchpadListDetails(response);
 };
 
@@ -168,6 +184,8 @@ export const launchpadCreateUpdateTokenAction = async (
     formData.append("chain_link", payload.chain_link);
     formData.append("gas_limit", payload.gas_limit);
     formData.append("id", payload.id);
+    formData.append("details_rule", payload.details_rule);
+    formData.append("website_link", payload.website_link);
     const response = await launchpadCreateUpdateToken(formData);
     setLoading(false);
     if (response.success === true) {
@@ -212,8 +230,6 @@ export const launchpadCreateUpdatePhaseAction = async (
     return response;
   }
 };
-
-
 
 // IcoTokenPhaseList;
 export const IcoTokenPhaseListAction = async (

@@ -42,6 +42,8 @@ const TokenCreate = ({ id, edit, data }: any) => {
                 chain_link: edit ? data?.chain_link : "",
                 decimal: edit ? data?.decimal : "",
                 gas_limit: edit ? data?.gas_limit : "",
+                details_rule: edit ? data?.details_rule : "",
+                website_link: edit ? data?.website_link : "",
               }}
               validationSchema={Yup.object({
                 form_id: Yup.number().required(
@@ -252,6 +254,34 @@ const TokenCreate = ({ id, edit, data }: any) => {
                       name="decimal"
                       className={`ico-input-box ${
                         touched.decimal && errors.decimal ? "is-invalid" : ""
+                      }`}
+                    />
+                  </div>
+                  <div className="col-md-12 form-input-div">
+                    <label className="ico-label-box" htmlFor="">
+                      {t("Details rule")}
+                    </label>
+                    <Field
+                      as="textarea"
+                      name="details_rule"
+                      className={`ico-input-box ${
+                        touched.details_rule && errors.details_rule
+                          ? "is-invalid"
+                          : ""
+                      }`}
+                    />
+                  </div>
+                  <div className="col-md-12 form-input-div">
+                    <label className="ico-label-box" htmlFor="">
+                      {t("Website Link")}
+                    </label>
+                    <Field
+                      type="text"
+                      name="website_link"
+                      className={`ico-input-box ${
+                        touched.website_link && errors.website_link
+                          ? "is-invalid"
+                          : ""
                       }`}
                     />
                   </div>

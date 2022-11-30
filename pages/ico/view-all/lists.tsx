@@ -1,22 +1,26 @@
 import LaunchPad from "components/ico/LaunchPad";
 import { SingleHero } from "components/ico/SingleHero";
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { getLaunchpadListAction } from "state/actions/launchpad";
+import {
+  getLaunchpadListAction,
+  getLaunchpadListPageAction,
+} from "state/actions/launchpad";
 
 export default function ViewAll() {
   const [launchpadList, setLaunchpadList]: any = useState([]);
-  const [launchpadFeatureItem, setLaunchpadFeatureItem]: any = useState([]);
-
+  const router = useRouter();
   useEffect(() => {
-    getLaunchpadListAction(setLaunchpadList, setLaunchpadFeatureItem);
-  }, []);
+    if (router.query.type) {
+      getLaunchpadListPageAction(setLaunchpadList, router.query.type);
+    }
+  }, [router.query.type]);
 
   return (
     <div>
-      {/* {JSON.stringify(launchpadList)} */}
-      <SingleHero />
+      <SingleHero type={router.query.type} />
       <div className="container">
-        {launchpadList?.data?.map((item: any, index: number) => (
+        {launchpadList?.map((item: any, index: number) => (
           <LaunchPad data={item} key={index} />
         ))}
       </div>

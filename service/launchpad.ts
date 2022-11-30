@@ -1,11 +1,17 @@
 import launchpadRequest from "lib/launchpadRequest";
 
-export const getLaunchpadList = async () => {
-  const { data } = await launchpadRequest.get("/ico-active-list");
+export const getLaunchpadList = async (page: any, type: any) => {
+  const { data } = await launchpadRequest.get(
+    `/ico-phase-active-list?per_page=${page}&type=${type}`
+  );
   return data;
 };
+//127.0.0.1:8000/dynamic-form/api/active-ico-phase-details?id=1
+
 export const getLaunchpadListDetails = async (id: number) => {
-  const { data } = await launchpadRequest.get(`ico-details?id=${id}`);
+  const { data } = await launchpadRequest.get(
+    `/active-ico-phase-details?id=${id}`
+  );
   return data;
 };
 export const launchpadBuyIcoToken = async () => {

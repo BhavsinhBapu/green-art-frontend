@@ -3,11 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const LaunchPad = ({ viewMore, data }: any) => {
+const LaunchPad = ({ viewMore, data, core }: any) => {
   const { t } = useTranslation("common");
   return (
     <>
-      <Link href={`/launchpad/subscription/${data?.id}`}>
+      <Link href={`/ico/subscription/${data?.id}`}>
         <div className="mt-3 mb-5 row launchpad-container">
           <div className="col-lg-4 col-12  mb-2">
             <img
@@ -64,7 +64,7 @@ const LaunchPad = ({ viewMore, data }: any) => {
 
       {viewMore && (
         <div className="viewMoreLink">
-          <Link href="/launchpad/view-all/lpd">
+          <Link href={"/ico/view-all/lists?type=" + core}>
             <a>View more</a>
           </Link>
         </div>
