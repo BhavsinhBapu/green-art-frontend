@@ -52,13 +52,29 @@ const IcoTokenPhaseList = ({
       sortable: true,
       cell: (row: any) => (
         <div>
-          {row.status === 0 ? (
-            <span className="text-danger">{t("OFF")}</span>
-          ) : row.status === 1 ? (
-            <span className="text-success"> {t("ON")}</span>
-          ) : (
-            <span className="text-danger">{t("Failed")}</span>
-          )}
+          <li
+            className="toolTip ml-3"
+            title={row.status === 0 ? "Turn on" : "Turn off"}
+            onClick={async () => {
+              await SaveIcoPhaseStatus(row.id);
+              await IcoTokenPhaseListAction(
+                10,
+                1,
+                setHistory,
+                setProcessing,
+                setStillHistory,
+                sortingInfo.column_name,
+                sortingInfo.order_by,
+                id
+              );
+            }}
+          >
+            {row.status === 0 ? (
+              <BsToggle2Off size={20} />
+            ) : (
+              <BsToggle2On size={20} />
+            )}
+          </li>
         </div>
       ),
     },
@@ -83,29 +99,6 @@ const IcoTokenPhaseList = ({
               <AiOutlineAppstoreAdd size={20} />
             </li>
           </Link>
-          <li
-            className="toolTip ml-3"
-            title={row.status === 0 ? "Turn on" : "Turn off"}
-            onClick={async () => {
-              await SaveIcoPhaseStatus(row.id);
-              await IcoTokenPhaseListAction(
-                10,
-                1,
-                setHistory,
-                setProcessing,
-                setStillHistory,
-                sortingInfo.column_name,
-                sortingInfo.order_by,
-                id
-              );
-            }}
-          >
-            {row.status === 0 ? (
-              <BsToggle2Off size={20} />
-            ) : (
-              <BsToggle2On size={20} />
-            )}
-          </li>
         </div>
       ),
     },
