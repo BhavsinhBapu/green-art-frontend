@@ -43,9 +43,13 @@ export const FORM_CHECKBOX = 4;
 export const FORM_TEXT_AREA = 5;
 export const FORM_FILE = 6;
 
-
-
 export const STATUS_MODIFICATION = 3;
 export const STATUS_PENDING = 0;
 export const STATUS_ACCEPTED = 1;
 export const STATUS_REJECTED = 2;
+
+//ico
+export const PHASE_SORT_BY_EXPIRED = 1;
+export const PHASE_SORT_BY_FEATURED = 2;
+export const PHASE_SORT_BY_RECENT = 3;
+export const PHASE_SORT_BY_FUTURE = 4;
