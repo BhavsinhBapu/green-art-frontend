@@ -47,6 +47,11 @@ const IcoTokenPhaseList = ({
       sortable: true,
     },
     {
+      name: t("Available Token Supply"),
+      selector: (row: any) => parseFloat(row?.available_token_supply).toFixed(4),
+      sortable: true,
+    },
+    {
       name: t("Status"),
       selector: (row: any) => row?.status,
       sortable: true,
@@ -82,6 +87,16 @@ const IcoTokenPhaseList = ({
       name: t("Date"),
       selector: (row: any) =>
         moment(row.created_at).format("YYYY-MM-DD HH:mm:ss"),
+      sortable: true,
+    },
+    {
+      name: t("Coin Currency"),
+      selector: (row: any) => row.coin_currency,
+      sortable: true,
+    },
+    {
+      name: t("Total Token Supply"),
+      selector: (row: any) => parseFloat(row.total_token_supply).toFixed(5),
       sortable: true,
     },
     {

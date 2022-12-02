@@ -145,10 +145,7 @@ const TokenCreate = ({ id, edit, data }: any) => {
                             toast.error(response.message);
                           }
                           setFieldValue("decimal", response.data.token_decimal);
-                          setFieldValue(
-                            "token_name",
-                            response.data.name
-                          );
+                          setFieldValue("token_name", response.data.name);
                           console.log(
                             response.data.symbol,
                             "response.data.symbol"
@@ -192,6 +189,7 @@ const TokenCreate = ({ id, edit, data }: any) => {
                           setFieldValue("decimal", response.data.token_decimal);
                           setFieldValue("token_name", response.data.name);
                           setFieldValue("chain_id", response.data.chain_id);
+                          setFieldValue("token_symbol", response.data.symbol);
                           setWarning(false);
                         }
                       }}
@@ -209,10 +207,51 @@ const TokenCreate = ({ id, edit, data }: any) => {
                     <Field
                       type="text"
                       name="token_symbol"
+                      disabled
                       className={`ico-input-box ${
                         touched.wallet_address && errors.wallet_address
                           ? "is-invalid"
                           : ""
+                      }`}
+                    />
+                  </div>
+                  <div className="col-md-6 form-input-div">
+                    <label className="ico-label-box" htmlFor="">
+                      {t("Token Name")}
+                    </label>
+                    <Field
+                      type="text"
+                      name="token_name"
+                      disabled
+                      className={`ico-input-box ${
+                        touched.token_name && errors.token_name
+                          ? "is-invalid"
+                          : ""
+                      }`}
+                    />
+                  </div>
+                  <div className="col-md-6 form-input-div">
+                    <label className="ico-label-box" htmlFor="">
+                      {t("Chain Id")}
+                    </label>
+                    <Field
+                      type="text"
+                      disabled
+                      name="chain_id"
+                      className={`ico-input-box ${
+                        touched.chain_id && errors.chain_id ? "is-invalid" : ""
+                      }`}
+                    />
+                  </div>
+                  <div className="col-md-6 form-input-div">
+                    <label className="ico-label-box" htmlFor="">
+                      {t("Decimal")}
+                    </label>
+                    <Field
+                      type="text"
+                      name="decimal"
+                      className={`ico-input-box ${
+                        touched.decimal && errors.decimal ? "is-invalid" : ""
                       }`}
                     />
                   </div>
@@ -260,41 +299,15 @@ const TokenCreate = ({ id, edit, data }: any) => {
                   </div>
                   <div className="col-md-6 form-input-div">
                     <label className="ico-label-box" htmlFor="">
-                      {t("Token Name")}
+                      {t("Website Link")}
                     </label>
                     <Field
                       type="text"
-                      name="token_name"
-                      disabled
+                      name="website_link"
                       className={`ico-input-box ${
-                        touched.token_name && errors.token_name
+                        touched.website_link && errors.website_link
                           ? "is-invalid"
                           : ""
-                      }`}
-                    />
-                  </div>
-                  <div className="col-md-6 form-input-div">
-                    <label className="ico-label-box" htmlFor="">
-                      {t("Chain Id")}
-                    </label>
-                    <Field
-                      type="text"
-                      disabled
-                      name="chain_id"
-                      className={`ico-input-box ${
-                        touched.chain_id && errors.chain_id ? "is-invalid" : ""
-                      }`}
-                    />
-                  </div>
-                  <div className="col-md-6 form-input-div">
-                    <label className="ico-label-box" htmlFor="">
-                      {t("Decimal")}
-                    </label>
-                    <Field
-                      type="text"
-                      name="decimal"
-                      className={`ico-input-box ${
-                        touched.decimal && errors.decimal ? "is-invalid" : ""
                       }`}
                     />
                   </div>
@@ -307,20 +320,6 @@ const TokenCreate = ({ id, edit, data }: any) => {
                       name="details_rule"
                       className={`ico-input-box ${
                         touched.details_rule && errors.details_rule
-                          ? "is-invalid"
-                          : ""
-                      }`}
-                    />
-                  </div>
-                  <div className="col-md-12 form-input-div">
-                    <label className="ico-label-box" htmlFor="">
-                      {t("Website Link")}
-                    </label>
-                    <Field
-                      type="text"
-                      name="website_link"
-                      className={`ico-input-box ${
-                        touched.website_link && errors.website_link
                           ? "is-invalid"
                           : ""
                       }`}
