@@ -576,7 +576,7 @@ const Navbar = () => {
                               </div>
                               <div>
                                 <div className="notify-grid-item">
-                                  {notificationData.length > 0 ? (
+                                  {notificationData?.length > 0 ? (
                                     notificationData
                                       ?.slice(0, 5)
                                       ?.map((item: any, index: number) => (
