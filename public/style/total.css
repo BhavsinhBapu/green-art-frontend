@@ -11076,6 +11076,7 @@ label.ico-label-box {
   background: var(--primary-color);
   padding: 10px;
   border-radius: 3px;
+  margin: 10px;
 }
 .chat-right {
   display: flex;
@@ -11136,6 +11137,8 @@ label.upload-file-btn.press-enter {
   height: 400px;
   overflow-x: overlay;
   padding-bottom: 30px;
+  display: flex;
+  flex-direction: column-reverse;
 }
 .chat-upload-image {
   padding-left: 20px;
@@ -11155,4 +11158,9 @@ label.upload-file-btn.press-enter {
 }
 .image-close {
   cursor: pointer;
+}
+.image-chatBox {
+  width: 90%;
+  height: auto;
+  margin: 10px;
 }

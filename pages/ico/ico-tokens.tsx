@@ -24,6 +24,7 @@ import {
   STATUS_MODIFICATION,
   STATUS_PENDING,
 } from "helpers/core-constants";
+import { BsFillChatFill } from "react-icons/bs";
 const Profile: NextPage = ({
   user,
   customPageData,
@@ -106,7 +107,11 @@ const Profile: NextPage = ({
               <MdCreateNewFolder size={20} />
             </li>
           )}
-
+          <Link href={`/chat/${row?.id}`}>
+            <li className="toolTip ml-2" title="Chat">
+              <BsFillChatFill size={20} />
+            </li>
+          </Link>
           <Link href={`/ico/create-edit-token/${row?.id}?edit=true`}>
             <li className="toolTip ml-2" title="Edit token">
               <IoCreateOutline size={20} />

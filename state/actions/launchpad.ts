@@ -8,6 +8,7 @@ import {
 } from "helpers/core-constants";
 import { toast } from "react-toastify";
 import {
+  ChatHistoryByTokenId,
   DynamicSubmittedFormList,
   getLaunchpadList,
   getLaunchpadListDetails,
@@ -20,6 +21,7 @@ import {
   launchpadDynamicFrom,
   launchpadDynamicFromSubmit,
   launchpadLandingPage,
+  SendChantByToken,
   TokenBuyIco,
   TokenBuyPage,
 } from "service/launchpad";
@@ -366,4 +368,31 @@ export const TokenBuyIcoPaypalAction = async (credentials: any) => {
   } else {
     toast.error(response.message);
   }
+};
+export const ChatHistoryByTokenIdAction = async (
+  setChatHistory: any,
+  token_id: any
+) => {
+  const response = await ChatHistoryByTokenId(token_id);
+  setChatHistory(response.data);
+  console.log(response.data, "response.datasssssssssssssssssss");
+  return response;
+};
+export const SendChantByTokenAction = async (
+  setChatHistory: any,
+  token_id: any,
+  file: any,
+  message: any,
+  chatHistory: any,
+  setMessage: any
+) => {
+  const formData = new FormData();
+  formData.append("token_id", token_id);
+  formData.append("message", message);
+  if (file) formData.append("file", file);
+  setMessage("");
+  const response = await SendChantByToken(formData);
+
+  // return response;
+  // console.log(response.data, "file");
 };
