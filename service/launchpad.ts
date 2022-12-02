@@ -139,3 +139,16 @@ export const TokenBuyIco = async (payload: any) => {
   const { data } = await launchpadRequest.post(`/token-buy-ico`, payload);
   return data;
 };
+export const SendChantByToken = async (payload: any) => {
+  const { data } = await launchpadRequest.post(
+    `/ico-chat-conversation-store`,
+    payload
+  );
+  return data;
+};
+export const ChatHistoryByTokenId = async (token_id: any) => {
+  const { data } = await launchpadRequest.get(
+    `/ico-chat-details?token_id=${token_id}`
+  );
+  return data;
+};
