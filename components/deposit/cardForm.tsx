@@ -41,7 +41,6 @@ const CardForm = ({ setCredential, credential }: any) => {
       return;
     }
     const cardElement = elements.getElement("card");
-
     //@ts-ignore
     const payload = await stripe.createToken(cardElement);
 
