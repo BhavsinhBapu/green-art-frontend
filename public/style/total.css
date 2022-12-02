@@ -11137,8 +11137,8 @@ label.upload-file-btn.press-enter {
   height: 400px;
   overflow-x: overlay;
   padding-bottom: 30px;
-  display: flex;
-  flex-direction: column-reverse;
+  /* display: flex;
+  flex-direction: column-reverse; */
 }
 .chat-upload-image {
   padding-left: 20px;

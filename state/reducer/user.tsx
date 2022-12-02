@@ -5,6 +5,7 @@ export type UserType = {
   isLoggedIn: boolean;
   notification: [];
   logo: string;
+  icoChat: [];
 };
 
 const initialState: any = {
@@ -12,6 +13,7 @@ const initialState: any = {
   isLoggedIn: false,
   isLoading: false,
   notification: [],
+  icoChat: [],
   logo: "",
 };
 
@@ -42,9 +44,23 @@ export const userSlice = createSlice({
     setLogo: (state, action: PayloadAction<any>) => {
       state.logo = action.payload;
     },
+    seticoChat: (state, action: any) => {
+      state.icoChat = action.payload;
+    },
+    setChatico: (state, action: any) => {
+      state.icoChat = [...state.icoChat, action.payload];
+    },
   },
 });
 
-export const { login, logout, setUser, setAuthenticationState, setLoading, setLogo } =
-  userSlice.actions;
+export const {
+  login,
+  logout,
+  setUser,
+  setAuthenticationState,
+  setLoading,
+  setLogo,
+  seticoChat,
+  setChatico,
+} = userSlice.actions;
 export default userSlice.reducer;
