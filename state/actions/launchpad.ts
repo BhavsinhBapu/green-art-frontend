@@ -369,21 +369,11 @@ export const TokenBuyIcoPaypalAction = async (credentials: any) => {
     toast.error(response.message);
   }
 };
-export const ChatHistoryByTokenIdAction = async (
-  setChatHistory: any,
-  token_id: any
-) => {
-  const response = await ChatHistoryByTokenId(token_id);
-  setChatHistory(response.data);
-  console.log(response.data, "response.datasssssssssssssssssss");
-  return response;
-};
+
 export const SendChantByTokenAction = async (
-  setChatHistory: any,
   token_id: any,
   file: any,
   message: any,
-  chatHistory: any,
   setMessage: any
 ) => {
   const formData = new FormData();
