@@ -8,27 +8,31 @@ import { TiDelete } from "react-icons/ti";
 import { useRouter } from "next/router";
 import Echo from "laravel-echo";
 import Pusher from "pusher-js";
-import {
-  ChatHistoryByTokenIdAction,
-  SendChantByTokenAction,
-} from "state/actions/launchpad";
-import { useSelector } from "react-redux";
+import { SendChantByTokenAction } from "state/actions/launchpad";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "state/store";
 import { date } from "yup";
+import { setChatico, seticoChat } from "state/reducer/user";
+import { ChatHistoryByTokenId } from "service/launchpad";
 let socketCall = 0;
 
 export const Chat = ({ customPageData, socialData, copyright_text }: any) => {
   const { t } = useTranslation("common");
+  const dispatch = useDispatch();
   const [file, setFile] = useState<any>();
   const [sendFile, setSendFile] = useState();
   const [message, setMessage] = useState("");
-  const [chatHistory, setChatHistory] = useState<any>([]);
-  const { user } = useSelector((state: RootState) => state.user);
+  const { user, icoChat } = useSelector((state: RootState) => state.user);
   const router = useRouter();
+  const getDataHistory = async () => {
+    if (router.query.token_id) {
+      const response = await ChatHistoryByTokenId(router.query.token_id);
+      dispatch(seticoChat(response.data));
+      return response;
+    }
+  };
   useEffect(() => {
-    console.log(router.query.token_id, "router.query.token_id");
-    router.query.token_id &&
-      ChatHistoryByTokenIdAction(setChatHistory, router.query.token_id);
+    getDataHistory();
   }, [router.query.token_id]);
   async function listenMessages() {
     //@ts-ignore
@@ -46,17 +50,16 @@ export const Chat = ({ customPageData, socialData, copyright_text }: any) => {
       enabledTransports: ["ws", "wss"],
     });
     //@ts-ignore
-    // dashboard-base_coin_id-trade_coin_id
     window.Echo.channel(
       `New-Message-${localStorage.getItem("user_id")}-${router.query.token_id}`
     ).listen(".Conversation", (e: any) => {
-      let chat = chatHistory;
-      chat.push(e.data);
-      console.log(e.data, "chatchatchat");
-      setChatHistory(chat);
+      console.log(e.data, "data coming");
+      dispatch(setChatico(e.data));
     });
   }
-  useEffect(() => {}, [chatHistory]);
+  // useEffect(() => {
+  //   console.log(chatHistory, "chatHistory");
+  // }, [chatHistory]);
   useEffect(() => {
     if (socketCall === 0) {
       listenMessages();
@@ -99,7 +102,7 @@ export const Chat = ({ customPageData, socialData, copyright_text }: any) => {
                         </div>
                       </div>
                       <div className="chat-body">
-                        {chatHistory?.map((chat: any) => (
+                        {icoChat?.map((chat: any) => (
                           <>
                             <div
                               className={
@@ -205,11 +208,9 @@ export const Chat = ({ customPageData, socialData, copyright_text }: any) => {
                             disabled={!message}
                             onClick={() => {
                               SendChantByTokenAction(
-                                setChatHistory,
                                 router.query.token_id,
                                 sendFile,
                                 message,
-                                chatHistory,
                                 setMessage
                               );
                             }}
