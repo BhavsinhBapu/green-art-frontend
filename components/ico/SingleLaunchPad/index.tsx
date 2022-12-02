@@ -179,12 +179,14 @@ export const SingleLaunchPad = ({ data }: any) => {
 
                 <table className="table table-striped">
                   <tbody>
-                    {data?.ico_phase_additional_details.map((item: any) => (
-                      <tr>
-                        <th scope="row">{item?.title}</th>
-                        <td>{item.value}</td>
-                      </tr>
-                    ))}
+                    {data?.ico_phase_additional_details.map(
+                      (item: any, index: any) => (
+                        <tr key={index}>
+                          <th scope="row">{item?.title}</th>
+                          <td>{item.value}</td>
+                        </tr>
+                      )
+                    )}
                   </tbody>
                 </table>
               </div>

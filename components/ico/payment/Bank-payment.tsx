@@ -1,7 +1,7 @@
 import { BANK_DEPOSIT } from "helpers/core-constants";
 import useTranslation from "next-translate/useTranslation";
 import React, { useRef, useState } from "react";
-import {  TokenBuyIcoBankAction } from "state/actions/launchpad";
+import { TokenBuyIcoBankAction } from "state/actions/launchpad";
 
 const BankPayment = ({ pageInfo, initialData }: any) => {
   const { t } = useTranslation("common");
@@ -62,8 +62,10 @@ const BankPayment = ({ pageInfo, initialData }: any) => {
           }}
         >
           <option value="">{t("Select currency")}</option>
-          {pageInfo?.bank?.map((item: any) => (
-            <option value={item.id}>{item?.bank_name}</option>
+          {pageInfo?.bank?.map((item: any, index: any) => (
+            <option value={item.id} key={index}>
+              {item?.bank_name}
+            </option>
           ))}
         </select>
       </div>
@@ -94,7 +96,7 @@ const BankPayment = ({ pageInfo, initialData }: any) => {
             data.bank_id,
             data.amount,
             BANK_DEPOSIT,
-           pageInfo.ref
+            pageInfo.ref
           );
         }}
       >

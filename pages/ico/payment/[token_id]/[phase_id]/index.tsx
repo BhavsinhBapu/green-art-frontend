@@ -21,7 +21,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { TokenBuyPageAction } from "state/actions/launchpad";
 
-const index = () => {
+const Index = () => {
   const { t } = useTranslation("common");
   const [selectedMethod, setSelectedMethod] = useState<any>({
     method: BANK_DEPOSIT,
@@ -106,4 +106,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;
