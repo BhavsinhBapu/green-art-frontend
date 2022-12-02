@@ -139,7 +139,7 @@ const PaypalSection = ({ currencyList, walletlist, method_id }: any) => {
                           <option value="" selected disabled hidden>
                             {t("Select one")}
                           </option>
-                          {walletlist.map((wallet: any, index: any) => (
+                          {walletlist?.map((wallet: any, index: any) => (
                             <option value={wallet.id} key={index}>
                               {wallet.coin_type}
                             </option>

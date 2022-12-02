@@ -9,6 +9,7 @@ export const SingleLaunchPad = ({ data }: any) => {
   useEffect(() => {
     data?.social_link && setSocialLink(JSON.parse(data?.social_link));
   }, [data?.social_link]);
+  console.log(data, "datadatadata");
   return (
     <>
       <div className="container singleLaunch">
@@ -51,6 +52,9 @@ export const SingleLaunchPad = ({ data }: any) => {
                   )}
                 </div>
               </div>
+              <Link href={`/ico/payment/${data?.id}/${data?.token_id}`}>
+                <a className="primary-btn">{t("Buy now")}</a>
+              </Link>
             </div>
           </div>
         </div>
@@ -60,6 +64,7 @@ export const SingleLaunchPad = ({ data }: any) => {
             <p>{t("Type")}</p>
             <span>{t("Subscription")}</span>
           </div> */}
+
           <div>
             <p>{t("Sale Price")}</p>
             <span>{`1 ${data?.coin_type} = ${data?.coin_price} ${data?.coin_currency}`}</span>

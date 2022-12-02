@@ -128,3 +128,14 @@ export const IcoTokenPhaseList = async (
   );
   return data;
 };
+// /token-buy-page
+
+export const TokenBuyPage = async () => {
+  const { data } = await launchpadRequest.get(`/token-buy-page`);
+  return data;
+};
+// /token-buy-ico
+export const TokenBuyIco = async (payload: any) => {
+  const { data } = await launchpadRequest.post(`/token-buy-ico`, payload);
+  return data;
+};

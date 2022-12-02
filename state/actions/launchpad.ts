@@ -20,9 +20,12 @@ import {
   launchpadDynamicFrom,
   launchpadDynamicFromSubmit,
   launchpadLandingPage,
+  TokenBuyIco,
+  TokenBuyPage,
 } from "service/launchpad";
 import Router from "next/router";
 import { GetCoinListApi } from "service/wallet";
+import { Toast } from "react-toastify/dist/components";
 
 export const getLaunchpadListAction = async (
   setLaunchpadRecentItem: any,
@@ -268,5 +271,99 @@ export const GetTokenListAction = async (
   if (response.success === true) {
     setReport(response.data.data);
     setStillHistory(response.data);
+  }
+};
+
+export const TokenBuyPageAction = async (setPage: any, setLoading: any) => {
+  const response = await TokenBuyPage();
+  setLoading(true);
+  console.log(response, "response");
+  if (response.success === true) {
+    setPage(response.data);
+  }
+  setLoading(false);
+};
+// /token-buy-ico
+
+export const TokenBuyIcoBankAction = async (
+  initialData: any,
+  setLoading: any,
+  doc: any,
+  bank_id: any,
+  amount: any,
+  payment_method: any,
+  ref: any
+) => {
+  const formData = new FormData();
+  formData.append("phase_id", initialData.phase_id);
+  formData.append("token_id", initialData.token_id);
+  formData.append("bank_slep", doc);
+  formData.append("bank_id", bank_id);
+  formData.append("amount", amount);
+  formData.append("payment_method", payment_method);
+  formData.append("bank_ref", ref);
+  const response = await TokenBuyIco(formData);
+  setLoading(true);
+  if (response.success === true) {
+    toast.success(response.message);
+    Router.push("/ico");
+  } else {
+    toast.error(response.message);
+  }
+  setLoading(false);
+};
+export const TokenBuyIcoCryptoAction = async (
+  initialData: any,
+  setLoading: any,
+  payer_wallet: any,
+  amount: any,
+  payment_method: any
+) => {
+  const formData = new FormData();
+  formData.append("phase_id", initialData.phase_id);
+  formData.append("token_id", initialData.token_id);
+  formData.append("payer_wallet", payer_wallet);
+  formData.append("amount", amount);
+  formData.append("payment_method", payment_method);
+  const response = await TokenBuyIco(formData);
+  setLoading(true);
+  if (response.success === true) {
+    toast.success(response.message);
+    Router.push("/ico");
+  } else {
+    toast.error(response.message);
+  }
+  setLoading(false);
+};
+export const TokenBuyIcoStripeAction = async (
+  initialData: any,
+  setLoading: any,
+  amount: any,
+  stripe_token: any,
+  payment_method: any
+) => {
+  const formData = new FormData();
+  formData.append("phase_id", initialData.phase_id);
+  formData.append("token_id", initialData.token_id);
+  formData.append("amount", amount);
+  formData.append("stripe_token", stripe_token);
+  formData.append("payment_method", payment_method);
+  const response = await TokenBuyIco(formData);
+  setLoading(true);
+  if (response.success === true) {
+    toast.success(response.message);
+    Router.push("/ico");
+  } else {
+    toast.error(response.message);
+  }
+  setLoading(false);
+};
+export const TokenBuyIcoPaypalAction = async (credentials: any) => {
+  const response = await TokenBuyIco(credentials);
+  if (response.success === true) {
+    toast.success(response.message);
+    Router.push("/ico");
+  } else {
+    toast.error(response.message);
   }
 };
