@@ -48,8 +48,10 @@ const CryptoPayment = ({ walletlist, initialData }: any) => {
           }}
         >
           <option value="">{t("Select currency")}</option>
-          {walletlist?.map((item: any) => (
-            <option value={item.id}>{item?.name}</option>
+          {walletlist?.map((item: any, index: any) => (
+            <option value={item.id} key={index}>
+              {item?.name}
+            </option>
           ))}
         </select>
       </div>

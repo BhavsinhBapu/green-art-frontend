@@ -93,8 +93,9 @@ const CreateEditPhase = ({ id, edit, data }: any) => {
                   }}
                 >
                   <option value="">{t("Select currency")}</option>
-                  {coinList.map((item: any) => (
+                  {coinList.map((item: any, index: any) => (
                     <option
+                      key={index}
                       selected={phaseForm.coin_currency === item.coin_type}
                       value={item.coin_type}
                     >

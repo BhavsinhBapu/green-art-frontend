@@ -57,9 +57,7 @@ export const Chat = ({ customPageData, socialData, copyright_text }: any) => {
       dispatch(setChatico(e.data));
     });
   }
-  // useEffect(() => {
-  //   console.log(chatHistory, "chatHistory");
-  // }, [chatHistory]);
+  
   useEffect(() => {
     if (socketCall === 0) {
       listenMessages();
