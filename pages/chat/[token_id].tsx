@@ -2,7 +2,7 @@ import Footer from "components/common/footer";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
 import useTranslation from "next-translate/useTranslation";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { customPage, landingPage } from "service/landing-page";
 import { TiDelete } from "react-icons/ti";
 import { useRouter } from "next/router";
@@ -14,20 +14,26 @@ import { RootState } from "state/store";
 import { date } from "yup";
 import { setChatico, seticoChat } from "state/reducer/user";
 import { ChatHistoryByTokenId } from "service/launchpad";
+import moment from "moment";
 let socketCall = 0;
 
 export const Chat = ({ customPageData, socialData, copyright_text }: any) => {
   const { t } = useTranslation("common");
   const dispatch = useDispatch();
+  const messagesEndRef = useRef(null);
   const [file, setFile] = useState<any>();
   const [sendFile, setSendFile] = useState();
+  const [adminList, setAdminList] = useState([]);
+  const [selectedAdmin, setSelectedAdmin] = useState();
   const [message, setMessage] = useState("");
   const { user, icoChat } = useSelector((state: RootState) => state.user);
   const router = useRouter();
   const getDataHistory = async () => {
     if (router.query.token_id) {
       const response = await ChatHistoryByTokenId(router.query.token_id);
-      dispatch(seticoChat(response.data));
+      dispatch(seticoChat(response?.data?.conversation_list));
+      setAdminList(response?.data?.admin_list);
+      setSelectedAdmin(response?.data?.admin_list[0].id);
       return response;
     }
   };
@@ -57,13 +63,21 @@ export const Chat = ({ customPageData, socialData, copyright_text }: any) => {
       dispatch(setChatico(e.data));
     });
   }
-  
+
   useEffect(() => {
     if (socketCall === 0) {
       listenMessages();
     }
     socketCall = 1;
   });
+  const scrollToBottom = () => {
+    //@ts-ignore
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [icoChat]);
   return (
     <>
       <div className="page-wrap rightMargin">
@@ -91,13 +105,35 @@ export const Chat = ({ customPageData, socialData, copyright_text }: any) => {
                           src="https://tradexpro-app.cdibrandstudio.com/assets/img/avater.png"
                           alt=""
                         />
-                        <div className="chart-header-title">
-                          <p className="chat-name">Admin</p>
-                          {/* <p className="chat-status ofline online">Offline</p> */}
-                          {/* <p className="chat-last-seen">
+                        {/* <div className="chart-header-title">
+                          <p className="chat-name">Admin</p> */}
+                        {/* <p className="chat-status ofline online">Offline</p> */}
+                        {/* <p className="chat-last-seen">
                             Last seen 2 months ago
                           </p> */}
-                        </div>
+                        {/* </div> */}
+                        <select
+                          name="coin_currency"
+                          className={`ico-input-box`}
+                          required
+                          onChange={(e) => {
+                            // setphaseForm({
+                            //   ...phaseForm,
+                            //   coin_currency: e.target.value,
+                            // });
+                          }}
+                        >
+                          <option value="">{t("Select admin")}</option>
+                          {adminList.map((admin: any, index: any) => (
+                            <option
+                              key={index}
+                              selected={selectedAdmin === admin.id}
+                              value={admin.id}
+                            >
+                              {admin?.first_name}
+                            </option>
+                          ))}
+                        </select>
                       </div>
                       <div className="chat-body">
                         {icoChat?.map((chat: any) => (
@@ -122,7 +158,7 @@ export const Chat = ({ customPageData, socialData, copyright_text }: any) => {
                                     {chat?.message}
                                   </p>
                                   <p className="chat-last-seen">
-                                    {chat?.created_at}
+                                    {moment(chat?.created_at).calendar()}
                                   </p>
                                 </div>
                               </>
@@ -138,22 +174,7 @@ export const Chat = ({ customPageData, socialData, copyright_text }: any) => {
                             )}
                           </>
                         ))}
-                        {/* 
-                        <div className="chat-right">
-                          <img
-                            className="chat-list-avatar"
-                            height={35}
-                            width={35}
-                            src="https://tradexpro-app.cdibrandstudio.com/assets/img/avater.png"
-                            alt=""
-                          />
-                          <div className="chart-header-title">
-                            <p className="chat-details">Rolex</p>
-                            <p className="chat-last-seen">
-                              Last seen 2 months ago
-                            </p>
-                          </div>
-                        </div> */}
+                        <span ref={messagesEndRef}></span>
                       </div>
                       {file && (
                         <div className="chat-upload-image">
@@ -203,13 +224,16 @@ export const Chat = ({ customPageData, socialData, copyright_text }: any) => {
                         <div className="submit-button">
                           <button
                             className="chat-button"
-                            disabled={!message}
+                            disabled={sendFile || message ? false : true}
                             onClick={() => {
                               SendChantByTokenAction(
                                 router.query.token_id,
                                 sendFile,
                                 message,
-                                setMessage
+                                setMessage,
+                                setSendFile,
+                                setFile,
+                                selectedAdmin
                               );
                             }}
                           >
