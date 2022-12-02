@@ -374,15 +374,24 @@ export const SendChantByTokenAction = async (
   token_id: any,
   file: any,
   message: any,
-  setMessage: any
+  setMessage: any,
+  setSendFile: any,
+  setFile: any,
+  selectedAdmin: any
 ) => {
   const formData = new FormData();
+  if (!selectedAdmin) {
+    toast.error("Please select an admin first");
+    return;
+  }
   formData.append("token_id", token_id);
   formData.append("message", message);
+  formData.append("reciever_id", selectedAdmin);
   if (file) formData.append("file", file);
   setMessage("");
-  const response = await SendChantByToken(formData);
-
+  await SendChantByToken(formData);
+  setSendFile(null);
+  setFile(null);
   // return response;
   // console.log(response.data, "file");
 };

@@ -8,11 +8,12 @@ import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { useRouter } from "next/router";
 import { getContractAddressDetails, icoListDetails } from "service/launchpad";
 import { toast } from "react-toastify";
+import Loading from "components/common/loading";
 
 const TokenCreate = ({ id, edit, data }: any) => {
   const { t } = useTranslation("common");
-  const [launchpadForm, setLaunchpadForm]: any = useState<any>([]);
   const [loading, setLoading]: any = useState<any>(false);
+  const [warning, setWarning] = useState(false);
   const router = useRouter();
   return (
     <div className="container">
@@ -31,7 +32,7 @@ const TokenCreate = ({ id, edit, data }: any) => {
             <Formik
               initialValues={{
                 id: edit ? data.id : "",
-                form_id: id,
+                form_id: edit ? data.form_id : null,
                 base_coin: edit ? data.base_coin : "",
                 token_name: edit ? data?.token_name : "",
                 network: edit ? data?.network : "",
@@ -85,12 +86,12 @@ const TokenCreate = ({ id, edit, data }: any) => {
                       }`}
                       onChange={(e: any) => {
                         setFieldValue("network", e.target.value);
-                        //    <option value="BND">{t("BND")}</option>
+                        //    <option value="BNB">{t("BNB")}</option>
                         // <option value="ETH">{t("ETH")}</option>
                         if (e.target.value == 4) {
                           setFieldValue("base_coin", "ETH");
                         } else {
-                          setFieldValue("base_coin", "BND");
+                          setFieldValue("base_coin", "BNB");
                         }
                       }}
                     >
@@ -114,7 +115,7 @@ const TokenCreate = ({ id, edit, data }: any) => {
                       }`}
                     >
                       <option value="">{t("Select A Network")}</option>
-                      <option value="BND">{t("BND")}</option>
+                      <option value="BNB">{t("BNB")}</option>
                       <option value="ETH">{t("ETH")}</option>
                     </Field>
                   </div>
@@ -173,6 +174,26 @@ const TokenCreate = ({ id, edit, data }: any) => {
                           ? "is-invalid"
                           : ""
                       }`}
+                      onBlur={async (e: any) => {
+                        if (values.chain_link && values.contract_address) {
+                          setWarning(true);
+                          const response = await getContractAddressDetails({
+                            contract_address: values.contract_address,
+                            chain_link: values.chain_link,
+                          });
+
+                          if (response.success == false) {
+                            toast.error(response.message);
+                          }
+                          setFieldValue("decimal", response.data.token_decimal); //data-seed-prebsc-1-s1.binance.org:8545/
+                          https: setFieldValue(
+                            "token_name",
+                            response.data.name
+                          );
+                          setFieldValue("chain_id", response.data.chain_id);
+                          setWarning(false);
+                        }
+                      }}
                     />
                   </div>
                   <div className="col-md-6 form-input-div">
@@ -195,24 +216,27 @@ const TokenCreate = ({ id, edit, data }: any) => {
                       }}
                       onBlur={async (e: any) => {
                         if (values.chain_link && values.contract_address) {
+                          setWarning(true);
                           const response = await getContractAddressDetails({
                             contract_address: values.contract_address,
                             chain_link: values.chain_link,
                           });
 
                           if (response.success == false) {
-                            console.log(
-                              response.message,
-                              "responseresponseresponse"
-                            );
                             toast.error(response.message);
                           }
                           setFieldValue("decimal", response.data.token_decimal);
                           setFieldValue("token_name", response.data.name);
                           setFieldValue("chain_id", response.data.chain_id);
+                          setWarning(false);
                         }
                       }}
                     />
+                    {warning && (
+                      <p className="text-warning">
+                        {t("Validating contract address")}
+                      </p>
+                    )}
                   </div>
 
                   <div className="col-md-6 form-input-div">
