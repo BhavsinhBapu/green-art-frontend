@@ -386,7 +386,7 @@ export const SendChantByTokenAction = async (
   }
   formData.append("token_id", token_id);
   formData.append("message", message);
-  formData.append("reciever_id", selectedAdmin);
+  formData.append("receiver_id", selectedAdmin);
   if (file) formData.append("file", file);
   setMessage("");
   await SendChantByToken(formData);
