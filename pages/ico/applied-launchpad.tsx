@@ -74,7 +74,7 @@ const Profile: NextPage = ({
       sortable: true,
       cell: (row: any) => (
         <div className="blance-text">
-          {row?.status === 1 && (
+          {row?.status === 1 && row?.is_token_has === 1 && (
             <Link href={`/ico/create-edit-token/${row?.id}`}>
               <li className="toolTip" title="Create Token">
                 <GiToken size={25} />
