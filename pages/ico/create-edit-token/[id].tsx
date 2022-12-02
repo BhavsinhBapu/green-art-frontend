@@ -45,6 +45,7 @@ const TokenCreate = ({ id, edit, data }: any) => {
                 gas_limit: edit ? data?.gas_limit : "",
                 details_rule: edit ? data?.details_rule : "",
                 website_link: edit ? data?.website_link : "",
+                token_symbol: edit ? data?.token_symbol : "",
               }}
               validationSchema={Yup.object({
                 form_id: Yup.number().required(
@@ -74,6 +75,7 @@ const TokenCreate = ({ id, edit, data }: any) => {
             >
               {({ errors, touched, setFieldValue, values }) => (
                 <Form className="row">
+                  {" "}
                   <div className="col-md-6 form-input-div">
                     <label className="ico-label-box" htmlFor="">
                       {t("Token Type")}
@@ -119,49 +121,6 @@ const TokenCreate = ({ id, edit, data }: any) => {
                       <option value="ETH">{t("ETH")}</option>
                     </Field>
                   </div>
-
-                  <div className="col-md-6 form-input-div">
-                    <label className="ico-label-box" htmlFor="">
-                      {t("Wallet Address")}
-                    </label>
-                    <Field
-                      type="text"
-                      name="wallet_address"
-                      className={`ico-input-box ${
-                        touched.wallet_address && errors.wallet_address
-                          ? "is-invalid"
-                          : ""
-                      }`}
-                    />
-                  </div>
-                  <div className="col-md-6 form-input-div">
-                    <label className="ico-label-box" htmlFor="">
-                      {t("Wallet Private Key")}
-                    </label>
-                    <Field
-                      type="text"
-                      name="wallet_private_key"
-                      className={`ico-input-box ${
-                        touched.wallet_private_key && errors.wallet_private_key
-                          ? "is-invalid"
-                          : ""
-                      }`}
-                    />
-                  </div>
-                  <div className="col-md-6 form-input-div">
-                    <label className="ico-label-box" htmlFor="">
-                      {t("Gas Limit")}
-                    </label>
-                    <Field
-                      type="number"
-                      name="gas_limit"
-                      className={`ico-input-box ${
-                        touched.gas_limit && errors.gas_limit
-                          ? "is-invalid"
-                          : ""
-                      }`}
-                    />
-                  </div>
                   <div className="col-md-6 form-input-div">
                     <label className="ico-label-box" htmlFor="">
                       {t("Network")}
@@ -185,11 +144,16 @@ const TokenCreate = ({ id, edit, data }: any) => {
                           if (response.success == false) {
                             toast.error(response.message);
                           }
-                          setFieldValue("decimal", response.data.token_decimal); //data-seed-prebsc-1-s1.binance.org:8545/
-                          https: setFieldValue(
+                          setFieldValue("decimal", response.data.token_decimal);
+                          setFieldValue(
                             "token_name",
                             response.data.name
                           );
+                          console.log(
+                            response.data.symbol,
+                            "response.data.symbol"
+                          );
+                          setFieldValue("token_symbol", response.data.symbol);
                           setFieldValue("chain_id", response.data.chain_id);
                           setWarning(false);
                         }
@@ -238,7 +202,62 @@ const TokenCreate = ({ id, edit, data }: any) => {
                       </p>
                     )}
                   </div>
-
+                  <div className="col-md-6 form-input-div">
+                    <label className="ico-label-box" htmlFor="">
+                      {t("Token Symbol")}
+                    </label>
+                    <Field
+                      type="text"
+                      name="token_symbol"
+                      className={`ico-input-box ${
+                        touched.wallet_address && errors.wallet_address
+                          ? "is-invalid"
+                          : ""
+                      }`}
+                    />
+                  </div>
+                  <div className="col-md-6 form-input-div">
+                    <label className="ico-label-box" htmlFor="">
+                      {t("Wallet Address")}
+                    </label>
+                    <Field
+                      type="text"
+                      name="wallet_address"
+                      className={`ico-input-box ${
+                        touched.wallet_address && errors.wallet_address
+                          ? "is-invalid"
+                          : ""
+                      }`}
+                    />
+                  </div>
+                  <div className="col-md-6 form-input-div">
+                    <label className="ico-label-box" htmlFor="">
+                      {t("Wallet Private Key")}
+                    </label>
+                    <Field
+                      type="text"
+                      name="wallet_private_key"
+                      className={`ico-input-box ${
+                        touched.wallet_private_key && errors.wallet_private_key
+                          ? "is-invalid"
+                          : ""
+                      }`}
+                    />
+                  </div>
+                  <div className="col-md-6 form-input-div">
+                    <label className="ico-label-box" htmlFor="">
+                      {t("Gas Limit")}
+                    </label>
+                    <Field
+                      type="number"
+                      name="gas_limit"
+                      className={`ico-input-box ${
+                        touched.gas_limit && errors.gas_limit
+                          ? "is-invalid"
+                          : ""
+                      }`}
+                    />
+                  </div>
                   <div className="col-md-6 form-input-div">
                     <label className="ico-label-box" htmlFor="">
                       {t("Token Name")}
@@ -254,7 +273,6 @@ const TokenCreate = ({ id, edit, data }: any) => {
                       }`}
                     />
                   </div>
-
                   <div className="col-md-6 form-input-div">
                     <label className="ico-label-box" htmlFor="">
                       {t("Chain Id")}
@@ -268,7 +286,6 @@ const TokenCreate = ({ id, edit, data }: any) => {
                       }`}
                     />
                   </div>
-
                   <div className="col-md-6 form-input-div">
                     <label className="ico-label-box" htmlFor="">
                       {t("Decimal")}
@@ -309,7 +326,6 @@ const TokenCreate = ({ id, edit, data }: any) => {
                       }`}
                     />
                   </div>
-
                   <div className="col-md-12 form-input-div">
                     <button type="submit" className="primary-btn">
                       {loading
