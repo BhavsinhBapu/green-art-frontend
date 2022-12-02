@@ -76,7 +76,7 @@ const TokenCreate = ({ id, edit, data }: any) => {
                 <Form className="row">
                   <div className="col-md-6 form-input-div">
                     <label className="ico-label-box" htmlFor="">
-                      {t("Network")}
+                      {t("Token Type")}
                     </label>
                     <Field
                       as="select"
@@ -164,7 +164,7 @@ const TokenCreate = ({ id, edit, data }: any) => {
                   </div>
                   <div className="col-md-6 form-input-div">
                     <label className="ico-label-box" htmlFor="">
-                      {t("Chain Link")}
+                      {t("Network")}
                     </label>
                     <Field
                       type="text"
