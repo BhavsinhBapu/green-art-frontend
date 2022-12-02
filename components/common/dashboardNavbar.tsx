@@ -545,16 +545,16 @@ const DashboardNavbar = () => {
                                           />
                                           <div>
                                             <h6>
-                                              {item.title.substring(0, 40)}
+                                              {item?.title.substring(0, 40)}
                                             </h6>
                                             <p>
-                                              {item.notification_body.substring(
+                                              {item?.notification_body.substring(
                                                 0,
                                                 50
                                               )}
                                             </p>
                                             <span>
-                                              {moment(item.created_at).format(
+                                              {moment(item?.created_at).format(
                                                 "DD MMM YYYY"
                                               )}
                                             </span>
@@ -569,95 +569,7 @@ const DashboardNavbar = () => {
                                 </div>
                               </div>
                             </div>
-                            {/* {notificationData[0] && (
-                              <div className="notification-body-drop">
-                                <div>
-                                  <p className="title-notifination">
-                                    {notificationData[0].title}
-                                  </p>
-                                  <p className="title-body-notifination">
-                                    {notificationData[0].notification_body}
-                                  </p>
-                                </div>
-                              </div>
-                            )}
-                            {notificationData[1] && (
-                              <div className="notification-body-drop">
-                                <div>
-                                  <p className="title-notifination">
-                                    {notificationData[1].title}
-                                  </p>
-                                  <p className="title-body-notifination">
-                                    {notificationData[1].notification_body}
-                                  </p>
-                                </div>
-                              </div>
-                            )}
-                            {notificationData[2] && (
-                              <div className="notification-body-drop">
-                                <div>
-                                  <p className="title-notifination">
-                                    {notificationData[2].title}
-                                  </p>
-                                  <p className="title-body-notifination">
-                                    {notificationData[2].notification_body}
-                                  </p>
-                                </div>
-                              </div>
-                            )}
-                            {notificationData.length > 0 ? (
-                              <div className="text-center p-2 border-bottom nt-title">
-                                <Link href="/user/notification">
-                                  <span className="mr-5"> {t("View all")}</span>
-                                </Link>
-                                <span
-                                  className="ml-5"
-                                  onClick={() => {
-                                    seen();
-                                  }}
-                                >
-                                  {t("Clear all")}
-                                </span>
-                              </div>
-                            ) : (
-                              <div className="text-center p-2 border-bottom nt-title">
-                                <span className="mr-5">
-                                  {" "}
-                                  {t("No new notification")}
-                                </span>
-                              </div>
-                            )}
-
-                            <div
-                              className="scroll-wrapper scrollbar-inner"
-                              style={{
-                                position: "relative",
-                              }}
-                            >
-                              <ul
-                                className="scrollbar-inner scroll-content"
-                                style={{
-                                  height: "auto",
-                                  marginBottom: "0px",
-                                  marginRight: "0px",
-                                  maxHeight: "0px",
-                                }}
-                              ></ul>
-                              <div className="scroll-element scroll-x">
-                                <div className="scroll-element_outer">
-                                  <div className="scroll-element_size"></div>
-                                  <div className="scroll-element_track"></div>
-                                  <div className="scroll-bar"></div>
-                                </div>
-                              </div>
-                              <div className="scroll-element scroll-y">
-                                <div className="scroll-element_outer">
-                                  <div className="scroll-element_size"></div>
-                                  <div className="scroll-element_track"></div>
-                                  <div className="scroll-bar"></div>
-                                </div>
-                              </div>
-                            </div> */}
+                          
                           </div>
                         </div>
                       </li>
