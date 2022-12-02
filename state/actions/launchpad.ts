@@ -191,6 +191,7 @@ export const launchpadCreateUpdateTokenAction = async (
     formData.append("id", payload.id);
     formData.append("details_rule", payload.details_rule);
     formData.append("website_link", payload.website_link);
+    formData.append("token_symbol", payload.token_symbol);
     const response = await launchpadCreateUpdateToken(formData);
     setLoading(false);
     if (response.success === true) {

@@ -98,13 +98,13 @@ export const Chat = ({ customPageData, socialData, copyright_text }: any) => {
                   <div className="live-chat">
                     <div className="chat-inner">
                       <div className="chat-header">
-                        <img
+                        {/* <img
                           className="chat-avatar"
                           height={45}
                           width={45}
                           src="https://tradexpro-app.cdibrandstudio.com/assets/img/avater.png"
                           alt=""
-                        />
+                        /> */}
                         {/* <div className="chart-header-title">
                           <p className="chat-name">Admin</p> */}
                         {/* <p className="chat-status ofline online">Offline</p> */}
@@ -150,7 +150,11 @@ export const Chat = ({ customPageData, socialData, copyright_text }: any) => {
                                   className="chat-list-avatar"
                                   height={35}
                                   width={35}
-                                  src="https://tradexpro-app.cdibrandstudio.com/assets/img/avater.png"
+                                  src={
+                                    chat.sender_id === user.id
+                                      ? chat?.sender_img
+                                      : chat?.receiver_img
+                                  }
                                   alt=""
                                 />
                                 <div className="chart-header-title">
