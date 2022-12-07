@@ -58,9 +58,11 @@ const CryptoPayment = ({ walletlist, initialData }: any) => {
       </div>
       {data.payer_wallet && data.amount && initialData.phase_id && (
         <PaymentDetails
-          id={data.payer_wallet}
           amount={data.amount}
           phase_id={initialData.phase_id}
+          token_id={initialData.token_id}
+          payment_method={CRYPTO_DEPOSIT}
+          payer_wallet={data.payer_wallet}
         />
       )}
       <button

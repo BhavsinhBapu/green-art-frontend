@@ -39,19 +39,22 @@ export const getTokenBuyHistory = async (
 };
 
 export const TokenPriceInfo = async (
-  currency: any,
   amount: any,
   phase_id: any,
-  id: any
+  id: any,
+  pay_currency: any,
+  payer_wallet: any,
+  token_id: any,
+  payment_method: any
 ) => {
-  if (!currency) {
+  if (!pay_currency) {
     const { data } = await launchpadRequest.get(
-      `/token-price-info?phase_id=${phase_id}&amount=${amount}&wallet_id=${id}`
+      `/token-price-info?phase_id=${phase_id}&amount=${amount}&wallet_id=${id}&token_id=${token_id}&payment_method=${payment_method}&payer_wallet=${payer_wallet}`
     );
     return data;
   } else {
     const { data } = await launchpadRequest.get(
-      `/token-price-info?phase_id=${phase_id}&amount=${amount}&currency=${currency}`
+      `/token-price-info?phase_id=${phase_id}&amount=${amount}&token_id=${token_id}&payment_method=${payment_method}&pay_currency=${pay_currency}`
     );
     return data;
   }
@@ -189,9 +192,12 @@ export const SendChantByToken = async (payload: any) => {
   );
   return data;
 };
-export const ChatHistoryByTokenId = async (token_id: any) => {
+export const ChatHistoryByTokenId = async (
+  token_id: any,
+  selectedAdmin: any
+) => {
   const { data } = await launchpadRequest.get(
-    `/ico-chat-details?token_id=${token_id}`
+    `/ico-chat-details?token_id=${token_id}&admin_id=${selectedAdmin}`
   );
   return data;
 };

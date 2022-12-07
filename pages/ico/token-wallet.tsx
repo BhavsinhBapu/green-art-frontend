@@ -59,12 +59,7 @@ const MyWallet: NextPage = ({
             <div className="section-top-wrap mb-25">
               <div className="overview-area">
                 <div className="overview-left">
-                  <h2 className="section-top-title">{t("Overview")}</h2>
-                  <h4 className="blance-title">{t("Total balance")}</h4>
-                  {/* <h4 className="blance">
-                    {allData?.total ? parseFloat(allData?.total).toFixed(8) : 0}
-                    {""} {settings?.currency}
-                  </h4> */}
+                  <h2 className="section-top-title">{t("Token Wallet")}</h2>
                 </div>
               </div>
             </div>
@@ -132,10 +127,9 @@ const MyWallet: NextPage = ({
                           <tr>
                             <th scope="col">{t("Asset")}</th>
                             <th scope="col">{t("Symbol")}</th>
-                            <th scope="col">{t("On Order")}</th>
                             <th scope="col">{t("Available Balance")}</th>
-                            <th scope="col">{t("Total Balance")}</th>
-                            <th scope="col">{t("Action")}</th>
+                            <th scope="col">{t("Address")}</th>
+                            <th scope="col">{t("Date")}</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -160,26 +154,8 @@ const MyWallet: NextPage = ({
                               </td>
                               <td>
                                 <div className="blance-text">
-                                  <span className="blance market incree">
-                                    {item?.on_order}
-                                  </span>
-                                  <span className="usd">
-                                    ({settings?.currency_symbol}
-                                    {parseFloat(item?.on_order_usd).toFixed(8)})
-                                  </span>
-                                </div>
-                              </td>
-                              <td>
-                                <div className="blance-text">
                                   <span className="blance">
                                     {parseFloat(item?.balance).toFixed(8)}
-                                  </span>
-                                  <span className="usd">
-                                    ({settings?.currency_symbol}
-                                    {parseFloat(
-                                      item?.available_balance_usd
-                                    ).toFixed(8)}
-                                    )
                                   </span>
                                 </div>
                               </td>
@@ -187,18 +163,15 @@ const MyWallet: NextPage = ({
                                 <div className="blance-text">
                                   <span className="blance">
                                     {/* @ts-ignore */}
-                                    {parseFloat(
-                                      // @ts-ignore
-                                      Number(item?.balance) +
-                                        Number(item?.on_order)
-                                    ).toFixed(8)}
+                                    {item?.address}
                                   </span>
-                                  <span className="usd">
-                                    ({settings?.currency_symbol}
-                                    {parseFloat(
-                                      item?.total_balance_usd
-                                    ).toFixed(8)}
-                                    )
+                                </div>
+                              </td>
+                              <td>
+                                <div className="blance-text">
+                                  <span className="blance">
+                                    {/* @ts-ignore */}
+                                    {item?.created_at}
                                   </span>
                                 </div>
                               </td>

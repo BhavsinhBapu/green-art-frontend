@@ -30,16 +30,19 @@ export const Chat = ({ customPageData, socialData, copyright_text }: any) => {
   const router = useRouter();
   const getDataHistory = async () => {
     if (router.query.token_id) {
-      const response = await ChatHistoryByTokenId(router.query.token_id);
+      const response = await ChatHistoryByTokenId(
+        router.query.token_id,
+        selectedAdmin
+      );
       dispatch(seticoChat(response?.data?.conversation_list));
       setAdminList(response?.data?.admin_list);
-      setSelectedAdmin(response?.data?.admin_list[0].id);
+      if (!selectedAdmin) setSelectedAdmin(response?.data?.admin_list[0].id);
       return response;
     }
   };
   useEffect(() => {
     getDataHistory();
-  }, [router.query.token_id]);
+  }, [router.query.token_id, selectedAdmin]);
   async function listenMessages() {
     //@ts-ignore
     window.Pusher = Pusher;
@@ -116,11 +119,8 @@ export const Chat = ({ customPageData, socialData, copyright_text }: any) => {
                           name="coin_currency"
                           className={`ico-input-box`}
                           required
-                          onChange={(e) => {
-                            // setphaseForm({
-                            //   ...phaseForm,
-                            //   coin_currency: e.target.value,
-                            // });
+                          onChange={(e: any) => {
+                            setSelectedAdmin(e.target.value);
                           }}
                         >
                           <option value="">{t("Select admin")}</option>
