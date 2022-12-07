@@ -1,9 +1,8 @@
 import ScaletonLoading from "components/common/ScaletonLoading";
-import BankDeposit from "components/deposit/bank-deposit";
-import PaypalSection from "components/deposit/PaypalSection";
+
 import SelectDeposit from "components/deposit/selectDeposit";
-import StripeDeposit from "components/deposit/stripe-deposit";
-import WalletDeposit from "components/deposit/wallet-deposit";
+import LaunchPad from "components/ico/LaunchPad";
+
 import BankPayment from "components/ico/payment/Bank-payment";
 import CryptoPayment from "components/ico/payment/CryptoPayment";
 import PaypalPayment from "components/ico/payment/PaypalPayment";
@@ -12,20 +11,23 @@ import {
   BANK_DEPOSIT,
   CRYPTO_DEPOSIT,
   PAYPAL,
-  SKRILL,
+  PHASE_SORT_BY_RECENT,
   STRIPE,
-  WALLET_DEPOSIT,
 } from "helpers/core-constants";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { TokenBuyPageAction } from "state/actions/launchpad";
+import {
+  getLaunchpadListDetailsAction,
+  TokenBuyPageAction,
+} from "state/actions/launchpad";
 
 const Index = () => {
   const { t } = useTranslation("common");
   const [selectedMethod, setSelectedMethod] = useState<any>({
     method: BANK_DEPOSIT,
   });
+  const [launchpadListDetails, setLaunchpadListDetails]: any = useState([]);
   const router = useRouter();
   const [initialData, setInitialData] = useState<any>({
     phase_id: 0,
@@ -43,6 +45,12 @@ const Index = () => {
     });
   }, [router.query]);
 
+  useEffect(() => {
+    getLaunchpadListDetailsAction(
+      setLaunchpadListDetails,
+      router.query.phase_id
+    );
+  }, []);
   return (
     <div>
       <div className="page-main-content">
@@ -50,17 +58,24 @@ const Index = () => {
           <div className="deposit-page">
             <div className="section-top-wrap mb-25">
               <div className="profle-are-top">
-                <h2 className="section-top-title">{t("ICO Payment")}</h2>
+                <h2 className="section-top-title">{t("Token Payment")}</h2>
               </div>
             </div>
-
+            {/* {JSON.stringify(launchpadListDetails)} */}
             <div className="asset-balances-area">
               <div className="section-wrapper boxShadow bank-section">
                 <div className="container">
                   <div className="deposit-conatiner">
+                    <LaunchPad
+                      viewMore={false}
+                      data={launchpadListDetails.data}
+                      core={PHASE_SORT_BY_RECENT}
+                      image={false}
+                    />
                     <div className="cp-user-title">
                       <h4>{t("Select method")}</h4>
                     </div>
+
                     {pageInfo?.payment_methods && (
                       <SelectDeposit
                         setSelectedMethod={setSelectedMethod}
@@ -86,9 +101,15 @@ const Index = () => {
                               initialData={initialData}
                             />
                           ) : parseInt(selectedMethod.method) === STRIPE ? (
-                            <StripePayment initialData={initialData} />
+                            <StripePayment
+                              initialData={initialData}
+                              pageInfo={pageInfo}
+                            />
                           ) : parseInt(selectedMethod.method) === PAYPAL ? (
-                            <PaypalPayment initialData={initialData} />
+                            <PaypalPayment
+                              initialData={initialData}
+                              pageInfo={pageInfo}
+                            />
                           ) : (
                             ""
                           )}

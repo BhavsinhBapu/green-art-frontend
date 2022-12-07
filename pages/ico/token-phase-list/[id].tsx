@@ -42,14 +42,40 @@ const IcoTokenPhaseList = ({
       sortable: true,
     },
     {
-      name: t("Coin Price"),
-      selector: (row: any) => row?.coin_price,
+      name: t("Token name"),
+      selector: (row: any) => row?.coin_type,
       sortable: true,
     },
     {
-      name: t("Available Token Supply"),
-      selector: (row: any) => parseFloat(row?.available_token_supply).toFixed(4),
+      name: t("Total Token Supply"),
+      // selector: (row: any) => parseFloat(row.total_token_supply).toFixed(5),
       sortable: true,
+      cell: (row: any) => (
+        <div className="blance-text">
+          {parseFloat(row.total_token_supply).toFixed(5)} {row?.coin_type}
+        </div>
+      ),
+    },
+    {
+      name: t("Available Token Supply"),
+      // selector: (row: any) =>
+        // parseFloat(row?.available_token_supply).toFixed(4),
+      sortable: true,
+      cell: (row: any) => (
+        <div className="blance-text">
+          {parseFloat(row?.available_token_supply).toFixed(4)} {row?.coin_type}
+        </div>
+      ),
+    },
+    {
+      name: t("Coin Price"),
+      // selector: (row: any) => row?.coin_price,
+      sortable: true,
+      cell: (row: any) => (
+        <div className="blance-text">
+          {row?.coin_price} {row?.coin_currency}
+        </div>
+      ),
     },
     {
       name: t("Status"),
@@ -89,16 +115,7 @@ const IcoTokenPhaseList = ({
         moment(row.created_at).format("YYYY-MM-DD HH:mm:ss"),
       sortable: true,
     },
-    {
-      name: t("Coin Currency"),
-      selector: (row: any) => row.coin_currency,
-      sortable: true,
-    },
-    {
-      name: t("Total Token Supply"),
-      selector: (row: any) => parseFloat(row.total_token_supply).toFixed(5),
-      sortable: true,
-    },
+
     {
       name: t("Actions"),
       sortable: true,

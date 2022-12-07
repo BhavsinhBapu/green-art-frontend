@@ -6,7 +6,6 @@ export const getLaunchpadList = async (page: any, type: any) => {
   );
   return data;
 };
-//127.0.0.1:8000/dynamic-form/api/active-ico-phase-details?id=1
 
 export const getLaunchpadListDetails = async (id: number) => {
   const { data } = await launchpadRequest.get(
@@ -14,6 +13,50 @@ export const getLaunchpadListDetails = async (id: number) => {
   );
   return data;
 };
+// /dynamic-form/api/my-token-balance
+
+export const getMyTokenBalance = async (
+  per_page: any,
+  page: any,
+  column_name: any,
+  order_by: any
+) => {
+  const { data } = await launchpadRequest.get(
+    `/my-token-balance?per_page=${per_page}&page=${page}&column_name=${column_name}&order_by=${order_by}`
+  );
+  return data;
+};
+export const getTokenBuyHistory = async (
+  per_page: any,
+  page: any,
+  column_name: any,
+  order_by: any
+) => {
+  const { data } = await launchpadRequest.get(
+    `/token-buy-history?per_page=${per_page}&page=${page}&column_name=${column_name}&order_by=${order_by}`
+  );
+  return data;
+};
+
+export const TokenPriceInfo = async (
+  currency: any,
+  amount: any,
+  phase_id: any,
+  id: any
+) => {
+  if (!currency) {
+    const { data } = await launchpadRequest.get(
+      `/token-price-info?phase_id=${phase_id}&amount=${amount}&wallet_id=${id}`
+    );
+    return data;
+  } else {
+    const { data } = await launchpadRequest.get(
+      `/token-price-info?phase_id=${phase_id}&amount=${amount}&currency=${currency}`
+    );
+    return data;
+  }
+};
+
 export const launchpadBuyIcoToken = async () => {
   const { data } = await launchpadRequest.get("/buy-ico-token");
   return data;

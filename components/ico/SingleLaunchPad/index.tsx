@@ -81,10 +81,14 @@ export const SingleLaunchPad = ({ data }: any) => {
           <div>
             <p>{t("Token Available")}</p>
             <span>
-              {data?.total_token_supply && data?.sold
-                ? data?.total_token_supply - data?.sold
-                : "0"}
+              {parseFloat(data?.available_token_supply)} {data?.coin_type}
             </span>
+          </div>
+          <div>
+            <p>{t("Participants")}</p>
+            <span>{`${parseFloat(
+              data?.total_participated ? data?.total_participated : 0
+            )} `}</span>
           </div>
           <div>
             <p>{t("Base Coin")}</p>

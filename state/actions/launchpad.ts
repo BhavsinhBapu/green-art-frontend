@@ -12,6 +12,8 @@ import {
   DynamicSubmittedFormList,
   getLaunchpadList,
   getLaunchpadListDetails,
+  getMyTokenBalance,
+  getTokenBuyHistory,
   GetTokenList,
   IcoTokenPhaseList,
   launchpadBuyIcoToken,
@@ -54,7 +56,6 @@ export const getLaunchpadListDetailsAction = async (
   id: any
 ) => {
   const response = await getLaunchpadListDetails(id);
-  console.log(response, "responseresponseresponseresponse");
   setLaunchpadListDetails(response);
 };
 
@@ -205,7 +206,8 @@ export const launchpadCreateUpdateTokenAction = async (
 };
 export const launchpadCreateUpdatePhaseAction = async (
   payload: any,
-  setLoading: any
+  setLoading: any,
+  id: any
 ) => {
   setLoading(true);
   if (Object.keys(payload).length > 0) {
@@ -229,7 +231,7 @@ export const launchpadCreateUpdatePhaseAction = async (
 
     if (response.success === true) {
       toast.success(response.message);
-      Router.push("/ico/ico-tokens");
+      Router.push("/ico/token-phase-list/" + id);
     } else if (response.success === false) {
       toast.error(response.message);
     }
@@ -276,11 +278,53 @@ export const GetTokenListAction = async (
     setStillHistory(response.data);
   }
 };
-
+// getTokenBuyHistory;
+// getMyTokenBalance;
+export const getMyTokenBalanceAction = async (
+  per_page: number,
+  page: number,
+  setReport: any,
+  setProcessing: any,
+  setStillHistory: any,
+  column_name: string,
+  order_by: string
+) => {
+  const response = await getMyTokenBalance(
+    per_page,
+    page,
+    column_name,
+    order_by
+  );
+  console.log(response, "testtest");
+  if (response.success === true) {
+    setReport(response.data.data);
+    setStillHistory(response.data);
+  }
+};
+export const getTokenBuyHistoryAction = async (
+  per_page: number,
+  page: number,
+  setReport: any,
+  setProcessing: any,
+  setStillHistory: any,
+  column_name: string,
+  order_by: string
+) => {
+  const response = await getTokenBuyHistory(
+    per_page,
+    page,
+    column_name,
+    order_by
+  );
+  console.log(response, "testtest");
+  if (response.success === true) {
+    setReport(response.data.data);
+    setStillHistory(response.data);
+  }
+};
 export const TokenBuyPageAction = async (setPage: any, setLoading: any) => {
   const response = await TokenBuyPage();
   setLoading(true);
-  console.log(response, "response");
   if (response.success === true) {
     setPage(response.data);
   }
@@ -295,8 +339,10 @@ export const TokenBuyIcoBankAction = async (
   bank_id: any,
   amount: any,
   payment_method: any,
-  ref: any
+  ref: any,
+  pay_currency: any
 ) => {
+  setLoading(true);
   const formData = new FormData();
   formData.append("phase_id", initialData.phase_id);
   formData.append("token_id", initialData.token_id);
@@ -305,8 +351,8 @@ export const TokenBuyIcoBankAction = async (
   formData.append("amount", amount);
   formData.append("payment_method", payment_method);
   formData.append("bank_ref", ref);
+  formData.append("pay_currency", pay_currency);
   const response = await TokenBuyIco(formData);
-  setLoading(true);
   if (response.success === true) {
     toast.success(response.message);
     Router.push("/ico");
@@ -343,6 +389,7 @@ export const TokenBuyIcoStripeAction = async (
   setLoading: any,
   amount: any,
   stripe_token: any,
+  pay_currency: any,
   payment_method: any
 ) => {
   const formData = new FormData();
@@ -351,6 +398,7 @@ export const TokenBuyIcoStripeAction = async (
   formData.append("amount", amount);
   formData.append("stripe_token", stripe_token);
   formData.append("payment_method", payment_method);
+  formData.append("pay_currency", pay_currency);
   const response = await TokenBuyIco(formData);
   setLoading(true);
   if (response.success === true) {

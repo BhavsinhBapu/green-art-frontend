@@ -56,7 +56,7 @@ const CreateEditPhase = ({ id, edit, data }: any) => {
               className="row"
               onSubmit={(e) => {
                 e.preventDefault();
-                launchpadCreateUpdatePhaseAction(phaseForm, setLoading);
+                launchpadCreateUpdatePhaseAction(phaseForm, setLoading, id);
               }}
             >
               <div className="col-md-6 form-input-div">
@@ -219,7 +219,6 @@ const CreateEditPhase = ({ id, edit, data }: any) => {
                   type="text"
                   name="social_link"
                   className={`ico-input-box`}
-                  required
                   value={phaseForm.social_link["1"]}
                   onChange={(e: any) => {
                     setphaseForm({
@@ -240,7 +239,6 @@ const CreateEditPhase = ({ id, edit, data }: any) => {
                   type="text"
                   name="social_link"
                   className={`ico-input-box`}
-                  required
                   value={phaseForm.social_link["2"]}
                   onChange={(e: any) => {
                     setphaseForm({
@@ -261,7 +259,6 @@ const CreateEditPhase = ({ id, edit, data }: any) => {
                   type="text"
                   name="social_link"
                   className={`ico-input-box`}
-                  required
                   value={phaseForm.social_link["3"]}
                   onChange={(e: any) => {
                     setphaseForm({

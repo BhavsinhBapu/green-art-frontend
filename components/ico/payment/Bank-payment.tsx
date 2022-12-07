@@ -1,7 +1,9 @@
 import { BANK_DEPOSIT } from "helpers/core-constants";
 import useTranslation from "next-translate/useTranslation";
 import React, { useRef, useState } from "react";
+import { toast } from "react-toastify";
 import { TokenBuyIcoBankAction } from "state/actions/launchpad";
+import PaymentDetails from "./paymentDetails";
 
 const BankPayment = ({ pageInfo, initialData }: any) => {
   const { t } = useTranslation("common");
@@ -10,6 +12,8 @@ const BankPayment = ({ pageInfo, initialData }: any) => {
   const [data, setData] = useState<any>({
     amount: 0,
     bank_id: null,
+    pay_currency: null,
+    referance: "",
   });
   const inputRef = useRef(null);
   const handleFileChange = (event: any) => {
@@ -48,10 +52,10 @@ const BankPayment = ({ pageInfo, initialData }: any) => {
       </div>
       <div className="col-md-6 form-input-div">
         <label className="ico-label-box" htmlFor="">
-          {t("Select Coin Currency")}
+          {t("Select Bank")}
         </label>
         <select
-          name="coin_currency"
+          name="bank"
           className={`ico-input-box`}
           required
           onChange={(e) => {
@@ -61,13 +65,52 @@ const BankPayment = ({ pageInfo, initialData }: any) => {
             });
           }}
         >
-          <option value="">{t("Select currency")}</option>
+          <option value="">{t("Select Bank")}</option>
           {pageInfo?.bank?.map((item: any, index: any) => (
             <option value={item.id} key={index}>
               {item?.bank_name}
             </option>
           ))}
         </select>
+      </div>
+      <div className="col-md-6 form-input-div">
+        <label className="ico-label-box" htmlFor="">
+          {t("Select Currency")}
+        </label>
+        <select
+          name="bank"
+          className={`ico-input-box`}
+          required
+          onChange={(e) => {
+            setData({
+              ...data,
+              pay_currency: e.target.value,
+            });
+          }}
+        >
+          <option value="">{t("Select")}</option>
+          {pageInfo?.currency_list?.map((item: any, index: any) => (
+            <option value={item.code} key={index}>
+              {item?.name}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className="col-md-6 form-input-div">
+        <label className="ico-label-box" htmlFor="">
+          {t("Bank Referance")}
+        </label>
+        <input
+          type="text"
+          name="amount"
+          value={pageInfo.ref}
+          placeholder="Bank Referance"
+          onClick={() => {
+            toast.success("Bank Referance Copied");
+          }}
+          className={`ico-input-box`}
+        />
+        <small>{t("Copy this referance for further validation and bank payment")}</small>
       </div>
       <div className="col-md-12 form-input-div">
         <div className="file-upload-wrapper">
@@ -84,8 +127,17 @@ const BankPayment = ({ pageInfo, initialData }: any) => {
           />
         </div>
       </div>
+      {data.pay_currency && data.amount && initialData.phase_id && (
+        <PaymentDetails
+          currency={data.pay_currency}
+          amount={data.amount}
+          phase_id={initialData.phase_id}
+        />
+      )}
       <button
-        disabled={!doc || !data.bank_id || !data.amount}
+        disabled={
+          !doc || !data.bank_id || !data.amount || !data.pay_currency || loading
+        }
         className="primary-btn-outline w-100"
         type="button"
         onClick={() => {
@@ -96,11 +148,12 @@ const BankPayment = ({ pageInfo, initialData }: any) => {
             data.bank_id,
             data.amount,
             BANK_DEPOSIT,
-            pageInfo.ref
+            pageInfo.ref,
+            data.pay_currency
           );
         }}
       >
-        {t("Make Payment")}
+        {loading ? "Please Wait" : t("Make Payment")}
       </button>
     </div>
   );

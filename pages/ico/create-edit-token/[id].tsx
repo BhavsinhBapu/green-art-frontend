@@ -32,7 +32,7 @@ const TokenCreate = ({ id, edit, data }: any) => {
             <Formik
               initialValues={{
                 id: edit ? data.id : "",
-                form_id: edit ? data.form_id : null,
+                form_id: id,
                 base_coin: edit ? data.base_coin : "",
                 token_name: edit ? data?.token_name : "",
                 network: edit ? data?.network : "",
@@ -42,32 +42,31 @@ const TokenCreate = ({ id, edit, data }: any) => {
                 chain_id: edit ? data?.chain_id : "",
                 chain_link: edit ? data?.chain_link : "",
                 decimal: edit ? data?.decimal : "",
-                gas_limit: edit ? data?.gas_limit : "",
+                gas_limit: edit ? data?.gas_limit : 430000,
                 details_rule: edit ? data?.details_rule : "",
                 website_link: edit ? data?.website_link : "",
                 token_symbol: edit ? data?.token_symbol : "",
               }}
               validationSchema={Yup.object({
-                form_id: Yup.number().required(
-                  t("ICO Submit Form ID is required")
-                ),
-
-                base_coin: Yup.string().required(t("Base Coin is required")),
-                token_name: Yup.string().required(t("Token Name is required")),
-                network: Yup.string().required(t("Network is required")),
-                wallet_address: Yup.string().required(
-                  t("Wallet Address is required")
-                ),
-                contract_address: Yup.string().required(
-                  t("Contract Address is required")
-                ),
-                wallet_private_key: Yup.string().required(
-                  t("Wallet Private Key is required")
-                ),
-                chain_id: Yup.string().required(t("Chain ID is required")),
-                chain_link: Yup.string().required(t("Chain Link is required")),
-                decimal: Yup.number().required(t("Decimal is required")),
-                gas_limit: Yup.number().required(t("Gas Limit is required")),
+                // form_id: Yup.number().required(
+                //   t("ICO Submit Form ID is required")
+                // ),
+                // base_coin: Yup.string().required(t("Base Coin is required")),
+                // token_name: Yup.string().required(t("Token Name is required")),
+                // network: Yup.string().required(t("Network is required")),
+                // wallet_address: Yup.string().required(
+                //   t("Wallet Address is required")
+                // ),
+                // contract_address: Yup.string().required(
+                //   t("Contract Address is required")
+                // ),
+                // wallet_private_key: Yup.string().required(
+                //   t("Wallet Private Key is required")
+                // ),
+                // chain_id: Yup.string().required(t("Chain ID is required")),
+                // chain_link: Yup.string().required(t("Chain Link is required")),
+                // decimal: Yup.number().required(t("Decimal is required")),
+                // gas_limit: Yup.number().required(t("Gas Limit is required")),
               })}
               onSubmit={(values) => {
                 launchpadCreateUpdateTokenAction(values, setLoading);
@@ -274,7 +273,7 @@ const TokenCreate = ({ id, edit, data }: any) => {
                       {t("Wallet Private Key")}
                     </label>
                     <Field
-                      type="text"
+                      type="password"
                       name="wallet_private_key"
                       className={`ico-input-box ${
                         touched.wallet_private_key && errors.wallet_private_key
@@ -331,7 +330,7 @@ const TokenCreate = ({ id, edit, data }: any) => {
                         ? t("Loading..")
                         : edit
                         ? t("Edit")
-                        : t("Apply To Launch")}
+                        : t("Create Token")}
                     </button>
                   </div>
                 </Form>

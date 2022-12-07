@@ -2,6 +2,7 @@ import { CRYPTO_DEPOSIT } from "helpers/core-constants";
 import useTranslation from "next-translate/useTranslation";
 import React, { useState } from "react";
 import { TokenBuyIcoCryptoAction } from "state/actions/launchpad";
+import PaymentDetails from "./paymentDetails";
 
 const CryptoPayment = ({ walletlist, initialData }: any) => {
   const [data, setData] = useState<any>({
@@ -47,7 +48,7 @@ const CryptoPayment = ({ walletlist, initialData }: any) => {
             });
           }}
         >
-          <option value="">{t("Select currency")}</option>
+          <option value="">{t("Select")}</option>
           {walletlist?.map((item: any, index: any) => (
             <option value={item.id} key={index}>
               {item?.name}
@@ -55,6 +56,13 @@ const CryptoPayment = ({ walletlist, initialData }: any) => {
           ))}
         </select>
       </div>
+      {data.payer_wallet && data.amount && initialData.phase_id && (
+        <PaymentDetails
+          id={data.payer_wallet}
+          amount={data.amount}
+          phase_id={initialData.phase_id}
+        />
+      )}
       <button
         disabled={!data.payer_wallet || !data.amount || !initialData.token_id}
         className="primary-btn-outline w-100"
