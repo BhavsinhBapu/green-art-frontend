@@ -66,7 +66,7 @@ const Index = ({ socialData, customPageData, copyright_text }: any) => {
               </div>
             </>
           )}
-          {launchpadRecentItem.length > 0 && (
+          {launchpadRecentItem?.length > 0 && (
             <>
               <div
                 id="carouselExampleControls"
