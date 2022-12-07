@@ -64,6 +64,8 @@ const PaypalPayment = ({ initialData, pageInfo }: any) => {
           currency={credential.pay_currency}
           amount={credential.amount}
           phase_id={initialData.phase_id}
+          token_id={initialData.token_id}
+          payment_method={PAYPAL}
         />
       )}
       {credential.amount && credential.pay_currency && (
