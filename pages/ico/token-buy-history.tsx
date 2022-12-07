@@ -13,18 +13,14 @@ import {
 import Link from "next/link";
 import DataTable from "react-data-table-component";
 import { handleSwapHistorySearch } from "state/actions/reports";
-import { MdCreateNewFolder } from "react-icons/md";
-import { IoCreateOutline } from "react-icons/io5";
-import { AiOutlineOrderedList } from "react-icons/ai";
-import { toast } from "react-toastify";
+
 import {
   STATUS_ACCEPTED,
   STATUS_MODIFICATION,
   STATUS_PENDING,
 } from "helpers/core-constants";
-import { BsFillChatFill } from "react-icons/bs";
 
-const tokenBuyHistory = ({
+const TokenBuyHistory = ({
   user,
   customPageData,
   socialData,
@@ -232,4 +228,4 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
     },
   };
 };
-export default tokenBuyHistory;
+export default TokenBuyHistory;
