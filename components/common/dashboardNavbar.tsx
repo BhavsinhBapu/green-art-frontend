@@ -46,13 +46,13 @@ const DashboardNavbar = () => {
   useEffect(() => {
     isLoggedIn && getNotifications();
   }, [isLoggedIn]);
-    useEffect(() => {
-      if (router.locale === "ar") {
-        document.body.classList.add("rtl-style");
-      } else {
-        document.body.classList.remove("rtl-style");
-      }
-    }, [router.locale]);
+  useEffect(() => {
+    if (router.locale === "ar") {
+      document.body.classList.add("rtl-style");
+    } else {
+      document.body.classList.remove("rtl-style");
+    }
+  }, [router.locale]);
   return (
     <>
       <div className="cp-user-top-bar dark-board">
@@ -128,20 +128,23 @@ const DashboardNavbar = () => {
                       </a>
                     </li>
                   </Link>
-                  <Link href={isLoggedIn ? "/ico" : "/authentication/signin"}>
-                    <li
-                      className={
-                        router.pathname == "/ico" ? "cp-user-active-page" : ""
-                      }
-                    >
-                      <a href="">
-                        <span className="cp-user-icon">
-                          <RiCalendarEventLine />
-                        </span>
-                        <span className="cp-user-name">{t("ICO")}</span>
-                      </a>
-                    </li>
-                  </Link>
+                  {parseInt(settings.launchpad_settings) === 1 && (
+                    <Link href={isLoggedIn ? "/ico" : "/authentication/signin"}>
+                      <li
+                        className={
+                          router.pathname == "/ico" ? "cp-user-active-page" : ""
+                        }
+                      >
+                        <a href="">
+                          <span className="cp-user-icon">
+                            <RiCalendarEventLine />
+                          </span>
+                          <span className="cp-user-name">{t("ICO")}</span>
+                        </a>
+                      </li>
+                    </Link>
+                  )}
+
                   {parseInt(settings.currency_deposit_status) === 1 && (
                     <li
                       className={
@@ -569,7 +572,6 @@ const DashboardNavbar = () => {
                                 </div>
                               </div>
                             </div>
-                          
                           </div>
                         </div>
                       </li>

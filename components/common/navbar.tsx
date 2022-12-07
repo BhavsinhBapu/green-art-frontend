@@ -129,20 +129,24 @@ const Navbar = () => {
                       </a>
                     </li>
                   </Link>
-                  <Link href={isLoggedIn ? "/ico" : "/authentication/signin"}>
-                    <li
-                      className={
-                        router.pathname == "/ico" ? "cp-user-active-page" : ""
-                      }
-                    >
-                      <a href="">
-                        <span className="cp-user-icon">
-                          <RiCalendarEventLine />
-                        </span>
-                        <span className="cp-user-name">{t("ICO")}</span>
-                      </a>
-                    </li>
-                  </Link>
+
+                  {parseInt(settings.launchpad_settings) === 1 && (
+                    <Link href={isLoggedIn ? "/ico" : "/authentication/signin"}>
+                      <li
+                        className={
+                          router.pathname == "/ico" ? "cp-user-active-page" : ""
+                        }
+                      >
+                        <a href="">
+                          <span className="cp-user-icon">
+                            <RiCalendarEventLine />
+                          </span>
+                          <span className="cp-user-name">{t("ICO")}</span>
+                        </a>
+                      </li>
+                    </Link>
+                  )}
+
                   {parseInt(settings.currency_deposit_status) === 1 && (
                     <li
                       className={
@@ -199,7 +203,6 @@ const Navbar = () => {
                       </ul>
                     </li>
                   )}
-
                   <li
                     className={
                       router.pathname == "/user/wallet-history"
@@ -392,7 +395,6 @@ const Navbar = () => {
                       </a>
                     </li>
                   </Link>
-
                   <Link
                     href={
                       isLoggedIn ? "/user/referral" : "/authentication/signin"
