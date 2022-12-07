@@ -10111,6 +10111,7 @@ input[type="number"] {
 .subscriptionRightContent {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 .deposit-conatiner {
   width: 100%;

@@ -5,11 +5,13 @@ import { loadStripe } from "@stripe/stripe-js";
 import useTranslation from "next-translate/useTranslation";
 import { TokenBuyIcoStripeAction } from "state/actions/launchpad";
 import { STRIPE } from "helpers/core-constants";
-const StripePayment = ({ initialData }: any) => {
+import PaymentDetails from "./paymentDetails";
+const StripePayment = ({ initialData, pageInfo }: any) => {
   const [loading, setLoading] = useState(false);
   const [credential, setCredential] = useState<any>({
     amount: 0,
     stripe_token: null,
+    pay_currency: null,
   });
   const { t } = useTranslation("common");
 
@@ -26,7 +28,7 @@ const StripePayment = ({ initialData }: any) => {
       )}
       {credential.stripe_token && (
         <>
-          <div className="col-md-12 form-input-div">
+          <div className="col-md-6 form-input-div">
             <label className="ico-label-box" htmlFor="">
               {t("Amount")}
             </label>
@@ -45,8 +47,40 @@ const StripePayment = ({ initialData }: any) => {
               }}
             />
           </div>
+          <div className="col-md-6 form-input-div">
+            <label className="ico-label-box" htmlFor="">
+              {t("Select Currency")}
+            </label>
+            <select
+              name="bank"
+              className={`ico-input-box`}
+              required
+              onChange={(e) => {
+                setCredential({
+                  ...credential,
+                  pay_currency: e.target.value,
+                });
+              }}
+            >
+              <option value="">{t("Select")}</option>
+              {pageInfo?.currency_list?.map((item: any, index: any) => (
+                <option value={item.code} key={index}>
+                  {item?.name}
+                </option>
+              ))}
+            </select>
+          </div>
+          {credential.pay_currency &&
+            credential.amount &&
+            initialData.phase_id && (
+              <PaymentDetails
+                currency={credential.pay_currency}
+                amount={credential.amount}
+                phase_id={initialData.phase_id}
+              />
+            )}
           <button
-            disabled={!credential.amount}
+            disabled={!credential.amount || !credential.pay_currency}
             className="primary-btn-outline w-100"
             type="button"
             onClick={() => {
@@ -55,6 +89,7 @@ const StripePayment = ({ initialData }: any) => {
                 setLoading,
                 credential.amount,
                 credential.stripe_token,
+                credential.pay_currency,
                 STRIPE
               );
             }}

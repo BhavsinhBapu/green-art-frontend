@@ -27,27 +27,31 @@ const LaunchTop = ({ data }: any) => {
         </div>
         <div className="row mt-3 ">
           <div className=" col-6 col-lg-3  mt-3 ">
-            <h2 className="text-white">{t("$0")}</h2>
+            <h2 className="text-white">
+              {parseFloat(data?.current_funds_locked)}
+            </h2>
             <h5 className="blance-title mt-3 text-white">
-              {t("Current Funds locked")}
+              {t("Total Supplied Token")}
             </h5>
           </div>
           <div className=" col-6 col-lg-3  mt-3 ">
-            <h2 className="text-white">{t("$105,411,514")}</h2>
+            <h2 className="text-white">
+              {parseFloat(data?.total_funds_raised)}
+            </h2>
             <h5 className="blance-title mt-3 text-white">
-              {t("Total Funds Raised")}
+              {t("Total Sold Raised")}
             </h5>
           </div>
           <div className=" col-6 col-lg-3  mt-3">
-            <h2 className="text-white">{t("64")}</h2>
+            <h2 className="text-white">{parseInt(data?.project_launchpad)}</h2>
             <h5 className="blance-title mt-3 text-white">
               {t("Projects Launched")}
             </h5>
           </div>
           <div className=" col-6 col-lg-3  mt-3">
-            <h2 className="text-white">{t("3,569,542")}</h2>
+            <h2 className="text-white">{parseInt(data?.all_time_unique_participants)}</h2>
             <h5 className="blance-title mt-3 text-white">
-              {t("All-time Unique Participants")}
+              {t("Total Participants")}
             </h5>
           </div>
         </div>

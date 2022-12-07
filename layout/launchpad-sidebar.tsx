@@ -6,10 +6,12 @@ import {
   AiTwotoneEdit,
   AiTwotonePhone,
   AiFillSecurityScan,
+  AiFillWallet,
 } from "react-icons/ai";
 import { useRouter } from "next/router";
 import { FaWpforms } from "react-icons/fa";
 import { GiToken } from "react-icons/gi";
+import { BsClockHistory } from "react-icons/bs";
 const LaunchpadSidebar = () => {
   const router = useRouter();
   const { t } = useTranslation("common");
@@ -33,6 +35,26 @@ const LaunchpadSidebar = () => {
             >
               <GiToken />
               <a href="/ico/ico-phase">{t("Ico Tokens")}</a>
+            </li>
+          </Link>
+          <Link href="/ico/token-buy-history">
+            <li
+              className={
+                router.pathname == "/ico/token-buy-history" ? "active" : ""
+              }
+            >
+              <BsClockHistory />
+              <a href="/ico/ico-phase">{t("Token Buy History")}</a>
+            </li>
+          </Link>
+          <Link href="/ico/token-wallet">
+            <li
+              className={
+                router.pathname == "/ico/token-wallet" ? "active" : ""
+              }
+            >
+              <AiFillWallet />
+              <a href="/ico/ico-phase">{t("Token Wallet")}</a>
             </li>
           </Link>
         </ul>
