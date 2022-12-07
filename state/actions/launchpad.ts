@@ -31,12 +31,19 @@ import Router from "next/router";
 import { GetCoinListApi } from "service/wallet";
 import { Toast } from "react-toastify/dist/components";
 
+const checkDisable = (request: any) => {
+  if (request.disable === true) {
+    Router.push("/");
+  }
+};
+
 export const getLaunchpadListAction = async (
   setLaunchpadRecentItem: any,
   setLaunchpadFeatureItem: any,
   setLaunchpadUpcomingItem: any
 ) => {
   const response = await getLaunchpadList(3, PHASE_SORT_BY_FEATURED);
+  checkDisable(response);
   const recentResponse = await getLaunchpadList(3, PHASE_SORT_BY_RECENT);
   const upcomingResponse = await getLaunchpadList(3, PHASE_SORT_BY_FUTURE);
   setLaunchpadRecentItem(recentResponse.data);
@@ -48,7 +55,7 @@ export const getLaunchpadListPageAction = async (
   constant: any
 ) => {
   const response = await getLaunchpadList(3, constant);
-  console.log("response.data", response.data);
+  checkDisable(response);
   setLaunchpadList(response.data);
 };
 export const getLaunchpadListDetailsAction = async (
@@ -56,11 +63,13 @@ export const getLaunchpadListDetailsAction = async (
   id: any
 ) => {
   const response = await getLaunchpadListDetails(id);
+  checkDisable(response);
   setLaunchpadListDetails(response);
 };
 
 export const launchpadBuyIcoTokenAction = async () => {
   const response = await launchpadBuyIcoToken();
+  checkDisable(response);
   return response;
 };
 
@@ -83,6 +92,7 @@ export const launchpadCreateUpdatePhaseAdditionalAction = async (
     i++;
   });
   const response = await launchpadCreateUpdatePhaseAdditional(formData);
+  checkDisable(response);
   if (response.success === true) {
     toast.success(response.message);
   } else if (response.success === false) {
@@ -110,6 +120,7 @@ export const launchpadDynamicFromSubmitAction = async (
     // formData.append(payload[item.id].form_id, payload[item.id].value);
   });
   const response = await launchpadDynamicFromSubmit(formData);
+  checkDisable(response);
   if (response.success === true) {
     toast.success(response.message);
     Router.push("/ico/applied-launchpad");
@@ -127,8 +138,9 @@ export const launchpadDynamicFromAction = async (
 ) => {
   setLoading(true);
   const response = await launchpadDynamicFrom();
+  checkDisable(response);
   setLaunchpadForm(response.data);
-  console.log(response.data, "response.data");
+
   let tempJson: any = {};
   response?.data?.dynamic_form?.map((item: any) => {
     tempJson[item.id] = {
@@ -148,6 +160,7 @@ export const getLaunchpadLandingPageAction = async (
   setLaunchpadLandingPage: any
 ) => {
   const response = await launchpadLandingPage();
+  checkDisable(response);
   setLaunchpadLandingPage(response);
 };
 export const DynamicSubmittedFormListAction = async (
@@ -165,6 +178,7 @@ export const DynamicSubmittedFormListAction = async (
     column_name,
     order_by
   );
+  checkDisable(response);
   if (response.success === true) {
     setReport(response.data.data);
     setStillHistory(response.data);
@@ -195,6 +209,7 @@ export const launchpadCreateUpdateTokenAction = async (
     formData.append("token_symbol", payload.token_symbol);
     const response = await launchpadCreateUpdateToken(formData);
     setLoading(false);
+    checkDisable(response);
     if (response.success === true) {
       toast.success(response.message);
       Router.push("/ico/ico-tokens");
@@ -228,7 +243,7 @@ export const launchpadCreateUpdatePhaseAction = async (
     formData.append("total_token_supply", payload.total_token_supply);
     const response = await launchpadCreateUpdatePhase(formData);
     setLoading(false);
-
+    checkDisable(response);
     if (response.success === true) {
       toast.success(response.message);
       Router.push("/ico/token-phase-list/" + id);
@@ -257,6 +272,7 @@ export const IcoTokenPhaseListAction = async (
     order_by,
     id
   );
+  checkDisable(response);
   if (response.success === true) {
     console.log(response.data.data, "response.data.data");
     setReport(response.data.data);
@@ -273,6 +289,7 @@ export const GetTokenListAction = async (
   order_by: string
 ) => {
   const response = await GetTokenList(per_page, page, column_name, order_by);
+  checkDisable(response);
   if (response.success === true) {
     setReport(response.data.data);
     setStillHistory(response.data);
@@ -295,7 +312,7 @@ export const getMyTokenBalanceAction = async (
     column_name,
     order_by
   );
-  console.log(response, "testtest");
+  checkDisable(response);
   if (response.success === true) {
     setReport(response.data.data);
     setStillHistory(response.data);
@@ -316,6 +333,7 @@ export const getTokenBuyHistoryAction = async (
     column_name,
     order_by
   );
+  checkDisable(response);
   console.log(response, "testtest");
   if (response.success === true) {
     setReport(response.data.data);
@@ -324,6 +342,7 @@ export const getTokenBuyHistoryAction = async (
 };
 export const TokenBuyPageAction = async (setPage: any, setLoading: any) => {
   const response = await TokenBuyPage();
+  checkDisable(response);
   setLoading(true);
   if (response.success === true) {
     setPage(response.data);
@@ -353,6 +372,8 @@ export const TokenBuyIcoBankAction = async (
   formData.append("bank_ref", ref);
   formData.append("pay_currency", pay_currency);
   const response = await TokenBuyIco(formData);
+  checkDisable(response);
+
   if (response.success === true) {
     toast.success(response.message);
     Router.push("/ico");
@@ -375,6 +396,8 @@ export const TokenBuyIcoCryptoAction = async (
   formData.append("amount", amount);
   formData.append("payment_method", payment_method);
   const response = await TokenBuyIco(formData);
+  checkDisable(response);
+
   setLoading(true);
   if (response.success === true) {
     toast.success(response.message);
@@ -400,6 +423,8 @@ export const TokenBuyIcoStripeAction = async (
   formData.append("payment_method", payment_method);
   formData.append("pay_currency", pay_currency);
   const response = await TokenBuyIco(formData);
+  checkDisable(response);
+
   setLoading(true);
   if (response.success === true) {
     toast.success(response.message);
@@ -411,6 +436,8 @@ export const TokenBuyIcoStripeAction = async (
 };
 export const TokenBuyIcoPaypalAction = async (credentials: any) => {
   const response = await TokenBuyIco(credentials);
+  checkDisable(response);
+
   if (response.success === true) {
     toast.success(response.message);
     Router.push("/ico");
@@ -439,7 +466,8 @@ export const SendChantByTokenAction = async (
   // formData.append("admin_id", selectedAdmin);
   if (file) formData.append("file", file);
   setMessage("");
-  await SendChantByToken(formData);
+  const response = await SendChantByToken(formData);
+  checkDisable(response);
   setSendFile(null);
   setFile(null);
   // return response;
