@@ -6,7 +6,10 @@ import { customPage, landingPage } from "service/landing-page";
 import moment from "moment";
 import LaunchpadSidebar from "layout/launchpad-sidebar";
 import { useEffect, useState } from "react";
-import { GetTokenListAction } from "state/actions/launchpad";
+import {
+  getTokenBuyHistoryAction,
+  GetTokenListAction,
+} from "state/actions/launchpad";
 import Link from "next/link";
 import DataTable from "react-data-table-component";
 import { handleSwapHistorySearch } from "state/actions/reports";
@@ -20,7 +23,8 @@ import {
   STATUS_PENDING,
 } from "helpers/core-constants";
 import { BsFillChatFill } from "react-icons/bs";
-const Profile: NextPage = ({
+
+const tokenBuyHistory = ({
   user,
   customPageData,
   socialData,
@@ -37,27 +41,42 @@ const Profile: NextPage = ({
   const [stillHistory, setStillHistory] = useState<any>([]);
   const columns = [
     {
-      name: t("Base Coin"),
-      selector: (row: any) => row?.base_coin,
-      sortable: true,
-    },
-    {
       name: t("Token Name"),
       selector: (row: any) => row?.token_name,
       sortable: true,
     },
 
     {
-      name: t("Approved Status"),
-      selector: (row: any) => row?.approved_status,
+      name: t("Amount"),
+      selector: (row: any) => row?.amount,
       sortable: true,
       cell: (row: any) => (
         <div>
-          {row.approved_status === STATUS_PENDING ? (
+          {row?.amount} {row?.token_name}
+        </div>
+      ),
+    },
+    {
+      name: t("Amount Paid"),
+      selector: (row: any) => row?.amount,
+      sortable: true,
+      cell: (row: any) => (
+        <div>
+          {row?.pay_amount} {row?.pay_currency}
+        </div>
+      ),
+    },
+    {
+      name: t("Approved Status"),
+      selector: (row: any) => row?.status,
+      sortable: true,
+      cell: (row: any) => (
+        <div>
+          {row.status === STATUS_PENDING ? (
             <span className="text-warning">{t("Pending")}</span>
-          ) : row.approved_status === STATUS_ACCEPTED ? (
+          ) : row.status === STATUS_ACCEPTED ? (
             <span className="text-success"> {t("Accepted")}</span>
-          ) : row.approved_status === STATUS_MODIFICATION ? (
+          ) : row.status === STATUS_MODIFICATION ? (
             <span className="text-warning"> {t("Modification request")}</span>
           ) : (
             <span className="text-danger">{t("Rejected")}</span>
@@ -66,64 +85,26 @@ const Profile: NextPage = ({
       ),
     },
     {
+      name: t("Transaction Id"),
+      selector: (row: any) => row?.trx_id,
+      sortable: true,
+    },
+    {
+      name: t("Payment Method"),
+      selector: (row: any) => row?.payment_method,
+      sortable: true,
+    },
+    {
       name: t("Date"),
       selector: (row: any) =>
         moment(row.created_at).format("YYYY-MM-DD HH:mm:ss"),
       sortable: true,
     },
-    {
-      name: t("Wallet Address"),
-      selector: (row: any) => row?.wallet_address,
-      sortable: true,
-    },
-    {
-      name: t("Actions"),
-      selector: (row: any) => row?.status,
-      sortable: true,
-      cell: (row: any) => (
-        <div className="blance-text">
-          {row.approved_status === 1 ? (
-            <Link href={`/ico/create-edit-phase/${row?.id}`}>
-              <li className="toolTip" title="Create Phase">
-                <MdCreateNewFolder size={20} />
-              </li>
-            </Link>
-          ) : (
-            <li
-              className="toolTip"
-              title="Create Phase"
-              onClick={() => {
-                toast.warning(
-                  t("Cannot create phase,Please wait for token approval!")
-                );
-              }}
-            >
-              <MdCreateNewFolder size={20} />
-            </li>
-          )}
-          <Link href={`/chat/${row?.id}`}>
-            <li className="toolTip ml-2" title="Chat">
-              <BsFillChatFill size={20} />
-            </li>
-          </Link>
-          <Link href={`/ico/create-edit-token/${row?.id}?edit=true`}>
-            <li className="toolTip ml-2" title="Edit token">
-              <IoCreateOutline size={20} />
-            </li>
-          </Link>
-          <Link href={`/ico/token-phase-list/${row?.id}`}>
-            <li className="toolTip ml-2" title="Phase List">
-              <AiOutlineOrderedList size={20} />
-            </li>
-          </Link>
-        </div>
-      ),
-    },
   ];
   const LinkTopaginationString = (page: any) => {
     const url = page.url.split("?")[1];
     const number = url.split("=")[1];
-    GetTokenListAction(
+    getTokenBuyHistoryAction(
       10,
       parseInt(number),
       setHistory,
@@ -134,7 +115,7 @@ const Profile: NextPage = ({
     );
   };
   useEffect(() => {
-    GetTokenListAction(
+    getTokenBuyHistoryAction(
       10,
       1,
       setHistory,
@@ -143,7 +124,6 @@ const Profile: NextPage = ({
       sortingInfo.column_name,
       sortingInfo.order_by
     );
-    console.log(history, "historyhistoryhistory");
   }, []);
   return (
     <>
@@ -153,7 +133,7 @@ const Profile: NextPage = ({
           <div className="container-fluid">
             <div className="section-top-wrap mb-25">
               <div className="profle-are-top">
-                <h2 className="section-top-title">{t("ICO Token")}</h2>
+                <h2 className="section-top-title">{t("Token Buy History")}</h2>
               </div>
             </div>
             <div className="asset-balances-area">
@@ -240,7 +220,6 @@ const Profile: NextPage = ({
     </>
   );
 };
-
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/user/profile");
   const { data } = await landingPage();
@@ -253,4 +232,4 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
     },
   };
 };
-export default Profile;
+export default tokenBuyHistory;
