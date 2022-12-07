@@ -2,12 +2,26 @@ import useTranslation from "next-translate/useTranslation";
 import React, { useEffect, useState } from "react";
 import { TokenPriceInfo } from "service/launchpad";
 
-const PaymentDetails = ({ currency, amount, phase_id ,id}: any) => {
+const PaymentDetails = ({
+  currency,
+  amount,
+  phase_id,
+  payer_wallet,
+  token_id,
+  payment_method,
+}: any) => {
   const { t } = useTranslation("common");
   const [data, setData] = useState<any>(null);
   const getTokenInfo = async () => {
-    const response = await TokenPriceInfo(currency, amount, phase_id, id);
-    console.log(response, "responseresponseResponse");
+    const response = await TokenPriceInfo(
+      amount,
+      phase_id,
+      payer_wallet,
+      currency,
+      payer_wallet,
+      token_id,
+      payment_method
+    );
     setData(response.data);
   };
   useEffect(() => {

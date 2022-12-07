@@ -110,7 +110,9 @@ const BankPayment = ({ pageInfo, initialData }: any) => {
           }}
           className={`ico-input-box`}
         />
-        <small>{t("Copy this referance for further validation and bank payment")}</small>
+        <small>
+          {t("Copy this referance for further validation and bank payment")}
+        </small>
       </div>
       <div className="col-md-12 form-input-div">
         <div className="file-upload-wrapper">
@@ -132,6 +134,8 @@ const BankPayment = ({ pageInfo, initialData }: any) => {
           currency={data.pay_currency}
           amount={data.amount}
           phase_id={initialData.phase_id}
+          token_id={initialData.phase_id}
+          payment_method={BANK_DEPOSIT}
         />
       )}
       <button
