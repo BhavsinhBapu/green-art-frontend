@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import {
   ChatHistoryByTokenId,
   DynamicSubmittedFormList,
+  getEarningtDetails,
   getLaunchpadList,
   getLaunchpadListDetails,
   getMyTokenBalance,
@@ -295,8 +296,18 @@ export const GetTokenListAction = async (
     setStillHistory(response.data);
   }
 };
-// getTokenBuyHistory;
-// getMyTokenBalance;
+export const getEarningDetailsAction = async (
+  setLoading: any,
+  setData: any
+) => {
+  const response = await getEarningtDetails();
+  checkDisable(response);
+  console.log(response, "response");
+  if (response.success === true) {
+    setData(response.data);
+  }
+};
+
 export const getMyTokenBalanceAction = async (
   per_page: number,
   page: number,
