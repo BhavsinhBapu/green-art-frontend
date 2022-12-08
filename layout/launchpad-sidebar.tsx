@@ -1,17 +1,10 @@
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
-import { CgProfile } from "react-icons/cg";
-import { MdOutlineDomainVerification, MdPassword } from "react-icons/md";
-import {
-  AiTwotoneEdit,
-  AiTwotonePhone,
-  AiFillSecurityScan,
-  AiFillWallet,
-} from "react-icons/ai";
+import { AiFillWallet } from "react-icons/ai";
 import { useRouter } from "next/router";
 import { FaWpforms } from "react-icons/fa";
 import { GiToken } from "react-icons/gi";
-import { BsClockHistory } from "react-icons/bs";
+import { BsCashCoin, BsClockHistory } from "react-icons/bs";
 const LaunchpadSidebar = () => {
   const router = useRouter();
   const { t } = useTranslation("common");
@@ -49,12 +42,16 @@ const LaunchpadSidebar = () => {
           </Link>
           <Link href="/ico/token-wallet">
             <li
-              className={
-                router.pathname == "/ico/token-wallet" ? "active" : ""
-              }
+              className={router.pathname == "/ico/token-wallet" ? "active" : ""}
             >
               <AiFillWallet />
               <a href="/ico/ico-phase">{t("Token Wallet")}</a>
+            </li>
+          </Link>
+          <Link href="/ico/withdraw">
+            <li className={router.pathname == "/ico/withdraw" ? "active" : ""}>
+              <BsCashCoin />
+              <a href="/ico/ico-phase">{t("Withdraw")}</a>
             </li>
           </Link>
         </ul>
