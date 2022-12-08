@@ -13,7 +13,25 @@ export const getLaunchpadListDetails = async (id: number) => {
   );
   return data;
 };
-// /dynamic-form/api/my-token-balance
+// /token-earns
+export const getEarningtDetails = async () => {
+  const { data } = await launchpadRequest.get(`/token-earns`);
+  return data;
+};
+export const getTokenWithdrawPrice = async (payload: any) => {
+  const { data } = await launchpadRequest.post(
+    `/token-withdraw-price`,
+    payload
+  );
+  return data;
+};
+export const withDrawMoney = async (payload: any) => {
+  const { data } = await launchpadRequest.post(
+    `/token-withdraw-price`,
+    payload
+  );
+  return data;
+};
 
 export const getMyTokenBalance = async (
   per_page: any,
