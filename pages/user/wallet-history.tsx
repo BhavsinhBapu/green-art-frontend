@@ -32,7 +32,7 @@ const DepositHistory: NextPage = ({
     const url = page.url.split("?")[1];
     const number = url.split("=")[1];
     WithdrawAndDepositHistoryAction(
-      type as string,
+         type === "withdrawal" ? "withdraw" : "deposit",
       10,
       parseInt(number),
       setHistory,
@@ -43,7 +43,7 @@ const DepositHistory: NextPage = ({
   const getReport = async () => {
     if (type === "deposit" || type === "withdrawal") {
       WithdrawAndDepositHistoryAction(
-        type as string,
+        type === "withdrawal" ? "withdraw" : "deposit",
         10,
         1,
         setHistory,
@@ -168,7 +168,9 @@ const DepositHistory: NextPage = ({
                                 className=""
                                 onChange={(e) => {
                                   WithdrawAndDepositHistoryAction(
-                                    type as string,
+                                    type === "withdrawal"
+                                      ? "withdraw"
+                                      : "deposit",
                                     parseInt(e.target.value),
                                     1,
                                     setHistory,
