@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "state/store";
 import Footer from "components/common/footer";
 import { customPage, landingPage } from "service/landing-page";
+import LaunchpadSidebar from "layout/launchpad-sidebar";
 const MyWallet: NextPage = ({
   customPageData,
   socialData,
@@ -20,7 +21,6 @@ const MyWallet: NextPage = ({
   const { settings } = useSelector((state: RootState) => state.common);
   const [history, setHistory] = useState<any>([]);
   const { t } = useTranslation("common");
-  const [search, setSearch] = useState<any>("");
   const [processing, setProcessing] = useState<boolean>(false);
   const [sortingInfo, setSortingInfo] = useState<any>({
     column_name: "created_at",
@@ -54,6 +54,7 @@ const MyWallet: NextPage = ({
   return (
     <>
       <div className="page-wrap rightMargin">
+        <LaunchpadSidebar />
         <div className="page-main-content">
           <div className="container-fluid">
             <div className="section-top-wrap mb-25">
