@@ -52,7 +52,7 @@ export const SingleLaunchPad = ({ data }: any) => {
                   )}
                 </div>
               </div>
-              <Link href={`/ico/payment/${data?.id}/${data?.token_id}`}>
+              <Link href={`/ico/payment/${data?.token_id}/${data?.id}`}>
                 <a className="primary-btn">{t("Buy now")}</a>
               </Link>
             </div>
