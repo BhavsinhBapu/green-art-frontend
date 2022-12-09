@@ -9,7 +9,7 @@ import PaymentDetails from "./paymentDetails";
 const StripePayment = ({ initialData, pageInfo }: any) => {
   const [loading, setLoading] = useState(false);
   const [credential, setCredential] = useState<any>({
-    amount: 0,
+    amount: null,
     stripe_token: null,
     pay_currency: null,
   });
@@ -18,7 +18,7 @@ const StripePayment = ({ initialData, pageInfo }: any) => {
   //@ts-ignore
   const stripe = loadStripe(process.env.NEXT_PUBLIC_PUBLISH_KEY);
   return (
-    <div className="w-100 ico-tokenCreate row">
+    <div className="w-100 ico-tokenCreate ">
       {!credential.stripe_token && (
         <div className="col-lg-12 mb-3">
           <Elements stripe={stripe}>
@@ -26,8 +26,22 @@ const StripePayment = ({ initialData, pageInfo }: any) => {
           </Elements>
         </div>
       )}
+
       {credential.stripe_token && (
-        <>
+        <form
+          className="w-100  row"
+          onClick={(e) => {
+            e.preventDefault();
+            TokenBuyIcoStripeAction(
+              initialData,
+              setLoading,
+              credential.amount,
+              credential.stripe_token,
+              credential.pay_currency,
+              STRIPE
+            );
+          }}
+        >
           <div className="col-md-6 form-input-div">
             <label className="ico-label-box" htmlFor="">
               {t("Amount")}
@@ -84,21 +98,11 @@ const StripePayment = ({ initialData, pageInfo }: any) => {
           <button
             disabled={!credential.amount || !credential.pay_currency}
             className="primary-btn-outline w-100"
-            type="button"
-            onClick={() => {
-              TokenBuyIcoStripeAction(
-                initialData,
-                setLoading,
-                credential.amount,
-                credential.stripe_token,
-                credential.pay_currency,
-                STRIPE
-              );
-            }}
+            type="submit"
           >
             {loading ? "Please Wait" : t("Make Payment")}
           </button>
-        </>
+        </form>
       )}
     </div>
   );
