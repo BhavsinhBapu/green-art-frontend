@@ -42,8 +42,10 @@ const Withdraw = ({ customPageData, socialData, copyright_text }: any) => {
       const response = await withDrawMoney(payload);
       if (response.success === true) {
         toast.success(response.message);
+        getTokenwithdrawPrice();
       } else {
         response.error(response.message);
+        getTokenwithdrawPrice();
       }
     }
     setLoading(false);
@@ -74,22 +76,19 @@ const Withdraw = ({ customPageData, socialData, copyright_text }: any) => {
                   <div className="row">
                     <div className="col-md-4 boxShadow p-5 text-center">
                       <h1>
-                        {data?.earns?.earn}
-                        {data?.earns?.currency}
+                        {data?.earns?.earn} {data?.earns?.currency}
                       </h1>
                       <h3>{t("Total Earned")}</h3>
                     </div>
                     <div className="col-md-4 boxShadow p-5 text-center">
                       <h1>
-                        {data?.earns?.withdraw}
-                        {data?.earns?.currency}
+                        {data?.earns?.withdraw} {data?.earns?.currency}
                       </h1>
                       <h3>{t("Withdrawal Amount")}</h3>
                     </div>
                     <div className="col-md-4 boxShadow p-5 text-center">
                       <h1>
-                        {data?.earns?.available}
-                        {data?.earns?.currency}
+                        {data?.earns?.available} {data?.earns?.currency}
                       </h1>
                       <h3>{t("Available Amount")}</h3>
                     </div>
