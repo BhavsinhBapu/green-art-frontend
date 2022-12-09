@@ -27,7 +27,7 @@ export const getTokenWithdrawPrice = async (payload: any) => {
 };
 export const withDrawMoney = async (payload: any) => {
   const { data } = await launchpadRequest.post(
-    `/token-withdraw-price`,
+    `/token-withdraw-request`,
     payload
   );
   return data;

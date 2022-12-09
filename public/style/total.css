@@ -10712,6 +10712,16 @@ input[type="number"] {
   background-color: var(--primary-color);
   cursor: pointer;
 }
+.linkLists a div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  text-decoration: none;
+}
+.linkLists a div i {
+  margin-right: 6px;
+}
 .singleLaunchPadHero {
   display: flex;
   justify-content: space-between;

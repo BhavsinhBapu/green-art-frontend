@@ -14,9 +14,12 @@ import {
   PHASE_SORT_BY_RECENT,
   STRIPE,
 } from "helpers/core-constants";
+import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
+import { GetServerSideProps } from "next";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import { customPage } from "service/landing-page";
 import {
   getLaunchpadListDetailsAction,
   TokenBuyPageAction,
@@ -34,6 +37,7 @@ const Index = () => {
     token_id: 0,
   });
   const [loading, setLoading] = useState(true);
+  const [pageLoading, setPageLoading] = useState(true);
   const [pageInfo, setPageInfo] = useState<any>({});
   useEffect(() => {
     TokenBuyPageAction(setPageInfo, setLoading);
@@ -48,7 +52,8 @@ const Index = () => {
   useEffect(() => {
     getLaunchpadListDetailsAction(
       setLaunchpadListDetails,
-      router.query.phase_id
+      router.query.phase_id,
+      setPageLoading
     );
   }, []);
   return (
@@ -128,3 +133,9 @@ const Index = () => {
 };
 
 export default Index;
+export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
+  await SSRAuthCheck(ctx, "/ico");
+  return {
+    props: {},
+  };
+};

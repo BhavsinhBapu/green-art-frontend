@@ -7,7 +7,7 @@ const LaunchPad = ({ viewMore, data, core, image }: any) => {
   const { t } = useTranslation("common");
   return (
     <>
-      <Link href={`/ico/subscription/${data?.id}`}>
+      <Link href={`/ico/token-details/${data?.id}`}>
         <div className="mt-3 mb-5 row launchpad-container">
           {}
           {image !== false && (
