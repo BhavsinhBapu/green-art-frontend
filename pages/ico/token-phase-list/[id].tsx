@@ -10,20 +10,16 @@ import React, { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 import { AiOutlineAppstoreAdd } from "react-icons/ai";
 import { BsToggle2Off, BsToggle2On } from "react-icons/bs";
-import { GiToken } from "react-icons/gi";
 import { IoCreateOutline } from "react-icons/io5";
 import { customPage, landingPage } from "service/landing-page";
 import { SaveIcoPhaseStatus } from "service/launchpad";
-import { GetUserInfoByTokenServer } from "service/user";
 import { IcoTokenPhaseListAction } from "state/actions/launchpad";
 import { handleSwapHistorySearch } from "state/actions/reports";
 
 const IcoTokenPhaseList = ({
-  user,
   customPageData,
   socialData,
   copyright_text,
-  profileActivity,
   id,
 }: any) => {
   const [history, setHistory] = useState<any>([]);
@@ -59,7 +55,7 @@ const IcoTokenPhaseList = ({
     {
       name: t("Available Token Supply"),
       // selector: (row: any) =>
-        // parseFloat(row?.available_token_supply).toFixed(4),
+      // parseFloat(row?.available_token_supply).toFixed(4),
       sortable: true,
       cell: (row: any) => (
         <div className="blance-text">
