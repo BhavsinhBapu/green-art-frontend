@@ -32,7 +32,7 @@ const TokenCreate = ({ id, edit, data }: any) => {
             <Formik
               initialValues={{
                 id: edit ? data.id : "",
-                form_id: id,
+                form_id: edit ? data.form_id : id,
                 base_coin: edit ? data.base_coin : "",
                 token_name: edit ? data?.token_name : "",
                 network: edit ? data?.network : "",

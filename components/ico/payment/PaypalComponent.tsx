@@ -3,11 +3,9 @@ import {
   PayPalButtons,
   usePayPalScriptReducer,
 } from "@paypal/react-paypal-js";
-import { toast } from "react-toastify";
 import { PayPalScriptOptions } from "@paypal/paypal-js/types/script-options";
 //@ts-ignore
 import { PayPalButtonsComponentProps } from "@paypal/paypal-js/types/components/buttons";
-import { currencyDepositProcess } from "service/deposit";
 import { useRouter } from "next/router";
 import { TokenBuyIcoPaypalAction } from "state/actions/launchpad";
 
@@ -17,12 +15,6 @@ const paypalScriptOptions: PayPalScriptOptions = {
   currency: "USD",
 };
 function Button({ credential, setCredential }: any) {
-  /**
-   * usePayPalScriptReducer use within PayPalScriptProvider
-   * isPending: not finished loading(default state)
-   * isResolved: successfully loaded
-   * isRejected: failed to load
-   */
   const router = useRouter();
   const [{ isPending }] = usePayPalScriptReducer();
   const paypalbuttonTransactionProps: PayPalButtonsComponentProps = {
