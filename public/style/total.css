@@ -2653,7 +2653,6 @@ a#submit {
 }
 .cp-user-myreferral table.dataTable tbody tr td {
   color: var(--text-primary-color-2);
-  color: var(--text-primary-color-4) !important;
   vertical-align: middle;
 }
 
@@ -5381,7 +5380,7 @@ table.dataTable thead tr th {
 table.dataTable tbody tr td {
   font-size: 12px;
   font-weight: 400;
-  color: var(--text-primary-color-4);
+  color: var(--text-primary-color-2);
   /* color: #000 !important; */
 }
 .responsive-thing {
