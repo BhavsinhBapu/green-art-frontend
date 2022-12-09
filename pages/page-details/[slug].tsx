@@ -10,6 +10,9 @@ import {
 } from "service/landing-page";
 //@ts-ignore
 import sanitizeHtml from "sanitize-html";
+import UnAuthNav from "components/common/unAuthNav";
+import { useSelector } from "react-redux";
+import { RootState } from "state/store";
 const Bannerdetails = ({
   details,
   status,
@@ -59,6 +62,7 @@ const Bannerdetails = ({
       },
     });
   };
+  const { logo } = useSelector((state: RootState) => state.user);
 
   if (status === false) {
     return (
@@ -70,8 +74,9 @@ const Bannerdetails = ({
     );
   }
   return (
-    <>
-      <div className="container mb-5">
+    <div>
+      <UnAuthNav logo={logo} />
+      <div className="container mb-5 mt-5">
         <div className="section-wrapper-withHtml ">
           <img src={details.image} />
           <h1 className="display-4 mt-3">{details.title}</h1>
@@ -91,7 +96,7 @@ const Bannerdetails = ({
         socialData={socialData}
         copyright_text={copyright_text}
       />
-    </>
+    </div>
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
