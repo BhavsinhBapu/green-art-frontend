@@ -12,6 +12,7 @@ import Footer from "components/common/footer";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
 import { SEO } from "components/SEO";
+import UnAuthNav from "components/common/unAuthNav";
 const Home: NextPage = ({
   landing,
   bannerListdata,
@@ -90,48 +91,7 @@ const Home: NextPage = ({
     <SEO seoData={customSettings}>
       <div>
         <div>
-          {loggedin ? (
-            <Navbar />
-          ) : (
-            <header className="header-area">
-              <div className="container">
-                <div className="row align-items-center">
-                  <div className="col-md-2">
-                    <div className="logo-area">
-                      <a href="">
-                        <img
-                          src={logo || ""}
-                          className="img-fluid cp-user-logo-large"
-                          alt=""
-                        />
-                      </a>
-                    </div>
-                  </div>
-                  <div className="col-md-10">
-                    <div className="menu-area text-right">
-                      <nav className="main-menu mobile-menu">
-                        <ul id="nav">
-                          <li>
-                            <a href="/exchange/dashboard">{t("Buy / Sell")}</a>
-                          </li>
-                          <li>
-                            <Link href="/authentication/signin">
-                              {t("Login")}
-                            </Link>
-                          </li>
-                          <li>
-                            <Link href="/authentication/signup">
-                              {t("Sign up")}
-                            </Link>
-                          </li>
-                        </ul>
-                      </nav>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </header>
-          )}
+          {loggedin ? <Navbar /> : <UnAuthNav logo={logo} />}
 
           <section className="hero-banner-area">
             <div className="container">

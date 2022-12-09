@@ -84,6 +84,7 @@ const Index = ({ children }: any) => {
   }, []);
   useEffect(() => {
     const path = router.pathname;
+    console.log(path, "pathpathpathpath");
     if (
       path === "/authentication/signup" ||
       path === "/authentication/signin" ||
@@ -93,7 +94,8 @@ const Index = ({ children }: any) => {
       path === "/authentication/g2f-verify" ||
       path === "/" ||
       path === "/authentication/verify-email" ||
-      path === "user/notification"
+      path === "user/notification" ||
+      path === "/page-details/[slug]"
     ) {
       setNavbarVisible(false);
     } else {
