@@ -44,7 +44,7 @@ const TokenCreate = ({ id, edit, data }: any) => {
                 gas_limit: edit ? data?.gas_limit : 430000,
                 details_rule: edit ? data?.details_rule : "",
                 website_link: edit ? data?.website_link : "",
-                token_symbol: edit ? data?.token_symbol : "",
+                token_symbol: edit ? data?.coin_type : "",
               }}
               validationSchema={Yup.object({
                 // form_id: Yup.number().required(
