@@ -209,7 +209,6 @@ export const launchpadCreateUpdateTokenAction = async (
     formData.append("website_link", payload.website_link);
     formData.append("token_symbol", payload.token_symbol);
     const response = await launchpadCreateUpdateToken(formData);
-    setLoading(false);
     checkDisable(response);
     if (response.success === true) {
       toast.success(response.message);
@@ -219,6 +218,7 @@ export const launchpadCreateUpdateTokenAction = async (
     }
     return response;
   }
+  setLoading(false);
 };
 export const launchpadCreateUpdatePhaseAction = async (
   payload: any,
