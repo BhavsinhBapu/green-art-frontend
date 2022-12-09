@@ -61,11 +61,13 @@ export const getLaunchpadListPageAction = async (
 };
 export const getLaunchpadListDetailsAction = async (
   setLaunchpadListDetails: any,
-  id: any
+  id: any,
+  setLoading: any
 ) => {
   const response = await getLaunchpadListDetails(id);
   checkDisable(response);
   setLaunchpadListDetails(response);
+  setLoading(false);
 };
 
 export const launchpadBuyIcoTokenAction = async () => {

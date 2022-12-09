@@ -18,17 +18,23 @@ const LaunchTop = ({ data }: any) => {
         <div className="overview-area">
           <div className="overview-left ">
             <h1 className="big-top-title text-white">
-              {data?.launchpad_first_title}
+              {data?.launchpad_first_title
+                ? data?.launchpad_first_title
+                : t("Tradexpro Token Launch Platform")}
             </h1>
             <h4 className="blance-title text-white">
-              {data?.launchpad_first_description}
+              {data?.launchpad_first_description
+                ? data?.launchpad_first_description
+                : t("Buy Or Earn New Tokens Directly On Binance.")}
             </h4>
           </div>
         </div>
         <div className="row mt-3 ">
           <div className=" col-6 col-lg-3  mt-3 ">
             <h2 className="text-white">
-              {parseFloat(data?.current_funds_locked)}
+              {parseFloat(
+                data?.current_funds_locked ? data?.current_funds_locked : 0
+              )}
             </h2>
             <h5 className="blance-title mt-3 text-white">
               {t("Total Supplied Token")}
@@ -36,20 +42,30 @@ const LaunchTop = ({ data }: any) => {
           </div>
           <div className=" col-6 col-lg-3  mt-3 ">
             <h2 className="text-white">
-              {parseFloat(data?.total_funds_raised)}
+              {parseFloat(
+                data?.total_funds_raised ? data?.total_funds_raised : 0
+              )}
             </h2>
             <h5 className="blance-title mt-3 text-white">
               {t("Total Sold Raised")}
             </h5>
           </div>
           <div className=" col-6 col-lg-3  mt-3">
-            <h2 className="text-white">{parseInt(data?.project_launchpad)}</h2>
+            <h2 className="text-white">
+              {parseInt(data?.project_launchpad ? data?.project_launchpad : 0)}
+            </h2>
             <h5 className="blance-title mt-3 text-white">
               {t("Projects Launched")}
             </h5>
           </div>
           <div className=" col-6 col-lg-3  mt-3">
-            <h2 className="text-white">{parseInt(data?.all_time_unique_participants)}</h2>
+            <h2 className="text-white">
+              {parseInt(
+                data?.all_time_unique_participants
+                  ? data?.all_time_unique_participants
+                  : 0
+              )}
+            </h2>
             <h5 className="blance-title mt-3 text-white">
               {t("Total Participants")}
             </h5>
