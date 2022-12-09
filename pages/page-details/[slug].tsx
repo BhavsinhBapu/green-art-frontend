@@ -13,6 +13,7 @@ import sanitizeHtml from "sanitize-html";
 import UnAuthNav from "components/common/unAuthNav";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
+import Navbar from "components/common/navbar";
 const Bannerdetails = ({
   details,
   status,
@@ -21,6 +22,9 @@ const Bannerdetails = ({
   copyright_text,
 }: any) => {
   const { t } = useTranslation("common");
+  const { isLoggedIn, user, logo } = useSelector(
+    (state: RootState) => state.user
+  );
   const clean = (dirty: any) => {
     return sanitizeHtml(dirty, {
       allowedTags: [
@@ -62,7 +66,6 @@ const Bannerdetails = ({
       },
     });
   };
-  const { logo } = useSelector((state: RootState) => state.user);
 
   if (status === false) {
     return (
@@ -75,7 +78,7 @@ const Bannerdetails = ({
   }
   return (
     <div>
-      <UnAuthNav logo={logo} />
+      {isLoggedIn ? <Navbar /> : <UnAuthNav logo={logo} />}
       <div className="container mb-5 mt-5">
         <div className="section-wrapper-withHtml ">
           <img src={details.image} />
