@@ -124,9 +124,9 @@ const Withdraw = ({ customPageData, socialData, copyright_text }: any) => {
                           name="coin_currency"
                           className={`ico-input-box`}
                           required
-                          onChange={(e) => {
+                          onChange={(e: any) => {
                             setCurrencyType(e.target.value);
-                            if (e.target.value === "Fiat") {
+                            if (parseInt(e.target.value) === 1) {
                               setCurrencyFiat(data?.currencys);
                             } else {
                               setCurrencyCoin(data?.coins);
@@ -134,11 +134,11 @@ const Withdraw = ({ customPageData, socialData, copyright_text }: any) => {
                           }}
                         >
                           <option value="">{t("Select Currency Type")}</option>
-                          <option>{t("Fiat")}</option>
-                          <option>{t("Crypto")}</option>
+                          <option value={1}>{t("Fiat")}</option>
+                          <option value={2}>{t("Crypto")}</option>
                         </select>
                       </div>
-                      {currencyType === "Fiat" && (
+                      {currencyType == 1 && (
                         <div className="col-md-6 form-input-div">
                           <label className="ico-label-box" htmlFor="">
                             {t("Currency List")}
@@ -162,7 +162,7 @@ const Withdraw = ({ customPageData, socialData, copyright_text }: any) => {
                         </div>
                       )}
 
-                      {currencyType === "Crypto" && (
+                      {currencyType == 2 && (
                         <div className="col-md-6 form-input-div">
                           <label className="ico-label-box" htmlFor="">
                             {t("Currency List")}
