@@ -858,7 +858,7 @@ client-area
   font-weight: 400;
 }
 .about-info .single-info p {
-  color: var(--text-primary-color-4);
+  color: var(--text-primary-color-2);
   font-size: 14px;
   font-weight: 400;
   margin: 0;
