@@ -154,8 +154,10 @@ const Withdraw = ({ customPageData, socialData, copyright_text }: any) => {
                             }}
                           >
                             <option value="">{t("Select currency")}</option>
-                            {currencyFiat.map((item: any) => (
-                              <option value={item.code}>{item.name}</option>
+                            {currencyFiat.map((item: any, index: any) => (
+                              <option value={item.code} key={index}>
+                                {item.name}
+                              </option>
                             ))}
                           </select>
                         </div>
@@ -176,8 +178,8 @@ const Withdraw = ({ customPageData, socialData, copyright_text }: any) => {
                             }}
                           >
                             <option value="">{t("Select currency")}</option>
-                            {currencyCoin?.map((item: any) => (
-                              <option value={item.coin_type}>
+                            {currencyCoin?.map((item: any, index: any) => (
+                              <option value={item.coin_type} key={index}>
                                 {item.coin_type}
                               </option>
                             ))}
