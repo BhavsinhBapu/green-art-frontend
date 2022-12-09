@@ -1,11 +1,15 @@
+import Footer from "components/common/footer";
 import LaunchpadSidebar from "layout/launchpad-sidebar";
+import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
+import { GetServerSideProps } from "next";
 import useTranslation from "next-translate/useTranslation";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { customPage, landingPage } from "service/landing-page";
 import { getTokenWithdrawPrice, withDrawMoney } from "service/launchpad";
 import { getEarningDetailsAction } from "state/actions/launchpad";
 
-const Withdraw = () => {
+const Withdraw = ({ customPageData, socialData, copyright_text }: any) => {
   const { t } = useTranslation("common");
   const [loading, setLoading]: any = useState<any>(false);
   const [data, setData]: any = useState<any>();
@@ -52,148 +56,167 @@ const Withdraw = () => {
     getEarningDetailsAction(setLoading, setData);
   }, []);
   return (
-    <div className="page-wrap rightMargin">
-      <LaunchpadSidebar />
-      <div className="page-main-content">
-        <div className="container-fluid">
-          <div className="section-top-wrap mb-25">
-            <div className="overview-area">
-              <div className="overview-left">
-                <h2 className="section-top-title">{t("Withdraw")}</h2>
+    <>
+      <div className="page-wrap rightMargin">
+        <LaunchpadSidebar />
+        <div className="page-main-content">
+          <div className="container-fluid">
+            <div className="section-top-wrap mb-25">
+              <div className="overview-area">
+                <div className="overview-left">
+                  <h2 className="section-top-title">{t("Withdraw")}</h2>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="asset-balances-area cstm-loader-area">
-            <div className="asset-balances-left">
-              <div className="section-wrapper boxShadow">
-                <div className="row">
-                  <div className="col-md-4 boxShadow p-5 text-center">
-                    <h1>
-                      {data?.earns?.earn}
-                      {data?.earns?.currency}
-                    </h1>
-                    <h3>{t("Total Earned")}</h3>
+            <div className="asset-balances-area cstm-loader-area">
+              <div className="asset-balances-left">
+                <div className="section-wrapper boxShadow">
+                  <div className="row">
+                    <div className="col-md-4 boxShadow p-5 text-center">
+                      <h1>
+                        {data?.earns?.earn}
+                        {data?.earns?.currency}
+                      </h1>
+                      <h3>{t("Total Earned")}</h3>
+                    </div>
+                    <div className="col-md-4 boxShadow p-5 text-center">
+                      <h1>
+                        {data?.earns?.withdraw}
+                        {data?.earns?.currency}
+                      </h1>
+                      <h3>{t("Withdrawal Amount")}</h3>
+                    </div>
+                    <div className="col-md-4 boxShadow p-5 text-center">
+                      <h1>
+                        {data?.earns?.available}
+                        {data?.earns?.currency}
+                      </h1>
+                      <h3>{t("Available Amount")}</h3>
+                    </div>
                   </div>
-                  <div className="col-md-4 boxShadow p-5 text-center">
-                    <h1>
-                      {data?.earns?.withdraw}
-                      {data?.earns?.currency}
-                    </h1>
-                    <h3>{t("Withdrawal Amount")}</h3>
-                  </div>
-                  <div className="col-md-4 boxShadow p-5 text-center">
-                    <h1>
-                      {data?.earns?.available}
-                      {data?.earns?.currency}
-                    </h1>
-                    <h3>{t("Available Amount")}</h3>
-                  </div>
-                </div>
-                <form onSubmit={withDrawMoneyApi}>
-                  <div className="m-3 mt-5 row">
-                    <div className="col-md-6 form-input-div">
-                      <label className="ico-label-box" htmlFor="">
-                        {t("Amount")}
-                      </label>
-                      <input
-                        type="number"
-                        name="amount"
-                        required
-                        value={amount}
-                        onChange={(e) => {
-                          setamount(e.target.value);
-                        }}
-                        className={`ico-input-box`}
-                      />
-                      {amountInfo && (
-                        <p>
-                          {amountInfo?.amount} {amountInfo?.currency_from} ={" "}
-                          {amountInfo?.price} {amountInfo?.currency_to}
-                        </p>
+                  <form onSubmit={withDrawMoneyApi}>
+                    <div className="m-3 mt-5 row">
+                      <div className="col-md-6 form-input-div">
+                        <label className="ico-label-box" htmlFor="">
+                          {t("Amount")}
+                        </label>
+                        <input
+                          type="number"
+                          name="amount"
+                          required
+                          value={amount}
+                          onChange={(e) => {
+                            setamount(e.target.value);
+                          }}
+                          className={`ico-input-box`}
+                        />
+                        {amountInfo && (
+                          <p>
+                            {amountInfo?.amount} {amountInfo?.currency_from} ={" "}
+                            {amountInfo?.price} {amountInfo?.currency_to}
+                          </p>
+                        )}
+                      </div>
+                      <div className="col-md-6 form-input-div">
+                        <label className="ico-label-box" htmlFor="">
+                          {t("Currency Type")}
+                        </label>
+                        <select
+                          name="coin_currency"
+                          className={`ico-input-box`}
+                          required
+                          onChange={(e) => {
+                            setCurrencyType(e.target.value);
+                            if (e.target.value === "Fiat") {
+                              setCurrencyFiat(data?.currencys);
+                            } else {
+                              setCurrencyCoin(data?.coins);
+                            }
+                          }}
+                        >
+                          <option value="">{t("Select Currency Type")}</option>
+                          <option>{t("Fiat")}</option>
+                          <option>{t("Crypto")}</option>
+                        </select>
+                      </div>
+                      {currencyType === "Fiat" && (
+                        <div className="col-md-6 form-input-div">
+                          <label className="ico-label-box" htmlFor="">
+                            {t("Currency List")}
+                          </label>
+
+                          <select
+                            name="coin_currency"
+                            className={`ico-input-box`}
+                            required
+                            onChange={(e) => {
+                              setSelectedCurrency(e.target.value);
+                            }}
+                          >
+                            <option value="">{t("Select currency")}</option>
+                            {currencyFiat.map((item: any) => (
+                              <option value={item.code}>{item.name}</option>
+                            ))}
+                          </select>
+                        </div>
                       )}
-                    </div>
-                    <div className="col-md-6 form-input-div">
-                      <label className="ico-label-box" htmlFor="">
-                        {t("Currency Type")}
-                      </label>
-                      <select
-                        name="coin_currency"
-                        className={`ico-input-box`}
-                        required
-                        onChange={(e) => {
-                          setCurrencyType(e.target.value);
-                          if (e.target.value === "Fiat") {
-                            setCurrencyFiat(data?.currencys);
-                          } else {
-                            setCurrencyCoin(data?.coins);
-                          }
-                        }}
-                      >
-                        <option value="">{t("Select Currency Type")}</option>
-                        <option>{t("Fiat")}</option>
-                        <option>{t("Crypto")}</option>
-                      </select>
-                    </div>
-                    {currencyType === "Fiat" && (
-                      <div className="col-md-6 form-input-div">
-                        <label className="ico-label-box" htmlFor="">
-                          {t("Currency List")}
-                        </label>
 
-                        <select
-                          name="coin_currency"
-                          className={`ico-input-box`}
-                          required
-                          onChange={(e) => {
-                            setSelectedCurrency(e.target.value);
-                          }}
-                        >
-                          <option value="">{t("Select currency")}</option>
-                          {currencyFiat.map((item: any) => (
-                            <option value={item.code}>{item.name}</option>
-                          ))}
-                        </select>
+                      {currencyType === "Crypto" && (
+                        <div className="col-md-6 form-input-div">
+                          <label className="ico-label-box" htmlFor="">
+                            {t("Currency List")}
+                          </label>
+
+                          <select
+                            name="coin_currency"
+                            className={`ico-input-box`}
+                            required
+                            onChange={(e) => {
+                              setSelectedCurrency(e.target.value);
+                            }}
+                          >
+                            <option value="">{t("Select currency")}</option>
+                            {currencyCoin?.map((item: any) => (
+                              <option value={item.coin_type}>
+                                {item.coin_type}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+                      )}
+
+                      <div className="col-md-12 form-input-div">
+                        <button type="submit" className="primary-btn">
+                          {loading ? t("Please Wait..") : t("Withdraw")}
+                        </button>
                       </div>
-                    )}
-
-                    {currencyType === "Crypto" && (
-                      <div className="col-md-6 form-input-div">
-                        <label className="ico-label-box" htmlFor="">
-                          {t("Currency List")}
-                        </label>
-
-                        <select
-                          name="coin_currency"
-                          className={`ico-input-box`}
-                          required
-                          onChange={(e) => {
-                            setSelectedCurrency(e.target.value);
-                          }}
-                        >
-                          <option value="">{t("Select currency")}</option>
-                          {currencyCoin?.map((item: any) => (
-                            <option value={item.coin_type}>
-                              {item.coin_type}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                    )}
-
-                    <div className="col-md-12 form-input-div">
-                      <button type="submit" className="primary-btn">
-                        {loading ? t("Please Wait..") : t("Withdraw")}
-                      </button>
                     </div>
-                  </div>
-                </form>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+      <Footer
+        customPageData={customPageData}
+        socialData={socialData}
+        copyright_text={copyright_text}
+      />
+    </>
   );
 };
+export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
+  await SSRAuthCheck(ctx, "/user/my-wallet");
 
+  const { data } = await landingPage();
+  const { data: customPageData } = await customPage();
+  return {
+    props: {
+      socialData: data.media_list,
+      copyright_text: data?.copyright_text,
+      customPageData: customPageData.data,
+    },
+  };
+};
 export default Withdraw;
