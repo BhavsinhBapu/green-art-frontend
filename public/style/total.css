@@ -5383,6 +5383,12 @@ table.dataTable tbody tr td {
   color: var(--text-primary-color-2);
   /* color: #000 !important; */
 }
+table.dataTable tbody tr.dataTable-white td {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-primary-color-4);
+  /* color: #000 !important; */
+}
 .responsive-thing {
   display: none;
 }
