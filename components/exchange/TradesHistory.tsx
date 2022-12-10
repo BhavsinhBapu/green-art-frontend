@@ -49,7 +49,7 @@ const TradesHistory = ({ marketTrades }: any) => {
                 }}
               >
                 <table
-                  className="table dataTable no-footer"
+                  className="table dataTable  no-footer"
                   role="grid"
                   style={{
                     marginLeft: "0px",
