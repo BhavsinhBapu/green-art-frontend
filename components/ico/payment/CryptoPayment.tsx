@@ -14,7 +14,8 @@ const CryptoPayment = ({ walletlist, initialData }: any) => {
   console.log(walletlist, "walletlist");
   return (
     <form
-      onSubmit={() => {
+      onSubmit={(e: any) => {
+        e.preventDefault();
         TokenBuyIcoCryptoAction(
           initialData,
           setLoading,
