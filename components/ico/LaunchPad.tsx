@@ -3,11 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const LaunchPad = ({ viewMore, data, core, image }: any) => {
+const LaunchPad = ({ viewMore, data, core, image, link }: any) => {
   const { t } = useTranslation("common");
   return (
     <>
-      <Link href={`/ico/token-details/${data?.id}`}>
+      <Link href={link === false ? "#" : `/ico/token-details/${data?.id}`}>
         <div className="mt-3 mb-5 row launchpad-container">
           {}
           {image !== false && (

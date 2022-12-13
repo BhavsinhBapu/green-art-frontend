@@ -1,5 +1,6 @@
 import {
   PHASE_SORT_BY_FEATURED,
+  PHASE_SORT_BY_FUTURE,
   PHASE_SORT_BY_RECENT,
 } from "helpers/core-constants";
 import useTranslation from "next-translate/useTranslation";
@@ -37,7 +38,7 @@ export const SingleHero = ({ type }: any) => {
                   ? "Featured"
                   : PHASE_SORT_BY_RECENT === parseInt(type)
                   ? "Recent"
-                  : PHASE_SORT_BY_FEATURED === parseInt(type)
+                  : PHASE_SORT_BY_FUTURE === parseInt(type)
                   ? "Upcoming"
                   : ""
               } List`
