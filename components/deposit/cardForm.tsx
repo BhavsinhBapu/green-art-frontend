@@ -50,7 +50,7 @@ const CardForm = ({ setCredential, credential }: any) => {
     setCredential({
       ...credential,
       //@ts-ignore
-      stripe_token: payload.token.id,
+      stripe_token: payload?.token?.id,
     });
   };
 

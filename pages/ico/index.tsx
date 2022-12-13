@@ -49,7 +49,7 @@ const Index = ({ socialData, customPageData, copyright_text }: any) => {
                 <div className="carousel-inner">
                   <h2 className="mb-5">{t("Featured Item")}</h2>
                   {launchpadFeatureItem.map((item: any, index: number) => (
-                    <div className="carousel-item active px-5" key={index}>
+                    <div className="carousel-item active px-4" key={index}>
                       <LaunchPad
                         viewMore={
                           launchpadFeatureItem?.length == index + 1
@@ -73,9 +73,9 @@ const Index = ({ socialData, customPageData, copyright_text }: any) => {
                 data-ride="carousel"
               >
                 <div className="carousel-inner">
-                  <h2 className="mb-5">{t("Recent Item")}</h2>
+                  <h2 className="mb-2">{t("Recent Item")}</h2>
                   {launchpadRecentItem.map((item: any, index: number) => (
-                    <div className="carousel-item active px-5" key={index}>
+                    <div className="carousel-item active px-4" key={index}>
                       <LaunchPad
                         key={index}
                         viewMore={
@@ -100,9 +100,9 @@ const Index = ({ socialData, customPageData, copyright_text }: any) => {
                 data-ride="carousel"
               >
                 <div className="carousel-inner">
-                  <h2 className="mb-5">{t("Upcoming Item")}</h2>
+                  <h2 className="mb-2">{t("Upcoming Item")}</h2>
                   {launchpadUpcomingItem.map((item: any, index: number) => (
-                    <div className="carousel-item active px-5" key={index}>
+                    <div className="carousel-item active px-4" key={index}>
                       <LaunchPad
                         key={index}
                         viewMore={
