@@ -76,6 +76,7 @@ const Index = () => {
                       data={launchpadListDetails.data}
                       core={PHASE_SORT_BY_RECENT}
                       image={false}
+                      link={false}
                     />
                     <div className="cp-user-title">
                       <h4>{t("Select method")}</h4>
