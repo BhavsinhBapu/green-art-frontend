@@ -1,7 +1,6 @@
 import Footer from "components/common/footer";
 import Hero from "components/ico/Hero";
 import LaunchPad from "components/ico/LaunchPad";
-import Launchpool from "components/ico/Launchpool";
 import LaunchTop from "components/ico/LaunchTop";
 import SellingSection from "components/ico/SellingSection";
 import {

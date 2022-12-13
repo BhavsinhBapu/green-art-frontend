@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import useTranslation from "next-translate/useTranslation";
+import { toast } from "react-toastify";
 
 const useOptions = () => {
   const options = useMemo(
@@ -43,7 +44,10 @@ const CardForm = ({ setCredential, credential }: any) => {
     const cardElement = elements.getElement("card");
     //@ts-ignore
     const payload = await stripe.createToken(cardElement);
-
+    console.log(payload, "payloadpayloadpayloadpayloadpayload");
+    if (payload.error) {
+      toast.error(payload?.error?.message);
+    }
     setCredential({
       ...credential,
       //@ts-ignore
