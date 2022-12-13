@@ -262,9 +262,8 @@ export const CurrencyWithdrawHistoryAction = async (
     column_name,
     order_by
   );
-  console.log(response, "response?.data?.data");
-  setReport(response?.data?.data?.data);
-  setStillHistory(response?.data?.data);
+  setReport(response?.data?.data);
+  setStillHistory(response?.data);
   setProcessing(false);
   return response;
 };
