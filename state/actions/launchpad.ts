@@ -402,6 +402,7 @@ export const TokenBuyIcoCryptoAction = async (
   amount: any,
   payment_method: any
 ) => {
+  setLoading(true);
   const formData = new FormData();
   formData.append("phase_id", initialData.phase_id);
   formData.append("token_id", initialData.token_id);
@@ -411,7 +412,6 @@ export const TokenBuyIcoCryptoAction = async (
   const response = await TokenBuyIco(formData);
   checkDisable(response);
 
-  setLoading(true);
   if (response.success === true) {
     toast.success(response.message);
     Router.push("/ico");
@@ -428,6 +428,7 @@ export const TokenBuyIcoStripeAction = async (
   pay_currency: any,
   payment_method: any
 ) => {
+  setLoading(true);
   const formData = new FormData();
   formData.append("phase_id", initialData.phase_id);
   formData.append("token_id", initialData.token_id);
@@ -438,7 +439,6 @@ export const TokenBuyIcoStripeAction = async (
   const response = await TokenBuyIco(formData);
   checkDisable(response);
 
-  setLoading(true);
   if (response.success === true) {
     toast.success(response.message);
     Router.push("/ico");
