@@ -41,15 +41,17 @@ const Withdraw = ({ customPageData, socialData, copyright_text }: any) => {
         currency_to: selectedCurrency,
       };
       const response = await withDrawMoney(payload);
+      setLoading(false);
+
       if (response.success === true) {
         toast.success(response.message);
         getTokenwithdrawPrice();
       } else {
-        response.error(response.message);
+        toast.error(response.message);
+
         getTokenwithdrawPrice();
       }
     }
-    setLoading(false);
   };
   // ;
   useEffect(() => {
