@@ -44,7 +44,6 @@ const CardForm = ({ setCredential, credential }: any) => {
     const cardElement = elements.getElement("card");
     //@ts-ignore
     const payload = await stripe.createToken(cardElement);
-    console.log(payload, "payloadpayloadpayloadpayloadpayload");
     if (payload.error) {
       toast.error(payload?.error?.message);
     }
