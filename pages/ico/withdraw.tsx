@@ -114,7 +114,7 @@ const Withdraw = ({ customPageData, socialData, copyright_text }: any) => {
                             }}
                             className={`ico-input-box`}
                           />
-                          {amountInfo && (
+                          {amountInfo?.amount && amountInfo?.price && (
                             <p>
                               {amountInfo?.amount} {amountInfo?.currency_from} ={" "}
                               {amountInfo?.price} {amountInfo?.currency_to}
