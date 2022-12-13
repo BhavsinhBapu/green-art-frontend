@@ -1,5 +1,3 @@
-import { iteratorSymbol } from "immer/dist/internal";
-import Link from "next/link";
 import React from "react";
 
 const SellingSection = ({ data }: any) => {
@@ -11,7 +9,7 @@ const SellingSection = ({ data }: any) => {
         </div>
         <div className="row">
           {data?.feature_list?.map((item: any, index: number) => (
-            <div key={`feature{index}`} className="col-lg-3 col-md-6">
+            <div key={index} className="col-lg-3 col-md-6">
               <a className="single-card">
                 <img
                   className="card-icon"
