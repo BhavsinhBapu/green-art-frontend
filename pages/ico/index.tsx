@@ -77,7 +77,7 @@ const Index = ({ socialData, customPageData, copyright_text }: any) => {
               <h2 className="">{t("Featured Item")}</h2>
               <Slider {...settings}>
                 {launchpadFeatureItem.map((item: any, index: number) => (
-                  <div className="p-3">
+                  <div className="p-3" key={index}>
                     <LaunchPad
                       viewMore={false}
                       data={item}
