@@ -12,6 +12,7 @@ import { GetServerSideProps } from "next";
 import useTranslation from "next-translate/useTranslation";
 import { parseCookies } from "nookies";
 import React, { useEffect, useState } from "react";
+import Slider from "react-slick";
 import { customPage, landingPage } from "service/landing-page";
 import {
   getLaunchpadLandingPageAction,
@@ -32,7 +33,39 @@ const Index = ({ socialData, customPageData, copyright_text }: any) => {
     );
     getLaunchpadLandingPageAction(setLaunchpadLandingPage);
   }, []);
-
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 800,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 360,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
   return (
     <div>
       <div className="launchPad">
@@ -41,28 +74,18 @@ const Index = ({ socialData, customPageData, copyright_text }: any) => {
           <Hero data={launchpadLandingPage?.data} />
           {launchpadFeatureItem.length > 0 && (
             <>
-              <div
-                id="carouselExampleControls"
-                className="carousel slide "
-                data-ride="carousel"
-              >
-                <div className="carousel-inner">
-                  <h2 className="mb-5">{t("Featured Item")}</h2>
-                  {launchpadFeatureItem.map((item: any, index: number) => (
-                    <div className="carousel-item active px-4" key={index}>
-                      <LaunchPad
-                        viewMore={
-                          launchpadFeatureItem?.length == index + 1
-                            ? true
-                            : false
-                        }
-                        data={item}
-                        core={PHASE_SORT_BY_FEATURED}
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
+              <h2 className="">{t("Featured Item")}</h2>
+              <Slider {...settings}>
+                {launchpadFeatureItem.map((item: any, index: number) => (
+                  <div className="p-3">
+                    <LaunchPad
+                      viewMore={false}
+                      data={item}
+                      core={PHASE_SORT_BY_FEATURED}
+                    />
+                  </div>
+                ))}
+              </Slider>
             </>
           )}
           {launchpadRecentItem?.length > 0 && (
@@ -73,7 +96,7 @@ const Index = ({ socialData, customPageData, copyright_text }: any) => {
                 data-ride="carousel"
               >
                 <div className="carousel-inner">
-                  <h2 className="mb-2">{t("Recent Item")}</h2>
+                  <h2 className="mb-2">{t("Ongoing Item")}</h2>
                   {launchpadRecentItem.map((item: any, index: number) => (
                     <div className="carousel-item active px-4" key={index}>
                       <LaunchPad

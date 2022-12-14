@@ -245,7 +245,6 @@ export const launchpadCreateUpdatePhaseAction = async (
     formData.append("id", payload.id === null ? null : payload.id);
     formData.append("total_token_supply", payload.total_token_supply);
     const response = await launchpadCreateUpdatePhase(formData);
-    setLoading(false);
     checkDisable(response);
     if (response.success === true) {
       toast.success(response.message);
@@ -378,7 +377,7 @@ export const TokenBuyIcoBankAction = async (
   const formData = new FormData();
   formData.append("phase_id", initialData.phase_id);
   formData.append("token_id", initialData.token_id);
-  formData.append("bank_slep", doc);
+  formData.append("bank_slep", doc ? doc : null);
   formData.append("bank_id", bank_id);
   formData.append("amount", amount);
   formData.append("payment_method", payment_method);
