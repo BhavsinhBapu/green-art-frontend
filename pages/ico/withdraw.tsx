@@ -28,7 +28,7 @@ const Withdraw = ({ customPageData, socialData, copyright_text }: any) => {
         currency_to: selectedCurrency,
       };
       const response = await getTokenWithdrawPrice(payload);
-      setAmountInfo(response.data);
+      setAmountInfo(response);
     }
   };
   const withDrawMoneyApi = async (e: any) => {
@@ -116,11 +116,15 @@ const Withdraw = ({ customPageData, socialData, copyright_text }: any) => {
                             }}
                             className={`ico-input-box`}
                           />
-                          {amountInfo?.amount && amountInfo?.price && (
+                          {amountInfo?.success ? (
                             <p>
-                              {amountInfo?.amount} {amountInfo?.currency_from} ={" "}
-                              {amountInfo?.price} {amountInfo?.currency_to}
+                              {amountInfo?.data?.amount}{" "}
+                              {amountInfo?.data?.currency_from} ={" "}
+                              {amountInfo?.data?.price}{" "}
+                              {amountInfo?.data?.currency_to}
                             </p>
+                          ) : (
+                            <p>{amountInfo?.message}</p>
                           )}
                         </div>
                         <div className="col-md-6 form-input-div">
