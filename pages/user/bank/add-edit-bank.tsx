@@ -90,7 +90,6 @@ const AddBank = ({
                             note: Yup.string().required(t("Field is required")),
                           })}
                           onSubmit={(values) => {
-                            console.log(values);
                             addEditBankDetailsAction(values, setLoading);
                           }}
                         >

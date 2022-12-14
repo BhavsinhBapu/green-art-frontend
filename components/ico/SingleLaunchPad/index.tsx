@@ -5,7 +5,6 @@ import React, { useEffect, useState } from "react";
 
 export const SingleLaunchPad = ({ data }: any) => {
   const { t } = useTranslation("common");
-  console.log(data,"token sodl");
   const [socialLink, setSocialLink] = useState<any>({});
   useEffect(() => {
     data?.social_link && setSocialLink(JSON.parse(data?.social_link));

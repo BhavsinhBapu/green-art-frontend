@@ -62,17 +62,6 @@ async function listenMessages(dispatch: any, user: any) {
       dispatch(setOpenBookBuy(e.orders.orders));
     if (e.orders.order_type === "sell")
       dispatch(setOpenBooksell(e.orders.orders));
-    // if (e.orders.order_type === "buy") {
-    //   console.log("buy", e.orders.orders);
-    // }
-    // if (e.orders.order_type === "sell") {
-    //   console.log("sell", e.orders.orders);
-    // }
-
-    //last optimised
-    // e.order_data && dispatch(setOrderData(e.order_data));
-    // e.last_price_data && dispatch(setLastPriceData(e.last_price_data));
-    // dispatch(setPairs(e.pairs));
   });
   //@ts-ignore
   window.Echo.channel(

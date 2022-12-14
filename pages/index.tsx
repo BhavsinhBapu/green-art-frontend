@@ -84,7 +84,6 @@ const Home: NextPage = ({
         d.getElementsByTagName("head")[0].appendChild(s);
       }
     })();
-    console.log(asset_coin_pairs, "asset_coin_pairs");
   }, [common.live_chat_status]);
 
   return (
