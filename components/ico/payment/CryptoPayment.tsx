@@ -11,7 +11,6 @@ const CryptoPayment = ({ walletlist, initialData }: any) => {
   });
   const [loading, setLoading] = useState(false);
   const { t } = useTranslation("common");
-  console.log(walletlist, "walletlist");
   return (
     <form
       onSubmit={(e: any) => {

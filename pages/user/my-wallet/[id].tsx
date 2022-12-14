@@ -94,7 +94,6 @@ const DeposiAndWithdraw = ({
       faqs?.length <= 0 &&
       getProcessData?.data?.progress_status_list?.length <= 0
     ) {
-      console.log(faqs?.length);
       setFullPage(true);
     }
   };

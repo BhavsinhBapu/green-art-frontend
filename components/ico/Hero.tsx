@@ -7,7 +7,6 @@ import { RootState } from "state/store";
 const Hero = ({ data }: any) => {
   const { t } = useTranslation("common");
   const { isLoggedIn } = useSelector((state: RootState) => state.user);
-  console.log(data, "data");
   return (
     <section className="hero-banner-area-pool">
       <div className="row">

@@ -91,7 +91,6 @@ export const launchpadCreateUpdatePhaseAdditionalAction = async (
     formData.append(`titles[${i}]`, item.title);
     formData.append(`values[${i}]`, item.value);
     formData.append(`file_values[${i}]`, item.file ? item.file : null);
-    console.log(item);
     i++;
   });
   const response = await launchpadCreateUpdatePhaseAdditional(formData);
@@ -276,7 +275,6 @@ export const IcoTokenPhaseListAction = async (
   );
   checkDisable(response);
   if (response.success === true) {
-    console.log(response.data.data, "response.data.data");
     setReport(response.data.data);
     setStillHistory(response.data);
   }
@@ -303,7 +301,6 @@ export const getEarningDetailsAction = async (
 ) => {
   const response = await getEarningtDetails();
   checkDisable(response);
-  console.log(response, "response");
   if (response.success === true) {
     setData(response.data);
   }
@@ -346,7 +343,6 @@ export const getTokenBuyHistoryAction = async (
     order_by
   );
   checkDisable(response);
-  console.log(response, "testtest");
   if (response.success === true) {
     setReport(response.data.data);
     setStillHistory(response.data);
@@ -483,5 +479,4 @@ export const SendChantByTokenAction = async (
   setSendFile(null);
   setFile(null);
   // return response;
-  // console.log(response.data, "file");
 };
