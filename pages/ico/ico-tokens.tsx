@@ -143,7 +143,6 @@ const Profile: NextPage = ({
       sortingInfo.column_name,
       sortingInfo.order_by
     );
-    console.log(history, "historyhistoryhistory");
   }, []);
   return (
     <>
