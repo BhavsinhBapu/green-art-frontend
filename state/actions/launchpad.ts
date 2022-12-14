@@ -377,7 +377,7 @@ export const TokenBuyIcoBankAction = async (
   const formData = new FormData();
   formData.append("phase_id", initialData.phase_id);
   formData.append("token_id", initialData.token_id);
-  formData.append("bank_slep", doc ? doc : null);
+  formData.append("bank_slep", doc ? doc : "");
   formData.append("bank_id", bank_id);
   formData.append("amount", amount);
   formData.append("payment_method", payment_method);
