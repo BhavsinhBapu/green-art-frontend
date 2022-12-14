@@ -37,7 +37,7 @@ export const SingleHero = ({ type }: any) => {
                 PHASE_SORT_BY_FEATURED === parseInt(type)
                   ? "Featured"
                   : PHASE_SORT_BY_RECENT === parseInt(type)
-                  ? "Recent"
+                  ? "Ongoing"
                   : PHASE_SORT_BY_FUTURE === parseInt(type)
                   ? "Upcoming"
                   : ""
