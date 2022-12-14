@@ -106,12 +106,17 @@ const IcoTokenPhaseList = ({
       ),
     },
     {
-      name: t("Date"),
+      name: t("Start Date"),
       selector: (row: any) =>
-        moment(row.created_at).format("YYYY-MM-DD HH:mm:ss"),
+        moment(row.start_date).format("YYYY-MM-DD HH:mm:ss"),
       sortable: true,
     },
-
+    {
+      name: t("End Date"),
+      selector: (row: any) =>
+        moment(row.end_date).format("YYYY-MM-DD HH:mm:ss"),
+      sortable: true,
+    },
     {
       name: t("Actions"),
       sortable: true,

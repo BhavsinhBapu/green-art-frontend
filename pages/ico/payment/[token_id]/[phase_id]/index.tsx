@@ -78,50 +78,58 @@ const Index = () => {
                       image={false}
                       link={false}
                     />
-                    <div className="cp-user-title">
-                      <h4>{t("Select method")}</h4>
-                    </div>
+                    {pageInfo?.payment_methods?.length > 0 ? (
+                      <div className="cp-user-title">
+                        <h4>{t("Select method")}</h4>
+                      </div>
+                    ) : (
+                      <div className="cp-user-title text-center">
+                        <h4>{t("No Avaiable payment method")}</h4>
+                      </div>
+                    )}
 
-                    {pageInfo?.payment_methods && (
+                    {pageInfo?.payment_methods?.length > 0 && (
                       <SelectDeposit
                         setSelectedMethod={setSelectedMethod}
                         depositInfo={pageInfo}
                         selectedMethod={selectedMethod}
                       />
                     )}
-                    <div className="row">
-                      {loading ? (
-                        <ScaletonLoading />
-                      ) : (
-                        <div className={`col-sm-12`}>
-                          {parseInt(selectedMethod.method) ===
-                          CRYPTO_DEPOSIT ? (
-                            <CryptoPayment
-                              initialData={initialData}
-                              walletlist={pageInfo?.wallet}
-                            />
-                          ) : parseInt(selectedMethod.method) ===
-                            BANK_DEPOSIT ? (
-                            <BankPayment
-                              pageInfo={pageInfo}
-                              initialData={initialData}
-                            />
-                          ) : parseInt(selectedMethod.method) === STRIPE ? (
-                            <StripePayment
-                              initialData={initialData}
-                              pageInfo={pageInfo}
-                            />
-                          ) : parseInt(selectedMethod.method) === PAYPAL ? (
-                            <PaypalPayment
-                              initialData={initialData}
-                              pageInfo={pageInfo}
-                            />
-                          ) : (
-                            ""
-                          )}
-                        </div>
-                      )}
-                    </div>
+                    {pageInfo?.payment_methods?.length > 0 && (
+                      <div className="row">
+                        {loading ? (
+                          <ScaletonLoading />
+                        ) : (
+                          <div className={`col-sm-12`}>
+                            {parseInt(selectedMethod.method) ===
+                            CRYPTO_DEPOSIT ? (
+                              <CryptoPayment
+                                initialData={initialData}
+                                walletlist={pageInfo?.wallet}
+                              />
+                            ) : parseInt(selectedMethod.method) ===
+                              BANK_DEPOSIT ? (
+                              <BankPayment
+                                pageInfo={pageInfo}
+                                initialData={initialData}
+                              />
+                            ) : parseInt(selectedMethod.method) === STRIPE ? (
+                              <StripePayment
+                                initialData={initialData}
+                                pageInfo={pageInfo}
+                              />
+                            ) : parseInt(selectedMethod.method) === PAYPAL ? (
+                              <PaypalPayment
+                                initialData={initialData}
+                                pageInfo={pageInfo}
+                              />
+                            ) : (
+                              ""
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
