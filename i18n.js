@@ -5,7 +5,7 @@ module.exports = {
     "ar",
     // "de",
     // "et",
-    // "fr",
+    "fr",
     // "id",
     // "it",
     // "ja",
