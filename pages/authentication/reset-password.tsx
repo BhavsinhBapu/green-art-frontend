@@ -51,7 +51,7 @@ const ResetPassword: NextPage = () => {
                   <h2>{t("Forgot Password ?")}</h2>
                   <p>
                     {t(
-                      "Please enter the new password and token to reset the password"
+                      "Please enter the new password and code to reset the password"
                     )}
                   </p>
                 </div>
@@ -79,7 +79,7 @@ const ResetPassword: NextPage = () => {
                         t("Passwords must match")
                       )
                       .required(t("Password confirmation is required")),
-                    token: Yup.string().required(t("Token is required")),
+                    token: Yup.string().required(t("Code is required")),
                     recapcha: Yup.string()
                       .min(6)
                       .required(t("Recapcha is required")),
@@ -112,7 +112,7 @@ const ResetPassword: NextPage = () => {
                               ? "is-invalid"
                               : ""
                           }`}
-                          placeholder={t("Type your password")}
+                          placeholder={t("Type your new password")}
                         />
                       </div>
                       {/* <ErrorMessage
@@ -143,12 +143,12 @@ const ResetPassword: NextPage = () => {
                       <div className="form-group">
                         <Field
                           type="token"
-                          name="token"
+                          name="Code"
                           id="token"
                           className={`form-control ${
                             touched.token && errors.token ? "is-invalid" : ""
                           }`}
-                          placeholder={t("Your token here")}
+                          placeholder={t("Your code here")}
                         />
                       </div>
                       {/* <ErrorMessage
