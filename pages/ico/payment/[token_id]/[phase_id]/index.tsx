@@ -19,7 +19,6 @@ import { GetServerSideProps } from "next";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { customPage } from "service/landing-page";
 import {
   getLaunchpadListDetailsAction,
   TokenBuyPageAction,
@@ -66,7 +65,6 @@ const Index = () => {
                 <h2 className="section-top-title">{t("Token Payment")}</h2>
               </div>
             </div>
-            {/* {JSON.stringify(launchpadListDetails)} */}
             <div className="asset-balances-area">
               <div className="section-wrapper boxShadow bank-section">
                 <div className="container">
