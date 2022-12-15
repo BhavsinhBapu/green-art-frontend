@@ -315,7 +315,7 @@
   "Account holder name": "Nom du titulaire du compte",
   "Account holder address": "Adresse du titulaire du compte",
   "Swift code": "Code rapide",
-  "Open your Google Authenticator app and enter the 6-digit code from the app into the input field to remove the google secret key": "Ouvrez votre application Google Authenticator et saisissez le code à 6 chiffres de l'application dans le champ de saisie pour supprimer la clé secrète Google",
+  "Open your Google Authenticator app and enter the 6-digit code from the app into the input field  ": "Ouvrez votre application Google Authenticator et saisissez le code à 6 chiffres de l'application dans le champ de saisie pour supprimer la clé secrète Google",
   "Code": "Code",
   "Deposit With Paypal": "Dépôt avec Paypal",
   "Currency(USD)": "Devise(USD)",
@@ -359,7 +359,7 @@
   "code": "code",
   "Password must be at least 6 characters": "Le mot de passe doit comporter au moins 6 caractères",
 
-  "Type your password": "Tapez votre mot de passe",
+  "Type your new password": "Tapez votre mot de passe",
   "Reenter your new password": "Entrez à nouveau votre nouveau mot de passe",
 
   "Please enter the new password and token to reset the password": "Veuillez saisir le nouveau mot de passe et le jeton pour réinitialiser le mot de passe",
