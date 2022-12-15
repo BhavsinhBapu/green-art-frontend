@@ -94,10 +94,12 @@ const Deposit = ({ customPageData, socialData, copyright_text }: any) => {
                         <div className="cp-user-title">
                           <h4>{t("Select method")}</h4>
                         </div>
-                      ) : (
-                        <div className="cp-user-title text-center">
+                      ) : !loading && !selectedMethod.method ? (
+                        <div className="cp-user-title text-center border p-5">
                           <h4>{t("No Avaiable payment method")}</h4>
                         </div>
+                      ) : (
+                        ""
                       )}
 
                       <SelectDeposit
