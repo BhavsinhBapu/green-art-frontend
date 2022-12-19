@@ -30,7 +30,6 @@ const Home: NextPage = ({
 }: any) => {
   const { t } = useTranslation("common");
   const router = useRouter();
-  console.log(landing, "landinglanding");
 
   const { logo } = useSelector((state: RootState) => state.user);
   const { settings: common } = useSelector((state: RootState) => state.common);
