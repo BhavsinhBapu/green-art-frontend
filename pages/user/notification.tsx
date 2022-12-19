@@ -31,7 +31,6 @@ const NotificationPage = ({
           {t("All notifications")}
         </h2>
       </div>
-    
 
       <div className="notification-section marginLeftRight">
         <div className="container">
@@ -67,7 +66,7 @@ const NotificationPage = ({
               ))
             ) : (
               <p className="text-center notificationNotFound">
-                {t("No data found!")}
+                {t("No Notification!")}
               </p>
             )}
           </div>
