@@ -70,6 +70,35 @@ Tags: admin, best react admin template, das
 
   --background-color-hover: #fafafa;
 }
+
+:root[data-theme="dark"] {
+  --primary-color: #fcd535;
+  --text-primary-color: #ffffff;
+  --text-primary-color-2: #ffffff;
+  --text-primary-color-3: #ffffff;
+  --text-primary-color-4: #ffffff;
+
+  --border-color: #535353;
+  --border-color-1: #535353;
+  --border-color-2: #ffffff;
+
+  --hover-color: #f7cf33;
+  --font-color: #ffffff;
+  --bColor: #424242;
+  --title-color: #ffffff;
+  --white: #ffffff;
+  --black: #000000;
+  --color-pallet-1: #535353;
+
+  --background-color: #1f1f1f;
+  --background-color-trade: #2a2e37;
+  --main-background-color: #2a2a2d;
+  --card-background-color: #2a2a2d;
+  --table-background-color: #353535;
+  --footer-background-color: #2a2a2d;
+
+  --background-color-hover: #3a3a3a;
+}
 html,
 body {
   height: 100%;
@@ -705,7 +734,7 @@ client-area
 ==================================================*/
 .hero-banner-area {
   padding: 150px 0 80px 0;
-  background-color: var(--background-color-3);
+  background-color: var(--main-background-color);
 }
 .hero-banner-area .banner-title {
   font-size: 60px;
@@ -794,6 +823,7 @@ client-area
 ==================================================*/
 .about-area {
   padding: 40px 0;
+  background: var(--main-background-color);
 }
 .about-area .single-banner a {
   display: block;
@@ -975,7 +1005,7 @@ client-area
 ==================================================*/
 .trade-anywhere-area {
   padding: 60px 0;
-  background: var(--background-color-6);
+  background: var(--main-background-color);
 }
 .trade-anywhere-area .qr-code-area {
   display: flex;
@@ -1030,7 +1060,7 @@ client-area
   line-height: 1;
   font-weight: 400;
   text-transform: capitalize;
-  color: #1e2329;
+  color: var(--font-color);
 }
 .avable-items .item-lsit .single-item .item-link:hover {
   background: #f5f5f5;
@@ -1045,7 +1075,7 @@ client-area
 ==================================================*/
 .get-touch-area {
   padding: 40px 0;
-  background: var(--background-color-6);
+  background: var(--main-background-color);
 }
 .single-card {
   display: block;
@@ -1084,7 +1114,7 @@ client-area
 ==================================================*/
 .start-trading-area {
   padding: 40px 0;
-  background: var(--background-color-9);
+  background: var(--main-background-color);
 }
 @media (max-width: 375px) {
   .primary-btn.mr-3 {

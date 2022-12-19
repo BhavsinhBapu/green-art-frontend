@@ -6673,7 +6673,7 @@ body {
   margin: 0;
   padding: 0;
   color: var(--text-primary-color-2);
-  background-color: var(--main-background-color);
+  background-color: var(--main-background-color) !important;
 }
 
 ul,
