@@ -90,16 +90,10 @@ const Deposit = ({ customPageData, socialData, copyright_text }: any) => {
                 <div className="section-wrapper boxShadow bank-section">
                   <div className="container">
                     <div className="deposit-conatiner">
-                      {selectedMethod.method ? (
+                      {selectedMethod.method && (
                         <div className="cp-user-title">
                           <h4>{t("Select method")}</h4>
                         </div>
-                      ) : !loading && !selectedMethod.method ? (
-                        <div className="cp-user-title text-center border p-5">
-                          <h4>{t("No Avaiable payment method")}</h4>
-                        </div>
-                      ) : (
-                        ""
                       )}
 
                       <SelectDeposit
@@ -118,6 +112,13 @@ const Deposit = ({ customPageData, socialData, copyright_text }: any) => {
                                 : "col-lg-12 col-sm-12"
                             }`}
                           >
+                            {!loading && !selectedMethod.method ? (
+                              <div className="cp-user-title text-center border p-5">
+                                <h4>{t("No Avaiable payment method")}</h4>
+                              </div>
+                            ) : (
+                              ""
+                            )}
                             {parseInt(selectedMethod.method) ===
                             WALLET_DEPOSIT ? (
                               <WalletDeposit
