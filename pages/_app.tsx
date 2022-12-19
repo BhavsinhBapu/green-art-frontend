@@ -16,10 +16,12 @@ import NProgress from "nprogress";
 import { useEffect } from "react";
 import Router, { useRouter } from "next/router";
 import useTranslation from "next-translate/useTranslation";
+import { checkDarkMode } from "helpers/functions";
 function MyApp({ Component, pageProps }: AppProps) {
   const { t } = useTranslation("common");
   const router = useRouter();
   useEffect(() => {
+    checkDarkMode();
     Router.events.on("routeChangeStart", () => NProgress.start());
     Router.events.on("routeChangeComplete", () => NProgress.done());
     Router.events.on("routeChangeError", () => NProgress.done());

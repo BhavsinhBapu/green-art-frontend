@@ -19,6 +19,7 @@ import { HiArrowNarrowRight } from "react-icons/hi";
 import { RiNotificationBadgeLine } from "react-icons/ri";
 import moment from "moment";
 import OutsideClickHandler from "react-outside-click-handler";
+import { darkModeToggle } from "helpers/functions";
 
 const Navbar = () => {
   const { isLoggedIn, user, logo } = useSelector(
@@ -338,7 +339,7 @@ const Navbar = () => {
                         >
                           <a href="">{t("Transaction History")}</a>
                         </li>
-                      </Link>{" "}
+                      </Link>
                       <Link
                         href={
                           isLoggedIn
@@ -547,7 +548,7 @@ const Navbar = () => {
                                 <div className="notify-counter">
                                   <div className="notify-pending">
                                     <p>
-                                      <span>{notificationData.length}</span>{" "}
+                                      <span>{notificationData.length}</span>
                                       {t("pending notifications")}
                                     </p>
                                     <a
@@ -700,7 +701,7 @@ const Navbar = () => {
                             <Link href="/user/profile">
                               <button className="dropdown-item" type="button">
                                 <a href="">
-                                  <i className="fa-regular fa-user"></i>{" "}
+                                  <i className="fa-regular fa-user"></i>
                                   {t("Profile")}
                                 </a>
                               </button>
@@ -708,15 +709,28 @@ const Navbar = () => {
                             <Link href="/user/settings">
                               <button className="dropdown-item" type="button">
                                 <a href="">
-                                  <i className="fa fa-cog"></i>{" "}
+                                  <i className="fa fa-cog"></i>
                                   {t("My Settings")}
                                 </a>
                               </button>
                             </Link>
+                            {/* <button
+                              className="dropdown-item"
+                              type="button"
+                              onClick={() => {
+                                darkModeToggle();
+                              }}
+                            >
+                              <a href="">
+                                <i className="fa fa-cog"></i>
+                                {t("Toggle theme")}
+                              </a>
+                            </button> */}
+
                             <Link href="/user/my-wallet">
                               <button className="dropdown-item" type="button">
                                 <a href="-wallet">
-                                  <i className="fa fa-credit-card"></i>{" "}
+                                  <i className="fa fa-credit-card"></i>
                                   {t("My Wallet")}
                                 </a>
                               </button>
