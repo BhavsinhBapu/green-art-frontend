@@ -5525,7 +5525,7 @@ table.dataTable tbody tr.dataTable-white td {
   border-radius: 5px;
   border: 1px solid var(--primary-color);
   background: transparent;
-  color: black;
+  color: var(--font-color);
 }
 /* referral-area */
 .referral-area table.dataTable thead tr th {
