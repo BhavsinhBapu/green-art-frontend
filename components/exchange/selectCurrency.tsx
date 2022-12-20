@@ -15,26 +15,26 @@ const SelectCurrency = () => {
   const customStyles = {
     rows: {
       style: {
-        backgroundColor: "#151515",
-        color: "#fff",
-        borderColor: "#151515",
+        backgroundColor: "var(--background-color)",
+        color: "var(--font-color)",
+        borderColor: "var(--border-color)",
       },
     },
     headCells: {
       style: {
-        backgroundColor: "#151515",
-        color: "#fff",
-        borderColor: "#151515",
+        backgroundColor: "var(--background-color)",
+        color: "var(--font-color)",
+        borderColor: "var(--border-color)",
       },
     },
     cells: {
       style: {
         width: "100%",
+        backgroundColor: "var(--background-color)",
+        color: "var(--font-color)",
+        borderColor: "var(--border-color)",
+        fontSize: "11px",
         cursor: "pointer",
-        backgroundColor: "#151515",
-        color: "#fff",
-        borderColor: "#151515",
-        fontSize: "10px",
       },
     },
   };

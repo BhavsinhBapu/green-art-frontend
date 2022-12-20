@@ -37,7 +37,7 @@ type MyProps = {
   coinpair: any;
 };
 const pair = localStorage.getItem("current_pair")?.replace("_", "/");
-localStorage.setItem("tradingview.ChartDrawingToolbarWidget.visible", "false");
+// localStorage.setItem("tradingview.ChartDrawingToolbarWidget.visible", "false");
 export class TVChartContainer extends React.Component<MyProps> {
   static defaultProps = {
     symbol: `:${pair && pair}`,
@@ -163,7 +163,7 @@ export class TVChartContainer extends React.Component<MyProps> {
       autosize: this.props.autosize,
       //@ts-ignore
       studies_overrides: this.props.studiesOverrides,
-      drawings_access: { type: "black", tools: [{ name: "Regression Trend" }] },
+      // drawings_access: { type: "black", tools: [{ name: "Regression Trend" }] },
       //@ts-ignore
       enabled_features: ENABLED_FEATURES,
       //@ts-ignore
