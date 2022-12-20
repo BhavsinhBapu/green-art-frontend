@@ -15,24 +15,24 @@ const SelectCurrencyRight = () => {
   const customStyles = {
     rows: {
       style: {
-        backgroundColor: "#151515",
-        color: "rgb(183, 189, 198)",
-        borderColor: "#151515",
+        backgroundColor: "var(--background-color)",
+        color: "var(--font-color)",
+        borderColor: "var(--border-color)",
       },
     },
     headCells: {
       style: {
-        backgroundColor: "#151515",
-        color: "rgb(183, 189, 198)",
-        borderColor: "#151515",
+        backgroundColor: "var(--background-color)",
+        color: "var(--font-color)",
+        borderColor: "var(--border-color)",
       },
     },
     cells: {
       style: {
         width: "100%",
-        // backgroundColor: "#151515",
-        // color: "rgb(183, 189, 198)",
-        borderColor: "#151515",
+        backgroundColor: "var(--background-color)",
+        color: "var(--font-color)",
+        borderColor: "var(--border-color)",
         fontSize: "11px",
         cursor: "pointer",
       },
@@ -68,7 +68,7 @@ const SelectCurrencyRight = () => {
                 router.reload();
               }}
             >
-              <span className="text-white">
+              <span className="">
                 {row?.coin_pair_name.split("/")[0]}
               </span>
               <span className="coin-name">
