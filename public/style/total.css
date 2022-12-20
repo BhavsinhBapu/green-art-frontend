@@ -4258,7 +4258,10 @@ div.dataTables_wrapper div.dataTables_length label {
   white-space: nowrap;
   min-width: 100px;
 }
-
+.fwKvpK{
+  background-color: var(--main-background-color) !important;
+  color: var(--font-color) !important;
+}
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -4308,10 +4311,18 @@ select:-webkit-autofill:focus {
 }
 .main-menu ul li ul li {
   display: block;
-  border-bottom: 1px solid var(--border-color-2);
+  border-bottom: 1px solid var(--border-color);
 }
 .main-menu ul li ul li:last-child {
   border-bottom: none;
+}
+.table .thead-light th {
+    color: var(--font-color);
+    background-color: var(--main-background-color);
+    border-color: var(--border-color);
+}
+.table td, .table th{
+  color: var(--font-color);
 }
 .main-menu ul li ul li a {
   display: block;
@@ -5029,7 +5040,18 @@ select:-webkit-autofill:focus {
   border-radius: 5px;
   min-height: 100%;
   min-width: 300px;
-  box-shadow: rgb(0 0 0 / 5%) 0px 0px 0px 2px;
+  /* box-shadow: rgb(0 0 0 / 5%) 0px 0px 0px 2px; */
+  border: 1px solid var(--border-color);
+}
+.gZWIKX{
+  background-color: var(--main-background-color) !important;
+  color: var(--font-color) !important;
+}
+.jVeafb{
+  background-color: var(--main-background-color) !important;
+  color: var(--font-color) !important;
+
+
 }
 .page-left-sidebar .sidebar-top {
   padding: 30px;
@@ -8516,7 +8538,7 @@ div.dataTables_wrapper div.dataTables_filter input {
   width: auto;
   background: transparent;
   /* border-radius: 50px; */
-  border: 1px solid #dfdfdf;
+  border: 1px solid var(--border-color);
   height: 35px;
   color: var(--text-primary-color-4);
   padding: 5px;
@@ -10105,10 +10127,12 @@ input[type="number"] {
 }
 .launchpad-container {
   display: flex;
-  background-color: white;
+  /* background-color: var(--main-background-color); */
   padding: 30px 20px;
   /* border-radius: 10px; */
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+  /* box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px; */
+  border: 1px solid;
+  border-color: var(--border-color-1);
   cursor: pointer;
 }
 .subscriptionRightContent {
@@ -10449,7 +10473,8 @@ input[type="number"] {
   gap: 20px;
 }
 .boxShadow {
-  box-shadow: rgb(0 0 0 / 5%) 0px 0px 0px 2px;
+  /* box-shadow: var(--box-shadow-color) 0px 0px 0px 2px; */
+  border: 1px solid var(--border-color);
 }
 .nav-userName {
   color: var(--text-primary-color);
@@ -10626,14 +10651,14 @@ input[type="number"] {
 .viewMoreLink a {
   text-decoration: underline !important;
   cursor: pointer;
-  color: #000;
+  color: var(--font-color);
   font-size: 18px;
 }
 .viewMoreLink a:hover {
   color: var(--primary-color);
 }
 .launchPadSingleHero {
-  background: #ffffff;
+  background: var(--main-background-color);
   padding: 20px 0px;
 }
 .launchPadSingleHeroFlex {
@@ -10693,7 +10718,7 @@ input[type="number"] {
   gap: 10px;
   align-items: center;
   justify-items: center;
-  background: #fff;
+  background: var(--main-background-color);
   padding: 0px 10px;
   border-radius: 5px;
 }
@@ -10719,7 +10744,7 @@ input[type="number"] {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #000;
+  color: var(--font-color);
   text-decoration: none;
 }
 .linkLists a div i {
@@ -10737,6 +10762,21 @@ input[type="number"] {
   margin-top: 30px;
   display: flex;
   gap: 40px;
+}
+.react-loading-skeleton {
+  --base-color: var(--loading-color) !important;
+  --highlight-color: var(--color-pallet-1);
+  --animation-duration: 1.5s;
+  --animation-direction: normal;
+  --pseudo-element-display: block;
+  background-color: var(--base-color);
+  width: 100%;
+  border-radius: 0.25rem;
+  display: inline-flex;
+  line-height: 1;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
 }
 .launchCoinDetails p {
   font-size: 16px;
@@ -11031,9 +11071,10 @@ textarea.apply-file-input {
 .ico-input-box {
   width: 100%;
   background: var(--footer-background-color);
-  border: 1px solid var(--footer-background-color);
+  border: 1px solid var(--border-color);
   padding: 15px 10px;
   border-radius: 5px;
+  color: var(--font-color);
   font-size: 16px;
   outline: none;
 }
