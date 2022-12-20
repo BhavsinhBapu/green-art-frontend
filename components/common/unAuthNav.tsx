@@ -24,7 +24,7 @@ const UnAuthNav = ({ logo }: any) => {
               <nav className="main-menu mobile-menu">
                 <ul id="nav">
                   <li>
-                    <a href="/exchange/dashboard">{t("Buy / Sell")}</a>
+                    <a href="/exchange/dashboard">{t("Trade")}</a>
                   </li>
                   <li>
                     <Link href="/authentication/signin">{t("Login")}</Link>
