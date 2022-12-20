@@ -4133,7 +4133,7 @@ table.table {
   z-index: 99;
   opacity: 0;
   visibility: hidden; */
-  padding: 25px;
+  padding: 10px;
 }
 /* .summber-coin-type:hover .cp-user-buy-coin-content-area {
   opacity: 1;
@@ -4294,7 +4294,7 @@ select:-webkit-autofill:focus {
   display: block;
   position: absolute;
   width: 200px;
-  background: rgba(30, 35, 41, 1);
+  background: var(--background-color);
   left: 0;
   top: 100%;
   text-align: left;
@@ -4327,7 +4327,7 @@ select:-webkit-autofill:focus {
 .main-menu ul li ul li a {
   display: block;
   padding: 8px 5px;
-  color: rgba(255, 255, 255, 0.6) !important;
+  color: var(--font-color) !important;
   transition: all 0.3s;
 }
 .main-menu ul li ul li a:hover {
@@ -5807,7 +5807,7 @@ table.dataTable tbody tr.dataTable-white td {
   color: var(--text-primary-color-4) !important;
 }
 .cp-user-body-bg .main-menu ul li ul li {
-  border-bottom: 1px solid rgb(126 126 126 / 20%);
+  border-bottom: 1px solid var(--border-color);
 }
 .cp-user-body-bg .main-menu ul li ul li:last-child {
   border-bottom: none;
