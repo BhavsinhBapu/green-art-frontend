@@ -24,6 +24,7 @@ const supportedResolutions = [
   "W",
   "M",
 ];
+const theme = localStorage.getItem("theme");
 
 function getLanguageFromURL() {
   const regex = new RegExp("[\\?&]lang=([^&#]*)");
@@ -64,13 +65,16 @@ export class TVChartContainer extends React.Component<MyProps> {
   //@ts-ignore
   chartInit = (config) => {
     const tvWidget = new widget(config);
+    if (document.documentElement.classList.contains("theme-dark")) {
+      document.documentElement.classList.remove("theme-dark");
+    }
     //@ts-ignore
     this.tvWidget = tvWidget;
     //@ts-ignore
     this.tvWidget.onChartReady(() => {
       //@ts-ignore
       this.tvWidget.applyOverrides({
-        "paneProperties.background": "#151515",
+        "paneProperties.background": theme === "dark" ? "#151515" : "#fff",
         "paneProperties.backgroundType": "solid",
         //up and down color change32d777
         "mainSeriesProperties.candleStyle.upColor": "#32d777",
@@ -120,7 +124,7 @@ export class TVChartContainer extends React.Component<MyProps> {
       //@ts-ignore
       symbol: this.props.symbol,
       style: 1,
-      theme: "dark",
+      theme: theme === "dark" ? "dark" : "light",
       //@ts-ignore
       datafeed: Datafeed,
       // datafeed: Datafeed,
