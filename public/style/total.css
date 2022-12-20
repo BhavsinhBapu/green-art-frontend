@@ -3755,7 +3755,7 @@ body._toggle .swipe-area-overlay:before {
   justify-content: space-between;
   padding: 12px 15px;
   border-radius: 2px;
-  background: var(--background-color-trade);
+  background: var(--background-color-hover);
 }
 
 .exchange-area .cp-user-profile-info .form-control {
@@ -4081,7 +4081,7 @@ table.table {
   .label {
   font-size: 15px;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--text-primary-color-4);
 }
 .cxchange-summary-wrap
   .cxchange-summary-featured
@@ -9322,7 +9322,7 @@ table.dataTable thead .sorting_desc_disabled:after {
   margin-top: 20px;
 }
 .percent-btn {
-  color: var(--text-primary-color);
+  color: var(--font-color);
   width: 10px !important;
   border: 1px solid var(--primary-color);
   display: flex;
@@ -9873,7 +9873,7 @@ table.dataTable thead tr th {
   input {
   width: 100%;
   border: none;
-  background-color: rgba(71, 77, 87, 1);
+  background-color: var(--background-color-hover);
   margin-left: 0;
   color: rgba(183, 189, 198, 1);
   padding: 5px 15px;
