@@ -18,3 +18,14 @@ export const darkModeToggle = () => {
     localStorage.setItem("theme", "dark");
   }
 };
+export const darkModeToggleDashboard = () => {
+  const theme = localStorage.getItem("theme");
+  console.log(theme, "</button>");
+  if (theme === "dark") {
+    // document.documentElement.setAttribute("data-theme", "light");
+    localStorage.setItem("theme", "light");
+  } else {
+    // document.documentElement.setAttribute("data-theme", "dark");
+    localStorage.setItem("theme", "dark");
+  }
+};
