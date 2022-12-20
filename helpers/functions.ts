@@ -1,9 +1,11 @@
 export const checkDarkMode = () => {
   const theme = localStorage.getItem("theme");
-  if (theme === "dark") {
-    document.documentElement.setAttribute("data-theme", "dark");
-  } else {
+  if (theme === "light") {
+    localStorage.setItem("theme", "light");
     document.documentElement.setAttribute("data-theme", "light");
+  } else {
+    localStorage.setItem("theme", "dark");
+    document.documentElement.setAttribute("data-theme", "dark");
   }
 };
 

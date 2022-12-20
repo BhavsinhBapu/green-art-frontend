@@ -692,7 +692,7 @@ const Navbar = () => {
                             <button
                               className="dropdown-item"
                               type="button"
-                              onClick={() => {text - primary - color;
+                              onClick={() => {
                                 darkModeToggle();
                               }}
                             >
