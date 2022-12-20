@@ -77,19 +77,19 @@ const Withdraw = ({ customPageData, socialData, copyright_text }: any) => {
               <div className="asset-balances-left">
                 <div className="section-wrapper boxShadow">
                   <div className="row">
-                    <div className="col-md-4 border p-3  text-center">
+                    <div className="col-md-4 boxShadow p-3  text-center">
                       <h1>
                         {data?.earns?.earn} {data?.earns?.currency}
                       </h1>
                       <h3>{t("Total Earned")}</h3>
                     </div>
-                    <div className="col-md-4 border p-3  text-center">
+                    <div className="col-md-4 boxShadow p-3  text-center">
                       <h1>
                         {data?.earns?.withdraw} {data?.earns?.currency}
                       </h1>
                       <h3>{t("Withdrawal Amount")}</h3>
                     </div>
-                    <div className="col-md-4 border p-3  text-center">
+                    <div className="col-md-4 boxShadow p-3  text-center">
                       <h1>
                         {data?.earns?.available} {data?.earns?.currency}
                       </h1>

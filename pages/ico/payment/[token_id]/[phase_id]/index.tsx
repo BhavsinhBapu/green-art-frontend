@@ -81,7 +81,7 @@ const Index = () => {
                         <h4>{t("Select method")}</h4>
                       </div>
                     ) : (
-                      <div className="cp-user-title text-center border p-5">
+                      <div className="cp-user-title text-center p-5">
                         <h4>{t("No Avaiable payment method")}</h4>
                       </div>
                     )}
