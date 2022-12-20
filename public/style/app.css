@@ -102,7 +102,6 @@ Tags: admin, best react admin template, das
   --background-color-hover: #3a3a3a;
   --loading-color: #4b4b4b;
   --box-shadow-color: rgba(247, 247, 247, 0.05);
-
 }
 html,
 body {
@@ -1132,4 +1131,21 @@ client-area
 
 .user-form .form-check-label {
   padding-left: 20px;
+}
+.notFound-container {
+  display: flex;
+  height: 80vh;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.notFound-container h1 {
+  color: var(--primary-color);
+  font-size: 56px;
+}
+.notFound-container p {
+  color: var(--font-color);
+  font-size: 26px;
+  margin-top: 30px;
 }
