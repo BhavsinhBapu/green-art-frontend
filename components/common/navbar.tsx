@@ -436,16 +436,6 @@ const Navbar = () => {
                     >
                       <a className="arrow-icon" href="#" aria-expanded="true">
                         <span className="cp-user-icon">
-                          {/* <img
-                            src="/sidebar-icons/settings.svg"
-                            className="img-fluid cp-user-side-bar-icon"
-                            alt=""
-                          />
-                          <img
-                            src="/sidebar-icons/hover/settings.svg"
-                            className="img-fluid cp-user-side-bar-icon-hover"
-                            alt=""
-                          /> */}
                           <FiSettings />
                         </span>
                         <span className="cp-user-name">{t("Settings")}</span>
@@ -483,16 +473,6 @@ const Navbar = () => {
                   <li>
                     <a className="arrow-icon" href="#" aria-expanded="true">
                       <span className="cp-user-icon">
-                        {/* <img
-                          src="/sidebar-icons/Membership.svg"
-                          className="img-fluid cp-user-side-bar-icon"
-                          alt=""
-                        />
-                        <img
-                          src="/sidebar-icons/hover/Membership-1.svg"
-                          className="img-fluid cp-user-side-bar-icon-hover"
-                          alt=""
-                        /> */}
                         <IoLanguageSharp />
                       </span>
                       <span className="cp-user-name">
@@ -564,12 +544,7 @@ const Navbar = () => {
 
                                   <div className="notifiy-clear">
                                     <Link href="/user/notification">
-                                      <a
-                                        // onClick={() => {
-                                        //   seen();
-                                        // }}
-                                        className="view-all"
-                                      >
+                                      <a className="view-all">
                                         {t("View All")}
                                       </a>
                                     </Link>
@@ -714,18 +689,18 @@ const Navbar = () => {
                                 </a>
                               </button>
                             </Link>
-                            {/* <button
+                            <button
                               className="dropdown-item"
                               type="button"
                               onClick={() => {
                                 darkModeToggle();
                               }}
                             >
-                              <a href="">
+                              <a href="#">
                                 <i className="fa fa-cog"></i>
                                 {t("Toggle theme")}
                               </a>
-                            </button> */}
+                            </button>
 
                             <Link href="/user/my-wallet">
                               <button className="dropdown-item" type="button">

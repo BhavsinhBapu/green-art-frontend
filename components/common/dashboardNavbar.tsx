@@ -20,6 +20,7 @@ import { notification, notificationSeen } from "service/notification";
 import { LanguageList } from "helpers/lang";
 import { useRouter } from "next/router";
 import moment from "moment";
+import { darkModeToggle } from "helpers/functions";
 const DashboardNavbar = () => {
   const { isLoggedIn, user, logo } = useSelector(
     (state: RootState) => state.user
@@ -639,6 +640,18 @@ const DashboardNavbar = () => {
                                 </a>
                               </button>
                             </Link>
+                            <button
+                              className="dropdown-item"
+                              type="button"
+                              onClick={() => {
+                                darkModeToggle();
+                              }}
+                            >
+                              <a href="#">
+                                <i className="fa fa-cog"></i>
+                                {t("Toggle theme")}
+                              </a>
+                            </button>
                             <Link href="/user/my-wallet">
                               <button className="dropdown-item" type="button">
                                 <a href="-wallet">
