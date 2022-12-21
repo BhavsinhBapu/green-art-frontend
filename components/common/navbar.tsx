@@ -721,7 +721,7 @@ const Navbar = () => {
                                     </a>
                                   </button>
                                 </Link>
-                                <button
+                                {/* <button
                                   className="dropdown-item"
                                   type="button"
                                   onClick={() => {
@@ -732,7 +732,7 @@ const Navbar = () => {
                                     <i className="fa fa-cog"></i>
                                     {t("Toggle theme")}
                                   </a>
-                                </button>
+                                </button> */}
 
                                 <Link href="/user/my-wallet">
                                   <button
