@@ -11,7 +11,6 @@ export const checkDarkMode = () => {
 
 export const darkModeToggle = () => {
   const theme = localStorage.getItem("theme");
-  console.log(theme, "</button>");
   if (theme === "dark") {
     document.documentElement.setAttribute("data-theme", "light");
     localStorage.setItem("theme", "light");

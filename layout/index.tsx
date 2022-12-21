@@ -41,7 +41,7 @@ const Index = ({ children }: any) => {
     dispatch(setSettings(response.data));
     setMetaData(response.data);
     dispatch(setLoading(false));
-    //  --primary-color: #fcd535;
+    // --primary-color: #fcd535;
     // --text-primary-color: #ffff;
     // --text-primary-color-2: #23262f;
     // --text-primary-color-3: #777778;
