@@ -9,16 +9,13 @@ import "/public/style/app.css";
 import "/public/style/total.css";
 import "/public/style/responsive.css";
 import "../styles/nprogress.css";
-import Head from "next/head";
-
 import Layout from "layout/index";
 import NProgress from "nprogress";
 import { useEffect } from "react";
 import Router, { useRouter } from "next/router";
-import useTranslation from "next-translate/useTranslation";
 import { checkDarkMode } from "helpers/functions";
+
 function MyApp({ Component, pageProps }: AppProps) {
-  const { t } = useTranslation("common");
   const router = useRouter();
   useEffect(() => {
     checkDarkMode();
