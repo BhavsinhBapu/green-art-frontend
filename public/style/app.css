@@ -1132,3 +1132,20 @@ client-area
 .user-form .form-check-label {
   padding-left: 20px;
 }
+.notFound-container {
+  display: flex;
+  height: 80vh;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.notFound-container h1 {
+  color: var(--primary-color);
+  font-size: 56px;
+}
+.notFound-container p {
+  color: var(--font-color);
+  font-size: 26px;
+  margin-top: 30px;
+}
