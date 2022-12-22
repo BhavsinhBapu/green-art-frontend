@@ -779,7 +779,7 @@ const DashboardNavbar = () => {
                                 </a>
                               </button>
                             </Link>
-                            {/* <button
+                            <button
                               className="dropdown-item"
                               type="button"
                               onClick={async () => {
@@ -791,7 +791,7 @@ const DashboardNavbar = () => {
                                 <i className="fa fa-cog"></i>
                                 {t("Toggle theme")}
                               </a>
-                            </button> */}
+                            </button>
                             <Link href="/user/my-wallet">
                               <button className="dropdown-item" type="button">
                                 <a href="-wallet">

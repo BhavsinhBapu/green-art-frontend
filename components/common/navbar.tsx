@@ -20,6 +20,7 @@ import { RiNotificationBadgeLine } from "react-icons/ri";
 import moment from "moment";
 import OutsideClickHandler from "react-outside-click-handler";
 import UnAuthNav from "./unAuthNav";
+import { darkModeToggle } from "helpers/functions";
 
 const Navbar = () => {
   const { isLoggedIn, user, logo } = useSelector(
@@ -839,18 +840,18 @@ const Navbar = () => {
                                     </a>
                                   </button>
                                 </Link>
-                                {/* <button
+                                <button
                                   className="dropdown-item"
                                   type="button"
                                   onClick={() => {
-                                    darkModeToggle();
+                                    darkModeToggle(settings);
                                   }}
                                 >
                                   <a href="#">
                                     <i className="fa fa-cog"></i>
                                     {t("Toggle theme")}
                                   </a>
-                                </button> */}
+                                </button>
 
                                 <Link href="/user/my-wallet">
                                   <button
