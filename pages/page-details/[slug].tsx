@@ -69,9 +69,12 @@ const Bannerdetails = ({
 
   if (status === false) {
     return (
-      <div className="container ">
-        <div className="section-wrapper-withHtml text-center">
-          <h4>{t("404 not found")}</h4>
+      <div>
+        {isLoggedIn ? <Navbar /> : <UnAuthNav logo={logo} />}
+        <div className="notFound-container">
+          {/* <h1 className="">404</h1> */}
+          <img src="/not_found.svg" height={300} alt="" />
+          <p className="">Content Not Found</p>
         </div>
       </div>
     );
