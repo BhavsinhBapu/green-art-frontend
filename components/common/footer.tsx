@@ -8,7 +8,6 @@ import { RootState } from "state/store";
 const Footer = ({ customPageData, socialData, copyright_text }: any) => {
   const { t } = useTranslation("common");
   const { settings } = useSelector((state: RootState) => state.common);
-
   return (
     <footer className="footer-area pt--70">
       <div className="footer-top">
@@ -17,11 +16,15 @@ const Footer = ({ customPageData, socialData, copyright_text }: any) => {
             <div className="col-lg-3 col-md-6 col-sm-6 mb-30">
               <div className="single-wedgets text-widget">
                 <div className="widget-title">
-                  <h4>{t("Products")}</h4>
+                  <h4>
+                    {customPageData.custom_page_list[0].name
+                      ? customPageData.custom_page_list[0].name
+                      : t("Products")}
+                  </h4>
                 </div>
                 <div className="widget-inner">
                   <ul>
-                    {customPageData?.map(
+                    {customPageData?.links?.map(
                       (item: any) =>
                         item.type === 1 && (
                           <li>
@@ -48,11 +51,15 @@ const Footer = ({ customPageData, socialData, copyright_text }: any) => {
             <div className="col-lg-3 col-md-6 col-sm-6 mb-30">
               <div className="single-wedgets text-widget">
                 <div className="widget-title">
-                  <h4>{t("Service")}</h4>
+                  <h4>
+                    {customPageData.custom_page_list[0].name
+                      ? customPageData.custom_page_list[0].name
+                      : t("Service")}
+                  </h4>
                 </div>
                 <div className="widget-inner">
                   <ul>
-                    {customPageData?.map(
+                    {customPageData?.links?.map(
                       (item: any) =>
                         item.type === 2 && (
                           <li>
@@ -79,11 +86,15 @@ const Footer = ({ customPageData, socialData, copyright_text }: any) => {
             <div className="col-lg-3 col-md-6 col-sm-6 mb-30">
               <div className="single-wedgets text-widget">
                 <div className="widget-title">
-                  <h4>{t("Support")}</h4>
+                  <h4>
+                    {customPageData.custom_page_list[0].name
+                      ? customPageData.custom_page_list[0].name
+                      : t("Support")}
+                  </h4>
                 </div>
                 <div className="widget-inner">
                   <ul>
-                    {customPageData?.map(
+                    {customPageData?.links?.map(
                       (item: any) =>
                         item.type === 3 && (
                           <li>
@@ -110,7 +121,11 @@ const Footer = ({ customPageData, socialData, copyright_text }: any) => {
             <div className="col-lg-2 col-md-6 col-sm-6">
               <div className="single-wedgets social-link">
                 <div className="widget-title">
-                  <h4>{t("Community")}</h4>
+                  <h4>
+                    {customPageData.custom_page_list[0].name
+                      ? customPageData.custom_page_list[0].name
+                      : t("Community")}
+                  </h4>
                 </div>
                 <div className="widget-inner">
                   <ul>
