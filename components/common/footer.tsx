@@ -52,8 +52,8 @@ const Footer = ({ customPageData, socialData, copyright_text }: any) => {
               <div className="single-wedgets text-widget">
                 <div className="widget-title">
                   <h4>
-                    {customPageData?.custom_page_list[0]?.name
-                      ? customPageData?.custom_page_list[0]?.name
+                    {customPageData?.custom_page_list[1]?.name
+                      ? customPageData?.custom_page_list[1]?.name
                       : t("Service")}
                   </h4>
                 </div>
@@ -87,8 +87,8 @@ const Footer = ({ customPageData, socialData, copyright_text }: any) => {
               <div className="single-wedgets text-widget">
                 <div className="widget-title">
                   <h4>
-                    {customPageData?.custom_page_list[0]?.name
-                      ? customPageData?.custom_page_list[0]?.name
+                    {customPageData?.custom_page_list[2]?.name
+                      ? customPageData?.custom_page_list[2]?.name
                       : t("Support")}
                   </h4>
                 </div>
@@ -122,8 +122,8 @@ const Footer = ({ customPageData, socialData, copyright_text }: any) => {
               <div className="single-wedgets social-link">
                 <div className="widget-title">
                   <h4>
-                    {customPageData?.custom_page_list[0]?.name
-                      ? customPageData?.custom_page_list[0]?.name
+                    {customPageData?.custom_page_list[3]?.name
+                      ? customPageData?.custom_page_list[3]?.name
                       : t("Community")}
                   </h4>
                 </div>
