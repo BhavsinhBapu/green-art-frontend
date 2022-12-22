@@ -6,6 +6,7 @@ import {
   setBuyAmount,
   setSellAmount,
   setSellPrice,
+  setBuyPrice
 } from "state/reducer/exchange";
 import useTranslation from "next-translate/useTranslation";
 const TradesTable = ({ buy, show }: any) => {
@@ -14,7 +15,8 @@ const TradesTable = ({ buy, show }: any) => {
   const changeSellPrice = (price: number, amount: number) => {
     dispatch(setSellPrice(price));
     dispatch(setSellAmount(amount));
-    dispatch(setBuyAmount(0));
+    dispatch(setBuyAmount(amount));
+    dispatch(setBuyPrice(price));
   };
   const [buyData, setBuyData] = React.useState<any>([]);
   const [summary, setSummary] = React.useState<any>({
