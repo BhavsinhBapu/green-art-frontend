@@ -8152,7 +8152,7 @@ textarea.form-control.textarea {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  background-color: var(--text-primary-color-2);
+  background-color: var(--main-background-color);
 }
 .user-content-wrapper .user-content-text .auth-logo {
   display: inline-block;
@@ -10353,7 +10353,7 @@ input[type="number"] {
 }
 .wallet-back a {
   font-size: 18px;
-  color: #000;
+  color: var(--font-color);
   opacity: 0.7;
   font-weight: 600;
 }
@@ -10567,7 +10567,7 @@ input[type="number"] {
 } */
 .single-wallet {
   margin: 0 auto;
-  background: #fbfbfb;
+  background: var(--main-background-color);
   padding: 50px 20px 50px 20px;
 }
 .my-wallet-new {
@@ -10581,7 +10581,7 @@ input[type="number"] {
   font-weight: 600;
   align-items: center;
   justify-content: space-between;
-  background: var(--white);
+  background: var(--main-background-color);
   padding: 20px 20px;
   border-radius: 5px;
   border: 1px solid var(--border-color);
