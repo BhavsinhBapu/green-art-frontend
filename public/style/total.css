@@ -10594,7 +10594,7 @@ input[type="number"] {
   font-weight: 600;
   align-items: center;
   justify-content: space-between;
-  background: var(--white);
+  background: var(--main-background-color);
   padding: 5px 5px;
   border-radius: 5px;
   border: 1px solid var(--border-color);
