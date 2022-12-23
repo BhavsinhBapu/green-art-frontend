@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
-import { BsBarChartLine } from "react-icons/bs";
+import { BsBarChartLine, BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
 import { BiNetworkChart } from "react-icons/bi";
 import { IoLanguageSharp } from "react-icons/io5";
 import { FiSettings } from "react-icons/fi";
@@ -20,12 +20,13 @@ import { notification, notificationSeen } from "service/notification";
 import { LanguageList } from "helpers/lang";
 import { useRouter } from "next/router";
 import moment from "moment";
-import { darkModeToggleDashboard } from "helpers/functions";
+import { checkThemeState, darkModeToggleDashboard } from "helpers/functions";
 const DashboardNavbar = () => {
   const { isLoggedIn, user, logo } = useSelector(
     (state: RootState) => state.user
   );
   const router = useRouter();
+  const [theme, setTheme] = useState(0);
   const { settings } = useSelector((state: RootState) => state.common);
   const { navbar } = settings;
 
@@ -47,6 +48,7 @@ const DashboardNavbar = () => {
     });
   };
   useEffect(() => {
+    checkThemeState(setTheme);
     isLoggedIn && getNotifications();
   }, [isLoggedIn]);
   useEffect(() => {
@@ -788,8 +790,20 @@ const DashboardNavbar = () => {
                               }}
                             >
                               <a href="#">
-                                <i className="fa fa-cog"></i>
-                                {t("Toggle theme")}
+                                {theme === 0 ? (
+                                  <>
+                                    <BsFillSunFill size={26} className="mr-2" />
+                                    {t("Light")}
+                                  </>
+                                ) : (
+                                  <>
+                                    <BsFillMoonFill
+                                      size={20}
+                                      className="mr-2"
+                                    />
+                                    {t("Dark")}
+                                  </>
+                                )}
                               </a>
                             </button>
                             <Link href="/user/my-wallet">
