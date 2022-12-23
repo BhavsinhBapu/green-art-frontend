@@ -143,7 +143,7 @@ const ResetPassword: NextPage = () => {
                       <div className="form-group">
                         <Field
                           type="token"
-                          name="Code"
+                          name="token"
                           id="token"
                           className={`form-control ${
                             touched.token && errors.token ? "is-invalid" : ""
