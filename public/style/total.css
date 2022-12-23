@@ -6747,7 +6747,7 @@ p {
 .btn:not(.note-btn):active {
   box-shadow: none !important;
   outline: none !important;
-  background-color: var(--main-background-color);
+  /* background-color: var(--primary-color); */
 }
 
 .body-bg {
