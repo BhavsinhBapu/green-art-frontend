@@ -13,11 +13,12 @@ import Layout from "layout/index";
 import NProgress from "nprogress";
 import { useEffect } from "react";
 import Router, { useRouter } from "next/router";
-import { checkDarkMode } from "helpers/functions";
+import { checkDarkMode, rootThemeCheck } from "helpers/functions";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
   useEffect(() => {
+    rootThemeCheck();
     Router.events.on("routeChangeStart", () => NProgress.start());
     Router.events.on("routeChangeComplete", () => NProgress.done());
     Router.events.on("routeChangeError", () => NProgress.done());
