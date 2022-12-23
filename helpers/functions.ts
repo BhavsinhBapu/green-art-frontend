@@ -36,9 +36,12 @@ export const checkDarkModeWithoutSettings = () => {
     document.documentElement.setAttribute("data-theme", "dark");
   }
 };
-export const darkModeToggle = (settings: any) => {
+export const darkModeToggle = (settings: any, setTheme: any) => {
   const theme = localStorage.getItem("theme");
   if (theme === "dark") {
+    setTheme(1);
+    document.documentElement.setAttribute("data-theme", "light");
+    localStorage.setItem("theme", "light");
     settings.theme_color.map((theme_color: any) => {
       if (!theme_color.value) {
         return;
@@ -48,9 +51,9 @@ export const darkModeToggle = (settings: any) => {
         theme_color.value
       );
     });
-    document.documentElement.setAttribute("data-theme", "light");
-    localStorage.setItem("theme", "light");
   } else {
+    setTheme(0);
+
     document.documentElement.setAttribute("data-theme", "dark");
     settings.dark_theme_color.map((theme_color: any) => {
       if (!theme_color.value) {
@@ -74,5 +77,13 @@ export const darkModeToggleDashboard = () => {
   } else {
     // document.documentElement.setAttribute("data-theme", "dark");
     localStorage.setItem("theme", "dark");
+  }
+};
+export const checkThemeState = (setTheme: any) => {
+  const theme = localStorage.getItem("theme");
+  if (theme === "light") {
+    setTheme(1);
+  } else {
+    setTheme(0);
   }
 };
