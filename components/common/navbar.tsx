@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { BsBarChartLine } from "react-icons/bs";
+import { BsBarChartLine, BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
 import { BiNetworkChart } from "react-icons/bi";
 import { IoLanguageSharp } from "react-icons/io5";
 import { FiSettings } from "react-icons/fi";
@@ -20,12 +20,14 @@ import { RiNotificationBadgeLine } from "react-icons/ri";
 import moment from "moment";
 import OutsideClickHandler from "react-outside-click-handler";
 import UnAuthNav from "./unAuthNav";
-import { darkModeToggle } from "helpers/functions";
+import { checkThemeState, darkModeToggle } from "helpers/functions";
 
 const Navbar = () => {
   const { isLoggedIn, user, logo } = useSelector(
     (state: RootState) => state.user
   );
+  const [theme, setTheme] = useState(0);
+
   const { settings } = useSelector((state: RootState) => state.common);
   const { navbar } = settings;
   const dispatch = useDispatch();
@@ -48,6 +50,7 @@ const Navbar = () => {
     });
   };
   useEffect(() => {
+    checkThemeState(setTheme);
     isLoggedIn && getNotifications();
   }, [isLoggedIn]);
   useEffect(() => {
@@ -844,12 +847,27 @@ const Navbar = () => {
                                   className="dropdown-item"
                                   type="button"
                                   onClick={() => {
-                                    darkModeToggle(settings);
+                                    darkModeToggle(settings,setTheme);
                                   }}
                                 >
                                   <a href="#">
-                                    <i className="fa fa-cog"></i>
-                                    {t("Toggle theme")}
+                                    {theme === 0 ? (
+                                      <>
+                                        <BsFillSunFill
+                                          size={26}
+                                          className="mr-2"
+                                        />
+                                        {t("Light")}
+                                      </>
+                                    ) : (
+                                      <>
+                                        <BsFillMoonFill
+                                          size={20}
+                                          className="mr-2"
+                                        />
+                                        {t("Dark")}
+                                      </>
+                                    )}
                                   </a>
                                 </button>
 
