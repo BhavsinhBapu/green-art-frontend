@@ -13,7 +13,7 @@ import Head from "next/head";
 import { setLoading, setLogo } from "state/reducer/user";
 import { setSettings } from "state/reducer/common";
 import Loading from "components/common/loading";
-import { checkDarkMode, checkDarkModeWithoutSettings } from "helpers/functions";
+import { checkDarkMode, rootThemeCheck } from "helpers/functions";
 
 const Index = ({ children }: any) => {
   const [navbarVisible, setNavbarVisible] = useState(false);
@@ -37,7 +37,7 @@ const Index = ({ children }: any) => {
   const router = useRouter();
   const getCommonSettings = async () => {
     dispatch(setLoading(true));
-    checkDarkModeWithoutSettings();
+    rootThemeCheck();
     const response = await commomSettings();
     dispatch(setLogo(response.data.logo));
     dispatch(setSettings(response.data));
