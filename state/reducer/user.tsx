@@ -11,7 +11,7 @@ export type UserType = {
 const initialState: any = {
   user: {},
   isLoggedIn: false,
-  isLoading: false,
+  isLoading: true,
   notification: [],
   icoChat: [],
   logo: "",
