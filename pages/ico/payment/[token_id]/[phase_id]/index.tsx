@@ -27,7 +27,7 @@ import {
 const Index = () => {
   const { t } = useTranslation("common");
   const [selectedMethod, setSelectedMethod] = useState<any>({
-    method: BANK_DEPOSIT,
+    method: null,
   });
   const [launchpadListDetails, setLaunchpadListDetails]: any = useState([]);
   const router = useRouter();
