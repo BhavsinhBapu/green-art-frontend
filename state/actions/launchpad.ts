@@ -384,7 +384,7 @@ export const TokenBuyIcoBankAction = async (
 
   if (response.success === true) {
     toast.success(response.message);
-    Router.push("/ico");
+    Router.push("/ico/token-buy-history");
   } else {
     toast.error(response.message);
   }
@@ -409,7 +409,7 @@ export const TokenBuyIcoCryptoAction = async (
 
   if (response.success === true) {
     toast.success(response.message);
-    Router.push("/ico");
+    Router.push("/ico/token-buy-history");
   } else {
     toast.error(response.message);
   }
@@ -436,7 +436,7 @@ export const TokenBuyIcoStripeAction = async (
 
   if (response.success === true) {
     toast.success(response.message);
-    Router.push("/ico");
+    Router.push("/ico/token-buy-history");
   } else {
     toast.error(response.message);
   }
@@ -448,7 +448,7 @@ export const TokenBuyIcoPaypalAction = async (credentials: any) => {
 
   if (response.success === true) {
     toast.success(response.message);
-    Router.push("/ico");
+    Router.push("/ico/token-buy-history");
   } else {
     toast.error(response.message);
   }
