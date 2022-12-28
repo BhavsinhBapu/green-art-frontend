@@ -5647,9 +5647,9 @@ table.dataTable tbody tr.dataTable-white td {
 .input-url .copy-url-btn {
   font-size: 20px;
   color: var(--primary-color);
-  padding: 0;
+  padding: 2;
   width: 61px !important;
-  background: white;
+  background: var(--card-background-color);
   border: none;
 }
 
@@ -10640,7 +10640,8 @@ input[type="number"] {
 }
 .input-copy .address-box {
   font-size: 16px;
-  color: #777778;
+  background-color: var(--card-background-color);
+  color: var(--font-color);
 }
 .viewMoreLink {
   width: 100%;
