@@ -273,27 +273,28 @@ const MyWallet: NextPage = ({
                                         </div>
                                       )}
                                     </li>
-                                    {Changeable.length >= 2 ? (
-                                      <Link
-                                        href={`/user/swap-coin?coin_id=${item.id}`}
-                                      >
-                                        <li className="toolTip" title="swap">
+                                    {parseInt(settings?.swap_status) === 1 &&
+                                      (Changeable.length >= 2 ? (
+                                        <Link
+                                          href={`/user/swap-coin?coin_id=${item.id}`}
+                                        >
+                                          <li className="toolTip" title="swap">
+                                            <TiArrowRepeat size={25} />
+                                          </li>
+                                        </Link>
+                                      ) : (
+                                        <li
+                                          className="toolTip"
+                                          title="swap"
+                                          onClick={() => {
+                                            toast.error(
+                                              "Two coins are required to swap"
+                                            );
+                                          }}
+                                        >
                                           <TiArrowRepeat size={25} />
                                         </li>
-                                      </Link>
-                                    ) : (
-                                      <li
-                                        className="toolTip"
-                                        title="swap"
-                                        onClick={() => {
-                                          toast.error(
-                                            "Two coins are required to swap"
-                                          );
-                                        }}
-                                      >
-                                        <TiArrowRepeat size={25} />
-                                      </li>
-                                    )}
+                                      ))}
                                   </ul>
                                 </div>
                               </td>
