@@ -1,29 +1,12 @@
 import * as React from "react";
 import styles from "./index.module.css";
-import { widget, version } from "../../public/static/charting_library";
+import { widget } from "../../public/static/charting_library";
 import Datafeed from "components/exchange/api";
 import {
   DISABLED_FEATURES,
   ENABLED_FEATURES,
-  getChartOverrides,
   TIME_FRAMES,
 } from "./api/chartConfig";
-import { splitPair } from "common";
-
-const supportedResolutions = [
-  "1",
-  "3",
-  "5",
-  "15",
-  "30",
-  "60",
-  "120",
-  "240",
-  "360",
-  "D",
-  "W",
-  "M",
-];
 const theme = localStorage.getItem("theme");
 
 function getLanguageFromURL() {
@@ -37,7 +20,6 @@ type MyProps = {
   coinpair: any;
 };
 const pair = localStorage.getItem("current_pair")?.replace("_", "/");
-// localStorage.setItem("tradingview.ChartDrawingToolbarWidget.visible", "false");
 export class TVChartContainer extends React.Component<MyProps> {
   static defaultProps = {
     symbol: `:${pair && pair}`,
@@ -59,7 +41,6 @@ export class TVChartContainer extends React.Component<MyProps> {
       "mainSeriesProperties.candleStyle.borderDownColor": "#ff0000",
     },
   };
-  // name = this.props.name;
 
   tvWidget = null;
   //@ts-ignore
@@ -127,17 +108,6 @@ export class TVChartContainer extends React.Component<MyProps> {
       theme: theme === "dark" ? "dark" : "light",
       //@ts-ignore
       datafeed: Datafeed,
-      // datafeed: Datafeed,
-      //add water mark to chart
-      watermark: {
-        color: "rgba(11, 94, 29, 0.4)",
-        visible: true,
-        text: "Crypto Exchange",
-        fontSize: 24,
-        horzAlign: "left",
-        vertAlign: "bottom",
-      },
-
       //@ts-ignore
       interval: this.props.interval,
       //@ts-ignore
@@ -145,18 +115,15 @@ export class TVChartContainer extends React.Component<MyProps> {
       //@ts-ignore
       library_path: this.props.libraryPath,
       //@ts-ignore
-
       locale: getLanguageFromURL() || "en",
       //@ts-ignore
       charts_storage_url: this.props.chartsStorageUrl,
       //@ts-ignore
       charts_storage_api_version: this.props.chartsStorageApiVersion,
       //@ts-ignore
-
       client_id: this.props.clientId,
       //@ts-ignore
       user_id: this.props.userId,
-
       //@ts-ignore
       fullscreen: this.props.fullscreen,
       //@ts-ignore
