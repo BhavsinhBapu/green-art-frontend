@@ -34,7 +34,11 @@ export const SingleLaunchPad = ({ data }: any) => {
                 <p>{data?.project_introduction}</p>
                 <div className="linkLists">
                   {data?.website_link && (
-                    <a href={data?.website_link} target="_blank">
+                    <a
+                      href={data?.website_link}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
                       <div>
                         <i className="fa-sharp fa-solid fa-link"></i>
                         <p>{t("Website")}</p>
@@ -42,7 +46,7 @@ export const SingleLaunchPad = ({ data }: any) => {
                     </a>
                   )}
                   {data?.video_link && (
-                    <a href={data?.video_link} target="_blank">
+                    <a href={data?.video_link} target="_blank" rel="noreferrer">
                       <div>
                         <i className="fa-sharp fa-solid fa-link"></i>
                         <p>{t("Video Link")}</p>
