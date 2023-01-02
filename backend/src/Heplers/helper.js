@@ -40,10 +40,14 @@ function customToWei(amount,decimal)
 {
     return (amount*customDecimal(decimal)).toString()
 }
+function powerOfTen(x) {
+  return Math.pow(10, x);
+}
 
 module.exports = {
     contract_decimals,
     customDecimal,
     customFromWei,
-    customToWei
+    customToWei,
+    powerOfTen
 }
