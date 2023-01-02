@@ -49,6 +49,11 @@ const TransactionHistory: NextPage = ({
       name: t("Transaction Id"),
       selector: (row: any) => row.transaction_id,
       sortable: true,
+      cell: (row: any) => (
+        <div className="blance-text">
+          <span className="blance market incree">{row?.transaction_id}</span>
+        </div>
+      ),
     },
     {
       name: t("Base Coin"),
