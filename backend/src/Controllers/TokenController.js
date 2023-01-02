@@ -2,6 +2,7 @@ const { response } = require("express");
 const Web3 = require("web3");
 const {contractJson} = require("../../src/ContractAbiJson");
 const { contract_decimals,customFromWei,customToWei } = require("../Heplers/helper");
+const { createAccount } = require("./TrcTokenController");
 
 
 function getData(req, res)
@@ -38,23 +39,29 @@ async function generateAddress(req, res)
 {
     try {
         const network = req.headers.chainlinks;
+        const networkType = req.headers.networkType;
         if (network) {
-            const connectWeb3 = new Web3(new Web3.providers.HttpProvider(network));
-            
-            let wallet = await connectWeb3.eth.accounts.create();
-            if (wallet) {
-                res.json({
-                    status: true,
-                    message: "Wallet created successfully",
-                    data: wallet
-                });
+            if (networkType == 1) {
+                createAccount(req,res);
             } else {
-                res.json({
-                    status: false,
-                    message: "Wallet not generated",
-                    data: {}
-                });
+                const connectWeb3 = new Web3(new Web3.providers.HttpProvider(network));
+            
+                let wallet = await connectWeb3.eth.accounts.create();
+                if (wallet) {
+                    res.json({
+                        status: true,
+                        message: "Wallet created successfully",
+                        data: wallet
+                    });
+                } else {
+                    res.json({
+                        status: false,
+                        message: "Wallet not generated",
+                        data: {}
+                    });
+                }
             }
+            
         } else {
             res.json({
                 status: false,
