@@ -2,8 +2,15 @@ const { response } = require("express");
 const Web3 = require("web3");
 const {contractJson} = require("../../src/ContractAbiJson");
 const { contract_decimals,customFromWei,customToWei } = require("../Heplers/helper");
-const { createAccount } = require("./TrcTokenController");
+const trxFunction = require("./TrcTokenController");
 
+// ERC20_TOKEN = 4
+// BEP20_TOKEN = 5
+// TRC20_TOKEN = 6
+
+// BALANCE_TYPE_BASE_COIN_BALANCE= 1
+// BALANCE_TYPE_TOKEN_BALANCE= 2
+// BALANCE_TYPE_BOTH_BALANCE= 3
 
 function getData(req, res)
 {
@@ -40,13 +47,10 @@ async function generateAddress(req, res)
     try {
         const network = req.headers.chainlinks;
         const networkType = req.headers.networktype;
-        // ERC20_TOKEN = 4
-        // BEP20_TOKEN = 5
-        // TRC20_TOKEN = 6
     
         if (network) {
             if (parseInt(networkType) == 6) {
-                createAccount(req,res);
+                await trxFunction.createAccount(req,res);
             } else {
             
                 const connectWeb3 = new Web3(new Web3.providers.HttpProvider(network));
@@ -88,6 +92,7 @@ async function getWalletBalance(req, res)
 {
     try {
         const network = req.headers.chainlinks;
+        const networkType = req.headers.networktype;
         let contractJsons = contractJson();
         
         if (network) {
@@ -95,65 +100,70 @@ async function getWalletBalance(req, res)
             const address = req.body.address;
             let netBalance = 0;
             let tokenBalance = 0;
-            const web3 = new Web3(network);
-
-            if (type == 1) {
-                netBalance = await web3.eth.getBalance(address);
-                netBalance = Web3.utils.fromWei(netBalance.toString(), 'ether');
-
-            } else if(type == 2) {
-                const contractAddress = req.body.contract_address;
-                if (contractAddress) {
-                    const contractInstance = new web3.eth.Contract(contractJsons, contractAddress);
-                    tokenBalance = await contractInstance.methods.balanceOf(address).call();
-
-                    tokenDecimal = await contractInstance.methods.decimals().call();
-                    if(tokenDecimal == 8) {
-                        tokenBalance = customFromWei(tokenBalance, tokenDecimal);
-                    } else {
-                        tokenBalance = Web3.utils.fromWei(tokenBalance.toString(), contract_decimals(tokenDecimal));
-                    }
-                } else {
-                    res.json({
-                        status: false,
-                        message: "Contract address required",
-                        data: {}
-                    });
-                } 
-
+            console.log(networkType);
+            if (parseInt(networkType) == 6) {
+                await trxFunction.getTronBalance(req,res);
             } else {
-                const contractAddress = req.body.contract_address;
-                if (contractAddress) {
+                
+                const web3 = new Web3(network);
+                if (type == 1) {
                     netBalance = await web3.eth.getBalance(address);
                     netBalance = Web3.utils.fromWei(netBalance.toString(), 'ether');
 
-                    const contractInstance = new web3.eth.Contract(contractJsons, contractAddress);
-                    tokenBalance = await contractInstance.methods.balanceOf(address).call();
-                    tokenDecimal = await contractInstance.methods.decimals().call();
-                    if(tokenDecimal == 8) {
-                        tokenBalance = customFromWei(tokenBalance, tokenDecimal);
+                } else if(type == 2) {
+                    const contractAddress = req.body.contract_address;
+                    if (contractAddress) {
+                        const contractInstance = new web3.eth.Contract(contractJsons, contractAddress);
+                        tokenBalance = await contractInstance.methods.balanceOf(address).call();
+
+                        tokenDecimal = await contractInstance.methods.decimals().call();
+                        if(tokenDecimal == 8) {
+                            tokenBalance = customFromWei(tokenBalance, tokenDecimal);
+                        } else {
+                            tokenBalance = Web3.utils.fromWei(tokenBalance.toString(), contract_decimals(tokenDecimal));
+                        }
                     } else {
-                        tokenBalance = Web3.utils.fromWei(tokenBalance.toString(), contract_decimals(tokenDecimal));
-                    }
+                        res.json({
+                            status: false,
+                            message: "Contract address required",
+                            data: {}
+                        });
+                    } 
+
                 } else {
-                    res.json({
-                        status: false,
-                        message: "Contract address required",
-                        data: {}
-                    });
-                } 
-            }
-            const data = {
-                net_balance : netBalance,
-                token_balance : tokenBalance
-            }
+                    const contractAddress = req.body.contract_address;
+                    if (contractAddress) {
+                        netBalance = await web3.eth.getBalance(address);
+                        netBalance = Web3.utils.fromWei(netBalance.toString(), 'ether');
 
-            res.send({
-                status: true,
-                message: "process successfully",
-                data: data
-            });
+                        const contractInstance = new web3.eth.Contract(contractJsons, contractAddress);
+                        tokenBalance = await contractInstance.methods.balanceOf(address).call();
+                        tokenDecimal = await contractInstance.methods.decimals().call();
+                        if(tokenDecimal == 8) {
+                            tokenBalance = customFromWei(tokenBalance, tokenDecimal);
+                        } else {
+                            tokenBalance = Web3.utils.fromWei(tokenBalance.toString(), contract_decimals(tokenDecimal));
+                        }
+                    } else {
+                        res.json({
+                            status: false,
+                            message: "Contract address required",
+                            data: {}
+                        });
+                    } 
+                }
+                const data = {
+                    net_balance : netBalance,
+                    token_balance : tokenBalance
+                }
 
+                res.send({
+                    status: true,
+                    message: "process successfully",
+                    data: data
+                });
+            }
+        
         } else {
             res.json({
                 status: false,
@@ -162,6 +172,8 @@ async function getWalletBalance(req, res)
             });
         }
     } catch(e){
+        console.log('getWalletBalance');
+        console.log(e);
         res.json({
             status: false,
             message: e.message,
