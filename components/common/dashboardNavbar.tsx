@@ -415,30 +415,31 @@ const DashboardNavbar = () => {
                           </li>
                         </Link>
                       )}
-                      {navbar?.reports?.fiatDepositHistory?.status && (
-                        <Link
-                          href={
-                            isLoggedIn
-                              ? "/user/currency-deposit-history"
-                              : "/authentication/signin"
-                          }
-                        >
-                          <li
-                            className={
-                              router.pathname ==
-                              "/user/currency-deposit-history"
-                                ? "cp-user-active-page"
-                                : ""
+                      {navbar?.reports?.fiatDepositHistory?.status &&
+                        parseInt(settings.currency_deposit_status) === 1 && (
+                          <Link
+                            href={
+                              isLoggedIn
+                                ? "/user/currency-deposit-history"
+                                : "/authentication/signin"
                             }
                           >
-                            <a href="">
-                              {navbar?.reports?.fiatDepositHistory?.name
-                                ? navbar?.reports?.fiatDepositHistory?.name
-                                : t("Fiat Deposit History")}
-                            </a>
-                          </li>
-                        </Link>
-                      )}
+                            <li
+                              className={
+                                router.pathname ==
+                                "/user/currency-deposit-history"
+                                  ? "cp-user-active-page"
+                                  : ""
+                              }
+                            >
+                              <a href="">
+                                {navbar?.reports?.fiatDepositHistory?.name
+                                  ? navbar?.reports?.fiatDepositHistory?.name
+                                  : t("Fiat Deposit History")}
+                              </a>
+                            </li>
+                          </Link>
+                        )}
                       {navbar?.reports?.fiatWithdrawalHistory?.status && (
                         <Link
                           href={
