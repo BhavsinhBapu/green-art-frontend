@@ -39,11 +39,16 @@ async function generateAddress(req, res)
 {
     try {
         const network = req.headers.chainlinks;
-        const networkType = req.headers.networkType;
+        const networkType = req.headers.networktype;
+        // ERC20_TOKEN = 4
+        // BEP20_TOKEN = 5
+        // TRC20_TOKEN = 6
+    
         if (network) {
-            if (networkType == 1) {
+            if (parseInt(networkType) == 6) {
                 createAccount(req,res);
             } else {
+            
                 const connectWeb3 = new Web3(new Web3.providers.HttpProvider(network));
             
                 let wallet = await connectWeb3.eth.accounts.create();
