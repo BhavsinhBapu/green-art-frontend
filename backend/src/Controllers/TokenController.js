@@ -2,7 +2,8 @@ const { response } = require("express");
 const Web3 = require("web3");
 const {contractJson} = require("../../src/ContractAbiJson");
 const { contract_decimals,customFromWei,customToWei } = require("../Heplers/helper");
-const trxFunction = require("./TrcTokenController");
+const trc20Token = require("./TrcTokenController");
+const trxToken = require("./TrxController");
 
 // ERC20_TOKEN = 4
 // BEP20_TOKEN = 5
@@ -50,7 +51,7 @@ async function generateAddress(req, res)
     
         if (network) {
             if (parseInt(networkType) == 6) {
-                await trxFunction.createAccount(req,res);
+                await trxToken.createAccount(req,res);
             } else {
             
                 const connectWeb3 = new Web3(new Web3.providers.HttpProvider(network));
@@ -100,9 +101,9 @@ async function getWalletBalance(req, res)
             const address = req.body.address;
             let netBalance = 0;
             let tokenBalance = 0;
-            console.log(networkType);
+            
             if (parseInt(networkType) == 6) {
-                await trxFunction.getTronBalance(req,res);
+                await trxToken.getTronBalance(req,res);
             } else {
                 
                 const web3 = new Web3(network);
@@ -251,77 +252,81 @@ async function checkEstimateGasFees(req, res)
     try {
         const network = req.headers.chainlinks;
         let contractJsons = contractJson();
-       
+        const networkType = req.headers.networktype;
+
         if (network) {
-            const fromAddress = req.body.from_address;
-            const contractAddress = req.body.contract_address;
-            const receiverAddress = req.body.to_address;
-            const gasLimit = req.body.gas_limit;
-            const decimalValue = contract_decimals(req.body.decimal_value);
-            const privateKey = req.body.contracts;
-            let amount = req.body.amount_value;
+            if (parseInt(networkType) == 6) {
 
-            let checkValidAddress = new Web3().utils.isAddress(receiverAddress);
-            
-            if (checkValidAddress){
-                const web3 = new Web3(network);
-                let gasPrice =  await web3.eth.getGasPrice();
-                gasPrice = Web3.utils.fromWei(gasPrice.toString(), 'ether');
+            } else {
+                const fromAddress = req.body.from_address;
+                const contractAddress = req.body.contract_address;
+                const receiverAddress = req.body.to_address;
+                const gasLimit = req.body.gas_limit;
+                const decimalValue = contract_decimals(req.body.decimal_value);
+                const privateKey = req.body.contracts;
+                let amount = req.body.amount_value;
 
-                const contract = new web3.eth.Contract(contractJsons, contractAddress);
-                if (decimalValue === 'customeight') {
-                    amount = customToWei(amount, req.body.decimal_value);
-                } else {
-                    amount = Web3.utils.toWei(amount.toString(), decimalValue);
-                }
-
-                const tx = {
-                    from: fromAddress,
-                    to: contractAddress,
-                    gas: gasLimit,
-                    data:  contract.methods.transfer(receiverAddress, amount).encodeABI(),
-                };
+                let checkValidAddress = new Web3().utils.isAddress(receiverAddress);
                 
+                if (checkValidAddress){
+                    const web3 = new Web3(network);
+                    let gasPrice =  await web3.eth.getGasPrice();
+                    gasPrice = Web3.utils.fromWei(gasPrice.toString(), 'ether');
 
-               await web3.eth.accounts.signTransaction(tx, privateKey).then(signed => {
-                    const tran = web3.eth
-                    .sendSignedTransaction(signed.rawTransaction)
-                    .on('confirmation', (confirmationNumber, receipt) => {
-    
-                    })
-                    .on('transactionHash', hash => {
-                    })
-                    .on('receipt', receipt => {
-                        // var receipt = {
-                        //     hash:receipt.transactionHash,
-                        // };
-                        // const hashDetails = getHashTransaction(network,receipt.hash);
-                        res.json({
-                            status: true,
-                            message: "Token sent successfully",
-                            data: {
-                                hash : receipt.transactionHash,
-                                used_gas: receipt.gasUsed * gasPrice,
-                                tx : receipt
-                            }
-                        });
-                    })
-                    .on('error',function (error){  
-                        res.json({
-                            status: false,
-                            message: error.toString(),
-                            data:  {}
+                    const contract = new web3.eth.Contract(contractJsons, contractAddress);
+                    if (decimalValue === 'customeight') {
+                        amount = customToWei(amount, req.body.decimal_value);
+                    } else {
+                        amount = Web3.utils.toWei(amount.toString(), decimalValue);
+                    }
+
+                    const tx = {
+                        from: fromAddress,
+                        to: contractAddress,
+                        gas: gasLimit,
+                        data:  contract.methods.transfer(receiverAddress, amount).encodeABI(),
+                    };
+                    
+
+                await web3.eth.accounts.signTransaction(tx, privateKey).then(signed => {
+                        const tran = web3.eth
+                        .sendSignedTransaction(signed.rawTransaction)
+                        .on('confirmation', (confirmationNumber, receipt) => {
+        
+                        })
+                        .on('transactionHash', hash => {
+                        })
+                        .on('receipt', receipt => {
+                            // var receipt = {
+                            //     hash:receipt.transactionHash,
+                            // };
+                            // const hashDetails = getHashTransaction(network,receipt.hash);
+                            res.json({
+                                status: true,
+                                message: "Token sent successfully",
+                                data: {
+                                    hash : receipt.transactionHash,
+                                    used_gas: receipt.gasUsed * gasPrice,
+                                    tx : receipt
+                                }
+                            });
+                        })
+                        .on('error',function (error){  
+                            res.json({
+                                status: false,
+                                message: error.toString(),
+                                data:  {}
+                            });
                         });
                     });
-                });
-            } else {
-                res.json({
-                    status: false,
-                    message: "Invalid address",
-                    data: {}
-                });
-            }
-            
+                } else {
+                    res.json({
+                        status: false,
+                        message: "Invalid address",
+                        data: {}
+                    });
+                }
+            } 
         } else {
             res.json({
                 status: false,
@@ -344,13 +349,17 @@ async function getDataByTransactionHash(req, res)
     try {
         const network = req.headers.chainlinks;
         const hash = req.body.transaction_hash;
-
-        const response = await getHashTransaction(network,hash);
-        res.send({
-            status: response.status,
-            message: response.message,
-            data: response.data
-        })
+        const networkType = req.headers.networktype;
+        if (parseInt(networkType) == 6) {
+            await trxToken.getTrxConfirmedTransaction(req, res);
+        } else {
+            const response = await getHashTransaction(network,hash);
+            res.send({
+                status: response.status,
+                message: response.message,
+                data: response.data
+            })
+        }
     } catch (e) {
         res.send({
             status: false,
@@ -376,7 +385,8 @@ async function getHashTransaction(network,hash)
                     message: "get hash",
                     data: {
                         hash: hash,
-                        gas_used: hash.gasUsed * gasPrice
+                        gas_used: hash.gasUsed * gasPrice,
+                        txID: hash.transactionHash
                     }
                 };
             } else {
@@ -407,7 +417,8 @@ async function sendEth(req, res)
 {
     try {
         const network = req.headers.chainlinks;
-       
+        const networkType = req.headers.networktype;
+
         if (network) {
             const fromAddress = req.body.from_address;
             const receiverAddress = req.body.to_address;
@@ -416,57 +427,61 @@ async function sendEth(req, res)
             const privateKey = req.body.contracts;
             let amount = req.body.amount_value;
 
-            const web3 = new Web3(network);
-            let checkValidAddress = new Web3().utils.isAddress(receiverAddress);
-            
-            if (checkValidAddress){
-                amount = Web3.utils.toWei(amount.toString(), 'ether');
-                let gasPrice =  await web3.eth.getGasPrice();
-                let nonce = await web3.eth.getTransactionCount(fromAddress,'latest');
-                
-                let transaction = {
-                from: fromAddress,
-                nonce: web3.utils.toHex(nonce),
-                gas: gasLimit,
-                to: receiverAddress,
-                value: amount,
-                // chainId: chainId // 
-                };
-
-                const signedTx = await web3.eth.accounts.signTransaction(transaction, privateKey);
-
-                web3.eth.sendSignedTransaction(signedTx.rawTransaction, function(error, hash) {
-                    if (!error) {
-                        res.json({
-                            status: true,
-                            message: "Coin sent successfully",
-                            data: {
-                                hash : hash,
-                            }
-                        });
-
-                    } else {
-                      res.json({
-                            status: false,
-                            message: "Sending failed",
-                            data: {
-                                error
-                            }
-                        });
-                    }
-                   });
+            if (parseInt(networkType) == 6) {
+                await trxToken.sendTrxProcess(req,res);
             } else {
-                res.json({
-                    status: false,
-                    message: "Invalid address",
-                    data: {}
-                });
+                const web3 = new Web3(network);
+                let checkValidAddress = new Web3().utils.isAddress(receiverAddress);
+                
+                if (checkValidAddress){
+                    amount = Web3.utils.toWei(amount.toString(), 'ether');
+                    let gasPrice =  await web3.eth.getGasPrice();
+                    let nonce = await web3.eth.getTransactionCount(fromAddress,'latest');
+                    
+                    let transaction = {
+                    from: fromAddress,
+                    nonce: web3.utils.toHex(nonce),
+                    gas: gasLimit,
+                    to: receiverAddress,
+                    value: amount,
+                    // chainId: chainId // 
+                    };
+
+                    const signedTx = await web3.eth.accounts.signTransaction(transaction, privateKey);
+
+                    web3.eth.sendSignedTransaction(signedTx.rawTransaction, function(error, hash) {
+                        if (!error) {
+                            res.json({
+                                status: true,
+                                message: "Coin sent successfully",
+                                data: {
+                                    hash : hash,
+                                }
+                            });
+
+                        } else {
+                        res.json({
+                                status: false,
+                                message: "Sending failed",
+                                data: {
+                                    error
+                                }
+                            });
+                        }
+                    });
+                } else {
+                    res.json({
+                        status: false,
+                        message: "Invalid address",
+                        data: {}
+                    });
+                }
             }
             
         } else {
             res.json({
                 status: false,
-                message: "No chain provided",
+                message: "No network provided",
                 data: {}
             });
         }

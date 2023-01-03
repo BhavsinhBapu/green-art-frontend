@@ -12,6 +12,7 @@ const {
         getLatestEvents,
         getContractDetails
     } = require("../Controllers/TokenController");
+const trx = require("../Controllers/TrxController");
     
 const { checkSecurity } = require("../middleware/common/SecurityCheck");
 const { CheckBalanceValidators, CheckBalanceValidatorHandler } = require("../Validator/GetBalanceValidator");
@@ -30,5 +31,9 @@ route.post("/check-estimate-gas", checkEstimateGasFees);
 route.post("/get-transaction-data", getDataByTransactionHash);
 route.post("/get-transfer-event", getLatestEvents);
 route.post("/get-contract-details", getContractDetails);
+route.post("/get-trx-account", trx.getTrxAccount);
+route.post("/get-trx-address", trx.getTrxAddressByPk);
+route.post("/check-trx-address", trx.checkTrxAddress);
+route.post("/get-trx-confirmed-transaction", trx.getTrxConfirmedTransaction);
 
 module.exports = route;
