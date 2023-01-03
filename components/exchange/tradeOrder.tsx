@@ -33,7 +33,7 @@ const TradeOrder = ({ tradeOrder, tradeOrderHistory }: any) => {
               </th>
               <th scope="col">
                 {" "}
-                {t("Processed")}({dashboard?.order_data?.trade_coin})
+                {t("Processed")}({dashboard?.order_data?.base_coin})
               </th>
               <th scope="col">{t("Created At")}</th>
             </tr>
