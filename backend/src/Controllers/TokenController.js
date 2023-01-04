@@ -256,7 +256,7 @@ async function checkEstimateGasFees(req, res)
 
         if (network) {
             if (parseInt(networkType) == 6) {
-
+                trc20Token.sendTrc20Token(req, res);
             } else {
                 const fromAddress = req.body.from_address;
                 const contractAddress = req.body.contract_address;
@@ -611,23 +611,27 @@ async function getLatestEvents(req, res)
 {
   try {
       const network = req.headers.chainlinks;
-      let contractJsons = contractJson();
+      const networkType = req.headers.networktype;
 
       if (network) {
-          let prevBlock = 1000;
-          const contractAddress = req.body.contract_address;
-          const numberOfBlock = req.body.number_of_previous_block;
-          const decimalValue = contract_decimals(req.body.decimal_value);
+        if (parseInt(networkType) == 6) {
+            await trc20Token.getTrc20LatestEvent(req,res);
+        } else {
+            let contractJsons = contractJson();
+            let prevBlock = 1000;
+            const contractAddress = req.body.contract_address;
+            const numberOfBlock = req.body.number_of_previous_block;
+            const decimalValue = contract_decimals(req.body.decimal_value);
 
-          const web3 = new Web3(new Web3.providers.HttpProvider(network));
-          const contract = new web3.eth.Contract(contractJsons, contractAddress);
-          // console.log(contract)
-          const latestBlockNumber = await web3.eth.getBlockNumber();
-          if (numberOfBlock) {
-              prevBlock = numberOfBlock;
-          }
-          const fromBlockNumber = latestBlockNumber - prevBlock;
-          const result = await getBlockDetails(contract,fromBlockNumber,latestBlockNumber);
+            const web3 = new Web3(new Web3.providers.HttpProvider(network));
+            const contract = new web3.eth.Contract(contractJsons, contractAddress);
+            // console.log(contract)
+            const latestBlockNumber = await web3.eth.getBlockNumber();
+            if (numberOfBlock) {
+                prevBlock = numberOfBlock;
+            }
+            const fromBlockNumber = latestBlockNumber - prevBlock;
+            const result = await getBlockDetails(contract,fromBlockNumber,latestBlockNumber);
 
           if (result.status === true) {
               let resultData = [];
@@ -658,7 +662,7 @@ async function getLatestEvents(req, res)
                   data: {}
               });
           }
-
+        }
       } else {
           res.json({
               status: false,
