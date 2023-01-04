@@ -1,6 +1,5 @@
-const TronWeb =  require('tronweb');
 const dotenv = require('dotenv');
-const { powerOfTen } = require("../Heplers/helper");
+const { powerOfTen, tronWebCall } = require("../Heplers/helper");
 const trcToken =  require("./TrcTokenController");
 const { json } = require('express/lib/response');
 
@@ -11,12 +10,7 @@ dotenv.config();
 async function createAccount(req, res) {
     try {
         console.log('create trc20 address start');
-        const tronWeb = new TronWeb ({
-            fullHost: req.headers.chainlinks,
-            headers: {
-                "TRON-PRO-API-KEY": process.env.TRONGRID_API_KEY
-            }
-        });
+        const tronWeb = tronWebCall(req,res);
         const response = await tronWeb.createAccount();
         
         if (response) {
@@ -41,7 +35,7 @@ async function createAccount(req, res) {
     } catch(err){
         res.json({
             status: false,
-            message: JSON.stringify(err),
+            message: String(err),
             data: {}
         });
     }
@@ -112,7 +106,7 @@ async function getTronBalance(req, res) {
         console.log(err);
         res.json({
             status: false,
-            message: JSON.stringify(err),
+            message: String(err),
             data: {}
         });
     }
@@ -122,12 +116,7 @@ async function getTronBalance(req, res) {
 async function getTrxBalance(req, res) {
     try {
         console.log('check trx address balance');
-        const tronWeb = new TronWeb ({
-            fullHost: req.headers.chainlinks,
-            headers: {
-                "TRON-PRO-API-KEY": process.env.TRONGRID_API_KEY
-            }
-        });
+        const tronWeb = tronWebCall(req,res);
         const address = req.body.address;
         let balance = await tronWeb.trx.getBalance(address);
         balance = parseFloat(tronWeb.fromSun(balance));
@@ -143,7 +132,7 @@ async function getTrxBalance(req, res) {
         console.log(err);
         return {
             status: false,
-            message: JSON.stringify(err),
+            message: String(err),
             data: {}
         };
     }
@@ -152,12 +141,7 @@ async function getTrxBalance(req, res) {
 // get account details by address
 async function getTrxAccount(req, res) {
     try {
-        const tronWeb = new TronWeb ({
-            fullHost: req.headers.chainlinks,
-            headers: {
-                "TRON-PRO-API-KEY": process.env.TRONGRID_API_KEY
-            }
-        });
+        const tronWeb = tronWebCall(req,res);
         const address = req.body.address;
         console.log(address)
         if (address) {
@@ -189,7 +173,7 @@ async function getTrxAccount(req, res) {
     } catch(err){
         res.json({
             status: false,
-            message: JSON.stringify(err),
+            message: String(err),
             data: {}
         });
     }
@@ -198,12 +182,7 @@ async function getTrxAccount(req, res) {
 // get address by private key
 async function getTrxAddressByPk(req, res) {
     try {
-        const tronWeb = new TronWeb ({
-            fullHost: req.headers.chainlinks,
-            headers: {
-                "TRON-PRO-API-KEY": process.env.TRONGRID_API_KEY
-            }
-        });
+        const tronWeb = tronWebCall(req,res);
         const key = req.body.key;
         if (key) {
             const response = await tronWeb.address.fromPrivateKey(key);
@@ -233,7 +212,7 @@ async function getTrxAddressByPk(req, res) {
         console.log(err);
         res.json({
             status: false,
-            message: JSON.stringify(err),
+            message: String(err),
             data: {}
         });
     }
@@ -242,12 +221,7 @@ async function getTrxAddressByPk(req, res) {
 // check trx address
 async function checkTrxAddress(req, res) {
     try {
-        const tronWeb = new TronWeb ({
-            fullHost: req.headers.chainlinks,
-            headers: {
-                "TRON-PRO-API-KEY": process.env.TRONGRID_API_KEY
-            }
-        });
+        const tronWeb = tronWebCall(req,res);
         const address = req.body.address;
         if (address) {
             const response = await tronWeb.isAddress(address);
@@ -274,7 +248,7 @@ async function checkTrxAddress(req, res) {
     } catch(err){
         res.json({
             status: false,
-            message: JSON.stringify(err),
+            message: String(err),
             data: {}
         });
     }
@@ -283,12 +257,7 @@ async function checkTrxAddress(req, res) {
 // send trx process
 async function sendTrxProcess(req, res) {
     try {
-        const tronWeb = new TronWeb ({
-            fullHost: req.headers.chainlinks,
-            headers: {
-                "TRON-PRO-API-KEY": process.env.TRONGRID_API_KEY
-            }
-        });
+        const tronWeb = tronWebCall(req,res);
         const to = req.body.to_address;
         console.log(req.body.amount_value)
         const amount = parseInt(tronWeb.toSun(req.body.amount_value));
@@ -325,7 +294,7 @@ async function sendTrxProcess(req, res) {
     } catch(err){
         res.json({
             status: false,
-            message: JSON.stringify(err),
+            message: String(err),
             data: {}
         });
     }
@@ -334,12 +303,7 @@ async function sendTrxProcess(req, res) {
 // get trx transaction by hash
 async function getTrxTransaction(req, res) {
     try {
-        const tronWeb = new TronWeb ({
-            fullHost: req.headers.chainlinks,
-            headers: {
-                "TRON-PRO-API-KEY": process.env.TRONGRID_API_KEY
-            }
-        });
+        const tronWeb = tronWebCall(req,res);
         const txId = req.body.transaction_hash;
         
         const response = await tronWeb.trx.getTransaction(txId);
@@ -364,7 +328,7 @@ async function getTrxTransaction(req, res) {
     } catch(err){
         res.json({
             status: false,
-            message: JSON.stringify(err),
+            message: String(err),
             data: {}
         });
     }
@@ -373,12 +337,7 @@ async function getTrxTransaction(req, res) {
 // get trx confirmed transaction by hash
 async function getTrxConfirmedTransaction(req, res) {
     try {
-        const tronWeb = new TronWeb ({
-            fullHost: req.headers.chainlinks,
-            headers: {
-                "TRON-PRO-API-KEY": process.env.TRONGRID_API_KEY
-            }
-        });
+        const tronWeb = tronWebCall(req,res);
         const txId = req.body.transaction_hash;
         
         const response = await tronWeb.trx.getTransactionInfo(txId);
@@ -403,7 +362,7 @@ async function getTrxConfirmedTransaction(req, res) {
     } catch(err){
         res.json({
             status: false,
-            message: JSON.stringify(err),
+            message: String(err),
             data: {}
         });
     }
