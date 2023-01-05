@@ -1,7 +1,8 @@
+const { publicDecrypt } = require("crypto");
 const { response } = require("express");
 const Web3 = require("web3");
 const {contractJson} = require("../../src/ContractAbiJson");
-const { contract_decimals,customFromWei,customToWei } = require("../Heplers/helper");
+const { contract_decimals,customFromWei,customToWei,gasLimit } = require("../Heplers/helper");
 const trc20Token = require("./TrcTokenController");
 const trxToken = require("./TrxController");
 
@@ -35,6 +36,12 @@ function getData(req, res)
     });
 }
 
+// get token decimal
+async function getContractDecimal(contractInstance)
+{
+    const decimal = await contractInstance.methods.decimals().call();
+    return decimal;
+}
 /*{
     address: '0x33B380d0b8B1e5Bc3Efb364FCf4eaEA46834Eb96',
     privateKey: '0x32ddeae1c7302f484e35a53685edab78147a78757bba755d5094497f60307fce',
@@ -95,7 +102,7 @@ async function getWalletBalance(req, res)
         const network = req.headers.chainlinks;
         const networkType = req.headers.networktype;
         let contractJsons = contractJson();
-        
+        let tokenDecimal = '';
         if (network) {
             const type = req.body.type;
             const address = req.body.address;
@@ -116,13 +123,10 @@ async function getWalletBalance(req, res)
                     if (contractAddress) {
                         const contractInstance = new web3.eth.Contract(contractJsons, contractAddress);
                         tokenBalance = await contractInstance.methods.balanceOf(address).call();
+                        tokenDecimal = await getContractDecimal(contractInstance);
 
-                        tokenDecimal = await contractInstance.methods.decimals().call();
-                        if(tokenDecimal == 8) {
-                            tokenBalance = customFromWei(tokenBalance, tokenDecimal);
-                        } else {
-                            tokenBalance = Web3.utils.fromWei(tokenBalance.toString(), contract_decimals(tokenDecimal));
-                        }
+                        tokenBalance = customFromWei(tokenBalance, tokenDecimal);
+                       
                     } else {
                         res.json({
                             status: false,
@@ -139,12 +143,10 @@ async function getWalletBalance(req, res)
 
                         const contractInstance = new web3.eth.Contract(contractJsons, contractAddress);
                         tokenBalance = await contractInstance.methods.balanceOf(address).call();
-                        tokenDecimal = await contractInstance.methods.decimals().call();
-                        if(tokenDecimal == 8) {
-                            tokenBalance = customFromWei(tokenBalance, tokenDecimal);
-                        } else {
-                            tokenBalance = Web3.utils.fromWei(tokenBalance.toString(), contract_decimals(tokenDecimal));
-                        }
+                        tokenDecimal = await getContractDecimal(contractInstance);
+                        
+                        tokenBalance = customFromWei(tokenBalance, tokenDecimal);
+                        
                     } else {
                         res.json({
                             status: false,
@@ -186,6 +188,7 @@ async function getWalletBalance(req, res)
 async function checkEstimateGasFees(req, res)
 {
     try {
+        console.log('checkEstimateGasFees called')
         const network = req.headers.chainlinks;
         let contractJsons = contractJson();
        
@@ -193,41 +196,36 @@ async function checkEstimateGasFees(req, res)
             const fromAddress = req.body.from_address;
             const contractAddress = req.body.contract_address;
             const receiverAddress = req.body.to_address;
-            const gasLimit = req.body.gas_limit;
-            const decimalValue = contract_decimals(req.body.decimal_value);
+           
             let amount = req.body.amount_value;
 
                 const web3 = new Web3(network);
                 const contract = new web3.eth.Contract(contractJsons, contractAddress);
-                if (decimalValue === 'customeight') {
-                    amount = customToWei(amount, req.body.decimal_value);
-                } else {
-                    amount = Web3.utils.toWei(amount.toString(), decimalValue);
-                }
-                const tx = {
-                    from: fromAddress,
-                    to: contractAddress,
-                    gas: gasLimit,
-                    data:  contract.methods.transfer(receiverAddress, amount).encodeABI(),
-                };
+                const contractDecimal = await getContractDecimal(contract);
                 
-    
-                let gasPrice =  await web3.eth.getGasPrice();
-                let estimateGas =  await web3.eth.estimateGas(tx);
-                
-                gasPrice = Web3.utils.fromWei(gasPrice.toString(), 'ether')
+                amount = customToWei(amount,contractDecimal);
                
-                estimateGas = estimateGas * gasPrice
+                let gasPrice =  await web3.eth.getGasPrice();
+                console.log('gas price');
+                console.log(gasPrice);
+
+                gasPrice = Web3.utils.fromWei(gasPrice.toString(), 'ether')
+                console.log(gasPrice);
+                console.log('estimateGas');
+                
+                const estimatedGasRes = await contract.methods.transfer(receiverAddress, amount).estimateGas({ from: fromAddress });
+                console.log(estimatedGasRes);
+                let gasFees = (estimatedGasRes*gasPrice);
+                console.log(gasFees);
 
                 res.json({
                     status: true,
                     message: "Get Estimate gas successfully",
                     data: {
-                        gasLimit : gasLimit,
                         amount : amount,
-                        tx: tx,
+                        tx: 'ok',
                         gasPrice: gasPrice,
-                        estimateGasFees: estimateGas
+                        estimateGasFees: gasFees
                     }
                 });
             
@@ -239,6 +237,7 @@ async function checkEstimateGasFees(req, res)
             });
         }
     } catch(e) {
+        console.log(e)
         res.json({
             status: false,
             message: e.message,
@@ -253,7 +252,7 @@ async function checkEstimateGasFees(req, res)
         const network = req.headers.chainlinks;
         let contractJsons = contractJson();
         const networkType = req.headers.networktype;
-
+        let decimalValue = 18;
         if (network) {
             if (parseInt(networkType) == 6) {
                 trc20Token.sendTrc20Token(req, res);
@@ -261,8 +260,7 @@ async function checkEstimateGasFees(req, res)
                 const fromAddress = req.body.from_address;
                 const contractAddress = req.body.contract_address;
                 const receiverAddress = req.body.to_address;
-                const gasLimit = req.body.gas_limit;
-                const decimalValue = contract_decimals(req.body.decimal_value);
+                
                 const privateKey = req.body.contracts;
                 let amount = req.body.amount_value;
 
@@ -274,19 +272,16 @@ async function checkEstimateGasFees(req, res)
                     gasPrice = Web3.utils.fromWei(gasPrice.toString(), 'ether');
 
                     const contract = new web3.eth.Contract(contractJsons, contractAddress);
-                    if (decimalValue === 'customeight') {
-                        amount = customToWei(amount, req.body.decimal_value);
-                    } else {
-                        amount = Web3.utils.toWei(amount.toString(), decimalValue);
-                    }
-
+                    decimalValue = await getContractDecimal(contract);
+                    
+                    amount = customToWei(amount, decimalValue);
+                    console.log(gasLimit);
                     const tx = {
                         from: fromAddress,
                         to: contractAddress,
-                        gas: gasLimit,
+                        gas: Web3.utils.toHex(gasLimit),
                         data:  contract.methods.transfer(receiverAddress, amount).encodeABI(),
                     };
-                    
 
                 await web3.eth.accounts.signTransaction(tx, privateKey).then(signed => {
                         const tran = web3.eth
@@ -422,8 +417,6 @@ async function sendEth(req, res)
         if (network) {
             const fromAddress = req.body.from_address;
             const receiverAddress = req.body.to_address;
-            const gasLimit = req.body.gas_limit;
-            const decimalValue = contract_decimals(req.body.decimal_value);
             const privateKey = req.body.contracts;
             let amount = req.body.amount_value;
 
@@ -439,11 +432,11 @@ async function sendEth(req, res)
                     let nonce = await web3.eth.getTransactionCount(fromAddress,'latest');
                     
                     let transaction = {
-                    from: fromAddress,
-                    nonce: web3.utils.toHex(nonce),
-                    gas: gasLimit,
-                    to: receiverAddress,
-                    value: amount,
+                        from: fromAddress,
+                        nonce: web3.utils.toHex(nonce),
+                        gas: gasLimit,
+                        to: receiverAddress,
+                        value: amount,
                     // chainId: chainId // 
                     };
 
@@ -612,7 +605,7 @@ async function getLatestEvents(req, res)
   try {
       const network = req.headers.chainlinks;
       const networkType = req.headers.networktype;
-
+      let decimalValue = 18;
       if (network) {
         if (parseInt(networkType) == 6) {
             await trc20Token.getTrc20LatestEvent(req,res);
@@ -621,11 +614,11 @@ async function getLatestEvents(req, res)
             let prevBlock = 1000;
             const contractAddress = req.body.contract_address;
             const numberOfBlock = req.body.number_of_previous_block;
-            const decimalValue = contract_decimals(req.body.decimal_value);
 
             const web3 = new Web3(new Web3.providers.HttpProvider(network));
             const contract = new web3.eth.Contract(contractJsons, contractAddress);
-            // console.log(contract)
+            decimalValue = await getContractDecimal(contract);
+
             const latestBlockNumber = await web3.eth.getBlockNumber();
             if (numberOfBlock) {
                 prevBlock = numberOfBlock;
@@ -644,10 +637,11 @@ async function getLatestEvents(req, res)
                       block_hash: res.blockHash,
                       from_address: res.returnValues.from,
                       to_address: res.returnValues.to,
-                      amount: decimalValue === 'customeight' ? customFromWei(res.returnValues.value,req.body.decimal_value) : Web3.utils.fromWei(res.returnValues.value.toString(), decimalValue)
+                      amount: customFromWei(res.returnValues.value,decimalValue)
                   };
                   resultData.push(innerData)
               });
+              console.log(resultData)
               res.json({
                   status: true,
                   message: result.message,
@@ -737,21 +731,18 @@ async function getContractDetails(req, res)
             let symbol = '';
             let name = '';
             let tokenBalance = 0;
-            let tokenDecimal = 0;
+            let tokenDecimal = 18;
             const web3 = new Web3(network);
             const netID = await web3.eth.net.getId();
             if (contractAddress) {
                 const contractInstance = new web3.eth.Contract(contractJsons, contractAddress);
                  symbol = await contractInstance.methods.symbol().call();
                  name = await contractInstance.methods.name().call();
-                tokenDecimal = await contractInstance.methods.decimals().call();
+                 tokenDecimal = await contractInstance.methods.decimals().call();
+
                 if (address) {
                      tokenBalance = await contractInstance.methods.balanceOf(address).call();
-                     if(tokenDecimal == 8) {
-                         tokenBalance = customFromWei(tokenBalance, tokenDecimal);
-                     } else {
-                         tokenBalance = Web3.utils.fromWei(tokenBalance.toString(), contract_decimals(tokenDecimal));
-                     }
+                     tokenBalance = customFromWei(tokenBalance, tokenDecimal);
                  }
 
             } else {

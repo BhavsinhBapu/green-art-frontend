@@ -37,11 +37,11 @@ function customDecimal(input)
 
 function customFromWei(amount,decimal)
 {
-    return (amount/customDecimal(decimal)).toString()
+    return (amount/powerOfTen(decimal)).toString()
 }
 function customToWei(amount,decimal)
 {
-    return (amount*customDecimal(decimal)).toString()
+    return (amount*powerOfTen(decimal)).toString()
 }
 function powerOfTen(x) {
   return Math.pow(10, x);
@@ -71,6 +71,8 @@ async function checkTx(tronWeb,txId) {
 async function fetchTx(tronWeb,txId) {
   return await tronWeb.trx.getTransactionInfo(txId);
 }
+const gasLimit = 150000;
+
 module.exports = {
     tronWebCall,
     contract_decimals,
@@ -78,5 +80,6 @@ module.exports = {
     customFromWei,
     customToWei,
     powerOfTen,
-    checkTx
+    checkTx,
+    gasLimit
 }
