@@ -1,4 +1,5 @@
 const TronWeb =  require('tronweb');
+const Web3 = require("web3");
 
 
 function contract_decimals($input = null)
@@ -71,7 +72,15 @@ async function checkTx(tronWeb,txId) {
 async function fetchTx(tronWeb,txId) {
   return await tronWeb.trx.getTransactionInfo(txId);
 }
-const gasLimit = 150000;
+async function gasLimit(network)
+{
+    const web3 = new Web3(network);
+    const latestBlock = await web3.eth.getBlock('latest');
+    // console.log(latestBlock)
+    let blockGasUsed = latestBlock.gasUsed;
+    blockGasUsed = 100000;
+    return blockGasUsed;
+}
 
 module.exports = {
     tronWebCall,
