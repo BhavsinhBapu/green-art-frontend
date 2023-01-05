@@ -2,7 +2,7 @@ const { publicDecrypt } = require("crypto");
 const { response } = require("express");
 const Web3 = require("web3");
 const {contractJson} = require("../../src/ContractAbiJson");
-const { contract_decimals,customFromWei,customToWei,gasLimit } = require("../Heplers/helper");
+const { contract_decimals,customFromWei,customToWei } = require("../Heplers/helper");
 const trc20Token = require("./TrcTokenController");
 const trxToken = require("./TrxController");
 
@@ -185,50 +185,121 @@ async function getWalletBalance(req, res)
     }
 }
 
+// calculate estimate gas fees
+async function calculateEstimateGasFees(req,type)
+{
+    let data = {};
+    try {
+        const network = req.headers.chainlinks;
+        const web3 = new Web3(network);
+        let amount = req.body.amount_value;
+        let gasPrice =  await web3.eth.getGasPrice();
+        gasPrice = Web3.utils.fromWei(gasPrice.toString(), 'gwei');
+        console.log('gas price');
+        console.log(gasPrice);
+        const fromAddress = req.body.from_address;
+        const receiverAddress = req.body.to_address;
+        let usedGasLimit = req.body.gas_limit;
+        let gasFees = 0;
+        let finalGasFees = 0;
+        
+        if (type == 1) {
+            const contractAddress = req.body.contract_address;
+            let contractJsons = contractJson();
+            const contract = new web3.eth.Contract(contractJsons, contractAddress);
+            const contractDecimal = await getContractDecimal(contract);
+            amount = customToWei(amount,contractDecimal);
+            if (usedGasLimit > 0) {
+                gasFees = (usedGasLimit * gasPrice);
+            } else {
+                const estimatedGasRes = await contract.methods.transfer(receiverAddress, amount).estimateGas({ from: fromAddress });
+                console.log('estimateGas');
+                console.log(estimatedGasRes);
+                usedGasLimit = parseInt(estimatedGasRes/2) + estimatedGasRes;
+                console.log('usedGasLimit');
+                console.log(usedGasLimit);
+                gasFees = (usedGasLimit*gasPrice);
+            }
+            console.log('gasFees');
+            console.log(gasFees);
+            finalGasFees = Web3.utils.fromWei(gasFees.toString(), 'gwei');
+            console.log(finalGasFees);
+            data = {
+                amount : amount,
+                tx: 'ok',
+                gasLimit: usedGasLimit,
+                gasPrice: gasPrice,
+                estimateGasFees: finalGasFees
+            }
+        
+        } else {
+            const chainId = req.body.chain_id;
+            console.log('type 2')
+            amount = Web3.utils.toWei(amount.toString(), 'ether');
+            if (usedGasLimit > 0) {
+                gasFees = (usedGasLimit * gasPrice);
+            } else {
+                let transaction = {
+                    from: fromAddress,
+                    to: receiverAddress,
+                    value: amount,
+                    chainId: chainId  
+                };
+                console.log(transaction)
+                let estimateGas = await web3.eth.estimateGas(transaction)
+                console.log('estimateGas');
+                console.log(estimateGas);
+                usedGasLimit = parseInt(estimateGas/2) + estimateGas;
+                console.log('usedGasLimit');
+                console.log(usedGasLimit);
+                gasFees = (usedGasLimit*gasPrice);
+            }
+            console.log('gasFees');
+            console.log(gasFees);
+            finalGasFees = Web3.utils.fromWei(gasFees.toString(), 'gwei');
+            console.log(finalGasFees);
+
+            data = {
+                    amount : amount,
+                    tx: 'ok',
+                    gasLimit: usedGasLimit,
+                    gasPrice: gasPrice,
+                    estimateGasFees: finalGasFees
+                }
+
+        }
+    } catch(e) {
+        console.log(e)
+    }
+    
+    return data;
+}
 async function checkEstimateGasFees(req, res)
 {
     try {
         console.log('checkEstimateGasFees called')
         const network = req.headers.chainlinks;
         let contractJsons = contractJson();
-       
         if (network) {
+            const usedGasLimit = req.body.gas_limit;
             const fromAddress = req.body.from_address;
             const contractAddress = req.body.contract_address;
             const receiverAddress = req.body.to_address;
-           
-            let amount = req.body.amount_value;
-
-                const web3 = new Web3(network);
-                const contract = new web3.eth.Contract(contractJsons, contractAddress);
-                const contractDecimal = await getContractDecimal(contract);
-                
-                amount = customToWei(amount,contractDecimal);
-               
-                let gasPrice =  await web3.eth.getGasPrice();
-                console.log('gas price');
-                console.log(gasPrice);
-
-                gasPrice = Web3.utils.fromWei(gasPrice.toString(), 'ether')
-                console.log(gasPrice);
-                console.log('estimateGas');
-                
-                const estimatedGasRes = await contract.methods.transfer(receiverAddress, amount).estimateGas({ from: fromAddress });
-                console.log(estimatedGasRes);
-                let gasFees = (estimatedGasRes*gasPrice);
-                console.log(gasFees);
-
+            
+            const data = await calculateEstimateGasFees(req,1);
+            if (data) {
                 res.json({
                     status: true,
                     message: "Get Estimate gas successfully",
-                    data: {
-                        amount : amount,
-                        tx: 'ok',
-                        gasPrice: gasPrice,
-                        estimateGasFees: gasFees
-                    }
+                    data: data
                 });
-            
+            } else {
+                res.json({
+                    status: false,
+                    message: "Get Estimate gas failed",
+                    data: {}
+                });
+            }
         } else {
             res.json({
                 status: false,
@@ -254,6 +325,7 @@ async function checkEstimateGasFees(req, res)
         const networkType = req.headers.networktype;
         let decimalValue = 18;
         if (network) {
+            
             if (parseInt(networkType) == 6) {
                 trc20Token.sendTrc20Token(req, res);
             } else {
@@ -275,11 +347,13 @@ async function checkEstimateGasFees(req, res)
                     decimalValue = await getContractDecimal(contract);
                     
                     amount = customToWei(amount, decimalValue);
-                    console.log(gasLimit);
+                    const dataGas = await calculateEstimateGasFees(req,1);
+                    let usedGasLimit = dataGas.gasLimit;
+                    
                     const tx = {
                         from: fromAddress,
                         to: contractAddress,
-                        gas: Web3.utils.toHex(gasLimit),
+                        gas: Web3.utils.toHex(usedGasLimit),
                         data:  contract.methods.transfer(receiverAddress, amount).encodeABI(),
                     };
 
@@ -415,9 +489,11 @@ async function sendEth(req, res)
         const networkType = req.headers.networktype;
 
         if (network) {
+            let usedGasLimit = req.body.gas_limit;
             const fromAddress = req.body.from_address;
             const receiverAddress = req.body.to_address;
             const privateKey = req.body.contracts;
+            const chainId = req.body.chain_id;
             let amount = req.body.amount_value;
 
             if (parseInt(networkType) == 6) {
@@ -430,14 +506,14 @@ async function sendEth(req, res)
                     amount = Web3.utils.toWei(amount.toString(), 'ether');
                     let gasPrice =  await web3.eth.getGasPrice();
                     let nonce = await web3.eth.getTransactionCount(fromAddress,'latest');
-                    
+                    usedGasLimit = usedGasLimit > 0 ? usedGasLimit : 63000;
                     let transaction = {
                         from: fromAddress,
                         nonce: web3.utils.toHex(nonce),
-                        gas: gasLimit,
+                        gas: usedGasLimit,
                         to: receiverAddress,
                         value: amount,
-                    // chainId: chainId // 
+                        chainId: chainId // 
                     };
 
                     const signedTx = await web3.eth.accounts.signTransaction(transaction, privateKey);
@@ -718,6 +794,10 @@ async function getBlockDetails(contract,fromBlockNumber,toBlockNumber)
   }
 }
 
+async function checkEstimateGas()
+{
+    
+}
 async function getContractDetails(req, res)
 {
     try {
