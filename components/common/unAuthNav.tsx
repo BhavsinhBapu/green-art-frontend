@@ -1,9 +1,21 @@
+import { checkThemeState, darkModeToggle } from "helpers/functions";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
-import React from "react";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
+import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
+import { IoLanguageSharp } from "react-icons/io5";
+import { useSelector } from "react-redux";
+import { RootState } from "state/store";
 
 const UnAuthNav = ({ logo }: any) => {
+  const [theme, setTheme] = useState(0);
   const { t } = useTranslation("common");
+  const { settings } = useSelector((state: RootState) => state.common);
+  const router = useRouter();
+  useEffect(() => {
+    checkThemeState(setTheme);
+  }, []);
   return (
     <header className="header-area">
       <div className="container">
@@ -31,6 +43,40 @@ const UnAuthNav = ({ logo }: any) => {
                   </li>
                   <li>
                     <Link href="/authentication/signup">{t("Sign up")}</Link>
+                  </li>
+                  <li
+                    onClick={() => {
+                      darkModeToggle(settings, setTheme);
+                    }}
+                  >
+                    {/* <BsFillMoonFill /> */}
+                    {theme === 0 ? (
+                      <>
+                        <BsFillSunFill size={20} className="mr-2" />
+                        {t("Light")}
+                      </>
+                    ) : (
+                      <>
+                        <BsFillMoonFill size={14} className="mr-2" />
+                        {t("Dark")}
+                      </>
+                    )}
+                  </li>
+                  <li>
+                    <a className="flex" href="#" aria-expanded="true">
+                      <IoLanguageSharp />
+
+                      <span className="ml-2">{router.locale?.toLocaleUpperCase()}</span>
+                    </a>
+                    <ul className="lang-list">
+                      {settings?.LanguageList?.map((item: any, index: any) => (
+                        <li key={index}>
+                          <Link href={router.asPath} locale={item.key}>
+                            <a className="py-1">{item.name}</a>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
                   </li>
                 </ul>
               </nav>
