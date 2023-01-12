@@ -356,7 +356,7 @@ ul {
 
 /* header css */
 .mean-container .mean-bar {
-  background: #101e49;
+  background: var(--main-background-color);
   padding: 14px 0;
 }
 .mean-container .mean-bar::after {
@@ -452,7 +452,7 @@ ul {
 .header-area .menu-area .main-menu ul li a {
   display: block;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 13px;
   color: #1e2329;
   -webkit-transition: all 0.5s;
   -o-transition: all 0.5s;
@@ -710,7 +710,7 @@ client-area
 
 @media (max-width: 1200px) {
   .header-area .menu-area .main-menu ul li a {
-    font-size: 16px;
+    font-size: 13px;
     padding: 25px 10px;
   }
   .primary-btn {
@@ -1067,7 +1067,7 @@ client-area
   color: var(--font-color);
 }
 .avable-items .item-lsit .single-item .item-link:hover {
-  background: #f5f5f5;
+  background: var(--background-color-trade);
 }
 @media (max-width: 991px) {
   .trade-anywhere-left {

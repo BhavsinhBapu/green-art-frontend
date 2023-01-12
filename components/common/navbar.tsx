@@ -139,7 +139,6 @@ const Navbar = () => {
                           </li>
                         </Link>
                       )}
-
                       {parseInt(settings.launchpad_settings) === 1 &&
                         navbar?.ico?.status && (
                           <Link
@@ -167,7 +166,6 @@ const Navbar = () => {
                             </li>
                           </Link>
                         )}
-
                       {parseInt(settings.currency_deposit_status) === 1 &&
                         navbar?.fiat?.status && (
                           <li
@@ -456,6 +454,7 @@ const Navbar = () => {
                                 </li>
                               </Link>
                             )}
+
                           {navbar?.reports?.fiatWithdrawalHistory?.status && (
                             <Link
                               href={
@@ -511,7 +510,6 @@ const Navbar = () => {
                           </li>
                         </Link>
                       )}
-
                       <Link
                         href={
                           isLoggedIn
@@ -956,7 +954,6 @@ const Navbar = () => {
                         </a>
                       </li>
                     )}
-
                     <li>
                       {/* <a className="arrow-icon" href="#" aria-expanded="true">
                         <span className="cp-user-icon">
@@ -1184,23 +1181,7 @@ const Navbar = () => {
                         </ul>
                       </li>
                     )}
-
                     <li>
-                      {/* <a className="arrow-icon" href="#" aria-expanded="true">
-                        <span className="cp-user-icon">
-                          <img
-                            src=""
-                            className="img-fluid cp-user-side-bar-icon"
-                            alt=""
-                          />
-                          <img
-                            src=""
-                            className="img-fluid cp-user-side-bar-icon-hover"
-                            alt=""
-                          />
-                        </span>
-                        <span className="cp-user-name">{t("My Profile")}</span>
-                      </a> */}
                       <ul>
                         {navbar?.myProfile?.status && (
                           <Link
@@ -1220,7 +1201,98 @@ const Navbar = () => {
                           </Link>
                         )}
                       </ul>
+                    </li>{" "}
+                    <li>
+                      <ul>
+                        <Link
+                          href={
+                            isLoggedIn
+                              ? "/user/edit-profile"
+                              : "/authentication/signin"
+                          }
+                        >
+                          <li>
+                            <a href="">{t("Edit Profile")}</a>
+                          </li>
+                        </Link>
+                      </ul>
                     </li>
+                    <li>
+                      <ul>
+                        <Link
+                          href={
+                            isLoggedIn
+                              ? "/user/phone-verification"
+                              : "/authentication/signin"
+                          }
+                        >
+                          <li>
+                            <a href="">{t("Phone Verification")}</a>
+                          </li>
+                        </Link>
+                      </ul>
+                    </li>
+                    <li>
+                      <ul>
+                        <Link
+                          href={
+                            isLoggedIn
+                              ? "/user/security"
+                              : "/authentication/signin"
+                          }
+                        >
+                          <li>
+                            <a href="">{t("Security")}</a>
+                          </li>
+                        </Link>
+                      </ul>
+                    </li>
+                    <li>
+                      <ul>
+                        <Link
+                          href={
+                            isLoggedIn
+                              ? "/user/personal-verification"
+                              : "/authentication/signin"
+                          }
+                        >
+                          <li>
+                            <a href="">{t("KYC Verification")}</a>
+                          </li>
+                        </Link>
+                      </ul>
+                    </li>
+                    <li>
+                      <ul>
+                        <Link
+                          href={
+                            isLoggedIn
+                              ? "/user/bank/list"
+                              : "/authentication/signin"
+                          }
+                        >
+                          <li>
+                            <a href="">{t("Bank List")}</a>
+                          </li>
+                        </Link>
+                      </ul>
+                    </li>
+                    <li>
+                      <ul>
+                        <Link
+                          href={
+                            isLoggedIn
+                              ? "/user/change-password"
+                              : "/authentication/signin"
+                          }
+                        >
+                          <li>
+                            <a href="">{t("Change Password")}</a>
+                          </li>
+                        </Link>
+                      </ul>
+                    </li>
+                    {/* /user/change-password */}
                     <li>
                       <Link href="/user/referral">
                         <a>
