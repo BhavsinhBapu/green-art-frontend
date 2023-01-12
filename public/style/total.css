@@ -6332,7 +6332,8 @@ table.dataTable tbody tr.dataTable-white td {
     right: 5px;
   }
   .cp-user-idverifymodal .modal-body {
-    padding: 20px;
+       padding: 50px;
+    background: var(--main-background-color);
   }
   .idcard .card-inner {
     max-width: 100%;
@@ -11262,4 +11263,10 @@ label.upload-file-btn.press-enter {
   color: rgba(0, 0, 0, 0.87);
   background-color: var(--main-background-color) !important;
   color: var(--font-color) !important;
+}
+.lang-list {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: start;
+  justify-content: center;
 }
