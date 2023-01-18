@@ -146,7 +146,7 @@ const SelectCurrencyRight = () => {
             overlay={
               <span>
                 <span>
-                  {t("Price Change")}: {row.price_change}
+                  {t("Price Change")}: {row.price_change}%
                 </span>
               </span>
             }
