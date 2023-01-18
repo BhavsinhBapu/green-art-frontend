@@ -41,7 +41,7 @@ const SelectCurrencyRight = () => {
   const columns = [
     {
       name: t("Coin"),
-      selector: (row: any) => row.coin,
+      selector: (row: any) => row.coin_pair,
       sortable: true,
       cell: (row: any) => {
         return (
@@ -62,16 +62,47 @@ const SelectCurrencyRight = () => {
                 await localStorage.setItem("base_coin_id", row?.parent_coin_id);
                 await localStorage.setItem("trade_coin_id", row?.child_coin_id);
                 await localStorage.setItem("current_pair", row.coin_pair);
-
                 await dispatch(setCurrentPair(row.coin_pair));
 
                 router.reload();
               }}
             >
-              <span className="">
+              <span
+                className=""
+                onClick={async () => {
+                  await localStorage.setItem(
+                    "base_coin_id",
+                    row?.parent_coin_id
+                  );
+                  await localStorage.setItem(
+                    "trade_coin_id",
+                    row?.child_coin_id
+                  );
+                  await localStorage.setItem("current_pair", row.coin_pair);
+                  await dispatch(setCurrentPair(row.coin_pair));
+
+                  router.reload();
+                }}
+              >
                 {row?.coin_pair_name.split("/")[0]}
               </span>
-              <span className="coin-name">
+              <span
+                className="coin-name"
+                onClick={async () => {
+                  await localStorage.setItem(
+                    "base_coin_id",
+                    row?.parent_coin_id
+                  );
+                  await localStorage.setItem(
+                    "trade_coin_id",
+                    row?.child_coin_id
+                  );
+                  await localStorage.setItem("current_pair", row.coin_pair);
+                  await dispatch(setCurrentPair(row.coin_pair));
+
+                  router.reload();
+                }}
+              >
                 /{row?.coin_pair_name.split("/")[1]}
               </span>
             </div>
@@ -81,7 +112,7 @@ const SelectCurrencyRight = () => {
     },
     {
       name: t("Last"),
-      selector: (row: any) => row.price,
+      selector: (row: any) => row.last_price,
       sortable: true,
       cell: (row: any) => {
         return (
@@ -106,7 +137,6 @@ const SelectCurrencyRight = () => {
     },
     {
       name: t("Change"),
-
       selector: (row: any) => row.price_change,
       sortable: true,
       cell: (row: any) => {
@@ -116,7 +146,7 @@ const SelectCurrencyRight = () => {
             overlay={
               <span>
                 <span>
-                  {t("Last Price")}: {row.last_price}
+                  {t("Price Change")}: {row.price_change}
                 </span>
               </span>
             }
