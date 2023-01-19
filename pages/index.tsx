@@ -176,11 +176,9 @@ const Home: NextPage = ({
             <section className="market-trend-area">
               <div className="container">
                 <div className="section-title">
-                  <Link href={"/"}>
-                    <h2 className="title">
-                      {landing?.market_trend_title || t("Market Trend")}
-                    </h2>
-                  </Link>
+                  <h2 className="title">
+                    {landing?.market_trend_title || t("Market Trend")}
+                  </h2>
                 </div>
                 <div className="exchange-tab-menu">
                   <ul className="nav nav-tabs" id="exchangeTab" role="tablist">
