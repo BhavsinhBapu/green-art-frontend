@@ -10,7 +10,7 @@ const SliderCover = () => {
   };
   return (
     <div className="">
-      <div className="overview-area">
+      <div className="overview-area mb-5 ml-2">
         <div className="overview-left ">
           <h2 className=" ">Tradex Blog</h2>
           <h4 className="blance-title ">
@@ -48,10 +48,10 @@ const SliderCover = () => {
                 src="/267-2676128_submitted-cryptocurrencies-transparent.png"
               />
             </div>
-            <div className="col-sm-6">
+            <div className="col-sm-6 d-flex justify-content-center">
               <div className="card">
                 <div className="card-body">
-                  <h1 className="card-title">Special title treatment</h1>
+                  <h1 className="">Special title treatment</h1>
                   <p className="card-text">
                     With supporting text below as a natural lead-in to
                     additional content.
