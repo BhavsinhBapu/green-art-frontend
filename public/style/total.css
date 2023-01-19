@@ -6332,7 +6332,7 @@ table.dataTable tbody tr.dataTable-white td {
     right: 5px;
   }
   .cp-user-idverifymodal .modal-body {
-       padding: 50px;
+    padding: 50px;
     background: var(--main-background-color);
   }
   .idcard .card-inner {
@@ -11269,4 +11269,7 @@ label.upload-file-btn.press-enter {
   flex-direction: column !important;
   align-items: start;
   justify-content: center;
+}
+.SliderBlog {
+  height: 400px;
 }
