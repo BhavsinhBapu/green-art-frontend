@@ -1,4 +1,6 @@
+import CardSection from "components/Blog/CardSection";
 import SliderCover from "components/Blog/SliderCover";
+import TabSection from "components/Blog/TabSection";
 import Footer from "components/common/footer";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
@@ -10,6 +12,8 @@ const index = ({ customPageData, socialData, copyright_text }: any) => {
     <>
       <div className="container">
         <SliderCover />
+        <TabSection />
+        <CardSection />
       </div>
       <Footer
         customPageData={customPageData}

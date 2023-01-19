@@ -11273,3 +11273,14 @@ label.upload-file-btn.press-enter {
 .SliderBlog {
   height: 400px;
 }
+.itemCatagory {
+  padding: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.itemCatagory p {
+  font-size: 22px;
+}
+.itemCatagoryactive {
+  background-color: var(--footer-background-color);
+}
