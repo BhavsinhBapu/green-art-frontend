@@ -1,22 +1,15 @@
 import React from "react";
 import BlogCard from "./Card";
 
-const CardSection = () => {
+const CardSection = ({ blogs }: any) => {
   return (
     <div>
       <div className="row">
-        <div className="col-4  mt-5 ">
-          <BlogCard />
-        </div>
-        <div className="col-4  mt-5 ">
-          <BlogCard />
-        </div>
-        <div className="col-4  mt-5 ">
-          <BlogCard />
-        </div>
-        <div className="col-4  mt-5 ">
-          <BlogCard />
-        </div>
+        {blogs.map((blog: any) => (
+          <div className="col-4 mt-5">
+            <BlogCard blog={blog} />
+          </div>
+        ))}
       </div>
     </div>
   );
