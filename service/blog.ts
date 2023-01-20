@@ -7,9 +7,7 @@ export const getBlogs = async (type: any) => {
   );
   return data;
 };
-export const getBlogCategory = async (type: any) => {
-  const { data } = await request.get(
-    `/blog/get?type=${type ? type : TYPE_BLOG_RECENT}`
-  );
+export const getBlogCategory = async () => {
+  const { data } = await request.get(`/blog/category`);
   return data;
 };

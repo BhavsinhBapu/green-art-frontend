@@ -1,9 +1,10 @@
+import moment from "moment";
 import Link from "next/link";
 import React from "react";
 
 const BlogCard = ({ blog }: any) => {
   return (
-    <Link href={"/blog/" + blog?.id}>
+    <Link href={"/blog/" + blog?.post_id}>
       <div className="card">
         <img
           className="card-img-top"
@@ -12,14 +13,11 @@ const BlogCard = ({ blog }: any) => {
         />
         <div className="card-body">
           <h5 className="card-title">{blog?.title}</h5>
-          {/* <p className="card-text">
-            This is a wider card with supporting text below as a natural lead-in
-            to additional content. This card has even longer content than the
-            first to show that equal height action.
-          </p> */}
         </div>
         <div className="card-footer">
-          <small className="text-muted">Last updated 3 mins ago</small>
+          <small className="text-muted">
+            {moment(blog?.createdAt).subtract(1, "days").calendar()}
+          </small>
         </div>
       </div>
     </Link>
