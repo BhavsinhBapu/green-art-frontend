@@ -14,14 +14,15 @@ const index = ({
   copyright_text,
   featuredBlogs,
   recentBlogs,
+  categories,
 }: any) => {
   console.log(featuredBlogs, "featuredBlogs");
   console.log(recentBlogs, "recentBlogs");
   return (
     <>
       <div className="container">
-        <SliderCover />
-        <TabSection />
+        <SliderCover featuredblogs={featuredBlogs} />
+        <TabSection categories={categories} />
         <CardSection blogs={recentBlogs} />
       </div>
       <Footer
@@ -38,7 +39,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const { data } = await landingPage();
   const { data: customPageData } = await customPage();
 
-  const { FeaturedBlogs, RecentBlogs } = await BlogHomePageAction();
+  const { FeaturedBlogs, RecentBlogs, Categories } = await BlogHomePageAction();
   return {
     props: {
       socialData: data.media_list,
@@ -46,6 +47,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
       customPageData: customPageData.data,
       featuredBlogs: FeaturedBlogs?.data,
       recentBlogs: RecentBlogs?.data,
+      categories: Categories?.data,
     },
   };
 };

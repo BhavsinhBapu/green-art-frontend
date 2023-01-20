@@ -1,6 +1,7 @@
+import moment from "moment";
 import React from "react";
 import Slider from "react-slick";
-const SliderCover = () => {
+const SliderCover = ({ featuredblogs }: any) => {
   const settings = {
     dots: true,
     infinite: true,
@@ -8,6 +9,7 @@ const SliderCover = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
+  console.log(featuredblogs, "featuredblogs");
   return (
     <div className="">
       <div className="overview-area mb-5 ml-2">
@@ -19,48 +21,27 @@ const SliderCover = () => {
         </div>
       </div>
       <Slider {...settings}>
-        <div>
-          <div className="row SliderBlog">
-            <div className="col-sm-6">
-              <img
-                className="h-100"
-                src="/267-2676128_submitted-cryptocurrencies-transparent.png"
-              />
-            </div>
-            <div className="col-sm-6">
-              <div className="card">
-                <div className="card-body">
-                  <h1 className="card-title">Special title treatment</h1>
-                  <p className="card-text">
-                    With supporting text below as a natural lead-in to
-                    additional content.
-                  </p>
+        {featuredblogs.map((featuredblog: any) => (
+          <div>
+            <div className="row SliderBlog">
+              <div className="col-sm-6">
+                <img className="h-100" src={featuredblog?.thumbnail} />
+              </div>
+              <div className="col-sm-6">
+                <div className="card">
+                  <div className="card-body">
+                    <h1 className="card-title">{featuredblog?.title}</h1>
+                    <p className="card-text">
+                      {moment(featuredblog?.createdAt)
+                        .subtract(1, "days")
+                        .calendar()}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div>
-          <div className="row SliderBlog">
-            <div className="col-sm-6">
-              <img
-                className="h-100"
-                src="/267-2676128_submitted-cryptocurrencies-transparent.png"
-              />
-            </div>
-            <div className="col-sm-6 d-flex justify-content-center">
-              <div className="card">
-                <div className="card-body">
-                  <h1 className="">Special title treatment</h1>
-                  <p className="card-text">
-                    With supporting text below as a natural lead-in to
-                    additional content.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        ))}
       </Slider>
     </div>
   );

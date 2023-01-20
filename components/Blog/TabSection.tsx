@@ -1,26 +1,13 @@
 import React from "react";
 
-const TabSection = () => {
+const TabSection = ({ categories }: any) => {
   return (
     <div className="d-flex mt-5">
-      <div className="itemCatagory itemCatagoryactive">
-        <p>One</p>
-      </div>
-      <div className="itemCatagory">
-        <p>One</p>
-      </div>
-      <div className="itemCatagory">
-        <p>One</p>
-      </div>
-      <div className="itemCatagory">
-        <p>One</p>
-      </div>
-      <div className="itemCatagory">
-        <p>One</p>
-      </div>
-      <div className="itemCatagory">
-        <p>One</p>
-      </div>
+      {categories?.map((category: any) => (
+        <div className="itemCatagory itemCatagoryactive">
+          <p>{category?.title}</p>
+        </div>
+      ))}
     </div>
   );
 };
