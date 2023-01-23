@@ -7,6 +7,15 @@ export const getBlogs = async (type: any) => {
   );
   return data;
 };
+export const getBlogsByCategoryApi = async (
+  category: any,
+  subcategory: any
+) => {
+  const { data } = await request.get(
+    `/blog/get?category=${category}&&subcategory=${subcategory}`
+  );
+  return data;
+};
 export const getBlogCategory = async () => {
   const { data } = await request.get(`/blog/category`);
   return data;

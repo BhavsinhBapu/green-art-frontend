@@ -4,7 +4,6 @@ import { GetServerSideProps } from "next";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { getBlogDetails } from "service/blog";
 const BlogDetails = ({ blogDetails }: any) => {
-  console.log(blogDetails, "blogDetails");
   return (
     <div className="container">
       <div className="row">
