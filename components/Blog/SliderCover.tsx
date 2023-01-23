@@ -1,4 +1,5 @@
 import moment from "moment";
+import Link from "next/link";
 import React from "react";
 import Slider from "react-slick";
 const SliderCover = ({ featuredblogs }: any) => {
@@ -22,7 +23,7 @@ const SliderCover = ({ featuredblogs }: any) => {
       </div>
       <Slider {...settings}>
         {featuredblogs.map((featuredblog: any) => (
-          <div>
+          <Link href={"/blog/" + featuredblog?.post_id}>
             <div className="row SliderBlog">
               <div className="col-sm-6">
                 <img className="h-100" src={featuredblog?.thumbnail} />
@@ -40,7 +41,7 @@ const SliderCover = ({ featuredblogs }: any) => {
                 </div>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </Slider>
     </div>

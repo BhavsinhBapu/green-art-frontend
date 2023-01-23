@@ -11,3 +11,8 @@ export const getBlogCategory = async () => {
   const { data } = await request.get(`/blog/category`);
   return data;
 };
+
+export const getBlogDetails = async (id: any) => {
+  const { data } = await request.get(`/blog/blog-details?id=${id}`);
+  return data;
+};
