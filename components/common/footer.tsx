@@ -33,8 +33,7 @@ const Footer = ({ customPageData, socialData, copyright_text }: any) => {
                               <a
                                 href={item.page_link}
                                 target="_blank"
-                                rel="noreferrer"
-                              >
+                                rel="noreferrer">
                                 {item.title}
                               </a>
                             )}
@@ -64,8 +63,7 @@ const Footer = ({ customPageData, socialData, copyright_text }: any) => {
                               <a
                                 href={item.page_link}
                                 target="_blank"
-                                rel="noreferrer"
-                              >
+                                rel="noreferrer">
                                 {item.title}
                               </a>
                             )}
@@ -95,8 +93,7 @@ const Footer = ({ customPageData, socialData, copyright_text }: any) => {
                               <a
                                 href={item.page_link}
                                 target="_blank"
-                                rel="noreferrer"
-                              >
+                                rel="noreferrer">
                                 {item.title}
                               </a>
                             )}
@@ -119,8 +116,7 @@ const Footer = ({ customPageData, socialData, copyright_text }: any) => {
                         <a
                           href={social.media_link}
                           target="_blank"
-                          rel="noreferrer"
-                        >
+                          rel="noreferrer">
                           <img
                             src={social.media_icon}
                             alt={social.media_title}

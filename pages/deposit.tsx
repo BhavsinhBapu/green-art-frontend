@@ -97,8 +97,7 @@ const Deposit = ({ customPageData, socialData, copyright_text }: any) => {
                     fullScreen === false
                       ? "col-lg-8 col-sm-12"
                       : "col-lg-12 col-sm-12"
-                  }`}
-                >
+                  }`}>
                   {parseInt(selectedMethod.method) === WALLET_DEPOSIT ? (
                     <WalletDeposit
                       walletlist={depositInfo.wallet_list}
