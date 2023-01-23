@@ -7,9 +7,7 @@ import NotLoggedin from "./notLoggedin";
 
 const TradeOrder = ({ tradeOrder, tradeOrderHistory }: any) => {
   const { t } = useTranslation("common");
-  const { dashboard } = useSelector(
-    (state: RootState) => state.exchange
-  );
+  const { dashboard } = useSelector((state: RootState) => state.exchange);
   const { isLoggedIn } = useSelector((state: RootState) => state.user);
   return (
     <div
@@ -35,7 +33,7 @@ const TradeOrder = ({ tradeOrder, tradeOrderHistory }: any) => {
               </th>
               <th scope="col">
                 {" "}
-                {t("Processed")}({dashboard?.order_data?.trade_coin})
+                {t("Processed")}({dashboard?.order_data?.base_coin})
               </th>
               <th scope="col">{t("Created At")}</th>
             </tr>
@@ -43,7 +41,7 @@ const TradeOrder = ({ tradeOrder, tradeOrderHistory }: any) => {
           <tbody>
             {tradeOrderHistory?.map((order: any, index: number) => (
               <tr key={index}>
-                <td>{parseInt(order.transaction_id)}</td>
+                <td>{order.transaction_id}</td>
                 <td>{parseFloat(order.fees).toFixed(8)}</td>
                 <td>{order.amount}</td>
                 <td>{order.price}</td>

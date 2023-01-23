@@ -31,24 +31,6 @@ const NotificationPage = ({
           {t("All notifications")}
         </h2>
       </div>
-      {/* <div className="container notification-continer">
-        {notificationData.map((item: any, index: any) => (
-          <div className="notification-container" key={index}>
-            <p className="notification-time">
-              {moment(item.created_at).format("DD MMM YYYY")}
-            </p>
-            <div className="notification-body">
-              <div className="notificationicon"></div>
-              <div>
-                <h5 className="text-black">{item?.title}</h5>
-                <p className="title-body-notifination text-black">
-                  {item?.notification_body}
-                </p>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div> */}
 
       <div className="notification-section marginLeftRight">
         <div className="container">
@@ -83,7 +65,9 @@ const NotificationPage = ({
                 </div>
               ))
             ) : (
-              <p className="text-center notificationNotFound">{t("No data found!")}</p>
+              <p className="text-center notificationNotFound">
+                {t("No Notification!")}
+              </p>
             )}
           </div>
         </div>

@@ -68,7 +68,7 @@ const DeposiAndWithdraw = ({
           address: response.address,
         });
       } else if (response.success === false) {
-      router.push("/user/my-wallet");
+        router.push("/user/my-wallet");
       }
     }
   };
@@ -94,7 +94,6 @@ const DeposiAndWithdraw = ({
       faqs?.length <= 0 &&
       getProcessData?.data?.progress_status_list?.length <= 0
     ) {
-      console.log(faqs?.length);
       setFullPage(true);
     }
   };
@@ -103,16 +102,19 @@ const DeposiAndWithdraw = ({
     const processData = await MyWalletProcessSidebar(String(router.query.id));
     setProcessData(processData);
   };
+  let WithdrawAndDeposit = false;
   useEffect(() => {
     setFaqs(
       router.query.id === MY_WALLET_DEPOSIT_TYPE ? depositFaq : withdrawFaq
     );
     getProcess();
-
-    handleWithdrawAndDeposit(
-      String(router.query.id),
-      Number(router.query.coin_id)
-    );
+    if (WithdrawAndDeposit === false) {
+      handleWithdrawAndDeposit(
+        String(router.query.id),
+        Number(router.query.coin_id)
+      );
+      WithdrawAndDeposit = true;
+    }
   }, [dependecy]);
   useEffect(() => {
     if (
