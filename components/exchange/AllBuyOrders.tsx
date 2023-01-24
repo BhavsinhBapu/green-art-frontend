@@ -2,16 +2,17 @@ import React, { useEffect } from "react";
 import Tooltip from "rc-tooltip";
 import "rc-tooltip/assets/bootstrap.css";
 import { useDispatch } from "react-redux";
-import { setBuyAmount, setBuyPrice, setSellAmount } from "state/reducer/exchange";
+import { setBuyAmount, setBuyPrice, setSellAmount, setSellPrice } from "state/reducer/exchange";
 import useTranslation from "next-translate/useTranslation";
 const AllBuyOrders = ({ OpenBookBuy, show }: any) => {
   const { t } = useTranslation("common");
   const [buyData, setBuyData] = React.useState<any>([]);
   const dispatch = useDispatch();
   const changeSellPrice = (price: number, amount: number) => {
-    dispatch(setBuyPrice(price));
+    dispatch(setSellPrice(price));
+    dispatch(setSellAmount(amount));
     dispatch(setBuyAmount(amount));
-    dispatch(setSellAmount(0));
+    dispatch(setBuyPrice(price));
   };
   const [summary, setSummary] = React.useState({
     amount: 0,
@@ -21,7 +22,6 @@ const AllBuyOrders = ({ OpenBookBuy, show }: any) => {
     const Array = show ? [...OpenBookBuy].slice(0, show) : [...OpenBookBuy];
     setBuyData(Array);
     return () => {
-      // console.log("cleaned up");
     };
   }, [OpenBookBuy]);
 

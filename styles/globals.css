@@ -11,6 +11,12 @@
   height: 150px;
   width: 300px;
 }
+@media (prefers-color-scheme: dark) {
+  body {
+    color: #fff;
+    background: #fff !important;
+  }
+}
 
 .DemoPickerWrapper {
   padding: 0 12px;

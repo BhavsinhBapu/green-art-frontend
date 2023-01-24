@@ -10,6 +10,10 @@ import {
 } from "service/landing-page";
 //@ts-ignore
 import sanitizeHtml from "sanitize-html";
+import UnAuthNav from "components/common/unAuthNav";
+import { useSelector } from "react-redux";
+import { RootState } from "state/store";
+import Navbar from "components/common/navbar";
 const Bannerdetails = ({
   details,
   status,
@@ -18,6 +22,9 @@ const Bannerdetails = ({
   copyright_text,
 }: any) => {
   const { t } = useTranslation("common");
+  const { isLoggedIn, user, logo } = useSelector(
+    (state: RootState) => state.user
+  );
   const clean = (dirty: any) => {
     return sanitizeHtml(dirty, {
       allowedTags: [
@@ -62,16 +69,20 @@ const Bannerdetails = ({
 
   if (status === false) {
     return (
-      <div className="container ">
-        <div className="section-wrapper-withHtml text-center">
-          <h4>{t("404 not found")}</h4>
+      <div>
+        {isLoggedIn ? <Navbar /> : <UnAuthNav logo={logo} />}
+        <div className="notFound-container">
+          {/* <h1 className="">404</h1> */}
+          <img src="/not_found.svg" height={300} alt="" />
+          <p className="">Content Not Found</p>
         </div>
       </div>
     );
   }
   return (
-    <>
-      <div className="container mb-5">
+    <div>
+      {isLoggedIn ? <Navbar /> : <UnAuthNav logo={logo} />}
+      <div className="container mb-5 mt-5">
         <div className="section-wrapper-withHtml ">
           <img src={details.image} />
           <h1 className="display-4 mt-3">{details.title}</h1>
@@ -91,7 +102,7 @@ const Bannerdetails = ({
         socialData={socialData}
         copyright_text={copyright_text}
       />
-    </>
+    </div>
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {

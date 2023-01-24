@@ -332,7 +332,7 @@ const SwapCoin: NextPage = ({
                             </span>
                           </li>
                           <li>
-                            <span>{t("You will spend")}</span>
+                            <span>{t("You will get")}</span>
 
                             <span className="spend">
                               {parseFloat(rate.convert_rate)}

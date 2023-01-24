@@ -7,6 +7,8 @@ import { useEffect, useState, useRef } from "react";
 import { toast } from "react-toastify";
 import { customPage, landingPage } from "service/landing-page";
 import { getReferral } from "service/refer";
+
+
 const Referral: NextPage = ({
   customPageData,
   socialData,
@@ -68,8 +70,7 @@ const Referral: NextPage = ({
                   navigator.clipboard.writeText(referral);
                   toast.success(t("Copied to clipboard"));
                   selectReference.current.select();
-                }}
-              >
+                }}>
                 <i className="fa fa-clone" />
               </button>
             </div>
@@ -94,32 +95,28 @@ const Referral: NextPage = ({
               <div className="table-responsive">
                 <table
                   className="table cp-user-custom-table table-borderless text-center dataTable no-footer"
-                  id="DataTables_Table_0"
-                >
+                  id="DataTables_Table_0">
                   <thead>
                     <tr>
                       <th
                         className="referral-level"
                         rowSpan={1}
                         colSpan={1}
-                        aria-label="Level 1"
-                      >
+                        aria-label="Level 1">
                         {t("Level 1")}
                       </th>
                       <th
                         className="referral-level"
                         rowSpan={1}
                         colSpan={1}
-                        aria-label="Level 2"
-                      >
+                        aria-label="Level 2">
                         {t("Level 2")}
                       </th>
                       <th
                         className="referral-level"
                         rowSpan={1}
                         colSpan={1}
-                        aria-label="Level 3"
-                      >
+                        aria-label="Level 3">
                         {t("Level 3")}
                       </th>
                     </tr>

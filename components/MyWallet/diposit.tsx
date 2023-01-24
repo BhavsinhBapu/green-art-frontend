@@ -84,7 +84,16 @@ export const DipositComponent = ({
                   </div>
                 )}
               </div>
-
+              {responseData?.wallet.coin_type !== "USDT" && (
+                <div className="wallet-addres">
+                  <h5>{t("Network Name")}</h5>
+                  <div className="coin-list-item">
+                    <p className="waring-wallet-text">
+                      {responseData?.deposit?.network_name}
+                    </p>
+                  </div>
+                </div>
+              )}
               <div className="wallet-addres">
                 <h5>{t("Address")}</h5>
                 <div className="coin-list-item">
@@ -102,6 +111,11 @@ export const DipositComponent = ({
                     {responseData?.address &&
                       responseData?.wallet.coin_type !== "USDT" && (
                         <QRCode value={responseData?.address} size={150} />
+                      )}
+
+                    {selectedNetwork?.address &&
+                      responseData?.wallet.coin_type === "USDT" && (
+                        <QRCode value={selectedNetwork?.address} size={150} />
                       )}
 
                     <div className="copy-box">

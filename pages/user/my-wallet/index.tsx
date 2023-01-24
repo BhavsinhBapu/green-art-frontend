@@ -1,10 +1,7 @@
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import type { GetServerSideProps, NextPage } from "next";
-import DepositTab from "components/wallet/DepositTab";
-import WirhdrawTab from "components/wallet/WirhdrawTab";
 import { toast } from "react-toastify";
 import React, { useEffect, useState } from "react";
-import { formateZert, formatCurrency } from "common";
 import { IoWalletOutline } from "react-icons/io5";
 import { TiArrowRepeat } from "react-icons/ti";
 
@@ -15,9 +12,7 @@ import {
 
 import {
   SearchObjectArrayFuesJS,
-  WalletDepositApiAction,
   WalletListApiAction,
-  WalletWithdrawApiAction,
 } from "state/actions/wallet";
 import Loading from "components/common/TableLoading";
 import Link from "next/link";
@@ -278,27 +273,28 @@ const MyWallet: NextPage = ({
                                         </div>
                                       )}
                                     </li>
-                                    {Changeable.length >= 2 ? (
-                                      <Link
-                                        href={`/user/swap-coin?coin_id=${item.id}`}
-                                      >
-                                        <li className="toolTip" title="swap">
+                                    {parseInt(settings?.swap_status) === 1 &&
+                                      (Changeable.length >= 2 ? (
+                                        <Link
+                                          href={`/user/swap-coin?coin_id=${item.id}`}
+                                        >
+                                          <li className="toolTip" title="swap">
+                                            <TiArrowRepeat size={25} />
+                                          </li>
+                                        </Link>
+                                      ) : (
+                                        <li
+                                          className="toolTip"
+                                          title="swap"
+                                          onClick={() => {
+                                            toast.error(
+                                              "Two coins are required to swap"
+                                            );
+                                          }}
+                                        >
                                           <TiArrowRepeat size={25} />
                                         </li>
-                                      </Link>
-                                    ) : (
-                                      <li
-                                        className="toolTip"
-                                        title="swap"
-                                        onClick={() => {
-                                          toast.error(
-                                            "Two coins are required to swap"
-                                          );
-                                        }}
-                                      >
-                                        <TiArrowRepeat size={25} />
-                                      </li>
-                                    )}
+                                      ))}
                                   </ul>
                                 </div>
                               </td>

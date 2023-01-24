@@ -135,6 +135,15 @@
   .faq-wallet-section {
     margin-top: 20px;
   }
+  .bank-table-header {
+    flex-wrap: wrap;
+  }
+  .deposit-conatiner {
+    padding: 0px;
+  }
+  .section-wrapper {
+    padding: 15px;
+  }
 
   .appy-form {
     width: 100%;
@@ -142,6 +151,12 @@
   }
   .radio-item {
     display: block;
+  }
+  .ico-tokenCreate {
+    margin: 15px 15px 30px 15px;
+    /* box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; */
+    padding: 30px 10px;
+    border-radius: 5px;
   }
   .userActive:before {
     height: 20px;

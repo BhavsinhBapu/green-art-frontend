@@ -56,7 +56,7 @@ const TradesTable = ({ marketTrades }: any) => {
         </tr>
       ) : (
         trades?.map((item: any, index: number) => (
-          <tr className="odd" key={index}>
+          <tr className="odd dataTable-white" key={index}>
             <td>
               <div className={"asset"}>
                 <span
