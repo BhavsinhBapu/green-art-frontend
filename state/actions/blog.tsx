@@ -1,4 +1,5 @@
 import { TYPE_BLOG_FEATURED, TYPE_BLOG_RECENT } from "helpers/core-constants";
+import { toast } from "react-toastify";
 import {
   getBlogCategory,
   getBlogDetails,
@@ -24,8 +25,24 @@ export const PostCommentAction = async (
   email: string,
   website: string,
   message: string,
-  post_id: string
+  post_id: string,
+  setCommentList: any,
+  setLoading: any,
+  setPostComment: any
 ) => {
+  setLoading(true);
+  if (!name || !email || !website || !message) {
+    toast.error("Please fillup all the fields");
+    setLoading(false);
+    return;
+  }
   const Response = await postComment(name, email, website, message, post_id);
-  console.log(Response, "");
+  setCommentList(Response.data);
+  setPostComment({
+    name: "",
+    email: "",
+    website: "",
+    message: "",
+  });
+  setLoading(false);
 };

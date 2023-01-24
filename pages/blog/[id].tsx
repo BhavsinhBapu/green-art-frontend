@@ -5,7 +5,6 @@ import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { getBlogDetails } from "service/blog";
 import CommentSection from "components/Blog/CommentSection";
 const BlogDetails = ({ blogDetails }: any) => {
-  console.log(blogDetails, "blogDetails");
   return (
     <div className="container">
       <div className="row">
