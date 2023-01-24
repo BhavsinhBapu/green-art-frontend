@@ -11,7 +11,6 @@ const CommentSection = ({ blogDetails }: any) => {
   });
   const [loading, setLoading] = useState(false);
   const [commentList, setCommentList] = useState(blogDetails?.data?.comments);
-  console.log(blogDetails?.data?.comments, "blogDetails?.data?.comments");
   useEffect(() => {
     setCommentList(blogDetails?.data?.comments);
   }, [blogDetails?.data?.comments]);

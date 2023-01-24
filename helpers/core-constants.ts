@@ -60,3 +60,7 @@ export const PHASE_SORT_BY_FUTURE = 4;
 export const TYPE_BLOG_RECENT = 1;
 export const TYPE_BLOG_POPULER = 2;
 export const TYPE_BLOG_FEATURED = 3;
+
+//news
+export const TYPE_NEWS_RECENT = 1;
+export const TYPE_NEWS_POPULER = 2;
