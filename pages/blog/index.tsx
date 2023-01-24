@@ -16,14 +16,19 @@ const index = ({
   recentBlogs,
   categories,
 }: any) => {
-  console.log(featuredBlogs, "featuredBlogs");
-  console.log(recentBlogs, "recentBlogs");
+  const [loading, setLoading] = useState(false);
+  const [recentBlogsState, setRecentBlogState] = useState(recentBlogs);
   return (
     <>
       <div className="container">
         <SliderCover featuredblogs={featuredBlogs} />
-        <TabSection categories={categories} />
-        <CardSection blogs={recentBlogs} />
+        <TabSection
+          categories={categories}
+          setRecentBlogState={setRecentBlogState}
+          setLoading={setLoading}
+        />
+
+        <CardSection blogs={recentBlogsState} loading={loading} />
       </div>
       <Footer
         customPageData={customPageData}
