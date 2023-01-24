@@ -12054,27 +12054,78 @@ label.upload-file-btn.press-enter {
 }
 
 .SliderBlog {
-    height: 300px;
+    height: 250px;
+    width: 100%;
+}
+
+.blogSlider ul li button:before {
+    background-color: var(--primary-color);
+    height: 4px;
+    width: 24px;
+    overflow: hidden;
+    margin: 20px 0px;
+}
+
+.blogSliderText h3 {
+    font-size: 40px;
+}
+
+.blogSliderText p {
+    color: var(--text-primary-color-3);
+    line-height: 24px;
+    padding: 16px 0px;
+}
+
+.blogSliderText small {
+    color: var(--primary-color);
+}
+
+.blogTab {
+    display: flex;
+    gap: 8px;
 }
 
 .itemCatagory {
-    padding: 30px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
-.itemCatagory p {
-    font-size: 22px;
+    color: var(--text-primary-color-2);
+    padding: 4px 16px;
+    background-color: var(--color-pallet-1);
+    border: 0;
+    border-radius: 2px;
 }
 
 .itemCatagoryactive {
-    background-color: var(--footer-background-color);
+    background-color: var(--primary-color);
+}
+
+.blogCard {
+    background-color: var(--background-color);
+}
+
+.blogCard:hover {
+    transition: 0.3s;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 .newsCategory {
     display: flex;
     flex-flow: row wrap;
     gap: 8px;
+}
+
+.blogPaginate li a {
+    border: 0;
+    color: var(--font-color);
+    background-color: transparent;
+}
+
+.blogPaginate li a:hover {
+    color: var(--bColor);
+    transition: 0.3s;
+}
+
+.blogPaginationActive {
+    background-color: var(--primary-color);
+    border-radius: 3px;
 }
 
 .newsCategory li a {
