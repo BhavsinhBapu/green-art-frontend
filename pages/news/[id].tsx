@@ -1,14 +1,43 @@
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import { BiChevronLeft } from "react-icons/bi";
-import { BsTwitter } from "react-icons/bs";
+import {
+  EmailShareButton,
+  FacebookIcon,
+  FacebookShareButton,
+  HatenaShareButton,
+  InstapaperIcon,
+  InstapaperShareButton,
+  LineShareButton,
+  LinkedinShareButton,
+  LivejournalShareButton,
+  MailruShareButton,
+  OKShareButton,
+  PinterestShareButton,
+  PocketShareButton,
+  RedditIcon,
+  RedditShareButton,
+  TelegramShareButton,
+  TumblrShareButton,
+  TwitterIcon,
+  TwitterShareButton,
+  ViberShareButton,
+  VKShareButton,
+  WhatsappIcon,
+  WhatsappShareButton,
+  WorkplaceShareButton,
+} from "react-share";
 import { FaFacebookF } from "react-icons/fa";
 import { AiOutlineReddit } from "react-icons/ai";
 import { FaTelegramPlane } from "react-icons/fa";
+import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
+import { getNewsDetails } from "service/news";
+import { GetServerSideProps } from "next";
+import { formateData } from "common";
 
-const NewsDetails = () => {
+const NewsDetails = ({ newsDetails }: any) => {
   const { t } = useTranslation("common");
-
+  console.log(newsDetails, "newsDetails");
   return (
     <>
       <div className="container">
@@ -16,7 +45,7 @@ const NewsDetails = () => {
           <a>
             <h3 className="pb-2 newsDetailsTitle d-flex align-items-center">
               <BiChevronLeft />
-              {t("Top news")}
+              {t("Back")}
             </h3>
           </a>
         </Link>
@@ -25,20 +54,15 @@ const NewsDetails = () => {
         <div className="row">
           <div className="col-md-8">
             <div className="newsCardText mt-4">
-              <h3>New year, same old Bitcoin…</h3>
-              <small>2022-11-14 07:55</small>
-              <p>
-                We break down the convert portal transactions to gauge where the
-                market is each week. We notice a pattern with the top 3
-                consisting of stable coin swaps, crypto to stablecoin and
-                stablecoin to crypto. When the market is quiet, seeing extended
-                movements stablecoin swaps usually top the list with users
-                transacting between BUSD and USDT with tight spreads. On the
-                flipside, when the market has seen a period of expansion (up or
-                down), we will usually see crypto to stablecoin or stablecoin to
-                crypto transactions top the list, as users will enter and exit
-                positions.
-              </p>
+              <h3>{newsDetails?.details?.title}</h3>
+              <small>{formateData(newsDetails?.details?.created_at)}</small>
+              <img src={newsDetails?.details?.thumbnail} alt="" />
+              <div
+                className="mt-4"
+                dangerouslySetInnerHTML={{
+                  __html: newsDetails?.details?.body,
+                }}
+              ></div>
             </div>
             <div className="row">
               <div className="col-md-8 mx-auto py-4">
@@ -54,16 +78,66 @@ const NewsDetails = () => {
             <h4 className="mt-4 ">{t("Share")}</h4>
             <div className="my-3 newsShare d-flex align-items-center">
               <a href="">
-                <BsTwitter />
+                 
+                <FacebookShareButton
+                  url={
+                    process.env.NEXT_PUBLIC_HOSTED_CLIENT_URL +
+                    "news/" +
+                    newsDetails?.details?.post_id
+                  }
+                  quote={"Share on facebook"}
+                  hashtag="#muo"
+                >
+                          
+                  <FacebookIcon size={32} round />
+                        
+                </FacebookShareButton>
               </a>
               <a href="">
-                <FaFacebookF />
+                <TwitterShareButton
+                  url={
+                    process.env.NEXT_PUBLIC_HOSTED_CLIENT_URL +
+                    "news/" +
+                    newsDetails?.details?.post_id
+                  }
+                >
+                          
+                  <TwitterIcon size={32} round />
+                        
+                </TwitterShareButton>
               </a>
               <a href="">
-                <AiOutlineReddit />
+                <RedditShareButton
+                  url={
+                    process.env.NEXT_PUBLIC_HOSTED_CLIENT_URL +
+                    "news/" +
+                    newsDetails?.details?.post_id
+                  }
+                >
+                  <RedditIcon size={32} round />
+                </RedditShareButton>
               </a>
               <a href="">
-                <FaTelegramPlane />
+                <InstapaperShareButton
+                  url={
+                    process.env.NEXT_PUBLIC_HOSTED_CLIENT_URL +
+                    "news/" +
+                    newsDetails?.details?.post_id
+                  }
+                >
+                  <InstapaperIcon size={32} round />
+                </InstapaperShareButton>
+              </a>
+              <a href="">
+                <WhatsappShareButton
+                  url={
+                    process.env.NEXT_PUBLIC_HOSTED_CLIENT_URL +
+                    "news/" +
+                    newsDetails?.details?.post_id
+                  }
+                >
+                  <WhatsappIcon size={32} round />
+                </WhatsappShareButton>
               </a>
             </div>
           </div>
@@ -71,5 +145,16 @@ const NewsDetails = () => {
       </div>
     </>
   );
+};
+export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
+  await SSRAuthCheck(ctx, "/news");
+  const { id } = ctx.params;
+  const newsDetails = await getNewsDetails(id);
+  console.log(newsDetails, "newsDetails");
+  return {
+    props: {
+      newsDetails: newsDetails.data,
+    },
+  };
 };
 export default NewsDetails;
