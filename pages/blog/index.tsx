@@ -1,3 +1,4 @@
+import BlogPaginate from "components/Blog/BlogPaginate";
 import CardSection from "components/Blog/CardSection";
 import SliderCover from "components/Blog/SliderCover";
 import TabSection from "components/Blog/TabSection";
@@ -18,8 +19,18 @@ const index = ({
 }: any) => {
   const [loading, setLoading] = useState(false);
   const [recentBlogsState, setRecentBlogState] = useState(recentBlogs);
+
   return (
     <>
+      <div className=" py-3">
+        <div className="container">
+          <h2>Tradex Blog</h2>
+          <p>
+            Stay up to date with the latest stories and commentary brought to
+            you by Binance, the world's leading blockchain and crypto ecosystem.
+          </p>
+        </div>
+      </div>
       <div className="container">
         <SliderCover featuredblogs={featuredBlogs} />
         <TabSection
@@ -27,7 +38,10 @@ const index = ({
           setRecentBlogState={setRecentBlogState}
           setLoading={setLoading}
         />
+
         <CardSection blogs={recentBlogsState} loading={loading} />
+
+        <BlogPaginate />
       </div>
       <Footer
         customPageData={customPageData}
