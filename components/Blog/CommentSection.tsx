@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { PostCommentAction } from "state/actions/blog";
 
 const CommentSection = ({ blogDetails }: any) => {
@@ -9,7 +9,12 @@ const CommentSection = ({ blogDetails }: any) => {
     message: "",
     post_id: "",
   });
+  const [loading, setLoading] = useState(false);
   const [commentList, setCommentList] = useState(blogDetails?.data?.comments);
+  console.log(blogDetails?.data?.comments, "blogDetails?.data?.comments");
+  useEffect(() => {
+    setCommentList(blogDetails?.data?.comments);
+  }, [blogDetails?.data?.comments]);
   const onSubmit = (e: any) => {
     e.preventDefault();
     PostCommentAction(
@@ -17,7 +22,10 @@ const CommentSection = ({ blogDetails }: any) => {
       postComment.email,
       postComment.website,
       postComment.message,
-      blogDetails?.data?.details?.post_id
+      blogDetails?.data?.details?.post_id,
+      setCommentList,
+      setLoading,
+      setPostComment
     );
   };
   return (
@@ -25,21 +33,14 @@ const CommentSection = ({ blogDetails }: any) => {
       <div className="container">
         <h2>Comments</h2>
         <ul className="list-group">
-          <li className="list-group-item">
-            <h4>John Doe</h4>
-            <p>This is a great article!</p>
-            <small>January 1, 2020</small>
-          </li>
-          <li className="list-group-item">
-            <h4>Jane Smith</h4>
-            <p>I agree, very informative.</p>
-            <small>January 2, 2020</small>
-          </li>
-          <li className="list-group-item">
-            <h4>Bob Johnson</h4>
-            <p>Thanks for sharing.</p>
-            <small>January 3, 2020</small>
-          </li>
+          {commentList?.map((comment: any) => (
+            <li className="list-group-item">
+              <h4>{comment?.email}</h4>
+              <small>{comment.name}</small>
+              <p>{comment.message}</p>
+              <a href={comment.website}>{comment.website}</a>
+            </li>
+          ))}
         </ul>
       </div>
       <div className="container">
@@ -107,8 +108,8 @@ const CommentSection = ({ blogDetails }: any) => {
               }}
             ></textarea>
           </div>
-          <button type="submit" className="btn btn-primary">
-            Submit
+          <button type="submit" disabled={loading} className="btn btn-primary">
+            {loading ? "Please wait.." : "Submit"}
           </button>
         </form>
       </div>
