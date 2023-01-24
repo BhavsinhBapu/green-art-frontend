@@ -27,7 +27,6 @@ const index = ({
           setRecentBlogState={setRecentBlogState}
           setLoading={setLoading}
         />
-
         <CardSection blogs={recentBlogsState} loading={loading} />
       </div>
       <Footer
@@ -43,8 +42,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
 
   const { data } = await landingPage();
   const { data: customPageData } = await customPage();
-
   const { FeaturedBlogs, RecentBlogs, Categories } = await BlogHomePageAction();
+
   return {
     props: {
       socialData: data.media_list,

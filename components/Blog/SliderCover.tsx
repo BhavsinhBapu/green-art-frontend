@@ -12,33 +12,29 @@ const SliderCover = ({ featuredblogs }: any) => {
   };
   console.log(featuredblogs, "featuredblogs");
   return (
-    <div className="">
-      <div className="overview-area mb-5 ml-2">
-        <div className="overview-left ">
-          <h2 className=" ">Tradex Blog</h2>
-          <h4 className="blance-title ">
-            aaa It is a long established fact that a reader will be distracted
-          </h4>
-        </div>
+    <div>
+      <div className="">
+        <h2>Tradex Blog</h2>
+        <p>
+          Stay up to date with the latest stories and commentary brought to you
+          by Binance, the world's leading blockchain and crypto ecosystem.
+        </p>
       </div>
+      <hr />
       <Slider {...settings}>
         {featuredblogs.map((featuredblog: any) => (
           <Link href={"/blog/" + featuredblog?.post_id}>
-            <div className="row SliderBlog">
-              <div className="col-sm-6">
-                <img className="h-100" src={featuredblog?.thumbnail} />
+            <div className="row">
+              <div className="col-md-5">
+                <img className="SliderBlog" src={featuredblog?.thumbnail} />
               </div>
-              <div className="col-sm-6">
-                <div className="card">
-                  <div className="card-body">
-                    <h1 className="card-title">{featuredblog?.title}</h1>
-                    <p className="card-text">
-                      {moment(featuredblog?.createdAt)
-                        .subtract(1, "days")
-                        .calendar()}
-                    </p>
-                  </div>
-                </div>
+              <div className="col-md-7">
+                <h1 className="card-title">{featuredblog?.title}</h1>
+                <h6>
+                  {moment(featuredblog?.createdAt)
+                    .subtract(1, "days")
+                    .calendar()}
+                </h6>
               </div>
             </div>
           </Link>
