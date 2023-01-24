@@ -4,7 +4,7 @@ import TabSection from "components/Blog/TabSection";
 import Footer from "components/common/footer";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { customPage, landingPage } from "service/landing-page";
 import { BlogHomePageAction } from "state/actions/blog";
 

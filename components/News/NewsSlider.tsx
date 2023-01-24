@@ -1,8 +1,9 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Link from "next/link";
 
-export const NewsSlider = () => {
+export const NewsSlider = ({ PopularNews }: any) => {
   var settings = {
     dots: false,
     infinite: true,
@@ -39,42 +40,13 @@ export const NewsSlider = () => {
     <div className="row">
       <div className="col-12">
         <Slider {...settings}>
-          <div>
-            <img
-              src="https://public.bnbstatic.com/image/cms/content/body/202301/4646133d08c4de0373702e761113abb1.png"
-              alt=""
-            />
-          </div>
-          <div>
-            <img
-              src="https://public.bnbstatic.com/image/cms/content/body/202301/4646133d08c4de0373702e761113abb1.png"
-              alt=""
-            />
-          </div>
-          <div>
-            <img
-              src="https://public.bnbstatic.com/image/cms/content/body/202301/4646133d08c4de0373702e761113abb1.png"
-              alt=""
-            />
-          </div>
-          <div>
-            <img
-              src="https://public.bnbstatic.com/image/cms/content/body/202301/4646133d08c4de0373702e761113abb1.png"
-              alt=""
-            />
-          </div>
-          <div>
-            <img
-              src="https://public.bnbstatic.com/image/cms/content/body/202301/4646133d08c4de0373702e761113abb1.png"
-              alt=""
-            />
-          </div>
-          <div>
-            <img
-              src="https://public.bnbstatic.com/image/cms/content/body/202301/4646133d08c4de0373702e761113abb1.png"
-              alt=""
-            />
-          </div>
+          {PopularNews.map((item: any) => (
+            <Link href={"/news/" + item?.post_id}>
+              <div>
+                <img src={item?.thumbnail} alt="" />
+              </div>
+            </Link>
+          ))}
         </Slider>
       </div>
     </div>
