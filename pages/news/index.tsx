@@ -1,3 +1,5 @@
+import { NewsList } from "components/News/NewsList";
+import { NewsSlider } from "components/News/NewsSlider";
 import useTranslation from "next-translate/useTranslation";
 
 const News = () => {
@@ -5,7 +7,12 @@ const News = () => {
 
   return (
     <>
-      <div className="container">adeadad</div>
+      <div className="container">
+        <h1 className="pb-2">{t("Top news")}</h1>
+        <hr />
+        <NewsSlider />
+        <NewsList />
+      </div>
     </>
   );
 };
