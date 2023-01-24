@@ -3,14 +3,15 @@ import BlogCard from "components/Blog/Card";
 import { GetServerSideProps } from "next";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { getBlogDetails } from "service/blog";
+import CommentSection from "components/Blog/CommentSection";
 const BlogDetails = ({ blogDetails }: any) => {
+  console.log(blogDetails, "blogDetails");
   return (
     <div className="container">
       <div className="row">
         <div className="col-9">
           <div
             dangerouslySetInnerHTML={{
-              // __html: clean(details.description),
               __html: blogDetails?.data?.details?.body,
             }}
           ></div>
@@ -22,6 +23,7 @@ const BlogDetails = ({ blogDetails }: any) => {
           ))}
         </div>
       </div>
+      <CommentSection blogDetails={blogDetails} />
     </div>
   );
 };

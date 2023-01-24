@@ -25,3 +25,20 @@ export const getBlogDetails = async (id: any) => {
   const { data } = await request.get(`/blog/blog-details?id=${id}`);
   return data;
 };
+
+export const postComment = async (
+  name: string,
+  email: string,
+  website: string,
+  message: string,
+  post_id: string
+) => {
+  const { data } = await request.post(`/blog/comment`, {
+    name: name,
+    email: email,
+    website: website,
+    message: message,
+    post_id: post_id,
+  });
+  return data;
+};
