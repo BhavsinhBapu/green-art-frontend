@@ -12,11 +12,10 @@ const SliderCover = ({ featuredblogs }: any) => {
     arrows: false,
     autoplay: true,
   };
-  console.log(featuredblogs, "featuredblogs");
   return (
     <div className="mt-4">
       <Slider className="blogSlider" {...settings}>
-        {featuredblogs.map((featuredblog: any) => (
+        {featuredblogs?.map((featuredblog: any) => (
           <Link href={"/blog/" + featuredblog?.post_id}>
             <a>
               <div className="row mt-4">
