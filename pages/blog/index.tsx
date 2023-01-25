@@ -42,7 +42,7 @@ const index = ({
 
         <CardSection blogs={recentBlogsState} loading={loading} />
 
-        <Pagination />
+        {/* <Pagination /> */}
       </div>
       <Footer
         customPageData={customPageData}

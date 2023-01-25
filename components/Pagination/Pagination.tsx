@@ -1,34 +1,78 @@
-import React from "react";
+import React, { useState } from "react";
+import { LinkTopaginationString } from "state/actions/news";
 
-const Pagination = () => {
+const Pagination = ({
+  setRecentNews,
+  links,
+  setLoading,
+  setLinks,
+  selected,
+}: any) => {
   return (
     <div className="row justify-content-center justify-content-md-end">
       <ul className="pagination Paginate mb-5">
-        <li className="page-item ">
-          <a href="" className="page-link">
-            Previous
-          </a>
-        </li>
-        <li className="page-item">
-          <a href="" className="page-link">
-            1
-          </a>
-        </li>
-        <li className="page-item">
-          <a href="" className="paginationActive shadow page-link">
-            2
-          </a>
-        </li>
-        <li className="page-item">
-          <a href="" className="page-link">
-            3
-          </a>
-        </li>
-        <li className="page-item ">
-          <a href="" className="page-link">
-            Next
-          </a>
-        </li>
+        {links.map((link: any, index: number) =>
+          link.label === "&laquo; Previous" ? (
+            <li
+              key={index}
+              className="page-item "
+              onClick={() => {
+                LinkTopaginationString(
+                  link,
+                  setRecentNews,
+                  setLoading,
+                  setLinks,
+                  selected
+                );
+              }}
+            >
+              <a href="" className="page-link">
+                Previous
+              </a>
+            </li>
+          ) : link.label === "Next &raquo;" ? (
+            <li
+              key={index}
+              className="page-item "
+              onClick={() => {
+                LinkTopaginationString(
+                  link,
+                  setRecentNews,
+                  setLoading,
+                  setLinks,
+                  selected
+                );
+              }}
+            >
+              <a href="" className="page-link">
+                Next
+              </a>
+            </li>
+          ) : (
+            <li
+              key={index}
+              className="page-item"
+              onClick={() => {
+                LinkTopaginationString(
+                  link,
+                  setRecentNews,
+                  setLoading,
+                  setLinks,
+                  selected
+                );
+              }}
+            >
+              <a
+                href=""
+                className={`page-link ${
+                  link.active === true && "paginationActive"
+                }`}
+              >
+                {link.label}
+              </a>
+            </li>
+          )
+        )}
       </ul>
     </div>
   );

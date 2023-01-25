@@ -6,7 +6,6 @@ import { GetServerSideProps } from "next";
 import useTranslation from "next-translate/useTranslation";
 import { useState } from "react";
 import { customPage, landingPage } from "service/landing-page";
-import { getNewsByCategoryApi } from "service/news";
 import { NewsHomePageAction } from "state/actions/news";
 import Pagination from "components/Pagination/Pagination";
 
@@ -19,15 +18,37 @@ const News = ({
   categories,
 }: any) => {
   const { t } = useTranslation("common");
-
+  const [recentNewsData, setRecentNews] = useState(RecentNews.data.data);
+  const [links, setLinks] = useState(
+    RecentNews?.data?.links ? RecentNews?.data?.links : []
+  );
+  const [selected, setSelected] = useState(null);
+  const [loading, setLoading] = useState(false);
   return (
     <>
       <div className="container">
         <h1 className="pb-2">{t("Top news")}</h1>
         <hr />
-        <NewsSlider PopularNews={PopularNews} />
-        <NewsList RecentNews={RecentNews} categories={categories} />
-        <Pagination />
+        <NewsSlider PopularNews={PopularNews.data.data} />
+        <NewsList
+          recentNewsData={recentNewsData}
+          setRecentNews={setRecentNews}
+          categories={categories}
+          loading={loading}
+          setLoading={setLoading}
+          setLinks={setLinks}
+          setSelected={setSelected}
+          selected={selected}
+        />
+        {recentNewsData.length !== 0 && (
+          <Pagination
+            setRecentNews={setRecentNews}
+            links={links}
+            setLinks={setLinks}
+            setLoading={setLoading}
+            selected={selected}
+          />
+        )}
       </div>
       <Footer
         customPageData={customPageData}
@@ -47,8 +68,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
       socialData: data.media_list,
       copyright_text: data?.copyright_text,
       customPageData: customPageData.data,
-      PopularNews: PopularNews?.data,
-      RecentNews: RecentNews?.data,
+      PopularNews: PopularNews,
+      RecentNews: RecentNews,
       categories: Categories?.data,
     },
   };
