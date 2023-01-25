@@ -22,16 +22,16 @@ const index = ({
 
   return (
     <>
-      <div className=" py-2">
+      <div className="">
         <div className="container">
           <h2>Tradex Blog</h2>
           <p>
             Stay up to date with the latest stories and commentary brought to
             you by Binance, the world's leading blockchain and crypto ecosystem.
           </p>
+          <hr />
         </div>
       </div>
-      <hr />
       <div className="container">
         <SliderCover featuredblogs={featuredBlogs} />
         <TabSection

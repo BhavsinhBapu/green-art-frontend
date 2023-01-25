@@ -51,7 +51,7 @@ export const NewsList = ({ RecentNews, categories }: any) => {
                         </div>
                         <div className="col-md-8 pt-3 pt-md-0">
                           <div className="newsCardText">
-                            <h3>{list.title}</h3>
+                            <h3 className="titleText">{list.title}</h3>
                             <small>{formateData(list.created_at)}</small>
                           </div>
                         </div>
