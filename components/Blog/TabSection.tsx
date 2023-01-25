@@ -11,18 +11,17 @@ const TabSection = ({ categories, setRecentBlogState, setLoading }: any) => {
     setLoading(false);
   };
   return (
-    <div className="d-flex mt-5">
+    <div className="mt-5 pt-5 blogTab">
       {categories?.map((category: any) => (
-        <div
+        <button
           className={`itemCatagory ${
             category?.id === selected ? "itemCatagoryactive" : ""
           }`}
           onClick={() => {
             getBlogsByCategory(category?.id);
-          }}
-        >
-          <p>{category?.title}</p>
-        </div>
+          }}>
+          {category?.title}
+        </button>
       ))}
     </div>
   );

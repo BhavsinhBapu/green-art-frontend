@@ -104,8 +104,7 @@ const CommentSection = ({ blogDetails }: any) => {
                   ...postComment,
                   message: e.target.value,
                 });
-              }}
-            ></textarea>
+              }}></textarea>
           </div>
           <button type="submit" disabled={loading} className="btn btn-primary">
             {loading ? "Please wait.." : "Submit"}

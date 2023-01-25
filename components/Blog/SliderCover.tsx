@@ -9,34 +9,38 @@ const SliderCover = ({ featuredblogs }: any) => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    arrows: false,
+    autoplay: true,
   };
   console.log(featuredblogs, "featuredblogs");
   return (
-    <div>
-      <div className="">
-        <h2>Tradex Blog</h2>
-        <p>
-          Stay up to date with the latest stories and commentary brought to you
-          by Binance, the world's leading blockchain and crypto ecosystem.
-        </p>
-      </div>
-      <hr />
-      <Slider {...settings}>
+    <div className="mt-4">
+      <Slider className="blogSlider" {...settings}>
         {featuredblogs.map((featuredblog: any) => (
           <Link href={"/blog/" + featuredblog?.post_id}>
-            <div className="row">
-              <div className="col-md-5">
-                <img className="SliderBlog" src={featuredblog?.thumbnail} />
+            <a>
+              <div className="row mt-4">
+                <div className="col-md-5">
+                  <img
+                    className="SliderBlog rounded"
+                    src={featuredblog?.thumbnail}
+                  />
+                </div>
+                <div className="col-md-7 blogSliderText">
+                  <h3 className="pt-4 pt-md-0">{featuredblog?.title}</h3>
+                  {/* <p>
+                    Grid trading is suitable for volatile and sideways markets
+                    where prices fluctuate within a given range, as it aims to
+                    profit from small price movements. In this article.
+                  </p> */}
+                  <small>
+                    {moment(featuredblog?.createdAt)
+                      .subtract(1, "days")
+                      .calendar()}
+                  </small>
+                </div>
               </div>
-              <div className="col-md-7">
-                <h1 className="card-title">{featuredblog?.title}</h1>
-                <h6>
-                  {moment(featuredblog?.createdAt)
-                    .subtract(1, "days")
-                    .calendar()}
-                </h6>
-              </div>
-            </div>
+            </a>
           </Link>
         ))}
       </Slider>

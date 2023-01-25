@@ -3,24 +3,33 @@ import Link from "next/link";
 import React from "react";
 
 const BlogCard = ({ blog }: any) => {
+  console.log(blog);
+
   return (
-    <Link href={"/blog/" + blog?.post_id}>
-      <div className="card">
-        <img
-          className="card-img-top"
-          src={blog?.thumbnail}
-          alt="Card image cap"
-        />
-        <div className="card-body">
-          <h5 className="card-title">{blog?.title}</h5>
-        </div>
-        <div className="card-footer">
-          <small className="text-muted">
-            {moment(blog?.createdAt).subtract(1, "days").calendar()}
-          </small>
-        </div>
-      </div>
-    </Link>
+    <>
+      <Link href={"/blog/" + blog?.post_id}>
+        <a>
+          <div className="blogCard card p-4">
+            <img
+              className="rounded"
+              src={blog?.thumbnail}
+              alt="Card image cap"
+            />
+            <div className="newsCardText pt-4">
+              <h3>{blog?.title}</h3>
+              <p>
+                Grid trading is suitable for volatile and sideways markets where
+                prices fluctuate within a given range, as it aims to profit from
+                small price movements. In this article.
+              </p>
+              <small>
+                {moment(blog?.createdAt).subtract(1, "days").calendar()}
+              </small>
+            </div>
+          </div>
+        </a>
+      </Link>
+    </>
   );
 };
 

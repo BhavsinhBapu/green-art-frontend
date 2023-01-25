@@ -8,6 +8,7 @@ import { useState } from "react";
 import { customPage, landingPage } from "service/landing-page";
 import { getNewsByCategoryApi } from "service/news";
 import { NewsHomePageAction } from "state/actions/news";
+import Pagination from "components/Pagination/Pagination";
 
 const News = ({
   customPageData,
@@ -26,6 +27,7 @@ const News = ({
         <hr />
         <NewsSlider PopularNews={PopularNews} />
         <NewsList RecentNews={RecentNews} categories={categories} />
+        <Pagination />
       </div>
       <Footer
         customPageData={customPageData}

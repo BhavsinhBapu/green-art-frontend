@@ -38,7 +38,7 @@ const NewsDetails = ({ newsDetails }: any) => {
               ></div>
             </div>
             <div className="row">
-              <div className="col-md-8 mx-auto py-4">
+              <div className="col-md-8 mx-auto my-5">
                 <img
                   className="rounded"
                   src="https://public.bnbstatic.com/image/cms/content/body/202301/4646133d08c4de0373702e761113abb1.png"

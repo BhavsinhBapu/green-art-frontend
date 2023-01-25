@@ -2,6 +2,7 @@ import CardSection from "components/Blog/CardSection";
 import SliderCover from "components/Blog/SliderCover";
 import TabSection from "components/Blog/TabSection";
 import Footer from "components/common/footer";
+import Pagination from "components/Pagination/Pagination";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
 import React, { useState } from "react";
@@ -18,8 +19,19 @@ const index = ({
 }: any) => {
   const [loading, setLoading] = useState(false);
   const [recentBlogsState, setRecentBlogState] = useState(recentBlogs);
+
   return (
     <>
+      <div className=" py-2">
+        <div className="container">
+          <h2>Tradex Blog</h2>
+          <p>
+            Stay up to date with the latest stories and commentary brought to
+            you by Binance, the world's leading blockchain and crypto ecosystem.
+          </p>
+        </div>
+      </div>
+      <hr />
       <div className="container">
         <SliderCover featuredblogs={featuredBlogs} />
         <TabSection
@@ -27,7 +39,10 @@ const index = ({
           setRecentBlogState={setRecentBlogState}
           setLoading={setLoading}
         />
+
         <CardSection blogs={recentBlogsState} loading={loading} />
+
+        <Pagination />
       </div>
       <Footer
         customPageData={customPageData}
