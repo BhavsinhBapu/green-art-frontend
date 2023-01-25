@@ -18,8 +18,7 @@ const index = ({
   categories,
 }: any) => {
   const [loading, setLoading] = useState(false);
-  const [recentBlogsState, setRecentBlogState] = useState(recentBlogs);
-
+  const [recentBlogsState, setRecentBlogState] = useState(recentBlogs.data);
   return (
     <>
       <div className="">
@@ -33,7 +32,7 @@ const index = ({
         </div>
       </div>
       <div className="container">
-        <SliderCover featuredblogs={featuredBlogs} />
+        <SliderCover featuredblogs={featuredBlogs.data} />
         <TabSection
           categories={categories}
           setRecentBlogState={setRecentBlogState}
@@ -42,7 +41,7 @@ const index = ({
 
         <CardSection blogs={recentBlogsState} loading={loading} />
 
-        <Pagination />
+        {/* <Pagination /> */}
       </div>
       <Footer
         customPageData={customPageData}
@@ -64,8 +63,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
       socialData: data.media_list,
       copyright_text: data?.copyright_text,
       customPageData: customPageData.data,
-      featuredBlogs: FeaturedBlogs?.data,
-      recentBlogs: RecentBlogs?.data,
+      featuredBlogs: FeaturedBlogs.data,
+      recentBlogs: RecentBlogs.data,
       categories: Categories?.data,
     },
   };

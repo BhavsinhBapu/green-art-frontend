@@ -7,8 +7,15 @@ import { getNewsDetails } from "service/news";
 import { GetServerSideProps } from "next";
 import { formateData } from "common";
 import SocialShare from "components/common/SocialShare";
+import { customPage, landingPage } from "service/landing-page";
+import Footer from "components/common/footer";
 
-const NewsDetails = ({ newsDetails }: any) => {
+const NewsDetails = ({
+  customPageData,
+  socialData,
+  copyright_text,
+  newsDetails,
+}: any) => {
   const { t } = useTranslation("common");
   console.log(newsDetails, "newsDetails");
   return (
@@ -56,6 +63,11 @@ const NewsDetails = ({ newsDetails }: any) => {
           />
         </div>
       </div>
+      <Footer
+        customPageData={customPageData}
+        socialData={socialData}
+        copyright_text={copyright_text}
+      />
     </>
   );
 };
@@ -63,10 +75,14 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/news");
   const { id } = ctx.params;
   const newsDetails = await getNewsDetails(id);
-  console.log(newsDetails, "newsDetails");
+  const { data } = await landingPage();
+  const { data: customPageData } = await customPage();
   return {
     props: {
       newsDetails: newsDetails.data,
+      socialData: data.media_list,
+      copyright_text: data?.copyright_text,
+      customPageData: customPageData.data,
     },
   };
 };

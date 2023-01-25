@@ -1,14 +1,21 @@
 import { TYPE_NEWS_RECENT } from "helpers/core-constants";
 import request from "lib/request";
-export const getNews = async (type: any) => {
+export const getNews = async (type: any, limit: any, page: any) => {
   const { data } = await request.get(
-    `/news/get?type=${type ? type : TYPE_NEWS_RECENT}`
+    `/news/get?type=${
+      type ? type : TYPE_NEWS_RECENT
+    }&limit=${limit}&page=${page}`
   );
   return data;
 };
-export const getNewsByCategoryApi = async (category: any, subcategory: any) => {
+export const getNewsByCategoryApi = async (
+  category: any,
+  subcategory: any,
+  limit: any,
+  page: any
+) => {
   const { data } = await request.get(
-    `/news/get?category=${category}&&subcategory=${subcategory}`
+    `/news/get?category=${category}&&subcategory=${subcategory}&limit=${limit}&page=${page}`
   );
   return data;
 };

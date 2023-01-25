@@ -1,19 +1,27 @@
 import { formateData } from "common";
+import { NoItemFound } from "components/NoItemFound/NoItemFound";
 import TableLoading from "components/common/TableLoading";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import { useState } from "react";
 import { getNewsByCategoryApi } from "service/news";
 
-export const NewsList = ({ RecentNews, categories }: any) => {
-  const [recentNewsData, setRecentNews] = useState(RecentNews);
-  const [loading, setLoading] = useState(false);
-  const [selected, setSelected] = useState(null);
+export const NewsList = ({
+  recentNewsData,
+  setRecentNews,
+  categories,
+  setLoading,
+  loading,
+  setLinks,
+  setSelected,
+  selected,
+}: any) => {
   const getNewsByCategory = async (id: any) => {
     setLoading(true);
     setSelected(id);
-    const CategoryNews = await getNewsByCategoryApi(id, 0);
-    setRecentNews(CategoryNews.data);
+    const CategoryNews = await getNewsByCategoryApi(id, 0, 5, 1);
+    setRecentNews(CategoryNews?.data?.data);
+    setLinks(CategoryNews?.data?.links);
     setLoading(false);
   };
   const { t } = useTranslation("common");
@@ -30,7 +38,8 @@ export const NewsList = ({ RecentNews, categories }: any) => {
                 }`}
                 onClick={() => {
                   getNewsByCategory(category?.id);
-                }}>
+                }}
+              >
                 {category?.title}
               </li>
             ))}
@@ -53,6 +62,7 @@ export const NewsList = ({ RecentNews, categories }: any) => {
                           <div className="newsCardText">
                             <h3 className="titleText">{list.title}</h3>
                             <small>{formateData(list.created_at)}</small>
+                            <p>{list.description}</p>
                           </div>
                         </div>
                       </div>
@@ -60,7 +70,7 @@ export const NewsList = ({ RecentNews, categories }: any) => {
                   </div>
                 </Link>
               ))}
-            {recentNewsData.length === 0 && <>No item to display</>}
+            {recentNewsData.length === 0 && <NoItemFound />}
           </div>
         )}
       </div>

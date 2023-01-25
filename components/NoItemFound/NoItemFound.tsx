@@ -1,8 +1,11 @@
-export const NoItemFound = () => {
+import useTranslation from "next-translate/useTranslation";
+
+export const NoItemFound = ({ message }: any) => {
+  const { t } = useTranslation("common");
   return (
     <div className="text-center">
-      <img className="w-50" src="/../noItem.png" alt="" />
-      <h3>No Item Found</h3>
+      <img width={200} className="mb-5" src="/../noItem.svg" alt="" />
+      <h3>{message ? message : t("No Item Found")}</h3>
     </div>
   );
 };
