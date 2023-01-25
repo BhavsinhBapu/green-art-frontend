@@ -12198,3 +12198,44 @@ label.upload-file-btn.press-enter {
 .commentShow small {
     color: #0de06d;
 }
+
+.searchBox input {
+    width: 100%;
+    padding: 7px 10px;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    background: var(--main-background-color);
+    color: var(--text-primary-color-2);
+}
+
+.searchBox {
+    position: relative;
+}
+
+.searchBox button {
+    position: absolute;
+    right: 1px;
+    background: var(--main-background-color);
+    border: none;
+    top: 1px;
+    padding: 5px 17px;
+    border-radius: 20px;
+    font-size: 24px;
+    color: var(--text-primary-color-4);
+}
+
+.suggestions {
+    position: absolute;
+    height: 200px;
+    background: var(--card-background-color);
+    width: 90%;
+    z-index: 999;
+    left: 10px;
+    top: 46px;
+    overflow: auto;
+}
+
+.suggestions p:hover {
+    cursor: pointer;
+    background: var(--footer-background-color);
+}

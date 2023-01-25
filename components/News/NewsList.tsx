@@ -38,8 +38,7 @@ export const NewsList = ({
                 }`}
                 onClick={() => {
                   getNewsByCategory(category?.id);
-                }}
-              >
+                }}>
                 {category?.title}
               </li>
             ))}
