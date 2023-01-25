@@ -12,6 +12,7 @@ const BlogDetails = ({
   copyright_text,
   blogDetails,
 }: any) => {
+  console.log(blogDetails?.data?.related?.data, "blogDetails");
   return (
     <>
       <div className="container">
@@ -26,7 +27,7 @@ const BlogDetails = ({
           <div className="col-md-3">
             <h4>More blog from here</h4>
 
-            {blogDetails?.data?.related.map((item: any) => (
+            {blogDetails?.data?.related?.data?.map((item: any) => (
               <div className="row mt-4">
                 <div className="col-12">
                   <BlogCard blog={item} />
@@ -35,7 +36,10 @@ const BlogDetails = ({
             ))}
           </div>
         </div>
-        <CommentSection blogDetails={blogDetails} />
+        <CommentSection
+          comments={blogDetails?.data?.comments}
+          post_id={blogDetails?.data?.details?.post_id}
+        />
       </div>
       <Footer
         customPageData={customPageData}

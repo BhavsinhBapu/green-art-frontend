@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { PostCommentAction } from "state/actions/blog";
 
-const CommentSection = ({ blogDetails }: any) => {
+const CommentSection = ({ comments, post_id }: any) => {
   const [postComment, setPostComment] = useState({
     name: "",
     email: "",
@@ -10,10 +10,10 @@ const CommentSection = ({ blogDetails }: any) => {
     post_id: "",
   });
   const [loading, setLoading] = useState(false);
-  const [commentList, setCommentList] = useState(blogDetails?.data?.comments);
+  const [commentList, setCommentList] = useState(comments);
   useEffect(() => {
-    setCommentList(blogDetails?.data?.comments);
-  }, [blogDetails?.data?.comments]);
+    setCommentList(comments);
+  }, [comments]);
   const onSubmit = (e: any) => {
     e.preventDefault();
     PostCommentAction(
@@ -21,7 +21,7 @@ const CommentSection = ({ blogDetails }: any) => {
       postComment.email,
       postComment.website,
       postComment.message,
-      blogDetails?.data?.details?.post_id,
+      post_id,
       setCommentList,
       setLoading,
       setPostComment
@@ -30,17 +30,18 @@ const CommentSection = ({ blogDetails }: any) => {
   return (
     <div className="row">
       <div className="col-12">
-        <h2 className="pb-2 titleText">Comments</h2>
-        {commentList?.map((comment: any) => (
-          <div className="commentShow mt-3 p-3 p-md-4 rounded">
-            <h5>{comment?.email}</h5>
-            <small>{comment.name}</small>
-            <p className="py-2">{comment.message}</p>
-            <a href={comment.website}>
-              <u>{comment.website}</u>
-            </a>
-          </div>
-        ))}
+        {comments.length > 0 && <h2 className="pb-2 titleText">Comments</h2>}
+        {comments.length > 0 &&
+          commentList?.map((comment: any) => (
+            <div className="commentShow mt-3 p-3 p-md-4 rounded">
+              <h5>{comment?.email}</h5>
+              <small>{comment.name}</small>
+              <p className="py-2">{comment.message}</p>
+              <a href={comment.website}>
+                <u>{comment.website}</u>
+              </a>
+            </div>
+          ))}
       </div>
       <div className="col-12 my-5">
         <div className="row">
@@ -118,7 +119,8 @@ const CommentSection = ({ blogDetails }: any) => {
                         ...postComment,
                         message: e.target.value,
                       });
-                    }}></textarea>
+                    }}
+                  ></textarea>
                 </div>
               </div>
             </div>
