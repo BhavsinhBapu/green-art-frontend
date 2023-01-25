@@ -2,12 +2,13 @@ import CardSection from "components/Blog/CardSection";
 import SliderCover from "components/Blog/SliderCover";
 import TabSection from "components/Blog/TabSection";
 import Footer from "components/common/footer";
+import { Search } from "components/common/search";
 import Pagination from "components/Pagination/Pagination";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
 import React, { useState } from "react";
 import { customPage, landingPage } from "service/landing-page";
-import { BlogHomePageAction } from "state/actions/blog";
+import { BlogHomePageAction, BlogSearchAction } from "state/actions/blog";
 
 const index = ({
   customPageData,
@@ -24,6 +25,7 @@ const index = ({
       <div className="">
         <div className="container">
           <h2>Tradex Blog</h2>
+          <Search searchFunction={BlogSearchAction} linkName={"blog"} />
           <p>
             Stay up to date with the latest stories and commentary brought to
             you by Binance, the world's leading blockchain and crypto ecosystem.

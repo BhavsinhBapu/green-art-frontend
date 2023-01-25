@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import {
   getBlogCategory,
   getBlogDetails,
+  getBlogSearch,
   getBlogs,
   postComment,
 } from "service/blog";
@@ -46,4 +47,8 @@ export const PostCommentAction = async (
     message: "",
   });
   setLoading(false);
+};
+export const BlogSearchAction = async (query: any) => {
+  const response = await getBlogSearch(query);
+  return response;
 };

@@ -47,3 +47,7 @@ export const getBlogNewsSettings = async () => {
   const { data } = await request.get(`/blog-news/settings`);
   return data;
 };
+export const getNewsSearch = async (query:any) => {
+  const { data } = await request.get(`/news/search?value=${query}`);
+  return data;
+};

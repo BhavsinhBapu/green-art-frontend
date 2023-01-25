@@ -44,3 +44,7 @@ export const postComment = async (
   });
   return data;
 };
+export const getBlogSearch = async (query: any) => {
+  const { data } = await request.get(`/blog/search?value=${query}`);
+  return data;
+};

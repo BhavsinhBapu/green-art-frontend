@@ -6,6 +6,7 @@ import {
   getNews,
   postCommentNews,
   getNewsByCategoryApi,
+  getNewsSearch,
 } from "service/news";
 
 export const NewsHomePageAction = async () => {
@@ -62,7 +63,6 @@ export const PostCommentAction = async (
     post_id
   );
   setCommentList(Response.data);
-  console.log(Response?.data, "ResponseResponse");
 
   setPostComment({
     name: "",
@@ -71,4 +71,9 @@ export const PostCommentAction = async (
     message: "",
   });
   setLoading(false);
+};
+
+export const NewsSearchAction = async (query: any) => {
+  const response = await getNewsSearch(query);
+  return response;
 };
