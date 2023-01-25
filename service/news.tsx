@@ -34,7 +34,7 @@ export const postCommentNews = async (
   message: any,
   post_id: any
 ) => {
-  const { data } = await request.post(`/blog/comment`, {
+  const { data } = await request.post(`/news/comment`, {
     name: name,
     email: email,
     website: website,

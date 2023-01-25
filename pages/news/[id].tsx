@@ -9,6 +9,8 @@ import { formateData } from "common";
 import SocialShare from "components/common/SocialShare";
 import { customPage, landingPage } from "service/landing-page";
 import Footer from "components/common/footer";
+import CommentSection from "components/Blog/CommentSection";
+import { PostCommentAction } from "state/actions/news";
 
 const NewsDetails = ({
   customPageData,
@@ -17,7 +19,10 @@ const NewsDetails = ({
   newsDetails,
 }: any) => {
   const { t } = useTranslation("common");
-  console.log(newsDetails, "newsDetails");
+  console.log(
+    newsDetails,
+    "newsDetails?.data.details?.post_id"
+  );
   return (
     <>
       <div className="container">
@@ -62,6 +67,11 @@ const NewsDetails = ({
             }
           />
         </div>
+        <CommentSection
+          comments={newsDetails?.comments}
+          post_id={newsDetails?.details?.post_id}
+          PostCommentAction={PostCommentAction}
+        />
       </div>
       <Footer
         customPageData={customPageData}

@@ -62,6 +62,8 @@ export const PostCommentAction = async (
     post_id
   );
   setCommentList(Response.data);
+  console.log(Response?.data, "ResponseResponse");
+
   setPostComment({
     name: "",
     email: "",
