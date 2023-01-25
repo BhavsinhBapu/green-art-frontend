@@ -9,7 +9,8 @@ import { customPage, landingPage } from "service/landing-page";
 import { NewsHomePageAction } from "state/actions/news";
 import Pagination from "components/Pagination/Pagination";
 import { Search } from "components/common/search";
-
+import { getBlogNewsSettings } from "service/news";
+import { NewsSearchAction } from "state/actions/news";
 const News = ({
   customPageData,
   socialData,
@@ -28,7 +29,7 @@ const News = ({
   return (
     <>
       <div className="container">
-        <Search />
+        <Search searchFunction={NewsSearchAction} linkName={"news"} />
         <h1 className="pb-2 sectionTitle">{t("Top news")}</h1>
         <hr />
         <NewsSlider PopularNews={PopularNews.data.data} />
@@ -65,6 +66,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const { data } = await landingPage();
   const { data: customPageData } = await customPage();
   const { Categories, PopularNews, RecentNews } = await NewsHomePageAction();
+  const { data: BlogNewsSettings } = await getBlogNewsSettings();
+
   return {
     props: {
       socialData: data.media_list,
@@ -73,6 +76,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
       PopularNews: PopularNews,
       RecentNews: RecentNews,
       categories: Categories?.data,
+      BlogNewsSettings: BlogNewsSettings,
     },
   };
 };
