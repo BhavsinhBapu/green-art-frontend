@@ -9,10 +9,12 @@ export const getBlogs = async (type: any) => {
 };
 export const getBlogsByCategoryApi = async (
   category: any,
-  subcategory: any
+  subcategory: any,
+  limit: any,
+  page: any
 ) => {
   const { data } = await request.get(
-    `/blog/get?category=${category}&&subcategory=${subcategory}`
+    `/blog/get?category=${category}&&subcategory=${subcategory}&limit=${limit}&page=${page}`
   );
   return data;
 };

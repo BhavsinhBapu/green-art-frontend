@@ -43,3 +43,7 @@ export const postCommentNews = async (
   });
   return data;
 };
+export const getBlogNewsSettings = async () => {
+  const { data } = await request.get(`/blog-news/settings`);
+  return data;
+};

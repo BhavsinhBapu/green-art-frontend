@@ -3,7 +3,7 @@ import Link from "next/link";
 import { BiChevronLeft } from "react-icons/bi";
 
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
-import { getNewsDetails } from "service/news";
+import { getBlogNewsSettings, getNewsDetails } from "service/news";
 import { GetServerSideProps } from "next";
 import { formateData } from "common";
 import SocialShare from "components/common/SocialShare";
@@ -17,10 +17,11 @@ const NewsDetails = ({
   socialData,
   copyright_text,
   newsDetails,
+  BlogNewsSettings,
 }: any) => {
   const { t } = useTranslation("common");
   console.log(
-    newsDetails,
+    BlogNewsSettings.news_comment_enable,
     "newsDetails?.data.details?.post_id"
   );
   return (
@@ -49,29 +50,24 @@ const NewsDetails = ({
                 }}
               ></div>
             </div>
-            <div className="row">
-              <div className="col-md-8 mx-auto my-5">
-                <img
-                  className="rounded"
-                  src="https://public.bnbstatic.com/image/cms/content/body/202301/4646133d08c4de0373702e761113abb1.png"
-                  alt=""
-                />
-              </div>
-            </div>
           </div>
-          <SocialShare
-            url={
-              process.env.NEXT_PUBLIC_HOSTED_CLIENT_URL +
-              "news/" +
-              newsDetails?.details?.post_id
-            }
-          />
+          <div className="col-md-4">
+            <SocialShare
+              url={
+                process.env.NEXT_PUBLIC_HOSTED_CLIENT_URL +
+                "news/" +
+                newsDetails?.details?.post_id
+              }
+            />
+          </div>
         </div>
-        <CommentSection
-          comments={newsDetails?.comments}
-          post_id={newsDetails?.details?.post_id}
-          PostCommentAction={PostCommentAction}
-        />
+        {parseInt(BlogNewsSettings?.news_comment_enable) === 1 && (
+          <CommentSection
+            comments={newsDetails?.comments}
+            post_id={newsDetails?.details?.post_id}
+            PostCommentAction={PostCommentAction}
+          />
+        )}
       </div>
       <Footer
         customPageData={customPageData}
@@ -87,13 +83,15 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const newsDetails = await getNewsDetails(id);
   const { data } = await landingPage();
   const { data: customPageData } = await customPage();
-  return {
-    props: {
-      newsDetails: newsDetails.data,
-      socialData: data.media_list,
-      copyright_text: data?.copyright_text,
-      customPageData: customPageData.data,
-    },
-  };
+  const { data: BlogNewsSettings } = await getBlogNewsSettings();
+    return {
+      props: {
+        newsDetails: newsDetails.data,
+        socialData: data.media_list,
+        copyright_text: data?.copyright_text,
+        customPageData: customPageData.data,
+        BlogNewsSettings: BlogNewsSettings,
+      },
+    };
 };
 export default NewsDetails;

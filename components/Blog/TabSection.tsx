@@ -6,22 +6,23 @@ const TabSection = ({ categories, setRecentBlogState, setLoading }: any) => {
   const getBlogsByCategory = async (id: any) => {
     setLoading(true);
     setSelected(id);
-    const CategoryBlog = await getBlogsByCategoryApi(id, 0);
-    setRecentBlogState(CategoryBlog?.data);
+    const CategoryBlog = await getBlogsByCategoryApi(id, 0, 5, 1);
+    setRecentBlogState(CategoryBlog?.data?.data);
     setLoading(false);
   };
   return (
-    <div className="mt-5 pt-5 blogTab">
+    <div className="newsCategory mt-5">
       {categories?.map((category: any) => (
-        <button
+        <li
           className={`itemCatagory ${
             category?.id === selected ? "itemCatagoryactive" : ""
           }`}
           onClick={() => {
             getBlogsByCategory(category?.id);
-          }}>
+          }}
+        >
           {category?.title}
-        </button>
+        </li>
       ))}
     </div>
   );
