@@ -12,7 +12,7 @@ import {
   WhatsappIcon,
   WhatsappShareButton,
 } from "react-share";
-const SocialShare = (url: string) => {
+const SocialShare = (url: any) => {
   const { t } = useTranslation("common");
 
   return (
