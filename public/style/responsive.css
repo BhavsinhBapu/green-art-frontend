@@ -151,6 +151,12 @@
     .commentTitle h2 {
         width: 500px;
     }
+    .SliderBlog {
+        height: auto;
+    }
+    .blogSliderText h3 {
+        font-size: 26px;
+    }
 }
 
 @media (max-width: 768px) {

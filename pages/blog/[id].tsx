@@ -44,8 +44,7 @@ const BlogDetails = ({
               <div
                 dangerouslySetInnerHTML={{
                   __html: blogDetails?.data?.details?.body,
-                }}
-              ></div>
+                }}></div>
             </div>
           </div>
           <div className="col-md-3">
@@ -56,7 +55,7 @@ const BlogDetails = ({
                 blogDetails?.data?.details?.post_id
               }
             />
-            <h4>More blog from here</h4>
+            <h4 className="mt-5">More blog from here</h4>
 
             {blogDetails?.data?.related?.data?.map((item: any) => (
               <div className="row mt-4">

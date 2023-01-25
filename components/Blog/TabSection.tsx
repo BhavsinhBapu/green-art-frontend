@@ -11,7 +11,7 @@ const TabSection = ({ categories, setRecentBlogState, setLoading }: any) => {
     setLoading(false);
   };
   return (
-    <div className="newsCategory mt-5">
+    <div className="newsCategory mt-5 pt-4">
       {categories?.map((category: any) => (
         <li
           className={`itemCatagory ${
@@ -19,8 +19,7 @@ const TabSection = ({ categories, setRecentBlogState, setLoading }: any) => {
           }`}
           onClick={() => {
             getBlogsByCategory(category?.id);
-          }}
-        >
+          }}>
           {category?.title}
         </li>
       ))}

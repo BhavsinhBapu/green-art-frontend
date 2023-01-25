@@ -10,7 +10,7 @@ const SliderCover = ({ featuredblogs }: any) => {
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
-    autoplay: true,
+    // autoplay: true,
   };
   return (
     <div className="mt-4">
@@ -26,9 +26,7 @@ const SliderCover = ({ featuredblogs }: any) => {
                   />
                 </div>
                 <div className="col-md-7 blogSliderText">
-                  <h3 className="pt-4 pt-md-0 titleText">
-                    {featuredblog?.title}
-                  </h3>
+                  <h3 className="pt-4 pt-md-0">{featuredblog?.title}</h3>
                   <small>
                     {moment(featuredblog?.createdAt)
                       .subtract(1, "days")
