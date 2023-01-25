@@ -20,7 +20,6 @@ const BlogDetails = ({
   blogDetails,
 }: any) => {
   const { t } = useTranslation("common");
-  console.log(blogDetails?.details?.title, "blogDetails");
   return (
     <>
       <div className="container">

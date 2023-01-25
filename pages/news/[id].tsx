@@ -20,10 +20,9 @@ const NewsDetails = ({
   BlogNewsSettings,
 }: any) => {
   const { t } = useTranslation("common");
-  console.log(
-    BlogNewsSettings.news_comment_enable,
-    "newsDetails?.data.details?.post_id"
-  );
+
+  console.log(newsDetails.related.data, "newsDetailsnewsDetailsnewsDetails");
+
   return (
     <>
       <div className="container">
@@ -58,6 +57,26 @@ const NewsDetails = ({
                 newsDetails?.details?.post_id
               }
             />
+
+            {newsDetails?.related?.data.map((item: any) => (
+              <div className="newsCard p-4 mt-2">
+                <a href="">
+                  <div className="row">
+                    <div className="col-12">
+                      <img className="rounded" src={item.thumbnail} alt="" />
+                    </div>
+                    <div className="col-12 pt-3">
+                      <div className="newsCardText">
+                        <h3 className="titleText">{item.title}</h3>
+                        <small>{formateData(item.created_at)}</small>
+                        <p>{item.description}</p>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            ))}
+            {/* 
             <div className="newsCard p-4 mt-2">
               <a href="">
                 <div className="row">
@@ -84,7 +103,8 @@ const NewsDetails = ({
                   </div>
                 </div>
               </a>
-            </div>
+            </div> 
+            */}
           </div>
         </div>
         {parseInt(BlogNewsSettings?.news_comment_enable) === 1 && (
