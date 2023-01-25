@@ -1,9 +1,9 @@
 import React from "react";
 
-const BlogPaginate = () => {
+const Pagination = () => {
   return (
     <div className="row justify-content-center justify-content-md-end">
-      <ul className="pagination blogPaginate mb-5">
+      <ul className="pagination Paginate mb-5">
         <li className="page-item ">
           <a href="" className="page-link">
             Previous
@@ -14,8 +14,8 @@ const BlogPaginate = () => {
             1
           </a>
         </li>
-        <li className="page-item blogPaginationActive shadow">
-          <a href="" className="page-link">
+        <li className="page-item">
+          <a href="" className="paginationActive shadow page-link">
             2
           </a>
         </li>
@@ -34,4 +34,4 @@ const BlogPaginate = () => {
   );
 };
 
-export default BlogPaginate;
+export default Pagination;

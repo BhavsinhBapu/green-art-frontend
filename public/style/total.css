@@ -12080,7 +12080,7 @@ label.upload-file-btn.press-enter {
 
 .newsCategory li {
     color: var(--text-primary-color-2);
-    padding: 10px 25px;
+    padding: 8px 20px;
     list-style: none;
     /* background-color: var(--background-color-hover); */
     display: flex;
@@ -12109,7 +12109,7 @@ label.upload-file-btn.press-enter {
 }
 
 .newsCardText small {
-    /* color: var(--font-color); */
+    color: var(--primary-color);
 }
 
 .slick-next::before {
@@ -12136,7 +12136,6 @@ label.upload-file-btn.press-enter {
 
 .newsShare a {
     font-size: 20px;
-    background-color: var(--color-pallet-1);
     color: var(--white);
     border-radius: 50%;
     height: 30px;
@@ -12147,7 +12146,12 @@ label.upload-file-btn.press-enter {
     justify-content: center;
 }
 
-.newsShare a :hover {
-    color: var(--bColor);
-    transition: 0.3s;
+.Paginate li a {
+    border: none;
+    color: var(--font-color);
+}
+
+.paginationActive {
+    background: var(--primary-color);
+    border-radius: 3px;
 }

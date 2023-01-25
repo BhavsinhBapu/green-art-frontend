@@ -42,9 +42,11 @@ export const NewsSlider = ({ PopularNews }: any) => {
         <Slider {...settings}>
           {PopularNews.map((item: any) => (
             <Link href={"/news/" + item?.post_id}>
-              <div>
-                <img src={item?.thumbnail} alt="" />
-              </div>
+              <a>
+                <div>
+                  <img src={item?.thumbnail} alt="" />
+                </div>
+              </a>
             </Link>
           ))}
         </Slider>

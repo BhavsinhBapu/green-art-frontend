@@ -1,8 +1,8 @@
-import BlogPaginate from "components/Blog/BlogPaginate";
 import CardSection from "components/Blog/CardSection";
 import SliderCover from "components/Blog/SliderCover";
 import TabSection from "components/Blog/TabSection";
 import Footer from "components/common/footer";
+import Pagination from "components/Pagination/Pagination";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
 import React, { useState } from "react";
@@ -22,7 +22,7 @@ const index = ({
 
   return (
     <>
-      <div className=" py-3">
+      <div className=" py-2">
         <div className="container">
           <h2>Tradex Blog</h2>
           <p>
@@ -31,6 +31,7 @@ const index = ({
           </p>
         </div>
       </div>
+      <hr />
       <div className="container">
         <SliderCover featuredblogs={featuredBlogs} />
         <TabSection
@@ -41,7 +42,7 @@ const index = ({
 
         <CardSection blogs={recentBlogsState} loading={loading} />
 
-        <BlogPaginate />
+        <Pagination />
       </div>
       <Footer
         customPageData={customPageData}

@@ -22,20 +22,19 @@ export const NewsList = ({ RecentNews, categories }: any) => {
     <>
       <div className="row">
         <div className="col-12 mb-5 mt-5 d-flex">
-          {categories.map((category: any, index: any) => (
-            <div className="newsCategory">
+          <div className="newsCategory">
+            {categories.map((category: any, index: any) => (
               <li
                 className={`itemCatagory ${
                   category?.id === selected ? "itemCatagoryactive" : ""
                 }`}
                 onClick={() => {
                   getNewsByCategory(category?.id);
-                }}
-              >
+                }}>
                 {category?.title}
               </li>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
         {loading ? (
           <TableLoading />

@@ -61,11 +61,10 @@ const NewsDetails = ({ newsDetails }: any) => {
                 className="mt-4"
                 dangerouslySetInnerHTML={{
                   __html: newsDetails?.details?.body,
-                }}
-              ></div>
+                }}></div>
             </div>
             <div className="row">
-              <div className="col-md-8 mx-auto py-4">
+              <div className="col-md-8 mx-auto my-5">
                 <img
                   className="rounded"
                   src="https://public.bnbstatic.com/image/cms/content/body/202301/4646133d08c4de0373702e761113abb1.png"
@@ -86,8 +85,7 @@ const NewsDetails = ({ newsDetails }: any) => {
                     newsDetails?.details?.post_id
                   }
                   quote={"Share on facebook"}
-                  hashtag="#muo"
-                >
+                  hashtag="#muo">
                           
                   <FacebookIcon size={32} round />
                         
@@ -99,8 +97,7 @@ const NewsDetails = ({ newsDetails }: any) => {
                     process.env.NEXT_PUBLIC_HOSTED_CLIENT_URL +
                     "news/" +
                     newsDetails?.details?.post_id
-                  }
-                >
+                  }>
                           
                   <TwitterIcon size={32} round />
                         
@@ -112,8 +109,7 @@ const NewsDetails = ({ newsDetails }: any) => {
                     process.env.NEXT_PUBLIC_HOSTED_CLIENT_URL +
                     "news/" +
                     newsDetails?.details?.post_id
-                  }
-                >
+                  }>
                   <RedditIcon size={32} round />
                 </RedditShareButton>
               </a>
@@ -123,8 +119,7 @@ const NewsDetails = ({ newsDetails }: any) => {
                     process.env.NEXT_PUBLIC_HOSTED_CLIENT_URL +
                     "news/" +
                     newsDetails?.details?.post_id
-                  }
-                >
+                  }>
                   <InstapaperIcon size={32} round />
                 </InstapaperShareButton>
               </a>
@@ -134,8 +129,7 @@ const NewsDetails = ({ newsDetails }: any) => {
                     process.env.NEXT_PUBLIC_HOSTED_CLIENT_URL +
                     "news/" +
                     newsDetails?.details?.post_id
-                  }
-                >
+                  }>
                   <WhatsappIcon size={32} round />
                 </WhatsappShareButton>
               </a>
