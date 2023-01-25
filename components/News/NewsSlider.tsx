@@ -37,7 +37,7 @@ export const NewsSlider = ({ PopularNews }: any) => {
   };
 
   return (
-    <div className="row">
+    <div className="row mt-4">
       <div className="col-12">
         <Slider {...settings}>
           {PopularNews.map((item: any) => (

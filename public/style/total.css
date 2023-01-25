@@ -12155,3 +12155,46 @@ label.upload-file-btn.press-enter {
     background: var(--primary-color);
     border-radius: 3px;
 }
+
+.commentBox {
+    border: 1px solid var(--border-color);
+}
+
+.commentBox .form-control {
+    height: 44px;
+}
+
+.commentBox button {
+    margin-top: 8px;
+    border: none;
+    padding: 6px 20px;
+    border-radius: 4px;
+    background-color: var(--primary-color);
+}
+
+.commentTitle h2 {
+    width: 344px;
+    color: var(--font-color);
+}
+
+.commentTitle .commentBar {
+    height: 1.2px;
+    width: 100%;
+    background-color: var(--primary-color);
+}
+
+.commentShow {
+    border: 1px solid var(--border-color-1);
+}
+
+.commentShow a {
+    color: var(--primary-color);
+}
+
+.commentShow h5 {
+    color: var(--text-primary-color-4);
+}
+
+.commentShow small {
+    color: #0de06d;
+}

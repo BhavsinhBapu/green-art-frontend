@@ -27,7 +27,7 @@ const News = ({
   return (
     <>
       <div className="container">
-        <h1 className="pb-2">{t("Top news")}</h1>
+        <h1 className="pb-2 sectionTitle">{t("Top news")}</h1>
         <hr />
         <NewsSlider PopularNews={PopularNews.data.data} />
         <NewsList
