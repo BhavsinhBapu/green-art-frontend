@@ -47,7 +47,7 @@ export const NewsList = ({
         {loading ? (
           <TableLoading />
         ) : (
-          <div className="col-12 mt-2 mb-5">
+          <div className="col-12 mb-5">
             {recentNewsData.length > 0 &&
               recentNewsData?.map((list: any, index: any) => (
                 <Link href={"/news/" + list?.post_id}>
@@ -55,7 +55,11 @@ export const NewsList = ({
                     <a href="">
                       <div className="row">
                         <div className="col-md-4">
-                          <img src={list.thumbnail} alt="" />
+                          <img
+                            className="rounded"
+                            src={list.thumbnail}
+                            alt=""
+                          />
                         </div>
                         <div className="col-md-8 pt-3 pt-md-0">
                           <div className="newsCardText">

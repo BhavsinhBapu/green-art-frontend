@@ -44,7 +44,7 @@ export const NewsSlider = ({ PopularNews }: any) => {
             <Link href={"/news/" + item?.post_id}>
               <a>
                 <div>
-                  <img src={item?.thumbnail} alt="" />
+                  <img className="rounded" src={item?.thumbnail} alt="" />
                 </div>
               </a>
             </Link>
