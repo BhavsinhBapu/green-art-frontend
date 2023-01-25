@@ -8,6 +8,7 @@ import { useState } from "react";
 import { customPage, landingPage } from "service/landing-page";
 import { NewsHomePageAction } from "state/actions/news";
 import Pagination from "components/Pagination/Pagination";
+import { Search } from "components/common/search";
 
 const News = ({
   customPageData,
@@ -27,6 +28,7 @@ const News = ({
   return (
     <>
       <div className="container">
+        <Search />
         <h1 className="pb-2 sectionTitle">{t("Top news")}</h1>
         <hr />
         <NewsSlider PopularNews={PopularNews.data.data} />
