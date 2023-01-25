@@ -23,7 +23,7 @@ const index = ({
     <>
       <div className="">
         <div className="container">
-          <h2>Tradex Blog</h2>
+          <h2 className="sectionTitle">Tradex Blog</h2>
           <p>
             Stay up to date with the latest stories and commentary brought to
             you by Binance, the world's leading blockchain and crypto ecosystem.
