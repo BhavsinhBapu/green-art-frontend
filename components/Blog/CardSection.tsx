@@ -1,10 +1,11 @@
 import React from "react";
 import BlogCard from "./Card";
 import TableLoading from "components/common/TableLoading";
+import { NoItemFound } from "components/NoItemFound/NoItemFound";
 
 const CardSection = ({ blogs, loading }: any) => {
   return (
-    <div className="mb-4">
+    <div className="mb-5">
       {loading ? (
         <TableLoading />
       ) : (
@@ -18,6 +19,7 @@ const CardSection = ({ blogs, loading }: any) => {
           </div>
         </>
       )}
+      {blogs.length === 0 && <NoItemFound />}
     </div>
   );
 };

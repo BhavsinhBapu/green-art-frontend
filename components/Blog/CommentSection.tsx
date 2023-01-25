@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { PostCommentAction } from "state/actions/blog";
 
-const CommentSection = ({ comments, post_id }: any) => {
+const CommentSection = ({ comments, post_id, PostCommentAction }: any) => {
   const [postComment, setPostComment] = useState({
     name: "",
     email: "",
@@ -30,8 +29,8 @@ const CommentSection = ({ comments, post_id }: any) => {
   return (
     <div className="row">
       <div className="col-12">
-        {comments.length > 0 && <h2 className="pb-2 titleText">Comments</h2>}
-        {comments.length > 0 &&
+        {commentList?.length > 0 && <h2 className="pb-2 titleText">Comments</h2>}
+        {commentList?.length > 0 &&
           commentList?.map((comment: any) => (
             <div className="commentShow mt-3 p-3 p-md-4 rounded">
               <h5>{comment?.email}</h5>

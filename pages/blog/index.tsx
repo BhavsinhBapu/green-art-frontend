@@ -38,7 +38,6 @@ const index = ({
           setRecentBlogState={setRecentBlogState}
           setLoading={setLoading}
         />
-
         <CardSection blogs={recentBlogsState} loading={loading} />
 
         {/* <Pagination /> */}
