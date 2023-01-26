@@ -4,6 +4,7 @@ import TableLoading from "components/common/TableLoading";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import { getNewsByCategoryApi } from "service/news";
+import { CustomLoading } from "components/common/CustomLoading";
 
 export const NewsList = ({
   recentNewsData,
@@ -46,7 +47,7 @@ export const NewsList = ({
           </div>
         </div>
         {loading ? (
-          <TableLoading />
+          <CustomLoading />
         ) : (
           <div className="col-12 mb-5">
             {recentNewsData.length > 0 &&
@@ -74,7 +75,9 @@ export const NewsList = ({
                   </div>
                 </Link>
               ))}
-            {recentNewsData.length === 0 && <NoItemFound />}
+            {recentNewsData.length === 0 && loading === false && (
+              <NoItemFound />
+            )}
           </div>
         )}
       </div>
