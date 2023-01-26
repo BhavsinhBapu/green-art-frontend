@@ -28,12 +28,18 @@ const index = ({
   return (
     <>
       <div className="">
-        <div className="container">
-          <h2>{BlogNewsSettings?.blog_feature_heading}</h2>
-          {BlogNewsSettings.blog_search_enable && (
-            <Search searchFunction={BlogSearchAction} linkName={"blog"} />
-          )}
-          <p>{BlogNewsSettings?.blog_feature_description}</p>
+        <div className="container ">
+          <div className="row align-items-center">
+            <div className="col-md-7">
+              <h2>{BlogNewsSettings?.blog_feature_heading}</h2>
+              <p>{BlogNewsSettings?.blog_feature_description}</p>
+            </div>
+            <div className="col-md-5">
+              {BlogNewsSettings.blog_search_enable && (
+                <Search searchFunction={BlogSearchAction} linkName={"blog"} />
+              )}
+            </div>
+          </div>
           <hr />
         </div>
       </div>

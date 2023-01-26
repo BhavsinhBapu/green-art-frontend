@@ -33,11 +33,18 @@ const News = ({
   return (
     <>
       <div className="container">
-        {BlogNewsSettings.news_search_enable && (
-          <Search searchFunction={NewsSearchAction} linkName={"news"} />
-        )}
-        <h1 className="pb-2 sectionTitle">{t("Top news")}</h1>
+        <div className="row align-items-center">
+          <div className="col-md-7">
+            <h2 className="pb-2 sectionTitle">{t("Top news")}</h2>
+          </div>
+          <div className="col-md-5">
+            {BlogNewsSettings.news_search_enable && (
+              <Search searchFunction={NewsSearchAction} linkName={"news"} />
+            )}
+          </div>
+        </div>
         <hr />
+
         <NewsSlider PopularNews={PopularNews.data.data} />
         <NewsList
           recentNewsData={recentNewsData}
