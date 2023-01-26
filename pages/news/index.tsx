@@ -14,6 +14,8 @@ import Pagination from "components/Pagination/Pagination";
 import { Search } from "components/common/search";
 import { getBlogNewsSettings } from "service/news";
 import { NewsSearchAction } from "state/actions/news";
+import { CustomeLoading } from "components/common/CustomeLoading";
+
 const News = ({
   customPageData,
   socialData,
