@@ -112,6 +112,9 @@
     .awesome-area .awesome-info {
         margin-top: 0;
     }
+    .SliderNews {
+        height: 150px;
+    }
 }
 
 
@@ -156,6 +159,9 @@
     }
     .blogSliderText h3 {
         font-size: 26px;
+    }
+    .SliderNews {
+        height: auto;
     }
 }
 

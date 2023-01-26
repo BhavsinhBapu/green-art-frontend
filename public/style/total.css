@@ -12228,8 +12228,8 @@ label.upload-file-btn.press-enter {
 
 .suggestions {
     position: absolute;
-    height: 200px;
-    background: var(--card-background-color);
+    /* height: 200px; */
+    background: var(--color-pallet-1);
     width: 90%;
     z-index: 999;
     left: 10px;
@@ -12240,6 +12240,10 @@ label.upload-file-btn.press-enter {
 .suggestions p:hover {
     cursor: pointer;
     background: var(--footer-background-color);
+}
+
+.suggestions p {
+    line-height: 20px;
 }
 
 .blogSliderText h3 {
@@ -12269,4 +12273,8 @@ label.upload-file-btn.press-enter {
     opacity: 0.75;
     background-color: var(--primary-color);
     width: 30px;
+}
+
+.SliderNews {
+    height: 222px;
 }

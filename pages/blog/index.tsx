@@ -23,13 +23,19 @@ const index = ({
   return (
     <>
       <div className="">
-        <div className="container">
-          <h2>Tradex Blog</h2>
-          <Search searchFunction={BlogSearchAction} linkName={"blog"} />
-          <p>
-            Stay up to date with the latest stories and commentary brought to
-            you by Binance, the world's leading blockchain and crypto ecosystem.
-          </p>
+        <div className="container ">
+          <div className="row align-items-center">
+            <div className="col-md-7">
+              <h2>Tradex Blog</h2>
+              <p>
+                Stay up to date with the leading blockchain and crypto
+                ecosystem.
+              </p>
+            </div>
+            <div className="col-md-5">
+              <Search searchFunction={BlogSearchAction} linkName={"blog"} />
+            </div>
+          </div>
           <hr />
         </div>
       </div>
