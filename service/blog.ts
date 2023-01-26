@@ -1,9 +1,11 @@
 import { TYPE_BLOG_RECENT } from "helpers/core-constants";
 import request from "lib/request";
 
-export const getBlogs = async (type: any) => {
+export const getBlogs = async (type: any, limit: any, page: any) => {
   const { data } = await request.get(
-    `/blog/get?type=${type ? type : TYPE_BLOG_RECENT}`
+    `/blog/get?type=${
+      type ? type : TYPE_BLOG_RECENT
+    }&limit=${limit}&page=${page}`
   );
   return data;
 };
