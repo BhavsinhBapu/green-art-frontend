@@ -25,7 +25,9 @@ const News = ({
   BlogNewsSettings,
 }: any) => {
   const { t } = useTranslation("common");
-  const [recentNewsData, setRecentNews] = useState(RecentNews.data.data);
+  const [recentNewsData, setRecentNews] = useState(
+    RecentNews?.data?.data ? RecentNews?.data?.data : []
+  );
   const [links, setLinks] = useState(
     RecentNews?.data?.links ? RecentNews?.data?.links : []
   );
