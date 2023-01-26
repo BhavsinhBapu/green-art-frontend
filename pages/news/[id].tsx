@@ -24,7 +24,6 @@ const NewsDetails = ({
 }: any) => {
   const { t } = useTranslation("common");
 
-  console.log(newsDetails.related.data, "newsDetailsnewsDetailsnewsDetails");
 
   return (
     <>
@@ -128,7 +127,7 @@ const NewsDetails = ({
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
-  await SSRAuthCheck(ctx, "/news");
+  // await SSRAuthCheck(ctx, "/news");
   const { id } = ctx.params;
   const newsDetails = await getNewsDetails(id);
   const { data } = await landingPage();

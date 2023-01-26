@@ -68,7 +68,7 @@ export const NewsList = ({
                           </div>
                           <div className="col-md-8 pt-3 pt-md-0">
                             <div className="newsCardText">
-                              <h3 className="titleText">{list.title}</h3>
+                              <h5 className="titleText">{list.title}</h5>
                               <small>{formateData(list.created_at)}</small>
                               <p>{list.description}</p>
                             </div>

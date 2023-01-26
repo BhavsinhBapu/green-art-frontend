@@ -86,7 +86,7 @@ const BlogDetails = ({
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
-  await SSRAuthCheck(ctx, "/blog");
+  // await SSRAuthCheck(ctx, "/blog");
   const { id } = ctx.params;
   const BlogDetails = await getBlogDetails(id);
   const { data } = await landingPage();

@@ -39,7 +39,6 @@ export const PostCommentAction = async (
   }
   const Response = await postComment(name, email, website, message, post_id);
   setCommentList(Response?.data);
-  console.log(Response?.data, "ResponseResponse");
   setPostComment({
     name: "",
     email: "",

@@ -26,7 +26,9 @@ const SliderCover = ({ featuredblogs }: any) => {
                   />
                 </div>
                 <div className="col-md-7 blogSliderText">
-                  <h3 className="pt-4 pt-md-0">{featuredblog?.title}</h3>
+                  <h1 className="pt-4 pt-md-0 titleText">
+                    {featuredblog?.title}
+                  </h1>
                   <small>
                     {moment(featuredblog?.createdAt)
                       .subtract(1, "days")
