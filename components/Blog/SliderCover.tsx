@@ -15,8 +15,8 @@ const SliderCover = ({ featuredblogs }: any) => {
   return (
     <div className="mt-4">
       <Slider className="blogSlider" {...settings}>
-        {featuredblogs?.map((featuredblog: any) => (
-          <Link href={"/blog/" + featuredblog?.post_id}>
+        {featuredblogs?.map((featuredblog: any, index: any) => (
+          <Link href={"/blog/" + featuredblog?.post_id} key={index}>
             <a>
               <div className="row mt-4">
                 <div className="col-md-5">

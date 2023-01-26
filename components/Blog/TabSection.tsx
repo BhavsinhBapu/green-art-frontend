@@ -12,14 +12,16 @@ const TabSection = ({ categories, setRecentBlogState, setLoading }: any) => {
   };
   return (
     <div className="newsCategory mt-5 pt-4">
-      {categories?.map((category: any) => (
+      {categories?.map((category: any, index: any) => (
         <li
+          key={index}
           className={`itemCatagory ${
             category?.id === selected ? "itemCatagoryactive" : ""
           }`}
           onClick={() => {
             getBlogsByCategory(category?.id);
-          }}>
+          }}
+        >
           {category?.title}
         </li>
       ))}

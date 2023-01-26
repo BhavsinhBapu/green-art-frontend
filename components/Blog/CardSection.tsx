@@ -11,8 +11,8 @@ const CardSection = ({ blogs, loading }: any) => {
       ) : (
         <>
           <div className="row">
-            {blogs.map((blog: any) => (
-              <div className="col-md-4 my-3">
+            {blogs.map((blog: any, index: any) => (
+              <div className="col-md-4 my-3" key={index}>
                 <BlogCard blog={blog} />
               </div>
             ))}

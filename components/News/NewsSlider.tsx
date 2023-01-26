@@ -40,8 +40,8 @@ export const NewsSlider = ({ PopularNews }: any) => {
     <div className="row mt-4">
       <div className="col-12">
         <Slider {...settings}>
-          {PopularNews.map((item: any) => (
-            <Link href={"/news/" + item?.post_id}>
+          {PopularNews.map((item: any, index: any) => (
+            <Link href={"/news/" + item?.post_id} key={index}>
               <a>
                 <div>
                   <img

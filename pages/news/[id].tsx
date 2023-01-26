@@ -62,8 +62,8 @@ const NewsDetails = ({
               }
             />
 
-            {newsDetails?.related?.data.map((item: any) => (
-              <div className="newsCard p-4 mt-2">
+            {newsDetails?.related?.data.map((item: any, index: any) => (
+              <div className="newsCard p-4 mt-2" key={index}>
                 <a href="">
                   <div className="row">
                     <div className="col-12">

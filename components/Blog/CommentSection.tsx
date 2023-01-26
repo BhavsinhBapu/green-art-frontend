@@ -29,10 +29,12 @@ const CommentSection = ({ comments, post_id, PostCommentAction }: any) => {
   return (
     <div className="row">
       <div className="col-12">
-        {commentList?.length > 0 && <h2 className="pb-2 titleText">Comments</h2>}
+        {commentList?.length > 0 && (
+          <h2 className="pb-2 titleText">Comments</h2>
+        )}
         {commentList?.length > 0 &&
-          commentList?.map((comment: any) => (
-            <div className="commentShow mt-3 p-3 p-md-4 rounded">
+          commentList?.map((comment: any, index: number) => (
+            <div className="commentShow mt-3 p-3 p-md-4 rounded" key={index}>
               <h5>{comment?.email}</h5>
               <small>{comment.name}</small>
               <p className="py-2">{comment.message}</p>

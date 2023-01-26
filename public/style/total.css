@@ -12229,7 +12229,7 @@ label.upload-file-btn.press-enter {
 .suggestions {
     position: absolute;
     /* height: 200px; */
-    background: var(--color-pallet-1);
+    background: var(--background-color-hover);
     width: 90%;
     z-index: 999;
     left: 10px;

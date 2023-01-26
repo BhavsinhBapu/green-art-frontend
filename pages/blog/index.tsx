@@ -14,7 +14,7 @@ import { customPage, landingPage } from "service/landing-page";
 import { getBlogNewsSettings } from "service/news";
 import { BlogHomePageAction, BlogSearchAction } from "state/actions/blog";
 
-const index = ({
+const Index = ({
   customPageData,
   socialData,
   copyright_text,
@@ -90,4 +90,4 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
     },
   };
 };
-export default index;
+export default Index;

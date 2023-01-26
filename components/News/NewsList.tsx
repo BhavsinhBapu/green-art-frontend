@@ -3,7 +3,6 @@ import { NoItemFound } from "components/NoItemFound/NoItemFound";
 import TableLoading from "components/common/TableLoading";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
-import { useState } from "react";
 import { getNewsByCategoryApi } from "service/news";
 
 export const NewsList = ({
@@ -33,12 +32,14 @@ export const NewsList = ({
           <div className="newsCategory">
             {categories.map((category: any, index: any) => (
               <li
+                key={index}
                 className={`itemCatagory ${
                   category?.id === selected ? "itemCatagoryactive" : ""
                 }`}
                 onClick={() => {
                   getNewsByCategory(category?.id);
-                }}>
+                }}
+              >
                 {category?.title}
               </li>
             ))}
@@ -50,8 +51,8 @@ export const NewsList = ({
           <div className="col-12 mb-5">
             {recentNewsData.length > 0 &&
               recentNewsData?.map((list: any, index: any) => (
-                <Link href={"/news/" + list?.post_id}>
-                  <div key={index} className="newsCard p-4 mt-2">
+                <Link key={index} href={"/news/" + list?.post_id}>
+                  <div className="newsCard p-4 mt-2">
                     <a href="">
                       <div className="row">
                         <div className="col-md-4">
