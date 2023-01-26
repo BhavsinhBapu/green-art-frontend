@@ -249,6 +249,10 @@
     .cp-user-buy-coin-content-area table.dataTable tbody tr td {
         padding: 3px 5px !important;
     }
+    .loadingSpinner {
+        width: 30px;
+        height: 30px;
+    }
 }
 
 

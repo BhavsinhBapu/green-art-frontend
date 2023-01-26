@@ -9,8 +9,7 @@ const TableLoading = () => {
         <div className="table-responsive">
           <table
             id="assetBalances"
-            className="table table-borderless secendary-table asset-balances-table"
-          >
+            className="table table-borderless secendary-table asset-balances-table">
             <thead>
               <tr>
                 <th scope="col ">
