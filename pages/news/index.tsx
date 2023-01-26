@@ -92,6 +92,10 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
       },
     };
   }
+  console.log(
+    BlogNewsSettings,
+    "BlogNewsSettingsBlogNewsSettingsBlogNewsSettings"
+  );
   return {
     props: {
       socialData: data.media_list,

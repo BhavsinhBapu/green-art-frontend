@@ -12410,3 +12410,9 @@ label.upload-file-btn.press-enter {
   align-items: center;
   justify-content: center;
 }
+.newsLoadingContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
