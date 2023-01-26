@@ -2,7 +2,10 @@ import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import { BiChevronLeft } from "react-icons/bi";
 
-import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
+import {
+  SSRAuthCheck,
+  pageAvailabilityCheck,
+} from "middlewares/ssr-authentication-check";
 import { getBlogNewsSettings, getNewsDetails } from "service/news";
 import { GetServerSideProps } from "next";
 import { formateData } from "common";
@@ -84,14 +87,23 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const { data } = await landingPage();
   const { data: customPageData } = await customPage();
   const { data: BlogNewsSettings } = await getBlogNewsSettings();
+  const commonRes = await pageAvailabilityCheck();
+  if (parseInt(commonRes.blog_news_module) !== 1) {
     return {
-      props: {
-        newsDetails: newsDetails.data,
-        socialData: data.media_list,
-        copyright_text: data?.copyright_text,
-        customPageData: customPageData.data,
-        BlogNewsSettings: BlogNewsSettings,
+      redirect: {
+        destination: "/",
+        permanent: false,
       },
     };
+  }
+  return {
+    props: {
+      newsDetails: newsDetails.data,
+      socialData: data.media_list,
+      copyright_text: data?.copyright_text,
+      customPageData: customPageData.data,
+      BlogNewsSettings: BlogNewsSettings,
+    },
+  };
 };
 export default NewsDetails;

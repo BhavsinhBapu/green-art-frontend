@@ -1,7 +1,10 @@
 import { NewsList } from "components/News/NewsList";
 import { NewsSlider } from "components/News/NewsSlider";
 import Footer from "components/common/footer";
-import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
+import {
+  SSRAuthCheck,
+  pageAvailabilityCheck,
+} from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
 import useTranslation from "next-translate/useTranslation";
 import { useState } from "react";
@@ -18,6 +21,7 @@ const News = ({
   PopularNews,
   RecentNews,
   categories,
+  BlogNewsSettings,
 }: any) => {
   const { t } = useTranslation("common");
   const [recentNewsData, setRecentNews] = useState(RecentNews.data.data);
@@ -29,7 +33,9 @@ const News = ({
   return (
     <>
       <div className="container">
-        <Search searchFunction={NewsSearchAction} linkName={"news"} />
+        {BlogNewsSettings.news_search_enable && (
+          <Search searchFunction={NewsSearchAction} linkName={"news"} />
+        )}
         <h1 className="pb-2 sectionTitle">{t("Top news")}</h1>
         <hr />
         <NewsSlider PopularNews={PopularNews.data.data} />
@@ -67,7 +73,15 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const { data: customPageData } = await customPage();
   const { Categories, PopularNews, RecentNews } = await NewsHomePageAction();
   const { data: BlogNewsSettings } = await getBlogNewsSettings();
-
+  const commonRes = await pageAvailabilityCheck();
+  if (parseInt(commonRes.blog_news_module) !== 1) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
   return {
     props: {
       socialData: data.media_list,

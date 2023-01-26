@@ -4,10 +4,14 @@ import TabSection from "components/Blog/TabSection";
 import Footer from "components/common/footer";
 import { Search } from "components/common/search";
 import Pagination from "components/Pagination/Pagination";
-import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
+import {
+  pageAvailabilityCheck,
+  SSRAuthCheck,
+} from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
 import React, { useState } from "react";
 import { customPage, landingPage } from "service/landing-page";
+import { getBlogNewsSettings } from "service/news";
 import { BlogHomePageAction, BlogSearchAction } from "state/actions/blog";
 
 const index = ({
@@ -17,6 +21,7 @@ const index = ({
   featuredBlogs,
   recentBlogs,
   categories,
+  BlogNewsSettings,
 }: any) => {
   const [loading, setLoading] = useState(false);
   const [recentBlogsState, setRecentBlogState] = useState(recentBlogs.data);
@@ -24,12 +29,11 @@ const index = ({
     <>
       <div className="">
         <div className="container">
-          <h2>Tradex Blog</h2>
-          <Search searchFunction={BlogSearchAction} linkName={"blog"} />
-          <p>
-            Stay up to date with the latest stories and commentary brought to
-            you by Binance, the world's leading blockchain and crypto ecosystem.
-          </p>
+          <h2>{BlogNewsSettings?.blog_feature_heading}</h2>
+          {BlogNewsSettings.blog_search_enable && (
+            <Search searchFunction={BlogSearchAction} linkName={"blog"} />
+          )}
+          <p>{BlogNewsSettings?.blog_feature_description}</p>
           <hr />
         </div>
       </div>
@@ -58,7 +62,16 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const { data } = await landingPage();
   const { data: customPageData } = await customPage();
   const { FeaturedBlogs, RecentBlogs, Categories } = await BlogHomePageAction();
-
+  const { data: BlogNewsSettings } = await getBlogNewsSettings();
+  const commonRes = await pageAvailabilityCheck();
+  if (parseInt(commonRes.blog_news_module) !== 1) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
   return {
     props: {
       socialData: data.media_list,
@@ -67,6 +80,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
       featuredBlogs: FeaturedBlogs.data,
       recentBlogs: RecentBlogs.data,
       categories: Categories?.data,
+      BlogNewsSettings: BlogNewsSettings,
     },
   };
 };

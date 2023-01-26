@@ -1,7 +1,10 @@
 import React from "react";
 import BlogCard from "components/Blog/Card";
 import { GetServerSideProps } from "next";
-import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
+import {
+  SSRAuthCheck,
+  pageAvailabilityCheck,
+} from "middlewares/ssr-authentication-check";
 import { getBlogDetails } from "service/blog";
 import CommentSection from "components/Blog/CommentSection";
 import { customPage, landingPage } from "service/landing-page";
@@ -87,6 +90,15 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const BlogDetails = await getBlogDetails(id);
   const { data } = await landingPage();
   const { data: customPageData } = await customPage();
+  const commonRes = await pageAvailabilityCheck();
+  if (parseInt(commonRes.blog_news_module) !== 1) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
   return {
     props: {
       blogDetails: BlogDetails,
