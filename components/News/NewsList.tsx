@@ -46,13 +46,13 @@ export const NewsList = ({
             ))}
           </div>
         </div>
-        <div className="">
+        <div className="d-flex justify-content-center col-12 mb-5 ">
           {loading ? (
-          <div className="newsLoadingContainer">
+            <div className="newsLoadingContainer">
               <CustomLoading />
             </div>
           ) : (
-            <div className="col-12 mb-5">
+            <div className="">
               {recentNewsData.length > 0 &&
                 recentNewsData?.map((list: any, index: any) => (
                   <Link key={index} href={"/news/" + list?.post_id}>
@@ -78,8 +78,11 @@ export const NewsList = ({
                     </div>
                   </Link>
                 ))}
+
               {recentNewsData.length === 0 && loading === false && (
-                <NoItemFound />
+                <div className="newsLoadingContainer">
+                  <NoItemFound />
+                </div>
               )}
             </div>
           )}

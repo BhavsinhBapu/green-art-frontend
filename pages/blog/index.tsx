@@ -24,7 +24,9 @@ const Index = ({
   BlogNewsSettings,
 }: any) => {
   const [loading, setLoading] = useState(false);
-  const [recentBlogsState, setRecentBlogState] = useState(recentBlogs.data);
+  const [recentBlogsState, setRecentBlogState] = useState(
+    recentBlogs.data ? recentBlogs.data : []
+  );
   return (
     <>
       <div className="">
