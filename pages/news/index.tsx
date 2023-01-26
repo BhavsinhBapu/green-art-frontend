@@ -78,13 +78,11 @@ const News = ({
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
-  // await SSRAuthCheck(ctx, "/news");
   const { data } = await landingPage();
   const { data: customPageData } = await customPage();
   const { Categories, PopularNews, RecentNews } = await NewsHomePageAction();
   const { data: BlogNewsSettings } = await getBlogNewsSettings();
   const commonRes = await pageAvailabilityCheck();
-  console.log(BlogNewsSettings, "BlogNewsSettings");
   if (parseInt(commonRes.blog_news_module) !== 1) {
     return {
       redirect: {
