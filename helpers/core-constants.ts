@@ -55,3 +55,12 @@ export const PHASE_SORT_BY_EXPIRED = 1;
 export const PHASE_SORT_BY_FEATURED = 2;
 export const PHASE_SORT_BY_RECENT = 3;
 export const PHASE_SORT_BY_FUTURE = 4;
+
+//blog
+export const TYPE_BLOG_RECENT = 1;
+export const TYPE_BLOG_POPULER = 2;
+export const TYPE_BLOG_FEATURED = 3;
+
+//news
+export const TYPE_NEWS_RECENT = 1;
+export const TYPE_NEWS_POPULER = 2;

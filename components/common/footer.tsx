@@ -13,7 +13,28 @@ const Footer = ({ customPageData, socialData, copyright_text }: any) => {
       <div className="footer-top">
         <div className="container">
           <div className="row">
-            <div className="col-lg-3 col-md-6 col-sm-6 mb-30">
+            <div className="col-lg-2 col-md-6 col-sm-6 mb-30">
+              <div className="single-wedgets text-widget">
+                <div className="widget-title">
+                  <h4>{t("About Us")}</h4>
+                </div>
+                <div className="widget-inner">
+                  <ul>
+                    {parseInt(settings.blog_news_module) === 1 && (
+                      <li>
+                        <Link href={"/blog"}>{t("Blog")}</Link>
+                      </li>
+                    )}
+                    {parseInt(settings.blog_news_module) === 1 && (
+                      <li>
+                        <Link href={"/news"}>{t("News")}</Link>
+                      </li>
+                    )}
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-2 col-md-6 col-sm-6 mb-30">
               <div className="single-wedgets text-widget">
                 <div className="widget-title">
                   <h4>
@@ -48,7 +69,8 @@ const Footer = ({ customPageData, socialData, copyright_text }: any) => {
                 </div>
               </div>
             </div>
-            <div className="col-lg-3 col-md-6 col-sm-6 mb-30">
+
+            <div className="col-lg-2 col-md-6 col-sm-6 mb-30">
               <div className="single-wedgets text-widget">
                 <div className="widget-title">
                   <h4>
@@ -83,7 +105,7 @@ const Footer = ({ customPageData, socialData, copyright_text }: any) => {
                 </div>
               </div>
             </div>
-            <div className="col-lg-3 col-md-6 col-sm-6 mb-30">
+            <div className="col-lg-2 col-md-6 col-sm-6 mb-30">
               <div className="single-wedgets text-widget">
                 <div className="widget-title">
                   <h4>
