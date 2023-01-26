@@ -41,7 +41,7 @@ const News = ({
             <h2 className="pb-2 sectionTitle">{t("Top news")}</h2>
           </div>
           <div className="col-md-5">
-            {BlogNewsSettings.news_search_enable && (
+            {BlogNewsSettings?.news_search_enable && (
               <Search searchFunction={NewsSearchAction} linkName={"news"} />
             )}
           </div>
@@ -78,12 +78,13 @@ const News = ({
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
-  await SSRAuthCheck(ctx, "/news");
+  // await SSRAuthCheck(ctx, "/news");
   const { data } = await landingPage();
   const { data: customPageData } = await customPage();
   const { Categories, PopularNews, RecentNews } = await NewsHomePageAction();
   const { data: BlogNewsSettings } = await getBlogNewsSettings();
   const commonRes = await pageAvailabilityCheck();
+  console.log(BlogNewsSettings, "BlogNewsSettings");
   if (parseInt(commonRes.blog_news_module) !== 1) {
     return {
       redirect: {

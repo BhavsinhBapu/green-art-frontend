@@ -25,7 +25,7 @@ const Index = ({
 }: any) => {
   const [loading, setLoading] = useState(false);
   const [recentBlogsState, setRecentBlogState] = useState(
-    recentBlogs.data ? recentBlogs.data : []
+    recentBlogs?.data ? recentBlogs?.data : []
   );
   return (
     <>
@@ -65,7 +65,7 @@ const Index = ({
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
-  await SSRAuthCheck(ctx, "/blog");
+  // await SSRAuthCheck(ctx, "/blog");
 
   const { data } = await landingPage();
   const { data: customPageData } = await customPage();
