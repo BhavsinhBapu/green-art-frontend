@@ -37,7 +37,7 @@ const Index = ({
               <p>{BlogNewsSettings?.blog_feature_description}</p>
             </div>
             <div className="col-md-5">
-              {BlogNewsSettings.blog_search_enable && (
+              {parseInt(BlogNewsSettings.blog_search_enable) === 1 && (
                 <Search searchFunction={BlogSearchAction} linkName={"blog"} />
               )}
             </div>

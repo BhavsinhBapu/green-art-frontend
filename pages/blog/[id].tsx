@@ -15,12 +15,14 @@ import { BiChevronLeft } from "react-icons/bi";
 import useTranslation from "next-translate/useTranslation";
 import { formateData } from "common";
 import SocialShare from "components/common/SocialShare";
+import { getBlogNewsSettings } from "service/news";
 
 const BlogDetails = ({
   customPageData,
   socialData,
   copyright_text,
   blogDetails,
+  BlogNewsSettings,
 }: any) => {
   const { t } = useTranslation("common");
   return (
@@ -71,11 +73,14 @@ const BlogDetails = ({
             )}
           </div>
         </div>
-        <CommentSection
-          comments={blogDetails?.data?.comments}
-          post_id={blogDetails?.data?.details?.post_id}
-          PostCommentAction={PostCommentAction}
-        />
+        {parseInt(BlogNewsSettings?.news_comment_enable) === 1 && (
+          <CommentSection
+            comments={blogDetails?.data?.comments}
+            post_id={blogDetails?.data?.details?.post_id}
+            PostCommentAction={PostCommentAction}
+            comment_allow={blogDetails?.details?.comment_allow}
+          />
+        )}
       </div>
       <Footer
         customPageData={customPageData}
@@ -92,6 +97,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const { data } = await landingPage();
   const { data: customPageData } = await customPage();
   const commonRes = await pageAvailabilityCheck();
+  const { data: BlogNewsSettings } = await getBlogNewsSettings();
+
   if (parseInt(commonRes.blog_news_module) !== 1) {
     return {
       redirect: {
@@ -106,6 +113,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
       socialData: data.media_list,
       copyright_text: data?.copyright_text,
       customPageData: customPageData.data,
+      BlogNewsSettings: BlogNewsSettings,
     },
   };
 };

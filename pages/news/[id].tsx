@@ -23,8 +23,7 @@ const NewsDetails = ({
   BlogNewsSettings,
 }: any) => {
   const { t } = useTranslation("common");
-
-
+  console.log(newsDetails, "newsDetails");
   return (
     <>
       <div className="container">
@@ -115,6 +114,7 @@ const NewsDetails = ({
             comments={newsDetails?.comments}
             post_id={newsDetails?.details?.post_id}
             PostCommentAction={PostCommentAction}
+            comment_allow={newsDetails?.details?.comment_allow}
           />
         )}
       </div>

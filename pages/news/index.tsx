@@ -41,7 +41,7 @@ const News = ({
             <h2 className="pb-2 sectionTitle">{t("Top news")}</h2>
           </div>
           <div className="col-md-5">
-            {BlogNewsSettings?.news_search_enable && (
+            {parseInt(BlogNewsSettings?.news_search_enable) === 1 && (
               <Search searchFunction={NewsSearchAction} linkName={"news"} />
             )}
           </div>
