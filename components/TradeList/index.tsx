@@ -15,16 +15,14 @@ export const TradeList = ({ coinList }: any) => {
             );
           }}
           key={`coinList${index}`}
-          className="coinList"
-        >
+          className="coinList">
           <img src={item.icon} alt="" />
           <a
             href={
               router.locale !== "en"
                 ? `/${router.locale}/exchange/dashboard`
                 : "/exchange/dashboard"
-            }
-          >
+            }>
             {item.coin_pair_name}
           </a>
         </div>
