@@ -24,8 +24,7 @@ const Pagination = ({
                   setLinks,
                   selected
                 );
-              }}
-            >
+              }}>
               <a href="" className="page-link">
                 Previous
               </a>
@@ -42,8 +41,7 @@ const Pagination = ({
                   setLinks,
                   selected
                 );
-              }}
-            >
+              }}>
               <a href="" className="page-link">
                 Next
               </a>
@@ -60,14 +58,12 @@ const Pagination = ({
                   setLinks,
                   selected
                 );
-              }}
-            >
+              }}>
               <a
                 href=""
                 className={`page-link ${
-                  link.active === true && "paginationActive"
-                }`}
-              >
+                  link.active === true && "paginationActive shadow"
+                }`}>
                 {link.label}
               </a>
             </li>

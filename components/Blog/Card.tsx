@@ -9,19 +9,14 @@ const BlogCard = ({ blog }: any) => {
     <>
       <Link href={"/blog/" + blog?.post_id}>
         <a>
-          <div className="blogCard card p-4">
+          <div className="blogCard p-4 shadow-sm rounded card">
             <img
               className="rounded"
               src={blog?.thumbnail}
               alt="Card image cap"
             />
             <div className="newsCardText pt-4">
-              <h3>{blog?.title}</h3>
-              <p>
-                Grid trading is suitable for volatile and sideways markets where
-                prices fluctuate within a given range, as it aims to profit from
-                small price movements. In this article.
-              </p>
+              <h3 className="titleText">{blog?.title}</h3>
               <small>
                 {moment(blog?.createdAt).subtract(1, "days").calendar()}
               </small>

@@ -112,6 +112,9 @@
     .awesome-area .awesome-info {
         margin-top: 0;
     }
+    .SliderNews {
+        height: 150px;
+    }
 }
 
 
@@ -150,6 +153,15 @@
     }
     .commentTitle h2 {
         width: 500px;
+    }
+    .SliderBlog {
+        height: auto;
+    }
+    .blogSliderText h3 {
+        font-size: 26px;
+    }
+    .SliderNews {
+        height: auto;
     }
 }
 
@@ -236,6 +248,10 @@
     }
     .cp-user-buy-coin-content-area table.dataTable tbody tr td {
         padding: 3px 5px !important;
+    }
+    .loadingSpinner {
+        width: 30px;
+        height: 30px;
     }
 }
 

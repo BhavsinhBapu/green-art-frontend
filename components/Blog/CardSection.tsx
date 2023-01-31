@@ -1,25 +1,25 @@
 import React from "react";
 import BlogCard from "./Card";
-import TableLoading from "components/common/TableLoading";
 import { NoItemFound } from "components/NoItemFound/NoItemFound";
+import { CustomLoading } from "components/common/CustomLoading";
 
 const CardSection = ({ blogs, loading }: any) => {
   return (
     <div className="mb-5">
       {loading ? (
-        <TableLoading />
+        <CustomLoading />
       ) : (
         <>
           <div className="row">
-            {blogs.map((blog: any) => (
-              <div className="col-md-4 my-3">
+            {blogs.map((blog: any, index: any) => (
+              <div className="col-md-4 my-3" key={index}>
                 <BlogCard blog={blog} />
               </div>
             ))}
           </div>
         </>
       )}
-      {blogs.length === 0 && <NoItemFound />}
+      {blogs.length === 0 && loading === false && <NoItemFound />}
     </div>
   );
 };

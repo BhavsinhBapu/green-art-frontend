@@ -10,13 +10,13 @@ const SliderCover = ({ featuredblogs }: any) => {
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
-    autoplay: true,
+    // autoplay: true,
   };
   return (
     <div className="mt-4">
       <Slider className="blogSlider" {...settings}>
-        {featuredblogs?.map((featuredblog: any) => (
-          <Link href={"/blog/" + featuredblog?.post_id}>
+        {featuredblogs?.map((featuredblog: any, index: any) => (
+          <Link href={"/blog/" + featuredblog?.post_id} key={index}>
             <a>
               <div className="row mt-4">
                 <div className="col-md-5">
@@ -26,12 +26,9 @@ const SliderCover = ({ featuredblogs }: any) => {
                   />
                 </div>
                 <div className="col-md-7 blogSliderText">
-                  <h3 className="pt-4 pt-md-0">{featuredblog?.title}</h3>
-                  {/* <p>
-                    Grid trading is suitable for volatile and sideways markets
-                    where prices fluctuate within a given range, as it aims to
-                    profit from small price movements. In this article.
-                  </p> */}
+                  <h1 className="pt-4 pt-md-0 titleText">
+                    {featuredblog?.title}
+                  </h1>
                   <small>
                     {moment(featuredblog?.createdAt)
                       .subtract(1, "days")

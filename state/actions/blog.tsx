@@ -9,8 +9,8 @@ import {
 } from "service/blog";
 
 export const BlogHomePageAction = async () => {
-  const FeaturedBlogs = await getBlogs(TYPE_BLOG_FEATURED);
-  const RecentBlogs = await getBlogs(TYPE_BLOG_RECENT);
+  const FeaturedBlogs = await getBlogs(TYPE_BLOG_FEATURED, 9, 1);
+  const RecentBlogs = await getBlogs(TYPE_BLOG_RECENT, 9, 1);
   const Categories = await getBlogCategory();
 
   return { FeaturedBlogs, RecentBlogs, Categories };
@@ -39,7 +39,11 @@ export const PostCommentAction = async (
   }
   const Response = await postComment(name, email, website, message, post_id);
   setCommentList(Response?.data);
-  console.log(Response?.data, "ResponseResponse");
+  if (Response.success) {
+    toast.success(Response.message);
+  } else {
+    toast.error(Response.message);
+  }
   setPostComment({
     name: "",
     email: "",
