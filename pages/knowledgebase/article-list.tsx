@@ -1,24 +1,24 @@
+import { ArticalCard } from "components/Knowledgebase/article-card";
 import { KnowledgeCard } from "components/Knowledgebase/knowledge-card";
 import { TopBanner } from "components/Knowledgebase/top-banner";
 
-const Knowledgebase = () => {
+const KnowledgebaseArticleList = () => {
   return (
     <>
       <TopBanner />
       <section className="mb-5 pb-5">
         <div className="container">
-          <div className="row mt-5 pt-5">
+          <div className="row mt-5 ">
             <div className="col-12">
-              <a className="d-flex align-items-center title-icon" href="">
-                <i className="fa fa-home" aria-hidden="true"></i>
-                <h3 className="fw_600 m-0">Project One</h3>
-              </a>
+              <h1 className="text-center mb-5">
+                Project One / Technical (Artical List)
+              </h1>
             </div>
-            <KnowledgeCard />
+            <ArticalCard />
           </div>
         </div>
       </section>
     </>
   );
 };
-export default Knowledgebase;
+export default KnowledgebaseArticleList;

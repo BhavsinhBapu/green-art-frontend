@@ -12056,6 +12056,17 @@ label.upload-file-btn.press-enter {
 
 /* knowledgebase css */
 
+.p_color {
+    color: #6c6e72;
+}
+
+.top_bg {
+    background-image: url("../top_bg.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .title-icon i {
     margin-right: 12px;
     font-size: 28px;
@@ -12065,7 +12076,7 @@ label.upload-file-btn.press-enter {
     color: #6c6e72;
 }
 
-.title-icon:hover {
+.title-icon:hover h3 {
     color: #f3b808;
     transition: 0.3s;
 }
@@ -12215,6 +12226,10 @@ label.upload-file-btn.press-enter {
     justify-content: center;
 }
 
+.details-button a i {
+    font-size: 12px;
+}
+
 .details-button {
     background: #f3b808;
     padding: 6px 0px;
@@ -12294,4 +12309,5 @@ input {
 
 .uppercase {
     text-transform: uppercase;
+    color: #6c6e72;
 }
