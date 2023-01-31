@@ -12130,16 +12130,17 @@ label.upload-file-btn.press-enter {
     border-radius: 50%;
     background-repeat: no-repeat;
     background-position: center;
-    width: 38px;
+    width: 48px;
 }
 
 .chat_file_upload {
-    width: 90px;
+    max-width: 68px !important;
 }
 
 .chat_btn {
     padding: 5px 12px !important;
     border: 1px solid rgb(238, 238, 238) !important;
+    background: transparent;
 }
 
 .main_img img {
@@ -12217,6 +12218,10 @@ label.upload-file-btn.press-enter {
     justify-content: center;
 }
 
+.card-top-icon .fa-ticket {
+    transform: rotate(45deg);
+}
+
 .details-button a {
     padding: 3px 8px;
     display: flex;
@@ -12287,9 +12292,10 @@ label.upload-file-btn.press-enter {
     border: 1px solid rgb(238, 238, 238);
 }
 
-.btn-search {
+.btn_ticket_search {
     border: 1px solid rgb(238, 238, 238);
     color: #707070 !important;
+    background: transparent;
 }
 
 select {

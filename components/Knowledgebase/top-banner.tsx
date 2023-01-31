@@ -10,18 +10,18 @@ export const TopBanner = () => {
           <div className="col-md-6 mx-auto">
             <form>
               <div className="input-group my-3 mx-auto pb-5 search_box">
-                <input
-                  name="search"
-                  type="text"
-                  className="form-control"
-                  placeholder="Search"
-                  id="search-input-value"
-                />
-                <button
-                  className="border-0 px-4 btn-secondary rounded-right text-white d-flex align-items-center justify-content-center"
-                  type="submit">
-                  <i className="fa fa-search" aria-hidden="true"></i>
-                </button>
+                <div className="d-flex w-100 p-3 rounded ">
+                  <input
+                    className="w-100 px-2 py-2 rounded-left"
+                    type="text"
+                    name="notes"
+                  />
+                  <button
+                    className="border-0 px-4 btn-secondary rounded-reight"
+                    type="submit">
+                    <i className="fa fa-search" aria-hidden="true"></i>
+                  </button>
+                </div>
 
                 <div
                   className="bg-white search-filter ps-1 rounded"

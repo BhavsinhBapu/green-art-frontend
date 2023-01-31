@@ -10,7 +10,7 @@ const Knowledgebase = () => {
           <div className="row mt-5 pt-5">
             <div className="col-12">
               <a className="d-flex align-items-center title-icon" href="">
-                <i className="fa fa-home" aria-hidden="true"></i>
+                <i className="fa-sharp fa-solid fa-house"></i>
                 <h3 className="fw_600 m-0">Project One</h3>
               </a>
             </div>
