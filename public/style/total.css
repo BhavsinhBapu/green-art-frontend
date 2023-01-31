@@ -12057,7 +12057,7 @@ label.upload-file-btn.press-enter {
 /* knowledgebase css */
 
 .p_color {
-    color: #6c6e72;
+    color: var(--text-primary-color-3);
 }
 
 .top_bg {
@@ -12070,25 +12070,27 @@ label.upload-file-btn.press-enter {
 .title-icon i {
     margin-right: 12px;
     font-size: 28px;
+    color: var(--font-color);
 }
 
-.title-icon {
-    color: #6c6e72;
-}
+
+/* .title-icon {
+    color: var(--bColor);
+} */
 
 .title-icon:hover h3 {
-    color: #f3b808;
+    color: var(--text-primary-color-3);
     transition: 0.3s;
 }
 
 .sub_title {
     border-radius: 10px 10px 0px 0px;
-    border: 1px solid rgb(243, 243, 243);
+    border: 1px solid var(--border-color-1);
     padding: 10px;
 }
 
 .sub_title div h5 {
-    color: #6b707f;
+    color: var(--font-color);
 }
 
 .sub_title:hover {
@@ -12102,13 +12104,13 @@ label.upload-file-btn.press-enter {
 }
 
 .article-list :hover {
-    color: #f3b808;
+    color: var(--hover-color);
     transition: 0.3s;
 }
 
 .chat_text {
-    background-color: #ffffff;
-    border: 1px solid rgb(238, 238, 238) !important;
+    background-color: var(--white);
+    border: 1px solid var(--border-color-1) !important;
     border-radius: 8px;
     padding: 8px;
     margin-left: 7px;
@@ -12119,7 +12121,7 @@ label.upload-file-btn.press-enter {
     display: flex;
     justify-items: end;
     align-items: flex-end;
-    border: 1px solid rgb(238, 238, 238) !important;
+    border: 1px solid var(--border-color-1) !important;
 }
 
 .chat_list {
@@ -12139,7 +12141,7 @@ label.upload-file-btn.press-enter {
 
 .chat_btn {
     padding: 5px 12px !important;
-    border: 1px solid rgb(238, 238, 238) !important;
+    border: 1px solid var(--border-color-1) !important;
     background: transparent;
 }
 
@@ -12150,27 +12152,27 @@ label.upload-file-btn.press-enter {
 }
 
 .login_bg {
-    background: #fff !important;
+    background-color: var(--white) !important;
     width: 40%;
-    border: 3px solid #9d9898;
+    border: 3px solid var(--border-color-1);
     border-radius: 12px;
 }
 
 .login_input {
     padding: 12px 10px;
-    border: 1px solid #f3b808;
+    border: 1px solid var(--primary-color);
     width: 100%;
     border-radius: 4px;
-    background: #fff;
+    background: var(--white);
 }
 
 .login_btn {
     width: 100%;
-    background-color: #f3b808;
+    background-color: var(--primary-color);
     border: none;
     padding: 12px 0px;
     border-radius: 4px;
-    color: #fff;
+    color: var(--white);
     font-weight: 500;
 }
 
@@ -12189,25 +12191,25 @@ label.upload-file-btn.press-enter {
     cursor: pointer;
     padding: 5px;
     margin: 3px;
-    color: #a4a8b4;
+    color: var(--color-pallet-1);
     display: block;
 }
 
 .search-filter a:hover {
-    background-color: #a4a8b4;
-    color: #fff;
+    background-color: var(--table-background-color);
+    color: var(--white);
 }
 
 .article-date {
-    color: #f3b808;
+    color: var(--primary-color);
     font-weight: 400;
 }
 
 .card-top-icon {
     border-radius: 50%;
-    background-color: #f3b808;
+    background-color: var(--primary-color);
     box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
-    color: #fff;
+    color: var(--white);
     width: 42px;
     height: 42px;
     line-height: 66px;
@@ -12227,7 +12229,7 @@ label.upload-file-btn.press-enter {
     display: flex;
     align-items: center;
     font-size: 14px;
-    color: #fff;
+    color: var(--white);
     justify-content: center;
 }
 
@@ -12236,7 +12238,7 @@ label.upload-file-btn.press-enter {
 }
 
 .details-button {
-    background: #f3b808;
+    background: var(--primary-color);
     padding: 6px 0px;
     border-radius: 0px 0px 10px 10px;
 }
@@ -12251,7 +12253,7 @@ label.upload-file-btn.press-enter {
 }
 
 .support-left-user {
-    border: 1px solid rgb(243, 243, 243);
+    border: 1px solid var(--border-color-1);
     border-radius: 4px;
 }
 
@@ -12259,13 +12261,13 @@ label.upload-file-btn.press-enter {
     display: block;
     padding: 8px 14px;
     margin-top: 5px;
-    color: #6b707f;
-    border-left: 3px solid #f1f4fb;
+    color: var(--font-color);
+    border-left: 3px solid var(--border-color-1);
 }
 
 .user-item-list li:hover {
     border-left: 3px solid #f3b808;
-    color: #f3b808;
+    color: var(--primary-color);
 }
 
 .side-ticket-add input {
@@ -12273,47 +12275,47 @@ label.upload-file-btn.press-enter {
 }
 
 .ticket-card .card {
-    border: 1px solid rgb(243, 243, 243);
+    border: 1px solid var(--border-color);
 }
 
 .ticket-card .card hr {
-    border: 1px solid rgb(224, 224, 224);
+    border: 1px solid var(--border-color);
 }
 
 .ticket-card-inner h4 {
-    color: #3b3e47 !important;
+    color: var(--font-color) !important;
 }
 
 .ticket-card-inner h6 {
-    color: #707070 !important;
+    color: var(--bColor) !important;
 }
 
 .search-field {
-    border: 1px solid rgb(238, 238, 238);
+    border: 1px solid var(--border-color-1);
 }
 
 .btn_ticket_search {
-    border: 1px solid rgb(238, 238, 238);
-    color: #707070 !important;
+    border: 1px solid var(--border-color-1);
+    color: var(--bColor) !important;
     background: transparent;
 }
 
 select {
-    border: 1px solid rgb(238, 238, 238) !important;
-    color: #707070 !important;
+    border: 1px solid var(--border-color-1) !important;
+    color: var(--bColor) !important;
 }
 
 input {
-    border: 1px solid rgb(238, 238, 238) !important;
-    color: #707070 !important;
+    border: 1px solid var(--border-color-1) !important;
+    color: var(--text-primary-color-4);
 }
 
 .chat-side-info {
     padding: 5px;
-    border: 1px solid rgb(238, 238, 238) !important;
+    border: 1px solid var(--border-color-1) !important;
 }
 
 .uppercase {
     text-transform: uppercase;
-    color: #6c6e72;
+    color: var(--text-primary-color-4);
 }

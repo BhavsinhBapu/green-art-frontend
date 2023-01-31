@@ -9,10 +9,10 @@ export const TopBanner = () => {
           </div>
           <div className="col-md-6 mx-auto">
             <form>
-              <div className="input-group my-3 mx-auto pb-5 search_box">
+              <div className="input-group my-3 mx-auto pb-5 ">
                 <div className="d-flex w-100 p-3 rounded ">
                   <input
-                    className="w-100 px-2 py-2 rounded-left"
+                    className="w-100 px-2 py-2 rounded-left border-0"
                     type="text"
                     name="notes"
                   />
