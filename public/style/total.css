@@ -12232,7 +12232,7 @@ label.upload-file-btn.press-enter {
     display: flex;
     align-items: center;
     font-size: 14px;
-    color: var(--main-background-color);
+    color: var(--text-primary-color-2);
     justify-content: center;
 }
 
