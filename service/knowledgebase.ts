@@ -61,8 +61,10 @@ export const knowledgebaseSupportProjectList = async () => {
   return data;
 };
 
-export const knowledgebaseArticleSearch = async () => {
-  const { data } = await request.get(`/knowledgebase/article-search`);
+export const knowledgebaseArticleSearch = async (query: string) => {
+  const { data } = await request.post(`/knowledgebase/article-search`, {
+    search: query,
+  });
   return data;
 };
 
