@@ -11,7 +11,6 @@ export const TopBanner = () => {
         <div className="row">
           <div className="col-12 text-center text-white mt-5 pt-5">
             <h1 className="text-white">How can we help you ?</h1>
-            <p>Ask Questions Browse Articles Find Answers</p>
           </div>
           <div className="col-md-6 mx-auto">
             <form>

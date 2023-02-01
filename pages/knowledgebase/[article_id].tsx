@@ -1,11 +1,19 @@
 import { formateData } from "common";
+import { ArticalCard } from "components/Knowledgebase/article-card";
+import Footer from "components/common/footer";
+import { pageAvailabilityCheck } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
 import { articleDetails } from "service/knowledgebase";
 import { customPage, landingPage } from "service/landing-page";
 import { getNewsDetails } from "service/news";
 import Link from "next/link";
 
-const KnowledgebaseArticleDetails = ({ articleDetails }: any) => {
+const KnowledgebaseArticleDetails = ({
+  articleDetails,
+  socialData,
+  customPageData,
+  copyright_text,
+}: any) => {
   console.log(articleDetails, "articleDetails");
   return (
     <>
@@ -66,6 +74,11 @@ const KnowledgebaseArticleDetails = ({ articleDetails }: any) => {
           </div>
         </div>
       </div>
+      <Footer
+        customPageData={customPageData}
+        socialData={socialData}
+        copyright_text={copyright_text}
+      />
     </>
   );
 };
@@ -74,6 +87,15 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const Details = await articleDetails(article_id);
   const { data } = await landingPage();
   const { data: customPageData } = await customPage();
+  const commonRes = await pageAvailabilityCheck();
+  if (parseInt(commonRes.knowledgebase_support_module) !== 1) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
 
   return {
     props: {
