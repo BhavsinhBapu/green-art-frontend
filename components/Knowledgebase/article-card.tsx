@@ -4,7 +4,7 @@ import Link from "next/link";
 export const ArticalCard = ({ article }: any) => {
   return (
     <div className="col-md-6 col-lg-4 mt-5 pt-4 ">
-      <div className="sub_title px-4 pt-4 pb-1 h-100">
+      <div className="article_card p-4">
         <h4 className="fw_600 pt-3 mb-0">
           <span className="mr-2 h5">
             <i className="fa fa-address-card"></i>
