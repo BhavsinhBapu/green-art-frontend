@@ -1,6 +1,14 @@
 import { SupportCard } from "components/Support/support-card";
 import { TicketBox } from "components/Support/ticket-box";
 import { TicketFilter } from "components/Support/ticket-filter";
+import {
+  SSRAuthCheck,
+  pageAvailabilityCheck,
+} from "middlewares/ssr-authentication-check";
+import { GetServerSideProps } from "next";
+import { useEffect } from "react";
+import { supportTicketList } from "service/knowledgebase";
+import { customPage, landingPage } from "service/landing-page";
 
 const Support = () => {
   const ticketList = [
@@ -21,7 +29,13 @@ const Support = () => {
       ticketNumber: 1,
     },
   ];
-
+  const getDashbaordData = async () => {
+    const DashboardData = await supportTicketList();
+    console.log(DashboardData, "DashboardData");
+  };
+  useEffect(() => {
+    getDashbaordData();
+  }, []);
   return (
     <section className="my-5">
       <div className="container">
@@ -80,7 +94,8 @@ const Support = () => {
                 />
                 <button
                   className=" btn_ticket_search px-3 ml-2 rounded"
-                  type="submit">
+                  type="submit"
+                >
                   Search
                 </button>
               </div>
@@ -96,5 +111,26 @@ const Support = () => {
       </div>
     </section>
   );
+};
+export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
+  await SSRAuthCheck(ctx, "/support");
+  const { data } = await landingPage();
+  const { data: customPageData } = await customPage();
+  const commonRes = await pageAvailabilityCheck();
+  if (parseInt(commonRes.knowledgebase_support_module) !== 1) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {
+      socialData: data.media_list,
+      copyright_text: data?.copyright_text,
+      customPageData: customPageData.data,
+    },
+  };
 };
 export default Support;
