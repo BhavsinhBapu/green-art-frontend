@@ -12184,22 +12184,23 @@ label.upload-file-btn.press-enter {
 
 .search-filter {
     position: absolute;
-    top: 56px;
+    top: 40px;
     width: 100%;
     overflow: auto;
+    background-color: var(--main-background-color);
 }
 
 .search-filter a {
     cursor: pointer;
-    padding: 5px;
+    padding: 2px 5px;
     margin: 3px;
-    color: var(--color-pallet-1);
+    color: var(--text-primary-color-3);
     display: block;
 }
 
 .search-filter a:hover {
     background-color: var(--table-background-color);
-    color: var(--main-background-color);
+    color: var(--text-primary-color);
 }
 
 .article-date {

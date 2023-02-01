@@ -28,8 +28,7 @@ export const Search = ({ searchFunction, linkName }: any) => {
                 <p
                   onClick={() => onSearch(item.title)}
                   className="px-2 py-1"
-                  key={item.title}
-                >
+                  key={item.title}>
                   {item.title}
                 </p>
               </Link>
