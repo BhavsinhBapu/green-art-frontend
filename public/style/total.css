@@ -12363,3 +12363,8 @@ input {
 .ticket_create_box {
     border: 1px solid var(--border-color-1);
 }
+
+.custom_file_uploder {
+    background-color: transparent;
+    border: 1px solid var(--border-color-1);
+}

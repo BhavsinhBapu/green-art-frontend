@@ -46,7 +46,9 @@ const TicketCreate = () => {
                         id="inputGroupFile01"
                         aria-describedby="inputGroupFileAddon01"
                       />
-                      <label className="custom-file-label">Choose file</label>
+                      <label className="custom-file-label custom_file_uploder">
+                        Choose file
+                      </label>
                     </div>
                   </div>
 
