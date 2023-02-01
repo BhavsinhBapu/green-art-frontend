@@ -2,7 +2,10 @@ import { KnowledgeCard } from "components/Knowledgebase/knowledge-card";
 import { TopBanner } from "components/Knowledgebase/top-banner";
 import { CustomLoading } from "components/common/CustomLoading";
 import Footer from "components/common/footer";
-import { pageAvailabilityCheck } from "middlewares/ssr-authentication-check";
+import {
+  SSRAuthCheck,
+  pageAvailabilityCheck,
+} from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -58,6 +61,7 @@ const Knowledgebase = ({ socialData, customPageData, copyright_text }: any) => {
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
+  await SSRAuthCheck(ctx, "/knowledgebase");
   const { data } = await landingPage();
   const { data: customPageData } = await customPage();
   const commonRes = await pageAvailabilityCheck();
