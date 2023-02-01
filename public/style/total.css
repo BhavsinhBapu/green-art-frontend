@@ -781,6 +781,9 @@ span.cp-user-icon {
     padding: 0;
     margin-top: 90px !important;
     overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
 }
 
 .cp-user-main-wrapper-dashboard {
@@ -12330,4 +12333,8 @@ input {
 .uppercase {
     text-transform: uppercase;
     color: var(--text-primary-color-4);
+}
+
+.loading_box {
+    margin: 70px 0px;
 }
