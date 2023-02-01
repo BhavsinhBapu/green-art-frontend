@@ -784,6 +784,7 @@ span.cp-user-icon {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
+    min-height: 100vh;
 }
 
 .cp-user-main-wrapper-dashboard {
@@ -12101,6 +12102,26 @@ label.upload-file-btn.press-enter {
     transition: 0.3s;
 }
 
+.article_card {
+    border-radius: 10px 10px 0px 0px;
+    border: 1px solid var(--border-color-1);
+    padding: 10px;
+    height: 310px;
+    overflow: hidden;
+}
+
+.article_card div h5 {
+    color: var(--font-color);
+}
+
+.article_card:hover {
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    transition: 0.3s;
+}
+
+
+/* ================================ */
+
 .sub_icon {
     font-size: 11px;
     margin-right: 6px;
@@ -12337,4 +12358,8 @@ input {
 
 .loading_box {
     margin: 70px 0px;
+}
+
+.ticket_create_box {
+    border: 1px solid var(--border-color-1);
 }
