@@ -36,8 +36,7 @@ const Knowledgebase = ({ socialData, customPageData, copyright_text }: any) => {
                   <Link
                     href={
                       "/knowledgebase/sub-category-list/" + section.unique_code
-                    }
-                  >
+                    }>
                     <a className="d-flex align-items-center title-icon" href="">
                       <i className="fa-sharp fa-solid fa-house"></i>
                       <h3 className="fw_600 m-0">{section?.name}</h3>
