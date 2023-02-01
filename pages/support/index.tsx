@@ -1,3 +1,4 @@
+import PaginationGlobal from "components/Pagination/PaginationGlobal";
 import { SupportCard } from "components/Support/support-card";
 import { TicketBox } from "components/Support/ticket-box";
 import { TicketFilter } from "components/Support/ticket-filter";
@@ -12,13 +13,13 @@ import { customPage, landingPage } from "service/landing-page";
 
 const Support = () => {
   const [fullDashboar, setFullDashboard] = useState<any>();
-  const [ticket_list, setTicket_list] = useState<any>([]);
+  const [ticket_list, setTicket_list] = useState<any>();
   const getDashbaordData = async () => {
     const DashboardData = await supportTicketList();
     setFullDashboard(DashboardData.data);
-    setTicket_list(DashboardData?.data?.ticket_list.data);
+    setTicket_list(DashboardData?.data?.ticket_list);
     console.log(
-      DashboardData?.data?.ticket_list.data,
+      DashboardData?.data?.ticket_list.links,
       "DashboardData.data.ticket_list"
     );
   };
@@ -72,10 +73,15 @@ const Support = () => {
 
             <TicketFilter />
             <div className="row mt-5">
-              {ticket_list?.map((ticket: any) => (
+              {ticket_list?.data?.map((ticket: any) => (
                 <TicketBox ticket={ticket} />
               ))}
             </div>
+            <PaginationGlobal
+              setTimelineData={setTicket_list}
+              links={ticket_list?.links}
+              setLoading={null}
+            />
           </div>
         </div>
       </div>
