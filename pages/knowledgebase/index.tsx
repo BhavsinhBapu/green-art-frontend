@@ -1,17 +1,20 @@
 import { KnowledgeCard } from "components/Knowledgebase/knowledge-card";
 import { TopBanner } from "components/Knowledgebase/top-banner";
 import { CustomLoading } from "components/common/CustomLoading";
+import Footer from "components/common/footer";
+import { pageAvailabilityCheck } from "middlewares/ssr-authentication-check";
+import { GetServerSideProps } from "next";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { customPage, landingPage } from "service/landing-page";
 import { getKnowledgebaseInfoAction } from "state/actions/knowlegdgbase";
 
-const Knowledgebase = () => {
+const Knowledgebase = ({ socialData, customPageData, copyright_text }: any) => {
   const [loading, setLoading] = useState(true);
   const [knowledgebase, setKnowledgebase] = useState([]);
   useEffect(() => {
     getKnowledgebaseInfoAction(setKnowledgebase, setLoading);
   }, []);
-  console.log(knowledgebase, "knowledgebase");
   return (
     <>
       <TopBanner />
@@ -47,8 +50,32 @@ const Knowledgebase = () => {
           )}
         </div>
       </section>
+      <Footer
+        customPageData={customPageData}
+        socialData={socialData}
+        copyright_text={copyright_text}
+      />
     </>
   );
 };
-
+export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
+  const { data } = await landingPage();
+  const { data: customPageData } = await customPage();
+  const commonRes = await pageAvailabilityCheck();
+  if (parseInt(commonRes.knowledgebase_support_module) !== 1) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {
+      socialData: data.media_list,
+      copyright_text: data?.copyright_text,
+      customPageData: customPageData.data,
+    },
+  };
+};
 export default Knowledgebase;
