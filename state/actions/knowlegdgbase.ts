@@ -1,5 +1,6 @@
 import {
   knowledgebaseArticleList,
+  knowledgebaseArticleSearch,
   knowledgebaseInfo,
   knowledgebaseSubcategoryListbyId,
 } from "service/knowledgebase";
@@ -36,9 +37,18 @@ export const knowledgebaseSubcategoryListbyIdAction = async (
   const subcategoryList = await knowledgebaseSubcategoryListbyId(uniqueCode);
   setList(subcategoryList?.data?.subcategory_list);
   setDetails(subcategoryList?.data?.category_details);
-  console.log(
-    subcategoryList?.data?.category_details,
-    "sssssssssssssssssssssssss"
-  );
   setLoading(false);
+};
+
+export const knowledgebaseArticleSearchAction = async (
+  query: any,
+  setLists: any
+) => {
+  if (!query) {
+    setLists([]);
+    return;
+  }
+  const searchList = await knowledgebaseArticleSearch(query);
+  console.log(searchList.data, "query");
+  setLists(searchList.data);
 };
