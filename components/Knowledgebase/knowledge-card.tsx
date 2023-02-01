@@ -1,8 +1,7 @@
+import Link from "next/link";
+
 export const KnowledgeCard = (subCategory: any) => {
-  console.log(
-    subCategory.subCategory,
-    "subCategoryssssssssssssssssssssss"
-  );
+  console.log(subCategory, "subCategory");
   return (
     <div className="col-md-6 col-lg-4 mt-5 pt-4 pt-lg-0">
       <div className="sub_title h-100">
@@ -28,13 +27,18 @@ export const KnowledgeCard = (subCategory: any) => {
           ))}
         </ul>
       </div>
-
-      <div className="details-button">
-        <a href="">
-          show more
-          <i className="ml-2 mt-1 fa fa-angle-right" aria-hidden="true"></i>
-        </a>
-      </div>
+      <Link
+        href={
+          "/knowledgebase/article-list/" + subCategory.subCategory.unique_code
+        }
+      >
+        <div className="details-button">
+          <a href="">
+            show more
+            <i className="ml-2 mt-1 fa fa-angle-right" aria-hidden="true"></i>
+          </a>
+        </div>
+      </Link>
     </div>
   );
 };

@@ -7,6 +7,20 @@ export const knowledgebaseInfo = async (article_list_limit: number) => {
   return data;
 };
 
+export const knowledgebaseArticleList = async (unique_code: string) => {
+  const { data } = await request.get(
+    `/knowledgebase/article-list-by-subcategory?subcategory_unique_code=${unique_code}`
+  );
+  return data;
+};
+
+export const knowledgebaseSubcategoryListbyId = async (unique_code: string) => {
+  const { data } = await request.get(
+    `/knowledgebase/article-list-by-category?category_unique_code=${unique_code}`
+  );
+  return data;
+};
+
 export const articleDetails = async (unique_code: string) => {
   const { data } = await request.get(
     `/knowledgebase/article-details?unique_code=${unique_code}`
