@@ -12132,6 +12132,10 @@ label.upload-file-btn.press-enter {
     transition: 0.3s;
 }
 
+.article-list a {
+    line-height: 19px;
+}
+
 .chat_text {
     background-color: var(--main-background-color);
     border: 1px solid var(--border-color-1) !important;

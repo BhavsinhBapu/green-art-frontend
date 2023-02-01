@@ -14,10 +14,10 @@ export const KnowledgeCard = (subCategory: any) => {
             {subCategory.subCategory?.knb_articles?.length})
           </h5>
         </div>
-        <ul className="m-0 d-flex justify-content-center flex-column align-items-center">
+        <ul className="m-0 px-3 pt-3">
           {subCategory.subCategory?.knb_articles.map((article: any) => (
             <li className="article-list">
-              <a className="p_color py-2 d-flex align-items-center" href="#">
+              <a className="p_color py-2 d-flex" href="#">
                 <span className="sub_icon">
                   <i className="fa fa-address-card" aria-hidden="true"></i>
                 </span>
@@ -30,8 +30,7 @@ export const KnowledgeCard = (subCategory: any) => {
       <Link
         href={
           "/knowledgebase/article-list/" + subCategory.subCategory.unique_code
-        }
-      >
+        }>
         <div className="details-button">
           <a href="">
             show more
