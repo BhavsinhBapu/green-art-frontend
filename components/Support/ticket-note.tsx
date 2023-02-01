@@ -18,7 +18,7 @@ export const TicketNote = () => {
             of an element. Great for images, buttons, or any other element.
           </div>
           <div className="mt-3">
-            <a className="chat_btn text-dark rounded" href="">
+            <a className="chat_btn rounded" href="">
               <small>Delete</small>
             </a>
           </div>

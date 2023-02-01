@@ -12109,7 +12109,7 @@ label.upload-file-btn.press-enter {
 }
 
 .chat_text {
-    background-color: var(--white);
+    background-color: var(--main-background-color);
     border: 1px solid var(--border-color-1) !important;
     border-radius: 8px;
     padding: 8px;
@@ -12137,12 +12137,14 @@ label.upload-file-btn.press-enter {
 
 .chat_file_upload {
     max-width: 68px !important;
+    cursor: pointer !important;
 }
 
 .chat_btn {
     padding: 5px 12px !important;
     border: 1px solid var(--border-color-1) !important;
     background: transparent;
+    color: var(--text-primary-color-4) !important;
 }
 
 .main_img img {
@@ -12152,7 +12154,7 @@ label.upload-file-btn.press-enter {
 }
 
 .login_bg {
-    background-color: var(--white) !important;
+    background-color: var(--main-background-color) !important;
     width: 40%;
     border: 3px solid var(--border-color-1);
     border-radius: 12px;
@@ -12163,7 +12165,7 @@ label.upload-file-btn.press-enter {
     border: 1px solid var(--primary-color);
     width: 100%;
     border-radius: 4px;
-    background: var(--white);
+    background: var(--main-background-color);
 }
 
 .login_btn {
@@ -12172,7 +12174,7 @@ label.upload-file-btn.press-enter {
     border: none;
     padding: 12px 0px;
     border-radius: 4px;
-    color: var(--white);
+    color: var(--main-background-color);
     font-weight: 500;
 }
 
@@ -12197,7 +12199,7 @@ label.upload-file-btn.press-enter {
 
 .search-filter a:hover {
     background-color: var(--table-background-color);
-    color: var(--white);
+    color: var(--main-background-color);
 }
 
 .article-date {
@@ -12209,7 +12211,7 @@ label.upload-file-btn.press-enter {
     border-radius: 50%;
     background-color: var(--primary-color);
     box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
-    color: var(--white);
+    color: var(--main-background-color);
     width: 42px;
     height: 42px;
     line-height: 66px;
@@ -12229,7 +12231,7 @@ label.upload-file-btn.press-enter {
     display: flex;
     align-items: center;
     font-size: 14px;
-    color: var(--white);
+    color: var(--main-background-color);
     justify-content: center;
 }
 
@@ -12287,22 +12289,23 @@ label.upload-file-btn.press-enter {
 }
 
 .ticket-card-inner h6 {
-    color: var(--bColor) !important;
+    color: var(--font-color) !important;
 }
 
 .search-field {
     border: 1px solid var(--border-color-1);
+    background: transparent;
 }
 
 .btn_ticket_search {
     border: 1px solid var(--border-color-1);
-    color: var(--bColor) !important;
+    color: var(--font-color) !important;
     background: transparent;
 }
 
 select {
     border: 1px solid var(--border-color-1) !important;
-    color: var(--bColor) !important;
+    color: var(--font-color) !important;
 }
 
 input {
@@ -12313,6 +12316,14 @@ input {
 .chat-side-info {
     padding: 5px;
     border: 1px solid var(--border-color-1) !important;
+}
+
+.chat-side-info input {
+    background: transparent;
+}
+
+.message_bg {
+    background: transparent;
 }
 
 .uppercase {

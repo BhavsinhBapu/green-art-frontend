@@ -77,8 +77,6 @@ const Support = () => {
                   placeholder="Search Ticket ID or Title or Puchase Code"
                   className="w-100 px-2 py-2 rounded search-field"
                   type="text"
-                  name="search"
-                  value=""
                 />
                 <button
                   className=" btn_ticket_search px-3 ml-2 rounded"

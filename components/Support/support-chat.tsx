@@ -32,10 +32,10 @@ export const SupportChat = () => {
           <div className="d-flex gap-2 align-items-center">
             <input
               type="text"
-              className="w-100 px-2 rounded py-2"
+              className="w-100 px-2 rounded py-2 message_bg"
               id="send-message-box"
-              aria-describedby="emailHelp"
               name="message"
+              placeholder="message"
             />
 
             <div className="input-group chat_file_upload mx-1">
