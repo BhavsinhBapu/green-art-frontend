@@ -9,7 +9,7 @@ const KnowledgebaseArticleDetails = ({ articleDetails }: any) => {
   console.log(articleDetails, "articleDetails");
   return (
     <>
-      <div className="container">
+      <div className="container mb-5">
         <div className="row">
           <div className="col-md-8 mt-4">
             <div className="main_img">
