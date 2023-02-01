@@ -4,9 +4,9 @@ export const SupportChat = () => {
       <div className="chat_box rounded border p-3">
         <div className="chat_list w-100">
           <div className="row" id="append_conversation">
-            <div className="col-lg-8 ml-auto">
+            <div className="col-md-8 ml-auto">
               <div className="d-flex justify-content-end my-2">
-                <small className="chat_text mr-2">
+                <small className="chat_text mr-1">
                   Binance stores 10% of all trading fees in a secure asset fund
                   to protect a share of user funds.
                 </small>
@@ -14,13 +14,30 @@ export const SupportChat = () => {
                 <a href="" target="_blank">
                   <img
                     className="rounded me-2 p-2"
-                    width="100"
+                    width="90"
                     src="/user.jpeg"
                   />
                 </a>
                 <div>
                   <img className="chat_img" src="/user.jpeg" alt="" />
                 </div>
+              </div>
+            </div>
+            <div className="col-md-8">
+              <div className="d-flex justify-content-between my-2">
+                <div>
+                  <img className="chat_img" src="/user.jpeg" alt="" />
+                </div>
+                <a href="" target="_blank">
+                  <img
+                    className="rounded me-2 p-2"
+                    width="90"
+                    src="/user.jpeg"
+                  />
+                </a>
+                <small className="chat_text ml-1">
+                  Binance stores 10% of all trading fees
+                </small>
               </div>
             </div>
           </div>
