@@ -1,4 +1,4 @@
-export const SupportCard = ({ item }) => {
+export const SupportCard = ({ name, ticketNumber }: any) => {
   return (
     <div className="col-md-6 col-lg-3 mt-3 mt-md-0">
       <div className="h-100">
@@ -8,7 +8,7 @@ export const SupportCard = ({ item }) => {
               <i className="fa fa-ticket" aria-hidden="true"></i>
             </span>
             <h5>
-              {item.title} ({item.ticketNumber})
+              {name} ({ticketNumber})
             </h5>
           </div>
         </div>
