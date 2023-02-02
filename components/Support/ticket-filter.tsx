@@ -19,8 +19,7 @@ export const TicketFilter = ({
                     ...filter,
                     project: e.target.value,
                   });
-                }}
-              >
+                }}>
                 <option>Select Project</option>
                 {projectList.map((project: any, index: any) => (
                   <option key={index} value={project.id}>
@@ -39,8 +38,7 @@ export const TicketFilter = ({
                     ...filter,
                     status: e.target.value,
                   });
-                }}
-              >
+                }}>
                 <option>Select Status</option>
                 <option value="1">Pending</option>
                 <option value="2">Open</option>
@@ -80,8 +78,7 @@ export const TicketFilter = ({
               <button
                 type="button"
                 className="btn btn_ticket_search w-100 rounded"
-                onClick={FilterDashboardData}
-              >
+                onClick={FilterDashboardData}>
                 Filter Ticket
               </button>
             </div>
