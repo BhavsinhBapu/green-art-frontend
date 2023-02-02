@@ -25,6 +25,18 @@ const Footer = ({ customPageData, socialData, copyright_text }: any) => {
                         <Link href={"/blog"}>{t("Blog")}</Link>
                       </li>
                     )}
+                    {parseInt(settings.knowledgebase_support_module) === 1 && (
+                      <li>
+                        <Link href={"/support"}>{t("Support")}</Link>
+                      </li>
+                    )}
+                    {parseInt(settings.knowledgebase_support_module) === 1 && (
+                      <li>
+                        <Link href={"/knowledgebase"}>
+                          {t("Knowledgebase")}
+                        </Link>
+                      </li>
+                    )}
                     {parseInt(settings.blog_news_module) === 1 && (
                       <li>
                         <Link href={"/news"}>{t("News")}</Link>

@@ -14,6 +14,7 @@ const KnowledgebaseArticleDetails = ({
   customPageData,
   copyright_text,
 }: any) => {
+  console.log(articleDetails, "articleDetails");
   return (
     <>
       <div className="container mb-5">
