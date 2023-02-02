@@ -110,3 +110,7 @@ export const knowledgebaseSupportTicketNoteCreate = async (payload: any) => {
   );
   return data;
 };
+export const siteSettingResource = async () => {
+  const { data } = await request.get(`/knowledgebase/site-settings-resource`);
+  return data;
+};

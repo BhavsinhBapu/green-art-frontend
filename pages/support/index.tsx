@@ -143,8 +143,8 @@ const Support = () => {
                   FilterDashboardData={FilterDashboardData}
                 />
                 <div className="row mt-5">
-                  {ticket_list?.data?.map((ticket: any) => (
-                    <TicketBox ticket={ticket} />
+                  {ticket_list?.data?.map((ticket: any, index: any) => (
+                    <TicketBox key={index} ticket={ticket} />
                   ))}
                 </div>
                 {ticket_list?.data.length === 0 && <NoItemFound />}

@@ -3,14 +3,29 @@ import Link from "next/link";
 import { useState } from "react";
 import { knowledgebaseArticleSearchAction } from "state/actions/knowlegdgbase";
 
-export const TopBanner = () => {
+export const TopBanner = ({ resorce }: any) => {
   const [lists, setLists] = useState([]);
   return (
-    <section className="top_bg">
+    <section
+      className=""
+      style={{
+        backgroundImage: resorce?.cover_image
+          ? //@ts-ignore
+            resource?.cover_image
+          : "url(/top_bg.jpg)",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+      }}
+    >
       <div className="container">
         <div className="row">
           <div className="col-12 text-center text-white mt-5 pt-5">
-            <h1 className="text-white">How can we help you ?</h1>
+            <h1 className="text-white">
+              {resorce.knowledgebase_page_cover_first_title
+                ? resorce.knowledgebase_page_cover_first_title
+                : "How can we help you ?"}
+            </h1>
           </div>
           <div className="col-md-6 mx-auto pb-5">
             <form>
@@ -29,18 +44,21 @@ export const TopBanner = () => {
                   />
                   <button
                     className="border-0 px-4 btn-secondary rounded-r"
-                    type="submit">
+                    type="submit"
+                  >
                     <i className="fa fa-search" aria-hidden="true"></i>
                   </button>
                 </div>
 
                 <div
                   className="search-filter ps-1 rounded"
-                  id="append-search-result">
+                  id="append-search-result"
+                >
                   {lists.map((list: any, index: number) => (
                     <Link
                       key={index}
-                      href={"/knowledgebase/" + list.unique_code}>
+                      href={"/knowledgebase/" + list.unique_code}
+                    >
                       <a href="">{list?.title}</a>
                     </Link>
                   ))}

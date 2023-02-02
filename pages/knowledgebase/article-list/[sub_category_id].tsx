@@ -6,6 +6,7 @@ import { pageAvailabilityCheck } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { siteSettingResource } from "service/knowledgebase";
 import { customPage, landingPage } from "service/landing-page";
 import { knowledgebaseArticleListAction } from "state/actions/knowlegdgbase";
 
@@ -13,6 +14,7 @@ const KnowledgebaseArticleList = ({
   socialData,
   customPageData,
   copyright_text,
+  resorce,
 }: any) => {
   const [list, setList] = useState([]);
   const [details, setDetails] = useState<any>({});
@@ -29,7 +31,8 @@ const KnowledgebaseArticleList = ({
   }, [router.query.sub_category_id]);
   return (
     <>
-      <TopBanner />
+      <TopBanner resorce={resorce} />
+
       {Loading ? (
         <div className="row mt-5 pt-5">
           <div className="col-12">
@@ -43,8 +46,8 @@ const KnowledgebaseArticleList = ({
               <div className="col-12">
                 <h1 className="text-center">{details?.name}</h1>
               </div>
-              {list?.map((article: any) => (
-                <ArticalCard article={article} />
+              {list?.map((article: any, index: any) => (
+                <ArticalCard key={index} article={article} />
               ))}
             </div>
           </div>
@@ -62,6 +65,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const { data } = await landingPage();
   const { data: customPageData } = await customPage();
   const commonRes = await pageAvailabilityCheck();
+  const resorce = await siteSettingResource();
   if (parseInt(commonRes.knowledgebase_support_module) !== 1) {
     return {
       redirect: {
@@ -75,6 +79,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
       socialData: data.media_list,
       copyright_text: data?.copyright_text,
       customPageData: customPageData.data,
+      resorce: resorce,
     },
   };
 };

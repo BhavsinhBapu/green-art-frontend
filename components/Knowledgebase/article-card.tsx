@@ -14,7 +14,12 @@ export const ArticalCard = ({ article }: any) => {
         <small className="article-date">
           {formateData(article?.created_at)}
         </small>
-        <p className="p_color pt-3">{article?.description}</p>
+        <p
+          className="p_color pt-3"
+          dangerouslySetInnerHTML={{
+            __html: article?.description,
+          }}
+        ></p>
       </div>
       <Link href={"/knowledgebase/" + article.unique_code}>
         <div className="details-button">

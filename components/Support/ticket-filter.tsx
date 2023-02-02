@@ -22,8 +22,10 @@ export const TicketFilter = ({
                 }}
               >
                 <option>Select Project</option>
-                {projectList.map((project: any) => (
-                  <option value={project.id}>{project.name}</option>
+                {projectList.map((project: any, index: any) => (
+                  <option key={index} value={project.id}>
+                    {project.name}
+                  </option>
                 ))}
               </select>
             </div>

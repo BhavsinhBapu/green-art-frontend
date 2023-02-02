@@ -9,10 +9,16 @@ import {
 import { GetServerSideProps } from "next";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { siteSettingResource } from "service/knowledgebase";
 import { customPage, landingPage } from "service/landing-page";
 import { getKnowledgebaseInfoAction } from "state/actions/knowlegdgbase";
 
-const Knowledgebase = ({ socialData, customPageData, copyright_text }: any) => {
+const Knowledgebase = ({
+  socialData,
+  customPageData,
+  copyright_text,
+  resorce,
+}: any) => {
   const [loading, setLoading] = useState(true);
   const [knowledgebase, setKnowledgebase] = useState([]);
   useEffect(() => {
@@ -20,7 +26,7 @@ const Knowledgebase = ({ socialData, customPageData, copyright_text }: any) => {
   }, []);
   return (
     <>
-      <TopBanner />
+      <TopBanner resorce={resorce} />
       <section className="mb-5 pb-5">
         <div className="container">
           {loading ? (
@@ -30,13 +36,14 @@ const Knowledgebase = ({ socialData, customPageData, copyright_text }: any) => {
               </div>
             </div>
           ) : (
-            knowledgebase.map((section: any) => (
-              <div className="row mt-5 pt-5">
+            knowledgebase.map((section: any, key: any) => (
+              <div className="row mt-5 pt-5" key={key}>
                 <div className="col-12">
                   <Link
                     href={
                       "/knowledgebase/sub-category-list/" + section.unique_code
-                    }>
+                    }
+                  >
                     <a className="d-flex align-items-center title-icon" href="">
                       <i className="fa-sharp fa-solid fa-house"></i>
                       <h3 className="fw_600 m-0">{section?.name}</h3>
@@ -44,9 +51,11 @@ const Knowledgebase = ({ socialData, customPageData, copyright_text }: any) => {
                   </Link>
                 </div>
 
-                {section?.knb_sub_category.map((subCategory: any) => (
-                  <KnowledgeCard subCategory={subCategory} />
-                ))}
+                {section?.knb_sub_category.map(
+                  (subCategory: any, index: any) => (
+                    <KnowledgeCard key={index} subCategory={subCategory} />
+                  )
+                )}
               </div>
             ))
           )}
@@ -65,6 +74,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const { data } = await landingPage();
   const { data: customPageData } = await customPage();
   const commonRes = await pageAvailabilityCheck();
+  const resorce = await siteSettingResource();
   if (parseInt(commonRes.knowledgebase_support_module) !== 1) {
     return {
       redirect: {
@@ -78,6 +88,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
       socialData: data.media_list,
       copyright_text: data?.copyright_text,
       customPageData: customPageData.data,
+      resorce: resorce,
     },
   };
 };
