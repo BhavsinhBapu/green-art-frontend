@@ -5,18 +5,16 @@ import {
 } from "service/knowledgebase";
 
 export const TicketNote = ({ ticketDetails, notes, setNotes }: any) => {
-  console.log(ticketDetails, "ticketDetails");
   const [note, setNote] = useState("");
 
   const saveNote = async () => {
     const { data } = await supportTicketNoteCreate(ticketDetails?.id, note);
     setNotes(data);
+    setNote("");
   };
   const deleteNote = async () => {
-    const { data } = await supportTicketNoteDelete(
-      ticketDetails?.unique_code,
-      note
-    );
+    console.log(ticketDetails?.unique_code, "ticketDetails?.unique_code");
+    const { data } = await supportTicketNoteDelete(ticketDetails?.unique_code);
     setNotes(data);
   };
   return (

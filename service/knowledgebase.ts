@@ -59,11 +59,11 @@ export const supportTicketNoteCreate = async (ticket_id: string, note: any) => {
   );
   return data;
 };
-export const supportTicketNoteDelete = async (unique_id: string, note: any) => {
+export const supportTicketNoteDelete = async (unique_id: string) => {
   const { data } = await request.post(
     `/knowledgebase/support-ticket-note-delete`,
     {
-      unique_id: unique_id,
+      unique_code: unique_id,
     }
   );
   return data;
@@ -86,6 +86,13 @@ export const supportTicketConversationSend = async (payload: any) => {
 
 export const knowledgebaseSupportProjectList = async () => {
   const { data } = await request.get(`/knowledgebase/support-project-list`);
+  return data;
+};
+export const SupportCreateTicket = async (payload: any) => {
+  const { data } = await request.post(
+    `/knowledgebase/support-ticket-store`,
+    payload
+  );
   return data;
 };
 

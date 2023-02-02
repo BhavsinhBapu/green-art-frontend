@@ -18,6 +18,7 @@ export const SupportChat = ({
   const { supportChat: conversationDetails } = useSelector(
     (state: RootState) => state.user
   );
+  console.log(conversationDetails, "conversationDetails");
   useEffect(() => {
     scrollToBottom();
   }, [conversationDetails]);
@@ -30,23 +31,28 @@ export const SupportChat = ({
               chat?.user?.id === user.id || chat?.user_id === user.id ? (
                 <div className="col-md-8 ml-auto">
                   <div className="d-flex justify-content-end my-2">
-                    <small
-                      className="chat_text mr-1"
-                      dangerouslySetInnerHTML={{
-                        __html: chat?.message,
-                      }}
-                    ></small>
+                    {chat?.message && (
+                      <small
+                        className="chat_text mr-1"
+                        dangerouslySetInnerHTML={{
+                          __html: chat?.message,
+                        }}
+                      ></small>
+                    )}
 
                     <div>
-                      <img className="chat_img" src="/user.jpeg" alt="" />
+                      <img
+                        className="chat_img"
+                        src={chat?.user?.photo}
+                        alt=""
+                      />
                     </div>
                   </div>
-                  {chat.has_file === 1 && (
+                  {chat?.conversation_attachment[0]?.file_link && (
                     <a href="" target="_blank">
                       <img
                         className="rounded me-2 p-2"
-                        width="90"
-                        src={chat?.user?.photo}
+                        src={chat?.conversation_attachment[0]?.file_link}
                       />
                     </a>
                   )}
@@ -55,23 +61,26 @@ export const SupportChat = ({
                 <div className="col-md-8">
                   <div className="d-flex justify-content-between my-2">
                     <div>
-                      <img className="chat_img" src="/user.jpeg" alt="" />
+                      <img
+                        className="chat_img"
+                        src={chat?.user?.photo}
+                        alt=""
+                      />
                     </div>
-
-                    <small
-                      className="chat_text mr-1"
-                      dangerouslySetInnerHTML={{
-                        __html: chat?.message,
-                      }}
-                    ></small>
+                    {chat?.message && (
+                      <small
+                        className="chat_text mr-1"
+                        dangerouslySetInnerHTML={{
+                          __html: chat?.message,
+                        }}
+                      ></small>
+                    )}
                   </div>
-
-                  {chat.has_file === 1 && (
+                  {chat?.conversation_attachment[0]?.file_link && (
                     <a href="" target="_blank">
                       <img
                         className="rounded me-2 p-2"
-                        width="90"
-                        src={chat?.user?.photo}
+                        src={chat?.conversation_attachment[0]?.file_link}
                       />
                     </a>
                   )}
