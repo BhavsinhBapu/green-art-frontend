@@ -6,6 +6,7 @@ import {
 } from "helpers/core-constants";
 
 export const TicketUserInfo = ({ ticketDetails }: any) => {
+  console.log(ticketDetails, "ticketDetails");
   return (
     <div className="p_color chat-side-info mb-4 p-3 rounded">
       <h5 className="uppercase">
@@ -26,8 +27,12 @@ export const TicketUserInfo = ({ ticketDetails }: any) => {
       </p>
       <p>
         <b className="mr-2">Assign To:</b>
-        {ticketDetails?.agent_name ? (
-          <small>{ticketDetails?.agent_name}</small>
+        {ticketDetails?.agent?.first_name ? (
+          <small>
+            {ticketDetails?.agent?.first_name +
+              " " +
+              ticketDetails?.agent?.last_name}
+          </small>
         ) : (
           <small>Not Assign</small>
         )}
