@@ -33,14 +33,15 @@ export const TicketNote = ({ ticketDetails, notes, setNotes }: any) => {
         <button
           className="chat_btn rounded ml-2"
           type="button"
-          onClick={saveNote}>
+          onClick={saveNote}
+        >
           Save
         </button>
       </div>
 
-      <ul>
+      <div>
         {notes?.map((note: any, index: any) => (
-          <li
+          <div
             key={index}
             className="rounded chat-side-info mt-2 pt-2 pb-3 px-3"
           >
