@@ -18,7 +18,7 @@ import { customPage, landingPage } from "service/landing-page";
 
 const Support = () => {
   const [fullDashboar, setFullDashboard] = useState<any>();
-  const [loading, setloading] = useState<any>(true);
+  const [loading, setloading] = useState<any>(false);
   const [ticket_list, setTicket_list] = useState<any>();
   const [projectList, setProjectList] = useState([]);
   const [filter, setfilter] = useState<any>({

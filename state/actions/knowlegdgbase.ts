@@ -3,6 +3,7 @@ import {
   knowledgebaseArticleSearch,
   knowledgebaseInfo,
   knowledgebaseSubcategoryListbyId,
+  supportTicketConversationDetails,
 } from "service/knowledgebase";
 
 export const getKnowledgebaseInfoAction = async (
@@ -51,4 +52,11 @@ export const knowledgebaseArticleSearchAction = async (
   const searchList = await knowledgebaseArticleSearch(query);
   console.log(searchList.data, "query");
   setLists(searchList.data);
+};
+export const supportTicketConversationDetailsAction = async (
+  unique_code: string,
+  setTicketDetails: any
+) => {
+  const response = await supportTicketConversationDetails(unique_code);
+  console.log(response, "ressssssssssssssssssssssssssssssssssssss");
 };
