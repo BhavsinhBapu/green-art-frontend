@@ -18,7 +18,6 @@ export const SupportChat = ({
   const { supportChat: conversationDetails } = useSelector(
     (state: RootState) => state.user
   );
-  console.log(conversationDetails, "conversationDetails");
   useEffect(() => {
     scrollToBottom();
   }, [conversationDetails]);

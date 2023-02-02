@@ -14,7 +14,6 @@ const KnowledgebaseArticleDetails = ({
   customPageData,
   copyright_text,
 }: any) => {
-  console.log(articleDetails, "articleDetails");
   return (
     <>
       <div className="container mb-5">
@@ -58,7 +57,13 @@ const KnowledgebaseArticleDetails = ({
                       <small className="article-date">
                         {formateData(article?.created_at)}
                       </small>
-                      <p className="p_color pt-3">{article?.description}</p>
+                      <p
+                        className="p_color pt-3"
+                        dangerouslySetInnerHTML={{
+                          // __html: clean(details.description),
+                          __html: article?.description,
+                        }}
+                      ></p>
                     </div>
                     <Link href={"/knowledgebase/" + article.unique_code}>
                       <div className="details-button">

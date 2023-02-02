@@ -34,7 +34,6 @@ const TicketCreate = () => {
       formData.append("purchase_code", options.purchase_code);
 
     const data = await SupportCreateTicket(formData);
-    console.log(data, "datadatadata");
     if (data.success) {
       toast.success(data.message);
       router.push("/support");

@@ -13,7 +13,6 @@ export const TicketNote = ({ ticketDetails, notes, setNotes }: any) => {
     setNote("");
   };
   const deleteNote = async () => {
-    console.log(ticketDetails?.unique_code, "ticketDetails?.unique_code");
     const { data } = await supportTicketNoteDelete(ticketDetails?.unique_code);
     setNotes(data);
   };

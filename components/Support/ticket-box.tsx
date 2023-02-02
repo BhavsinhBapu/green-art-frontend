@@ -7,7 +7,6 @@ import {
 import Link from "next/link";
 
 export const TicketBox = ({ ticket }: any) => {
-  console.log(ticket, "ticketticketticket");
   return (
     <Link href={"/support/" + ticket?.unique_code}>
       <div
