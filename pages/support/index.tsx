@@ -1,3 +1,4 @@
+import { NoItemFound } from "components/NoItemFound/NoItemFound";
 import PaginationGlobal from "components/Pagination/PaginationGlobal";
 import { SupportCard } from "components/Support/support-card";
 import { TicketBox } from "components/Support/ticket-box";
@@ -8,20 +9,48 @@ import {
 } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
 import { useEffect, useState } from "react";
-import { supportTicketList } from "service/knowledgebase";
+import {
+  knowledgebaseSupportProjectList,
+  supportTicketList,
+} from "service/knowledgebase";
 import { customPage, landingPage } from "service/landing-page";
 
 const Support = () => {
   const [fullDashboar, setFullDashboard] = useState<any>();
   const [ticket_list, setTicket_list] = useState<any>();
+  const [projectList, setProjectList] = useState([]);
+  const [filter, setfilter] = useState<any>({
+    project: "",
+    status: "",
+    from: "",
+    to: "",
+  });
   const getDashbaordData = async () => {
     const DashboardData = await supportTicketList(5, 1, "", "", "", "", "");
     setFullDashboard(DashboardData.data);
     setTicket_list(DashboardData?.data?.ticket_list);
   };
 
+  const getProjectList = async () => {
+    const { data } = await knowledgebaseSupportProjectList();
+    console.log(data, "projectList");
+    setProjectList(data);
+  };
   const searchDashboardData = async (query: any) => {
     const DashboardData = await supportTicketList(5, 1, query, "", "", "", "");
+    setFullDashboard(DashboardData.data);
+    setTicket_list(DashboardData?.data?.ticket_list);
+  };
+  const FilterDashboardData = async () => {
+    const DashboardData = await supportTicketList(
+      5,
+      1,
+      "",
+      filter.status,
+      filter.project,
+      filter.from,
+      filter.to
+    );
     setFullDashboard(DashboardData.data);
     setTicket_list(DashboardData?.data?.ticket_list);
   };
@@ -47,6 +76,7 @@ const Support = () => {
   };
   useEffect(() => {
     getDashbaordData();
+    getProjectList();
   }, []);
   return (
     <section className="my-5">
@@ -89,21 +119,21 @@ const Support = () => {
                     }, 1000);
                   }}
                 />
-                <button
-                  className=" btn_ticket_search px-3 ml-2 rounded"
-                  type="submit"
-                >
-                  Search
-                </button>
               </div>
             </div>
 
-            <TicketFilter />
+            <TicketFilter
+              filter={filter}
+              projectList={projectList}
+              setfilter={setfilter}
+              FilterDashboardData={FilterDashboardData}
+            />
             <div className="row mt-5">
               {ticket_list?.data?.map((ticket: any) => (
                 <TicketBox ticket={ticket} />
               ))}
             </div>
+            {ticket_list?.data.length === 0 && <NoItemFound />}
             {ticket_list?.data.length > 0 && (
               <PaginationGlobal
                 setTimelineData={setTicket_list}
