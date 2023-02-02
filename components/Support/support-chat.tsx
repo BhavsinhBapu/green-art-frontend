@@ -24,9 +24,9 @@ export const SupportChat = ({
   }, [conversationDetails]);
   return (
     <div className="col-lg-8">
-      <div className="chat_box rounded border p-3">
-        <div className="chat_list w-100">
-          <div className="row" id="append_conversation">
+      <div className="chat_box rounded">
+        <div className="chat_list">
+          <div className="d-block" id="append_conversation">
             {conversationDetails?.map((chat: any) =>
               chat?.user?.id === user.id || chat?.user_id === user.id ? (
                 <div className="col-md-8 ml-auto">
@@ -36,8 +36,7 @@ export const SupportChat = ({
                         className="chat_text mr-1"
                         dangerouslySetInnerHTML={{
                           __html: chat?.message,
-                        }}
-                      ></small>
+                        }}></small>
                     )}
 
                     <div>
@@ -51,7 +50,7 @@ export const SupportChat = ({
                   {chat?.conversation_attachment[0]?.file_link && (
                     <a href="" target="_blank">
                       <img
-                        className="rounded me-2 p-2"
+                        className="rounded mb-2"
                         src={chat?.conversation_attachment[0]?.file_link}
                       />
                     </a>
@@ -72,14 +71,13 @@ export const SupportChat = ({
                         className="chat_text mr-1"
                         dangerouslySetInnerHTML={{
                           __html: chat?.message,
-                        }}
-                      ></small>
+                        }}></small>
                     )}
                   </div>
                   {chat?.conversation_attachment[0]?.file_link && (
                     <a href="" target="_blank">
                       <img
-                        className="rounded me-2 p-2"
+                        className="rounded mb-2"
                         src={chat?.conversation_attachment[0]?.file_link}
                       />
                     </a>

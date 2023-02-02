@@ -12146,8 +12146,7 @@ label.upload-file-btn.press-enter {
 }
 
 .chat_box {
-     /* height: 400px; */
-    overflow-x: overlay;
+    overflow: auto;
     padding-bottom: 30px;
     border: 1px solid var(--border-color-1) !important;
 }
@@ -12380,4 +12379,16 @@ input {
 
 .top_search input {
     padding: 11px 10px !important;
+}
+
+.pagination_custome ul li a {
+    border: none;
+    background: none;
+    color: var(--text-primary-color-1);
+}
+
+.pagination_active {
+    background-color: var(--primary-color) !important;
+    border-radius: 2px;
+    color: var(--text-primary-color) !important;
 }
