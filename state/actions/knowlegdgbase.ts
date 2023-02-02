@@ -53,10 +53,3 @@ export const knowledgebaseArticleSearchAction = async (
   console.log(searchList.data, "query");
   setLists(searchList.data);
 };
-export const supportTicketConversationDetailsAction = async (
-  unique_code: string,
-  setTicketDetails: any
-) => {
-  const response = await supportTicketConversationDetails(unique_code);
-  console.log(response, "ressssssssssssssssssssssssssssssssssssss");
-};

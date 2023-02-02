@@ -23,7 +23,6 @@ const NewsDetails = ({
   BlogNewsSettings,
 }: any) => {
   const { t } = useTranslation("common");
-  console.log(newsDetails, "newsDetails");
   return (
     <>
       <div className="container">

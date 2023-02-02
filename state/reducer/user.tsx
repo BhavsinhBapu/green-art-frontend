@@ -6,6 +6,7 @@ export type UserType = {
   notification: [];
   logo: string;
   icoChat: [];
+  supportChat: [];
 };
 
 const initialState: any = {
@@ -14,6 +15,7 @@ const initialState: any = {
   isLoading: true,
   notification: [],
   icoChat: [],
+  supportChat: [],
   logo: "",
 };
 
@@ -50,6 +52,12 @@ export const userSlice = createSlice({
     setChatico: (state, action: any) => {
       state.icoChat = [...state.icoChat, action.payload];
     },
+    setsupportChat: (state, action: any) => {
+      state.supportChat = action.payload;
+    },
+    setSupportico: (state, action: any) => {
+      state.supportChat = [...state.supportChat, action.payload];
+    },
   },
 });
 
@@ -62,5 +70,7 @@ export const {
   setLogo,
   seticoChat,
   setChatico,
+  setsupportChat,
+  setSupportico,
 } = userSlice.actions;
 export default userSlice.reducer;

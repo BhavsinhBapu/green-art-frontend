@@ -12146,10 +12146,9 @@ label.upload-file-btn.press-enter {
 }
 
 .chat_box {
-    overflow: auto;
-    display: flex;
-    justify-items: end;
-    align-items: flex-end;
+     /* height: 400px; */
+    overflow-x: overlay;
+    padding-bottom: 30px;
     border: 1px solid var(--border-color-1) !important;
 }
 

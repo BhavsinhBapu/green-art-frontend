@@ -3,7 +3,6 @@ import Link from "next/link";
 import React from "react";
 
 const BlogCard = ({ blog }: any) => {
-  console.log(blog);
 
   return (
     <>
