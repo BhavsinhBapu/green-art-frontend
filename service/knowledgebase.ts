@@ -28,8 +28,18 @@ export const articleDetails = async (unique_code: string) => {
   return data;
 };
 
-export const supportTicketList = async () => {
-  const { data } = await request.get(`/knowledgebase/support-ticket-list`);
+export const supportTicketList = async (
+  limit: any,
+  page: any,
+  search: any,
+  status: any,
+  project: any,
+  form_data: any,
+  to_date: any
+) => {
+  const { data } = await request.get(
+    `/knowledgebase/support-ticket-list?limit=${limit}&page=${page}&search=${search}&status=${status}&project=${project}&form_date=${form_data}&to_date=${to_date}`
+  );
   return data;
 };
 
