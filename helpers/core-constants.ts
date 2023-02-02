@@ -64,3 +64,9 @@ export const TYPE_BLOG_FEATURED = 3;
 //news
 export const TYPE_NEWS_RECENT = 1;
 export const TYPE_NEWS_POPULER = 2;
+
+//Ticket
+export const TICKET_STATUS_PENDING = 1;
+export const TICKET_STATUS_OPEN = 2;
+export const TICKET_STATUS_CLOSE = 3;
+export const TICKET_STATUS_CLOSE_FOREAVER = 4;

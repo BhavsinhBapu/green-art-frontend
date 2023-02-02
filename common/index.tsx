@@ -3,7 +3,9 @@ import { toast } from "react-toastify";
 export const formateData = (date: any) => {
   return moment(date).format("MMM Do YY h:mm:ss a");
 };
-
+export const formateDateMunite = (date: any) => {
+  return moment(date).startOf("hour").fromNow();
+};
 export const formateZert = (number: any) => {
   return parseFloat(number);
 };

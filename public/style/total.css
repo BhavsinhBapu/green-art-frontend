@@ -12246,7 +12246,7 @@ label.upload-file-btn.press-enter {
     width: 42px;
     height: 42px;
     line-height: 66px;
-    margin-right: 12px;
+    /* margin-right: 12px; */
     font-size: 17px;
     display: flex;
     align-items: center;
