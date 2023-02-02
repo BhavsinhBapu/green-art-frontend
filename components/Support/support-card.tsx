@@ -7,9 +7,8 @@ export const SupportCard = ({ name, ticketNumber }: any) => {
             <span className="card-top-icon mb-3">
               <i className="fa fa-ticket" aria-hidden="true"></i>
             </span>
-            <h5>
-              {name} ({ticketNumber})
-            </h5>
+            <h3>{ticketNumber}</h3>
+            <h5>{name}</h5>
           </div>
         </div>
       </div>

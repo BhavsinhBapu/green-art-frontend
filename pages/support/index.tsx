@@ -3,6 +3,7 @@ import PaginationGlobal from "components/Pagination/PaginationGlobal";
 import { SupportCard } from "components/Support/support-card";
 import { TicketBox } from "components/Support/ticket-box";
 import { TicketFilter } from "components/Support/ticket-filter";
+import { CustomLoading } from "components/common/CustomLoading";
 import {
   SSRAuthCheck,
   pageAvailabilityCheck,
@@ -17,6 +18,7 @@ import { customPage, landingPage } from "service/landing-page";
 
 const Support = () => {
   const [fullDashboar, setFullDashboard] = useState<any>();
+  const [loading, setloading] = useState<any>(true);
   const [ticket_list, setTicket_list] = useState<any>();
   const [projectList, setProjectList] = useState([]);
   const [filter, setfilter] = useState<any>({
@@ -33,15 +35,19 @@ const Support = () => {
 
   const getProjectList = async () => {
     const { data } = await knowledgebaseSupportProjectList();
-    console.log(data, "projectList");
     setProjectList(data);
   };
   const searchDashboardData = async (query: any) => {
+    setloading(true);
+
     const DashboardData = await supportTicketList(5, 1, query, "", "", "", "");
     setFullDashboard(DashboardData.data);
     setTicket_list(DashboardData?.data?.ticket_list);
+    setloading(false);
   };
   const FilterDashboardData = async () => {
+    setloading(true);
+
     const DashboardData = await supportTicketList(
       5,
       1,
@@ -53,6 +59,7 @@ const Support = () => {
     );
     setFullDashboard(DashboardData.data);
     setTicket_list(DashboardData?.data?.ticket_list);
+    setloading(false);
   };
   const getDashbaordDataPaginationAction = async (
     page: any,
@@ -60,6 +67,8 @@ const Support = () => {
     setLoading: any,
     selected: any
   ) => {
+    setloading(true);
+
     const url = page.url.split("?")[1];
     const number = url.split("=")[1];
     const response = await supportTicketList(
@@ -73,6 +82,7 @@ const Support = () => {
     );
     setFullDashboard(response.data);
     setTicket_list(response?.data?.ticket_list);
+    setloading(true);
   };
   useEffect(() => {
     getDashbaordData();
@@ -122,25 +132,31 @@ const Support = () => {
               </div>
             </div>
 
-            <TicketFilter
-              filter={filter}
-              projectList={projectList}
-              setfilter={setfilter}
-              FilterDashboardData={FilterDashboardData}
-            />
-            <div className="row mt-5">
-              {ticket_list?.data?.map((ticket: any) => (
-                <TicketBox ticket={ticket} />
-              ))}
-            </div>
-            {ticket_list?.data.length === 0 && <NoItemFound />}
-            {ticket_list?.data.length > 0 && (
-              <PaginationGlobal
-                setTimelineData={setTicket_list}
-                links={ticket_list?.links}
-                setLoading={null}
-                LinkTopaginationString={getDashbaordDataPaginationAction}
-              />
+            {loading ? (
+              <CustomLoading />
+            ) : (
+              <>
+                <TicketFilter
+                  filter={filter}
+                  projectList={projectList}
+                  setfilter={setfilter}
+                  FilterDashboardData={FilterDashboardData}
+                />
+                <div className="row mt-5">
+                  {ticket_list?.data?.map((ticket: any) => (
+                    <TicketBox ticket={ticket} />
+                  ))}
+                </div>
+                {ticket_list?.data.length === 0 && <NoItemFound />}
+                {ticket_list?.data.length > 0 && (
+                  <PaginationGlobal
+                    setTimelineData={setTicket_list}
+                    links={ticket_list?.links}
+                    setLoading={null}
+                    LinkTopaginationString={getDashbaordDataPaginationAction}
+                  />
+                )}
+              </>
             )}
           </div>
         </div>

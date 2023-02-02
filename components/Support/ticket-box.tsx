@@ -1,8 +1,5 @@
 import { formateData, formateDateMunite } from "common";
 import {
-  STATUS_ACCEPTED,
-  STATUS_PENDING,
-  STATUS_REJECTED,
   TICKET_STATUS_CLOSE,
   TICKET_STATUS_OPEN,
   TICKET_STATUS_PENDING,
