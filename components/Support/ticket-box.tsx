@@ -19,7 +19,7 @@ export const TicketBox = ({ ticket }: any) => {
             <div className="row">
               <div className="col-md-9 ticket-card-inner">
                 <h6 className="fw_600 text-dark py-2">
-                  <span className="mr-1"># {ticket?.project_id}</span>
+                  <span className="mr-1"># {ticket?.id}</span>
                   {ticket?.title}
                   <span className="ml-2">
                     <b>
