@@ -10,7 +10,8 @@ export const TopBanner = ({ resorce }: any) => {
       className=""
       style={{
         backgroundImage: resorce.cover_image
-          ? resource?.cover_image
+          ? //@ts-ignore
+            resource?.cover_image
           : "url(/top_bg.jpg)",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",

@@ -39,37 +39,41 @@ const KnowledgebaseArticleDetails = ({
               dangerouslySetInnerHTML={{
                 // __html: clean(details.description),
                 __html: articleDetails.article_details.description,
-              }}></div>
+              }}
+            ></div>
           </div>
 
           <div className="col-md-6 col-lg-4 mt-5 mt-lg-0 pt-4 ">
             <div className="row">
-              {articleDetails.related_article_list.map((article: any) => (
-                <div className="col-12 mt-4 mb-1">
-                  <div className="article_card px-4 pt-4 pb-4 ">
-                    <h4 className="fw_600 pt-3 mb-0">
-                      <span className="mr-2 h5">
-                        <i className="fa fa-address-card"></i>
-                      </span>
-                      {article?.title}
-                    </h4>
-                    <small className="article-date">
-                      {formateData(article?.created_at)}
-                    </small>
-                    <p className="p_color pt-3">{article?.description}</p>
-                  </div>
-                  <Link href={"/knowledgebase/" + article.unique_code}>
-                    <div className="details-button">
-                      <a href="#">
-                        view more
-                        <i
-                          className="ml-2 fa fa-long-arrow-right"
-                          aria-hidden="true"></i>
-                      </a>
+              {articleDetails.related_article_list.map(
+                (article: any, index: any) => (
+                  <div className="col-12 mt-4 mb-1" key={index}>
+                    <div className="article_card px-4 pt-4 pb-4 ">
+                      <h4 className="fw_600 pt-3 mb-0">
+                        <span className="mr-2 h5">
+                          <i className="fa fa-address-card"></i>
+                        </span>
+                        {article?.title}
+                      </h4>
+                      <small className="article-date">
+                        {formateData(article?.created_at)}
+                      </small>
+                      <p className="p_color pt-3">{article?.description}</p>
                     </div>
-                  </Link>
-                </div>
-              ))}
+                    <Link href={"/knowledgebase/" + article.unique_code}>
+                      <div className="details-button">
+                        <a href="#">
+                          view more
+                          <i
+                            className="ml-2 fa fa-long-arrow-right"
+                            aria-hidden="true"
+                          ></i>
+                        </a>
+                      </div>
+                    </Link>
+                  </div>
+                )
+              )}
             </div>
           </div>
         </div>

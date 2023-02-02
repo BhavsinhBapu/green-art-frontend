@@ -46,8 +46,8 @@ const KnowledgebaseArticleList = ({
               <div className="col-12">
                 <h1 className="text-center">{details?.name}</h1>
               </div>
-              {list?.map((article: any) => (
-                <ArticalCard article={article} />
+              {list?.map((article: any, index: any) => (
+                <ArticalCard key={index} article={article} />
               ))}
             </div>
           </div>

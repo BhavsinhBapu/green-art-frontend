@@ -40,8 +40,11 @@ export const TicketNote = ({ ticketDetails, notes, setNotes }: any) => {
       </div>
 
       <ul>
-        {notes?.map((note: any) => (
-          <li className="rounded chat-side-info mt-2 pt-2 pb-3 px-3">
+        {notes?.map((note: any, index: any) => (
+          <li
+            key={index}
+            className="rounded chat-side-info mt-2 pt-2 pb-3 px-3"
+          >
             <div>{note?.notes}</div>
             <div className="mt-3">
               <a className="chat_btn rounded" onClick={deleteNote}>

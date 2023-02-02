@@ -52,8 +52,8 @@ const KnowledgebaseCategory = ({
                   <h3 className="fw_600 m-0">{details?.name}</h3>
                 </a>
               </div>
-              {list.map((Subcategory) => (
-                <KnowledgeCard subCategory={Subcategory} />
+              {list.map((Subcategory, index: any) => (
+                <KnowledgeCard key={index} subCategory={Subcategory} />
               ))}
             </div>
           )}

@@ -36,8 +36,8 @@ const Knowledgebase = ({
               </div>
             </div>
           ) : (
-            knowledgebase.map((section: any) => (
-              <div className="row mt-5 pt-5">
+            knowledgebase.map((section: any, key: any) => (
+              <div className="row mt-5 pt-5" key={key}>
                 <div className="col-12">
                   <Link
                     href={
@@ -51,9 +51,11 @@ const Knowledgebase = ({
                   </Link>
                 </div>
 
-                {section?.knb_sub_category.map((subCategory: any) => (
-                  <KnowledgeCard subCategory={subCategory} />
-                ))}
+                {section?.knb_sub_category.map(
+                  (subCategory: any, index: any) => (
+                    <KnowledgeCard key={index} subCategory={subCategory} />
+                  )
+                )}
               </div>
             ))
           )}
