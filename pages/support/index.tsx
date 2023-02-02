@@ -118,7 +118,7 @@ const Support = () => {
               />
             </div>
             <div className="row">
-              <div className="col-md-12 d-flex align-items-center searchTicket">
+              <div className="col-md-12 d-block d-md-flex align-items-center searchTicket">
                 <input
                   placeholder="Search Ticket ID or Title or Puchase Code"
                   className="px-2 py-2 rounded"
@@ -132,7 +132,7 @@ const Support = () => {
                 <div>
                   <button
                     type="button"
-                    className="btn btn_ticket_search ml-2 rounded"
+                    className="btn btn_ticket_search ml-0 ml-md-2 mt-3 mt-md-0 rounded"
                   >
                     Ticket Create
                   </button>
