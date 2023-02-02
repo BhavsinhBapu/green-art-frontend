@@ -15,13 +15,35 @@ const Support = () => {
   const [fullDashboar, setFullDashboard] = useState<any>();
   const [ticket_list, setTicket_list] = useState<any>();
   const getDashbaordData = async () => {
-    const DashboardData = await supportTicketList();
+    const DashboardData = await supportTicketList(5, 1, "", "", "", "", "");
     setFullDashboard(DashboardData.data);
     setTicket_list(DashboardData?.data?.ticket_list);
-    console.log(
-      DashboardData?.data?.ticket_list.links,
-      "DashboardData.data.ticket_list"
+  };
+
+  const searchDashboardData = async (query: any) => {
+    const DashboardData = await supportTicketList(5, 1, query, "", "", "", "");
+    setFullDashboard(DashboardData.data);
+    setTicket_list(DashboardData?.data?.ticket_list);
+  };
+  const getDashbaordDataPaginationAction = async (
+    page: any,
+    setData: any,
+    setLoading: any,
+    selected: any
+  ) => {
+    const url = page.url.split("?")[1];
+    const number = url.split("=")[1];
+    const response = await supportTicketList(
+      5,
+      parseInt(number),
+      "",
+      "",
+      "",
+      "",
+      ""
     );
+    setFullDashboard(response.data);
+    setTicket_list(response?.data?.ticket_list);
   };
   useEffect(() => {
     getDashbaordData();
@@ -61,6 +83,11 @@ const Support = () => {
                   placeholder="Search Ticket ID or Title or Puchase Code"
                   className="w-100 px-2 py-2 rounded search-field"
                   type="text"
+                  onChange={(e) => {
+                    setTimeout(() => {
+                      searchDashboardData(e.target.value);
+                    }, 1000);
+                  }}
                 />
                 <button
                   className=" btn_ticket_search px-3 ml-2 rounded"
@@ -77,11 +104,14 @@ const Support = () => {
                 <TicketBox ticket={ticket} />
               ))}
             </div>
-            <PaginationGlobal
-              setTimelineData={setTicket_list}
-              links={ticket_list?.links}
-              setLoading={null}
-            />
+            {ticket_list?.data.length > 0 && (
+              <PaginationGlobal
+                setTimelineData={setTicket_list}
+                links={ticket_list?.links}
+                setLoading={null}
+                LinkTopaginationString={getDashbaordDataPaginationAction}
+              />
+            )}
           </div>
         </div>
       </div>
