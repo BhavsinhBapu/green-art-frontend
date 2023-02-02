@@ -33,24 +33,23 @@ export const TicketNote = ({ ticketDetails, notes, setNotes }: any) => {
         <button
           className="chat_btn rounded ml-2"
           type="button"
-          onClick={saveNote}
-        >
+          onClick={saveNote}>
           Save
         </button>
       </div>
 
-      <ul>
+      <div>
         {notes?.map((note: any) => (
-          <li className="rounded chat-side-info mt-2 pt-2 pb-3 px-3">
+          <div className="rounded chat-side-info mt-2 pt-2 pb-3 px-3">
             <div>{note?.notes}</div>
-            <div className="mt-3">
-              <a className="chat_btn rounded" onClick={deleteNote}>
+            <div className="text-right mt-3">
+              <a href="" className="chat_btn rounded" onClick={deleteNote}>
                 <small>Delete</small>
               </a>
             </div>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     </>
   );
 };
