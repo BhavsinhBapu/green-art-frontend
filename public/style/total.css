@@ -12516,3 +12516,16 @@ input {
   border-radius: 2px;
   color: var(--text-primary-color) !important;
 }
+.ticketFilterBg {
+  background: none !important;
+}
+.ticketFilterBg option {
+  background: var(--background-color) !important;
+}
+.searchTicket input {
+  width: 100%;
+  background: transparent;
+}
+.searchTicket div {
+  width: 100%;
+}
