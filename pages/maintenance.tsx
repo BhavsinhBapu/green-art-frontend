@@ -42,7 +42,6 @@ const Maintenance = ({ data }: any) => {
 
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const { data } = await commomSettings();
-  console.log(data.maintenance_mode_status, "data");
   if (parseInt(data?.maintenance_mode_status) === 0) {
     return {
       redirect: {

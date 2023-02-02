@@ -7,7 +7,6 @@ import {
 import Link from "next/link";
 
 export const TicketBox = ({ ticket }: any) => {
-  console.log(ticket, "ticket");
   return (
     <Link href={"/support/" + ticket?.unique_code}>
       <div className="col-12 my-2 ticket-card">
@@ -20,15 +19,15 @@ export const TicketBox = ({ ticket }: any) => {
                   {ticket?.title}
                   <span className="ml-2">
                     <b>
-                      {ticket.status === TICKET_STATUS_PENDING ? (
+                      {ticket?.status === TICKET_STATUS_PENDING ? (
                         <span className=" ml-2 badge bg-warning text-white">
                           Pending
                         </span>
-                      ) : ticket.status === TICKET_STATUS_OPEN ? (
+                      ) : ticket?.status === TICKET_STATUS_OPEN ? (
                         <span className=" ml-2 badge bg-info text-white">
                           Open
                         </span>
-                      ) : ticket.status === TICKET_STATUS_CLOSE ? (
+                      ) : ticket?.status === TICKET_STATUS_CLOSE ? (
                         <span className=" ml-2 badge bg-danger text-white">
                           Close
                         </span>
@@ -48,21 +47,21 @@ export const TicketBox = ({ ticket }: any) => {
                   }}
                 ></p>
                 <small className="p_color">
-                  {formateDateMunite(ticket.updated_at)}
+                  {formateDateMunite(ticket?.updated_at)}
                 </small>
               </div>
               <div className="col-md-3  p_color">
                 <p>
                   <b>Assign To:</b>
-                  {ticket.agent_name ? (
-                    <small>{ticket.agent_name}</small>
+                  {ticket?.agent_name ? (
+                    <small>{ticket?.agent_name}</small>
                   ) : (
                     <small>Not Assign</small>
                   )}
                 </p>
                 <p>
                   <b className="mr-1">Ticket Created At: </b>
-                  <small>{formateData(ticket.created_at)}</small>
+                  <small>{formateData(ticket?.created_at)}</small>
                 </p>
               </div>
             </div>

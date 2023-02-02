@@ -1,7 +1,6 @@
 import Link from "next/link";
 
 export const KnowledgeCard = (subCategory: any) => {
-  console.log(subCategory, "subCategory");
   return (
     <div className="col-md-6 col-lg-4 mt-5 pt-4 pt-lg-0">
       <div className="sub_title h-100">

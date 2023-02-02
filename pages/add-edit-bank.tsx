@@ -66,7 +66,6 @@ const AddEditBank = ({ customPageData, socialData, copyright_text }: any) => {
                             ),
                           })}
                           onSubmit={(values) => {
-                            console.log(values);
                           }}
                         >
                           {({ errors, touched, setFieldValue }) => (

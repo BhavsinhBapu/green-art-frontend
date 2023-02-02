@@ -144,10 +144,7 @@ const TokenCreate = ({ id, edit, data }: any) => {
                           }
                           setFieldValue("decimal", response.data.token_decimal);
                           setFieldValue("token_name", response.data.name);
-                          console.log(
-                            response.data.symbol,
-                            "response.data.symbol"
-                          );
+
                           setFieldValue("token_symbol", response.data.symbol);
                           setFieldValue("chain_id", response.data.chain_id);
                           setWarning(false);

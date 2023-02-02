@@ -49,7 +49,25 @@ export const supportTicketConversationDetails = async (unique_code: string) => {
   );
   return data;
 };
-
+export const supportTicketNoteCreate = async (ticket_id: string, note: any) => {
+  const { data } = await request.post(
+    `/knowledgebase/support-ticket-note-create`,
+    {
+      ticket_id: ticket_id,
+      notes: note,
+    }
+  );
+  return data;
+};
+export const supportTicketNoteDelete = async (unique_id: string, note: any) => {
+  const { data } = await request.post(
+    `/knowledgebase/support-ticket-note-delete`,
+    {
+      unique_id: unique_id,
+    }
+  );
+  return data;
+};
 export const supportTicketStore = async (payload: any) => {
   const { data } = await request.post(
     `/knowledgebase/support-ticket-conversation-details`,
@@ -60,7 +78,7 @@ export const supportTicketStore = async (payload: any) => {
 
 export const supportTicketConversationSend = async (payload: any) => {
   const { data } = await request.post(
-    `/knowledgebase/support-ticket-conversation-details`,
+    `/knowledgebase/support-ticket-conversation-send`,
     payload
   );
   return data;

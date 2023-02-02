@@ -8,7 +8,6 @@ const PaginationGlobal = ({
   selected,
   LinkTopaginationString,
 }: any) => {
-  console.log(links, "linkslinkslinks");
   return (
     <div className="row justify-content-center justify-content-md-end">
       <ul className="pagination Paginate mb-5">

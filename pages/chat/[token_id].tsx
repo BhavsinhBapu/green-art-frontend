@@ -62,7 +62,6 @@ export const Chat = ({ customPageData, socialData, copyright_text }: any) => {
     window.Echo.channel(
       `New-Message-${localStorage.getItem("user_id")}-${router.query.token_id}`
     ).listen(".Conversation", (e: any) => {
-      console.log(e.data, "data coming");
       dispatch(setChatico(e.data));
     });
   }
