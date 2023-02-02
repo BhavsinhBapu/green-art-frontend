@@ -12392,3 +12392,7 @@ input {
     border-radius: 2px;
     color: var(--text-primary-color) !important;
 }
+
+.search-ticket {
+    width: 85%;
+}

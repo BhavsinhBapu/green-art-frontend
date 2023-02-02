@@ -118,10 +118,10 @@ const Support = () => {
               />
             </div>
             <div className="row">
-              <div className="col-md-12 d-flex">
+              <div className="col-md-12 d-flex align-items-center">
                 <input
                   placeholder="Search Ticket ID or Title or Puchase Code"
-                  className="w-100 px-2 py-2 rounded search-field"
+                  className="px-2 py-2 rounded search-ticket"
                   type="text"
                   onChange={(e) => {
                     setTimeout(() => {
@@ -129,6 +129,13 @@ const Support = () => {
                     }, 1000);
                   }}
                 />
+                <div>
+                  <button
+                    type="button"
+                    className="btn btn_ticket_search ml-2 rounded">
+                    Ticket Create
+                  </button>
+                </div>
               </div>
             </div>
 
