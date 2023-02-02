@@ -12217,6 +12217,7 @@ label.upload-file-btn.press-enter {
     width: 100%;
     overflow: auto;
     background-color: var(--main-background-color);
+    z-index: 20;
 }
 
 .search-filter a {
@@ -12372,4 +12373,12 @@ input {
 .custom_file_uploder {
     background-color: transparent;
     border: 1px solid var(--border-color-1);
+}
+
+.top_search button {
+    border-radius: 0px 3px 3px 0px;
+}
+
+.top_search input {
+    padding: 11px 10px !important;
 }

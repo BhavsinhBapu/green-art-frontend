@@ -12,10 +12,10 @@ export const TopBanner = () => {
           <div className="col-12 text-center text-white mt-5 pt-5">
             <h1 className="text-white">How can we help you ?</h1>
           </div>
-          <div className="col-md-6 mx-auto">
+          <div className="col-md-6 mx-auto pb-5">
             <form>
-              <div className="input-group my-3 mx-auto pb-5 ">
-                <div className="d-flex w-100 rounded ">
+              <div className="input-group my-3 mx-auto pb-5">
+                <div className="d-flex w-100 rounded top_search">
                   <input
                     className="w-100 px-2 py-2 rounded-left border-0"
                     type="text"
@@ -27,23 +27,20 @@ export const TopBanner = () => {
                       );
                     }}
                   />
-                  {/* <button
-                    className="border-0 px-4 btn-secondary rounded-reight"
-                    type="submit"
-                  >
+                  <button
+                    className="border-0 px-4 btn-secondary rounded-r"
+                    type="submit">
                     <i className="fa fa-search" aria-hidden="true"></i>
-                  </button> */}
+                  </button>
                 </div>
 
                 <div
                   className="search-filter ps-1 rounded"
-                  id="append-search-result"
-                >
+                  id="append-search-result">
                   {lists.map((list: any, index: number) => (
                     <Link
                       key={index}
-                      href={"/knowledgebase/" + list.unique_code}
-                    >
+                      href={"/knowledgebase/" + list.unique_code}>
                       <a href="">{list?.title}</a>
                     </Link>
                   ))}
