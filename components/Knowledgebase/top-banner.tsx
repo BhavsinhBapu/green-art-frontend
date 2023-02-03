@@ -22,8 +22,8 @@ export const TopBanner = ({ resorce }: any) => {
         <div className="row">
           <div className="col-12 text-center text-white mt-5 pt-5">
             <h1 className="text-white">
-              {resorce.knowledgebase_page_cover_first_title
-                ? resorce.knowledgebase_page_cover_first_title
+              {resorce?.knowledgebase_page_cover_first_title
+                ? resorce?.knowledgebase_page_cover_first_title
                 : "How can we help you ?"}
             </h1>
           </div>

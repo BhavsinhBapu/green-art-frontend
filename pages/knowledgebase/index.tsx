@@ -70,7 +70,6 @@ const Knowledgebase = ({
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
-  await SSRAuthCheck(ctx, "/knowledgebase");
   const { data } = await landingPage();
   const { data: customPageData } = await customPage();
   const commonRes = await pageAvailabilityCheck();

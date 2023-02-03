@@ -61,6 +61,7 @@ const SupportTicketDetails = () => {
         TicketDetails?.unique_code
       }`
     ).listen(".Conversation", (e: any) => {
+      console.log(e, "message coming");
       dispatch(setSupportico(e.data));
     });
   }
