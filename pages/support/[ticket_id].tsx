@@ -14,13 +14,21 @@ import { useEffect, useRef, useState } from "react";
 import Echo from "laravel-echo";
 import Pusher from "pusher-js";
 import {
+  siteSettingResource,
   supportTicketConversationDetails,
   supportTicketConversationSend,
 } from "service/knowledgebase";
 import { RootState } from "state/store";
 import { useDispatch, useSelector } from "react-redux";
+import { customPage, landingPage } from "service/landing-page";
+import Footer from "components/common/footer";
+import SupportSidebar from "layout/supportSidebar";
 let socketCall = 0;
-const SupportTicketDetails = () => {
+const SupportTicketDetails = ({
+  socialData,
+  customPageData,
+  copyright_text,
+}: any) => {
   const [TicketDetails, setTicketDetails] = useState<any>();
   const [Notes, setNotes] = useState<any>();
   const [loading, setLoading] = useState(false);
@@ -31,7 +39,8 @@ const SupportTicketDetails = () => {
     (state: RootState) => state.user
   );
   const router = useRouter();
-  const sendMessage = async () => {
+  const sendMessage = async (e: any) => {
+    e.preventDefault();
     const formData = new FormData();
     formData.append("message", message);
     formData.append("ticket_unique_code", TicketDetails.unique_code);
@@ -61,6 +70,7 @@ const SupportTicketDetails = () => {
         TicketDetails?.unique_code
       }`
     ).listen(".Conversation", (e: any) => {
+      console.log(e, "message coming");
       dispatch(setSupportico(e.data));
     });
   }
@@ -93,36 +103,53 @@ const SupportTicketDetails = () => {
       );
   }, [router.query.ticket_id]);
   return (
-    <section className="my-5">
-      <div className="container">
-        {loading === true ? (
-          <CustomLoading />
-        ) : (
-          <div className="row">
-            <SupportChat
-              conversationDetails={conversationDetails}
-              sendMessage={sendMessage}
-              setMessage={setMessage}
-              message={message}
-              setFile={setFile}
-            />
-            <div className="col-lg-4 mt-5 mt-lg-0">
-              <TicketUserInfo ticketDetails={TicketDetails} />
-              <TicketNote
-                ticketDetails={TicketDetails}
-                notes={Notes}
-                setNotes={setNotes}
-              />
-            </div>
+    <>
+      <div className="page-wrap">
+        <SupportSidebar />
+        <div className="page-main-content">
+          <div className="container-fluid">
+            <section className="my-5">
+              <div className="container">
+                {loading === true ? (
+                  <CustomLoading />
+                ) : (
+                  <div className="row">
+                    <SupportChat
+                      conversationDetails={conversationDetails}
+                      sendMessage={sendMessage}
+                      setMessage={setMessage}
+                      message={message}
+                      setFile={setFile}
+                    />
+                    <div className="col-lg-4 mt-5 mt-lg-0">
+                      <TicketUserInfo ticketDetails={TicketDetails} />
+                      <TicketNote
+                        ticketDetails={TicketDetails}
+                        notes={Notes}
+                        setNotes={setNotes}
+                      />
+                    </div>
+                  </div>
+                )}
+              </div>
+            </section>
           </div>
-        )}
+        </div>
       </div>
-    </section>
+      <Footer
+        customPageData={customPageData}
+        socialData={socialData}
+        copyright_text={copyright_text}
+      />
+    </>
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/support");
+  const { data } = await landingPage();
+  const { data: customPageData } = await customPage();
   const commonRes = await pageAvailabilityCheck();
+  const resorce = await siteSettingResource();
   if (parseInt(commonRes.knowledgebase_support_module) !== 1) {
     return {
       redirect: {
@@ -132,7 +159,12 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
     };
   }
   return {
-    props: {},
+    props: {
+      socialData: data.media_list,
+      copyright_text: data?.copyright_text,
+      customPageData: customPageData.data,
+      resorce: resorce,
+    },
   };
 };
 export default SupportTicketDetails;

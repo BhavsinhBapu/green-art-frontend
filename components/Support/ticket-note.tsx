@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
 import {
   supportTicketNoteCreate,
   supportTicketNoteDelete,
@@ -8,13 +9,16 @@ export const TicketNote = ({ ticketDetails, notes, setNotes }: any) => {
   const [note, setNote] = useState("");
 
   const saveNote = async () => {
+    if (!note) {
+      toast.error("Note cannot be empty");
+      return;
+    }
     const { data } = await supportTicketNoteCreate(ticketDetails?.id, note);
     setNotes(data);
     setNote("");
   };
-  const deleteNote = async () => {
-    console.log(ticketDetails?.unique_code, "ticketDetails?.unique_code");
-    const { data } = await supportTicketNoteDelete(ticketDetails?.unique_code);
+  const deleteNote = async (unique_code: any) => {
+    const { data } = await supportTicketNoteDelete(unique_code);
     setNotes(data);
   };
   return (
@@ -43,13 +47,18 @@ export const TicketNote = ({ ticketDetails, notes, setNotes }: any) => {
         {notes?.map((note: any, index: any) => (
           <div
             key={index}
-            className="rounded chat-side-info mt-2 pt-2 pb-3 px-3"
+            className="rounded chat-side-info mt-2 pt-2 pb-3 px-3 d-flex justify-content-between align-items-center"
           >
             <div>{note?.notes}</div>
             <div>
-              <a href="" className="chat_btn rounded" onClick={deleteNote}>
+              <p
+                className="chat_btn rounded ml-3"
+                onClick={() => {
+                  deleteNote(note?.unique_code);
+                }}
+              >
                 <small>Delete</small>
-              </a>
+              </p>
             </div>
           </div>
         ))}

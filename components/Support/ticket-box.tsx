@@ -9,13 +9,17 @@ import Link from "next/link";
 export const TicketBox = ({ ticket }: any) => {
   return (
     <Link href={"/support/" + ticket?.unique_code}>
-      <div className="col-12 my-2 ticket-card">
+      <div
+        className={`col-12 my-2  ${
+          ticket.is_seen_by_user === 1 ? "ticket-card" : "ticket-card-unseen"
+        }`}
+      >
         <div className="card p-3 ">
           <a href="">
             <div className="row">
               <div className="col-md-9 ticket-card-inner">
                 <h6 className="fw_600 text-dark py-2">
-                  <span className="mr-1"># {ticket?.project_id}</span>
+                  <span className="mr-1"># {ticket?.id}</span>
                   {ticket?.title}
                   <span className="ml-2">
                     <b>

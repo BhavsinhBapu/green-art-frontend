@@ -4,11 +4,14 @@ import { SupportCard } from "components/Support/support-card";
 import { TicketBox } from "components/Support/ticket-box";
 import { TicketFilter } from "components/Support/ticket-filter";
 import { CustomLoading } from "components/common/CustomLoading";
+import Footer from "components/common/footer";
+import SupportSidebar from "layout/supportSidebar";
 import {
   SSRAuthCheck,
   pageAvailabilityCheck,
 } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import {
   knowledgebaseSupportProjectList,
@@ -16,7 +19,7 @@ import {
 } from "service/knowledgebase";
 import { customPage, landingPage } from "service/landing-page";
 
-const Support = () => {
+const Support = ({ socialData, customPageData, copyright_text }: any) => {
   const [fullDashboar, setFullDashboard] = useState<any>();
   const [loading, setloading] = useState<any>(false);
   const [ticket_list, setTicket_list] = useState<any>();
@@ -89,86 +92,108 @@ const Support = () => {
     getProjectList();
   }, []);
   return (
-    <section className="my-5">
-      <div className="container">
-        <div className="row">
-          <div className="col-md-12 col-lg-12">
-            <div className="row  mb-5">
-              <SupportCard
-                name="Total Ticket"
-                ticketNumber={fullDashboar?.ticket_count?.total_ticket_count}
-              />
-              <SupportCard
-                name="Pending Ticket"
-                ticketNumber={
-                  fullDashboar?.ticket_count?.total_pending_ticket_count
-                }
-              />
-              <SupportCard
-                name="Open Ticket"
-                ticketNumber={
-                  fullDashboar?.ticket_count?.total_open_ticket_count
-                }
-              />
-              <SupportCard
-                name="Close Ticket"
-                ticketNumber={
-                  fullDashboar?.ticket_count?.total_close_forever_ticket_count
-                }
-              />
-            </div>
-            <div className="row">
-              <div className="col-md-12 d-flex align-items-center">
-                <input
-                  placeholder="Search Ticket ID or Title or Puchase Code"
-                  className="px-2 py-2 rounded search-ticket"
-                  type="text"
-                  onChange={(e) => {
-                    setTimeout(() => {
-                      searchDashboardData(e.target.value);
-                    }, 1000);
-                  }}
-                />
-                <div>
-                  <button
-                    type="button"
-                    className="btn btn_ticket_search ml-2 rounded">
-                    Ticket Create
-                  </button>
+    <>
+      <div className="page-wrap">
+        <SupportSidebar />
+        <div className="page-main-content">
+          <div className="container-fluid">
+            <section className="my-5">
+              <div className="container">
+                <div className="row">
+                  <div className="col-md-12 col-lg-12">
+                    <div className="row  mb-5">
+                      <SupportCard
+                        name="Total Ticket"
+                        ticketNumber={
+                          fullDashboar?.ticket_count?.total_ticket_count
+                        }
+                      />
+                      <SupportCard
+                        name="Pending Ticket"
+                        ticketNumber={
+                          fullDashboar?.ticket_count?.total_pending_ticket_count
+                        }
+                      />
+                      <SupportCard
+                        name="Open Ticket"
+                        ticketNumber={
+                          fullDashboar?.ticket_count?.total_open_ticket_count
+                        }
+                      />
+                      <SupportCard
+                        name="Close Ticket"
+                        ticketNumber={
+                          fullDashboar?.ticket_count
+                            ?.total_close_forever_ticket_count
+                        }
+                      />
+                    </div>
+                    <div className="row">
+                      <div className="col-md-12 d-block d-md-flex align-items-center searchTicket">
+                        <input
+                          placeholder="Search Ticket ID or Title or Puchase Code"
+                          className="px-2 py-2 rounded"
+                          type="text"
+                          onChange={(e) => {
+                            setTimeout(() => {
+                              searchDashboardData(e.target.value);
+                            }, 1000);
+                          }}
+                        />
+                        {/* <Link href="/support/ticket-create">
+                          <div>
+                            <button
+                              type="button"
+                              className="btn btn_ticket_search ml-0 ml-md-2 mt-3 mt-md-0 rounded"
+                            >
+                              Create Ticket
+                            </button>
+                          </div>
+                        </Link> */}
+                      </div>
+                    </div>
+
+                    {loading ? (
+                      <CustomLoading />
+                    ) : (
+                      <>
+                        <TicketFilter
+                          filter={filter}
+                          projectList={projectList}
+                          setfilter={setfilter}
+                          FilterDashboardData={FilterDashboardData}
+                        />
+                        <div className="row mt-5">
+                          {ticket_list?.data?.map((ticket: any, index: any) => (
+                            <TicketBox key={index} ticket={ticket} />
+                          ))}
+                        </div>
+                        {ticket_list?.data.length === 0 && <NoItemFound />}
+                        {ticket_list?.data.length > 0 && (
+                          <PaginationGlobal
+                            setTimelineData={setTicket_list}
+                            links={ticket_list?.links}
+                            setLoading={null}
+                            LinkTopaginationString={
+                              getDashbaordDataPaginationAction
+                            }
+                          />
+                        )}
+                      </>
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
-
-            {loading ? (
-              <CustomLoading />
-            ) : (
-              <>
-                <TicketFilter
-                  filter={filter}
-                  projectList={projectList}
-                  setfilter={setfilter}
-                  FilterDashboardData={FilterDashboardData}
-                />
-                <div className="row mt-5">
-                  {ticket_list?.data?.map((ticket: any, index: any) => (
-                    <TicketBox key={index} ticket={ticket} />
-                  ))}
-                </div>
-                {ticket_list?.data.length === 0 && <NoItemFound />}
-                {ticket_list?.data.length > 0 && (
-                  <PaginationGlobal
-                    setTimelineData={setTicket_list}
-                    links={ticket_list?.links}
-                    setLoading={null}
-                    LinkTopaginationString={getDashbaordDataPaginationAction}
-                  />
-                )}
-              </>
-            )}
+            </section>
           </div>
         </div>
       </div>
-    </section>
+      <Footer
+        customPageData={customPageData}
+        socialData={socialData}
+        copyright_text={copyright_text}
+      />
+    </>
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {

@@ -1,3 +1,7 @@
+//@ts-ignore
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 export const TicketFilter = ({
   filter,
   setfilter,
@@ -13,13 +17,14 @@ export const TicketFilter = ({
               <label>Select Project</label>
               <select
                 name="project"
-                className="form-control h-50"
+                className="form-control h-50 ticketFilterBg"
                 onChange={(e: any) => {
                   setfilter({
                     ...filter,
                     project: e.target.value,
                   });
-                }}>
+                }}
+              >
                 <option>Select Project</option>
                 {projectList.map((project: any, index: any) => (
                   <option key={index} value={project.id}>
@@ -32,13 +37,14 @@ export const TicketFilter = ({
               <label>Select Status</label>
               <select
                 name="status"
-                className="form-control h-50"
+                className="form-control h-50 ticketFilterBg"
                 onChange={(e: any) => {
                   setfilter({
                     ...filter,
                     status: e.target.value,
                   });
-                }}>
+                }}
+              >
                 <option>Select Status</option>
                 <option value="1">Pending</option>
                 <option value="2">Open</option>
@@ -48,8 +54,8 @@ export const TicketFilter = ({
             </div>
             <div className="col-lg-2 col-md-4 mt-3 mt-lg-0">
               <label>From</label>
-              <input
-                className="form-control h-50"
+              {/* <input
+                className="form-control h-50 ticketFilterBg"
                 type="date"
                 name="from_date"
                 onChange={(e: any) => {
@@ -58,12 +64,21 @@ export const TicketFilter = ({
                     from: e.target.value,
                   });
                 }}
+              /> */}
+              <DatePicker
+                selected={filter.from}
+                onChange={(date: any) => {
+                  setfilter({
+                    ...filter,
+                    from: date,
+                  });
+                }}
               />
             </div>
             <div className="col-lg-2 col-md-4 mt-3 mt-lg-0">
               <label>To</label>
-              <input
-                className="form-control h-50"
+              {/* <input
+                className="form-control h-50 ticketFilterBg"
                 type="date"
                 name="to_date"
                 onChange={(e: any) => {
@@ -72,13 +87,23 @@ export const TicketFilter = ({
                     to: e.target.value,
                   });
                 }}
+              /> */}
+              <DatePicker
+                selected={filter.to}
+                onChange={(date: any) => {
+                  setfilter({
+                    ...filter,
+                    to: date,
+                  });
+                }}
               />
             </div>
             <div className="col-lg-2 col-md-4 mt-3 mt-lg-0">
               <button
                 type="button"
                 className="btn btn_ticket_search w-100 rounded"
-                onClick={FilterDashboardData}>
+                onClick={FilterDashboardData}
+              >
                 Filter Ticket
               </button>
             </div>

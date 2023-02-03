@@ -8,6 +8,9 @@ import { RootState } from "state/store";
 const Footer = ({ customPageData, socialData, copyright_text }: any) => {
   const { t } = useTranslation("common");
   const { settings } = useSelector((state: RootState) => state.common);
+  const { isLoggedIn, user, logo } = useSelector(
+    (state: RootState) => state.user
+  );
   return (
     <footer className="footer-area pt--70">
       <div className="footer-top">
@@ -27,7 +30,15 @@ const Footer = ({ customPageData, socialData, copyright_text }: any) => {
                     )}
                     {parseInt(settings.knowledgebase_support_module) === 1 && (
                       <li>
-                        <Link href={"/support"}>{t("Support")}</Link>
+                        <Link
+                          href={
+                            isLoggedIn === true
+                              ? "/support"
+                              : "/authentication/signin"
+                          }
+                        >
+                          {t("Support")}
+                        </Link>
                       </li>
                     )}
                     {parseInt(settings.knowledgebase_support_module) === 1 && (
