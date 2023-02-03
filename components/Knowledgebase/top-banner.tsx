@@ -36,10 +36,16 @@ export const TopBanner = ({ resorce }: any) => {
                     type="text"
                     name="notes"
                     onChange={(e: any) => {
-                      knowledgebaseArticleSearchAction(
-                        e.target.value,
-                        setLists
-                      );
+                      if (e.target.value === "") {
+                        setLists([]);
+                        return;
+                      }
+                      setTimeout(() => {
+                        knowledgebaseArticleSearchAction(
+                          e.target.value,
+                          setLists
+                        );
+                      }, 1000);
                     }}
                   />
                   <button
