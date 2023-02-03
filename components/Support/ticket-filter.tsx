@@ -100,7 +100,7 @@ export const TicketFilter = ({
             <div className="col-lg-2 col-md-4 mt-3 mt-lg-0">
               <button
                 type="button"
-                className="btn btn_ticket_search w-100 rounded"
+                className="py-1 btn_ticket_search w-100 rounded"
                 onClick={FilterDashboardData}>
                 Filter Ticket
               </button>
