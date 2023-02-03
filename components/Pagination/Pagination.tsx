@@ -24,10 +24,9 @@ const Pagination = ({
                   setLinks,
                   selected
                 );
-              }}>
-              <a href="" className="page-link">
-                Previous
-              </a>
+              }}
+            >
+              <span className="page-link">Previous</span>
             </li>
           ) : link.label === "Next &raquo;" ? (
             <li
@@ -41,10 +40,11 @@ const Pagination = ({
                   setLinks,
                   selected
                 );
-              }}>
-              <a href="" className="page-link">
+              }}
+            >
+              <span  className="spanage-link">
                 Next
-              </a>
+              </span>
             </li>
           ) : (
             <li
@@ -58,14 +58,15 @@ const Pagination = ({
                   setLinks,
                   selected
                 );
-              }}>
-              <a
-                href=""
+              }}
+            >
+              <span
                 className={`page-link ${
                   link.active === true && "paginationActive shadow"
-                }`}>
+                }`}
+              >
                 {link.label}
-              </a>
+              </span>
             </li>
           )
         )}
