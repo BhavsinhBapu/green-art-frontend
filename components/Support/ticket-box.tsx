@@ -12,8 +12,7 @@ export const TicketBox = ({ ticket }: any) => {
       <div
         className={`col-12 my-2  ${
           ticket.is_seen_by_user === 1 ? "ticket-card" : "ticket-card-unseen"
-        }`}
-      >
+        }`}>
         <div className="card p-3 ">
           <a href="">
             <div className="row">
@@ -47,9 +46,11 @@ export const TicketBox = ({ ticket }: any) => {
                 <p
                   className="p_color"
                   dangerouslySetInnerHTML={{
-                    __html: ticket?.last_conversation?.message,
-                  }}
-                ></p>
+                    __html: ticket?.last_conversation?.message.substring(
+                      0,
+                      300
+                    ),
+                  }}></p>
                 <small className="p_color">
                   {formateDateMunite(ticket?.updated_at)}
                 </small>

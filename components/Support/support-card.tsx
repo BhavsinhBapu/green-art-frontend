@@ -1,6 +1,6 @@
 export const SupportCard = ({ name, ticketNumber }: any) => {
   return (
-    <div className="col-md-6 col-lg-3 mt-3 mt-md-0">
+    <div className="col-sm-6 col-12 col-lg-3 mt-3 mt-lg-0">
       <div className="h-100">
         <div className="sub_title rounded">
           <div className="d-flex justify-content-center flex-column align-items-center py-3">

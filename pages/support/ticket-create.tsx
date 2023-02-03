@@ -76,8 +76,7 @@ const TicketCreate = ({ socialData, customPageData, copyright_text }: any) => {
                               ...options,
                               project: e.target.value,
                             });
-                          }}
-                        >
+                          }}>
                           <option selected>Choose...</option>
                           {projectList.map((project: any, index: any) => (
                             <option key={index} value={project.id}>
@@ -109,8 +108,7 @@ const TicketCreate = ({ socialData, customPageData, copyright_text }: any) => {
                               ...options,
                               description: e.target.value,
                             });
-                          }}
-                        ></textarea>
+                          }}></textarea>
 
                         <label className="pt-4">
                           Purchase Code (optional) :
@@ -119,7 +117,6 @@ const TicketCreate = ({ socialData, customPageData, copyright_text }: any) => {
                           className="w-100 px-2 py-2 rounded search-field"
                           type="text"
                           name="purchase_code"
-                          value=""
                           onChange={(e: any) => {
                             setOptions({
                               ...options,
@@ -147,8 +144,7 @@ const TicketCreate = ({ socialData, customPageData, copyright_text }: any) => {
 
                         <button
                           className="btn btn-warning fw-bolder text-white mt-4 px-4 py-2 rounded"
-                          onClick={createTicket}
-                        >
+                          onClick={createTicket}>
                           Submit
                         </button>
                       </div>
