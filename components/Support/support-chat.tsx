@@ -25,7 +25,7 @@ export const SupportChat = ({
     <div className="col-lg-8">
       <div className="chat_box rounded">
         <div className="chat_list">
-          <div className="d-block" id="append_conversation">
+          <div className="d-block pb-5" id="append_conversation">
             {conversationDetails?.map((chat: any) =>
               chat?.user?.id === user.id || chat?.user_id === user.id ? (
                 <div className="col-md-8 ml-auto">

@@ -9,11 +9,11 @@ export const TicketUserInfo = ({ ticketDetails }: any) => {
   console.log(ticketDetails, "ticketDetails");
   return (
     <div className="p_color chat-side-info mb-4 p-3 rounded">
-      <h5 className="uppercase">
+      <h5 className="">
         # {ticketDetails?.project_id} {ticketDetails?.title}
       </h5>
       <p>
-        <small>
+        <h5>
           {ticketDetails?.status === TICKET_STATUS_PENDING ? (
             <span className="badge bg-warning text-white">Pending</span>
           ) : ticketDetails?.status === TICKET_STATUS_OPEN ? (
@@ -23,7 +23,7 @@ export const TicketUserInfo = ({ ticketDetails }: any) => {
           ) : (
             <span className="badge bg-danger text-white">Close forever</span>
           )}
-        </small>
+        </h5>
       </p>
       <p>
         <b className="mr-2">Assign To:</b>
