@@ -12143,7 +12143,7 @@ label.upload-file-btn.press-enter {
     border-radius: 8px;
     padding: 8px;
     margin-left: 7px;
-    width: 100%;
+    /* width: 100%; */
 }
 
 .chat_box {
@@ -12160,11 +12160,11 @@ label.upload-file-btn.press-enter {
     border-radius: 50%;
     background-repeat: no-repeat;
     background-position: center;
-    width: 48px;
+    width: 45px;
 }
 
 .chat_file_upload {
-    max-width: 68px !important;
+    max-width: 38px !important;
     cursor: pointer !important;
 }
 
@@ -12361,10 +12361,8 @@ label.upload-file-btn.press-enter {
 }
 
 .send_image {
-    margin: 10px;
     border: 2px solid var(--border-color);
-    border-radius: 10px;
-    padding: 5px;
+    border-radius: 6px;
 }
 
 select {
@@ -12444,4 +12442,27 @@ input {
 
 .searchTicket div {
     width: 130px;
+}
+
+.massage_img {
+    position: absolute;
+    top: 3px;
+    right: 0;
+    left: 8px;
+    z-index: 1;
+    overflow: hidden;
+    font-weight: 400;
+    color: var(--text-primary-color-1);
+    font-size: 22px;
+}
+
+.massage_img::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+    display: block;
+    height: calc(1.5em + 0.75rem);
+    cursor: pointer;
 }

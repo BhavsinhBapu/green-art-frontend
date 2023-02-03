@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
+import { BsFillFileEarmarkImageFill } from "react-icons/bs";
 
 export const SupportChat = ({
   sendMessage,
@@ -35,13 +36,12 @@ export const SupportChat = ({
                         className="chat_text mr-1"
                         dangerouslySetInnerHTML={{
                           __html: chat?.message,
-                        }}
-                      ></small>
+                        }}></small>
                     )}
 
                     <div>
                       <img
-                        className="chat_img"
+                        className="chat_img ml-1"
                         src={chat?.user?.photo}
                         alt=""
                       />
@@ -54,11 +54,10 @@ export const SupportChat = ({
                           href={image?.file_link}
                           target="_blank"
                           rel="noreferrer"
-                          className="send_image"
-                        >
+                          className="send_image mb-2">
                           <img
                             height={100}
-                            className="rounded mb-2"
+                            className="rounded"
                             src={image?.file_link}
                           />
                         </a>
@@ -67,8 +66,7 @@ export const SupportChat = ({
                           href={image?.file_link}
                           target="_blank"
                           rel="noreferrer"
-                          className="send_image"
-                        >
+                          className="send_image">
                           Download file
                         </a>
                       )
@@ -89,8 +87,7 @@ export const SupportChat = ({
                         className="chat_text mr-1"
                         dangerouslySetInnerHTML={{
                           __html: chat?.message,
-                        }}
-                      ></small>
+                        }}></small>
                     )}
                   </div>
                   {chat?.conversation_attachment[0]?.file_link &&
@@ -100,8 +97,7 @@ export const SupportChat = ({
                           href={image?.file_link}
                           target="_blank"
                           rel="noreferrer"
-                          className="send_image"
-                        >
+                          className="send_image">
                           <img
                             height={100}
                             className="rounded mb-2"
@@ -113,8 +109,7 @@ export const SupportChat = ({
                           href={image?.file_link}
                           target="_blank"
                           rel="noreferrer"
-                          className="send_image"
-                        >
+                          className="send_image">
                           Download file
                         </a>
                       )
@@ -131,8 +126,7 @@ export const SupportChat = ({
         <div>
           <form
             onSubmit={sendMessage}
-            className="d-flex gap-2 align-items-center"
-          >
+            className="d-flex gap-2 align-items-center">
             <input
               type="text"
               className="w-100 px-2 rounded py-2 message_bg"
@@ -155,7 +149,9 @@ export const SupportChat = ({
                     setFile(e.target.files[0]);
                   }}
                 />
-                <label className="custom-file-label">Choose</label>
+                <label className="massage_img">
+                  <BsFillFileEarmarkImageFill />
+                </label>
               </div>
             </div>
             <button className="rounded chat_btn" type="submit">
