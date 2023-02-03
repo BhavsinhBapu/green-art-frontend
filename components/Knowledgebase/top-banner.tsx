@@ -48,12 +48,12 @@ export const TopBanner = ({ resorce }: any) => {
                       }, 1000);
                     }}
                   />
-                  <button
+                  {/* <button
                     className="border-0 px-4 btn-secondary rounded-r"
                     type="submit"
                   >
                     <i className="fa fa-search" aria-hidden="true"></i>
-                  </button>
+                  </button> */}
                 </div>
 
                 <div
