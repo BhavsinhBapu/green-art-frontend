@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
 import {
   supportTicketNoteCreate,
   supportTicketNoteDelete,
@@ -8,6 +9,10 @@ export const TicketNote = ({ ticketDetails, notes, setNotes }: any) => {
   const [note, setNote] = useState("");
 
   const saveNote = async () => {
+    if (!note) {
+      toast.error("Note cannot be empty");
+      return;
+    }
     const { data } = await supportTicketNoteCreate(ticketDetails?.id, note);
     setNotes(data);
     setNote("");

@@ -28,14 +28,15 @@ export const SupportChat = ({
           <div className="d-block pb-5" id="append_conversation">
             {conversationDetails?.map((chat: any) =>
               chat?.user?.id === user.id || chat?.user_id === user.id ? (
-                <div className="col-md-8 ml-auto">
+                <div className="col-md-8 ml-auto chat_layout_right">
                   <div className="d-flex justify-content-end my-2">
                     {chat?.message && (
                       <small
                         className="chat_text mr-1"
                         dangerouslySetInnerHTML={{
                           __html: chat?.message,
-                        }}></small>
+                        }}
+                      ></small>
                     )}
 
                     <div>
@@ -46,17 +47,33 @@ export const SupportChat = ({
                       />
                     </div>
                   </div>
-                  {chat?.conversation_attachment[0]?.file_link && (
-                    <a href="" target="_blank">
-                      <img
-                        className="rounded mb-2"
-                        src={chat?.conversation_attachment[0]?.file_link}
-                      />
-                    </a>
-                  )}
+                  {chat?.conversation_attachment[0]?.file_link &&
+                    chat?.conversation_attachment.map((image: any) =>
+                      image.file_type === "img" ? (
+                        <a
+                          href={image?.file_link}
+                          target="_blank"
+                          className="send_image"
+                        >
+                          <img
+                            height={100}
+                            className="rounded mb-2"
+                            src={image?.file_link}
+                          />
+                        </a>
+                      ) : (
+                        <a
+                          href={image?.file_link}
+                          target="_blank"
+                          className="send_image"
+                        >
+                          Download file
+                        </a>
+                      )
+                    )}
                 </div>
               ) : (
-                <div className="col-md-8">
+                <div className="col-md-8 chat_layout_left">
                   <div className="d-flex justify-content-between my-2">
                     <div>
                       <img
@@ -70,17 +87,34 @@ export const SupportChat = ({
                         className="chat_text mr-1"
                         dangerouslySetInnerHTML={{
                           __html: chat?.message,
-                        }}></small>
+                        }}
+                      ></small>
                     )}
                   </div>
-                  {chat?.conversation_attachment[0]?.file_link && (
-                    <a href="" target="_blank">
-                      <img
-                        className="rounded mb-2"
-                        src={chat?.conversation_attachment[0]?.file_link}
-                      />
-                    </a>
-                  )}
+                  {chat?.conversation_attachment[0]?.file_link &&
+                    chat?.conversation_attachment.map((image: any) =>
+                      image.file_type === "img" ? (
+                        <a
+                          href={image?.file_link}
+                          target="_blank"
+                          className="send_image"
+                        >
+                          <img
+                            height={100}
+                            className="rounded mb-2"
+                            src={image?.file_link}
+                          />
+                        </a>
+                      ) : (
+                        <a
+                          href={image?.file_link}
+                          target="_blank"
+                          className="send_image"
+                        >
+                          Download file
+                        </a>
+                      )
+                    )}
                 </div>
               )
             )}
@@ -90,35 +124,40 @@ export const SupportChat = ({
       </div>
 
       <div className="col-md-12 mt-4">
-        <div className="d-flex gap-2 align-items-center">
-          <input
-            type="text"
-            className="w-100 px-2 rounded py-2 message_bg"
-            id="send-message-box"
-            name="message"
-            value={message}
-            onChange={(e) => {
-              setMessage(e.target.value);
-            }}
-            placeholder="message"
-          />
+        <div>
+          <form
+            onSubmit={sendMessage}
+            className="d-flex gap-2 align-items-center"
+          >
+            <input
+              type="text"
+              className="w-100 px-2 rounded py-2 message_bg"
+              id="send-message-box"
+              name="message"
+              value={message}
+              onChange={(e) => {
+                setMessage(e.target.value);
+              }}
+              placeholder="message"
+            />
 
-          <div className="input-group chat_file_upload mx-1">
-            <div className="custom-file ">
-              <input
-                type="file"
-                className="custom-file-input "
-                id="inputGroupFile01"
-                onChange={(e: any) => {
-                  setFile(e.target.files[0]);
-                }}
-              />
-              <label className="custom-file-label">Choose</label>
+            <div className="input-group chat_file_upload mx-1">
+              <div className="custom-file ">
+                <input
+                  type="file"
+                  className="custom-file-input "
+                  id="inputGroupFile01"
+                  onChange={(e: any) => {
+                    setFile(e.target.files[0]);
+                  }}
+                />
+                <label className="custom-file-label">Choose</label>
+              </div>
             </div>
-          </div>
-          <button className="rounded chat_btn" onClick={sendMessage}>
-            send
-          </button>
+            <button className="rounded chat_btn" type="submit">
+              send
+            </button>
+          </form>
         </div>
       </div>
     </div>

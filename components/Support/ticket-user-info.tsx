@@ -10,7 +10,7 @@ export const TicketUserInfo = ({ ticketDetails }: any) => {
   return (
     <div className="p_color chat-side-info mb-4 p-3 rounded">
       <h5 className="">
-        # {ticketDetails?.project_id} {ticketDetails?.title}
+        # {ticketDetails?.id} {ticketDetails?.title}
       </h5>
       <p>
         <h5>

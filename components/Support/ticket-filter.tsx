@@ -1,3 +1,7 @@
+//@ts-ignore
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 export const TicketFilter = ({
   filter,
   setfilter,
@@ -50,7 +54,7 @@ export const TicketFilter = ({
             </div>
             <div className="col-lg-2 col-md-4 mt-3 mt-lg-0">
               <label>From</label>
-              <input
+              {/* <input
                 className="form-control h-50 ticketFilterBg"
                 type="date"
                 name="from_date"
@@ -60,11 +64,20 @@ export const TicketFilter = ({
                     from: e.target.value,
                   });
                 }}
+              /> */}
+              <DatePicker
+                selected={filter.from}
+                onChange={(date: any) => {
+                  setfilter({
+                    ...filter,
+                    from: date,
+                  });
+                }}
               />
             </div>
             <div className="col-lg-2 col-md-4 mt-3 mt-lg-0">
               <label>To</label>
-              <input
+              {/* <input
                 className="form-control h-50 ticketFilterBg"
                 type="date"
                 name="to_date"
@@ -72,6 +85,15 @@ export const TicketFilter = ({
                   setfilter({
                     ...filter,
                     to: e.target.value,
+                  });
+                }}
+              /> */}
+              <DatePicker
+                selected={filter.to}
+                onChange={(date: any) => {
+                  setfilter({
+                    ...filter,
+                    to: date,
                   });
                 }}
               />

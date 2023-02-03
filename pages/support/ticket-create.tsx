@@ -1,12 +1,21 @@
+import Footer from "components/common/footer";
+import SupportSidebar from "layout/supportSidebar";
+import {
+  SSRAuthCheck,
+  pageAvailabilityCheck,
+} from "middlewares/ssr-authentication-check";
+import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import {
   SupportCreateTicket,
   knowledgebaseSupportProjectList,
+  siteSettingResource,
 } from "service/knowledgebase";
+import { customPage, landingPage } from "service/landing-page";
 
-const TicketCreate = () => {
+const TicketCreate = ({ socialData, customPageData, copyright_text }: any) => {
   const [projectList, setProjectList] = useState([]);
   const [options, setOptions] = useState<any>({
     project: "",
@@ -45,103 +54,141 @@ const TicketCreate = () => {
     getProjectList();
   }, []);
   return (
-    <section className="my-5">
-      {JSON.stringify(options)}
-      <div className="container">
-        <div className="row">
-          <div className="col-md-8 mx-auto">
-            <div className="ticket_create_box p-4 rounded">
-              <h4 className="fw_600">Create New Ticket</h4>
-              <input type="hidden" />
-              <div className="p_color pt-4">
-                <label>Choose Project:</label>
-                <select
-                  id="inputState"
-                  className="w-100 px-2 py-2 rounded search-field"
-                  onChange={(e: any) => {
-                    setOptions({
-                      ...options,
-                      project: e.target.value,
-                    });
-                  }}
-                >
-                  <option selected>Choose...</option>
-                  {projectList.map((project: any, index: any) => (
-                    <option key={index} value={project.id}>
-                      {project.name}
-                    </option>
-                  ))}
-                </select>
+    <>
+      <div className="page-wrap">
+        <SupportSidebar />
+        <div className="page-main-content">
+          <div className="container-fluid">
+            <section className="my-5">
+              <div className="container">
+                <div className="row">
+                  <div className="col-md-8 mx-auto">
+                    <div className="ticket_create_box p-4 rounded">
+                      <h4 className="fw_600">Create New Ticket</h4>
+                      <input type="hidden" />
+                      <div className="p_color pt-4">
+                        <label>Choose Project:</label>
+                        <select
+                          id="inputState"
+                          className="w-100 px-2 py-2 rounded search-field"
+                          onChange={(e: any) => {
+                            setOptions({
+                              ...options,
+                              project: e.target.value,
+                            });
+                          }}
+                        >
+                          <option selected>Choose...</option>
+                          {projectList.map((project: any, index: any) => (
+                            <option key={index} value={project.id}>
+                              {project.name}
+                            </option>
+                          ))}
+                        </select>
 
-                <label className="pt-4">Title :</label>
-                <input
-                  className="w-100 px-2 py-2 rounded search-field"
-                  type="text"
-                  name="title"
-                  onChange={(e: any) => {
-                    setOptions({
-                      ...options,
-                      title: e.target.value,
-                    });
-                  }}
-                />
+                        <label className="pt-4">Title :</label>
+                        <input
+                          className="w-100 px-2 py-2 rounded search-field"
+                          type="text"
+                          name="title"
+                          onChange={(e: any) => {
+                            setOptions({
+                              ...options,
+                              title: e.target.value,
+                            });
+                          }}
+                        />
 
-                <label className="pt-4">Description</label>
-                <textarea
-                  id="description"
-                  name="description"
-                  className="w-100 px-2 py-2 rounded search-field"
-                  onChange={(e: any) => {
-                    setOptions({
-                      ...options,
-                      description: e.target.value,
-                    });
-                  }}
-                ></textarea>
+                        <label className="pt-4">Description</label>
+                        <textarea
+                          id="description"
+                          name="description"
+                          className="w-100 px-2 py-2 rounded search-field"
+                          onChange={(e: any) => {
+                            setOptions({
+                              ...options,
+                              description: e.target.value,
+                            });
+                          }}
+                        ></textarea>
 
-                <label className="pt-4">Purchase Code (optional) :</label>
-                <input
-                  className="w-100 px-2 py-2 rounded search-field"
-                  type="text"
-                  name="purchase_code"
-                  value=""
-                  onChange={(e: any) => {
-                    setOptions({
-                      ...options,
-                      purchase_code: e.target.value,
-                    });
-                  }}
-                />
-                <label className="pt-4">Attach File:</label>
-                <div className="input-group">
-                  <div className="custom-file">
-                    <input
-                      type="file"
-                      className="custom-file-input "
-                      id="inputGroupFile01"
-                      aria-describedby="inputGroupFileAddon01"
-                      onChange={(e: any) => {
-                        setFile(e.target.files[0]);
-                      }}
-                    />
-                    <label className="custom-file-label custom_file_uploder">
-                      Choose file
-                    </label>
+                        <label className="pt-4">
+                          Purchase Code (optional) :
+                        </label>
+                        <input
+                          className="w-100 px-2 py-2 rounded search-field"
+                          type="text"
+                          name="purchase_code"
+                          value=""
+                          onChange={(e: any) => {
+                            setOptions({
+                              ...options,
+                              purchase_code: e.target.value,
+                            });
+                          }}
+                        />
+                        <label className="pt-4">Attach File:</label>
+                        <div className="input-group">
+                          <div className="custom-file">
+                            <input
+                              type="file"
+                              className="custom-file-input "
+                              id="inputGroupFile01"
+                              aria-describedby="inputGroupFileAddon01"
+                              onChange={(e: any) => {
+                                setFile(e.target.files[0]);
+                              }}
+                            />
+                            <label className="custom-file-label custom_file_uploder">
+                              Choose file
+                            </label>
+                          </div>
+                        </div>
+
+                        <button
+                          className="btn btn-warning fw-bolder text-white mt-4 px-4 py-2 rounded"
+                          onClick={createTicket}
+                        >
+                          Submit
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
-
-                <button
-                  className="btn btn-warning fw-bolder text-white mt-4 px-4 py-2 rounded"
-                  onClick={createTicket}
-                >
-                  Submit
-                </button>
               </div>
-            </div>
+            </section>
           </div>
         </div>
       </div>
-    </section>
+      <Footer
+        customPageData={customPageData}
+        socialData={socialData}
+        copyright_text={copyright_text}
+      />
+    </>
   );
+};
+export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
+  await SSRAuthCheck(ctx, "/support");
+  const { data } = await landingPage();
+  const { data: customPageData } = await customPage();
+  const commonRes = await pageAvailabilityCheck();
+  const resorce = await siteSettingResource();
+  if (parseInt(commonRes.knowledgebase_support_module) !== 1) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {
+      socialData: data.media_list,
+      copyright_text: data?.copyright_text,
+      customPageData: customPageData.data,
+      resorce: resorce,
+    },
+  };
 };
 export default TicketCreate;
