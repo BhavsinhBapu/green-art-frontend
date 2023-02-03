@@ -23,6 +23,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { customPage, landingPage } from "service/landing-page";
 import Footer from "components/common/footer";
 import SupportSidebar from "layout/supportSidebar";
+import { toast } from "react-toastify";
 let socketCall = 0;
 const SupportTicketDetails = ({
   socialData,
@@ -46,7 +47,10 @@ const SupportTicketDetails = ({
     formData.append("ticket_unique_code", TicketDetails.unique_code);
     file && formData.append("files_name[1]", file);
     setMessage("");
-    await supportTicketConversationSend(formData);
+    const data = await supportTicketConversationSend(formData);
+    if (data?.success === false) {
+      toast.error(data?.message);
+    }
   };
 
   async function listenMessages() {

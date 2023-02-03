@@ -18,7 +18,7 @@ const KnowledgebaseArticleDetails = ({
     <>
       <div className="container mb-5">
         <div className="row">
-          <div className="col-md-6 col-lg-8 mt-4">
+          <div className="col-md-6 col-lg-8 mt-4 custom_details_box">
             <div className="main_img">
               {articleDetails.article_details?.feature_image && (
                 <img
@@ -47,7 +47,7 @@ const KnowledgebaseArticleDetails = ({
               {articleDetails.related_article_list.map(
                 (article: any, index: any) => (
                   <div className="col-12 mt-4 mb-1" key={index}>
-                    <div className="article_card px-4 pt-4 pb-4 ">
+                    <div className="article_card px-4 pt-4 pb-4  ">
                       <h4 className="fw_600 pt-3 mb-0">
                         <span className="mr-2 h5">
                           <i className="fa fa-address-card"></i>

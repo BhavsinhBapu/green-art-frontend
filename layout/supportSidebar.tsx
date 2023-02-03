@@ -64,7 +64,6 @@ const SupportSidebar = ({ getDashbaordData }: any) => {
               <a href="/user/profile">{t("Profile")}</a>
             </li>
           </Link>
-          {/* user/profile */}
         </ul>
       </div>
     </div>
