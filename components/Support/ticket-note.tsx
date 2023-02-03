@@ -46,9 +46,9 @@ export const TicketNote = ({ ticketDetails, notes, setNotes }: any) => {
           >
             <div>{note?.notes}</div>
             <div>
-              <a href="" className="chat_btn rounded ml-3" onClick={deleteNote}>
+              <p className="chat_btn rounded ml-3" onClick={deleteNote}>
                 <small>Delete</small>
-              </a>
+              </p>
             </div>
           </div>
         ))}
