@@ -152,17 +152,16 @@ const Support = ({ socialData, customPageData, copyright_text }: any) => {
                         </Link> */}
                       </div>
                     </div>
-
+                    <TicketFilter
+                      filter={filter}
+                      projectList={projectList}
+                      setfilter={setfilter}
+                      FilterDashboardData={FilterDashboardData}
+                    />
                     {loading ? (
                       <CustomLoading />
                     ) : (
                       <>
-                        <TicketFilter
-                          filter={filter}
-                          projectList={projectList}
-                          setfilter={setfilter}
-                          FilterDashboardData={FilterDashboardData}
-                        />
                         <div className="row mt-5">
                           {ticket_list?.data?.map((ticket: any, index: any) => (
                             <TicketBox key={index} ticket={ticket} />

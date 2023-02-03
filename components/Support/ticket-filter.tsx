@@ -54,7 +54,7 @@ export const TicketFilter = ({
             </div>
             <div className="col-lg-2 col-md-4 mt-3 mt-lg-0">
               <label>From</label>
-              {/* <input
+              <input
                 className="form-control h-50 ticketFilterBg"
                 type="date"
                 name="from_date"
@@ -64,8 +64,8 @@ export const TicketFilter = ({
                     from: e.target.value,
                   });
                 }}
-              /> */}
-              <DatePicker
+              />
+              {/* <DatePicker
                 selected={filter.from}
                 onChange={(date: any) => {
                   setfilter({
@@ -73,11 +73,11 @@ export const TicketFilter = ({
                     from: date,
                   });
                 }}
-              />
+              /> */}
             </div>
             <div className="col-lg-2 col-md-4 mt-3 mt-lg-0">
               <label>To</label>
-              {/* <input
+              <input
                 className="form-control h-50 ticketFilterBg"
                 type="date"
                 name="to_date"
@@ -87,16 +87,17 @@ export const TicketFilter = ({
                     to: e.target.value,
                   });
                 }}
-              /> */}
-              <DatePicker
+              />
+              {/* <DatePicker
                 selected={filter.to}
+                dateFormat="yyyy/MM/dd"
                 onChange={(date: any) => {
                   setfilter({
                     ...filter,
                     to: date,
                   });
                 }}
-              />
+              /> */}
             </div>
             <div className="col-lg-2 col-md-4 mt-3 mt-lg-0">
               <button
