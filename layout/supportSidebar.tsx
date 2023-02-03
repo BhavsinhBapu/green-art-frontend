@@ -5,6 +5,8 @@ import React from "react";
 import { HiOutlineCash } from "react-icons/hi";
 import { BiSupport } from "react-icons/bi";
 import { AiOutlineBook } from "react-icons/ai";
+import { BsBarChart } from "react-icons/bs";
+import { CgProfile } from "react-icons/cg";
 
 const SupportSidebar = ({ getDashbaordData }: any) => {
   const router = useRouter();
@@ -34,7 +36,8 @@ const SupportSidebar = ({ getDashbaordData }: any) => {
             <li
               className={
                 router.pathname == "/support/ticket-create" ? "active" : ""
-              }>
+              }
+            >
               <BiSupport />
               <a href="/support/ticket-create">{t("Create Ticket")}</a>
             </li>
@@ -49,14 +52,15 @@ const SupportSidebar = ({ getDashbaordData }: any) => {
             <li
               className={
                 router.pathname == "/exchange/dashboard" ? "active" : ""
-              }>
-              <HiOutlineCash />
+              }
+            >
+              <BsBarChart />
               <a href="/exchange/dashboard">{t("Exchange")}</a>
             </li>
           </Link>
           <Link href="/user/profile">
             <li className={router.pathname == "/user/profile" ? "active" : ""}>
-              <HiOutlineCash />
+              <CgProfile />
               <a href="/user/profile">{t("Profile")}</a>
             </li>
           </Link>
