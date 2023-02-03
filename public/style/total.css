@@ -12144,6 +12144,12 @@ label.upload-file-btn.press-enter {
     padding: 8px;
     margin-left: 7px;
     /* width: 100%; */
+    background-color: var(--main-background-color);
+    border: 1px solid var(--border-color-1) !important;
+    border-radius: 8px;
+    padding: 8px;
+    margin-left: 7px;
+    /* width: 100%; */
 }
 
 .chat_box {
@@ -12161,6 +12167,15 @@ label.upload-file-btn.press-enter {
     background-repeat: no-repeat;
     background-position: center;
     width: 45px;
+}
+
+.chat_file_upload {
+    max-width: 38px !important;
+    cursor: pointer !important;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 48px;
 }
 
 .chat_file_upload {
@@ -12363,6 +12378,10 @@ label.upload-file-btn.press-enter {
 .send_image {
     border: 2px solid var(--border-color);
     border-radius: 6px;
+    margin: 10px;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    padding: 5px;
 }
 
 select {
@@ -12444,6 +12463,10 @@ input {
     width: 130px;
 }
 
+.custom_details_box div {
+    text-align: justify;
+}
+
 .massage_img {
     position: absolute;
     top: 3px;
@@ -12451,8 +12474,7 @@ input {
     left: 8px;
     z-index: 1;
     overflow: hidden;
-    font-weight: 400;
-    color: var(--text-primary-color-1);
+    color: var(--text-primary-color-2);
     font-size: 22px;
 }
 
