@@ -12,8 +12,8 @@ export const TicketNote = ({ ticketDetails, notes, setNotes }: any) => {
     setNotes(data);
     setNote("");
   };
-  const deleteNote = async () => {
-    const { data } = await supportTicketNoteDelete(ticketDetails?.unique_code);
+  const deleteNote = async (unique_code: any) => {
+    const { data } = await supportTicketNoteDelete(unique_code);
     setNotes(data);
   };
   return (
@@ -46,7 +46,12 @@ export const TicketNote = ({ ticketDetails, notes, setNotes }: any) => {
           >
             <div>{note?.notes}</div>
             <div>
-              <p className="chat_btn rounded ml-3" onClick={deleteNote}>
+              <p
+                className="chat_btn rounded ml-3"
+                onClick={() => {
+                  deleteNote(note?.unique_code);
+                }}
+              >
                 <small>Delete</small>
               </p>
             </div>
