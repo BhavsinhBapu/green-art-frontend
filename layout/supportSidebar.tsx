@@ -6,7 +6,6 @@ import { HiOutlineCash } from "react-icons/hi";
 import { BiSupport } from "react-icons/bi";
 import { AiOutlineBook } from "react-icons/ai";
 
-
 const SupportSidebar = () => {
   const router = useRouter();
   const { t } = useTranslation("common");
@@ -24,8 +23,7 @@ const SupportSidebar = () => {
             <li
               className={
                 router.pathname == "/support/ticket-create" ? "active" : ""
-              }
-            >
+              }>
               <BiSupport />
               <a href="/fiat-deposit">{t("Create Ticket")}</a>
             </li>
@@ -40,8 +38,7 @@ const SupportSidebar = () => {
             <li
               className={
                 router.pathname == "/exchange/dashboard" ? "active" : ""
-              }
-            >
+              }>
               <HiOutlineCash />
               <a href="/fiat-withdrawal">{t("Exchange")}</a>
             </li>

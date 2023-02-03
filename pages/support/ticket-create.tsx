@@ -70,7 +70,7 @@ const TicketCreate = ({ socialData, customPageData, copyright_text }: any) => {
                         <label>Choose Project:</label>
                         <select
                           id="inputState"
-                          className="w-100 px-2 py-2 rounded search-field"
+                          className="w-100 px-2 py-2 rounded search-field ticketFilterBg"
                           onChange={(e: any) => {
                             setOptions({
                               ...options,
