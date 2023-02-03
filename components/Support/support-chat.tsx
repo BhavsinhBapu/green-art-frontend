@@ -9,12 +9,15 @@ export const SupportChat = ({
   setFile,
   message,
 }: any) => {
-  const messagesEndRef = useRef(null);
+  // const messagesEndRef = useRef(null);
 
   const { user } = useSelector((state: RootState) => state.user);
   const scrollToBottom = () => {
+    let container: any = document.querySelector("#conversations_list");
+    container.scrollTop = container.scrollHeight;
+
     //@ts-ignore
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    // messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
   const { supportChat: conversationDetails } = useSelector(
     (state: RootState) => state.user
@@ -24,7 +27,7 @@ export const SupportChat = ({
   }, [conversationDetails]);
   return (
     <div className="col-lg-8">
-      <div className="chat_box rounded">
+      <div className="chat_box rounded" id="conversations_list">
         <div className="chat_list">
           <div className="d-block pb-5" id="append_conversation">
             {conversationDetails?.map((chat: any) =>
@@ -36,7 +39,8 @@ export const SupportChat = ({
                         className="chat_text mr-1"
                         dangerouslySetInnerHTML={{
                           __html: chat?.message,
-                        }}></small>
+                        }}
+                      ></small>
                     )}
 
                     <div>
@@ -54,7 +58,8 @@ export const SupportChat = ({
                           href={image?.file_link}
                           target="_blank"
                           rel="noreferrer"
-                          className="send_image mb-2">
+                          className="send_image mb-2"
+                        >
                           <img
                             height={100}
                             className="rounded"
@@ -66,7 +71,8 @@ export const SupportChat = ({
                           href={image?.file_link}
                           target="_blank"
                           rel="noreferrer"
-                          className="send_image">
+                          className="send_image"
+                        >
                           Download file
                         </a>
                       )
@@ -87,7 +93,8 @@ export const SupportChat = ({
                         className="chat_text mr-1"
                         dangerouslySetInnerHTML={{
                           __html: chat?.message,
-                        }}></small>
+                        }}
+                      ></small>
                     )}
                   </div>
                   {chat?.conversation_attachment[0]?.file_link &&
@@ -97,7 +104,8 @@ export const SupportChat = ({
                           href={image?.file_link}
                           target="_blank"
                           rel="noreferrer"
-                          className="send_image">
+                          className="send_image"
+                        >
                           <img
                             height={100}
                             className="rounded mb-2"
@@ -109,7 +117,8 @@ export const SupportChat = ({
                           href={image?.file_link}
                           target="_blank"
                           rel="noreferrer"
-                          className="send_image">
+                          className="send_image"
+                        >
                           Download file
                         </a>
                       )
@@ -119,14 +128,15 @@ export const SupportChat = ({
             )}
           </div>
         </div>
-        <span ref={messagesEndRef}></span>
+        {/* <span ref={messagesEndRef}></span> */}
       </div>
 
       <div className="col-md-12 mt-4">
         <div>
           <form
             onSubmit={sendMessage}
-            className="d-flex gap-2 align-items-center">
+            className="d-flex gap-2 align-items-center"
+          >
             <input
               type="text"
               className="w-100 px-2 rounded py-2 message_bg"
