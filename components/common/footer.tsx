@@ -8,9 +8,7 @@ import { RootState } from "state/store";
 const Footer = ({ customPageData, socialData, copyright_text }: any) => {
   const { t } = useTranslation("common");
   const { settings } = useSelector((state: RootState) => state.common);
-  const { isLoggedIn, user, logo } = useSelector(
-    (state: RootState) => state.user
-  );
+  const { isLoggedIn } = useSelector((state: RootState) => state.user);
   return (
     <footer className="footer-area pt--70">
       <div className="footer-top">

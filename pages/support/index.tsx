@@ -31,9 +31,12 @@ const Support = ({ socialData, customPageData, copyright_text }: any) => {
     to: "",
   });
   const getDashbaordData = async () => {
+    setloading(true);
+
     const DashboardData = await supportTicketList(5, 1, "", "", "", "", "");
     setFullDashboard(DashboardData.data);
     setTicket_list(DashboardData?.data?.ticket_list);
+    setloading(false);
   };
 
   const getProjectList = async () => {
@@ -83,7 +86,6 @@ const Support = ({ socialData, customPageData, copyright_text }: any) => {
       "",
       ""
     );
-    console.log(response?.data?.ticket_list, "response?.data?.ticket_list");
     setFullDashboard(response.data);
     setTicket_list(response?.data?.ticket_list);
     setloading(false);
@@ -95,7 +97,7 @@ const Support = ({ socialData, customPageData, copyright_text }: any) => {
   return (
     <>
       <div className="page-wrap">
-        <SupportSidebar />
+        <SupportSidebar getDashbaordData={getDashbaordData} />
         <div className="page-main-content">
           <div className="container-fluid">
             <section className="my-5">

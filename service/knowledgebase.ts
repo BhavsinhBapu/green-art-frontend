@@ -38,7 +38,7 @@ export const supportTicketList = async (
   to_date: any
 ) => {
   const { data } = await request.get(
-    `/knowledgebase/support-ticket-list?limit=${limit}&page=${page}&search=${search}&status=${status}&project=${project}&form_date=${form_data}&to_date=${to_date}`
+    `/knowledgebase/support-ticket-list?limit=${limit}&page=${page}&search=${search}&status=${status}&project=${project}&from_date=${form_data}&to_date=${to_date}`
   );
   return data;
 };
