@@ -53,6 +53,7 @@ export const SupportChat = ({
                         <a
                           href={image?.file_link}
                           target="_blank"
+                          rel="noreferrer"
                           className="send_image"
                         >
                           <img
@@ -65,6 +66,7 @@ export const SupportChat = ({
                         <a
                           href={image?.file_link}
                           target="_blank"
+                          rel="noreferrer"
                           className="send_image"
                         >
                           Download file
@@ -97,6 +99,7 @@ export const SupportChat = ({
                         <a
                           href={image?.file_link}
                           target="_blank"
+                          rel="noreferrer"
                           className="send_image"
                         >
                           <img
@@ -109,6 +112,7 @@ export const SupportChat = ({
                         <a
                           href={image?.file_link}
                           target="_blank"
+                          rel="noreferrer"
                           className="send_image"
                         >
                           Download file
