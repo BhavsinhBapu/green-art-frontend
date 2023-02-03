@@ -46,7 +46,7 @@ export const TicketBox = ({ ticket }: any) => {
                 <p
                   className="p_color"
                   dangerouslySetInnerHTML={{
-                    __html: ticket?.last_conversation?.message.substring(
+                    __html: ticket?.last_conversation?.message?.substring(
                       0,
                       300
                     ),

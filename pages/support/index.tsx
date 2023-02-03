@@ -83,9 +83,10 @@ const Support = ({ socialData, customPageData, copyright_text }: any) => {
       "",
       ""
     );
+    console.log(response?.data?.ticket_list, "response?.data?.ticket_list");
     setFullDashboard(response.data);
     setTicket_list(response?.data?.ticket_list);
-    setloading(true);
+    setloading(false);
   };
   useEffect(() => {
     getDashbaordData();
