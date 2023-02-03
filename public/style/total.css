@@ -5344,11 +5344,12 @@ select:-webkit-autofill:focus {
 .page-left-sidebar {
     width: 300px;
     background: var(--card-background-color);
-    border-radius: 5px;
+    /* border-radius: 5px; */
     min-height: 100%;
     min-width: 300px;
     /* box-shadow: rgb(0 0 0 / 5%) 0px 0px 0px 2px; */
-    border: 1px solid var(--border-color);
+    /* border: 1px solid var(--border-color); */
+    border-right: 1px solid var(--border-color);
 }
 
 .gZWIKX {
@@ -12329,6 +12330,7 @@ label.upload-file-btn.press-enter {
 .search-field {
     border: 1px solid var(--border-color-1);
     background: transparent;
+    color: var(--font-color);
 }
 
 .btn_ticket_search {

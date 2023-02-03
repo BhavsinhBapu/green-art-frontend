@@ -34,8 +34,7 @@ const SupportSidebar = ({ getDashbaordData }: any) => {
             <li
               className={
                 router.pathname == "/support/ticket-create" ? "active" : ""
-              }
-            >
+              }>
               <BiSupport />
               <a href="/support/ticket-create">{t("Create Ticket")}</a>
             </li>
@@ -50,8 +49,7 @@ const SupportSidebar = ({ getDashbaordData }: any) => {
             <li
               className={
                 router.pathname == "/exchange/dashboard" ? "active" : ""
-              }
-            >
+              }>
               <HiOutlineCash />
               <a href="/exchange/dashboard">{t("Exchange")}</a>
             </li>
