@@ -40,9 +40,10 @@ const BlogDetails = ({
           <div className="col-md-8">
             <div className="newsCardText mt-4">
               <h3>{blogDetails?.data?.details?.title}</h3>
-              <small>
+              <small className="mt-5">
                 {formateData(blogDetails?.data?.details?.created_at)}
               </small>
+              <hr />
               <img
                 className="rounded my-3"
                 src={blogDetails?.data?.details?.thumbnail}
