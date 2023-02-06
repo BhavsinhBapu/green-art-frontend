@@ -1,9 +1,6 @@
 import type { GetServerSideProps, NextPage } from "next";
-import ProfileComp from "components/profile/profile";
 import { parseCookies } from "nookies";
-
 import { GetUserInfoByTokenServer } from "service/user";
-import ProfileSidebar from "layout/profile-sidebar";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import useTranslation from "next-translate/useTranslation";
 import Footer from "components/common/footer";
@@ -12,11 +9,9 @@ import moment from "moment";
 import LaunchpadSidebar from "layout/launchpad-sidebar";
 import { useEffect, useState } from "react";
 import { DynamicSubmittedFormListAction } from "state/actions/launchpad";
-import TableLoading from "components/common/TableLoading";
 import DataTable from "react-data-table-component";
 import { handleSwapHistorySearch } from "state/actions/reports";
 import Link from "next/link";
-import { IoWalletOutline } from "react-icons/io5";
 import { GiToken } from "react-icons/gi";
 const Profile: NextPage = ({
   user,

@@ -1,11 +1,7 @@
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import { BiChevronLeft } from "react-icons/bi";
-
-import {
-  SSRAuthCheck,
-  pageAvailabilityCheck,
-} from "middlewares/ssr-authentication-check";
+import { pageAvailabilityCheck } from "middlewares/ssr-authentication-check";
 import { getBlogNewsSettings, getNewsDetails } from "service/news";
 import { GetServerSideProps } from "next";
 import { formateData } from "common";
@@ -77,35 +73,6 @@ const NewsDetails = ({
                 </a>
               </div>
             ))}
-            {/* 
-            <div className="newsCard p-4 mt-2">
-              <a href="">
-                <div className="row">
-                  <div className="col-12">
-                    <img
-                      className="rounded"
-                      src="https://public.bnbstatic.com/image/cms/blog/20220303/a9bf1151-d820-436b-a550-3670aba02b61.png"
-                      alt=""
-                    />
-                  </div>
-                  <div className="col-12 pt-3">
-                    <div className="newsCardText">
-                      <h3 className="titleText">
-                        How To Top Up Your Mobile On the Binance App
-                      </h3>
-                      <small>Jan 25th 23 4:30:43 pm</small>
-                      <p>
-                        Binance Pay is a contactless, borderless, and secure
-                        user-to-user cryptocurrency payment feature on the
-                        Binance App. Binance Pay allows users and merchants to
-                        send and receive crypto payments around the world.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div> 
-            */}
           </div>
         </div>
         {parseInt(BlogNewsSettings?.news_comment_enable) === 1 && (
@@ -126,7 +93,6 @@ const NewsDetails = ({
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
-  // await SSRAuthCheck(ctx, "/news");
   const { id } = ctx.params;
   const newsDetails = await getNewsDetails(id);
   const { data } = await landingPage();

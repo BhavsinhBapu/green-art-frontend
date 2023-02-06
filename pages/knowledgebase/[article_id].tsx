@@ -1,12 +1,11 @@
 import { formateData } from "common";
-import { ArticalCard } from "components/Knowledgebase/article-card";
 import Footer from "components/common/footer";
 import { pageAvailabilityCheck } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
 import { articleDetails } from "service/knowledgebase";
 import { customPage, landingPage } from "service/landing-page";
-import { getNewsDetails } from "service/news";
 import Link from "next/link";
+import useTranslation from "next-translate/useTranslation";
 
 const KnowledgebaseArticleDetails = ({
   articleDetails,
@@ -14,6 +13,7 @@ const KnowledgebaseArticleDetails = ({
   customPageData,
   copyright_text,
 }: any) => {
+  const { t } = useTranslation("common");
   return (
     <>
       <div className="container mb-5">
@@ -68,7 +68,7 @@ const KnowledgebaseArticleDetails = ({
                     <Link href={"/knowledgebase/" + article.unique_code}>
                       <div className="details-button">
                         <a href="#">
-                          view more
+                          {t("View more")}
                           <i
                             className="ml-2 fa fa-long-arrow-right"
                             aria-hidden="true"

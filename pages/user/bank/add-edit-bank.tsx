@@ -6,7 +6,6 @@ import useTranslation from "next-translate/useTranslation";
 import { parseCookies } from "nookies";
 import React, { useState } from "react";
 import { customPage, landingPage } from "service/landing-page";
-import { GetUserInfoByTokenServer } from "service/user";
 import { useRouter } from "next/router";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
@@ -14,7 +13,7 @@ import {
   addEditBankDetailsAction,
   deleteBankAction,
 } from "state/actions/fiat-deposit-withawal";
-import { getBankList, getBankListSSr } from "service/deposit";
+import { getBankListSSr } from "service/deposit";
 
 const AddBank = ({
   customPageData,

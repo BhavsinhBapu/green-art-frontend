@@ -28,7 +28,6 @@ const BuyOrderHistory: NextPage = ({
     column_name: "created_at",
     order_by: "desc",
   });
-  const { settings } = useSelector((state: RootState) => state.common);
   const [processing, setProcessing] = useState<boolean>(false);
   const [history, setHistory] = useState<any>([]);
   const [stillHistory, setStillHistory] = useState<any>([]);

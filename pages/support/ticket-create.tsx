@@ -5,6 +5,7 @@ import {
   pageAvailabilityCheck,
 } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
+import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
@@ -25,16 +26,13 @@ const TicketCreate = ({ socialData, customPageData, copyright_text }: any) => {
   });
   const [file, setFile] = useState<any>();
   const router = useRouter();
+  const { t } = useTranslation("common");
   const getProjectList = async () => {
     const { data } = await knowledgebaseSupportProjectList();
     setProjectList(data);
   };
   const createTicket = async () => {
     const formData = new FormData();
-    // if (!options.title || options.project || options.description) {
-    //   toast.error("Please fill all the fields!");
-    //   return;
-    // }
     formData.append("title", options.title);
     formData.append("project_id", options.project);
     formData.append("description", options.description);
@@ -64,10 +62,10 @@ const TicketCreate = ({ socialData, customPageData, copyright_text }: any) => {
                 <div className="row">
                   <div className="col-md-8 mx-auto">
                     <div className="ticket_create_box p-4 rounded">
-                      <h4 className="fw_600">Create New Ticket</h4>
+                      <h4 className="fw_600">{t("Create New Ticket")}</h4>
                       <input type="hidden" />
                       <div className="p_color pt-4">
-                        <label>Choose Project:</label>
+                        <label>{t("Choose Project:")}</label>
                         <select
                           id="inputState"
                           className="w-100 px-2 py-2 rounded search-field ticketFilterBg"
@@ -76,8 +74,9 @@ const TicketCreate = ({ socialData, customPageData, copyright_text }: any) => {
                               ...options,
                               project: e.target.value,
                             });
-                          }}>
-                          <option selected>Choose...</option>
+                          }}
+                        >
+                          <option selected>{t("Choose...")}</option>
                           {projectList.map((project: any, index: any) => (
                             <option key={index} value={project.id}>
                               {project.name}
@@ -85,7 +84,7 @@ const TicketCreate = ({ socialData, customPageData, copyright_text }: any) => {
                           ))}
                         </select>
 
-                        <label className="pt-4">Title :</label>
+                        <label className="pt-4">{t("Title :")}</label>
                         <input
                           className="w-100 px-2 py-2 rounded search-field"
                           type="text"
@@ -98,7 +97,7 @@ const TicketCreate = ({ socialData, customPageData, copyright_text }: any) => {
                           }}
                         />
 
-                        <label className="pt-4">Description</label>
+                        <label className="pt-4">{t("Description")}</label>
                         <textarea
                           id="description"
                           name="description"
@@ -108,10 +107,11 @@ const TicketCreate = ({ socialData, customPageData, copyright_text }: any) => {
                               ...options,
                               description: e.target.value,
                             });
-                          }}></textarea>
+                          }}
+                        ></textarea>
 
                         <label className="pt-4">
-                          Purchase Code (optional) :
+                          {t("Purchase Code (optional) :")}
                         </label>
                         <input
                           className="w-100 px-2 py-2 rounded search-field"
@@ -124,7 +124,7 @@ const TicketCreate = ({ socialData, customPageData, copyright_text }: any) => {
                             });
                           }}
                         />
-                        <label className="pt-4">Attach File:</label>
+                        <label className="pt-4">{t("Attach File:")}</label>
                         <div className="input-group">
                           <div className="custom-file">
                             <input
@@ -137,15 +137,16 @@ const TicketCreate = ({ socialData, customPageData, copyright_text }: any) => {
                               }}
                             />
                             <label className="custom-file-label custom_file_uploder">
-                              Choose file
+                              {t("Choose file")}
                             </label>
                           </div>
                         </div>
 
                         <button
                           className="btn btn-warning fw-bolder text-white mt-4 px-4 py-2 rounded"
-                          onClick={createTicket}>
-                          Submit
+                          onClick={createTicket}
+                        >
+                          {t("Submit")}
                         </button>
                       </div>
                     </div>

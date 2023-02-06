@@ -81,7 +81,7 @@ const IcoTokenPhaseList = ({
         <div>
           <li
             className="toolTip ml-3"
-            title={row.status === 0 ? "Turn on" : "Turn off"}
+            title={row.status === 0 ? t("Turn on") : t("Turn off")}
             onClick={async () => {
               await SaveIcoPhaseStatus(row.id);
               await IcoTokenPhaseListAction(
@@ -123,12 +123,12 @@ const IcoTokenPhaseList = ({
       cell: (row: any) => (
         <div className="blance-text">
           <Link href={`/ico/create-edit-phase/${row?.id}?edit=true`}>
-            <li className="toolTip" title="Edit Phase">
+            <li className="toolTip" title={t("Edit Phase")}>
               <IoCreateOutline size={20} />
             </li>
           </Link>
           <Link href={`/ico/create-edit-additional-phase/${row?.id}`}>
-            <li className="toolTip ml-3" title="Add Edit Additional phase">
+            <li className="toolTip ml-3" title={t("Add Edit Additional phase")}>
               <AiOutlineAppstoreAdd size={20} />
             </li>
           </Link>

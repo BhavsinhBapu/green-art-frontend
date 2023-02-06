@@ -3,16 +3,8 @@ import React, { useEffect, useState } from "react";
 import { GetServerSideProps } from "next";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { useRouter } from "next/router";
-import {
-  launchpadCreateUpdatePhaseAction,
-  launchpadCreateUpdatePhaseAdditionalAction,
-} from "state/actions/launchpad";
-import { GetCoinListApi } from "service/wallet";
-import {
-  getAdditionalPhaseDetails,
-  icoListDetails,
-  phaseListDetails,
-} from "service/launchpad";
+import { launchpadCreateUpdatePhaseAdditionalAction } from "state/actions/launchpad";
+import { getAdditionalPhaseDetails } from "service/launchpad";
 import { parseCookies } from "nookies";
 
 const CreateEditAdditionalPhase = ({ id, edit, data }: any) => {
@@ -22,7 +14,6 @@ const CreateEditAdditionalPhase = ({ id, edit, data }: any) => {
     { value: "", title: "", file: "" },
   ]);
   const [loading, setLoading]: any = useState<any>(false);
-  const router = useRouter();
   const handleFormChange = (index: any, event: any) => {
     let data = [...inputFields];
     data[index][event.target.name] = event.target.value;
@@ -63,7 +54,6 @@ const CreateEditAdditionalPhase = ({ id, edit, data }: any) => {
               className="row"
               onSubmit={(e) => {
                 e.preventDefault();
-
                 launchpadCreateUpdatePhaseAdditionalAction(
                   inputFields,
                   id,

@@ -74,7 +74,7 @@ const Bannerdetails = ({
         <div className="notFound-container">
           {/* <h1 className="">404</h1> */}
           <img src="/not_found.svg" height={300} alt="" />
-          <p className="">Content Not Found</p>
+          <p className="">{t("Content Not Found")}</p>
         </div>
       </div>
     );
@@ -87,7 +87,7 @@ const Bannerdetails = ({
           <img src={details.image} />
           <h1 className="display-4 mt-3">{details.title}</h1>
           <p className="mt-2 mb-2">
-            Last revised: {formateData(details.updated_at)}
+            {t("Last revised:")} {formateData(details.updated_at)}
           </p>
           <div
             dangerouslySetInnerHTML={{

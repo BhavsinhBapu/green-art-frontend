@@ -142,52 +142,6 @@ const Index = ({ socialData, customPageData, copyright_text }: any) => {
               </div>
             </>
           )}
-          {/* <div
-            id="carouselExampleControls"
-            className="carousel slide"
-            data-ride="carousel"
-          >
-            <div className="carousel-inner">
-              <div className="carousel-item active">
-                <LaunchPad key={1} viewMore={false} data={{}} />
-              </div>
-              <div className="carousel-item">
-                <LaunchPad key={1} viewMore={false} data={{}} />
-              </div>
-
-              <div className="carousel-item">
-                <LaunchPad key={1} viewMore={false} data={{}} />
-                <div className="carousel-caption d-none d-md-block">
-                  <h5>This is a header</h5>
-                  <p>This is paragraph</p>
-                </div>
-              </div>
-            </div>
-            <a
-              className="carousel-control-prev"
-              href="#carouselExampleControls"
-              role="button"
-              data-slide="prev"
-            >
-              <span
-                className="carousel-control-prev-icon"
-                aria-hidden="true"
-              ></span>
-              <span className="sr-only">Previous</span>
-            </a>
-            <a
-              className="carousel-control-next"
-              href="#carouselExampleControls"
-              role="button"
-              data-slide="next"
-            >
-              <span
-                className="carousel-control-next-icon"
-                aria-hidden="true"
-              ></span>
-              <span className="sr-only">Next</span>
-            </a>
-          </div> */}
           <SellingSection data={launchpadLandingPage?.data} />
         </div>
       </div>

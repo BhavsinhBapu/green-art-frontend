@@ -4,6 +4,7 @@ import { CustomLoading } from "components/common/CustomLoading";
 import Footer from "components/common/footer";
 import { pageAvailabilityCheck } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
+import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { siteSettingResource } from "service/knowledgebase";
@@ -20,6 +21,7 @@ const KnowledgebaseCategory = ({
   const [details, setDetails] = useState<any>({});
   const [Loading, setLoading] = useState(false);
   const router = useRouter();
+  const { t } = useTranslation("common");
   useEffect(() => {
     router.query.category_id &&
       knowledgebaseSubcategoryListbyIdAction(
@@ -43,7 +45,7 @@ const KnowledgebaseCategory = ({
           ) : (
             <div className="row mt-5 ">
               <div className="col-12">
-                <h1 className="text-center">Subcategory</h1>
+                <h1 className="text-center">{t("Subcategory")}</h1>
                 <a
                   className="d-flex align-items-center title-icon mt-5"
                   href=""

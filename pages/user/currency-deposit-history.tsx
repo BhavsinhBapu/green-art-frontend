@@ -1,6 +1,4 @@
-import { formatCurrency } from "common";
 import Footer from "components/common/footer";
-import TableLoading from "components/common/TableLoading";
 import ReportSidebar from "layout/report-sidebar";
 import moment from "moment";
 import { GetServerSideProps } from "next";
@@ -68,7 +66,6 @@ const CurrencyDepositHistory = ({
     },
     {
       name: t("Coin Amount"),
-      // selector: (row: any) => row?.coin_amount,
       cell: (row: any) => (
         <div className="blance-text">
           <span className="blance market incree">
@@ -90,7 +87,6 @@ const CurrencyDepositHistory = ({
     },
     {
       name: t("Rate"),
-      // selector: (row: any) => row?.rate,
       sortable: true,
       cell: (row: any) => (
         <div className="blance-text">

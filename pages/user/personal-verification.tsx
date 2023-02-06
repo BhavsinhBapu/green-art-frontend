@@ -2,12 +2,10 @@ import type { GetServerSideProps, NextPage } from "next";
 import ProfileSidebar from "layout/profile-sidebar";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import NidModal from "components/profile/personal-verification/NidModal";
-
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getKycDetailsAction } from "state/actions/user";
 import useTranslation from "next-translate/useTranslation";
-import { KycActiveList } from "service/user";
 import {
   KYC_DRIVING_VERIFICATION,
   KYC_EMAIL_VERIFICATION,
@@ -141,73 +139,6 @@ const PersonalVerification: NextPage = ({
                             </div>
                           )
                       )}
-
-                      {/* <div
-                      className="id-card-type"
-                      onClick={() => setType("nid")}
-                    >
-                      <div
-                        className="id-card"
-                        data-toggle="modal"
-                        data-target=".cp-user-idverifymodal"
-                      >
-                        <img
-                          src="/cards/nid.svg"
-                          className="img-fluid"
-                          alt=""
-                        />
-                      </div>
-                      <div className="card-bottom">
-                        <span className="text-warning">
-                          {kycDetails?.nid?.status}
-                        </span>
-                        <h5>{t("National Id Card")}</h5>
-                      </div>
-                    </div>
-                    <div
-                      className="id-card-type"
-                      onClick={() => setType("passport")}
-                    >
-                      <div
-                        className="id-card"
-                        data-toggle="modal"
-                        data-target=".cp-user-idverifymodal"
-                      >
-                        <img
-                          src="/cards/passport.svg"
-                          className="img-fluid"
-                          alt=""
-                        />
-                      </div>
-                      <div className="card-bottom">
-                        <span className="text-warning">
-                          {kycDetails?.passport?.status}
-                        </span>
-                        <h5>{t("Passport")}</h5>
-                      </div>
-                    </div>
-                    <div
-                      className="id-card-type"
-                      onClick={() => setType("driving-licence")}
-                    >
-                      <div
-                        className="id-card"
-                        data-toggle="modal"
-                        data-target=".cp-user-idverifymodal"
-                      >
-                        <img
-                          src="/cards/driving-license.svg"
-                          className="img-fluid"
-                          alt=""
-                        />
-                      </div>
-                      <div className="card-bottom">
-                        <span className="text-warning">
-                          {kycDetails?.driving?.status}
-                        </span>
-                        <h5>{t("Driving License")}</h5>
-                      </div>
-                    </div> */}
                     </div>
                   </div>
                 </div>
