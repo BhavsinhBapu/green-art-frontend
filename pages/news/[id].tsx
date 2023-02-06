@@ -28,26 +28,28 @@ const NewsDetails = ({
       <div className="container">
         <Link href="/news">
           <a>
-            <h3 className="pb-2 newsDetailsTitle sectionTitle d-flex align-items-center">
+            <h3 className="pb-3 newsDetailsTitle sectionTitle d-flex align-items-center">
               <BiChevronLeft />
               {t("Back")}
             </h3>
           </a>
         </Link>
-        <hr />
 
         <div className="row">
           <div className="col-md-8">
             <div className="newsCardText mt-4">
               <h3 className="titleText">{newsDetails?.details?.title}</h3>
               <small>{formateData(newsDetails?.details?.created_at)}</small>
-              <img src={newsDetails?.details?.thumbnail} alt="" />
+              <img
+                className="my-3 rounded"
+                src={newsDetails?.details?.thumbnail}
+                alt=""
+              />
               <div
                 className="mt-4"
                 dangerouslySetInnerHTML={{
                   __html: newsDetails?.details?.body,
-                }}
-              ></div>
+                }}></div>
             </div>
           </div>
           <div className="col-md-4">
@@ -77,35 +79,6 @@ const NewsDetails = ({
                 </a>
               </div>
             ))}
-            {/* 
-            <div className="newsCard p-4 mt-2">
-              <a href="">
-                <div className="row">
-                  <div className="col-12">
-                    <img
-                      className="rounded"
-                      src="https://public.bnbstatic.com/image/cms/blog/20220303/a9bf1151-d820-436b-a550-3670aba02b61.png"
-                      alt=""
-                    />
-                  </div>
-                  <div className="col-12 pt-3">
-                    <div className="newsCardText">
-                      <h3 className="titleText">
-                        How To Top Up Your Mobile On the Binance App
-                      </h3>
-                      <small>Jan 25th 23 4:30:43 pm</small>
-                      <p>
-                        Binance Pay is a contactless, borderless, and secure
-                        user-to-user cryptocurrency payment feature on the
-                        Binance App. Binance Pay allows users and merchants to
-                        send and receive crypto payments around the world.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div> 
-            */}
           </div>
         </div>
         {parseInt(BlogNewsSettings?.news_comment_enable) === 1 && (

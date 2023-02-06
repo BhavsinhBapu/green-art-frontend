@@ -11,20 +11,21 @@ const TabSection = ({ categories, setRecentBlogState, setLoading }: any) => {
     setLoading(false);
   };
   return (
-    <div className="newsCategory mt-5 pt-4">
-      {categories?.map((category: any, index: any) => (
-        <li
-          key={index}
-          className={`itemCatagory ${
-            category?.id === selected ? "itemCatagoryactive" : ""
-          }`}
-          onClick={() => {
-            getBlogsByCategory(category?.id);
-          }}
-        >
-          {category?.title}
-        </li>
-      ))}
+    <div className="newsCategory mt-5 pt-5">
+      <ul>
+        {categories?.map((category: any, index: any) => (
+          <li
+            key={index}
+            className={`itemCatagory ${
+              category?.id === selected ? "itemCatagoryactive" : ""
+            }`}
+            onClick={() => {
+              getBlogsByCategory(category?.id);
+            }}>
+            {category?.title}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

@@ -58,7 +58,7 @@ const CommentSection = ({
               <div className="commentBar shadow-sm d-none d-sm-block"></div>
             </div>
           </div>
-          <div className="rounded p-3 p-md-4 commentBox">
+          <div className="rounded commentBox">
             <form onSubmit={onSubmit}>
               <div className="row">
                 <div className="col-md-6">
@@ -66,7 +66,7 @@ const CommentSection = ({
                     <label>Name:</label>
                     <input
                       type="text"
-                      className="form-control"
+                      className="form_input"
                       id="name"
                       placeholder="Enter name"
                       value={postComment.name}
@@ -84,7 +84,7 @@ const CommentSection = ({
                     <label>Email:</label>
                     <input
                       type="email"
-                      className="form-control"
+                      className="form_input"
                       id="email"
                       placeholder="Enter email"
                       value={postComment.email}
@@ -102,7 +102,7 @@ const CommentSection = ({
                     <label>Website:</label>
                     <input
                       type="text"
-                      className="form-control"
+                      className="form_input"
                       id="website"
                       placeholder="Enter website"
                       value={postComment.website}
@@ -127,13 +127,15 @@ const CommentSection = ({
                           ...postComment,
                           message: e.target.value,
                         });
-                      }}
-                    ></textarea>
+                      }}></textarea>
                   </div>
                 </div>
               </div>
 
-              <button type="submit" disabled={loading}>
+              <button
+                className="commentButton"
+                type="submit"
+                disabled={loading}>
                 {loading ? "Please wait.." : "Submit"}
               </button>
             </form>

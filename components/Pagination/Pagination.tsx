@@ -9,8 +9,8 @@ const Pagination = ({
   selected,
 }: any) => {
   return (
-    <div className="row justify-content-center justify-content-md-end">
-      <ul className="pagination Paginate mb-5">
+    <div className="row justify-content-center justify-content-md-end pagination_custome">
+      <ul className="pagination Paginate mb-5 mt-3">
         {links.map((link: any, index: number) =>
           link.label === "&laquo; Previous" ? (
             <li
@@ -24,8 +24,7 @@ const Pagination = ({
                   setLinks,
                   selected
                 );
-              }}
-            >
+              }}>
               <span className="page-link">Previous</span>
             </li>
           ) : link.label === "Next &raquo;" ? (
@@ -40,11 +39,8 @@ const Pagination = ({
                   setLinks,
                   selected
                 );
-              }}
-            >
-              <span  className="spanage-link">
-                Next
-              </span>
+              }}>
+              <span className="page-link">Next</span>
             </li>
           ) : (
             <li
@@ -58,13 +54,11 @@ const Pagination = ({
                   setLinks,
                   selected
                 );
-              }}
-            >
+              }}>
               <span
                 className={`page-link ${
-                  link.active === true && "paginationActive shadow"
-                }`}
-              >
+                  link.active === true && "pagination_active shadow"
+                }`}>
                 {link.label}
               </span>
             </li>

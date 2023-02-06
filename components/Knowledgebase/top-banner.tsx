@@ -16,8 +16,7 @@ export const TopBanner = ({ resorce }: any) => {
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
-      }}
-    >
+      }}>
       <div className="container">
         <div className="row">
           <div className="col-12 text-center text-white mt-5 pt-5">
@@ -32,7 +31,7 @@ export const TopBanner = ({ resorce }: any) => {
               <div className="input-group my-3 mx-auto pb-5">
                 <div className="d-flex w-100 rounded top_search">
                   <input
-                    className="w-100 px-2 py-2 rounded-left border-0"
+                    className="w-100 px-2 py-2 rounded-pill border-0"
                     type="text"
                     name="notes"
                     onChange={(e: any) => {
@@ -52,13 +51,11 @@ export const TopBanner = ({ resorce }: any) => {
 
                 <div
                   className="search-filter ps-1 rounded"
-                  id="append-search-result"
-                >
+                  id="append-search-result">
                   {lists.map((list: any, index: number) => (
                     <Link
                       key={index}
-                      href={"/knowledgebase/" + list.unique_code}
-                    >
+                      href={"/knowledgebase/" + list.unique_code}>
                       <a href="">{list?.title}</a>
                     </Link>
                   ))}
