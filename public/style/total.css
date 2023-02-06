@@ -11421,6 +11421,10 @@ input[type="number"] {
   width: 100%;
   text-align: center;
   padding: 20px 0px 10px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .input-copy {
@@ -11429,6 +11433,7 @@ input[type="number"] {
   padding: 0;
   justify-content: center;
   margin: 0 auto;
+  margin-top: 20px;
 }
 
 .input-copy .cp-button {
@@ -11439,6 +11444,9 @@ input[type="number"] {
   font-size: 16px;
   background-color: var(--card-background-color);
   color: var(--font-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .viewMoreLink {
@@ -12585,4 +12593,9 @@ input {
   z-index: 3;
   display: block;
   cursor: pointer;
+}
+.wallet-bar-code-background {
+  padding: 34px;
+  background-color: white;
+  width: fit-content;
 }

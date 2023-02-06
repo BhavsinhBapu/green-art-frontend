@@ -108,15 +108,17 @@ export const DipositComponent = ({
               <div className="wallet-addres-generate">
                 <div className="coin-list-item">
                   <div className="wallet-bar-code">
-                    {responseData?.address &&
-                      responseData?.wallet.coin_type !== "USDT" && (
-                        <QRCode value={responseData?.address} size={150} />
-                      )}
+                    <div className="wallet-bar-code-background">
+                      {responseData?.address &&
+                        responseData?.wallet.coin_type !== "USDT" && (
+                          <QRCode value={responseData?.address} size={150} />
+                        )}
 
-                    {selectedNetwork?.address &&
-                      responseData?.wallet.coin_type === "USDT" && (
-                        <QRCode value={selectedNetwork?.address} size={150} />
-                      )}
+                      {selectedNetwork?.address &&
+                        responseData?.wallet.coin_type === "USDT" && (
+                          <QRCode value={selectedNetwork?.address} size={150} />
+                        )}
+                    </div>
 
                     <div className="copy-box">
                       <div className="input-url input-copy">
