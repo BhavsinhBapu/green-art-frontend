@@ -10187,8 +10187,8 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
 }
 
 .dark-toast {
-  background-color: var(--text-primary-color-2) !important;
-  color: var(--text-primary-color-4) !important;
+  /* background-color: var(--text-primary-color-2) !important; */
+  /* color: var(--text-primary-color-4) !important; */
 }
 
 /* preloder-area */
