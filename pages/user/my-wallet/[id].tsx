@@ -152,7 +152,9 @@ const DeposiAndWithdraw = ({
                 fullPage={fullPage}
               />
             )}
+
             {/* {fullPage ? "true" : "false"} */}
+
             {fullPage === false && (
               <div className="col-md-5 faq-wallet-section">
                 {parseInt(settings.withdrawal_faq_status) === 1 &&
@@ -184,14 +186,14 @@ const DeposiAndWithdraw = ({
                         ? "Deposit" + " Step's"
                         : "Withdrawal" + " Step's"}
                     </h4>
+
                     <div className="flexItem">
                       <div>
                         {getProcessData?.data?.progress_status_list?.map(
                           (item: any, index: number) => (
                             <div
                               key={`progress${index}`}
-                              className={"timeLineLists"}
-                            >
+                              className={"timeLineLists"}>
                               <div
                                 className={`${
                                   getProcessData?.data?.progress_status_list
@@ -199,8 +201,7 @@ const DeposiAndWithdraw = ({
                                   index + 1
                                     ? "timeLineIcon removeBeforeCSS"
                                     : "timeLineIcon"
-                                }`}
-                              >
+                                }`}>
                                 <i className="fa-sharp fa-solid fa-circle-check active"></i>
                               </div>
                               <div className="progressContent">

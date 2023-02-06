@@ -10985,6 +10985,8 @@ input[type="number"] {
   border: none;
   outline: none;
   cursor: pointer;
+  border-radius: 4px;
+  padding: 0px 10px;
 }
 
 .referel-inputfield {
@@ -11421,6 +11423,12 @@ input[type="number"] {
   width: 100%;
   text-align: center;
   padding: 20px 0px 10px 0px;
+}
+
+.wallet-bar-code svg {
+  background: #fff;
+  padding: 20px;
+  border-radius: 4px;
 }
 
 .input-copy {
@@ -12714,5 +12722,16 @@ input {
   background: var(--primary-color);
   border: none;
   color: var(--text-primary-color-1);
-  /* sff  */
+}
+
+.wallet_input_copy {
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 280px;
+}
+
+.wallet_input_copy input {
+  background: transparent;
 }
