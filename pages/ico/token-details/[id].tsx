@@ -34,11 +34,7 @@ export default function SingleLaunchPadPage({
         <>
           <Breadcrumb leftButton={true} leftUrl="/ico" />
           <SingleLaunchPad data={launchpadListDetails?.data} />
-          <Footer
-            customPageData={customPageData}
-            socialData={socialData}
-            copyright_text={copyright_text}
-          />
+          <Footer />
         </>
       )}
     </>
@@ -47,17 +43,10 @@ export default function SingleLaunchPadPage({
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/user/profile");
   const { id, edit } = ctx.query;
-  const { data } = await landingPage();
-  const { data: customPageData } = await customPage();
-  const cookies = parseCookies(ctx);
-
   return {
     props: {
       id: id,
       edit: edit ? edit : null,
-      socialData: data.media_list,
-      copyright_text: data?.copyright_text,
-      customPageData: customPageData.data,
     },
   };
 };

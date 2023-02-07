@@ -14,13 +14,7 @@ import UnAuthNav from "components/common/unAuthNav";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
 import Navbar from "components/common/navbar";
-const Bannerdetails = ({
-  details,
-  status,
-  customPageData,
-  socialData,
-  copyright_text,
-}: any) => {
+const Bannerdetails = ({ details, status }: any) => {
   const { t } = useTranslation("common");
   const { isLoggedIn, user, logo } = useSelector(
     (state: RootState) => state.user
@@ -97,19 +91,13 @@ const Bannerdetails = ({
           ></div>
         </div>
       </div>
-      <Footer
-        customPageData={customPageData}
-        socialData={socialData}
-        copyright_text={copyright_text}
-      />
+      <Footer />
     </div>
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const { slug } = ctx.query;
   let response: any;
-  const { data: customPageData } = await customPage();
-  const { data } = await landingPage();
   try {
     const { data } = await customPageWithSlug(slug);
     response = data;
@@ -118,9 +106,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
     props: {
       details: response.data,
       status: response.success,
-      customPageData: customPageData.data,
-      socialData: data.media_list,
-      copyright_text: data?.copyright_text,
     },
   };
 };

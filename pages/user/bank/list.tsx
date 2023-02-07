@@ -16,7 +16,7 @@ import { customPage, landingPage } from "service/landing-page";
 import { GetUserInfoByTokenServer } from "service/user";
 import { geyBankListAction } from "state/actions/fiat-deposit-withawal";
 
-const List = ({ customPageData, socialData, copyright_text }: any) => {
+const List = () => {
   const { t } = useTranslation("common");
   const [processing, setProcessing] = React.useState<boolean>(false);
   type searchType = string;
@@ -156,50 +156,6 @@ const List = ({ customPageData, socialData, copyright_text }: any) => {
                         </div>
                       </div>
                       <DataTable columns={columns} data={bankList} />
-                      {/* {history?.length > 0 && (
-                        <div
-                          className="pagination-wrapper"
-                          id="assetBalances_paginate"
-                        >
-                          <span>
-                            {stillHistory?.list?.links.map(
-                              (link: any, index: number) =>
-                                link.label === "&laquo; Previous" ? (
-                                  <a
-                                    className="paginate-button"
-                                    onClick={() => {
-                                      if (link.url)
-                                        LinkTopaginationString(link);
-                                    }}
-                                    key={index}
-                                  >
-                                    <i className="fa fa-angle-left"></i>
-                                  </a>
-                                ) : link.label === "Next &raquo;" ? (
-                                  <a
-                                    className="paginate-button"
-                                    onClick={() => LinkTopaginationString(link)}
-                                    key={index}
-                                  >
-                                    <i className="fa fa-angle-right"></i>
-                                  </a>
-                                ) : (
-                                  <a
-                                    className={`paginate_button paginate-number ${
-                                      link.active === true && "text-warning"
-                                    }`}
-                                    aria-controls="assetBalances"
-                                    data-dt-idx="1"
-                                    onClick={() => LinkTopaginationString(link)}
-                                    key={index}
-                                  >
-                                    {link.label}
-                                  </a>
-                                )
-                            )}
-                          </span>
-                        </div>
-                      )} */}
                     </div>
                   </div>
                 </div>
@@ -208,27 +164,16 @@ const List = ({ customPageData, socialData, copyright_text }: any) => {
           </div>
         </div>
       </div>
-      <Footer
-        customPageData={customPageData}
-        socialData={socialData}
-        copyright_text={copyright_text}
-      />
+      <Footer />
     </>
   );
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/user/profile");
-  const { data } = await landingPage();
-  const { data: customPageData } = await customPage();
-  const cookies = parseCookies(ctx);
 
   return {
-    props: {
-      socialData: data.media_list,
-      copyright_text: data?.copyright_text,
-      customPageData: customPageData.data,
-    },
+    props: {},
   };
 };
 export default List;

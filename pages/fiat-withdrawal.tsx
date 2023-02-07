@@ -9,7 +9,6 @@ import React, { useEffect, useState } from "react";
 import { customPage, landingPage } from "service/landing-page";
 import { GetUserInfoByTokenServer } from "service/user";
 import useTranslation from "next-translate/useTranslation";
-import * as Yup from "yup";
 import Footer from "components/common/footer";
 import {
   apiFiatWithdrawalAction,
@@ -17,11 +16,7 @@ import {
   getFiatWithdrawalRateAction,
 } from "state/actions/fiat-deposit-withawal";
 
-const FiatWithdrawal = ({
-  customPageData,
-  socialData,
-  copyright_text,
-}: any) => {
+const FiatWithdrawal = () => {
   const { t } = useTranslation("common");
   const [loading, setLoading]: any = useState<any>(false);
   const [initialData, setInitialData]: any = useState<any>([]);
@@ -217,22 +212,13 @@ const FiatWithdrawal = ({
           </div>
         </div>
       </div>
-      <Footer
-        customPageData={customPageData}
-        socialData={socialData}
-        copyright_text={copyright_text}
-      />
+      <Footer />
     </>
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/user/profile");
-  const cookies = parseCookies(ctx);
-  const response = await GetUserInfoByTokenServer(cookies.token);
   const commonRes = await pageAvailabilityCheck();
-
-  const { data } = await landingPage();
-  const { data: customPageData } = await customPage();
 
   if (parseInt(commonRes.currency_deposit_status) !== 1) {
     return {
@@ -243,12 +229,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
     };
   }
   return {
-    props: {
-      user: response.user,
-      socialData: data.media_list,
-      copyright_text: data?.copyright_text,
-      customPageData: customPageData.data,
-    },
+    props: {},
   };
 };
 export default FiatWithdrawal;

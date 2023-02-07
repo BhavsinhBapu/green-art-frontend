@@ -56,19 +56,11 @@ const Index = ({
 
         {/* <Pagination /> */}
       </div>
-      <Footer
-        customPageData={customPageData}
-        socialData={socialData}
-        copyright_text={copyright_text}
-      />
+      <Footer />
     </>
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
-  // await SSRAuthCheck(ctx, "/blog");
-
-  const { data } = await landingPage();
-  const { data: customPageData } = await customPage();
   const { FeaturedBlogs, RecentBlogs, Categories } = await BlogHomePageAction();
   const { data: BlogNewsSettings } = await getBlogNewsSettings();
   const commonRes = await pageAvailabilityCheck();
@@ -82,9 +74,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   }
   return {
     props: {
-      socialData: data.media_list,
-      copyright_text: data?.copyright_text,
-      customPageData: customPageData.data,
       featuredBlogs: FeaturedBlogs.data,
       recentBlogs: RecentBlogs.data,
       categories: Categories?.data,

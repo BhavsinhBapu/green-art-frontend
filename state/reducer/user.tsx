@@ -4,6 +4,9 @@ export type UserType = {
   user: {};
   isLoggedIn: boolean;
   notification: [];
+  customPageData: {};
+  copyright_text: "";
+  socialData: [];
   logo: string;
   icoChat: [];
   supportChat: [];
@@ -15,6 +18,9 @@ const initialState: any = {
   isLoading: true,
   notification: [],
   icoChat: [],
+  customPageData: null,
+  copyright_text: null,
+  socialData: null,
   supportChat: [],
   logo: "",
 };
@@ -58,6 +64,15 @@ export const userSlice = createSlice({
     setSupportico: (state, action: any) => {
       state.supportChat = [...state.supportChat, action.payload];
     },
+    setCustomPageData: (state, action: any) => {
+      state.customPageData = action.payload;
+    },
+    setCopyright_text: (state, action: any) => {
+      state.copyright_text = action.payload;
+    },
+    setSocialData: (state, action: any) => {
+      state.socialData = action.payload;
+    },
   },
 });
 
@@ -72,5 +87,8 @@ export const {
   setChatico,
   setsupportChat,
   setSupportico,
+  setCustomPageData,
+  setCopyright_text,
+  setSocialData,
 } = userSlice.actions;
 export default userSlice.reducer;

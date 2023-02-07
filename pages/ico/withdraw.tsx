@@ -10,7 +10,7 @@ import { customPage, landingPage } from "service/landing-page";
 import { getTokenWithdrawPrice, withDrawMoney } from "service/launchpad";
 import { getEarningDetailsAction } from "state/actions/launchpad";
 
-const Withdraw = ({ customPageData, socialData, copyright_text }: any) => {
+const Withdraw = () => {
   const { t } = useTranslation("common");
   const [loading, setLoading]: any = useState<any>(false);
   const [data, setData]: any = useState<any>();
@@ -213,25 +213,14 @@ const Withdraw = ({ customPageData, socialData, copyright_text }: any) => {
           </div>
         </div>
       </div>
-      <Footer
-        customPageData={customPageData}
-        socialData={socialData}
-        copyright_text={copyright_text}
-      />
+      <Footer />
     </>
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/user/my-wallet");
-
-  const { data } = await landingPage();
-  const { data: customPageData } = await customPage();
   return {
-    props: {
-      socialData: data.media_list,
-      copyright_text: data?.copyright_text,
-      customPageData: customPageData.data,
-    },
+    props: {},
   };
 };
 export default Withdraw;

@@ -19,7 +19,7 @@ import {
   getLaunchpadListAction,
 } from "state/actions/launchpad";
 
-const Index = ({ socialData, customPageData, copyright_text }: any) => {
+const Index = () => {
   const { t } = useTranslation("common");
   const [launchpadLandingPage, setLaunchpadLandingPage]: any = useState([]);
   const [launchpadFeatureItem, setLaunchpadFeatureItem]: any = useState([]);
@@ -191,19 +191,13 @@ const Index = ({ socialData, customPageData, copyright_text }: any) => {
           <SellingSection data={launchpadLandingPage?.data} />
         </div>
       </div>
-      <Footer
-        customPageData={customPageData}
-        socialData={socialData}
-        copyright_text={copyright_text}
-      />
+      <Footer />
     </div>
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const { data } = await landingPage();
   const cookies = parseCookies(ctx);
-  const { data: customPageData } = await customPage();
-
   return {
     props: {
       landing: data,
@@ -218,8 +212,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
       landing_banner_image: data?.landing_banner_image
         ? data?.landing_banner_image
         : null,
-      copyright_text: data?.copyright_text,
-      customPageData: customPageData.data,
     },
   };
 };

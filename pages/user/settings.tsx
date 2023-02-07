@@ -13,11 +13,7 @@ import useTranslation from "next-translate/useTranslation";
 import Footer from "components/common/footer";
 import { customPage, landingPage } from "service/landing-page";
 
-const Settings: NextPage = ({
-  customPageData,
-  socialData,
-  copyright_text,
-}: any) => {
+const Settings: NextPage = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation("common");
   const [settings, setSettings] = useState<any>();
@@ -66,11 +62,6 @@ const Settings: NextPage = ({
                           </div>
                           <div className="cp-user-content mb-0">
                             <h5>{t("Authenticator app")}</h5>
-                            {/* <p>
-                              {t(
-                                'Use the Authenticator app to get free verification codes, even when your phone is offline. Available for Android and iPhone'
-                              )}
-                            </p> */}
                           </div>
 
                           <div className="cp-user-content mt-0">
@@ -194,24 +185,14 @@ const Settings: NextPage = ({
           </div>
         </div>
       </div>
-      <Footer
-        customPageData={customPageData}
-        socialData={socialData}
-        copyright_text={copyright_text}
-      />
+      <Footer />
     </>
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/user/settings");
-  const { data } = await landingPage();
-  const { data: customPageData } = await customPage();
   return {
-    props: {
-      socialData: data.media_list,
-      copyright_text: data?.copyright_text,
-      customPageData: customPageData.data,
-    },
+    props: {},
   };
 };
 

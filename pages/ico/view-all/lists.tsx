@@ -2,10 +2,7 @@ import LaunchPad from "components/ico/LaunchPad";
 import { SingleHero } from "components/ico/SingleHero";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import {
-  getLaunchpadListAction,
-  getLaunchpadListPageAction,
-} from "state/actions/launchpad";
+import { getLaunchpadListPageAction } from "state/actions/launchpad";
 
 export default function ViewAll() {
   const [launchpadList, setLaunchpadList]: any = useState([]);

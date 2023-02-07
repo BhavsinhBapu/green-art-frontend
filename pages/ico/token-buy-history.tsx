@@ -20,12 +20,7 @@ import {
   STATUS_PENDING,
 } from "helpers/core-constants";
 
-const TokenBuyHistory = ({
-  user,
-  customPageData,
-  socialData,
-  copyright_text,
-}: any) => {
+const TokenBuyHistory = () => {
   const [history, setHistory] = useState<any>([]);
   const { t } = useTranslation("common");
   const [search, setSearch] = useState<any>("");
@@ -208,24 +203,14 @@ const TokenBuyHistory = ({
           </div>
         </div>
       </div>
-      <Footer
-        customPageData={customPageData}
-        socialData={socialData}
-        copyright_text={copyright_text}
-      />
+      <Footer />
     </>
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/user/profile");
-  const { data } = await landingPage();
-  const { data: customPageData } = await customPage();
   return {
-    props: {
-      socialData: data.media_list,
-      copyright_text: data?.copyright_text,
-      customPageData: customPageData.data,
-    },
+    props: {},
   };
 };
 export default TokenBuyHistory;

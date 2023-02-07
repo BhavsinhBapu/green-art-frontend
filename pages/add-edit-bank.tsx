@@ -14,7 +14,7 @@ import * as Yup from "yup";
 import Footer from "components/common/footer";
 import { apiFiatWithdrawalAction } from "state/actions/fiat-deposit-withawal";
 
-const AddEditBank = ({ customPageData, socialData, copyright_text }: any) => {
+const AddEditBank = () => {
   const { t } = useTranslation("common");
   const [loading, setLoading]: any = useState<any>(false);
   const [initialData, setInitialData]: any = useState<any>([]);
@@ -65,8 +65,7 @@ const AddEditBank = ({ customPageData, socialData, copyright_text }: any) => {
                               t("Field is required")
                             ),
                           })}
-                          onSubmit={(values) => {
-                          }}
+                          onSubmit={(values) => {}}
                         >
                           {({ errors, touched, setFieldValue }) => (
                             <Form className="row">
@@ -197,22 +196,12 @@ const AddEditBank = ({ customPageData, socialData, copyright_text }: any) => {
           </div>
         </div>
       </div>
-      <Footer
-        customPageData={customPageData}
-        socialData={socialData}
-        copyright_text={copyright_text}
-      />
+      <Footer />
     </>
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/user/profile");
-  const cookies = parseCookies(ctx);
-  const response = await GetUserInfoByTokenServer(cookies.token);
-  
-  const { data } = await landingPage();
-  const { data: customPageData } = await customPage();
-  
   const commonRes = await pageAvailabilityCheck();
   if (parseInt(commonRes.currency_deposit_status) !== 1) {
     return {
@@ -223,12 +212,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
     };
   }
   return {
-    props: {
-      user: response.user,
-      socialData: data.media_list,
-      copyright_text: data?.copyright_text,
-      customPageData: customPageData.data,
-    },
+    props: {},
   };
 };
 export default AddEditBank;

@@ -26,13 +26,7 @@ import { useSelector } from "react-redux";
 import Wallethistory from "components/wallet/wallet-history";
 import { MyWalletProcessSidebar } from "service/wallet";
 
-const DeposiAndWithdraw = ({
-  withdrawFaq,
-  depositFaq,
-  customPageData,
-  socialData,
-  copyright_text,
-}: any) => {
+const DeposiAndWithdraw = ({ withdrawFaq, depositFaq }: any) => {
   const router = useRouter();
   const [fullPage, setFullPage] = useState(false);
   const { settings } = useSelector((state: RootState) => state.common);
@@ -179,9 +173,6 @@ const DeposiAndWithdraw = ({
                 {getProcessData?.data?.progress_status_list?.length > 0 && (
                   <div className="mt-3">
                     <h4>
-                      {/* {getProcessData?.data.title
-                        ? getProcessData?.data.title
-                        : t("How it works?")} */}
                       {router.query.id === "deposit"
                         ? "Deposit" + " Step's"
                         : "Withdrawal" + " Step's"}
@@ -229,11 +220,7 @@ const DeposiAndWithdraw = ({
           )}
         </div>
       </div>
-      <Footer
-        customPageData={customPageData}
-        socialData={socialData}
-        copyright_text={copyright_text}
-      />
+      <Footer />
     </>
   );
 };
@@ -253,17 +240,12 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
     }
   });
 
-  const { data } = await landingPage();
-  const { data: customPageData } = await customPage();
-
   return {
     props: {
       user: response.user,
       withdrawFaq: withdrawFaq,
       depositFaq: depositFaq,
-      socialData: data.media_list,
-      copyright_text: data?.copyright_text,
-      customPageData: customPageData.data,
+   
     },
   };
 };

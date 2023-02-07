@@ -13,11 +13,7 @@ import {
   handleSearchItemsCurrency,
 } from "state/actions/reports";
 
-const CurrencyWithdrawHistory = ({
-  customPageData,
-  socialData,
-  copyright_text,
-}: any) => {
+const CurrencyWithdrawHistory = () => {
   type searchType = string;
   const [search, setSearch] = useState<searchType>("");
   const [sortingInfo, setSortingInfo] = useState<any>({
@@ -248,24 +244,14 @@ const CurrencyWithdrawHistory = ({
           </div>
         </div>
       </div>
-      <Footer
-        customPageData={customPageData}
-        socialData={socialData}
-        copyright_text={copyright_text}
-      />
+      <Footer />
     </>
   );
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
-  const { data } = await landingPage();
-  const { data: customPageData } = await customPage();
   return {
-    props: {
-      socialData: data.media_list,
-      copyright_text: data?.copyright_text,
-      customPageData: customPageData.data,
-    },
+    props: {},
   };
 };
 

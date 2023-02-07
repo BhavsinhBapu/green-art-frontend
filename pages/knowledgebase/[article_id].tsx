@@ -8,12 +8,7 @@ import { customPage, landingPage } from "service/landing-page";
 import { getNewsDetails } from "service/news";
 import Link from "next/link";
 
-const KnowledgebaseArticleDetails = ({
-  articleDetails,
-  socialData,
-  customPageData,
-  copyright_text,
-}: any) => {
+const KnowledgebaseArticleDetails = ({ articleDetails }: any) => {
   return (
     <>
       <div className="container mb-5">
@@ -83,19 +78,13 @@ const KnowledgebaseArticleDetails = ({
           </div>
         </div>
       </div>
-      <Footer
-        customPageData={customPageData}
-        socialData={socialData}
-        copyright_text={copyright_text}
-      />
+      <Footer />
     </>
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const { article_id } = ctx.params;
   const Details = await articleDetails(article_id);
-  const { data } = await landingPage();
-  const { data: customPageData } = await customPage();
   const commonRes = await pageAvailabilityCheck();
   if (parseInt(commonRes.knowledgebase_support_module) !== 1) {
     return {
@@ -109,9 +98,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   return {
     props: {
       articleDetails: Details.data,
-      socialData: data.media_list,
-      copyright_text: data?.copyright_text,
-      customPageData: customPageData.data,
     },
   };
 };

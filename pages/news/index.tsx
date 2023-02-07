@@ -8,7 +8,6 @@ import {
 import { GetServerSideProps } from "next";
 import useTranslation from "next-translate/useTranslation";
 import { useState } from "react";
-import { customPage, landingPage } from "service/landing-page";
 import { NewsHomePageAction } from "state/actions/news";
 import Pagination from "components/Pagination/Pagination";
 import { Search } from "components/common/search";
@@ -16,9 +15,6 @@ import { getBlogNewsSettings } from "service/news";
 import { NewsSearchAction } from "state/actions/news";
 
 const News = ({
-  customPageData,
-  socialData,
-  copyright_text,
   PopularNews,
   RecentNews,
   categories,
@@ -69,17 +65,11 @@ const News = ({
           />
         )}
       </div>
-      <Footer
-        customPageData={customPageData}
-        socialData={socialData}
-        copyright_text={copyright_text}
-      />
+      <Footer />
     </>
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
-  const { data } = await landingPage();
-  const { data: customPageData } = await customPage();
   const { Categories, PopularNews, RecentNews } = await NewsHomePageAction();
   const { data: BlogNewsSettings } = await getBlogNewsSettings();
   const commonRes = await pageAvailabilityCheck();
@@ -94,9 +84,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
 
   return {
     props: {
-      socialData: data.media_list,
-      copyright_text: data?.copyright_text,
-      customPageData: customPageData.data,
       PopularNews: PopularNews,
       RecentNews: RecentNews,
       categories: Categories?.data,

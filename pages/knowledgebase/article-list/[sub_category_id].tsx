@@ -10,12 +10,7 @@ import { siteSettingResource } from "service/knowledgebase";
 import { customPage, landingPage } from "service/landing-page";
 import { knowledgebaseArticleListAction } from "state/actions/knowlegdgbase";
 
-const KnowledgebaseArticleList = ({
-  socialData,
-  customPageData,
-  copyright_text,
-  resorce,
-}: any) => {
+const KnowledgebaseArticleList = ({ resorce }: any) => {
   const [list, setList] = useState([]);
   const [details, setDetails] = useState<any>({});
   const [Loading, setLoading] = useState(false);
@@ -53,17 +48,11 @@ const KnowledgebaseArticleList = ({
           </div>
         </section>
       )}
-      <Footer
-        customPageData={customPageData}
-        socialData={socialData}
-        copyright_text={copyright_text}
-      />
+      <Footer />
     </>
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
-  const { data } = await landingPage();
-  const { data: customPageData } = await customPage();
   const commonRes = await pageAvailabilityCheck();
   const resorce = await siteSettingResource();
   if (parseInt(commonRes.knowledgebase_support_module) !== 1) {
@@ -76,9 +65,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   }
   return {
     props: {
-      socialData: data.media_list,
-      copyright_text: data?.copyright_text,
-      customPageData: customPageData.data,
       resorce: resorce,
     },
   };
