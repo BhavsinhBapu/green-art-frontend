@@ -1,8 +1,18 @@
+const { publicDecrypt } = require("crypto");
 const { response } = require("express");
 const Web3 = require("web3");
 const {contractJson} = require("../../src/ContractAbiJson");
 const { contract_decimals,customFromWei,customToWei } = require("../Heplers/helper");
+const trc20Token = require("./TrcTokenController");
+const trxToken = require("./TrxController");
 
+// ERC20_TOKEN = 4
+// BEP20_TOKEN = 5
+// TRC20_TOKEN = 6
+
+// BALANCE_TYPE_BASE_COIN_BALANCE= 1
+// BALANCE_TYPE_TOKEN_BALANCE= 2
+// BALANCE_TYPE_BOTH_BALANCE= 3
 
 function getData(req, res)
 {
@@ -26,6 +36,12 @@ function getData(req, res)
     });
 }
 
+// get token decimal
+async function getContractDecimal(contractInstance)
+{
+    const decimal = await contractInstance.methods.decimals().call();
+    return decimal;
+}
 /*{
     address: '0x33B380d0b8B1e5Bc3Efb364FCf4eaEA46834Eb96',
     privateKey: '0x32ddeae1c7302f484e35a53685edab78147a78757bba755d5094497f60307fce',
@@ -38,23 +54,31 @@ async function generateAddress(req, res)
 {
     try {
         const network = req.headers.chainlinks;
+        const networkType = req.headers.networktype;
+    
         if (network) {
-            const connectWeb3 = new Web3(new Web3.providers.HttpProvider(network));
-            
-            let wallet = await connectWeb3.eth.accounts.create();
-            if (wallet) {
-                res.json({
-                    status: true,
-                    message: "Wallet created successfully",
-                    data: wallet
-                });
+            if (parseInt(networkType) == 6) {
+                await trxToken.createAccount(req,res);
             } else {
-                res.json({
-                    status: false,
-                    message: "Wallet not generated",
-                    data: {}
-                });
+            
+                const connectWeb3 = new Web3(new Web3.providers.HttpProvider(network));
+            
+                let wallet = await connectWeb3.eth.accounts.create();
+                if (wallet) {
+                    res.json({
+                        status: true,
+                        message: "Wallet created successfully",
+                        data: wallet
+                    });
+                } else {
+                    res.json({
+                        status: false,
+                        message: "Wallet not generated",
+                        data: {}
+                    });
+                }
             }
+            
         } else {
             res.json({
                 status: false,
@@ -76,72 +100,73 @@ async function getWalletBalance(req, res)
 {
     try {
         const network = req.headers.chainlinks;
+        const networkType = req.headers.networktype;
         let contractJsons = contractJson();
-        
+        let tokenDecimal = '';
         if (network) {
             const type = req.body.type;
             const address = req.body.address;
             let netBalance = 0;
             let tokenBalance = 0;
-            const web3 = new Web3(network);
-
-            if (type == 1) {
-                netBalance = await web3.eth.getBalance(address);
-                netBalance = Web3.utils.fromWei(netBalance.toString(), 'ether');
-
-            } else if(type == 2) {
-                const contractAddress = req.body.contract_address;
-                if (contractAddress) {
-                    const contractInstance = new web3.eth.Contract(contractJsons, contractAddress);
-                    tokenBalance = await contractInstance.methods.balanceOf(address).call();
-
-                    tokenDecimal = await contractInstance.methods.decimals().call();
-                    if(tokenDecimal == 8) {
-                        tokenBalance = customFromWei(tokenBalance, tokenDecimal);
-                    } else {
-                        tokenBalance = Web3.utils.fromWei(tokenBalance.toString(), contract_decimals(tokenDecimal));
-                    }
-                } else {
-                    res.json({
-                        status: false,
-                        message: "Contract address required",
-                        data: {}
-                    });
-                } 
-
+            
+            if (parseInt(networkType) == 6) {
+                await trxToken.getTronBalance(req,res);
             } else {
-                const contractAddress = req.body.contract_address;
-                if (contractAddress) {
+                
+                const web3 = new Web3(network);
+                if (type == 1) {
                     netBalance = await web3.eth.getBalance(address);
                     netBalance = Web3.utils.fromWei(netBalance.toString(), 'ether');
 
-                    const contractInstance = new web3.eth.Contract(contractJsons, contractAddress);
-                    tokenBalance = await contractInstance.methods.balanceOf(address).call();
-                    tokenDecimal = await contractInstance.methods.decimals().call();
-                    if(tokenDecimal == 8) {
+                } else if(type == 2) {
+                    const contractAddress = req.body.contract_address;
+                    if (contractAddress) {
+                        const contractInstance = new web3.eth.Contract(contractJsons, contractAddress);
+                        tokenBalance = await contractInstance.methods.balanceOf(address).call();
+                        tokenDecimal = await getContractDecimal(contractInstance);
+
                         tokenBalance = customFromWei(tokenBalance, tokenDecimal);
+                       
                     } else {
-                        tokenBalance = Web3.utils.fromWei(tokenBalance.toString(), contract_decimals(tokenDecimal));
-                    }
+                        res.json({
+                            status: false,
+                            message: "Contract address required",
+                            data: {}
+                        });
+                    } 
+
                 } else {
-                    res.json({
-                        status: false,
-                        message: "Contract address required",
-                        data: {}
-                    });
-                } 
-            }
-            const data = {
-                net_balance : netBalance,
-                token_balance : tokenBalance
-            }
+                    const contractAddress = req.body.contract_address;
+                    if (contractAddress) {
+                        netBalance = await web3.eth.getBalance(address);
+                        netBalance = Web3.utils.fromWei(netBalance.toString(), 'ether');
 
-            res.send({
-                status: true,
-                message: "process successfully",
-                data: data
-            });
+                        const contractInstance = new web3.eth.Contract(contractJsons, contractAddress);
+                        tokenBalance = await contractInstance.methods.balanceOf(address).call();
+                        tokenDecimal = await getContractDecimal(contractInstance);
+                        
+                        tokenBalance = customFromWei(tokenBalance, tokenDecimal);
+                        
+                    } else {
+                        res.json({
+                            status: false,
+                            message: "Contract address required",
+                            data: {}
+                        });
+                    } 
+                }
+                const data = {
+                    net_balance : netBalance,
+                    token_balance : tokenBalance
+                }
 
+                res.send({
+                    status: true,
+                    message: "process successfully",
+                    data: data
+                });
+            }
+        
         } else {
             res.json({
                 status: false,
@@ -150,6 +175,8 @@ async function getWalletBalance(req, res)
             });
         }
     } catch(e){
+        console.log('getWalletBalance');
+        console.log(e);
         res.json({
             status: false,
             message: e.message,
@@ -158,54 +185,121 @@ async function getWalletBalance(req, res)
     }
 }
 
+// calculate estimate gas fees
+async function calculateEstimateGasFees(req,type)
+{
+    let data = {};
+    try {
+        const network = req.headers.chainlinks;
+        const web3 = new Web3(network);
+        let amount = req.body.amount_value;
+        let gasPrice =  await web3.eth.getGasPrice();
+        gasPrice = Web3.utils.fromWei(gasPrice.toString(), 'gwei');
+        console.log('gas price');
+        console.log(gasPrice);
+        const fromAddress = req.body.from_address;
+        const receiverAddress = req.body.to_address;
+        let usedGasLimit = req.body.gas_limit;
+        let gasFees = 0;
+        let finalGasFees = 0;
+        
+        if (type == 1) {
+            const contractAddress = req.body.contract_address;
+            let contractJsons = contractJson();
+            const contract = new web3.eth.Contract(contractJsons, contractAddress);
+            const contractDecimal = await getContractDecimal(contract);
+            amount = customToWei(amount,contractDecimal);
+            if (usedGasLimit > 0) {
+                gasFees = (usedGasLimit * gasPrice);
+            } else {
+                const estimatedGasRes = await contract.methods.transfer(receiverAddress, amount).estimateGas({ from: fromAddress });
+                console.log('estimateGas');
+                console.log(estimatedGasRes);
+                usedGasLimit = parseInt(estimatedGasRes/2) + estimatedGasRes;
+                console.log('usedGasLimit');
+                console.log(usedGasLimit);
+                gasFees = (usedGasLimit*gasPrice);
+            }
+            console.log('gasFees');
+            console.log(gasFees);
+            finalGasFees = Web3.utils.fromWei(gasFees.toString(), 'gwei');
+            console.log(finalGasFees);
+            data = {
+                amount : amount,
+                tx: 'ok',
+                gasLimit: usedGasLimit,
+                gasPrice: gasPrice,
+                estimateGasFees: finalGasFees
+            }
+        
+        } else {
+            const chainId = req.body.chain_id;
+            console.log('type 2')
+            amount = Web3.utils.toWei(amount.toString(), 'ether');
+            if (usedGasLimit > 0) {
+                gasFees = (usedGasLimit * gasPrice);
+            } else {
+                let transaction = {
+                    from: fromAddress,
+                    to: receiverAddress,
+                    value: amount,
+                    chainId: chainId  
+                };
+                console.log(transaction)
+                let estimateGas = await web3.eth.estimateGas(transaction)
+                console.log('estimateGas');
+                console.log(estimateGas);
+                usedGasLimit = parseInt(estimateGas/2) + estimateGas;
+                console.log('usedGasLimit');
+                console.log(usedGasLimit);
+                gasFees = (usedGasLimit*gasPrice);
+            }
+            console.log('gasFees');
+            console.log(gasFees);
+            finalGasFees = Web3.utils.fromWei(gasFees.toString(), 'gwei');
+            console.log(finalGasFees);
+
+            data = {
+                    amount : amount,
+                    tx: 'ok',
+                    gasLimit: usedGasLimit,
+                    gasPrice: gasPrice,
+                    estimateGasFees: finalGasFees
+                }
+
+        }
+    } catch(e) {
+        console.log(e)
+    }
+    
+    return data;
+}
 async function checkEstimateGasFees(req, res)
 {
     try {
+        console.log('checkEstimateGasFees called')
         const network = req.headers.chainlinks;
         let contractJsons = contractJson();
-       
         if (network) {
+            const usedGasLimit = req.body.gas_limit;
             const fromAddress = req.body.from_address;
             const contractAddress = req.body.contract_address;
             const receiverAddress = req.body.to_address;
-            const gasLimit = req.body.gas_limit;
-            const decimalValue = contract_decimals(req.body.decimal_value);
-            let amount = req.body.amount_value;
-
-                const web3 = new Web3(network);
-                const contract = new web3.eth.Contract(contractJsons, contractAddress);
-                if (decimalValue === 'customeight') {
-                    amount = customToWei(amount, req.body.decimal_value);
-                } else {
-                    amount = Web3.utils.toWei(amount.toString(), decimalValue);
-                }
-                const tx = {
-                    from: fromAddress,
-                    to: contractAddress,
-                    gas: gasLimit,
-                    data:  contract.methods.transfer(receiverAddress, amount).encodeABI(),
-                };
-                
-    
-                let gasPrice =  await web3.eth.getGasPrice();
-                let estimateGas =  await web3.eth.estimateGas(tx);
-                
-                gasPrice = Web3.utils.fromWei(gasPrice.toString(), 'ether')
-               
-                estimateGas = estimateGas * gasPrice
-
+            
+            const data = await calculateEstimateGasFees(req,1);
+            if (data) {
                 res.json({
                     status: true,
                     message: "Get Estimate gas successfully",
-                    data: {
-                        gasLimit : gasLimit,
-                        amount : amount,
-                        tx: tx,
-                        gasPrice: gasPrice,
-                        estimateGasFees: estimateGas
-                    }
+                    data: data
                 });
-            
+            } else {
+                res.json({
+                    status: false,
+                    message: "Get Estimate gas failed",
+                    data: {}
+                });
+            }
         } else {
             res.json({
                 status: false,
@@ -214,6 +308,7 @@ async function checkEstimateGasFees(req, res)
             });
         }
     } catch(e) {
+        console.log(e)
         res.json({
             status: false,
             message: e.message,
@@ -227,77 +322,80 @@ async function checkEstimateGasFees(req, res)
     try {
         const network = req.headers.chainlinks;
         let contractJsons = contractJson();
-       
+        const networkType = req.headers.networktype;
+        let decimalValue = 18;
         if (network) {
-            const fromAddress = req.body.from_address;
-            const contractAddress = req.body.contract_address;
-            const receiverAddress = req.body.to_address;
-            const gasLimit = req.body.gas_limit;
-            const decimalValue = contract_decimals(req.body.decimal_value);
-            const privateKey = req.body.contracts;
-            let amount = req.body.amount_value;
-
-            let checkValidAddress = new Web3().utils.isAddress(receiverAddress);
             
-            if (checkValidAddress){
-                const web3 = new Web3(network);
-                let gasPrice =  await web3.eth.getGasPrice();
-                gasPrice = Web3.utils.fromWei(gasPrice.toString(), 'ether');
-
-                const contract = new web3.eth.Contract(contractJsons, contractAddress);
-                if (decimalValue === 'customeight') {
-                    amount = customToWei(amount, req.body.decimal_value);
-                } else {
-                    amount = Web3.utils.toWei(amount.toString(), decimalValue);
-                }
-
-                const tx = {
-                    from: fromAddress,
-                    to: contractAddress,
-                    gas: gasLimit,
-                    data:  contract.methods.transfer(receiverAddress, amount).encodeABI(),
-                };
+            if (parseInt(networkType) == 6) {
+                trc20Token.sendTrc20Token(req, res);
+            } else {
+                const fromAddress = req.body.from_address;
+                const contractAddress = req.body.contract_address;
+                const receiverAddress = req.body.to_address;
                 
+                const privateKey = req.body.contracts;
+                let amount = req.body.amount_value;
 
-               await web3.eth.accounts.signTransaction(tx, privateKey).then(signed => {
-                    const tran = web3.eth
-                    .sendSignedTransaction(signed.rawTransaction)
-                    .on('confirmation', (confirmationNumber, receipt) => {
-    
-                    })
-                    .on('transactionHash', hash => {
-                    })
-                    .on('receipt', receipt => {
-                        // var receipt = {
-                        //     hash:receipt.transactionHash,
-                        // };
-                        // const hashDetails = getHashTransaction(network,receipt.hash);
-                        res.json({
-                            status: true,
-                            message: "Token sent successfully",
-                            data: {
-                                hash : receipt.transactionHash,
-                                used_gas: receipt.gasUsed * gasPrice,
-                                tx : receipt
-                            }
-                        });
-                    })
-                    .on('error',function (error){  
-                        res.json({
-                            status: false,
-                            message: error.toString(),
-                            data:  {}
+                let checkValidAddress = new Web3().utils.isAddress(receiverAddress);
+                
+                if (checkValidAddress){
+                    const web3 = new Web3(network);
+                    let gasPrice =  await web3.eth.getGasPrice();
+                    gasPrice = Web3.utils.fromWei(gasPrice.toString(), 'ether');
+
+                    const contract = new web3.eth.Contract(contractJsons, contractAddress);
+                    decimalValue = await getContractDecimal(contract);
+                    
+                    amount = customToWei(amount, decimalValue);
+                    const dataGas = await calculateEstimateGasFees(req,1);
+                    let usedGasLimit = dataGas.gasLimit;
+                    
+                    const tx = {
+                        from: fromAddress,
+                        to: contractAddress,
+                        gas: Web3.utils.toHex(usedGasLimit),
+                        data:  contract.methods.transfer(receiverAddress, amount).encodeABI(),
+                    };
+
+                await web3.eth.accounts.signTransaction(tx, privateKey).then(signed => {
+                        const tran = web3.eth
+                        .sendSignedTransaction(signed.rawTransaction)
+                        .on('confirmation', (confirmationNumber, receipt) => {
+        
+                        })
+                        .on('transactionHash', hash => {
+                        })
+                        .on('receipt', receipt => {
+                            // var receipt = {
+                            //     hash:receipt.transactionHash,
+                            // };
+                            // const hashDetails = getHashTransaction(network,receipt.hash);
+                            res.json({
+                                status: true,
+                                message: "Token sent successfully",
+                                data: {
+                                    hash : receipt.transactionHash,
+                                    used_gas: receipt.gasUsed * gasPrice,
+                                    tx : receipt
+                                }
+                            });
+                        })
+                        .on('error',function (error){  
+                            res.json({
+                                status: false,
+                                message: error.toString(),
+                                data:  {}
+                            });
                         });
                     });
-                });
-            } else {
-                res.json({
-                    status: false,
-                    message: "Invalid address",
-                    data: {}
-                });
-            }
-            
+                } else {
+                    res.json({
+                        status: false,
+                        message: "Invalid address",
+                        data: {}
+                    });
+                }
+            } 
         } else {
             res.json({
                 status: false,
@@ -320,13 +418,17 @@ async function getDataByTransactionHash(req, res)
     try {
         const network = req.headers.chainlinks;
         const hash = req.body.transaction_hash;
-
-        const response = await getHashTransaction(network,hash);
-        res.send({
-            status: response.status,
-            message: response.message,
-            data: response.data
-        })
+        const networkType = req.headers.networktype;
+        if (parseInt(networkType) == 6) {
+            await trxToken.getTrxConfirmedTransaction(req, res);
+        } else {
+            const response = await getHashTransaction(network,hash);
+            res.send({
+                status: response.status,
+                message: response.message,
+                data: response.data
+            })
+        }
     } catch (e) {
         res.send({
             status: false,
@@ -352,7 +454,8 @@ async function getHashTransaction(network,hash)
                     message: "get hash",
                     data: {
                         hash: hash,
-                        gas_used: hash.gasUsed * gasPrice
+                        gas_used: hash.gasUsed * gasPrice,
+                        txID: hash.transactionHash
                     }
                 };
             } else {
@@ -383,66 +486,71 @@ async function sendEth(req, res)
 {
     try {
         const network = req.headers.chainlinks;
-       
+        const networkType = req.headers.networktype;
+
         if (network) {
+            let usedGasLimit = req.body.gas_limit;
             const fromAddress = req.body.from_address;
             const receiverAddress = req.body.to_address;
-            const gasLimit = req.body.gas_limit;
-            const decimalValue = contract_decimals(req.body.decimal_value);
             const privateKey = req.body.contracts;
+            const chainId = req.body.chain_id;
             let amount = req.body.amount_value;
 
-            const web3 = new Web3(network);
-            let checkValidAddress = new Web3().utils.isAddress(receiverAddress);
-            
-            if (checkValidAddress){
-                amount = Web3.utils.toWei(amount.toString(), 'ether');
-                let gasPrice =  await web3.eth.getGasPrice();
-                let nonce = await web3.eth.getTransactionCount(fromAddress,'latest');
-                
-                let transaction = {
-                from: fromAddress,
-                nonce: web3.utils.toHex(nonce),
-                gas: gasLimit,
-                to: receiverAddress,
-                value: amount,
-                // chainId: chainId // 
-                };
-
-                const signedTx = await web3.eth.accounts.signTransaction(transaction, privateKey);
-
-                web3.eth.sendSignedTransaction(signedTx.rawTransaction, function(error, hash) {
-                    if (!error) {
-                        res.json({
-                            status: true,
-                            message: "Coin sent successfully",
-                            data: {
-                                hash : hash,
-                            }
-                        });
-
-                    } else {
-                      res.json({
-                            status: false,
-                            message: "Sending failed",
-                            data: {
-                                error
-                            }
-                        });
-                    }
-                   });
+            if (parseInt(networkType) == 6) {
+                await trxToken.sendTrxProcess(req,res);
             } else {
-                res.json({
-                    status: false,
-                    message: "Invalid address",
-                    data: {}
-                });
+                const web3 = new Web3(network);
+                let checkValidAddress = new Web3().utils.isAddress(receiverAddress);
+                
+                if (checkValidAddress){
+                    amount = Web3.utils.toWei(amount.toString(), 'ether');
+                    let gasPrice =  await web3.eth.getGasPrice();
+                    let nonce = await web3.eth.getTransactionCount(fromAddress,'latest');
+                    usedGasLimit = usedGasLimit > 0 ? usedGasLimit : 63000;
+                    let transaction = {
+                        from: fromAddress,
+                        nonce: web3.utils.toHex(nonce),
+                        gas: usedGasLimit,
+                        to: receiverAddress,
+                        value: amount,
+                        chainId: chainId // 
+                    };
+
+                    const signedTx = await web3.eth.accounts.signTransaction(transaction, privateKey);
+
+                    web3.eth.sendSignedTransaction(signedTx.rawTransaction, function(error, hash) {
+                        if (!error) {
+                            res.json({
+                                status: true,
+                                message: "Coin sent successfully",
+                                data: {
+                                    hash : hash,
+                                }
+                            });
+
+                        } else {
+                        res.json({
+                                status: false,
+                                message: "Sending failed",
+                                data: {
+                                    error
+                                }
+                            });
+                        }
+                    });
+                } else {
+                    res.json({
+                        status: false,
+                        message: "Invalid address",
+                        data: {}
+                    });
+                }
             }
             
         } else {
             res.json({
                 status: false,
-                message: "No chain provided",
+                message: "No network provided",
                 data: {}
             });
         }
@@ -572,23 +680,27 @@ async function getLatestEvents(req, res)
 {
   try {
       const network = req.headers.chainlinks;
-      let contractJsons = contractJson();
-
+      const networkType = req.headers.networktype;
+      let decimalValue = 18;
       if (network) {
-          let prevBlock = 1000;
-          const contractAddress = req.body.contract_address;
-          const numberOfBlock = req.body.number_of_previous_block;
-          const decimalValue = contract_decimals(req.body.decimal_value);
+        if (parseInt(networkType) == 6) {
+            await trc20Token.getTrc20LatestEvent(req,res);
+        } else {
+            let contractJsons = contractJson();
+            let prevBlock = 1000;
+            const contractAddress = req.body.contract_address;
+            const numberOfBlock = req.body.number_of_previous_block;
 
-          const web3 = new Web3(new Web3.providers.HttpProvider(network));
-          const contract = new web3.eth.Contract(contractJsons, contractAddress);
-          // console.log(contract)
-          const latestBlockNumber = await web3.eth.getBlockNumber();
-          if (numberOfBlock) {
-              prevBlock = numberOfBlock;
-          }
-          const fromBlockNumber = latestBlockNumber - prevBlock;
-          const result = await getBlockDetails(contract,fromBlockNumber,latestBlockNumber);
+            const web3 = new Web3(new Web3.providers.HttpProvider(network));
+            const contract = new web3.eth.Contract(contractJsons, contractAddress);
+            decimalValue = await getContractDecimal(contract);
+
+            const latestBlockNumber = await web3.eth.getBlockNumber();
+            if (numberOfBlock) {
+                prevBlock = numberOfBlock;
+            }
+            const fromBlockNumber = latestBlockNumber - prevBlock;
+            const result = await getBlockDetails(contract,fromBlockNumber,latestBlockNumber);
 
           if (result.status === true) {
               let resultData = [];
@@ -601,10 +713,11 @@ async function getLatestEvents(req, res)
                       block_hash: res.blockHash,
                       from_address: res.returnValues.from,
                       to_address: res.returnValues.to,
-                      amount: decimalValue === 'customeight' ? customFromWei(res.returnValues.value,req.body.decimal_value) : Web3.utils.fromWei(res.returnValues.value.toString(), decimalValue)
+                      amount: customFromWei(res.returnValues.value,decimalValue)
                   };
                   resultData.push(innerData)
               });
+              console.log(resultData)
               res.json({
                   status: true,
                   message: result.message,
@@ -619,7 +732,7 @@ async function getLatestEvents(req, res)
                   data: {}
               });
           }
-
+        }
       } else {
           res.json({
               status: false,
@@ -681,6 +794,75 @@ async function getBlockDetails(contract,fromBlockNumber,toBlockNumber)
   }
 }
 
+async function checkEstimateGas()
+{
+    
+}
+async function getContractDetails(req, res)
+{
+    try {
+        const network = req.headers.chainlinks;
+        let contractJsons = contractJson();
+
+        if (network) {
+            const contractAddress = req.body.contract_address;
+            const address = req.body.address;
+
+            let symbol = '';
+            let name = '';
+            let tokenBalance = 0;
+            let tokenDecimal = 18;
+            const web3 = new Web3(network);
+            const netID = await web3.eth.net.getId();
+            if (contractAddress) {
+                const contractInstance = new web3.eth.Contract(contractJsons, contractAddress);
+                 symbol = await contractInstance.methods.symbol().call();
+                 name = await contractInstance.methods.name().call();
+                 tokenDecimal = await contractInstance.methods.decimals().call();
+
+                if (address) {
+                     tokenBalance = await contractInstance.methods.balanceOf(address).call();
+                     tokenBalance = customFromWei(tokenBalance, tokenDecimal);
+                 }
+
+            } else {
+                res.json({
+                    status: false,
+                    message: "Contract address required",
+                    data: {}
+                });
+            }
+
+            const data = {
+                chain_id : netID,
+                symbol : symbol,
+                name : name,
+                token_balance : tokenBalance,
+                token_decimal : tokenDecimal
+            }
+
+            res.send({
+                status: true,
+                message: "process successfully",
+                data: data
+            });
+
+        } else {
+            res.json({
+                status: false,
+                message: "No chain provided",
+                data: {}
+            });
+        }
+    } catch(e){
+        res.json({
+            status: false,
+            message: e.message,
+            data: {}
+        });
+    }
+}
+
 module.exports = {
     getData,
     generateAddress,
@@ -690,5 +872,6 @@ module.exports = {
     checkEstimateGasFees,
     getTransactionByContractAddress,
     getDataByTransactionHash,
-    getLatestEvents
+    getLatestEvents,
+    getContractDetails
 }

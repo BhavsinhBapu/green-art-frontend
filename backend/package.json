@@ -20,6 +20,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.1.7",
     "request-parser": "^0.0.3",
+    "trongrid": "^1.2.6",
+    "tronweb": "^5.0.0",
     "web3": "^1.7.0"
   },
   "devDependencies": {

@@ -9,11 +9,7 @@ import useTranslation from "next-translate/useTranslation";
 import { customPage, landingPage } from "service/landing-page";
 import Footer from "components/common/footer";
 
-const VerificationList: NextPage = ({
-  customPageData,
-  socialData,
-  copyright_text,
-}: any) => {
+const VerificationList: NextPage = () => {
   const { t } = useTranslation("common");
   const [kycDetails, setKycDetails] = useState<any>();
   const [kyc, setKyc] = useState<any>(null);
@@ -96,24 +92,14 @@ const VerificationList: NextPage = ({
           </div>
         </div>
       </div>
-      <Footer
-        customPageData={customPageData}
-        socialData={socialData}
-        copyright_text={copyright_text}
-      />
+      <Footer />
     </>
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/user/verification-list");
-  const { data } = await landingPage();
-  const { data: customPageData } = await customPage();
   return {
-    props: {
-      socialData: data.media_list,
-      copyright_text: data?.copyright_text,
-      customPageData: customPageData.data,
-    },
+    props: {},
   };
 };
 

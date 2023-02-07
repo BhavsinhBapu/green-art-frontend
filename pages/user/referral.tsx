@@ -7,11 +7,8 @@ import { useEffect, useState, useRef } from "react";
 import { toast } from "react-toastify";
 import { customPage, landingPage } from "service/landing-page";
 import { getReferral } from "service/refer";
-const Referral: NextPage = ({
-  customPageData,
-  socialData,
-  copyright_text,
-}: any) => {
+
+const Referral: NextPage = () => {
   const [referral, setReferral] = useState<any>();
   const [allData, setAllData] = useState<any>();
   const [loading, setLoading] = useState(true);
@@ -211,24 +208,14 @@ const Referral: NextPage = ({
           </div>
         </div>
       </div>
-      <Footer
-        customPageData={customPageData}
-        socialData={socialData}
-        copyright_text={copyright_text}
-      />
+      <Footer />
     </>
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/user/referral");
-  const { data } = await landingPage();
-  const { data: customPageData } = await customPage();
   return {
-    props: {
-      socialData: data.media_list,
-      copyright_text: data?.copyright_text,
-      customPageData: customPageData.data,
-    },
+    props: {},
   };
 };
 

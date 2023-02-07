@@ -12,7 +12,6 @@ import { getRateSsr } from "service/swap";
 import Link from "next/link";
 import useTranslation from "next-translate/useTranslation";
 import SmallLoading from "components/common/smallLoading";
-import { formateZert } from "common";
 import { customPage, landingPage } from "service/landing-page";
 import Footer from "components/common/footer";
 import { AiOutlineSwap, AiFillWallet } from "react-icons/ai";
@@ -25,10 +24,6 @@ const SwapCoin: NextPage = ({
   to_wallet,
   from_wallet_details,
   to_wallet_details,
-  faq,
-  customPageData,
-  socialData,
-  copyright_text,
 }: any) => {
   const { t } = useTranslation("common");
 
@@ -332,7 +327,7 @@ const SwapCoin: NextPage = ({
                             </span>
                           </li>
                           <li>
-                            <span>{t("You will spend")}</span>
+                            <span>{t("You will get")}</span>
 
                             <span className="spend">
                               {parseFloat(rate.convert_rate)}
@@ -414,11 +409,7 @@ const SwapCoin: NextPage = ({
         </div>
       </div>
 
-      <Footer
-        customPageData={customPageData}
-        socialData={socialData}
-        copyright_text={copyright_text}
-      />
+      <Footer />
     </>
   );
 };
@@ -426,8 +417,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/user/swap-history");
   const cookies = parseCookies(ctx);
   const walletLists = await getUserCoinForSwapAction(null, ctx);
-  const { data: landingData } = await landingPage();
-  const { data: customPageData } = await customPage();
   if (walletLists === false) {
     return {
       redirect: {
@@ -474,9 +463,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
       from_wallet_details: from_wallet,
       to_wallet_details: to_wallet,
       wallet_rate,
-      socialData: landingData.media_list,
-      copyright_text: landingData?.copyright_text,
-      customPageData: customPageData.data,
     },
   };
 };

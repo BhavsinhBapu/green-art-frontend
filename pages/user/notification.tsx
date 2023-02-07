@@ -9,11 +9,7 @@ import { customPage, landingPage } from "service/landing-page";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import Footer from "components/common/footer";
 import { IoMdNotificationsOutline } from "react-icons/io";
-const NotificationPage = ({
-  customPageData,
-  socialData,
-  copyright_text,
-}: any) => {
+const NotificationPage = () => {
   const { t } = useTranslation("common");
   const [notificationData, setNotification] = useState<any>([]);
   const { isLoggedIn } = useSelector((state: RootState) => state.user);
@@ -31,24 +27,6 @@ const NotificationPage = ({
           {t("All notifications")}
         </h2>
       </div>
-      {/* <div className="container notification-continer">
-        {notificationData.map((item: any, index: any) => (
-          <div className="notification-container" key={index}>
-            <p className="notification-time">
-              {moment(item.created_at).format("DD MMM YYYY")}
-            </p>
-            <div className="notification-body">
-              <div className="notificationicon"></div>
-              <div>
-                <h5 className="text-black">{item?.title}</h5>
-                <p className="title-body-notifination text-black">
-                  {item?.notification_body}
-                </p>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div> */}
 
       <div className="notification-section marginLeftRight">
         <div className="container">
@@ -83,31 +61,23 @@ const NotificationPage = ({
                 </div>
               ))
             ) : (
-              <p className="text-center notificationNotFound">{t("No data found!")}</p>
+              <p className="text-center notificationNotFound">
+                {t("No Notification!")}
+              </p>
             )}
           </div>
         </div>
       </div>
 
-      <Footer
-        customPageData={customPageData}
-        socialData={socialData}
-        copyright_text={copyright_text}
-      />
+      <Footer />
     </>
   );
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/user/notification");
-  const { data } = await landingPage();
-  const { data: customPageData } = await customPage();
   return {
-    props: {
-      socialData: data.media_list,
-      copyright_text: data?.copyright_text,
-      customPageData: customPageData.data,
-    },
+    props: {},
   };
 };
 export default NotificationPage;

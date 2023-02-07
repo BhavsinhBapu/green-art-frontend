@@ -26,13 +26,7 @@ import { useSelector } from "react-redux";
 import Wallethistory from "components/wallet/wallet-history";
 import { MyWalletProcessSidebar } from "service/wallet";
 
-const DeposiAndWithdraw = ({
-  withdrawFaq,
-  depositFaq,
-  customPageData,
-  socialData,
-  copyright_text,
-}: any) => {
+const DeposiAndWithdraw = ({ withdrawFaq, depositFaq }: any) => {
   const router = useRouter();
   const [fullPage, setFullPage] = useState(false);
   const { settings } = useSelector((state: RootState) => state.common);
@@ -68,7 +62,7 @@ const DeposiAndWithdraw = ({
           address: response.address,
         });
       } else if (response.success === false) {
-      router.push("/user/my-wallet");
+        router.push("/user/my-wallet");
       }
     }
   };
@@ -94,7 +88,6 @@ const DeposiAndWithdraw = ({
       faqs?.length <= 0 &&
       getProcessData?.data?.progress_status_list?.length <= 0
     ) {
-      console.log(faqs?.length);
       setFullPage(true);
     }
   };
@@ -103,16 +96,19 @@ const DeposiAndWithdraw = ({
     const processData = await MyWalletProcessSidebar(String(router.query.id));
     setProcessData(processData);
   };
+  let WithdrawAndDeposit = false;
   useEffect(() => {
     setFaqs(
       router.query.id === MY_WALLET_DEPOSIT_TYPE ? depositFaq : withdrawFaq
     );
     getProcess();
-
-    handleWithdrawAndDeposit(
-      String(router.query.id),
-      Number(router.query.coin_id)
-    );
+    if (WithdrawAndDeposit === false) {
+      handleWithdrawAndDeposit(
+        String(router.query.id),
+        Number(router.query.coin_id)
+      );
+      WithdrawAndDeposit = true;
+    }
   }, [dependecy]);
   useEffect(() => {
     if (
@@ -175,9 +171,6 @@ const DeposiAndWithdraw = ({
                 {getProcessData?.data?.progress_status_list?.length > 0 && (
                   <div className="mt-3">
                     <h4>
-                      {/* {getProcessData?.data.title
-                        ? getProcessData?.data.title
-                        : t("How it works?")} */}
                       {router.query.id === "deposit"
                         ? "Deposit" + " Step's"
                         : "Withdrawal" + " Step's"}
@@ -226,11 +219,7 @@ const DeposiAndWithdraw = ({
           )}
         </div>
       </div>
-      <Footer
-        customPageData={customPageData}
-        socialData={socialData}
-        copyright_text={copyright_text}
-      />
+      <Footer />
     </>
   );
 };
@@ -250,17 +239,12 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
     }
   });
 
-  const { data } = await landingPage();
-  const { data: customPageData } = await customPage();
-
   return {
     props: {
       user: response.user,
       withdrawFaq: withdrawFaq,
       depositFaq: depositFaq,
-      socialData: data.media_list,
-      copyright_text: data?.copyright_text,
-      customPageData: customPageData.data,
+   
     },
   };
 };

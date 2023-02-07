@@ -5,12 +5,7 @@ import { useState } from "react";
 import { getFaqList } from "service/faq";
 import { customPage, landingPage } from "service/landing-page";
 
-const Index: NextPage = ({
-  faq,
-  customPageData,
-  socialData,
-  copyright_text,
-}: any) => {
+const Index: NextPage = ({ faq }: any) => {
   const { t } = useTranslation("common");
   const [active, setActive] = useState<number>(1);
   const handleActive = (index: number) => {
@@ -140,25 +135,16 @@ const Index: NextPage = ({
           </div>
         </div>
       </div>
-      <Footer
-        customPageData={customPageData}
-        socialData={socialData}
-        copyright_text={copyright_text}
-      />
+      <Footer />
     </>
   );
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const { data: faqs } = await getFaqList();
-  const { data } = await landingPage();
-  const { data: customPageData } = await customPage();
   return {
     props: {
       faq: faqs,
-      socialData: data.media_list,
-      copyright_text: data?.copyright_text,
-      customPageData: customPageData.data,
     },
   };
 };

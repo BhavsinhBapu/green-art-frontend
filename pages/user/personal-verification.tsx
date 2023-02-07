@@ -19,11 +19,7 @@ import {
 import { customPage, landingPage } from "service/landing-page";
 import Footer from "components/common/footer";
 
-const PersonalVerification: NextPage = ({
-  customPageData,
-  socialData,
-  copyright_text,
-}: any) => {
+const PersonalVerification: NextPage = () => {
   const { t } = useTranslation("common");
   const [type, setType] = useState<string>("");
   const [kycDetails, setKycDetails] = useState<any>();
@@ -49,7 +45,6 @@ const PersonalVerification: NextPage = ({
             </div>
             <NidModal type={type} kycDetails={kycDetails} />
             <div className="profile-area">
-              {/* <h4 className="section-title-medium">{t("Verification")}</h4> */}
               <div className="section-wrapper boxShadow">
                 <div className="row">
                   <div className="col-lg-12">
@@ -216,24 +211,14 @@ const PersonalVerification: NextPage = ({
           </div>
         </div>
       </div>
-      <Footer
-        customPageData={customPageData}
-        socialData={socialData}
-        copyright_text={copyright_text}
-      />
+      <Footer />
     </>
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/user/personal-verification");
-  const { data } = await landingPage();
-  const { data: customPageData } = await customPage();
   return {
-    props: {
-      socialData: data.media_list,
-      copyright_text: data?.copyright_text,
-      customPageData: customPageData.data,
-    },
+    props: {},
   };
 };
 

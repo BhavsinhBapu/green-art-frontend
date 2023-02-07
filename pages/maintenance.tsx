@@ -2,6 +2,7 @@ import React from "react";
 import { GetServerSideProps } from "next";
 import { commomSettings } from "service/landing-page";
 import useTranslation from "next-translate/useTranslation";
+import { redirect } from "next/dist/server/api-utils";
 
 const Maintenance = ({ data }: any) => {
   const { t } = useTranslation("common");
@@ -41,6 +42,14 @@ const Maintenance = ({ data }: any) => {
 
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const { data } = await commomSettings();
+  if (parseInt(data?.maintenance_mode_status) === 0) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
   return {
     props: { data },
   };

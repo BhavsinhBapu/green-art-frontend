@@ -6,11 +6,18 @@ import {
   AiTwotoneEdit,
   AiTwotonePhone,
   AiFillSecurityScan,
+  AiOutlineBank,
 } from "react-icons/ai";
+import { BiSupport } from "react-icons/bi";
+
 import { useRouter } from "next/router";
+import { RootState } from "state/store";
+import { useSelector } from "react-redux";
 const ProfileSidebar = () => {
   const router = useRouter();
   const { t } = useTranslation("common");
+  const { settings } = useSelector((state: RootState) => state.common);
+
   return (
     <div className="page-left-sidebar">
       <div className="sidebar-top">
@@ -59,17 +66,16 @@ const ProfileSidebar = () => {
               </a>
             </li>
           </Link>
-          {/* <Link href="/user/personal-verification">
+
+          <Link href="/user/bank/list">
             <li
-              className={
-                router.pathname == "/user/personal-verification" ? "active" : ""
-              }
+              className={router.pathname == "/user/bank/list" ? "active" : ""}
             >
-              <a href="/user/personal-verification">
-                {t("Personal Verification")}
-              </a>
+              <AiOutlineBank />
+              <a href="/user/bank/list">{t("Bank List")}</a>
             </li>
-          </Link> */}
+          </Link>
+
           <Link href="/user/change-password">
             <li
               className={
@@ -80,6 +86,14 @@ const ProfileSidebar = () => {
               <a href="/user/change-password">{t("Change Password")}</a>
             </li>
           </Link>
+          {parseInt(settings.knowledgebase_support_module) === 1 && (
+            <Link href="/support">
+              <li className={router.pathname == "/support" ? "active" : ""}>
+                <BiSupport />
+                <a href="/support">{t("Support")}</a>
+              </li>
+            </Link>
+          )}
         </ul>
       </div>
     </div>

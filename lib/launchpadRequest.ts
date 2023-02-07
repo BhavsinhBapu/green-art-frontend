@@ -2,7 +2,7 @@ import axios from "axios";
 import Cookie from "js-cookie";
 
 const launchpadRequest = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_BASE_URL + "/dynamic-form/api",
+  baseURL: process.env.NEXT_PUBLIC_BASE_URL + "/ico-launchpad/api",
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",
