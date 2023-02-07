@@ -73,8 +73,7 @@ export const DipositComponent = ({
                         );
                         setDependecy(Math.random() * 100);
                         setSelectedNetwork(findObje);
-                      }}
-                    >
+                      }}>
                       {responseData?.data?.map((item: any, index: number) => (
                         <option value={item.id} key={index}>
                           {item?.network_name}
@@ -118,81 +117,76 @@ export const DipositComponent = ({
                         <QRCode value={selectedNetwork?.address} size={150} />
                       )}
 
-                    <div className="copy-box">
-                      <div className="input-url input-copy">
-                        {selectedNetwork?.address ? (
-                          <>
-                            <input
-                              onClick={() => {
-                                copyTextById(
-                                  responseData?.wallet.coin_type == "USDT"
-                                    ? selectedNetwork?.address
-                                    : responseData?.address
-                                );
-                                selectAddressCopy?.current.select();
-                              }}
-                              ref={selectAddressCopy}
-                              className="address-box address-copy-box"
-                              type="text"
-                              value={
+                    <div className="input-url wallet_input_copy">
+                      {selectedNetwork?.address ? (
+                        <>
+                          <input
+                            onClick={() => {
+                              copyTextById(
                                 responseData?.wallet.coin_type == "USDT"
                                   ? selectedNetwork?.address
                                   : responseData?.address
-                              }
-                            />
-
-                            <span
-                              className="btn copy-url-btn"
-                              onClick={() => {
-                                copyTextById(
-                                  responseData?.wallet.coin_type == "USDT"
-                                    ? selectedNetwork?.address
-                                    : responseData?.address
-                                );
-                                selectAddressCopy?.current?.select();
-                              }}
-                            >
-                              <i className="fa fa-clone"></i>
-                            </span>
-                          </>
-                        ) : responseData?.address &&
-                          responseData?.wallet.coin_type !== "USDT" ? (
-                          <>
-                            <input
-                              onClick={() => {
-                                copyTextById(
-                                  responseData?.wallet.coin_type == "USDT"
-                                    ? selectedNetwork?.address
-                                    : responseData?.address
-                                );
-                                selectAddressCopy?.current.select();
-                              }}
-                              ref={selectAddressCopy}
-                              className="address-box address-copy-box"
-                              type="text"
-                              value={responseData?.address}
-                            />
-
-                            <span
-                              className="copy-url-btn cp-button"
-                              onClick={() => {
-                                copyTextById(responseData?.address);
-                                selectAddressCopy?.current?.select();
-                              }}
-                            >
-                              <i className="fa fa-clone"></i>
-                            </span>
-                          </>
-                        ) : (
-                          <p
+                              );
+                              selectAddressCopy?.current.select();
+                            }}
                             ref={selectAddressCopy}
-                            id="url-copy"
-                            className="address-box"
-                          >
-                            {t("No address found!")}
-                          </p>
-                        )}
-                      </div>
+                            className="address-copy-box "
+                            type="text"
+                            value={
+                              responseData?.wallet.coin_type == "USDT"
+                                ? selectedNetwork?.address
+                                : responseData?.address
+                            }
+                          />
+
+                          <span
+                            className="btn copy-url-btn"
+                            onClick={() => {
+                              copyTextById(
+                                responseData?.wallet.coin_type == "USDT"
+                                  ? selectedNetwork?.address
+                                  : responseData?.address
+                              );
+                              selectAddressCopy?.current?.select();
+                            }}>
+                            <i className="fa fa-clone"></i>
+                          </span>
+                        </>
+                      ) : responseData?.address &&
+                        responseData?.wallet.coin_type !== "USDT" ? (
+                        <>
+                          <input
+                            onClick={() => {
+                              copyTextById(
+                                responseData?.wallet.coin_type == "USDT"
+                                  ? selectedNetwork?.address
+                                  : responseData?.address
+                              );
+                              selectAddressCopy?.current.select();
+                            }}
+                            ref={selectAddressCopy}
+                            className="address-box address-copy-box border-0"
+                            type="text"
+                            value={responseData?.address}
+                          />
+
+                          <span
+                            className="copy-url-btn cp-button"
+                            onClick={() => {
+                              copyTextById(responseData?.address);
+                              selectAddressCopy?.current?.select();
+                            }}>
+                            <i className="fa fa-clone"></i>
+                          </span>
+                        </>
+                      ) : (
+                        <p
+                          ref={selectAddressCopy}
+                          id="url-copy"
+                          className="address-box">
+                          {t("No address found!")}
+                        </p>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -209,8 +203,7 @@ export const DipositComponent = ({
                           setSelectedNetwork,
                           setDependecy
                         );
-                      }}
-                    >
+                      }}>
                       {t("Get address")}
                     </button>
                   )}
