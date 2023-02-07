@@ -228,8 +228,7 @@
     }
     .pagination-wrapper {
         text-align: center !important;
-        margin-top: 25px !important;
-        width: 90%;
+        /* width: 90%; */
     }
     .about-text h2 {
         font-size: 25px;
