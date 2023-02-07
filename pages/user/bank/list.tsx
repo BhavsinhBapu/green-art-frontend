@@ -1,3 +1,4 @@
+import { formatCurrency } from "common";
 import Footer from "components/common/footer";
 import TableLoading from "components/common/TableLoading";
 import ProfileSidebar from "layout/profile-sidebar";
@@ -10,7 +11,9 @@ import { parseCookies } from "nookies";
 import React, { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 import { AiOutlineEdit } from "react-icons/ai";
+import { TiArrowRepeat } from "react-icons/ti";
 import { customPage, landingPage } from "service/landing-page";
+import { GetUserInfoByTokenServer } from "service/user";
 import { geyBankListAction } from "state/actions/fiat-deposit-withawal";
 
 const List = () => {
@@ -52,6 +55,7 @@ const List = () => {
                 <AiOutlineEdit size={20} />
               </span>
             </Link>
+         
           </div>
         </td>
       ),

@@ -1,7 +1,11 @@
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import { BiChevronLeft } from "react-icons/bi";
-import { pageAvailabilityCheck } from "middlewares/ssr-authentication-check";
+
+import {
+  SSRAuthCheck,
+  pageAvailabilityCheck,
+} from "middlewares/ssr-authentication-check";
 import { getBlogNewsSettings, getNewsDetails } from "service/news";
 import { GetServerSideProps } from "next";
 import { formateData } from "common";
@@ -18,26 +22,28 @@ const NewsDetails = ({ newsDetails, BlogNewsSettings }: any) => {
       <div className="container">
         <Link href="/news">
           <a>
-            <h3 className="pb-2 newsDetailsTitle sectionTitle d-flex align-items-center">
+            <h3 className="pb-3 newsDetailsTitle sectionTitle d-flex align-items-center">
               <BiChevronLeft />
               {t("Back")}
             </h3>
           </a>
         </Link>
-        <hr />
 
         <div className="row">
           <div className="col-md-8">
             <div className="newsCardText mt-4">
               <h3 className="titleText">{newsDetails?.details?.title}</h3>
               <small>{formateData(newsDetails?.details?.created_at)}</small>
-              <img src={newsDetails?.details?.thumbnail} alt="" />
+              <img
+                className="my-3 rounded"
+                src={newsDetails?.details?.thumbnail}
+                alt=""
+              />
               <div
                 className="mt-4"
                 dangerouslySetInnerHTML={{
                   __html: newsDetails?.details?.body,
-                }}
-              ></div>
+                }}></div>
             </div>
           </div>
           <div className="col-md-4">
@@ -83,6 +89,7 @@ const NewsDetails = ({ newsDetails, BlogNewsSettings }: any) => {
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
+  // await SSRAuthCheck(ctx, "/news");
   const { id } = ctx.params;
   const newsDetails = await getNewsDetails(id);
   const { data: BlogNewsSettings } = await getBlogNewsSettings();

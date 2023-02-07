@@ -1,4 +1,6 @@
+import { formatCurrency } from "common";
 import Footer from "components/common/footer";
+import TableLoading from "components/common/TableLoading";
 import ReportSidebar from "layout/report-sidebar";
 import moment from "moment";
 import { GetServerSideProps } from "next";

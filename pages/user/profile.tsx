@@ -1,5 +1,7 @@
 import type { GetServerSideProps, NextPage } from "next";
+import ProfileComp from "components/profile/profile";
 import { parseCookies } from "nookies";
+
 import { GetUserInfoByTokenServer } from "service/user";
 import ProfileSidebar from "layout/profile-sidebar";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";

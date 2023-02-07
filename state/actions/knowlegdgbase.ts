@@ -45,10 +45,11 @@ export const knowledgebaseArticleSearchAction = async (
   query: any,
   setLists: any
 ) => {
-  if (query === "") {
+  if (!query) {
     setLists([]);
     return;
   }
   const searchList = await knowledgebaseArticleSearch(query);
+  console.log(searchList.data, "query");
   setLists(searchList.data);
 };

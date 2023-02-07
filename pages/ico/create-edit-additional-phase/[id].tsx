@@ -53,6 +53,7 @@ const CreateEditAdditionalPhase = ({ id, edit, data }: any) => {
               className="row"
               onSubmit={(e) => {
                 e.preventDefault();
+
                 launchpadCreateUpdatePhaseAdditionalAction(
                   inputFields,
                   id,

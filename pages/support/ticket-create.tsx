@@ -5,7 +5,6 @@ import {
   pageAvailabilityCheck,
 } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
-import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
@@ -26,13 +25,16 @@ const TicketCreate = () => {
   });
   const [file, setFile] = useState<any>();
   const router = useRouter();
-  const { t } = useTranslation("common");
   const getProjectList = async () => {
     const { data } = await knowledgebaseSupportProjectList();
     setProjectList(data);
   };
   const createTicket = async () => {
     const formData = new FormData();
+    // if (!options.title || options.project || options.description) {
+    //   toast.error("Please fill all the fields!");
+    //   return;
+    // }
     formData.append("title", options.title);
     formData.append("project_id", options.project);
     formData.append("description", options.description);
@@ -62,10 +64,10 @@ const TicketCreate = () => {
                 <div className="row">
                   <div className="col-md-8 mx-auto">
                     <div className="ticket_create_box p-4 rounded">
-                      <h4 className="fw_600">{t("Create New Ticket")}</h4>
+                      <h4 className="fw_600">Create New Ticket</h4>
                       <input type="hidden" />
                       <div className="p_color pt-4">
-                        <label>{t("Choose Project:")}</label>
+                        <label>Choose Project:</label>
                         <select
                           id="inputState"
                           className="w-100 px-2 py-2 rounded search-field ticketFilterBg"
@@ -74,9 +76,8 @@ const TicketCreate = () => {
                               ...options,
                               project: e.target.value,
                             });
-                          }}
-                        >
-                          <option selected>{t("Choose...")}</option>
+                          }}>
+                          <option selected>Choose...</option>
                           {projectList.map((project: any, index: any) => (
                             <option key={index} value={project.id}>
                               {project.name}
@@ -84,7 +85,7 @@ const TicketCreate = () => {
                           ))}
                         </select>
 
-                        <label className="pt-4">{t("Title :")}</label>
+                        <label className="pt-4">Title :</label>
                         <input
                           className="w-100 px-2 py-2 rounded search-field"
                           type="text"
@@ -97,7 +98,7 @@ const TicketCreate = () => {
                           }}
                         />
 
-                        <label className="pt-4">{t("Description")}</label>
+                        <label className="pt-4">Description</label>
                         <textarea
                           id="description"
                           name="description"
@@ -107,11 +108,10 @@ const TicketCreate = () => {
                               ...options,
                               description: e.target.value,
                             });
-                          }}
-                        ></textarea>
+                          }}></textarea>
 
                         <label className="pt-4">
-                          {t("Purchase Code (optional) :")}
+                          Purchase Code (optional) :
                         </label>
                         <input
                           className="w-100 px-2 py-2 rounded search-field"
@@ -124,7 +124,7 @@ const TicketCreate = () => {
                             });
                           }}
                         />
-                        <label className="pt-4">{t("Attach File:")}</label>
+                        <label className="pt-4">Attach File:</label>
                         <div className="input-group">
                           <div className="custom-file">
                             <input
@@ -137,16 +137,15 @@ const TicketCreate = () => {
                               }}
                             />
                             <label className="custom-file-label custom_file_uploder">
-                              {t("Choose file")}
+                              Choose file
                             </label>
                           </div>
                         </div>
 
                         <button
                           className="btn btn-warning fw-bolder text-white mt-4 px-4 py-2 rounded"
-                          onClick={createTicket}
-                        >
-                          {t("Submit")}
+                          onClick={createTicket}>
+                          Submit
                         </button>
                       </div>
                     </div>

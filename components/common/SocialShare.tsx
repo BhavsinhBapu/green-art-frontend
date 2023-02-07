@@ -23,8 +23,7 @@ const SocialShare = (url: any) => {
           <FacebookShareButton
             url={url}
             quote={"Share on facebook"}
-            hashtag="#muo"
-          >
+            hashtag="#muo">
             <FacebookIcon size={32} round />
           </FacebookShareButton>
         </a>

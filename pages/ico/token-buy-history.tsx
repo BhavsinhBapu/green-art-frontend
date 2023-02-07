@@ -6,7 +6,11 @@ import { customPage, landingPage } from "service/landing-page";
 import moment from "moment";
 import LaunchpadSidebar from "layout/launchpad-sidebar";
 import { useEffect, useState } from "react";
-import { getTokenBuyHistoryAction } from "state/actions/launchpad";
+import {
+  getTokenBuyHistoryAction,
+  GetTokenListAction,
+} from "state/actions/launchpad";
+import Link from "next/link";
 import DataTable from "react-data-table-component";
 import { handleSwapHistorySearch } from "state/actions/reports";
 

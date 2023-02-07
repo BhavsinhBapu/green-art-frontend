@@ -27,29 +27,32 @@ const BlogDetails = ({ blogDetails, BlogNewsSettings }: any) => {
       <div className="container">
         <Link href="/blog">
           <a>
-            <h3 className="pb-2 newsDetailsTitle d-flex align-items-center">
+            <h3 className="pb-3 newsDetailsTitle d-flex align-items-center">
               <BiChevronLeft />
               {t("Back")}
             </h3>
           </a>
         </Link>
-        <hr />
         <div className="row">
           <div className="col-md-8">
             <div className="newsCardText mt-4">
               <h3>{blogDetails?.data?.details?.title}</h3>
-              <small>
+              <small className="mt-5">
                 {formateData(blogDetails?.data?.details?.created_at)}
               </small>
-              <img src={blogDetails?.data?.details?.thumbnail} alt="" />
+              <hr />
+              <img
+                className="rounded my-3"
+                src={blogDetails?.data?.details?.thumbnail}
+                alt=""
+              />
               <div
                 dangerouslySetInnerHTML={{
                   __html: blogDetails?.data?.details?.body,
-                }}
-              ></div>
+                }}></div>
             </div>
           </div>
-          <div className="col-md-3">
+          <div className="col-md-4">
             <SocialShare
               url={
                 process.env.NEXT_PUBLIC_HOSTED_CLIENT_URL +
@@ -61,7 +64,7 @@ const BlogDetails = ({ blogDetails, BlogNewsSettings }: any) => {
 
             {blogDetails?.data?.related?.data?.map(
               (item: any, index: number) => (
-                <div className="row mt-4" key={index}>
+                <div className="row my-4" key={index}>
                   <div className="col-12">
                     <BlogCard blog={item} />
                   </div>

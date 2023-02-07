@@ -1,6 +1,9 @@
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import type { GetServerSideProps, NextPage } from "next";
+import { toast } from "react-toastify";
 import React, { useEffect, useState } from "react";
+import { IoWalletOutline } from "react-icons/io5";
+import { TiArrowRepeat } from "react-icons/ti";
 import { getMyTokenBalanceAction } from "state/actions/launchpad";
 import Loading from "components/common/TableLoading";
 import useTranslation from "next-translate/useTranslation";

@@ -1,7 +1,10 @@
 import { NewsList } from "components/News/NewsList";
 import { NewsSlider } from "components/News/NewsSlider";
 import Footer from "components/common/footer";
-import { pageAvailabilityCheck } from "middlewares/ssr-authentication-check";
+import {
+  SSRAuthCheck,
+  pageAvailabilityCheck,
+} from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
 import useTranslation from "next-translate/useTranslation";
 import { useState } from "react";

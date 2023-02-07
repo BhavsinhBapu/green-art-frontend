@@ -34,14 +34,14 @@ const PhoneVerification: NextPage = () => {
               }}
               validationSchema={Yup.object({
                 old_password: Yup.string()
-                  .min(6, t("Password must be at least 6 characters"))
-                  .required(t("Password is required")),
+                  .min(6, "Password must be at least 6 characters")
+                  .required("Password is required"),
                 password: Yup.string()
-                  .min(6, t("Password must be at least 6 characters"))
-                  .required(t("Password is required")),
+                  .min(6, "Password must be at least 6 characters")
+                  .required("Password is required"),
                 password_confirmation: Yup.string()
-                  .oneOf([Yup.ref("password"), null], t("Passwords must match"))
-                  .required(t("Password confirmation is required")),
+                  .oneOf([Yup.ref("password"), null], "Passwords must match")
+                  .required("Password confirmation is required"),
               })}
               onSubmit={async (values) => {
                 await dispatch(ChangePasswordAction(values));
@@ -50,6 +50,9 @@ const PhoneVerification: NextPage = () => {
               {({ errors, touched }) => (
                 <Form>
                   <div className="reset-password-area">
+                    {/* <h4 className="section-title-medium">
+                    {t("Change Password")}
+                  </h4> */}
                     <div className="section-wrapper boxShadow">
                       <div className="row">
                         <div className="col-lg-6 col-md-8">

@@ -2,7 +2,10 @@ import { KnowledgeCard } from "components/Knowledgebase/knowledge-card";
 import { TopBanner } from "components/Knowledgebase/top-banner";
 import { CustomLoading } from "components/common/CustomLoading";
 import Footer from "components/common/footer";
-import { pageAvailabilityCheck } from "middlewares/ssr-authentication-check";
+import {
+  SSRAuthCheck,
+  pageAvailabilityCheck,
+} from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
 import { useEffect, useState } from "react";

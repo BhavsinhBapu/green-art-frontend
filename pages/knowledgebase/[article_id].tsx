@@ -1,19 +1,19 @@
 import { formateData } from "common";
+import { ArticalCard } from "components/Knowledgebase/article-card";
 import Footer from "components/common/footer";
 import { pageAvailabilityCheck } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
 import { articleDetails } from "service/knowledgebase";
 import { customPage, landingPage } from "service/landing-page";
+import { getNewsDetails } from "service/news";
 import Link from "next/link";
-import useTranslation from "next-translate/useTranslation";
 
 const KnowledgebaseArticleDetails = ({ articleDetails }: any) => {
-  const { t } = useTranslation("common");
   return (
     <>
       <div className="container mb-5">
         <div className="row">
-          <div className="col-md-6 col-lg-8 mt-4 custom_details_box">
+          <div className="col-md-6 col-lg-8 mt-4">
             <div className="main_img">
               {articleDetails.article_details?.feature_image && (
                 <img
@@ -42,7 +42,7 @@ const KnowledgebaseArticleDetails = ({ articleDetails }: any) => {
               {articleDetails.related_article_list.map(
                 (article: any, index: any) => (
                   <div className="col-12 mt-4 mb-1" key={index}>
-                    <div className="article_card px-4 pt-4 pb-4  ">
+                    <div className="article_card px-4 pt-4 pb-4 ">
                       <h4 className="fw_600 pt-3 mb-0">
                         <span className="mr-2 h5">
                           <i className="fa fa-address-card"></i>
@@ -63,7 +63,7 @@ const KnowledgebaseArticleDetails = ({ articleDetails }: any) => {
                     <Link href={"/knowledgebase/" + article.unique_code}>
                       <div className="details-button">
                         <a href="#">
-                          {t("View more")}
+                          view more
                           <i
                             className="ml-2 fa fa-long-arrow-right"
                             aria-hidden="true"

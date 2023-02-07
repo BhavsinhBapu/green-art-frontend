@@ -17,7 +17,7 @@ export const Search = ({ searchFunction, linkName }: any) => {
   return (
     <div className="row my-4 my-md-0">
       <div className="col-12">
-        <div className="searchBox">
+        <div className="searchBox position-relative">
           <input type="text" onChange={onSearch} />
           <button>
             <MdOutlineSearch />
@@ -27,7 +27,7 @@ export const Search = ({ searchFunction, linkName }: any) => {
               <Link key={item.post_id} href={`/${linkName}/` + item.post_id}>
                 <p
                   onClick={() => onSearch(item.title)}
-                  className="px-2 py-1"
+                  className="px-2 suggestionsList"
                   key={item.title}>
                   {item.title}
                 </p>

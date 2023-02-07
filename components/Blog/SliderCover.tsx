@@ -10,7 +10,7 @@ const SliderCover = ({ featuredblogs }: any) => {
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
-    // autoplay: true,
+    autoplay: true,
   };
   return (
     <div className="mt-4">
@@ -26,7 +26,7 @@ const SliderCover = ({ featuredblogs }: any) => {
                   />
                 </div>
                 <div className="col-md-7 blogSliderText">
-                  <h1 className="pt-4 pt-md-0 titleText">
+                  <h1 className="pt-4 pb-3 pt-md-0 titleText">
                     {featuredblog?.title}
                   </h1>
                   <small>
