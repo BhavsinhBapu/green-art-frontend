@@ -17,7 +17,6 @@ import PaypalSection from "components/deposit/PaypalSection";
 import ScaletonLoading from "components/common/ScaletonLoading";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
-import { useRouter } from "next/router";
 import { getFaqList } from "service/faq";
 import { GetServerSideProps } from "next";
 import {
@@ -25,13 +24,10 @@ import {
   SSRAuthCheck,
 } from "middlewares/ssr-authentication-check";
 import { parseCookies } from "nookies";
-import { GetUserInfoByTokenServer } from "service/user";
-import { redirect } from "next/dist/server/api-utils";
 import Footer from "components/common/footer";
-import { commomSettings, customPage, landingPage } from "service/landing-page";
 import FiatSidebar from "layout/fiat-sidebar";
 
-const Deposit = ({ customPageData, socialData, copyright_text }: any) => {
+const Deposit = () => {
   const { t } = useTranslation("common");
   const [loading, setLoading] = useState(false);
   const { settings } = useSelector((state: RootState) => state.common);
@@ -168,22 +164,14 @@ const Deposit = ({ customPageData, socialData, copyright_text }: any) => {
           </div>
         </div>
       </div>
-      <Footer
-        customPageData={customPageData}
-        socialData={socialData}
-        copyright_text={copyright_text}
-      />
+      <Footer />
     </>
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/user/profile");
   const cookies = parseCookies(ctx);
-  const response = await GetUserInfoByTokenServer(cookies.token);
   const commonRes = await pageAvailabilityCheck();
-
-  const { data } = await landingPage();
-  const { data: customPageData } = await customPage();
 
   if (parseInt(commonRes.currency_deposit_status) !== 1) {
     return {
@@ -194,12 +182,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
     };
   }
   return {
-    props: {
-      user: response.user,
-      socialData: data.media_list,
-      copyright_text: data?.copyright_text,
-      customPageData: customPageData.data,
-    },
+    props: {},
   };
 };
 export default Deposit;

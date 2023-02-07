@@ -2,7 +2,6 @@ import useTranslation from "next-translate/useTranslation";
 import React, { useEffect, useState } from "react";
 import { GetServerSideProps } from "next";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
-import { useRouter } from "next/router";
 import { launchpadCreateUpdatePhaseAdditionalAction } from "state/actions/launchpad";
 import { getAdditionalPhaseDetails } from "service/launchpad";
 import { parseCookies } from "nookies";

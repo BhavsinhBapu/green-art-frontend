@@ -8,12 +8,7 @@ import { toast } from "react-toastify";
 import { customPage, landingPage } from "service/landing-page";
 import { getReferral } from "service/refer";
 
-
-const Referral: NextPage = ({
-  customPageData,
-  socialData,
-  copyright_text,
-}: any) => {
+const Referral: NextPage = () => {
   const [referral, setReferral] = useState<any>();
   const [allData, setAllData] = useState<any>();
   const [loading, setLoading] = useState(true);
@@ -70,7 +65,8 @@ const Referral: NextPage = ({
                   navigator.clipboard.writeText(referral);
                   toast.success(t("Copied to clipboard"));
                   selectReference.current.select();
-                }}>
+                }}
+              >
                 <i className="fa fa-clone" />
               </button>
             </div>
@@ -95,28 +91,32 @@ const Referral: NextPage = ({
               <div className="table-responsive">
                 <table
                   className="table cp-user-custom-table table-borderless text-center dataTable no-footer"
-                  id="DataTables_Table_0">
+                  id="DataTables_Table_0"
+                >
                   <thead>
                     <tr>
                       <th
                         className="referral-level"
                         rowSpan={1}
                         colSpan={1}
-                        aria-label="Level 1">
+                        aria-label="Level 1"
+                      >
                         {t("Level 1")}
                       </th>
                       <th
                         className="referral-level"
                         rowSpan={1}
                         colSpan={1}
-                        aria-label="Level 2">
+                        aria-label="Level 2"
+                      >
                         {t("Level 2")}
                       </th>
                       <th
                         className="referral-level"
                         rowSpan={1}
                         colSpan={1}
-                        aria-label="Level 3">
+                        aria-label="Level 3"
+                      >
                         {t("Level 3")}
                       </th>
                     </tr>
@@ -208,24 +208,14 @@ const Referral: NextPage = ({
           </div>
         </div>
       </div>
-      <Footer
-        customPageData={customPageData}
-        socialData={socialData}
-        copyright_text={copyright_text}
-      />
+      <Footer />
     </>
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/user/referral");
-  const { data } = await landingPage();
-  const { data: customPageData } = await customPage();
   return {
-    props: {
-      socialData: data.media_list,
-      copyright_text: data?.copyright_text,
-      customPageData: customPageData.data,
-    },
+    props: {},
   };
 };
 

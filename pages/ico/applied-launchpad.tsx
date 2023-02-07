@@ -13,13 +13,7 @@ import DataTable from "react-data-table-component";
 import { handleSwapHistorySearch } from "state/actions/reports";
 import Link from "next/link";
 import { GiToken } from "react-icons/gi";
-const Profile: NextPage = ({
-  user,
-  customPageData,
-  socialData,
-  copyright_text,
-  profileActivity,
-}: any) => {
+const Profile: NextPage = () => {
   const [history, setHistory] = useState<any>([]);
   const { t } = useTranslation("common");
   const [search, setSearch] = useState<any>("");
@@ -192,19 +186,13 @@ const Profile: NextPage = ({
           </div>
         </div>
       </div>
-      <Footer
-        customPageData={customPageData}
-        socialData={socialData}
-        copyright_text={copyright_text}
-      />
+      <Footer />
     </>
   );
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/user/profile");
-  const { data } = await landingPage();
-  const { data: customPageData } = await customPage();
   const cookies = parseCookies(ctx);
   const response = await GetUserInfoByTokenServer(cookies.token);
 
@@ -212,9 +200,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
     props: {
       user: response.user,
       profileActivity: response.activityLog,
-      socialData: data.media_list,
-      copyright_text: data?.copyright_text,
-      customPageData: customPageData.data,
     },
   };
 };

@@ -16,7 +16,7 @@ import {
 } from "service/knowledgebase";
 import { customPage, landingPage } from "service/landing-page";
 
-const TicketCreate = ({ socialData, customPageData, copyright_text }: any) => {
+const TicketCreate = () => {
   const [projectList, setProjectList] = useState([]);
   const [options, setOptions] = useState<any>({
     project: "",
@@ -157,18 +157,12 @@ const TicketCreate = ({ socialData, customPageData, copyright_text }: any) => {
           </div>
         </div>
       </div>
-      <Footer
-        customPageData={customPageData}
-        socialData={socialData}
-        copyright_text={copyright_text}
-      />
+      <Footer />
     </>
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/support");
-  const { data } = await landingPage();
-  const { data: customPageData } = await customPage();
   const commonRes = await pageAvailabilityCheck();
   const resorce = await siteSettingResource();
   if (parseInt(commonRes.knowledgebase_support_module) !== 1) {
@@ -181,9 +175,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   }
   return {
     props: {
-      socialData: data.media_list,
-      copyright_text: data?.copyright_text,
-      customPageData: customPageData.data,
       resorce: resorce,
     },
   };

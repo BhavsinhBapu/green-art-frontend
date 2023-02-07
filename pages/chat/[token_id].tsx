@@ -17,7 +17,7 @@ import { ChatHistoryByTokenId } from "service/launchpad";
 import moment from "moment";
 let socketCall = 0;
 
-export const Chat = ({ customPageData, socialData, copyright_text }: any) => {
+export const Chat = () => {
   const { t } = useTranslation("common");
   const dispatch = useDispatch();
   const messagesEndRef = useRef(null);
@@ -261,26 +261,15 @@ export const Chat = ({ customPageData, socialData, copyright_text }: any) => {
           </div>
         </div>
       </div>
-      <Footer
-        customPageData={customPageData}
-        socialData={socialData}
-        copyright_text={copyright_text}
-      />
+      <Footer />
     </>
   );
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/chat");
-
-  const { data } = await landingPage();
-  const { data: customPageData } = await customPage();
   return {
-    props: {
-      socialData: data.media_list,
-      copyright_text: data?.copyright_text,
-      customPageData: customPageData.data,
-    },
+    props: {},
   };
 };
 export default Chat;

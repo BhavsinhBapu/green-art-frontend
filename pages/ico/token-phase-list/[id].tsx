@@ -16,12 +16,7 @@ import { SaveIcoPhaseStatus } from "service/launchpad";
 import { IcoTokenPhaseListAction } from "state/actions/launchpad";
 import { handleSwapHistorySearch } from "state/actions/reports";
 
-const IcoTokenPhaseList = ({
-  customPageData,
-  socialData,
-  copyright_text,
-  id,
-}: any) => {
+const IcoTokenPhaseList = ({ id }: any) => {
   const [history, setHistory] = useState<any>([]);
   const { t } = useTranslation("common");
   const [search, setSearch] = useState<any>("");
@@ -54,8 +49,6 @@ const IcoTokenPhaseList = ({
     },
     {
       name: t("Available Token Supply"),
-      // selector: (row: any) =>
-      // parseFloat(row?.available_token_supply).toFixed(4),
       sortable: true,
       cell: (row: any) => (
         <div className="blance-text">
@@ -65,7 +58,6 @@ const IcoTokenPhaseList = ({
     },
     {
       name: t("Coin Price"),
-      // selector: (row: any) => row?.coin_price,
       sortable: true,
       cell: (row: any) => (
         <div className="blance-text">
@@ -249,11 +241,7 @@ const IcoTokenPhaseList = ({
           </div>
         </div>
       </div>
-      <Footer
-        customPageData={customPageData}
-        socialData={socialData}
-        copyright_text={copyright_text}
-      />
+      <Footer />
     </>
   );
 };
@@ -261,17 +249,11 @@ const IcoTokenPhaseList = ({
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/user/profile");
   const { id, edit } = ctx.query;
-  const { data } = await landingPage();
-  const { data: customPageData } = await customPage();
-  const cookies = parseCookies(ctx);
 
   return {
     props: {
       id: id,
       edit: edit ? edit : null,
-      socialData: data.media_list,
-      copyright_text: data?.copyright_text,
-      customPageData: customPageData.data,
     },
   };
 };

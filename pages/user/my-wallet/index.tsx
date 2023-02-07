@@ -23,11 +23,7 @@ import { TradeList } from "components/TradeList";
 import { appDashboardDataWithoutPair } from "service/exchange";
 import Footer from "components/common/footer";
 import { customPage, landingPage } from "service/landing-page";
-const MyWallet: NextPage = ({
-  customPageData,
-  socialData,
-  copyright_text,
-}: any) => {
+const MyWallet: NextPage = () => {
   const { t } = useTranslation("common");
   const { settings } = useSelector((state: RootState) => state.common);
 
@@ -348,25 +344,14 @@ const MyWallet: NextPage = ({
           </div>
         </div>
       </div>
-      <Footer
-        customPageData={customPageData}
-        socialData={socialData}
-        copyright_text={copyright_text}
-      />
+      <Footer />
     </>
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/user/my-wallet");
-
-  const { data } = await landingPage();
-  const { data: customPageData } = await customPage();
   return {
-    props: {
-      socialData: data.media_list,
-      copyright_text: data?.copyright_text,
-      customPageData: customPageData.data,
-    },
+    props: {},
   };
 };
 

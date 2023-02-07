@@ -18,14 +18,11 @@ const Home: NextPage = ({
   bannerListdata,
   announcementListdata,
   featureListdata,
-  socialData,
   asset_coin_pairs,
   hourly_coin_pairs,
   latest_coin_pairs,
   loggedin,
   landing_banner_image,
-  customPageData,
-  copyright_text,
   customSettings,
 }: any) => {
   const { t } = useTranslation("common");
@@ -960,11 +957,7 @@ const Home: NextPage = ({
 
           {/* Start trading area end here  */}
           {/* footer area start here */}
-          <Footer
-            customPageData={customPageData}
-            socialData={socialData}
-            copyright_text={copyright_text}
-          />
+          <Footer />
 
           <a
             id="scrollUp"
@@ -982,25 +975,13 @@ const Home: NextPage = ({
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const { data } = await landingPage();
   const cookies = parseCookies(ctx);
-  const { data: customPageData } = await customPage();
   const { data: customSettings } = await commomSettings();
 
-  let response;
-  try {
-    response = cookies.token
-      ? await GetUserInfoByTokenServer(cookies.token)
-      : false;
-  } catch (error) {
-    //@ts-ignore
-    cookies.token = null;
-    destroyCookie(ctx, "token");
-  }
   return {
     props: {
       landing: data,
       bannerListdata: data.banner_list,
       announcementListdata: data.announcement_list,
-      socialData: data.media_list,
       featureListdata: data.feature_list,
       asset_coin_pairs: data.asset_coin_pairs,
       hourly_coin_pairs: data.hourly_coin_pairs,
@@ -1009,8 +990,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
       landing_banner_image: data?.landing_banner_image
         ? data?.landing_banner_image
         : null,
-      copyright_text: data?.copyright_text,
-      customPageData: customPageData.data,
       customSettings: customSettings,
     },
   };

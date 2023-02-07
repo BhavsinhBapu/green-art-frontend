@@ -16,11 +16,7 @@ import { customPage, landingPage } from "service/landing-page";
 import { useRef } from "react";
 import { toast } from "react-toastify";
 import { BiCopy } from "react-icons/bi";
-const DepositHistory: NextPage = ({
-  customPageData,
-  socialData,
-  copyright_text,
-}: any) => {
+const DepositHistory: NextPage = () => {
   const router = useRouter();
   const { type } = router.query;
   const { t } = useTranslation("common");
@@ -32,7 +28,7 @@ const DepositHistory: NextPage = ({
     const url = page.url.split("?")[1];
     const number = url.split("=")[1];
     WithdrawAndDepositHistoryAction(
-         type === "withdrawal" ? "withdraw" : "deposit",
+      type === "withdrawal" ? "withdraw" : "deposit",
       10,
       parseInt(number),
       setHistory,
@@ -265,25 +261,14 @@ const DepositHistory: NextPage = ({
           </div>
         </div>
       </div>
-      <Footer
-        customPageData={customPageData}
-        socialData={socialData}
-        copyright_text={copyright_text}
-      />
+      <Footer />
     </>
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/user/wallet-history");
-  const { data } = await landingPage();
-  const { data: customPageData } = await customPage();
-
   return {
-    props: {
-      socialData: data.media_list,
-      copyright_text: data?.copyright_text,
-      customPageData: customPageData.data,
-    },
+    props: {},
   };
 };
 

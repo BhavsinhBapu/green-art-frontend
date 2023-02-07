@@ -9,11 +9,7 @@ import { customPage, landingPage } from "service/landing-page";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import Footer from "components/common/footer";
 import { IoMdNotificationsOutline } from "react-icons/io";
-const NotificationPage = ({
-  customPageData,
-  socialData,
-  copyright_text,
-}: any) => {
+const NotificationPage = () => {
   const { t } = useTranslation("common");
   const [notificationData, setNotification] = useState<any>([]);
   const { isLoggedIn } = useSelector((state: RootState) => state.user);
@@ -73,25 +69,15 @@ const NotificationPage = ({
         </div>
       </div>
 
-      <Footer
-        customPageData={customPageData}
-        socialData={socialData}
-        copyright_text={copyright_text}
-      />
+      <Footer />
     </>
   );
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/user/notification");
-  const { data } = await landingPage();
-  const { data: customPageData } = await customPage();
   return {
-    props: {
-      socialData: data.media_list,
-      copyright_text: data?.copyright_text,
-      customPageData: customPageData.data,
-    },
+    props: {},
   };
 };
 export default NotificationPage;

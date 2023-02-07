@@ -11,13 +11,7 @@ import {
 //@ts-ignore
 import sanitizeHtml from "sanitize-html";
 
-const Bannerdetails = ({
-  details,
-  status,
-  customPageData,
-  socialData,
-  copyright_text,
-}: any) => {
+const Bannerdetails = ({ details, status }: any) => {
   const { t } = useTranslation("common");
   const clean = (dirty: any) => {
     return sanitizeHtml(dirty, {
@@ -83,27 +77,17 @@ const Bannerdetails = ({
           ></div>
         </div>
       </div>
-      <Footer
-        customPageData={customPageData}
-        socialData={socialData}
-        copyright_text={copyright_text}
-      />
+      <Footer />
     </>
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const { slug } = ctx.query;
   const { data } = await bannerDetailsBySlug(slug);
-  const { data: customPageData } = await customPage();
-  const { data: landingData } = await landingPage();
-
   return {
     props: {
       details: data.data,
       status: data.success,
-      customPageData: customPageData.data,
-      socialData: landingData.media_list,
-      copyright_text: landingData?.copyright_text,
     },
   };
 };

@@ -10,7 +10,7 @@ import {
 } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Echo from "laravel-echo";
 import Pusher from "pusher-js";
 import {
@@ -25,11 +25,7 @@ import Footer from "components/common/footer";
 import SupportSidebar from "layout/supportSidebar";
 import { toast } from "react-toastify";
 let socketCall = 0;
-const SupportTicketDetails = ({
-  socialData,
-  customPageData,
-  copyright_text,
-}: any) => {
+const SupportTicketDetails = () => {
   const [TicketDetails, setTicketDetails] = useState<any>();
   const [Notes, setNotes] = useState<any>();
   const [loading, setLoading] = useState(false);
@@ -140,18 +136,12 @@ const SupportTicketDetails = ({
           </div>
         </div>
       </div>
-      <Footer
-        customPageData={customPageData}
-        socialData={socialData}
-        copyright_text={copyright_text}
-      />
+      <Footer />
     </>
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/support");
-  const { data } = await landingPage();
-  const { data: customPageData } = await customPage();
   const commonRes = await pageAvailabilityCheck();
   const resorce = await siteSettingResource();
   if (parseInt(commonRes.knowledgebase_support_module) !== 1) {
@@ -164,9 +154,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   }
   return {
     props: {
-      socialData: data.media_list,
-      copyright_text: data?.copyright_text,
-      customPageData: customPageData.data,
       resorce: resorce,
     },
   };

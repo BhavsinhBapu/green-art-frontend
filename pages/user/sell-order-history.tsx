@@ -10,18 +10,11 @@ import {
 import TableLoading from "components/common/TableLoading";
 import useTranslation from "next-translate/useTranslation";
 import moment from "moment";
-import { useSelector } from "react-redux";
-import { RootState } from "state/store";
 import { formatCurrency } from "common";
 import { customPage, landingPage } from "service/landing-page";
 import Footer from "components/common/footer";
-const SellOrderHistory: NextPage = ({
-  customPageData,
-  socialData,
-  copyright_text,
-}: any) => {
+const SellOrderHistory: NextPage = () => {
   type searchType = string;
-
   const [search, setSearch] = useState<searchType>("");
   const [sortingInfo, setSortingInfo] = useState<any>({
     column_name: "created_at",
@@ -267,24 +260,14 @@ const SellOrderHistory: NextPage = ({
           </div>
         </div>
       </div>
-      <Footer
-        customPageData={customPageData}
-        socialData={socialData}
-        copyright_text={copyright_text}
-      />
+      <Footer />
     </>
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/user/sell-order-history");
-  const { data } = await landingPage();
-  const { data: customPageData } = await customPage();
   return {
-    props: {
-      socialData: data.media_list,
-      copyright_text: data?.copyright_text,
-      customPageData: customPageData.data,
-    },
+    props: {},
   };
 };
 

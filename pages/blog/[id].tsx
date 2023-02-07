@@ -16,15 +16,12 @@ import useTranslation from "next-translate/useTranslation";
 import { formateData } from "common";
 import SocialShare from "components/common/SocialShare";
 import { getBlogNewsSettings } from "service/news";
+import { RootState } from "state/store";
+import { useSelector } from "react-redux";
 
-const BlogDetails = ({
-  customPageData,
-  socialData,
-  copyright_text,
-  blogDetails,
-  BlogNewsSettings,
-}: any) => {
+const BlogDetails = ({ blogDetails, BlogNewsSettings }: any) => {
   const { t } = useTranslation("common");
+
   return (
     <>
       <div className="container">
@@ -82,11 +79,7 @@ const BlogDetails = ({
           />
         )}
       </div>
-      <Footer
-        customPageData={customPageData}
-        socialData={socialData}
-        copyright_text={copyright_text}
-      />
+      <Footer />
     </>
   );
 };
@@ -95,9 +88,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const { id } = ctx.params;
   const BlogDetails = await getBlogDetails(id);
   const { data } = await landingPage();
-  const { data: customPageData } = await customPage();
   const commonRes = await pageAvailabilityCheck();
-  const { data: BlogNewsSettings } = await getBlogNewsSettings();
 
   if (parseInt(commonRes.blog_news_module) !== 1) {
     return {
@@ -111,9 +102,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
     props: {
       blogDetails: BlogDetails,
       socialData: data.media_list,
-      copyright_text: data?.copyright_text,
-      customPageData: customPageData.data,
-      BlogNewsSettings: BlogNewsSettings,
     },
   };
 };

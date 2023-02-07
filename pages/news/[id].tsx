@@ -11,13 +11,7 @@ import Footer from "components/common/footer";
 import CommentSection from "components/Blog/CommentSection";
 import { PostCommentAction } from "state/actions/news";
 
-const NewsDetails = ({
-  customPageData,
-  socialData,
-  copyright_text,
-  newsDetails,
-  BlogNewsSettings,
-}: any) => {
+const NewsDetails = ({ newsDetails, BlogNewsSettings }: any) => {
   const { t } = useTranslation("common");
   return (
     <>
@@ -84,19 +78,13 @@ const NewsDetails = ({
           />
         )}
       </div>
-      <Footer
-        customPageData={customPageData}
-        socialData={socialData}
-        copyright_text={copyright_text}
-      />
+      <Footer />
     </>
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const { id } = ctx.params;
   const newsDetails = await getNewsDetails(id);
-  const { data } = await landingPage();
-  const { data: customPageData } = await customPage();
   const { data: BlogNewsSettings } = await getBlogNewsSettings();
   const commonRes = await pageAvailabilityCheck();
   if (parseInt(commonRes.blog_news_module) !== 1) {
@@ -110,9 +98,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   return {
     props: {
       newsDetails: newsDetails.data,
-      socialData: data.media_list,
-      copyright_text: data?.copyright_text,
-      customPageData: customPageData.data,
       BlogNewsSettings: BlogNewsSettings,
     },
   };

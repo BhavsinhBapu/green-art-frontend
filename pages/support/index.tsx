@@ -19,7 +19,7 @@ import {
 } from "service/knowledgebase";
 import { customPage, landingPage } from "service/landing-page";
 
-const Support = ({ socialData, customPageData, copyright_text }: any) => {
+const Support = () => {
   const [fullDashboar, setFullDashboard] = useState<any>();
   const [loading, setloading] = useState<any>(false);
   const [ticket_list, setTicket_list] = useState<any>();
@@ -45,7 +45,6 @@ const Support = ({ socialData, customPageData, copyright_text }: any) => {
   };
   const searchDashboardData = async (query: any) => {
     setloading(true);
-
     const DashboardData = await supportTicketList(5, 1, query, "", "", "", "");
     setFullDashboard(DashboardData.data);
     setTicket_list(DashboardData?.data?.ticket_list);
@@ -180,18 +179,13 @@ const Support = ({ socialData, customPageData, copyright_text }: any) => {
           </div>
         </div>
       </div>
-      <Footer
-        customPageData={customPageData}
-        socialData={socialData}
-        copyright_text={copyright_text}
-      />
+      <Footer />
     </>
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/support");
   const { data } = await landingPage();
-  const { data: customPageData } = await customPage();
   const commonRes = await pageAvailabilityCheck();
   if (parseInt(commonRes.knowledgebase_support_module) !== 1) {
     return {
@@ -204,8 +198,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   return {
     props: {
       socialData: data.media_list,
-      copyright_text: data?.copyright_text,
-      customPageData: customPageData.data,
     },
   };
 };

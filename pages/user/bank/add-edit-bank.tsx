@@ -15,13 +15,7 @@ import {
 } from "state/actions/fiat-deposit-withawal";
 import { getBankListSSr } from "service/deposit";
 
-const AddBank = ({
-  customPageData,
-  socialData,
-  copyright_text,
-  id,
-  data,
-}: any) => {
+const AddBank = ({ id, data }: any) => {
   const { t } = useTranslation("common");
   const [loading, setLoading]: any = useState<any>(false);
   const [deleteloading, setdeleteloading]: any = useState<any>(false);
@@ -240,19 +234,13 @@ const AddBank = ({
           </div>
         </div>
       </div>
-      <Footer
-        customPageData={customPageData}
-        socialData={socialData}
-        copyright_text={copyright_text}
-      />
+      <Footer />
     </>
   );
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/user/profile");
-  const { data } = await landingPage();
-  const { data: customPageData } = await customPage();
   const cookies = parseCookies(ctx);
 
   const { id } = ctx.query;
@@ -263,9 +251,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
 
   return {
     props: {
-      socialData: data.media_list,
-      copyright_text: data?.copyright_text,
-      customPageData: customPageData.data,
       id: id ? id : null,
       data: id ? listRes.data : null,
     },

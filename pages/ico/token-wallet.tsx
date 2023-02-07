@@ -2,20 +2,13 @@ import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import type { GetServerSideProps, NextPage } from "next";
 import React, { useEffect, useState } from "react";
 import { getMyTokenBalanceAction } from "state/actions/launchpad";
-
 import Loading from "components/common/TableLoading";
 import useTranslation from "next-translate/useTranslation";
-import { useSelector } from "react-redux";
-import { RootState } from "state/store";
 import Footer from "components/common/footer";
 import { customPage, landingPage } from "service/landing-page";
 import LaunchpadSidebar from "layout/launchpad-sidebar";
-const MyWallet: NextPage = ({
-  customPageData,
-  socialData,
-  copyright_text,
-}: any) => {
-  const { settings } = useSelector((state: RootState) => state.common);
+
+const MyWallet: NextPage = () => {
   const [history, setHistory] = useState<any>([]);
   const { t } = useTranslation("common");
   const [processing, setProcessing] = useState<boolean>(false);
@@ -223,25 +216,15 @@ const MyWallet: NextPage = ({
           </div>
         </div>
       </div>
-      <Footer
-        customPageData={customPageData}
-        socialData={socialData}
-        copyright_text={copyright_text}
-      />
+      <Footer />
     </>
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/user/my-wallet");
 
-  const { data } = await landingPage();
-  const { data: customPageData } = await customPage();
   return {
-    props: {
-      socialData: data.media_list,
-      copyright_text: data?.copyright_text,
-      customPageData: customPageData.data,
-    },
+    props: {},
   };
 };
 
