@@ -13,6 +13,8 @@ import DataTable from "react-data-table-component";
 import { formatCurrency } from "common";
 import Footer from "components/common/footer";
 import { customPage, landingPage } from "service/landing-page";
+import { useSelector } from "react-redux";
+import { RootState } from "state/store";
 
 const BuyOrderHistory: NextPage = () => {
   type searchType = string;
