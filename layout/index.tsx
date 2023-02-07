@@ -10,7 +10,13 @@ import { RootState } from "state/store";
 import useTranslation from "next-translate/useTranslation";
 import CookieAccept from "components/common/cookie-accept";
 import Head from "next/head";
-import { setCopyright_text, setCustomPageData, setLoading, setLogo, setSocialData } from "state/reducer/user";
+import {
+  setCopyright_text,
+  setCustomPageData,
+  setLoading,
+  setLogo,
+  setSocialData,
+} from "state/reducer/user";
 import { setSettings } from "state/reducer/common";
 import Loading from "components/common/loading";
 import { checkDarkMode, rootThemeCheck } from "helpers/functions";
@@ -47,8 +53,8 @@ const Index = ({ children }: any) => {
     dispatch(setCopyright_text(data?.copyright_text));
     dispatch(setSocialData(data.media_list));
     setMetaData(response.data);
-    dispatch(setLoading(false));
     checkDarkMode(response.data);
+    dispatch(setLoading(false));
   };
 
   useEffect(() => {
