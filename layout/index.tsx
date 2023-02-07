@@ -1,7 +1,7 @@
 import Navbar from "components/common/navbar";
 import { useRouter } from "next/router";
 import { ToastContainer } from "react-toastify";
-import { commomSettings } from "service/landing-page";
+import { commomSettings, customPage, landingPage } from "service/landing-page";
 import { useEffect, useState } from "react";
 import { GetUserInfoByTokenAction } from "state/actions/user";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,9 +10,16 @@ import { RootState } from "state/store";
 import useTranslation from "next-translate/useTranslation";
 import CookieAccept from "components/common/cookie-accept";
 import Head from "next/head";
-import { setLoading, setLogo } from "state/reducer/user";
+import {
+  setCopyright_text,
+  setCustomPageData,
+  setLoading,
+  setLogo,
+  setSocialData,
+} from "state/reducer/user";
 import { setSettings } from "state/reducer/common";
 import Loading from "components/common/loading";
+import { checkDarkMode, rootThemeCheck } from "helpers/functions";
 
 const Index = ({ children }: any) => {
   const [navbarVisible, setNavbarVisible] = useState(false);
@@ -36,47 +43,18 @@ const Index = ({ children }: any) => {
   const router = useRouter();
   const getCommonSettings = async () => {
     dispatch(setLoading(true));
+    rootThemeCheck();
     const response = await commomSettings();
+    const { data } = await landingPage();
+    const { data: customPageData } = await customPage();
     dispatch(setLogo(response.data.logo));
     dispatch(setSettings(response.data));
+    dispatch(setCustomPageData(customPageData.data));
+    dispatch(setCopyright_text(data?.copyright_text));
+    dispatch(setSocialData(data.media_list));
     setMetaData(response.data);
+    checkDarkMode(response.data);
     dispatch(setLoading(false));
-    //  --primary-color: #fcd535;
-    // --text-primary-color: #ffff;
-    // --text-primary-color-2: #23262f;
-    // --text-primary-color-3: #777778;
-    // --text-primary-color-4: #cbcfd7;
-
-    // --border-color: #dedede;
-    // --border-color-1: #e6e8ec;
-    // --border-color-2: #353535;
-
-    // --hover-color: #f7cf33;
-    // --font-color: #2a2a2d;
-    // --bColor: #424242;
-    // --title-color: #141414;
-    // --white: #ffffff;
-    // --black: #000000;
-    // --color-pallet-1: #b4b8d7;
-
-    // --background-color: #151515;
-    // --background-color-trade: #2a2e37;
-    // --main-background-color: #ffff;
-    // --card-background-color: #ffffff;
-    // --table-background-color: #dad6d6;
-    // --footer-background-color: #f7f7f8;
-
-    // --background-color-hover: #fafafa;
-
-    response.data.theme_color.map((themeColors: any) => {
-      if (!themeColors.value) {
-        return;
-      }
-      document.documentElement.style.setProperty(
-        themeColors.name,
-        themeColors.value
-      );
-    });
   };
 
   useEffect(() => {
@@ -93,7 +71,8 @@ const Index = ({ children }: any) => {
       path === "/authentication/g2f-verify" ||
       path === "/" ||
       path === "/authentication/verify-email" ||
-      path === "user/notification"
+      path === "user/notification" ||
+      path === "/page-details/[slug]"
     ) {
       setNavbarVisible(false);
     } else {

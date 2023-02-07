@@ -4,14 +4,24 @@ export type UserType = {
   user: {};
   isLoggedIn: boolean;
   notification: [];
+  customPageData: {};
+  copyright_text: "";
+  socialData: [];
   logo: string;
+  icoChat: [];
+  supportChat: [];
 };
 
 const initialState: any = {
   user: {},
   isLoggedIn: false,
-  isLoading: false,
+  isLoading: true,
   notification: [],
+  icoChat: [],
+  customPageData: null,
+  copyright_text: null,
+  socialData: null,
+  supportChat: [],
   logo: "",
 };
 
@@ -42,9 +52,43 @@ export const userSlice = createSlice({
     setLogo: (state, action: PayloadAction<any>) => {
       state.logo = action.payload;
     },
+    seticoChat: (state, action: any) => {
+      state.icoChat = action.payload;
+    },
+    setChatico: (state, action: any) => {
+      state.icoChat = [...state.icoChat, action.payload];
+    },
+    setsupportChat: (state, action: any) => {
+      state.supportChat = action.payload;
+    },
+    setSupportico: (state, action: any) => {
+      state.supportChat = [...state.supportChat, action.payload];
+    },
+    setCustomPageData: (state, action: any) => {
+      state.customPageData = action.payload;
+    },
+    setCopyright_text: (state, action: any) => {
+      state.copyright_text = action.payload;
+    },
+    setSocialData: (state, action: any) => {
+      state.socialData = action.payload;
+    },
   },
 });
 
-export const { login, logout, setUser, setAuthenticationState, setLoading, setLogo } =
-  userSlice.actions;
+export const {
+  login,
+  logout,
+  setUser,
+  setAuthenticationState,
+  setLoading,
+  setLogo,
+  seticoChat,
+  setChatico,
+  setsupportChat,
+  setSupportico,
+  setCustomPageData,
+  setCopyright_text,
+  setSocialData,
+} = userSlice.actions;
 export default userSlice.reducer;

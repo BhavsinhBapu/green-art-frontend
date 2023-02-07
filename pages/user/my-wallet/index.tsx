@@ -1,10 +1,7 @@
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import type { GetServerSideProps, NextPage } from "next";
-import DepositTab from "components/wallet/DepositTab";
-import WirhdrawTab from "components/wallet/WirhdrawTab";
 import { toast } from "react-toastify";
 import React, { useEffect, useState } from "react";
-import { formateZert, formatCurrency } from "common";
 import { IoWalletOutline } from "react-icons/io5";
 import { TiArrowRepeat } from "react-icons/ti";
 
@@ -15,9 +12,7 @@ import {
 
 import {
   SearchObjectArrayFuesJS,
-  WalletDepositApiAction,
   WalletListApiAction,
-  WalletWithdrawApiAction,
 } from "state/actions/wallet";
 import Loading from "components/common/TableLoading";
 import Link from "next/link";
@@ -28,11 +23,7 @@ import { TradeList } from "components/TradeList";
 import { appDashboardDataWithoutPair } from "service/exchange";
 import Footer from "components/common/footer";
 import { customPage, landingPage } from "service/landing-page";
-const MyWallet: NextPage = ({
-  customPageData,
-  socialData,
-  copyright_text,
-}: any) => {
+const MyWallet: NextPage = () => {
   const { t } = useTranslation("common");
   const { settings } = useSelector((state: RootState) => state.common);
 
@@ -278,27 +269,28 @@ const MyWallet: NextPage = ({
                                         </div>
                                       )}
                                     </li>
-                                    {Changeable.length >= 2 ? (
-                                      <Link
-                                        href={`/user/swap-coin?coin_id=${item.id}`}
-                                      >
-                                        <li className="toolTip" title="swap">
+                                    {parseInt(settings?.swap_status) === 1 &&
+                                      (Changeable.length >= 2 ? (
+                                        <Link
+                                          href={`/user/swap-coin?coin_id=${item.id}`}
+                                        >
+                                          <li className="toolTip" title="swap">
+                                            <TiArrowRepeat size={25} />
+                                          </li>
+                                        </Link>
+                                      ) : (
+                                        <li
+                                          className="toolTip"
+                                          title="swap"
+                                          onClick={() => {
+                                            toast.error(
+                                              "Two coins are required to swap"
+                                            );
+                                          }}
+                                        >
                                           <TiArrowRepeat size={25} />
                                         </li>
-                                      </Link>
-                                    ) : (
-                                      <li
-                                        className="toolTip"
-                                        title="swap"
-                                        onClick={() => {
-                                          toast.error(
-                                            "Two coins are required to swap"
-                                          );
-                                        }}
-                                      >
-                                        <TiArrowRepeat size={25} />
-                                      </li>
-                                    )}
+                                      ))}
                                   </ul>
                                 </div>
                               </td>
@@ -352,25 +344,14 @@ const MyWallet: NextPage = ({
           </div>
         </div>
       </div>
-      <Footer
-        customPageData={customPageData}
-        socialData={socialData}
-        copyright_text={copyright_text}
-      />
+      <Footer />
     </>
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/user/my-wallet");
-
-  const { data } = await landingPage();
-  const { data: customPageData } = await customPage();
   return {
-    props: {
-      socialData: data.media_list,
-      copyright_text: data?.copyright_text,
-      customPageData: customPageData.data,
-    },
+    props: {},
   };
 };
 

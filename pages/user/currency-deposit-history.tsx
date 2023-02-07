@@ -13,11 +13,7 @@ import {
   handleSearchItemsCurrency,
 } from "state/actions/reports";
 
-const CurrencyDepositHistory = ({
-  customPageData,
-  socialData,
-  copyright_text,
-}: any) => {
+const CurrencyDepositHistory = () => {
   type searchType = string;
   const [search, setSearch] = useState<searchType>("");
   const [sortingInfo, setSortingInfo] = useState<any>({
@@ -56,7 +52,6 @@ const CurrencyDepositHistory = ({
   const columns = [
     {
       name: t("Currency Amount"),
-      // selector: (row: any) => row?.currency_amount,
       cell: (row: any) => (
         <div className="blance-text">
           <span className="blance market incree">
@@ -258,24 +253,14 @@ const CurrencyDepositHistory = ({
           </div>
         </div>
       </div>
-      <Footer
-        customPageData={customPageData}
-        socialData={socialData}
-        copyright_text={copyright_text}
-      />
+      <Footer />
     </>
   );
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
-  const { data } = await landingPage();
-  const { data: customPageData } = await customPage();
   return {
-    props: {
-      socialData: data.media_list,
-      copyright_text: data?.copyright_text,
-      customPageData: customPageData.data,
-    },
+    props: {},
   };
 };
 

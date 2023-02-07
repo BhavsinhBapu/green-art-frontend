@@ -11,13 +11,8 @@ import useTranslation from "next-translate/useTranslation";
 import moment from "moment";
 import DataTable from "react-data-table-component";
 import { formatCurrency } from "common";
-import { customPage, landingPage } from "service/landing-page";
 import Footer from "components/common/footer";
-const TransactionHistory: NextPage = ({
-  customPageData,
-  socialData,
-  copyright_text,
-}: any) => {
+const TransactionHistory: NextPage = () => {
   const { t } = useTranslation("common");
   type searchType = string;
   const [search, setSearch] = useState<searchType>("");
@@ -49,6 +44,11 @@ const TransactionHistory: NextPage = ({
       name: t("Transaction Id"),
       selector: (row: any) => row.transaction_id,
       sortable: true,
+      cell: (row: any) => (
+        <div className="blance-text">
+          <span className="blance market incree">{row?.transaction_id}</span>
+        </div>
+      ),
     },
     {
       name: t("Base Coin"),
@@ -242,24 +242,14 @@ const TransactionHistory: NextPage = ({
           </div>
         </div>
       </div>
-      <Footer
-        customPageData={customPageData}
-        socialData={socialData}
-        copyright_text={copyright_text}
-      />
+      <Footer />
     </>
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/user/transaction-history");
-  const { data } = await landingPage();
-  const { data: customPageData } = await customPage();
   return {
-    props: {
-      socialData: data.media_list,
-      copyright_text: data?.copyright_text,
-      customPageData: customPageData.data,
-    },
+    props: {},
   };
 };
 

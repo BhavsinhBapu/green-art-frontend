@@ -9,13 +9,7 @@ import useTranslation from "next-translate/useTranslation";
 import Footer from "components/common/footer";
 import { customPage, landingPage } from "service/landing-page";
 import moment from "moment";
-const Profile: NextPage = ({
-  user,
-  customPageData,
-  socialData,
-  copyright_text,
-  profileActivity,
-}: any) => {
+const Profile: NextPage = ({ user, profileActivity }: any) => {
   const { t } = useTranslation("common");
 
   return (
@@ -145,19 +139,13 @@ const Profile: NextPage = ({
           </div>
         </div>
       </div>
-      <Footer
-        customPageData={customPageData}
-        socialData={socialData}
-        copyright_text={copyright_text}
-      />
+      <Footer />
     </>
   );
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/user/profile");
-  const { data } = await landingPage();
-  const { data: customPageData } = await customPage();
   const cookies = parseCookies(ctx);
   const response = await GetUserInfoByTokenServer(cookies.token);
 
@@ -165,9 +153,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
     props: {
       user: response.user,
       profileActivity: response.activityLog,
-      socialData: data.media_list,
-      copyright_text: data?.copyright_text,
-      customPageData: customPageData.data,
     },
   };
 };
