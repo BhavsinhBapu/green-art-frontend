@@ -12624,3 +12624,20 @@ input {
     background-size: cover;
     padding: 50px 0px;
 }
+
+.topBarList {
+    gap: 26px;
+}
+
+.topBarList li a {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 16px;
+    color: var(--text-primary-color);
+}
+
+.topBarList li a:hover {
+    color: var(--primary-color);
+    transition: 0.3s;
+}
