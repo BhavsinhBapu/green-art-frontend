@@ -10204,7 +10204,7 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
   top: 0;
   z-index: 9999;
   background: #2a2e37f7;
-  color: var(--text-primary-color-4) !important;
+  color: white !important;
 }
 
 .preloder-area .spinner-border {
