@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 import { useRouter } from "next/router";
 import { RiLuggageDepositLine } from "react-icons/ri";
-import { MdOutlineSwapHorizontalCircle } from "react-icons/md";
+import { MdOutlineSwapHorizontalCircle, MdOutlineTransferWithinAStation } from "react-icons/md";
 import { TbCashOff } from "react-icons/tb";
 import { GiBuyCard } from "react-icons/gi";
 import { GrTransaction } from "react-icons/gr";
@@ -80,7 +80,7 @@ const ReportSidebar = () => {
                 router.pathname == "/user/transaction-history" ? "active" : ""
               }
             >
-              <GrTransaction />
+              <MdOutlineTransferWithinAStation />
               <a href="getAllTransactionHistory">{t("Transaction History")}</a>
             </li>
           </Link>
