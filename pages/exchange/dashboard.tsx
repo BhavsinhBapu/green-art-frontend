@@ -64,6 +64,10 @@ async function listenMessages(dispatch: any, user: any) {
       dispatch(setOpenBookBuy(e.orders.orders));
     if (e.orders.order_type === "sell")
       dispatch(setOpenBooksell(e.orders.orders));
+    if (e.orders.order_type === "buy_sell") {
+      dispatch(setOpenBookBuy(e.orders.buy_orders));
+      dispatch(setOpenBooksell(e.orders.sell_orders));
+    }
   });
   //@ts-ignore
   window.Echo.channel(
