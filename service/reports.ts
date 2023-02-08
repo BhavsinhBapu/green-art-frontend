@@ -22,7 +22,17 @@ export const AllBuyOrdersHistoryApi = async (
   );
   return data;
 };
-
+export const AllStopLimitOrdersHistoryApi = async (
+  per_page: number,
+  page: number,
+  column_name: string,
+  order_by: string
+) => {
+  const { data } = await request.get(
+    `/get-all-stop-limit-orders-app?per_page=${per_page}&page=${page}&column_name=${column_name}&order_by=${order_by}`
+  );
+  return data;
+};
 export const AllSellOrdersHistoryApi = async (
   per_page: number,
   page: number,
@@ -56,7 +66,7 @@ export const currencyDepositHistory = async (
   order_by: string
 ) => {
   const { data } = await request.get(
-    `/currency-deposit-history?per_page=${per_page}&page=${page}&column_name=${column_name}&order_by=${order_by}`,
+    `/currency-deposit-history?per_page=${per_page}&page=${page}&column_name=${column_name}&order_by=${order_by}`
   );
   return data;
 };
@@ -72,4 +82,3 @@ export const currencyWithdrawHistory = async (
   );
   return data;
 };
-;
