@@ -7,7 +7,7 @@ export const P2pTopBar = () => {
       <div className="container">
         <div className="row">
           <div className="col-12">
-            <ul className="d-flex float-right topBarList">
+            <ul className="d-flex justify-content-center justify-content-md-end topBarList">
               <li>
                 <a href="">
                   <RiPagesLine />

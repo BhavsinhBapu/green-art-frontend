@@ -12626,7 +12626,7 @@ input {
 }
 
 .topBarList {
-    gap: 26px;
+    gap: 24px;
 }
 
 .topBarList li a {
@@ -12640,4 +12640,147 @@ input {
 .topBarList li a:hover {
     color: var(--primary-color);
     transition: 0.3s;
+}
+
+.p2pTabList {
+    gap: 28px;
+    align-items: center;
+    flex-flow: row wrap;
+}
+
+.p2pTabList li a {
+    font-size: 16px;
+    color: var(--text-primary-color-2);
+    font-weight: 500;
+}
+
+.p2pTabList_bg {
+    background-color: var(--background-color);
+}
+
+.p2pTabListActive {
+    padding: 20px 0px;
+    border-bottom: 2px solid var(--primary-color);
+    color: var(--primary-color) !important;
+}
+
+.P2psearchBox input {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    background-color: var(--main-background-color);
+    border: 2px solid var(--border-color-1) !important;
+}
+
+.P2psearchBox button {
+    position: absolute;
+    color: var(--primary-color);
+    top: 2px;
+    right: 2px;
+    border: none;
+    font-size: 15px;
+    padding: 7px 12px;
+    font-weight: 500;
+    border-radius: 0px 22px 22px 0px;
+    background-color: var(--main-background-color);
+}
+
+.p2pSelectFilter select {
+    width: 100%;
+    padding: 6px 10px;
+    border-radius: 5px;
+    background-color: var(--main-background-color);
+}
+
+.filterButton button {
+    padding: 6px 26px;
+    border: 2px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--main-background-color);
+    font-weight: 600;
+    color: var(--text-primary-color-2);
+    font-size: 16px;
+    float: right;
+}
+
+.filterButton .dropdown-menu {
+    background-color: var(--main-background-color);
+}
+
+.filterButton .dropdown-menu a {
+    color: var(--text-primary-color-2) !important;
+}
+
+.buySellBox {
+    background-color: var(--main-background-color);
+    border: 1px solid var(--border-color);
+    padding: 2px;
+}
+
+.buySellBox button {
+    border: none;
+    background: var(--main-background-color);
+    padding: 2px 12px;
+    border-radius: 2px;
+    font-weight: 600;
+    color: var(--text-primary-color-2);
+}
+
+.buySellBoxActive {
+    background: var(--primary-color) !important;
+    color: #fff !important;
+}
+
+.tableImg img {
+    border-radius: 50%;
+    width: 24px;
+    background: var(--primary-color);
+    padding: 2px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
+.tableImg h5 {
+    font-weight: 400;
+    padding-left: 6px;
+    color: var(--text-primary-color-2);
+}
+
+.tableButton {
+    padding: 6px 26px;
+    border-radius: 4px;
+    background-color: var(--primary-color);
+    font-weight: 600;
+    color: var(--text-primary-color-2);
+    font-size: 16px;
+    border: none;
+    color: #fff;
+}
+
+.tableRow {
+    border-bottom: 1px solid var(--border-color-1);
+}
+
+.tableRow td {
+    padding: 20px 10px !important;
+}
+
+.buyCancelButton {
+    background-color: var(--table-background-color) !important;
+    color: var(--text-primary-color-2) !important;
+}
+
+.p2pTerms {
+    gap: 10px;
+}
+
+.p2pTerms svg {
+    color: var(--primary-color);
+}
+
+.p2pWork {
+    background-color: var(--table-background-color) ;
 }

@@ -8,6 +8,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "/public/style/app.css";
 import "/public/style/total.css";
 import "/public/style/responsive.css";
+import "/public/style/reactSelect.css";
 import "../styles/nprogress.css";
 import Layout from "layout/index";
 import NProgress from "nprogress";

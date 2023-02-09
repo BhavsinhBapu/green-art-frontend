@@ -1,9 +1,13 @@
-import { P2pTopBar } from "components/P2P/TopBar";
+import { P2pDataTable } from "components/P2P/P2pHome/P2pDataTable";
+import { P2pFilter } from "components/P2P/P2pHome/P2pFilter";
+import { P2pTab } from "components/P2P/P2pHome/P2pTab";
+import { P2pWork } from "components/P2P/P2pHome/P2pWork";
+import { P2pTopBar } from "components/P2P/P2pHome/TopBar";
 
 const P2P = () => {
   return (
     <>
-      <div>
+      <div className="mb-5">
         <div className="p2p_bg">
           <div className="container">
             <div className="row">
@@ -20,6 +24,10 @@ const P2P = () => {
           </div>
         </div>
         <P2pTopBar />
+        <P2pTab />
+        <P2pFilter />
+        <P2pDataTable />
+        <P2pWork />
       </div>
     </>
   );
