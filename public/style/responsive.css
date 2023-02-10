@@ -259,6 +259,17 @@
   .filterButton .dropdown-menu {
     width: 94%;
   }
+  .tableImg h5 {
+    font-size: 14px;
+  }
+  .tableButton {
+    padding: 6px 14px;
+    font-size: 12px;
+    width: 83px;
+  }
+  .limitBalance {
+    width: 180px;
+  }
 }
 
 /* Landscape phones and smaller */
