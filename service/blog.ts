@@ -1,21 +1,11 @@
 import { TYPE_BLOG_RECENT } from "helpers/core-constants";
 import request from "lib/request";
 
-export const getBlogs = async (
-  type: any,
-  limit: any,
-  page: any,
-  locale: any
-) => {
+export const getBlogs = async (type: any, limit: any, page: any) => {
   const { data } = await request.get(
     `/blog/get?type=${
       type ? type : TYPE_BLOG_RECENT
-    }&limit=${limit}&page=${page}`,
-    {
-      headers: {
-        lang: locale,
-      },
-    }
+    }&limit=${limit}&page=${page}`
   );
   return data;
 };
@@ -35,12 +25,8 @@ export const getBlogCategory = async () => {
   return data;
 };
 
-export const getBlogDetails = async (id: any, locale: any) => {
-  const { data } = await request.get(`/blog/blog-details?id=${id}`, {
-    headers: {
-      lang: locale,
-    },
-  });
+export const getBlogDetails = async (id: any) => {
+  const { data } = await request.get(`/blog/blog-details?id=${id}`);
   return data;
 };
 
