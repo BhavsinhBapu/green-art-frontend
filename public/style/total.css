@@ -84,13 +84,13 @@ p {
   margin: 0;
 }
 
-body h1,
+body, h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  color: var(--font-color);
+  color: var(--font-color) !important;
 }
 
 p {
@@ -12719,4 +12719,7 @@ input {
   border: none;
   color: var(--text-primary-color-1);
   /* sff  */
+}
+.custom-page-container {
+  margin-top: 75px;
 }
