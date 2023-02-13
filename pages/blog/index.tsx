@@ -3,19 +3,12 @@ import SliderCover from "components/Blog/SliderCover";
 import TabSection from "components/Blog/TabSection";
 import Footer from "components/common/footer";
 import { Search } from "components/common/search";
-import Pagination from "components/Pagination/Pagination";
 import {
   pageAvailabilityCheck,
-  SSRAuthCheck,
 } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
-import { useRouter } from "next/router";
-import { parseCookies } from "nookies";
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { customPage, landingPage } from "service/landing-page";
 import { getBlogNewsSettings } from "service/news";
-import { GetUserInfoByTokenServer } from "service/user";
 import { BlogHomePageAction, BlogSearchAction } from "state/actions/blog";
 
 const Index = ({}: any) => {
@@ -24,7 +17,6 @@ const Index = ({}: any) => {
   const [categories, setcategories] = useState();
   const [BlogNewsSettings, setBlogNewsSettings] = useState<any>(false);
   const [recentBlogsState, setRecentBlogState] = useState([]);
-  const dispatch = useDispatch();
 
   const getIt = async () => {
     setLoading(true);
