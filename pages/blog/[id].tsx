@@ -1,10 +1,7 @@
 import React from "react";
 import BlogCard from "components/Blog/Card";
 import { GetServerSideProps } from "next";
-import {
-  SSRAuthCheck,
-  pageAvailabilityCheck,
-} from "middlewares/ssr-authentication-check";
+import { pageAvailabilityCheck } from "middlewares/ssr-authentication-check";
 import { getBlogDetails } from "service/blog";
 import CommentSection from "components/Blog/CommentSection";
 import { customPage, landingPage } from "service/landing-page";
@@ -15,13 +12,9 @@ import { BiChevronLeft } from "react-icons/bi";
 import useTranslation from "next-translate/useTranslation";
 import { formateData } from "common";
 import SocialShare from "components/common/SocialShare";
-import { getBlogNewsSettings } from "service/news";
-import { RootState } from "state/store";
-import { useSelector } from "react-redux";
 
 const BlogDetails = ({ blogDetails, BlogNewsSettings }: any) => {
   const { t } = useTranslation("common");
-
   return (
     <>
       <div className="container">
@@ -49,7 +42,8 @@ const BlogDetails = ({ blogDetails, BlogNewsSettings }: any) => {
               <div
                 dangerouslySetInnerHTML={{
                   __html: blogDetails?.data?.details?.body,
-                }}></div>
+                }}
+              ></div>
             </div>
           </div>
           <div className="col-md-4">
@@ -89,8 +83,8 @@ const BlogDetails = ({ blogDetails, BlogNewsSettings }: any) => {
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   // await SSRAuthCheck(ctx, "/blog");
   const { id } = ctx.params;
-  const BlogDetails = await getBlogDetails(id);
-  const { data } = await landingPage();
+  const BlogDetails = await getBlogDetails(id, ctx.locale);
+  const { data } = await landingPage(ctx.locale);
   const commonRes = await pageAvailabilityCheck();
 
   if (parseInt(commonRes.blog_news_module) !== 1) {

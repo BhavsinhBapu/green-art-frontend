@@ -8,16 +8,16 @@ import {
   postComment,
 } from "service/blog";
 
-export const BlogHomePageAction = async () => {
-  const FeaturedBlogs = await getBlogs(TYPE_BLOG_FEATURED, 9, 1);
-  const RecentBlogs = await getBlogs(TYPE_BLOG_RECENT, 9, 1);
+export const BlogHomePageAction = async (locale: any) => {
+  const FeaturedBlogs = await getBlogs(TYPE_BLOG_FEATURED, 9, 1, locale);
+  const RecentBlogs = await getBlogs(TYPE_BLOG_RECENT, 9, 1, locale);
   const Categories = await getBlogCategory();
 
   return { FeaturedBlogs, RecentBlogs, Categories };
 };
 
-export const GetBlogDetailsAction = async (id: string) => {
-  const BlogDetails = await getBlogDetails(id);
+export const GetBlogDetailsAction = async (id: string, locale: any) => {
+  const BlogDetails = await getBlogDetails(id, locale);
   return { BlogDetails };
 };
 
@@ -52,7 +52,7 @@ export const PostCommentAction = async (
   });
   setLoading(false);
 };
-export const BlogSearchAction = async (query: any) => {
+export const BlogSearchAction = async (query: any, locale: any) => {
   const response = await getBlogSearch(query);
   return response;
 };

@@ -15,9 +15,6 @@ import { getBlogNewsSettings } from "service/news";
 import { BlogHomePageAction, BlogSearchAction } from "state/actions/blog";
 
 const Index = ({
-  customPageData,
-  socialData,
-  copyright_text,
   featuredBlogs,
   recentBlogs,
   categories,
@@ -61,7 +58,9 @@ const Index = ({
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
-  const { FeaturedBlogs, RecentBlogs, Categories } = await BlogHomePageAction();
+  const { FeaturedBlogs, RecentBlogs, Categories } = await BlogHomePageAction(
+    ctx.locale
+  );
   const { data: BlogNewsSettings } = await getBlogNewsSettings();
   const commonRes = await pageAvailabilityCheck();
   if (parseInt(commonRes.blog_news_module) !== 1) {

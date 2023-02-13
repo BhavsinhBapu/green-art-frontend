@@ -268,7 +268,7 @@ const BuyOrderHistory: NextPage = ({
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/user/buy-order-history");
-  const { data } = await landingPage();
+  const { data } = await landingPage(ctx.locale);
   const { data: customPageData } = await customPage();
   return {
     props: {
