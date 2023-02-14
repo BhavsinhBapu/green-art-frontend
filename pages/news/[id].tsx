@@ -14,9 +14,27 @@ import { customPage, landingPage } from "service/landing-page";
 import Footer from "components/common/footer";
 import CommentSection from "components/Blog/CommentSection";
 import { PostCommentAction } from "state/actions/news";
+import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { setLoading } from "state/reducer/user";
 
-const NewsDetails = ({ newsDetails, BlogNewsSettings }: any) => {
+const NewsDetails = ({ BlogNewsSettings }: any) => {
+  const [newsDetails, setnewsDetails] = useState<any>();
+
   const { t } = useTranslation("common");
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const { id } = router.query;
+  const getDetails = async (id: any) => {
+    dispatch(setLoading(true));
+    const newsDetails = await getNewsDetails(id);
+    setnewsDetails(newsDetails?.data);
+    dispatch(setLoading(false));
+  };
+  useEffect(() => {
+    id && getDetails(id);
+  }, []);
   return (
     <>
       <div className="container">
@@ -43,7 +61,8 @@ const NewsDetails = ({ newsDetails, BlogNewsSettings }: any) => {
                 className="mt-4"
                 dangerouslySetInnerHTML={{
                   __html: newsDetails?.details?.body,
-                }}></div>
+                }}
+              ></div>
             </div>
           </div>
           <div className="col-md-4">

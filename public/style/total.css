@@ -12678,14 +12678,6 @@ input {
     border: 2px solid var(--border-color-1) !important;
 }
 
-.P2psearchBox textarea {
-    width: 100%;
-    padding: 8px;
-    border-radius: 5px;
-    background-color: var(--main-background-color);
-    border: 2px solid var(--border-color-1) !important;
-}
-
 .P2psearchBox button {
     position: absolute;
     color: var(--primary-color);

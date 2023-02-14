@@ -196,7 +196,7 @@ const Index = () => {
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
-  const { data } = await landingPage();
+  const { data } = await landingPage(ctx.locale);
   const cookies = parseCookies(ctx);
   return {
     props: {

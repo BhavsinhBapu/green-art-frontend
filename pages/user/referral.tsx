@@ -5,7 +5,6 @@ import type { GetServerSideProps, NextPage } from "next";
 import useTranslation from "next-translate/useTranslation";
 import { useEffect, useState, useRef } from "react";
 import { toast } from "react-toastify";
-import { customPage, landingPage } from "service/landing-page";
 import { getReferral } from "service/refer";
 
 const Referral: NextPage = () => {

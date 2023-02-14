@@ -27,8 +27,6 @@ const Home: NextPage = ({
 }: any) => {
   const { t } = useTranslation("common");
   const router = useRouter();
-  console.log(landing, "This is a landing");
-
   const { logo } = useSelector((state: RootState) => state.user);
   const { settings: common } = useSelector((state: RootState) => state.common);
   const settings = {
@@ -90,14 +88,14 @@ const Home: NextPage = ({
         <div>
           {loggedin ? <Navbar /> : <UnAuthNav logo={logo} />}
           {landing?.page_builder_landing === true ? (
-            <>
+            <div className="custom-page-container">
               <div
                 dangerouslySetInnerHTML={{
                   // __html: clean(details.description),
                   __html: landing?.page_builder_landing_data,
                 }}
               ></div>
-            </>
+            </div>
           ) : (
             <>
               {parseInt(landing?.landing_first_section_status) === 1 && (
@@ -1021,7 +1019,7 @@ const Home: NextPage = ({
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
-  const { data } = await landingPage();
+  const { data } = await landingPage(ctx.locale);
   const cookies = parseCookies(ctx);
   const { data: customSettings } = await commomSettings();
 

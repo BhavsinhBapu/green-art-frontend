@@ -1,7 +1,11 @@
 import request from "lib/request";
 
-export const landingPage = () => {
-  return request.get("/landing");
+export const landingPage = (locale: any) => {
+  return request.get("/landing", {
+    headers: {
+      lang: locale,
+    },
+  });
 };
 
 export const customPage = () => {
