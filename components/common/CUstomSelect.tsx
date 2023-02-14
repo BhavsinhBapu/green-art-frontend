@@ -1,10 +1,15 @@
 import React from "react";
 import Select from "react-select";
 
-export const CUstomSelect = ({ options }: any) => {
+export const CUstomSelect = ({ options, isSearchable, placeholder }: any) => {
   return (
     <>
-      <Select options={options} classNamePrefix={"custom-select"} />
+      <Select
+        options={options}
+        classNamePrefix={"custom-select"}
+        isSearchable={isSearchable}
+        placeholder={placeholder}
+      />
     </>
   );
 };

@@ -1,23 +1,24 @@
 import { useState } from "react";
 import { P2pWorkCard } from "./P2pWorkCard";
-import { TbPageBreak } from "react-icons/tb";
+import { BsCashCoin } from "react-icons/bs";
+import { FcDocument, FcMoneyTransfer } from "react-icons/fc";
 
 export const P2pWork = () => {
   const p2pWorkCardList = [
     {
-      icon: <TbPageBreak />,
+      icon: <FcDocument />,
       title: "Place an Order",
       discription:
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis etveniam est earum consequuntur? Ut nulla sequi repudiandae. Molestiae nobis",
     },
     {
-      icon: <TbPageBreak />,
+      icon: <FcMoneyTransfer />,
       title: "Place an Order",
       discription:
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis etveniam est earum consequuntur? Ut nulla sequi repudiandae. Molestiae nobis",
     },
     {
-      icon: <TbPageBreak />,
+      icon: <BsCashCoin />,
       title: "Place an Order",
       discription:
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis etveniam est earum consequuntur? Ut nulla sequi repudiandae. Molestiae nobis",

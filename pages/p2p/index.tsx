@@ -1,3 +1,4 @@
+import Footer from "components/common/footer";
 import { P2pAdvantage } from "components/P2P/P2pHome/P2pAdvantage";
 import { P2pBlog } from "components/P2P/P2pHome/P2pBlog";
 import { P2pDataTable } from "components/P2P/P2pHome/P2pDataTable";
@@ -15,11 +16,11 @@ const P2P = () => {
         <div className="p2p_bg">
           <div className="container">
             <div className="row">
-              <div className="col-12 text-center text-white">
+              <div className="col-12 text-center">
                 <h2 className="text-white">
                   Binance - Peer-to-Peer Ecosystem With 300+Payment Methods
                 </h2>
-                <p>
+                <p className="text-white">
                   Binance is the largest centralized exchange globally. However,
                   Binance is also a major player <br /> in the P2P trading space
                 </p>
@@ -37,6 +38,7 @@ const P2P = () => {
         <P2pFaq />
         <P2pPaymentMethod />
       </div>
+      <Footer />
     </>
   );
 };
