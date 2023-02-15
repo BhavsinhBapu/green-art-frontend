@@ -6472,7 +6472,7 @@ table.dataTable tbody tr.dataTable-white td {
 .swap-area .form-group .swap-input-wrap {
     display: flex;
     align-items: center;
-    height: 70px;
+    height: 50px;
     border: 1px solid var(--border-color);
     border-radius: 5px;
     padding: 0 10px;
@@ -6504,6 +6504,7 @@ table.dataTable tbody tr.dataTable-white td {
     font-size: 20px;
     color: var(--text-primary-color-2);
     border-radius: 0;
+    background-color: var(--background-color-2);
 }
 
 .swap-area .form-group .swap-input-wrap .cp-select-area .form-control option {
@@ -12610,9 +12611,12 @@ input {
     background: var(--primary-color);
     border: none;
     color: var(--text-primary-color-1);
-    /* sff  */
 }
 
 .custom-page-container {
     margin-top: 75px;
+}
+
+.swapSelect option {
+    background-color: var(--card-background-color);
 }
