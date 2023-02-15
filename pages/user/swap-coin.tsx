@@ -12,7 +12,6 @@ import { getRateSsr } from "service/swap";
 import Link from "next/link";
 import useTranslation from "next-translate/useTranslation";
 import SmallLoading from "components/common/smallLoading";
-import { customPage, landingPage } from "service/landing-page";
 import Footer from "components/common/footer";
 import { AiOutlineSwap, AiFillWallet } from "react-icons/ai";
 const SwapCoin: NextPage = ({

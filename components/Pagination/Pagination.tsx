@@ -11,7 +11,7 @@ const Pagination = ({
   return (
     <div className="row justify-content-center justify-content-md-end pagination_custome">
       <ul className="pagination Paginate mb-5 mt-3">
-        {links.map((link: any, index: number) =>
+        {links?.map((link: any, index: number) =>
           link.label === "&laquo; Previous" ? (
             <li
               key={index}

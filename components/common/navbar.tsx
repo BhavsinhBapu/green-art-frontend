@@ -244,22 +244,22 @@ const Navbar = () => {
                           </li>
                         )}
                       <li
-                        className={
-                          router.pathname == "/user/wallet-history"
-                            ? "cp-user-active-page"
-                            : router.pathname == "/user/swap-history"
-                            ? "cp-user-active-page"
-                            : router.pathname == "/user/buy-order-history"
-                            ? "cp-user-active-page"
-                            : router.pathname == "/user/sell-order-history"
-                            ? "cp-user-active-page"
-                            : router.pathname == "/user/transaction-history"
-                            ? "cp-user-active-page"
-                            : router.pathname ==
-                              "/user/currency-deposit-history"
-                            ? "cp-user-active-page"
-                            : ""
-                        }
+                      // className={
+                      //   router.pathname == "/user/wallet-history"
+                      //     ? "cp-user-active-page"
+                      //     : router.pathname == "/user/swap-history"
+                      //     ? "cp-user-active-page"
+                      //     : router.pathname == "/user/buy-order-history"
+                      //     ? "cp-user-active-page"
+                      //     : router.pathname == "/user/sell-order-history"
+                      //     ? "cp-user-active-page"
+                      //     : router.pathname == "/user/transaction-history"
+                      //     ? "cp-user-active-page"
+                      //     : router.pathname ==
+                      //       "/user/currency-deposit-history"
+                      //     ? "cp-user-active-page"
+                      //     : ""
+                      // }
                       >
                         {navbar?.reports?.status && (
                           <Link
@@ -454,7 +454,24 @@ const Navbar = () => {
                                 </li>
                               </Link>
                             )}
-
+                          <Link
+                            href={
+                              isLoggedIn
+                                ? "/user/stop-limit-order-history"
+                                : "/authentication/signin"
+                            }
+                          >
+                            <li
+                              className={
+                                router.pathname ==
+                                "/user/stop-limit-order-history"
+                                  ? "cp-user-active-page"
+                                  : ""
+                              }
+                            >
+                              <a href="">{t("Stop Limit History")}</a>
+                            </li>
+                          </Link>
                           {navbar?.reports?.fiatWithdrawalHistory?.status && (
                             <Link
                               href={

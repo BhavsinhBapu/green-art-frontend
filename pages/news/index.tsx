@@ -1,34 +1,39 @@
 import { NewsList } from "components/News/NewsList";
 import { NewsSlider } from "components/News/NewsSlider";
 import Footer from "components/common/footer";
-import {
-  SSRAuthCheck,
-  pageAvailabilityCheck,
-} from "middlewares/ssr-authentication-check";
+import { pageAvailabilityCheck } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
 import useTranslation from "next-translate/useTranslation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NewsHomePageAction } from "state/actions/news";
 import Pagination from "components/Pagination/Pagination";
 import { Search } from "components/common/search";
 import { getBlogNewsSettings } from "service/news";
 import { NewsSearchAction } from "state/actions/news";
 
-const News = ({
-  PopularNews,
-  RecentNews,
-  categories,
-  BlogNewsSettings,
-}: any) => {
+const News = ({ BlogNewsSettings }: any) => {
   const { t } = useTranslation("common");
-  const [recentNewsData, setRecentNews] = useState(
-    RecentNews?.data?.data ? RecentNews?.data?.data : []
+  const [PopularNewsData, setPopularNews] = useState<any>([]);
+  const [categories, setcategories] = useState<any>([]);
+  const [recentNewsData, setRecentNews] = useState<any>(
+    // RecentNews?.data?.data ? RecentNews?.data?.data : []
+    []
   );
-  const [links, setLinks] = useState(
-    RecentNews?.data?.links ? RecentNews?.data?.links : []
-  );
+  const [links, setLinks] = useState();
+  // RecentNews?.data?.links ? RecentNews?.data?.links : []
   const [selected, setSelected] = useState(null);
   const [loading, setLoading] = useState(false);
+  const getIt = async () => {
+    setLoading(true);
+    const { Categories, PopularNews, RecentNews } = await NewsHomePageAction();
+    setRecentNews(RecentNews?.data?.data ? RecentNews?.data?.data : []);
+    setPopularNews(PopularNews);
+    setcategories(Categories?.data);
+    setLoading(false);
+  };
+  useEffect(() => {
+    getIt();
+  }, []);
   return (
     <>
       <div className="container">
@@ -44,7 +49,7 @@ const News = ({
         </div>
         <hr />
 
-        <NewsSlider PopularNews={PopularNews.data.data} />
+        <NewsSlider PopularNews={PopularNewsData?.data?.data} />
         <NewsList
           recentNewsData={recentNewsData}
           setRecentNews={setRecentNews}
@@ -70,7 +75,7 @@ const News = ({
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
-  const { Categories, PopularNews, RecentNews } = await NewsHomePageAction();
+  // const { Categories, PopularNews, RecentNews } = await NewsHomePageAction();
   const { data: BlogNewsSettings } = await getBlogNewsSettings();
   const commonRes = await pageAvailabilityCheck();
   if (parseInt(commonRes.blog_news_module) !== 1) {
@@ -84,9 +89,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
 
   return {
     props: {
-      PopularNews: PopularNews,
-      RecentNews: RecentNews,
-      categories: Categories?.data,
+      // PopularNews: PopularNews,
+      // RecentNews: RecentNews,
+      // categories: Categories?.data,
       BlogNewsSettings: BlogNewsSettings,
     },
   };

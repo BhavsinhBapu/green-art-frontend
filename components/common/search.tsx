@@ -1,16 +1,18 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { MdOutlineSearch } from "react-icons/md";
 
 export const Search = ({ searchFunction, linkName }: any) => {
   const [results, setResults] = useState([]);
-
   const onSearch = async (e: any) => {
     if (!e.target.value) {
       setResults([]);
       return;
     }
-    const response = await searchFunction(e.target.value);
+    const response = await searchFunction(
+      e.target.value,
+    );
     setResults(response?.data);
   };
 
@@ -28,7 +30,8 @@ export const Search = ({ searchFunction, linkName }: any) => {
                 <p
                   onClick={() => onSearch(item.title)}
                   className="px-2 suggestionsList"
-                  key={item.title}>
+                  key={item.title}
+                >
                   {item.title}
                 </p>
               </Link>

@@ -195,7 +195,7 @@ const Support = () => {
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   await SSRAuthCheck(ctx, "/support");
-  const { data } = await landingPage();
+  const { data } = await landingPage(ctx.locale);
   const commonRes = await pageAvailabilityCheck();
   if (parseInt(commonRes.knowledgebase_support_module) !== 1) {
     return {

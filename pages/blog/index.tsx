@@ -3,30 +3,35 @@ import SliderCover from "components/Blog/SliderCover";
 import TabSection from "components/Blog/TabSection";
 import Footer from "components/common/footer";
 import { Search } from "components/common/search";
-import Pagination from "components/Pagination/Pagination";
 import {
   pageAvailabilityCheck,
-  SSRAuthCheck,
 } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
-import React, { useState } from "react";
-import { customPage, landingPage } from "service/landing-page";
+import React, { useEffect, useState } from "react";
 import { getBlogNewsSettings } from "service/news";
 import { BlogHomePageAction, BlogSearchAction } from "state/actions/blog";
 
-const Index = ({
-  customPageData,
-  socialData,
-  copyright_text,
-  featuredBlogs,
-  recentBlogs,
-  categories,
-  BlogNewsSettings,
-}: any) => {
+const Index = ({}: any) => {
   const [loading, setLoading] = useState(false);
-  const [recentBlogsState, setRecentBlogState] = useState(
-    recentBlogs?.data ? recentBlogs?.data : []
-  );
+  const [featuredBlogs, setfeaturedBlogs] = useState<any>();
+  const [categories, setcategories] = useState();
+  const [BlogNewsSettings, setBlogNewsSettings] = useState<any>(false);
+  const [recentBlogsState, setRecentBlogState] = useState([]);
+
+  const getIt = async () => {
+    setLoading(true);
+    const { FeaturedBlogs, RecentBlogs, Categories } =
+      await BlogHomePageAction();
+    setfeaturedBlogs(FeaturedBlogs.data);
+    setRecentBlogState(RecentBlogs.data.data);
+    setcategories(Categories.data);
+    const { data: BlogNewsSettings } = await getBlogNewsSettings();
+    setBlogNewsSettings(BlogNewsSettings);
+    setLoading(false);
+  };
+  useEffect(() => {
+    getIt();
+  }, []);
   return (
     <>
       <div className="">
@@ -37,7 +42,7 @@ const Index = ({
               <p>{BlogNewsSettings?.blog_feature_description}</p>
             </div>
             <div className="col-md-5">
-              {parseInt(BlogNewsSettings.blog_search_enable) === 1 && (
+              {parseInt(BlogNewsSettings?.blog_search_enable) === 1 && (
                 <Search searchFunction={BlogSearchAction} linkName={"blog"} />
               )}
             </div>
@@ -46,7 +51,7 @@ const Index = ({
         </div>
       </div>
       <div className="container">
-        <SliderCover featuredblogs={featuredBlogs.data} />
+        <SliderCover featuredblogs={featuredBlogs?.data} />
         <TabSection
           categories={categories}
           setRecentBlogState={setRecentBlogState}
@@ -61,8 +66,14 @@ const Index = ({
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
-  const { FeaturedBlogs, RecentBlogs, Categories } = await BlogHomePageAction();
-  const { data: BlogNewsSettings } = await getBlogNewsSettings();
+  // const { FeaturedBlogs, RecentBlogs, Categories } = await BlogHomePageAction(
+  //   ctx.locale
+  // );
+  // console.log(ctx.locale, "ctx.locale");
+  // const cookies = parseCookies(ctx);
+  // const response = await GetUserInfoByTokenServer(cookies.token);
+  // console.log(response, "ctx.locale");
+  // const { data: BlogNewsSettings } = await getBlogNewsSettings();
   const commonRes = await pageAvailabilityCheck();
   if (parseInt(commonRes.blog_news_module) !== 1) {
     return {
@@ -74,10 +85,10 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   }
   return {
     props: {
-      featuredBlogs: FeaturedBlogs.data,
-      recentBlogs: RecentBlogs.data,
-      categories: Categories?.data,
-      BlogNewsSettings: BlogNewsSettings,
+      // featuredBlogs: FeaturedBlogs.data,
+      // recentBlogs: RecentBlogs.data,
+      // categories: Categories?.data,
+      // BlogNewsSettings: BlogNewsSettings,
     },
   };
 };

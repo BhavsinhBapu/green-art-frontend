@@ -52,7 +52,7 @@ export const PostCommentAction = async (
   });
   setLoading(false);
 };
-export const BlogSearchAction = async (query: any) => {
+export const BlogSearchAction = async (query: any, locale: any) => {
   const response = await getBlogSearch(query);
   return response;
 };

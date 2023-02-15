@@ -6,6 +6,7 @@ import {
   CoinConvertHistoryApi,
   currencyDepositHistory,
   currencyWithdrawHistory,
+  AllStopLimitOrdersHistoryApi,
 } from "service/reports";
 import React, { Dispatch, SetStateAction } from "react";
 import FuzzySearch from "fuzzy-search";
@@ -204,7 +205,25 @@ export const AllBuyOrdersHistoryAction = async (
   setStillHistory(response.data);
   return response;
 };
-
+export const AllStopLimitOrdersHistoryAction = async (
+  per_page: number,
+  page: number,
+  setReport: React.Dispatch<SetStateAction<object>>,
+  setProcessing: React.Dispatch<SetStateAction<boolean>>,
+  setStillHistory: React.Dispatch<SetStateAction<boolean>>,
+  column_name: string,
+  order_by: string
+) => {
+  const response = await AllStopLimitOrdersHistoryApi(
+    per_page,
+    page,
+    column_name,
+    order_by
+  );
+  setReport(response.data.items.data);
+  setStillHistory(response.data);
+  return response;
+};
 export const AllSellOrdersHistoryAction = async (
   per_page: number,
   page: number,

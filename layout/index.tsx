@@ -45,7 +45,9 @@ const Index = ({ children }: any) => {
     dispatch(setLoading(true));
     rootThemeCheck();
     const response = await commomSettings();
-    const { data } = await landingPage();
+    const { data } = await landingPage(
+      router.locale === "en" ? "en" : router.locale
+    );
     const { data: customPageData } = await customPage();
     dispatch(setLogo(response.data.logo));
     dispatch(setSettings(response.data));

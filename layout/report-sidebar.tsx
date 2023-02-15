@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 import { useRouter } from "next/router";
 import { RiLuggageDepositLine } from "react-icons/ri";
-import { MdOutlineSwapHorizontalCircle } from "react-icons/md";
+import { MdOutlineSwapHorizontalCircle, MdOutlineTransferWithinAStation } from "react-icons/md";
 import { TbCashOff } from "react-icons/tb";
 import { GiBuyCard } from "react-icons/gi";
 import { GrTransaction } from "react-icons/gr";
@@ -11,6 +11,7 @@ import { MdSell } from "react-icons/md";
 import useTranslation from "next-translate/useTranslation";
 import { RootState } from "state/store";
 import { useSelector } from "react-redux";
+import { BsFillStopCircleFill } from "react-icons/bs";
 const ReportSidebar = () => {
   const router = useRouter();
   const { t } = useTranslation("common");
@@ -29,6 +30,18 @@ const ReportSidebar = () => {
             <li className={router.query.type == "withdrawal" ? "active" : ""}>
               <TbCashOff />
               <a href="coinSwapHistory">{t("Withdrawal History")}</a>
+            </li>
+          </Link>
+          <Link href="/user/stop-limit-order-history">
+            <li
+              className={
+                router.pathname == "/user/stop-limit-order-history"
+                  ? "active"
+                  : ""
+              }
+            >
+              <BsFillStopCircleFill />
+              <a href="coinSwapHistory">{t("Stop Limit History")}</a>
             </li>
           </Link>
           <Link href="/user/swap-history">
@@ -67,7 +80,7 @@ const ReportSidebar = () => {
                 router.pathname == "/user/transaction-history" ? "active" : ""
               }
             >
-              <GrTransaction />
+              <MdOutlineTransferWithinAStation />
               <a href="getAllTransactionHistory">{t("Transaction History")}</a>
             </li>
           </Link>

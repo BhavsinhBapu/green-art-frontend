@@ -44,7 +44,9 @@ async function listenMessages(dispatch: any, user: any) {
     broadcaster: "pusher",
     key: "test",
     wsHost: process.env.NEXT_PUBLIC_HOST_SOCKET,
-    wsPort: 6006,
+    wsPort: process.env.NEXT_PUBLIC_WSS_PORT
+      ? process.env.NEXT_PUBLIC_WSS_PORT
+      : 6006,
     wssPort: 443,
     forceTLS: false,
     cluster: "mt1",
@@ -62,6 +64,10 @@ async function listenMessages(dispatch: any, user: any) {
       dispatch(setOpenBookBuy(e.orders.orders));
     if (e.orders.order_type === "sell")
       dispatch(setOpenBooksell(e.orders.orders));
+    if (e.orders.order_type === "buy_sell") {
+      dispatch(setOpenBookBuy(e.orders.buy_orders));
+      dispatch(setOpenBooksell(e.orders.sell_orders));
+    }
   });
   //@ts-ignore
   window.Echo.channel(
