@@ -1,5 +1,6 @@
 import { BuyFrom } from "./BuyFrom";
 import { useState } from "react";
+import Link from "next/link";
 
 export const P2pDataTable = () => {
   const [buyFrom, setBuyFrom] = useState(false);
@@ -21,16 +22,18 @@ export const P2pDataTable = () => {
             <tbody>
               <tr className="tableRow">
                 <td>
-                  <div className="tableImg d-flex align-items-center">
-                    <img
-                      src="https://api-tradex.nftarttoken.xyz/images/avatars/yellow-hat.png"
-                      alt=""
-                    />
-                    {/* <h4 className="tableImg">
+                  <Link href={"/p2p/user-profile"}>
+                    <div className="tableImg d-flex align-items-center">
+                      <img
+                        src="https://api-tradex.nftarttoken.xyz/images/avatars/yellow-hat.png"
+                        alt=""
+                      />
+                      {/* <h4 className="tableImg">
                       <b>F</b>
                     </h4> */}
-                    <h5>Chirik34</h5>
-                  </div>
+                      <h5>Chirik34</h5>
+                    </div>
+                  </Link>
                   <small className="ml-4">211 orders 99.66% completion</small>
                 </td>
                 <td className="d-flex">

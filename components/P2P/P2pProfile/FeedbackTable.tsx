@@ -1,7 +1,7 @@
 import { NoItemFound } from "components/NoItemFound/NoItemFound";
 import { GoPlus } from "react-icons/go";
 
-export const UserFeedbackTable = () => {
+export const FeedbackTable = () => {
   return (
     <div className="container">
       <div className="row">

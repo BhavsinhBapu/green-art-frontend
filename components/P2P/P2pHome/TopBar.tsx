@@ -18,7 +18,7 @@ export const P2pTopBar = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/p2p/p2p-user-profile">
+                <Link href="/p2p/p2p-profile">
                   <a>
                     <HiUsers />
                     P2P User Center

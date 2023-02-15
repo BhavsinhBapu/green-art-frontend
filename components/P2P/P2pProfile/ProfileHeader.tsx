@@ -1,10 +1,10 @@
 import { BsFillCheckCircleFill } from "react-icons/bs";
 import { IoIosEye } from "react-icons/io";
 
-export const UserHeader = () => {
+export const ProfileHeader = () => {
   return (
     <div className="container">
-      <div className="row py-4 border-bottom align-items-center">
+      <div className="row py-4 tableRow align-items-center">
         <div className="col-md-6">
           <div className="tableImg d-flex align-items-center">
             <img

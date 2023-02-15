@@ -12746,6 +12746,15 @@ input {
     color: #fff !important;
 }
 
+.tableImg {
+    cursor: pointer;
+}
+
+.tableImg .userProfileImg {
+    width: 40px !important;
+    height: 40px !important;
+}
+
 .tableImg img {
     border-radius: 50%;
     width: 24px;

@@ -1,6 +1,6 @@
 import { GoPlus } from "react-icons/go";
 
-export const UserPaymentTable = () => {
+export const PaymentTable = () => {
   return (
     <div className="container">
       <div className="row">

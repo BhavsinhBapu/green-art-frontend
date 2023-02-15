@@ -1,4 +1,4 @@
-export const UserBlockTable = () => {
+export const BlockTable = () => {
   return (
     <div className="container">
       <div className="row">
