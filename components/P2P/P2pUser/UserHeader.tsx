@@ -29,7 +29,7 @@ export const UserHeader = () => {
           </div>
         </div>
         <div className="col-md-6 mt-4 mt-md-0">
-          <div className="d-flex align-items-center justify-content-start justify-content-md-end">
+          <div className="d-sm-flex d-block align-items-center justify-content-start justify-content-md-end p2pWorkBtn">
             <div>
               <p>
                 P2P Estimated Value (BTC)
@@ -39,7 +39,9 @@ export const UserHeader = () => {
               </p>
               <h6>32,422.099 BTC</h6>
             </div>
-            <button className="tableButton px-3 ml-4">Become Merchant</button>
+            <button className="buySellBoxActive rounded px-2 ml-0 ml-sm-4 mt-4 mt-sm-0 ">
+              Become Merchant
+            </button>
           </div>
         </div>
       </div>

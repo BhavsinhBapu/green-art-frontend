@@ -1,5 +1,6 @@
 import { RiPagesLine } from "react-icons/ri";
 import { HiUsers } from "react-icons/hi";
+import Link from "next/link";
 
 export const P2pTopBar = () => {
   return (
@@ -9,16 +10,20 @@ export const P2pTopBar = () => {
           <div className="col-12">
             <ul className="d-flex justify-content-center justify-content-md-end topBarList">
               <li>
-                <a href="">
-                  <RiPagesLine />
-                  Orders
-                </a>
+                <Link href="/p2p/p2p-order">
+                  <a>
+                    <RiPagesLine />
+                    Orders
+                  </a>
+                </Link>
               </li>
               <li>
-                <a href="">
-                  <HiUsers />
-                  P2P User Center
-                </a>
+                <Link href="/p2p/p2p-user-profile">
+                  <a>
+                    <HiUsers />
+                    P2P User Center
+                  </a>
+                </Link>
               </li>
               <li>
                 <a
@@ -29,15 +34,9 @@ export const P2pTopBar = () => {
                   More
                 </a>
                 <div className="dropdown-menu mt-3 bg-dark">
-                  <a className="dropdown-item" href="#">
-                    Action
-                  </a>
-                  <a className="dropdown-item" href="#">
-                    Another action
-                  </a>
-                  <a className="dropdown-item" href="#">
-                    Something else here
-                  </a>
+                  <Link href="/p2p/add-post">
+                    <a className="dropdown-item">Ad Create</a>
+                  </Link>
                 </div>
               </li>
             </ul>

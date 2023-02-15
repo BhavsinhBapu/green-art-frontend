@@ -277,6 +277,9 @@
   .steepBar {
     height: 3px;
   }
+  .p2pTabList li a {
+    font-size: 14px;
+  }
 }
 
 /* Landscape phones and smaller */
