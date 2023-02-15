@@ -9,7 +9,6 @@ import { useState } from "react";
 const AddPost = () => {
   const [addTabButton, setAddTabButton] = useState(true);
   const [addSteep, setAddSteep] = useState("steepOne");
-  console.log(addSteep);
 
   return (
     <>
@@ -24,7 +23,7 @@ const AddPost = () => {
             </div>
           </div>
         </div>
-        <AddPostSteep addSteep={addSteep} />
+        <AddPostSteep />
         <div className="container">
           <div className="row">
             <div className="col-6">
