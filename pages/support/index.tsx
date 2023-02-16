@@ -207,7 +207,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   }
   return {
     props: {
-      socialData: data.media_list,
+      socialData: data?.media_list ? data?.media_list : [],
     },
   };
 };
