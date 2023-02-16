@@ -88,7 +88,7 @@ const Home: NextPage = ({
         <div>
           {loggedin ? <Navbar /> : <UnAuthNav logo={logo} />}
           {landing?.page_builder_landing === true ? (
-            <div className="custom-page-container">
+            <div className="custom-page-container container">
               <div
                 dangerouslySetInnerHTML={{
                   // __html: clean(details.description),
