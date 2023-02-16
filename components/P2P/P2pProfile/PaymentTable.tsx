@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { GoPlus } from "react-icons/go";
 
 export const PaymentTable = () => {
@@ -31,9 +32,11 @@ export const PaymentTable = () => {
                 </p>
               </div>
               <div className="col-md-5 text-right">
-                <button className="orderFilterNoButton border-0 text-warning shadow-sm rounded px-3 ml-0 ml-md-4 mt-4 mt-md-0 ">
-                  <GoPlus className="mr-2" /> Add a payment method
-                </button>
+                <Link href={"/p2p/add-payment-method"}>
+                  <button className="orderFilterNoButton border-0 text-warning shadow-sm rounded px-3 ml-0 ml-md-4 mt-4 mt-md-0 ">
+                    <GoPlus className="mr-2" /> Add a payment method
+                  </button>
+                </Link>
               </div>
               <div className="col-12 ">
                 <div className="paymentMethodSubBox rounded mt-4">

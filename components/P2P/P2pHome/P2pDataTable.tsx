@@ -60,44 +60,7 @@ export const P2pDataTable = () => {
                   </button>
                 </td>
               </tr>
-              <tr className="tableRow">
-                <td>
-                  <div className="tableImg d-flex align-items-center">
-                    <img
-                      src="https://api-tradex.nftarttoken.xyz/images/avatars/yellow-hat.png"
-                      alt=""
-                    />
-                    {/* <h4 className="tableImg">
-                      <b>F</b>
-                    </h4> */}
-                    <h5>Chirik34</h5>
-                  </div>
-                  <small className="ml-4">211 orders 99.66% completion</small>
-                </td>
-                <td className="d-flex">
-                  <h5 className="mr-1">0.099</h5> EUR
-                </td>
-                <td>
-                  <div className="d-flex align-items-center">
-                    <small className="mr-2">Available</small>
-                    <h6 className="limitBalance">1.34.00 USDT</h6>
-                  </div>
-                  <div className="d-flex align-items-center">
-                    <small className="mr-2">Limit</small>
-                    <h6 className="limitBalance">$34.00 - $88.98 </h6>
-                  </div>
-                </td>
-                <td>
-                  <span className="badge badge-light">ZEN</span>
-                </td>
-                <td>
-                  <button
-                    onClick={() => setBuyFrom(true)}
-                    className="tableButton">
-                    Buy USDT
-                  </button>
-                </td>
-              </tr>
+
               <tr className="tableRow">
                 <td>
                   <div className="tableImg d-flex align-items-center">
@@ -107,82 +70,6 @@ export const P2pDataTable = () => {
                     /> */}
                     <h4 className="tableImg">
                       <b>T</b>
-                    </h4>
-                    <h5>Chirik34</h5>
-                  </div>
-                  <small className="ml-4">211 orders 99.66% completion</small>
-                </td>
-                <td className="d-flex">
-                  <h5 className="mr-1">0.099</h5> EUR
-                </td>
-                <td>
-                  <div className="d-flex align-items-center">
-                    <small className="mr-2">Available</small>
-                    <h6 className="limitBalance">1.34.00 USDT</h6>
-                  </div>
-                  <div className="d-flex align-items-center">
-                    <small className="mr-2">Limit</small>
-                    <h6 className="limitBalance">$34.00 - $88.98 </h6>
-                  </div>
-                </td>
-                <td>
-                  <span className="badge badge-light">ZEN</span>
-                </td>
-                <td>
-                  <button
-                    onClick={() => setBuyFrom(true)}
-                    className="tableButton">
-                    Buy USDT
-                  </button>
-                </td>
-              </tr>
-              <tr className="tableRow">
-                <td>
-                  <div className="tableImg d-flex align-items-center">
-                    <img
-                      src="https://api-tradex.nftarttoken.xyz/images/avatars/yellow-hat.png"
-                      alt=""
-                    />
-                    {/* <h4 className="tableImg">
-                      <b>F</b>
-                    </h4> */}
-                    <h5>Chirik34</h5>
-                  </div>
-                  <small className="ml-4">211 orders 99.66% completion</small>
-                </td>
-                <td className="d-flex">
-                  <h5 className="mr-1">0.099</h5> EUR
-                </td>
-                <td>
-                  <div className="d-flex align-items-center">
-                    <small className="mr-2">Available</small>
-                    <h6 className="limitBalance">1.34.00 USDT</h6>
-                  </div>
-                  <div className="d-flex align-items-center">
-                    <small className="mr-2">Limit</small>
-                    <h6 className="limitBalance">$34.00 - $88.98 </h6>
-                  </div>
-                </td>
-                <td>
-                  <span className="badge badge-light">ZEN</span>
-                </td>
-                <td>
-                  <button
-                    onClick={() => setBuyFrom(true)}
-                    className="tableButton">
-                    Buy USDT
-                  </button>
-                </td>
-              </tr>
-              <tr className="tableRow">
-                <td>
-                  <div className="tableImg d-flex align-items-center">
-                    {/* <img
-                      src="https://api-tradex.nftarttoken.xyz/images/avatars/yellow-hat.png"
-                      alt=""
-                    /> */}
-                    <h4 className="tableImg">
-                      <b>S</b>
                     </h4>
                     <h5>Chirik34</h5>
                   </div>

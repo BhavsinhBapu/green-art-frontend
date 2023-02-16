@@ -51,7 +51,7 @@ export const UserProfileHeader = () => {
               <div className="d-flex align-items-center">
                 <p>Negative</p>
                 <span className=" badge-danger px-2 ml-2 h4 mb-0 rounded">
-                  0 
+                  0
                 </span>
               </div>
             </div>

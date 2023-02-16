@@ -74,11 +74,7 @@ export const AddPostThree = ({ setAddSteep }: any) => {
           <button onClick={() => setAddSteep("steepTwo")} className=" py-2">
             Previous
           </button>
-          <button
-            onClick={() => setAddSteep("steepTwo")}
-            className=" py-2 buySellBoxActive ml-2">
-            Post
-          </button>
+          <button className=" py-2 buySellBoxActive ml-2">Post</button>
         </div>
       </div>
     </div>
