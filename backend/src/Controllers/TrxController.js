@@ -343,15 +343,19 @@ async function getTrxConfirmedTransaction(req, res) {
         const response = await tronWeb.trx.getTransactionInfo(txId);
         console.log(response);
         if (response) {
-            res.json({
-                status: true,
-                message: 'Get transaction success',
-               data: {
-                    hash: response,
-                    gas_used: parseFloat(tronWeb.fromSun(response.fee)),
-                    txID: response.id
-                }
-            });
+          const contractAddress = req.body.contract_address;
+          const contract = await tronWeb.contract().at(contractAddress);
+          
+
+          res.json({
+            status: true,
+            message: "Get transaction success",
+            data: {
+              hash: response,
+              gas_used: parseFloat(tronWeb.fromSun(response.fee)),
+              txID: response.id,
+            },
+          });
         } else {
             res.json({
                 status: false,
