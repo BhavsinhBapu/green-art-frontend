@@ -5,6 +5,7 @@ const {contractJson} = require("../../src/ContractAbiJson");
 const { contract_decimals,customFromWei,customToWei } = require("../Heplers/helper");
 const trc20Token = require("./TrcTokenController");
 const trxToken = require("./TrxController");
+const abi = require('web3-eth-abi');
 
 // ERC20_TOKEN = 4
 // BEP20_TOKEN = 5
@@ -422,7 +423,7 @@ async function getDataByTransactionHash(req, res)
         if (parseInt(networkType) == 6) {
             await trxToken.getTrxConfirmedTransaction(req, res);
         } else {
-            const response = await getHashTransaction(network,hash);
+            const response = await getERC20tokenTransactionDetails(req);
             res.send({
                 status: response.status,
                 message: response.message,
@@ -437,6 +438,64 @@ async function getDataByTransactionHash(req, res)
         })
     }
 
+}
+
+// get erc20 token transaction data
+async function getERC20tokenTransactionDetails(req)
+{ 
+    try {
+        const network = req.headers.chainlinks;
+        const hash = req.body.transaction_hash;
+        const web3 = new Web3(network);
+
+        const response = await web3.eth.getTransaction(hash);
+        console.log(response);
+        if (response) {
+          let contractJsons = contractJson();
+          let tokenAddress = req.body.contract_address;
+          // Decode the input data using the ERC20 token ABI
+            const contract = new web3.eth.Contract(contractJsons, tokenAddress);
+          const types = ["address", "uint256"];
+
+          // Decode the input data using the types of the function arguments
+          const input = web3.eth.abi.decodeParameters(
+            types,
+            response.input.substring(10)
+          );
+            console.log(input);
+          // The amount of tokens transferred is the second parameter
+            let amount = input[1];
+            let toAddress = input[0];
+            const tokenDecimal = await getContractDecimal(contract);
+
+            amount = customFromWei(amount, tokenDecimal);
+          return {
+            status: true,
+            message: "Get transaction success",
+            data: {
+              hash: response,
+              gas_used: response.gas / response.gasPrice,
+              txID: response.hash,
+              amount: amount,
+              toAddress: toAddress,
+              fromAddress: response.from,
+            },
+          };
+        } else {
+            return {
+                status: false,
+                message: "Get transaction failed",
+                data: {},
+            };
+        }
+    } catch (err) {
+        console.log(err);
+        return {
+            status: false,
+            message: String(err),
+            data: {},
+        };
+    }
 }
 
 async function getHashTransaction(network,hash)

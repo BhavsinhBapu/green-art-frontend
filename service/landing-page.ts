@@ -7,6 +7,13 @@ export const landingPage = (locale: any) => {
     },
   });
 };
+export const landingPageSlug = (locale: any, slug: string) => {
+  return request.get(`/landing?slug=${slug}`, {
+    headers: {
+      lang: locale,
+    },
+  });
+};
 
 export const customPage = () => {
   return request.get("/custom-pages");

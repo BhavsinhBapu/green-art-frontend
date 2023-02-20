@@ -17,7 +17,7 @@ import {
   knowledgebaseSupportProjectList,
   supportTicketList,
 } from "service/knowledgebase";
-import { customPage, landingPage } from "service/landing-page";
+import { customPage, landingPage, landingPageSlug } from "service/landing-page";
 
 const Support = () => {
   const [fullDashboar, setFullDashboard] = useState<any>();
@@ -207,7 +207,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   }
   return {
     props: {
-      socialData: data.media_list,
+      socialData: data?.media_list ? data?.media_list : [],
     },
   };
 };
