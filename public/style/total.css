@@ -13216,9 +13216,9 @@ input {
 }
 
 .paymentMethodSubBox {
-  border: 1px solid var(--border-color-2);
+  border: 1px solid var(--border-color) !important;
   padding: 8px 22px;
-  border-radius: 4px;
+  border-radius: 8px !important;
   border: none;
   color: var(--text-primary-color-1);
   padding: 8px 22px;
