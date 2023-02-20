@@ -20,8 +20,7 @@ const Index = ({}: any) => {
 
   const getIt = async () => {
     setLoading(true);
-    const { FeaturedBlogs, RecentBlogs, Categories } =
-      await BlogHomePageAction();
+    const { FeaturedBlogs, RecentBlogs, Categories } = await BlogHomePageAction();
     setfeaturedBlogs(FeaturedBlogs.data);
     setRecentBlogState(RecentBlogs.data.data);
     setcategories(Categories.data);
