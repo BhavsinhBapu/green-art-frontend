@@ -80,7 +80,7 @@ const PaypalSection = ({ currencyList, walletlist, method_id }: any) => {
                       <div className="form-amount">
                         <input
                           type="number"
-                          className="form-control"
+                          className="form-control border-0"
                           id="amount-one"
                           placeholder={t("Please enter 1-2400000")}
                           onChange={(e) => {
@@ -103,7 +103,7 @@ const PaypalSection = ({ currencyList, walletlist, method_id }: any) => {
             <div className="swap-area">
               <div className="swap-area-top">
                 <div className="form-group">
-                  <div className="swap-wrap">
+                  <div className="swap-wrap mt-3">
                     <div className="swap-wrap-top">
                       <label>{t("Converted amount")}</label>
                       <span className="available">{t("Select wallet")}</span>
@@ -112,7 +112,7 @@ const PaypalSection = ({ currencyList, walletlist, method_id }: any) => {
                       <div className="form-amount">
                         <input
                           type="number"
-                          className="form-control"
+                          className="form-control border-0"
                           id="amount-one"
                           disabled
                           value={calculatedValue.calculated_amount}
@@ -127,15 +127,14 @@ const PaypalSection = ({ currencyList, walletlist, method_id }: any) => {
                       </div>
                       <div className="cp-select-area">
                         <select
-                          className="form-control "
+                          className="form-control border-0 ticketFilterBg"
                           id="currency-one"
                           onChange={(e) => {
                             setCredential({
                               ...credential,
                               wallet_id: e.target.value,
                             });
-                          }}
-                        >
+                          }}>
                           <option value="" selected disabled hidden>
                             {t("Select one")}
                           </option>
