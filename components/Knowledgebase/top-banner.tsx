@@ -2,8 +2,11 @@ import { Search } from "components/common/search";
 import Link from "next/link";
 import { useState } from "react";
 import { knowledgebaseArticleSearchAction } from "state/actions/knowlegdgbase";
+import OutsideClickHandler from "react-outside-click-handler";
 
 export const TopBanner = ({ resorce }: any) => {
+  const [suggestions, setSuggestions] = useState(true);
+
   const [lists, setLists] = useState([]);
   return (
     <section
@@ -27,41 +30,46 @@ export const TopBanner = ({ resorce }: any) => {
             </h1>
           </div>
           <div className="col-md-6 mx-auto pb-5">
-            <form>
-              <div className="input-group my-3 mx-auto pb-5">
-                <div className="d-flex w-100 rounded top_search">
-                  <input
-                    className="w-100 px-2 py-2 rounded-pill border-0"
-                    type="text"
-                    name="notes"
-                    onChange={(e: any) => {
-                      knowledgebaseArticleSearchAction(
-                        e.target.value,
-                        setLists
-                      );
-                    }}
-                  />
-                  {/* <button
+            <OutsideClickHandler onOutsideClick={() => setSuggestions(false)}>
+              <form>
+                <div className="input-group my-3 mx-auto pb-5">
+                  <div className="d-flex w-100 rounded top_search">
+                    <input
+                      className="w-100 px-2 py-2 rounded-pill border-0"
+                      type="text"
+                      name="notes"
+                      onChange={(e: any) => {
+                        knowledgebaseArticleSearchAction(
+                          e.target.value,
+                          setLists
+                        );
+                        setSuggestions(true);
+                      }}
+                    />
+                    {/* <button
                     className="border-0 px-4 btn-secondary rounded-r"
                     type="submit"
                   >
                     <i className="fa fa-search" aria-hidden="true"></i>
                   </button> */}
-                </div>
+                  </div>
 
-                <div
-                  className="search-filter ps-1 rounded"
-                  id="append-search-result">
-                  {lists.map((list: any, index: number) => (
-                    <Link
-                      key={index}
-                      href={"/knowledgebase/" + list.unique_code}>
-                      <a href="">{list?.title}</a>
-                    </Link>
-                  ))}
+                  {suggestions && (
+                    <div
+                      className="search-filter ps-1 rounded"
+                      id="append-search-result">
+                      {lists.map((list: any, index: number) => (
+                        <Link
+                          key={index}
+                          href={"/knowledgebase/" + list.unique_code}>
+                          <a href="">{list?.title}</a>
+                        </Link>
+                      ))}
+                    </div>
+                  )}
                 </div>
-              </div>
-            </form>
+              </form>
+            </OutsideClickHandler>
           </div>
         </div>
       </div>

@@ -3,9 +3,7 @@ import SliderCover from "components/Blog/SliderCover";
 import TabSection from "components/Blog/TabSection";
 import Footer from "components/common/footer";
 import { Search } from "components/common/search";
-import {
-  pageAvailabilityCheck,
-} from "middlewares/ssr-authentication-check";
+import { pageAvailabilityCheck } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
 import React, { useEffect, useState } from "react";
 import { getBlogNewsSettings } from "service/news";
