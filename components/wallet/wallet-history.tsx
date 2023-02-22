@@ -96,23 +96,21 @@ const Wallethistory = ({ type }: any) => {
     <>
       <div className="page-wrap rightMargin mt-5">
         <div className="page-main-content">
-          <div className="container-fluid">
+          <div className="container-fluid px-0">
             <div className="asset-balances-area">
               {processing ? (
                 <Loading />
               ) : (
                 <div className="asset-balances-left">
-                  <div className="section-wrapper wallet-border-history">
+                  <div className="section-wrapper wallet-border-history rounded">
                     <div className="table-responsive tableScroll">
                       <div
                         id="assetBalances_wrapper"
-                        className="dataTables_wrapper no-footer"
-                      >
+                        className="dataTables_wrapper no-footer">
                         <div className="dataTables_head">
                           <div
                             className="dataTables_length"
-                            id="assetBalances_length"
-                          >
+                            id="assetBalances_length">
                             <label className="">
                               {t("Show")}
                               <select
@@ -130,8 +128,7 @@ const Wallethistory = ({ type }: any) => {
                                     setProcessing,
                                     setStillHistory
                                   );
-                                }}
-                              >
+                                }}>
                                 <option value="10">10</option>
                                 <option value="25">25</option>
                                 <option value="50">50</option>
@@ -169,8 +166,7 @@ const Wallethistory = ({ type }: any) => {
                       {history?.length > 0 && (
                         <div
                           className="pagination-wrapper"
-                          id="assetBalances_paginate"
-                        >
+                          id="assetBalances_paginate">
                           <span>
                             {stillHistory?.histories?.links.map(
                               (link: any, index: number) =>
@@ -181,16 +177,14 @@ const Wallethistory = ({ type }: any) => {
                                       if (link.url)
                                         LinkTopaginationString(link);
                                     }}
-                                    key={index}
-                                  >
+                                    key={index}>
                                     <i className="fa fa-angle-left"></i>
                                   </a>
                                 ) : link.label === "Next &raquo;" ? (
                                   <a
                                     className="paginate-button"
                                     onClick={() => LinkTopaginationString(link)}
-                                    key={index}
-                                  >
+                                    key={index}>
                                     <i className="fa fa-angle-right"></i>
                                   </a>
                                 ) : (
@@ -201,8 +195,7 @@ const Wallethistory = ({ type }: any) => {
                                     aria-controls="assetBalances"
                                     data-dt-idx="1"
                                     onClick={() => LinkTopaginationString(link)}
-                                    key={index}
-                                  >
+                                    key={index}>
                                     {link.label}
                                   </a>
                                 )

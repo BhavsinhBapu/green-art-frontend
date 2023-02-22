@@ -94,13 +94,11 @@ const MyWallet: NextPage = () => {
                 <div className="section-wrapper boxShadow">
                   <div
                     id="assetBalances_wrapper"
-                    className="dataTables_wrapper no-footer"
-                  >
+                    className="dataTables_wrapper no-footer">
                     <div className="dataTables_head">
                       <div
                         className="dataTables_length"
-                        id="assetBalances_length"
-                      >
+                        id="assetBalances_length">
                         <label className="">
                           {t("Show")}
                           <select
@@ -111,8 +109,7 @@ const MyWallet: NextPage = () => {
                               await getWalletLists(
                                 "/wallet-list?page=1&per_page=" + e.target.value
                               );
-                            }}
-                          >
+                            }}>
                             <option value="15">15</option>
                             <option value="25">25</option>
                             <option value="50">50</option>
@@ -147,8 +144,7 @@ const MyWallet: NextPage = () => {
                     <div className="table-responsive tableScroll">
                       <table
                         id="assetBalances"
-                        className="table table-borderless secendary-table asset-balances-table"
-                      >
+                        className="table table-borderless secendary-table asset-balances-table">
                         <thead>
                           <tr>
                             <th scope="col">{t("Asset")}</th>
@@ -228,8 +224,7 @@ const MyWallet: NextPage = () => {
                                   <ul>
                                     {item.is_deposit === 1 && (
                                       <Link
-                                        href={`/user/my-wallet/deposit?type=deposit&coin_id=${item.id}`}
-                                      >
+                                        href={`/user/my-wallet/deposit?type=deposit&coin_id=${item.id}`}>
                                         <li className="toolTip" title="Deposit">
                                           <HiOutlineBanknotes size={25} />
                                         </li>
@@ -237,12 +232,10 @@ const MyWallet: NextPage = () => {
                                     )}
                                     {item.is_withdrawal === 1 && (
                                       <Link
-                                        href={`/user/my-wallet/withdraw?type=withdraw&coin_id=${item.id}`}
-                                      >
+                                        href={`/user/my-wallet/withdraw?type=withdraw&coin_id=${item.id}`}>
                                         <li
                                           className="toolTip"
-                                          title="Withdraw"
-                                        >
+                                          title="Withdraw">
                                           <IoWalletOutline size={25} />
                                         </li>
                                       </Link>
@@ -255,8 +248,7 @@ const MyWallet: NextPage = () => {
                                         handleActive(
                                           tradeList ? null : index + 1
                                         )
-                                      }
-                                    >
+                                      }>
                                       <HiOutlinePresentationChartLine
                                         size={25}
                                       />
@@ -271,8 +263,7 @@ const MyWallet: NextPage = () => {
                                     {parseInt(settings?.swap_status) === 1 &&
                                       (Changeable.length >= 2 ? (
                                         <Link
-                                          href={`/user/swap-coin?coin_id=${item.id}`}
-                                        >
+                                          href={`/user/swap-coin?coin_id=${item.id}`}>
                                           <li className="toolTip" title="swap">
                                             <TiArrowRepeat size={25} />
                                           </li>
@@ -285,8 +276,7 @@ const MyWallet: NextPage = () => {
                                             toast.error(
                                               "Two coins are required to swap"
                                             );
-                                          }}
-                                        >
+                                          }}>
                                           <TiArrowRepeat size={25} />
                                         </li>
                                       ))}
@@ -301,24 +291,21 @@ const MyWallet: NextPage = () => {
                   )}
                   <div
                     className="pagination-wrapper"
-                    id="assetBalances_paginate"
-                  >
+                    id="assetBalances_paginate">
                     <span>
                       {walletList?.links?.map((link: any, index: number) =>
                         link.label === "&laquo; Previous" ? (
                           <a
                             className="paginate-button"
                             onClick={() => LinkTopaginationString(link)}
-                            key={index}
-                          >
+                            key={index}>
                             <i className="fa fa-angle-left"></i>
                           </a>
                         ) : link.label === "Next &raquo;" ? (
                           <a
                             className="paginate-button"
                             onClick={() => LinkTopaginationString(link)}
-                            key={index}
-                          >
+                            key={index}>
                             <i className="fa fa-angle-right"></i>
                           </a>
                         ) : (
@@ -329,8 +316,7 @@ const MyWallet: NextPage = () => {
                             aria-controls="assetBalances"
                             data-dt-idx="1"
                             onClick={() => LinkTopaginationString(link)}
-                            key={index}
-                          >
+                            key={index}>
                             {link.label}
                           </a>
                         )

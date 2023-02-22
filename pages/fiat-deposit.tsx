@@ -83,9 +83,9 @@ const Deposit = () => {
               </div>
 
               <div className="asset-balances-area">
-                <div className="section-wrapper boxShadow bank-section">
+                <div className="section-wrapper bank-section">
                   <div className="container">
-                    <div className="deposit-conatiner">
+                    <div className="deposit-conatiner boxShadow">
                       {selectedMethod.method && (
                         <div className="cp-user-title">
                           <h4>{t("Select method")}</h4>
@@ -106,8 +106,7 @@ const Deposit = () => {
                               fullScreen === false
                                 ? "col-lg-8 col-sm-12"
                                 : "col-lg-12 col-sm-12"
-                            }`}
-                          >
+                            }`}>
                             {!loading && !selectedMethod.method ? (
                               <div className="cp-user-title text-center  p-5">
                                 <h4>{t("No Avaiable payment method")}</h4>

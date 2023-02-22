@@ -63,18 +63,17 @@ const FiatWithdrawal = () => {
             </div>
 
             <div className="asset-balances-area">
-              <div className="section-wrapper boxShadow bank-section">
+              <div className="section-wrapper bank-section">
                 <div className="container">
                   <div className="row">
-                    <div className="ico-tokenCreate">
+                    <div className="ico-tokenCreate boxShadow">
                       <div className="ico-create-form col-12">
                         <form
                           className="row"
                           onSubmit={(e) => {
                             e.preventDefault();
                             fiatWithdrawProcessAction(rateCred, setLoading);
-                          }}
-                        >
+                          }}>
                           <div className="col-md-6 form-input-div">
                             <label className="ico-label-box" htmlFor="">
                               {t("Select Wallet")}
@@ -88,8 +87,7 @@ const FiatWithdrawal = () => {
                                   ...rateCred,
                                   wallet_id: e.target.value,
                                 });
-                              }}
-                            >
+                              }}>
                               <option value="">
                                 {t("Select Your Wallet")}
                               </option>
@@ -115,8 +113,7 @@ const FiatWithdrawal = () => {
                                   ...rateCred,
                                   currency: e.target.value,
                                 });
-                              }}
-                            >
+                              }}>
                               <option value="">{t("Select Currency")}</option>
                               {initialData?.currency?.map(
                                 (item: any, index: number) => (
@@ -185,8 +182,7 @@ const FiatWithdrawal = () => {
                                   ...rateCred,
                                   bank_id: e.target.value,
                                 });
-                              }}
-                            >
+                              }}>
                               <option value="">{t("Select Bank List")}</option>
                               {initialData?.my_bank?.map(
                                 (item: any, index: number) => (

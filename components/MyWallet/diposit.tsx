@@ -27,7 +27,7 @@ export const DipositComponent = ({
   }, [responseData?.data[0]]);
   return (
     <div className={fullPage ? "col-md-7  no-sidebar" : `col-md-7`}>
-      <div className="single-wallet boxShadow">
+      <div className="single-wallet boxShadow rounded">
         <div className={`box-one single-box visible`}>
           <div className="">
             <Link href="/user/my-wallet">
@@ -73,8 +73,7 @@ export const DipositComponent = ({
                         );
                         setDependecy(Math.random() * 100);
                         setSelectedNetwork(findObje);
-                      }}
-                    >
+                      }}>
                       {responseData?.data?.map((item: any, index: number) => (
                         <option value={item.id} key={index}>
                           {item?.network_name}
@@ -110,16 +109,24 @@ export const DipositComponent = ({
                   <div className="wallet-bar-code">
                     {responseData?.address &&
                       responseData?.wallet.coin_type !== "USDT" && (
-                        <QRCode value={responseData?.address} size={150} />
+                        <QRCode
+                          className="qrCodeBg rounded"
+                          value={responseData?.address}
+                          size={150}
+                        />
                       )}
 
                     {selectedNetwork?.address &&
                       responseData?.wallet.coin_type === "USDT" && (
-                        <QRCode value={selectedNetwork?.address} size={150} />
+                        <QRCode
+                          className="qrCodeBg rounded"
+                          value={selectedNetwork?.address}
+                          size={150}
+                        />
                       )}
 
                     <div className="copy-box">
-                      <div className="input-url input-copy">
+                      <div className="input-url input-copy mt-4">
                         {selectedNetwork?.address ? (
                           <>
                             <input
@@ -150,8 +157,7 @@ export const DipositComponent = ({
                                     : responseData?.address
                                 );
                                 selectAddressCopy?.current?.select();
-                              }}
-                            >
+                              }}>
                               <i className="fa fa-clone"></i>
                             </span>
                           </>
@@ -168,7 +174,7 @@ export const DipositComponent = ({
                                 selectAddressCopy?.current.select();
                               }}
                               ref={selectAddressCopy}
-                              className="address-box address-copy-box"
+                              className="border-0 address-copy-box ml-3"
                               type="text"
                               value={responseData?.address}
                             />
@@ -178,8 +184,7 @@ export const DipositComponent = ({
                               onClick={() => {
                                 copyTextById(responseData?.address);
                                 selectAddressCopy?.current?.select();
-                              }}
-                            >
+                              }}>
                               <i className="fa fa-clone"></i>
                             </span>
                           </>
@@ -187,8 +192,7 @@ export const DipositComponent = ({
                           <p
                             ref={selectAddressCopy}
                             id="url-copy"
-                            className="address-box"
-                          >
+                            className="address-box">
                             {t("No address found!")}
                           </p>
                         )}
@@ -209,8 +213,7 @@ export const DipositComponent = ({
                           setSelectedNetwork,
                           setDependecy
                         );
-                      }}
-                    >
+                      }}>
                       {t("Get address")}
                     </button>
                   )}

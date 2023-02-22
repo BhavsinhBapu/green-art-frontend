@@ -5389,6 +5389,7 @@ select:-webkit-autofill:focus {
     align-items: center;
     justify-content: flex-start;
     font-size: 22px;
+    cursor: pointer;
 }
 
 .page-left-sidebar .sidebar-top .left-menu li:last-child {
@@ -5640,8 +5641,8 @@ select:-webkit-autofill:focus {
 }
 
 .user-profile .user-thumbnail img {
-    width: 198px;
-    height: 198px;
+    width: 158px;
+    height: 158px;
     border-radius: 50%;
     object-fit: cover;
 }
@@ -5732,7 +5733,7 @@ select:-webkit-autofill:focus {
 
 .user-profile-form .form-group .form-control {
     width: 100%;
-    height: 65px;
+    height: 52px;
     padding: 10px 20px;
     border: 1px solid var(--border-color);
     border-radius: 3px;
@@ -6024,7 +6025,7 @@ table.dataTable tbody tr.dataTable-white td {
 
 .invite-friends .input-group .form-control {
     width: 100%;
-    height: 70px;
+    height: 56px;
     border-radius: 5px;
     border: 1px solid var(--primary-color);
     background: transparent;
@@ -10829,7 +10830,7 @@ input[type="number"] {
     display: flex;
     /* background-color: var(--main-background-color); */
     padding: 30px 20px;
-    /* border-radius: 10px; */
+    border-radius: 8px;
     /* box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px; */
     border: 1px solid;
     border-color: var(--border-color-1);
@@ -10965,6 +10966,7 @@ input[type="number"] {
     border: none;
     outline: none;
     cursor: pointer;
+    background-color: transparent !important;
 }
 
 .referel-inputfield {
@@ -11230,6 +11232,7 @@ input[type="number"] {
 .boxShadow {
     /* box-shadow: var(--box-shadow-color) 0px 0px 0px 2px; */
     border: 1px solid var(--border-color);
+    border-radius: 8px !important;
 }
 
 .nav-userName {
@@ -11351,7 +11354,7 @@ input[type="number"] {
     align-items: center;
     justify-content: space-between;
     background: var(--main-background-color);
-    padding: 20px 20px;
+    padding: 15px;
     border-radius: 5px;
     border: 1px solid var(--border-color);
 }
@@ -11411,6 +11414,7 @@ input[type="number"] {
     padding: 0;
     justify-content: center;
     margin: 0 auto;
+    border: 2px solid var(--border-color-1);
 }
 
 .input-copy .cp-button {
@@ -11798,6 +11802,7 @@ input[type="number"] {
 
 .wallet-border-history {
     border: 1px solid var(--border-color-1);
+    border-radius: 8px !important;
 }
 
 .notificationNotFound {
@@ -12709,4 +12714,9 @@ input {
 
 .swapSelect option {
     background-color: var(--card-background-color);
+}
+
+.qrCodeBg {
+    background-color: #ffff;
+    padding: 10px;
 }

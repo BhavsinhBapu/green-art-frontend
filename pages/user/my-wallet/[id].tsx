@@ -148,12 +148,12 @@ const DeposiAndWithdraw = ({ withdrawFaq, depositFaq }: any) => {
             )}
             {/* {fullPage ? "true" : "false"} */}
             {fullPage === false && (
-              <div className="col-md-5 faq-wallet-section">
+              <div className="col-md-5 mt-4 mt-md-0">
                 {parseInt(settings.withdrawal_faq_status) === 1 &&
                   router.query.id === MY_WALLET_WITHDRAW_TYPE &&
                   faqs?.length > 0 && (
                     <div className={`box-one single-box visible mb-25`}>
-                      <div className="section-wrapper boxShadow">
+                      <div className="section-wrapper boxShadow rounded">
                         <FAQ faqs={faqs} type={router.query.id} />
                       </div>
                     </div>
@@ -162,7 +162,7 @@ const DeposiAndWithdraw = ({ withdrawFaq, depositFaq }: any) => {
                   router.query.id === MY_WALLET_DEPOSIT_TYPE &&
                   faqs?.length > 0 && (
                     <div className={`box-one single-box visible mb-25`}>
-                      <div className="section-wrapper boxShadow">
+                      <div className="section-wrapper boxShadow rounded">
                         <FAQ faqs={faqs} type={router.query.id} />
                       </div>
                     </div>
@@ -181,8 +181,7 @@ const DeposiAndWithdraw = ({ withdrawFaq, depositFaq }: any) => {
                           (item: any, index: number) => (
                             <div
                               key={`progress${index}`}
-                              className={"timeLineLists"}
-                            >
+                              className={"timeLineLists"}>
                               <div
                                 className={`${
                                   getProcessData?.data?.progress_status_list
@@ -190,8 +189,7 @@ const DeposiAndWithdraw = ({ withdrawFaq, depositFaq }: any) => {
                                   index + 1
                                     ? "timeLineIcon removeBeforeCSS"
                                     : "timeLineIcon"
-                                }`}
-                              >
+                                }`}>
                                 <i className="fa-sharp fa-solid fa-circle-check active"></i>
                               </div>
                               <div className="progressContent">
@@ -244,7 +242,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
       user: response.user,
       withdrawFaq: withdrawFaq,
       depositFaq: depositFaq,
-   
     },
   };
 };

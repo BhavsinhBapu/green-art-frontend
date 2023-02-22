@@ -71,7 +71,7 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
 
   return (
     <div className={fullPage ? "col-md-7 no-sidebar" : `col-md-7 `}>
-      <div className="single-wallet boxShadow">
+      <div className="single-wallet boxShadow rounded">
         <div className="box-two single-box visible">
           <div className="">
             <Link href="/user/my-wallet">
@@ -118,8 +118,7 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
                               (x: any) => x.id === parseInt(e.target.value)
                             );
                             setSelectedNetwork(findObje);
-                          }}
-                        >
+                          }}>
                           {responseData?.data?.map(
                             (item: any, index: number) => (
                               <option value={item.id} key={index}>
@@ -149,7 +148,7 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
                     <div className="input-group input-address-bar">
                       <input
                         type="text"
-                        className="form-control"
+                        className="form-control border-0 h-50"
                         id="address"
                         name="address"
                         placeholder={t("Address")}
@@ -175,7 +174,7 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
                       <div className="input-group input-address-bar">
                         <input
                           type="text"
-                          className="form-control "
+                          className="form-control border-0 h-50"
                           id="amountWithdrawal"
                           name="amount"
                           placeholder={t("AMOUNT TO WITHDRAW")}
@@ -234,7 +233,7 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
                 {parseInt(settings.two_factor_withdraw) === 1 ? (
                   <button
                     type="button"
-                    className="withdraw-btn"
+                    className="withdraw-btn mt-4"
                     data-target="#exampleModal"
                     disabled={
                       withdrawalCredentials.address === "" ||
@@ -247,17 +246,15 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
                         status: false,
                         message: "",
                       });
-                    }}
-                  >
+                    }}>
                     {t("Withdraw")}
                   </button>
                 ) : (
                   <button
-                    className="primary-btn-outline w-100"
+                    className="primary-btn-outline w-100 mt-4"
                     type="button"
                     disabled={errorMessage.status === true}
-                    onClick={handleSubmit}
-                  >
+                    onClick={handleSubmit}>
                     {t("Withdraw")}
                   </button>
                 )}
