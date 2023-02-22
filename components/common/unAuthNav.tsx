@@ -47,26 +47,28 @@ const UnAuthNav = ({ logo }: any) => {
                   <li
                     onClick={() => {
                       darkModeToggle(settings, setTheme);
-                    }}
-                  >
-                    {/* <BsFillMoonFill /> */}
-                    {theme === 0 ? (
-                      <>
-                        <BsFillSunFill size={20} className="mr-2" />
-                        {t("Light")}
-                      </>
-                    ) : (
-                      <>
-                        <BsFillMoonFill size={14} className="mr-2" />
-                        {t("Dark")}
-                      </>
-                    )}
+                    }}>
+                    <a href="">
+                      {theme === 0 ? (
+                        <>
+                          <BsFillSunFill size={20} className="mr-2" />
+                          {t("Light")}
+                        </>
+                      ) : (
+                        <>
+                          <BsFillMoonFill size={14} className="mr-2" />
+                          {t("Dark")}
+                        </>
+                      )}
+                    </a>
                   </li>
                   <li>
                     <a className="flex" href="#" aria-expanded="true">
                       <IoLanguageSharp />
 
-                      <span className="ml-2">{router.locale?.toLocaleUpperCase()}</span>
+                      <span className="ml-2">
+                        {router.locale?.toLocaleUpperCase()}
+                      </span>
                     </a>
                     <ul className="lang-list">
                       {settings?.LanguageList?.map((item: any, index: any) => (
