@@ -93,8 +93,7 @@ const Home: NextPage = ({
                 dangerouslySetInnerHTML={{
                   // __html: clean(details.description),
                   __html: landing?.page_builder_landing_data,
-                }}
-              ></div>
+                }}></div>
             </div>
           ) : (
             <>
@@ -120,8 +119,7 @@ const Home: NextPage = ({
                                 ? `/${router.locale}/authentication/signup`
                                 : "/authentication/signup"
                             }
-                            className="primary-btn"
-                          >
+                            className="primary-btn">
                             {t("Register Now")}
                           </a>
                         )}
@@ -165,8 +163,7 @@ const Home: NextPage = ({
                                   xmlns="http://www.w3.org/2000/svg"
                                   viewBox="0 0 24 24"
                                   fill="none"
-                                  className="mirror css-1w66k1s"
-                                >
+                                  className="mirror css-1w66k1s">
                                   <path
                                     d="M12.867 18.47l5.13-.94L15.517 4l-5.18.95-3.25 3.94-4.85.89.5 2.71-1.97.36.36 1.97 1.97-.36.44 2.42 1.97-.36.79 4.28 1.97-.36-.79-4.28.98-.18 4.41 2.49zm-5.76-4.28l-1.97.36-.58-3.17 3.61-.66 3.25-3.92 2.5-.46 1.76 9.59-2.46.45-4.4-2.51-1.71.32zM22.871 8.792l-2.99.55.362 1.967 2.99-.55-.362-1.967zM19.937 13.183l-1.135 1.647 2.503 1.725 1.135-1.646-2.503-1.726zM19.006 4.052l-1.725 2.503 1.646 1.135 1.726-2.503-1.647-1.135z"
                                     fill="currentColor"
@@ -193,8 +190,7 @@ const Home: NextPage = ({
                       <ul
                         className="nav nav-tabs"
                         id="exchangeTab"
-                        role="tablist"
-                      >
+                        role="tablist">
                         <li className="nav-item" role="presentation">
                           <a
                             className="nav-link active"
@@ -203,8 +199,7 @@ const Home: NextPage = ({
                             href="#CoreAssets"
                             role="tab"
                             aria-controls="CoreAssets"
-                            aria-selected="true"
-                          >
+                            aria-selected="true">
                             {t("Core Assets")}
                           </a>
                         </li>
@@ -216,8 +211,7 @@ const Home: NextPage = ({
                             href="#Gainers"
                             role="tab"
                             aria-controls="Gainers"
-                            aria-selected="false"
-                          >
+                            aria-selected="false">
                             {t("24H Gainers")}
                           </a>
                         </li>
@@ -229,8 +223,7 @@ const Home: NextPage = ({
                             href="#Listings"
                             role="tab"
                             aria-controls="Listings"
-                            aria-selected="false"
-                          >
+                            aria-selected="false">
                             {t("New Listings")}
                           </a>
                         </li>
@@ -241,20 +234,17 @@ const Home: NextPage = ({
                         className="tab-pane fade show active"
                         id="CoreAssets"
                         role="tabpanel"
-                        aria-labelledby="CoreAssets-tab"
-                      >
+                        aria-labelledby="CoreAssets-tab">
                         <div className="exchange-volume-table">
                           <div className="table-responsive">
                             <div
                               id="DataTables_Table_0_wrapper"
-                              className="dataTables_wrapper no-footer"
-                            >
+                              className="dataTables_wrapper no-footer">
                               <table
                                 className="table table-borderless dataTable no-footer"
                                 id="DataTables_Table_0"
                                 role="grid"
-                                aria-describedby="DataTables_Table_0_info"
-                              >
+                                aria-describedby="DataTables_Table_0_info">
                                 <thead>
                                   <tr role="row">
                                     <th
@@ -262,8 +252,7 @@ const Home: NextPage = ({
                                       className="sorting_disabled"
                                       rowSpan={1}
                                       colSpan={1}
-                                      style={{ width: "137.516px" }}
-                                    >
+                                      style={{ width: "137.516px" }}>
                                       {t("Market")}
                                     </th>
                                     <th
@@ -271,8 +260,7 @@ const Home: NextPage = ({
                                       className="sorting_disabled"
                                       rowSpan={1}
                                       colSpan={1}
-                                      style={{ width: "81.2812px" }}
-                                    >
+                                      style={{ width: "81.2812px" }}>
                                       {t("Price")}
                                     </th>
                                     <th
@@ -280,8 +268,7 @@ const Home: NextPage = ({
                                       className="sorting_disabled"
                                       rowSpan={1}
                                       colSpan={1}
-                                      style={{ width: "193.797px" }}
-                                    >
+                                      style={{ width: "193.797px" }}>
                                       {t("Change (24h)")}
                                     </th>
                                     <th
@@ -289,8 +276,7 @@ const Home: NextPage = ({
                                       className="sorting_disabled"
                                       rowSpan={1}
                                       colSpan={1}
-                                      style={{ width: "182.297px" }}
-                                    >
+                                      style={{ width: "182.297px" }}>
                                       {t("Chart")}
                                     </th>
                                     <th
@@ -298,8 +284,7 @@ const Home: NextPage = ({
                                       className="sorting_disabled"
                                       rowSpan={1}
                                       colSpan={1}
-                                      style={{ width: "207.766px" }}
-                                    >
+                                      style={{ width: "207.766px" }}>
                                       {t("Volume")}
                                     </th>
                                     <th
@@ -307,8 +292,7 @@ const Home: NextPage = ({
                                       className="sorting_disabled"
                                       rowSpan={1}
                                       colSpan={1}
-                                      style={{ width: "127.344px" }}
-                                    >
+                                      style={{ width: "127.344px" }}>
                                       {t("Actions")}
                                     </th>
                                   </tr>
@@ -319,8 +303,7 @@ const Home: NextPage = ({
                                       <tr
                                         role="row"
                                         className="odd"
-                                        key={index}
-                                      >
+                                        key={index}>
                                         <td className="d-flex">
                                           <img
                                             className="icon mr-3"
@@ -351,8 +334,7 @@ const Home: NextPage = ({
                                               parseFloat(item.price_change) >= 0
                                                 ? "text-success"
                                                 : "text-danger"
-                                            } `}
-                                          >
+                                            } `}>
                                             {item.price_change}%
                                           </span>
                                         </td>
@@ -388,16 +370,14 @@ const Home: NextPage = ({
                                                 "_" +
                                                 item?.parent_coin_name
                                             );
-                                          }}
-                                        >
+                                          }}>
                                           <a
                                             href={
                                               router.locale !== "en"
                                                 ? `/${router.locale}/exchange/dashboard`
                                                 : "/exchange/dashboard"
                                             }
-                                            className="btnTrade btn-link"
-                                          >
+                                            className="btnTrade btn-link">
                                             {t("Trade")}
                                           </a>
                                         </td>
@@ -414,20 +394,17 @@ const Home: NextPage = ({
                         className="tab-pane fade"
                         id="Gainers"
                         role="tabpanel"
-                        aria-labelledby="Gainers-tab"
-                      >
+                        aria-labelledby="Gainers-tab">
                         <div className="exchange-volume-table">
                           <div className="table-responsive">
                             <div
                               id="DataTables_Table_1_wrapper"
-                              className="dataTables_wrapper no-footer"
-                            >
+                              className="dataTables_wrapper no-footer">
                               <table
                                 className="table table-borderless dataTable no-footer"
                                 id="DataTables_Table_1"
                                 role="grid"
-                                aria-describedby="DataTables_Table_1_info"
-                              >
+                                aria-describedby="DataTables_Table_1_info">
                                 <thead>
                                   <tr role="row">
                                     <th
@@ -435,8 +412,7 @@ const Home: NextPage = ({
                                       className="sorting_disabled"
                                       rowSpan={1}
                                       colSpan={1}
-                                      style={{ width: "0px" }}
-                                    >
+                                      style={{ width: "0px" }}>
                                       {t("Market")}
                                     </th>
                                     <th
@@ -444,8 +420,7 @@ const Home: NextPage = ({
                                       className="sorting_disabled"
                                       rowSpan={1}
                                       colSpan={1}
-                                      style={{ width: "0px" }}
-                                    >
+                                      style={{ width: "0px" }}>
                                       {t("Price")}
                                     </th>
                                     <th
@@ -453,8 +428,7 @@ const Home: NextPage = ({
                                       className="sorting_disabled"
                                       rowSpan={1}
                                       colSpan={1}
-                                      style={{ width: "0px" }}
-                                    >
+                                      style={{ width: "0px" }}>
                                       {t("Change (24h)")}
                                     </th>
                                     <th
@@ -462,8 +436,7 @@ const Home: NextPage = ({
                                       className="sorting_disabled"
                                       rowSpan={1}
                                       colSpan={1}
-                                      style={{ width: "0px" }}
-                                    >
+                                      style={{ width: "0px" }}>
                                       {t("Chart")}
                                     </th>
                                     <th
@@ -471,8 +444,7 @@ const Home: NextPage = ({
                                       className="sorting_disabled"
                                       rowSpan={1}
                                       colSpan={1}
-                                      style={{ width: "0px" }}
-                                    >
+                                      style={{ width: "0px" }}>
                                       {t("Volume")}
                                     </th>
                                     <th
@@ -480,8 +452,7 @@ const Home: NextPage = ({
                                       className="sorting_disabled"
                                       rowSpan={1}
                                       colSpan={1}
-                                      style={{ width: "0px" }}
-                                    >
+                                      style={{ width: "0px" }}>
                                       {t("Actions")}
                                     </th>
                                   </tr>
@@ -492,8 +463,7 @@ const Home: NextPage = ({
                                       <tr
                                         role="row"
                                         className="odd"
-                                        key={index}
-                                      >
+                                        key={index}>
                                         <td className="d-flex">
                                           <img
                                             className="icon mr-3"
@@ -524,8 +494,7 @@ const Home: NextPage = ({
                                               parseFloat(item.price_change) >= 0
                                                 ? "text-success"
                                                 : "text-danger"
-                                            } `}
-                                          >
+                                            } `}>
                                             {item.price_change}%
                                           </span>
                                         </td>
@@ -561,12 +530,10 @@ const Home: NextPage = ({
                                                 "_" +
                                                 item?.parent_coin_name
                                             );
-                                          }}
-                                        >
+                                          }}>
                                           <a
                                             href="/exchange/dashboard"
-                                            className="btnTrade btn-link"
-                                          >
+                                            className="btnTrade btn-link">
                                             {t("Trade")}
                                           </a>
                                         </td>
@@ -583,20 +550,17 @@ const Home: NextPage = ({
                         className="tab-pane fade"
                         id="Listings"
                         role="tabpanel"
-                        aria-labelledby="Listings-tab"
-                      >
+                        aria-labelledby="Listings-tab">
                         <div className="exchange-volume-table">
                           <div className="table-responsive">
                             <div
                               id="DataTables_Table_2_wrapper"
-                              className="dataTables_wrapper no-footer"
-                            >
+                              className="dataTables_wrapper no-footer">
                               <table
                                 className="table table-borderless dataTable no-footer"
                                 id="DataTables_Table_2"
                                 role="grid"
-                                aria-describedby="DataTables_Table_2_info"
-                              >
+                                aria-describedby="DataTables_Table_2_info">
                                 <thead>
                                   <tr role="row">
                                     <th
@@ -604,8 +568,7 @@ const Home: NextPage = ({
                                       className="sorting_disabled"
                                       rowSpan={1}
                                       colSpan={1}
-                                      style={{ width: "0px" }}
-                                    >
+                                      style={{ width: "0px" }}>
                                       {t("Market")}
                                     </th>
                                     <th
@@ -613,8 +576,7 @@ const Home: NextPage = ({
                                       className="sorting_disabled"
                                       rowSpan={1}
                                       colSpan={1}
-                                      style={{ width: "0px" }}
-                                    >
+                                      style={{ width: "0px" }}>
                                       {t("Price")}
                                     </th>
                                     <th
@@ -622,8 +584,7 @@ const Home: NextPage = ({
                                       className="sorting_disabled"
                                       rowSpan={1}
                                       colSpan={1}
-                                      style={{ width: "0px" }}
-                                    >
+                                      style={{ width: "0px" }}>
                                       {t("Change (24h)")}
                                     </th>
                                     <th
@@ -631,8 +592,7 @@ const Home: NextPage = ({
                                       className="sorting_disabled"
                                       rowSpan={1}
                                       colSpan={1}
-                                      style={{ width: "0px" }}
-                                    >
+                                      style={{ width: "0px" }}>
                                       {t("Chart")}
                                     </th>
                                     <th
@@ -640,8 +600,7 @@ const Home: NextPage = ({
                                       className="sorting_disabled"
                                       rowSpan={1}
                                       colSpan={1}
-                                      style={{ width: "0px" }}
-                                    >
+                                      style={{ width: "0px" }}>
                                       {t("Volume")}
                                     </th>
                                     <th
@@ -649,8 +608,7 @@ const Home: NextPage = ({
                                       className="sorting_disabled"
                                       rowSpan={1}
                                       colSpan={1}
-                                      style={{ width: "0px" }}
-                                    >
+                                      style={{ width: "0px" }}>
                                       {t("Actions")}
                                     </th>
                                   </tr>
@@ -661,8 +619,7 @@ const Home: NextPage = ({
                                       <tr
                                         role="row"
                                         className="odd"
-                                        key={index}
-                                      >
+                                        key={index}>
                                         <td className="d-flex">
                                           <img
                                             className="icon mr-3"
@@ -693,8 +650,7 @@ const Home: NextPage = ({
                                               parseFloat(item.price_change) >= 0
                                                 ? "text-success"
                                                 : "text-danger"
-                                            } `}
-                                          >
+                                            } `}>
                                             {item.price_change}%
                                           </span>
                                         </td>
@@ -730,12 +686,10 @@ const Home: NextPage = ({
                                                 "_" +
                                                 item?.parent_coin_name
                                             );
-                                          }}
-                                        >
+                                          }}>
                                           <a
                                             href="/exchange/dashboard"
-                                            className="btnTrade btn-link"
-                                          >
+                                            className="btnTrade btn-link">
                                             {t("Trade")}
                                           </a>
                                         </td>
@@ -779,8 +733,7 @@ const Home: NextPage = ({
                                   <li className="single-item">
                                     <a
                                       href={landing?.apple_store_link}
-                                      className="item-link"
-                                    >
+                                      className="item-link">
                                       <img
                                         className="icon"
                                         src="/apple-logo.png"
@@ -808,8 +761,7 @@ const Home: NextPage = ({
                                   <li className="single-item">
                                     <a
                                       href={landing?.macos_store_link}
-                                      className="item-link"
-                                    >
+                                      className="item-link">
                                       <img
                                         className="icon"
                                         src="/command-symbol.png"
@@ -824,8 +776,7 @@ const Home: NextPage = ({
                                   <li className="single-item">
                                     <a
                                       href={landing?.windows_store_link}
-                                      className="item-link"
-                                    >
+                                      className="item-link">
                                       <img
                                         className="icon"
                                         src="/windows.png"
@@ -840,8 +791,7 @@ const Home: NextPage = ({
                                   <li className="single-item">
                                     <a
                                       href={landing?.windows_store_link}
-                                      className="item-link"
-                                    >
+                                      className="item-link">
                                       <img
                                         className="icon"
                                         src="/linux.png"
@@ -856,8 +806,7 @@ const Home: NextPage = ({
                                   <li className="single-item">
                                     <a
                                       href={landing?.api_link}
-                                      className="item-link"
-                                    >
+                                      className="item-link">
                                       <img
                                         className="icon"
                                         src="/api.png"
@@ -991,8 +940,7 @@ const Home: NextPage = ({
                           router.locale !== "en"
                             ? `/${router.locale}/exchange/dashboard`
                             : "/exchange/dashboard"
-                        }
-                      >
+                        }>
                         <a className="primary-btn">{t("Trade Now")}</a>
                       </a>
                     </div>
@@ -1008,8 +956,7 @@ const Home: NextPage = ({
           <a
             id="scrollUp"
             href="#top"
-            style={{ position: "fixed", zIndex: 2147483647, display: "none" }}
-          >
+            style={{ position: "fixed", zIndex: 2147483647, display: "none" }}>
             <i className="fa fa-angle-up" />
           </a>
           <div id="vanillatoasts-container" />

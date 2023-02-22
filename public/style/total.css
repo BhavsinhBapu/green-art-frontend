@@ -710,6 +710,7 @@ ul {
 
 .cp-user-sidebar-menu ul li a .cp-user-name {
     margin-left: 10px;
+    /* color: var(--text-primary-color); */
 }
 
 .cp-user-active-page>a:after {
