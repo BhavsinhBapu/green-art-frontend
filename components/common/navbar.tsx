@@ -23,7 +23,7 @@ import UnAuthNav from "./unAuthNav";
 import { checkThemeState, darkModeToggle } from "helpers/functions";
 
 const Navbar = () => {
-  const { isLoggedIn, user, logo } = useSelector(
+  const { isLoggedIn, isLoading, user, logo } = useSelector(
     (state: RootState) => state.user
   );
   const [theme, setTheme] = useState(0);
@@ -1400,8 +1400,10 @@ const Navbar = () => {
             </div>
           </OutsideClickHandler>
         </>
-      ) : (
+      ) : !isLoggedIn && isLoading === false ? (
         <UnAuthNav logo={logo} />
+      ) : (
+        ""
       )}
     </>
   );
