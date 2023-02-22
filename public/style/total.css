@@ -5550,6 +5550,7 @@ select:-webkit-autofill:focus {
     padding: 80px;
     padding-top: 150px;
     padding-bottom: 150px;
+    /* border: 1px solid var(--border-color); */
 }
 
 @keyframes animloader2 {

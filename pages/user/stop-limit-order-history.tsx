@@ -6,7 +6,7 @@ import {
   AllStopLimitOrdersHistoryAction,
   handleSearchItems,
 } from "state/actions/reports";
-import TableLoading from "components/common/SectionLoading";
+import SectionLoading from "components/common/SectionLoading";
 import useTranslation from "next-translate/useTranslation";
 import moment from "moment";
 import DataTable from "react-data-table-component";
@@ -146,7 +146,7 @@ const BuyOrderHistory: NextPage = ({
 
             <div className="asset-balances-area">
               {processing ? (
-                <TableLoading />
+                <SectionLoading />
               ) : (
                 <div className="asset-balances-left">
                   <div className="section-wrapper boxShadow ">
