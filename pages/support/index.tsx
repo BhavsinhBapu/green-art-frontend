@@ -3,7 +3,7 @@ import PaginationGlobal from "components/Pagination/PaginationGlobal";
 import { SupportCard } from "components/Support/support-card";
 import { TicketBox } from "components/Support/ticket-box";
 import { TicketFilter } from "components/Support/ticket-filter";
-import { CustomLoading } from "components/common/CustomLoading";
+import SectionLoading from "components/common/SectionLoading";
 import Footer from "components/common/footer";
 import SupportSidebar from "layout/supportSidebar";
 import {
@@ -161,7 +161,7 @@ const Support = () => {
                       FilterDashboardData={FilterDashboardData}
                     />
                     {loading ? (
-                      <CustomLoading />
+                      <SectionLoading />
                     ) : (
                       <>
                         <div className="row mt-5">

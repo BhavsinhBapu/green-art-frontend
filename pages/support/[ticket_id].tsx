@@ -1,7 +1,7 @@
 import { SupportChat } from "components/Support/support-chat";
 import { TicketNote } from "components/Support/ticket-note";
 import { TicketUserInfo } from "components/Support/ticket-user-info";
-import { CustomLoading } from "components/common/CustomLoading";
+import SectionLoading from "components/common/SectionLoading";
 import { setsupportChat, setSupportico } from "state/reducer/user";
 
 import {
@@ -107,7 +107,7 @@ const SupportTicketDetails = () => {
             <section className="my-5">
               <div className="container">
                 {loading === true ? (
-                  <CustomLoading />
+                  <SectionLoading />
                 ) : (
                   <div className="row">
                     <SupportChat

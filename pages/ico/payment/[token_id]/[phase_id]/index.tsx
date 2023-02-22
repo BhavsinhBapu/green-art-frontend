@@ -1,4 +1,4 @@
-import ScaletonLoading from "components/common/ScaletonLoading";
+import SectionLoading from "components/common/SectionLoading";
 
 import SelectDeposit from "components/deposit/selectDeposit";
 import LaunchPad from "components/ico/LaunchPad";
@@ -96,7 +96,7 @@ const Index = () => {
                     {pageInfo?.payment_methods?.length > 0 && (
                       <div className="row">
                         {loading ? (
-                          <ScaletonLoading />
+                          <SectionLoading />
                         ) : (
                           <div className={`col-sm-12`}>
                             {parseInt(selectedMethod.method) ===
