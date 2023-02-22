@@ -1,6 +1,6 @@
 import { KnowledgeCard } from "components/Knowledgebase/knowledge-card";
 import { TopBanner } from "components/Knowledgebase/top-banner";
-import { CustomLoading } from "components/common/CustomLoading";
+import SectionLoading from "components/common/SectionLoading";
 import Footer from "components/common/footer";
 import {
   SSRAuthCheck,
@@ -27,7 +27,7 @@ const Knowledgebase = ({ resorce }: any) => {
           {loading ? (
             <div className="row mt-5 pt-5">
               <div className="col-12">
-                <CustomLoading />
+                <SectionLoading />
               </div>
             </div>
           ) : (

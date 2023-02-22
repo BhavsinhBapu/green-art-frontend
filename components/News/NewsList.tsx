@@ -1,10 +1,9 @@
 import { formateData } from "common";
 import { NoItemFound } from "components/NoItemFound/NoItemFound";
-import TableLoading from "components/common/SectionLoading";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import { getNewsByCategoryApi } from "service/news";
-import { CustomLoading } from "components/common/CustomLoading";
+import SectionLoading from "components/common/SectionLoading";
 
 export const NewsList = ({
   recentNewsData,
@@ -51,7 +50,7 @@ export const NewsList = ({
         <div className="d-flex justify-content-center col-12 mb-5 ">
           {loading ? (
             <div className="newsLoadingContainer">
-              <CustomLoading />
+              <SectionLoading />
             </div>
           ) : (
             <div className="">

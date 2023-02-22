@@ -1,4 +1,4 @@
-import DynamicLoading from "components/common/dynamicLoading";
+import SectionLoading from "components/common/SectionLoading";
 import Footer from "components/common/footer";
 import LaunchpadSidebar from "layout/launchpad-sidebar";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
@@ -98,7 +98,7 @@ const Withdraw = () => {
                   </div>
                   {loading ? (
                     <div className="mt-4">
-                      <DynamicLoading count={5} width={"100%"} />
+                      <SectionLoading />
                     </div>
                   ) : (
                     <form onSubmit={withDrawMoneyApi}>
