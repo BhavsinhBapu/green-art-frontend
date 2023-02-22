@@ -5,10 +5,7 @@ const Loading = () => {
   const { t } = useTranslation("common");
   return (
     <div className="preloder-area">
-      <div className="spinner-border" role="status">
-        <span className="sr-only">{t("Loading")}...</span>
-      </div>
-      <span>{t("Loading")}...</span>
+      <span className="loader"></span>
     </div>
   );
 };

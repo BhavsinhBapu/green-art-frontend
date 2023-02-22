@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import { IoWalletOutline } from "react-icons/io5";
 import { TiArrowRepeat } from "react-icons/ti";
 import { getMyTokenBalanceAction } from "state/actions/launchpad";
-import Loading from "components/common/TableLoading";
+import Loading from "components/common/SectionLoading";
 import useTranslation from "next-translate/useTranslation";
 import Footer from "components/common/footer";
 import { customPage, landingPage } from "service/landing-page";

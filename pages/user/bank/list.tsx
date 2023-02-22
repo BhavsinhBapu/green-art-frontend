@@ -1,6 +1,6 @@
 import { formatCurrency } from "common";
 import Footer from "components/common/footer";
-import TableLoading from "components/common/TableLoading";
+import TableLoading from "components/common/SectionLoading";
 import ProfileSidebar from "layout/profile-sidebar";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import moment from "moment";
@@ -55,7 +55,6 @@ const List = () => {
                 <AiOutlineEdit size={20} />
               </span>
             </Link>
-         
           </div>
         </td>
       ),

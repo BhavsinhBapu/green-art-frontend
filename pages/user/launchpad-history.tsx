@@ -1,4 +1,4 @@
-import TableLoading from "components/common/TableLoading";
+import TableLoading from "components/common/SectionLoading";
 import ReportSidebar from "layout/report-sidebar";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";

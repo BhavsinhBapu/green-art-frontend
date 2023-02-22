@@ -1,6 +1,6 @@
 import { formateData } from "common";
 import { NoItemFound } from "components/NoItemFound/NoItemFound";
-import TableLoading from "components/common/TableLoading";
+import TableLoading from "components/common/SectionLoading";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import { getNewsByCategoryApi } from "service/news";
@@ -40,7 +40,8 @@ export const NewsList = ({
                   }`}
                   onClick={() => {
                     getNewsByCategory(category?.id);
-                  }}>
+                  }}
+                >
                   {category?.title}
                 </li>
               ))}

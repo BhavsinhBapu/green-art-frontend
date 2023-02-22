@@ -14,7 +14,7 @@ import {
   SearchObjectArrayFuesJS,
   WalletListApiAction,
 } from "state/actions/wallet";
-import Loading from "components/common/TableLoading";
+import Loading from "components/common/SectionLoading";
 import Link from "next/link";
 import useTranslation from "next-translate/useTranslation";
 import { useSelector } from "react-redux";
@@ -22,7 +22,6 @@ import { RootState } from "state/store";
 import { TradeList } from "components/TradeList";
 import { appDashboardDataWithoutPair } from "service/exchange";
 import Footer from "components/common/footer";
-import { customPage, landingPage } from "service/landing-page";
 const MyWallet: NextPage = () => {
   const { t } = useTranslation("common");
   const { settings } = useSelector((state: RootState) => state.common);
@@ -142,10 +141,10 @@ const MyWallet: NextPage = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="table-responsive tableScroll">
-                    {processing ? (
-                      <Loading />
-                    ) : (
+                  {processing ? (
+                    <Loading />
+                  ) : (
+                    <div className="table-responsive tableScroll">
                       <table
                         id="assetBalances"
                         className="table table-borderless secendary-table asset-balances-table"
@@ -298,8 +297,8 @@ const MyWallet: NextPage = () => {
                           ))}
                         </tbody>
                       </table>
-                    )}
-                  </div>
+                    </div>
+                  )}
                   <div
                     className="pagination-wrapper"
                     id="assetBalances_paginate"

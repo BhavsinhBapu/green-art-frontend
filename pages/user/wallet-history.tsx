@@ -11,11 +11,9 @@ import { useRouter } from "next/router";
 import useTranslation from "next-translate/useTranslation";
 import moment from "moment";
 import Footer from "components/common/footer";
-import { customPage, landingPage } from "service/landing-page";
-import { useRef } from "react";
 import { toast } from "react-toastify";
 import { BiCopy } from "react-icons/bi";
-import { CustomLoading } from "components/common/CustomLoading";
+import SectionLoading from "components/common/SectionLoading";
 const DepositHistory: NextPage = () => {
   const router = useRouter();
   const { type } = router.query;
@@ -141,18 +139,20 @@ const DepositHistory: NextPage = () => {
 
             <div className="asset-balances-area">
               {processing ? (
-                <CustomLoading />
+                <SectionLoading />
               ) : (
                 <div className="asset-balances-left">
                   <div className="section-wrapper boxShadow">
                     <div className="table-responsive tableScroll">
                       <div
                         id="assetBalances_wrapper"
-                        className="dataTables_wrapper no-footer">
+                        className="dataTables_wrapper no-footer"
+                      >
                         <div className="dataTables_head">
                           <div
                             className="dataTables_length"
-                            id="assetBalances_length">
+                            id="assetBalances_length"
+                          >
                             <label className="">
                               {t("Show")}
                               <select
@@ -170,7 +170,8 @@ const DepositHistory: NextPage = () => {
                                     setProcessing,
                                     setStillHistory
                                   );
-                                }}>
+                                }}
+                              >
                                 <option value="10">10</option>
                                 <option value="25">25</option>
                                 <option value="50">50</option>
@@ -208,7 +209,8 @@ const DepositHistory: NextPage = () => {
                       {history?.length > 0 && (
                         <div
                           className="pagination-wrapper"
-                          id="assetBalances_paginate">
+                          id="assetBalances_paginate"
+                        >
                           <span>
                             {stillHistory?.histories?.links.map(
                               (link: any, index: number) =>
@@ -219,14 +221,16 @@ const DepositHistory: NextPage = () => {
                                       if (link.url)
                                         LinkTopaginationString(link);
                                     }}
-                                    key={index}>
+                                    key={index}
+                                  >
                                     <i className="fa fa-angle-left"></i>
                                   </a>
                                 ) : link.label === "Next &raquo;" ? (
                                   <a
                                     className="paginate-button"
                                     onClick={() => LinkTopaginationString(link)}
-                                    key={index}>
+                                    key={index}
+                                  >
                                     <i className="fa fa-angle-right"></i>
                                   </a>
                                 ) : (
@@ -237,7 +241,8 @@ const DepositHistory: NextPage = () => {
                                     aria-controls="assetBalances"
                                     data-dt-idx="1"
                                     onClick={() => LinkTopaginationString(link)}
-                                    key={index}>
+                                    key={index}
+                                  >
                                     {link.label}
                                   </a>
                                 )

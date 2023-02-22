@@ -4,7 +4,7 @@ import {
   WithdrawAndDepositHistoryAction,
   handleSearch,
 } from "state/actions/reports";
-import Loading from "components/common/TableLoading";
+import Loading from "components/common/SectionLoading";
 import { useRouter } from "next/router";
 import useTranslation from "next-translate/useTranslation";
 import moment from "moment";
@@ -121,7 +121,9 @@ const Wallethistory = ({ type }: any) => {
                                 className=""
                                 onChange={(e) => {
                                   WithdrawAndDepositHistoryAction(
-                                    type === "withdrawal" ? "withdraw" : "deposit",
+                                    type === "withdrawal"
+                                      ? "withdraw"
+                                      : "deposit",
                                     parseInt(e.target.value),
                                     1,
                                     setHistory,
