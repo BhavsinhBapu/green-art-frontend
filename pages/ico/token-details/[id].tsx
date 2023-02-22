@@ -8,7 +8,7 @@ import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { customPage, landingPage } from "service/landing-page";
 import { parseCookies } from "nookies";
 import Footer from "components/common/footer";
-import DynamicLoading from "components/common/dynamicLoading";
+import SectionLoading from "components/common/SectionLoading";
 
 export default function SingleLaunchPadPage({
   customPageData,
@@ -29,7 +29,7 @@ export default function SingleLaunchPadPage({
   return (
     <>
       {loading ? (
-        <DynamicLoading count={13} width={"60%"} />
+        <SectionLoading />
       ) : (
         <>
           <Breadcrumb leftButton={true} leftUrl="/ico" />
