@@ -700,7 +700,7 @@ ul {
 }
 
 .cp-user-sidebar-menu ul li.cp-user-active-page a {
-    color: var(--text-primary-color);
+    color: var(--primary-color) !important;
 }
 
 .cp-user-sidebar-menu ul li:hover>a .cp-user-icon .cp-user-side-bar-icon-hover,
