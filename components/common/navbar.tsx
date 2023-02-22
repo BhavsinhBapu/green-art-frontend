@@ -60,6 +60,7 @@ const Navbar = () => {
       document.body.classList.remove("rtl-style");
     }
   }, [router.locale]);
+
   return (
     <>
       {isLoggedIn ? (

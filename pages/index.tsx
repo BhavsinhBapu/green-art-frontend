@@ -932,7 +932,9 @@ const Home: NextPage = ({
                     <div className="trading-button text-center">
                       {!loggedin && (
                         <Link href="/authentication/signup">
-                          <a className="primary-btn mr-5">{t("Sign Up")}</a>
+                          <a className="primary-btn mr-0 mr-sm-5">
+                            {t("Sign Up")}
+                          </a>
                         </Link>
                       )}
                       <a
