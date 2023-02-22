@@ -14,7 +14,7 @@ import { currencyDeposit } from "service/deposit";
 import SelectDeposit from "components/deposit/selectDeposit";
 import DepositFaq from "components/deposit/DepositFaq";
 import PaypalSection from "components/deposit/PaypalSection";
-import ScaletonLoading from "components/common/ScaletonLoading";
+import SectionLoading from "components/common/SectionLoading";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
 import { getFaqList } from "service/faq";
@@ -99,7 +99,7 @@ const Deposit = () => {
                       />
                       <div className="row">
                         {loading ? (
-                          <ScaletonLoading />
+                          <SectionLoading />
                         ) : (
                           <div
                             className={`${
@@ -150,7 +150,7 @@ const Deposit = () => {
                           </div>
                         )}
 
-                        {fullScreen === false && (
+                        {fullScreen === false && loading === false && (
                           <div className="col-lg-4 col-sm-12 mt-4">
                             <DepositFaq faqs={faqs} />
                           </div>

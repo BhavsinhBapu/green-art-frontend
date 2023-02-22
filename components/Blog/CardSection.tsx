@@ -1,13 +1,13 @@
 import React from "react";
 import BlogCard from "./Card";
 import { NoItemFound } from "components/NoItemFound/NoItemFound";
-import { CustomLoading } from "components/common/CustomLoading";
+import SectionLoading from "components/common/SectionLoading";
 
 const CardSection = ({ blogs, loading }: any) => {
   return (
     <div className="mb-5">
       {loading ? (
-        <CustomLoading />
+        <SectionLoading />
       ) : (
         <>
           <div className="row">
