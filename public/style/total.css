@@ -5561,6 +5561,8 @@ select:-webkit-autofill:focus {
     padding: 80px;
     padding-top: 150px;
     padding-bottom: 150px;
+    /* background-color: var(--background-color-hover); */
+    border-radius: 30px;
     /* border: 1px solid var(--border-color); */
 }
 
@@ -9261,6 +9263,7 @@ table.dataTable.order-column.stripe tbody tr.odd>.sorting_1 {
     background: var(--border-color-1) !important;
     margin-left: 5px;
     margin-right: 5px;
+    border-radius: 6px;
     /* width: 30px;
     height: auto;
     border-radius: 50%;
@@ -9276,8 +9279,10 @@ a.paginate_button.paginate-number:hover {
 }
 
 a.paginate_button.paginate-number.text-warning {
-    background: var(--primary-color) !important;
-    color: var(--text-primary-color-4) !important;
+       background: var(--primary-color) !important;
+    color: gray !important;
+    border-radius: 6px;
+    font-weight: bold;
 }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button.previous,
