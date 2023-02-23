@@ -15,6 +15,7 @@ import {
   fiatWithdrawProcessAction,
   getFiatWithdrawalRateAction,
 } from "state/actions/fiat-deposit-withawal";
+import SectionLoading from "components/common/SectionLoading";
 
 const FiatWithdrawal = () => {
   const { t } = useTranslation("common");
@@ -65,14 +66,18 @@ const FiatWithdrawal = () => {
             <div className="asset-balances-area">
               <div className=" bank-section">
                 <div className="">
-                    <div className="ico-tokenCreate boxShadow">
-                      <div className="ico-create-form col-12">
+                  <div className="ico-tokenCreate boxShadow">
+                    <div className="ico-create-form col-12">
+                      {loading ? (
+                        <SectionLoading />
+                      ) : (
                         <form
                           className="row"
                           onSubmit={(e) => {
                             e.preventDefault();
                             fiatWithdrawProcessAction(rateCred, setLoading);
-                          }}>
+                          }}
+                        >
                           <div className="col-md-6 form-input-div">
                             <label className="ico-label-box" htmlFor="">
                               {t("Select Wallet")}
@@ -86,7 +91,8 @@ const FiatWithdrawal = () => {
                                   ...rateCred,
                                   wallet_id: e.target.value,
                                 });
-                              }}>
+                              }}
+                            >
                               <option value="">
                                 {t("Select Your Wallet")}
                               </option>
@@ -112,7 +118,8 @@ const FiatWithdrawal = () => {
                                   ...rateCred,
                                   currency: e.target.value,
                                 });
-                              }}>
+                              }}
+                            >
                               <option value="">{t("Select Currency")}</option>
                               {initialData?.currency?.map(
                                 (item: any, index: number) => (
@@ -181,7 +188,8 @@ const FiatWithdrawal = () => {
                                   ...rateCred,
                                   bank_id: e.target.value,
                                 });
-                              }}>
+                              }}
+                            >
                               <option value="">{t("Select Bank List")}</option>
                               {initialData?.my_bank?.map(
                                 (item: any, index: number) => (
@@ -198,7 +206,8 @@ const FiatWithdrawal = () => {
                             </button>
                           </div>
                         </form>
-                      </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
