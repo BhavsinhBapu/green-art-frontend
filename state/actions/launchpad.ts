@@ -41,8 +41,10 @@ const checkDisable = (request: any) => {
 export const getLaunchpadListAction = async (
   setLaunchpadRecentItem: any,
   setLaunchpadFeatureItem: any,
-  setLaunchpadUpcomingItem: any
+  setLaunchpadUpcomingItem: any,
+  setLoading: any
 ) => {
+  setLoading(true);
   const response = await getLaunchpadList(3, PHASE_SORT_BY_FEATURED);
   checkDisable(response);
   const recentResponse = await getLaunchpadList(3, PHASE_SORT_BY_RECENT);
@@ -50,6 +52,7 @@ export const getLaunchpadListAction = async (
   setLaunchpadRecentItem(recentResponse.data);
   setLaunchpadFeatureItem(response.data);
   setLaunchpadUpcomingItem(upcomingResponse.data);
+  setLoading(false);
 };
 export const getLaunchpadListPageAction = async (
   setLaunchpadList: any,
