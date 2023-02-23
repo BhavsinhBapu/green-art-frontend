@@ -39,10 +39,10 @@ const UnAuthNav = ({ logo }: any) => {
                     <a href="/exchange/dashboard">{t("Trade")}</a>
                   </li>
                   <li>
-                    <Link href="/authentication/signin">{t("Login")}</Link>
+                    <Link href="/signin">{t("Login")}</Link>
                   </li>
                   <li>
-                    <Link href="/authentication/signup">{t("Sign up")}</Link>
+                    <Link href="/signup">{t("Sign up")}</Link>
                   </li>
                   <li
                     onClick={() => {

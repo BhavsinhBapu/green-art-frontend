@@ -50,7 +50,7 @@ export const VerifyEmailAction =
         progress: undefined,
         className: "dark-toast",
       });
-      Router.push("/authentication/signin");
+      Router.push("/signin");
     } else if (response.success === false) {
       dispatch(setAuthenticationState(false));
       toast.error(responseMessage, {
@@ -85,7 +85,7 @@ export const SigninAction =
       if (response.g2f_enabled === "1") {
         Cookies.set("user-id", response.user.id);
         Cookies.set("g2f_required", "true");
-        Router.push("/authentication/g2f-verify");
+        Router.push("/g2f-verify");
         return;
       }
 
@@ -122,7 +122,7 @@ export const SigninAction =
         className: "dark-toast",
       });
       if (response.email_verified === 0) {
-        Router.push("/authentication/verify-email");
+        Router.push("/verify-email");
       }
     }
     setProcessing(false);
@@ -157,7 +157,7 @@ export const SignupAction =
         progress: undefined,
         className: "dark-toast",
       });
-      Router.push("/authentication/verify-email");
+      Router.push("/verify-email");
     } else if (response.success === false) {
       dispatch(setAuthenticationState(false));
       toast.error(responseMessage, {
@@ -194,7 +194,7 @@ export const ForgotPasswordAction = async (
       progress: undefined,
       className: "dark-toast",
     });
-    Router.push("/authentication/reset-password");
+    Router.push("/reset-password");
   } else {
     toast.error(responseMessage, {
       position: "top-right",
@@ -230,7 +230,7 @@ export const LogoutAction = () => async (dispatch: any) => {
   const currentRoute = Router.pathname;
   const splitRoute = currentRoute.split("/");
   if (splitRoute[1] != "exchange") {
-    Router.replace("/authentication/signin");
+    Router.replace("/signin");
   }
 };
 
@@ -256,7 +256,7 @@ export const ResetPasswordAction = async (
       progress: undefined,
       className: "dark-toast",
     });
-    Router.replace("/authentication/signin");
+    Router.replace("/signin");
   } else {
     toast.error(response.message, {
       position: "top-right",

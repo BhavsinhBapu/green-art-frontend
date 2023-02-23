@@ -17,7 +17,7 @@ const StartTradingNow = ({ landing, loggedin }: any) => {
             </div>
             <div className="trading-button text-center">
               {!loggedin && (
-                <Link href="/authentication/signup">
+                <Link href="/signup">
                   <a className="primary-btn mr-0 mr-sm-5">{t("Sign Up")}</a>
                 </Link>
               )}
