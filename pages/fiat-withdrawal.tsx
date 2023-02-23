@@ -64,8 +64,7 @@ const FiatWithdrawal = () => {
 
             <div className="asset-balances-area">
               <div className="section-wrapper bank-section">
-                <div className="container">
-                  <div className="row">
+                <div className="">
                     <div className="ico-tokenCreate boxShadow">
                       <div className="ico-create-form col-12">
                         <form
@@ -200,7 +199,6 @@ const FiatWithdrawal = () => {
                           </div>
                         </form>
                       </div>
-                    </div>
                   </div>
                 </div>
               </div>
