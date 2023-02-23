@@ -628,7 +628,7 @@ const Navbar = () => {
                             <div className="btn-group dropdown">
                               <button
                                 type="button"
-                                className="btn notification-btn dropdown-toggle"
+                                className="notification-btn dropdown-toggle"
                                 data-toggle="dropdown"
                                 aria-haspopup="true"
                                 aria-expanded="false">

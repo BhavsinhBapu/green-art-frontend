@@ -613,6 +613,11 @@ ul {
     max-width: 19px;
 }
 
+.notification-btn {
+    background: none;
+    border: none;
+}
+
 .cp-user-top-bar-right .hm-notify-number {
     position: absolute;
     top: 2px;
@@ -1254,6 +1259,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>th:first-child:before 
 
 .slider-image-class {
     border-radius: 8px;
+    cursor: pointer;
 }
 
 

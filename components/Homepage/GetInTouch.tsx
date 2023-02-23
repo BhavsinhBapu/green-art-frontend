@@ -6,13 +6,13 @@ const GetInTouch = ({ landing, featureListdata }: any) => {
       {parseInt(landing.landing_sixth_section_status) === 1 && (
         <section className="get-touch-area">
           <div className="container">
-            <div className="section-title">
+            <div className="section-title mb-3">
               <h2 className="title">{landing?.landing_feature_title}</h2>
             </div>
 
             <div className="row">
               {featureListdata?.map((feature: any, index: any) => (
-                <div className="col-lg-3 col-md-6" key={index}>
+                <div className="col-lg-4 col-md-6 mt-4" key={index}>
                   <a href="#" className="single-card">
                     <img
                       className="card-icon"
