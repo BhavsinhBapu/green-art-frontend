@@ -11450,6 +11450,8 @@ input[type="number"] {
 
 .input-address-bar .form-control {
     border: none;
+    background: transparent;
+    color: var(--font-color);
 }
 
 .coin-list-item .coint-flex {
@@ -11878,6 +11880,7 @@ input[type="number"] {
 .wallet-border-history {
     border: 1px solid var(--border-color-1);
     border-radius: 8px !important;
+    margin-bottom: 40px;
 }
 
 .notificationNotFound {
