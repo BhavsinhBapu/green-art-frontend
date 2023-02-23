@@ -1252,6 +1252,10 @@ table.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>th:first-child:before 
     text-transform: capitalize;
 }
 
+.slider-image-class {
+    border-radius: 8px;
+}
+
 
 /* Bank info */
 
@@ -4452,7 +4456,7 @@ select:-webkit-autofill:focus {
     display: block;
     position: absolute;
     width: 200px;
-    background: var(--background-color);
+    background: var(--main-background-color);
     left: 0;
     top: 100%;
     text-align: left;
@@ -11414,7 +11418,7 @@ input[type="number"] {
     padding: 0;
     justify-content: center;
     margin: 0 auto;
-    border: 2px solid var(--border-color-1);
+    border: 1px solid var(--border-color-1);
 }
 
 .input-copy .cp-button {

@@ -191,7 +191,7 @@ const Navbar = () => {
                                 </span>
                               </a>
                             </Link>
-                            <ul className="">
+                            <ul>
                               {navbar?.fiat?.deposit?.status && (
                                 <Link
                                   href={
