@@ -138,7 +138,7 @@ const MyWallet: NextPage = () => {
                       </div>
                     </div>
                   </div>
-                  {processing ? (
+                  {!processing ? (
                     <Loading />
                   ) : (
                     <div className="table-responsive tableScroll">
