@@ -61,38 +61,31 @@ export const DipositComponent = ({
               </div>
 
               <div className="wallet-addres">
-                {responseData?.wallet.coin_type == "USDT" && (
-                  <div className="total-balance">
-                    <h5>{t("Select Network")}</h5>
-                    <select
-                      name="currency"
-                      className="form-control coin-list-item"
-                      onChange={(e) => {
-                        const findObje = responseData?.data?.find(
-                          (x: any) => x.id === parseInt(e.target.value)
-                        );
-                        setDependecy(Math.random() * 100);
-                        setSelectedNetwork(findObje);
-                      }}>
-                      {responseData?.data?.map((item: any, index: number) => (
-                        <option value={item.id} key={index}>
-                          {item?.network_name}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                )}
+                {responseData?.wallet.coin_type == "USDT" &&
+                  parseInt(responseData?.wallet.network) === 1 && (
+                    <div className="total-balance">
+                      <h5>{t("Select Network")}</h5>
+                      <select
+                        name="currency"
+                        className="form-control coin-list-item"
+                        onChange={(e) => {
+                          const findObje = responseData?.data?.find(
+                            (x: any) => x.id === parseInt(e.target.value)
+                          );
+                          setDependecy(Math.random() * 100);
+                          setSelectedNetwork(findObje);
+                        }}
+                      >
+                        {responseData?.data?.map((item: any, index: number) => (
+                          <option value={item.id} key={index}>
+                            {item?.network_name}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  )}
               </div>
-              {responseData?.wallet.coin_type !== "USDT" && (
-                <div className="wallet-addres">
-                  <h5>{t("Network Name")}</h5>
-                  <div className="coin-list-item">
-                    <p className="waring-wallet-text">
-                      {responseData?.deposit?.network_name}
-                    </p>
-                  </div>
-                </div>
-              )}
+            
               <div className="wallet-addres">
                 <h5>{t("Address")}</h5>
                 <div className="coin-list-item">
@@ -107,15 +100,13 @@ export const DipositComponent = ({
               <div className="wallet-addres-generate">
                 <div className="coin-list-item">
                   <div className="wallet-bar-code">
-                    {responseData?.address &&
-                      responseData?.wallet.coin_type !== "USDT" && (
-                        <QRCode
-                          className="qrCodeBg rounded"
-                          value={responseData?.address}
-                          size={150}
-                        />
-                      )}
-
+                    {responseData?.address && (
+                      <QRCode
+                        className="qrCodeBg rounded"
+                        value={responseData?.address}
+                        size={150}
+                      />
+                    )}
                     {selectedNetwork?.address &&
                       responseData?.wallet.coin_type === "USDT" && (
                         <QRCode
@@ -157,12 +148,12 @@ export const DipositComponent = ({
                                     : responseData?.address
                                 );
                                 selectAddressCopy?.current?.select();
-                              }}>
+                              }}
+                            >
                               <i className="fa fa-clone"></i>
                             </span>
                           </>
-                        ) : responseData?.address &&
-                          responseData?.wallet.coin_type !== "USDT" ? (
+                        ) : responseData?.address ? (
                           <>
                             <input
                               onClick={() => {
@@ -184,7 +175,8 @@ export const DipositComponent = ({
                               onClick={() => {
                                 copyTextById(responseData?.address);
                                 selectAddressCopy?.current?.select();
-                              }}>
+                              }}
+                            >
                               <i className="fa fa-clone"></i>
                             </span>
                           </>
@@ -192,7 +184,8 @@ export const DipositComponent = ({
                           <p
                             ref={selectAddressCopy}
                             id="url-copy"
-                            className="address-box">
+                            className="address-box"
+                          >
                             {t("No address found!")}
                           </p>
                         )}
@@ -201,7 +194,8 @@ export const DipositComponent = ({
                   </div>
                 </div>
                 {!selectedNetwork?.address &&
-                  responseData?.wallet.coin_type == "USDT" && (
+                  responseData?.wallet.coin_type == "USDT" &&
+                  parseInt(responseData?.wallet.network)===1 && (
                     <button
                       className=" primary-btn-outline btn-withdraw text-white w-100 mt-4"
                       onClick={() => {
@@ -213,7 +207,8 @@ export const DipositComponent = ({
                           setSelectedNetwork,
                           setDependecy
                         );
-                      }}>
+                      }}
+                    >
                       {t("Get address")}
                     </button>
                   )}
