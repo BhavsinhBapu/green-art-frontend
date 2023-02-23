@@ -83,7 +83,7 @@ const Deposit = () => {
               </div>
 
               <div className="asset-balances-area">
-                <div className="section-wrapper bank-section">
+                <div className=" bank-section">
                   <div className="">
                     <div className="deposit-conatiner boxShadow">
                       {selectedMethod.method && (
