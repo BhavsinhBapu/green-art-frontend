@@ -10,7 +10,7 @@ export const SSRAuthCheck = async (ctx: any, redirect: string) => {
       const profile: any = await GetUserInfoByTokenServer(cookies.token);
       if (profile?.success === false && profile?.g2f_enabled === "1") {
         ctx.res.writeHead(302, {
-          Location: "/authentication/g2f-verify",
+          Location: "/g2f-verify",
         });
         ctx.res.end();
         return;
@@ -18,7 +18,7 @@ export const SSRAuthCheck = async (ctx: any, redirect: string) => {
     } else {
       if (redirect) {
         ctx.res.writeHead(302, {
-          Location: "/authentication/signin" + "?redirect=" + redirect,
+          Location: "/signin" + "?redirect=" + redirect,
         });
         ctx.res.end();
       }
@@ -35,7 +35,7 @@ export const authPageRequireCheck = async (ctx: any) => {
 
       if (profile?.success === false && profile?.g2f_enabled === "1") {
         ctx.res.writeHead(302, {
-          Location: "/authentication/g2f-verify",
+          Location: "/g2f-verify",
         });
         ctx.res.end();
         return;

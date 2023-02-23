@@ -35,8 +35,8 @@ const Cover = ({
                   <a
                     href={
                       router.locale !== "en"
-                        ? `/${router.locale}/authentication/signup`
-                        : "/authentication/signup"
+                        ? `/${router.locale}/signup`
+                        : "/signup"
                     }
                     className="primary-btn"
                   >

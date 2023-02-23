@@ -110,7 +110,7 @@ const DashboardNavbar = () => {
                       href={
                         isLoggedIn === true
                           ? "/user/my-wallet"
-                          : "/authentication/signin"
+                          : "/signin"
                       }
                     >
                       <li
@@ -138,7 +138,7 @@ const DashboardNavbar = () => {
                   {parseInt(settings.launchpad_settings) === 1 &&
                     navbar?.ico?.status && (
                       <Link
-                        href={isLoggedIn ? "/ico" : "/authentication/signin"}
+                        href={isLoggedIn ? "/ico" : "/signin"}
                       >
                         <li
                           className={
@@ -174,7 +174,7 @@ const DashboardNavbar = () => {
                           href={
                             isLoggedIn === true
                               ? "/fiat-deposit"
-                              : "/authentication/signin"
+                              : "/signin"
                           }
                         >
                           <a
@@ -198,7 +198,7 @@ const DashboardNavbar = () => {
                               href={
                                 isLoggedIn
                                   ? "/fiat-deposit"
-                                  : "/authentication/signin"
+                                  : "/signin"
                               }
                             >
                               <li>
@@ -215,7 +215,7 @@ const DashboardNavbar = () => {
                               href={
                                 isLoggedIn
                                   ? "/fiat-withdrawal"
-                                  : "/authentication/signin"
+                                  : "/signin"
                               }
                             >
                               <li
@@ -258,7 +258,7 @@ const DashboardNavbar = () => {
                         href={
                           isLoggedIn
                             ? "/user/wallet-history?type=deposit"
-                            : "/authentication/signin"
+                            : "/signin"
                         }
                       >
                         <a className="arrow-icon" href="#" aria-expanded="true">
@@ -280,7 +280,7 @@ const DashboardNavbar = () => {
                           href={
                             isLoggedIn
                               ? "/user/wallet-history?type=deposit"
-                              : "/authentication/signin"
+                              : "/signin"
                           }
                         >
                           <li
@@ -304,7 +304,7 @@ const DashboardNavbar = () => {
                           href={
                             isLoggedIn
                               ? "/user/wallet-history?type=withdrawal"
-                              : "/authentication/signin"
+                              : "/signin"
                           }
                         >
                           <li
@@ -328,7 +328,7 @@ const DashboardNavbar = () => {
                           href={
                             isLoggedIn
                               ? "/user/swap-history"
-                              : "/authentication/signin"
+                              : "/signin"
                           }
                         >
                           <li
@@ -351,7 +351,7 @@ const DashboardNavbar = () => {
                           href={
                             isLoggedIn
                               ? "/user/buy-order-history"
-                              : "/authentication/signin"
+                              : "/signin"
                           }
                         >
                           <li
@@ -374,7 +374,7 @@ const DashboardNavbar = () => {
                           href={
                             isLoggedIn
                               ? "/user/sell-order-history"
-                              : "/authentication/signin"
+                              : "/signin"
                           }
                         >
                           <li
@@ -397,7 +397,7 @@ const DashboardNavbar = () => {
                           href={
                             isLoggedIn
                               ? "/user/transaction-history"
-                              : "/authentication/signin"
+                              : "/signin"
                           }
                         >
                           <li
@@ -421,7 +421,7 @@ const DashboardNavbar = () => {
                             href={
                               isLoggedIn
                                 ? "/user/currency-deposit-history"
-                                : "/authentication/signin"
+                                : "/signin"
                             }
                           >
                             <li
@@ -445,7 +445,7 @@ const DashboardNavbar = () => {
                           href={
                             isLoggedIn
                               ? "/user/currency-withdraw-history"
-                              : "/authentication/signin"
+                              : "/signin"
                           }
                         >
                           <li
@@ -469,7 +469,7 @@ const DashboardNavbar = () => {
                   {navbar?.myProfile?.status && (
                     <Link
                       href={
-                        isLoggedIn ? "/user/profile" : "/authentication/signin"
+                        isLoggedIn ? "/user/profile" : "/signin"
                       }
                     >
                       <li
@@ -495,7 +495,7 @@ const DashboardNavbar = () => {
                   {navbar?.myReferral?.status && (
                     <Link
                       href={
-                        isLoggedIn ? "/user/referral" : "/authentication/signin"
+                        isLoggedIn ? "/user/referral" : "/signin"
                       }
                     >
                       <li
@@ -533,7 +533,7 @@ const DashboardNavbar = () => {
                         href={
                           isLoggedIn
                             ? "/user/settings"
-                            : "/authentication/signin"
+                            : "/signin"
                         }
                       >
                         <a className="arrow-icon" href="#" aria-expanded="true">
@@ -554,7 +554,7 @@ const DashboardNavbar = () => {
                           href={
                             isLoggedIn
                               ? "/user/settings"
-                              : "/authentication/signin"
+                              : "/signin"
                           }
                         >
                           <li>
@@ -569,7 +569,7 @@ const DashboardNavbar = () => {
                       {navbar?.settings?.faq?.status && (
                         <Link
                           href={
-                            isLoggedIn ? "/user/faq" : "/authentication/signin"
+                            isLoggedIn ? "/user/faq" : "/signin"
                           }
                         >
                           <li
@@ -888,7 +888,7 @@ const DashboardNavbar = () => {
                                 href={
                                   isLoggedIn
                                     ? "/user/my-wallet"
-                                    : "/authentication/signin"
+                                    : "/signin"
                                 }
                               >
                                 <li>
@@ -899,7 +899,7 @@ const DashboardNavbar = () => {
                                 href={
                                   isLoggedIn
                                     ? "/user/swap-coin"
-                                    : "/authentication/signin"
+                                    : "/signin"
                                 }
                               >
                                 <li>
@@ -935,7 +935,7 @@ const DashboardNavbar = () => {
                                 href={
                                   isLoggedIn
                                     ? "/user/wallet-history?type=deposit"
-                                    : "/authentication/signin"
+                                    : "/signin"
                                 }
                               >
                                 <li>
@@ -946,7 +946,7 @@ const DashboardNavbar = () => {
                                 href={
                                   isLoggedIn
                                     ? "/user/wallet-history?type=withdrawal"
-                                    : "/authentication/signin"
+                                    : "/signin"
                                 }
                               >
                                 <li>
@@ -957,7 +957,7 @@ const DashboardNavbar = () => {
                                 href={
                                   isLoggedIn
                                     ? "/user/swap-history"
-                                    : "/authentication/signin"
+                                    : "/signin"
                                 }
                               >
                                 <li>
@@ -968,7 +968,7 @@ const DashboardNavbar = () => {
                                 href={
                                   isLoggedIn
                                     ? "/user/buy-order-history"
-                                    : "/authentication/signin"
+                                    : "/signin"
                                 }
                               >
                                 <li>
@@ -979,7 +979,7 @@ const DashboardNavbar = () => {
                                 href={
                                   isLoggedIn
                                     ? "/user/sell-order-history"
-                                    : "/authentication/signin"
+                                    : "/signin"
                                 }
                               >
                                 <li>
@@ -990,7 +990,7 @@ const DashboardNavbar = () => {
                                 href={
                                   isLoggedIn
                                     ? "/user/transaction-history"
-                                    : "/authentication/signin"
+                                    : "/signin"
                                 }
                               >
                                 <li>
@@ -1026,7 +1026,7 @@ const DashboardNavbar = () => {
                                 href={
                                   isLoggedIn
                                     ? "/user/profile"
-                                    : "/authentication/signin"
+                                    : "/signin"
                                 }
                               >
                                 <li>
@@ -1037,7 +1037,7 @@ const DashboardNavbar = () => {
                                 href={
                                   isLoggedIn
                                     ? "/user/edit-profile"
-                                    : "/authentication/signin"
+                                    : "/signin"
                                 }
                               >
                                 <li>
@@ -1048,7 +1048,7 @@ const DashboardNavbar = () => {
                                 href={
                                   isLoggedIn
                                     ? "/user/phone-verification"
-                                    : "/authentication/signin"
+                                    : "/signin"
                                 }
                               >
                                 <li>
@@ -1059,7 +1059,7 @@ const DashboardNavbar = () => {
                                 href={
                                   isLoggedIn
                                     ? "/user/security"
-                                    : "/authentication/signin"
+                                    : "/signin"
                                 }
                               >
                                 <li>
@@ -1070,7 +1070,7 @@ const DashboardNavbar = () => {
                                 href={
                                   isLoggedIn
                                     ? "/user/verification-list"
-                                    : "/authentication/signin"
+                                    : "/signin"
                                 }
                               >
                                 <li>
@@ -1081,7 +1081,7 @@ const DashboardNavbar = () => {
                                 href={
                                   isLoggedIn
                                     ? "/user/personal-verification"
-                                    : "/authentication/signin"
+                                    : "/signin"
                                 }
                               >
                                 <li>
@@ -1092,7 +1092,7 @@ const DashboardNavbar = () => {
                                 href={
                                   isLoggedIn
                                     ? "/user/change-password"
-                                    : "/authentication/signin"
+                                    : "/signin"
                                 }
                               >
                                 <li>
@@ -1147,7 +1147,7 @@ const DashboardNavbar = () => {
                                 href={
                                   isLoggedIn
                                     ? "/user/settings"
-                                    : "/authentication/signin"
+                                    : "/signin"
                                 }
                               >
                                 <li>
@@ -1158,7 +1158,7 @@ const DashboardNavbar = () => {
                                 href={
                                   isLoggedIn
                                     ? "/user/faq"
-                                    : "/authentication/signin"
+                                    : "/signin"
                                 }
                               >
                                 <li>

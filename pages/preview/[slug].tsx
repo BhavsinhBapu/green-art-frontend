@@ -124,8 +124,8 @@ const Home: NextPage = ({
                           <a
                             href={
                               router.locale !== "en"
-                                ? `/${router.locale}/authentication/signup`
-                                : "/authentication/signup"
+                                ? `/${router.locale}/signup`
+                                : "/signup"
                             }
                             className="primary-btn"
                           >
@@ -989,7 +989,7 @@ const Home: NextPage = ({
                     </div>
                     <div className="trading-button text-center">
                       {!loggedin && (
-                        <Link href="/authentication/signup">
+                        <Link href="/signup">
                           <a className="primary-btn mr-5">{t("Sign Up")}</a>
                         </Link>
                       )}
