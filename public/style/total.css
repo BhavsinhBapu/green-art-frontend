@@ -395,7 +395,7 @@ p {
     width: 350px;
     background: var(--background-color);
     color: var(--text-primary-color-2);
-    border: 1px solid var(--border-color-2);
+    border: 1px solid var(--border-color-1);
     box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
     border-radius: 0;
     padding: 15px;
@@ -410,8 +410,8 @@ p {
 
 .notify-counter {
     display: flex;
-    color: rgb(82, 80, 80);
-    background: #f5f5f5;
+    color: var(--text-primary-color-2);
+    background: var(--table-background-color);
     border-radius: 5px;
     align-items: center;
     padding: 5px 10px;
@@ -620,8 +620,8 @@ ul {
 
 .cp-user-top-bar-right .hm-notify-number {
     position: absolute;
-    top: 2px;
-    right: 6px;
+    top: -7px;
+    left: 10px;
     height: 16px;
     width: 16px;
     line-height: 16px;
@@ -4610,6 +4610,10 @@ select:-webkit-autofill:focus {
     z-index: 1;
     padding: 2px 0;
     margin: 5px 0;
+}
+
+.notifiy-clear a {
+    color: var(--text-primary-color-4) !important;
 }
 
 .trades-table .trades-table-row .balance-line {
@@ -9209,11 +9213,12 @@ table.dataTable.order-column.stripe tbody tr.odd>.sorting_1 {
 }
 
 .notification-continer {
-    background: white;
+    background: var(--footer-background-color);
     padding-top: 20px;
     padding-bottom: 20px;
     padding: 20px;
     margin-top: 20px;
+    border-radius: 8px;
 }
 
 @media (max-width: 768px) {
@@ -11220,7 +11225,7 @@ input[type="number"] {
 
 .notFountNotifyText {
     font-size: 15px;
-    color: #000;
+    color: var(--text-primary-color-3);
 }
 
 .rightMargin {

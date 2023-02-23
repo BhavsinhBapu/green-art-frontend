@@ -107,40 +107,32 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
               <form action="">
                 <div className="wallet-addres">
                   <div className="">
-                    {responseData?.wallet.coin_type == "USDT" && (
-                      <div className="total-balance ">
-                        <h5>{t("Select Network")}</h5>
-                        <select
-                          name="currency"
-                          className="form-control coin-list-item"
-                          onChange={(e) => {
-                            const findObje = responseData?.data?.find(
-                              (x: any) => x.id === parseInt(e.target.value)
-                            );
-                            setSelectedNetwork(findObje);
-                          }}>
-                          {responseData?.data?.map(
-                            (item: any, index: number) => (
-                              <option value={item.id} key={index}>
-                                {item?.network_name}
-                              </option>
-                            )
-                          )}
-                        </select>
-                      </div>
-                    )}
+                    {responseData?.wallet.coin_type == "USDT" &&
+                      parseInt(responseData?.wallet.network) === 1 && (
+                        <div className="total-balance ">
+                          <h5>{t("Select Network")}</h5>
+                          <select
+                            name="currency"
+                            className="form-control coin-list-item"
+                            onChange={(e) => {
+                              const findObje = responseData?.data?.find(
+                                (x: any) => x.id === parseInt(e.target.value)
+                              );
+                              setSelectedNetwork(findObje);
+                            }}
+                          >
+                            {responseData?.data?.map(
+                              (item: any, index: number) => (
+                                <option value={item.id} key={index}>
+                                  {item?.network_name}
+                                </option>
+                              )
+                            )}
+                          </select>
+                        </div>
+                      )}
                   </div>
                 </div>
-                {responseData?.wallet.coin_type !== "USDT" && (
-                  <div className="wallet-addres">
-                    <h5>{t("Network Name")}</h5>
-                    <div className="coin-list-item">
-                      <p className="waring-wallet-text">
-                        {responseData?.withdraw?.network_name}
-                      </p>
-                    </div>
-                  </div>
-                )}
 
                 <div className="wallet-addres">
                   <h5>{t("Address")}</h5>
@@ -246,7 +238,8 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
                         status: false,
                         message: "",
                       });
-                    }}>
+                    }}
+                  >
                     {t("Withdraw")}
                   </button>
                 ) : (
@@ -254,7 +247,8 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
                     className="primary-btn-outline w-100 mt-4"
                     type="button"
                     disabled={errorMessage.status === true}
-                    onClick={handleSubmit}>
+                    onClick={handleSubmit}
+                  >
                     {t("Withdraw")}
                   </button>
                 )}
