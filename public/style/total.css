@@ -5399,7 +5399,7 @@ select:-webkit-autofill:focus {
 }
 
 .page-left-sidebar .sidebar-top .left-menu li {
-    position: relative;
+       position: relative;
     margin-bottom: 22px;
     list-style: none;
     padding: 10px;
@@ -5408,6 +5408,7 @@ select:-webkit-autofill:focus {
     justify-content: flex-start;
     font-size: 22px;
     cursor: pointer;
+    color: var(--primary-color);
 }
 
 .page-left-sidebar .sidebar-top .left-menu li:last-child {
