@@ -16,7 +16,7 @@ const Hero = ({ data }: any) => {
             {data?.launchpad_second_description}
           </p>
           {parseInt(data?.launchpad_apply_to_status) === 1 && (
-            <Link href={isLoggedIn ? "/ico/apply" : "/authentication/signin"}>
+            <Link href={isLoggedIn ? "/ico/apply" : "/signin"}>
               <button className="primary-btn">
                 {data?.launchpad_apply_to_button_text}
               </button>

@@ -113,7 +113,7 @@ const Navbar = () => {
                           href={
                             isLoggedIn === true
                               ? "/user/my-wallet"
-                              : "/authentication/signin"
+                              : "/signin"
                           }>
                           <li
                             className={
@@ -140,7 +140,7 @@ const Navbar = () => {
                         navbar?.ico?.status && (
                           <Link
                             href={
-                              isLoggedIn ? "/ico" : "/authentication/signin"
+                              isLoggedIn ? "/ico" : "/signin"
                             }>
                             <li
                               className={
@@ -175,7 +175,7 @@ const Navbar = () => {
                               href={
                                 isLoggedIn === true
                                   ? "/fiat-deposit"
-                                  : "/authentication/signin"
+                                  : "/signin"
                               }>
                               <a
                                 className="arrow-icon"
@@ -197,7 +197,7 @@ const Navbar = () => {
                                   href={
                                     isLoggedIn
                                       ? "/fiat-deposit"
-                                      : "/authentication/signin"
+                                      : "/signin"
                                   }>
                                   <li>
                                     <a href="">
@@ -213,7 +213,7 @@ const Navbar = () => {
                                   href={
                                     isLoggedIn
                                       ? "/fiat-withdrawal"
-                                      : "/authentication/signin"
+                                      : "/signin"
                                   }>
                                   <li
                                     className={
@@ -255,7 +255,7 @@ const Navbar = () => {
                             href={
                               isLoggedIn
                                 ? "/user/wallet-history?type=deposit"
-                                : "/authentication/signin"
+                                : "/signin"
                             }>
                             <a
                               className="arrow-icon"
@@ -279,7 +279,7 @@ const Navbar = () => {
                               href={
                                 isLoggedIn
                                   ? "/user/wallet-history?type=deposit"
-                                  : "/authentication/signin"
+                                  : "/signin"
                               }>
                               <li
                                 className={
@@ -301,7 +301,7 @@ const Navbar = () => {
                               href={
                                 isLoggedIn
                                   ? "/user/wallet-history?type=withdrawal"
-                                  : "/authentication/signin"
+                                  : "/signin"
                               }>
                               <li
                                 className={
@@ -323,7 +323,7 @@ const Navbar = () => {
                               href={
                                 isLoggedIn
                                   ? "/user/swap-history"
-                                  : "/authentication/signin"
+                                  : "/signin"
                               }>
                               <li
                                 className={
@@ -344,7 +344,7 @@ const Navbar = () => {
                               href={
                                 isLoggedIn
                                   ? "/user/buy-order-history"
-                                  : "/authentication/signin"
+                                  : "/signin"
                               }>
                               <li
                                 className={
@@ -365,7 +365,7 @@ const Navbar = () => {
                               href={
                                 isLoggedIn
                                   ? "/user/sell-order-history"
-                                  : "/authentication/signin"
+                                  : "/signin"
                               }>
                               <li
                                 className={
@@ -386,7 +386,7 @@ const Navbar = () => {
                               href={
                                 isLoggedIn
                                   ? "/user/transaction-history"
-                                  : "/authentication/signin"
+                                  : "/signin"
                               }>
                               <li
                                 className={
@@ -409,7 +409,7 @@ const Navbar = () => {
                                 href={
                                   isLoggedIn
                                     ? "/user/currency-deposit-history"
-                                    : "/authentication/signin"
+                                    : "/signin"
                                 }>
                                 <li
                                   className={
@@ -431,7 +431,7 @@ const Navbar = () => {
                             href={
                               isLoggedIn
                                 ? "/user/stop-limit-order-history"
-                                : "/authentication/signin"
+                                : "/signin"
                             }>
                             <li
                               className={
@@ -448,7 +448,7 @@ const Navbar = () => {
                               href={
                                 isLoggedIn
                                   ? "/user/currency-withdraw-history"
-                                  : "/authentication/signin"
+                                  : "/signin"
                               }>
                               <li
                                 className={
@@ -473,7 +473,7 @@ const Navbar = () => {
                           href={
                             isLoggedIn
                               ? "/user/profile"
-                              : "/authentication/signin"
+                              : "/signin"
                           }>
                           <li
                             className={
@@ -498,7 +498,7 @@ const Navbar = () => {
                         href={
                           isLoggedIn
                             ? "/user/referral"
-                            : "/authentication/signin"
+                            : "/signin"
                         }>
                         <li
                           className={
@@ -535,7 +535,7 @@ const Navbar = () => {
                             href={
                               isLoggedIn
                                 ? "/user/settings"
-                                : "/authentication/signin"
+                                : "/signin"
                             }>
                             <a
                               className="arrow-icon"
@@ -559,7 +559,7 @@ const Navbar = () => {
                               href={
                                 isLoggedIn
                                   ? "/user/settings"
-                                  : "/authentication/signin"
+                                  : "/signin"
                               }>
                               <li>
                                 <a href="">
@@ -575,7 +575,7 @@ const Navbar = () => {
                               href={
                                 isLoggedIn
                                   ? "/user/faq"
-                                  : "/authentication/signin"
+                                  : "/signin"
                               }>
                               <li
                                 className={
@@ -935,7 +935,7 @@ const Navbar = () => {
                             href={
                               isLoggedIn
                                 ? "/user/my-wallet"
-                                : "/authentication/signin"
+                                : "/signin"
                             }>
                             <li>
                               <a href="">
@@ -952,7 +952,7 @@ const Navbar = () => {
                               href={
                                 isLoggedIn
                                   ? "/fiat-deposit"
-                                  : "/authentication/signin"
+                                  : "/signin"
                               }>
                               <li>
                                 <a href="">{t("Fiat Deposit")}</a>
@@ -965,7 +965,7 @@ const Navbar = () => {
                               href={
                                 isLoggedIn
                                   ? "/fiat-withdrawal"
-                                  : "/authentication/signin"
+                                  : "/signin"
                               }>
                               <li>
                                 <a href="">{t("Fiat Withdrawal")}</a>
@@ -1001,7 +1001,7 @@ const Navbar = () => {
                               href={
                                 isLoggedIn
                                   ? "/user/wallet-history?type=deposit"
-                                  : "/authentication/signin"
+                                  : "/signin"
                               }>
                               <li>
                                 <a href="">
@@ -1017,7 +1017,7 @@ const Navbar = () => {
                               href={
                                 isLoggedIn
                                   ? "/user/wallet-history?type=withdrawal"
-                                  : "/authentication/signin"
+                                  : "/signin"
                               }>
                               <li>
                                 <a href="">
@@ -1033,7 +1033,7 @@ const Navbar = () => {
                               href={
                                 isLoggedIn
                                   ? "/user/swap-history"
-                                  : "/authentication/signin"
+                                  : "/signin"
                               }>
                               <li>
                                 <a href="">
@@ -1049,7 +1049,7 @@ const Navbar = () => {
                               href={
                                 isLoggedIn
                                   ? "/user/buy-order-history"
-                                  : "/authentication/signin"
+                                  : "/signin"
                               }>
                               <li>
                                 <a href="">
@@ -1066,7 +1066,7 @@ const Navbar = () => {
                               href={
                                 isLoggedIn
                                   ? "/user/sell-order-history"
-                                  : "/authentication/signin"
+                                  : "/signin"
                               }>
                               <li>
                                 <a href="">
@@ -1082,7 +1082,7 @@ const Navbar = () => {
                               href={
                                 isLoggedIn
                                   ? "/user/transaction-history"
-                                  : "/authentication/signin"
+                                  : "/signin"
                               }>
                               <li>
                                 <a href="">
@@ -1098,7 +1098,7 @@ const Navbar = () => {
                               href={
                                 isLoggedIn
                                   ? "/user/currency-withdraw-history"
-                                  : "/authentication/signin"
+                                  : "/signin"
                               }>
                               <li>
                                 <a href="">
@@ -1114,7 +1114,7 @@ const Navbar = () => {
                               href={
                                 isLoggedIn
                                   ? "/user/currency-withdraw-history"
-                                  : "/authentication/signin"
+                                  : "/signin"
                               }>
                               <li>
                                 <a href="">
@@ -1136,7 +1136,7 @@ const Navbar = () => {
                             href={
                               isLoggedIn
                                 ? "/user/profile"
-                                : "/authentication/signin"
+                                : "/signin"
                             }>
                             <li>
                               <a href="">
@@ -1155,7 +1155,7 @@ const Navbar = () => {
                           href={
                             isLoggedIn
                               ? "/user/edit-profile"
-                              : "/authentication/signin"
+                              : "/signin"
                           }>
                           <li>
                             <a href="">{t("Edit Profile")}</a>
@@ -1169,7 +1169,7 @@ const Navbar = () => {
                           href={
                             isLoggedIn
                               ? "/user/phone-verification"
-                              : "/authentication/signin"
+                              : "/signin"
                           }>
                           <li>
                             <a href="">{t("Phone Verification")}</a>
@@ -1183,7 +1183,7 @@ const Navbar = () => {
                           href={
                             isLoggedIn
                               ? "/user/security"
-                              : "/authentication/signin"
+                              : "/signin"
                           }>
                           <li>
                             <a href="">{t("Security")}</a>
@@ -1197,7 +1197,7 @@ const Navbar = () => {
                           href={
                             isLoggedIn
                               ? "/user/personal-verification"
-                              : "/authentication/signin"
+                              : "/signin"
                           }>
                           <li>
                             <a href="">{t("KYC Verification")}</a>
@@ -1211,7 +1211,7 @@ const Navbar = () => {
                           href={
                             isLoggedIn
                               ? "/user/bank/list"
-                              : "/authentication/signin"
+                              : "/signin"
                           }>
                           <li>
                             <a href="">{t("Bank List")}</a>
@@ -1225,7 +1225,7 @@ const Navbar = () => {
                           href={
                             isLoggedIn
                               ? "/user/change-password"
-                              : "/authentication/signin"
+                              : "/signin"
                           }>
                           <li>
                             <a href="">{t("Change Password")}</a>
@@ -1287,7 +1287,7 @@ const Navbar = () => {
                             href={
                               isLoggedIn
                                 ? "/user/settings"
-                                : "/authentication/signin"
+                                : "/signin"
                             }>
                             <li>
                               <a href="">
@@ -1303,7 +1303,7 @@ const Navbar = () => {
                             href={
                               isLoggedIn
                                 ? "/user/faq"
-                                : "/authentication/signin"
+                                : "/signin"
                             }>
                             <li>
                               <a href="">

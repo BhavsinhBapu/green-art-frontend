@@ -237,7 +237,7 @@ const StopLimit = ({
                 )}
                 {!isLoggedIn ? (
                   <div className="form-group mt-4">
-                    <Link href="/authentication/signin">
+                    <Link href="/signin">
                       <a className="btn theme-btn-red">{t("Login")}</a>
                     </Link>
                   </div>

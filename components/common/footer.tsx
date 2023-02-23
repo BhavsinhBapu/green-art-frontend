@@ -37,7 +37,7 @@ const Footer = () => {
                               href={
                                 isLoggedIn === true
                                   ? "/support"
-                                  : "/authentication/signin"
+                                  : "/signin"
                               }
                             >
                               {t("Support")}
