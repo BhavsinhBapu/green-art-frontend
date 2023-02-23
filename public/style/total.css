@@ -5193,7 +5193,7 @@ select:-webkit-autofill:focus {
     font-size: 32px;
     font-weight: 500;
     text-transform: capitalize;
-    color: var(--text-primary-color);
+    color: var(--text-primary-color) !important;
 }
 
 .big-top-title {
