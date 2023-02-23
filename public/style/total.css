@@ -5440,6 +5440,7 @@ select:-webkit-autofill:focus {
   min-height: 100%;
   min-width: 300px;
   box-shadow: var(--box-shadow-color);
+  /* box-shadow: var(--box-shadow-color); */
   border-right: 1px solid var(--border-color);
 }
 
@@ -5714,10 +5715,25 @@ select:-webkit-autofill:focus {
 
 .secendary-table tbody tr td .market.incree {
   color: #32d777;
+  color: #10c75c;
+  background: #32d77747;
+  width: auto;
+  padding: 6px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 17px;
 }
 
 .secendary-table tbody tr td .market.decree {
   color: #ff2e2e;
+  background: #f03d3d25;
+  width: auto;
+  padding: 6px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 17px;
 }
 
 .secendary-table tbody tr td .symbol {
@@ -9412,6 +9428,7 @@ a.paginate_button.paginate-number.text-warning {
   background: var(--primary-color) !important;
   color: gray !important;
   border-radius: 3px;
+  border-radius: 6px;
   font-weight: bold;
 }
 
@@ -11144,6 +11161,7 @@ input[type="number"] {
 
 .faq-head {
   background-color: var(--footer-background-color) !important;
+  /* background-color: var(--background-color-8); */
   border: 1px solid var(--border-color);
   padding: 10px;
   border-radius: 10px;
