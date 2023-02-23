@@ -1,13 +1,10 @@
-import { formatCurrency } from "common";
 import Footer from "components/common/footer";
-import TableLoading from "components/common/SectionLoading";
 import ReportSidebar from "layout/report-sidebar";
 import moment from "moment";
 import { GetServerSideProps } from "next";
 import useTranslation from "next-translate/useTranslation";
 import React, { useState } from "react";
 import DataTable from "react-data-table-component";
-import { customPage, landingPage } from "service/landing-page";
 import {
   CurrencyDepositHistoryAction,
   handleSearchItemsCurrency,
