@@ -1,3 +1,4 @@
+import SectionLoading from "components/common/SectionLoading";
 import Footer from "components/common/footer";
 import Hero from "components/ico/Hero";
 import LaunchPad from "components/ico/LaunchPad";
@@ -21,6 +22,7 @@ import {
 
 const Index = () => {
   const { t } = useTranslation("common");
+  const [loading, setLoading] = useState(true);
   const [launchpadLandingPage, setLaunchpadLandingPage]: any = useState([]);
   const [launchpadFeatureItem, setLaunchpadFeatureItem]: any = useState([]);
   const [launchpadUpcomingItem, setLaunchpadUpcomingItem]: any = useState([]);
@@ -29,7 +31,8 @@ const Index = () => {
     getLaunchpadListAction(
       setLaunchpadRecentItem,
       setLaunchpadFeatureItem,
-      setLaunchpadUpcomingItem
+      setLaunchpadUpcomingItem,
+      setLoading
     );
     getLaunchpadLandingPageAction(setLaunchpadLandingPage);
   }, []);
@@ -68,81 +71,84 @@ const Index = () => {
   };
   return (
     <div>
-      <div className="launchPad">
-        <LaunchTop data={launchpadLandingPage?.data} />
-        <div className="launch-body container">
-          <Hero data={launchpadLandingPage?.data} />
-          {launchpadFeatureItem.length > 0 && (
-            <>
-              <h2 className="">{t("Featured Item")}</h2>
-              <Slider {...settings}>
-                {launchpadFeatureItem.map((item: any, index: number) => (
-                  <div className="p-3" key={index}>
-                    <LaunchPad
-                      viewMore={false}
-                      data={item}
-                      core={PHASE_SORT_BY_FEATURED}
-                    />
+      {loading ? (
+        <SectionLoading />
+      ) : (
+        <div className="launchPad">
+          <LaunchTop data={launchpadLandingPage?.data} />
+          <div className="launch-body container">
+            <Hero data={launchpadLandingPage?.data} />
+            {launchpadFeatureItem.length > 0 && (
+              <>
+                <h2 className="">{t("Featured Item")}</h2>
+                <Slider {...settings}>
+                  {launchpadFeatureItem.map((item: any, index: number) => (
+                    <div className="p-3" key={index}>
+                      <LaunchPad
+                        viewMore={false}
+                        data={item}
+                        core={PHASE_SORT_BY_FEATURED}
+                      />
+                    </div>
+                  ))}
+                </Slider>
+              </>
+            )}
+            {launchpadRecentItem?.length > 0 && (
+              <>
+                <div
+                  id="carouselExampleControls"
+                  className="carousel slide "
+                  data-ride="carousel"
+                >
+                  <div className="carousel-inner">
+                    <h2 className="mb-2">{t("Ongoing Item")}</h2>
+                    {launchpadRecentItem.map((item: any, index: number) => (
+                      <div className="carousel-item active px-4" key={index}>
+                        <LaunchPad
+                          key={index}
+                          viewMore={
+                            launchpadRecentItem?.length == index + 1
+                              ? true
+                              : false
+                          }
+                          data={item}
+                          core={PHASE_SORT_BY_RECENT}
+                        />
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </Slider>
-            </>
-          )}
-          {launchpadRecentItem?.length > 0 && (
-            <>
-              <div
-                id="carouselExampleControls"
-                className="carousel slide "
-                data-ride="carousel"
-              >
-                <div className="carousel-inner">
-                  <h2 className="mb-2">{t("Ongoing Item")}</h2>
-                  {launchpadRecentItem.map((item: any, index: number) => (
-                    <div className="carousel-item active px-4" key={index}>
-                      <LaunchPad
-                        key={index}
-                        viewMore={
-                          launchpadRecentItem?.length == index + 1
-                            ? true
-                            : false
-                        }
-                        data={item}
-                        core={PHASE_SORT_BY_RECENT}
-                      />
-                    </div>
-                  ))}
                 </div>
-              </div>
-            </>
-          )}
-          {launchpadUpcomingItem.length > 0 && (
-            <>
-              <div
-                id="carouselExampleControls"
-                className="carousel slide "
-                data-ride="carousel"
-              >
-                <div className="carousel-inner">
-                  <h2 className="mb-2">{t("Upcoming Item")}</h2>
-                  {launchpadUpcomingItem.map((item: any, index: number) => (
-                    <div className="carousel-item active px-4" key={index}>
-                      <LaunchPad
-                        key={index}
-                        viewMore={
-                          launchpadUpcomingItem?.length == index + 1
-                            ? true
-                            : false
-                        }
-                        data={item}
-                        core={PHASE_SORT_BY_FUTURE}
-                      />
-                    </div>
-                  ))}
+              </>
+            )}
+            {launchpadUpcomingItem.length > 0 && (
+              <>
+                <div
+                  id="carouselExampleControls"
+                  className="carousel slide "
+                  data-ride="carousel"
+                >
+                  <div className="carousel-inner">
+                    <h2 className="mb-2">{t("Upcoming Item")}</h2>
+                    {launchpadUpcomingItem.map((item: any, index: number) => (
+                      <div className="carousel-item active px-4" key={index}>
+                        <LaunchPad
+                          key={index}
+                          viewMore={
+                            launchpadUpcomingItem?.length == index + 1
+                              ? true
+                              : false
+                          }
+                          data={item}
+                          core={PHASE_SORT_BY_FUTURE}
+                        />
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </>
-          )}
-          {/* <div
+              </>
+            )}
+            {/* <div
             id="carouselExampleControls"
             className="carousel slide"
             data-ride="carousel"
@@ -188,9 +194,11 @@ const Index = () => {
               <span className="sr-only">Next</span>
             </a>
           </div> */}
-          <SellingSection data={launchpadLandingPage?.data} />
+            <SellingSection data={launchpadLandingPage?.data} />
+          </div>
         </div>
-      </div>
+      )}
+
       <Footer />
     </div>
   );

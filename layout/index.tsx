@@ -65,14 +65,14 @@ const Index = ({ children }: any) => {
   useEffect(() => {
     const path = router.pathname;
     if (
-      path === "/authentication/signup" ||
-      path === "/authentication/signin" ||
+      path === "/signup" ||
+      path === "/signin" ||
       path === "/exchange/dashboard" ||
-      path === "/authentication/forgot-password" ||
-      path === "/authentication/reset-password" ||
-      path === "/authentication/g2f-verify" ||
+      path === "/forgot-password" ||
+      path === "/reset-password" ||
+      path === "/g2f-verify" ||
       path === "/" ||
-      path === "/authentication/verify-email" ||
+      path === "/verify-email" ||
       path === "user/notification" ||
       path === "/page-details/[slug]"
     ) {

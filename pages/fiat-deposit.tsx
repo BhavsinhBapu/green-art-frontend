@@ -14,7 +14,7 @@ import { currencyDeposit } from "service/deposit";
 import SelectDeposit from "components/deposit/selectDeposit";
 import DepositFaq from "components/deposit/DepositFaq";
 import PaypalSection from "components/deposit/PaypalSection";
-import ScaletonLoading from "components/common/ScaletonLoading";
+import SectionLoading from "components/common/SectionLoading";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
 import { getFaqList } from "service/faq";
@@ -83,9 +83,9 @@ const Deposit = () => {
               </div>
 
               <div className="asset-balances-area">
-                <div className="section-wrapper boxShadow bank-section">
-                  <div className="container">
-                    <div className="deposit-conatiner">
+                <div className=" bank-section">
+                  <div className="">
+                    <div className="deposit-conatiner boxShadow">
                       {selectedMethod.method && (
                         <div className="cp-user-title">
                           <h4>{t("Select method")}</h4>
@@ -99,15 +99,14 @@ const Deposit = () => {
                       />
                       <div className="row">
                         {loading ? (
-                          <ScaletonLoading />
+                          <SectionLoading />
                         ) : (
                           <div
                             className={`${
                               fullScreen === false
                                 ? "col-lg-8 col-sm-12"
                                 : "col-lg-12 col-sm-12"
-                            }`}
-                          >
+                            }`}>
                             {!loading && !selectedMethod.method ? (
                               <div className="cp-user-title text-center  p-5">
                                 <h4>{t("No Avaiable payment method")}</h4>
@@ -150,7 +149,7 @@ const Deposit = () => {
                           </div>
                         )}
 
-                        {fullScreen === false && (
+                        {fullScreen === false && loading === false && (
                           <div className="col-lg-4 col-sm-12 mt-4">
                             <DepositFaq faqs={faqs} />
                           </div>

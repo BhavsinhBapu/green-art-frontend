@@ -12,7 +12,7 @@ import moment from "moment";
 import LaunchpadSidebar from "layout/launchpad-sidebar";
 import { useEffect, useState } from "react";
 import { DynamicSubmittedFormListAction } from "state/actions/launchpad";
-import TableLoading from "components/common/TableLoading";
+import TableLoading from "components/common/SectionLoading";
 import DataTable from "react-data-table-component";
 import { handleSwapHistorySearch } from "state/actions/reports";
 import Link from "next/link";

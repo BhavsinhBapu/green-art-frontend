@@ -71,7 +71,7 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
 
   return (
     <div className={fullPage ? "col-md-7 no-sidebar" : `col-md-7 `}>
-      <div className="single-wallet boxShadow">
+      <div className="single-wallet boxShadow rounded">
         <div className="box-two single-box visible">
           <div className="">
             <Link href="/user/my-wallet">
@@ -107,40 +107,32 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
               <form action="">
                 <div className="wallet-addres">
                   <div className="">
-                    {responseData?.wallet.coin_type == "USDT" && (
-                      <div className="total-balance ">
-                        <h5>{t("Select Network")}</h5>
-                        <select
-                          name="currency"
-                          className="form-control coin-list-item"
-                          onChange={(e) => {
-                            const findObje = responseData?.data?.find(
-                              (x: any) => x.id === parseInt(e.target.value)
-                            );
-                            setSelectedNetwork(findObje);
-                          }}>
-                          {responseData?.data?.map(
-                            (item: any, index: number) => (
-                              <option value={item.id} key={index}>
-                                {item?.network_name}
-                              </option>
-                            )
-                          )}
-                        </select>
-                      </div>
-                    )}
+                    {responseData?.wallet.coin_type == "USDT" &&
+                      parseInt(responseData?.wallet.network) === 1 && (
+                        <div className="total-balance ">
+                          <h5>{t("Select Network")}</h5>
+                          <select
+                            name="currency"
+                            className="form-control coin-list-item"
+                            onChange={(e) => {
+                              const findObje = responseData?.data?.find(
+                                (x: any) => x.id === parseInt(e.target.value)
+                              );
+                              setSelectedNetwork(findObje);
+                            }}
+                          >
+                            {responseData?.data?.map(
+                              (item: any, index: number) => (
+                                <option value={item.id} key={index}>
+                                  {item?.network_name}
+                                </option>
+                              )
+                            )}
+                          </select>
+                        </div>
+                      )}
                   </div>
                 </div>
-                {responseData?.wallet.coin_type !== "USDT" && (
-                  <div className="wallet-addres">
-                    <h5>{t("Network Name")}</h5>
-                    <div className="coin-list-item">
-                      <p className="waring-wallet-text">
-                        {responseData?.withdraw?.network_name}
-                      </p>
-                    </div>
-                  </div>
-                )}
 
                 <div className="wallet-addres">
                   <h5>{t("Address")}</h5>
@@ -148,7 +140,7 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
                     <div className="input-group input-address-bar">
                       <input
                         type="text"
-                        className="form-control"
+                        className="form-control border-0 h-50"
                         id="address"
                         name="address"
                         placeholder={t("Address")}
@@ -174,7 +166,7 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
                       <div className="input-group input-address-bar">
                         <input
                           type="text"
-                          className="form-control "
+                          className="form-control border-0 h-50"
                           id="amountWithdrawal"
                           name="amount"
                           placeholder={t("AMOUNT TO WITHDRAW")}
@@ -233,7 +225,7 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
                 {parseInt(settings.two_factor_withdraw) === 1 ? (
                   <button
                     type="button"
-                    className="withdraw-btn"
+                    className="withdraw-btn mt-4"
                     data-target="#exampleModal"
                     disabled={
                       withdrawalCredentials.address === "" ||
@@ -251,7 +243,7 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
                   </button>
                 ) : (
                   <button
-                    className="primary-btn-outline w-100"
+                    className="primary-btn-outline w-100 mt-4"
                     type="button"
                     disabled={errorMessage.status === true}
                     onClick={handleSubmit}>

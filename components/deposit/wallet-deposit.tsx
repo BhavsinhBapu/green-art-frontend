@@ -101,7 +101,7 @@ const WalletDeposit = ({ walletlist, method_id }: any) => {
                       <div className="form-amount">
                         <input
                           type="number"
-                          className="form-control"
+                          className="form-control border-0"
                           id="amount-one"
                           placeholder={t("Please enter 1-2400000")}
                           onChange={(e) => {
@@ -114,7 +114,7 @@ const WalletDeposit = ({ walletlist, method_id }: any) => {
                       </div>
                       <div className="cp-select-area">
                         <select
-                          className="form-control "
+                          className="form-control border-0 ticketFilterBg"
                           id="currency-one"
                           onChange={(e) => {
                             setCredential({
@@ -128,8 +128,7 @@ const WalletDeposit = ({ walletlist, method_id }: any) => {
                                   parseInt(e.target.value)
                               ).balance
                             );
-                          }}
-                        >
+                          }}>
                           <option value="" selected disabled hidden>
                             {t("Select one")}
                           </option>
@@ -152,7 +151,7 @@ const WalletDeposit = ({ walletlist, method_id }: any) => {
             <div className="swap-area">
               <div className="swap-area-top">
                 <div className="form-group">
-                  <div className="swap-wrap">
+                  <div className="swap-wrap mt-3">
                     <div className="swap-wrap-top">
                       <label>{t("To")}</label>
                     </div>
@@ -160,7 +159,7 @@ const WalletDeposit = ({ walletlist, method_id }: any) => {
                       <div className="form-amount">
                         <input
                           type="text"
-                          className="form-control"
+                          className="form-control border-0"
                           id="amount-one"
                           disabled
                           value={calculatedValue.calculated_amount}
@@ -169,15 +168,14 @@ const WalletDeposit = ({ walletlist, method_id }: any) => {
                       </div>
                       <div className="cp-select-area">
                         <select
-                          className=" form-control "
+                          className=" form-control border-0 ticketFilterBg"
                           id="currency-one"
                           onChange={(e) => {
                             setCredential({
                               ...credential,
                               wallet_id: parseInt(e.target.value),
                             });
-                          }}
-                        >
+                          }}>
                           <option value="" selected disabled hidden>
                             {t("Select one")}
                           </option>
@@ -204,23 +202,21 @@ const WalletDeposit = ({ walletlist, method_id }: any) => {
           )}
           {parseInt(settings.currency_deposit_2fa_status) === 1 ? (
             <button
-              className="primary-btn-outline w-100"
+              className="primary-btn-outline w-100 mt-5"
               type="button"
               data-target="#exampleModal"
               disabled={errorMessage.status === true}
-              data-toggle="modal"
-            >
+              data-toggle="modal">
               Deposit
             </button>
           ) : (
             <button
-              className="primary-btn-outline w-100"
+              className="primary-btn-outline w-100 mt-5"
               type="button"
               disabled={errorMessage.status === true}
               onClick={() => {
                 convertCurrency(credential);
-              }}
-            >
+              }}>
               Deposit
             </button>
           )}

@@ -6,7 +6,7 @@ import {
   AllTransactionHistoryAction,
   handleSearchItems,
 } from "state/actions/reports";
-import TableLoading from "components/common/TableLoading";
+import TableLoading from "components/common/SectionLoading";
 import useTranslation from "next-translate/useTranslation";
 import moment from "moment";
 import DataTable from "react-data-table-component";
@@ -136,11 +136,13 @@ const TransactionHistory: NextPage = () => {
                     <div className="table-responsive tableScroll">
                       <div
                         id="assetBalances_wrapper"
-                        className="dataTables_wrapper no-footer">
+                        className="dataTables_wrapper no-footer"
+                      >
                         <div className="dataTables_head">
                           <div
                             className="dataTables_length"
-                            id="assetBalances_length">
+                            id="assetBalances_length"
+                          >
                             <label className="">
                               {t("Show")}
                               <select
@@ -155,7 +157,8 @@ const TransactionHistory: NextPage = () => {
                                     setProcessing,
                                     setStillHistory
                                   );
-                                }}>
+                                }}
+                              >
                                 <option value="10">10</option>
                                 <option value="25">25</option>
                                 <option value="50">50</option>
@@ -190,7 +193,8 @@ const TransactionHistory: NextPage = () => {
                       {history?.length > 0 && (
                         <div
                           className="pagination-wrapper pb-3"
-                          id="assetBalances_paginate">
+                          id="assetBalances_paginate"
+                        >
                           {/* <span> */}
                           {stillHistory?.items?.links.map(
                             (link: any, index: number) =>
@@ -200,14 +204,16 @@ const TransactionHistory: NextPage = () => {
                                   onClick={() => {
                                     if (link.url) LinkTopaginationString(link);
                                   }}
-                                  key={index}>
+                                  key={index}
+                                >
                                   <i className="fa fa-angle-left"></i>
                                 </a>
                               ) : link.label === "Next &raquo;" ? (
                                 <a
                                   className="paginate-button"
                                   onClick={() => LinkTopaginationString(link)}
-                                  key={index}>
+                                  key={index}
+                                >
                                   <i className="fa fa-angle-right"></i>
                                 </a>
                               ) : (
@@ -218,7 +224,8 @@ const TransactionHistory: NextPage = () => {
                                   aria-controls="assetBalances"
                                   data-dt-idx="1"
                                   onClick={() => LinkTopaginationString(link)}
-                                  key={index}>
+                                  key={index}
+                                >
                                   {link.label}
                                 </a>
                               )

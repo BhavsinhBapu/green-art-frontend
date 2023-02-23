@@ -35,11 +35,8 @@ const Footer = () => {
                           <li>
                             <Link
                               href={
-                                isLoggedIn === true
-                                  ? "/support"
-                                  : "/authentication/signin"
-                              }
-                            >
+                                isLoggedIn === true ? "/support" : "/signin"
+                              }>
                               {t("Support")}
                             </Link>
                           </li>
@@ -84,8 +81,7 @@ const Footer = () => {
                                   <a
                                     href={item.page_link}
                                     target="_blank"
-                                    rel="noreferrer"
-                                  >
+                                    rel="noreferrer">
                                     {item.title}
                                   </a>
                                 )}
@@ -120,8 +116,7 @@ const Footer = () => {
                                   <a
                                     href={item.page_link}
                                     target="_blank"
-                                    rel="noreferrer"
-                                  >
+                                    rel="noreferrer">
                                     {item.title}
                                   </a>
                                 )}
@@ -155,8 +150,7 @@ const Footer = () => {
                                   <a
                                     href={item.page_link}
                                     target="_blank"
-                                    rel="noreferrer"
-                                  >
+                                    rel="noreferrer">
                                     {item.title}
                                   </a>
                                 )}
@@ -177,19 +171,17 @@ const Footer = () => {
                       </h4>
                     </div>
                     <div className="widget-inner">
-                      <ul>
+                      <ul className="d-flex align-items-center">
                         {socialData?.map((social: any, index: any) => (
                           <li key={index}>
                             <a
                               href={social.media_link}
                               target="_blank"
-                              rel="noreferrer"
-                            >
+                              rel="noreferrer">
                               <img
                                 src={social.media_icon}
                                 alt={social.media_title}
-                                height={20}
-                                width={20}
+                                width={24}
                               />
                             </a>
                           </li>

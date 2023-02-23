@@ -15,6 +15,7 @@ import {
   fiatWithdrawProcessAction,
   getFiatWithdrawalRateAction,
 } from "state/actions/fiat-deposit-withawal";
+import SectionLoading from "components/common/SectionLoading";
 
 const FiatWithdrawal = () => {
   const { t } = useTranslation("common");
@@ -63,11 +64,13 @@ const FiatWithdrawal = () => {
             </div>
 
             <div className="asset-balances-area">
-              <div className="section-wrapper boxShadow bank-section">
-                <div className="container">
-                  <div className="row">
-                    <div className="ico-tokenCreate">
-                      <div className="ico-create-form col-12">
+              <div className=" bank-section">
+                <div className="">
+                  <div className="ico-tokenCreate boxShadow">
+                    <div className="ico-create-form col-12">
+                      {loading ? (
+                        <SectionLoading />
+                      ) : (
                         <form
                           className="row"
                           onSubmit={(e) => {
@@ -203,7 +206,7 @@ const FiatWithdrawal = () => {
                             </button>
                           </div>
                         </form>
-                      </div>
+                      )}
                     </div>
                   </div>
                 </div>

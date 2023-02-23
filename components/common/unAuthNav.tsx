@@ -39,34 +39,36 @@ const UnAuthNav = ({ logo }: any) => {
                     <a href="/exchange/dashboard">{t("Trade")}</a>
                   </li>
                   <li>
-                    <Link href="/authentication/signin">{t("Login")}</Link>
+                    <Link href="/signin">{t("Login")}</Link>
                   </li>
                   <li>
-                    <Link href="/authentication/signup">{t("Sign up")}</Link>
+                    <Link href="/signup">{t("Sign up")}</Link>
                   </li>
                   <li
                     onClick={() => {
                       darkModeToggle(settings, setTheme);
-                    }}
-                  >
-                    {/* <BsFillMoonFill /> */}
-                    {theme === 0 ? (
-                      <>
-                        <BsFillSunFill size={20} className="mr-2" />
-                        {t("Light")}
-                      </>
-                    ) : (
-                      <>
-                        <BsFillMoonFill size={14} className="mr-2" />
-                        {t("Dark")}
-                      </>
-                    )}
+                    }}>
+                    <a href="">
+                      {theme === 0 ? (
+                        <>
+                          <BsFillSunFill size={20} className="mr-2" />
+                          {t("Light")}
+                        </>
+                      ) : (
+                        <>
+                          <BsFillMoonFill size={14} className="mr-2" />
+                          {t("Dark")}
+                        </>
+                      )}
+                    </a>
                   </li>
                   <li>
                     <a className="flex" href="#" aria-expanded="true">
                       <IoLanguageSharp />
 
-                      <span className="ml-2">{router.locale?.toLocaleUpperCase()}</span>
+                      <span className="ml-2">
+                        {router.locale?.toLocaleUpperCase()}
+                      </span>
                     </a>
                     <ul className="lang-list">
                       {settings?.LanguageList?.map((item: any, index: any) => (

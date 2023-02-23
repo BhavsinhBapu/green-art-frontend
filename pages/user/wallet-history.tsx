@@ -7,15 +7,13 @@ import {
   handleSearch,
 } from "state/actions/reports";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
-import Loading from "components/common/TableLoading";
 import { useRouter } from "next/router";
 import useTranslation from "next-translate/useTranslation";
 import moment from "moment";
 import Footer from "components/common/footer";
-import { customPage, landingPage } from "service/landing-page";
-import { useRef } from "react";
 import { toast } from "react-toastify";
 import { BiCopy } from "react-icons/bi";
+import SectionLoading from "components/common/SectionLoading";
 const DepositHistory: NextPage = () => {
   const router = useRouter();
   const { type } = router.query;
@@ -88,8 +86,7 @@ const DepositHistory: NextPage = () => {
                 type === "deposit" ? row.transaction_id : row.transaction_hash
               );
               toast.success(t("Copied to clipboard"));
-            }}
-          >
+            }}>
             {type === "deposit" ? row.transaction_id : row.transaction_hash}
           </span>
           <BiCopy className="copyIcon" />
@@ -142,7 +139,7 @@ const DepositHistory: NextPage = () => {
 
             <div className="asset-balances-area">
               {processing ? (
-                <Loading />
+                <SectionLoading />
               ) : (
                 <div className="asset-balances-left">
                   <div className="section-wrapper boxShadow">

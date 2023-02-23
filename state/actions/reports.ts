@@ -195,6 +195,7 @@ export const AllBuyOrdersHistoryAction = async (
   column_name: string,
   order_by: string
 ) => {
+  setProcessing(true);
   const response = await AllBuyOrdersHistoryApi(
     per_page,
     page,
@@ -203,6 +204,7 @@ export const AllBuyOrdersHistoryAction = async (
   );
   setReport(response.data.items.data);
   setStillHistory(response.data);
+  setProcessing(false);
   return response;
 };
 export const AllStopLimitOrdersHistoryAction = async (
@@ -214,6 +216,7 @@ export const AllStopLimitOrdersHistoryAction = async (
   column_name: string,
   order_by: string
 ) => {
+  setProcessing(true);
   const response = await AllStopLimitOrdersHistoryApi(
     per_page,
     page,
@@ -222,6 +225,8 @@ export const AllStopLimitOrdersHistoryAction = async (
   );
   setReport(response.data.items.data);
   setStillHistory(response.data);
+  setProcessing(false);
+
   return response;
 };
 export const AllSellOrdersHistoryAction = async (
@@ -233,6 +238,7 @@ export const AllSellOrdersHistoryAction = async (
   column_name: string,
   order_by: string
 ) => {
+  setProcessing(true);
   const response = await AllSellOrdersHistoryApi(
     per_page,
     page,
@@ -241,6 +247,7 @@ export const AllSellOrdersHistoryAction = async (
   );
   setReport(response.data.items.data);
   setStillHistory(response.data);
+  setProcessing(false);
   return response;
 };
 export const CurrencyDepositHistoryAction = async (
@@ -292,9 +299,11 @@ export const AllTransactionHistoryAction = async (
   setProcessing: React.Dispatch<SetStateAction<boolean>>,
   setStillHistory: React.Dispatch<SetStateAction<boolean>>
 ) => {
+  setProcessing(true);
   const response = await AllTransactionHistoryApi(per_page, page);
   setReport(response.data.items.data);
   setStillHistory(response.data);
+  setProcessing(false);
   return response;
 };
 
@@ -305,8 +314,10 @@ export const CoinConvertHistoryAction = async (
   setProcessing: React.Dispatch<SetStateAction<boolean>>,
   setStillHistory: React.Dispatch<SetStateAction<boolean>>
 ) => {
+  setProcessing(true)
   const response = await CoinConvertHistoryApi(per_page, page);
   setReport(response.data.list.data);
   setStillHistory(response.data);
+  setProcessing(false);
   return response;
 };

@@ -1,4 +1,4 @@
-import DynamicLoading from "components/common/dynamicLoading";
+import SectionLoading from "components/common/SectionLoading";
 import {
   FORM_CHECKBOX,
   FORM_FILE,
@@ -36,7 +36,7 @@ const Apply = () => {
   return (
     <div className="container">
       {loading ? (
-        <DynamicLoading count={13} width={"80%"} />
+        <SectionLoading />
       ) : (
         <form
           onSubmit={(e) => {

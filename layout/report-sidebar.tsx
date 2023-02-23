@@ -2,8 +2,11 @@ import Link from "next/link";
 import React from "react";
 import { useRouter } from "next/router";
 import { RiLuggageDepositLine } from "react-icons/ri";
-import { MdOutlineSwapHorizontalCircle, MdOutlineTransferWithinAStation } from "react-icons/md";
-import { TbCashOff } from "react-icons/tb";
+import {
+  MdOutlineSwapHorizontalCircle,
+  MdOutlineTransferWithinAStation,
+} from "react-icons/md";
+import { TbCashBanknoteOff } from "react-icons/tb";
 import { GiBuyCard } from "react-icons/gi";
 import { GrTransaction } from "react-icons/gr";
 import { SiFiat } from "react-icons/si";
@@ -23,12 +26,12 @@ const ReportSidebar = () => {
           <Link href="/user/wallet-history?type=deposit">
             <li className={router.query.type == "deposit" ? "active" : ""}>
               <RiLuggageDepositLine />
-              <a>{t("Deposit History")}</a>
+              <a href="coinSwapHistory">{t("Deposit History")}</a>
             </li>
           </Link>
           <Link href="/user/wallet-history?type=withdrawal">
             <li className={router.query.type == "withdrawal" ? "active" : ""}>
-              <TbCashOff />
+              <TbCashBanknoteOff />
               <a href="coinSwapHistory">{t("Withdrawal History")}</a>
             </li>
           </Link>
@@ -38,8 +41,7 @@ const ReportSidebar = () => {
                 router.pathname == "/user/stop-limit-order-history"
                   ? "active"
                   : ""
-              }
-            >
+              }>
               <BsFillStopCircleFill />
               <a href="coinSwapHistory">{t("Stop Limit History")}</a>
             </li>
@@ -48,8 +50,7 @@ const ReportSidebar = () => {
             <li
               className={
                 router.pathname == "/user/swap-history" ? "active" : ""
-              }
-            >
+              }>
               <MdOutlineSwapHorizontalCircle />
               <a href="coinSwapHistory">{t("Swap History")}</a>
             </li>
@@ -58,8 +59,7 @@ const ReportSidebar = () => {
             <li
               className={
                 router.pathname == "/user/buy-order-history" ? "active" : ""
-              }
-            >
+              }>
               <GiBuyCard />
               <a href="getAllOrdersHistoryBuy">{t("Buy Order History")}</a>
             </li>
@@ -68,8 +68,7 @@ const ReportSidebar = () => {
             <li
               className={
                 router.pathname == "/user/sell-order-history" ? "active" : ""
-              }
-            >
+              }>
               <MdSell />
               <a href="getAllOrdersHistorySell">{t("Sell Order History")}</a>
             </li>
@@ -78,8 +77,7 @@ const ReportSidebar = () => {
             <li
               className={
                 router.pathname == "/user/transaction-history" ? "active" : ""
-              }
-            >
+              }>
               <MdOutlineTransferWithinAStation />
               <a href="getAllTransactionHistory">{t("Transaction History")}</a>
             </li>
@@ -91,8 +89,7 @@ const ReportSidebar = () => {
                   router.pathname == "/user/currency-deposit-history"
                     ? "active"
                     : ""
-                }
-              >
+                }>
                 <SiFiat />
                 <a href="getAllTransactionHistory">
                   {t("Fiat deposit History")}
@@ -107,8 +104,7 @@ const ReportSidebar = () => {
                   router.pathname == "/user/currency-withdraw-history"
                     ? "active"
                     : ""
-                }
-              >
+                }>
                 <SiFiat />
                 <a href="getAllTransactionHistory">
                   {t("Fiat withdrawal History")}

@@ -27,7 +27,7 @@ export const DipositComponent = ({
   }, [responseData?.data[0]]);
   return (
     <div className={fullPage ? "col-md-7  no-sidebar" : `col-md-7`}>
-      <div className="single-wallet boxShadow">
+      <div className="single-wallet boxShadow rounded">
         <div className={`box-one single-box visible`}>
           <div className="">
             <Link href="/user/my-wallet">
@@ -61,38 +61,30 @@ export const DipositComponent = ({
               </div>
 
               <div className="wallet-addres">
-                {responseData?.wallet.coin_type == "USDT" && (
-                  <div className="total-balance">
-                    <h5>{t("Select Network")}</h5>
-                    <select
-                      name="currency"
-                      className="form-control coin-list-item"
-                      onChange={(e) => {
-                        const findObje = responseData?.data?.find(
-                          (x: any) => x.id === parseInt(e.target.value)
-                        );
-                        setDependecy(Math.random() * 100);
-                        setSelectedNetwork(findObje);
-                      }}>
-                      {responseData?.data?.map((item: any, index: number) => (
-                        <option value={item.id} key={index}>
-                          {item?.network_name}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                )}
+                {responseData?.wallet.coin_type == "USDT" &&
+                  parseInt(responseData?.wallet.network) === 1 && (
+                    <div className="total-balance">
+                      <h5>{t("Select Network")}</h5>
+                      <select
+                        name="currency"
+                        className="form-control coin-list-item"
+                        onChange={(e) => {
+                          const findObje = responseData?.data?.find(
+                            (x: any) => x.id === parseInt(e.target.value)
+                          );
+                          setDependecy(Math.random() * 100);
+                          setSelectedNetwork(findObje);
+                        }}>
+                        {responseData?.data?.map((item: any, index: number) => (
+                          <option value={item.id} key={index}>
+                            {item?.network_name}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  )}
               </div>
-              {responseData?.wallet.coin_type !== "USDT" && (
-                <div className="wallet-addres">
-                  <h5>{t("Network Name")}</h5>
-                  <div className="coin-list-item">
-                    <p className="waring-wallet-text">
-                      {responseData?.deposit?.network_name}
-                    </p>
-                  </div>
-                </div>
-              )}
+
               <div className="wallet-addres">
                 <h5>{t("Address")}</h5>
                 <div className="coin-list-item">
@@ -107,52 +99,112 @@ export const DipositComponent = ({
               <div className="wallet-addres-generate">
                 <div className="coin-list-item">
                   <div className="wallet-bar-code">
-                    {responseData?.address &&
-                      responseData?.wallet.coin_type !== "USDT" && (
-                        <QRCode value={responseData?.address} size={150} />
-                      )}
-
+                    {responseData?.address && (
+                      <QRCode
+                        className="qrCodeBg rounded"
+                        value={responseData?.address}
+                        size={150}
+                      />
+                    )}
                     {selectedNetwork?.address &&
                       responseData?.wallet.coin_type === "USDT" && (
-                        <QRCode value={selectedNetwork?.address} size={150} />
+                        <QRCode
+                          className="qrCodeBg rounded"
+                          value={selectedNetwork?.address}
+                          size={150}
+                        />
                       )}
 
-                    <div className="input-url wallet_input_copy">
-                      {selectedNetwork?.address ? (
-                        <>
-                          <input
-                            onClick={() => {
-                              copyTextById(
+                    <div className="copy-box">
+                      <div className="input-url input-copy mt-4">
+                        {selectedNetwork?.address ? (
+                          <>
+                            <input
+                              onClick={() => {
+                                copyTextById(
+                                  responseData?.wallet.coin_type == "USDT"
+                                    ? selectedNetwork?.address
+                                    : responseData?.address
+                                );
+                                selectAddressCopy?.current.select();
+                              }}
+                              ref={selectAddressCopy}
+                              className="address-box address-copy-box"
+                              type="text"
+                              value={
                                 responseData?.wallet.coin_type == "USDT"
                                   ? selectedNetwork?.address
                                   : responseData?.address
-                              );
-                              selectAddressCopy?.current.select();
-                            }}
-                            ref={selectAddressCopy}
-                            className="address-copy-box "
-                            type="text"
-                            value={
-                              responseData?.wallet.coin_type == "USDT"
-                                ? selectedNetwork?.address
-                                : responseData?.address
-                            }
-                          />
+                              }
+                            />
 
-                          <span
-                            className="btn copy-url-btn"
-                            onClick={() => {
-                              copyTextById(
+                            <span
+                              className="btn copy-url-btn"
+                              onClick={() => {
+                                copyTextById(
+                                  responseData?.wallet.coin_type == "USDT"
+                                    ? selectedNetwork?.address
+                                    : responseData?.address
+                                );
+                                selectAddressCopy?.current?.select();
+                              }}>
+                              <i className="fa fa-clone"></i>
+                            </span>
+                          </>
+                        ) : responseData?.address ? (
+                          <>
+                            <input
+                              onClick={() => {
+                                copyTextById(
+                                  responseData?.wallet.coin_type == "USDT"
+                                    ? selectedNetwork?.address
+                                    : responseData?.address
+                                );
+                                selectAddressCopy?.current.select();
+                              }}
+                              ref={selectAddressCopy}
+                              className="border-0 address-copy-box ml-3"
+                              type="text"
+                              value={responseData?.address}
+                            />
+
+                            <span
+                              className="copy-url-btn cp-button"
+                              onClick={() => {
+                                copyTextById(responseData?.address);
+                                selectAddressCopy?.current?.select();
+                              }}>
+                              <i className="fa fa-clone"></i>
+                            </span>
+                          </>
+                        ) : (
+                          <>
+                            <p
+                              ref={selectAddressCopy}
+                              className="address-copy-box "
+                              type="text"
+                              value={
                                 responseData?.wallet.coin_type == "USDT"
                                   ? selectedNetwork?.address
                                   : responseData?.address
-                              );
-                              selectAddressCopy?.current?.select();
-                            }}>
-                            <i className="fa fa-clone"></i>
-                          </span>
-                        </>
-                      ) : responseData?.address &&
+                              }
+                            />
+
+                            <span
+                              className="btn copy-url-btn"
+                              onClick={() => {
+                                copyTextById(
+                                  responseData?.wallet.coin_type == "USDT"
+                                    ? selectedNetwork?.address
+                                    : responseData?.address
+                                );
+                                selectAddressCopy?.current?.select();
+                              }}>
+                              <i className="fa fa-clone"></i>
+                            </span>
+                          </>
+                        )}
+                        : responseData?.address &&
                         responseData?.wallet.coin_type !== "USDT" ? (
                         <>
                           <input
@@ -179,38 +231,39 @@ export const DipositComponent = ({
                             <i className="fa fa-clone"></i>
                           </span>
                         </>
-                      ) : (
+                        ) : (
                         <p
                           ref={selectAddressCopy}
                           id="url-copy"
                           className="address-box">
                           {t("No address found!")}
                         </p>
-                      )}
+                        )
+                      </div>
                     </div>
                   </div>
+                  {!selectedNetwork?.address &&
+                    responseData?.wallet.coin_type == "USDT" &&
+                    parseInt(responseData?.wallet.network) === 1 && (
+                      <button
+                        className=" primary-btn-outline btn-withdraw text-white w-100 mt-4"
+                        onClick={() => {
+                          GetWalletAddressAction(
+                            {
+                              wallet_id: router.query.coin_id,
+                              network_type: selectedNetwork?.network_type ?? "",
+                            },
+                            setSelectedNetwork,
+                            setDependecy
+                          );
+                        }}>
+                        {t("Get address")}
+                      </button>
+                    )}
                 </div>
-                {!selectedNetwork?.address &&
-                  responseData?.wallet.coin_type == "USDT" && (
-                    <button
-                      className=" primary-btn-outline btn-withdraw text-white w-100 mt-4"
-                      onClick={() => {
-                        GetWalletAddressAction(
-                          {
-                            wallet_id: router.query.coin_id,
-                            network_type: selectedNetwork?.network_type ?? "",
-                          },
-                          setSelectedNetwork,
-                          setDependecy
-                        );
-                      }}>
-                      {t("Get address")}
-                    </button>
-                  )}
               </div>
-            </div>
 
-            {/* <div className="deposit-info-area" id="wallet_deposit_area">
+              {/* <div className="deposit-info-area" id="wallet_deposit_area">
             <div className="deposit-info-top">
               <div className="balance-box">
                 <img
@@ -387,6 +440,7 @@ export const DipositComponent = ({
               </div>
             </div>
           </div> */}
+            </div>
           </div>
         </div>
       </div>

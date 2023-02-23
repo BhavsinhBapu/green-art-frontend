@@ -1,6 +1,6 @@
 import { KnowledgeCard } from "components/Knowledgebase/knowledge-card";
 import { TopBanner } from "components/Knowledgebase/top-banner";
-import { CustomLoading } from "components/common/CustomLoading";
+import SectionLoading from "components/common/SectionLoading";
 import Footer from "components/common/footer";
 import { pageAvailabilityCheck } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
@@ -32,7 +32,7 @@ const KnowledgebaseCategory = ({ resorce }: any) => {
           {Loading ? (
             <div className="row mt-5 pt-5">
               <div className="col-12">
-                <CustomLoading />
+                <SectionLoading />
               </div>
             </div>
           ) : (

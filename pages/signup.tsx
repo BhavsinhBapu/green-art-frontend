@@ -245,7 +245,7 @@ const Signup: NextPage = () => {
                   <img src={settings.logo || ""} className="img-fluid" alt="" />
                 </a>
               </Link>
-              <Link href="/authentication/signin">
+              <Link href="/signin">
                 <p>
                   {t("Already have an account")}? <a href=""> {t("Sign In")}</a>
                 </p>

@@ -61,8 +61,7 @@ const Edit: NextPage = () => {
                             />
                             <label
                               htmlFor="upload-user-img"
-                              className="upload-user-img"
-                            >
+                              className="upload-user-img">
                               <i className="fa fa-pencil" aria-hidden="true" />
                             </label>
                           </div>
@@ -85,8 +84,7 @@ const Edit: NextPage = () => {
                       }}
                       onSubmit={async (values) => {
                         dispatch(UpdateUserInfoByTokenAction(values));
-                      }}
-                    >
+                      }}>
                       {({ setFieldValue }) => (
                         <div className="col-lg-8">
                           <div className="user-profile-form">
@@ -135,14 +133,14 @@ const Edit: NextPage = () => {
                                   as="select"
                                   name="country"
                                   id="country"
-                                  className="form-control"
-                                >
+                                  className="form-control">
                                   {countries.map((country: any) => (
                                     <option
                                       key={country.value}
                                       value={country.value.toUpperCase()}
-                                      selected={country.value === user?.country}
-                                    >
+                                      selected={
+                                        country.value === user?.country
+                                      }>
                                       {country.name}
                                     </option>
                                   ))}
@@ -154,32 +152,27 @@ const Edit: NextPage = () => {
                                   className="form-control"
                                   name="gender"
                                   id=""
-                                  as="select"
-                                >
+                                  as="select">
                                   <option
                                     selected={user?.gender === 1}
-                                    value={1}
-                                  >
+                                    value={1}>
                                     {t("Male")}
                                   </option>
                                   <option
                                     selected={user?.gender === 2}
-                                    value={2}
-                                  >
+                                    value={2}>
                                     {t("Female")}
                                   </option>
                                   <option
                                     selected={user?.gender === 3}
-                                    value={3}
-                                  >
+                                    value={3}>
                                     {t("Others")}
                                   </option>
                                 </Field>
                               </div>
                               <button
                                 type="submit"
-                                className="btn nimmu-user-sibmit-button"
-                              >
+                                className="btn nimmu-user-sibmit-button mt-5">
                                 <span>{t("Update Profile")}</span>
                               </button>
                             </Form>

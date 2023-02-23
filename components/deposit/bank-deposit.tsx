@@ -136,7 +136,7 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
                       <div className="form-amount">
                         <input
                           type="number"
-                          className="form-control"
+                          className="form-control border-0"
                           id="amount-one"
                           placeholder={t("Please enter 1 -2400000")}
                           onChange={(e) => {
@@ -149,15 +149,14 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
                       </div>
                       <div className="cp-select-area">
                         <select
-                          className="form-control "
+                          className="form-control border-0 ticketFilterBg"
                           id="currency-one"
                           onChange={(e) => {
                             setCredential({
                               ...credential,
                               currency: e.target.value,
                             });
-                          }}
-                        >
+                          }}>
                           <option value="" selected disabled hidden>
                             {t("Select one")}
                           </option>
@@ -180,7 +179,7 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
             <div className="swap-area">
               <div className="swap-area-top">
                 <div className="form-group">
-                  <div className="swap-wrap">
+                  <div className="swap-wrap mt-3">
                     <div className="swap-wrap-top">
                       <label>{t("Converted amount")}</label>
                       <span className="available">{t("Select wallet")}</span>
@@ -189,7 +188,7 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
                       <div className="form-amount">
                         <input
                           type="number"
-                          className="form-control"
+                          className="form-control border-0"
                           id="amount-one"
                           disabled
                           value={calculatedValue.calculated_amount}
@@ -204,15 +203,14 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
                       </div>
                       <div className="cp-select-area">
                         <select
-                          className="form-control "
+                          className="form-control border-0 ticketFilterBg"
                           id="currency-one"
                           onChange={(e) => {
                             setCredential({
                               ...credential,
                               wallet_id: e.target.value,
                             });
-                          }}
-                        >
+                          }}>
                           <option value="" selected disabled hidden>
                             {t("Select one")}
                           </option>
@@ -230,13 +228,13 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
             </div>
           </div>
         </div>
-        <div className="col-lg-12 mb-3">
+        <div className="col-lg-12 my-3">
           <div className="">
             <span className="file-lable">{t("Select Bank")}</span>
           </div>
           <select
             name="method"
-            className="form-control mt-2"
+            className="form-control mt-2 "
             onChange={(e: any) => {
               setCredential({
                 ...credential,
@@ -245,8 +243,7 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
               setBankInfo(
                 banks.find((bank: any) => bank.id === parseInt(e.target.value))
               );
-            }}
-          >
+            }}>
             <option>{t("Select bank")}</option>
             {banks?.map((bank: any, index: any) => (
               <option key={index} value={bank.id}>
@@ -263,15 +260,14 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
                 className="file-lable copy-btn"
                 onClick={() => {
                   prepareCopyData(bankInfo);
-                }}
-              >
+                }}>
                 {t("Copy")}
               </span>
             </div>
             <BankDetails bankInfo={bankInfo} />
           </div>
         )}
-        <div className="col-lg-12 mb-3">
+        <div className="col-lg-12 my-3">
           <div className="swap-wrap">
             <div className="">
               <span className="file-lable">{t("Select document")}</span>
@@ -300,23 +296,21 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
           )}
           {parseInt(settings.currency_deposit_2fa_status) === 1 ? (
             <button
-              className="primary-btn-outline w-100"
+              className="primary-btn-outline w-100 mt-5"
               type="button"
               data-target="#exampleModal"
               disabled={errorMessage.status === true}
-              data-toggle="modal"
-            >
+              data-toggle="modal">
               {t("Deposit")}
             </button>
           ) : (
             <button
-              className="primary-btn-outline w-100"
+              className="primary-btn-outline w-100 mt-5"
               type="button"
               disabled={errorMessage.status === true}
               onClick={() => {
                 convertCurrency(credential);
-              }}
-            >
+              }}>
               {t("Deposit")}
             </button>
           )}
