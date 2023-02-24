@@ -4398,7 +4398,7 @@ div.dataTables_wrapper div.dataTables_length label {
 .dataTables_head {
   display: flex;
   align-items: center;
-  /* justify-content: space-between; */
+  justify-content: space-between;
   gap: 20px;
   align-content: center;
   align-items: baseline;
@@ -10588,12 +10588,14 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
   padding: 10px 15px;
   background: transparent;
   color: var(--text-primary-color-2);
-  border-radius: 5px;
+  /* border-radius: 5px; */
 }
 
 .exchange-tab-menu .nav-tabs .nav-item .nav-link.active {
-  background: var(--primary-color);
-  color: var(--text-primary-color);
+    color: var(--font-color);
+    font-size: 18px;
+    border-bottom: 4px solid var(--primary-color);
+    font-weight: 600;
 }
 
 .market-trend-area {

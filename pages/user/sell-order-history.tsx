@@ -178,7 +178,6 @@ const SellOrderHistory: NextPage = () => {
                                 <option value="50">50</option>
                                 <option value="100">100</option>
                               </select>
-                              {t("entries")}
                             </label>
                           </div>
                           <div id="table_filter" className="dataTables_filter">
