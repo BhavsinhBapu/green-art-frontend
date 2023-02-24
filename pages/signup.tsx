@@ -96,7 +96,7 @@ const Signup: NextPage = () => {
             </div>
             <div className="user-form border-0 my-5 my-md-0">
               <div className="user-form-inner">
-                <div className="form-top text-center text-md-left">
+                <div className="form-top text-left">
                   <h2>{t("Sign Up")}</h2>
                   <p>{t("Create a new account")}.</p>
                 </div>

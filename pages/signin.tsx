@@ -63,9 +63,9 @@ const Signin: NextPage = () => {
             <div className="text-center text-md-left">
               <h1 className="text-white">{t("Welcome To")}</h1>
               <Link href="/signup">
-                <p className="text-white">
+                <p className="text-white h5">
                   {t("Don’t have an account ? ")}
-                  <a className="text-warning" href="">
+                  <a className="text-warning h5" href="">
                     {t(" Sign Up ")}
                   </a>
                 </p>
@@ -90,7 +90,7 @@ const Signin: NextPage = () => {
               </div>
               <div className="user-form border-0 my-4 my-md-0">
                 <div className="user-form-inner">
-                  <div className="form-top text-center text-md-left">
+                  <div className="form-top text-left">
                     <h2>{t("Sign In")}</h2>
                     <p>{t("Please Sign In To Your Account")}</p>
                   </div>
