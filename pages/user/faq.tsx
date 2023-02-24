@@ -18,7 +18,7 @@ const Index: NextPage = ({ faq }: any) => {
 
   return (
     <>
-      <div className="container-fluid faq-page">
+      <div className="container faq-page">
         <div
           className="alert alert-success alert-dismissible fade show d-none"
           role="alert"
@@ -75,9 +75,9 @@ const Index: NextPage = ({ faq }: any) => {
             <h2 className="section-top-title mb-0">{t("FAQ")}</h2>
           </div>
         </div>
-        <div className="container mb-25">
+        <div className=" mb-25">
           <div className="section-wrapper boxShadow">
-            <div className="row align-items-center">
+            <div className="row">
               <div className="col-lg-6">
                 <div className="accordion" id="accordionExample">
                   {faq?.data?.map((item: any, index: number) => (

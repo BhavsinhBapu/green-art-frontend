@@ -15,7 +15,6 @@ const Cover = ({
   
   return (
     <div>
-      {" "}
       {parseInt(landing?.landing_first_section_status) === 1 && (
         <section className="hero-banner-area">
           <div className="container">
