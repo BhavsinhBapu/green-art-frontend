@@ -5253,9 +5253,10 @@ select:-webkit-autofill:focus {
 .section-top-wrap {
   background: var(--card-background-color);
   padding: 25px;
-  background-image: linear-gradient(0deg, var(--primary-color), #0e0b0259),
-    url(https://img.freepik.com/free-vector/abstract-white-shapes-background_79603-1362.jpg?w=1380&t=st=1666683576~exp=1666684176~hmac=4c3552aeeb1bb995a74bf404517b8610ec13d863bef1f158dac4eed6772340fb);
+  background-image: linear-gradient(236deg, var(--primary-color), #0e0b0259),
+    url(https://img.freepik.com/free-vector/abstract-white-shapes-background_79603-1362.jpg?w=1380&t=st=1666683576~exp=1666684176~hmac=4c3552a…);
   background-size: inherit;
+  border-radius: 10px;
 }
 
 .section-top-title {
@@ -5263,12 +5264,12 @@ select:-webkit-autofill:focus {
   font-size: 32px;
   font-weight: 500;
   text-transform: capitalize;
-  color: var(--text-primary-color);
+  /* color: var(--text-primary-color); */
   margin-bottom: 15px;
   font-size: 32px;
   font-weight: 500;
   text-transform: capitalize;
-  color: var(--text-primary-color) !important;
+  color: #fff !important;
 }
 
 .big-top-title {
@@ -10408,7 +10409,7 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
   left: 0;
   top: 0;
   z-index: 9999;
-  background: #2a2e37f7;
+  background: var(--main-background-color);
   color: white !important;
 }
 
@@ -10617,7 +10618,7 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
   padding: 10px 15px;
   border-radius: 3px;
   background: var(--primary-color);
-  color: var(--text-primary-color);
+  color: var(--font-color);
   text-decoration: none;
   font-size: 14px;
   font-weight: 400;
