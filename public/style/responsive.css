@@ -166,15 +166,18 @@
     padding: 20px 20px;
     min-height: 0px;
   }
-}
-
-@media (max-width: 767px) {
-  .login_from_res {
-    position: absolute;
-    top: 230px;
-    left: 0;
+  .login_bg_new {
+    display: none;
   }
 }
+
+/* @media (max-width: 767px) {
+  .login_from_res {
+    position: absolute;
+    top: 30px;
+    left: 0;
+  }
+} */
 
 @media (max-width: 768px) {
   .faq-wallet-section {

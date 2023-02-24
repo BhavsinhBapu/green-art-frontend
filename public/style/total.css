@@ -5249,6 +5249,7 @@ select:-webkit-autofill:focus {
   flex: 1;
   /* padding: 0 15px; */
 }
+
 .section-top-wrap {
   position: relative;
   padding: 25px;
@@ -5257,7 +5258,7 @@ select:-webkit-autofill:focus {
 }
 
 .section-top-wrap::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -5269,7 +5270,7 @@ select:-webkit-autofill:focus {
 }
 
 .section-top-wrap::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -5329,14 +5330,14 @@ select:-webkit-autofill:focus {
   font-size: 16px;
   font-weight: 400;
   text-transform: capitalize;
-      color: var(--text-primary-color) !important;
+  color: var(--text-primary-color) !important;
 }
 
 .overview-area .overview-left .blance {
   margin-bottom: 5px;
   font-size: 24px;
   font-weight: 700;
-    color: var(--text-primary-color) !important;
+  color: var(--text-primary-color) !important;
 }
 
 .overview-area .overview-left .total-blance {
@@ -5421,10 +5422,12 @@ select:-webkit-autofill:focus {
   cursor: pointer;
   min-width: 186px;
 }
+
 .slick-slide img {
   display: block;
   margin: auto;
 }
+
 .section-wrapper {
   background: var(--card-background-color);
   padding: 40px;
