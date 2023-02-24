@@ -43,7 +43,7 @@ const Signin: NextPage = () => {
     <>
       <div className="d-md-flex d-block">
         <div
-          className="col-md-6 login_bg_new"
+          className="col-md-5 login_bg_new"
           style={{
             backgroundImage: `url(${settings.login_background})`,
           }}>
@@ -73,7 +73,7 @@ const Signin: NextPage = () => {
             </div>
           </div>
         </div>
-        <div className="col-md-6 d-flex align-items-center login_from_res">
+        <div className="col-md-7 d-flex align-items-center login_from_res">
           <div className="row w-100 mx-auto">
             <div className="col-lg-8 col-md-12 mx-md-auto">
               <div className="user-content-text text-left d-block d-md-none">
