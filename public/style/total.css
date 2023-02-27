@@ -534,7 +534,7 @@ p {
   content: "";
   height: 59px;
   width: 100%;
-  background: var(--card-background-color);
+  background: var(--main-background-color);
   position: absolute;
   left: 0;
   top: 0;
@@ -571,7 +571,7 @@ p {
 
 .cp-user-top-bar-right .profile-dropdown .dropdown-menu button {
   padding: 11px 20px;
-  border-bottom: 1px solid #353b47;
+  /* border-bottom: 1px solid #353b47; */
 }
 
 .cp-user-top-bar-right .profile-dropdown .dropdown-menu button:last-child {
@@ -585,7 +585,10 @@ p {
 }
 
 .cp-user-top-bar-right .profile-dropdown .dropdown-menu button:hover {
-  background: #383e4c;
+  background: var(--hover-color);
+  /* color: var(--text-primary-color) !important; */
+  border-radius: 10px;
+  border-bottom: 0px;
 }
 
 .cp-user-top-bar-right .profile-dropdown button:hover a,
@@ -9624,7 +9627,7 @@ table.dataTable thead .sorting_asc:after {
   content: "";
   height: 59px;
   width: 100%;
-  background: #333843;
+  background: var(--main-background-color);
   position: absolute;
   left: 0;
   top: 0;
@@ -11500,7 +11503,7 @@ input[type="number"] {
 }
 
 .nav-userName {
-  color: var(--text-primary-color);
+  color: var(--font-color);
 }
 
 .profile-status-area {
@@ -12989,4 +12992,16 @@ input {
 .qrCodeBg {
   background-color: #ffff;
   padding: 10px;
+}
+
+.react-tel-input .selected-flag {
+    outline: none;
+    position: relative;
+    width: 40px;
+    height: 100%;
+    padding: 0 0 0 8px;
+    border-radius: 3px 0 0 3px;
+    background-color: var(--main-background-color);
+    border: none;
+    --font-color: var(--font-color);
 }
