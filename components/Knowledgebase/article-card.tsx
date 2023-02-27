@@ -24,7 +24,7 @@ export const ArticalCard = ({ article }: any) => {
       <Link href={"/knowledgebase/" + article.unique_code}>
         <div className="details-button">
           <a href="#">
-            view more
+            View more
             <i className="ml-2 fa fa-long-arrow-right" aria-hidden="true"></i>
           </a>
         </div>

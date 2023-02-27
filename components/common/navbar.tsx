@@ -530,7 +530,7 @@ const Navbar = () => {
                             ? "cp-user-active-page"
                             : ""
                         }>
-                        {navbar?.settings?.ststus && (
+                        {navbar?.settings?.status && (
                           <Link
                             href={
                               isLoggedIn

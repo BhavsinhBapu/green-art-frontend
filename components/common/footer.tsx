@@ -181,7 +181,7 @@ const Footer = () => {
                               <img
                                 src={social.media_icon}
                                 alt={social.media_title}
-                                width={24}
+                                width={20}
                               />
                             </a>
                           </li>

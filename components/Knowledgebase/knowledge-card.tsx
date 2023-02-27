@@ -37,7 +37,7 @@ export const KnowledgeCard = (subCategory: any) => {
       >
         <div className="details-button">
           <a href="">
-            show more
+            Show more
             <i className="ml-2 mt-1 fa fa-angle-right" aria-hidden="true"></i>
           </a>
         </div>

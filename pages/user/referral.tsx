@@ -31,7 +31,7 @@ const Referral: NextPage = () => {
   }, []);
   return (
     <>
-      <div className="referral-area">
+      <div className="referral-area container">
         <div className="section-top-wrap mb-25">
           <div className="profle-are-top">
             {loading && <Loading />}
