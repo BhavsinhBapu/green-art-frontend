@@ -31,7 +31,7 @@ const Settings: NextPage = () => {
     <>
       <div className="page-wrap">
         <div className="page-main-content">
-          <div className="container-fluid">
+          <div className="container">
             <div className="section-top-wrap mb-25">
               <div className="profle-are-top">
                 <h2 className="section-top-title mb-0">

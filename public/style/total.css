@@ -12532,7 +12532,8 @@ label.upload-file-btn.press-enter {
     display: flex;
     align-items: center;
     font-size: 14px;
-    color: var(--text-primary-color-2);
+    color: var(--text-primary-color-3);
+    font-weight: bold;
     justify-content: center;
 }
 
