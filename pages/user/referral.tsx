@@ -43,7 +43,7 @@ const Referral: NextPage = () => {
         <div className="container mb-5">
           <div className="invite-friends">
             <h4>{t("Invite your friends")}</h4>
-            <div className="input-group">
+            <div className="input-group rounded">
               <input
                 ref={selectReference}
                 onClick={() => {
@@ -52,7 +52,7 @@ const Referral: NextPage = () => {
                   selectReference.current.select();
                 }}
                 type="url"
-                className="form-control referel-inputfield"
+                className="form-control referel-inputfield rounded-0"
                 id="url"
                 defaultValue={referral}
                 readOnly
@@ -64,8 +64,7 @@ const Referral: NextPage = () => {
                   navigator.clipboard.writeText(referral);
                   toast.success(t("Copied to clipboard"));
                   selectReference.current.select();
-                }}
-              >
+                }}>
                 <i className="fa fa-clone" />
               </button>
             </div>
@@ -90,32 +89,28 @@ const Referral: NextPage = () => {
               <div className="table-responsive">
                 <table
                   className="table cp-user-custom-table table-borderless text-center dataTable no-footer"
-                  id="DataTables_Table_0"
-                >
+                  id="DataTables_Table_0">
                   <thead>
                     <tr>
                       <th
                         className="referral-level"
                         rowSpan={1}
                         colSpan={1}
-                        aria-label="Level 1"
-                      >
+                        aria-label="Level 1">
                         {t("Level 1")}
                       </th>
                       <th
                         className="referral-level"
                         rowSpan={1}
                         colSpan={1}
-                        aria-label="Level 2"
-                      >
+                        aria-label="Level 2">
                         {t("Level 2")}
                       </th>
                       <th
                         className="referral-level"
                         rowSpan={1}
                         colSpan={1}
-                        aria-label="Level 3"
-                      >
+                        aria-label="Level 3">
                         {t("Level 3")}
                       </th>
                     </tr>

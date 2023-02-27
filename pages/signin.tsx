@@ -38,165 +38,185 @@ const Signin: NextPage = () => {
 
   useEffect(() => {
     getRecapcha();
-
   }, []);
   return (
-    <div
-      className="user-content-wrapper"
-      style={{
-        backgroundImage: `url(${settings.login_background})`,
-      }}
-    >
-      <div className="user-content-inner-wrap">
-        <div className="row align-items-center">
-          <div className="col-md-6">
-            <div className="user-form">
-              <div className="user-form-inner">
-                <div className="form-top">
-                  <h2>{t("Sign In")}</h2>
-                  <p>{t("Please Sign In To Your Account")}</p>
-                </div>
-                <Formik
-                  initialValues={{
-                    email: "",
-                    password: "",
-                    recapcha:
-                      recaptchaData?.google_recapcha !== "1"
-                        ? "ksmaldkmalksmdlkamsdlk"
-                        : "",
-                  }}
-                  validationSchema={Yup.object({
-                    email: Yup.string()
-                      .email(t("Invalid email address"))
-                      .required(t("Email is required")),
-                    password: Yup.string()
-                      .min(6)
-                      .required(t("Password is required")),
-                    recapcha: Yup.string()
-                      .min(6)
-                      .required(t("Recapcha is required")),
-                  })}
-                  onSubmit={async (values) => {
-                    await dispatch(SigninAction(values, setProcessing));
-                    await dispatch(GetUserInfoByTokenAction());
-                  }}
-                >
-                  {({ errors, touched, setFieldValue }) => (
-                    <Form>
-                      <div className="form-group">
-                        <Field
-                          type="email"
-                          name="email"
-                          id="email"
-                          className={`form-control ${
-                            touched.email && errors.email ? "is-invalid" : ""
-                          }`}
-                          placeholder={t("Your email here")}
-                        />
-                      </div>
-
-                      <div className="form-group">
-                        <Field
-                          type={showPassword ? "text" : "password"}
-                          name="password"
-                          id="password"
-                          className={`form-control form-control-password look-pass ${
-                            touched.password && errors.password
-                              ? "is-invalid"
-                              : ""
-                          }`}
-                          placeholder={t("Your password here")}
-                        />
-
-                        <span
-                          className="eye rev"
-                          onClick={() => setShowPassword(!showPassword)}
-                        >
-                          {showPassword ? (
-                            <i className="fa fa-eye toggle-password"></i>
-                          ) : (
-                            <i className="fa fa-eye-slash toggle-password"></i>
-                          )}
-                        </span>
-                      </div>
-
-                      <div className="form-group">
-                        <p className="invalid-feedback">{t("Message")}</p>
-                      </div>
-                      <div className="d-flex justify-content-between rememberme align-items-center mb-4">
-                        <div className="form-check">
-                          <input
-                            type="checkbox"
-                            className="form-check-input"
-                            id="exampleCheck1"
-                          />
-                          <label className="form-check-label">
-                            {t("Remember me")}
-                          </label>
-                        </div>
-                        <div className="text-right">
-                          <Link href="/forgot-password">
-                            <a className="text-theme forgot-password">
-                              {t("Forgot Password?")}
-                            </a>
-                          </Link>
-                        </div>
-                      </div>
-                      {recaptchaData?.NOCAPTCHA_SITEKEY &&
-                        recaptchaData?.google_recapcha === "1" && (
-                          <ReCAPTCHA
-                            ref={(r: any) => setCaptchaRef(r)}
-                            sitekey={recaptchaData?.NOCAPTCHA_SITEKEY}
-                            render="explicit"
-                            onChange={(response: any) => {
-                              setFieldValue("recapcha", response);
-                            }}
-                          />
-                        )}
-
-                      <button
-                        onClick={() => resetCaptcha()}
-                        type="submit"
-                        disabled={processing}
-                        className="btn nimmu-user-sibmit-button mt-3"
-                      >
-                        {processing ? (
-                          <>
-                            <span
-                              className="spinner-border spinner-border-md"
-                              role="status"
-                              aria-hidden="true"
-                            ></span>
-                            <span>{t("Please wait")}</span>
-                          </>
-                        ) : (
-                          t("Sign In")
-                        )}
-                      </button>
-                    </Form>
-                  )}
-                </Formik>
-              </div>
-            </div>
+    <>
+      <div className="d-md-flex d-block">
+        <div
+          className="col-md-5 login_bg_new"
+          style={{
+            backgroundImage: `url(${settings.login_background})`,
+          }}>
+          <div className="user-content-text text-center text-md-left">
+            <Link href="/">
+              <a className="auth-logo" href="">
+                <img
+                  width="65%"
+                  src={settings.logo || ""}
+                  className="pt-5 pt-md-4"
+                  alt=""
+                />
+              </a>
+            </Link>
           </div>
-          <div className="col-md-6">
-            <div className="user-content-text text-center">
-              <h3>{t("Welcome To")}</h3>
-              <Link href="/">
-                <a className="auth-logo" href="">
-                  <img src={settings.logo || ""} className="img-fluid" alt="" />
-                </a>
-              </Link>
+          <div className="d-md-flex d-block align-items-center justify-content-center h-75">
+            <div className="text-center text-md-left">
+              <h1 className="text-white">{t("Welcome To")}</h1>
               <Link href="/signup">
-                <p>
-                  {t("Don’t have account ?")} <a href=""> {t("Sign Up")}</a>
+                <p className="text-white h5">
+                  {t("Don’t have an account ? ")}
+                  <a className="text-warning h5" href="">
+                    {t(" Sign Up ")}
+                  </a>
                 </p>
               </Link>
             </div>
           </div>
         </div>
+        <div className="col-md-7 d-flex align-items-center login_from_res">
+          <div className="row w-100 mx-auto">
+            <div className="col-lg-8 col-md-12 mx-md-auto">
+              <div className="user-content-text text-left d-block d-md-none">
+                <Link href="/">
+                  <a className="auth-logo" href="">
+                    <img
+                      width="60%"
+                      src={settings.logo || ""}
+                      className="pt-5 pt-md-4"
+                      alt=""
+                    />
+                  </a>
+                </Link>
+              </div>
+              <div className="user-form border-0 my-4 my-md-0">
+                <div className="user-form-inner">
+                  <div className="form-top text-left">
+                    <h2>{t("Sign In")}</h2>
+                    <p>{t("Please Sign In To Your Account")}</p>
+                  </div>
+                  <Formik
+                    initialValues={{
+                      email: "",
+                      password: "",
+                      recapcha:
+                        recaptchaData?.google_recapcha !== "1"
+                          ? "ksmaldkmalksmdlkamsdlk"
+                          : "",
+                    }}
+                    validationSchema={Yup.object({
+                      email: Yup.string()
+                        .email(t("Invalid email address"))
+                        .required(t("Email is required")),
+                      password: Yup.string()
+                        .min(6)
+                        .required(t("Password is required")),
+                      recapcha: Yup.string()
+                        .min(6)
+                        .required(t("Recapcha is required")),
+                    })}
+                    onSubmit={async (values) => {
+                      await dispatch(SigninAction(values, setProcessing));
+                      await dispatch(GetUserInfoByTokenAction());
+                    }}>
+                    {({ errors, touched, setFieldValue }) => (
+                      <Form>
+                        <div className="form-group">
+                          <Field
+                            type="email"
+                            name="email"
+                            id="email"
+                            className={`form-control ${
+                              touched.email && errors.email ? "is-invalid" : ""
+                            }`}
+                            placeholder={t("Your email here")}
+                          />
+                        </div>
+
+                        <div className="form-group my-4">
+                          <Field
+                            type={showPassword ? "text" : "password"}
+                            name="password"
+                            id="password"
+                            className={`form-control form-control-password look-pass ${
+                              touched.password && errors.password
+                                ? "is-invalid"
+                                : ""
+                            }`}
+                            placeholder={t("Your password here")}
+                          />
+
+                          <span
+                            className="eye rev"
+                            onClick={() => setShowPassword(!showPassword)}>
+                            {showPassword ? (
+                              <i className="fa fa-eye toggle-password"></i>
+                            ) : (
+                              <i className="fa fa-eye-slash toggle-password"></i>
+                            )}
+                          </span>
+                        </div>
+
+                        <div className="form-group">
+                          <p className="invalid-feedback">{t("Message")}</p>
+                        </div>
+                        <div className="d-flex justify-content-between rememberme align-items-center mb-4">
+                          <div className="form-check">
+                            <input
+                              type="checkbox"
+                              className="form-check-input ml-1"
+                              id="exampleCheck1"
+                            />
+                            <label className="form-check-label ml-2">
+                              {t("Remember me")}
+                            </label>
+                          </div>
+                          <div className="text-right">
+                            <Link href="/forgot-password">
+                              <a className="text-theme forgot-password">
+                                {t("Forgot Password?")}
+                              </a>
+                            </Link>
+                          </div>
+                        </div>
+                        {recaptchaData?.NOCAPTCHA_SITEKEY &&
+                          recaptchaData?.google_recapcha === "1" && (
+                            <ReCAPTCHA
+                              ref={(r: any) => setCaptchaRef(r)}
+                              sitekey={recaptchaData?.NOCAPTCHA_SITEKEY}
+                              render="explicit"
+                              onChange={(response: any) => {
+                                setFieldValue("recapcha", response);
+                              }}
+                            />
+                          )}
+
+                        <button
+                          onClick={() => resetCaptcha()}
+                          type="submit"
+                          disabled={processing}
+                          className="btn nimmu-user-sibmit-button mt-4">
+                          {processing ? (
+                            <>
+                              <span
+                                className="spinner-border spinner-border-md"
+                                role="status"
+                                aria-hidden="true"></span>
+                              <span>{t("Please wait")}</span>
+                            </>
+                          ) : (
+                            t("Sign In")
+                          )}
+                        </button>
+                      </Form>
+                    )}
+                  </Formik>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
