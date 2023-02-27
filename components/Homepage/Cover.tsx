@@ -1,18 +1,15 @@
+import ImageComponent from "components/common/ImageComponent";
 import useTranslation from "next-translate/useTranslation";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 import Slider from "react-slick";
 
-const Cover = ({
-  landing,
-  loggedin,
-  landing_banner_image,
-
-}: any) => {
+const Cover = ({ landing, loggedin, landing_banner_image }: any) => {
   const router = useRouter();
   const { t } = useTranslation("common");
-  
+
   return (
     <div>
       {parseInt(landing?.landing_first_section_status) === 1 && (
@@ -44,11 +41,13 @@ const Cover = ({
                 )}
               </div>
               <div className="col-md-6 ">
-                <img
+                <ImageComponent
                   src={
                     landing_banner_image ||
                     "/undraw_crypto_flowers_re_dyqo.svg.svg"
                   }
+                  height={300}
+                  
                 />
               </div>
             </div>

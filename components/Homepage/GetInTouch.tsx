@@ -1,3 +1,4 @@
+import ImageComponent from "components/common/ImageComponent";
 import React from "react";
 
 const GetInTouch = ({ landing, featureListdata }: any) => {
