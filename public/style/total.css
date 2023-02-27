@@ -2195,6 +2195,7 @@ a#submit {
 
 .cp-user-idverifymodal .modal-body {
     padding: 50px;
+    background-color: var(--main-background-color);
 }
 
 .cp-user-profile-info-id-type {
@@ -10130,7 +10131,7 @@ label {
 
 .modal-content {
     background-color: var(--text-primary-color);
-    border: 1px solid var(--border-color-2);
+    border: 1px solid var(--border-color);
 }
 
 .modal-title {
