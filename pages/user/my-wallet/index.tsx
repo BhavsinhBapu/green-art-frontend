@@ -74,21 +74,25 @@ const MyWallet: NextPage = () => {
 
   return (
     <>
-      <div className="page-wrap rightMargin">
-        <div className="page-main-content">
-          <div className="container-fluid">
-            <div className="section-top-wrap mb-25">
-              <div className="overview-area">
-                <div className="overview-left">
-                  <h2 className="section-top-title">{t("Overview")}</h2>
-                  <h4 className="blance-title">{t("Total balance")}</h4>
-                  <h4 className="blance">
-                    {allData?.total ? parseFloat(allData?.total).toFixed(8) : 0}
-                    {""} {settings?.currency}
-                  </h4>
-                </div>
+      <div className="page-wrap">
+        <div className="page-main-content container-fluid">
+          <div className="section-top-wrap mb-25">
+            <div className="overview-area">
+              <div className="overview-left">
+                <h2 className="section-top-title">{t("Overview")}</h2>
+                <h4 className="blance-title">{t("Total balance")}</h4>
+                <h4 className="blance">
+                  {allData?.total ? parseFloat(allData?.total).toFixed(8) : 0}
+                  {""} {settings?.currency}
+                </h4>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+      <div className="page-wrap">
+        <div className="page-main-content">
+          <div className="container-fluid">
             <div className="asset-balances-area cstm-loader-area">
               <div className="asset-balances-left">
                 <div className="section-wrapper ">

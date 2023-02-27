@@ -571,8 +571,14 @@ p {
     display: block;
 }
 
-.cp-user-top-bar-right .profile-dropdown .dropdown-menu button:hover {
+.cp-user-top-bar-right .profile-dropdown .dropdown-menu button:hover a {
     background: #383e4c;
+    color: var(--primary-color) !important;
+    transition: 0.3s;
+}
+
+.cp-user-top-bar-right .profile-dropdown .dropdown-menu button:hover {
+    border-radius: 4px;
 }
 
 .cp-user-top-bar-right .profile-dropdown button:hover a,
@@ -6130,13 +6136,14 @@ table.dataTable tbody tr.dataTable-white td {
 
 .invite-friends .input-group .copy-url-btn {
     position: absolute;
-    right: -25px;
+    right: 2px;
     top: 50%;
     transform: translateY(-50%);
     color: var(--primary-color);
     font-size: 20px;
     z-index: 9;
     width: 30px !important;
+    background-color: var(--card-background-color);
 }
 
 .invite-friends .input-group .form-control {
