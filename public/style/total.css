@@ -557,8 +557,8 @@ p {
 }
 
 .cp-user-top-bar-right .profile-dropdown .dropdown-menu button {
-  padding: 11px 20px;
-  /* border-bottom: 1px solid #353b47; */
+    padding: 11px 20px;
+    /* border-bottom: 1px solid #353b47; */
 }
 
 .cp-user-top-bar-right .profile-dropdown .dropdown-menu button:last-child {
@@ -5864,7 +5864,7 @@ select:-webkit-autofill:focus {
     font-size: 18px;
     font-weight: 400;
     color: var(--text-primary-color-2);
-    background: transparent;
+    background: var(--main-background-color);
 }
 
 .user-profile-form .form-group label {
@@ -12879,4 +12879,16 @@ input {
 .qrCodeBg {
     background-color: #ffff;
     padding: 10px;
+}
+
+.react-tel-input .flag-dropdown ul {
+    background-color: var(--card-background-color) !important;
+}
+
+.react-tel-input .country-list .country.highlight {
+    background-color: #f5e9bb5c !important;
+}
+
+.react-tel-input .country-list .country:hover {
+    background-color: #f5e9bb5c !important;
 }
