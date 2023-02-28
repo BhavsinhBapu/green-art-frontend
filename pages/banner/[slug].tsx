@@ -3,11 +3,7 @@ import Footer from "components/common/footer";
 import { GetServerSideProps } from "next";
 import useTranslation from "next-translate/useTranslation";
 import React from "react";
-import {
-  bannerDetailsBySlug,
-  customPage,
-  landingPage,
-} from "service/landing-page";
+import { bannerDetailsBySlug } from "service/landing-page";
 //@ts-ignore
 import sanitizeHtml from "sanitize-html";
 

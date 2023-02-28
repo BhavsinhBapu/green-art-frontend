@@ -1,7 +1,12 @@
 import Navbar from "components/common/navbar";
 import { useRouter } from "next/router";
 import { ToastContainer } from "react-toastify";
-import { commomSettings, customPage, landingPage } from "service/landing-page";
+import {
+  CommonLandingCustomSettings,
+  commomSettings,
+  customPage,
+  landingPage,
+} from "service/landing-page";
 import { useEffect, useState } from "react";
 import { GetUserInfoByTokenAction } from "state/actions/user";
 import { useDispatch, useSelector } from "react-redux";
@@ -42,21 +47,34 @@ const Index = ({ children }: any) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const getCommonSettings = async () => {
-    dispatch(setLoading(true));
-    rootThemeCheck();
-    const response = await commomSettings();
-    const { data } = await landingPage(
-      router.locale === "en" ? "en" : router.locale
-    );
-    const { data: customPageData } = await customPage();
-    dispatch(setLogo(response.data.logo));
-    dispatch(setSettings(response.data));
-    dispatch(setCustomPageData(customPageData.data));
-    dispatch(setCopyright_text(data?.copyright_text));
-    dispatch(setSocialData(data.media_list));
-    setMetaData(response.data);
-    checkDarkMode(response.data);
-    dispatch(setLoading(false));
+    try {
+      dispatch(setLoading(true));
+      rootThemeCheck();
+      // const response = await commomSettings();
+      console.log("Calling");
+      const { data: CommonLanding } = await CommonLandingCustomSettings("en");
+      console.log(
+        CommonLanding?.common_settings.logo,
+        "CommonLanding?.common_settings.data.logo"
+      );
+      // const { data } = await landingPage(
+      //   router.locale === "en" ? "en" : router.locale
+      // );
+      // const { data: customPageData } = await customPage();
+
+      dispatch(setLogo(CommonLanding?.common_settings.logo));
+      dispatch(setSettings(CommonLanding?.common_settings));
+      dispatch(setCustomPageData(CommonLanding.custom_page_settings));
+      dispatch(
+        setCopyright_text(CommonLanding?.landing_settings?.copyright_text)
+      );
+      dispatch(setSocialData(CommonLanding.landing_settings.media_list));
+      setMetaData(CommonLanding?.common_settings);
+      checkDarkMode(CommonLanding?.common_settings);
+      dispatch(setLoading(false));
+    } catch (error) {
+      dispatch(setLoading(false));
+    }
   };
 
   useEffect(() => {
@@ -107,7 +125,7 @@ const Index = ({ children }: any) => {
           href={metaData?.favicon || process.env.NEXT_PUBLIC_FAVICON}
         />
       </Head>
-      <Navbar />
+      <Navbar settings={settings} isLoggedIn={isLoggedIn} />
       <ToastContainer
         position="top-right"
         autoClose={5000}
