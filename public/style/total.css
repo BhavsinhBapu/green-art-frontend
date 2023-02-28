@@ -632,12 +632,11 @@ ul {
     width: 16px;
     line-height: 16px;
     border-radius: 50%;
-    background: #cbeb19;
+    background: var(--primary-color);
     text-align: center;
     font-size: 10px;
-    color: #262424;
+    color: black;
 }
-
 .cp-user-logo .cp-user-logo-large {
     max-width: 150px;
 }
@@ -5739,7 +5738,7 @@ select:-webkit-autofill:focus {
     margin-bottom: 8px;
     font-size: 16px;
     font-weight: 400;
-    color: var(--text-primary-color-2);
+    color: var(--text-primary-color) !important;
 }
 
 .profle-are-top .user-level {
@@ -10130,7 +10129,7 @@ label {
 }
 
 .modal-content {
-    background-color: var(--text-primary-color);
+    background-color: var(--main-background-color);
     border: 1px solid var(--border-color);
 }
 
@@ -10152,11 +10151,11 @@ label {
 }
 
 .modal-header {
-    border-color: #ededed;
+    border-color: var(--border-color);
 }
 
 .modal-footer {
-    border-color: #ededed;
+    border-color: var(--border-color);
 }
 
 .modal-header .close {
@@ -10171,7 +10170,7 @@ label {
 }
 
 .modal-body .form-control {
-    border-color: #ededed;
+    border-color: var(--border-color);
 }
 
 #pair_edit_30 .modal-header .close {

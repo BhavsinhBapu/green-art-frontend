@@ -10,6 +10,7 @@ export type UserType = {
   logo: string;
   icoChat: [];
   supportChat: [];
+  notificationData: [];
 };
 
 const initialState: any = {
@@ -23,6 +24,7 @@ const initialState: any = {
   socialData: null,
   supportChat: [],
   logo: "",
+  notificationData: [],
 };
 
 export const userSlice = createSlice({
@@ -73,6 +75,12 @@ export const userSlice = createSlice({
     setSocialData: (state, action: any) => {
       state.socialData = action.payload;
     },
+    setNotificationData: (state, action: any) => {
+      state.notificationData = action.payload;
+    },
+    setOneNotification: (state, action: any) => {
+      state.notificationData.unshift(action.payload);
+    },
   },
 });
 
@@ -90,5 +98,7 @@ export const {
   setCustomPageData,
   setCopyright_text,
   setSocialData,
+  setNotificationData,
+  setOneNotification,
 } = userSlice.actions;
 export default userSlice.reducer;

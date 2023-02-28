@@ -1,6 +1,6 @@
 import useTranslation from "next-translate/useTranslation";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import { notification } from "service/notification";
 import { RootState } from "state/store";
@@ -12,15 +12,8 @@ import { IoMdNotificationsOutline } from "react-icons/io";
 import { NoItemFound } from "components/NoItemFound/NoItemFound";
 const NotificationPage = () => {
   const { t } = useTranslation("common");
-  const [notificationData, setNotification] = useState<any>([]);
-  const { isLoggedIn } = useSelector((state: RootState) => state.user);
-  const getNotifications = async () => {
-    const data = await notification();
-    setNotification(data.data.data);
-  };
-  useEffect(() => {
-    isLoggedIn && getNotifications();
-  }, [isLoggedIn]);
+  const { notificationData } = useSelector((state: RootState) => state.user);
+
   return (
     <>
       {notificationData?.length > 0 && (
