@@ -19,16 +19,18 @@ import {
 import { customPage, landingPage } from "service/landing-page";
 import Footer from "components/common/footer";
 import ImageComponent from "components/common/ImageComponent";
+import SectionLoading from "components/common/SectionLoading";
 
 const PersonalVerification: NextPage = () => {
   const { t } = useTranslation("common");
+  const [loading, setLoading] = useState(false);
   const [type, setType] = useState<string>("");
   const [kycDetails, setKycDetails] = useState<any>();
   const [kycActiveList, setKycActiveList] = useState<any>([]);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getKycDetailsAction(setKycDetails, setKycActiveList));
+    dispatch(getKycDetailsAction(setKycDetails, setKycActiveList, setLoading));
   }, []);
 
   return (
@@ -45,108 +47,119 @@ const PersonalVerification: NextPage = () => {
               </div>
             </div>
             <NidModal type={type} kycDetails={kycDetails} />
+
             <div className="profile-area">
               <div className="section-wrapper boxShadow">
-                <div className="row">
-                  <div className="col-lg-12">
-                    <div className="cp-user-profile-header">
-                      <h5>{t("Select Your ID Type")}</h5>
-                    </div>
-                    <div className="cp-user-profile-info-id-type">
-                      {kycActiveList?.map(
-                        (item: any, index: number) =>
-                          item.type != KYC_PHONE_VERIFICATION &&
-                          item.type != KYC_EMAIL_VERIFICATION && (
-                            <div
-                              key={`kyc${index}`}
-                              className="id-card-type mb-5"
-                              onClick={() => {
-                                {
-                                  item.type == KYC_PASSPORT_VERIFICATION &&
-                                    kycDetails?.passport?.status;
-                                  setType("passport");
-                                }
-                                {
-                                  item.type == KYC_DRIVING_VERIFICATION &&
-                                    setType("driving");
-                                }
-                                {
-                                  item.type == KYC_NID_VERIFICATION &&
-                                    setType("nid");
-                                }
-                                {
-                                  item.type == KYC_VOTERS_CARD_VERIFICATION &&
-                                    setType("voter");
-                                }
-                              }}
-                            >
+                {loading ? (
+                  <>
+                    <SectionLoading />
+                  </>
+                ) : (
+                  <div className="row">
+                    <div className="col-lg-12">
+                      <div className="cp-user-profile-header">
+                        <h5>{t("Select Your ID Type")}</h5>
+                      </div>
+
+                      <div className="cp-user-profile-info-id-type">
+                        {kycActiveList?.map(
+                          (item: any, index: number) =>
+                            item.type != KYC_PHONE_VERIFICATION &&
+                            item.type != KYC_EMAIL_VERIFICATION && (
                               <div
-                                className="id-card"
-                                data-toggle="modal"
-                                data-target=".cp-user-idverifymodal"
+                                key={`kyc${index}`}
+                                className="id-card-type mb-5"
+                                onClick={() => {
+                                  {
+                                    item.type == KYC_PASSPORT_VERIFICATION &&
+                                      kycDetails?.passport?.status;
+                                    setType("passport");
+                                  }
+                                  {
+                                    item.type == KYC_DRIVING_VERIFICATION &&
+                                      setType("driving");
+                                  }
+                                  {
+                                    item.type == KYC_NID_VERIFICATION &&
+                                      setType("nid");
+                                  }
+                                  {
+                                    item.type == KYC_VOTERS_CARD_VERIFICATION &&
+                                      setType("voter");
+                                  }
+                                }}
                               >
-                                {/* <img
+                                <div
+                                  className="id-card"
+                                  data-toggle="modal"
+                                  data-target=".cp-user-idverifymodal"
+                                >
+                                  {/* <img
                                   src={item.image}
                                   className="img-fluid"
                                   alt=""
                                 /> */}
-                                <ImageComponent
-                                  src={item.image}
-                                  className="p-5"
-                                  // height={280}
-                                  // width={400}
-                                  layout="fill"
-                                  objectFit="inherit"
-                                />
+                                  <ImageComponent
+                                    src={item.image}
+                                    className="p-5"
+                                    // height={280}
+                                    // width={400}
+                                    layout="fill"
+                                    objectFit="inherit"
+                                  />
+                                </div>
+                                <div
+                                  className={`card-bottom ${
+                                    item.type == KYC_PASSPORT_VERIFICATION
+                                      ? kycDetails?.passport?.status ==
+                                        "Pending"
+                                        ? "pending"
+                                        : kycDetails?.passport?.status ==
+                                          "Approved"
+                                        ? "success"
+                                        : ""
+                                      : item.type == KYC_DRIVING_VERIFICATION
+                                      ? kycDetails?.driving?.status == "Pending"
+                                        ? "pending"
+                                        : kycDetails?.driving?.status ==
+                                          "Approved"
+                                        ? "success"
+                                        : ""
+                                      : item.type == KYC_NID_VERIFICATION
+                                      ? kycDetails?.nid?.status == "Pending"
+                                        ? "pending"
+                                        : kycDetails?.nid?.status == "Approved"
+                                        ? "success"
+                                        : ""
+                                      : item.type ==
+                                        KYC_VOTERS_CARD_VERIFICATION
+                                      ? kycDetails?.voter?.status == "Pending"
+                                        ? "pending"
+                                        : kycDetails?.voter?.status ==
+                                          "Approved"
+                                        ? "success"
+                                        : ""
+                                      : ""
+                                  }`}
+                                >
+                                  <span className="text-warning">
+                                    {item.type == KYC_PASSPORT_VERIFICATION &&
+                                      kycDetails?.passport?.status}
+                                    {item.type == KYC_DRIVING_VERIFICATION &&
+                                      kycDetails?.driving?.status}
+                                    {item.type == KYC_NID_VERIFICATION &&
+                                      kycDetails?.nid?.status}
+                                    {item.type ==
+                                      KYC_VOTERS_CARD_VERIFICATION &&
+                                      kycDetails?.voter?.status}
+                                  </span>
+                                  <h5>{item.name}</h5>
+                                </div>
                               </div>
-                              <div
-                                className={`card-bottom ${
-                                  item.type == KYC_PASSPORT_VERIFICATION
-                                    ? kycDetails?.passport?.status == "Pending"
-                                      ? "pending"
-                                      : kycDetails?.passport?.status ==
-                                        "Approved"
-                                      ? "success"
-                                      : ""
-                                    : item.type == KYC_DRIVING_VERIFICATION
-                                    ? kycDetails?.driving?.status == "Pending"
-                                      ? "pending"
-                                      : kycDetails?.driving?.status ==
-                                        "Approved"
-                                      ? "success"
-                                      : ""
-                                    : item.type == KYC_NID_VERIFICATION
-                                    ? kycDetails?.nid?.status == "Pending"
-                                      ? "pending"
-                                      : kycDetails?.nid?.status == "Approved"
-                                      ? "success"
-                                      : ""
-                                    : item.type == KYC_VOTERS_CARD_VERIFICATION
-                                    ? kycDetails?.voter?.status == "Pending"
-                                      ? "pending"
-                                      : kycDetails?.voter?.status == "Approved"
-                                      ? "success"
-                                      : ""
-                                    : ""
-                                }`}
-                              >
-                                <span className="text-warning">
-                                  {item.type == KYC_PASSPORT_VERIFICATION &&
-                                    kycDetails?.passport?.status}
-                                  {item.type == KYC_DRIVING_VERIFICATION &&
-                                    kycDetails?.driving?.status}
-                                  {item.type == KYC_NID_VERIFICATION &&
-                                    kycDetails?.nid?.status}
-                                  {item.type == KYC_VOTERS_CARD_VERIFICATION &&
-                                    kycDetails?.voter?.status}
-                                </span>
-                                <h5>{item.name}</h5>
-                              </div>
-                            </div>
-                          )
-                      )}
+                            )
+                        )}
 
-                      {/* <div
+                        {/* <div
                       className="id-card-type"
                       onClick={() => setType("nid")}
                     >
@@ -212,9 +225,10 @@ const PersonalVerification: NextPage = () => {
                         <h5>{t("Driving License")}</h5>
                       </div>
                     </div> */}
+                      </div>
                     </div>
                   </div>
-                </div>
+                )}
               </div>
             </div>
           </div>

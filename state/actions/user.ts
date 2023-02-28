@@ -521,11 +521,14 @@ export const UploadDrivingLicenceImageAction = async (
   setProcessing(false);
 };
 export const getKycDetailsAction =
-  (setKycDetails: any, setKyc: any) => async (dispatch: any) => {
+  (setKycDetails: any, setKyc: any, setLoading: any) =>
+  async (dispatch: any) => {
+    setLoading(true);
     const { data } = await KycDetailsApi();
     const { data: KycList } = await KycActiveList();
     setKycDetails(data);
     setKyc(KycList);
+    setLoading(false);
   };
 
 export const G2fVerifyAction = (code: any) => async (dispatch: any) => {

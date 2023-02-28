@@ -8,7 +8,7 @@ import {
   landingPageSlug,
 } from "service/landing-page";
 import useTranslation from "next-translate/useTranslation";
-import Navbar from "components/common/navbar";
+import Navbar from "components/common/Navbar";
 import { GetUserInfoByTokenServer } from "service/user";
 import { parseCookies, destroyCookie } from "nookies";
 import { useRouter } from "next/router";

@@ -1,16 +1,8 @@
 import type { GetServerSideProps, NextPage } from "next";
-import Slider from "react-slick";
-import Link from "next/link";
-import {
-  landingPage,
-  customPage,
-  commomSettings,
-  CommonLandingCustomSettings,
-} from "service/landing-page";
+import { CommonLandingCustomSettings } from "service/landing-page";
 import useTranslation from "next-translate/useTranslation";
-import Navbar from "components/common/navbar";
-import { GetUserInfoByTokenServer } from "service/user";
-import { parseCookies, destroyCookie } from "nookies";
+import Navbar from "components/common/Navbar";
+import { parseCookies } from "nookies";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import Footer from "components/common/footer";
@@ -36,12 +28,8 @@ const Home: NextPage = ({
   loggedin,
   landing_banner_image,
   customSettings,
-  customPageData,
-  socialData,
-  copyright_text,
 }: any) => {
   const { t } = useTranslation("common");
-  const router = useRouter();
   const { logo } = useSelector((state: RootState) => state.user);
   const { settings: common } = useSelector((state: RootState) => state.common);
   useEffect(() => {

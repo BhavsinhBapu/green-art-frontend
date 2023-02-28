@@ -14,7 +14,7 @@ import sanitizeHtml from "sanitize-html";
 import UnAuthNav from "components/common/unAuthNav";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
-import Navbar from "components/common/navbar";
+import Navbar from "components/common/Navbar";
 import { parseCookies } from "nookies";
 const Bannerdetails = ({
   details,
@@ -66,11 +66,7 @@ const Bannerdetails = ({
           ></div>
         </div>
       </div>
-      <Footer
-        customPageData={customPageData}
-        socialData={socialData}
-        copyright_text={copyright_text}
-      />
+      <Footer />
     </div>
   );
 };

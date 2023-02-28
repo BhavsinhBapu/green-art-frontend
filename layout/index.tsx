@@ -1,4 +1,4 @@
-import Navbar from "components/common/navbar";
+import Navbar from "components/common/Navbar";
 import { useRouter } from "next/router";
 import { ToastContainer } from "react-toastify";
 import {
@@ -12,7 +12,8 @@ import { GetUserInfoByTokenAction } from "state/actions/user";
 import { useDispatch, useSelector } from "react-redux";
 import Cookies from "js-cookie";
 import { RootState } from "state/store";
-import useTranslation from "next-translate/useTranslation";
+import Echo from "laravel-echo";
+import Pusher from "pusher-js";
 import CookieAccept from "components/common/cookie-accept";
 import Head from "next/head";
 import {
@@ -20,12 +21,36 @@ import {
   setCustomPageData,
   setLoading,
   setLogo,
+  setOneNotification,
   setSocialData,
 } from "state/reducer/user";
 import { setSettings } from "state/reducer/common";
 import Loading from "components/common/loading";
 import { checkDarkMode, rootThemeCheck } from "helpers/functions";
-
+async function listenMessages(dispatch: any) {
+  //@ts-ignore
+  window.Pusher = Pusher;
+  //@ts-ignore
+  window.Echo = new Echo({
+    broadcaster: "pusher",
+    key: "test",
+    wsHost: process.env.NEXT_PUBLIC_HOST_SOCKET,
+    wsPort: 6006,
+    wssPort: 443,
+    forceTLS: false,
+    cluster: "mt1",
+    disableStats: true,
+    enabledTransports: ["ws", "wss"],
+  });
+  //@ts-ignore
+  window.Echo.channel(
+    `usernotification_${localStorage.getItem("user_id")}`
+  ).listen(".receive_notification", (e: any) => {
+    //  dispatch(setChatico(e.data));
+    dispatch(setOneNotification(e?.notification_details));
+  });
+}
+let socketCall = 0;
 const Index = ({ children }: any) => {
   const [navbarVisible, setNavbarVisible] = useState(false);
   const [showterms, setShowTerms] = useState(false);
@@ -43,24 +68,13 @@ const Index = ({ children }: any) => {
   );
   const { settings } = useSelector((state: RootState) => state.common);
 
-  const { t } = useTranslation("common");
   const dispatch = useDispatch();
   const router = useRouter();
   const getCommonSettings = async () => {
     try {
       dispatch(setLoading(true));
       rootThemeCheck();
-      // const response = await commomSettings();
-      console.log("Calling");
       const { data: CommonLanding } = await CommonLandingCustomSettings("en");
-      console.log(
-        CommonLanding?.common_settings.logo,
-        "CommonLanding?.common_settings.data.logo"
-      );
-      // const { data } = await landingPage(
-      //   router.locale === "en" ? "en" : router.locale
-      // );
-      // const { data: customPageData } = await customPage();
 
       dispatch(setLogo(CommonLanding?.common_settings.logo));
       dispatch(setSettings(CommonLanding?.common_settings));
@@ -76,7 +90,12 @@ const Index = ({ children }: any) => {
       dispatch(setLoading(false));
     }
   };
-
+  useEffect(() => {
+    if (socketCall === 0) {
+      listenMessages(dispatch);
+    }
+    socketCall = 1;
+  });
   useEffect(() => {
     getCommonSettings();
   }, []);
