@@ -9406,6 +9406,10 @@ a.paginate_button.paginate-number.text-warning {
     color: gray !important;
     border-radius: 3px;
     font-weight: bold;
+    margin-right: 20px;
+    margin-left: 20px;
+    padding-right: 11px;
+    padding-left: 11px;
 }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button.previous,
