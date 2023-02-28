@@ -15,7 +15,7 @@ const VerificationList: NextPage = () => {
   const [kyc, setKyc] = useState<any>(null);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getKycDetailsAction(setKycDetails, setKyc));
+    dispatch(getKycDetailsAction(setKycDetails, setKyc,null));
   }, []);
 
   return (
