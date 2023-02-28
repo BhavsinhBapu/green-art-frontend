@@ -195,7 +195,7 @@ async function calculateEstimateGasFees(req,type)
         const web3 = new Web3(network);
         let amount = req.body.amount_value;
         let gasPrice =  await web3.eth.getGasPrice();
-        gasPrice = Web3.utils.fromWei(gasPrice.toString(), 'gwei');
+        // gasPrice = Web3.utils.fromWei(gasPrice.toString(), 'gwei');
         console.log('gas price');
         console.log(gasPrice);
         const fromAddress = req.body.from_address;
@@ -210,8 +210,8 @@ async function calculateEstimateGasFees(req,type)
             const contract = new web3.eth.Contract(contractJsons, contractAddress);
             const contractDecimal = await getContractDecimal(contract);
             amount = customToWei(amount,contractDecimal);
-            if (usedGasLimit > 0) {
-                gasFees = (usedGasLimit * gasPrice);
+            if (Number(usedGasLimit) > 0) {
+                gasFees = Number(usedGasLimit) * Number(gasPrice);
             } else {
                 const estimatedGasRes = await contract.methods.transfer(receiverAddress, amount).estimateGas({ from: fromAddress });
                 console.log('estimateGas');
@@ -219,11 +219,12 @@ async function calculateEstimateGasFees(req,type)
                 usedGasLimit = parseInt(estimatedGasRes/2) + estimatedGasRes;
                 console.log('usedGasLimit');
                 console.log(usedGasLimit);
-                gasFees = (usedGasLimit*gasPrice);
+                gasFees = Number(usedGasLimit) * Number(gasPrice);
             }
             console.log('gasFees');
             console.log(gasFees);
-            finalGasFees = Web3.utils.fromWei(gasFees.toString(), 'gwei');
+            finalGasFees = Web3.utils.fromWei(gasFees.toString());
+            
             console.log(finalGasFees);
             data = {
                 amount : amount,
@@ -447,8 +448,9 @@ async function getERC20tokenTransactionDetails(req)
         const network = req.headers.chainlinks;
         const hash = req.body.transaction_hash;
         const web3 = new Web3(network);
-
+        console.log('hash ', hash);
         const response = await web3.eth.getTransaction(hash);
+       
         console.log(response);
         if (response) {
           let contractJsons = contractJson();
@@ -922,15 +924,71 @@ async function getContractDetails(req, res)
     }
 }
 
-module.exports = {
-    getData,
-    generateAddress,
-    getWalletBalance,
-    sendEth,
-    sendToken,
-    checkEstimateGasFees,
-    getTransactionByContractAddress,
-    getDataByTransactionHash,
-    getLatestEvents,
-    getContractDetails
+async function getAddressFromPK(req, res) {
+  try {
+    const networkType = req.headers.networktype;
+    if (parseInt(networkType) == 6) {
+      await trxToken.getTrxAddressByPk(req, res);
+    } else {
+      const response = await getETHAddressFromPk(req);
+      res.send({
+        status: response.status,
+        message: response.message,
+        data: response.data,
+      });
+    }
+  } catch (e) {
+    res.send({
+      status: false,
+      message: e.message,
+      data: {},
+    });
+  }
 }
+
+// get erc20 address data
+async function getETHAddressFromPk(req) {
+  try {
+    const network = req.headers.chainlinks;
+    const pk = req.body.contracts;
+    const web3 = new Web3(network);
+    
+    const response = await web3.eth.accounts.privateKeyToAccount(pk);
+    if (response) {
+      
+      return {
+        status: true,
+        message: "Get address success",
+        data: {
+          address: response.address,
+        },
+      };
+    } else {
+      return {
+        status: false,
+        message: "Get address failed",
+        data: {},
+      };
+    }
+  } catch (err) {
+    console.log(err);
+    return {
+      status: false,
+      message: String(err),
+      data: {},
+    };
+  }
+}
+module.exports = {
+  getData,
+  generateAddress,
+  getWalletBalance,
+  sendEth,
+  sendToken,
+  checkEstimateGasFees,
+  getTransactionByContractAddress,
+  getDataByTransactionHash,
+  getLatestEvents,
+  getContractDetails,
+  getAddressFromPK,
+};
