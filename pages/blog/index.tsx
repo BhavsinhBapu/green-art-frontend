@@ -67,10 +67,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   // const { FeaturedBlogs, RecentBlogs, Categories } = await BlogHomePageAction(
   //   ctx.locale
   // );
-  // console.log(ctx.locale, "ctx.locale");
   // const cookies = parseCookies(ctx);
   // const response = await GetUserInfoByTokenServer(cookies.token);
-  // console.log(response, "ctx.locale");
   // const { data: BlogNewsSettings } = await getBlogNewsSettings();
   const commonRes = await pageAvailabilityCheck();
   if (parseInt(commonRes.blog_news_module) !== 1) {

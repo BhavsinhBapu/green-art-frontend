@@ -9,6 +9,7 @@ import { customPage, landingPage } from "service/landing-page";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import Footer from "components/common/footer";
 import { IoMdNotificationsOutline } from "react-icons/io";
+import { NoItemFound } from "components/NoItemFound/NoItemFound";
 const NotificationPage = () => {
   const { t } = useTranslation("common");
   const [notificationData, setNotification] = useState<any>([]);
@@ -22,11 +23,13 @@ const NotificationPage = () => {
   }, [isLoggedIn]);
   return (
     <>
-      <div className="container notification-continer mb-2">
-        <h2 className="section-top-title notification-section-title">
-          {t("All notifications")}
-        </h2>
-      </div>
+      {notificationData?.length > 0 && (
+        <div className="container notification-continer mb-2">
+          <h2 className="section-top-title notification-section-title">
+            {t("All notifications")}
+          </h2>
+        </div>
+      )}
 
       <div className="notification-section marginLeftRight">
         <div className="container">
@@ -61,9 +64,9 @@ const NotificationPage = () => {
                 </div>
               ))
             ) : (
-              <p className="text-center notificationNotFound">
-                {t("No Notification!")}
-              </p>
+              <div className="container">
+                <NoItemFound message="No notification's" />
+              </div>
             )}
           </div>
         </div>

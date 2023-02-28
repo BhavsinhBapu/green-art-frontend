@@ -103,7 +103,7 @@ const Wallethistory = ({ type }: any) => {
               ) : (
                 <div className="asset-balances-left">
                   <div className="section-wrapper wallet-border-history rounded">
-                    <div className="table-responsive tableScroll">
+                    <div className="tableScroll">
                       <div
                         id="assetBalances_wrapper"
                         className="dataTables_wrapper no-footer">
@@ -134,7 +134,6 @@ const Wallethistory = ({ type }: any) => {
                                 <option value="50">50</option>
                                 <option value="100">100</option>
                               </select>
-                              {t("entries")}
                             </label>
                           </div>
                           <div id="table_filter" className="dataTables_filter">

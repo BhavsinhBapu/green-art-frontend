@@ -6,7 +6,6 @@ import {
 } from "helpers/core-constants";
 
 export const TicketUserInfo = ({ ticketDetails }: any) => {
-  console.log(ticketDetails, "ticketDetails");
   return (
     <div className="p_color chat-side-info mb-4 p-3 rounded">
       <h5 className="">

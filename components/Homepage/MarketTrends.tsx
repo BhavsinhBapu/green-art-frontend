@@ -1,3 +1,4 @@
+import ImageComponent from "components/common/ImageComponent";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import React from "react";
@@ -176,14 +177,14 @@ const MarketTrends = ({
                               </td>
                               <td>
                                 {item.price_change >= 0 ? (
-                                  <img
-                                    src="/chart-image-1.png"
-                                    alt="chart-image"
+                                  <ImageComponent
+                                    src={"/chart-image-1.png"}
+                                    height={80}
                                   />
                                 ) : (
-                                  <img
-                                    src="/chart-image-2.png"
-                                    alt="chart-image"
+                                  <ImageComponent
+                                    src={"/chart-image-2.png"}
+                                    height={80}
                                   />
                                 )}
                               </td>
@@ -342,14 +343,14 @@ const MarketTrends = ({
                                 </td>
                                 <td>
                                   {item.price_change >= 0 ? (
-                                    <img
-                                      src="/chart-image-1.png"
-                                      alt="chart-image"
+                                    <ImageComponent
+                                      src={"/chart-image-1.png"}
+                                      height={80}
                                     />
                                   ) : (
-                                    <img
-                                      src="/chart-image-2.png"
-                                      alt="chart-image"
+                                    <ImageComponent
+                                      src={"/chart-image-2.png"}
+                                      height={80}
                                     />
                                   )}
                                 </td>
@@ -505,14 +506,14 @@ const MarketTrends = ({
                                 </td>
                                 <td>
                                   {item.price_change >= 0 ? (
-                                    <img
-                                      src="/chart-image-1.png"
-                                      alt="chart-image"
+                                    <ImageComponent
+                                      src={"/chart-image-1.png"}
+                                      height={80}
                                     />
                                   ) : (
-                                    <img
-                                      src="/chart-image-2.png"
-                                      alt="chart-image"
+                                    <ImageComponent
+                                      src={"/chart-image-2.png"}
+                                      height={80}
                                     />
                                   )}
                                 </td>

@@ -12,6 +12,7 @@ import Link from "next/link";
 import useTranslation from "next-translate/useTranslation";
 import { customPage, landingPage } from "service/landing-page";
 import Footer from "components/common/footer";
+import ImageComponent from "components/common/ImageComponent";
 
 const PhoneVerification: NextPage = () => {
   const { t } = useTranslation("common");
@@ -124,9 +125,15 @@ const PhoneVerification: NextPage = () => {
                   </div>
                   <div className="col-lg-6 col-md-4">
                     <div className="reset-password-right text-center">
-                      <img
+                      {/* <img
                         src="/phone-verification.svg"
                         alt="phone-verification"
+                      /> */}
+                      <ImageComponent
+                        src="/phone-verification.svg"
+                        alt="phone-verification"
+                        height={280}
+                        objectFit="inherit"
                       />
                     </div>
                   </div>

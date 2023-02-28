@@ -1,3 +1,4 @@
+import ImageComponent from "components/common/ImageComponent";
 import useTranslation from "next-translate/useTranslation";
 import React from "react";
 
@@ -16,10 +17,16 @@ const DistributionSection = ({ landing }: any) => {
               <div className="row align-items-center">
                 <div className="col-lg-6">
                   <div className="trade-anywhere-left">
-                    <img
+                    {/* <img
                       className="trend-image"
                       src={landing?.trade_anywhere_left_img}
                       alt="trade-imge"
+                    />
+                     */}
+                    <ImageComponent
+                      className="trend-image"
+                      src={landing?.trade_anywhere_left_img}
+                      height={300}
                     />
                   </div>
                 </div>

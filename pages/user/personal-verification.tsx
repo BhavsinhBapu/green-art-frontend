@@ -18,6 +18,7 @@ import {
 } from "helpers/core-constants";
 import { customPage, landingPage } from "service/landing-page";
 import Footer from "components/common/footer";
+import ImageComponent from "components/common/ImageComponent";
 
 const PersonalVerification: NextPage = () => {
   const { t } = useTranslation("common");
@@ -84,10 +85,18 @@ const PersonalVerification: NextPage = () => {
                                 data-toggle="modal"
                                 data-target=".cp-user-idverifymodal"
                               >
-                                <img
+                                {/* <img
                                   src={item.image}
                                   className="img-fluid"
                                   alt=""
+                                /> */}
+                                <ImageComponent
+                                  src={item.image}
+                                  className="p-5"
+                                  // height={280}
+                                  // width={400}
+                                  layout="fill"
+                                  objectFit="inherit"
                                 />
                               </div>
                               <div

@@ -1,3 +1,4 @@
+import ImageComponent from "components/common/ImageComponent";
 import useTranslation from "next-translate/useTranslation";
 import React from "react";
 
@@ -15,7 +16,11 @@ const BottomDetails = ({ landing }: any) => {
             <div className="row align-items-center">
               <div className="col-lg-6">
                 <div className="trade-anywhere-left">
-                  <img src={landing?.secure_trade_left_img} alt="integration" />
+                  <ImageComponent
+                    src={landing?.secure_trade_left_img}
+                    alt="integration"
+                    height={300}
+                  />
                 </div>
               </div>
               <div className="col-lg-6">

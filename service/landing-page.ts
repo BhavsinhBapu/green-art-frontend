@@ -1,5 +1,13 @@
 import request from "lib/request";
 
+export const CommonLandingCustomSettings = (locale: any = "en") => {
+  return request.get("/common-landing-custom-settings", {
+    headers: {
+      lang: locale,
+    },
+  });
+};
+
 export const landingPage = (locale: any) => {
   return request.get("/landing", {
     headers: {

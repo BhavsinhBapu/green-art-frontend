@@ -2,7 +2,7 @@ import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
-import { HiOutlineCash } from "react-icons/hi";
+import { RiArticleLine } from "react-icons/ri";
 import { BiSupport } from "react-icons/bi";
 import { AiOutlineBook } from "react-icons/ai";
 import { BsBarChart } from "react-icons/bs";
@@ -18,8 +18,7 @@ const SupportSidebar = ({ getDashbaordData }: any) => {
           {router.pathname == "/support" ? (
             <li
               className={router.pathname == "/support" ? "active" : ""}
-              onClick={getDashbaordData}
-            >
+              onClick={getDashbaordData}>
               <BiSupport />
               <a>{t("Support Dashboard")}</a>
             </li>
@@ -36,9 +35,8 @@ const SupportSidebar = ({ getDashbaordData }: any) => {
             <li
               className={
                 router.pathname == "/support/ticket-create" ? "active" : ""
-              }
-            >
-              <BiSupport />
+              }>
+              <RiArticleLine />
               <a href="/support/ticket-create">{t("Create Ticket")}</a>
             </li>
           </Link>
@@ -52,8 +50,7 @@ const SupportSidebar = ({ getDashbaordData }: any) => {
             <li
               className={
                 router.pathname == "/exchange/dashboard" ? "active" : ""
-              }
-            >
+              }>
               <BsBarChart />
               <a href="/exchange/dashboard">{t("Exchange")}</a>
             </li>
