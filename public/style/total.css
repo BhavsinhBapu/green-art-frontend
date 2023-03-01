@@ -13027,8 +13027,3 @@ input {
 .react-tel-input .country-list .country:hover {
   background-color: #f5e9bb5c !important;
 }
-.btn:not(.note-btn), .btn:not(.note-btn):active, .btn:not(.note-btn):focus, .btn:not(.note-btn):hover {
-    box-shadow: none !important;
-    outline: none !important;
-    background: var(--main-background-color);
-}
