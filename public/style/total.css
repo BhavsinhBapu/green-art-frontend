@@ -2365,7 +2365,7 @@ a#submit {
 }
 
 .id-card-type .id-card img {
-  background: var(--card-background-color);
+  /* background: var(--card-background-color); */
   border-radius: 12px;
   width: 250px;
   padding: 15px;
