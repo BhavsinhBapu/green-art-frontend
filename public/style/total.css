@@ -9403,10 +9403,10 @@ a.paginate_button.paginate-number.text-warning {
     color: gray !important;
     border-radius: 3px;
     font-weight: bold;
-    margin-right: 20px;
+    /* margin-right: 20px;
     margin-left: 20px;
     padding-right: 11px;
-    padding-left: 11px;
+    padding-left: 11px; */
 }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button.previous,
@@ -11429,10 +11429,9 @@ input[type="number"] {
 .userProfileActive:before {
     height: 20px;
     width: 20px;
-    background: #3ee73e;
     content: "";
-    bottom: 50px;
-    right: 0px;
+    bottom: 133px;
+    right: 26px;
     position: absolute;
     border-radius: 50%;
 }
