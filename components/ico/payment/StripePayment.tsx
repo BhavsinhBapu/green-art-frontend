@@ -32,7 +32,7 @@ const StripePayment = ({ initialData, pageInfo }: any) => {
       {credential.stripe_token && (
         <form
           className="w-100  row"
-          onClick={(e) => {
+          onSubmit={(e) => {
             e.preventDefault();
             TokenBuyIcoStripeAction(
               initialData,
