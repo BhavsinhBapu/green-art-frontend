@@ -45,8 +45,7 @@ const BankPayment = ({ pageInfo, initialData }: any) => {
             pageInfo.ref,
             data.pay_currency
           );
-        }}
-      >
+        }}>
         <div className="col-md-6 form-input-div">
           <label className="ico-label-box" htmlFor="">
             {t("Amount")}
@@ -79,8 +78,7 @@ const BankPayment = ({ pageInfo, initialData }: any) => {
                 ...data,
                 bank_id: e.target.value,
               });
-            }}
-          >
+            }}>
             <option value="">{t("Select Bank")}</option>
             {pageInfo?.bank?.map((item: any, index: any) => (
               <option value={item.id} key={index}>
@@ -102,8 +100,7 @@ const BankPayment = ({ pageInfo, initialData }: any) => {
                 ...data,
                 pay_currency: e.target.value,
               });
-            }}
-          >
+            }}>
             <option value="">{t("Select")}</option>
             {pageInfo?.currency_list?.map((item: any, index: any) => (
               <option value={item.code} key={index}>

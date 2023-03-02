@@ -69,8 +69,7 @@ const CardForm = ({ setCredential, credential }: any) => {
       <button
         type="submit"
         className="primary-btn-outline mb-3 w-100"
-        disabled={!stripe}
-      >
+        disabled={!stripe}>
         {t("Deposit")}
       </button>
     </form>
