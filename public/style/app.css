@@ -513,7 +513,11 @@ client-area
   min-width: 140px;
   border: none;
 }
-
+.alert-danger{
+    color: #ff828d;
+    background-color: transparent;
+    border-color: #721c24;
+}
 .primary-btn:hover {
   background: var(--hover-color);
   color: #fff;
