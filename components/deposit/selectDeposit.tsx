@@ -11,8 +11,8 @@ const SelectDeposit = ({
         <div
           className={
             selectedMethod.method === payment.payment_method
-              ? "select-method-item-active mr-3"
-              : "select-method-item mr-3"
+              ? "select-method-item-active mr-0 mr-md-3"
+              : "select-method-item mr-0 mr-md-3"
           }
           key={index}
           onClick={() => {
