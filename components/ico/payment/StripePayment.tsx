@@ -20,7 +20,7 @@ const StripePayment = ({ initialData, pageInfo }: any) => {
   return (
     <>
       {!credential.stripe_token && (
-        <div className="col-md-6 p-0">
+        <div className="col-md-12 p-0">
           <div className="boxShadow mt-4 p-4">
             <Elements stripe={stripe}>
               <CardForm setCredential={setCredential} credential={credential} />
