@@ -52,8 +52,8 @@ const SliderSection = ({
             <div className="container">
               <Slider {...settings}>
                 {bannerListdata?.map((item: any, index: number) => (
-                  <Link href={`/banner/${item.slug}`}>
-                    <div className="single-banner" key={index}>
+                  <Link href={`/banner/${item.slug}`} key={index}>
+                    <div className="single-banner">
                       {/* <img
                         src={item.image}
                         alt="about-image-phone"

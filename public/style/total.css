@@ -10784,7 +10784,7 @@ input[type="number"] {
     position: fixed;
     bottom: 30px;
     left: 30px;
-    background: #fff;
+    background: var(--background-color-trade);
     max-width: 365px;
     border-radius: 15px;
     text-align: center;
