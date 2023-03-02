@@ -1,3 +1,4 @@
+import { NoItemFound } from "components/NoItemFound/NoItemFound";
 import SectionLoading from "components/common/SectionLoading";
 
 import SelectDeposit from "components/deposit/selectDeposit";
@@ -82,7 +83,10 @@ const Index = () => {
                       </div>
                     ) : (
                       <div className="cp-user-title text-center p-5">
-                        <h4>{t("No Avaiable payment method")}</h4>
+                        {/* <h4>{t("No Avaiable payment method")}</h4> */}
+                        <NoItemFound
+                          message={t("No Avaiable payment method")}
+                        />
                       </div>
                     )}
 
@@ -126,6 +130,12 @@ const Index = () => {
                             )}
                           </div>
                         )}
+                        <div className="container text-center">
+                          {!selectedMethod.method &&
+                            pageInfo?.payment_methods?.length > 0 && (
+                              <NoItemFound message="No payment method selected" />
+                            )}
+                        </div>
                       </div>
                     )}
                   </div>
