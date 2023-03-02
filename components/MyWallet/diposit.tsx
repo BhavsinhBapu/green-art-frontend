@@ -65,22 +65,26 @@ export const DipositComponent = ({
                   parseInt(responseData?.wallet.network) === 1 && (
                     <div className="total-balance">
                       <h5>{t("Select Network")}</h5>
-                      <select
-                        name="currency"
-                        className="form-control coin-list-item"
-                        onChange={(e) => {
-                          const findObje = responseData?.data?.find(
-                            (x: any) => x.id === parseInt(e.target.value)
-                          );
-                          setDependecy(Math.random() * 100);
-                          setSelectedNetwork(findObje);
-                        }}>
-                        {responseData?.data?.map((item: any, index: number) => (
-                          <option value={item.id} key={index}>
-                            {item?.network_name}
-                          </option>
-                        ))}
-                      </select>
+                      <div className="cp-select-area">
+                        <select
+                          name="currency"
+                          className="form-control coin-list-item"
+                          onChange={(e) => {
+                            const findObje = responseData?.data?.find(
+                              (x: any) => x.id === parseInt(e.target.value)
+                            );
+                            setDependecy(Math.random() * 100);
+                            setSelectedNetwork(findObje);
+                          }}>
+                          {responseData?.data?.map(
+                            (item: any, index: number) => (
+                              <option value={item.id} key={index}>
+                                {item?.network_name}
+                              </option>
+                            )
+                          )}
+                        </select>
+                      </div>
                     </div>
                   )}
               </div>

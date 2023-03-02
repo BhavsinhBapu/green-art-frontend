@@ -12,8 +12,7 @@ const LaunchTop = ({ data }: any) => {
       style={{
         backgroundImage: `url(${data?.launchpad_cover_image})`,
       }}
-      className="section-top-wrap mb-25 background-image-class"
-    >
+      className="section-top-wrap mb-25 background-image-class">
       <div className="container">
         <div className="overview-area">
           <div className="overview-left ">
@@ -73,7 +72,7 @@ const LaunchTop = ({ data }: any) => {
         </div>
         {isLoggedIn && (
           <Link href="/ico/applied-launchpad">
-            <button className="primary-btn mt-5">
+            <button className="transparent_btn mt-5">
               {t("Launchpad dashboard")}
             </button>
           </Link>
