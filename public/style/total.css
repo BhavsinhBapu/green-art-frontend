@@ -5445,7 +5445,7 @@ select:-webkit-autofill:focus {
 
 .page-left-sidebar .sidebar-top .left-menu li {
     position: relative;
-    margin-bottom: 22px;
+    /* margin-bottom: 22px; */
     list-style: none;
     padding: 10px;
     display: flex;
@@ -11027,7 +11027,7 @@ input[type="number"] {
     padding: 10px;
     margin-top: 20px;
     font-size: 18px;
-    color: var(--text-primary-color);
+    color: var(--font-color);
     cursor: pointer;
     background-color: transparent;
     border-radius: 4px;
