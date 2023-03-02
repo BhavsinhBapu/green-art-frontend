@@ -22,8 +22,7 @@ const CryptoPayment = ({ walletlist, initialData }: any) => {
           data.amount,
           CRYPTO_DEPOSIT
         );
-      }}
-    >
+      }}>
       <div className="w-100 ico-tokenCreate row">
         <div className="col-md-6 form-input-div">
           <label className="ico-label-box" htmlFor="">
@@ -57,8 +56,7 @@ const CryptoPayment = ({ walletlist, initialData }: any) => {
                 ...data,
                 payer_wallet: e.target.value,
               });
-            }}
-          >
+            }}>
             <option value="">{t("Select")}</option>
             {walletlist?.map((item: any, index: any) => (
               <option value={item.id} key={index}>

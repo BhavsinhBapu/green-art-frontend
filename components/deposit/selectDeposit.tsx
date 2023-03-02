@@ -24,8 +24,7 @@ const SelectDeposit = ({
                   parseInt(payment.payment_method)
               ).id,
             });
-          }}
-        >
+          }}>
           {payment.title}
         </div>
       ))}
