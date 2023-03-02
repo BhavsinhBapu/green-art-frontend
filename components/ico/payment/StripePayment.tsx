@@ -18,9 +18,9 @@ const StripePayment = ({ initialData, pageInfo }: any) => {
   //@ts-ignore
   const stripe = loadStripe(process.env.NEXT_PUBLIC_PUBLISH_KEY);
   return (
-    <div className="">
+    <>
       {!credential.stripe_token && (
-        <div className="col-md-6 mx-auto pl-0">
+        <div className="col-md-6 p-0">
           <div className="boxShadow mt-4 p-4">
             <Elements stripe={stripe}>
               <CardForm setCredential={setCredential} credential={credential} />
@@ -103,7 +103,7 @@ const StripePayment = ({ initialData, pageInfo }: any) => {
           </button>
         </form>
       )}
-    </div>
+    </>
   );
 };
 

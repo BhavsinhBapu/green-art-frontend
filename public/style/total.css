@@ -11007,7 +11007,7 @@ input[type="number"] {
 }
 
 .select-method-item {
-  display: flex;
+    display: flex;
     align-items: center;
     justify-content: center;
     padding: 10px;
@@ -11027,14 +11027,13 @@ input[type="number"] {
     padding: 10px;
     margin-top: 20px;
     font-size: 18px;
-    color: var(--font-color);
+    color: var(--text-primary-color-3);
     cursor: pointer;
     background-color: transparent;
     border-radius: 4px;
     border: 2px solid var(--primary-color);
-     padding-left: 53px;
+    padding-left: 53px;
     padding-right: 53px;
-
 }
 
 .file-upload-wrapper {
