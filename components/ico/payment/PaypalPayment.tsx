@@ -16,9 +16,9 @@ const PaypalPayment = ({ initialData, pageInfo }: any) => {
     pay_currency: null,
   });
   return (
-    <form>
-      <div className="w-100 ico-tokenCreate row">
-        <div className="col-md-6 form-input-div">
+    <div>
+      <form className="w-100 row mt-3">
+        <div className="col-md-6 form-input-div pr-0 pr-sm-3">
           <label className="ico-label-box" htmlFor="">
             {t("Amount")}
           </label>
@@ -37,28 +37,29 @@ const PaypalPayment = ({ initialData, pageInfo }: any) => {
             }}
           />
         </div>
-        <div className="col-md-6 form-input-div">
+        <div className="col-md-6 form-input-div pr-0 pr-sm-3">
           <label className="ico-label-box" htmlFor="">
             {t("Select Currency")}
           </label>
-          <select
-            name="bank"
-            className={`ico-input-box`}
-            required
-            onChange={(e) => {
-              setCredential({
-                ...credential,
-                pay_currency: e.target.value,
-              });
-            }}
-          >
-            <option value="">{t("Select")}</option>
-            {pageInfo?.currency_list?.map((item: any, index: any) => (
-              <option value={item.code} key={index}>
-                {item?.name}
-              </option>
-            ))}
-          </select>
+          <div className="cp-select-area">
+            <select
+              name="bank"
+              className={`ico-input-box`}
+              required
+              onChange={(e) => {
+                setCredential({
+                  ...credential,
+                  pay_currency: e.target.value,
+                });
+              }}>
+              <option value="">{t("Select")}</option>
+              {pageInfo?.currency_list?.map((item: any, index: any) => (
+                <option value={item.code} key={index}>
+                  {item?.name}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
         {credential.pay_currency &&
           credential.amount &&
@@ -79,8 +80,8 @@ const PaypalPayment = ({ initialData, pageInfo }: any) => {
             />
           </div>
         )}
-      </div>
-    </form>
+      </form>
+    </div>
   );
 };
 
