@@ -11983,9 +11983,9 @@ input[type="number"] {
 }
 
 .icoImage {
-    height: 200px;
-    width: 300px;
-    object-fit: cover;
+    /* height: 200px; */
+    width: 461px;
+    /* object-fit: cover; */
 }
 
 .appy-form {
