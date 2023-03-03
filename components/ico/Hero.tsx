@@ -23,7 +23,7 @@ const Hero = ({ data }: any) => {
             </Link>
           )}
         </div>
-        <div className="col-md-7">
+        <div className="col-md-7 text-center">
           <img src={data?.launchpad_main_image} />
         </div>
       </div>

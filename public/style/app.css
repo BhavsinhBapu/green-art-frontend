@@ -44,7 +44,7 @@ Tags: admin, best react admin template, das
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 :root {
-  --primary-color: #fcd535;
+  --primary-color: #F0B90B;
   --text-primary-color: #ffff;
   --text-primary-color-2: #23262f;
   --text-primary-color-3: #777778;
@@ -53,7 +53,7 @@ Tags: admin, best react admin template, das
   --border-color-1: #e6e8ec;
   --border-color-2: #353535;
   --hover-color: #f7cf33;
-  --font-color: #2a2a2d;
+  --font-color: #57575a;
   --bColor: #424242;
   --title-color: #141414;
   --white: #ffffff;
@@ -71,7 +71,7 @@ Tags: admin, best react admin template, das
 }
 
 :root[data-theme="dark"] {
-  --primary-color: #fcd535;
+  --primary-color: #F0B90B;
   --text-primary-color: #ffffff;
   --text-primary-color-2: #ffffff;
   --text-primary-color-3: #ffffff;
@@ -399,7 +399,7 @@ ul {
 -----------------------------*/
 
 #scrollUp {
-  background: #ffba00;
+  background: #F0B90B;
   bottom: 20px;
   color: #ffffff;
   font-size: 20px;
@@ -482,7 +482,7 @@ client-area
 ===============================================*/
 
 .client-area {
-  background: #ffba00;
+  background: #F0B90B;
   position: relative;
 }
 
@@ -668,7 +668,7 @@ client-area
 }
 
 .footer-area .footer-bottom .copyright-area p a:hover {
-  color: #ffba00;
+  color: #F0B90B;
 }
 
 .footer-area .footer-bottom .footer-menu ul {

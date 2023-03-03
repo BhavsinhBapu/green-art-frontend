@@ -48,7 +48,7 @@ const Edit: NextPage = () => {
               <div className="section-wrapper boxShadow">
                 <div className="user-profile">
                   <div className="row">
-                    <div className="col-lg-4">
+                    <div className="col-lg-12">
                       <div className="user-profile-left">
                         <div className="user-thumbnail">
                           <img src={user?.photo} className="img-fluid" alt="" />
@@ -86,7 +86,7 @@ const Edit: NextPage = () => {
                         dispatch(UpdateUserInfoByTokenAction(values));
                       }}>
                       {({ setFieldValue }) => (
-                        <div className="col-lg-8">
+                        <div className="col-lg-12">
                           <div className="user-profile-form">
                             <Form>
                               <div className="form-group">
