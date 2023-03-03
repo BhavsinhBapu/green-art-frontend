@@ -778,7 +778,7 @@ async function getLatestEvents(req, res)
                   };
                   resultData.push(innerData)
               });
-              console.log(resultData)
+            //   console.log(resultData)
               res.json({
                   status: true,
                   message: result.message,

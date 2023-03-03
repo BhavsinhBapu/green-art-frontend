@@ -191,7 +191,7 @@ async function getTrc20LatestEvent(req, res)
                 transactionData.push(tx);
             });
         }
-        console.log(transactionData);
+        // console.log(transactionData);
         
         return res.json({
             status: true,
