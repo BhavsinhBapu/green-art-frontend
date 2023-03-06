@@ -1,11 +1,8 @@
 import type { GetServerSideProps, NextPage } from "next";
-import Slider from "react-slick";
-import Link from "next/link";
-import { landingPage, customPage, commomSettings } from "service/landing-page";
+import { CommonLandingCustomSettings } from "service/landing-page";
 import useTranslation from "next-translate/useTranslation";
-import Navbar from "components/common/navbar";
-import { GetUserInfoByTokenServer } from "service/user";
-import { parseCookies, destroyCookie } from "nookies";
+import Navbar from "components/common/Navbar";
+import { parseCookies } from "nookies";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import Footer from "components/common/footer";
@@ -33,7 +30,6 @@ const Home: NextPage = ({
   customSettings,
 }: any) => {
   const { t } = useTranslation("common");
-  const router = useRouter();
   const { logo } = useSelector((state: RootState) => state.user);
   const { settings: common } = useSelector((state: RootState) => state.common);
   useEffect(() => {
@@ -60,7 +56,11 @@ const Home: NextPage = ({
     <SEO seoData={customSettings}>
       <div>
         <div>
-          {loggedin ? <Navbar /> : <UnAuthNav logo={logo} />}
+          {loggedin ? (
+            <Navbar settings={customSettings} isLoggedIn={loggedin} />
+          ) : (
+            <UnAuthNav logo={logo} />
+          )}
           <>
             <Cover
               landing={landing}
@@ -109,30 +109,45 @@ const Home: NextPage = ({
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
-  const { data } = await landingPage(ctx.locale);
+  const { data: CommonLanding } = await CommonLandingCustomSettings(ctx.locale);
   const cookies = parseCookies(ctx);
-  const { data: customSettings } = await commomSettings();
 
   return {
     props: {
-      landing: data,
-      bannerListdata: data?.banner_list ? data?.banner_list : null,
-      announcementListdata: data?.announcement_list
-        ? data?.announcement_list
+      customPageData: CommonLanding.custom_page_settings
+        ? CommonLanding.custom_page_settings
         : null,
-      featureListdata: data?.feature_list ? data?.feature_list : null,
-      asset_coin_pairs: data?.asset_coin_pairs ? data?.asset_coin_pairs : null,
-      hourly_coin_pairs: data?.hourly_coin_pairs
-        ? data?.hourly_coin_pairs
+      socialData: CommonLanding.landing_settings.media_list
+        ? CommonLanding.landing_settings.media_list
         : null,
-      latest_coin_pairs: data?.latest_coin_pairs
-        ? data?.latest_coin_pairs
+      copyright_text: CommonLanding?.landing_settings?.copyright_text
+        ? CommonLanding?.landing_settings?.copyright_text
+        : null,
+      landing: CommonLanding.landing_settings,
+      bannerListdata: CommonLanding.landing_settings.banner_list
+        ? CommonLanding.landing_settings.banner_list
+        : null,
+      announcementListdata: CommonLanding?.landing_settings?.announcement_list
+        ? CommonLanding?.landing_settings?.announcement_list
+        : null,
+      featureListdata: CommonLanding?.landing_settings?.feature_list
+        ? CommonLanding?.landing_settings?.feature_list
+        : null,
+      asset_coin_pairs: CommonLanding?.landing_settings?.asset_coin_pairs
+        ? CommonLanding?.landing_settings?.asset_coin_pairs
+        : null,
+      hourly_coin_pairs: CommonLanding?.landing_settings?.hourly_coin_pairs
+        ? CommonLanding?.landing_settings?.hourly_coin_pairs
+        : null,
+      latest_coin_pairs: CommonLanding?.landing_settings?.latest_coin_pairs
+        ? CommonLanding?.landing_settings?.latest_coin_pairs
         : null,
       loggedin: cookies.token ? true : false,
-      landing_banner_image: data?.landing_banner_image
-        ? data?.landing_banner_image
+      landing_banner_image: CommonLanding?.landing_settings
+        ?.landing_banner_image
+        ? CommonLanding?.landing_settings?.landing_banner_image
         : null,
-      customSettings: customSettings,
+      customSettings: CommonLanding?.common_settings,
     },
   };
 };

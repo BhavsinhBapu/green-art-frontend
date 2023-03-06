@@ -31,7 +31,7 @@ const Settings: NextPage = () => {
     <>
       <div className="page-wrap">
         <div className="page-main-content">
-          <div className="container-fluid">
+          <div className="container">
             <div className="section-top-wrap mb-25">
               <div className="profle-are-top">
                 <h2 className="section-top-title mb-0">
@@ -44,7 +44,7 @@ const Settings: NextPage = () => {
             <div className="container">
               <div className="setting-bg boxShadow  ">
                 <div className="row">
-                  <div className="col-xl-6 mb-xl-0 mb-4">
+                  <div className="col-md-6 mb-xl-0 mb-4">
                     <div className="cp-user-setting-card">
                       <div className="card-body">
                         <div className="cp-user-card-header-area">
@@ -70,8 +70,7 @@ const Settings: NextPage = () => {
                                 href=""
                                 data-toggle="modal"
                                 data-target="#exampleModal"
-                                className="btn cp-user-setupbtn"
-                              >
+                                className="btn cp-user-setupbtn">
                                 {t("Set up")}
                               </a>
                             ) : (
@@ -79,8 +78,7 @@ const Settings: NextPage = () => {
                                 href=""
                                 data-toggle="modal"
                                 data-target="#exampleModal"
-                                className=""
-                              >
+                                className="">
                                 {t("Remove Google Authentication")}
                               </a>
                             )}
@@ -131,7 +129,7 @@ const Settings: NextPage = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="col-xl-6 mb-xl-0 mb-4">
+                  <div className="col-md-6 mb-xl-0 mb-4">
                     <div className="cp-user-setting-card">
                       <div className="card-body">
                         <div className="cp-user-card-header-area">
@@ -143,7 +141,7 @@ const Settings: NextPage = () => {
                           <div className="cp-user-content">
                             <div className="form-group">
                               <label>{t("Currency")}</label>
-                              <div className="cp-user-preferance-setting">
+                              <div className="cp-user-preferance-setting border-0">
                                 <select
                                   name="currency"
                                   className="form-control"
@@ -151,8 +149,7 @@ const Settings: NextPage = () => {
                                     dispatch(
                                       UpdateCurrencyAction(e.target.value)
                                     );
-                                  }}
-                                >
+                                  }}>
                                   {settings?.fiat_currency?.map(
                                     (currency: any, index: any) => (
                                       <option
@@ -165,8 +162,7 @@ const Settings: NextPage = () => {
                                           settingsReducer.currency ===
                                           currency.lang
                                         }
-                                        value={currency.code}
-                                      >
+                                        value={currency.code}>
                                         {currency.name}
                                       </option>
                                     )

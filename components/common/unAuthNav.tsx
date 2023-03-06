@@ -17,7 +17,7 @@ const UnAuthNav = ({ logo }: any) => {
     checkThemeState(setTheme);
   }, []);
   return (
-    <header className="header-area">
+    <header className="header-area shadow-sm">
       <div className="container">
         <div className="row align-items-center">
           <div className="col-md-2">

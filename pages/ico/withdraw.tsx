@@ -76,24 +76,32 @@ const Withdraw = () => {
             <div className="asset-balances-area cstm-loader-area">
               <div className="asset-balances-left">
                 <div className="section-wrapper boxShadow">
-                  <div className="row">
-                    <div className="col-md-4 boxShadow p-3  text-center">
-                      <h1>
-                        {data?.earns?.earn} {data?.earns?.currency}
-                      </h1>
-                      <h3>{t("Total Earned")}</h3>
+                  <div className="row p-3 p-md-0">
+                    <div className="col-md-4">
+                      <div className="boxShadow text-center p-3">
+                        <h1>
+                          {data?.earns?.earn} {data?.earns?.currency}
+                        </h1>
+                        <h3>{t("Total Earned")}</h3>
+                      </div>
                     </div>
-                    <div className="col-md-4 boxShadow p-3  text-center">
-                      <h1>
-                        {data?.earns?.withdraw} {data?.earns?.currency}
-                      </h1>
-                      <h3>{t("Withdrawal Amount")}</h3>
+
+                    <div className="col-md-4">
+                      <div className="boxShadow text-center p-3">
+                        <h1>
+                          {data?.earns?.withdraw} {data?.earns?.currency}
+                        </h1>
+                        <h3>{t("Withdrawal Amount")}</h3>
+                      </div>
                     </div>
-                    <div className="col-md-4 boxShadow p-3  text-center">
-                      <h1>
-                        {data?.earns?.available} {data?.earns?.currency}
-                      </h1>
-                      <h3>{t("Available Amount")}</h3>
+
+                    <div className="col-md-4">
+                      <div className="boxShadow text-center p-3">
+                        <h1>
+                          {data?.earns?.available} {data?.earns?.currency}
+                        </h1>
+                        <h3>{t("Available Amount")}</h3>
+                      </div>
                     </div>
                   </div>
                   {loading ? (
@@ -131,25 +139,26 @@ const Withdraw = () => {
                           <label className="ico-label-box" htmlFor="">
                             {t("Currency Type")}
                           </label>
-                          <select
-                            name="coin_currency"
-                            className={`ico-input-box`}
-                            required
-                            onChange={(e: any) => {
-                              setCurrencyType(e.target.value);
-                              if (parseInt(e.target.value) === 1) {
-                                setCurrencyFiat(data?.currencys);
-                              } else {
-                                setCurrencyCoin(data?.coins);
-                              }
-                            }}
-                          >
-                            <option value="">
-                              {t("Select Currency Type")}
-                            </option>
-                            <option value={1}>{t("Fiat")}</option>
-                            <option value={2}>{t("Crypto")}</option>
-                          </select>
+                          <div className="cp-select-area">
+                            <select
+                              name="coin_currency"
+                              className={`ico-input-box`}
+                              required
+                              onChange={(e: any) => {
+                                setCurrencyType(e.target.value);
+                                if (parseInt(e.target.value) === 1) {
+                                  setCurrencyFiat(data?.currencys);
+                                } else {
+                                  setCurrencyCoin(data?.coins);
+                                }
+                              }}>
+                              <option value="">
+                                {t("Select Currency Type")}
+                              </option>
+                              <option value={1}>{t("Fiat")}</option>
+                              <option value={2}>{t("Crypto")}</option>
+                            </select>
+                          </div>
                         </div>
                         {currencyType == 1 && (
                           <div className="col-md-6 form-input-div">
@@ -163,8 +172,7 @@ const Withdraw = () => {
                               required
                               onChange={(e) => {
                                 setSelectedCurrency(e.target.value);
-                              }}
-                            >
+                              }}>
                               <option value="">{t("Select currency")}</option>
                               {currencyFiat.map((item: any, index: any) => (
                                 <option value={item.code} key={index}>
@@ -187,8 +195,7 @@ const Withdraw = () => {
                               required
                               onChange={(e) => {
                                 setSelectedCurrency(e.target.value);
-                              }}
-                            >
+                              }}>
                               <option value="">{t("Select currency")}</option>
                               {currencyCoin?.map((item: any, index: any) => (
                                 <option value={item.coin_type} key={index}>

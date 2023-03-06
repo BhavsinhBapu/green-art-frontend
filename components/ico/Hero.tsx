@@ -17,13 +17,13 @@ const Hero = ({ data }: any) => {
           </p>
           {parseInt(data?.launchpad_apply_to_status) === 1 && (
             <Link href={isLoggedIn ? "/ico/apply" : "/signin"}>
-              <button className="primary-btn">
+              <button className="transparent_btn">
                 {data?.launchpad_apply_to_button_text}
               </button>
             </Link>
           )}
         </div>
-        <div className="col-md-7">
+        <div className="col-md-7 text-center">
           <img src={data?.launchpad_main_image} />
         </div>
       </div>

@@ -3,6 +3,7 @@ import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import React from "react";
 import { useSelector } from "react-redux";
+import { commomSettings } from "service/landing-page";
 import { RootState } from "state/store";
 
 const Footer = () => {
@@ -18,46 +19,50 @@ const Footer = () => {
           <div className="footer-top">
             <div className="container">
               <div className="row">
-                <div className="col-lg-2 col-md-6 col-sm-6 mb-30">
-                  <div className="single-wedgets text-widget">
-                    <div className="widget-title">
-                      <h4>{t("About Us")}</h4>
-                    </div>
-                    <div className="widget-inner">
-                      <ul>
-                        {parseInt(settings?.blog_news_module) === 1 && (
-                          <li>
-                            <Link href={"/blog"}>{t("Blog")}</Link>
-                          </li>
-                        )}
-                        {parseInt(settings?.knowledgebase_support_module) ===
-                          1 && (
-                          <li>
-                            <Link
-                              href={
-                                isLoggedIn === true ? "/support" : "/signin"
-                              }>
-                              {t("Support")}
-                            </Link>
-                          </li>
-                        )}
-                        {parseInt(settings?.knowledgebase_support_module) ===
-                          1 && (
-                          <li>
-                            <Link href={"/knowledgebase"}>
-                              {t("Knowledgebase")}
-                            </Link>
-                          </li>
-                        )}
-                        {parseInt(settings?.blog_news_module) === 1 && (
-                          <li>
-                            <Link href={"/news"}>{t("News")}</Link>
-                          </li>
-                        )}
-                      </ul>
+                {parseInt(settings.any_addon_found) === 1 && (
+                  <div className="col-lg-2 col-md-6 col-sm-6 mb-30">
+                    <div className="single-wedgets text-widget">
+                      <div className="widget-title">
+                        <h4>{t("About Us")}</h4>
+                      </div>
+                      <div className="widget-inner">
+                        <ul>
+                          {parseInt(settings?.blog_news_module) === 1 && (
+                            <li>
+                              <Link href={"/blog"}>{t("Blog")}</Link>
+                            </li>
+                          )}
+                          {parseInt(settings?.knowledgebase_support_module) ===
+                            1 && (
+                            <li>
+                              <Link
+                                href={
+                                  isLoggedIn === true ? "/support" : "/signin"
+                                }
+                              >
+                                {t("Support")}
+                              </Link>
+                            </li>
+                          )}
+                          {parseInt(settings?.knowledgebase_support_module) ===
+                            1 && (
+                            <li>
+                              <Link href={"/knowledgebase"}>
+                                {t("Knowledgebase")}
+                              </Link>
+                            </li>
+                          )}
+                          {parseInt(settings?.blog_news_module) === 1 && (
+                            <li>
+                              <Link href={"/news"}>{t("News")}</Link>
+                            </li>
+                          )}
+                        </ul>
+                      </div>
                     </div>
                   </div>
-                </div>
+                )}
+
                 <div className="col-lg-2 col-md-6 col-sm-6 mb-30">
                   <div className="single-wedgets text-widget">
                     <div className="widget-title">
@@ -81,7 +86,8 @@ const Footer = () => {
                                   <a
                                     href={item.page_link}
                                     target="_blank"
-                                    rel="noreferrer">
+                                    rel="noreferrer"
+                                  >
                                     {item.title}
                                   </a>
                                 )}
@@ -116,7 +122,8 @@ const Footer = () => {
                                   <a
                                     href={item.page_link}
                                     target="_blank"
-                                    rel="noreferrer">
+                                    rel="noreferrer"
+                                  >
                                     {item.title}
                                   </a>
                                 )}
@@ -150,7 +157,8 @@ const Footer = () => {
                                   <a
                                     href={item.page_link}
                                     target="_blank"
-                                    rel="noreferrer">
+                                    rel="noreferrer"
+                                  >
                                     {item.title}
                                   </a>
                                 )}
@@ -177,11 +185,12 @@ const Footer = () => {
                             <a
                               href={social.media_link}
                               target="_blank"
-                              rel="noreferrer">
+                              rel="noreferrer"
+                            >
                               <img
                                 src={social.media_icon}
                                 alt={social.media_title}
-                                width={24}
+                                width={18}
                               />
                             </a>
                           </li>

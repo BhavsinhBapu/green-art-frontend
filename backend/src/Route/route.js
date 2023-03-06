@@ -11,6 +11,7 @@ const {
   getDataByTransactionHash,
   getLatestEvents,
   getContractDetails,
+  getAddressFromPK,
 } = require("../Controllers/TokenController");
 const trx = require("../Controllers/TrxController");
 const trc20 = require("../Controllers/TrcTokenController");
@@ -39,6 +40,7 @@ route.post("/check-estimate-gas", checkEstimateGasFees);
 route.post("/get-transaction-data", getDataByTransactionHash);
 route.post("/get-transfer-event", getLatestEvents);
 route.post("/get-contract-details", getContractDetails);
+route.post("/get-address-by-pk", getAddressFromPK);
 route.post("/get-trx-account", trx.getTrxAccount);
 route.post("/get-trx-address", trx.getTrxAddressByPk);
 route.post("/check-trx-address", trx.checkTrxAddress);

@@ -7,14 +7,12 @@ import {
 import Link from "next/link";
 
 export const TicketBox = ({ ticket }: any) => {
-  console.log(ticket, "ticketticketticketticket");
   return (
     <Link href={"/support/" + ticket?.unique_code}>
       <div
         className={`col-12 my-2  ${
           ticket.is_seen_by_user === 1 ? "ticket-card" : "ticket-card-unseen"
-        }`}
-      >
+        }`}>
         <div className="card p-3 ">
           <a href="">
             <div className="row">
@@ -52,8 +50,7 @@ export const TicketBox = ({ ticket }: any) => {
                       0,
                       300
                     ),
-                  }}
-                ></p>
+                  }}></p>
                 <small className="p_color">
                   {formateDateMunite(ticket?.updated_at)}
                 </small>

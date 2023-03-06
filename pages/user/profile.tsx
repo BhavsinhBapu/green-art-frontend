@@ -9,6 +9,7 @@ import useTranslation from "next-translate/useTranslation";
 import Footer from "components/common/footer";
 import { customPage, landingPage } from "service/landing-page";
 import moment from "moment";
+import ImageComponent from "components/common/ImageComponent";
 const Profile: NextPage = ({ user, profileActivity }: any) => {
   const { t } = useTranslation("common");
 

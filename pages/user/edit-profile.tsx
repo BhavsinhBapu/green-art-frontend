@@ -48,7 +48,7 @@ const Edit: NextPage = () => {
               <div className="section-wrapper boxShadow">
                 <div className="user-profile">
                   <div className="row">
-                    <div className="col-lg-4">
+                    <div className="col-lg-12">
                       <div className="user-profile-left">
                         <div className="user-thumbnail">
                           <img src={user?.photo} className="img-fluid" alt="" />
@@ -86,7 +86,7 @@ const Edit: NextPage = () => {
                         dispatch(UpdateUserInfoByTokenAction(values));
                       }}>
                       {({ setFieldValue }) => (
-                        <div className="col-lg-8">
+                        <div className="col-lg-12">
                           <div className="user-profile-form">
                             <Form>
                               <div className="form-group">
@@ -129,46 +129,50 @@ const Edit: NextPage = () => {
                               </div>
                               <div className="form-group">
                                 <label>{t("Country")}</label>
-                                <Field
-                                  as="select"
-                                  name="country"
-                                  id="country"
-                                  className="form-control">
-                                  {countries.map((country: any) => (
-                                    <option
-                                      key={country.value}
-                                      value={country.value.toUpperCase()}
-                                      selected={
-                                        country.value === user?.country
-                                      }>
-                                      {country.name}
-                                    </option>
-                                  ))}
-                                </Field>
+                                <div className="cp-select-area">
+                                  <Field
+                                    as="select"
+                                    name="country"
+                                    id="country"
+                                    className="form-control">
+                                    {countries.map((country: any) => (
+                                      <option
+                                        key={country.value}
+                                        value={country.value.toUpperCase()}
+                                        selected={
+                                          country.value === user?.country
+                                        }>
+                                        {country.name}
+                                      </option>
+                                    ))}
+                                  </Field>
+                                </div>
                               </div>
                               <div className="form-group">
                                 <label>{t("Gender")}</label>
-                                <Field
-                                  className="form-control"
-                                  name="gender"
-                                  id=""
-                                  as="select">
-                                  <option
-                                    selected={user?.gender === 1}
-                                    value={1}>
-                                    {t("Male")}
-                                  </option>
-                                  <option
-                                    selected={user?.gender === 2}
-                                    value={2}>
-                                    {t("Female")}
-                                  </option>
-                                  <option
-                                    selected={user?.gender === 3}
-                                    value={3}>
-                                    {t("Others")}
-                                  </option>
-                                </Field>
+                                <div className="cp-select-area">
+                                  <Field
+                                    className="form-control"
+                                    name="gender"
+                                    id=""
+                                    as="select">
+                                    <option
+                                      selected={user?.gender === 1}
+                                      value={1}>
+                                      {t("Male")}
+                                    </option>
+                                    <option
+                                      selected={user?.gender === 2}
+                                      value={2}>
+                                      {t("Female")}
+                                    </option>
+                                    <option
+                                      selected={user?.gender === 3}
+                                      value={3}>
+                                      {t("Others")}
+                                    </option>
+                                  </Field>
+                                </div>
                               </div>
                               <button
                                 type="submit"

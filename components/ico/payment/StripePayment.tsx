@@ -18,19 +18,21 @@ const StripePayment = ({ initialData, pageInfo }: any) => {
   //@ts-ignore
   const stripe = loadStripe(process.env.NEXT_PUBLIC_PUBLISH_KEY);
   return (
-    <div className="w-100 ico-tokenCreate ">
+    <>
       {!credential.stripe_token && (
-        <div className="col-lg-12 mb-3">
-          <Elements stripe={stripe}>
-            <CardForm setCredential={setCredential} credential={credential} />
-          </Elements>
+        <div className="col-md-12 p-0">
+          <div className="boxShadow mt-4 p-4">
+            <Elements stripe={stripe}>
+              <CardForm setCredential={setCredential} credential={credential} />
+            </Elements>
+          </div>
         </div>
       )}
 
       {credential.stripe_token && (
         <form
           className="w-100  row"
-          onClick={(e) => {
+          onSubmit={(e) => {
             e.preventDefault();
             TokenBuyIcoStripeAction(
               initialData,
@@ -40,8 +42,7 @@ const StripePayment = ({ initialData, pageInfo }: any) => {
               credential.pay_currency,
               STRIPE
             );
-          }}
-        >
+          }}>
           <div className="col-md-6 form-input-div">
             <label className="ico-label-box" htmlFor="">
               {t("Amount")}
@@ -74,8 +75,7 @@ const StripePayment = ({ initialData, pageInfo }: any) => {
                   ...credential,
                   pay_currency: e.target.value,
                 });
-              }}
-            >
+              }}>
               <option value="">{t("Select")}</option>
               {pageInfo?.currency_list?.map((item: any, index: any) => (
                 <option value={item.code} key={index}>
@@ -98,13 +98,12 @@ const StripePayment = ({ initialData, pageInfo }: any) => {
           <button
             disabled={!credential.amount || !credential.pay_currency}
             className="primary-btn-outline w-100"
-            type="submit"
-          >
+            type="submit">
             {loading ? "Please Wait" : t("Make Payment")}
           </button>
         </form>
       )}
-    </div>
+    </>
   );
 };
 

@@ -46,18 +46,57 @@ const Signup: NextPage = () => {
     getRecapcha();
   }, []);
   return (
-    <div
-      className="user-content-wrapper"
-      style={{
-        backgroundImage: `url(${settings.login_background})`,
-      }}
-    >
-      <div className="user-content-inner-wrap">
-        <div className="row align-items-center">
-          <div className="col-md-6">
-            <div className="user-form">
+    <div className="login_reg_box">
+      <div
+        className="col-md-5 login_bg_new"
+        style={{
+          backgroundImage: `url(${settings.login_background})`,
+        }}>
+        <div className="user-content-text text-center text-md-left">
+          <Link href="/">
+            <a className="auth-logo" href="">
+              <img
+                width="65%"
+                src={settings.logo || ""}
+                className="pt-5 pt-md-4"
+                alt=""
+              />
+            </a>
+          </Link>
+        </div>
+        <div className="d-md-flex d-block align-items-center justify-content-center h-75">
+          <div className="text-center text-md-left">
+            <h1 className="text-white">{t("Welcome To")}</h1>
+            <Link href="/signin">
+              <p className="text-white h5">
+                {t("Already have an account")}?{" "}
+                <a className="text-warning h5" href="">
+                  {" "}
+                  {t("Sign In")}
+                </a>
+              </p>
+            </Link>
+          </div>
+        </div>
+      </div>
+      <div className="col-md-7 d-flex align-items-center login_from_res">
+        <div className="row w-100 mx-auto">
+          <div className="col-lg-8 col-md-12 mx-md-auto">
+            <div className="user-content-text text-left d-block d-md-none">
+              <Link href="/">
+                <a className="auth-logo" href="">
+                  <img
+                    width="60%"
+                    src={settings.logo || ""}
+                    className="pt-5 pt-md-4"
+                    alt=""
+                  />
+                </a>
+              </Link>
+            </div>
+            <div className="user-form border-0 my-5 my-md-0">
               <div className="user-form-inner">
-                <div className="form-top">
+                <div className="form-top text-left">
                   <h2>{t("Sign Up")}</h2>
                   <p>{t("Create a new account")}.</p>
                 </div>
@@ -98,8 +137,7 @@ const Signup: NextPage = () => {
                   })}
                   onSubmit={async (values) => {
                     dispatch(SignupAction(values, setProcessing, ref_code));
-                  }}
-                >
+                  }}>
                   {({ errors, touched, setFieldValue }) => (
                     <Form>
                       <div className="form-group">
@@ -162,8 +200,7 @@ const Signup: NextPage = () => {
                               ...showPassword,
                               password: !showPassword.password,
                             })
-                          }
-                        >
+                          }>
                           <i className="fa fa-eye-slash toggle-password"></i>
                         </span>
                       </div>
@@ -191,8 +228,7 @@ const Signup: NextPage = () => {
                               ...showPassword,
                               confirm_password: !showPassword.confirm_password,
                             })
-                          }
-                        >
+                          }>
                           <i className="fa fa-eye-slash toggle-password"></i>
                         </span>
                       </div>
@@ -216,15 +252,13 @@ const Signup: NextPage = () => {
                         onClick={() => resetCaptcha()}
                         type="submit"
                         disabled={processing}
-                        className="btn nimmu-user-sibmit-button mt-3"
-                      >
+                        className="btn nimmu-user-sibmit-button mt-3">
                         {processing ? (
                           <>
                             <span
                               className="spinner-border spinner-border-md"
                               role="status"
-                              aria-hidden="true"
-                            ></span>
+                              aria-hidden="true"></span>
                             <span>{t("Please wait")}</span>
                           </>
                         ) : (
@@ -235,21 +269,6 @@ const Signup: NextPage = () => {
                   )}
                 </Formik>
               </div>
-            </div>
-          </div>
-          <div className="col-md-6">
-            <div className="user-content-text text-center">
-              <h3>{t("Welcome To")}</h3>
-              <Link href="/">
-                <a className="auth-logo" href="">
-                  <img src={settings.logo || ""} className="img-fluid" alt="" />
-                </a>
-              </Link>
-              <Link href="/signin">
-                <p>
-                  {t("Already have an account")}? <a href=""> {t("Sign In")}</a>
-                </p>
-              </Link>
             </div>
           </div>
         </div>

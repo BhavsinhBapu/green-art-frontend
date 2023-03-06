@@ -15,40 +15,44 @@ export const TicketFilter = ({
           <div className="row align-items-end">
             <div className="col-lg-3 col-md-6">
               <label>Select Project</label>
-              <select
-                name="project"
-                className="form-control h-50 ticketFilterBg"
-                onChange={(e: any) => {
-                  setfilter({
-                    ...filter,
-                    project: e.target.value,
-                  });
-                }}>
-                <option>Select Project</option>
-                {projectList.map((project: any, index: any) => (
-                  <option key={index} value={project.id}>
-                    {project.name}
-                  </option>
-                ))}
-              </select>
+              <div className="cp-select-area">
+                <select
+                  name="project"
+                  className="form-control h-50 ticketFilterBg"
+                  onChange={(e: any) => {
+                    setfilter({
+                      ...filter,
+                      project: e.target.value,
+                    });
+                  }}>
+                  <option>Select Project</option>
+                  {projectList.map((project: any, index: any) => (
+                    <option key={index} value={project.id}>
+                      {project.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
             <div className="col-lg-3 col-md-6 mt-3 mt-md-0">
               <label>Select Status</label>
-              <select
-                name="status"
-                className="form-control h-50 ticketFilterBg"
-                onChange={(e: any) => {
-                  setfilter({
-                    ...filter,
-                    status: e.target.value,
-                  });
-                }}>
-                <option>Select Status</option>
-                <option value="1">Pending</option>
-                <option value="2">Open</option>
-                <option value="3">Close</option>
-                <option value="4">Close Forever</option>
-              </select>
+              <div className="cp-select-area">
+                <select
+                  name="status"
+                  className="form-control h-50 ticketFilterBg"
+                  onChange={(e: any) => {
+                    setfilter({
+                      ...filter,
+                      status: e.target.value,
+                    });
+                  }}>
+                  <option>Select Status</option>
+                  <option value="1">Pending</option>
+                  <option value="2">Open</option>
+                  <option value="3">Close</option>
+                  <option value="4">Close Forever</option>
+                </select>
+              </div>
             </div>
             <div className="col-lg-2 col-md-4 mt-3 mt-lg-0">
               <label>From</label>

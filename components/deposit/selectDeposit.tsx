@@ -11,8 +11,8 @@ const SelectDeposit = ({
         <div
           className={
             selectedMethod.method === payment.payment_method
-              ? "select-method-item-active"
-              : "select-method-item"
+              ? "select-method-item-active mr-0 mr-md-3"
+              : "select-method-item mr-0 mr-md-3"
           }
           key={index}
           onClick={() => {
@@ -24,8 +24,7 @@ const SelectDeposit = ({
                   parseInt(payment.payment_method)
               ).id,
             });
-          }}
-        >
+          }}>
           {payment.title}
         </div>
       ))}

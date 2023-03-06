@@ -109,20 +109,6 @@ async function listenMessages(dispatch: any, user: any) {
     dispatch(setBuyOrderHistory(e.open_orders.buy_orders));
     e?.order_data?.total && dispatch(setTotalData(e?.order_data?.total));
   });
-  //@ts-ignore
-  // window.Echo.channel(
-  //   `dashboard-${localStorage.getItem("base_coin_id")}-${localStorage.getItem(
-  //     "trade_coin_id"
-  //   )}`
-  // ).listen(".order_removed", (e: any) => {
-  //   if (e.orders.order_type === "buy")
-  //     dispatch(setOpenBookBuy(e.orders.orders));
-  //   if (e.orders.order_type === "sell")
-  //     dispatch(setOpenBooksell(e.orders.orders));
-  //   e.order_data && dispatch(setOrderData(e.order_data));
-  //   e?.order_data?.total && dispatch(setTotalData(e?.order_data?.total));
-  //   e.last_price_data && dispatch(setLastPriceData(e.last_price_data));
-  // });
 }
 const Dashboard: NextPage = () => {
   const { settings } = useSelector((state: RootState) => state.common);
@@ -309,20 +295,22 @@ const Dashboard: NextPage = () => {
                 <div className="row">
                   <div className="col-xl-12">
                     <div className="cxchange-summary-wrap">
-                      <div className="cxchange-summary-name">
-                        <div className="summber-coin-type dropdown">
-                          <span
-                            className="coin-badge dropdown-toggle"
-                            id="dropdownMenuButton"
-                            data-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false"
-                          >
-                            {currentPair.replace(/_/g, "/")}
-                          </span>
-                          <SelectCurrency />
+                      {currentPair && (
+                        <div className="cxchange-summary-name">
+                          <div className="summber-coin-type dropdown">
+                            <span
+                              className="coin-badge dropdown-toggle"
+                              id="dropdownMenuButton"
+                              data-toggle="dropdown"
+                              aria-haspopup="true"
+                              aria-expanded="false"
+                            >
+                              {currentPair.replace(/_/g, "/")}
+                            </span>
+                            <SelectCurrency />
+                          </div>
                         </div>
-                      </div>
+                      )}
                       {dashboard?.last_price_data && <CurrencyLevel />}
                     </div>
                   </div>

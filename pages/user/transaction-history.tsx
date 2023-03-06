@@ -133,7 +133,7 @@ const TransactionHistory: NextPage = () => {
               ) : (
                 <div className="asset-balances-left">
                   <div className="section-wrapper boxShadow">
-                    <div className="table-responsive tableScroll">
+                    <div className="tableScroll">
                       <div
                         id="assetBalances_wrapper"
                         className="dataTables_wrapper no-footer"
@@ -164,7 +164,6 @@ const TransactionHistory: NextPage = () => {
                                 <option value="50">50</option>
                                 <option value="100">100</option>
                               </select>
-                              {t("entries")}
                             </label>
                           </div>
                           <div id="table_filter" className="dataTables_filter">

@@ -4,6 +4,7 @@ import { GetServerSideProps } from "next";
 import useTranslation from "next-translate/useTranslation";
 import React from "react";
 import {
+  CommonLandingCustomSettings,
   customPage,
   customPageWithSlug,
   landingPage,
@@ -13,58 +14,28 @@ import sanitizeHtml from "sanitize-html";
 import UnAuthNav from "components/common/unAuthNav";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
-import Navbar from "components/common/navbar";
-const Bannerdetails = ({ details, status }: any) => {
+import Navbar from "components/common/Navbar";
+import { parseCookies } from "nookies";
+const Bannerdetails = ({
+  details,
+  status,
+  customPageData,
+  socialData,
+  copyright_text,
+  customSettings,
+  loggedin,
+}: any) => {
   const { t } = useTranslation("common");
-  const { isLoggedIn, user, logo } = useSelector(
-    (state: RootState) => state.user
-  );
-  const clean = (dirty: any) => {
-    return sanitizeHtml(dirty, {
-      allowedTags: [
-        "b",
-        "i",
-        "em",
-        "strong",
-        "a",
-        "font",
-        "h1",
-        "h2",
-        "h3",
-        "h4",
-        "h5",
-        "h6",
-        "div",
-        "p",
-        "br",
-        "hr",
-        "head",
-        "img",
-      ],
-      allowedAttributes: {
-        a: ["href", "target", "style"],
-        div: ["href", "target", "style"],
-        b: ["href", "target", "style"],
-        i: ["href", "target", "style"],
-        em: ["href", "target", "style"],
-        strong: ["href", "target", "style"],
-        font: ["href", "target", "style"],
-        h1: ["href", "target", "style"],
-        h2: ["href", "target", "style"],
-        h3: ["href", "target", "style"],
-        h4: ["href", "target", "style"],
-        h5: ["href", "target", "style"],
-        h6: ["href", "target", "style"],
-        p: ["href", "target", "style"],
-        img: ["src", "href", "style", "data-filename"],
-      },
-    });
-  };
+  const { user, logo } = useSelector((state: RootState) => state.user);
 
   if (status === false) {
     return (
       <div>
-        {isLoggedIn ? <Navbar /> : <UnAuthNav logo={logo} />}
+        {loggedin ? (
+          <Navbar settings={customSettings} isLoggedIn={loggedin} />
+        ) : (
+          <UnAuthNav logo={logo} />
+        )}
         <div className="notFound-container">
           {/* <h1 className="">404</h1> */}
           <img src="/not_found.svg" height={300} alt="" />
@@ -75,7 +46,11 @@ const Bannerdetails = ({ details, status }: any) => {
   }
   return (
     <div>
-      {isLoggedIn ? <Navbar /> : <UnAuthNav logo={logo} />}
+      {loggedin ? (
+        <Navbar settings={customSettings} isLoggedIn={loggedin} />
+      ) : (
+        <UnAuthNav logo={logo} />
+      )}
       <div className="container mb-5 mt-5">
         <div className="section-wrapper-withHtml ">
           <img src={details.image} />
@@ -97,15 +72,31 @@ const Bannerdetails = ({ details, status }: any) => {
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const { slug } = ctx.query;
+
   let response: any;
+  let CommonLanding;
+  const cookies = parseCookies(ctx);
   try {
     const { data } = await customPageWithSlug(slug);
     response = data;
+    const { data: Common } = await CommonLandingCustomSettings(ctx.locale);
+    CommonLanding = Common;
   } catch (error) {}
   return {
     props: {
       details: response.data,
       status: response.success,
+      customPageData: CommonLanding.custom_page_settings
+        ? CommonLanding.custom_page_settings
+        : null,
+      socialData: CommonLanding.landing_settings.media_list
+        ? CommonLanding.landing_settings.media_list
+        : null,
+      copyright_text: CommonLanding?.landing_settings?.copyright_text
+        ? CommonLanding?.landing_settings?.copyright_text
+        : null,
+      customSettings: CommonLanding?.common_settings,
+      loggedin: cookies.token ? true : false,
     },
   };
 };

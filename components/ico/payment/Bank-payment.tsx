@@ -30,7 +30,7 @@ const BankPayment = ({ pageInfo, initialData }: any) => {
     inputRef.current.click();
   };
   return (
-    <div>
+    <div className="boxShadow mt-3">
       <form
         className="w-100 ico-tokenCreate row"
         onSubmit={(e: any) => {

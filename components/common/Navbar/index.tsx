@@ -9,35 +9,30 @@ import { CgProfile } from "react-icons/cg";
 import { HiOutlineDocumentReport } from "react-icons/hi";
 
 import { BiWalletAlt } from "react-icons/bi";
-import { RiCalendarEventLine, RiWallet3Line } from "react-icons/ri";
+import { RiCalendarEventLine } from "react-icons/ri";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "state/store";
-import { LogoutAction } from "state/actions/user";
 import { notification, notificationSeen } from "service/notification";
 import useTranslation from "next-translate/useTranslation";
-import { HiArrowNarrowRight } from "react-icons/hi";
-import { RiNotificationBadgeLine } from "react-icons/ri";
-import moment from "moment";
 import OutsideClickHandler from "react-outside-click-handler";
-import UnAuthNav from "./unAuthNav";
-import { checkThemeState, darkModeToggle } from "helpers/functions";
+import UnAuthNav from "../unAuthNav";
+import { checkThemeState } from "helpers/functions";
+import NotificationDropdown from "./notification-dropdown";
+import { setNotificationData } from "state/reducer/user";
 
-const Navbar = () => {
-  const { isLoggedIn, isLoading, user, logo } = useSelector(
+const Navbar = ({ settings, isLoggedIn }: any) => {
+  const { isLoading, user, logo, notificationData } = useSelector(
     (state: RootState) => state.user
   );
   const [theme, setTheme] = useState(0);
-
-  const { settings } = useSelector((state: RootState) => state.common);
-  const { navbar } = settings;
   const dispatch = useDispatch();
+  const { navbar } = settings;
   const { t } = useTranslation("common");
-  const [notificationData, setNotification] = useState<any>([]);
   const [active, setActive] = useState(false);
   const router = useRouter();
   const getNotifications = async () => {
     const data = await notification();
-    setNotification(data.data.data);
+    dispatch(setNotificationData(data.data.data));
   };
   const seen = async () => {
     let arr: any = [];
@@ -46,7 +41,7 @@ const Navbar = () => {
       arr.push(notification.id);
     });
     notificationSeen(arr).then((data: any) => {
-      setNotification([]);
+      dispatch(setNotificationData([]));
     });
   };
   useEffect(() => {
@@ -90,13 +85,15 @@ const Navbar = () => {
                             router.pathname == "/exchange/dashboard"
                               ? "cp-user-active-page"
                               : ""
-                          }>
+                          }
+                        >
                           <a
                             href={
                               router.locale !== "en"
                                 ? `/${router.locale}/exchange/dashboard`
                                 : "/exchange/dashboard"
-                            }>
+                            }
+                          >
                             <span className="cp-user-icon">
                               <BsBarChartLine />
                             </span>
@@ -111,10 +108,9 @@ const Navbar = () => {
                       {navbar?.wallet?.status && (
                         <Link
                           href={
-                            isLoggedIn === true
-                              ? "/user/my-wallet"
-                              : "/signin"
-                          }>
+                            isLoggedIn === true ? "/user/my-wallet" : "/signin"
+                          }
+                        >
                           <li
                             className={
                               router.pathname == "/user/my-wallet"
@@ -122,7 +118,8 @@ const Navbar = () => {
                                 : router.pathname == "/user/swap-coin"
                                 ? "cp-user-active-page"
                                 : ""
-                            }>
+                            }
+                          >
                             <a href="">
                               <span className="cp-user-icon">
                                 <BiWalletAlt />
@@ -138,16 +135,14 @@ const Navbar = () => {
                       )}
                       {parseInt(settings.launchpad_settings) === 1 &&
                         navbar?.ico?.status && (
-                          <Link
-                            href={
-                              isLoggedIn ? "/ico" : "/signin"
-                            }>
+                          <Link href={isLoggedIn ? "/ico" : "/signin"}>
                             <li
                               className={
                                 router.pathname == "/ico"
                                   ? "cp-user-active-page"
                                   : ""
-                              }>
+                              }
+                            >
                               <a href="">
                                 <span className="cp-user-icon">
                                   <RiCalendarEventLine />
@@ -170,17 +165,20 @@ const Navbar = () => {
                                 : router.pathname == "/fiat-withdrawal"
                                 ? "cp-user-active-page"
                                 : ""
-                            }>
+                            }
+                          >
                             <Link
                               href={
                                 isLoggedIn === true
                                   ? "/fiat-deposit"
                                   : "/signin"
-                              }>
+                              }
+                            >
                               <a
                                 className="arrow-icon"
                                 href="#"
-                                aria-expanded="true">
+                                aria-expanded="true"
+                              >
                                 <span className="cp-user-icon">
                                   <FiSettings />
                                 </span>
@@ -195,10 +193,9 @@ const Navbar = () => {
                               {navbar?.fiat?.deposit?.status && (
                                 <Link
                                   href={
-                                    isLoggedIn
-                                      ? "/fiat-deposit"
-                                      : "/signin"
-                                  }>
+                                    isLoggedIn ? "/fiat-deposit" : "/signin"
+                                  }
+                                >
                                   <li>
                                     <a href="">
                                       {navbar?.fiat?.deposit.name
@@ -211,16 +208,16 @@ const Navbar = () => {
                               {navbar?.fiat?.withdrawal?.status && (
                                 <Link
                                   href={
-                                    isLoggedIn
-                                      ? "/fiat-withdrawal"
-                                      : "/signin"
-                                  }>
+                                    isLoggedIn ? "/fiat-withdrawal" : "/signin"
+                                  }
+                                >
                                   <li
                                     className={
                                       router.pathname == "/fiat-withdrawal"
                                         ? "cp-user-active-page"
                                         : ""
-                                    }>
+                                    }
+                                  >
                                     <a href="">
                                       {navbar?.fiat?.withdrawal.name
                                         ? navbar?.fiat?.withdrawal.name
@@ -256,11 +253,13 @@ const Navbar = () => {
                               isLoggedIn
                                 ? "/user/wallet-history?type=deposit"
                                 : "/signin"
-                            }>
+                            }
+                          >
                             <a
                               className="arrow-icon"
                               href="#"
-                              aria-expanded="true">
+                              aria-expanded="true"
+                            >
                               <span className="cp-user-icon">
                                 <HiOutlineDocumentReport />
                               </span>
@@ -280,14 +279,16 @@ const Navbar = () => {
                                 isLoggedIn
                                   ? "/user/wallet-history?type=deposit"
                                   : "/signin"
-                              }>
+                              }
+                            >
                               <li
                                 className={
                                   router.pathname ==
                                   "/user/wallet-history?type=deposit"
                                     ? "cp-user-active-page"
                                     : ""
-                                }>
+                                }
+                              >
                                 <a href="">
                                   {navbar?.reports?.depositHistory?.name
                                     ? navbar?.reports?.depositHistory?.name
@@ -302,14 +303,16 @@ const Navbar = () => {
                                 isLoggedIn
                                   ? "/user/wallet-history?type=withdrawal"
                                   : "/signin"
-                              }>
+                              }
+                            >
                               <li
                                 className={
                                   router.pathname ==
                                   "/user/wallet-history?type=withdrawal"
                                     ? "cp-user-active-page"
                                     : ""
-                                }>
+                                }
+                              >
                                 <a href="">
                                   {navbar?.reports?.withdrawalHistory?.name
                                     ? navbar?.reports?.withdrawalHistory?.name
@@ -321,16 +324,16 @@ const Navbar = () => {
                           {navbar?.reports?.swapHistory?.status && (
                             <Link
                               href={
-                                isLoggedIn
-                                  ? "/user/swap-history"
-                                  : "/signin"
-                              }>
+                                isLoggedIn ? "/user/swap-history" : "/signin"
+                              }
+                            >
                               <li
                                 className={
                                   router.pathname == "/user/swap-history"
                                     ? "cp-user-active-page"
                                     : ""
-                                }>
+                                }
+                              >
                                 <a href="">
                                   {navbar?.reports?.swapHistory?.name
                                     ? navbar?.reports?.swapHistory?.name
@@ -345,13 +348,15 @@ const Navbar = () => {
                                 isLoggedIn
                                   ? "/user/buy-order-history"
                                   : "/signin"
-                              }>
+                              }
+                            >
                               <li
                                 className={
                                   router.pathname == "/user/buy-order-history"
                                     ? "cp-user-active-page"
                                     : ""
-                                }>
+                                }
+                              >
                                 <a href="">
                                   {navbar?.reports?.buyOrderHistory?.name
                                     ? navbar?.reports?.buyOrderHistory?.name
@@ -366,13 +371,15 @@ const Navbar = () => {
                                 isLoggedIn
                                   ? "/user/sell-order-history"
                                   : "/signin"
-                              }>
+                              }
+                            >
                               <li
                                 className={
                                   router.pathname == "/user/sell-order-history"
                                     ? "cp-user-active-page"
                                     : ""
-                                }>
+                                }
+                              >
                                 <a href="">
                                   {navbar?.reports?.sellOrderHistory?.name
                                     ? navbar?.reports?.sellOrderHistory?.name
@@ -387,13 +394,15 @@ const Navbar = () => {
                                 isLoggedIn
                                   ? "/user/transaction-history"
                                   : "/signin"
-                              }>
+                              }
+                            >
                               <li
                                 className={
                                   router.pathname == "/user/transaction-history"
                                     ? "cp-user-active-page"
                                     : ""
-                                }>
+                                }
+                              >
                                 <a href="">
                                   {navbar?.reports?.transactionHistory?.name
                                     ? navbar?.reports?.transactionHistory?.name
@@ -410,14 +419,16 @@ const Navbar = () => {
                                   isLoggedIn
                                     ? "/user/currency-deposit-history"
                                     : "/signin"
-                                }>
+                                }
+                              >
                                 <li
                                   className={
                                     router.pathname ==
                                     "/user/currency-deposit-history"
                                       ? "cp-user-active-page"
                                       : ""
-                                  }>
+                                  }
+                                >
                                   <a href="">
                                     {navbar?.reports?.fiatDepositHistory?.name
                                       ? navbar?.reports?.fiatDepositHistory
@@ -432,14 +443,16 @@ const Navbar = () => {
                               isLoggedIn
                                 ? "/user/stop-limit-order-history"
                                 : "/signin"
-                            }>
+                            }
+                          >
                             <li
                               className={
                                 router.pathname ==
                                 "/user/stop-limit-order-history"
                                   ? "cp-user-active-page"
                                   : ""
-                              }>
+                              }
+                            >
                               <a href="">{t("Stop Limit History")}</a>
                             </li>
                           </Link>
@@ -449,14 +462,16 @@ const Navbar = () => {
                                 isLoggedIn
                                   ? "/user/currency-withdraw-history"
                                   : "/signin"
-                              }>
+                              }
+                            >
                               <li
                                 className={
                                   router.pathname ==
                                   "/user/currency-withdraw-history"
                                     ? "cp-user-active-page"
                                     : ""
-                                }>
+                                }
+                              >
                                 <a href="">
                                   {navbar?.reports?.fiatWithdrawalHistory?.name
                                     ? navbar?.reports?.fiatWithdrawalHistory
@@ -469,18 +484,14 @@ const Navbar = () => {
                         </ul>
                       </li>
                       {navbar?.myProfile?.status && (
-                        <Link
-                          href={
-                            isLoggedIn
-                              ? "/user/profile"
-                              : "/signin"
-                          }>
+                        <Link href={isLoggedIn ? "/user/profile" : "/signin"}>
                           <li
                             className={
                               router.pathname == "/user/profile"
                                 ? "cp-user-active-page"
                                 : ""
-                            }>
+                            }
+                          >
                             <a href="">
                               <span className="cp-user-icon">
                                 <CgProfile />
@@ -494,18 +505,14 @@ const Navbar = () => {
                           </li>
                         </Link>
                       )}
-                      <Link
-                        href={
-                          isLoggedIn
-                            ? "/user/referral"
-                            : "/signin"
-                        }>
+                      <Link href={isLoggedIn ? "/user/referral" : "/signin"}>
                         <li
                           className={
                             router.pathname == "/user/referral"
                               ? "cp-user-active-page"
                               : ""
-                          }>
+                          }
+                        >
                           {navbar?.myReferral?.status && (
                             <Link href="/user/referral">
                               <a>
@@ -529,18 +536,17 @@ const Navbar = () => {
                             : router.pathname == "/user/faq"
                             ? "cp-user-active-page"
                             : ""
-                        }>
-                        {navbar?.settings?.ststus && (
+                        }
+                      >
+                        {navbar?.settings?.status && (
                           <Link
-                            href={
-                              isLoggedIn
-                                ? "/user/settings"
-                                : "/signin"
-                            }>
+                            href={isLoggedIn ? "/user/settings" : "/signin"}
+                          >
                             <a
                               className="arrow-icon"
                               href="#"
-                              aria-expanded="true">
+                              aria-expanded="true"
+                            >
                               <span className="cp-user-icon">
                                 <FiSettings />
                               </span>
@@ -556,11 +562,8 @@ const Navbar = () => {
                         <ul className="">
                           {navbar?.settings?.mySettings?.status && (
                             <Link
-                              href={
-                                isLoggedIn
-                                  ? "/user/settings"
-                                  : "/signin"
-                              }>
+                              href={isLoggedIn ? "/user/settings" : "/signin"}
+                            >
                               <li>
                                 <a href="">
                                   {navbar?.settings?.mySettings?.name
@@ -571,18 +574,14 @@ const Navbar = () => {
                             </Link>
                           )}
                           {navbar?.settings?.faq?.status && (
-                            <Link
-                              href={
-                                isLoggedIn
-                                  ? "/user/faq"
-                                  : "/signin"
-                              }>
+                            <Link href={isLoggedIn ? "/user/faq" : "/signin"}>
                               <li
                                 className={
                                   router.pathname == "/user/faq"
                                     ? "cp-user-active-page"
                                     : ""
-                                }>
+                                }
+                              >
                                 <a href="">
                                   {navbar?.settings?.faq?.name
                                     ? navbar?.settings?.faq?.name
@@ -618,262 +617,17 @@ const Navbar = () => {
                   </nav>
                 </div>
 
-                {/* language list       */}
-                <div className="col-xl-2 col-lg-2 col-8">
-                  {isLoggedIn ? (
-                    <div className="cp-user-top-bar-right">
-                      <div>
-                        <ul>
-                          <li className="hm-notify" id="notification_item">
-                            <div className="btn-group dropdown">
-                              <button
-                                type="button"
-                                className="notification-btn dropdown-toggle"
-                                data-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false">
-                                <span
-                                  className="notify-value hm-notify-number"
-                                  onClick={() => {}}>
-                                  {notificationData?.length > 100
-                                    ? "99+"
-                                    : notificationData?.length}
-                                </span>
-                                <img
-                                  src="/notification.png"
-                                  className="img-fluid"
-                                  alt=""
-                                />
-                              </button>
-                              <div className="dropdown-menu notification-list dropdown-menu-right">
-                                <div className="notify-menu">
-                                  <div className="notification-list-title">
-                                    <div className="notify-counter">
-                                      <div className="notify-pending">
-                                        <p>
-                                          <span>{notificationData.length}</span>
-                                          {t("pending notifications")}
-                                        </p>
-                                        <a
-                                          onClick={() => {
-                                            seen();
-                                          }}
-                                          className="clear-all"
-                                          href="#">
-                                          {t("Clear All")}
-                                        </a>
-                                      </div>
-
-                                      <div className="notifiy-clear">
-                                        <Link href="/user/notification">
-                                          <a className="view-all">
-                                            {t("View All")}
-                                          </a>
-                                        </Link>
-                                        <HiArrowNarrowRight />
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div>
-                                    <div className="notify-grid-item">
-                                      {notificationData?.length > 0 ? (
-                                        notificationData
-                                          ?.slice(0, 5)
-                                          ?.map((item: any, index: number) => (
-                                            <div
-                                              className="notify-icon-title"
-                                              key={index}>
-                                              <RiNotificationBadgeLine
-                                                size={20}
-                                                className="notify-menu-icon"
-                                              />
-                                              <div>
-                                                <h6>
-                                                  {item.title.substring(0, 40)}
-                                                </h6>
-                                                <p>
-                                                  {item.notification_body.substring(
-                                                    0,
-                                                    50
-                                                  )}
-                                                </p>
-                                                <span>
-                                                  {moment(
-                                                    item.created_at
-                                                  ).format("DD MMM YYYY")}
-                                                </span>
-                                              </div>
-                                            </div>
-                                          ))
-                                      ) : (
-                                        <p className="notFountNotifyText">
-                                          {t("No Notification Found!")}
-                                        </p>
-                                      )}
-                                    </div>
-                                  </div>
-                                </div>
-
-                                <div
-                                  className="scroll-wrapper scrollbar-inner"
-                                  style={{
-                                    position: "relative",
-                                  }}>
-                                  <ul
-                                    className="scrollbar-inner scroll-content"
-                                    style={{
-                                      height: "auto",
-                                      marginBottom: "0px",
-                                      marginRight: "0px",
-                                      maxHeight: "0px",
-                                    }}></ul>
-                                  <div className="scroll-element scroll-x">
-                                    <div className="scroll-element_outer">
-                                      <div className="scroll-element_size"></div>
-                                      <div className="scroll-element_track"></div>
-                                      <div className="scroll-bar"></div>
-                                    </div>
-                                  </div>
-                                  <div className="scroll-element scroll-y">
-                                    <div className="scroll-element_outer">
-                                      <div className="scroll-element_size"></div>
-                                      <div className="scroll-element_track"></div>
-                                      <div className="scroll-bar"></div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </li>
-                          <li className="hm-notify" id="notification_item">
-                            <div className="btn-group profile-dropdown">
-                              <button
-                                type="button"
-                                className="btn dropdown-toggle"
-                                data-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false">
-                                <span className="cp-user-avater">
-                                  <span
-                                    className={`${
-                                      user?.online_status?.online_status
-                                        ? "tradeUserActive"
-                                        : "tradeUserDeactive"
-                                    } cp-user-img`}>
-                                    {user?.photo && (
-                                      <img
-                                        src={user?.photo}
-                                        className="img-fluid"
-                                        alt="user"
-                                      />
-                                    )}
-                                  </span>
-                                  <span className="cp-user-avater-info"></span>
-                                </span>
-                              </button>
-                              <div className="dropdown-menu dropdown-menu-right">
-                                <p
-                                  className={`${
-                                    user?.online_status?.online_status
-                                      ? "userActive"
-                                      : "userDeactive"
-                                  } big-user-thumb`}>
-                                  <img
-                                    src={user?.photo}
-                                    className="img-fluid profile-avatar"
-                                    alt=""
-                                  />
-                                </p>
-                                <div className="user-name">
-                                  <p className="nav-userName">
-                                    {user?.first_name!} {user?.last_name!}
-                                  </p>
-                                </div>
-                                <Link href="/user/profile">
-                                  <button
-                                    className="dropdown-item"
-                                    type="button">
-                                    <a href="">
-                                      <i className="fa-regular fa-user"></i>
-                                      {t("Profile")}
-                                    </a>
-                                  </button>
-                                </Link>
-                                <Link href="/user/settings">
-                                  <button
-                                    className="dropdown-item"
-                                    type="button">
-                                    <a href="">
-                                      <i className="fa fa-cog"></i>
-                                      {t("My Settings")}
-                                    </a>
-                                  </button>
-                                </Link>
-                                <button
-                                  className="dropdown-item"
-                                  type="button"
-                                  onClick={() => {
-                                    darkModeToggle(settings, setTheme);
-                                  }}>
-                                  <a href="#">
-                                    {theme === 0 ? (
-                                      <>
-                                        <BsFillSunFill
-                                          size={26}
-                                          className="mr-2"
-                                        />
-                                        {t("Light")}
-                                      </>
-                                    ) : (
-                                      <>
-                                        <BsFillMoonFill
-                                          size={20}
-                                          className="mr-2"
-                                        />
-                                        {t("Dark")}
-                                      </>
-                                    )}
-                                  </a>
-                                </button>
-
-                                <Link href="/user/my-wallet">
-                                  <button
-                                    className="dropdown-item"
-                                    type="button">
-                                    <a href="-wallet">
-                                      <i className="fa fa-credit-card"></i>
-                                      {t("My Wallet")}
-                                    </a>
-                                  </button>
-                                </Link>
-                                <button
-                                  className="dropdown-item"
-                                  type="button"
-                                  onClick={() => {
-                                    dispatch(LogoutAction());
-                                  }}>
-                                  <a>
-                                    <i className="fa fa-sign-out"></i>{" "}
-                                    {t("Logout")}
-                                  </a>
-                                </button>
-                              </div>
-                            </div>
-                          </li>
-                        </ul>
-                      </div>
-                      <div
-                        className="cp-user-sidebar-toggler-s2"
-                        onClick={() => {
-                          setActive(active ? false : true);
-                        }}>
-                        <img src="/menu.svg" className="img-fluid" alt="" />
-                      </div>
-                    </div>
-                  ) : (
-                    ""
-                  )}
-                </div>
+                <NotificationDropdown
+                  isLoggedIn={isLoggedIn}
+                  notificationData={notificationData}
+                  seen={seen}
+                  user={user}
+                  theme={theme}
+                  settings={settings}
+                  setTheme={setTheme}
+                  setActive={setActive}
+                  active={active}
+                />
               </div>
             </div>
           </div>
@@ -882,7 +636,8 @@ const Navbar = () => {
             <div className={`cp-user-sidebar ${active ? "active" : ""}`}>
               <div
                 onClick={() => setActive(false)}
-                className="cp-user-sidebar-menu scrollbar-inner">
+                className="cp-user-sidebar-menu scrollbar-inner"
+              >
                 <nav>
                   <ul id="metismenu">
                     {navbar?.trade?.status && (
@@ -892,7 +647,8 @@ const Navbar = () => {
                             router.locale !== "en"
                               ? `/${router.locale}/exchange/dashboard`
                               : "/exchange/dashboard"
-                          }>
+                          }
+                        >
                           <span className="cp-user-icon">
                             <img
                               src=""
@@ -932,11 +688,8 @@ const Navbar = () => {
                       <ul>
                         {navbar?.wallet?.status && (
                           <Link
-                            href={
-                              isLoggedIn
-                                ? "/user/my-wallet"
-                                : "/signin"
-                            }>
+                            href={isLoggedIn ? "/user/my-wallet" : "/signin"}
+                          >
                             <li>
                               <a href="">
                                 {navbar?.wallet?.name
@@ -949,11 +702,8 @@ const Navbar = () => {
                         {parseInt(settings.currency_deposit_status) === 1 &&
                           navbar?.fiat?.status && (
                             <Link
-                              href={
-                                isLoggedIn
-                                  ? "/fiat-deposit"
-                                  : "/signin"
-                              }>
+                              href={isLoggedIn ? "/fiat-deposit" : "/signin"}
+                            >
                               <li>
                                 <a href="">{t("Fiat Deposit")}</a>
                               </li>
@@ -962,11 +712,8 @@ const Navbar = () => {
                         {parseInt(settings.currency_deposit_status) === 1 &&
                           navbar?.fiat?.status && (
                             <Link
-                              href={
-                                isLoggedIn
-                                  ? "/fiat-withdrawal"
-                                  : "/signin"
-                              }>
+                              href={isLoggedIn ? "/fiat-withdrawal" : "/signin"}
+                            >
                               <li>
                                 <a href="">{t("Fiat Withdrawal")}</a>
                               </li>
@@ -1002,7 +749,8 @@ const Navbar = () => {
                                 isLoggedIn
                                   ? "/user/wallet-history?type=deposit"
                                   : "/signin"
-                              }>
+                              }
+                            >
                               <li>
                                 <a href="">
                                   {navbar?.reports?.depositHistory?.name
@@ -1018,7 +766,8 @@ const Navbar = () => {
                                 isLoggedIn
                                   ? "/user/wallet-history?type=withdrawal"
                                   : "/signin"
-                              }>
+                              }
+                            >
                               <li>
                                 <a href="">
                                   {navbar?.reports?.withdrawalHistory?.name
@@ -1031,10 +780,9 @@ const Navbar = () => {
                           {navbar?.reports?.swapHistory?.status && (
                             <Link
                               href={
-                                isLoggedIn
-                                  ? "/user/swap-history"
-                                  : "/signin"
-                              }>
+                                isLoggedIn ? "/user/swap-history" : "/signin"
+                              }
+                            >
                               <li>
                                 <a href="">
                                   {navbar?.reports?.swapHistory?.name
@@ -1050,7 +798,8 @@ const Navbar = () => {
                                 isLoggedIn
                                   ? "/user/buy-order-history"
                                   : "/signin"
-                              }>
+                              }
+                            >
                               <li>
                                 <a href="">
                                   {" "}
@@ -1067,7 +816,8 @@ const Navbar = () => {
                                 isLoggedIn
                                   ? "/user/sell-order-history"
                                   : "/signin"
-                              }>
+                              }
+                            >
                               <li>
                                 <a href="">
                                   {navbar?.reports?.sellOrderHistory?.name
@@ -1083,7 +833,8 @@ const Navbar = () => {
                                 isLoggedIn
                                   ? "/user/transaction-history"
                                   : "/signin"
-                              }>
+                              }
+                            >
                               <li>
                                 <a href="">
                                   {navbar?.reports?.transactionHistory?.name
@@ -1099,7 +850,8 @@ const Navbar = () => {
                                 isLoggedIn
                                   ? "/user/currency-withdraw-history"
                                   : "/signin"
-                              }>
+                              }
+                            >
                               <li>
                                 <a href="">
                                   {navbar?.reports?.fiatDepositHistory?.name
@@ -1115,7 +867,8 @@ const Navbar = () => {
                                 isLoggedIn
                                   ? "/user/currency-withdraw-history"
                                   : "/signin"
-                              }>
+                              }
+                            >
                               <li>
                                 <a href="">
                                   {navbar?.reports?.fiatWithdrawalHistory?.name
@@ -1132,12 +885,7 @@ const Navbar = () => {
                     <li>
                       <ul>
                         {navbar?.myProfile?.status && (
-                          <Link
-                            href={
-                              isLoggedIn
-                                ? "/user/profile"
-                                : "/signin"
-                            }>
+                          <Link href={isLoggedIn ? "/user/profile" : "/signin"}>
                             <li>
                               <a href="">
                                 {navbar?.myProfile?.name
@@ -1152,11 +900,8 @@ const Navbar = () => {
                     <li>
                       <ul>
                         <Link
-                          href={
-                            isLoggedIn
-                              ? "/user/edit-profile"
-                              : "/signin"
-                          }>
+                          href={isLoggedIn ? "/user/edit-profile" : "/signin"}
+                        >
                           <li>
                             <a href="">{t("Edit Profile")}</a>
                           </li>
@@ -1167,10 +912,9 @@ const Navbar = () => {
                       <ul>
                         <Link
                           href={
-                            isLoggedIn
-                              ? "/user/phone-verification"
-                              : "/signin"
-                          }>
+                            isLoggedIn ? "/user/phone-verification" : "/signin"
+                          }
+                        >
                           <li>
                             <a href="">{t("Phone Verification")}</a>
                           </li>
@@ -1179,12 +923,7 @@ const Navbar = () => {
                     </li>
                     <li>
                       <ul>
-                        <Link
-                          href={
-                            isLoggedIn
-                              ? "/user/security"
-                              : "/signin"
-                          }>
+                        <Link href={isLoggedIn ? "/user/security" : "/signin"}>
                           <li>
                             <a href="">{t("Security")}</a>
                           </li>
@@ -1198,7 +937,8 @@ const Navbar = () => {
                             isLoggedIn
                               ? "/user/personal-verification"
                               : "/signin"
-                          }>
+                          }
+                        >
                           <li>
                             <a href="">{t("KYC Verification")}</a>
                           </li>
@@ -1207,12 +947,7 @@ const Navbar = () => {
                     </li>
                     <li>
                       <ul>
-                        <Link
-                          href={
-                            isLoggedIn
-                              ? "/user/bank/list"
-                              : "/signin"
-                          }>
+                        <Link href={isLoggedIn ? "/user/bank/list" : "/signin"}>
                           <li>
                             <a href="">{t("Bank List")}</a>
                           </li>
@@ -1223,10 +958,9 @@ const Navbar = () => {
                       <ul>
                         <Link
                           href={
-                            isLoggedIn
-                              ? "/user/change-password"
-                              : "/signin"
-                          }>
+                            isLoggedIn ? "/user/change-password" : "/signin"
+                          }
+                        >
                           <li>
                             <a href="">{t("Change Password")}</a>
                           </li>
@@ -1284,11 +1018,8 @@ const Navbar = () => {
                       <ul>
                         {navbar?.settings?.mySettings?.status && (
                           <Link
-                            href={
-                              isLoggedIn
-                                ? "/user/settings"
-                                : "/signin"
-                            }>
+                            href={isLoggedIn ? "/user/settings" : "/signin"}
+                          >
                             <li>
                               <a href="">
                                 {navbar?.settings?.mySettings?.name
@@ -1299,12 +1030,7 @@ const Navbar = () => {
                           </Link>
                         )}
                         {navbar?.settings?.faq?.status && (
-                          <Link
-                            href={
-                              isLoggedIn
-                                ? "/user/faq"
-                                : "/signin"
-                            }>
+                          <Link href={isLoggedIn ? "/user/faq" : "/signin"}>
                             <li>
                               <a href="">
                                 {navbar?.settings?.faq?.name

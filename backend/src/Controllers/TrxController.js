@@ -183,7 +183,7 @@ async function getTrxAccount(req, res) {
 async function getTrxAddressByPk(req, res) {
     try {
         const tronWeb = tronWebCall(req,res);
-        const key = req.body.key;
+        const key = req.body.contracts;
         if (key) {
             const response = await tronWeb.address.fromPrivateKey(key);
         
@@ -191,7 +191,7 @@ async function getTrxAddressByPk(req, res) {
                 res.json({
                     status: true,
                     message: "TRC data get successfully",
-                    data: response
+                    data: {address: response}
                 });
             } else {
                 console.log(response);
