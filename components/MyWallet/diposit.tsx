@@ -189,62 +189,9 @@ export const DipositComponent = ({
                             {t("No address found!")}
                           </p>
                         )}
-                        : responseData?.address &&
-                        responseData?.wallet.coin_type !== "USDT" ? (
-                        <>
-                          <input
-                            onClick={() => {
-                              copyTextById(
-                                responseData?.wallet.coin_type == "USDT"
-                                  ? selectedNetwork?.address
-                                  : responseData?.address
-                              );
-                              selectAddressCopy?.current.select();
-                            }}
-                            ref={selectAddressCopy}
-                            className="address-box address-copy-box border-0"
-                            type="text"
-                            value={responseData?.address}
-                          />
-
-                          <span
-                            className="copy-url-btn cp-button"
-                            onClick={() => {
-                              copyTextById(responseData?.address);
-                              selectAddressCopy?.current?.select();
-                            }}>
-                            <i className="fa fa-clone"></i>
-                          </span>
-                        </>
-                        ) : (
-                        <p
-                          ref={selectAddressCopy}
-                          id="url-copy"
-                          className="address-box">
-                          {t("No address found!")}
-                        </p>
-                        )
                       </div>
                     </div>
                   </div>
-                  {!selectedNetwork?.address &&
-                    responseData?.wallet.coin_type == "USDT" &&
-                    parseInt(responseData?.wallet.network) === 1 && (
-                      <button
-                        className=" primary-btn-outline btn-withdraw text-white w-100 mt-4"
-                        onClick={() => {
-                          GetWalletAddressAction(
-                            {
-                              wallet_id: router.query.coin_id,
-                              network_type: selectedNetwork?.network_type ?? "",
-                            },
-                            setSelectedNetwork,
-                            setDependecy
-                          );
-                        }}>
-                        {t("Get address")}
-                      </button>
-                    )}
                 </div>
                 {!selectedNetwork?.address &&
                   responseData?.wallet.coin_type == "USDT" &&
@@ -265,8 +212,9 @@ export const DipositComponent = ({
                     </button>
                   )}
               </div>
+            </div>
 
-              {/* <div className="deposit-info-area" id="wallet_deposit_area">
+            {/* <div className="deposit-info-area" id="wallet_deposit_area">
             <div className="deposit-info-top">
               <div className="balance-box">
                 <img
@@ -443,7 +391,6 @@ export const DipositComponent = ({
               </div>
             </div>
           </div> */}
-            </div>
           </div>
         </div>
       </div>
