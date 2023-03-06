@@ -4,24 +4,16 @@ import {
   currencyDepositProcess,
   getCurrencyDepositRate,
 } from "service/deposit";
-import {
-  ElementsConsumer,
-  Elements,
-  CardElement,
-} from "@stripe/react-stripe-js";
-import { loadStripe } from "@stripe/stripe-js";
 import { toast } from "react-toastify";
-import CardForm from "./cardForm";
 import { useRouter } from "next/router";
 import PaypalButtons from "./PaypalDeposit";
-const PaypalSection = ({ currencyList, walletlist, method_id }: any) => {
+const PaypalSection = ({ walletlist, method_id }: any) => {
   const { t } = useTranslation("common");
   const [calculatedValue, setCalculatedValue] = useState<any>({
     calculated_amount: 0,
     rate: 0,
   });
   //@ts-ignore
-  const stripe = loadStripe(process.env.NEXT_PUBLIC_PUBLISH_KEY);
   const router = useRouter();
   const [credential, setCredential] = useState<any>({
     wallet_id: null,
@@ -38,23 +30,6 @@ const PaypalSection = ({ currencyList, walletlist, method_id }: any) => {
     ) {
       const response = await getCurrencyDepositRate(credential);
       setCalculatedValue(response.data);
-    }
-  };
-  const convertCurrency = async () => {
-    if (
-      credential.wallet_id &&
-      credential.payment_method_id &&
-      credential.amount
-    ) {
-      const res = await currencyDepositProcess(credential);
-      if (res.success) {
-        toast.success(res.message);
-        router.push("/user/currency-deposit-history");
-      } else {
-        toast.error(res.message);
-      }
-    } else {
-      toast.error(t("Please provide all information's"));
     }
   };
   useEffect(() => {
@@ -134,7 +109,8 @@ const PaypalSection = ({ currencyList, walletlist, method_id }: any) => {
                               ...credential,
                               wallet_id: e.target.value,
                             });
-                          }}>
+                          }}
+                        >
                           <option value="" selected disabled hidden>
                             {t("Select one")}
                           </option>
