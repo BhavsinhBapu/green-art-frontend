@@ -5448,7 +5448,7 @@ select:-webkit-autofill:focus {
   border: 1px solid var(--border-color);
   border-radius: 10px;
   /* align-items: flex-start; */
-  margin-bottom: 15px;
+  margin-bottom: 50px;
 }
 
 .section-wrapper.rounded-sm {
@@ -14177,7 +14177,7 @@ input {
 }
 
 .p2pWork {
-  background-color: var(--footer-background-color);
+  background-color: var(--card-background-color);
   border-radius: 22px;
 }
 
@@ -14407,19 +14407,6 @@ input {
   color: var(--text-primary-color-3);
 }
 
-.userVerified {
-  gap: 14px;
-}
-
-.userVerified p {
-  font-weight: 500;
-  color: var(--text-primary-color-3);
-}
-
-.userVerified p svg {
-  color: var(--primary-color);
-}
-
 .userProfileBg {
   background-color: var(--footer-background-color);
 }
@@ -14440,33 +14427,11 @@ input {
   border: none;
   padding: 8px 22px;
   border-radius: 4px;
-  background: var(--primary-color);
   border: none;
-  color: var(--text-primary-color-1);
-}
-
-.custom-page-container {
-  margin-top: 75px;
 }
 
 .swapSelect option {
   background-color: var(--card-background-color);
-}
-
-.qrCodeBg {
-  background-color: #ffff;
-  padding: 10px;
-}
-
-orderDownTimeButton button {
-  background-color: var(--footer-background-color);
-  font-size: 18px;
-  border-radius: 4px;
-  padding: 10px 10px;
-  border: none;
-  display: flex;
-  align-items: center;
-  color: var(--text-primary-color-3);
 }
 
 .userVerified {
@@ -14482,37 +14447,8 @@ orderDownTimeButton button {
   color: var(--primary-color);
 }
 
-.userProfileBg {
-  background-color: var(--footer-background-color);
-}
-
-.paymentMethodBox {
-  background-color: var(--background-color);
-}
-
-.paymentMethodSubBox {
-  border: 1px solid var(--border-color) !important;
-  padding: 8px 22px;
-  border-radius: 8px !important;
-  border: none;
-  color: var(--text-primary-color-1);
-  padding: 8px 22px;
-  border-radius: 4px;
-  background: var(--card-primary-color);
-  border: none;
-  padding: 8px 22px;
-  border-radius: 4px;
-  background: var(--primary-color);
-  border: none;
-  color: var(--text-primary-color-1);
-}
-
 .custom-page-container {
   margin-top: 75px;
-}
-
-.swapSelect option {
-  background-color: var(--card-background-color);
 }
 
 .qrCodeBg {
@@ -14546,4 +14482,8 @@ orderDownTimeButton button {
   transition: all 0.5s;
   min-width: 140px;
   border: 2px solid var(--primary-color);
+}
+
+.p2p_top_bg {
+  background-color: var(--background-color-trade);
 }

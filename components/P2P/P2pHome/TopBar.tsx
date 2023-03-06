@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export const P2pTopBar = () => {
   return (
-    <div className="bg-dark py-3">
+    <div className="p2p_top_bg py-3">
       <div className="container">
         <div className="row">
           <div className="col-12">

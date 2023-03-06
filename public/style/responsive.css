@@ -264,6 +264,14 @@
     width: 30px;
     height: 30px;
   }
+  .limitBalance {
+    width: 200px;
+  }
+  .tableButton {
+    width: 86px;
+    padding: 6px 10px;
+    font-size: 12px;
+  }
 }
 
 /* Landscape phones and smaller */
