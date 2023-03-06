@@ -202,71 +202,8 @@ const Wallethistory = ({ type }: any) => {
                           </span>
                         </div>
                       )}
-                      <div id="table_filter" className="dataTables_filter">
-                        <label>
-                          {t("Search")}:
-                          <input
-                            type="search"
-                            name="search"
-                            className="data_table_input"
-                            placeholder=""
-                            value={search}
-                            aria-controls="table"
-                            onChange={(e) => {
-                              handleSearch(
-                                e,
-                                setSearch,
-                                stillHistory,
-                                setHistory
-                              );
-                            }}
-                          />
-                        </label>
-                      </div>
                     </div>
                   </div>
-                  <div className="cp-user-wallet-table table-responsive tableScroll">
-                    <DataTable columns={columns} data={history} />
-                  </div>
-                  {history?.length > 0 && (
-                    <div
-                      className="pagination-wrapper"
-                      id="assetBalances_paginate">
-                      <span>
-                        {stillHistory?.histories?.links.map(
-                          (link: any, index: number) =>
-                            link.label === "&laquo; Previous" ? (
-                              <a
-                                className="paginate-button"
-                                onClick={() => {
-                                  if (link.url) LinkTopaginationString(link);
-                                }}
-                                key={index}>
-                                <i className="fa fa-angle-left"></i>
-                              </a>
-                            ) : link.label === "Next &raquo;" ? (
-                              <a
-                                className="paginate-button"
-                                onClick={() => LinkTopaginationString(link)}
-                                key={index}>
-                                <i className="fa fa-angle-right"></i>
-                              </a>
-                            ) : (
-                              <a
-                                className={`paginate_button paginate-number ${
-                                  link.active === true && "text-warning"
-                                }`}
-                                aria-controls="assetBalances"
-                                data-dt-idx="1"
-                                onClick={() => LinkTopaginationString(link)}
-                                key={index}>
-                                {link.label}
-                              </a>
-                            )
-                        )}
-                      </span>
-                    </div>
-                  )}
                 </div>
               )}
             </div>
