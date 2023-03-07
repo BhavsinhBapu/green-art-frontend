@@ -49,6 +49,20 @@
   .walletHistory .dataTables_head {
     width: 100%;
   }
+  .trade_tableList {
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+  }
+  .trades-section table.dataTable thead tr th {
+    text-align: center !important;
+  }
+  .trade_tableList_two {
+    display: flex;
+    justify-content: space-between;
+    gap: 26px;
+    width: 100%;
+  }
 }
 
 @media (max-width: 1024px) {
@@ -264,11 +278,17 @@
     width: 30px;
     height: 30px;
   }
+  .trade_tableList {
+    width: 80%;
+  }
 }
 
 /* Landscape phones and smaller */
 
 @media (max-width: 480px) {
+  .trade_tableList {
+    width: 80%;
+  }
   .primary-btn {
     margin-bottom: 10px;
   }
