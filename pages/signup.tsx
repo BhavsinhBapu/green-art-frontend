@@ -69,7 +69,7 @@ const Signup: NextPage = () => {
             <h1 className="text-white">{t("Welcome To")}</h1>
             <Link href="/signin">
               <p className="text-white h5">
-                {t("Already have an account")}?{" "}
+                {t("Already have an account")} ?{" "}
                 <a className="text-theme" href="">
                   {" "}
                   {t("Sign In")}
