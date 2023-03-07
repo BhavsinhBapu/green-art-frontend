@@ -14,7 +14,9 @@ import {
   PAYPAL,
   PHASE_SORT_BY_RECENT,
   STRIPE,
+  PAYSTACK,
 } from "helpers/core-constants";
+import Paystack from "components/deposit/paystack";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
 import useTranslation from "next-translate/useTranslation";
@@ -117,6 +119,11 @@ const Index = () => {
                               />
                             ) : parseInt(selectedMethod.method) === STRIPE ? (
                               <StripePayment
+                                initialData={initialData}
+                                pageInfo={pageInfo}
+                              />
+                            ) : parseInt(selectedMethod.method) === PAYSTACK ? (
+                              <Paystack
                                 initialData={initialData}
                                 pageInfo={pageInfo}
                               />

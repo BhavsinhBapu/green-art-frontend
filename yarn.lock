@@ -3250,11 +3250,6 @@ react-qr-code@^2.0.3:
     prop-types "^15.7.2"
     qr.js "0.0.0"
 
-react-razorpay@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/react-razorpay/-/react-razorpay-1.2.0.tgz#5b5b605d5476f3db94def7fc98c2705e18abef0b"
-  integrity sha512-UMQF8od/yKPPgXcbv5+IaCDeRrZdeu9HCYsKjALpSsPMtPP1LU0QBcjJVYsPi1vjdrlXbrUH9/YhOVMcvFVsIQ==
-
 react-redux@^7.2.6:
   version "7.2.6"
   resolved "https://registry.npmjs.org/react-redux/-/react-redux-7.2.6.tgz"
