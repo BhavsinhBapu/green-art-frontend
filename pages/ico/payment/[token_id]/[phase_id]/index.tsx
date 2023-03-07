@@ -8,6 +8,7 @@ import BankPayment from "components/ico/payment/Bank-payment";
 import CryptoPayment from "components/ico/payment/CryptoPayment";
 import PaypalPayment from "components/ico/payment/PaypalPayment";
 import StripePayment from "components/ico/payment/StripePayment";
+import Paystack from "components/ico/payment/paystack";
 import {
   BANK_DEPOSIT,
   CRYPTO_DEPOSIT,
@@ -16,7 +17,6 @@ import {
   STRIPE,
   PAYSTACK,
 } from "helpers/core-constants";
-import Paystack from "components/deposit/paystack";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
 import useTranslation from "next-translate/useTranslation";
