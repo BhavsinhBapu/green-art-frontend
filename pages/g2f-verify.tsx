@@ -38,8 +38,7 @@ const G2fverify = () => {
               const code = parseInt(values.code);
               dispatch(G2fVerifyAction(code));
               setSubmitting(false);
-            }}
-          >
+            }}>
             {({ errors, touched }) => (
               <Form>
                 <div className="form-group">
@@ -57,8 +56,7 @@ const G2fverify = () => {
 
                 <button
                   type="submit"
-                  className="btn btn-primary nimmu-user-sibmit-button mt-3"
-                >
+                  className="btn btn-primary nimmu-user-sibmit-button mt-3">
                   {t("Verify")}
                 </button>
               </Form>
