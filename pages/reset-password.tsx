@@ -36,178 +36,188 @@ const ResetPassword: NextPage = () => {
     getRecapcha();
   }, []);
   return (
-    <div
-      className="user-content-wrapper"
-      style={{
-        backgroundImage: `url(${settings.login_background})`,
-      }}
-    >
-      <div className="user-content-inner-wrap">
-        <div className="row align-items-center">
-          <div className="col-md-6">
-            <div className="user-form">
-              <div className="user-form-inner">
-                <div className="form-top">
-                  <h2>{t("Forgot Password ?")}</h2>
-                  <p>
-                    {t(
-                      "Please enter the new password and code to reset the password"
-                    )}
-                  </p>
-                </div>
-                <Formik
-                  initialValues={{
-                    email: "",
-                    password: "",
-                    password_confirmation: "",
-                    token: "",
-                    recapcha:
-                      recaptchaData?.google_recapcha !== "1"
-                        ? "ksmaldkmalksmdlkamsdlk"
-                        : "",
-                  }}
-                  validationSchema={Yup.object({
-                    email: Yup.string()
-                      .email(t("Invalid email address"))
-                      .required(t("Email is required")),
-                    password: Yup.string()
-                      .min(6, t("Password must be at least 6 characters"))
-                      .required(t("Password is required")),
-                    password_confirmation: Yup.string()
-                      .oneOf(
-                        [Yup.ref("password"), null],
-                        t("Passwords must match")
-                      )
-                      .required(t("Password confirmation is required")),
-                    token: Yup.string().required(t("Code is required")),
-                    recapcha: Yup.string()
-                      .min(6)
-                      .required(t("Recapcha is required")),
-                  })}
-                  onSubmit={async (values) => {
-                    await ResetPasswordAction(values, setProcessing);
-                  }}
-                >
-                  {({ errors, touched, setFieldValue }) => (
-                    <Form>
-                      <div className="form-group">
-                        <Field
-                          type="email"
-                          name="email"
-                          id="email"
-                          className={`form-control ${
-                            touched.email && errors.email ? "is-invalid" : ""
-                          }`}
-                          placeholder={t("Your email here")}
-                        />
-                      </div>
-
-                      <div className="form-group">
-                        <Field
-                          type="password"
-                          name="password"
-                          id="password"
-                          className={`form-control ${
-                            touched.password && errors.password
-                              ? "is-invalid"
-                              : ""
-                          }`}
-                          placeholder={t("Type your new password")}
-                        />
-                      </div>
-                      {/* <ErrorMessage
-                        name="password"
-                        component="div"
-                        className="red-text"
-                      /> */}
-                      <div className="form-group">
-                        <Field
-                          type="password"
-                          name="password_confirmation"
-                          id="password_confirmation"
-                          className={`form-control ${
-                            touched.password_confirmation &&
-                            errors.password_confirmation
-                              ? "is-invalid"
-                              : ""
-                          }`}
-                          placeholder={t("Reenter your new password")}
-                        />
-                      </div>
-                      {/* <ErrorMessage
-                        name="password_confirmation"
-                        component="div"
-                        className="red-text"
-                      /> */}
-
-                      <div className="form-group">
-                        <Field
-                          type="token"
-                          name="token"
-                          id="token"
-                          className={`form-control ${
-                            touched.token && errors.token ? "is-invalid" : ""
-                          }`}
-                          placeholder={t("Your code here")}
-                        />
-                      </div>
-                      {/* <ErrorMessage
-                        name="token"
-                        component="div"
-                        className="red-text"
-                      /> */}
-                      {recaptchaData?.NOCAPTCHA_SITEKEY &&
-                        recaptchaData?.google_recapcha === "1" && (
-                          <ReCAPTCHA
-                            ref={(r: any) => setCaptchaRef(r)}
-                            sitekey={recaptchaData?.NOCAPTCHA_SITEKEY}
-                            render="explicit"
-                            onChange={(response: any) => {
-                              setFieldValue("recapcha", response);
-                            }}
-                          />
-                        )}
-                      <button
-                        onClick={() => resetCaptcha()}
-                        type="submit"
-                        className="btn nimmu-user-sibmit-button mt-3"
-                      >
-                        {processing ? (
-                          <>
-                            <span
-                              className="spinner-border spinner-border-md"
-                              role="status"
-                              aria-hidden="true"
-                            ></span>
-                            <span>{t("Please wait")}</span>
-                          </>
-                        ) : (
-                          t("Submit")
-                        )}
-                      </button>
-                    </Form>
-                  )}
-                </Formik>
-              </div>
+    <>
+      <div className="d-md-flex d-block">
+        <div
+          className="col-md-5 login_bg_new"
+          style={{
+            backgroundImage: `url(${settings.login_background})`,
+          }}>
+          <div className="user-content-text text-center text-md-left">
+            <Link href="/">
+              <a className="auth-logo" href="">
+                <img
+                  width="65%"
+                  src={settings.logo || ""}
+                  className="pt-5 pt-md-4"
+                  alt=""
+                />
+              </a>
+            </Link>
+          </div>
+          <div className="d-md-flex d-block align-items-center justify-content-center h-75">
+            <div className="text-center text-md-left">
+              <h1 className="text-white">{t("Welcome To")}</h1>
+              <Link href="/signin">
+                <p className="text-white h4">
+                  {t("Return to")}
+                  <a className="text-theme" href="">
+                    {t(" Sign In ")}
+                  </a>
+                </p>
+              </Link>
             </div>
           </div>
-          <div className="col-md-6">
-            <div className="user-content-text text-center">
-              <h3>{t("Welcome Back To")}</h3>
-              <a className="auth-logo">
-                <img src={settings.logo || ""} className="img-fluid" alt="" />
-              </a>
-              <p>
-                {t("Return to sign in")}
-                <Link href="/signin">
-                  <a> {t("Sign in")}</a>
+        </div>
+        <div className="col-md-7 d-flex align-items-center login_from_res">
+          <div className="row w-100 mx-auto">
+            <div className="col-lg-8 col-md-12 mx-md-auto">
+              <div className="user-content-text text-left d-block d-md-none">
+                <Link href="/">
+                  <a className="auth-logo" href="">
+                    <img
+                      width="60%"
+                      src={settings.logo || ""}
+                      className="pt-5 pt-md-4"
+                      alt=""
+                    />
+                  </a>
                 </Link>
-              </p>
+              </div>
+              <div className="user-form border-0 my-4 my-md-0">
+                <div className="user-form-inner">
+                  <div className="form-top text-left">
+                    <h2>{t("Forgot Password ?")}</h2>
+                    <p>
+                      {t(
+                        "Please enter the new password and code to reset the password"
+                      )}
+                    </p>
+                  </div>
+                  <Formik
+                    initialValues={{
+                      email: "",
+                      password: "",
+                      password_confirmation: "",
+                      token: "",
+                      recapcha:
+                        recaptchaData?.google_recapcha !== "1"
+                          ? "ksmaldkmalksmdlkamsdlk"
+                          : "",
+                    }}
+                    validationSchema={Yup.object({
+                      email: Yup.string()
+                        .email(t("Invalid email address"))
+                        .required(t("Email is required")),
+                      password: Yup.string()
+                        .min(6, t("Password must be at least 6 characters"))
+                        .required(t("Password is required")),
+                      password_confirmation: Yup.string()
+                        .oneOf(
+                          [Yup.ref("password"), null],
+                          t("Passwords must match")
+                        )
+                        .required(t("Password confirmation is required")),
+                      token: Yup.string().required(t("Code is required")),
+                      recapcha: Yup.string()
+                        .min(6)
+                        .required(t("Recapcha is required")),
+                    })}
+                    onSubmit={async (values) => {
+                      await ResetPasswordAction(values, setProcessing);
+                    }}>
+                    {({ errors, touched, setFieldValue }) => (
+                      <Form>
+                        <div className="form-group">
+                          <Field
+                            type="email"
+                            name="email"
+                            id="email"
+                            className={`form-control ${
+                              touched.email && errors.email ? "is-invalid" : ""
+                            }`}
+                            placeholder={t("Your email here")}
+                          />
+                        </div>
+
+                        <div className="form-group">
+                          <Field
+                            type="password"
+                            name="password"
+                            id="password"
+                            className={`form-control ${
+                              touched.password && errors.password
+                                ? "is-invalid"
+                                : ""
+                            }`}
+                            placeholder={t("Type your new password")}
+                          />
+                        </div>
+
+                        <div className="form-group">
+                          <Field
+                            type="password"
+                            name="password_confirmation"
+                            id="password_confirmation"
+                            className={`form-control ${
+                              touched.password_confirmation &&
+                              errors.password_confirmation
+                                ? "is-invalid"
+                                : ""
+                            }`}
+                            placeholder={t("Reenter your new password")}
+                          />
+                        </div>
+
+                        <div className="form-group">
+                          <Field
+                            type="token"
+                            name="token"
+                            id="token"
+                            className={`form-control ${
+                              touched.token && errors.token ? "is-invalid" : ""
+                            }`}
+                            placeholder={t("Your code here")}
+                          />
+                        </div>
+
+                        {recaptchaData?.NOCAPTCHA_SITEKEY &&
+                          recaptchaData?.google_recapcha === "1" && (
+                            <ReCAPTCHA
+                              ref={(r: any) => setCaptchaRef(r)}
+                              sitekey={recaptchaData?.NOCAPTCHA_SITEKEY}
+                              render="explicit"
+                              onChange={(response: any) => {
+                                setFieldValue("recapcha", response);
+                              }}
+                            />
+                          )}
+                        <button
+                          onClick={() => resetCaptcha()}
+                          type="submit"
+                          className="btn nimmu-user-sibmit-button mt-3">
+                          {processing ? (
+                            <>
+                              <span
+                                className="spinner-border spinner-border-md"
+                                role="status"
+                                aria-hidden="true"></span>
+                              <span>{t("Please wait")}</span>
+                            </>
+                          ) : (
+                            t("Submit")
+                          )}
+                        </button>
+                      </Form>
+                    )}
+                  </Formik>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {

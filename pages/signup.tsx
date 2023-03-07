@@ -70,7 +70,7 @@ const Signup: NextPage = () => {
             <Link href="/signin">
               <p className="text-white h5">
                 {t("Already have an account")}?{" "}
-                <a className="text-warning h5" href="">
+                <a className="text-theme" href="">
                   {" "}
                   {t("Sign In")}
                 </a>
