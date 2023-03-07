@@ -65,8 +65,7 @@ const AddEditBank = () => {
                               t("Field is required")
                             ),
                           })}
-                          onSubmit={(values) => {}}
-                        >
+                          onSubmit={(values) => {}}>
                           {({ errors, touched, setFieldValue }) => (
                             <Form className="row">
                               <div className="col-md-6 form-input-div">
@@ -80,8 +79,7 @@ const AddEditBank = () => {
                                     touched.wallet && errors.wallet
                                       ? "is-invalid"
                                       : ""
-                                  }`}
-                                >
+                                  }`}>
                                   <option value="">
                                     {t("Select Your Wallet")}
                                   </option>
@@ -106,8 +104,7 @@ const AddEditBank = () => {
                                     touched.coin_list && errors.coin_list
                                       ? "is-invalid"
                                       : ""
-                                  }`}
-                                >
+                                  }`}>
                                   <option value="">
                                     {t("Select Currency")}
                                   </option>
@@ -163,8 +160,7 @@ const AddEditBank = () => {
                                     touched.bank_list && errors.bank_list
                                       ? "is-invalid"
                                       : ""
-                                  }`}
-                                >
+                                  }`}>
                                   <option value="">
                                     {t("Select Bank List")}
                                   </option>
