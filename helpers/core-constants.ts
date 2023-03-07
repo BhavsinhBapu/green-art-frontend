@@ -2,8 +2,8 @@ export const PAYPAL = 3;
 export const BANK_DEPOSIT = 4;
 export const STRIPE = 5;
 export const WALLET_DEPOSIT = 6;
-export const SKRILL = 7;
 export const CRYPTO_DEPOSIT = 8;
+export const PAYSTACK = 7;
 
 // FAQ Type List
 export const FAQ_TYPE_MAIN = 1;
