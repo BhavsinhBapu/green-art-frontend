@@ -52,16 +52,16 @@
   .trade_tableList {
     display: flex;
     justify-content: space-between;
-    width: 60%;
+    width: 100%;
   }
-  .trades-section table.dataTable thead tr th {
-    text-align: center !important;
-  }
+  /* .trades-section table.dataTable thead tr th {
+        text-align: center !important;
+    } */
   .trade_tableList_two {
     display: flex;
     justify-content: space-between;
     gap: 26px;
-    width: 100%;
+    width: 170%;
   }
 }
 
@@ -281,11 +281,17 @@
   .trade_tableList {
     width: 80%;
   }
+  .trade_tableList_two {
+    width: 130%;
+  }
 }
 
 /* Landscape phones and smaller */
 
 @media (max-width: 480px) {
+  .trade_tableList_two {
+    width: 110%;
+  }
   .trade_tableList {
     width: 80%;
   }
