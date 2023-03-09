@@ -203,6 +203,13 @@ export const TokenBuyIco = async (payload: any) => {
   const { data } = await launchpadRequest.post(`/token-buy-ico`, payload);
   return data;
 };
+export const GetPaystackPaymentUrlIco = async (payload: any) => {
+  const { data } = await launchpadRequest.post(
+    `/get-paystack-payment-url`,
+    payload
+  );
+  return data;
+};
 export const SendChantByToken = async (payload: any) => {
   const { data } = await launchpadRequest.post(
     `/ico-chat-conversation-store`,

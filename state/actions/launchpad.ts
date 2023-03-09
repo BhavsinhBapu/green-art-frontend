@@ -14,6 +14,7 @@ import {
   getLaunchpadList,
   getLaunchpadListDetails,
   getMyTokenBalance,
+  GetPaystackPaymentUrlIco,
   getTokenBuyHistory,
   GetTokenList,
   IcoTokenPhaseList,
@@ -361,6 +362,31 @@ export const TokenBuyPageAction = async (setPage: any, setLoading: any) => {
   setLoading(false);
 };
 // /token-buy-ico
+export const PaystackAction = async (
+  initialData: any,
+  setLoading: any,
+  email: any,
+  amount: any,
+  payment_method: any
+) => {
+  setLoading(true);
+  const formData = new FormData();
+  formData.append("email", email);
+  formData.append("amount", amount);
+  formData.append("phase_id", initialData.phase_id);
+  formData.append("token_id", initialData.token_id);
+  formData.append("payment_method", payment_method);
+  const response = await GetPaystackPaymentUrlIco(formData);
+  checkDisable(response);
+
+  if (response.success === true) {
+    toast.success(response.message);
+    window.open(response.data.authorization_url, "_blank");
+  } else {
+    toast.error(response.message);
+  }
+  setLoading(false);
+};
 
 export const TokenBuyIcoBankAction = async (
   initialData: any,
@@ -456,7 +482,18 @@ export const TokenBuyIcoPaypalAction = async (credentials: any) => {
     toast.error(response.message);
   }
 };
+export const TokenBuyIcoPaystackAction = async (credentials: any) => {
+  const response = await TokenBuyIco(credentials);
+  checkDisable(response);
 
+  if (response.success === true) {
+    toast.success(response.message);
+    Router.push("/ico/token-buy-history");
+  } else {
+    toast.error(response.message);
+    Router.push("/ico");
+  }
+};
 export const SendChantByTokenAction = async (
   token_id: any,
   file: any,

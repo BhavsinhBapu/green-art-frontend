@@ -150,7 +150,7 @@ const BankPayment = ({ pageInfo, initialData }: any) => {
             currency={data.pay_currency}
             amount={data.amount}
             phase_id={initialData.phase_id}
-            token_id={initialData.phase_id}
+            token_id={initialData.token_id}
             payment_method={BANK_DEPOSIT}
           />
         )}

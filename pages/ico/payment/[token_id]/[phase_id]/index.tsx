@@ -124,8 +124,8 @@ const Index = () => {
                               />
                             ) : parseInt(selectedMethod.method) === PAYSTACK ? (
                               <Paystack
-                                initialData={initialData}
                                 pageInfo={pageInfo}
+                                initialData={initialData}
                               />
                             ) : parseInt(selectedMethod.method) === PAYPAL ? (
                               <PaypalPayment
