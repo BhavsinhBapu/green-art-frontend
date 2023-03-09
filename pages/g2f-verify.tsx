@@ -19,7 +19,8 @@ const G2fverify = () => {
         className="col-md-5 login_bg_new"
         style={{
           backgroundImage: `url(${settings.login_background})`,
-        }}>
+        }}
+      >
         <div className="user-content-text text-center text-md-left">
           <Link href="/">
             <a className="auth-logo" href="">
@@ -34,7 +35,9 @@ const G2fverify = () => {
         </div>
         <div className="d-md-flex d-block align-items-center justify-content-center h-75">
           <div className="text-center text-md-left">
-            <h1 className="text-white">{t("Welcome To")}</h1>
+            <h1 className="text-white">
+              {t("Welcome To")} {settings.app_title}
+            </h1>
             <Link href="/signup">
               <p className="text-white h5">
                 {t("Don’t have an account ? ")}
@@ -84,7 +87,8 @@ const G2fverify = () => {
                     const code = parseInt(values.code);
                     dispatch(G2fVerifyAction(code));
                     setSubmitting(false);
-                  }}>
+                  }}
+                >
                   {({ errors, touched }) => (
                     <Form>
                       <div className="form-group">
@@ -102,7 +106,8 @@ const G2fverify = () => {
 
                       <button
                         type="submit"
-                        className="btn btn-primary nimmu-user-sibmit-button mt-3 border-0">
+                        className="btn btn-primary nimmu-user-sibmit-button mt-3 border-0"
+                      >
                         {t("Verify")}
                       </button>
                     </Form>
