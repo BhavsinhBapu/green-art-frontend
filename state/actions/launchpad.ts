@@ -28,6 +28,7 @@ import {
   SendChantByToken,
   TokenBuyIco,
   TokenBuyPage,
+  VerificationPaystackPayment,
 } from "service/launchpad";
 import Router from "next/router";
 import { GetCoinListApi } from "service/wallet";
@@ -376,7 +377,7 @@ export const PaystackAction = async (
   formData.append("phase_id", initialData.phase_id);
   formData.append("token_id", initialData.token_id);
   formData.append("payment_method", payment_method);
-  const response = await GetPaystackPaymentUrlIco(formData);
+  const response = await TokenBuyIco(formData);
   checkDisable(response);
 
   if (response.success === true) {
@@ -483,7 +484,7 @@ export const TokenBuyIcoPaypalAction = async (credentials: any) => {
   }
 };
 export const TokenBuyIcoPaystackAction = async (credentials: any) => {
-  const response = await TokenBuyIco(credentials);
+  const response = await VerificationPaystackPayment(credentials);
   checkDisable(response);
 
   if (response.success === true) {

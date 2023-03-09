@@ -18,46 +18,48 @@ const VerifyPaystack = () => {
     trxref,
     wallet_id,
     amount,
-    phase_id,
-    token_id,
+    buy_history_id,
+    walletAddress,
     payment_method,
+    transaction_id,
     api_type,
   } = router.query;
-  useEffect(() => {
-    if (api_type == "ico") {
-      TokenBuyIcoPaystackAction({
-        phase_id: phase_id,
-        token_id: token_id,
-        payment_method: payment_method,
-        amount: amount,
+//localhost:3001/verify-paystack?buy_history_id=6&walletAddress=0x0d892bcb4f3B8b9Cacf3BF8ef45e74E0e38cae37&trxref=41thncdwci&reference=41thncdwci
+http: useEffect(() => {
+  if (api_type == "ico") {
+    TokenBuyIcoPaystackAction({
+      walletAddress: walletAddress,
+      buy_history_id: buy_history_id,
+      reference: reference,
+      transaction_id: trxref,
+    });
+  } else {
+    reference &&
+      trxref &&
+      wallet_id &&
+      amount &&
+      VerificationPaystackPayment(reference).then((response: any) => {
+        if (response.success) {
+          //   toast.success(response.message);
+          currencyDepositProcess({
+            transaction_id: trxref,
+            payment_method_id: "pay_stack",
+            wallet_id: wallet_id,
+            amount: amount,
+          }).then((currencyResponse: any) => {
+            if (currencyResponse.success) {
+              toast.success(currencyResponse.message);
+            } else {
+              toast.error(currencyResponse.message);
+            }
+          });
+        } else {
+          toast.error(response.message);
+        }
+        router.push("/fiat-deposit");
       });
-    } else {
-      reference &&
-        trxref &&
-        wallet_id &&
-        amount &&
-        VerificationPaystackPayment(reference).then((response: any) => {
-          if (response.success) {
-            //   toast.success(response.message);
-            currencyDepositProcess({
-              transaction_id: trxref,
-              payment_method_id: "pay_stack",
-              wallet_id: wallet_id,
-              amount: amount,
-            }).then((currencyResponse: any) => {
-              if (currencyResponse.success) {
-                toast.success(currencyResponse.message);
-              } else {
-                toast.error(currencyResponse.message);
-              }
-            });
-          } else {
-            toast.error(response.message);
-          }
-          router.push("/fiat-deposit");
-        });
-    }
-  }, [reference]);
+  }
+}, [reference]);
   return <div>{loading && <SectionLoading />}</div>;
 };
 
