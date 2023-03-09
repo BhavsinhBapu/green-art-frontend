@@ -19,7 +19,7 @@ const Referral: NextPage = () => {
       const code = res.data.data.url;
       setReferral(
         process.env.NEXT_PUBLIC_HOSTED_CLIENT_URL +
-          "authentication/signup?" +
+          "signup?" +
           code
       );
       setAllData(res.data.data);
