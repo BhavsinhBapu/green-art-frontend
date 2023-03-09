@@ -10225,7 +10225,7 @@ label {
 }
 
 .modal-body p {
-  color: #0e0e0e;
+  color: var(--font-color);
 }
 
 .btn {
