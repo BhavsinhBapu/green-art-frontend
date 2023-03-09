@@ -64,7 +64,8 @@ const Signin: NextPage = () => {
           className="col-md-5 login_bg_new"
           style={{
             backgroundImage: `url(${settings.login_background})`,
-          }}>
+          }}
+        >
           <div className="user-content-text text-center text-md-left">
             <Link href="/">
               <a className="auth-logo" href="">
@@ -79,7 +80,9 @@ const Signin: NextPage = () => {
           </div>
           <div className="d-md-flex d-block align-items-center justify-content-center h-75">
             <div className="text-center text-md-left">
-              <h1 className="text-white">{t("Welcome To")}</h1>
+              <h1 className="text-white">
+                {t("Welcome To")} {settings.app_title}
+              </h1>
               <Link href="/signup">
                 <p className="text-white h5">
                   {t("Don’t have an account ? ")}
@@ -132,7 +135,8 @@ const Signin: NextPage = () => {
                     })}
                     onSubmit={async (values) => {
                       await dispatch(VerifyEmailAction(values, setProcessing));
-                    }}>
+                    }}
+                  >
                     {({ errors, touched, setFieldValue, values }) => (
                       <Form>
                         <div className="form-group">
@@ -154,7 +158,8 @@ const Signin: NextPage = () => {
                               disabled={seconds !== 0}
                               onClick={() => {
                                 resendEmail(values.email);
-                              }}>
+                              }}
+                            >
                               {seconds !== 0
                                 ? t(`Resend after ${seconds} sec`)
                                 : t("Resend email")}
@@ -196,13 +201,15 @@ const Signin: NextPage = () => {
                         <button
                           type="submit"
                           disabled={processing}
-                          className="btn nimmu-user-sibmit-button mt-3">
+                          className="btn nimmu-user-sibmit-button mt-3"
+                        >
                           {processing ? (
                             <>
                               <span
                                 className="spinner-border spinner-border-md"
                                 role="status"
-                                aria-hidden="true"></span>
+                                aria-hidden="true"
+                              ></span>
                               <span>{t("Please wait")}</span>
                             </>
                           ) : (
