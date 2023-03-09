@@ -42,7 +42,8 @@ const ResetPassword: NextPage = () => {
           className="col-md-5 login_bg_new"
           style={{
             backgroundImage: `url(${settings.login_background})`,
-          }}>
+          }}
+        >
           <div className="user-content-text text-center text-md-left">
             <Link href="/">
               <a className="auth-logo" href="">
@@ -57,7 +58,9 @@ const ResetPassword: NextPage = () => {
           </div>
           <div className="d-md-flex d-block align-items-center justify-content-center h-75">
             <div className="text-center text-md-left">
-              <h1 className="text-white">{t("Welcome To")}</h1>
+              <h1 className="text-white">
+                {t("Welcome To")} {settings.app_title}
+              </h1>
               <Link href="/signin">
                 <p className="text-white h4">
                   {t("Return to")}
@@ -87,7 +90,7 @@ const ResetPassword: NextPage = () => {
               <div className="user-form border-0 my-4 my-md-0">
                 <div className="user-form-inner">
                   <div className="form-top text-left">
-                    <h2>{t("Forgot Password ?")}</h2>
+                    <h2>{t("Reset Password ")}</h2>
                     <p>
                       {t(
                         "Please enter the new password and code to reset the password"
@@ -125,7 +128,8 @@ const ResetPassword: NextPage = () => {
                     })}
                     onSubmit={async (values) => {
                       await ResetPasswordAction(values, setProcessing);
-                    }}>
+                    }}
+                  >
                     {({ errors, touched, setFieldValue }) => (
                       <Form>
                         <div className="form-group">
@@ -195,13 +199,15 @@ const ResetPassword: NextPage = () => {
                         <button
                           onClick={() => resetCaptcha()}
                           type="submit"
-                          className="btn nimmu-user-sibmit-button mt-3">
+                          className="btn nimmu-user-sibmit-button mt-3"
+                        >
                           {processing ? (
                             <>
                               <span
                                 className="spinner-border spinner-border-md"
                                 role="status"
-                                aria-hidden="true"></span>
+                                aria-hidden="true"
+                              ></span>
                               <span>{t("Please wait")}</span>
                             </>
                           ) : (

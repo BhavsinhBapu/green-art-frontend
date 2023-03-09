@@ -46,7 +46,8 @@ const Signin: NextPage = () => {
           className="col-md-5 login_bg_new"
           style={{
             backgroundImage: `url(${settings.login_background})`,
-          }}>
+          }}
+        >
           <div className="user-content-text text-center text-md-left">
             <Link href="/">
               <a className="auth-logo" href="">
@@ -61,9 +62,12 @@ const Signin: NextPage = () => {
           </div>
           <div className="d-md-flex d-block align-items-center justify-content-center h-75">
             <div className="text-center text-md-left">
-              <h1 className="text-white">{t("Welcome To")}</h1>
+              <h1 className="text-white">
+                {t("Welcome To")}{" "}
+                {settings.app_title}
+              </h1>
               <Link href="/signup">
-                <p className="text-white h5">
+                <p className="text-white h5 mt-2">
                   {t("Don’t have an account ? ")}
                   <a className="text-theme" href="">
                     {t(" Sign Up ")}
@@ -117,7 +121,8 @@ const Signin: NextPage = () => {
                     onSubmit={async (values) => {
                       await dispatch(SigninAction(values, setProcessing));
                       await dispatch(GetUserInfoByTokenAction());
-                    }}>
+                    }}
+                  >
                     {({ errors, touched, setFieldValue }) => (
                       <Form>
                         <div className="form-group">
@@ -147,7 +152,8 @@ const Signin: NextPage = () => {
 
                           <span
                             className="eye rev"
-                            onClick={() => setShowPassword(!showPassword)}>
+                            onClick={() => setShowPassword(!showPassword)}
+                          >
                             {showPassword ? (
                               <i className="fa fa-eye toggle-password"></i>
                             ) : (
@@ -194,13 +200,15 @@ const Signin: NextPage = () => {
                           onClick={() => resetCaptcha()}
                           type="submit"
                           disabled={processing}
-                          className="btn nimmu-user-sibmit-button mt-4">
+                          className="btn nimmu-user-sibmit-button mt-4"
+                        >
                           {processing ? (
                             <>
                               <span
                                 className="spinner-border spinner-border-md"
                                 role="status"
-                                aria-hidden="true"></span>
+                                aria-hidden="true"
+                              ></span>
                               <span>{t("Please wait")}</span>
                             </>
                           ) : (

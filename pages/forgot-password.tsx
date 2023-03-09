@@ -40,7 +40,8 @@ const ForgotPassword: NextPage = () => {
           className="col-md-5 login_bg_new"
           style={{
             backgroundImage: `url(${settings.login_background})`,
-          }}>
+          }}
+        >
           <div className="user-content-text text-center text-md-left">
             <Link href="/">
               <a className="auth-logo" href="">
@@ -55,7 +56,9 @@ const ForgotPassword: NextPage = () => {
           </div>
           <div className="d-md-flex d-block align-items-center justify-content-center h-75">
             <div className="text-center text-md-left">
-              <h1 className="text-white">{t("Welcome To")}</h1>
+              <h1 className="text-white">
+                {t("Welcome To")} {settings.app_title}
+              </h1>
               <Link href="/signin">
                 <p className="text-white h5">
                   {t("Return to")}
@@ -110,7 +113,8 @@ const ForgotPassword: NextPage = () => {
                     })}
                     onSubmit={async (values) => {
                       await ForgotPasswordAction(values, setProcessing);
-                    }}>
+                    }}
+                  >
                     {({ errors, touched, setFieldValue }) => (
                       <Form>
                         <div className="form-group">
@@ -139,13 +143,15 @@ const ForgotPassword: NextPage = () => {
                         <button
                           onClick={() => resetCaptcha()}
                           type="submit"
-                          className="btn nimmu-user-sibmit-button mt-3">
+                          className="btn nimmu-user-sibmit-button mt-3"
+                        >
                           {processing ? (
                             <>
                               <span
                                 className="spinner-border spinner-border-md"
                                 role="status"
-                                aria-hidden="true"></span>
+                                aria-hidden="true"
+                              ></span>
                               <span>{t("Please wait")}</span>
                             </>
                           ) : (
