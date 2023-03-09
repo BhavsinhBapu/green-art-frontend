@@ -11234,6 +11234,8 @@ input[type="number"] {
 
 .paypal-container {
   margin-top: 20px;
+  background-color: white;
+  padding: 20px;
 }
 
 #upload-photo {
@@ -13049,4 +13051,7 @@ input {
 
 .krGCyK {
   padding: 0px 6px !important;
+}
+.paypal-con{
+  background-color: white;
 }
