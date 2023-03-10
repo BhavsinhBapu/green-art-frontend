@@ -58,6 +58,7 @@ const Index = () => {
       setPageLoading
     );
   }, []);
+  console.log(launchpadListDetails.data, "initialData");
   return (
     <div>
       <div className="page-main-content">
@@ -110,27 +111,32 @@ const Index = () => {
                               <CryptoPayment
                                 initialData={initialData}
                                 walletlist={pageInfo?.wallet}
+                                phaseData={launchpadListDetails.data}
                               />
                             ) : parseInt(selectedMethod.method) ===
                               BANK_DEPOSIT ? (
                               <BankPayment
                                 pageInfo={pageInfo}
                                 initialData={initialData}
+                                phaseData={launchpadListDetails.data}
                               />
                             ) : parseInt(selectedMethod.method) === STRIPE ? (
                               <StripePayment
                                 initialData={initialData}
                                 pageInfo={pageInfo}
+                                phaseData={launchpadListDetails.data}
                               />
                             ) : parseInt(selectedMethod.method) === PAYSTACK ? (
                               <Paystack
                                 pageInfo={pageInfo}
                                 initialData={initialData}
+                                phaseData={launchpadListDetails.data}
                               />
                             ) : parseInt(selectedMethod.method) === PAYPAL ? (
                               <PaypalPayment
                                 initialData={initialData}
                                 pageInfo={pageInfo}
+                                phaseData={launchpadListDetails.data}
                               />
                             ) : (
                               ""

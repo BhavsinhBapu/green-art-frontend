@@ -3,8 +3,9 @@ import useTranslation from "next-translate/useTranslation";
 import React, { useState } from "react";
 import { PaystackAction } from "state/actions/launchpad";
 import PaymentDetails from "./paymentDetails";
+import AmountCheck from "./AmountCheck";
 
-const Paystack = ({ pageInfo, initialData }: any) => {
+const Paystack = ({ pageInfo, initialData, phaseData }: any) => {
   const { t } = useTranslation("common");
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<any>({
@@ -63,8 +64,9 @@ const Paystack = ({ pageInfo, initialData }: any) => {
               });
             }}
           />
+          <AmountCheck phaseData={phaseData} data={data} />
         </div>
-        {data.amount && initialData.phase_id && (
+        {data.amount && initialData.phase_id ? (
           <PaymentDetails
             currency={"USD"}
             amount={data.amount}
@@ -72,6 +74,8 @@ const Paystack = ({ pageInfo, initialData }: any) => {
             token_id={initialData.token_id}
             payment_method={PAYSTACK}
           />
+        ) : (
+          ""
         )}
         <button
           className="primary-btn-outline w-100"
