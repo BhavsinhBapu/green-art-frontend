@@ -17,6 +17,7 @@ import {
 
 export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
   const { t } = useTranslation("common");
+  console.log(responseData, "responseData");
   const { settings } = useSelector((state: RootState) => state.common);
   const [selectedNetwork, setSelectedNetwork] = React.useState(
     responseData?.data && responseData?.data[0]
@@ -41,7 +42,10 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
   const CheckG2faEnabled = async () => {
     const { data } = await UserSettingsApi();
     const { user } = data;
-    if (user.google2fa !== 1 && parseInt(settings.two_factor_withdraw) === 1) {
+    if (
+      !user.google2fa_secret &&
+      parseInt(settings.two_factor_withdraw) === 1
+    ) {
       setErrorMessage({
         status: true,
         message: "Google 2FA is not enabled, Please enable Google 2FA fist",

@@ -6,7 +6,7 @@ import {
   setBuyAmount,
   setSellAmount,
   setSellPrice,
-  setBuyPrice
+  setBuyPrice,
 } from "state/reducer/exchange";
 import useTranslation from "next-translate/useTranslation";
 const TradesTable = ({ buy, show }: any) => {
@@ -51,10 +51,9 @@ const TradesTable = ({ buy, show }: any) => {
             }
             trigger={["hover"]}
             key={index}
-            overlayClassName="rcTooltipOverlay"
-          >
+            overlayClassName="rcTooltipOverlay">
             <tr
-              className="odd"
+              className="odd trade_tableList"
               onClick={() => changeSellPrice(item.price, item.amount)}
               onMouseEnter={() => {
                 const selectedIndex = index;
@@ -69,8 +68,7 @@ const TradesTable = ({ buy, show }: any) => {
                   amount: sumAmount,
                   total: sumtotal,
                 });
-              }}
-            >
+              }}>
               <>
                 <td>
                   <div className="asset">
@@ -97,18 +95,17 @@ const TradesTable = ({ buy, show }: any) => {
                         ? parseFloat(item?.percentage)
                         : 0
                     }%`,
-                  }}
-                ></div>
+                  }}></div>
               </>
             </tr>
           </Tooltip>
         ))
       ) : (
-          <tr className="odd">
-            <td valign="top" colSpan={12} className="dataTables_empty">
-              {t("No data available in table")}
-            </td>
-          </tr>
+        <tr className="odd">
+          <td valign="top" colSpan={12} className="dataTables_empty">
+            {t("No data available in table")}
+          </td>
+        </tr>
       )}
     </tbody>
   );

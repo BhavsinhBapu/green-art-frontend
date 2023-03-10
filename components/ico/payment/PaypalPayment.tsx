@@ -17,7 +17,7 @@ const PaypalPayment = ({ initialData, pageInfo, phaseData }: any) => {
     pay_currency: null,
   });
   return (
-    <div>
+    <div className=" text-center">
       <form className="w-100 row mt-3 p-3 boxShadow m-1">
         <div className="col-md-6 form-input-div  pr-0 ">
           <label className="ico-label-box" htmlFor="">
@@ -78,7 +78,7 @@ const PaypalPayment = ({ initialData, pageInfo, phaseData }: any) => {
           ""
         )}
         {credential.amount && credential.pay_currency && (
-          <div className="col-lg-12 mb-3">
+          <div className="col-lg-12 mb-3 paypal-container">
             <PaypalButtons
               credential={credential}
               setCredential={setCredential}

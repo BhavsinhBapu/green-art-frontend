@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
+import { IoMdGlobe } from "react-icons/io";
 import { IoLanguageSharp } from "react-icons/io5";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
@@ -47,7 +48,8 @@ const UnAuthNav = ({ logo }: any) => {
                   <li
                     onClick={() => {
                       darkModeToggle(settings, setTheme);
-                    }}>
+                    }}
+                  >
                     <a href="">
                       {theme === 0 ? (
                         <>
@@ -64,7 +66,7 @@ const UnAuthNav = ({ logo }: any) => {
                   </li>
                   <li>
                     <a className="flex" href="#" aria-expanded="true">
-                      <IoLanguageSharp />
+                      <IoMdGlobe size={20} />
 
                       <span className="ml-2">
                         {router.locale?.toLocaleUpperCase()}

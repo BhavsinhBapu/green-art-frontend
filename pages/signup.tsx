@@ -51,7 +51,8 @@ const Signup: NextPage = () => {
         className="col-md-5 login_bg_new"
         style={{
           backgroundImage: `url(${settings.login_background})`,
-        }}>
+        }}
+      >
         <div className="user-content-text text-center text-md-left">
           <Link href="/">
             <a className="auth-logo" href="">
@@ -66,11 +67,13 @@ const Signup: NextPage = () => {
         </div>
         <div className="d-md-flex d-block align-items-center justify-content-center h-75">
           <div className="text-center text-md-left">
-            <h1 className="text-white">{t("Welcome To")}</h1>
+            <h1 className="text-white">
+              {t("Welcome To")} {settings.app_title}
+            </h1>
             <Link href="/signin">
               <p className="text-white h5">
-                {t("Already have an account")}?{" "}
-                <a className="text-warning h5" href="">
+                {t("Already have an account")} ?{" "}
+                <a className="text-theme" href="">
                   {" "}
                   {t("Sign In")}
                 </a>
@@ -137,7 +140,8 @@ const Signup: NextPage = () => {
                   })}
                   onSubmit={async (values) => {
                     dispatch(SignupAction(values, setProcessing, ref_code));
-                  }}>
+                  }}
+                >
                   {({ errors, touched, setFieldValue }) => (
                     <Form>
                       <div className="form-group">
@@ -200,7 +204,8 @@ const Signup: NextPage = () => {
                               ...showPassword,
                               password: !showPassword.password,
                             })
-                          }>
+                          }
+                        >
                           <i className="fa fa-eye-slash toggle-password"></i>
                         </span>
                       </div>
@@ -228,7 +233,8 @@ const Signup: NextPage = () => {
                               ...showPassword,
                               confirm_password: !showPassword.confirm_password,
                             })
-                          }>
+                          }
+                        >
                           <i className="fa fa-eye-slash toggle-password"></i>
                         </span>
                       </div>
@@ -252,13 +258,15 @@ const Signup: NextPage = () => {
                         onClick={() => resetCaptcha()}
                         type="submit"
                         disabled={processing}
-                        className="btn nimmu-user-sibmit-button mt-3">
+                        className="btn nimmu-user-sibmit-button mt-3"
+                      >
                         {processing ? (
                           <>
                             <span
                               className="spinner-border spinner-border-md"
                               role="status"
-                              aria-hidden="true"></span>
+                              aria-hidden="true"
+                            ></span>
                             <span>{t("Please wait")}</span>
                           </>
                         ) : (

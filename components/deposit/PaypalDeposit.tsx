@@ -78,7 +78,7 @@ function Button({ credential, setCredential }: any) {
 }
 export default function PaypalButtons({ credential, setCredential }: any) {
   return (
-    <div className="paypal-container">
+    <div className="paypal-container text-center">
       <PayPalScriptProvider options={paypalScriptOptions}>
         <Button credential={credential} setCredential={setCredential} />
       </PayPalScriptProvider>

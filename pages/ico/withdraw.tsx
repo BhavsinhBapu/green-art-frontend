@@ -69,7 +69,7 @@ const Withdraw = () => {
             <div className="section-top-wrap mb-25">
               <div className="overview-area">
                 <div className="overview-left">
-                  <h2 className="section-top-title">{t("Withdraw")}</h2>
+                  <h2 className="section-top-title">{t("Withdraw")}</h2> 
                 </div>
               </div>
             </div>

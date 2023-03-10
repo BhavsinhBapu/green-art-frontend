@@ -19,6 +19,7 @@ import UnAuthNav from "../unAuthNav";
 import { checkThemeState } from "helpers/functions";
 import NotificationDropdown from "./notification-dropdown";
 import { setNotificationData } from "state/reducer/user";
+import { IoMdGlobe } from "react-icons/io";
 
 const Navbar = ({ settings, isLoggedIn }: any) => {
   const { isLoading, user, logo, notificationData } = useSelector(
@@ -595,7 +596,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                       <li>
                         <a className="arrow-icon" href="#" aria-expanded="true">
                           <span className="cp-user-icon">
-                            <IoLanguageSharp />
+                            <IoMdGlobe size={20} />
                           </span>
                           <span className="cp-user-name">
                             {router.locale?.toLocaleUpperCase()}

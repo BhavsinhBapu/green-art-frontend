@@ -5774,7 +5774,7 @@ select:-webkit-autofill:focus {
 .secendary-table tbody tr td .market.decree {
   color: #ff2e2e;
   background: transparent;
-  background:  2px solid #f03d3d25;
+  background: 2px solid #f03d3d25;
   width: auto;
   padding: 6px;
   border-radius: 8px;
@@ -8986,6 +8986,7 @@ textarea.form-control.textarea {
 .nimmu-user-sibmit-button:hover {
   opacity: 0.3;
 }
+
 .nimmu-user-sibmit-button:active,
 .nimmu-user-sibmit-button:focus,
 .nimmu-user-sibmit-button:hover {
@@ -9467,6 +9468,7 @@ a.paginate_button.paginate-number.text-warning {
   border-radius: 3px;
   font-weight: bold;
 }
+
 .blance-text {
   display: flex;
   align-items: center;
@@ -10170,7 +10172,7 @@ table.dataTable thead .sorting_desc_disabled:after {
 }
 
 .text-theme {
-  color: var(--primary-color);
+  color: var(--primary-color) !important;
 }
 
 .bootstrap-select .form-control {
@@ -11146,24 +11148,25 @@ input[type="number"] {
 }
 
 .select-method-item-active {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    margin-top: 20px;
-    font-size: 18px;
-    color: var(--primary-color);
-    cursor: pointer;
-    background-color: transparent;
-    border-radius: 4px;
-    border: 1px solid var(--primary-color);
-    padding-left: 53px;
-    padding-right: 53px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  margin-top: 20px;
+  font-size: 18px;
+  color: var(--primary-color);
+  cursor: pointer;
+  background-color: transparent;
+  border-radius: 4px;
+  border: 1px solid var(--primary-color);
+  padding-left: 53px;
+  padding-right: 53px;
+}
 
+.bnAwAJ {
+  padding: 21px;
 }
-.bnAwAJ{
-    padding: 21px;
-}
+
 .file-upload-wrapper {
   display: flex;
   align-items: center;
@@ -11232,6 +11235,8 @@ input[type="number"] {
 
 .paypal-container {
   margin-top: 20px;
+  background-color: white;
+  padding: 20px;
 }
 
 #upload-photo {
@@ -13043,4 +13048,11 @@ input {
   transition: all 0.5s;
   min-width: 140px;
   border: 2px solid var(--primary-color);
+}
+
+.krGCyK {
+  padding: 0px 6px !important;
+}
+.paypal-con{
+  background-color: white;
 }
