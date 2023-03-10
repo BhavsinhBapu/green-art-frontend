@@ -11685,7 +11685,12 @@ input[type="number"] {
   line-height: 1.4;
   font-weight: 500;
 }
+.qr-background {
+  border: 15px solid white;
+  width: auto;
+    display: inline-block;
 
+}
 .wallet-bar-code {
   margin: 0 auto;
   width: 100%;
@@ -13017,8 +13022,8 @@ input {
 }
 
 .qrCodeBg {
-  background-color: #ffff;
-  padding: 10px;
+  /* background-color: #ffff;
+  padding: 10px; */
 }
 
 .react-tel-input .flag-dropdown ul {
@@ -13052,6 +13057,6 @@ input {
 .krGCyK {
   padding: 0px 6px !important;
 }
-.paypal-con{
+.paypal-con {
   background-color: white;
 }
