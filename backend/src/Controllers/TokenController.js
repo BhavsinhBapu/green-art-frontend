@@ -2,7 +2,7 @@ const { publicDecrypt } = require("crypto");
 const { response } = require("express");
 const Web3 = require("web3");
 const {contractJson} = require("../../src/ContractAbiJson");
-const { contract_decimals,customFromWei,customToWei } = require("../Heplers/helper");
+const { contract_decimals,customFromWei,customToWei, gasLimit } = require("../Heplers/helper");
 const trc20Token = require("./TrcTokenController");
 const trxToken = require("./TrxController");
 const abi = require('web3-eth-abi');
@@ -351,45 +351,44 @@ async function checkEstimateGasFees(req, res)
                     amount = customToWei(amount, decimalValue);
                     const dataGas = await calculateEstimateGasFees(req,1);
                     let usedGasLimit = dataGas.gasLimit;
-                    
-                    const tx = {
-                        from: fromAddress,
-                        to: contractAddress,
-                        gas: Web3.utils.toHex(usedGasLimit),
-                        data:  contract.methods.transfer(receiverAddress, amount).encodeABI(),
-                    };
-
-                await web3.eth.accounts.signTransaction(tx, privateKey).then(signed => {
-                        const tran = web3.eth
-                        .sendSignedTransaction(signed.rawTransaction)
-                        .on('confirmation', (confirmationNumber, receipt) => {
-        
-                        })
-                        .on('transactionHash', hash => {
-                        })
-                        .on('receipt', receipt => {
-                            // var receipt = {
-                            //     hash:receipt.transactionHash,
-                            // };
-                            // const hashDetails = getHashTransaction(network,receipt.hash);
-                            res.json({
-                                status: true,
-                                message: "Token sent successfully",
-                                data: {
-                                    hash : receipt.transactionHash,
-                                    used_gas: receipt.gasUsed * gasPrice,
-                                    tx : receipt
-                                }
-                            });
-                        })
-                        .on('error',function (error){  
-                            res.json({
-                                status: false,
-                                message: error.toString(),
-                                data:  {}
-                            });
+                    console.log("used gaslimit", usedGasLimit);
+                    try {
+                        const tx = {
+                          from: fromAddress,
+                          to: contractAddress,
+                          // gas: Web3.utils.toHex(usedGasLimit),
+                          gas: usedGasLimit,
+                          data: contract.methods
+                            .transfer(receiverAddress, amount)
+                            .encodeABI(),
+                        };
+                        const signedTx =
+                          await web3.eth.accounts.signTransaction(
+                            tx,
+                            privateKey
+                            );
+                        const receipt = await web3.eth.sendSignedTransaction(
+                          signedTx.rawTransaction
+                        );
+                        console.log(receipt);
+                        res.json({
+                          status: true,
+                          message: "Token sent successfully",
+                          data: {
+                            hash: receipt.transactionHash,
+                            used_gas: receipt.gasUsed * gasPrice,
+                            tx: receipt,
+                          },
                         });
-                    });
+                    } catch (err) {
+                        console.log(err);
+                        console.log(err.message);
+                        res.json({
+                          status: false,
+                          message: err.message,
+                          data: {},
+                        });
+                    }
                 } else {
                     res.json({
                         status: false,
