@@ -841,7 +841,7 @@ async function getBlockDetails(contract,fromBlockNumber,toBlockNumber)
       } else {
           return {
               status: false,
-              message: " no data found",
+              message: "nodatafound",
               data: []
           };
       }
