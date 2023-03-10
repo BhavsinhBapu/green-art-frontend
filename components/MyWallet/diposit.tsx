@@ -104,11 +104,11 @@ export const DipositComponent = ({
               <div className="wallet-addres-generate">
                 <div className="coin-list-item">
                   <div className="wallet-bar-code">
-                    {!responseData?.address && (
+                    {responseData?.address && (
                       <div className="qr-background">
                         <QRCode
                           className="qrCodeBg rounded"
-                          value={"ksadlkamsdlkmaklsdmklasdklsad"}
+                          value={responseData?.address}
                           size={150}
                         />
                       </div>
