@@ -2572,7 +2572,7 @@ a#submit {
 }
 
 .cp-user-setting-card .cp-user-content input:checked + .slider {
-  background: #182346 !important;
+  background: var(--background-color-hover) !important;
 }
 
 .cp-user-setting-card .cp-user-content input:checked + .slider:before {
@@ -5594,6 +5594,7 @@ select:-webkit-autofill:focus {
   transition: all 0.5s;
   background: var(--primary-color);
   cursor: pointer;
+  opacity: 0.7;
 }
 
 .primary-btn-outline:hover {
@@ -10221,7 +10222,7 @@ label {
 }
 
 .modal-title {
-  color: #0e0e0e;
+  color: var(--font-color);
 }
 
 .modal-body p {

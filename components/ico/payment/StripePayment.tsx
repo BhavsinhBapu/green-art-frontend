@@ -6,7 +6,8 @@ import useTranslation from "next-translate/useTranslation";
 import { TokenBuyIcoStripeAction } from "state/actions/launchpad";
 import { STRIPE } from "helpers/core-constants";
 import PaymentDetails from "./paymentDetails";
-const StripePayment = ({ initialData, pageInfo }: any) => {
+import AmountCheck from "./AmountCheck";
+const StripePayment = ({ initialData, pageInfo, phaseData }: any) => {
   const [loading, setLoading] = useState(false);
   const [credential, setCredential] = useState<any>({
     amount: null,
@@ -42,7 +43,8 @@ const StripePayment = ({ initialData, pageInfo }: any) => {
               credential.pay_currency,
               STRIPE
             );
-          }}>
+          }}
+        >
           <div className="col-md-6 form-input-div">
             <label className="ico-label-box" htmlFor="">
               {t("Amount")}
@@ -61,6 +63,7 @@ const StripePayment = ({ initialData, pageInfo }: any) => {
                 });
               }}
             />
+            <AmountCheck phaseData={phaseData} data={credential} />
           </div>
           <div className="col-md-6 form-input-div">
             <label className="ico-label-box" htmlFor="">
@@ -75,7 +78,8 @@ const StripePayment = ({ initialData, pageInfo }: any) => {
                   ...credential,
                   pay_currency: e.target.value,
                 });
-              }}>
+              }}
+            >
               <option value="">{t("Select")}</option>
               {pageInfo?.currency_list?.map((item: any, index: any) => (
                 <option value={item.code} key={index}>
@@ -85,20 +89,23 @@ const StripePayment = ({ initialData, pageInfo }: any) => {
             </select>
           </div>
           {credential.pay_currency &&
-            credential.amount &&
-            initialData.phase_id && (
-              <PaymentDetails
-                currency={credential.pay_currency}
-                amount={credential.amount}
-                phase_id={initialData.phase_id}
-                token_id={initialData.token_id}
-                payment_method={STRIPE}
-              />
-            )}
+          credential.amount &&
+          initialData.phase_id ? (
+            <PaymentDetails
+              currency={credential.pay_currency}
+              amount={credential.amount}
+              phase_id={initialData.phase_id}
+              token_id={initialData.token_id}
+              payment_method={STRIPE}
+            />
+          ) : (
+            ""
+          )}
           <button
             disabled={!credential.amount || !credential.pay_currency}
             className="primary-btn-outline w-100"
-            type="submit">
+            type="submit"
+          >
             {loading ? "Please Wait" : t("Make Payment")}
           </button>
         </form>

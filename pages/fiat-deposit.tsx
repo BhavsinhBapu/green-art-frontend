@@ -7,6 +7,7 @@ import {
   PAYPAL,
   STRIPE,
   WALLET_DEPOSIT,
+  PAYSTACK,
 } from "helpers/core-constants";
 import useTranslation from "next-translate/useTranslation";
 import React, { useEffect, useState } from "react";
@@ -26,6 +27,7 @@ import {
 import { parseCookies } from "nookies";
 import Footer from "components/common/footer";
 import FiatSidebar from "layout/fiat-sidebar";
+import Paystack from "components/deposit/paystack";
 
 const Deposit = () => {
   const { t } = useTranslation("common");
@@ -106,7 +108,8 @@ const Deposit = () => {
                               fullScreen === false
                                 ? "col-lg-8 col-sm-12"
                                 : "col-lg-12 col-sm-12"
-                            }`}>
+                            }`}
+                          >
                             {!loading && !selectedMethod.method ? (
                               <div className="cp-user-title text-center  p-5">
                                 <h4>{t("No Avaiable payment method")}</h4>
@@ -135,6 +138,11 @@ const Deposit = () => {
                                 method_id={selectedMethod.method_id}
                                 banks={depositInfo.banks}
                               />
+                            ) : parseInt(selectedMethod.method) === PAYSTACK ? (
+                              <Paystack
+                                walletlist={depositInfo.wallet_list}
+                                method_id={selectedMethod.method_id}
+                              />
                             ) : parseInt(selectedMethod.method) === PAYPAL ? (
                               // <PaypalButtons />
                               <PaypalSection
@@ -148,7 +156,6 @@ const Deposit = () => {
                             )}
                           </div>
                         )}
-
                         {fullScreen === false && loading === false && (
                           <div className="col-lg-4 col-sm-12 mt-4">
                             <DepositFaq faqs={faqs} />

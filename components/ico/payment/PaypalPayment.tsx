@@ -3,8 +3,9 @@ import { PAYPAL } from "helpers/core-constants";
 import useTranslation from "next-translate/useTranslation";
 import React, { useState } from "react";
 import PaymentDetails from "./paymentDetails";
+import AmountCheck from "./AmountCheck";
 
-const PaypalPayment = ({ initialData, pageInfo }: any) => {
+const PaypalPayment = ({ initialData, pageInfo, phaseData }: any) => {
   const { t } = useTranslation("common");
   const [credential, setCredential] = useState<any>({
     payment_method_id: PAYPAL,
@@ -36,6 +37,7 @@ const PaypalPayment = ({ initialData, pageInfo }: any) => {
               });
             }}
           />
+          <AmountCheck phaseData={phaseData} data={credential} />
         </div>
         <div className="col-md-6 form-input-div pr-0 pr-sm-3">
           <label className="ico-label-box" htmlFor="">
@@ -63,16 +65,18 @@ const PaypalPayment = ({ initialData, pageInfo }: any) => {
           </div>
         </div>
         {credential.pay_currency &&
-          credential.amount &&
-          initialData.phase_id && (
-            <PaymentDetails
-              currency={credential.pay_currency}
-              amount={credential.amount}
-              phase_id={initialData.phase_id}
-              token_id={initialData.token_id}
-              payment_method={PAYPAL}
-            />
-          )}
+        credential.amount &&
+        initialData.phase_id ? (
+          <PaymentDetails
+            currency={credential.pay_currency}
+            amount={credential.amount}
+            phase_id={initialData.phase_id}
+            token_id={initialData.token_id}
+            payment_method={PAYPAL}
+          />
+        ) : (
+          ""
+        )}
         {credential.amount && credential.pay_currency && (
           <div className="col-lg-12 mb-3 paypal-container">
             <PaypalButtons

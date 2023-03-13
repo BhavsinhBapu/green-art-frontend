@@ -3,8 +3,9 @@ import useTranslation from "next-translate/useTranslation";
 import React, { useState } from "react";
 import { TokenBuyIcoCryptoAction } from "state/actions/launchpad";
 import PaymentDetails from "./paymentDetails";
+import AmountCheck from "./AmountCheck";
 
-const CryptoPayment = ({ walletlist, initialData }: any) => {
+const CryptoPayment = ({ walletlist, initialData, phaseData }: any) => {
   const [data, setData] = useState<any>({
     amount: null,
     payer_wallet: null,
@@ -22,7 +23,8 @@ const CryptoPayment = ({ walletlist, initialData }: any) => {
           data.amount,
           CRYPTO_DEPOSIT
         );
-      }}>
+      }}
+    >
       <div className="w-100 ico-tokenCreate row">
         <div className="col-md-6 form-input-div">
           <label className="ico-label-box" htmlFor="">
@@ -42,6 +44,7 @@ const CryptoPayment = ({ walletlist, initialData }: any) => {
               });
             }}
           />
+          <AmountCheck phaseData={phaseData} data={data} />
         </div>
         <div className="col-md-6 form-input-div">
           <label className="ico-label-box" htmlFor="">
@@ -56,7 +59,8 @@ const CryptoPayment = ({ walletlist, initialData }: any) => {
                 ...data,
                 payer_wallet: e.target.value,
               });
-            }}>
+            }}
+          >
             <option value="">{t("Select")}</option>
             {walletlist?.map((item: any, index: any) => (
               <option value={item.id} key={index}>
@@ -65,7 +69,7 @@ const CryptoPayment = ({ walletlist, initialData }: any) => {
             ))}
           </select>
         </div>
-        {data.payer_wallet && data.amount && initialData.phase_id && (
+        {data.payer_wallet && data.amount && initialData.phase_id ? (
           <PaymentDetails
             amount={data.amount}
             phase_id={initialData.phase_id}
@@ -73,6 +77,8 @@ const CryptoPayment = ({ walletlist, initialData }: any) => {
             payment_method={CRYPTO_DEPOSIT}
             payer_wallet={data.payer_wallet}
           />
+        ) : (
+          ""
         )}
         <button className="primary-btn-outline w-100" type="submit">
           {loading ? t("Please wait") : t("Make Payment")}

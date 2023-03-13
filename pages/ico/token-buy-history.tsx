@@ -158,44 +158,47 @@ const TokenBuyHistory = () => {
                       </div>
                     </div>
                     <DataTable columns={columns} data={history} />
-                    <div
-                      className="pagination-wrapper"
-                      id="assetBalances_paginate"
-                    >
-                      <span>
-                        {stillHistory?.links?.map((link: any, index: number) =>
-                          link.label === "&laquo; Previous" ? (
-                            <a
-                              className="paginate-button"
-                              onClick={() => {
-                                if (link.url) LinkTopaginationString(link);
-                              }}
-                              key={index}
-                            >
-                              <i className="fa fa-angle-left"></i>
-                            </a>
-                          ) : link.label === "Next &raquo;" ? (
-                            <a
-                              className="paginate-button"
-                              onClick={() => LinkTopaginationString(link)}
-                              key={index}
-                            >
-                              <i className="fa fa-angle-right"></i>
-                            </a>
-                          ) : (
-                            <a
-                              className="paginate_button paginate-number"
-                              aria-controls="assetBalances"
-                              data-dt-idx="1"
-                              onClick={() => LinkTopaginationString(link)}
-                              key={index}
-                            >
-                              {link.label}
-                            </a>
-                          )
-                        )}
-                      </span>
-                    </div>
+                    {history.length > 0 && (
+                      <div
+                        className="pagination-wrapper"
+                        id="assetBalances_paginate"
+                      >
+                        <span>
+                          {stillHistory?.links?.map(
+                            (link: any, index: number) =>
+                              link.label === "&laquo; Previous" ? (
+                                <a
+                                  className="paginate-button"
+                                  onClick={() => {
+                                    if (link.url) LinkTopaginationString(link);
+                                  }}
+                                  key={index}
+                                >
+                                  <i className="fa fa-angle-left"></i>
+                                </a>
+                              ) : link.label === "Next &raquo;" ? (
+                                <a
+                                  className="paginate-button"
+                                  onClick={() => LinkTopaginationString(link)}
+                                  key={index}
+                                >
+                                  <i className="fa fa-angle-right"></i>
+                                </a>
+                              ) : (
+                                <a
+                                  className="paginate_button paginate-number"
+                                  aria-controls="assetBalances"
+                                  data-dt-idx="1"
+                                  onClick={() => LinkTopaginationString(link)}
+                                  key={index}
+                                >
+                                  {link.label}
+                                </a>
+                              )
+                          )}
+                        </span>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

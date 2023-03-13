@@ -29,33 +29,35 @@ const PaymentDetails = ({
   }, [currency, amount, phase_id]);
   return (
     <div className="w-100 p-3 row">
-      {data && (
+      {data ? (
         <>
           <div className="col-lg-6 col-md-12 pool-row">
             <p className="pool-title">{t("Token Price:")}</p>
             <p className="pool-value">{data.token_price}</p>
-          </div>{" "}
+          </div>
           <div className="col-lg-6 col-md-12 pool-row">
             <p className="pool-title">{t("Token Currency:")}</p>
             <p className="pool-value">{data.token_currency}</p>
-          </div>{" "}
+          </div>
           <div className="col-lg-6 col-md-12 pool-row">
             <p className="pool-title">{t("Token Amount:")}</p>
             <p className="pool-value">{data.token_amount}</p>
-          </div>{" "}
+          </div>
           <div className="col-lg-6 col-md-12 pool-row">
             <p className="pool-title">{t("Total Token Price:")}</p>
             <p className="pool-value">{data.token_total_price}</p>
-          </div>{" "}
+          </div>
           <div className="col-lg-6 col-md-12 pool-row">
             <p className="pool-title">{t("Pay Amount:")}</p>
             <p className="pool-value">{data.pay_amount}</p>
-          </div>{" "}
+          </div>
           <div className="col-lg-6 col-md-12 pool-row">
             <p className="pool-title">{t("Pay Currency:")}</p>
             <p className="pool-value">{data.pay_currency}</p>
-          </div>{" "}
+          </div>
         </>
+      ) : (
+        ""
       )}
     </div>
   );

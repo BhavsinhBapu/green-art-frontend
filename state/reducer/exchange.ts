@@ -72,7 +72,7 @@ export const exchangeSlice = createSlice({
     },
     setOrderData: (state: any, action: any) => {
       state.dashboard.order_data = {
-        ...state.dashboard.order_data,
+        ...state?.dashboard?.order_data,
         base_coin: action.payload?.base_coin,
         base_coin_id: action.payload?.base_coin_id,
         exchange_coin_pair: action.payload?.exchange_coin_pair,
@@ -80,7 +80,7 @@ export const exchangeSlice = createSlice({
         fees: action.payload?.fees,
         total: {
           trade_wallet: {
-            ...state.dashboard.order_data.total.trade_wallet,
+            ...state?.dashboard?.order_data?.total?.trade_wallet,
             coin_type: action.payload?.total.trade_wallet.coin_type,
             full_name: action.payload?.total.trade_wallet.full_name,
             high: action.payload?.total.trade_wallet.high,

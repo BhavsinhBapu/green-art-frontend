@@ -168,6 +168,7 @@ a:hover,
 a:visited {
   text-decoration: none;
   outline: 0;
+  color: var(--primary-color);
 }
 
 img {
