@@ -2572,7 +2572,7 @@ a#submit {
 }
 
 .cp-user-setting-card .cp-user-content input:checked + .slider {
-  background: #182346 !important;
+  background: var(--background-color-hover) !important;
 }
 
 .cp-user-setting-card .cp-user-content input:checked + .slider:before {
@@ -13053,6 +13053,6 @@ input {
 .krGCyK {
   padding: 0px 6px !important;
 }
-.paypal-con{
+.paypal-con {
   background-color: white;
 }
