@@ -189,7 +189,7 @@ async function getWalletBalance(req, res)
 // calculate estimate gas fees
 async function calculateEstimateGasFees(req,type)
 {
-    let data = {};
+    let data = "";
     try {
         const network = req.headers.chainlinks;
         const web3 = new Web3(network);
@@ -209,7 +209,9 @@ async function calculateEstimateGasFees(req,type)
             let contractJsons = contractJson();
             const contract = new web3.eth.Contract(contractJsons, contractAddress);
             const contractDecimal = await getContractDecimal(contract);
-            amount = customToWei(amount,contractDecimal);
+            console.log("contractDecimal", contractDecimal);
+            amount = customToWei(amount, contractDecimal);
+            console.log("amount", amount);
             if (Number(usedGasLimit) > 0) {
                 gasFees = Number(usedGasLimit) * Number(gasPrice);
             } else {
@@ -271,7 +273,8 @@ async function calculateEstimateGasFees(req,type)
 
         }
     } catch(e) {
-        console.log(e)
+        console.log('error');
+        console.log(e);
     }
     
     return data;
@@ -288,8 +291,10 @@ async function checkEstimateGasFees(req, res)
             const contractAddress = req.body.contract_address;
             const receiverAddress = req.body.to_address;
             
-            const data = await calculateEstimateGasFees(req,1);
+            const data = await calculateEstimateGasFees(req, 1);
+            console.log('data',data);
             if (data) {
+                console.log("data found", data);
                 res.json({
                     status: true,
                     message: "Get Estimate gas successfully",
@@ -310,6 +315,7 @@ async function checkEstimateGasFees(req, res)
             });
         }
     } catch(e) {
+        console.log('exception')
         console.log(e)
         res.json({
             status: false,
