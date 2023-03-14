@@ -132,14 +132,12 @@ const Signin: NextPage = () => {
                           let local_value: any = values;
                           local_value.lot_number = result.lot_number;
                           local_value.captcha_output = result.captcha_output;
-                          local_value.pass_token = result.lot_number;
+                          local_value.pass_token = result.pass_token;
                           local_value.gen_time = result.gen_time;
                           await dispatch(
                             SigninAction(local_value, setProcessing)
                           );
                           await dispatch(GetUserInfoByTokenAction());
-                          toast(`pass token: ${result.pass_token}`);
-                          toast.success("Captcha Success");
                         });
                       } else {
                         await dispatch(SigninAction(values, setProcessing));
