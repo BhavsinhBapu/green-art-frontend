@@ -9,6 +9,20 @@ export const getCurrencyDepositRate = async (credential: any) => {
   const { data } = await request.post("/get-currency-deposit-rate", credential);
   return data;
 };
+export const VerificationPaystackPayment = async (reference: any) => {
+  const { data } = await request.post("/verification-paystack-payment", {
+    reference: reference,
+  });
+  return data;
+};
+export const GetPaystackPaymentUrl = async (email: any, amount: any,wallet_id:any) => {
+  const { data } = await request.post("/get-paystack-payment-url", {
+    email: email,
+    amount: amount,
+    wallet_id: wallet_id,
+  });
+  return data;
+};
 export const currencyDepositProcess = async (credential: any) => {
   const { data } = await request.post("/currency-deposit-process", credential);
   return data;

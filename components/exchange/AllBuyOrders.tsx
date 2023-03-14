@@ -2,7 +2,12 @@ import React, { useEffect } from "react";
 import Tooltip from "rc-tooltip";
 import "rc-tooltip/assets/bootstrap.css";
 import { useDispatch } from "react-redux";
-import { setBuyAmount, setBuyPrice, setSellAmount, setSellPrice } from "state/reducer/exchange";
+import {
+  setBuyAmount,
+  setBuyPrice,
+  setSellAmount,
+  setSellPrice,
+} from "state/reducer/exchange";
 import useTranslation from "next-translate/useTranslation";
 const AllBuyOrders = ({ OpenBookBuy, show }: any) => {
   const { t } = useTranslation("common");
@@ -21,8 +26,7 @@ const AllBuyOrders = ({ OpenBookBuy, show }: any) => {
   useEffect(() => {
     const Array = show ? [...OpenBookBuy].slice(0, show) : [...OpenBookBuy];
     setBuyData(Array);
-    return () => {
-    };
+    return () => {};
   }, [OpenBookBuy]);
 
   return (
@@ -31,13 +35,11 @@ const AllBuyOrders = ({ OpenBookBuy, show }: any) => {
         <div className="trades-table-body" />
         <div
           id="exchangeAllSellOrders_wrapper"
-          className="dataTables_wrapper no-footer"
-        >
+          className="dataTables_wrapper no-footer">
           <div
             id="exchangeAllSellOrders_processing"
             className="dataTables_processing"
-            style={{ display: "none" }}
-          >
+            style={{ display: "none" }}>
             {t("Processing")}...
           </div>
           <div className="dataTables_scroll">
@@ -48,24 +50,21 @@ const AllBuyOrders = ({ OpenBookBuy, show }: any) => {
                 position: "relative",
                 border: "0px",
                 width: "100%",
-              }}
-            >
+              }}>
               <div
                 className="dataTables_scrollHeadInner"
                 style={{
                   boxSizing: "content-box",
                   width: "431.25px",
                   paddingRight: "0px",
-                }}
-              >
+                }}>
                 <table
                   className="table dataTable no-footer"
                   role="grid"
                   style={{
                     marginLeft: "0px",
                     width: "431.25px",
-                  }}
-                >
+                  }}>
                   <thead>
                     <tr role="row"></tr>
                     <tr role="row"></tr>
@@ -81,14 +80,12 @@ const AllBuyOrders = ({ OpenBookBuy, show }: any) => {
                 overflow: "auto",
                 height: "425px",
                 width: "100%",
-              }}
-            >
+              }}>
               <table
                 id="exchangeAllSellOrders"
                 className="table dataTable no-footer"
                 role="grid"
-                style={{ width: "100%" }}
-              >
+                style={{ width: "100%" }}>
                 <thead>
                   <tr role="row">
                     <th
@@ -96,22 +93,19 @@ const AllBuyOrders = ({ OpenBookBuy, show }: any) => {
                       rowSpan={1}
                       colSpan={1}
                       style={{ width: "170.656px" }}
-                      aria-label="Price"
-                    ></th>
+                      aria-label="Price"></th>
                     <th
                       className="table-col amount sorting_disabled"
                       rowSpan={1}
                       colSpan={1}
                       style={{ width: "120.75px" }}
-                      aria-label="Amount"
-                    ></th>
+                      aria-label="Amount"></th>
                     <th
                       className="table-col time text-right sorting_desc"
                       rowSpan={1}
                       colSpan={1}
                       style={{ width: "79.8438px" }}
-                      aria-label="Time"
-                    ></th>
+                      aria-label="Time"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -137,10 +131,9 @@ const AllBuyOrders = ({ OpenBookBuy, show }: any) => {
                           </span>
                         }
                         trigger={["hover"]}
-                        overlayClassName="rcTooltipOverlay"
-                      >
+                        overlayClassName="rcTooltipOverlay">
                         <tr
-                          className="odd"
+                          className="odd trade_tableList_two"
                           onClick={() => {
                             changeSellPrice(item.price, item.amount);
                           }}
@@ -157,13 +150,12 @@ const AllBuyOrders = ({ OpenBookBuy, show }: any) => {
                               amount: sumAmount,
                               total: sumtotal,
                             });
-                          }}
-                        >
+                          }}>
                           <td>
                             <div className="asset">
                               <span className="text-success">
                                 {/* {parseFloat(item.price)%1 !== 0 ? parseFloat(item.price) : parseFloat(item.price).toFixed(2)} */}
-                                {(item.price)}
+                                {item.price}
                               </span>
                             </div>
                           </td>
@@ -187,8 +179,7 @@ const AllBuyOrders = ({ OpenBookBuy, show }: any) => {
                                   ? parseFloat(item?.percentage)
                                   : 0
                               }%`,
-                            }}
-                          ></div>
+                            }}></div>
                         </tr>
                       </Tooltip>
                     ))

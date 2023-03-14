@@ -8,12 +8,14 @@ import BankPayment from "components/ico/payment/Bank-payment";
 import CryptoPayment from "components/ico/payment/CryptoPayment";
 import PaypalPayment from "components/ico/payment/PaypalPayment";
 import StripePayment from "components/ico/payment/StripePayment";
+import Paystack from "components/ico/payment/paystack";
 import {
   BANK_DEPOSIT,
   CRYPTO_DEPOSIT,
   PAYPAL,
   PHASE_SORT_BY_RECENT,
   STRIPE,
+  PAYSTACK,
 } from "helpers/core-constants";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
@@ -56,6 +58,7 @@ const Index = () => {
       setPageLoading
     );
   }, []);
+  console.log(launchpadListDetails.data, "initialData");
   return (
     <div>
       <div className="page-main-content">
@@ -108,22 +111,32 @@ const Index = () => {
                               <CryptoPayment
                                 initialData={initialData}
                                 walletlist={pageInfo?.wallet}
+                                phaseData={launchpadListDetails.data}
                               />
                             ) : parseInt(selectedMethod.method) ===
                               BANK_DEPOSIT ? (
                               <BankPayment
                                 pageInfo={pageInfo}
                                 initialData={initialData}
+                                phaseData={launchpadListDetails.data}
                               />
                             ) : parseInt(selectedMethod.method) === STRIPE ? (
                               <StripePayment
                                 initialData={initialData}
                                 pageInfo={pageInfo}
+                                phaseData={launchpadListDetails.data}
+                              />
+                            ) : parseInt(selectedMethod.method) === PAYSTACK ? (
+                              <Paystack
+                                pageInfo={pageInfo}
+                                initialData={initialData}
+                                phaseData={launchpadListDetails.data}
                               />
                             ) : parseInt(selectedMethod.method) === PAYPAL ? (
                               <PaypalPayment
                                 initialData={initialData}
                                 pageInfo={pageInfo}
+                                phaseData={launchpadListDetails.data}
                               />
                             ) : (
                               ""

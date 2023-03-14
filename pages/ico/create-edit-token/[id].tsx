@@ -11,6 +11,8 @@ import { toast } from "react-toastify";
 
 const TokenCreate = ({ id, edit, data }: any) => {
   const { t } = useTranslation("common");
+
+  const [image, setImage]: any = useState<any>();
   const [loading, setLoading]: any = useState<any>(false);
   const [warning, setWarning] = useState(false);
   const router = useRouter();
@@ -39,6 +41,7 @@ const TokenCreate = ({ id, edit, data }: any) => {
                 contract_address: edit ? data?.contract_address : "",
                 wallet_private_key: edit ? data?.wallet_private_key : "",
                 chain_id: edit ? data?.chain_id : "",
+                image: "",
                 chain_link: edit ? data?.chain_link : "",
                 decimal: edit ? data?.decimal : "",
                 gas_limit: edit ? data?.gas_limit : 430000,
@@ -68,7 +71,7 @@ const TokenCreate = ({ id, edit, data }: any) => {
                 // gas_limit: Yup.number().required(t("Gas Limit is required")),
               })}
               onSubmit={(values) => {
-                launchpadCreateUpdateTokenAction(values, setLoading);
+                launchpadCreateUpdateTokenAction(values, setLoading, image);
               }}
             >
               {({ errors, touched, setFieldValue, values }) => (
@@ -306,7 +309,7 @@ const TokenCreate = ({ id, edit, data }: any) => {
                       }`}
                     />
                   </div>
-                  <div className="col-md-12 form-input-div">
+                  <div className="col-md-6 form-input-div">
                     <label className="ico-label-box" htmlFor="">
                       {t("Details rule")}
                     </label>
@@ -319,6 +322,23 @@ const TokenCreate = ({ id, edit, data }: any) => {
                           : ""
                       }`}
                     />
+                  </div>
+                  <div className="col-md-6 form-input-div">
+                    <label className="ico-label-box" htmlFor="">
+                      {t("Upload Image")}
+                    </label>
+                    <input
+                      type="file"
+                      name="image"
+                      required={!image}
+                      className={`ico-input-box`}
+                      onChange={(e: any) => {
+                        setImage(e.target.files[0]);
+                      }}
+                    />
+                    {data?.image_path && (
+                      <img src={data?.image_path} className="img-fluid mt-2" />
+                    )}
                   </div>
                   <div className="col-md-12 form-input-div">
                     <button type="submit" className="primary-btn">

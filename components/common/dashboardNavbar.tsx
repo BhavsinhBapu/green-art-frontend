@@ -21,6 +21,7 @@ import { LanguageList } from "helpers/lang";
 import { useRouter } from "next/router";
 import moment from "moment";
 import { checkThemeState, darkModeToggleDashboard } from "helpers/functions";
+import { IoMdGlobe } from "react-icons/io";
 const DashboardNavbar = () => {
   const { isLoggedIn, user, logo } = useSelector(
     (state: RootState) => state.user
@@ -107,11 +108,7 @@ const DashboardNavbar = () => {
                   )}
                   {navbar?.wallet?.status && (
                     <Link
-                      href={
-                        isLoggedIn === true
-                          ? "/user/my-wallet"
-                          : "/signin"
-                      }
+                      href={isLoggedIn === true ? "/user/my-wallet" : "/signin"}
                     >
                       <li
                         className={
@@ -137,9 +134,7 @@ const DashboardNavbar = () => {
                   )}
                   {parseInt(settings.launchpad_settings) === 1 &&
                     navbar?.ico?.status && (
-                      <Link
-                        href={isLoggedIn ? "/ico" : "/signin"}
-                      >
+                      <Link href={isLoggedIn ? "/ico" : "/signin"}>
                         <li
                           className={
                             router.pathname == "/ico"
@@ -172,9 +167,7 @@ const DashboardNavbar = () => {
                       >
                         <Link
                           href={
-                            isLoggedIn === true
-                              ? "/fiat-deposit"
-                              : "/signin"
+                            isLoggedIn === true ? "/fiat-deposit" : "/signin"
                           }
                         >
                           <a
@@ -195,11 +188,7 @@ const DashboardNavbar = () => {
                         <ul className="">
                           {navbar?.fiat?.deposit?.status && (
                             <Link
-                              href={
-                                isLoggedIn
-                                  ? "/fiat-deposit"
-                                  : "/signin"
-                              }
+                              href={isLoggedIn ? "/fiat-deposit" : "/signin"}
                             >
                               <li>
                                 <a href="">
@@ -212,11 +201,7 @@ const DashboardNavbar = () => {
                           )}
                           {navbar?.fiat?.withdrawal?.status && (
                             <Link
-                              href={
-                                isLoggedIn
-                                  ? "/fiat-withdrawal"
-                                  : "/signin"
-                              }
+                              href={isLoggedIn ? "/fiat-withdrawal" : "/signin"}
                             >
                               <li
                                 className={
@@ -325,11 +310,7 @@ const DashboardNavbar = () => {
                       )}
                       {navbar?.reports?.swapHistory?.status && (
                         <Link
-                          href={
-                            isLoggedIn
-                              ? "/user/swap-history"
-                              : "/signin"
-                          }
+                          href={isLoggedIn ? "/user/swap-history" : "/signin"}
                         >
                           <li
                             className={
@@ -349,9 +330,7 @@ const DashboardNavbar = () => {
                       {navbar?.reports?.buyOrderHistory?.status && (
                         <Link
                           href={
-                            isLoggedIn
-                              ? "/user/buy-order-history"
-                              : "/signin"
+                            isLoggedIn ? "/user/buy-order-history" : "/signin"
                           }
                         >
                           <li
@@ -372,9 +351,7 @@ const DashboardNavbar = () => {
                       {navbar?.reports?.sellOrderHistory?.status && (
                         <Link
                           href={
-                            isLoggedIn
-                              ? "/user/sell-order-history"
-                              : "/signin"
+                            isLoggedIn ? "/user/sell-order-history" : "/signin"
                           }
                         >
                           <li
@@ -395,9 +372,7 @@ const DashboardNavbar = () => {
                       {navbar?.reports?.transactionHistory?.status && (
                         <Link
                           href={
-                            isLoggedIn
-                              ? "/user/transaction-history"
-                              : "/signin"
+                            isLoggedIn ? "/user/transaction-history" : "/signin"
                           }
                         >
                           <li
@@ -467,11 +442,7 @@ const DashboardNavbar = () => {
                     </ul>
                   </li>
                   {navbar?.myProfile?.status && (
-                    <Link
-                      href={
-                        isLoggedIn ? "/user/profile" : "/signin"
-                      }
-                    >
+                    <Link href={isLoggedIn ? "/user/profile" : "/signin"}>
                       <li
                         className={
                           router.pathname == "/user/profile"
@@ -493,11 +464,7 @@ const DashboardNavbar = () => {
                     </Link>
                   )}
                   {navbar?.myReferral?.status && (
-                    <Link
-                      href={
-                        isLoggedIn ? "/user/referral" : "/signin"
-                      }
-                    >
+                    <Link href={isLoggedIn ? "/user/referral" : "/signin"}>
                       <li
                         className={
                           router.pathname == "/user/referral"
@@ -529,13 +496,7 @@ const DashboardNavbar = () => {
                     }
                   >
                     {navbar?.settings?.ststus && (
-                      <Link
-                        href={
-                          isLoggedIn
-                            ? "/user/settings"
-                            : "/signin"
-                        }
-                      >
+                      <Link href={isLoggedIn ? "/user/settings" : "/signin"}>
                         <a className="arrow-icon" href="#" aria-expanded="true">
                           <span className="cp-user-icon">
                             <FiSettings />
@@ -550,13 +511,7 @@ const DashboardNavbar = () => {
                     )}
                     <ul className="">
                       {navbar?.settings?.mySettings?.status && (
-                        <Link
-                          href={
-                            isLoggedIn
-                              ? "/user/settings"
-                              : "/signin"
-                          }
-                        >
+                        <Link href={isLoggedIn ? "/user/settings" : "/signin"}>
                           <li>
                             <a href="">
                               {navbar?.settings?.mySettings?.name
@@ -567,11 +522,7 @@ const DashboardNavbar = () => {
                         </Link>
                       )}
                       {navbar?.settings?.faq?.status && (
-                        <Link
-                          href={
-                            isLoggedIn ? "/user/faq" : "/signin"
-                          }
-                        >
+                        <Link href={isLoggedIn ? "/user/faq" : "/signin"}>
                           <li
                             className={
                               router.pathname == "/user/faq"
@@ -592,7 +543,7 @@ const DashboardNavbar = () => {
                   <li>
                     <a className="arrow-icon" href="#" aria-expanded="true">
                       <span className="cp-user-icon">
-                        <IoLanguageSharp />
+                        <IoMdGlobe size={20} />
                       </span>
                       <span className="cp-user-name">
                         {router.locale?.toLocaleUpperCase()}
@@ -886,9 +837,7 @@ const DashboardNavbar = () => {
                             <ul>
                               <Link
                                 href={
-                                  isLoggedIn
-                                    ? "/user/my-wallet"
-                                    : "/signin"
+                                  isLoggedIn ? "/user/my-wallet" : "/signin"
                                 }
                               >
                                 <li>
@@ -897,9 +846,7 @@ const DashboardNavbar = () => {
                               </Link>
                               <Link
                                 href={
-                                  isLoggedIn
-                                    ? "/user/swap-coin"
-                                    : "/signin"
+                                  isLoggedIn ? "/user/swap-coin" : "/signin"
                                 }
                               >
                                 <li>
@@ -955,9 +902,7 @@ const DashboardNavbar = () => {
                               </Link>
                               <Link
                                 href={
-                                  isLoggedIn
-                                    ? "/user/swap-history"
-                                    : "/signin"
+                                  isLoggedIn ? "/user/swap-history" : "/signin"
                                 }
                               >
                                 <li>
@@ -1023,11 +968,7 @@ const DashboardNavbar = () => {
                             </a>
                             <ul>
                               <Link
-                                href={
-                                  isLoggedIn
-                                    ? "/user/profile"
-                                    : "/signin"
-                                }
+                                href={isLoggedIn ? "/user/profile" : "/signin"}
                               >
                                 <li>
                                   <a href="">{t("Profile")}</a>
@@ -1035,9 +976,7 @@ const DashboardNavbar = () => {
                               </Link>
                               <Link
                                 href={
-                                  isLoggedIn
-                                    ? "/user/edit-profile"
-                                    : "/signin"
+                                  isLoggedIn ? "/user/edit-profile" : "/signin"
                                 }
                               >
                                 <li>
@@ -1056,11 +995,7 @@ const DashboardNavbar = () => {
                                 </li>
                               </Link>
                               <Link
-                                href={
-                                  isLoggedIn
-                                    ? "/user/security"
-                                    : "/signin"
-                                }
+                                href={isLoggedIn ? "/user/security" : "/signin"}
                               >
                                 <li>
                                   <a href="">{t("Security")}</a>
@@ -1144,23 +1079,13 @@ const DashboardNavbar = () => {
                             </a>
                             <ul>
                               <Link
-                                href={
-                                  isLoggedIn
-                                    ? "/user/settings"
-                                    : "/signin"
-                                }
+                                href={isLoggedIn ? "/user/settings" : "/signin"}
                               >
                                 <li>
                                   <a href="">{t("My Settings")}</a>
                                 </li>
                               </Link>
-                              <Link
-                                href={
-                                  isLoggedIn
-                                    ? "/user/faq"
-                                    : "/signin"
-                                }
-                              >
+                              <Link href={isLoggedIn ? "/user/faq" : "/signin"}>
                                 <li>
                                   <a href="">{t("FAQ")}</a>
                                 </li>

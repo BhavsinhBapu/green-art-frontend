@@ -4,8 +4,9 @@ import React, { useRef, useState } from "react";
 import { toast } from "react-toastify";
 import { TokenBuyIcoBankAction } from "state/actions/launchpad";
 import PaymentDetails from "./paymentDetails";
+import AmountCheck from "./AmountCheck";
 
-const BankPayment = ({ pageInfo, initialData }: any) => {
+const BankPayment = ({ pageInfo, initialData, phaseData }: any) => {
   const { t } = useTranslation("common");
   const [loading, setLoading] = useState(false);
   const [doc, setDoc] = useState(null);
@@ -65,6 +66,7 @@ const BankPayment = ({ pageInfo, initialData }: any) => {
               });
             }}
           />
+          <AmountCheck phaseData={phaseData} data={data} />
         </div>
         <div className="col-md-6 form-input-div">
           <label className="ico-label-box" htmlFor="">
@@ -145,14 +147,16 @@ const BankPayment = ({ pageInfo, initialData }: any) => {
             />
           </div>
         </div>
-        {data.pay_currency && data.amount && initialData.phase_id && (
+        {data.pay_currency && data.amount && initialData.phase_id ? (
           <PaymentDetails
             currency={data.pay_currency}
             amount={data.amount}
             phase_id={initialData.phase_id}
-            token_id={initialData.phase_id}
+            token_id={initialData.token_id}
             payment_method={BANK_DEPOSIT}
           />
+        ) : (
+          ""
         )}
         <button className="primary-btn-outline w-100" type="submit">
           {loading ? "Please Wait" : t("Make Payment")}

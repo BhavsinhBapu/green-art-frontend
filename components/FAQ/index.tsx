@@ -15,7 +15,7 @@ const FAQ = ({ faqs, type }: any) => {
               id={"headingOne" + faq?.id}>
               <h5 className="mb-0">
                 <button
-                  className="btn "
+                  className="btn"
                   data-toggle="collapse"
                   data-target={"#collapseOne" + faq?.id}
                   aria-expanded="true"

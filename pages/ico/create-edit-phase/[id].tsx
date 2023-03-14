@@ -22,6 +22,8 @@ const CreateEditPhase = ({ id, edit, data }: any) => {
     end_date: edit ? data.end_date : "",
     description: edit ? data.description : "",
     video_link: edit ? data.video_link : "",
+    maximum_purchase_price: edit ? data.maximum_purchase_price : "",
+    minimum_purchase_price: edit ? data.minimum_purchase_price : "",
     image: "",
     editImage: edit ? data.image : "",
     social_link: {
@@ -103,6 +105,42 @@ const CreateEditPhase = ({ id, edit, data }: any) => {
                     </option>
                   ))}
                 </select>
+              </div>
+              <div className="col-md-6 form-input-div">
+                <label className="ico-label-box" htmlFor="">
+                  {t("Maximum purchase price")}
+                </label>
+                <input
+                  type="number"
+                  name="maximum_price"
+                  required
+                  value={phaseForm.maximum_purchase_price}
+                  onChange={(e) => {
+                    setphaseForm({
+                      ...phaseForm,
+                      maximum_purchase_price: e.target.value,
+                    });
+                  }}
+                  className={`ico-input-box`}
+                />
+              </div>
+              <div className="col-md-6 form-input-div">
+                <label className="ico-label-box" htmlFor="">
+                  {t("Minimum purchase price")}
+                </label>
+                <input
+                  type="number"
+                  name="maximum_price"
+                  required
+                  value={phaseForm.minimum_purchase_price}
+                  onChange={(e) => {
+                    setphaseForm({
+                      ...phaseForm,
+                      minimum_purchase_price: e.target.value,
+                    });
+                  }}
+                  className={`ico-input-box`}
+                />
               </div>
               <div className="col-md-12 form-input-div">
                 <label className="ico-label-box" htmlFor="">
