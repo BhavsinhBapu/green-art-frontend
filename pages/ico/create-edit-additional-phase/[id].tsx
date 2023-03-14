@@ -44,7 +44,7 @@ const CreateEditAdditionalPhase = ({ id, edit, data }: any) => {
         <div className="ico-tokenCreate">
           <div className="col-12">
             <h2>{t(`${edit ? "Edit" : "Add"}  Additional Info`)}</h2>
-            <button className="primary-btn" onClick={addFields}>
+            <button className="primary-btn mt-3" onClick={addFields}>
               {t("Add Field")}
             </button>
           </div>
@@ -59,8 +59,7 @@ const CreateEditAdditionalPhase = ({ id, edit, data }: any) => {
                   id,
                   setLoading
                 );
-              }}
-            >
+              }}>
               {inputFields.map((item: any, index: any) => (
                 <>
                   <div className="col-md-4 form-input-div">
@@ -110,8 +109,7 @@ const CreateEditAdditionalPhase = ({ id, edit, data }: any) => {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="primary-btn"
-                >
+                  className="primary-btn">
                   {loading
                     ? t("Loading..")
                     : t(`${edit ? "Edit" : "Add"} aditional data`)}

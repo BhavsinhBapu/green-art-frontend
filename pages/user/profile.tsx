@@ -38,8 +38,7 @@ const Profile: NextPage = ({ user, profileActivity }: any) => {
                             user?.online_status?.online_status
                               ? "userProfileActive"
                               : "userProfileDeactive"
-                          } user-thumbnail`}
-                        >
+                          } user-thumbnail`}>
                           <img
                             src={user?.photo}
                             className="img-fluid"
@@ -114,7 +113,7 @@ const Profile: NextPage = ({ user, profileActivity }: any) => {
               </div>
             </div>
 
-            <div className="profile-status-area boxShadow tableScroll">
+            <div className="profile-status-area boxShadow tableScroll mb-5">
               <h5>{t("Profile Activity")}</h5>
               <table className="table">
                 <thead className="thead-light">
