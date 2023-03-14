@@ -114,8 +114,8 @@ export const G2fVerifyApi = async (credential: any) => {
   return data;
 };
 
-export const RecapCha = async () => {
-  const { data } = await request.get("/recaptcha-settings");
+export const captchaSettings = async () => {
+  const { data } = await request.get("/captcha-settings");
   return data;
 };
 

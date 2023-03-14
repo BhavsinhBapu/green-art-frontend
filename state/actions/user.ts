@@ -16,19 +16,23 @@ import {
   verifyEmailApi,
   KycActiveList,
   UploadVoter,
+  captchaSettings,
 } from "service/user";
 import request from "lib/request";
+import GInit from "../../lib/gt4";
+
 import { login, setAuthenticationState, setUser } from "state/reducer/user";
 import Router from "next/router";
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import {
   setBuyOrderHistory,
   setOpenOrderHistory,
   setSellOrderHistory,
   setTradeOrderHistory,
 } from "state/reducer/exchange";
+import { CAPTCHA_TYPE_GEETESTCAPTCHA } from "helpers/core-constants";
 
 export const VerifyEmailAction =
   (
@@ -108,7 +112,7 @@ export const SigninAction =
         className: "dark-toast",
       });
 
-      Router.reload();
+      // Router.reload();
     } else {
       dispatch(setAuthenticationState(false));
       toast.error(responseMessage, {
@@ -128,6 +132,80 @@ export const SigninAction =
     setProcessing(false);
     return response;
   };
+
+export const useCapchaInitialize = () => {
+  const [geeTest, setGeetest] = useState<any>();
+  const [captchaData, setcaptchaData] = useState<any>({});
+
+  const submit_form = useRef<HTMLButtonElement>(null);
+  const getRecapcha = async () => {
+    const response = await captchaSettings();
+    setcaptchaData(response.data);
+
+    if (
+      parseInt(response?.data?.select_captcha_type) ===
+        CAPTCHA_TYPE_GEETESTCAPTCHA &&
+      response?.data?.GEETEST_CAPTCHA_ID
+    ) {
+      console.log(response?.data?.GEETEST_CAPTCHA_ID, "available");
+      GInit();
+      // @ts-ignore
+      initGeetest4(
+        {
+          captchaId: response?.data?.GEETEST_CAPTCHA_ID,
+          product: "bind",
+          onError: (err: any) => toast.error(err.msg),
+        },
+        handlerForBind
+      );
+    }
+
+    return response;
+  };
+  async function handlerForBind(geetest: any) {
+    const local_form = submit_form.current;
+    var start = false;
+
+    geetest.onReady(() => {
+      start = true;
+      setGeetest(geetest);
+    });
+
+    local_form?.addEventListener("submit", function () {
+      if (start) {
+        geetest.showCaptcha();
+      }
+    });
+
+    geetest.onSuccess(async () => {
+      var result = geetest.getValidate();
+      toast(`
+        pass token: ${result.pass_token}
+      `);
+
+      toast.success("Captcha Success");
+    });
+
+    geetest.onError((err: any) => {
+      toast.error(err.msg);
+      geetest.reset();
+    });
+    geetest.onClose(() => {
+      toast.error("Captcha Closed!");
+
+      geetest.reset();
+    });
+    geetest.onFail((err: any) => {
+      toast.error("Captcha Failed!");
+
+      geetest.reset();
+    });
+  }
+  useEffect(() => {
+    getRecapcha();
+  }, []);
+  return { submit_form, handlerForBind, geeTest, captchaData, setcaptchaData };
+};
 
 export const SignupAction =
   (

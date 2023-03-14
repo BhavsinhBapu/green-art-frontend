@@ -1,6 +1,10 @@
 import type { GetServerSideProps, NextPage } from "next";
 import * as Yup from "yup";
-import { GetUserInfoByTokenAction, SigninAction } from "state/actions/user";
+import {
+  GetUserInfoByTokenAction,
+  SigninAction,
+  useCapchaInitialize,
+} from "state/actions/user";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useState } from "react";
 import { Formik, Field, Form } from "formik";
@@ -9,22 +13,23 @@ import ReCAPTCHA from "react-google-recaptcha";
 
 import Link from "next/link";
 import { authPageRequireCheck } from "middlewares/ssr-authentication-check";
-import { RecapCha } from "service/user";
+import { captchaSettings } from "service/user";
 import useTranslation from "next-translate/useTranslation";
 import { destroyCookie } from "nookies";
 import { RootState } from "state/store";
+import { toast } from "react-toastify";
+import {
+  CAPTCHA_TYPE_GEETESTCAPTCHA,
+  CAPTCHA_TYPE_RECAPTCHA,
+} from "helpers/core-constants";
 const Signin: NextPage = () => {
   const { settings } = useSelector((state: RootState) => state.common);
+  const { handlerForBind, submit_form, geeTest, captchaData, setcaptchaData } =
+    useCapchaInitialize();
   const { t } = useTranslation("common");
   const [showPassword, setShowPassword] = useState(false);
   const [processing, setProcessing] = useState<any>(false);
-  const [recaptchaData, setRecaptchaData] = useState<any>({});
   const dispatch = useDispatch();
-  const getRecapcha = async () => {
-    const response = await RecapCha();
-    setRecaptchaData(response.data);
-    return response;
-  };
 
   let captcha: any;
   const setCaptchaRef = (ref: any) => {
@@ -36,9 +41,6 @@ const Signin: NextPage = () => {
     captcha?.reset();
   };
 
-  useEffect(() => {
-    getRecapcha();
-  }, []);
   return (
     <>
       <div className="d-md-flex d-block">
@@ -63,8 +65,7 @@ const Signin: NextPage = () => {
           <div className="d-md-flex d-block align-items-center justify-content-center h-75">
             <div className="text-center text-md-left">
               <h1 className="text-white">
-                {t("Welcome To")}{" "}
-                {settings.app_title}
+                {t("Welcome To")} {settings.app_title}
               </h1>
               <Link href="/signup">
                 <p className="text-white h5 mt-2">
@@ -103,7 +104,8 @@ const Signin: NextPage = () => {
                       email: "",
                       password: "",
                       recapcha:
-                        recaptchaData?.google_recapcha !== "1"
+                        parseInt(captchaData?.select_captcha_type) !==
+                        CAPTCHA_TYPE_RECAPTCHA
                           ? "ksmaldkmalksmdlkamsdlk"
                           : "",
                     }}
@@ -119,11 +121,34 @@ const Signin: NextPage = () => {
                         .required(t("Recapcha is required")),
                     })}
                     onSubmit={async (values) => {
-                      await dispatch(SigninAction(values, setProcessing));
-                      await dispatch(GetUserInfoByTokenAction());
+                      if (
+                        parseInt(captchaData?.select_captcha_type) ===
+                        CAPTCHA_TYPE_GEETESTCAPTCHA
+                      ) {
+                        geeTest.showCaptcha();
+                        geeTest.onSuccess(async () => {
+                          var result = geeTest.getValidate();
+                          console.log(result, "Result");
+                          let local_value: any = values;
+                          local_value.lot_number = result.lot_number;
+                          local_value.captcha_output = result.captcha_output;
+                          local_value.pass_token = result.lot_number;
+                          local_value.gen_time = result.gen_time;
+                          await dispatch(
+                            SigninAction(local_value, setProcessing)
+                          );
+                          await dispatch(GetUserInfoByTokenAction());
+                          toast(`pass token: ${result.pass_token}`);
+                          toast.success("Captcha Success");
+                        });
+                      } else {
+                        await dispatch(SigninAction(values, setProcessing));
+                        await dispatch(GetUserInfoByTokenAction());
+                      }
                     }}
                   >
                     {({ errors, touched, setFieldValue }) => (
+                      //@ts-ignore
                       <Form>
                         <div className="form-group">
                           <Field
@@ -184,11 +209,12 @@ const Signin: NextPage = () => {
                             </Link>
                           </div>
                         </div>
-                        {recaptchaData?.NOCAPTCHA_SITEKEY &&
-                          recaptchaData?.google_recapcha === "1" && (
+                        {captchaData?.NOCAPTCHA_SITEKEY &&
+                          parseInt(captchaData?.select_captcha_type) ===
+                            CAPTCHA_TYPE_RECAPTCHA && (
                             <ReCAPTCHA
                               ref={(r: any) => setCaptchaRef(r)}
-                              sitekey={recaptchaData?.NOCAPTCHA_SITEKEY}
+                              sitekey={captchaData?.NOCAPTCHA_SITEKEY}
                               render="explicit"
                               onChange={(response: any) => {
                                 setFieldValue("recapcha", response);
@@ -199,6 +225,7 @@ const Signin: NextPage = () => {
                         <button
                           onClick={() => resetCaptcha()}
                           type="submit"
+                          ref={submit_form}
                           disabled={processing}
                           className="btn nimmu-user-sibmit-button mt-4"
                         >
