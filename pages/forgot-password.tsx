@@ -5,7 +5,7 @@ import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
 import { authPageRequireCheck } from "middlewares/ssr-authentication-check";
 import Link from "next/link";
-import { RecapCha } from "service/user";
+
 //@ts-ignore
 import ReCAPTCHA from "react-google-recaptcha";
 import useTranslation from "next-translate/useTranslation";
@@ -16,11 +16,7 @@ const ForgotPassword: NextPage = () => {
   const { t } = useTranslation("common");
   const [processing, setProcessing] = useState(false);
   const [recaptchaData, setRecaptchaData] = useState<any>({});
-  const getRecapcha = async () => {
-    const response = await RecapCha();
-    setRecaptchaData(response.data);
-    return response;
-  };
+ 
   let captcha: any;
   const setCaptchaRef = (ref: any) => {
     if (ref) {

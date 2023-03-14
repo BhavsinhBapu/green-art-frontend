@@ -2,22 +2,23 @@ import type { GetServerSideProps, NextPage } from "next";
 import * as Yup from "yup";
 import React, { useEffect, useState } from "react";
 import { Formik, Field, Form } from "formik";
-import { SignupAction } from "state/actions/user";
+import { SignupAction, useCapchaInitialize } from "state/actions/user";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { authPageRequireCheck } from "middlewares/ssr-authentication-check";
 //@ts-ignore
 import ReCAPTCHA from "react-google-recaptcha";
-import { RecapCha } from "service/user";
 import useTranslation from "next-translate/useTranslation";
 import { RootState } from "state/store";
+import { CAPTCHA_TYPE_GEETESTCAPTCHA, CAPTCHA_TYPE_RECAPTCHA } from "helpers/core-constants";
 const Signup: NextPage = () => {
   const { logo } = useSelector((state: RootState) => state.user);
   const { settings } = useSelector((state: RootState) => state.common);
   const dispatch = useDispatch();
+  const { geeTest, captchaData } = useCapchaInitialize();
+
   const { t } = useTranslation("common");
-  const [recaptchaData, setRecaptchaData] = useState<any>({});
   const router = useRouter();
 
   const { ref_code } = router.query;
@@ -26,11 +27,6 @@ const Signup: NextPage = () => {
     password: false,
     confirm_password: false,
   });
-  const getRecapcha = async () => {
-    const response = await RecapCha();
-    setRecaptchaData(response.data);
-    return response;
-  };
 
   let captcha: any;
   const setCaptchaRef = (ref: any) => {
@@ -42,9 +38,6 @@ const Signup: NextPage = () => {
     captcha?.reset();
   };
 
-  useEffect(() => {
-    getRecapcha();
-  }, []);
   return (
     <div className="login_reg_box">
       <div
@@ -111,7 +104,8 @@ const Signup: NextPage = () => {
                     password: "",
                     password_confirmation: "",
                     recapcha:
-                      recaptchaData?.google_recapcha !== "1"
+                      parseInt(captchaData?.select_captcha_type) !==
+                      CAPTCHA_TYPE_RECAPTCHA
                         ? "ksmaldkmalksmdlkamsdlk"
                         : "",
                   }}
@@ -139,7 +133,25 @@ const Signup: NextPage = () => {
                       .required(t("Recapcha is required")),
                   })}
                   onSubmit={async (values) => {
-                    dispatch(SignupAction(values, setProcessing, ref_code));
+                    if (
+                      parseInt(captchaData?.select_captcha_type) ===
+                      CAPTCHA_TYPE_GEETESTCAPTCHA
+                    ) {
+                      geeTest.showCaptcha();
+                      geeTest.onSuccess(async () => {
+                        var result = geeTest.getValidate();
+                        let local_value: any = values;
+                        local_value.lot_number = result.lot_number;
+                        local_value.captcha_output = result.captcha_output;
+                        local_value.pass_token = result.pass_token;
+                        local_value.gen_time = result.gen_time;
+                        dispatch(
+                          SignupAction(local_value, setProcessing, ref_code)
+                        );
+                      });
+                    } else {
+                      dispatch(SignupAction(values, setProcessing, ref_code));
+                    }
                   }}
                 >
                   {({ errors, touched, setFieldValue }) => (
@@ -243,11 +255,12 @@ const Signup: NextPage = () => {
                         <label></label>
                         <p className="invalid-feedback">{t("Message")} </p>
                       </div>
-                      {recaptchaData?.NOCAPTCHA_SITEKEY &&
-                        recaptchaData?.google_recapcha === "1" && (
+                      {captchaData?.NOCAPTCHA_SITEKEY &&
+                        parseInt(captchaData?.select_captcha_type) ===
+                          CAPTCHA_TYPE_RECAPTCHA && (
                           <ReCAPTCHA
                             ref={(r: any) => setCaptchaRef(r)}
-                            sitekey={recaptchaData?.NOCAPTCHA_SITEKEY}
+                            sitekey={captchaData?.NOCAPTCHA_SITEKEY}
                             render="explicit"
                             onChange={(response: any) => {
                               setFieldValue("recapcha", response);

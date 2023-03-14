@@ -13,19 +13,16 @@ import ReCAPTCHA from "react-google-recaptcha";
 
 import Link from "next/link";
 import { authPageRequireCheck } from "middlewares/ssr-authentication-check";
-import { captchaSettings } from "service/user";
 import useTranslation from "next-translate/useTranslation";
 import { destroyCookie } from "nookies";
 import { RootState } from "state/store";
-import { toast } from "react-toastify";
 import {
   CAPTCHA_TYPE_GEETESTCAPTCHA,
   CAPTCHA_TYPE_RECAPTCHA,
 } from "helpers/core-constants";
 const Signin: NextPage = () => {
   const { settings } = useSelector((state: RootState) => state.common);
-  const { handlerForBind, submit_form, geeTest, captchaData, setcaptchaData } =
-    useCapchaInitialize();
+  const { geeTest, captchaData } = useCapchaInitialize();
   const { t } = useTranslation("common");
   const [showPassword, setShowPassword] = useState(false);
   const [processing, setProcessing] = useState<any>(false);
@@ -128,7 +125,6 @@ const Signin: NextPage = () => {
                         geeTest.showCaptcha();
                         geeTest.onSuccess(async () => {
                           var result = geeTest.getValidate();
-                          console.log(result, "Result");
                           let local_value: any = values;
                           local_value.lot_number = result.lot_number;
                           local_value.captcha_output = result.captcha_output;
@@ -223,7 +219,6 @@ const Signin: NextPage = () => {
                         <button
                           onClick={() => resetCaptcha()}
                           type="submit"
-                          ref={submit_form}
                           disabled={processing}
                           className="btn nimmu-user-sibmit-button mt-4"
                         >

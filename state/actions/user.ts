@@ -19,7 +19,7 @@ import {
   captchaSettings,
 } from "service/user";
 import request from "lib/request";
-import GInit from "../../lib/gt4";
+import GInit from "../../lib/geetest";
 
 import { login, setAuthenticationState, setUser } from "state/reducer/user";
 import Router from "next/router";
@@ -112,7 +112,7 @@ export const SigninAction =
         className: "dark-toast",
       });
 
-      // Router.reload();
+      Router.reload();
     } else {
       dispatch(setAuthenticationState(false));
       toast.error(responseMessage, {
@@ -147,7 +147,6 @@ export const useCapchaInitialize = () => {
         CAPTCHA_TYPE_GEETESTCAPTCHA &&
       response?.data?.GEETEST_CAPTCHA_ID
     ) {
-      console.log(response?.data?.GEETEST_CAPTCHA_ID, "available");
       GInit();
       // @ts-ignore
       initGeetest4(
@@ -163,42 +162,11 @@ export const useCapchaInitialize = () => {
     return response;
   };
   async function handlerForBind(geetest: any) {
-    const local_form = submit_form.current;
     var start = false;
 
     geetest.onReady(() => {
       start = true;
       setGeetest(geetest);
-    });
-
-    local_form?.addEventListener("submit", function () {
-      if (start) {
-        geetest.showCaptcha();
-      }
-    });
-
-    geetest.onSuccess(async () => {
-      var result = geetest.getValidate();
-      toast(`
-        pass token: ${result.pass_token}
-      `);
-
-      toast.success("Captcha Success");
-    });
-
-    geetest.onError((err: any) => {
-      toast.error(err.msg);
-      geetest.reset();
-    });
-    geetest.onClose(() => {
-      toast.error("Captcha Closed!");
-
-      geetest.reset();
-    });
-    geetest.onFail((err: any) => {
-      toast.error("Captcha Failed!");
-
-      geetest.reset();
     });
   }
   useEffect(() => {
