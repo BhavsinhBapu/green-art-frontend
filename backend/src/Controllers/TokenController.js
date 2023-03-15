@@ -2,7 +2,7 @@ const { publicDecrypt } = require("crypto");
 const { response } = require("express");
 const Web3 = require("web3");
 const {contractJson} = require("../../src/ContractAbiJson");
-const { contract_decimals,customFromWei,customToWei } = require("../Heplers/helper");
+const { contract_decimals,customFromWei,customToWei, gasLimit } = require("../Heplers/helper");
 const trc20Token = require("./TrcTokenController");
 const trxToken = require("./TrxController");
 const abi = require('web3-eth-abi');
@@ -189,7 +189,7 @@ async function getWalletBalance(req, res)
 // calculate estimate gas fees
 async function calculateEstimateGasFees(req,type)
 {
-    let data = {};
+    let data = "";
     try {
         const network = req.headers.chainlinks;
         const web3 = new Web3(network);
@@ -209,7 +209,9 @@ async function calculateEstimateGasFees(req,type)
             let contractJsons = contractJson();
             const contract = new web3.eth.Contract(contractJsons, contractAddress);
             const contractDecimal = await getContractDecimal(contract);
-            amount = customToWei(amount,contractDecimal);
+            console.log("contractDecimal", contractDecimal);
+            amount = customToWei(amount, contractDecimal);
+            console.log("amount", amount);
             if (Number(usedGasLimit) > 0) {
                 gasFees = Number(usedGasLimit) * Number(gasPrice);
             } else {
@@ -271,7 +273,8 @@ async function calculateEstimateGasFees(req,type)
 
         }
     } catch(e) {
-        console.log(e)
+        console.log('error');
+        console.log(e);
     }
     
     return data;
@@ -288,8 +291,10 @@ async function checkEstimateGasFees(req, res)
             const contractAddress = req.body.contract_address;
             const receiverAddress = req.body.to_address;
             
-            const data = await calculateEstimateGasFees(req,1);
+            const data = await calculateEstimateGasFees(req, 1);
+            console.log('data',data);
             if (data) {
+                console.log("data found", data);
                 res.json({
                     status: true,
                     message: "Get Estimate gas successfully",
@@ -310,6 +315,7 @@ async function checkEstimateGasFees(req, res)
             });
         }
     } catch(e) {
+        console.log('exception')
         console.log(e)
         res.json({
             status: false,
@@ -351,45 +357,44 @@ async function checkEstimateGasFees(req, res)
                     amount = customToWei(amount, decimalValue);
                     const dataGas = await calculateEstimateGasFees(req,1);
                     let usedGasLimit = dataGas.gasLimit;
-                    
-                    const tx = {
-                        from: fromAddress,
-                        to: contractAddress,
-                        gas: Web3.utils.toHex(usedGasLimit),
-                        data:  contract.methods.transfer(receiverAddress, amount).encodeABI(),
-                    };
-
-                await web3.eth.accounts.signTransaction(tx, privateKey).then(signed => {
-                        const tran = web3.eth
-                        .sendSignedTransaction(signed.rawTransaction)
-                        .on('confirmation', (confirmationNumber, receipt) => {
-        
-                        })
-                        .on('transactionHash', hash => {
-                        })
-                        .on('receipt', receipt => {
-                            // var receipt = {
-                            //     hash:receipt.transactionHash,
-                            // };
-                            // const hashDetails = getHashTransaction(network,receipt.hash);
-                            res.json({
-                                status: true,
-                                message: "Token sent successfully",
-                                data: {
-                                    hash : receipt.transactionHash,
-                                    used_gas: receipt.gasUsed * gasPrice,
-                                    tx : receipt
-                                }
-                            });
-                        })
-                        .on('error',function (error){  
-                            res.json({
-                                status: false,
-                                message: error.toString(),
-                                data:  {}
-                            });
+                    console.log("used gaslimit", usedGasLimit);
+                    try {
+                        const tx = {
+                          from: fromAddress,
+                          to: contractAddress,
+                          // gas: Web3.utils.toHex(usedGasLimit),
+                          gas: usedGasLimit,
+                          data: contract.methods
+                            .transfer(receiverAddress, amount)
+                            .encodeABI(),
+                        };
+                        const signedTx =
+                          await web3.eth.accounts.signTransaction(
+                            tx,
+                            privateKey
+                            );
+                        const receipt = await web3.eth.sendSignedTransaction(
+                          signedTx.rawTransaction
+                        );
+                        console.log(receipt);
+                        res.json({
+                          status: true,
+                          message: "Token sent successfully",
+                          data: {
+                            hash: receipt.transactionHash,
+                            used_gas: receipt.gasUsed * gasPrice,
+                            tx: receipt,
+                          },
                         });
-                    });
+                    } catch (err) {
+                        console.log(err);
+                        console.log(err.message);
+                        res.json({
+                          status: false,
+                          message: err.message,
+                          data: {},
+                        });
+                    }
                 } else {
                     res.json({
                         status: false,
@@ -842,7 +847,7 @@ async function getBlockDetails(contract,fromBlockNumber,toBlockNumber)
       } else {
           return {
               status: false,
-              message: " no data found",
+              message: "nodatafound",
               data: []
           };
       }
