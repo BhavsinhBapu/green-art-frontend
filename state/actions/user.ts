@@ -176,20 +176,10 @@ export const useCapchaInitialize = () => {
 };
 
 export const SignupAction =
-  (
-    credentials: {
-      email: string;
-      first_name: string;
-      last_name: string;
-      password: string;
-      password_confirmation: string;
-      recapcha: string;
-    },
-    setProcessing: any,
-    ref_code: any
-  ) =>
+  (credentials: any, setProcessing: any, ref_code: any) =>
   async (dispatch: any) => {
     setProcessing(true);
+    console.log(credentials, "credentials");
     const response = await SignupApi(credentials, ref_code);
     let responseMessage = response.message;
     if (response.success === true) {
@@ -222,7 +212,7 @@ export const SignupAction =
   };
 
 export const ForgotPasswordAction = async (
-  credentials: { email: string },
+  credentials: any,
   setProcessing: any
 ) => {
   setProcessing(true);

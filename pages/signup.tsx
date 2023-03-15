@@ -140,6 +140,7 @@ const Signup: NextPage = () => {
                       geeTest.showCaptcha();
                       geeTest.onSuccess(async () => {
                         var result = geeTest.getValidate();
+                        console.log(result.lot_number, "result.lot_number");
                         let local_value: any = values;
                         local_value.lot_number = result.lot_number;
                         local_value.captcha_output = result.captcha_output;
