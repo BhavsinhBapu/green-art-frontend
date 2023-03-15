@@ -1,6 +1,6 @@
 import type { GetServerSideProps, NextPage } from "next";
 import * as Yup from "yup";
-import { VerifyEmailAction } from "state/actions/user";
+import { VerifyEmailAction, useCapchaInitialize } from "state/actions/user";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useRef, useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
@@ -9,9 +9,13 @@ import { toast } from "react-toastify";
 import ReCAPTCHA from "react-google-recaptcha";
 import Link from "next/link";
 import { authPageRequireCheck } from "middlewares/ssr-authentication-check";
-import { RecapCha, resendEmailApi } from "service/user";
+import { resendEmailApi } from "service/user";
 import useTranslation from "next-translate/useTranslation";
 import { RootState } from "state/store";
+import {
+  CAPTCHA_TYPE_GEETESTCAPTCHA,
+  CAPTCHA_TYPE_RECAPTCHA,
+} from "helpers/core-constants";
 const Signin: NextPage = () => {
   const { t } = useTranslation("common");
   const { logo } = useSelector((state: RootState) => state.user);
@@ -19,16 +23,11 @@ const Signin: NextPage = () => {
   const { settings } = useSelector((state: RootState) => state.common);
   const [processing, setProcessing] = useState(false);
   const dispatch = useDispatch();
-  const [recaptchaData, setRecaptchaData] = useState<any>({});
   const [seconds, setSeconds] = useState(0);
-  const [done, setDone] = useState(false);
+  const { geeTest, captchaData } = useCapchaInitialize();
+
   const foo = useRef();
 
-  const getRecapcha = async () => {
-    const response = await RecapCha();
-    setRecaptchaData(response.data);
-    return response;
-  };
   const resendEmail = async (email: string) => {
     const response = await resendEmailApi(email);
     setDependency(Math.random);
@@ -39,10 +38,15 @@ const Signin: NextPage = () => {
       toast.error(response.message);
     }
   };
-  useEffect(() => {
-    getRecapcha();
-  }, []);
-
+  let captcha: any;
+  const setCaptchaRef = (ref: any) => {
+    if (ref) {
+      return (captcha = ref);
+    }
+  };
+  const resetCaptcha = () => {
+    captcha?.reset();
+  };
   useEffect(() => {
     function tick() {
       setSeconds((prevSeconds) => prevSeconds - 1);
@@ -54,7 +58,6 @@ const Signin: NextPage = () => {
   useEffect(() => {
     if (seconds === 0) {
       clearInterval(foo.current);
-      setDone(true);
     }
   }, [seconds]);
   return (
@@ -120,7 +123,8 @@ const Signin: NextPage = () => {
                       email: "",
                       code: "",
                       recapcha:
-                        recaptchaData?.google_recapcha !== "1"
+                        parseInt(captchaData?.select_captcha_type) !==
+                        CAPTCHA_TYPE_RECAPTCHA
                           ? "ksmaldkmalksmdlkamsdlk"
                           : "",
                     }}
@@ -134,7 +138,27 @@ const Signin: NextPage = () => {
                         .required(t("Recapcha is required")),
                     })}
                     onSubmit={async (values) => {
-                      await dispatch(VerifyEmailAction(values, setProcessing));
+                      if (
+                        parseInt(captchaData?.select_captcha_type) ===
+                        CAPTCHA_TYPE_GEETESTCAPTCHA
+                      ) {
+                        geeTest.showCaptcha();
+                        geeTest.onSuccess(async () => {
+                          var result = geeTest.getValidate();
+                          let local_value: any = values;
+                          local_value.lot_number = result.lot_number;
+                          local_value.captcha_output = result.captcha_output;
+                          local_value.pass_token = result.pass_token;
+                          local_value.gen_time = result.gen_time;
+                          await dispatch(
+                            VerifyEmailAction(local_value, setProcessing)
+                          );
+                        });
+                      } else {
+                        await dispatch(
+                          VerifyEmailAction(values, setProcessing)
+                        );
+                      }
                     }}
                   >
                     {({ errors, touched, setFieldValue, values }) => (
@@ -188,10 +212,12 @@ const Signin: NextPage = () => {
                           <p className="invalid-feedback">{t("Message")}</p>
                         </div>
 
-                        {recaptchaData?.NOCAPTCHA_SITEKEY &&
-                          recaptchaData?.google_recapcha === "1" && (
+                        {captchaData?.NOCAPTCHA_SITEKEY &&
+                          parseInt(captchaData?.select_captcha_type) ===
+                            CAPTCHA_TYPE_RECAPTCHA && (
                             <ReCAPTCHA
-                              sitekey={recaptchaData?.NOCAPTCHA_SITEKEY}
+                              ref={(r: any) => setCaptchaRef(r)}
+                              sitekey={captchaData?.NOCAPTCHA_SITEKEY}
                               render="explicit"
                               onChange={(response: any) => {
                                 setFieldValue("recapcha", response);
@@ -199,6 +225,7 @@ const Signin: NextPage = () => {
                             />
                           )}
                         <button
+                          onClick={() => resetCaptcha()}
                           type="submit"
                           disabled={processing}
                           className="btn nimmu-user-sibmit-button mt-3"

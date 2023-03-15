@@ -1,27 +1,21 @@
 import type { GetServerSideProps, NextPage } from "next";
 import React, { useEffect, useState } from "react";
-import { Formik, Field, Form, ErrorMessage } from "formik";
+import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
-import { authPageRequireCheck } from "middlewares/ssr-authentication-check";
-import { ResetPasswordAction } from "state/actions/user";
+import { ResetPasswordAction, useCapchaInitialize } from "state/actions/user";
 import Link from "next/link";
 //@ts-ignore
 import ReCAPTCHA from "react-google-recaptcha";
-import { RecapCha } from "service/user";
 import useTranslation from "next-translate/useTranslation";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
+import { CAPTCHA_TYPE_GEETESTCAPTCHA, CAPTCHA_TYPE_RECAPTCHA } from "helpers/core-constants";
 const ResetPassword: NextPage = () => {
   const { t } = useTranslation("common");
+  const { geeTest, captchaData } = useCapchaInitialize();
+
   const [processing, setProcessing] = useState(false);
-  const { logo } = useSelector((state: RootState) => state.user);
-  const [recaptchaData, setRecaptchaData] = useState<any>({});
   const { settings } = useSelector((state: RootState) => state.common);
-  const getRecapcha = async () => {
-    const response = await RecapCha();
-    setRecaptchaData(response.data);
-    return response;
-  };
 
   let captcha: any;
   const setCaptchaRef = (ref: any) => {
@@ -32,9 +26,7 @@ const ResetPassword: NextPage = () => {
   const resetCaptcha = () => {
     captcha?.reset();
   };
-  useEffect(() => {
-    getRecapcha();
-  }, []);
+
   return (
     <>
       <div className="d-md-flex d-block">
@@ -104,7 +96,8 @@ const ResetPassword: NextPage = () => {
                       password_confirmation: "",
                       token: "",
                       recapcha:
-                        recaptchaData?.google_recapcha !== "1"
+                        parseInt(captchaData?.select_captcha_type) !==
+                        CAPTCHA_TYPE_RECAPTCHA
                           ? "ksmaldkmalksmdlkamsdlk"
                           : "",
                     }}
@@ -127,7 +120,23 @@ const ResetPassword: NextPage = () => {
                         .required(t("Recapcha is required")),
                     })}
                     onSubmit={async (values) => {
-                      await ResetPasswordAction(values, setProcessing);
+                      if (
+                        parseInt(captchaData?.select_captcha_type) ===
+                        CAPTCHA_TYPE_GEETESTCAPTCHA
+                      ) {
+                        geeTest.showCaptcha();
+                        geeTest.onSuccess(async () => {
+                          var result = geeTest.getValidate();
+                          let local_value: any = values;
+                          local_value.lot_number = result.lot_number;
+                          local_value.captcha_output = result.captcha_output;
+                          local_value.pass_token = result.pass_token;
+                          local_value.gen_time = result.gen_time;
+                          await ResetPasswordAction(local_value, setProcessing);
+                        });
+                      } else {
+                        await ResetPasswordAction(values, setProcessing);
+                      }
                     }}
                   >
                     {({ errors, touched, setFieldValue }) => (
@@ -185,11 +194,12 @@ const ResetPassword: NextPage = () => {
                           />
                         </div>
 
-                        {recaptchaData?.NOCAPTCHA_SITEKEY &&
-                          recaptchaData?.google_recapcha === "1" && (
+                        {captchaData?.NOCAPTCHA_SITEKEY &&
+                          parseInt(captchaData?.select_captcha_type) ===
+                            CAPTCHA_TYPE_RECAPTCHA && (
                             <ReCAPTCHA
                               ref={(r: any) => setCaptchaRef(r)}
-                              sitekey={recaptchaData?.NOCAPTCHA_SITEKEY}
+                              sitekey={captchaData?.NOCAPTCHA_SITEKEY}
                               render="explicit"
                               onChange={(response: any) => {
                                 setFieldValue("recapcha", response);

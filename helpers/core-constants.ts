@@ -1,3 +1,9 @@
+//captcha
+export const CAPTCHA_TYPE_DISABLE = 0;
+export const CAPTCHA_TYPE_RECAPTCHA = 1;
+export const CAPTCHA_TYPE_GEETESTCAPTCHA = 2;
+
+//payment
 export const PAYPAL = 3;
 export const BANK_DEPOSIT = 4;
 export const STRIPE = 5;
