@@ -12317,6 +12317,7 @@ label.ico-label-box {
   padding-right: 12px;
   padding-top: 20px;
   direction: rtl;
+  width: 100%;
 }
 
 .chat-submit-bottom {
