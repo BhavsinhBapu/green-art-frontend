@@ -176,7 +176,7 @@ export const Chat = () => {
                                       <p className="chat-details">
                                         {chat?.message}
                                       </p>
-                                      <p className="chat-last-seen">
+                                      <p className="chat-last-seen ml-3">
                                         {moment(chat?.created_at).calendar()}
                                       </p>
                                     </div>
