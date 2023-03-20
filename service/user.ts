@@ -20,14 +20,10 @@ export const SignupApi = async (
   ref_code: any
 ) => {
   const finalCredential = {
-    email: credentials.email,
-    password: credentials.password,
-    first_name: credentials.first_name,
-    last_name: credentials.last_name,
-    password_confirmation: credentials.password_confirmation,
-    recapcha: credentials.recapcha,
+    ...credentials,
     ref_code: ref_code,
   };
+
   const { data } = await request.post("/sign-up", finalCredential);
   return data;
 };
@@ -114,8 +110,8 @@ export const G2fVerifyApi = async (credential: any) => {
   return data;
 };
 
-export const RecapCha = async () => {
-  const { data } = await request.get("/recaptcha-settings");
+export const captchaSettings = async () => {
+  const { data } = await request.get("/captcha-settings");
   return data;
 };
 

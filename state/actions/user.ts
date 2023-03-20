@@ -16,19 +16,23 @@ import {
   verifyEmailApi,
   KycActiveList,
   UploadVoter,
+  captchaSettings,
 } from "service/user";
 import request from "lib/request";
+import GInit from "../../lib/geetest";
+
 import { login, setAuthenticationState, setUser } from "state/reducer/user";
 import Router from "next/router";
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import {
   setBuyOrderHistory,
   setOpenOrderHistory,
   setSellOrderHistory,
   setTradeOrderHistory,
 } from "state/reducer/exchange";
+import { CAPTCHA_TYPE_GEETESTCAPTCHA } from "helpers/core-constants";
 
 export const VerifyEmailAction =
   (
@@ -129,21 +133,53 @@ export const SigninAction =
     return response;
   };
 
+export const useCapchaInitialize = () => {
+  const [geeTest, setGeetest] = useState<any>();
+  const [captchaData, setcaptchaData] = useState<any>({});
+
+  const submit_form = useRef<HTMLButtonElement>(null);
+  const getRecapcha = async () => {
+    const response = await captchaSettings();
+    setcaptchaData(response.data);
+
+    if (
+      parseInt(response?.data?.select_captcha_type) ===
+        CAPTCHA_TYPE_GEETESTCAPTCHA &&
+      response?.data?.GEETEST_CAPTCHA_ID
+    ) {
+      GInit();
+      // @ts-ignore
+      initGeetest4(
+        {
+          captchaId: response?.data?.GEETEST_CAPTCHA_ID,
+          product: "bind",
+          onError: (err: any) => toast.error(err.msg),
+        },
+        handlerForBind
+      );
+    }
+
+    return response;
+  };
+  async function handlerForBind(geetest: any) {
+    var start = false;
+
+    geetest.onReady(() => {
+      start = true;
+      setGeetest(geetest);
+    });
+  }
+  useEffect(() => {
+    getRecapcha();
+  }, []);
+  return { submit_form, handlerForBind, geeTest, captchaData, setcaptchaData };
+};
+
 export const SignupAction =
-  (
-    credentials: {
-      email: string;
-      first_name: string;
-      last_name: string;
-      password: string;
-      password_confirmation: string;
-      recapcha: string;
-    },
-    setProcessing: any,
-    ref_code: any
-  ) =>
+  (credentials: any, setProcessing: any, ref_code: any) =>
   async (dispatch: any) => {
     setProcessing(true);
+    console.log(credentials, "credentials");
     const response = await SignupApi(credentials, ref_code);
     let responseMessage = response.message;
     if (response.success === true) {
@@ -176,7 +212,7 @@ export const SignupAction =
   };
 
 export const ForgotPasswordAction = async (
-  credentials: { email: string },
+  credentials: any,
   setProcessing: any
 ) => {
   setProcessing(true);

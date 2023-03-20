@@ -1,8 +1,7 @@
 import type { NextPage } from "next";
 import DashboardNavbar from "components/common/dashboardNavbar";
 import { useEffect, useState } from "react";
-import Echo from "laravel-echo";
-import Pusher from "pusher-js";
+
 import Loading from "components/common/loading";
 import SelectCurrency from "components/exchange/selectCurrency";
 import CurrencyLevel from "components/exchange/currencyLevel";
@@ -12,106 +11,15 @@ import { RootState } from "state/store";
 import {
   initialDashboardCallAction,
   initialDashboardCallActionWithToken,
+  listenMessages,
 } from "state/actions/exchange";
-import {
-  setAllmarketTrades,
-  setCurrentPair,
-  setOpenBookBuy,
-  setOrderData,
-  setOpenBooksell,
-  setDashboard,
-  setLastPriceData,
-  setPairs,
-  setOpenOrderHistory,
-  setSellOrderHistory,
-  setBuyOrderHistory,
-  setTotalData,
-} from "state/reducer/exchange";
+import { setCurrentPair } from "state/reducer/exchange";
 import useTranslation from "next-translate/useTranslation";
-import { last, updateChart } from "components/exchange/api/stream";
-import {
-  EXCHANGE_LAYOUT_ONE,
-  EXCHANGE_LAYOUT_TWO,
-} from "helpers/core-constants";
 import Head from "next/head";
 import { formatCurrency } from "common";
 let socketCall = 0;
-async function listenMessages(dispatch: any, user: any) {
-  //@ts-ignore
-  window.Pusher = Pusher;
-  //@ts-ignore
-  window.Echo = new Echo({
-    broadcaster: "pusher",
-    key: "test",
-    wsHost: process.env.NEXT_PUBLIC_HOST_SOCKET,
-    wsPort: process.env.NEXT_PUBLIC_WSS_PORT
-      ? process.env.NEXT_PUBLIC_WSS_PORT
-      : 6006,
-    wssPort: 443,
-    forceTLS: false,
-    cluster: "mt1",
-    disableStats: true,
-    enabledTransports: ["ws", "wss"],
-  });
-  //@ts-ignore
-  // dashboard-base_coin_id-trade_coin_id
-  window.Echo.channel(
-    `dashboard-${localStorage.getItem("base_coin_id")}-${localStorage.getItem(
-      "trade_coin_id"
-    )}`
-  ).listen(".order_place", (e: any) => {
-    if (e.orders.order_type === "buy")
-      dispatch(setOpenBookBuy(e.orders.orders));
-    if (e.orders.order_type === "sell")
-      dispatch(setOpenBooksell(e.orders.orders));
-    if (e.orders.order_type === "buy_sell") {
-      dispatch(setOpenBookBuy(e.orders.buy_orders));
-      dispatch(setOpenBooksell(e.orders.sell_orders));
-    }
-  });
-  //@ts-ignore
-  window.Echo.channel(
-    `trade-info-${localStorage.getItem("base_coin_id")}-${localStorage.getItem(
-      "trade_coin_id"
-    )}`
-  ).listen(".process", (e: any) => {
-    dispatch(setAllmarketTrades(e.trades.transactions));
-    updateChart({
-      price: parseFloat(e?.last_trade?.price),
-      ts: e?.last_trade?.time,
-      base_coin_id: e?.order_data?.base_coin_id,
-      trade_coin_id: e?.order_data?.trade_coin_id,
-      total: parseFloat(e?.last_trade?.total),
-    });
-    dispatch(setPairs(e.pairs));
-    e.last_price_data && dispatch(setLastPriceData(e.last_price_data));
-    e.order_data && dispatch(setOrderData(e.order_data));
-  });
-  //@ts-ignore
-  window.Echo.channel(
-    `dashboard-${localStorage.getItem("base_coin_id")}-${localStorage.getItem(
-      "trade_coin_id"
-    )}`
-  ).listen(`.process-${localStorage.getItem("user_id")}`, (e: any) => {
-    dispatch(setOpenOrderHistory(e.open_orders.orders));
-    dispatch(setSellOrderHistory(e.open_orders.sell_orders));
-    dispatch(setBuyOrderHistory(e.open_orders.buy_orders));
-    e?.order_data?.total && dispatch(setTotalData(e?.order_data?.total));
-  });
-  //@ts-ignore
-  window.Echo.channel(
-    `dashboard-${localStorage.getItem("base_coin_id")}-${localStorage.getItem(
-      "trade_coin_id"
-    )}`
-  ).listen(`.order_place_${localStorage.getItem("user_id")}`, (e: any) => {
-    dispatch(setOpenOrderHistory(e.open_orders.orders));
-    dispatch(setSellOrderHistory(e.open_orders.sell_orders));
-    dispatch(setBuyOrderHistory(e.open_orders.buy_orders));
-    e?.order_data?.total && dispatch(setTotalData(e?.order_data?.total));
-  });
-}
+
 const Dashboard: NextPage = () => {
-  const { settings } = useSelector((state: RootState) => state.common);
   const { t } = useTranslation("common");
   const dispatch = useDispatch();
   const [isLoading, setisLoading] = useState(true);
@@ -167,7 +75,8 @@ const Dashboard: NextPage = () => {
         <div className="cp-user-sidebar-area">
           <div
             className="scroll-wrapper cp-user-sidebar-menu scrollbar-inner"
-            style={{ position: "relative" }}>
+            style={{ position: "relative" }}
+          >
             <div
               className="cp-user-sidebar-menu scrollbar-inner scroll-content"
               style={{
@@ -175,7 +84,8 @@ const Dashboard: NextPage = () => {
                 marginBottom: "0px",
                 marginRight: "0px",
                 maxHeight: "0px",
-              }}></div>
+              }}
+            ></div>
             <div className="scroll-element scroll-x">
               <div className="scroll-element_outer">
                 <div className="scroll-element_size" />
@@ -198,10 +108,12 @@ const Dashboard: NextPage = () => {
           role="dialog"
           aria-labelledby="exampleModalCenterTitle"
           aria-hidden="true"
-          className="modal fade">
+          className="modal fade"
+        >
           <div
             role="document"
-            className="modal-dialog modal-lg modal-dialog-centered">
+            className="modal-dialog modal-lg modal-dialog-centered"
+          >
             <div className="modal-content dark-modal">
               <div className="modal-header align-items-center">
                 <h5 id="exampleModalCenterTitle" className="modal-title">
@@ -211,7 +123,8 @@ const Dashboard: NextPage = () => {
                   type="button"
                   data-dismiss="modal"
                   aria-label="Close"
-                  className="close">
+                  className="close"
+                >
                   <span aria-hidden="true">×</span>
                 </button>
               </div>
@@ -232,13 +145,15 @@ const Dashboard: NextPage = () => {
             <div
               role="alert"
               id="web_socket_notification"
-              className="alert alert-success alert-dismissible fade show d-none">
+              className="alert alert-success alert-dismissible fade show d-none"
+            >
               <span id="socket_message" />
               <button
                 type="button"
                 data-dismiss="alert"
                 aria-label="Close"
-                className="close">
+                className="close"
+              >
                 <span aria-hidden="true">×</span>
               </button>
             </div>
@@ -248,16 +163,19 @@ const Dashboard: NextPage = () => {
               role="dialog"
               aria-labelledby="exampleModalCenterTitle"
               aria-hidden="true"
-              className="modal fade">
+              className="modal fade"
+            >
               <div
                 role="document"
-                className="modal-dialog modal-dialog-centered">
+                className="modal-dialog modal-dialog-centered"
+              >
                 <div className="modal-content">
                   <button
                     type="button"
                     data-dismiss="modal"
                     aria-label="Close"
-                    className="close">
+                    className="close"
+                  >
                     <img alt="" className="img-fluid" />
                   </button>
                   <div className="text-center">
@@ -271,7 +189,8 @@ const Dashboard: NextPage = () => {
                   <div className="modal-body">
                     <a
                       id="confirm-link"
-                      className="btn btn-block cp-user-move-btn">
+                      className="btn btn-block cp-user-move-btn"
+                    >
                       {t("Confirm")}
                     </a>
                   </div>
@@ -292,7 +211,8 @@ const Dashboard: NextPage = () => {
                               id="dropdownMenuButton"
                               data-toggle="dropdown"
                               aria-haspopup="true"
-                              aria-expanded="false">
+                              aria-expanded="false"
+                            >
                               {currentPair.replace(/_/g, "/")}
                             </span>
                             <SelectCurrency />

@@ -172,10 +172,8 @@ const Limit = ({
                     placeholder=""
                     className="form-control number_only"
                     value={
-                      Number(parseFloat(buySellLimitCoinData.total).toFixed(8))
-                        ? Number(
-                            parseFloat(buySellLimitCoinData.total).toFixed(8)
-                          )
+                      parseFloat(buySellLimitCoinData.total).toFixed(8)
+                        ? parseFloat(buySellLimitCoinData.total).toFixed(8)
                         : 0
                     }
                   />
