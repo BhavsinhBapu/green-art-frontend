@@ -3,6 +3,7 @@ import React, { useRef, useState } from "react";
 import Persona from "persona";
 import useTranslation from "next-translate/useTranslation";
 import { ThirdPartyKycVerifiedAction } from "state/actions/user";
+import { BsPersonBoundingBox } from "react-icons/bs";
 
 const PersonaComponent = ({ personaDetails, setPersonaVerified }: any) => {
   const [options, setOptions] = useState({
@@ -60,13 +61,19 @@ const PersonaComponent = ({ personaDetails, setPersonaVerified }: any) => {
   };
   return (
     <div className="container text-center">
-      <h2>{t("Verify your identity")}</h2>
-      <button
-        onClick={createClient}
-        className="btn nimmu-user-sibmit-button mt-5"
-      >
-        Start
-      </button>
+      <div className="row">
+        <div className="col-md-7 mx-auto">
+          <div className="boxShadow py-5 px-4 shadow-sm">
+            <BsPersonBoundingBox className="Verify_card mb-4" />
+            <h2>{t("Verify your identity")}</h2>
+            <button
+              onClick={createClient}
+              className="btn nimmu-user-sibmit-button mt-5">
+              Start
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

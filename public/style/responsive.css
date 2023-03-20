@@ -296,6 +296,9 @@
   .live-chat {
     width: 100%;
   }
+  .Verify_card {
+    font-size: 34px;
+  }
 }
 
 /* Landscape phones and smaller */

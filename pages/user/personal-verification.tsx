@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getKycDetailsAction } from "state/actions/user";
 import useTranslation from "next-translate/useTranslation";
+import { MdPersonAddDisabled } from "react-icons/md";
+import { BsPersonCheck } from "react-icons/bs";
 import { KycActiveList } from "service/user";
 import {
   KYC_DRIVING_VERIFICATION,
@@ -22,6 +24,7 @@ import {
 import Footer from "components/common/footer";
 import ImageComponent from "components/common/ImageComponent";
 import SectionLoading from "components/common/SectionLoading";
+
 const Persona = dynamic(
   () => import("components/profile/personal-verification/Persoona"),
   { ssr: false }
@@ -66,7 +69,7 @@ const PersonalVerification: NextPage = () => {
             )}
 
             <div className="profile-area">
-              <div className="section-wrapper boxShadow">
+              <div className="section-wrapper border-0">
                 {loading ? (
                   <>
                     <SectionLoading />
@@ -106,13 +109,11 @@ const PersonalVerification: NextPage = () => {
                                         KYC_VOTERS_CARD_VERIFICATION &&
                                         setType("voter");
                                     }
-                                  }}
-                                >
+                                  }}>
                                   <div
                                     className="id-card"
                                     data-toggle="modal"
-                                    data-target=".cp-user-idverifymodal"
-                                  >
+                                    data-target=".cp-user-idverifymodal">
                                     <ImageComponent
                                       src={item.image}
                                       className="p-5"
@@ -154,8 +155,7 @@ const PersonalVerification: NextPage = () => {
                                           ? "success"
                                           : ""
                                         : ""
-                                    }`}
-                                  >
+                                    }`}>
                                     <span className="text-warning">
                                       {item.type == KYC_PASSPORT_VERIFICATION &&
                                         kycDetails?.passport?.status}
@@ -187,11 +187,31 @@ const PersonalVerification: NextPage = () => {
                               setPersonaVerified={setPersonaVerified}
                             />
                           )}
-                        {personaVerified && <>success</>}
+                        {personaVerified && (
+                          <div className="container text-center">
+                            <div className="row">
+                              <div className="col-md-7 mx-auto">
+                                <div className="boxShadow py-5 px-4 shadow-sm">
+                                  <BsPersonCheck className="Verify_card mb-4 mt-5" />
+                                  <h2 className="mb-5">{t("Kyc Success")}</h2>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        )}
                       </>
                     )}
                     {verificationType === KYC_TYPE_DISABLE && (
-                      <div>Kyc disabled</div>
+                      <div className="container text-center">
+                        <div className="row">
+                          <div className="col-md-7 mx-auto">
+                            <div className="boxShadow py-5 px-4 shadow-sm">
+                              <MdPersonAddDisabled className="Verify_card mb-4 text-warning mt-5" />
+                              <h2 className="mb-5">{t("Kyc disabled")}</h2>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     )}
                   </div>
                 )}
