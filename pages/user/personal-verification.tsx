@@ -14,6 +14,7 @@ import {
   KYC_NID_VERIFICATION,
   KYC_PASSPORT_VERIFICATION,
   KYC_PHONE_VERIFICATION,
+  KYC_TYPE_DISABLE,
   KYC_TYPE_MANUAL,
   KYC_TYPE_PERSONA,
   KYC_VOTERS_CARD_VERIFICATION,
@@ -174,6 +175,7 @@ const PersonalVerification: NextPage = () => {
                         </div>
                       </div>
                     )}
+
                     {verificationType === KYC_TYPE_PERSONA && (
                       <>
                         {!personaVerified &&
@@ -187,6 +189,9 @@ const PersonalVerification: NextPage = () => {
                           )}
                         {personaVerified && <>success</>}
                       </>
+                    )}
+                    {verificationType === KYC_TYPE_DISABLE && (
+                      <div>Kyc disabled</div>
                     )}
                   </div>
                 )}

@@ -36,6 +36,7 @@ import {
 } from "state/reducer/exchange";
 import {
   CAPTCHA_TYPE_GEETESTCAPTCHA,
+  KYC_TYPE_DISABLE,
   KYC_TYPE_MANUAL,
   KYC_TYPE_PERSONA,
 } from "helpers/core-constants";
@@ -574,12 +575,16 @@ export const getKycDetailsAction =
     setLoading(true);
     const { data } = await UserKycSettingsDetails();
     console.log(data, "datadatadata");
-    setVerificationType(parseInt(data.enabled_kyc_type));
-    if (parseInt(data.enabled_kyc_type) === KYC_TYPE_MANUAL) {
+    setVerificationType(
+      parseInt(
+        !data?.enabled_kyc_type ? KYC_TYPE_DISABLE : data?.enabled_kyc_type
+      )
+    );
+    if (parseInt(data?.enabled_kyc_type) === KYC_TYPE_MANUAL) {
       const { data: KycList } = await KycActiveList();
       setKyc(KycList);
-      setKycDetails(data.enabled_kyc_user_details);
-    } else if (parseInt(data.enabled_kyc_type) === KYC_TYPE_PERSONA) {
+      setKycDetails(data?.enabled_kyc_user_details);
+    } else if (parseInt(data?.enabled_kyc_type) === KYC_TYPE_PERSONA) {
       setKycDetails(data);
       if (
         parseInt(data?.enabled_kyc_user_details?.persona?.is_verified) === 0
@@ -607,12 +612,12 @@ export const ThirdPartyKycVerifiedAction = async (
 export const G2fVerifyAction = (code: any) => async (dispatch: any) => {
   const formData = new FormData();
   const uid: any = Cookies.get("user-id");
-  formData.append("code", code);
-  formData.append("user_id", uid);
+  formData?.append("code", code);
+  formData?.append("user_id", uid);
   const response = await G2fVerifyApi(formData);
   if (response.success === true) {
     Cookies.remove("g2f-status");
-    Cookies.set("token", response.data.access_token);
+    Cookies.set("token", response.data?.access_token);
     dispatch(setUser(response.data));
     Router.push("/exchange/dashboard");
     toast.success(response.message, {
