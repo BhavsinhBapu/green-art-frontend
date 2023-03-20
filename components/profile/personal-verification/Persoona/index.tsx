@@ -60,15 +60,15 @@ const PersonaComponent = ({ personaDetails, setPersonaVerified }: any) => {
       client ? client.exit(force) : alert("Initialize client first");
   };
   return (
-    <div className="container text-center">
+    <div className="container-fluid text-center p-0">
       <div className="row">
-        <div className="col-md-7 mx-auto">
+        <div className="col-md-12 mx-auto">
           <div className="boxShadow py-5 px-4 shadow-sm">
-            <BsPersonBoundingBox className="Verify_card mb-4" />
+            <BsPersonBoundingBox className="Verify_card mb-4 mt-5" />
             <h2>{t("Verify your identity")}</h2>
             <button
               onClick={createClient}
-              className="btn nimmu-user-sibmit-button mt-5">
+              className="btn nimmu-user-sibmit-button mt-5 w-25 mx-auto mb-5">
               Start
             </button>
           </div>
