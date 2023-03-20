@@ -13070,6 +13070,10 @@ label.ico-label-box {
     width: 500px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     padding: 40px 0px 0px 0px;
+    width: 60%;
+    /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
+    padding: 40px 0px 0px 0px;
+    border: 1px solid var(--border-color);
 }
 
 .chat-header {
@@ -13123,6 +13127,25 @@ label.ico-label-box {
     padding-right: 20px;
     padding-top: 20px;
     direction: rtl;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+}
+
+.chat-details {
+    background: var(--primary-color);
+    padding: 10px;
+    border-radius: 3px;
+    margin: 10px;
+    word-break: break-all;
+}
+
+.chat-right {
+    display: flex;
+    gap: 3px;
+    padding-right: 12px;
+    padding-top: 20px;
+    direction: rtl;
+    width: 100%;
 }
 
 .chat-submit-bottom {
@@ -13152,6 +13175,8 @@ span.fa.fa-paperclip.press-enter {
 .fa-paperclip:before {
     font-size: 27px;
     color: var(--text-primary-color);
+    font-size: 22px;
+    color: var(--text-primary-color);
 }
 
 .chat-input-box {
@@ -13163,6 +13188,11 @@ input.chatInput {
     height: 50px;
     border: none;
     padding: 0px 15px;
+    width: 100%;
+    height: 50px;
+    border: none;
+    padding: 0px 15px;
+    background: var(--main-background-color);
 }
 
 label.upload-file-btn.press-enter {
@@ -13187,6 +13217,10 @@ label.upload-file-btn.press-enter {
     padding-bottom: 30px;
     /* display: flex;
   flex-direction: column-reverse; */
+    height: 400px;
+    overflow-x: overlay;
+    padding-bottom: 30px;
+    overflow: auto;
 }
 
 .chat-upload-image {
@@ -13216,6 +13250,11 @@ label.upload-file-btn.press-enter {
     width: 90%;
     height: auto;
     margin: 10px;
+    width: 30%;
+    height: auto;
+    margin-right: 58px;
+    float: right;
+    border-radius: 4px;
 }
 
 .pageDetails {
@@ -14347,4 +14386,8 @@ input {
 
 .paypal-con {
     background-color: white;
+}
+
+.font_size {
+    font-weight: 500;
 }

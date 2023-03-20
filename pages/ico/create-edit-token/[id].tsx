@@ -19,7 +19,7 @@ const TokenCreate = ({ id, edit, data }: any) => {
   return (
     <div className="container">
       <div className="row">
-        <div className="ico-tokenCreate">
+        <div className="ico-tokenCreate boxShadow">
           <div className="col-12">
             <h2>
               {t(
@@ -72,8 +72,7 @@ const TokenCreate = ({ id, edit, data }: any) => {
               })}
               onSubmit={(values) => {
                 launchpadCreateUpdateTokenAction(values, setLoading, image);
-              }}
-            >
+              }}>
               {({ errors, touched, setFieldValue, values }) => (
                 <Form className="row">
                   {" "}
@@ -96,8 +95,7 @@ const TokenCreate = ({ id, edit, data }: any) => {
                         } else {
                           setFieldValue("base_coin", "BNB");
                         }
-                      }}
-                    >
+                      }}>
                       <option value="">{t("Select Your Network")}</option>
                       <option value="4">{t("ERC20 Token Api")}</option>
                       <option value="5">{t("BEP20 Token Api")}</option>
@@ -115,8 +113,7 @@ const TokenCreate = ({ id, edit, data }: any) => {
                         touched.base_coin && errors.base_coin
                           ? "is-invalid"
                           : ""
-                      }`}
-                    >
+                      }`}>
                       <option value="">{t("Select A Network")}</option>
                       <option value="BNB">{t("BNB")}</option>
                       <option value="ETH">{t("ETH")}</option>

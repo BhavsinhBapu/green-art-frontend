@@ -69,7 +69,7 @@ const Withdraw = () => {
             <div className="section-top-wrap mb-25">
               <div className="overview-area">
                 <div className="overview-left">
-                  <h2 className="section-top-title">{t("Withdraw")}</h2> 
+                  <h2 className="section-top-title">{t("Withdraw")}</h2>
                 </div>
               </div>
             </div>
@@ -77,30 +77,48 @@ const Withdraw = () => {
               <div className="asset-balances-left">
                 <div className="section-wrapper boxShadow">
                   <div className="row p-3 p-md-0">
-                    <div className="col-md-4">
-                      <div className="boxShadow text-center p-3">
-                        <h1>
+                    <div className="col-md-4 col-sm-6">
+                      <div className="boxShadow text-center py-5 px-4 shadow-sm">
+                        <div className="d-flex justify-content-center">
+                          <span className="card-top-icon mb-3">
+                            <i className="fa fa-ticket" aria-hidden="true"></i>
+                          </span>
+                        </div>
+                        <h2>
                           {data?.earns?.earn} {data?.earns?.currency}
-                        </h1>
-                        <h3>{t("Total Earned")}</h3>
+                        </h2>
+                        <h4 className="mt-2 font_size">{t("Total Earned")}</h4>
                       </div>
                     </div>
-
-                    <div className="col-md-4">
-                      <div className="boxShadow text-center p-3">
-                        <h1>
+                    <div className="col-md-4 col-sm-6 mt-4 mt-sm-0">
+                      <div className="boxShadow text-center py-5 px-4 shadow-sm">
+                        <div className="d-flex justify-content-center">
+                          <span className="card-top-icon mb-3">
+                            <i className="fa fa-ticket" aria-hidden="true"></i>
+                          </span>
+                        </div>
+                        <h2>
                           {data?.earns?.withdraw} {data?.earns?.currency}
-                        </h1>
-                        <h3>{t("Withdrawal Amount")}</h3>
+                        </h2>
+                        <h4 className="mt-2 font_size">
+                          {t("Withdrawal Amount")}
+                        </h4>
                       </div>
                     </div>
 
-                    <div className="col-md-4">
-                      <div className="boxShadow text-center p-3">
-                        <h1>
+                    <div className="col-md-4 col-sm-6 mt-4 mt-md-0">
+                      <div className="boxShadow text-center py-5 px-2 px-md-4 shadow-sm">
+                        <div className="d-flex justify-content-center">
+                          <span className="card-top-icon mb-3">
+                            <i className="fa fa-ticket" aria-hidden="true"></i>
+                          </span>
+                        </div>
+                        <h2>
                           {data?.earns?.available} {data?.earns?.currency}
-                        </h1>
-                        <h3>{t("Available Amount")}</h3>
+                        </h2>
+                        <h4 className="mt-2 font_size">
+                          {t("Available Amount")}
+                        </h4>
                       </div>
                     </div>
                   </div>
@@ -110,7 +128,7 @@ const Withdraw = () => {
                     </div>
                   ) : (
                     <form onSubmit={withDrawMoneyApi}>
-                      <div className="m-3 mt-5 row">
+                      <div className=" mt-5 row">
                         <div className="col-md-6 form-input-div">
                           <label className="ico-label-box" htmlFor="">
                             {t("Amount")}
