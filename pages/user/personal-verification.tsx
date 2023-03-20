@@ -109,11 +109,13 @@ const PersonalVerification: NextPage = () => {
                                         KYC_VOTERS_CARD_VERIFICATION &&
                                         setType("voter");
                                     }
-                                  }}>
+                                  }}
+                                >
                                   <div
                                     className="id-card"
                                     data-toggle="modal"
-                                    data-target=".cp-user-idverifymodal">
+                                    data-target=".cp-user-idverifymodal"
+                                  >
                                     <ImageComponent
                                       src={item.image}
                                       className="p-5"
@@ -155,7 +157,8 @@ const PersonalVerification: NextPage = () => {
                                           ? "success"
                                           : ""
                                         : ""
-                                    }`}>
+                                    }`}
+                                  >
                                     <span className="text-warning">
                                       {item.type == KYC_PASSPORT_VERIFICATION &&
                                         kycDetails?.passport?.status}
@@ -193,7 +196,9 @@ const PersonalVerification: NextPage = () => {
                               <div className="col-md-7 mx-auto">
                                 <div className="boxShadow py-5 px-4 shadow-sm">
                                   <BsPersonCheck className="Verify_card mb-4 mt-5" />
-                                  <h2 className="mb-5">{t("Kyc Success")}</h2>
+                                  <h2 className="mb-5">
+                                    {t("Kyc Verified Successfully")}
+                                  </h2>
                                 </div>
                               </div>
                             </div>
