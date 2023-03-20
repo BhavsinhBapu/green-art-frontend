@@ -186,7 +186,6 @@ export const SignupAction =
   (credentials: any, setProcessing: any, ref_code: any) =>
   async (dispatch: any) => {
     setProcessing(true);
-    console.log(credentials, "credentials");
     const response = await SignupApi(credentials, ref_code);
     let responseMessage = response.message;
     if (response.success === true) {
@@ -574,7 +573,6 @@ export const getKycDetailsAction =
   async (dispatch: any) => {
     setLoading(true);
     const { data } = await UserKycSettingsDetails();
-    console.log(data, "datadatadata");
     setVerificationType(
       parseInt(
         !data?.enabled_kyc_type ? KYC_TYPE_DISABLE : data?.enabled_kyc_type
@@ -593,7 +591,6 @@ export const getKycDetailsAction =
       } else {
         setPersonaVerified(true);
       }
-      console.log(data, "persona");
     }
     setLoading(false);
   };
