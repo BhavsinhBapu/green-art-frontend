@@ -17,6 +17,8 @@ import {
   KycActiveList,
   UploadVoter,
   captchaSettings,
+  UserKycSettingsDetails,
+  ThirdPartyKycVerified,
 } from "service/user";
 import request from "lib/request";
 import GInit from "../../lib/geetest";
@@ -32,7 +34,11 @@ import {
   setSellOrderHistory,
   setTradeOrderHistory,
 } from "state/reducer/exchange";
-import { CAPTCHA_TYPE_GEETESTCAPTCHA } from "helpers/core-constants";
+import {
+  CAPTCHA_TYPE_GEETESTCAPTCHA,
+  KYC_TYPE_MANUAL,
+  KYC_TYPE_PERSONA,
+} from "helpers/core-constants";
 
 export const VerifyEmailAction =
   (
@@ -557,16 +563,47 @@ export const UploadDrivingLicenceImageAction = async (
   setProcessing(false);
 };
 export const getKycDetailsAction =
-  (setKycDetails: any, setKyc: any, setLoading: any) =>
+  (
+    setKycDetails: any,
+    setKyc: any,
+    setLoading: any,
+    setVerificationType: any,
+    setPersonaVerified: any
+  ) =>
   async (dispatch: any) => {
     setLoading(true);
-    const { data } = await KycDetailsApi();
-    const { data: KycList } = await KycActiveList();
-    setKycDetails(data);
-    setKyc(KycList);
+    const { data } = await UserKycSettingsDetails();
+    console.log(data, "datadatadata");
+    setVerificationType(parseInt(data.enabled_kyc_type));
+    if (parseInt(data.enabled_kyc_type) === KYC_TYPE_MANUAL) {
+      const { data: KycList } = await KycActiveList();
+      setKyc(KycList);
+      setKycDetails(data.enabled_kyc_user_details);
+    } else if (parseInt(data.enabled_kyc_type) === KYC_TYPE_PERSONA) {
+      setKycDetails(data);
+      if (
+        parseInt(data?.enabled_kyc_user_details?.persona?.is_verified) === 0
+      ) {
+        setPersonaVerified(false);
+      } else {
+        setPersonaVerified(true);
+      }
+      console.log(data, "persona");
+    }
     setLoading(false);
   };
-
+export const ThirdPartyKycVerifiedAction = async (
+  inquiry_id: string,
+  setPersonaVerified: any
+) => {
+  const response = await ThirdPartyKycVerified(inquiry_id);
+  if (response.success) {
+    toast.success(response.message);
+    setPersonaVerified(true);
+  } else {
+    toast.error(response.message);
+  }
+};
 export const G2fVerifyAction = (code: any) => async (dispatch: any) => {
   const formData = new FormData();
   const uid: any = Cookies.get("user-id");
