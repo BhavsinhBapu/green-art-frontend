@@ -11686,12 +11686,13 @@ input[type="number"] {
   line-height: 1.4;
   font-weight: 500;
 }
+
 .qr-background {
   border: 15px solid white;
   width: auto;
-    display: inline-block;
-
+  display: inline-block;
 }
+
 .wallet-bar-code {
   margin: 0 auto;
   width: 100%;
@@ -12257,9 +12258,10 @@ label.ico-label-box {
 }
 
 .live-chat {
-  width: 500px;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  width: 60%;
+  /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
   padding: 40px 0px 0px 0px;
+  border: 1px solid var(--border-color);
 }
 
 .chat-header {
@@ -12298,6 +12300,7 @@ label.ico-label-box {
 
 .chat-list-avatar {
   border-radius: 50%;
+  border: 1px solid var(--border-color);
 }
 
 .chat-details {
@@ -12305,14 +12308,16 @@ label.ico-label-box {
   padding: 10px;
   border-radius: 3px;
   margin: 10px;
+  word-break: break-all;
 }
 
 .chat-right {
   display: flex;
-  gap: 10px;
-  padding-right: 20px;
+  gap: 3px;
+  padding-right: 12px;
   padding-top: 20px;
   direction: rtl;
+  width: 100%;
 }
 
 .chat-submit-bottom {
@@ -12340,7 +12345,7 @@ span.fa.fa-paperclip.press-enter {
 }
 
 .fa-paperclip:before {
-  font-size: 27px;
+  font-size: 22px;
   color: var(--text-primary-color);
 }
 
@@ -12353,6 +12358,7 @@ input.chatInput {
   height: 50px;
   border: none;
   padding: 0px 15px;
+  background: var(--main-background-color);
 }
 
 label.upload-file-btn.press-enter {
@@ -12375,8 +12381,7 @@ label.upload-file-btn.press-enter {
   height: 400px;
   overflow-x: overlay;
   padding-bottom: 30px;
-  /* display: flex;
-  flex-direction: column-reverse; */
+  overflow: auto;
 }
 
 .chat-upload-image {
@@ -12403,9 +12408,11 @@ label.upload-file-btn.press-enter {
 }
 
 .image-chatBox {
-  width: 90%;
+  width: 30%;
   height: auto;
-  margin: 10px;
+  margin-right: 58px;
+  float: right;
+  border-radius: 4px;
 }
 
 .pageDetails {
@@ -13058,6 +13065,11 @@ input {
 .krGCyK {
   padding: 0px 6px !important;
 }
+
 .paypal-con {
   background-color: white;
+}
+
+.font_size {
+  font-weight: 500;
 }

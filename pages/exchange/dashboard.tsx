@@ -201,7 +201,7 @@ const Dashboard: NextPage = () => {
             <div className="cp-user-custom-card exchange-area">
               <div id="dashboard">
                 <div className="row">
-                  <div className="col-xl-12">
+                  <div className="col-xl-12 col-12">
                     <div className="cxchange-summary-wrap">
                       {currentPair && (
                         <div className="cxchange-summary-name">

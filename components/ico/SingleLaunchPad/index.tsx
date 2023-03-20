@@ -37,8 +37,7 @@ export const SingleLaunchPad = ({ data }: any) => {
                     <a
                       href={data?.website_link}
                       target="_blank"
-                      rel="noreferrer"
-                    >
+                      rel="noreferrer">
                       <div>
                         <i className="fa-sharp fa-solid fa-link"></i>
                         <p>{t("Website")}</p>
@@ -56,7 +55,7 @@ export const SingleLaunchPad = ({ data }: any) => {
                 </div>
               </div>
               <Link href={`/ico/payment/${data?.token_id}/${data?.id}`}>
-                <a className="primary-btn mt-5">{t("Buy now")}</a>
+                <a className="primary-btn mt-5 text-white">{t("Buy now")}</a>
               </Link>
             </div>
           </div>
@@ -209,8 +208,7 @@ export const SingleLaunchPad = ({ data }: any) => {
                     <a
                       href={socialLink?.Facebook}
                       target="_blank"
-                      rel="noopener noreferrer"
-                    >
+                      rel="noopener noreferrer">
                       {"Facebook"}
                     </a>
                   </div>
@@ -221,8 +219,7 @@ export const SingleLaunchPad = ({ data }: any) => {
                     <a
                       href={socialLink?.Twitter}
                       target="_blank"
-                      rel="noopener noreferrer"
-                    >
+                      rel="noopener noreferrer">
                       {"Twitter"}
                     </a>
                   </div>
@@ -233,8 +230,7 @@ export const SingleLaunchPad = ({ data }: any) => {
                     <a
                       href={socialLink?.Linkedin}
                       target="_blank"
-                      rel="noopener noreferrer"
-                    >
+                      rel="noopener noreferrer">
                       {"Linkedin"}
                     </a>
                   </div>

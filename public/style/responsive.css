@@ -129,6 +129,9 @@
   .SliderNews {
     height: 150px;
   }
+  .live-chat {
+    width: 80%;
+  }
 }
 
 /* Landscape phones and portrait tablets */
@@ -179,6 +182,9 @@
   .user-form {
     padding: 20px 20px;
     min-height: 0px;
+  }
+  .image-chatBox {
+    width: 60%;
   }
 }
 
@@ -283,6 +289,12 @@
   }
   .trade_tableList_two {
     width: 130%;
+  }
+  .font_size {
+    font-size: 16px !important;
+  }
+  .live-chat {
+    width: 100%;
   }
 }
 

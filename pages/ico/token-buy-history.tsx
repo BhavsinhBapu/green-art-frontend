@@ -130,11 +130,10 @@ const TokenBuyHistory = () => {
             <div className="asset-balances-area">
               <div className="asset-balances-left">
                 <div className="section-wrapper boxShadow">
-                  <div className="table-responsive">
+                  <div className="tableScroll">
                     <div
                       id="assetBalances_wrapper"
-                      className="dataTables_wrapper no-footer"
-                    >
+                      className="dataTables_wrapper no-footer">
                       <div className="dataTables_head">
                         <div id="table_filter" className="dataTables_filter">
                           <label>
@@ -161,8 +160,7 @@ const TokenBuyHistory = () => {
                     {history.length > 0 && (
                       <div
                         className="pagination-wrapper"
-                        id="assetBalances_paginate"
-                      >
+                        id="assetBalances_paginate">
                         <span>
                           {stillHistory?.links?.map(
                             (link: any, index: number) =>
@@ -172,16 +170,14 @@ const TokenBuyHistory = () => {
                                   onClick={() => {
                                     if (link.url) LinkTopaginationString(link);
                                   }}
-                                  key={index}
-                                >
+                                  key={index}>
                                   <i className="fa fa-angle-left"></i>
                                 </a>
                               ) : link.label === "Next &raquo;" ? (
                                 <a
                                   className="paginate-button"
                                   onClick={() => LinkTopaginationString(link)}
-                                  key={index}
-                                >
+                                  key={index}>
                                   <i className="fa fa-angle-right"></i>
                                 </a>
                               ) : (
@@ -190,8 +186,7 @@ const TokenBuyHistory = () => {
                                   aria-controls="assetBalances"
                                   data-dt-idx="1"
                                   onClick={() => LinkTopaginationString(link)}
-                                  key={index}
-                                >
+                                  key={index}>
                                   {link.label}
                                 </a>
                               )

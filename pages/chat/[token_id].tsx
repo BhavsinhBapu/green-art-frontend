@@ -82,18 +82,21 @@ export const Chat = () => {
   }, [icoChat]);
   return (
     <>
-      <div className="page-wrap rightMargin">
-        <div className="page-main-content">
-          <div className="container-fluid">
-            <div className="section-top-wrap mb-25">
-              <div className="overview-area">
-                <div className="overview-left">
-                  <h2 className="section-top-title">{t("Chat")}</h2>
-                  {/* <h4 className="blance-title">{t("Total balance")}</h4> */}
-                  {/* <h4 className="blance">dfdfd</h4> */}
-                </div>
+      <div className="page-wrap">
+        <div className="page-main-content container-fluid">
+          {/* <div className="container-fluid"> */}
+          <div className="section-top-wrap mb-25">
+            <div className="overview-area">
+              <div className="overview-left">
+                <h2 className="section-top-title">{t("Chat")}</h2>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+      <div className="page-wrap">
+        <div className="page-main-content">
+          <div className="container-fluid">
             <form
               onSubmit={(e: any) => {
                 e.preventDefault();
@@ -106,12 +109,11 @@ export const Chat = () => {
                   setFile,
                   selectedAdmin
                 );
-              }}
-            >
+              }}>
               <div className="asset-balances-area cstm-loader-area">
                 <div className="asset-balances-left">
-                  <div className="section-wrapper boxShadow">
-                    <div className="live-chat">
+                  <div className="section-wrapper border-0">
+                    <div className="live-chat rounded mx-auto border-bottom-0">
                       <div className="chat-inner">
                         <div className="chat-header">
                           {/* <img
@@ -128,25 +130,25 @@ export const Chat = () => {
                             Last seen 2 months ago
                           </p> */}
                           {/* </div> */}
-                          <select
-                            name="coin_currency"
-                            className={`ico-input-box`}
-                            required
-                            onChange={(e: any) => {
-                              setSelectedAdmin(e.target.value);
-                            }}
-                          >
-                            <option value="">{t("Select admin")}</option>
-                            {adminList.map((admin: any, index: any) => (
-                              <option
-                                key={index}
-                                selected={selectedAdmin === admin.id}
-                                value={admin.id}
-                              >
-                                {admin?.first_name}
-                              </option>
-                            ))}
-                          </select>
+                          <div className="w-100 cp-select-area">
+                            <select
+                              name="coin_currency"
+                              className={`ico-input-box`}
+                              required
+                              onChange={(e: any) => {
+                                setSelectedAdmin(e.target.value);
+                              }}>
+                              <option value="">{t("Select admin")}</option>
+                              {adminList.map((admin: any, index: any) => (
+                                <option
+                                  key={index}
+                                  selected={selectedAdmin === admin.id}
+                                  value={admin.id}>
+                                  {admin?.first_name}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
                         </div>
                         <div className="chat-body">
                           {icoChat?.map((chat: any) => (
@@ -156,8 +158,7 @@ export const Chat = () => {
                                   chat.sender_id === user.id
                                     ? "chat-right"
                                     : "chat-left"
-                                }
-                              >
+                                }>
                                 <>
                                   <img
                                     className="chat-list-avatar"
@@ -175,7 +176,7 @@ export const Chat = () => {
                                       <p className="chat-details">
                                         {chat?.message}
                                       </p>
-                                      <p className="chat-last-seen">
+                                      <p className="chat-last-seen ml-3">
                                         {moment(chat?.created_at).calendar()}
                                       </p>
                                     </div>
@@ -199,8 +200,7 @@ export const Chat = () => {
                           <div className="chat-upload-image">
                             <div
                               onClick={() => setFile(null)}
-                              className="image-close"
-                            >
+                              className="image-close">
                               <TiDelete size={25} color="red" />
                             </div>
                             <img
@@ -214,7 +214,7 @@ export const Chat = () => {
                         <div className="chat-submit-bottom">
                           <div className="image-upload">
                             <label className="upload-file-btn press-enter">
-                              <span className="fa fa-paperclip press-enter"></span>
+                              <span className="fa fa-paperclip press-enter mx-1"></span>
                               <input
                                 onChange={(e: any) => {
                                   setFile(
@@ -233,8 +233,8 @@ export const Chat = () => {
                           <div className="chat-input-box">
                             <input
                               type="text"
-                              className="chatInput"
-                              placeholder="Type here.."
+                              className="chatInput border-0"
+                              placeholder="Type here . . . "
                               value={message}
                               onChange={(e: any) => {
                                 setMessage(e.target.value);
@@ -242,12 +242,11 @@ export const Chat = () => {
                             />
                           </div>
 
-                          <div className="submit-button">
+                          <div className="submit-button ml-2">
                             <button
                               className="chat-button"
                               type="submit"
-                              disabled={sendFile || message ? false : true}
-                            >
+                              disabled={sendFile || message ? false : true}>
                               {t("Send")}
                             </button>
                           </div>
@@ -261,6 +260,8 @@ export const Chat = () => {
           </div>
         </div>
       </div>
+      {/* </div> */}
+      {/* </div> */}
       <Footer />
     </>
   );
