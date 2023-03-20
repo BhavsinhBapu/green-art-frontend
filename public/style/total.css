@@ -5549,7 +5549,7 @@ select:-webkit-autofill:focus {
 .page-left-sidebar .sidebar-top .left-menu li:hover {
   background: #f5e9bb5c !important;
   transition: 0.3s;
-  border-radius: 4px;
+  /* border-radius: 4px; */
   /* transform: translateX(6px); */
 }
 
