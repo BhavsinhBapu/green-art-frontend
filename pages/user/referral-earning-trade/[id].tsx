@@ -71,7 +71,7 @@ const ReferralEarningTrade: NextPage = () => {
     },
     {
       name: t("Amount"),
-      selector: (row: any) => row?.amount,
+      selector: (row: any) => `${row?.amount} ${row?.coin_type}`,
       sortable: true,
     },
     {
