@@ -75,18 +75,6 @@ const ReferralEarningTrade: NextPage = () => {
       sortable: true,
     },
     {
-      name: t("Price"),
-      selector: (row: any) => row?.price,
-      sortable: true,
-      cell: (row: any) => (
-        <div className="blance-text">
-          <span className="blance market incree">
-            {parseFloat(row?.price).toFixed(8)}
-          </span>
-        </div>
-      ),
-    },
-    {
       name: t("Amount"),
       selector: (row: any) => row?.amount,
       sortable: true,
