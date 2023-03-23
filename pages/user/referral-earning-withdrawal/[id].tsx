@@ -64,11 +64,7 @@ const ReferralEarningWithdraw: NextPage = () => {
       selector: (row: any) => row?.referral_user_email,
       sortable: true,
     },
-    {
-      name: t("Reference user email"),
-      selector: (row: any) => row?.reference_user_email,
-      sortable: true,
-    },
+
     {
       name: t("Transaction id"),
       selector: (row: any) => row?.transaction_id,
