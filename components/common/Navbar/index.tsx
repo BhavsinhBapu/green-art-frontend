@@ -20,6 +20,10 @@ import { checkThemeState } from "helpers/functions";
 import NotificationDropdown from "./notification-dropdown";
 import { setNotificationData } from "state/reducer/user";
 import { IoMdGlobe } from "react-icons/io";
+import {
+  REFERRAL_TYPE_DEPOSIT,
+  REFERRAL_TYPE_TRADE,
+} from "helpers/core-constants";
 
 const Navbar = ({ settings, isLoggedIn }: any) => {
   const { isLoading, user, logo, notificationData } = useSelector(
@@ -455,6 +459,48 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                               }
                             >
                               <a href="">{t("Stop Limit History")}</a>
+                            </li>
+                          </Link>
+                          <Link
+                            href={
+                              isLoggedIn
+                                ? "/user/referral-earning-withdrawal/" +
+                                  REFERRAL_TYPE_DEPOSIT
+                                : "/signin"
+                            }
+                          >
+                            <li
+                              className={
+                                router.pathname ==
+                                "/user/referral-earning-withdrawal/" +
+                                  REFERRAL_TYPE_DEPOSIT
+                                  ? "cp-user-active-page"
+                                  : ""
+                              }
+                            >
+                              <a href="">
+                                {t("Referral earning from withdrawal")}
+                              </a>
+                            </li>
+                          </Link>
+                          <Link
+                            href={
+                              isLoggedIn
+                                ? "/user/referral-earning-trade/" +
+                                  REFERRAL_TYPE_TRADE
+                                : "/signin"
+                            }
+                          >
+                            <li
+                              className={
+                                router.pathname ==
+                                "/user/referral-earning-trade/" +
+                                  REFERRAL_TYPE_TRADE
+                                  ? "cp-user-active-page"
+                                  : ""
+                              }
+                            >
+                              <a href="">{t("Referral earning from trade")}</a>
                             </li>
                           </Link>
                           {navbar?.reports?.fiatWithdrawalHistory?.status && (

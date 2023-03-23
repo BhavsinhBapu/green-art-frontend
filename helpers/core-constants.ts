@@ -82,3 +82,7 @@ export const TICKET_STATUS_CLOSE_FOREAVER = 4;
 export const KYC_TYPE_DISABLE = 0;
 export const KYC_TYPE_MANUAL = 1;
 export const KYC_TYPE_PERSONA = 2;
+
+//referral type
+export const REFERRAL_TYPE_DEPOSIT = 1;
+export const REFERRAL_TYPE_TRADE = 2;

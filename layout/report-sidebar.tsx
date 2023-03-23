@@ -15,6 +15,10 @@ import useTranslation from "next-translate/useTranslation";
 import { RootState } from "state/store";
 import { useSelector } from "react-redux";
 import { BsFillStopCircleFill } from "react-icons/bs";
+import {
+  REFERRAL_TYPE_DEPOSIT,
+  REFERRAL_TYPE_TRADE,
+} from "helpers/core-constants";
 const ReportSidebar = () => {
   const router = useRouter();
   const { t } = useTranslation("common");
@@ -41,7 +45,8 @@ const ReportSidebar = () => {
                 router.pathname == "/user/stop-limit-order-history"
                   ? "active"
                   : ""
-              }>
+              }
+            >
               <BsFillStopCircleFill />
               <a href="coinSwapHistory">{t("Stop Limit History")}</a>
             </li>
@@ -50,7 +55,8 @@ const ReportSidebar = () => {
             <li
               className={
                 router.pathname == "/user/swap-history" ? "active" : ""
-              }>
+              }
+            >
               <MdOutlineSwapHorizontalCircle />
               <a href="coinSwapHistory">{t("Swap History")}</a>
             </li>
@@ -59,7 +65,8 @@ const ReportSidebar = () => {
             <li
               className={
                 router.pathname == "/user/buy-order-history" ? "active" : ""
-              }>
+              }
+            >
               <GiBuyCard />
               <a href="getAllOrdersHistoryBuy">{t("Buy Order History")}</a>
             </li>
@@ -68,7 +75,8 @@ const ReportSidebar = () => {
             <li
               className={
                 router.pathname == "/user/sell-order-history" ? "active" : ""
-              }>
+              }
+            >
               <MdSell />
               <a href="getAllOrdersHistorySell">{t("Sell Order History")}</a>
             </li>
@@ -77,7 +85,8 @@ const ReportSidebar = () => {
             <li
               className={
                 router.pathname == "/user/transaction-history" ? "active" : ""
-              }>
+              }
+            >
               <MdOutlineTransferWithinAStation />
               <a href="getAllTransactionHistory">{t("Transaction History")}</a>
             </li>
@@ -89,7 +98,8 @@ const ReportSidebar = () => {
                   router.pathname == "/user/currency-deposit-history"
                     ? "active"
                     : ""
-                }>
+                }
+              >
                 <SiFiat />
                 <a href="getAllTransactionHistory">
                   {t("Fiat deposit History")}
@@ -104,7 +114,8 @@ const ReportSidebar = () => {
                   router.pathname == "/user/currency-withdraw-history"
                     ? "active"
                     : ""
-                }>
+                }
+              >
                 <SiFiat />
                 <a href="getAllTransactionHistory">
                   {t("Fiat withdrawal History")}
@@ -112,6 +123,38 @@ const ReportSidebar = () => {
               </li>
             </Link>
           )}
+          <Link
+            href={"/user/referral-earning-withdrawal/" + REFERRAL_TYPE_DEPOSIT}
+          >
+            <li
+              className={
+                router.pathname ==
+                `/user/referral-earning-withdrawal/${REFERRAL_TYPE_DEPOSIT}`
+                  ? "active"
+                  : ""
+              }
+            >
+              <SiFiat />
+              <a href="getAllTransactionHistory">
+                {t("Referral earning from withdrawal")}
+              </a>
+            </li>
+          </Link>
+          <Link href={"/user/referral-earning-trade/" + REFERRAL_TYPE_TRADE}>
+            <li
+              className={
+                router.pathname ==
+                "/user/referral-earning-trade/" + REFERRAL_TYPE_TRADE
+                  ? "active"
+                  : ""
+              }
+            >
+              <SiFiat />
+              <a href="getAllTransactionHistory">
+                {t("Referral earning from trade")}
+              </a>
+            </li>
+          </Link>
         </ul>
       </div>
     </div>
