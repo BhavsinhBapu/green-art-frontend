@@ -93,7 +93,6 @@ h3,
 h4,
 h5,
 h6 {
-    color: var(--font-color);
     /* color: var(--font-color); */
     color: var(--font-color) !important;
 }
@@ -5384,6 +5383,7 @@ select:-webkit-autofill:focus {
     border-radius: 10px;
     /* align-items: flex-start; */
     margin-bottom: 50px;
+    margin-bottom: 15px;
 }
 
 .section-wrapper.rounded-sm {
@@ -10364,6 +10364,7 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
     top: 0;
     z-index: 9999;
     background: #2a2e37f7;
+    background: var(--main-background-color);
     color: white !important;
 }
 
@@ -10557,6 +10558,10 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
 }
 
 .exchange-tab-menu .nav-tabs .nav-item .nav-link.active {
+    /* border-radius: 5px; */
+}
+
+.exchange-tab-menu .nav-tabs .nav-item .nav-link.active {
     color: var(--font-color);
     font-size: 18px;
     border-bottom: 4px solid var(--primary-color);
@@ -10586,6 +10591,7 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
     border-radius: 3px;
     background: var(--primary-color);
     color: var(--text-primary-color);
+    color: var(--font-color);
     text-decoration: none;
     font-size: 14px;
     font-weight: 400;
@@ -10812,6 +10818,7 @@ input[type="number"] {
     bottom: 30px;
     left: 30px;
     background: #fff;
+    background: var(--background-color-trade);
     max-width: 365px;
     border-radius: 15px;
     text-align: center;
@@ -10891,10 +10898,14 @@ input[type="number"] {
     background: linear-gradient( to bottom, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 0) 9%, rgba(0, 0, 0, 0.65) 80%), url("https://cdn.pixabay.com/photo/2017/06/15/07/41/yellow-2404380_960_720.jpg") no-repeat;
     background-color: #cccccc;
     min-height: 500px;
+    min-height: 400px;
     background-position: center;
     /* border-radius: 10px; */
     background-repeat: no-repeat;
     background-size: cover;
+    margin-right: 60px !important;
+    margin-left: 60px !important;
+    border-radius: 20px;
 }
 
 .launchPool-container {
@@ -11009,6 +11020,7 @@ input[type="number"] {
 .subscriptionRightContent {
     display: flex;
     align-items: center;
+    align-items: flex-start;
     justify-content: center;
 }
 
@@ -11028,6 +11040,7 @@ input[type="number"] {
 
 .select-method {
     display: grid;
+    display: flex;
     grid-auto-flow: column;
 }
 
@@ -11040,6 +11053,9 @@ input[type="number"] {
     margin-top: 20px;
     font-size: 18px;
     cursor: pointer;
+    border-radius: 4px;
+    padding-left: 53px;
+    padding-right: 53px;
 }
 
 .select-method-item-active {
@@ -11052,6 +11068,17 @@ input[type="number"] {
     color: var(--text-primary-color);
     cursor: pointer;
     background-color: var(--primary-color);
+    color: var(--primary-color);
+    cursor: pointer;
+    background-color: transparent;
+    border-radius: 4px;
+    border: 1px solid var(--primary-color);
+    padding-left: 53px;
+    padding-right: 53px;
+}
+
+.bnAwAJ {
+    padding: 21px;
 }
 
 .file-upload-wrapper {
@@ -11112,6 +11139,9 @@ input[type="number"] {
     background-color: var(--footer-background-color) !important;
     /* background-color: var(--background-color-8); */
     border: 1px solid var(--border-color);
+    background-color: var(--main-background-color) !important;
+    /* background-color: var(--background-color-8); */
+    border: 1px solid var(--border-color) !important;
     padding: 10px;
     border-radius: 10px;
 }
@@ -11126,6 +11156,8 @@ input[type="number"] {
 
 .paypal-container {
     margin-top: 20px;
+    background-color: white;
+    padding: 20px;
 }
 
 #upload-photo {
@@ -12905,6 +12937,7 @@ input[type="number"] {
 .wallet-border-history {
     border: 1px solid var(--border-color-1);
     border-radius: 8px !important;
+    margin-bottom: 40px;
 }
 
 .notificationNotFound {
@@ -13112,6 +13145,7 @@ label.ico-label-box {
 
 .chat-list-avatar {
     border-radius: 50%;
+    border: 1px solid var(--border-color);
 }
 
 .chat-details {
@@ -13119,6 +13153,7 @@ label.ico-label-box {
     padding: 10px;
     border-radius: 3px;
     margin: 10px;
+    word-break: break-all;
 }
 
 .chat-right {
@@ -14324,6 +14359,15 @@ input {
     padding: 8px 22px;
     border-radius: 4px;
     border: none;
+    padding: 8px 22px;
+    border-radius: 4px;
+    background: var(--primary-color);
+    border: none;
+    color: var(--text-primary-color-1);
+}
+
+.custom-page-container {
+    margin-top: 75px;
 }
 
 .swapSelect option {
@@ -14390,4 +14434,8 @@ input {
 
 .font_size {
     font-weight: 500;
+}
+
+.Verify_card {
+    font-size: 54px;
 }

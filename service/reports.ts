@@ -22,6 +22,18 @@ export const AllBuyOrdersHistoryApi = async (
   );
   return data;
 };
+export const ReferralHistoryApi = (
+  per_page: any,
+  page: any,
+  column_name: string,
+  order_by: string,
+  type: any
+) => {
+  return request.get(
+    `/referral-history?page=${page}&limit=${per_page}&type=${type}`
+  );
+};
+
 export const AllStopLimitOrdersHistoryApi = async (
   per_page: number,
   page: number,
