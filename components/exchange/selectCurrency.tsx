@@ -62,9 +62,7 @@ const SelectCurrency = () => {
                 await localStorage.setItem("base_coin_id", row?.parent_coin_id);
                 await localStorage.setItem("trade_coin_id", row?.child_coin_id);
                 await localStorage.setItem("current_pair", row.coin_pair);
-
                 await dispatch(setCurrentPair(row.coin_pair));
-
                 router.reload();
               }}
             >
@@ -92,7 +90,16 @@ const SelectCurrency = () => {
             trigger={["hover"]}
             overlayClassName="rcTooltipOverlay"
           >
-            <span className="text-center w-40 text-white">
+            <span
+              className="text-center w-40 text-white"
+              onClick={async () => {
+                await localStorage.setItem("base_coin_id", row?.parent_coin_id);
+                await localStorage.setItem("trade_coin_id", row?.child_coin_id);
+                await localStorage.setItem("current_pair", row.coin_pair);
+                await dispatch(setCurrentPair(row.coin_pair));
+                router.reload();
+              }}
+            >
               {parseFloat(row.last_price).toFixed(4)}
             </span>
           </Tooltip>
@@ -124,6 +131,13 @@ const SelectCurrency = () => {
                   ? "text-success"
                   : "text-danger"
               }
+              onClick={async () => {
+                await localStorage.setItem("base_coin_id", row?.parent_coin_id);
+                await localStorage.setItem("trade_coin_id", row?.child_coin_id);
+                await localStorage.setItem("current_pair", row.coin_pair);
+                await dispatch(setCurrentPair(row.coin_pair));
+                router.reload();
+              }}
             >
               {parseFloat(row.price_change).toFixed(2)}%
             </span>
