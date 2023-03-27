@@ -8,6 +8,7 @@ import { FiSettings } from "react-icons/fi";
 import { CgProfile } from "react-icons/cg";
 import { HiArrowNarrowRight, HiOutlineDocumentReport } from "react-icons/hi";
 import { BiWalletAlt } from "react-icons/bi";
+import OutsideClickHandler from "react-outside-click-handler";
 import {
   RiCalendarEventLine,
   RiNotificationBadgeLine,
@@ -22,7 +23,10 @@ import { useRouter } from "next/router";
 import moment from "moment";
 import { checkThemeState, darkModeToggleDashboard } from "helpers/functions";
 import { IoMdGlobe } from "react-icons/io";
-import { REFERRAL_TYPE_DEPOSIT, REFERRAL_TYPE_TRADE } from "helpers/core-constants";
+import {
+  REFERRAL_TYPE_DEPOSIT,
+  REFERRAL_TYPE_TRADE,
+} from "helpers/core-constants";
 const DashboardNavbar = () => {
   const { isLoggedIn, user, logo } = useSelector(
     (state: RootState) => state.user
@@ -87,15 +91,13 @@ const DashboardNavbar = () => {
                         router.pathname == "/exchange/dashboard"
                           ? "cp-user-active-page"
                           : ""
-                      }
-                    >
+                      }>
                       <a
                         href={
                           router.locale !== "en"
                             ? `/${router.locale}/exchange/dashboard`
                             : "/exchange/dashboard"
-                        }
-                      >
+                        }>
                         <span className="cp-user-icon">
                           <BsBarChartLine />
                         </span>
@@ -109,8 +111,9 @@ const DashboardNavbar = () => {
                   )}
                   {navbar?.wallet?.status && (
                     <Link
-                      href={isLoggedIn === true ? "/user/my-wallet" : "/signin"}
-                    >
+                      href={
+                        isLoggedIn === true ? "/user/my-wallet" : "/signin"
+                      }>
                       <li
                         className={
                           router.pathname == "/user/my-wallet"
@@ -118,8 +121,7 @@ const DashboardNavbar = () => {
                             : router.pathname == "/user/swap-coin"
                             ? "cp-user-active-page"
                             : ""
-                        }
-                      >
+                        }>
                         <a href="">
                           <span className="cp-user-icon">
                             <BiWalletAlt />
@@ -141,8 +143,7 @@ const DashboardNavbar = () => {
                             router.pathname == "/ico"
                               ? "cp-user-active-page"
                               : ""
-                          }
-                        >
+                          }>
                           <a href="">
                             <span className="cp-user-icon">
                               <RiCalendarEventLine />
@@ -164,18 +165,15 @@ const DashboardNavbar = () => {
                             : router.pathname == "/fiat-withdrawal"
                             ? "cp-user-active-page"
                             : ""
-                        }
-                      >
+                        }>
                         <Link
                           href={
                             isLoggedIn === true ? "/fiat-deposit" : "/signin"
-                          }
-                        >
+                          }>
                           <a
                             className="arrow-icon"
                             href="#"
-                            aria-expanded="true"
-                          >
+                            aria-expanded="true">
                             <span className="cp-user-icon">
                               <FiSettings />
                             </span>
@@ -189,8 +187,7 @@ const DashboardNavbar = () => {
                         <ul className="">
                           {navbar?.fiat?.deposit?.status && (
                             <Link
-                              href={isLoggedIn ? "/fiat-deposit" : "/signin"}
-                            >
+                              href={isLoggedIn ? "/fiat-deposit" : "/signin"}>
                               <li>
                                 <a href="">
                                   {navbar?.fiat?.deposit.name
@@ -202,15 +199,15 @@ const DashboardNavbar = () => {
                           )}
                           {navbar?.fiat?.withdrawal?.status && (
                             <Link
-                              href={isLoggedIn ? "/fiat-withdrawal" : "/signin"}
-                            >
+                              href={
+                                isLoggedIn ? "/fiat-withdrawal" : "/signin"
+                              }>
                               <li
                                 className={
                                   router.pathname == "/fiat-withdrawal"
                                     ? "cp-user-active-page"
                                     : ""
-                                }
-                              >
+                                }>
                                 <a href="">
                                   {navbar?.fiat?.withdrawal.name
                                     ? navbar?.fiat?.withdrawal.name
@@ -237,16 +234,14 @@ const DashboardNavbar = () => {
                         : router.pathname == "/user/currency-deposit-history"
                         ? "cp-user-active-page"
                         : ""
-                    }
-                  >
+                    }>
                     {navbar?.reports?.status && (
                       <Link
                         href={
                           isLoggedIn
                             ? "/user/wallet-history?type=deposit"
                             : "/signin"
-                        }
-                      >
+                        }>
                         <a className="arrow-icon" href="#" aria-expanded="true">
                           <span className="cp-user-icon">
                             <HiOutlineDocumentReport />
@@ -267,16 +262,14 @@ const DashboardNavbar = () => {
                             isLoggedIn
                               ? "/user/wallet-history?type=deposit"
                               : "/signin"
-                          }
-                        >
+                          }>
                           <li
                             className={
                               router.pathname ==
                               "/user/wallet-history?type=deposit"
                                 ? "cp-user-active-page"
                                 : ""
-                            }
-                          >
+                            }>
                             <a href="">
                               {navbar?.reports?.depositHistory?.name
                                 ? navbar?.reports?.depositHistory?.name
@@ -291,16 +284,14 @@ const DashboardNavbar = () => {
                             isLoggedIn
                               ? "/user/wallet-history?type=withdrawal"
                               : "/signin"
-                          }
-                        >
+                          }>
                           <li
                             className={
                               router.pathname ==
                               "/user/wallet-history?type=withdrawal"
                                 ? "cp-user-active-page"
                                 : ""
-                            }
-                          >
+                            }>
                             <a href="">
                               {navbar?.reports?.withdrawalHistory?.name
                                 ? navbar?.reports?.withdrawalHistory?.name
@@ -311,15 +302,13 @@ const DashboardNavbar = () => {
                       )}
                       {navbar?.reports?.swapHistory?.status && (
                         <Link
-                          href={isLoggedIn ? "/user/swap-history" : "/signin"}
-                        >
+                          href={isLoggedIn ? "/user/swap-history" : "/signin"}>
                           <li
                             className={
                               router.pathname == "/user/swap-history"
                                 ? "cp-user-active-page"
                                 : ""
-                            }
-                          >
+                            }>
                             <a href="">
                               {navbar?.reports?.swapHistory?.name
                                 ? navbar?.reports?.swapHistory?.name
@@ -332,15 +321,13 @@ const DashboardNavbar = () => {
                         <Link
                           href={
                             isLoggedIn ? "/user/buy-order-history" : "/signin"
-                          }
-                        >
+                          }>
                           <li
                             className={
                               router.pathname == "/user/buy-order-history"
                                 ? "cp-user-active-page"
                                 : ""
-                            }
-                          >
+                            }>
                             <a href="">
                               {navbar?.reports?.buyOrderHistory?.name
                                 ? navbar?.reports?.buyOrderHistory?.name
@@ -353,15 +340,13 @@ const DashboardNavbar = () => {
                         <Link
                           href={
                             isLoggedIn ? "/user/sell-order-history" : "/signin"
-                          }
-                        >
+                          }>
                           <li
                             className={
                               router.pathname == "/user/sell-order-history"
                                 ? "cp-user-active-page"
                                 : ""
-                            }
-                          >
+                            }>
                             <a href="">
                               {navbar?.reports?.sellOrderHistory?.name
                                 ? navbar?.reports?.sellOrderHistory?.name
@@ -374,15 +359,13 @@ const DashboardNavbar = () => {
                         <Link
                           href={
                             isLoggedIn ? "/user/transaction-history" : "/signin"
-                          }
-                        >
+                          }>
                           <li
                             className={
                               router.pathname == "/user/transaction-history"
                                 ? "cp-user-active-page"
                                 : ""
-                            }
-                          >
+                            }>
                             <a href="">
                               {navbar?.reports?.transactionHistory?.name
                                 ? navbar?.reports?.transactionHistory?.name
@@ -398,16 +381,14 @@ const DashboardNavbar = () => {
                               isLoggedIn
                                 ? "/user/currency-deposit-history"
                                 : "/signin"
-                            }
-                          >
+                            }>
                             <li
                               className={
                                 router.pathname ==
                                 "/user/currency-deposit-history"
                                   ? "cp-user-active-page"
                                   : ""
-                              }
-                            >
+                              }>
                               <a href="">
                                 {navbar?.reports?.fiatDepositHistory?.name
                                   ? navbar?.reports?.fiatDepositHistory?.name
@@ -421,15 +402,13 @@ const DashboardNavbar = () => {
                           isLoggedIn
                             ? "/user/stop-limit-order-history"
                             : "/signin"
-                        }
-                      >
+                        }>
                         <li
                           className={
                             router.pathname == "/user/stop-limit-order-history"
                               ? "cp-user-active-page"
                               : ""
-                          }
-                        >
+                          }>
                           <a href="">{t("Stop Limit History")}</a>
                         </li>
                       </Link>
@@ -439,8 +418,7 @@ const DashboardNavbar = () => {
                             ? "/user/referral-earning-withdrawal/" +
                               REFERRAL_TYPE_DEPOSIT
                             : "/signin"
-                        }
-                      >
+                        }>
                         <li
                           className={
                             router.pathname ==
@@ -448,8 +426,7 @@ const DashboardNavbar = () => {
                               REFERRAL_TYPE_DEPOSIT
                               ? "cp-user-active-page"
                               : ""
-                          }
-                        >
+                          }>
                           <a href="">{t("Referral earning from withdrawal")}</a>
                         </li>
                       </Link>
@@ -459,8 +436,7 @@ const DashboardNavbar = () => {
                             ? "/user/referral-earning-trade/" +
                               REFERRAL_TYPE_TRADE
                             : "/signin"
-                        }
-                      >
+                        }>
                         <li
                           className={
                             router.pathname ==
@@ -468,8 +444,7 @@ const DashboardNavbar = () => {
                               REFERRAL_TYPE_TRADE
                               ? "cp-user-active-page"
                               : ""
-                          }
-                        >
+                          }>
                           <a href="">{t("Referral earning from trade")}</a>
                         </li>
                       </Link>
@@ -479,16 +454,14 @@ const DashboardNavbar = () => {
                             isLoggedIn
                               ? "/user/currency-withdraw-history"
                               : "/signin"
-                          }
-                        >
+                          }>
                           <li
                             className={
                               router.pathname ==
                               "/user/currency-withdraw-history"
                                 ? "cp-user-active-page"
                                 : ""
-                            }
-                          >
+                            }>
                             <a href="">
                               {navbar?.reports?.fiatWithdrawalHistory?.name
                                 ? navbar?.reports?.fiatWithdrawalHistory?.name
@@ -506,8 +479,7 @@ const DashboardNavbar = () => {
                           router.pathname == "/user/profile"
                             ? "cp-user-active-page"
                             : ""
-                        }
-                      >
+                        }>
                         <a href="">
                           <span className="cp-user-icon">
                             <CgProfile />
@@ -528,8 +500,7 @@ const DashboardNavbar = () => {
                           router.pathname == "/user/referral"
                             ? "cp-user-active-page"
                             : ""
-                        }
-                      >
+                        }>
                         <a href="">
                           <span className="cp-user-icon">
                             <BiNetworkChart />
@@ -551,8 +522,7 @@ const DashboardNavbar = () => {
                         : router.pathname == "/user/faq"
                         ? "cp-user-active-page"
                         : ""
-                    }
-                  >
+                    }>
                     {navbar?.settings?.ststus && (
                       <Link href={isLoggedIn ? "/user/settings" : "/signin"}>
                         <a className="arrow-icon" href="#" aria-expanded="true">
@@ -586,8 +556,7 @@ const DashboardNavbar = () => {
                               router.pathname == "/user/faq"
                                 ? "cp-user-active-page"
                                 : ""
-                            }
-                          >
+                            }>
                             <a href="">
                               {navbar?.settings?.faq?.name
                                 ? navbar?.settings?.faq?.name
@@ -624,535 +593,224 @@ const DashboardNavbar = () => {
             <div className="col-xl-2 col-lg-2 col-8">
               {isLoggedIn ? (
                 <div className="cp-user-top-bar-right">
-                  <div>
-                    <ul>
-                      <li className="hm-notify" id="notification_item">
-                        <div className="btn-group dropdown">
-                          <button
-                            type="button"
-                            className="btn notification-btn dropdown-toggle"
-                            data-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false"
-                          >
-                            <span
-                              className="notify-value hm-notify-number"
-                              onClick={() => {}}
-                            >
-                              {notificationData?.length > 100
-                                ? "99+"
-                                : notificationData?.length}
-                            </span>
-                            <img
-                              src="/notification.png"
-                              className="img-fluid"
-                              alt=""
-                            />
-                          </button>
-                          <div className="dropdown-menu notification-list dropdown-menu-right dark-trade-notify">
-                            <div className="notify-menu">
-                              <div className="notification-list-title">
-                                <div className="notify-counter">
-                                  <div className="notify-pending">
-                                    <p>
-                                      <span>{notificationData.length}</span>{" "}
-                                      {t("pending notifications")}
-                                    </p>
-                                    <a
-                                      onClick={() => {
-                                        seen();
-                                      }}
-                                      className="clear-all"
-                                      href="#"
-                                    >
-                                      {t("Clear All")}
-                                    </a>
-                                  </div>
-
-                                  <div className="notifiy-clear">
-                                    <Link href="/user/notification">
-                                      <a
-                                        // onClick={() => {
-                                        //   seen();
-                                        // }}
-                                        className="view-all"
-                                      >
-                                        {t("View All")}
-                                      </a>
-                                    </Link>
-                                    <HiArrowNarrowRight />
-                                  </div>
-                                </div>
-                              </div>
-                              <div>
-                                <div className="notify-grid-item">
-                                  {notificationData.length > 0 ? (
-                                    notificationData
-                                      ?.slice(0, 5)
-                                      ?.map((item: any, index: number) => (
-                                        <div
-                                          className="notify-icon-title"
-                                          key={index}
-                                        >
-                                          <RiNotificationBadgeLine
-                                            size={20}
-                                            className="notify-menu-icon"
-                                          />
-                                          <div>
-                                            <h6>
-                                              {item?.title.substring(0, 40)}
-                                            </h6>
-                                            <p>
-                                              {item?.notification_body.substring(
-                                                0,
-                                                50
-                                              )}
-                                            </p>
-                                            <span>
-                                              {moment(item?.created_at).format(
-                                                "DD MMM YYYY"
-                                              )}
-                                            </span>
-                                          </div>
-                                        </div>
-                                      ))
-                                  ) : (
-                                    <p className="notFountNotifyText">
-                                      {t("No Notification Found!")}
-                                    </p>
-                                  )}
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-
-                      <li className="hm-notify" id="notification_item">
-                        <div className="btn-group profile-dropdown">
-                          <button
-                            type="button"
-                            className="btn dropdown-toggle"
-                            data-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false"
-                          >
-                            <span className="cp-user-avater">
+                  <OutsideClickHandler onOutsideClick={() => setActive(false)}>
+                    <div>
+                      <ul>
+                        <li className="hm-notify" id="notification_item">
+                          <div className="btn-group dropdown">
+                            <button
+                              type="button"
+                              className="btn notification-btn dropdown-toggle"
+                              data-toggle="dropdown"
+                              aria-haspopup="true"
+                              aria-expanded="false">
                               <span
-                                className={`${
-                                  user?.online_status?.online_status
-                                    ? "tradeUserActive"
-                                    : "tradeUserDeactive"
-                                } cp-user-img`}
-                              >
-                                {user?.photo && (
-                                  <img
-                                    src={user?.photo}
-                                    className="img-fluid"
-                                    alt="user"
-                                  />
-                                )}
+                                className="notify-value hm-notify-number"
+                                onClick={() => {}}>
+                                {notificationData?.length > 100
+                                  ? "99+"
+                                  : notificationData?.length}
                               </span>
-                              <span className="cp-user-avater-info"></span>
-                            </span>
-                          </button>
-                          <div className="dropdown-menu dropdown-menu-right">
-                            <span
-                              className={`${
-                                user?.online_status?.online_status
-                                  ? "userActive"
-                                  : "userDeactive"
-                              } big-user-thumb`}
-                            >
                               <img
-                                src={user?.photo}
+                                src="/notification.png"
                                 className="img-fluid"
                                 alt=""
                               />
-                            </span>
-                            <div className="user-name">
-                              <p className="nav-userName">
-                                {user?.first_name!} {user?.last_name!}
-                              </p>
-                            </div>
-                            <Link href="/user/profile">
-                              <button className="dropdown-item" type="button">
-                                <a href="">
-                                  <i className="fa-regular fa-user"></i>{" "}
-                                  {t("Profile")}
-                                </a>
-                              </button>
-                            </Link>
-                            <Link href="/user/settings">
-                              <button className="dropdown-item" type="button">
-                                <a href="">
-                                  <i className="fa fa-cog"></i>{" "}
-                                  {t("My Settings")}
-                                </a>
-                              </button>
-                            </Link>
-                            <button
-                              className="dropdown-item"
-                              type="button"
-                              onClick={async () => {
-                                router.reload();
-                                darkModeToggleDashboard();
-                              }}
-                            >
-                              <a href="#">
-                                {theme === 0 ? (
-                                  <>
-                                    <BsFillSunFill size={26} className="mr-2" />
-                                    {t("Light")}
-                                  </>
-                                ) : (
-                                  <>
-                                    <BsFillMoonFill
-                                      size={20}
-                                      className="mr-2"
-                                    />
-                                    {t("Dark")}
-                                  </>
-                                )}
-                              </a>
                             </button>
-                            <Link href="/user/my-wallet">
-                              <button className="dropdown-item" type="button">
-                                <a href="-wallet">
-                                  <i className="fa fa-credit-card"></i>{" "}
-                                  {t("My Wallet")}
-                                </a>
-                              </button>
-                            </Link>
-                            <button
-                              className="dropdown-item"
-                              type="button"
-                              onClick={() => {
-                                dispatch(LogoutAction());
-                              }}
-                            >
-                              <a>
-                                <i className="fa fa-sign-out"></i> {t("Logout")}
-                              </a>
-                            </button>
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className={`cp-user-sidebar ${active ? "active" : ""}`}>
-                    <div className="cp-user-sidebar-menu scrollbar-inner">
-                      <nav>
-                        <ul id="metismenu">
-                          <li className=" cp-user-active-page ">
-                            <a
-                              href={
-                                router.locale !== "en"
-                                  ? `/${router.locale}/exchange/dashboard`
-                                  : "/exchange/dashboard"
-                              }
-                            >
-                              <span className="cp-user-icon">
-                                <img
-                                  src=""
-                                  className="img-fluid cp-user-side-bar-icon"
-                                  alt=""
-                                />
-                                <img
-                                  src=""
-                                  className="img-fluid cp-user-side-bar-icon-hover"
-                                  alt=""
-                                />
-                              </span>
-                              <span className="cp-user-name">
-                                {t("Dashboard")}
-                              </span>
-                            </a>
-                          </li>
+                            <div className="dropdown-menu notification-list dropdown-menu-right dark-trade-notify">
+                              <div className="notify-menu">
+                                <div className="notification-list-title">
+                                  <div className="notify-counter">
+                                    <div className="notify-pending">
+                                      <p>
+                                        <span>{notificationData.length}</span>{" "}
+                                        {t("pending notifications")}
+                                      </p>
+                                      <a
+                                        onClick={() => {
+                                          seen();
+                                        }}
+                                        className="clear-all"
+                                        href="#">
+                                        {t("Clear All")}
+                                      </a>
+                                    </div>
 
-                          <li>
-                            <a
-                              className="arrow-icon"
-                              href="#"
-                              aria-expanded="true"
-                            >
-                              <span className="cp-user-icon">
-                                <img
-                                  src=""
-                                  className="img-fluid cp-user-side-bar-icon"
-                                  alt=""
-                                />
-                                <img
-                                  src=""
-                                  className="img-fluid cp-user-side-bar-icon-hover"
-                                  alt=""
-                                />
+                                    <div className="notifiy-clear">
+                                      <Link href="/user/notification">
+                                        <a
+                                          // onClick={() => {
+                                          //   seen();
+                                          // }}
+                                          className="view-all">
+                                          {t("View All")}
+                                        </a>
+                                      </Link>
+                                      <HiArrowNarrowRight />
+                                    </div>
+                                  </div>
+                                </div>
+                                <div>
+                                  <div className="notify-grid-item">
+                                    {notificationData.length > 0 ? (
+                                      notificationData
+                                        ?.slice(0, 5)
+                                        ?.map((item: any, index: number) => (
+                                          <div
+                                            className="notify-icon-title"
+                                            key={index}>
+                                            <RiNotificationBadgeLine
+                                              size={20}
+                                              className="notify-menu-icon"
+                                            />
+                                            <div>
+                                              <h6>
+                                                {item?.title.substring(0, 40)}
+                                              </h6>
+                                              <p>
+                                                {item?.notification_body.substring(
+                                                  0,
+                                                  50
+                                                )}
+                                              </p>
+                                              <span>
+                                                {moment(
+                                                  item?.created_at
+                                                ).format("DD MMM YYYY")}
+                                              </span>
+                                            </div>
+                                          </div>
+                                        ))
+                                    ) : (
+                                      <p className="notFountNotifyText">
+                                        {t("No Notification Found!")}
+                                      </p>
+                                    )}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+
+                        <li className="hm-notify" id="notification_item">
+                          <div className="btn-group profile-dropdown">
+                            <button
+                              type="button"
+                              className="btn dropdown-toggle"
+                              data-toggle="dropdown"
+                              aria-haspopup="true"
+                              aria-expanded="false">
+                              <span className="cp-user-avater">
+                                <span
+                                  className={`${
+                                    user?.online_status?.online_status
+                                      ? "tradeUserActive"
+                                      : "tradeUserDeactive"
+                                  } cp-user-img`}>
+                                  {user?.photo && (
+                                    <img
+                                      src={user?.photo}
+                                      className="img-fluid"
+                                      alt="user"
+                                    />
+                                  )}
+                                </span>
+                                <span className="cp-user-avater-info"></span>
                               </span>
-                              <span className="cp-user-name">
-                                {t("Wallet")}
-                              </span>
-                            </a>
-                            <ul>
-                              <Link
-                                href={
-                                  isLoggedIn ? "/user/my-wallet" : "/signin"
-                                }
-                              >
-                                <li>
-                                  <a href="">{t("My Wallet")}</a>
-                                </li>
-                              </Link>
-                              <Link
-                                href={
-                                  isLoggedIn ? "/user/swap-coin" : "/signin"
-                                }
-                              >
-                                <li>
-                                  <a href="">{t("Swap Coin")}</a>
-                                </li>
-                              </Link>
-                            </ul>
-                          </li>
-                          <li>
-                            <a
-                              className="arrow-icon"
-                              href="#"
-                              aria-expanded="true"
-                            >
-                              <span className="cp-user-icon">
+                            </button>
+                            <div className="dropdown-menu dropdown-menu-right">
+                              <span
+                                className={`${
+                                  user?.online_status?.online_status
+                                    ? "userActive"
+                                    : "userDeactive"
+                                } big-user-thumb`}>
                                 <img
-                                  src=""
-                                  className="img-fluid cp-user-side-bar-icon"
-                                  alt=""
-                                />
-                                <img
-                                  src=""
-                                  className="img-fluid cp-user-side-bar-icon-hover"
-                                  alt=""
-                                />
-                              </span>
-                              <span className="cp-user-name">
-                                {t("Reports")}
-                              </span>
-                            </a>
-                            <ul>
-                              <Link
-                                href={
-                                  isLoggedIn
-                                    ? "/user/wallet-history?type=deposit"
-                                    : "/signin"
-                                }
-                              >
-                                <li>
-                                  <a href="">{t("Deposit History")}</a>
-                                </li>
-                              </Link>
-                              <Link
-                                href={
-                                  isLoggedIn
-                                    ? "/user/wallet-history?type=withdrawal"
-                                    : "/signin"
-                                }
-                              >
-                                <li>
-                                  <a href="">{t("Withdrawal History")}</a>
-                                </li>
-                              </Link>
-                              <Link
-                                href={
-                                  isLoggedIn ? "/user/swap-history" : "/signin"
-                                }
-                              >
-                                <li>
-                                  <a href="">{t("Swap History")}</a>
-                                </li>
-                              </Link>
-                              <Link
-                                href={
-                                  isLoggedIn
-                                    ? "/user/buy-order-history"
-                                    : "/signin"
-                                }
-                              >
-                                <li>
-                                  <a href="">{t("Buy Order History")}</a>
-                                </li>
-                              </Link>
-                              <Link
-                                href={
-                                  isLoggedIn
-                                    ? "/user/sell-order-history"
-                                    : "/signin"
-                                }
-                              >
-                                <li>
-                                  <a href="">{t("Sell Order History")}</a>
-                                </li>
-                              </Link>
-                              <Link
-                                href={
-                                  isLoggedIn
-                                    ? "/user/transaction-history"
-                                    : "/signin"
-                                }
-                              >
-                                <li>
-                                  <a href="">{t("Transaction History")}</a>
-                                </li>
-                              </Link>
-                            </ul>
-                          </li>
-                          <li>
-                            <a
-                              className="arrow-icon"
-                              href="#"
-                              aria-expanded="true"
-                            >
-                              <span className="cp-user-icon">
-                                <img
-                                  src=""
-                                  className="img-fluid cp-user-side-bar-icon"
-                                  alt=""
-                                />
-                                <img
-                                  src=""
-                                  className="img-fluid cp-user-side-bar-icon-hover"
+                                  src={user?.photo}
+                                  className="img-fluid"
                                   alt=""
                                 />
                               </span>
-                              <span className="cp-user-name">
-                                {t("My Profile")}
-                              </span>
-                            </a>
-                            <ul>
-                              <Link
-                                href={isLoggedIn ? "/user/profile" : "/signin"}
-                              >
-                                <li>
-                                  <a href="">{t("Profile")}</a>
-                                </li>
+                              <div className="user-name">
+                                <p className="nav-userName">
+                                  {user?.first_name!} {user?.last_name!}
+                                </p>
+                              </div>
+                              <Link href="/user/profile">
+                                <button className="dropdown-item" type="button">
+                                  <a href="">
+                                    <i className="fa-regular fa-user"></i>{" "}
+                                    {t("Profile")}
+                                  </a>
+                                </button>
                               </Link>
-                              <Link
-                                href={
-                                  isLoggedIn ? "/user/edit-profile" : "/signin"
-                                }
-                              >
-                                <li>
-                                  <a href="">{t("Edit Profile")}</a>
-                                </li>
+                              <Link href="/user/settings">
+                                <button className="dropdown-item" type="button">
+                                  <a href="">
+                                    <i className="fa fa-cog"></i>{" "}
+                                    {t("My Settings")}
+                                  </a>
+                                </button>
                               </Link>
-                              <Link
-                                href={
-                                  isLoggedIn
-                                    ? "/user/phone-verification"
-                                    : "/signin"
-                                }
-                              >
-                                <li>
-                                  <a href="">{t("Phone Verification")}</a>
-                                </li>
+                              <button
+                                className="dropdown-item"
+                                type="button"
+                                onClick={async () => {
+                                  router.reload();
+                                  darkModeToggleDashboard();
+                                }}>
+                                <a href="#">
+                                  {theme === 0 ? (
+                                    <>
+                                      <BsFillSunFill
+                                        size={26}
+                                        className="mr-2"
+                                      />
+                                      {t("Light")}
+                                    </>
+                                  ) : (
+                                    <>
+                                      <BsFillMoonFill
+                                        size={20}
+                                        className="mr-2"
+                                      />
+                                      {t("Dark")}
+                                    </>
+                                  )}
+                                </a>
+                              </button>
+                              <Link href="/user/my-wallet">
+                                <button className="dropdown-item" type="button">
+                                  <a href="-wallet">
+                                    <i className="fa fa-credit-card"></i>{" "}
+                                    {t("My Wallet")}
+                                  </a>
+                                </button>
                               </Link>
-                              <Link
-                                href={isLoggedIn ? "/user/security" : "/signin"}
-                              >
-                                <li>
-                                  <a href="">{t("Security")}</a>
-                                </li>
-                              </Link>
-                              <Link
-                                href={
-                                  isLoggedIn
-                                    ? "/user/verification-list"
-                                    : "/signin"
-                                }
-                              >
-                                <li>
-                                  <a href="">{t("Verification List")}</a>
-                                </li>
-                              </Link>
-                              <Link
-                                href={
-                                  isLoggedIn
-                                    ? "/user/personal-verification"
-                                    : "/signin"
-                                }
-                              >
-                                <li>
-                                  <a href="">{t("Personal Verification")}</a>
-                                </li>
-                              </Link>
-                              <Link
-                                href={
-                                  isLoggedIn
-                                    ? "/user/change-password"
-                                    : "/signin"
-                                }
-                              >
-                                <li>
-                                  <a href="">{t("Change Password")}</a>
-                                </li>
-                              </Link>
-                            </ul>
-                          </li>
-                          <li>
-                            <a href="">
-                              <span className="cp-user-icon">
-                                <img
-                                  src=""
-                                  className="img-fluid cp-user-side-bar-icon"
-                                  alt=""
-                                />
-                                <img
-                                  src=""
-                                  className="img-fluid cp-user-side-bar-icon-hover"
-                                  alt=""
-                                />
-                              </span>
-                              <span className="cp-user-name">
-                                {t("My Referral")}
-                              </span>
-                            </a>
-                          </li>
-                          <li>
-                            <a
-                              className="arrow-icon"
-                              href="#"
-                              aria-expanded="true"
-                            >
-                              <span className="cp-user-icon">
-                                <img
-                                  src=""
-                                  className="img-fluid cp-user-side-bar-icon"
-                                  alt=""
-                                />
-                                <img
-                                  src=""
-                                  className="img-fluid cp-user-side-bar-icon-hover"
-                                  alt=""
-                                />
-                              </span>
-                              <span className="cp-user-name">
-                                {t("Settings")}
-                              </span>
-                            </a>
-                            <ul>
-                              <Link
-                                href={isLoggedIn ? "/user/settings" : "/signin"}
-                              >
-                                <li>
-                                  <a href="">{t("My Settings")}</a>
-                                </li>
-                              </Link>
-                              <Link href={isLoggedIn ? "/user/faq" : "/signin"}>
-                                <li>
-                                  <a href="">{t("FAQ")}</a>
-                                </li>
-                              </Link>
-                            </ul>
-                          </li>
-                        </ul>
-                      </nav>
+                              <button
+                                className="dropdown-item"
+                                type="button"
+                                onClick={() => {
+                                  dispatch(LogoutAction());
+                                }}>
+                                <a>
+                                  <i className="fa fa-sign-out"></i>{" "}
+                                  {t("Logout")}
+                                </a>
+                              </button>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
                     </div>
+                  </OutsideClickHandler>
+                  <div
+                    className="cp-user-sidebar-toggler-s2"
+                    onClick={() => {
+                      setActive(active ? false : true);
+                    }}>
+                    <img src="/menu.svg" className="img-fluid" alt="" />
                   </div>
                 </div>
               ) : (

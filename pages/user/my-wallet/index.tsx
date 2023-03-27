@@ -95,7 +95,7 @@ const MyWallet: NextPage = () => {
           <div className="container-fluid">
             <div className="asset-balances-area cstm-loader-area">
               <div className="asset-balances-left">
-                <div className="section-wrapper ">
+                <div className="section-wrapper">
                   <div
                     id="assetBalances_wrapper"
                     className="dataTables_wrapper no-footer">
@@ -144,7 +144,7 @@ const MyWallet: NextPage = () => {
                   {processing ? (
                     <Loading />
                   ) : (
-                    <div className="table-responsive tableScroll">
+                    <div className="table-responsive walletTableScroll">
                       <table
                         id="assetBalances"
                         className="table table-borderless secendary-table asset-balances-table">

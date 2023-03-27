@@ -11483,13 +11483,6 @@ input[type="number"] {
     box-shadow: rgba(213, 212, 212, 0.1) 0px 4px 12px !important;
 }
 
-
-/* .tableScroll {
-  overflow-x: scroll;
-  max-width: 95vw;
-  padding-right: 30px;
-} */
-
 .single-wallet {
     margin: 0 auto;
     background: var(--main-background-color);
