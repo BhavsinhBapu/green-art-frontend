@@ -75,8 +75,7 @@ const Dashboard: NextPage = () => {
         <div className="cp-user-sidebar-area">
           <div
             className="scroll-wrapper cp-user-sidebar-menu scrollbar-inner"
-            style={{ position: "relative" }}
-          >
+            style={{ position: "relative" }}>
             <div
               className="cp-user-sidebar-menu scrollbar-inner scroll-content"
               style={{
@@ -84,8 +83,7 @@ const Dashboard: NextPage = () => {
                 marginBottom: "0px",
                 marginRight: "0px",
                 maxHeight: "0px",
-              }}
-            ></div>
+              }}></div>
             <div className="scroll-element scroll-x">
               <div className="scroll-element_outer">
                 <div className="scroll-element_size" />
@@ -108,12 +106,10 @@ const Dashboard: NextPage = () => {
           role="dialog"
           aria-labelledby="exampleModalCenterTitle"
           aria-hidden="true"
-          className="modal fade"
-        >
+          className="modal fade">
           <div
             role="document"
-            className="modal-dialog modal-lg modal-dialog-centered"
-          >
+            className="modal-dialog modal-lg modal-dialog-centered">
             <div className="modal-content dark-modal">
               <div className="modal-header align-items-center">
                 <h5 id="exampleModalCenterTitle" className="modal-title">
@@ -123,8 +119,7 @@ const Dashboard: NextPage = () => {
                   type="button"
                   data-dismiss="modal"
                   aria-label="Close"
-                  className="close"
-                >
+                  className="close">
                   <span aria-hidden="true">×</span>
                 </button>
               </div>
@@ -145,15 +140,13 @@ const Dashboard: NextPage = () => {
             <div
               role="alert"
               id="web_socket_notification"
-              className="alert alert-success alert-dismissible fade show d-none"
-            >
+              className="alert alert-success alert-dismissible fade show d-none">
               <span id="socket_message" />
               <button
                 type="button"
                 data-dismiss="alert"
                 aria-label="Close"
-                className="close"
-              >
+                className="close">
                 <span aria-hidden="true">×</span>
               </button>
             </div>
@@ -163,19 +156,16 @@ const Dashboard: NextPage = () => {
               role="dialog"
               aria-labelledby="exampleModalCenterTitle"
               aria-hidden="true"
-              className="modal fade"
-            >
+              className="modal fade">
               <div
                 role="document"
-                className="modal-dialog modal-dialog-centered"
-              >
+                className="modal-dialog modal-dialog-centered">
                 <div className="modal-content">
                   <button
                     type="button"
                     data-dismiss="modal"
                     aria-label="Close"
-                    className="close"
-                  >
+                    className="close">
                     <img alt="" className="img-fluid" />
                   </button>
                   <div className="text-center">
@@ -189,8 +179,7 @@ const Dashboard: NextPage = () => {
                   <div className="modal-body">
                     <a
                       id="confirm-link"
-                      className="btn btn-block cp-user-move-btn"
-                    >
+                      className="btn btn-block cp-user-move-btn">
                       {t("Confirm")}
                     </a>
                   </div>
@@ -202,7 +191,7 @@ const Dashboard: NextPage = () => {
               <div id="dashboard">
                 <div className="row">
                   <div className="col-xl-12 col-12">
-                    <div className="cxchange-summary-wrap">
+                    <div className="cxchange-summary-wrap mt-5">
                       {currentPair && (
                         <div className="cxchange-summary-name">
                           <div className="summber-coin-type dropdown">
@@ -211,8 +200,7 @@ const Dashboard: NextPage = () => {
                               id="dropdownMenuButton"
                               data-toggle="dropdown"
                               aria-haspopup="true"
-                              aria-expanded="false"
-                            >
+                              aria-expanded="false">
                               {currentPair.replace(/_/g, "/")}
                             </span>
                             <SelectCurrency />
