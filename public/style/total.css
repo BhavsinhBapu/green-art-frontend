@@ -12759,7 +12759,9 @@ input {
     color: var(--text-primary-color-2);
     font-size: 22px;
 }
-
+.trend-image{
+    max-height: 400px;
+}
 .massage_img::after {
     position: absolute;
     top: 0;

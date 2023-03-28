@@ -16,10 +16,15 @@ const BottomDetails = ({ landing }: any) => {
             <div className="row align-items-center">
               <div className="col-lg-6">
                 <div className="trade-anywhere-left">
-                  <ImageComponent
+                  {/* <ImageComponent
                     src={landing?.secure_trade_left_img}
                     alt="integration"
                     height={300}
+                  /> */}
+                  <img
+                    className="trend-image"
+                    src={landing?.secure_trade_left_img}
+                    alt="trade-imge"
                   />
                 </div>
               </div>
