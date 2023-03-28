@@ -35,12 +35,10 @@ const NotificationDropdown = ({
                     className="notification-btn dropdown-toggle"
                     data-toggle="dropdown"
                     aria-haspopup="true"
-                    aria-expanded="false"
-                  >
+                    aria-expanded="false">
                     <span
                       className="notify-value hm-notify-number"
-                      onClick={() => {}}
-                    >
+                      onClick={() => {}}>
                       {notificationData?.length > 100
                         ? "99+"
                         : notificationData?.length}
@@ -61,8 +59,7 @@ const NotificationDropdown = ({
                                 seen();
                               }}
                               className="clear-all"
-                              href="#"
-                            >
+                              href="#">
                               {t("Clear All")}
                             </a>
                           </div>
@@ -112,8 +109,7 @@ const NotificationDropdown = ({
                       className="scroll-wrapper scrollbar-inner"
                       style={{
                         position: "relative",
-                      }}
-                    >
+                      }}>
                       <ul
                         className="scrollbar-inner scroll-content"
                         style={{
@@ -121,8 +117,7 @@ const NotificationDropdown = ({
                           marginBottom: "0px",
                           marginRight: "0px",
                           maxHeight: "0px",
-                        }}
-                      ></ul>
+                        }}></ul>
                       <div className="scroll-element scroll-x">
                         <div className="scroll-element_outer">
                           <div className="scroll-element_size"></div>
@@ -148,16 +143,14 @@ const NotificationDropdown = ({
                     className="btn dropdown-toggle"
                     data-toggle="dropdown"
                     aria-haspopup="true"
-                    aria-expanded="false"
-                  >
+                    aria-expanded="false">
                     <span className="cp-user-avater">
                       <span
                         className={`${
                           user?.online_status?.online_status
                             ? "tradeUserActive"
                             : "tradeUserDeactive"
-                        } cp-user-img`}
-                      >
+                        } cp-user-img`}>
                         {user?.photo && (
                           <img
                             src={user?.photo}
@@ -175,8 +168,7 @@ const NotificationDropdown = ({
                         user?.online_status?.online_status
                           ? "userActive"
                           : "userDeactive"
-                      } big-user-thumb`}
-                    >
+                      } big-user-thumb`}>
                       <img
                         src={user?.photo}
                         className="img-fluid profile-avatar"
@@ -209,8 +201,7 @@ const NotificationDropdown = ({
                       type="button"
                       onClick={() => {
                         darkModeToggle(settings, setTheme);
-                      }}
-                    >
+                      }}>
                       <a href="#">
                         {theme === 0 ? (
                           <>
@@ -239,8 +230,7 @@ const NotificationDropdown = ({
                       type="button"
                       onClick={() => {
                         dispatch(LogoutAction());
-                      }}
-                    >
+                      }}>
                       <a>
                         <i className="fa fa-sign-out"></i> {t("Logout")}
                       </a>
@@ -254,8 +244,7 @@ const NotificationDropdown = ({
             className="cp-user-sidebar-toggler-s2"
             onClick={() => {
               setActive(active ? false : true);
-            }}
-          >
+            }}>
             <img src="/menu.svg" className="img-fluid" alt="" />
           </div>
         </div>

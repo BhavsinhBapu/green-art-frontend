@@ -90,15 +90,13 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                             router.pathname == "/exchange/dashboard"
                               ? "cp-user-active-page"
                               : ""
-                          }
-                        >
+                          }>
                           <a
                             href={
                               router.locale !== "en"
                                 ? `/${router.locale}/exchange/dashboard`
                                 : "/exchange/dashboard"
-                            }
-                          >
+                            }>
                             <span className="cp-user-icon">
                               <BsBarChartLine />
                             </span>
@@ -114,8 +112,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                         <Link
                           href={
                             isLoggedIn === true ? "/user/my-wallet" : "/signin"
-                          }
-                        >
+                          }>
                           <li
                             className={
                               router.pathname == "/user/my-wallet"
@@ -123,8 +120,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                                 : router.pathname == "/user/swap-coin"
                                 ? "cp-user-active-page"
                                 : ""
-                            }
-                          >
+                            }>
                             <a href="">
                               <span className="cp-user-icon">
                                 <BiWalletAlt />
@@ -146,8 +142,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                                 router.pathname == "/ico"
                                   ? "cp-user-active-page"
                                   : ""
-                              }
-                            >
+                              }>
                               <a href="">
                                 <span className="cp-user-icon">
                                   <RiCalendarEventLine />
@@ -170,20 +165,17 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                                 : router.pathname == "/fiat-withdrawal"
                                 ? "cp-user-active-page"
                                 : ""
-                            }
-                          >
+                            }>
                             <Link
                               href={
                                 isLoggedIn === true
                                   ? "/fiat-deposit"
                                   : "/signin"
-                              }
-                            >
+                              }>
                               <a
                                 className="arrow-icon"
                                 href="#"
-                                aria-expanded="true"
-                              >
+                                aria-expanded="true">
                                 <span className="cp-user-icon">
                                   <FiSettings />
                                 </span>
@@ -199,8 +191,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                                 <Link
                                   href={
                                     isLoggedIn ? "/fiat-deposit" : "/signin"
-                                  }
-                                >
+                                  }>
                                   <li>
                                     <a href="">
                                       {navbar?.fiat?.deposit.name
@@ -214,15 +205,13 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                                 <Link
                                   href={
                                     isLoggedIn ? "/fiat-withdrawal" : "/signin"
-                                  }
-                                >
+                                  }>
                                   <li
                                     className={
                                       router.pathname == "/fiat-withdrawal"
                                         ? "cp-user-active-page"
                                         : ""
-                                    }
-                                  >
+                                    }>
                                     <a href="">
                                       {navbar?.fiat?.withdrawal.name
                                         ? navbar?.fiat?.withdrawal.name
@@ -258,13 +247,11 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                               isLoggedIn
                                 ? "/user/wallet-history?type=deposit"
                                 : "/signin"
-                            }
-                          >
+                            }>
                             <a
                               className="arrow-icon"
                               href="#"
-                              aria-expanded="true"
-                            >
+                              aria-expanded="true">
                               <span className="cp-user-icon">
                                 <HiOutlineDocumentReport />
                               </span>
@@ -284,16 +271,14 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                                 isLoggedIn
                                   ? "/user/wallet-history?type=deposit"
                                   : "/signin"
-                              }
-                            >
+                              }>
                               <li
                                 className={
                                   router.pathname ==
                                   "/user/wallet-history?type=deposit"
                                     ? "cp-user-active-page"
                                     : ""
-                                }
-                              >
+                                }>
                                 <a href="">
                                   {navbar?.reports?.depositHistory?.name
                                     ? navbar?.reports?.depositHistory?.name
@@ -308,16 +293,14 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                                 isLoggedIn
                                   ? "/user/wallet-history?type=withdrawal"
                                   : "/signin"
-                              }
-                            >
+                              }>
                               <li
                                 className={
                                   router.pathname ==
                                   "/user/wallet-history?type=withdrawal"
                                     ? "cp-user-active-page"
                                     : ""
-                                }
-                              >
+                                }>
                                 <a href="">
                                   {navbar?.reports?.withdrawalHistory?.name
                                     ? navbar?.reports?.withdrawalHistory?.name
@@ -330,15 +313,13 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                             <Link
                               href={
                                 isLoggedIn ? "/user/swap-history" : "/signin"
-                              }
-                            >
+                              }>
                               <li
                                 className={
                                   router.pathname == "/user/swap-history"
                                     ? "cp-user-active-page"
                                     : ""
-                                }
-                              >
+                                }>
                                 <a href="">
                                   {navbar?.reports?.swapHistory?.name
                                     ? navbar?.reports?.swapHistory?.name
@@ -353,15 +334,13 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                                 isLoggedIn
                                   ? "/user/buy-order-history"
                                   : "/signin"
-                              }
-                            >
+                              }>
                               <li
                                 className={
                                   router.pathname == "/user/buy-order-history"
                                     ? "cp-user-active-page"
                                     : ""
-                                }
-                              >
+                                }>
                                 <a href="">
                                   {navbar?.reports?.buyOrderHistory?.name
                                     ? navbar?.reports?.buyOrderHistory?.name
@@ -376,15 +355,13 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                                 isLoggedIn
                                   ? "/user/sell-order-history"
                                   : "/signin"
-                              }
-                            >
+                              }>
                               <li
                                 className={
                                   router.pathname == "/user/sell-order-history"
                                     ? "cp-user-active-page"
                                     : ""
-                                }
-                              >
+                                }>
                                 <a href="">
                                   {navbar?.reports?.sellOrderHistory?.name
                                     ? navbar?.reports?.sellOrderHistory?.name
@@ -399,15 +376,13 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                                 isLoggedIn
                                   ? "/user/transaction-history"
                                   : "/signin"
-                              }
-                            >
+                              }>
                               <li
                                 className={
                                   router.pathname == "/user/transaction-history"
                                     ? "cp-user-active-page"
                                     : ""
-                                }
-                              >
+                                }>
                                 <a href="">
                                   {navbar?.reports?.transactionHistory?.name
                                     ? navbar?.reports?.transactionHistory?.name
@@ -424,16 +399,14 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                                   isLoggedIn
                                     ? "/user/currency-deposit-history"
                                     : "/signin"
-                                }
-                              >
+                                }>
                                 <li
                                   className={
                                     router.pathname ==
                                     "/user/currency-deposit-history"
                                       ? "cp-user-active-page"
                                       : ""
-                                  }
-                                >
+                                  }>
                                   <a href="">
                                     {navbar?.reports?.fiatDepositHistory?.name
                                       ? navbar?.reports?.fiatDepositHistory
@@ -448,16 +421,14 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                               isLoggedIn
                                 ? "/user/stop-limit-order-history"
                                 : "/signin"
-                            }
-                          >
+                            }>
                             <li
                               className={
                                 router.pathname ==
                                 "/user/stop-limit-order-history"
                                   ? "cp-user-active-page"
                                   : ""
-                              }
-                            >
+                              }>
                               <a href="">{t("Stop Limit History")}</a>
                             </li>
                           </Link>
@@ -467,8 +438,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                                 ? "/user/referral-earning-withdrawal/" +
                                   REFERRAL_TYPE_DEPOSIT
                                 : "/signin"
-                            }
-                          >
+                            }>
                             <li
                               className={
                                 router.pathname ==
@@ -476,8 +446,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                                   REFERRAL_TYPE_DEPOSIT
                                   ? "cp-user-active-page"
                                   : ""
-                              }
-                            >
+                              }>
                               <a href="">
                                 {t("Referral earning from withdrawal")}
                               </a>
@@ -489,8 +458,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                                 ? "/user/referral-earning-trade/" +
                                   REFERRAL_TYPE_TRADE
                                 : "/signin"
-                            }
-                          >
+                            }>
                             <li
                               className={
                                 router.pathname ==
@@ -498,8 +466,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                                   REFERRAL_TYPE_TRADE
                                   ? "cp-user-active-page"
                                   : ""
-                              }
-                            >
+                              }>
                               <a href="">{t("Referral earning from trade")}</a>
                             </li>
                           </Link>
@@ -509,16 +476,14 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                                 isLoggedIn
                                   ? "/user/currency-withdraw-history"
                                   : "/signin"
-                              }
-                            >
+                              }>
                               <li
                                 className={
                                   router.pathname ==
                                   "/user/currency-withdraw-history"
                                     ? "cp-user-active-page"
                                     : ""
-                                }
-                              >
+                                }>
                                 <a href="">
                                   {navbar?.reports?.fiatWithdrawalHistory?.name
                                     ? navbar?.reports?.fiatWithdrawalHistory
@@ -537,8 +502,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                               router.pathname == "/user/profile"
                                 ? "cp-user-active-page"
                                 : ""
-                            }
-                          >
+                            }>
                             <a href="">
                               <span className="cp-user-icon">
                                 <CgProfile />
@@ -558,8 +522,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                             router.pathname == "/user/referral"
                               ? "cp-user-active-page"
                               : ""
-                          }
-                        >
+                          }>
                           {navbar?.myReferral?.status && (
                             <Link href="/user/referral">
                               <a>
@@ -583,17 +546,14 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                             : router.pathname == "/user/faq"
                             ? "cp-user-active-page"
                             : ""
-                        }
-                      >
+                        }>
                         {navbar?.settings?.status && (
                           <Link
-                            href={isLoggedIn ? "/user/settings" : "/signin"}
-                          >
+                            href={isLoggedIn ? "/user/settings" : "/signin"}>
                             <a
                               className="arrow-icon"
                               href="#"
-                              aria-expanded="true"
-                            >
+                              aria-expanded="true">
                               <span className="cp-user-icon">
                                 <FiSettings />
                               </span>
@@ -609,8 +569,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                         <ul className="">
                           {navbar?.settings?.mySettings?.status && (
                             <Link
-                              href={isLoggedIn ? "/user/settings" : "/signin"}
-                            >
+                              href={isLoggedIn ? "/user/settings" : "/signin"}>
                               <li>
                                 <a href="">
                                   {navbar?.settings?.mySettings?.name
@@ -627,8 +586,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                                   router.pathname == "/user/faq"
                                     ? "cp-user-active-page"
                                     : ""
-                                }
-                              >
+                                }>
                                 <a href="">
                                   {navbar?.settings?.faq?.name
                                     ? navbar?.settings?.faq?.name
@@ -683,8 +641,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
             <div className={`cp-user-sidebar ${active ? "active" : ""}`}>
               <div
                 onClick={() => setActive(false)}
-                className="cp-user-sidebar-menu scrollbar-inner"
-              >
+                className="cp-user-sidebar-menu scrollbar-inner">
                 <nav>
                   <ul id="metismenu">
                     {navbar?.trade?.status && (
@@ -694,8 +651,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                             router.locale !== "en"
                               ? `/${router.locale}/exchange/dashboard`
                               : "/exchange/dashboard"
-                          }
-                        >
+                          }>
                           <span className="cp-user-icon">
                             <img
                               src=""
@@ -735,8 +691,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                       <ul>
                         {navbar?.wallet?.status && (
                           <Link
-                            href={isLoggedIn ? "/user/my-wallet" : "/signin"}
-                          >
+                            href={isLoggedIn ? "/user/my-wallet" : "/signin"}>
                             <li>
                               <a href="">
                                 {navbar?.wallet?.name
@@ -749,8 +704,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                         {parseInt(settings.currency_deposit_status) === 1 &&
                           navbar?.fiat?.status && (
                             <Link
-                              href={isLoggedIn ? "/fiat-deposit" : "/signin"}
-                            >
+                              href={isLoggedIn ? "/fiat-deposit" : "/signin"}>
                               <li>
                                 <a href="">{t("Fiat Deposit")}</a>
                               </li>
@@ -759,8 +713,9 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                         {parseInt(settings.currency_deposit_status) === 1 &&
                           navbar?.fiat?.status && (
                             <Link
-                              href={isLoggedIn ? "/fiat-withdrawal" : "/signin"}
-                            >
+                              href={
+                                isLoggedIn ? "/fiat-withdrawal" : "/signin"
+                              }>
                               <li>
                                 <a href="">{t("Fiat Withdrawal")}</a>
                               </li>
@@ -796,8 +751,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                                 isLoggedIn
                                   ? "/user/wallet-history?type=deposit"
                                   : "/signin"
-                              }
-                            >
+                              }>
                               <li>
                                 <a href="">
                                   {navbar?.reports?.depositHistory?.name
@@ -813,8 +767,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                                 isLoggedIn
                                   ? "/user/wallet-history?type=withdrawal"
                                   : "/signin"
-                              }
-                            >
+                              }>
                               <li>
                                 <a href="">
                                   {navbar?.reports?.withdrawalHistory?.name
@@ -828,8 +781,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                             <Link
                               href={
                                 isLoggedIn ? "/user/swap-history" : "/signin"
-                              }
-                            >
+                              }>
                               <li>
                                 <a href="">
                                   {navbar?.reports?.swapHistory?.name
@@ -845,8 +797,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                                 isLoggedIn
                                   ? "/user/buy-order-history"
                                   : "/signin"
-                              }
-                            >
+                              }>
                               <li>
                                 <a href="">
                                   {" "}
@@ -863,8 +814,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                                 isLoggedIn
                                   ? "/user/sell-order-history"
                                   : "/signin"
-                              }
-                            >
+                              }>
                               <li>
                                 <a href="">
                                   {navbar?.reports?.sellOrderHistory?.name
@@ -880,8 +830,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                                 isLoggedIn
                                   ? "/user/transaction-history"
                                   : "/signin"
-                              }
-                            >
+                              }>
                               <li>
                                 <a href="">
                                   {navbar?.reports?.transactionHistory?.name
@@ -897,8 +846,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                                 isLoggedIn
                                   ? "/user/currency-withdraw-history"
                                   : "/signin"
-                              }
-                            >
+                              }>
                               <li>
                                 <a href="">
                                   {navbar?.reports?.fiatDepositHistory?.name
@@ -914,8 +862,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                                 isLoggedIn
                                   ? "/user/currency-withdraw-history"
                                   : "/signin"
-                              }
-                            >
+                              }>
                               <li>
                                 <a href="">
                                   {navbar?.reports?.fiatWithdrawalHistory?.name
@@ -947,8 +894,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                     <li>
                       <ul>
                         <Link
-                          href={isLoggedIn ? "/user/edit-profile" : "/signin"}
-                        >
+                          href={isLoggedIn ? "/user/edit-profile" : "/signin"}>
                           <li>
                             <a href="">{t("Edit Profile")}</a>
                           </li>
@@ -960,8 +906,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                         <Link
                           href={
                             isLoggedIn ? "/user/phone-verification" : "/signin"
-                          }
-                        >
+                          }>
                           <li>
                             <a href="">{t("Phone Verification")}</a>
                           </li>
@@ -984,8 +929,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                             isLoggedIn
                               ? "/user/personal-verification"
                               : "/signin"
-                          }
-                        >
+                          }>
                           <li>
                             <a href="">{t("KYC Verification")}</a>
                           </li>
@@ -1006,8 +950,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                         <Link
                           href={
                             isLoggedIn ? "/user/change-password" : "/signin"
-                          }
-                        >
+                          }>
                           <li>
                             <a href="">{t("Change Password")}</a>
                           </li>
@@ -1065,8 +1008,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                       <ul>
                         {navbar?.settings?.mySettings?.status && (
                           <Link
-                            href={isLoggedIn ? "/user/settings" : "/signin"}
-                          >
+                            href={isLoggedIn ? "/user/settings" : "/signin"}>
                             <li>
                               <a href="">
                                 {navbar?.settings?.mySettings?.name

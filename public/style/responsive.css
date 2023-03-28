@@ -71,6 +71,11 @@
     .commentTitle h2 {
         width: 400px;
     }
+    .walletTableScroll {
+        overflow-x: scroll;
+        max-width: 95vw;
+        padding-right: 30px;
+    }
 }
 
 @media (min-width: 992px) {
@@ -94,41 +99,6 @@
 /* Portrait tablets and small desktops */
 
 @media (max-width: 991px) {
-    .header-area {
-        display: none;
-    }
-    .about-us-area .about-left {
-        position: inherit;
-        transform: translateY(0px);
-        width: 100%;
-    }
-    .mb-30 {
-        margin-bottom: 30px;
-    }
-    .single-table .table tbody tr td {
-        padding: 3px 5px;
-    }
-    .footer-area .footer-bottom {
-        padding: 20px 0;
-    }
-    .banner-area .banner-right-img {
-        position: inherit;
-        width: 100%;
-        transform: translateY(0%);
-    }
-    .banner-area {
-        padding-top: 150px;
-        padding-bottom: 150px;
-    }
-    .integration-area .integration-info {
-        margin-top: 0;
-    }
-    .awesome-area .awesome-info {
-        margin-top: 0;
-    }
-    .SliderNews {
-        height: 150px;
-    }
     .header-area {
         display: none;
     }
@@ -364,6 +334,7 @@
         padding: 5px 8px !important;
         font-size: 12px !important;
     }
+<<<<<<< HEAD
     .steepNumber {
         height: 26px;
     }
@@ -376,6 +347,8 @@
     .addPostNextButton div button {
         padding: 0px 20px;
     }
+=======
+>>>>>>> bd3083b532cad6081556da5f7987669aad0f527d
 }
 
 @media (max-width: 375px) {
@@ -399,10 +372,13 @@
     .banner-area .banner-text .banner-title h1 {
         font-size: 32px;
     }
+<<<<<<< HEAD
     .addPostNextButton div button {
         padding: 0px 16px;
         font-size: 13px;
     }
+=======
+>>>>>>> bd3083b532cad6081556da5f7987669aad0f527d
 }
 
 @media (max-width: 320px) {

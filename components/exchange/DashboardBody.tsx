@@ -33,7 +33,7 @@ const DashboardBody = () => {
 
   return (
     <>
-      <div className="col-xl-3 col-6">
+      <div className="col-xl-3">
         <div className="trades-section">
           <div>
             <h6 className="text-white">{t("Order Book")}</h6>
@@ -327,7 +327,7 @@ const DashboardBody = () => {
           )}
         </div>
       </div>
-      <div className="col-xl-6 col-6">
+      <div className="col-xl-6">
         <div className="cp-user-buy-coin-content-area">
           <div className="card cp-user-custom-card">
             {currentPair && (

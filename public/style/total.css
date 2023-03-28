@@ -12767,6 +12767,11 @@ input[type="number"] {
 .timeLineLists h5 {
     margin-bottom: 10px;
 }
+.single-wallet {
+    margin: 0 auto;
+    background: var(--main-background-color);
+    padding: 50px 20px 50px 20px;
+}
 
 .timeLineLists p {
     font-size: 16px;
