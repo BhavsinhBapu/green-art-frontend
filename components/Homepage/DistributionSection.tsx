@@ -16,18 +16,18 @@ const DistributionSection = ({ landing }: any) => {
               </div>
               <div className="row align-items-center">
                 <div className="col-lg-6">
-                  <div className="trade-anywhere-left">
-                    {/* <img
+                  <div className="trade-anywhere-left text-center">
+                    <img
                       className="trend-image"
                       src={landing?.trade_anywhere_left_img}
                       alt="trade-imge"
                     />
-                     */}
-                    <ImageComponent
+
+                    {/* <ImageComponent
                       className="trend-image"
                       src={landing?.trade_anywhere_left_img}
                       height={300}
-                    />
+                    /> */}
                   </div>
                 </div>
                 <div className="col-lg-6">

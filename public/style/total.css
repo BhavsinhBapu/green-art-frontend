@@ -14210,6 +14210,18 @@ input {
     background: var(--footer-background-color);
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 }
+.trend-image{
+    max-height: 400px;
+}
+.massage_img::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+    display: block;
+    cursor: pointer;
+}
 
 .steepNumber {
     height: 30px;
