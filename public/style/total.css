@@ -14207,7 +14207,7 @@ input {
 }
 
 .adPost_bg {
-    background: var(--background-color);
+    background: var(--footer-background-color);
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 }
 
@@ -14240,7 +14240,7 @@ input {
 }
 
 .buySellAddBox {
-    background-color: var(--background-color);
+    background-color: var(--footer-background-color);
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
@@ -14348,7 +14348,7 @@ input {
 }
 
 .paymentMethodBox {
-    background-color: var(--background-color);
+    background-color: var(--main-background-color);
 }
 
 .paymentMethodSubBox {
