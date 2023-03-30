@@ -361,7 +361,7 @@ async function checkEstimateGasFees(req, res)
                     let usedGasLimit = dataGas.gasLimit;
                     console.log("used gaslimit", usedGasLimit);
 
-                    const checkNativeBalance = await checkNativeCoinBalance(req);
+                    const checkNativeBalance = await checkNativeCoinBalance(req, res);
                     console.log("native coin balance = ", checkNativeBalance);
                     try {
                         const tx = {
@@ -426,12 +426,12 @@ async function checkEstimateGasFees(req, res)
  }
 
  // checking native coin balance
-async function checkNativeCoinBalance(req)
+async function checkNativeCoinBalance(req, res)
 {
     try {
         const network = req.headers.chainlinks;
         const networkType = req.headers.networktype;
-        const address = req.body.address;
+        const address = req.body.from_address;
         const web3 = new Web3(network);
         netBalance = await web3.eth.getBalance(address);
         netBalance = Web3.utils.fromWei(netBalance.toString(), 'ether');
