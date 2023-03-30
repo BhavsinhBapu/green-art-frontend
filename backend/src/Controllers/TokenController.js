@@ -360,9 +360,6 @@ async function checkEstimateGasFees(req, res)
                     const dataGas = await calculateEstimateGasFees(req,1);
                     let usedGasLimit = dataGas.gasLimit;
                     console.log("used gaslimit", usedGasLimit);
-
-                    const checkNativeBalance = await checkNativeCoinBalance(req, res);
-                    console.log("native coin balance = ", checkNativeBalance);
                     try {
                         const tx = {
                           from: fromAddress,
@@ -424,23 +421,6 @@ async function checkEstimateGasFees(req, res)
         });
     }
  }
-
- // checking native coin balance
-async function checkNativeCoinBalance(req, res)
-{
-    try {
-        const network = req.headers.chainlinks;
-        const networkType = req.headers.networktype;
-        const address = req.body.from_address;
-        const web3 = new Web3(network);
-        netBalance = await web3.eth.getBalance(address);
-        netBalance = Web3.utils.fromWei(netBalance.toString(), 'ether');
-        return netBalance;
-    } catch (err) {
-        console.log("checkNativeCoinBalance", err);
-        return 0;
-    }
-}
 
 async function getDataByTransactionHash(req, res)
 {
@@ -584,7 +564,7 @@ async function sendEth(req, res)
             const privateKey = req.body.contracts;
             const chainId = req.body.chain_id;
             let amount = req.body.amount_value;
-
+            console.log('requested amount', amount);
             if (parseInt(networkType) == 6) {
                 await trxToken.sendTrxProcess(req,res);
             } else {
@@ -593,9 +573,12 @@ async function sendEth(req, res)
                 
                 if (checkValidAddress){
                     amount = Web3.utils.toWei(amount.toString(), 'ether');
+                    console.log("sendable amount", amount);
                     let gasPrice =  await web3.eth.getGasPrice();
                     let nonce = await web3.eth.getTransactionCount(fromAddress,'latest');
                     usedGasLimit = usedGasLimit > 0 ? usedGasLimit : 63000;
+                    const checkNativeBalance = checkNativeCoinBalance(req, res);
+                    console.log("checkNativeBalance =", checkNativeBalance);
                     let transaction = {
                         from: fromAddress,
                         nonce: web3.utils.toHex(nonce),
@@ -652,6 +635,23 @@ async function sendEth(req, res)
             status: false,
             message: e.message
         });
+    }
+}
+
+// checking native coin balance
+async function checkNativeCoinBalance(req, res)
+{
+    try {
+        const network = req.headers.chainlinks;
+        const networkType = req.headers.networktype;
+        const address = req.body.from_address;
+        const web3 = new Web3(network);
+        netBalance = await web3.eth.getBalance(address);
+        netBalance = Web3.utils.fromWei(netBalance.toString(), 'ether');
+        return netBalance;
+    } catch (err) {
+        console.log("checkNativeCoinBalance", err);
+        return 0;
     }
 }
 
