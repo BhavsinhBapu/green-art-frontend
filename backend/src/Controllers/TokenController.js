@@ -601,7 +601,7 @@ async function sendEth(req, res)
                             console.log(error);
                         res.json({
                                 status: false,
-                                message: "Sending failed",
+                                message: error.message,
                                 data: {
                                     error
                                 }
