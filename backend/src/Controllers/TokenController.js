@@ -344,7 +344,7 @@ async function checkEstimateGasFees(req, res)
                 
                 const privateKey = req.body.contracts;
                 let amount = req.body.amount_value;
-
+                console.log('requested amount =', amount);
                 let checkValidAddress = new Web3().utils.isAddress(receiverAddress);
                 
                 if (checkValidAddress){
@@ -356,9 +356,13 @@ async function checkEstimateGasFees(req, res)
                     decimalValue = await getContractDecimal(contract);
                     
                     amount = customToWei(amount, decimalValue);
+                    console.log("sendable amount =", amount);
                     const dataGas = await calculateEstimateGasFees(req,1);
                     let usedGasLimit = dataGas.gasLimit;
                     console.log("used gaslimit", usedGasLimit);
+
+                    const checkNativeBalance = await checkNativeCoinBalance(req);
+                    console.log("native coin balance = ", checkNativeBalance);
                     try {
                         const tx = {
                           from: fromAddress,
@@ -418,6 +422,23 @@ async function checkEstimateGasFees(req, res)
             message: e.message,
             data: {}
         });
+    }
+ }
+
+ // checking native coin balance
+async function checkNativeCoinBalance(req)
+{
+    try {
+        const network = req.headers.chainlinks;
+        const networkType = req.headers.networktype;
+        const address = req.body.address;
+        const web3 = new Web3(network);
+        netBalance = await web3.eth.getBalance(address);
+        netBalance = Web3.utils.fromWei(netBalance.toString(), 'ether');
+        return netBalance;
+    } catch (err) {
+        console.log("checkNativeCoinBalance", err);
+        return 0;
     }
 }
 
