@@ -326,7 +326,8 @@ async function checkEstimateGasFees(req, res)
 }
 
  async function sendToken(req, res)
-{
+ {
+     console.log("send token process started");
     try {
         const network = req.headers.chainlinks;
         let contractJsons = contractJson();
@@ -550,6 +551,7 @@ async function getHashTransaction(network,hash)
 
 async function sendEth(req, res)
 {
+    console.log('send native coin process started');
     try {
         const network = req.headers.chainlinks;
         const networkType = req.headers.networktype;
@@ -595,6 +597,8 @@ async function sendEth(req, res)
                             });
 
                         } else {
+                            console.log('eth send error');
+                            console.log(error);
                         res.json({
                                 status: false,
                                 message: "Sending failed",
@@ -620,7 +624,9 @@ async function sendEth(req, res)
                 data: {}
             });
         }
-    } catch(e) {
+    } catch (e) {
+        console.log('send  eth ex');
+        console.log(e);
         res.json({
             status: false,
             message: e.message
@@ -806,7 +812,8 @@ async function getLatestEvents(req, res)
               data: {}
           });
       }
-  } catch(e) {
+  } catch (e) {
+      console.log(e);
       res.json({
           status: false,
           message: e.message
