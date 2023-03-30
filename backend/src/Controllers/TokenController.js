@@ -577,7 +577,7 @@ async function sendEth(req, res)
                     let gasPrice =  await web3.eth.getGasPrice();
                     let nonce = await web3.eth.getTransactionCount(fromAddress,'latest');
                     usedGasLimit = usedGasLimit > 0 ? usedGasLimit : 63000;
-                    const checkNativeBalance = checkNativeCoinBalance(req, res);
+                    const checkNativeBalance = await checkNativeCoinBalance(req, res);
                     console.log("checkNativeBalance =", checkNativeBalance);
                     let transaction = {
                         from: fromAddress,
