@@ -1,4 +1,4 @@
-export const AddPostSteep = () => {
+export const AddPostStep = () => {
   return (
     <div className="container py-4">
       <div className="row">

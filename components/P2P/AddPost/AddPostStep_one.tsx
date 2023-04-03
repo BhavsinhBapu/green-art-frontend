@@ -2,7 +2,7 @@ import { CUstomSelect } from "components/common/CUstomSelect";
 import { BsPlusLg, BsQuestionSquareFill } from "react-icons/bs";
 import { FaMinus } from "react-icons/fa";
 
-export const AddPostOne = ({ setAddSteep }: any) => {
+export const AddPostOne = ({ setAddStep }: any) => {
   const options = [
     { value: "chocolate", label: "Chocolate" },
     { value: "strawberry", label: "Strawberry" },
@@ -72,8 +72,9 @@ export const AddPostOne = ({ setAddSteep }: any) => {
       </div>
       <div className="mt-4 row col-sm-4 col-md-3 col-lg-2 float-right mx-auto">
         <button
-          onClick={() => setAddSteep("steepTwo")}
-          className="addTabButton buySellBoxActive py-2">
+          onClick={() => setAddStep("stepTwo")}
+          className="addTabButton buySellBoxActive py-2"
+        >
           Next
         </button>
       </div>

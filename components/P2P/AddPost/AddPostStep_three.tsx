@@ -1,7 +1,7 @@
 import { CUstomSelect } from "components/common/CUstomSelect";
 import { BsQuestionSquareFill } from "react-icons/bs";
 
-export const AddPostThree = ({ setAddSteep }: any) => {
+export const AddPostThree = ({ setAddStep }: any) => {
   const options = [
     { value: "chocolate", label: "Chocolate" },
     { value: "strawberry", label: "Strawberry" },
@@ -71,7 +71,7 @@ export const AddPostThree = ({ setAddSteep }: any) => {
       <div className="addPostNextButton mt-3">
         <p></p>
         <div>
-          <button onClick={() => setAddSteep("steepTwo")} className=" py-2">
+          <button onClick={() => setAddStep("stepTwo")} className=" py-2">
             Previous
           </button>
           <button className=" py-2 buySellBoxActive ml-2">Post</button>
