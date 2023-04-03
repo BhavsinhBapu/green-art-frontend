@@ -147,7 +147,7 @@ export const useCapchaInitialize = () => {
   const submit_form = useRef<HTMLButtonElement>(null);
   const getRecapcha = async () => {
     const response = await captchaSettings();
-    setcaptchaData(response.data);
+    setcaptchaData(response?.data);
 
     if (
       parseInt(response?.data?.select_captcha_type) ===
