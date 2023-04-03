@@ -1,24 +1,43 @@
 import { CUstomSelect } from "components/common/CUstomSelect";
+import { useEffect, useState } from "react";
 import { BsPlusLg, BsQuestionSquareFill } from "react-icons/bs";
 import { FaMinus } from "react-icons/fa";
 
-export const AddPostOne = ({ setAddStep }: any) => {
-  const options = [
-    { value: "chocolate", label: "Chocolate" },
-    { value: "strawberry", label: "Strawberry" },
-    { value: "vanilla", label: "Vanilla" },
-  ];
+export const AddPostOne = ({ setAddStep, data }: any) => {
+  const [AssetOptions, setAssetOptions] = useState([]);
+  const [CurrencyOptions, setCurrencyOptions] = useState([]);
+
+  useEffect(() => {
+    let myAssets: any = [];
+    let myCurrency: any = [];
+    data?.data?.currency.map((asset: any) => {
+      const obj = {
+        value: asset.coin_type,
+        label: asset.name,
+      };
+      myCurrency.push(obj);
+    });
+    data?.data?.assets.map((asset: any) => {
+      const obj = {
+        value: asset.coin_type,
+        label: asset.name,
+      };
+      myAssets.push(obj);
+    });
+    setAssetOptions(myAssets);
+    setCurrencyOptions(myCurrency);
+  }, [data?.data?.assets]);
   return (
     <div className="col-12 mt-4">
       <div className="buySellAddBox px-4 py-5 rounded">
         <div className="row">
           <div className="col-md-6 col-lg-4">
             <label> Asset:</label>
-            <CUstomSelect options={options} />
+            <CUstomSelect options={AssetOptions} />
           </div>
           <div className="col-md-6 col-lg-4 mt-4 mt-md-0">
             <label> With Fiat:</label>
-            <CUstomSelect options={options} />
+            <CUstomSelect options={CurrencyOptions} />
           </div>
           <div className="col-12 mt-5">
             <div className="row">

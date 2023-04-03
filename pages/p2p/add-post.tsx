@@ -9,10 +9,21 @@ import { useState } from "react";
 import { useAddPostInitial } from "state/actions/p2p";
 
 const AddPost = () => {
-  const { data, loading, error } = useAddPostInitial();
-  const [addTabButton, setAddTabButton] = useState(true);
-  const [addStep, setAddStep] = useState("stepOne");
-  console.log(data, "DDDDDDDDDDDDDDD");
+  const {
+    data,
+    loading,
+    error,
+    setAddTabButton,
+    addTabButton,
+    addStep,
+    setAddStep,
+    selectedAsset,
+    selectedCurrency,
+    setSelectedAsset,
+    setselectedCurrency,
+  } = useAddPostInitial();
+
+  console.log(data?.data?.currency, "ssacs");
   return (
     <>
       {loading ? (
@@ -52,7 +63,16 @@ const AddPost = () => {
                   I Want to Sell
                 </button>
               </div>
-              {addStep === "stepOne" && <AddPostOne setAddStep={setAddStep} />}
+              {addStep === "stepOne" && (
+                <AddPostOne
+                  data={data}
+                  setAddStep={setAddStep}
+                  selectedAsset={selectedAsset}
+                  selectedCurrency={selectedCurrency}
+                  setSelectedAsset={setSelectedAsset}
+                  setselectedCurrency={setselectedCurrency}
+                />
+              )}
               {addStep === "stepTwo" && <AddPostTwo setAddStep={setAddStep} />}
               {addStep === "stepThree" && (
                 <AddPostThree setAddStep={setAddStep} />
