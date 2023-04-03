@@ -3,16 +3,27 @@ import { useEffect, useState } from "react";
 import { BsPlusLg, BsQuestionSquareFill } from "react-icons/bs";
 import { FaMinus } from "react-icons/fa";
 
-export const AddPostOne = ({ setAddStep, data }: any) => {
+export const AddPostOne = ({
+  setAddStep,
+  data,
+  setSelectedAsset,
+  setselectedCurrency,
+}: any) => {
   const [AssetOptions, setAssetOptions] = useState([]);
   const [CurrencyOptions, setCurrencyOptions] = useState([]);
 
+  const handleCurrency = (e: any) => {
+    setselectedCurrency(e);
+  };
+  const handleAsset = (e: any) => {
+    setSelectedAsset(e);
+  };
   useEffect(() => {
     let myAssets: any = [];
     let myCurrency: any = [];
     data?.data?.currency.map((asset: any) => {
       const obj = {
-        value: asset.coin_type,
+        value: asset.currency_code,
         label: asset.name,
       };
       myCurrency.push(obj);
@@ -33,11 +44,11 @@ export const AddPostOne = ({ setAddStep, data }: any) => {
         <div className="row">
           <div className="col-md-6 col-lg-4">
             <label> Asset:</label>
-            <CUstomSelect options={AssetOptions} />
+            <CUstomSelect options={AssetOptions} isSearchable={true} />
           </div>
           <div className="col-md-6 col-lg-4 mt-4 mt-md-0">
             <label> With Fiat:</label>
-            <CUstomSelect options={CurrencyOptions} />
+            <CUstomSelect options={CurrencyOptions} isSearchable={true} />
           </div>
           <div className="col-12 mt-5">
             <div className="row">

@@ -9,6 +9,9 @@ export const CUstomSelect = ({ options, isSearchable, placeholder }: any) => {
         classNamePrefix={"custom-select"}
         isSearchable={isSearchable}
         placeholder={placeholder}
+        onChange={(e) => {
+          console.log(e, "eeeeeeeeeeeeee");
+        }}
       />
     </>
   );
