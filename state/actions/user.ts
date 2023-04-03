@@ -148,7 +148,6 @@ export const useCapchaInitialize = () => {
   const getRecapcha = async () => {
     const response = await captchaSettings();
     setcaptchaData(response?.data);
-
     if (
       parseInt(response?.data?.select_captcha_type) ===
         CAPTCHA_TYPE_GEETESTCAPTCHA &&
