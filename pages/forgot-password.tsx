@@ -20,8 +20,6 @@ const ForgotPassword: NextPage = () => {
   const { geeTest, captchaData } = useCapchaInitialize();
   const { t } = useTranslation("common");
   const [processing, setProcessing] = useState(false);
-  const [recaptchaData, setRecaptchaData] = useState<any>({});
-
   let captcha: any;
   const setCaptchaRef = (ref: any) => {
     if (ref) {
@@ -153,7 +151,7 @@ const ForgotPassword: NextPage = () => {
                             CAPTCHA_TYPE_RECAPTCHA && (
                             <ReCAPTCHA
                               ref={(r: any) => setCaptchaRef(r)}
-                              sitekey={recaptchaData?.NOCAPTCHA_SITEKEY}
+                              sitekey={captchaData?.NOCAPTCHA_SITEKEY}
                               render="explicit"
                               onChange={(response: any) => {
                                 setFieldValue("recapcha", response);

@@ -159,9 +159,7 @@ async function getTrc20TransferEvent(req, res)
 // get trc20 latest transaction
 async function getTrc20LatestEvent(req, res)
 {
-    try {
-        console.log('check trc20 latest transfer event');
-        
+    try { 
         const contractAddress = req.body.contract_address;
         const tronWeb = tronWebCall(req,res);
         const adminAccount = req.body.admin_address;
