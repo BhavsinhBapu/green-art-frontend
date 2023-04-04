@@ -1,14 +1,17 @@
+import { FLOAT_PRICE, FIXED_PRICE } from "helpers/core-constants";
 import { useApi, usePostApiFunction } from "helpers/hooks";
 import { useEffect, useState } from "react";
 import { getAdsCreateSettings, getMarketHighestLowest } from "service/p2p";
 
 export const useAddPostInitial = () => {
   const [addTabButton, setAddTabButton] = useState(true);
+  const [priceType, setPriceType] = useState(FIXED_PRICE);
   const [selectedAsset, setSelectedAsset] = useState<any>(null);
   const [selectedCurrency, setselectedCurrency] = useState<any>(null);
   const [pricePoint, setPricePoint] = useState({
     highest_price: 0,
     lowest_price: 0,
+    price: 0,
   });
   const [addStep, setAddStep] = useState("stepOne");
   const { data, loading, error, refreshData } = useApi(getAdsCreateSettings);
@@ -43,5 +46,8 @@ export const useAddPostInitial = () => {
     setSelectedAsset,
     setselectedCurrency,
     pricePoint,
+    priceType,
+    setPriceType,
+    setPricePoint,
   };
 };

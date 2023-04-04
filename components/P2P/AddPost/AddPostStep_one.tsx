@@ -1,4 +1,5 @@
 import { CUstomSelect } from "components/common/CUstomSelect";
+import { FIXED_PRICE, FLOAT_PRICE } from "helpers/core-constants";
 import { useEffect, useState } from "react";
 import { BsPlusLg, BsQuestionSquareFill } from "react-icons/bs";
 import { FaMinus } from "react-icons/fa";
@@ -9,6 +10,9 @@ export const AddPostOne = ({
   setSelectedAsset,
   setselectedCurrency,
   pricePoint,
+  priceType,
+  setPriceType,
+  setPricePoint,
 }: any) => {
   const [AssetOptions, setAssetOptions] = useState([]);
   const [CurrencyOptions, setCurrencyOptions] = useState([]);
@@ -76,14 +80,24 @@ export const AddPostOne = ({
               <div className="col-md-3 col-6">
                 <label>Price Type</label>
                 <div className="adFromCheckBox">
-                  <input type="radio" name="optradio" />
+                  <input
+                    type="radio"
+                    name="optradio"
+                    checked={priceType === FIXED_PRICE}
+                    onChange={() => setPriceType(FIXED_PRICE)}
+                  />
                   <p>Fixed</p>
                 </div>
               </div>
               <div className="col-md-3 col-6">
                 <label></label>
                 <div className="adFromCheckBox">
-                  <input type="radio" name="optradio" />
+                  <input
+                    type="radio"
+                    name="optradio"
+                    checked={priceType === FLOAT_PRICE}
+                    onChange={() => setPriceType(FLOAT_PRICE)}
+                  />
                   <p>Floating</p>
                 </div>
               </div>
@@ -92,11 +106,36 @@ export const AddPostOne = ({
           <div className="col-12 mt-4">
             <label>Fixed</label>
             <span className="adFromPriceInecDecButton d-flex align-items-center">
-              <button>
+              <button
+                onClick={() =>
+                  setPricePoint({
+                    ...pricePoint,
+                    price: Math.max(
+                      0,
+                      parseFloat(pricePoint.price) - 1
+                    ).toFixed(2),
+                  })
+                }
+              >
                 <FaMinus />
               </button>
-              <p>12.90</p>
-              <button>
+              <input
+                type="number"
+                value={pricePoint.price}
+                className="pricePoint_field"
+                onChange={(e) =>
+                  setPricePoint({ ...pricePoint, price: e.target.value })
+                }
+              />
+              {priceType === FLOAT_PRICE && "%"}
+              <button
+                onClick={() =>
+                  setPricePoint({
+                    ...pricePoint,
+                    price: (parseFloat(pricePoint.price) + 1).toFixed(2),
+                  })
+                }
+              >
                 <BsPlusLg />
               </button>
             </span>

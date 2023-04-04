@@ -14619,3 +14619,15 @@ input {
   margin-right: 2px;
   box-sizing: border-box;
 }
+.pricePoint_field {
+  background-color: var(--main-background-color);
+  color: var(--font-color);
+  font-size: 26px;
+  width: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  outline: none;
+  text-align: center;
+}

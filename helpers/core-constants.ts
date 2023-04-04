@@ -86,3 +86,7 @@ export const KYC_TYPE_PERSONA = 2;
 //referral type
 export const REFERRAL_TYPE_DEPOSIT = 1;
 export const REFERRAL_TYPE_TRADE = 2;
+
+//price type p2p
+export const FIXED_PRICE = 0;
+export const FLOAT_PRICE = 1;
