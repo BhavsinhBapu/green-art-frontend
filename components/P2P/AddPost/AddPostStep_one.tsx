@@ -8,6 +8,7 @@ export const AddPostOne = ({
   data,
   setSelectedAsset,
   setselectedCurrency,
+  pricePoint,
 }: any) => {
   const [AssetOptions, setAssetOptions] = useState([]);
   const [CurrencyOptions, setCurrencyOptions] = useState([]);
@@ -44,21 +45,29 @@ export const AddPostOne = ({
         <div className="row">
           <div className="col-md-6 col-lg-4">
             <label> Asset:</label>
-            <CUstomSelect options={AssetOptions} isSearchable={true} />
+            <CUstomSelect
+              options={AssetOptions}
+              isSearchable={true}
+              handleFunction={handleAsset}
+            />
           </div>
           <div className="col-md-6 col-lg-4 mt-4 mt-md-0">
             <label> With Fiat:</label>
-            <CUstomSelect options={CurrencyOptions} isSearchable={true} />
+            <CUstomSelect
+              options={CurrencyOptions}
+              isSearchable={true}
+              handleFunction={handleCurrency}
+            />
           </div>
           <div className="col-12 mt-5">
             <div className="row">
               <div className="col-md-3 col-6 adFromPrice">
                 <p>Your Price</p>
-                <h4>TK. 104.90</h4>
+                <h4>TK. {pricePoint.highest_price}</h4>
               </div>
               <div className="col-md-3 col-6 adFromPrice">
                 <p>Lowest Order Price</p>
-                <h4>TK. 114.00</h4>
+                <h4>TK. {pricePoint.lowest_price}</h4>
               </div>
             </div>
           </div>

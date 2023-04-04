@@ -21,6 +21,7 @@ const AddPost = () => {
     selectedCurrency,
     setSelectedAsset,
     setselectedCurrency,
+    pricePoint,
   } = useAddPostInitial();
 
   console.log(data?.data?.currency, "ssacs");
@@ -71,6 +72,7 @@ const AddPost = () => {
                   selectedCurrency={selectedCurrency}
                   setSelectedAsset={setSelectedAsset}
                   setselectedCurrency={setselectedCurrency}
+                  pricePoint={pricePoint}
                 />
               )}
               {addStep === "stepTwo" && <AddPostTwo setAddStep={setAddStep} />}

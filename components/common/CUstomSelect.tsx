@@ -1,7 +1,12 @@
 import React from "react";
 import Select from "react-select";
 
-export const CUstomSelect = ({ options, isSearchable, placeholder }: any) => {
+export const CUstomSelect = ({
+  options,
+  isSearchable,
+  placeholder,
+  handleFunction,
+}: any) => {
   return (
     <>
       <Select
@@ -9,9 +14,7 @@ export const CUstomSelect = ({ options, isSearchable, placeholder }: any) => {
         classNamePrefix={"custom-select"}
         isSearchable={isSearchable}
         placeholder={placeholder}
-        onChange={(e) => {
-          console.log(e, "eeeeeeeeeeeeee");
-        }}
+        onChange={handleFunction}
       />
     </>
   );
