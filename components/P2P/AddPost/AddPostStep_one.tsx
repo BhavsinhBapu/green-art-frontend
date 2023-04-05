@@ -8,7 +8,9 @@ export const AddPostOne = ({
   setAddStep,
   data,
   setSelectedAsset,
+  selectedAsset,
   setselectedCurrency,
+  selectedCurrency,
   pricePoint,
   priceType,
   setPriceType,
@@ -26,14 +28,14 @@ export const AddPostOne = ({
   useEffect(() => {
     let myAssets: any = [];
     let myCurrency: any = [];
-    data?.data?.currency.map((asset: any) => {
+    data?.data?.currency?.map((asset: any) => {
       const obj = {
         value: asset.currency_code,
         label: asset.name,
       };
       myCurrency.push(obj);
     });
-    data?.data?.assets.map((asset: any) => {
+    data?.data?.assets?.map((asset: any) => {
       const obj = {
         value: asset.coin_type,
         label: asset.name,
@@ -53,6 +55,7 @@ export const AddPostOne = ({
               options={AssetOptions}
               isSearchable={true}
               handleFunction={handleAsset}
+              defaultValue={selectedAsset}
             />
           </div>
           <div className="col-md-6 col-lg-4 mt-4 mt-md-0">
@@ -61,15 +64,16 @@ export const AddPostOne = ({
               options={CurrencyOptions}
               isSearchable={true}
               handleFunction={handleCurrency}
+              defaultValue={selectedCurrency}
             />
           </div>
           <div className="col-12 mt-5">
             <div className="row">
-              <div className="col-md-3 col-6 adFromPrice">
+              <div className="col-md-5 col-6 adFromPrice">
                 <p>Your Price</p>
                 <h4>TK. {pricePoint.highest_price}</h4>
               </div>
-              <div className="col-md-3 col-6 adFromPrice">
+              <div className="col-md-5 col-6 adFromPrice">
                 <p>Lowest Order Price</p>
                 <h4>TK. {pricePoint.lowest_price}</h4>
               </div>
@@ -149,12 +153,17 @@ export const AddPostOne = ({
         </a>
       </div>
       <div className="mt-4 row col-sm-4 col-md-3 col-lg-2 float-right mx-auto">
-        <button
-          onClick={() => setAddStep("stepTwo")}
-          className="addTabButton buySellBoxActive py-2"
-        >
-          Next
-        </button>
+        {selectedAsset &&
+          selectedCurrency &&
+          pricePoint.highest_price &&
+          pricePoint.lowest_price && (
+            <button
+              onClick={() => setAddStep("stepTwo")}
+              className="addTabButton buySellBoxActive py-2"
+            >
+              Next
+            </button>
+          )}
       </div>
     </div>
   );

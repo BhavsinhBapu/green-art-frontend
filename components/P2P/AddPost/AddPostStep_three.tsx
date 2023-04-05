@@ -1,12 +1,38 @@
 import { CUstomSelect } from "components/common/CUstomSelect";
+import { useEffect, useState } from "react";
 import { BsQuestionSquareFill } from "react-icons/bs";
 
-export const AddPostThree = ({ setAddStep }: any) => {
-  const options = [
-    { value: "chocolate", label: "Chocolate" },
-    { value: "strawberry", label: "Strawberry" },
-    { value: "vanilla", label: "Vanilla" },
-  ];
+export const AddPostThree = ({
+  setAddStep,
+  terms,
+  setTerms,
+  auto_reply,
+  setAuto_reply,
+  data,
+  selectedCountry,
+  setSelectedCountry,
+  registerDays,
+  coinHolding,
+  setregisterDays,
+  setcoinHolding,
+  createUpdateP2pAdsAction,
+}: any) => {
+  const [Countries, setCountries] = useState([]);
+  const handleCountry = (e: any) => {
+    setSelectedCountry(e);
+  };
+  useEffect(() => {
+    let country: any = [];
+    data?.data?.country?.map((asset: any) => {
+      const obj = {
+        value: asset.key,
+        label: asset.key,
+      };
+      country.push(obj);
+    });
+console.log(data?.data?.country, "data?.data?.country");
+    setCountries(country);
+  }, [data.data.payment_method, data.data.payment_time]);
   return (
     <div className="col-12 mt-4">
       <div className="buySellAddBox px-4 py-5 rounded">
@@ -14,7 +40,13 @@ export const AddPostThree = ({ setAddStep }: any) => {
           <div className="col-md-6">
             <label> Terms [Optional]</label>
             <div className="P2psearchBox position-relative">
-              <textarea placeholder="Terms will be displayed the counterparty"></textarea>
+              <textarea
+                placeholder="Terms will be displayed the counterparty"
+                value={terms}
+                onChange={(e) => {
+                  setTerms(e.target.value);
+                }}
+              ></textarea>
             </div>
           </div>
         </div>
@@ -22,7 +54,13 @@ export const AddPostThree = ({ setAddStep }: any) => {
           <div className="col-md-6">
             <label> Auto-reply [Optional]</label>
             <div className="P2psearchBox position-relative">
-              <textarea placeholder="Terms will be displayed the counterparty"></textarea>
+              <textarea
+                placeholder="Terms will be displayed the counterparty"
+                value={auto_reply}
+                onChange={(e) => {
+                  setAuto_reply(e.target.value);
+                }}
+              ></textarea>
             </div>
           </div>
           <div className="col-12 mt-4">
@@ -34,29 +72,40 @@ export const AddPostThree = ({ setAddStep }: any) => {
             <div className="row">
               <div className="col-md-6 col-lg-3 mt-3">
                 <div className="adFromCheckBox">
-                  <input type="radio" name="optradio" />
-                  <p>Floating</p>
-                  <span className="badge badge-secondary px-3">0</span>
-                  <p>Day[s] ago</p>
+                  <p>Register days</p>
+                  <input
+                    type="number"
+                    value={registerDays}
+                    className="pricePoint_field"
+                    onChange={(e) => {
+                      setregisterDays(e.target.value);
+                    }}
+                  />
                 </div>
               </div>
               <div className="col-md-6 col-lg-3 mt-3">
                 <div className="adFromCheckBox">
-                  <input type="radio" name="optradio" />
-                  <p>Holdings more than</p>
-                  <span className="badge badge-secondary px-3">0.01</span>
-                  <p>
-                    <b>BTC</b>
-                  </p>
+                  <p>Coin holding</p>
+                  <input
+                    type="number"
+                    value={coinHolding}
+                    className="pricePoint_field"
+                    onChange={(e) => {
+                      setcoinHolding(e.target.value);
+                    }}
+                  />
                 </div>
               </div>
             </div>
             <label className="mt-4">Available Region[s]</label>
             <div className="col-md-3 p-0">
               <CUstomSelect
-                options={options}
-                isSearchable={false}
+                options={Countries}
+                isSearchable={true}
+                isMulti={true}
                 placeholder="All Region[s]"
+                handleFunction={handleCountry}
+                defaultValue={selectedCountry}
               />
             </div>
           </div>
@@ -74,7 +123,12 @@ export const AddPostThree = ({ setAddStep }: any) => {
           <button onClick={() => setAddStep("stepTwo")} className=" py-2">
             Previous
           </button>
-          <button className=" py-2 buySellBoxActive ml-2">Post</button>
+          <button
+            className=" py-2 buySellBoxActive ml-2"
+            onClick={createUpdateP2pAdsAction}
+          >
+            Create
+          </button>
         </div>
       </div>
     </div>

@@ -5,7 +5,8 @@ import { AddPostOne } from "components/P2P/AddPost/AddPostStep_one";
 import { AddPostThree } from "components/P2P/AddPost/AddPostStep_three";
 import { AddPostTwo } from "components/P2P/AddPost/AddPostStep_two";
 import { P2pTopBar } from "components/P2P/P2pHome/TopBar";
-import { useState } from "react";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 import { useAddPostInitial } from "state/actions/p2p";
 
 const AddPost = () => {
@@ -13,8 +14,7 @@ const AddPost = () => {
     data,
     loading,
     error,
-    setAddTabButton,
-    addTabButton,
+
     addStep,
     setAddStep,
     selectedAsset,
@@ -25,9 +25,32 @@ const AddPost = () => {
     priceType,
     setPriceType,
     setPricePoint,
+    setSelectedPayment,
+    selectedPayment,
+    selectedPaymentTime,
+    setSelectedPaymentTime,
+    Amount,
+    setAmount,
+    terms,
+    setTerms,
+    auto_reply,
+    setAuto_reply,
+    selectedCountry,
+    setSelectedCountry,
+    registerDays,
+    coinHolding,
+    setregisterDays,
+    setcoinHolding,
+    adsType,
+    setAdsType,
+    createUpdateP2pAdsAction,
   } = useAddPostInitial();
-
-  console.log(data, "ssacs");
+  const router = useRouter();
+  useEffect(() => {
+    if (data?.data?.is_payment_method_available === false) {
+      router.push("/p2p/add-payment-method");
+    }
+  }, [data?.data?.is_payment_method_available]);
   return (
     <>
       {loading ? (
@@ -50,9 +73,9 @@ const AddPost = () => {
               <div className="col-6">
                 <button
                   className={`addTabButton ${
-                    addTabButton && "buySellBoxActive"
+                    adsType === 1 && "buySellBoxActive"
                   }`}
-                  onClick={() => setAddTabButton(true)}
+                  onClick={() => setAdsType(1)}
                 >
                   I Want to Buy
                 </button>
@@ -60,9 +83,9 @@ const AddPost = () => {
               <div className="col-6">
                 <button
                   className={`addTabButton ${
-                    !addTabButton && "buySellBoxActive"
+                    adsType === 2 && "buySellBoxActive"
                   }`}
-                  onClick={() => setAddTabButton(false)}
+                  onClick={() => setAdsType(2)}
                 >
                   I Want to Sell
                 </button>
@@ -81,9 +104,35 @@ const AddPost = () => {
                   setPricePoint={setPricePoint}
                 />
               )}
-              {addStep === "stepTwo" && <AddPostTwo setAddStep={setAddStep} />}
+              {addStep === "stepTwo" && (
+                <AddPostTwo
+                  setAddStep={setAddStep}
+                  selectedAsset={selectedAsset}
+                  data={data}
+                  selectedPayment={selectedPayment}
+                  setSelectedPayment={setSelectedPayment}
+                  selectedPaymentTime={selectedPaymentTime}
+                  setSelectedPaymentTime={setSelectedPaymentTime}
+                  amount={Amount}
+                  setAmount={setAmount}
+                />
+              )}
               {addStep === "stepThree" && (
-                <AddPostThree setAddStep={setAddStep} />
+                <AddPostThree
+                  setAddStep={setAddStep}
+                  terms={terms}
+                  data={data}
+                  setTerms={setTerms}
+                  auto_reply={auto_reply}
+                  setAuto_reply={setAuto_reply}
+                  selectedCountry={selectedCountry}
+                  setSelectedCountry={setSelectedCountry}
+                  registerDays={registerDays}
+                  coinHolding={coinHolding}
+                  setregisterDays={setregisterDays}
+                  setcoinHolding={setcoinHolding}
+                  createUpdateP2pAdsAction={createUpdateP2pAdsAction}
+                />
               )}
             </div>
           </div>

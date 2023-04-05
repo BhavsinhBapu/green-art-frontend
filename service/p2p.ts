@@ -1,41 +1,25 @@
 import p2pResuest from "lib/p2pRequest";
 //Create Ads
 export const createUpdateP2pAds = async (
-  ads_type: any,
-  coin_type: any,
-  fiat_type: any,
-  price_type: any,
-  price: any,
-  price_rate: any,
-  amount: any,
-  min_limit: any,
-  max_limit: any,
-  terms: any,
-  auto_reply: any,
-  countrys: any,
-  payment_methods: any,
-  time_limit: any,
-  register_days: any,
-  coin_holding: any
+  // ads_type: any,
+  // coin_type: any,
+  // fiat_type: any,
+  // price_type: any,
+  // price: any,
+  // price_rate: any,
+  // amount: any,
+  // min_limit: any,
+  // max_limit: any,
+  // terms: any,
+  // auto_reply: any,
+  // countrys: any,
+  // payment_methods: any,
+  // time_limit: any,
+  // register_days: any,
+  // coin_holding: any
+  formData: any
 ) => {
-  const { data } = await p2pResuest.post("/ads", {
-    ads_type: ads_type,
-    coin_type: coin_type,
-    fiat_type: fiat_type,
-    price_type: price_type,
-    price: price,
-    price_rate: price_rate,
-    amount: amount,
-    min_limit: min_limit,
-    max_limit: max_limit,
-    terms: terms,
-    auto_reply: auto_reply,
-    payment_methods: payment_methods,
-    countrys: countrys,
-    time_limit: time_limit,
-    register_days: register_days,
-    coin_holding: coin_holding,
-  });
+  const { data } = await p2pResuest.post("/ads", formData);
   return data;
 };
 export const getAdsCreateSettings = async () => {

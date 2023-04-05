@@ -14631,3 +14631,11 @@ input {
   outline: none;
   text-align: center;
 }
+.css-wsp0cs-MultiValueGeneric {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.css-1p3m7a8-multiValue {
+  height: 20px !important;
+}

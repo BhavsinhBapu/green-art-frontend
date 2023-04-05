@@ -88,5 +88,5 @@ export const REFERRAL_TYPE_DEPOSIT = 1;
 export const REFERRAL_TYPE_TRADE = 2;
 
 //price type p2p
-export const FIXED_PRICE = 0;
-export const FLOAT_PRICE = 1;
+export const FIXED_PRICE = 1;
+export const FLOAT_PRICE = 2;
