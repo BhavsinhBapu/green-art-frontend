@@ -16,7 +16,7 @@ const P2pProfile = () => {
         <div className="userProfileBg mt-5 pb-5 pt-3">
           <PaymentTable />
           <FeedbackTable />
-          <BlockTable />
+          {/* <BlockTable /> */}
         </div>
       </div>
       <Footer />

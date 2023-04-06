@@ -14639,3 +14639,7 @@ input {
 .css-1p3m7a8-multiValue {
   height: 20px !important;
 }
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid var(--border-color);
+}

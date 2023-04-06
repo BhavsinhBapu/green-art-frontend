@@ -1,24 +1,6 @@
 import p2pResuest from "lib/p2pRequest";
 //Create Ads
-export const createUpdateP2pAds = async (
-  // ads_type: any,
-  // coin_type: any,
-  // fiat_type: any,
-  // price_type: any,
-  // price: any,
-  // price_rate: any,
-  // amount: any,
-  // min_limit: any,
-  // max_limit: any,
-  // terms: any,
-  // auto_reply: any,
-  // countrys: any,
-  // payment_methods: any,
-  // time_limit: any,
-  // register_days: any,
-  // coin_holding: any
-  formData: any
-) => {
+export const createUpdateP2pAds = async (formData: any) => {
   const { data } = await p2pResuest.post("/ads", formData);
   return data;
 };
@@ -56,6 +38,11 @@ export const getAdsDetails = async (ads_type: number, uid: string) => {
   );
   return data;
 };
+// ads-market-setting
+export const getAdsMarketSettings = async () => {
+  const { data } = await p2pResuest.get(`/ads-market-setting`);
+  return data;
+};
 export const adsFilterChanges = async (
   type: number,
   amount: number,
@@ -79,38 +66,22 @@ export const adsFilterChanges = async (
   return data;
 };
 //Payment Method
-export const AddPaymentMethod = async (
-  payment_uid: string,
-  uid: string,
-  delete_key: string,
-  username: string,
-  bank_name: string,
-  bank_account_number: string,
-  account_opening_branch: string,
-  transaction_reference: string,
-  card_number: string,
-  card_type: string,
-  mobile_account_number: string
-) => {
-  const { data } = await p2pResuest.post("/payment-method", {
-    payment_uid: payment_uid,
-    uid: uid,
-    delete: delete_key,
-    username: username,
-    bank_name: bank_name,
-    bank_account_number: bank_account_number,
-    account_opening_branch: account_opening_branch,
-    transaction_reference: transaction_reference,
-    card_number: card_number,
-    card_type: card_type,
-    mobile_account_number: mobile_account_number,
-  });
+export const AddPaymentMethod = async (formData: any) => {
+  const { data } = await p2pResuest.post("/payment-method", formData);
+  return data;
+};
+export const paymentMethodDetails = async (uid: string) => {
+  const { data } = await p2pResuest.get(`/details-payment-method-${uid}`);
   return data;
 };
 export const getPaymentMethods = async (per_page: number, page: number) => {
   const { data } = await p2pResuest.get(
     `/payment-method?per_page=${per_page}&page=${page}`
   );
+  return data;
+};
+export const adminPaymentMethods = async () => {
+  const { data } = await p2pResuest.get(`/admin-payment-method`);
   return data;
 };
 //my ads

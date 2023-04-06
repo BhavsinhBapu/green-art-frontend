@@ -1,75 +1,214 @@
+import { CUstomSelect } from "components/common/CUstomSelect";
 import Footer from "components/common/footer";
+import {
+  PAYMENT_METHOD_BANK,
+  PAYMENT_METHOD_CARD,
+  PAYMENT_METHOD_CARD_TYPE_CREDIT,
+  PAYMENT_METHOD_CARD_TYPE_DEBIT,
+  PAYMENT_METHOD_MOBILE,
+} from "helpers/core-constants";
+import { useCreatePaymentMethods } from "state/actions/p2p";
 
 const AddPaymentMethod = () => {
+  const {
+    paymentMethods,
+    setPaymentMethods,
+    handleSelectedMethod,
+    selectedMethods,
+    setSelectedMethods,
+    setSubmitData,
+    SubmitData,
+    handleCardSelectedMethod,
+    submitData,
+    uid,
+    editData,
+  } = useCreatePaymentMethods();
   return (
     <>
       <div className="container paymentMethodBox rounded shadow-sm my-5">
         <div className="row">
-          <div className="col-md-6 mx-auto py-3 py-md-5">
+          <div className="col-md-6 mx-auto ">
             <div className="paymentBox d-flex align-items-center border-0">
               <div></div>
-              <h6>Bank Transfer (Brazil)</h6>
+              <h2>{uid ? "Edit" : "Add"} payment method</h2>
             </div>
-            <div className="my-4">
-              <label>Full name of receiver</label>
-              <h6>ISRAFIL HOSSAIN</h6>
-            </div>
-            <div className="">
-              <label>Account number</label>
-              <div className="P2psearchBox position-relative">
-                <input
-                  type="text"
-                  placeholder="Enter your bank account number"
-                />
+            {!uid && (
+              <div className="mt-3">
+                <label>Select payment method</label>
+                <div className="P2psearchBox position-relative">
+                  <CUstomSelect
+                    options={paymentMethods}
+                    isSearchable={true}
+                    handleFunction={handleSelectedMethod}
+                    defaultValue={selectedMethods}
+                  />
+                </div>
               </div>
-            </div>
+            )}
             <div className="mt-4">
-              <label>CPF / CNPJ</label>
+              <label>Account name</label>
               <div className="P2psearchBox position-relative">
                 <input
                   type="text"
-                  placeholder="Enter Brazilian valid document"
+                  value={SubmitData.username}
+                  onChange={(e) => {
+                    setSubmitData({
+                      ...SubmitData,
+                      username: e.target.value,
+                    });
+                  }}
+                  placeholder="Enter your account name"
                 />
               </div>
             </div>
-            <div className="mt-4">
-              <label>Bank Name</label>
-              <div className="P2psearchBox position-relative">
-                <input type="text" placeholder="Enter the name of your bank" />
-              </div>
-            </div>
-            <div className="mt-4">
-              <label>Bank agency</label>
-              <div className="P2psearchBox position-relative">
-                <input
-                  type="text"
-                  placeholder="Enter the name of your bank agency"
-                />
-              </div>
-            </div>
-            <div className="my-4">
-              <label>Type of transfer</label>
-              <div className="P2psearchBox position-relative">
-                <input
-                  type="text"
-                  placeholder="Please filled with TED/DOC/PIX"
-                />
-              </div>
-            </div>
-            <div className="mt-5">
-              <h6>Tips</h6>
-              <p className="p_color ">
-                Tips: Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Commodi corporis cupiditate nam voluptatum modi? Nihil unde sint
-                modi excepturi nesciunt quas necessitatibus minus quis error
-                esse! Incidunt consequuntur sint tempora?
-              </p>
-            </div>
+
+            {selectedMethods?.payment_type === PAYMENT_METHOD_BANK && (
+              <>
+                <div className="mt-4">
+                  <label>Bank Name</label>
+                  <div className="P2psearchBox position-relative">
+                    <input
+                      type="text"
+                      placeholder="Enter the name of your bank"
+                      value={SubmitData.bank_name}
+                      onChange={(e) => {
+                        setSubmitData({
+                          ...SubmitData,
+                          bank_name: e.target.value,
+                        });
+                      }}
+                    />
+                  </div>
+                </div>
+                <div className="mt-4">
+                  <label>Bank Account number</label>
+                  <div className="P2psearchBox position-relative">
+                    <input
+                      type="text"
+                      placeholder="Enter bank account number"
+                      value={SubmitData.bank_account_number}
+                      onChange={(e) => {
+                        setSubmitData({
+                          ...SubmitData,
+                          bank_account_number: e.target.value,
+                        });
+                      }}
+                    />
+                  </div>
+                </div>
+                <div className="my-4">
+                  <label>Account opening branch</label>
+                  <div className="P2psearchBox position-relative">
+                    <input
+                      type="text"
+                      placeholder="Enter bank opening branch name"
+                      value={SubmitData.account_opening_branch}
+                      onChange={(e) => {
+                        setSubmitData({
+                          ...SubmitData,
+                          account_opening_branch: e.target.value,
+                        });
+                      }}
+                    />
+                  </div>
+                </div>
+                <div className="my-4">
+                  <label>Transaction Referance</label>
+                  <div className="P2psearchBox position-relative">
+                    <input
+                      type="text"
+                      placeholder="Enter transaction referance"
+                      value={SubmitData.transaction_reference}
+                      onChange={(e) => {
+                        setSubmitData({
+                          ...SubmitData,
+                          transaction_reference: e.target.value,
+                        });
+                      }}
+                    />
+                  </div>
+                </div>
+              </>
+            )}
+            {selectedMethods?.payment_type === PAYMENT_METHOD_CARD && (
+              <>
+                <div className="my-4">
+                  <label>Card number</label>
+                  <div className="P2psearchBox position-relative">
+                    <input
+                      type="text"
+                      placeholder="Enter Card Number"
+                      value={SubmitData.card_number}
+                      onChange={(e) => {
+                        setSubmitData({
+                          ...SubmitData,
+                          card_number: e.target.value,
+                        });
+                      }}
+                    />
+                  </div>
+                </div>
+                <div className="my-4">
+                  <label>Card Type</label>
+                  <div className="P2psearchBox position-relative">
+                    <CUstomSelect
+                      options={[
+                        {
+                          value: PAYMENT_METHOD_CARD_TYPE_DEBIT,
+                          label: "Debit card",
+                        },
+                        {
+                          value: PAYMENT_METHOD_CARD_TYPE_CREDIT,
+                          label: "Credit card",
+                        },
+                      ]}
+                      isSearchable={true}
+                      handleFunction={handleCardSelectedMethod}
+                      defaultValue={
+                        uid
+                          ? {
+                              value: SubmitData.card_type,
+                              label:
+                                parseInt(SubmitData.card_type) ===
+                                PAYMENT_METHOD_CARD_TYPE_DEBIT
+                                  ? "Debit card"
+                                  : "Credit card",
+                            }
+                          : null
+                      }
+                    />
+                  </div>
+                </div>
+              </>
+            )}
+            {selectedMethods?.payment_type === PAYMENT_METHOD_MOBILE && (
+              <>
+                <div className="my-4">
+                  <label>Mobile number</label>
+                  <div className="P2psearchBox position-relative">
+                    <input
+                      type="text"
+                      placeholder="Enter Mobile Number"
+                      value={SubmitData.mobile_account_number}
+                      onChange={(e) => {
+                        setSubmitData({
+                          ...SubmitData,
+                          mobile_account_number: e.target.value,
+                        });
+                      }}
+                    />
+                  </div>
+                </div>
+              </>
+            )}
+
             <div className="mt-4 d-flex justify-content-center">
-              <button className="tableButton buyCancelButton px-3 px-sm-5">
-                Cancel
+              <button
+                className="tableButton ml-3 px-3 px-sm-5"
+                onClick={uid ? editData : submitData}
+              >
+                Confirm
               </button>
-              <button className="tableButton ml-3 px-3 px-sm-5">Confirm</button>
             </div>
           </div>
         </div>

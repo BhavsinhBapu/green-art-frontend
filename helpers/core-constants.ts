@@ -90,3 +90,16 @@ export const REFERRAL_TYPE_TRADE = 2;
 //price type p2p
 export const FIXED_PRICE = 1;
 export const FLOAT_PRICE = 2;
+
+//Create payment p2p
+export const PAYMENT_METHOD_BANK = 1;
+export const PAYMENT_METHOD_MOBILE = 2;
+export const PAYMENT_METHOD_CARD = 3;
+
+//P2p card type
+export const PAYMENT_METHOD_CARD_TYPE_DEBIT = 1;
+export const PAYMENT_METHOD_CARD_TYPE_CREDIT = 2;
+
+//p2p 1 = Buy / 2 = Sell
+export const BUY = 1;
+export const SELL = 2;

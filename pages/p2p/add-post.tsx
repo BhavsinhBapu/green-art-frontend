@@ -13,8 +13,6 @@ const AddPost = () => {
   const {
     data,
     loading,
-    error,
-
     addStep,
     setAddStep,
     selectedAsset,
@@ -67,7 +65,7 @@ const AddPost = () => {
               </div>
             </div>
           </div>
-          <AddPostStep />
+          {/* <AddPostStep /> */}
           <div className="container">
             <div className="row">
               <div className="col-6">
