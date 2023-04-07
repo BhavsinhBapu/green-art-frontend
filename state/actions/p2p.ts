@@ -4,6 +4,8 @@ import {
   PAYMENT_METHOD_BANK,
   PAYMENT_METHOD_CARD,
   PAYMENT_METHOD_MOBILE,
+  BUY,
+  SELL,
 } from "helpers/core-constants";
 import { useApi, usePostApiFunction } from "helpers/hooks";
 import { useRouter } from "next/router";
@@ -19,6 +21,10 @@ import {
   paymentMethodDetails,
   adsFilterChanges,
   getAdsMarketSettings,
+  getAdsDetails,
+  p2pOrderRate,
+  placeP2POrder,
+  myP2pOrder,
 } from "service/p2p";
 
 export const useAddPostInitial = () => {
@@ -202,7 +208,7 @@ export const useCreatePaymentMethods = () => {
     const response = await AddPaymentMethod(formData);
     if (response.success) {
       toast.success(response.message);
-      // router.push("/p2p/payment-methods");
+      router.push("/p2p/p2p-profile");
     } else {
       toast.error(response.message);
     }
@@ -296,7 +302,21 @@ export const deletePaymentMethodsAction = async (
   setProcessing(false);
   return response;
 };
-
+// myP2pOrder
+export const myP2pOrderAction = async (
+  per_page: number,
+  page: number,
+  setReport: React.Dispatch<SetStateAction<object>>,
+  setProcessing: React.Dispatch<SetStateAction<boolean>>,
+  setStillHistory: React.Dispatch<SetStateAction<boolean>>
+) => {
+  setProcessing(true);
+  const response = await myP2pOrder(per_page, page);
+  setReport(response.data.data);
+  setStillHistory(response.data);
+  setProcessing(false);
+  return response;
+};
 export const getPaymentMethodsAction = async (
   per_page: number,
   page: number,
@@ -358,3 +378,52 @@ export const landingSettingsAction = async (
   setProcessing(false);
 };
 // getAdsMarketSettings;
+export const getAdsDetailsAction = async (
+  uid: any,
+  type: any,
+  setDetails: any
+) => {
+  const { data } = await getAdsDetails(type, uid);
+  setDetails(data);
+  console.log(
+    data,
+    "datadatadatadatadatadatadatadatadatadatadatadatadatadatadata"
+  );
+};
+export const p2pOrderRateAction = async (
+  ads_type: any,
+  ads_id: any,
+  amount: any,
+  price: any,
+  setRate: any
+) => {
+  const { data } = await p2pOrderRate(
+    parseInt(ads_type) === BUY ? SELL : BUY,
+    ads_id,
+    amount,
+    price
+  );
+  setRate(data);
+  console.log(data, "My data");
+};
+
+export const placeP2POrderAction = async (
+  ads_type: any,
+  ads_id: any,
+  payment_id: any,
+  value: any,
+  lastChanged: any
+) => {
+  const response = await placeP2POrder(
+    ads_type,
+    ads_id,
+    payment_id,
+    value,
+    lastChanged
+  );
+  if (response.success) {
+    toast.success(response.message);
+  } else {
+    toast.error(response.message);
+  }
+};

@@ -1,8 +1,38 @@
+import { CUstomSelect } from "components/common/CUstomSelect";
+import { AMOUNT, AMOUNT_PRICE, BUY, SELL } from "helpers/core-constants";
+import { useEffect, useState } from "react";
 import { TfiHandPointRight } from "react-icons/tfi";
+import { toast } from "react-toastify";
+import { placeP2POrderAction } from "state/actions/p2p";
 
-export const BuyFrom = ({ setBuyFrom }: any) => {
+export const BuyFrom = ({
+  details,
+  rate,
+  setRate,
+  getRate,
+  lastChanged,
+  setlastChanged,
+  ads_type,
+  ads_id,
+}: any) => {
+  const [paymentMethods, setPaymethods] = useState([]);
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState();
+  const handlePayment = (e: any) => {
+    setSelectedPaymentMethod(e.value);
+  };
+  useEffect(() => {
+    let PaymentMethods: any = [];
+    details?.payment_methods?.map((item: any) =>
+      PaymentMethods.push({
+        value: item.uid,
+        label: item?.admin_pamynt_method?.name,
+      })
+    );
+    setPaymethods(PaymentMethods);
+  }, [details]);
   return (
-    <div className="col-12">
+    <div className="col-12 p-5">
+      <h1>Details</h1>
       <div className="shadow p-4 rounded">
         <div className="row">
           <div className="col-md-6">
@@ -11,35 +41,40 @@ export const BuyFrom = ({ setBuyFrom }: any) => {
                 src="https://api-tradex.nftarttoken.xyz/images/avatars/yellow-hat.png"
                 alt=""
               />
-              {/* <h4 className="tableImg">
-                      <b>F</b>
-                    </h4> */}
-              <h5>Chirik34</h5>
-              <p className="px-3">479 orders</p>
-              <p>100.00% completion</p>
+              <h5>
+                {details?.ads?.user?.first_name} {details?.ads?.user?.last_name}
+              </h5>
+              <p className="px-3">{details?.orders} orders</p>
+              <p>{details?.completion}% completion</p>
             </div>
             <div className="row pt-4">
               <div className="col-lg-6">
                 <div className="d-flex align-items-center">
                   <p>Price</p>
-                  <h6 className="pl-3 text-warning">323.0 BDT</h6>
+                  <h6 className="pl-3 text-warning">
+                    {parseFloat(details?.price)} {details?.ads?.currency}
+                  </h6>
                 </div>
                 <div className="d-flex align-items-center">
                   <p>Payment Time Limit</p>
-                  <h6 className="pl-3">32 Minutes</h6>
+                  <h6 className="pl-3">{details?.payment_time} Minutes</h6>
                 </div>
               </div>
 
               <div className="col-lg-6">
                 <div className="d-flex align-items-center">
                   <p>Available</p>
-                  <h6 className="pl-3">23.440 USDT</h6>
+                  <h6 className="pl-3">
+                    {parseFloat(details?.available)} {details?.ads?.coin_type}
+                  </h6>
                 </div>
                 <div className="d-flex align-items-center">
-                  <p>Seller's Payment method</p>
-                  <span className="badge badge-light ml-3 text-warning">
-                    Nagad
-                  </span>
+                  {/* <p>Payments</p> */}
+                  {/* {details.payment_methods.map((payment: any) => (
+                    <span className="badge badge-light ml-3 text-warning">
+                      {payment}
+                    </span>
+                  ))} */}
                 </div>
               </div>
               <div className="col-12">
@@ -63,30 +98,86 @@ export const BuyFrom = ({ setBuyFrom }: any) => {
               </div>
             </div>
           </div>
-          <div className="col-md-6">
-            <label>I want to pay</label>
-            <div className="P2psearchBox position-relative">
-              <input type="text" placeholder="233.0555 - 24.24240" />
-              <button>
-                All <span className="ml-3 text-muted">BDT</span>
-              </button>
+          <form
+            className="col-md-6"
+            onSubmit={(e) => {
+              e.preventDefault();
+              if (!selectedPaymentMethod) {
+                toast.error("Please select a payment method");
+                return;
+              }
+              if (!lastChanged) {
+                toast.error("Field cannot be 0, please enter a value");
+                return;
+              }
+              placeP2POrderAction(
+                parseInt(ads_type) === BUY ? SELL : BUY,
+                ads_id,
+                selectedPaymentMethod,
+                lastChanged === AMOUNT_PRICE ? rate.amount_price : rate.amount,
+                lastChanged
+              );
+            }}
+          >
+            <div>
+              <label>I want to pay</label>
+              <div className="P2psearchBox position-relative">
+                <input
+                  type="text"
+                  value={rate?.amount_price}
+                  placeholder="233.0555 - 24.24240"
+                  onChange={(e) => {
+                    setRate({
+                      ...rate,
+                      amount_price: parseFloat(e.target.value),
+                    });
+                    getRate(null, parseFloat(e.target.value));
+                    setlastChanged(AMOUNT_PRICE);
+                  }}
+                />
+                <button>
+                  <span className="ml-3 text-muted">
+                    {details?.ads?.currency}
+                  </span>
+                </button>
+              </div>
+              <label className="pt-3">I will receive</label>
+              <div className="P2psearchBox position-relative">
+                <input
+                  type="text"
+                  placeholder="0.00"
+                  value={rate?.amount}
+                  onChange={(e) => {
+                    setRate({ ...rate, amount: parseFloat(e.target.value) });
+                    getRate(parseFloat(e.target.value), null);
+                    setlastChanged(AMOUNT);
+                  }}
+                />
+                <button>
+                  <span className="ml-3 text-muted">
+                    {details?.ads?.coin_type}
+                  </span>
+                </button>
+              </div>
+              <label className="pt-3">Select payment method</label>
+
+              <CUstomSelect
+                options={paymentMethods}
+                handleFunction={handlePayment}
+              />
+              <div className="mt-3 d-flex justify-content-center">
+                <button
+                  // onClick={() => setBuyFrom(false)}
+                  className="tableButton buyCancelButton"
+                >
+                  Cancel
+                </button>
+                <button className="tableButton ml-3" type="submit">
+                  Buy
+                </button>
+              </div>
             </div>
-            <label className="pt-3">I will receive</label>
-            <div className="P2psearchBox position-relative">
-              <input type="text" placeholder="0.00" />
-              <button>
-                <span className="ml-3 text-muted">USDT</span>
-              </button>
-            </div>
-            <div className="mt-3 d-flex justify-content-center">
-              <button
-                onClick={() => setBuyFrom(false)}
-                className="tableButton buyCancelButton">
-                Cancel
-              </button>
-              <button className="tableButton ml-3">Buy USDT</button>
-            </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>

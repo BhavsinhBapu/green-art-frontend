@@ -91,7 +91,7 @@ const P2P = () => {
           filters={filters}
           settings={settings}
         />
-        <P2pDataTable history={history} />
+        <P2pDataTable history={history} filters={filters} />
         {history?.length > 0 && (
           <div className="pagination-wrapper" id="assetBalances_paginate">
             <span>

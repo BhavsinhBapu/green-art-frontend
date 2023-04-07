@@ -103,3 +103,16 @@ export const PAYMENT_METHOD_CARD_TYPE_CREDIT = 2;
 //p2p 1 = Buy / 2 = Sell
 export const BUY = 1;
 export const SELL = 2;
+
+//submit
+export const AMOUNT_PRICE = 1;
+export const AMOUNT = 2;
+
+// Trade Status
+export const TRADE_STATUS_CANCELED_TIME_EXPIRED = 0;
+export const TRADE_STATUS_ESCROW = 1; 
+export const TRADE_STATUS_PAYMENT_DONE = 2;
+export const TRADE_STATUS_TRANSFER_DONE = 3;
+export const TRADE_STATUS_CANCELED = 4;
+export const TRADE_STATUS_REFUNDED_BY_ADMIN = 6;
+export const TRADE_STATUS_RELEASED_BY_ADMIN = 7;

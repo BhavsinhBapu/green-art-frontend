@@ -1,3 +1,4 @@
+import { AMOUNT_PRICE } from "helpers/core-constants";
 import p2pResuest from "lib/p2pRequest";
 //Create Ads
 export const createUpdateP2pAds = async (formData: any) => {
@@ -108,6 +109,28 @@ export const userAdsFilterChange = async (
   });
   return data;
 };
+export const p2pOrderRate = async (
+  ads_type: any,
+  ads_id: any,
+  amount: any,
+  price: any
+) => {
+  const { data } = await p2pResuest.post(
+    "/get-p2p-order-rate",
+    amount
+      ? {
+          ads_type: ads_type,
+          ads_id: ads_id,
+          amount: amount,
+        }
+      : {
+          ads_type: ads_type,
+          ads_id: ads_id,
+          price: price,
+        }
+  );
+  return data;
+};
 //Wallet
 export const getWalletList = async (per_page: number, page: number) => {
   const { data } = await p2pResuest.get(
@@ -133,15 +156,32 @@ export const placeP2POrder = async (
   ads_type: number,
   ads_id: string,
   payment_id: string,
-  amount: number,
-  price: number
+  value: number,
+  lastChanged: number
 ) => {
-  const { data } = await p2pResuest.post("/place-p2p-order", {
-    ads_type: ads_type,
-    ads_id: ads_id,
-    payment_id: payment_id,
-    amount: amount,
-    price: price,
-  });
+  const { data } = await p2pResuest.post(
+    "/place-p2p-order",
+    lastChanged === AMOUNT_PRICE
+      ? {
+          ads_type: ads_type,
+          ads_id: ads_id,
+          payment_id: payment_id,
+          price: value,
+        }
+      : {
+          ads_type: ads_type,
+          ads_id: ads_id,
+          payment_id: payment_id,
+          amount: value,
+        }
+  );
+  return data;
+};
+//
+
+export const myP2pOrder = async (per_page: number, page: number) => {
+  const { data } = await p2pResuest.get(
+    `/my-p2p-order?per_page=${per_page}&page=${page}`
+  );
   return data;
 };

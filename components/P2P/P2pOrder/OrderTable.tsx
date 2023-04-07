@@ -1,4 +1,9 @@
-export const OrderTable = () => {
+export const OrderTable = ({
+  stillHistory,
+  history,
+  LinkTopaginationString,
+}: any) => {
+  console.log(history, "historyhistoryhistoryhistory");
   return (
     <div className="container">
       <div className="row">
@@ -7,74 +12,76 @@ export const OrderTable = () => {
             <table className="table mt-4">
               <thead>
                 <tr>
-                  <th scope="col">Type/Coin</th>
-                  <th scope="col">Fiat amount</th>
+                  <th scope="col">Order Id</th>
+                  <th scope="col">Amount</th>
                   <th scope="col">Price</th>
-                  <th scope="col">Crypto amount</th>
-                  <th scope="col">Counterparty</th>
-                  <th scope="col">Status</th>
+                  <th scope="col">Seller fees</th>
                   <th scope="col">Operation</th>
                 </tr>
               </thead>
               <tbody>
-                <tr className="tableRow">
-                  <td>
-                    <div className="tableImg d-flex align-items-center">
-                      <img
-                        src="https://api-tradex.nftarttoken.xyz/images/avatars/yellow-hat.png"
-                        alt=""
-                      />
-                      {/* <h4 className="tableImg">
-                      <b>F</b>
-                    </h4> */}
-                      <h6 className="ml-2">Chirik34</h6>
-                    </div>
-                  </td>
-                  <td>
-                    <h6 className="mx-2">12,233.34 EUR</h6>
-                  </td>
-                  <td>113.60 BDT</td>
-                  <td>157.89 USDT</td>
-                  <td>
-                    <a href="">riralam</a>
-                  </td>
-                  <td>
-                    <h6>Cancelled</h6>
-                  </td>
-                  <td>
-                    <p className="text-warning">Contact</p>
-                  </td>
-                </tr>
-                <tr className="tableRow">
-                  <td>
-                    <div className="tableImg d-flex align-items-center">
-                      {/* <img
-                        src="https://api-tradex.nftarttoken.xyz/images/avatars/yellow-hat.png"
-                        alt=""
-                      /> */}
-                      <h4 className="tableImg">
-                        <b>F</b>
-                      </h4>
-                      <h6 className="ml-2">Chirik34</h6>
-                    </div>
-                  </td>
-                  <td>
-                    <h6 className="mx-2">12,233.34 EUR</h6>
-                  </td>
-                  <td>113.60 BDT</td>
-                  <td>157.89 USDT</td>
-                  <td>
-                    <a href="">riralam</a>
-                  </td>
-                  <td>
-                    <h6>Cancelled</h6>
-                  </td>
-                  <td>
-                    <p className="text-warning">Contact</p>
-                  </td>
-                </tr>
+                {history.map((item: any) => (
+                  <tr className="tableRow">
+                    <td>
+                      <div className="tableImg d-flex align-items-center">
+                        <h6 className="">{item.order_id}</h6>
+                      </div>
+                    </td>
+                    <td>
+                      <h6 className="mx-2">
+                        {parseFloat(item.amount)} {item.coin_type}
+                      </h6>
+                    </td>
+                    <td>
+                      {parseFloat(item.price)} {item.currency}
+                    </td>
+                    <td>{item.seller_fees}</td>
+                    <td>
+                      <p className="text-warning">Details</p>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
+            {history?.length > 0 && (
+              <div className="pagination-wrapper" id="assetBalances_paginate">
+                <span>
+                  {stillHistory?.links?.map((link: any, index: number) =>
+                    link.label === "&laquo; Previous" ? (
+                      <a
+                        className="paginate-button"
+                        onClick={() => {
+                          if (link.url) LinkTopaginationString(link);
+                        }}
+                        key={index}
+                      >
+                        <i className="fa fa-angle-left"></i>
+                      </a>
+                    ) : link.label === "Next &raquo;" ? (
+                      <a
+                        className="paginate-button"
+                        onClick={() => LinkTopaginationString(link)}
+                        key={index}
+                      >
+                        <i className="fa fa-angle-right"></i>
+                      </a>
+                    ) : (
+                      <a
+                        className={`paginate_button paginate-number ${
+                          link.active === true && "text-warning"
+                        }`}
+                        aria-controls="assetBalances"
+                        data-dt-idx="1"
+                        onClick={() => LinkTopaginationString(link)}
+                        key={index}
+                      >
+                        {link.label}
+                      </a>
+                    )
+                  )}
+                </span>
+              </div>
+            )}
           </div>
         </div>
       </div>
