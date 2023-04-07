@@ -1,5 +1,6 @@
 import { CUstomSelect } from "components/common/CUstomSelect";
 import { AMOUNT, AMOUNT_PRICE, BUY, SELL } from "helpers/core-constants";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { TfiHandPointRight } from "react-icons/tfi";
 import { toast } from "react-toastify";
@@ -15,6 +16,7 @@ export const BuyFrom = ({
   ads_type,
   ads_id,
 }: any) => {
+  const router = useRouter();
   const [paymentMethods, setPaymethods] = useState([]);
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState();
   const handlePayment = (e: any) => {
@@ -100,7 +102,7 @@ export const BuyFrom = ({
           </div>
           <form
             className="col-md-6"
-            onSubmit={(e) => {
+            onSubmit={async (e) => {
               e.preventDefault();
               if (!selectedPaymentMethod) {
                 toast.error("Please select a payment method");
@@ -115,8 +117,11 @@ export const BuyFrom = ({
                 ads_id,
                 selectedPaymentMethod,
                 lastChanged === AMOUNT_PRICE ? rate.amount_price : rate.amount,
-                lastChanged
+                lastChanged,
+                router
               );
+              // if (response.success) {
+              // }
             }}
           >
             <div>

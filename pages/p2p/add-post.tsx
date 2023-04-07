@@ -1,6 +1,5 @@
 import Footer from "components/common/footer";
 import SectionLoading from "components/common/SectionLoading";
-import { AddPostStep } from "components/P2P/AddPost/AddPostStep";
 import { AddPostOne } from "components/P2P/AddPost/AddPostStep_one";
 import { AddPostThree } from "components/P2P/AddPost/AddPostStep_three";
 import { AddPostTwo } from "components/P2P/AddPost/AddPostStep_two";

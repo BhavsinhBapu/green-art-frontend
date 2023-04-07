@@ -14640,6 +14640,19 @@ input {
   height: 20px !important;
 }
 .table thead th {
-    vertical-align: bottom;
-    border-bottom: 2px solid var(--border-color);
+  vertical-align: bottom;
+  border-bottom: 2px solid var(--border-color);
+}
+.my-trade-container {
+  margin: 50px 100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.order-info{
+  display: flex;
+  margin: 0 !important;
+}
+.order-info div{
+  margin: 0;
+  padding-right: 25px;
 }

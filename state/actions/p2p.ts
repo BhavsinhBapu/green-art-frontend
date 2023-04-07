@@ -412,7 +412,8 @@ export const placeP2POrderAction = async (
   ads_id: any,
   payment_id: any,
   value: any,
-  lastChanged: any
+  lastChanged: any,
+  router: any
 ) => {
   const response = await placeP2POrder(
     ads_type,
@@ -423,7 +424,9 @@ export const placeP2POrderAction = async (
   );
   if (response.success) {
     toast.success(response.message);
+    router.push(`/p2p/trade/${response.data.uid}`);
   } else {
     toast.error(response.message);
   }
+  return response;
 };
