@@ -113,7 +113,7 @@ export const BuyFrom = ({
                 return;
               }
               placeP2POrderAction(
-                parseInt(ads_type) === BUY ? SELL : BUY,
+                parseInt(ads_type),
                 ads_id,
                 selectedPaymentMethod,
                 lastChanged === AMOUNT_PRICE ? rate.amount_price : rate.amount,
@@ -125,7 +125,11 @@ export const BuyFrom = ({
             }}
           >
             <div>
-              <label>I want to pay</label>
+              <label>
+                {parseInt(ads_type) === BUY
+                  ? "I want to pay"
+                  : "I will receive"}
+              </label>
               <div className="P2psearchBox position-relative">
                 <input
                   type="text"
@@ -146,7 +150,11 @@ export const BuyFrom = ({
                   </span>
                 </button>
               </div>
-              <label className="pt-3">I will receive</label>
+              <label className="pt-3">
+                {parseInt(ads_type) === BUY
+                  ? "I will receive"
+                  : "I want to sell"}
+              </label>
               <div className="P2psearchBox position-relative">
                 <input
                   type="text"
@@ -171,14 +179,8 @@ export const BuyFrom = ({
                 handleFunction={handlePayment}
               />
               <div className="mt-3 d-flex justify-content-center">
-                <button
-                  // onClick={() => setBuyFrom(false)}
-                  className="tableButton buyCancelButton"
-                >
-                  Cancel
-                </button>
-                <button className="tableButton ml-3" type="submit">
-                  Buy
+                <button className="primary-btn-outline w-100 " type="submit">
+                  {parseInt(ads_type) === BUY ? "Buy" : "Sell"}
                 </button>
               </div>
             </div>

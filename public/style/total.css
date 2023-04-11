@@ -14656,3 +14656,6 @@ input {
   margin: 0;
   padding-right: 25px;
 }
+.active-step {
+  background-color: var(--primary-color) !important;
+}

@@ -139,9 +139,9 @@ export const getWalletList = async (per_page: number, page: number) => {
   return data;
 };
 export const walletBalanceTransfer = async (
-  type: number,
-  coin: string,
-  amount: number
+  type: any,
+  coin: any,
+  amount: any
 ) => {
   const { data } = await p2pResuest.post("/transfer-wallet-balance", {
     type: type,
@@ -177,11 +177,46 @@ export const placeP2POrder = async (
   );
   return data;
 };
+// get-p2p-order-details
 //
-
+export const getP2pOrderDetails = async (order_uid: string) => {
+  const { data } = await p2pResuest.post("/get-p2p-order-details", {
+    order_uid: order_uid,
+  });
+  return data;
+};
 export const myP2pOrder = async (per_page: number, page: number) => {
   const { data } = await p2pResuest.get(
     `/my-p2p-order?per_page=${per_page}&page=${page}`
   );
+  return data;
+};
+export const paymentP2pOrder = async (formData: any) => {
+  const { data } = await p2pResuest.post("/payment-p2p-order", formData);
+  return data;
+};
+export const p2pOrderCancel = async (formData: any) => {
+  const { data } = await p2pResuest.post("/cancel-p2p-order", formData);
+  return data;
+};
+// release-p2p-order
+export const releaseP2pOrder = async (formData: any) => {
+  const { data } = await p2pResuest.post("/release-p2p-order", formData);
+  return data;
+};
+// wallets
+export const getWallets = async (per_page: any, page: any) => {
+  const { data } = await p2pResuest.get(
+    `/wallets?per_page=${per_page}&page=${page}`
+  );
+  return data;
+};
+export const orderFeedback = async (formData: any) => {
+  const { data } = await p2pResuest.post("/order-feedback", formData);
+  return data;
+};
+// dispute-process
+export const disputeProcess = async (formData: any) => {
+  const { data } = await p2pResuest.post("/dispute-process", formData);
   return data;
 };

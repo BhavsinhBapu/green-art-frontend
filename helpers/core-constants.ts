@@ -110,9 +110,13 @@ export const AMOUNT = 2;
 
 // Trade Status
 export const TRADE_STATUS_CANCELED_TIME_EXPIRED = 0;
-export const TRADE_STATUS_ESCROW = 1; 
+export const TRADE_STATUS_ESCROW = 1;
 export const TRADE_STATUS_PAYMENT_DONE = 2;
 export const TRADE_STATUS_TRANSFER_DONE = 3;
 export const TRADE_STATUS_CANCELED = 4;
 export const TRADE_STATUS_REFUNDED_BY_ADMIN = 6;
 export const TRADE_STATUS_RELEASED_BY_ADMIN = 7;
+export const SEND = 1;
+export const RECEIVE = 2;
+export const POSITIVE = 1;
+export const NEGATIVE = 0;

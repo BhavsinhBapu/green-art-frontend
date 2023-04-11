@@ -1,6 +1,7 @@
 import { RiPagesLine } from "react-icons/ri";
 import { HiUsers } from "react-icons/hi";
 import Link from "next/link";
+import { AiOutlineWallet } from "react-icons/ai";
 
 export const P2pTopBar = () => {
   return (
@@ -10,7 +11,7 @@ export const P2pTopBar = () => {
           <div className="col-12">
             <ul className="d-flex justify-content-center justify-content-md-end topBarList">
               <li>
-                <Link href="/p2p/p2p-order">
+                <Link href="/p2p/my-order">
                   <a>
                     <RiPagesLine />
                     Orders
@@ -26,11 +27,20 @@ export const P2pTopBar = () => {
                 </Link>
               </li>
               <li>
+                <Link href="/p2p/p2p-wallet">
+                  <a>
+                    <AiOutlineWallet />
+                    P2P Wallet
+                  </a>
+                </Link>
+              </li>
+              <li>
                 <a
                   href=""
                   className="dropdown-toggle"
                   data-toggle="dropdown"
-                  aria-expanded="false">
+                  aria-expanded="false"
+                >
                   More
                 </a>
                 <div className="dropdown-menu mt-3 bg-dark">

@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export const OrderTable = ({
   stillHistory,
   history,
@@ -16,6 +18,7 @@ export const OrderTable = ({
                   <th scope="col">Amount</th>
                   <th scope="col">Price</th>
                   <th scope="col">Seller fees</th>
+                  <th scope="col">Status</th>
                   <th scope="col">Operation</th>
                 </tr>
               </thead>
@@ -37,7 +40,19 @@ export const OrderTable = ({
                     </td>
                     <td>{item.seller_fees}</td>
                     <td>
-                      <p className="text-warning">Details</p>
+                      {parseInt(item?.is_reported) !== 0
+                        ? "Disputed"
+                        : parseInt(item.is_success) === 0
+                        ? "Pending"
+                        : parseInt(item.is_success) === 1
+                        ? "Completed"
+                        : ""}
+                    </td>
+
+                    <td>
+                      <Link href={`/p2p/trade/${item.uid}`}>
+                        <p className="text-warning">Details</p>
+                      </Link>
                     </td>
                   </tr>
                 ))}

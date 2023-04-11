@@ -2,6 +2,7 @@ import { BuyFrom } from "./BuyFrom";
 import { useState } from "react";
 import Link from "next/link";
 import { NoItemFound } from "components/NoItemFound/NoItemFound";
+import { BUY } from "helpers/core-constants";
 
 export const P2pDataTable = ({ history, filters }: any) => {
   return (
@@ -31,9 +32,7 @@ export const P2pDataTable = ({ history, filters }: any) => {
                             src="https://api-tradex.nftarttoken.xyz/images/avatars/yellow-hat.png"
                             alt=""
                           />
-                          <h5>
-                            {item?.user?.first_name} {item?.user?.last_name}
-                          </h5>
+                          <h5>{item?.user?.nickname}</h5>
                         </div>
                       </Link>
                     </td>
@@ -66,7 +65,8 @@ export const P2pDataTable = ({ history, filters }: any) => {
                         href={`/p2p/details/${item.uid}?adtype=${filters.type}`}
                       >
                         <button className="tableButton">
-                          Buy {item.coin_type}
+                          {filters.type === BUY ? "Buy" : "Sell"}{" "}
+                          {item.coin_type}
                         </button>
                       </Link>
                     </td>

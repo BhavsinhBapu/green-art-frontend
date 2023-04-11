@@ -6,6 +6,9 @@ import {
   PAYMENT_METHOD_MOBILE,
   BUY,
   SELL,
+  TRADE_STATUS_ESCROW,
+  TRADE_STATUS_PAYMENT_DONE,
+  TRADE_STATUS_TRANSFER_DONE,
 } from "helpers/core-constants";
 import { useApi, usePostApiFunction } from "helpers/hooks";
 import { useRouter } from "next/router";
@@ -25,6 +28,12 @@ import {
   p2pOrderRate,
   placeP2POrder,
   myP2pOrder,
+  getP2pOrderDetails,
+  paymentP2pOrder,
+  p2pOrderCancel,
+  releaseP2pOrder,
+  getWallets,
+  orderFeedback,
 } from "service/p2p";
 
 export const useAddPostInitial = () => {
@@ -398,7 +407,7 @@ export const p2pOrderRateAction = async (
   setRate: any
 ) => {
   const { data } = await p2pOrderRate(
-    parseInt(ads_type) === BUY ? SELL : BUY,
+    parseInt(ads_type),
     ads_id,
     amount,
     price
@@ -428,5 +437,107 @@ export const placeP2POrderAction = async (
   } else {
     toast.error(response.message);
   }
+  return response;
+};
+export const getP2pOrderDetailsAction = async (
+  order_uid: string,
+  setDetails: any,
+  setStep: any,
+  setExpried: any,
+  setLoading: any
+) => {
+  setLoading(true);
+  const response = await getP2pOrderDetails(order_uid);
+  setDetails(response?.data);
+  if (response?.data.order.status === TRADE_STATUS_ESCROW) {
+    setStep(1);
+  } else if (response?.data.order.status === TRADE_STATUS_PAYMENT_DONE) {
+    setStep(2);
+  } else if (response?.data.order.status === TRADE_STATUS_TRANSFER_DONE) {
+    setStep(3);
+  }
+  const now = new Date().getTime();
+  //@ts-ignore
+  const diff: any = new Date(response?.data?.order?.payment_expired_time) - now;
+  if (!response?.data?.order?.payment_expired_time) {
+    setExpried(false);
+    setLoading(false);
+    return;
+  }
+  if (diff > 0) {
+    setExpried(false);
+  } else {
+    setExpried(true);
+  }
+  setLoading(false);
+};
+// paymentP2pOrder
+export const paymentP2pOrderAction = async (
+  trade_id: any,
+  doc: any,
+  setStep: any
+) => {
+  const formData = new FormData();
+  formData.append("trade_id", trade_id);
+  formData.append("payment_slip", doc);
+  const response = await paymentP2pOrder(formData);
+  if (response.success) {
+    setStep(2);
+    toast.success(response.message);
+  } else {
+    toast.error(response.message);
+  }
+};
+export const p2pOrderCancelAction = async (
+  order_uid: any,
+  reason: any,
+  router: any
+) => {
+  const formData = new FormData();
+  formData.append("order_uid", order_uid);
+  formData.append("reason", reason);
+  const response = await p2pOrderCancel(formData);
+  if (response.success) {
+    toast.success(response.message);
+    router.push("/p2p");
+  } else {
+    toast.error(response.message);
+  }
+};
+export const submitTradeFeedback = async (
+  order_uid: any,
+  feedback_type: any,
+  feedback: any
+) => {
+  if (!feedback) {
+    toast.error("Please enter feedback field first");
+    return;
+  }
+  const formData = new FormData();
+  formData.append("order_uid", order_uid);
+  formData.append("feedback_type", feedback_type);
+  formData.append("feedback", feedback);
+  const response = await orderFeedback(formData);
+  if (response.success) {
+    toast.success(response.message);
+  } else {
+    toast.error(response.message);
+  }
+};
+// releaseP2pOrder;
+export const releaseP2pOrderAction = async (trade_id: any, setDetails: any) => {
+  const formData = new FormData();
+  formData.append("trade_id", trade_id);
+  const response = await releaseP2pOrder(formData);
+  if (response.success) {
+    toast.success(response.message);
+    setDetails(response?.data);
+  } else {
+    toast.error(response.message);
+  }
+};
+// getWallets;
+export const getWalletsAction = async (per_page: any, page: any) => {
+  const response = await getWallets(per_page, page);
   return response;
 };
