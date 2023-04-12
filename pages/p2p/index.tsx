@@ -9,7 +9,9 @@ import { P2pTab } from "components/P2P/P2pHome/P2pTab";
 import { P2pWork } from "components/P2P/P2pHome/P2pWork";
 import { P2pTopBar } from "components/P2P/P2pHome/TopBar";
 import { BUY } from "helpers/core-constants";
+import { GetServerSideProps } from "next";
 import { useEffect, useState } from "react";
+import { getAdsMarketSettings } from "service/p2p";
 import { landingPageAction, landingSettingsAction } from "state/actions/p2p";
 
 const P2P = () => {
@@ -140,5 +142,12 @@ const P2P = () => {
       <Footer />
     </>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
+  const { data } = await getAdsMarketSettings();
+  return {
+    props: {},
+  };
 };
 export default P2P;
