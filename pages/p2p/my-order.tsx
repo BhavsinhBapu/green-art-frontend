@@ -3,6 +3,8 @@ import SectionLoading from "components/common/SectionLoading";
 import { P2pTopBar } from "components/P2P/P2pHome/TopBar";
 import { OrderFilter } from "components/P2P/P2pOrder/OrderFilter";
 import { OrderTable } from "components/P2P/P2pOrder/OrderTable";
+import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
+import { GetServerSideProps } from "next";
 import { useEffect, useState } from "react";
 import { myP2pOrderAction } from "state/actions/p2p";
 
@@ -54,5 +56,12 @@ const P2pOrder = () => {
       <Footer />
     </>
   );
+};
+export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
+  await SSRAuthCheck(ctx, "");
+
+  return {
+    props: {},
+  };
 };
 export default P2pOrder;

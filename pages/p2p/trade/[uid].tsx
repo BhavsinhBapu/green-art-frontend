@@ -21,6 +21,8 @@ import {
   TRADE_STATUS_CANCELED,
   TRADE_STATUS_ESCROW,
   TRADE_STATUS_PAYMENT_DONE,
+  TRADE_STATUS_REFUNDED_BY_ADMIN,
+  TRADE_STATUS_RELEASED_BY_ADMIN,
   TRADE_STATUS_TRANSFER_DONE,
 } from "helpers/core-constants";
 import Timer from "components/P2P/P2pHome/Timer";
@@ -32,6 +34,8 @@ import { sendMessageTrade } from "service/p2p";
 import { useDispatch, useSelector } from "react-redux";
 import { setP2pDetailsOrder, setTradeChat } from "state/reducer/user";
 import { RootState } from "state/store";
+import { GetServerSideProps } from "next";
+import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 
 let socketCall = 0;
 
@@ -128,8 +132,8 @@ const Trading = () => {
       {loading ? (
         <SectionLoading />
       ) : (
-        <div className="my-trade-container  ">
-          <div className="boxShadow p-4">
+        <div className="my-trade-container">
+          <div className="boxShadow p-4 mb-3">
             <div className="py-4">
               {details?.user_type === BUY && (
                 <h1>
@@ -188,6 +192,20 @@ const Trading = () => {
             {parseInt(details?.order?.status) === TRADE_STATUS_CANCELED && (
               <div className="boxShadow p-5 text-center mt-3">
                 <h4 className="mb-3">Trade canceled</h4>
+              </div>
+            )}
+            {parseInt(details?.order?.status) ===
+              TRADE_STATUS_REFUNDED_BY_ADMIN && (
+              <div className="boxShadow p-5 text-center mt-3">
+                <h4 className="mb-3">
+                  Trade payment hasbeen refunded by admin
+                </h4>
+              </div>
+            )}
+            {parseInt(details?.order?.status) ===
+              TRADE_STATUS_RELEASED_BY_ADMIN && (
+              <div className="boxShadow p-5 text-center mt-3">
+                <h4 className="mb-3">Trade hasbeen released by admin</h4>
               </div>
             )}
             {parseInt(details?.order?.is_reported) === 0 && (
@@ -300,7 +318,7 @@ const Trading = () => {
                           className="btn nimmu-user-sibmit-button mt-3"
                           // disabled={parseInt(details?.order?.is_queue) === 1}
                           onClick={() => {
-                            releaseP2pOrderAction(uid,dispatch);
+                            releaseP2pOrderAction(uid, dispatch);
                           }}
                         >
                           Release
@@ -482,14 +500,15 @@ const Trading = () => {
           </div>
         </div>
       )}
-      <div className="container">
-        {JSON.stringify(details?.order?.status)}
-        {calling ? "True" : "False"}
-      </div>
 
       <Footer />
     </>
   );
 };
-
+export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
+  await SSRAuthCheck(ctx, "");
+  return {
+    props: {},
+  };
+};
 export default Trading;

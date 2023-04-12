@@ -1,6 +1,5 @@
 import Footer from "components/common/footer";
 import { P2pAdvantage } from "components/P2P/P2pHome/P2pAdvantage";
-import { P2pBlog } from "components/P2P/P2pHome/P2pBlog";
 import { P2pDataTable } from "components/P2P/P2pHome/P2pDataTable";
 import { P2pFaq } from "components/P2P/P2pHome/p2pFAQ";
 import { P2pFilter } from "components/P2P/P2pHome/P2pFilter";
@@ -11,11 +10,15 @@ import { P2pTopBar } from "components/P2P/P2pHome/TopBar";
 import { BUY } from "helpers/core-constants";
 import { GetServerSideProps } from "next";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { getAdsMarketSettings } from "service/p2p";
 import { landingPageAction, landingSettingsAction } from "state/actions/p2p";
+import { RootState } from "state/store";
 
-const P2P = () => {
+const P2P = ({ data }: any) => {
   const [processing, setProcessing] = useState<boolean>(false);
+  const { isLoggedIn } = useSelector((state: RootState) => state.user);
+
   const [settings, setSettings] = useState<any>([]);
   const [history, setHistory] = useState<any>([]);
   const [stillHistory, setStillHistory] = useState<any>([]);
@@ -50,6 +53,19 @@ const P2P = () => {
   useEffect(() => {
     landingSettingsAction(setProcessing, setSettings, setFilters, filters);
   }, []);
+  const changeBackground = () => {
+    const elements = document.getElementsByClassName("p2p_bg");
+
+    // Loop through the elements and add the background image
+    for (let i = 0; i < elements.length; i++) {
+      //@ts-ignore
+      elements[i].style.backgroundImage = `url('${data?.p2p_banner_img}')`;
+    }
+  };
+
+  useEffect(() => {
+    changeBackground();
+  }, []);
   useEffect(() => {
     filters.coin &&
       landingPageAction(
@@ -67,7 +83,7 @@ const P2P = () => {
         setSettings
       );
   }, [filters]);
-
+  console.log(data, "data");
   return (
     <>
       <div className="mb-5">
@@ -75,18 +91,17 @@ const P2P = () => {
           <div className="container">
             <div className="row">
               <div className="col-12 text-center">
-                <h2 className="text-white">
-                  Binance - Peer-to-Peer Ecosystem With 300+Payment Methods
-                </h2>
-                <p className="text-white">
-                  Binance is the largest centralized exchange globally. However,
-                  Binance is also a major player <br /> in the P2P trading space
-                </p>
+                {data?.p2p_banner_header && (
+                  <h2 className="text-white">{data?.p2p_banner_header}</h2>
+                )}
+                {data?.p2p_banner_des && (
+                  <p className="text-white">{data?.p2p_banner_des}</p>
+                )}
               </div>
             </div>
           </div>
         </div>
-        <P2pTopBar />
+        {isLoggedIn && <P2pTopBar />}
         <P2pTab setFilters={setFilters} filters={filters} settings={settings} />
         <P2pFilter
           setFilters={setFilters}
@@ -133,11 +148,10 @@ const P2P = () => {
             </span>
           </div>
         )}
-        <P2pWork />
-        <P2pAdvantage />
-        <P2pBlog />
-        <P2pFaq />
-        <P2pPaymentMethod />
+        <P2pWork data={data} />
+        <P2pAdvantage data={data} />
+        {/* <P2pFaq data={data} /> */}
+        <P2pPaymentMethod data={data} />
       </div>
       <Footer />
     </>
@@ -147,7 +161,9 @@ const P2P = () => {
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const { data } = await getAdsMarketSettings();
   return {
-    props: {},
+    props: {
+      data: data,
+    },
   };
 };
 export default P2P;

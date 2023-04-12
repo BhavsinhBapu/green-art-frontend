@@ -1,10 +1,10 @@
-export const P2pWorkCard = ({ item }: any) => {
+export const P2pWorkCard = ({ discription, icon, title }: any) => {
   return (
     <div className="col-md-6 col-lg-4 mt-3 mt-lg-0">
       <div className="workCard px-4 py-5">
-        {item.icon}
-        <h4 className="py-4">{item.title}</h4>
-        <p>{item.discription}</p>
+        <img src={icon} height={150} />
+        <h4 className="py-4">{title}</h4>
+        <p>{discription}</p>
       </div>
     </div>
   );

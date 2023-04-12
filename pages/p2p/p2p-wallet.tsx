@@ -223,7 +223,7 @@ const MyWallet: NextPage = () => {
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
-  await SSRAuthCheck(ctx, "/user/my-wallet");
+  await SSRAuthCheck(ctx, "");
   return {
     props: {},
   };

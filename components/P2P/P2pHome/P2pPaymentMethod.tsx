@@ -1,4 +1,4 @@
-export const P2pPaymentMethod = () => {
+export const P2pPaymentMethod = ({ data }: any) => {
   return (
     <div className="container mt-5 pt-5">
       <div className="row align-items-center payment_box p-3 mx-2 mx-sm-0">
@@ -7,60 +7,14 @@ export const P2pPaymentMethod = () => {
         </div>
         <div className="col-md-8 pb-4">
           <div className="row">
-            <div className="col-sm-6 col-lg-4 pt-4">
-              <a className="paymentBox d-flex align-items-center p-3" href="">
-                <div></div>
-                bKash
-              </a>
-            </div>
-            <div className="col-sm-6 col-lg-4 pt-4">
-              <a className="paymentBox d-flex align-items-center p-3" href="">
-                <div></div>
-                Nagad
-              </a>
-            </div>
-            <div className="col-sm-6 col-lg-4 pt-4">
-              <a className="paymentBox d-flex align-items-center p-3" href="">
-                <div></div>
-                Bank Transfer
-              </a>
-            </div>
-            <div className="col-sm-6 col-lg-4 pt-4">
-              <a className="paymentBox d-flex align-items-center p-3" href="">
-                <div></div>
-                Rocket
-              </a>
-            </div>
-            <div className="col-sm-6 col-lg-4 pt-4">
-              <a className="paymentBox d-flex align-items-center p-3" href="">
-                <div></div>
-                UPI
-              </a>
-            </div>
-            <div className="col-sm-6 col-lg-4 pt-4">
-              <a className="paymentBox d-flex align-items-center p-3" href="">
-                <div></div>
-                Wise
-              </a>
-            </div>
-            <div className="col-sm-6 col-lg-4 pt-4">
-              <a className="paymentBox d-flex align-items-center p-3" href="">
-                <div></div>
-                bKash
-              </a>
-            </div>
-            <div className="col-sm-6 col-lg-4 pt-4">
-              <a className="paymentBox d-flex align-items-center p-3" href="">
-                <div></div>
-                bKash
-              </a>
-            </div>
-            <div className="col-sm-6 col-lg-4 pt-4">
-              <a className="paymentBox d-flex align-items-center p-3" href="">
-                <div></div>
-                bKash
-              </a>
-            </div>
+            {data.payment_method.map((data: any) => (
+              <div className="col-sm-6 col-lg-4 pt-4">
+                <a className="paymentBox d-flex align-items-center p-3" href="">
+                  <div></div>
+                  {data?.admin_pamynt_method?.name}
+                </a>
+              </div>
+            ))}
           </div>
         </div>
       </div>

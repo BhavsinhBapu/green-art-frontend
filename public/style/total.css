@@ -14071,7 +14071,7 @@ input {
 /* p2p */
 
 .p2p_bg {
-  background-image: url("../p2p-bg.jpeg");
+  background-image: url("https://images.unsplash.com/photo-1631758236057-0aedf1bc584d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80");
   background-repeat: no-repeat;
   background-size: cover;
   padding: 50px 0px;
@@ -14648,6 +14648,23 @@ input {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
+
+/* Media query for screens 768px and smaller */
+@media only screen and (max-width: 768px) {
+  .my-trade-container {
+    margin: 20px;
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Media query for screens 1024px and larger */
+@media only screen and (min-width: 1024px) {
+  .my-trade-container {
+    margin: 50px 100px;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 .order-info{
   display: flex;
   margin: 0 !important;

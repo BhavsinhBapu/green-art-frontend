@@ -1,5 +1,7 @@
 import { BuyFrom } from "components/P2P/P2pHome/BuyFrom";
 import Footer from "components/common/footer";
+import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
+import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { getAdsDetailsAction, p2pOrderRateAction } from "state/actions/p2p";
@@ -48,5 +50,10 @@ const Details = () => {
     </>
   );
 };
-
+export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
+  await SSRAuthCheck(ctx, "");
+  return {
+    props: {},
+  };
+};
 export default Details;

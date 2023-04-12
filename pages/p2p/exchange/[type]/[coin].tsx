@@ -1,4 +1,6 @@
 import { SEND } from "helpers/core-constants";
+import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
+import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
@@ -39,5 +41,11 @@ const Exchange = () => {
     </div>
   );
 };
+export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
+  await SSRAuthCheck(ctx, "");
 
+  return {
+    props: {},
+  };
+};
 export default Exchange;

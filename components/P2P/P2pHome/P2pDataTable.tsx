@@ -3,8 +3,10 @@ import { useState } from "react";
 import Link from "next/link";
 import { NoItemFound } from "components/NoItemFound/NoItemFound";
 import { BUY } from "helpers/core-constants";
+import { RootState } from "state/store";
+import { useSelector } from "react-redux";
 
-export const P2pDataTable = ({ history, filters }: any) => {
+export const P2pDataTable = ({ history, filters, isLoggedIn }: any) => {
   return (
     <div className="container mt-4">
       <div className="row">
@@ -61,14 +63,16 @@ export const P2pDataTable = ({ history, filters }: any) => {
                       ))}
                     </td>
                     <td>
-                      <Link
-                        href={`/p2p/details/${item.uid}?adtype=${filters.type}`}
-                      >
-                        <button className="tableButton">
-                          {filters.type === BUY ? "Buy" : "Sell"}{" "}
-                          {item.coin_type}
-                        </button>
-                      </Link>
+                      {isLoggedIn && (
+                        <Link
+                          href={`/p2p/details/${item.uid}?adtype=${filters.type}`}
+                        >
+                          <button className="tableButton">
+                            {filters.type === BUY ? "Buy" : "Sell"}{" "}
+                            {item.coin_type}
+                          </button>
+                        </Link>
+                      )}
                     </td>
                   </tr>
                 ))}

@@ -3,28 +3,7 @@ import { P2pWorkCard } from "./P2pWorkCard";
 import { BsCashCoin } from "react-icons/bs";
 import { FcDocument, FcMoneyTransfer } from "react-icons/fc";
 
-export const P2pWork = () => {
-  const p2pWorkCardList = [
-    {
-      icon: <FcDocument />,
-      title: "Place an Order",
-      discription:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis etveniam est earum consequuntur? Ut nulla sequi repudiandae. Molestiae nobis",
-    },
-    {
-      icon: <FcMoneyTransfer />,
-      title: "Place an Order",
-      discription:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis etveniam est earum consequuntur? Ut nulla sequi repudiandae. Molestiae nobis",
-    },
-    {
-      icon: <BsCashCoin />,
-      title: "Place an Order",
-      discription:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis etveniam est earum consequuntur? Ut nulla sequi repudiandae. Molestiae nobis",
-    },
-  ];
-
+export const P2pWork = ({ data }: any) => {
   const [buySellCrypto, setBuySellCrypto] = useState(true);
 
   return (
@@ -37,12 +16,14 @@ export const P2pWork = () => {
               <div className="p2pWorkBtn pt-4 pt-sm-0">
                 <button
                   onClick={() => setBuySellCrypto(true)}
-                  className={`${buySellCrypto && "buySellBoxActive"}`}>
+                  className={`${buySellCrypto && "buySellBoxActive"}`}
+                >
                   Buy Crypto
                 </button>
                 <button
                   className={`${!buySellCrypto && "buySellBoxActive"}`}
-                  onClick={() => setBuySellCrypto(false)}>
+                  onClick={() => setBuySellCrypto(false)}
+                >
                   Sell Crypto
                 </button>
               </div>
@@ -50,15 +31,39 @@ export const P2pWork = () => {
             <div className="row mt-4">
               {buySellCrypto === true ? (
                 <>
-                  {p2pWorkCardList.map((item, index) => (
-                    <P2pWorkCard key={index} item={item} />
-                  ))}
+                  <P2pWorkCard
+                    title={data?.p2p_buy_step_1_heading}
+                    discription={data?.p2p_buy_step_1_des}
+                    icon={data?.p2p_buy_step_1_icon}
+                  />
+                  <P2pWorkCard
+                    title={data?.p2p_buy_step_2_heading}
+                    discription={data?.p2p_buy_step_2_des}
+                    icon={data?.p2p_buy_step_2_icon}
+                  />
+                  <P2pWorkCard
+                    title={data?.p2p_buy_step_3_heading}
+                    discription={data?.p2p_buy_step_3_des}
+                    icon={data?.p2p_buy_step_3_icon}
+                  />
                 </>
               ) : (
                 <>
-                  {p2pWorkCardList.map((item, index) => (
-                    <P2pWorkCard key={index} item={item} />
-                  ))}
+                  <P2pWorkCard
+                    title={data?.p2p_sell_step_1_heading}
+                    discription={data?.p2p_sell_step_1_des}
+                    icon={data?.p2p_sell_step_1_icon}
+                  />
+                  <P2pWorkCard
+                    title={data?.p2p_sell_step_2_heading}
+                    discription={data?.p2p_sell_step_2_des}
+                    icon={data?.p2p_sell_step_2_icon}
+                  />
+                  <P2pWorkCard
+                    title={data?.p2p_sell_step_3_heading}
+                    discription={data?.p2p_sell_step_3_des}
+                    icon={data?.p2p_sell_step_3_icon}
+                  />
                 </>
               )}
             </div>

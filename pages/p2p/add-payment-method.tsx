@@ -7,6 +7,8 @@ import {
   PAYMENT_METHOD_CARD_TYPE_DEBIT,
   PAYMENT_METHOD_MOBILE,
 } from "helpers/core-constants";
+import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
+import { GetServerSideProps } from "next";
 import { useCreatePaymentMethods } from "state/actions/p2p";
 
 const AddPaymentMethod = () => {
@@ -216,5 +218,13 @@ const AddPaymentMethod = () => {
       <Footer />
     </>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
+  await SSRAuthCheck(ctx, "");
+
+  return {
+    props: {},
+  };
 };
 export default AddPaymentMethod;

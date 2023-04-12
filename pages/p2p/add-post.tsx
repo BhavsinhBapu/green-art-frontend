@@ -4,6 +4,8 @@ import { AddPostOne } from "components/P2P/AddPost/AddPostStep_one";
 import { AddPostThree } from "components/P2P/AddPost/AddPostStep_three";
 import { AddPostTwo } from "components/P2P/AddPost/AddPostStep_two";
 import { P2pTopBar } from "components/P2P/P2pHome/TopBar";
+import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
+import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useAddPostInitial } from "state/actions/p2p";
@@ -139,5 +141,13 @@ const AddPost = () => {
       <Footer />
     </>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
+  await SSRAuthCheck(ctx, "");
+
+  return {
+    props: {},
+  };
 };
 export default AddPost;
