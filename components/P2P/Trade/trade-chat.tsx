@@ -52,32 +52,20 @@ export const TradeChat = ({
                       />
                     </div>
                   </div>
-                  {chat?.conversation_attachment[0]?.file_link &&
-                    chat?.conversation_attachment.map((image: any) =>
-                      image.file_type === "img" ? (
-                        <a
-                          href={image?.file_link}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="send_image mb-2"
-                        >
-                          <img
-                            height={100}
-                            className="rounded"
-                            src={image?.file_link}
-                          />
-                        </a>
-                      ) : (
-                        <a
-                          href={image?.file_link}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="send_image"
-                        >
-                          Download file
-                        </a>
-                      )
-                    )}
+                  {chat?.file_path && (
+                    <a
+                      href={chat?.file_path}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="send_image"
+                    >
+                      <img
+                        height={100}
+                        className="rounded mb-2"
+                        src={chat?.file_path}
+                      />
+                    </a>
+                  )}
                 </div>
               ) : (
                 <div className="col-md-8 chat_layout_left">
@@ -98,32 +86,20 @@ export const TradeChat = ({
                       ></small>
                     )}
                   </div>
-                  {/* {chat?.conversation_attachment[0]?.file_link &&
-                    chat?.conversation_attachment.map((image: any) =>
-                      image.file_type === "img" ? (
-                        <a
-                          href={image?.file_link}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="send_image"
-                        >
-                          <img
-                            height={100}
-                            className="rounded mb-2"
-                            src={image?.file_link}
-                          />
-                        </a>
-                      ) : (
-                        <a
-                          href={image?.file_link}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="send_image"
-                        >
-                          Download file
-                        </a>
-                      )
-                    )} */}
+                  {chat?.file_path && (
+                    <a
+                      href={chat?.file_path}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="send_image"
+                    >
+                      <img
+                        height={100}
+                        className="rounded mb-2"
+                        src={chat?.file_path}
+                      />
+                    </a>
+                  )}
                 </div>
               )
             )}

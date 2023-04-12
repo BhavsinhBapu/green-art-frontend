@@ -452,11 +452,11 @@ export const getP2pOrderDetailsAction = async (
   const response = await getP2pOrderDetails(order_uid);
   setDetails(response?.data);
   dispatch(setTradeChatAll(response?.data?.chat_messages));
-  if (response?.data.order.status === TRADE_STATUS_ESCROW) {
+  if (response?.data?.order.status === TRADE_STATUS_ESCROW) {
     setStep(1);
-  } else if (response?.data.order.status === TRADE_STATUS_PAYMENT_DONE) {
+  } else if (response?.data?.order.status === TRADE_STATUS_PAYMENT_DONE) {
     setStep(2);
-  } else if (response?.data.order.status === TRADE_STATUS_TRANSFER_DONE) {
+  } else if (response?.data?.order.status === TRADE_STATUS_TRANSFER_DONE) {
     setStep(3);
   }
   const now = new Date().getTime();

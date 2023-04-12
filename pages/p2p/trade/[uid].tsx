@@ -55,17 +55,18 @@ async function listenMessages(
   window.Echo.channel(
     `Order-Status-${localStorage.getItem("user_id")}${uid}`
   ).listen(".OrderStatus", (e: any) => {
+    console.log(e.order, "order socket");
     setDetails({
       ...details,
-      order: e,
+      order: e.order,
     });
   });
   //@ts-ignore
   window.Echo.channel(
     `New-Message-${localStorage.getItem("user_id")}-${uid}`
   ).listen(".Conversation", (e: any) => {
-    console.log(e, "eeeeeee");
-    dispatch(setTradeChat(e));
+    console.log(e.data, "eeeeeee");
+    dispatch(setTradeChat(e.data));
   });
   // channel: New - Message - { user_id } - { order_uid };
   // event: Conversation;
@@ -134,13 +135,14 @@ const Trading = () => {
         <div className="my-trade-container  ">
           <div className="boxShadow p-4">
             <div className="py-4">
-              {details.user_type === BUY && (
+              {details?.user_type === BUY && (
                 <h1>
                   {"Buy"} {details?.order?.coin_type} from{" "}
                   {details?.user_seller?.nick_name}
                 </h1>
               )}
-              {details.user_type === SELL && (
+
+              {details?.user_type === SELL && (
                 <h1>
                   {"Sell"} {details?.order?.coin_type} to{" "}
                   {details?.user_buyer?.nick_name}
@@ -160,7 +162,7 @@ const Trading = () => {
               </span>
             </div>
             {/* order.status */}
-            <TradeSteps step={step} order={details.order} />
+            <TradeSteps step={step} order={details?.order} />
             <div className="p-2">
               <h4 className="mb-3">Confirm order info </h4>
               <div className="order-info ">
