@@ -7,6 +7,7 @@ export type UserType = {
   customPageData: {};
   copyright_text: "";
   socialData: [];
+  p2pDetails: {};
   logo: string;
   icoChat: [];
   supportChat: [];
@@ -19,6 +20,7 @@ const initialState: any = {
   isLoggedIn: false,
   isLoading: true,
   notification: [],
+  p2pDetails: {},
   icoChat: [],
   customPageData: null,
   copyright_text: null,
@@ -74,6 +76,7 @@ export const userSlice = createSlice({
     setTradeChat: (state, action: any) => {
       state.tradeChat = [...state.tradeChat, action.payload];
     },
+
     setCustomPageData: (state, action: any) => {
       state.customPageData = action.payload;
     },
@@ -88,6 +91,15 @@ export const userSlice = createSlice({
     },
     setOneNotification: (state, action: any) => {
       state.notificationData.unshift(action.payload);
+    },
+    setP2pDetails: (state, action: any) => {
+      state.p2pDetails = action.payload;
+    },
+    setP2pDetailsOrder: (state, action: any) => {
+      state.p2pDetails = {
+        ...state.p2pDetails,
+        order: action.payload,
+      };
     },
   },
 });
@@ -110,5 +122,7 @@ export const {
   setTradeChat,
   setTradeChatAll,
   setOneNotification,
+  setP2pDetails,
+  setP2pDetailsOrder,
 } = userSlice.actions;
 export default userSlice.reducer;

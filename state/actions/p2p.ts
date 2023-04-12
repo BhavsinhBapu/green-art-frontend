@@ -35,7 +35,7 @@ import {
   getWallets,
   orderFeedback,
 } from "service/p2p";
-import { setTradeChatAll } from "state/reducer/user";
+import { setP2pDetails, setP2pDetailsOrder, setTradeChatAll } from "state/reducer/user";
 
 export const useAddPostInitial = () => {
   const router = useRouter();
@@ -442,7 +442,7 @@ export const placeP2POrderAction = async (
 };
 export const getP2pOrderDetailsAction = async (
   order_uid: string,
-  setDetails: any,
+
   setStep: any,
   setExpried: any,
   setLoading: any,
@@ -450,7 +450,8 @@ export const getP2pOrderDetailsAction = async (
 ) => {
   setLoading(true);
   const response = await getP2pOrderDetails(order_uid);
-  setDetails(response?.data);
+  // setDetails(response?.data);
+  dispatch(setP2pDetails(response?.data));
   dispatch(setTradeChatAll(response?.data?.chat_messages));
   if (response?.data?.order.status === TRADE_STATUS_ESCROW) {
     setStep(1);
@@ -528,13 +529,14 @@ export const submitTradeFeedback = async (
   }
 };
 // releaseP2pOrder;
-export const releaseP2pOrderAction = async (trade_id: any, setDetails: any) => {
+export const releaseP2pOrderAction = async (trade_id: any, dispatch: any) => {
   const formData = new FormData();
   formData.append("trade_id", trade_id);
   const response = await releaseP2pOrder(formData);
   if (response.success) {
     toast.success(response.message);
-    setDetails(response?.data);
+    // setDetails(response?.data);
+    dispatch(setP2pDetails(response?.data));
   } else {
     toast.error(response.message);
   }

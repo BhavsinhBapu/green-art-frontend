@@ -29,60 +29,23 @@ import TradeCancel from "components/P2P/P2pHome/TradeCancel";
 import TradeDispute from "components/P2P/P2pHome/TradeDispute";
 import { TradeChat } from "components/P2P/Trade/trade-chat";
 import { sendMessageTrade } from "service/p2p";
-import { useDispatch } from "react-redux";
-import { setTradeChat } from "state/reducer/user";
-async function listenMessages(
-  setDetails: any,
-  details: any,
-  uid: any,
-  dispatch: any
-) {
-  //@ts-ignore
-  window.Pusher = Pusher;
-  //@ts-ignore
-  window.Echo = new Echo({
-    broadcaster: "pusher",
-    key: "test",
-    wsHost: process.env.NEXT_PUBLIC_HOST_SOCKET,
-    wsPort: 6006,
-    wssPort: 443,
-    forceTLS: false,
-    cluster: "mt1",
-    disableStats: true,
-    enabledTransports: ["ws", "wss"],
-  });
-  //@ts-ignore
-  window.Echo.channel(
-    `Order-Status-${localStorage.getItem("user_id")}${uid}`
-  ).listen(".OrderStatus", (e: any) => {
-    console.log(e.order, "order socket");
-    setDetails({
-      ...details,
-      order: e.order,
-    });
-  });
-  //@ts-ignore
-  window.Echo.channel(
-    `New-Message-${localStorage.getItem("user_id")}-${uid}`
-  ).listen(".Conversation", (e: any) => {
-    console.log(e.data, "eeeeeee");
-    dispatch(setTradeChat(e.data));
-  });
-  // channel: New - Message - { user_id } - { order_uid };
-  // event: Conversation;
-}
+import { useDispatch, useSelector } from "react-redux";
+import { setP2pDetailsOrder, setTradeChat } from "state/reducer/user";
+import { RootState } from "state/store";
+
 let socketCall = 0;
 
 const Trading = () => {
   const { t } = useTranslation("common");
   const inputRef = useRef(null);
+  const { p2pDetails: details } = useSelector((state: RootState) => state.user);
   const [feedback, setFeedback] = useState("");
   const [loading, setLoading] = useState(false);
   const [doc, setDoc] = useState(null);
   const [message, setMessage] = useState("");
   const [file, setFile] = useState<any>();
   const [expried, setExpried] = useState(false);
-  const [details, setDetails] = useState<any>({});
+  const [calling, setCalling] = useState<any>(false);
   const [feedbackType, setfeedbackType] = useState<any>(POSITIVE);
   const [step, setStep] = useState(0);
   const dispatch = useDispatch();
@@ -97,23 +60,56 @@ const Trading = () => {
     setMessage("");
     await sendMessageTrade(formData);
   };
+  async function listenMessages() {
+    //@ts-ignore
+    window.Pusher = Pusher;
+    //@ts-ignore
+    window.Echo = new Echo({
+      broadcaster: "pusher",
+      key: "test",
+      wsHost: process.env.NEXT_PUBLIC_HOST_SOCKET,
+      wsPort: 6006,
+      wssPort: 443,
+      forceTLS: false,
+      cluster: "mt1",
+      disableStats: true,
+      enabledTransports: ["ws", "wss"],
+    });
+    //@ts-ignore
+    window.Echo.channel(
+      `Order-Status-${localStorage.getItem("user_id")}${uid}`
+    ).listen(".OrderStatus", (e: any) => {
+      console.log(e.order, "order socket");
+
+      dispatch(setP2pDetailsOrder(e.order));
+    });
+    //@ts-ignore
+    window.Echo.channel(
+      `New-Message-${localStorage.getItem("user_id")}-${uid}`
+    ).listen(".Conversation", (e: any) => {
+      console.log(e.data, "eeeeeee");
+      dispatch(setTradeChat(e.data));
+    });
+    // channel: New - Message - { user_id } - { order_uid };
+    // event: Conversation;
+  }
   useEffect(() => {
     if (socketCall === 0 && uid) {
-      listenMessages(setDetails, details, uid, dispatch);
+      listenMessages();
     }
     socketCall = 1;
-  });
+  }, [socketCall, uid]);
   useEffect(() => {
     uid &&
       getP2pOrderDetailsAction(
         uid.toString(),
-        setDetails,
         setStep,
         setExpried,
         setLoading,
         dispatch
       );
-  }, [uid]);
+    console.log("Again calling");
+  }, [uid, calling]);
   const handleFileChange = (event: any) => {
     const fileObj = event.target.files && event.target.files[0];
     if (!fileObj) {
@@ -302,9 +298,9 @@ const Trading = () => {
                       <>
                         <button
                           className="btn nimmu-user-sibmit-button mt-3"
-                          disabled={parseInt(details?.order?.is_queue) === 1}
+                          // disabled={parseInt(details?.order?.is_queue) === 1}
                           onClick={() => {
-                            releaseP2pOrderAction(uid, setDetails);
+                            releaseP2pOrderAction(uid,dispatch);
                           }}
                         >
                           Release
@@ -316,9 +312,9 @@ const Trading = () => {
                             onClick={() => {}}
                           >
                             <button
-                              disabled={
-                                parseInt(details?.order?.is_queue) === 1
-                              }
+                              // disabled={
+                              //   parseInt(details?.order?.is_queue) === 1
+                              // }
                               className="btn nimmu-user-sibmit-button mt-3"
                               onClick={() => {}}
                             >
@@ -486,6 +482,10 @@ const Trading = () => {
           </div>
         </div>
       )}
+      <div className="container">
+        {JSON.stringify(details?.order?.status)}
+        {calling ? "True" : "False"}
+      </div>
 
       <Footer />
     </>
