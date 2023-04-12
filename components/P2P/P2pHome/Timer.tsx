@@ -24,9 +24,9 @@ const Timer = ({ endTime }: { endTime: string }) => {
   }, [endTime]);
 
   return (
-    <div className="mt-3">
-      <h5 className="card-title">Payment time left</h5>
-      <p className="card-text">{timeLeft}</p>
+    <div className="mt-5 mb-5">
+      <h3 className="card-title">Payment time left</h3>
+      <h4 className="card-text">{timeLeft}</h4>
     </div>
   );
 };
