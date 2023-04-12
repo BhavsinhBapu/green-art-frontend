@@ -27,7 +27,16 @@ import Timer from "components/P2P/P2pHome/Timer";
 import SectionLoading from "components/common/SectionLoading";
 import TradeCancel from "components/P2P/P2pHome/TradeCancel";
 import TradeDispute from "components/P2P/P2pHome/TradeDispute";
-async function listenMessages(setDetails: any, details: any) {
+import { TradeChat } from "components/P2P/Trade/trade-chat";
+import { sendMessageTrade } from "service/p2p";
+import { useDispatch } from "react-redux";
+import { setTradeChat } from "state/reducer/user";
+async function listenMessages(
+  setDetails: any,
+  details: any,
+  uid: any,
+  dispatch: any
+) {
   //@ts-ignore
   window.Pusher = Pusher;
   //@ts-ignore
@@ -43,15 +52,23 @@ async function listenMessages(setDetails: any, details: any) {
     enabledTransports: ["ws", "wss"],
   });
   //@ts-ignore
-  window.Echo.channel(`Order-Status-${localStorage.getItem("user_id")}`).listen(
-    ".OrderStatus",
-    (e: any) => {
-      setDetails({
-        ...details,
-        order: e,
-      });
-    }
-  );
+  window.Echo.channel(
+    `Order-Status-${localStorage.getItem("user_id")}${uid}`
+  ).listen(".OrderStatus", (e: any) => {
+    setDetails({
+      ...details,
+      order: e,
+    });
+  });
+  //@ts-ignore
+  window.Echo.channel(
+    `New-Message-${localStorage.getItem("user_id")}-${uid}`
+  ).listen(".Conversation", (e: any) => {
+    console.log(e, "eeeeeee");
+    dispatch(setTradeChat(e));
+  });
+  // channel: New - Message - { user_id } - { order_uid };
+  // event: Conversation;
 }
 let socketCall = 0;
 
@@ -61,15 +78,27 @@ const Trading = () => {
   const [feedback, setFeedback] = useState("");
   const [loading, setLoading] = useState(false);
   const [doc, setDoc] = useState(null);
+  const [message, setMessage] = useState("");
+  const [file, setFile] = useState<any>();
   const [expried, setExpried] = useState(false);
   const [details, setDetails] = useState<any>({});
   const [feedbackType, setfeedbackType] = useState<any>(POSITIVE);
   const [step, setStep] = useState(0);
+  const dispatch = useDispatch();
   const router = useRouter();
   const { uid }: any = router.query;
+  const sendMessage = async (e: any) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("order_uid", uid);
+    formData.append("message", message);
+    file && formData.append("file", file);
+    setMessage("");
+    await sendMessageTrade(formData);
+  };
   useEffect(() => {
-    if (socketCall === 0) {
-      listenMessages(setDetails, details);
+    if (socketCall === 0 && uid) {
+      listenMessages(setDetails, details, uid, dispatch);
     }
     socketCall = 1;
   });
@@ -80,7 +109,8 @@ const Trading = () => {
         setDetails,
         setStep,
         setExpried,
-        setLoading
+        setLoading,
+        dispatch
       );
   }, [uid]);
   const handleFileChange = (event: any) => {
@@ -443,7 +473,14 @@ const Trading = () => {
             )}
           </div>
           <div className="">
-            <SupportChat col="col-lg-12" />
+            <TradeChat
+              col="col-lg-12"
+              details={details}
+              sendMessage={sendMessage}
+              setMessage={setMessage}
+              setFile={setFile}
+              message={message}
+            />
           </div>
         </div>
       )}

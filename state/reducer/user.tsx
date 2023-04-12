@@ -10,6 +10,7 @@ export type UserType = {
   logo: string;
   icoChat: [];
   supportChat: [];
+  tradeChat: [];
   notificationData: [];
 };
 
@@ -23,6 +24,7 @@ const initialState: any = {
   copyright_text: null,
   socialData: null,
   supportChat: [],
+  tradeChat: [],
   logo: "",
   notificationData: [],
 };
@@ -66,6 +68,12 @@ export const userSlice = createSlice({
     setSupportico: (state, action: any) => {
       state.supportChat = [...state.supportChat, action.payload];
     },
+    setTradeChatAll: (state, action: any) => {
+      state.tradeChat = action.payload;
+    },
+    setTradeChat: (state, action: any) => {
+      state.tradeChat = [...state.tradeChat, action.payload];
+    },
     setCustomPageData: (state, action: any) => {
       state.customPageData = action.payload;
     },
@@ -99,6 +107,8 @@ export const {
   setCopyright_text,
   setSocialData,
   setNotificationData,
+  setTradeChat,
+  setTradeChatAll,
   setOneNotification,
 } = userSlice.actions;
 export default userSlice.reducer;

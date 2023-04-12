@@ -35,6 +35,7 @@ import {
   getWallets,
   orderFeedback,
 } from "service/p2p";
+import { setTradeChatAll } from "state/reducer/user";
 
 export const useAddPostInitial = () => {
   const router = useRouter();
@@ -444,11 +445,13 @@ export const getP2pOrderDetailsAction = async (
   setDetails: any,
   setStep: any,
   setExpried: any,
-  setLoading: any
+  setLoading: any,
+  dispatch: any
 ) => {
   setLoading(true);
   const response = await getP2pOrderDetails(order_uid);
   setDetails(response?.data);
+  dispatch(setTradeChatAll(response?.data?.chat_messages));
   if (response?.data.order.status === TRADE_STATUS_ESCROW) {
     setStep(1);
   } else if (response?.data.order.status === TRADE_STATUS_PAYMENT_DONE) {

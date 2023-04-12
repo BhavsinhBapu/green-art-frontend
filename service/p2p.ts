@@ -220,3 +220,8 @@ export const disputeProcess = async (formData: any) => {
   const { data } = await p2pResuest.post("/dispute-process", formData);
   return data;
 };
+// send-message
+export const sendMessageTrade = async (formData: any) => {
+  const { data } = await p2pResuest.post("/send-message", formData);
+  return data;
+};
