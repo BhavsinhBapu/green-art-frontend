@@ -34,8 +34,14 @@ import {
   releaseP2pOrder,
   getWallets,
   orderFeedback,
+  userCenter,
+  userProfileID,
 } from "service/p2p";
-import { setP2pDetails, setP2pDetailsOrder, setTradeChatAll } from "state/reducer/user";
+import {
+  setP2pDetails,
+  setP2pDetailsOrder,
+  setTradeChatAll,
+} from "state/reducer/user";
 
 export const useAddPostInitial = () => {
   const router = useRouter();
@@ -544,5 +550,24 @@ export const releaseP2pOrderAction = async (trade_id: any, dispatch: any) => {
 // getWallets;
 export const getWalletsAction = async (per_page: any, page: any) => {
   const response = await getWallets(per_page, page);
+  return response;
+};
+// userCenter;
+export const userCenterAction = async (setLoading: any, setDetails: any) => {
+  setLoading(true);
+  const response = await userCenter();
+  setDetails(response.data);
+  setLoading(false);
+  return response;
+};
+export const userProfileIDAction = async (
+  setLoading: any,
+  setDetails: any,
+  id: any
+) => {
+  setLoading(true);
+  const response = await userProfileID(id);
+  setDetails(response.data);
+  setLoading(false);
   return response;
 };

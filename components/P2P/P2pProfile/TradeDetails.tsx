@@ -1,55 +1,54 @@
-export const TradeDetails = () => {
+export const TradeDetails = ({ details }: any) => {
   return (
     <div className="container">
       <div className="row">
         <div className="col-lg-3 col-md-4 col-6 mt-4">
           <p>30d Trades</p>
           <div className="d-flex align-items-center">
-            <h6 className="mr-1"> 0 </h6> %
+            <h6 className="mr-1">
+              {" "}
+              {details?.completion_rate_30d
+                ? details?.completion_rate_30d
+                : 0}{" "}
+            </h6>
+            %
           </div>
-          <small>(Buy 0.000000 | Sell 0.00000)</small>
         </div>
         <div className="col-lg-3 col-md-4 col-6 mt-4">
-          <p>30d Trades</p>
+          <p>First order at</p>
           <div className="d-flex align-items-center">
-            <h6 className="mr-1"> 0 </h6> %
+            <h6 className="mr-1"> {details?.first_order_at} </h6> day's ago
           </div>
-          <small>(Buy 0.000000 | Sell 0.00000)</small>
         </div>
         <div className="col-lg-3 col-md-4 col-6 mt-4">
-          <p>30d Trades</p>
+          <p>Negative reviews</p>
           <div className="d-flex align-items-center">
-            <h6 className="mr-1"> 0 </h6> %
+            <h6 className="mr-1"> {details?.negative} </h6>
           </div>
-          <small>(Buy 0.000000 | Sell 0.00000)</small>
         </div>
         <div className="col-lg-3 col-md-4 col-6 mt-4">
-          <p>30d Trades</p>
+          <p>Positive reviews</p>
           <div className="d-flex align-items-center">
-            <h6 className="mr-1"> 0 </h6> %
+            <h6 className="mr-1"> {details?.positive} </h6>
           </div>
-          <small>(Buy 0.000000 | Sell 0.00000)</small>
         </div>
         <div className="col-lg-3 col-md-4 col-6 mt-4">
-          <p>30d Trades</p>
+          <p>Positive reviews percentage</p>
           <div className="d-flex align-items-center">
-            <h6 className="mr-1"> 0 </h6> %
+            <h6 className="mr-1"> {details?.positive_feedback}%</h6>
           </div>
-          <small>(Buy 0.000000 | Sell 0.00000)</small>
         </div>
         <div className="col-lg-3 col-md-4 col-6 mt-4">
-          <p>30d Trades</p>
+          <p>Total trades</p>
           <div className="d-flex align-items-center">
-            <h6 className="mr-1"> 0 </h6> %
+            <h6 className="mr-1"> {details?.total_trade} </h6>
           </div>
-          <small>(Buy 0.000000 | Sell 0.00000)</small>
         </div>
         <div className="col-lg-3 col-md-4 col-6 mt-4">
-          <p>30d Trades</p>
+          <p>Registered at</p>
           <div className="d-flex align-items-center">
-            <h6 className="mr-1"> 0 </h6> %
+            <h6 className="mr-1"> {details?.user_register_at} day's ago</h6>
           </div>
-          <small>(Buy 0.000000 | Sell 0.00000)</small>
         </div>
       </div>
     </div>

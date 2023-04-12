@@ -14676,3 +14676,37 @@ input {
 .active-step {
   background-color: var(--primary-color) !important;
 }
+.single-feedback {
+  padding: 24px 20px;
+  background: var(--footer-background-color);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.02);
+  border-radius: 8px;
+}
+.single-feedback  h3 {
+  font-size: 20px;
+  font-weight: 500;
+  text-transform: capitalize;
+  margin-bottom: 10px;
+}
+.single-feedback  p {
+  font-size: 16px;
+  line-height: 26px;
+}
+.single-feedback .feedback-status {
+  display: inline-block;
+  padding:4px 5px;
+  font-size: 12px;
+  line-height: 1;
+  font-weight: 500;
+  border-radius: 4px;
+  color: #ffffff;
+  text-transform: capitalize;
+  margin-left: 5px;
+  
+}
+.single-feedback .feedback-status.positive{
+  background: green;
+}
+.single-feedback .feedback-status.negetive{
+  background: red;
+}

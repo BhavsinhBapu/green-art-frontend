@@ -225,3 +225,12 @@ export const sendMessageTrade = async (formData: any) => {
   const { data } = await p2pResuest.post("/send-message", formData);
   return data;
 };
+// user-center
+export const userCenter = async () => {
+  const { data } = await p2pResuest.get("/user-center");
+  return data;
+};
+export const userProfileID = async (id: any) => {
+  const { data } = await p2pResuest.get(`/user-profile?id=${id}`);
+  return data;
+};

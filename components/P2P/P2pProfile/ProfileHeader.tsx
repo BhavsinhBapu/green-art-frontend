@@ -1,7 +1,7 @@
 import { BsFillCheckCircleFill } from "react-icons/bs";
 import { IoIosEye } from "react-icons/io";
 
-export const ProfileHeader = () => {
+export const ProfileHeader = ({ details }: any) => {
   return (
     <div className="container">
       <div className="row py-4 tableRow align-items-center">
@@ -11,37 +11,9 @@ export const ProfileHeader = () => {
               src="https://api-tradex.nftarttoken.xyz/images/avatars/yellow-hat.png"
               alt=""
             />
-            <h6 className="ml-2">Chirik34</h6>
-            <span className="badge badge-secondary px-2 ml-2 py-2">
-              Verified User
-            </span>
-          </div>
-          <div className="ml-4 pl-2 d-flex align-items-center pt-1 userVerified">
-            <p>
-              Email <BsFillCheckCircleFill />
-            </p>
-            <p>
-              SMS <BsFillCheckCircleFill />
-            </p>
-            <p>
-              KYC <BsFillCheckCircleFill />
-            </p>
-          </div>
-        </div>
-        <div className="col-md-6 mt-4 mt-md-0">
-          <div className="d-sm-flex d-block align-items-center justify-content-start justify-content-md-end p2pWorkBtn">
-            <div>
-              <p>
-                P2P Estimated Value (BTC)
-                <span className="badge badge-light px-1 ml-2 py-1">
-                  <IoIosEye className="h5 mb-0" />
-                </span>
-              </p>
-              <h6>32,422.099 BTC</h6>
-            </div>
-            <button className="buySellBoxActive rounded px-2 ml-0 ml-sm-4 mt-4 mt-sm-0 ">
-              Become Merchant
-            </button>
+            <h6 className="ml-2">
+              {details?.user?.first_name} {details?.user?.last_name}
+            </h6>
           </div>
         </div>
       </div>

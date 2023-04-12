@@ -63,7 +63,7 @@ export const P2pDataTable = ({ history, filters, isLoggedIn }: any) => {
                       ))}
                     </td>
                     <td>
-                      {isLoggedIn && (
+                      {isLoggedIn === true && (
                         <Link
                           href={`/p2p/details/${item.uid}?adtype=${filters.type}`}
                         >
