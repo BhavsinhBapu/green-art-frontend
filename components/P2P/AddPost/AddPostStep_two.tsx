@@ -1,8 +1,6 @@
 import { CUstomSelect } from "components/common/CUstomSelect";
-import { useFormik } from "formik";
 import { useEffect, useState } from "react";
 import { BsQuestionSquareFill } from "react-icons/bs";
-import * as Yup from "yup";
 
 export const AddPostTwo = ({
   setAddStep,
@@ -17,6 +15,8 @@ export const AddPostTwo = ({
 }: any) => {
   const [PaymentOption, setPaymentOption] = useState([]);
   const [PaymentTime, setPaymentTime] = useState([]);
+  const [minError, setMinError] = useState("");
+  const [maxError, setMaxError] = useState("");
   const [limit, setLimit] = useState<any>({
     minimum_price: 0,
     maximum_price: 0,
@@ -56,31 +56,7 @@ export const AddPostTwo = ({
     setPaymentOption(payment_method);
     setPaymentTime(payment_time);
   }, [data.data.payment_method, data.data.payment_time]);
-  const validationSchema = Yup.object().shape({
-    min_limit: Yup.number()
-      .min(
-        limit.minimum_price,
-        `Min limit must be at least ${limit.minimum_price}`
-      )
-      .required("Min limit is required"),
-    max_limit: Yup.number()
-      .max(
-        limit.maximum_price,
-        `Max limit must be less than or equal to ${limit.maximum_price}`
-      )
-      .required("Max limit is required"),
-  });
 
-  const formik = useFormik({
-    initialValues: {
-      min_limit: amount.min_limit,
-      max_limit: amount.max_limit,
-    },
-    validationSchema,
-    onSubmit: (values) => {
-      // handle submit
-    },
-  });
   return (
     <div className="col-12 mt-4">
       <div className="buySellAddBox px-4 py-5 rounded">
@@ -108,19 +84,20 @@ export const AddPostTwo = ({
           <div className="col-12 mt-4">
             <div className="row">
               <div className="col-md-6 col-lg-3">
-                <label htmlFor="min_limit">Order Limit:</label>
+                <label> Order Limit:</label>
                 <div className="P2psearchBox position-relative">
                   <input
                     type="number"
                     placeholder="Min limit"
-                    id="min_limit"
-                    {...formik.getFieldProps("min_limit")}
+                    value={amount.min_limit}
+                    onChange={(e) => {
+                      setAmount({
+                        ...amount,
+                        min_limit: e.target.value,
+                      });
+                    }}
                   />
-                  {formik.touched.min_limit && formik.errors.min_limit && (
-                    <span className="text-danger">
-                      {formik.errors.min_limit}
-                    </span>
-                  )}
+                  {minError && <span className="text-danger">{minError}</span>}
                   <button>
                     <span className="ml-3 text-muted">
                       {selectedAsset?.value}
@@ -129,19 +106,21 @@ export const AddPostTwo = ({
                 </div>
               </div>
               <div className="col-md-6 col-lg-3">
-                <label htmlFor="max_limit"> </label>
+                <label></label>
                 <div className="P2psearchBox position-relative mt-2">
                   <input
                     type="text"
                     placeholder="Max limit"
-                    id="max_limit"
-                    {...formik.getFieldProps("max_limit")}
+                    value={amount.max_limit}
+                    onChange={(e) => {
+                      setAmount({
+                        ...amount,
+                        max_limit: e.target.value,
+                      });
+                    }}
                   />
-                  {formik.touched.max_limit && formik.errors.max_limit && (
-                    <span className="text-danger">
-                      {formik.errors.max_limit}
-                    </span>
-                  )}
+                  {maxError && <span className="text-danger">{maxError}</span>}
+
                   <button>
                     <span className="ml-3 text-muted">
                       {selectedAsset?.value}
@@ -193,16 +172,14 @@ export const AddPostTwo = ({
           <button onClick={() => setAddStep("stepOne")} className=" py-2">
             Previous
           </button>
-          {selectedPayment.length > 0 &&
-            !formik.errors.max_limit &&
-            !formik.errors.min_limit && (
-              <button
-                onClick={() => setAddStep("stepThree")}
-                className=" py-2 buySellBoxActive ml-2"
-              >
-                Next
-              </button>
-            )}
+          {selectedPayment.length > 0 && (
+            <button
+              onClick={() => setAddStep("stepThree")}
+              className=" py-2 buySellBoxActive ml-2"
+            >
+              Next
+            </button>
+          )}
         </div>
       </div>
     </div>

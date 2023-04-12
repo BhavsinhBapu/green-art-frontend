@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
+import moment from "moment";
 
-const Timer = ({ payment_expired_time }: any) => {
+const Timer = ({ endTime }: { endTime: string }) => {
   const [timeLeft, setTimeLeft] = useState("");
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const now = new Date().getTime();
-      //@ts-ignore
-      const diff: any = new Date(payment_expired_time) - now;
+      const now = moment();
+      const diff = moment(endTime).diff(now);
 
       if (diff > 0) {
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
+        const duration = moment.duration(diff);
+        const minutes = Math.floor(duration.asMinutes());
+        const seconds = Math.floor(duration.seconds());
         setTimeLeft(`${minutes}:${seconds < 10 ? "0" : ""}${seconds}`);
       } else {
         setTimeLeft("Expired");
@@ -21,7 +21,7 @@ const Timer = ({ payment_expired_time }: any) => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [payment_expired_time]);
+  }, [endTime]);
 
   return (
     <div className="mt-3">

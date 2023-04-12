@@ -216,13 +216,11 @@ const Trading = () => {
                       <>
                         <div className="mt-4 badge badge-warning p-2">
                           Transfer the fund to the seller account provided below
-                          </div>
-                          {}
+                        </div>
+                        {}
                         {details?.order?.payment_expired_time && (
                           <Timer
-                            payment_expired_time={
-                              details?.order?.payment_expired_time
-                            }
+                            endTime={details?.order?.payment_expired_time}
                           />
                         )}
 
