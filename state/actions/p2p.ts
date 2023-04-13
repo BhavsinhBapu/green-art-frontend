@@ -36,6 +36,9 @@ import {
   orderFeedback,
   userCenter,
   userProfileID,
+  userAdsFilterChange,
+  getMyAdsDetails,
+  UpdateP2pAds,
 } from "service/p2p";
 import {
   setP2pDetails,
@@ -45,6 +48,7 @@ import {
 
 export const useAddPostInitial = () => {
   const router = useRouter();
+  const { uid, ads_type } = router.query;
   const [adsType, setAdsType] = useState(1);
   const [registerDays, setregisterDays] = useState(0);
   const [coinHolding, setcoinHolding] = useState(0);
@@ -66,6 +70,63 @@ export const useAddPostInitial = () => {
     lowest_price: 0,
     price: 0,
   });
+  const getAdsDetailsAction = async () => {
+    let payment_method: any = [];
+    let country: any = [];
+    const response = await getMyAdsDetails(ads_type, uid);
+    const ads = response.data.ads;
+    setselectedCurrency({
+      value: ads.currency,
+      label: ads.currency,
+    });
+    setSelectedAsset({
+      value: ads.coin_type,
+      label: ads.coin_type,
+    });
+    setPriceType(ads?.price_type);
+    setPricePoint({
+      ...pricePoint,
+      price: ads?.price,
+    });
+    setAmount({
+      amount: ads.amount,
+      max_limit: ads.maximum_trade_size,
+      min_limit: ads.minimum_trade_size,
+    });
+    if (ads?.payment_times?.uid) {
+      setSelectedPaymentTime({
+        label: ads?.payment_times?.uid,
+        value: ads?.payment_times?.payment_times,
+      });
+    }
+
+    setTerms(ads?.terms);
+    setAuto_reply(ads?.auto_reply);
+    setregisterDays(ads?.register_days);
+    setregisterDays(ads?.register_days);
+    setcoinHolding(ads?.coin_holding);
+    // payment_method;
+    ads.payment_method.map((item: any) => {
+      const obj = {
+        value: item.uid,
+        label: item?.admin_pamynt_method?.name,
+      };
+      payment_method.push(obj);
+    });
+    ads.country.map((item: any) => {
+      const obj = {
+        value: item.key,
+        label: item.key,
+      };
+      country.push(obj);
+    });
+    setSelectedPayment(payment_method);
+    setSelectedCountry(country);
+    console.log(
+      ads,
+      "responseresponseresponseresponseresponseresponseresponseresponseresponse"
+    );
+  };
   const createUpdateP2pAdsAction = async () => {
     let paymentMethodsCommaSeparated = selectedPayment
       .map((method: any) => method.value)
@@ -98,6 +159,39 @@ export const useAddPostInitial = () => {
       toast.error(response.message);
     }
   };
+  const UpdateP2pAdsAction = async () => {
+    let paymentMethodsCommaSeparated = selectedPayment
+      .map((method: any) => method.value)
+      .join(",");
+    let selectedCountryCommaSeparated = selectedCountry
+      .map((method: any) => method.value)
+      .join(",");
+    const formData: any = new FormData();
+    formData.append("ads_type", adsType);
+    formData.append("ads_uid", uid);
+    formData.append("coin_type", selectedAsset.value);
+    formData.append("fiat_type", selectedCurrency.value);
+    formData.append("price_type", priceType);
+    formData.append("price", pricePoint.price);
+    formData.append("price_rate", pricePoint.price);
+    formData.append("amount", Amount.amount);
+    formData.append("min_limit", Amount.min_limit);
+    formData.append("max_limit", Amount.max_limit);
+    formData.append("terms", terms);
+    formData.append("auto_reply", auto_reply);
+    formData.append("countrys", selectedCountryCommaSeparated);
+    formData.append("payment_methods", paymentMethodsCommaSeparated);
+    formData.append("time_limit", selectedPaymentTime.value);
+    formData.append("register_days", registerDays);
+    formData.append("coin_holding", coinHolding);
+    const response = await UpdateP2pAds(formData);
+    if (response.success) {
+      toast.success(response.message);
+      router.push("/p2p");
+    } else {
+      toast.error(response.message);
+    }
+  };
   const [addStep, setAddStep] = useState("stepOne");
   const { data, loading, error, refreshData } = useApi(getAdsCreateSettings);
   const {
@@ -107,7 +201,9 @@ export const useAddPostInitial = () => {
     postData,
     resetData,
   }: any = usePostApiFunction(getMarketHighestLowest);
-
+  useEffect(() => {
+    getAdsDetailsAction();
+  }, [ads_type, uid]);
   useEffect(() => {
     if (selectedAsset && selectedCurrency) {
       postData(selectedAsset.value, selectedCurrency.value);
@@ -139,7 +235,9 @@ export const useAddPostInitial = () => {
     setSelectedPaymentTime,
     Amount,
     setAmount,
+    UpdateP2pAdsAction,
     terms,
+    uid,
     setTerms,
     auto_reply,
     setAuto_reply,
@@ -401,10 +499,39 @@ export const getAdsDetailsAction = async (
 ) => {
   const { data } = await getAdsDetails(type, uid);
   setDetails(data);
-  console.log(
-    data,
-    "datadatadatadatadatadatadatadatadatadatadatadatadatadatadata"
+};
+export const userAdsFilterChangeAction = async (
+  type: any,
+  amount: any,
+  coin: any,
+  currency: any,
+  payment_method: any,
+  status: any,
+  country: any,
+  per_page: any,
+  page: any,
+  setHistory: any,
+  setProcessing: any,
+  setStillHistory: any,
+  setSettings: any
+) => {
+  setProcessing(true);
+  const { data } = await getAdsMarketSettings();
+  setSettings(data);
+  const response = await userAdsFilterChange(
+    type,
+    amount,
+    coin,
+    currency,
+    payment_method,
+    country,
+    per_page,
+    page,
+    status
   );
+  setHistory(response?.data?.data);
+  setStillHistory(response?.data);
+  setProcessing(false);
 };
 export const p2pOrderRateAction = async (
   ads_type: any,

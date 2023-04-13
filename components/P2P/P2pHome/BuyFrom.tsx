@@ -33,6 +33,7 @@ export const BuyFrom = ({
     );
     setPaymethods(PaymentMethods);
   }, [details]);
+  console.log(details, "details");
   return (
     <div className="col-12 p-5 boxShadow">
       <div className="mt-3 mb-3">
@@ -148,6 +149,11 @@ export const BuyFrom = ({
                     setlastChanged(AMOUNT_PRICE);
                   }}
                 />
+                <p className="limitBalance my-2">
+                  Min price {details?.ads?.minimum_trade_size}{" "}
+                  {details?.ads?.currency}- Max price{" "}
+                  {details?.ads?.maximum_trade_size} {details?.ads?.currency}
+                </p>
                 <button>
                   <span className="ml-3 text-muted">
                     {details?.ads?.currency}

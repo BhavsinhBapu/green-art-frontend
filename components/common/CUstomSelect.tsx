@@ -8,6 +8,7 @@ export const CUstomSelect = ({
   handleFunction,
   defaultValue,
   isMulti = false,
+  disable = false,
 }: any) => {
   const [selectedOption, setSelectedOption] = useState(defaultValue);
   const handleChange = (selectedOption: any) => {
@@ -23,6 +24,7 @@ export const CUstomSelect = ({
         isSearchable={isSearchable}
         placeholder={placeholder}
         isMulti={isMulti}
+        isDisabled={disable}
         value={selectedOption}
         onChange={handleChange}
       />

@@ -15,6 +15,7 @@ export const AddPostOne = ({
   priceType,
   setPriceType,
   setPricePoint,
+  uid,
 }: any) => {
   const [AssetOptions, setAssetOptions] = useState([]);
   const [CurrencyOptions, setCurrencyOptions] = useState([]);
@@ -54,6 +55,7 @@ export const AddPostOne = ({
             <CUstomSelect
               options={AssetOptions}
               isSearchable={true}
+              disable={uid ? true : false}
               handleFunction={handleAsset}
               defaultValue={selectedAsset}
             />
@@ -63,6 +65,7 @@ export const AddPostOne = ({
             <CUstomSelect
               options={CurrencyOptions}
               isSearchable={true}
+              disable={uid ? true : false}
               handleFunction={handleCurrency}
               defaultValue={selectedCurrency}
             />

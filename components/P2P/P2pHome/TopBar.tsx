@@ -1,8 +1,9 @@
 import { RiPagesLine } from "react-icons/ri";
-import { HiUsers } from "react-icons/hi";
+import { HiOutlineHome, HiUsers } from "react-icons/hi";
 import Link from "next/link";
 import { AiOutlineWallet } from "react-icons/ai";
-
+import { GrHomeRounded } from "react-icons/gr";
+;
 export const P2pTopBar = () => {
   return (
     <div className="p2p_top_bg py-3">
@@ -10,6 +11,14 @@ export const P2pTopBar = () => {
         <div className="row">
           <div className="col-12">
             <ul className="d-flex justify-content-center justify-content-md-end topBarList">
+              <li>
+                <Link href="/p2p">
+                  <a>
+                    <HiOutlineHome />
+                    Home
+                  </a>
+                </Link>
+              </li>
               <li>
                 <Link href="/p2p/my-order">
                   <a>
@@ -46,6 +55,12 @@ export const P2pTopBar = () => {
                 <div className="dropdown-menu mt-3 bg-dark">
                   <Link href="/p2p/add-post">
                     <a className="dropdown-item">Ad Create</a>
+                  </Link>
+                  <Link href="/p2p/my-buy-order">
+                    <a className="dropdown-item">My Buy Order</a>
+                  </Link>
+                  <Link href="/p2p/my-sell-order">
+                    <a className="dropdown-item">My Sell Order</a>
                   </Link>
                 </div>
               </li>

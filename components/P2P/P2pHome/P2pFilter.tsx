@@ -57,7 +57,7 @@ export const P2pFilter = ({ filters, setFilters, settings }: any) => {
   return (
     <div className="container mt-4">
       <div className="row">
-        <div className="col-md-6">
+        <div className="col-md-12">
           <label>Amount</label>
           <div className="P2psearchBox position-relative">
             <input
@@ -76,7 +76,7 @@ export const P2pFilter = ({ filters, setFilters, settings }: any) => {
         </div>
         <div className="col-12">
           <div className="row">
-            <div className="col-md-2 mt-3">
+            <div className="col-md-4 mt-3">
               <div className="form-group p2pSelectFilter">
                 <label> Fiat:</label>
                 <CUstomSelect
@@ -85,7 +85,7 @@ export const P2pFilter = ({ filters, setFilters, settings }: any) => {
                 />
               </div>
             </div>
-            <div className="col-md-2 mt-3">
+            <div className="col-md-4 mt-3">
               <div className="form-group p2pSelectFilter">
                 <label> Payment:</label>
                 <CUstomSelect
@@ -94,7 +94,7 @@ export const P2pFilter = ({ filters, setFilters, settings }: any) => {
                 />
               </div>
             </div>
-            <div className="col-md-3 mt-3">
+            <div className="col-md-4 mt-3">
               <div className="form-group p2pSelectFilter">
                 <label>Available Region(s):</label>
                 <CUstomSelect
@@ -102,21 +102,6 @@ export const P2pFilter = ({ filters, setFilters, settings }: any) => {
                   handleFunction={handleCountry}
                 />
               </div>
-            </div>
-            <div className="col-md-5 mt-3 mt-md-5 filterButton">
-              {/* <button data-toggle="dropdown" aria-expanded="false">
-                <HiRefresh className="mr-2" />
-                Refresh
-              </button> */}
-              <div className="dropdown-menu mt-1">
-                <a className="dropdown-item" href="#">
-                  Action
-                </a>
-                <a className="dropdown-item" href="#">
-                  Another action
-                </a>
-              </div>
-              <label></label>
             </div>
           </div>
         </div>

@@ -5,6 +5,10 @@ export const createUpdateP2pAds = async (formData: any) => {
   const { data } = await p2pResuest.post("/ads", formData);
   return data;
 };
+export const UpdateP2pAds = async (formData: any) => {
+  const { data } = await p2pResuest.post("/ads-edit", formData);
+  return data;
+};
 export const getAdsCreateSettings = async () => {
   const { data } = await p2pResuest.get("/ads-create-setting");
   return data;
@@ -95,17 +99,25 @@ export const changeAdsStatus = async (type: number, id: string) => {
 };
 export const userAdsFilterChange = async (
   type: number,
+  amount: number,
   coin: string,
-  ads_status: number,
-  from_date: string,
-  to_date: string
+  currency: string,
+  payment_method: string,
+  country: string,
+  per_page: number,
+  page: number,
+  status: any
 ) => {
   const { data } = await p2pResuest.post("/user-ads-filter", {
     type: type,
+    amount: amount,
     coin: coin,
-    ads_status: ads_status,
-    from_date: from_date,
-    to_date: to_date,
+    currency: currency,
+    payment_method: payment_method,
+    country: country,
+    per_page: per_page,
+    page: page,
+    ads_status: status,
   });
   return data;
 };
@@ -189,6 +201,13 @@ export const myP2pOrder = async (per_page: number, page: number) => {
   const { data } = await p2pResuest.get(
     `/my-p2p-order?per_page=${per_page}&page=${page}`
   );
+  return data;
+};
+export const getMyAdsDetails = async (ads_type: any, uid: any) => {
+  const { data } = await p2pResuest.post(`/my-ads-details`, {
+    uid: uid,
+    ads_type: ads_type,
+  });
   return data;
 };
 export const paymentP2pOrder = async (formData: any) => {

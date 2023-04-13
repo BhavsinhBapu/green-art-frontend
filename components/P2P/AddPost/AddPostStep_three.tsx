@@ -11,11 +11,13 @@ export const AddPostThree = ({
   data,
   selectedCountry,
   setSelectedCountry,
+  uid,
   registerDays,
   coinHolding,
   setregisterDays,
   setcoinHolding,
   createUpdateP2pAdsAction,
+  UpdateP2pAdsAction,
 }: any) => {
   const [Countries, setCountries] = useState([]);
   const handleCountry = (e: any) => {
@@ -30,7 +32,7 @@ export const AddPostThree = ({
       };
       country.push(obj);
     });
-console.log(data?.data?.country, "data?.data?.country");
+    console.log(data?.data?.country, "data?.data?.country");
     setCountries(country);
   }, [data.data.payment_method, data.data.payment_time]);
   return (
@@ -125,9 +127,9 @@ console.log(data?.data?.country, "data?.data?.country");
           </button>
           <button
             className=" py-2 buySellBoxActive ml-2"
-            onClick={createUpdateP2pAdsAction}
+            onClick={uid ? UpdateP2pAdsAction : createUpdateP2pAdsAction}
           >
-            Create
+            {uid ? "Edit" : "Create"}
           </button>
         </div>
       </div>

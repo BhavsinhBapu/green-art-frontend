@@ -6,12 +6,19 @@ import { BUY } from "helpers/core-constants";
 import { RootState } from "state/store";
 import { useSelector } from "react-redux";
 
-export const P2pDataTable = ({ history, filters, isLoggedIn }: any) => {
+export const P2pDataTable = ({
+  history,
+  filters,
+  isLoggedIn,
+  action = true,
+  payment = true,
+  edit = false,
+}: any) => {
   return (
     <div className="container mt-4">
       <div className="row">
         <div className="table-responsive">
-          {!history ? (
+          {history?.length <= 0 || !history ? (
             <NoItemFound />
           ) : (
             <table className="table">
@@ -20,8 +27,9 @@ export const P2pDataTable = ({ history, filters, isLoggedIn }: any) => {
                   <th scope="col">Advertisers (Completion reate)</th>
                   <th scope="col">Price</th>
                   <th scope="col">Limit/Available</th>
-                  <th scope="col">Payment</th>
-                  <th scope="col">Trade</th>
+                  {payment === true && <th scope="col">Payment</th>}
+                  {action === true && <th scope="col">Trade</th>}
+                  {edit === true && <th scope="col">Edit</th>}
                 </tr>
               </thead>
               <tbody>
@@ -51,7 +59,8 @@ export const P2pDataTable = ({ history, filters, isLoggedIn }: any) => {
                       <div className="d-flex align-items-center">
                         <small className="mr-2">Limit</small>
                         <h6 className="limitBalance">
-                          {item?.maximum_trade_size}- {item?.minimum_trade_size}
+                          {item?.minimum_trade_size} {item?.currency}-
+                          {item?.maximum_trade_size} {item?.currency}
                         </h6>
                       </div>
                     </td>
@@ -64,18 +73,31 @@ export const P2pDataTable = ({ history, filters, isLoggedIn }: any) => {
                         )
                       )}
                     </td>
-                    <td>
-                      {isLoggedIn === true && (
-                        <Link
-                          href={`/p2p/details/${item.uid}?adtype=${filters.type}`}
-                        >
-                          <button className="tableButton">
-                            {filters.type === BUY ? "Buy" : "Sell"}{" "}
-                            {item.coin_type}
-                          </button>
-                        </Link>
-                      )}
-                    </td>
+                    {action === true && (
+                      <td>
+                        {isLoggedIn === true && (
+                          <Link
+                            href={`/p2p/details/${item.uid}?adtype=${filters.type}`}
+                          >
+                            <button className="tableButton">
+                              {filters.type === BUY ? "Buy" : "Sell"}{" "}
+                              {item.coin_type}
+                            </button>
+                          </Link>
+                        )}
+                      </td>
+                    )}
+                    {edit === true && (
+                      <td>
+                        {isLoggedIn === true && (
+                          <Link
+                            href={`/p2p/add-post?uid=${item.uid}&&ads_type=${filters.type}`}
+                          >
+                            <button className="tableButton">Edit</button>
+                          </Link>
+                        )}
+                      </td>
+                    )}
                   </tr>
                 ))}
               </tbody>
