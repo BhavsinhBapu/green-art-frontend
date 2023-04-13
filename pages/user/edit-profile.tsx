@@ -23,6 +23,7 @@ const Edit: NextPage = () => {
     formdata.append("photo", file);
     formdata.append("first_name", user.first_name);
     formdata.append("last_name", user.last_name);
+    formdata.append("nickname", user.nickname);
     formdata.append("email", user.email);
     formdata.append("country", user.country);
     formdata.append("gender", user.gender);
@@ -61,7 +62,8 @@ const Edit: NextPage = () => {
                             />
                             <label
                               htmlFor="upload-user-img"
-                              className="upload-user-img">
+                              className="upload-user-img"
+                            >
                               <i className="fa fa-pencil" aria-hidden="true" />
                             </label>
                           </div>
@@ -78,13 +80,15 @@ const Edit: NextPage = () => {
                       initialValues={{
                         first_name: user?.first_name,
                         last_name: user?.last_name,
+                        nickname: user?.nickname,
                         country: user?.country,
                         gender: user?.gender,
                         phone: user?.phone,
                       }}
                       onSubmit={async (values) => {
                         dispatch(UpdateUserInfoByTokenAction(values));
-                      }}>
+                      }}
+                    >
                       {({ setFieldValue }) => (
                         <div className="col-lg-12">
                           <div className="user-profile-form">
@@ -107,6 +111,16 @@ const Edit: NextPage = () => {
                                   className="form-control"
                                   placeholder={t("Last Name")}
                                   id="last_name"
+                                />
+                              </div>
+                              <div className="form-group">
+                                <label>{t("NickName")}</label>
+                                <Field
+                                  type="text"
+                                  name="nickname"
+                                  className="form-control"
+                                  placeholder={t("Nick Name")}
+                                  id="nickname"
                                 />
                               </div>
                               <div className="form-group">
@@ -134,14 +148,16 @@ const Edit: NextPage = () => {
                                     as="select"
                                     name="country"
                                     id="country"
-                                    className="form-control">
+                                    className="form-control"
+                                  >
                                     {countries.map((country: any) => (
                                       <option
                                         key={country.value}
                                         value={country.value.toUpperCase()}
                                         selected={
                                           country.value === user?.country
-                                        }>
+                                        }
+                                      >
                                         {country.name}
                                       </option>
                                     ))}
@@ -155,20 +171,24 @@ const Edit: NextPage = () => {
                                     className="form-control"
                                     name="gender"
                                     id=""
-                                    as="select">
+                                    as="select"
+                                  >
                                     <option
                                       selected={user?.gender === 1}
-                                      value={1}>
+                                      value={1}
+                                    >
                                       {t("Male")}
                                     </option>
                                     <option
                                       selected={user?.gender === 2}
-                                      value={2}>
+                                      value={2}
+                                    >
                                       {t("Female")}
                                     </option>
                                     <option
                                       selected={user?.gender === 3}
-                                      value={3}>
+                                      value={3}
+                                    >
                                       {t("Others")}
                                     </option>
                                   </Field>
@@ -176,7 +196,8 @@ const Edit: NextPage = () => {
                               </div>
                               <button
                                 type="submit"
-                                className="btn nimmu-user-sibmit-button mt-5">
+                                className="btn nimmu-user-sibmit-button mt-5"
+                              >
                                 <span>{t("Update Profile")}</span>
                               </button>
                             </Form>

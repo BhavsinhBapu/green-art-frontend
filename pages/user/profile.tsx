@@ -64,6 +64,15 @@ const Profile: NextPage = ({ user, profileActivity }: any) => {
                             </span>
                           </li>
                           <li>
+                            <span>{t("NickName")}</span>
+                            <span className="cp-user-dot">:</span>
+                            <span>
+                              {user?.nickname
+                                ? user?.nickname
+                                : "no name"}
+                            </span>
+                          </li>
+                          <li>
                             <span>{t("Country")}</span>
                             <span className="cp-user-dot">:</span>
                             <span>
