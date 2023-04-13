@@ -49,7 +49,10 @@ export const P2pDataTable = ({
                       </Link>
                     </td>
                     <td className="d-flex">
-                      <h5 className="mr-1">{item?.price}</h5> {item?.currency}
+                      <h5 className="mr-1">
+                        {parseFloat(item?.price).toFixed(2)}
+                      </h5>{" "}
+                      {item?.currency}
                     </td>
                     <td>
                       <div className="d-flex align-items-center">
