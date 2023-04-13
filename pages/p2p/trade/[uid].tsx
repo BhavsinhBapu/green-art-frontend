@@ -39,6 +39,7 @@ import { GetServerSideProps } from "next";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import BackButton from "../BackButton";
 import { NoItemFound } from "components/NoItemFound/NoItemFound";
+import { P2pTopBar } from "components/P2P/P2pHome/TopBar";
 
 let socketCall = 0;
 
@@ -136,6 +137,7 @@ const Trading = () => {
   // }
   return (
     <>
+      <P2pTopBar />
       <div className="my-trade-container">
         <div className="boxShadow p-4 mb-3">
           <BackButton />
@@ -199,23 +201,28 @@ const Trading = () => {
             </div>
           )}
           {parseInt(details?.order?.status) ===
-            TRADE_STATUS_CANCELED_TIME_EXPIRED && (
-            <div className="boxShadow p-5 text-center mt-3">
-              <h4 className="mb-3">Trade time expired</h4>
-            </div>
-          )}
+            TRADE_STATUS_CANCELED_TIME_EXPIRED &&
+            parseInt(details?.order?.is_reported) === 0 && (
+              <div className="boxShadow p-5 text-center mt-3">
+                <h4 className="mb-3">Trade time expired</h4>
+              </div>
+            )}
           {parseInt(details?.order?.status) ===
-            TRADE_STATUS_REFUNDED_BY_ADMIN && (
-            <div className="boxShadow p-5 text-center mt-3">
-              <h4 className="mb-3">Trade payment hasbeen refunded by admin</h4>
-            </div>
-          )}
+            TRADE_STATUS_REFUNDED_BY_ADMIN &&
+            parseInt(details?.order?.is_reported) === 0 && (
+              <div className="boxShadow p-5 text-center mt-3">
+                <h4 className="mb-3">
+                  Trade payment hasbeen refunded by admin
+                </h4>
+              </div>
+            )}
           {parseInt(details?.order?.status) ===
-            TRADE_STATUS_RELEASED_BY_ADMIN && (
-            <div className="boxShadow p-5 text-center mt-3">
-              <h4 className="mb-3">Trade hasbeen released by admin</h4>
-            </div>
-          )}
+            TRADE_STATUS_RELEASED_BY_ADMIN &&
+            parseInt(details?.order?.is_reported) === 0 && (
+              <div className="boxShadow p-5 text-center mt-3">
+                <h4 className="mb-3">Trade hasbeen released by admin</h4>
+              </div>
+            )}
           {parseInt(details?.order?.is_reported) === 0 && (
             <>
               {details?.order?.status === TRADE_STATUS_ESCROW && (

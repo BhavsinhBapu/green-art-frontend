@@ -4175,6 +4175,11 @@ table.dataTable tbody tr.selected td {
   .trades-section1 {
     margin-bottom: 30px;
   }
+  .tableButton {
+    font-size: 10px !important;
+    padding: 6px 26px !important;
+
+  }
 }
 
 .idcard h3.title {
@@ -13604,7 +13609,8 @@ label.upload-file-btn.press-enter {
 }
 
 .chat_list {
-  height: 70vh;
+    height: 70vh;
+    padding: 26px;
 }
 
 .chat_img {
@@ -14665,11 +14671,11 @@ input {
   }
 }
 
-.order-info{
+.order-info {
   display: flex;
   margin: 0 !important;
 }
-.order-info div{
+.order-info div {
   margin: 0;
   padding-right: 25px;
 }
@@ -14682,19 +14688,19 @@ input {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.02);
   border-radius: 8px;
 }
-.single-feedback  h3 {
+.single-feedback h3 {
   font-size: 20px;
   font-weight: 500;
   text-transform: capitalize;
   margin-bottom: 10px;
 }
-.single-feedback  p {
+.single-feedback p {
   font-size: 16px;
   line-height: 26px;
 }
 .single-feedback .feedback-status {
   display: inline-block;
-  padding:4px 5px;
+  padding: 4px 5px;
   font-size: 12px;
   line-height: 1;
   font-weight: 500;
@@ -14702,11 +14708,10 @@ input {
   color: #ffffff;
   text-transform: capitalize;
   margin-left: 5px;
-  
 }
-.single-feedback .feedback-status.positive{
+.single-feedback .feedback-status.positive {
   background: green;
 }
-.single-feedback .feedback-status.negetive{
+.single-feedback .feedback-status.negetive {
   background: red;
 }

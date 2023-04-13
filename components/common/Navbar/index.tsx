@@ -60,7 +60,6 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
       document.body.classList.remove("rtl-style");
     }
   }, [router.locale]);
-  console.log(settings?.p2p_module, "settings?.p2p_module");
 
   return (
     <>

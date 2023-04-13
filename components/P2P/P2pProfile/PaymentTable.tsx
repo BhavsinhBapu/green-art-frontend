@@ -51,11 +51,6 @@ export const PaymentTable = () => {
             <div className="row d-flex align-items-center justify-content-between">
               <div className="col-md-7">
                 <h5>P2P Payment Methods</h5>
-                <p className="pt-3">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Officiis temporibus inventore architecto magni aperiam hic
-                  fuga accusamus numquam laborum placeat?
-                </p>
               </div>
               <div className="col-md-5 text-right">
                 <Link href={"/p2p/add-payment-method"}>
