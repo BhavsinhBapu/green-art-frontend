@@ -17,7 +17,7 @@ export const TradeDetails = ({ details }: any) => {
         <div className="col-lg-3 col-md-4 col-6 mt-4">
           <p>First order at</p>
           <div className="d-flex align-items-center">
-            <h6 className="mr-1"> {details?.first_order_at} </h6> day's ago
+            <h6 className="mr-1"> {details?.first_order_at} </h6> days ago
           </div>
         </div>
         <div className="col-lg-3 col-md-4 col-6 mt-4">
@@ -47,7 +47,7 @@ export const TradeDetails = ({ details }: any) => {
         <div className="col-lg-3 col-md-4 col-6 mt-4">
           <p>Registered at</p>
           <div className="d-flex align-items-center">
-            <h6 className="mr-1"> {details?.user_register_at} day's ago</h6>
+            <h6 className="mr-1"> {details?.user_register_at} days ago</h6>
           </div>
         </div>
       </div>

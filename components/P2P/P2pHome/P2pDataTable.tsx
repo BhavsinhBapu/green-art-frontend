@@ -25,8 +25,8 @@ export const P2pDataTable = ({ history, filters, isLoggedIn }: any) => {
                 </tr>
               </thead>
               <tbody>
-                {history?.map((item: any) => (
-                  <tr className="tableRow">
+                {history?.map((item: any, index: any) => (
+                  <tr className="tableRow" key={index}>
                     <td>
                       <Link href={"/p2p/profile/" + item?.user_id}>
                         <div className="tableImg d-flex align-items-center">
@@ -56,11 +56,13 @@ export const P2pDataTable = ({ history, filters, isLoggedIn }: any) => {
                       </div>
                     </td>
                     <td>
-                      {item?.payment_method_list?.map((payment: any) => (
-                        <span className="badge badge-light mr-2">
-                          {payment?.admin_pamynt_method?.name}
-                        </span>
-                      ))}
+                      {item?.payment_method_list?.map(
+                        (payment: any, index: any) => (
+                          <span className="badge badge-light mr-2" key={index}>
+                            {payment?.admin_pamynt_method?.name}
+                          </span>
+                        )
+                      )}
                     </td>
                     <td>
                       {isLoggedIn === true && (

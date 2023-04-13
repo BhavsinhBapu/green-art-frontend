@@ -37,8 +37,9 @@ export const P2pTab = ({ filters, setFilters, settings }: any) => {
               {/* <li>
                 <a className="p2pTabListActive"></a>
               </li> */}
-              {settings?.assets?.map((coinName: any) => (
+              {settings?.assets?.map((coinName: any, index: any) => (
                 <li
+                  key={index}
                   onClick={() => {
                     setFilters({ ...filters, coin: coinName?.coin_type });
                   }}

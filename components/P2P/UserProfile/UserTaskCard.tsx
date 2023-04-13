@@ -29,7 +29,7 @@ export const UserTaskCard = () => {
     <div className="container">
       <div className="row">
         {UserTaskCardList.map((item, index) => (
-          <div className="col-lg col-md-3 col-sm-6 col-12 mt-4">
+          <div className="col-lg col-md-3 col-sm-6 col-12 mt-4" key={index}>
             <div className="p-3 paymentMethodSubBox userVerified text-center h-100">
               <p>
                 {item.title} <AiFillInfoCircle className="text-muted ml-1" />

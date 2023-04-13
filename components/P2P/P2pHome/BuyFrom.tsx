@@ -34,12 +34,12 @@ export const BuyFrom = ({
     setPaymethods(PaymentMethods);
   }, [details]);
   return (
-    <div className="col-12 p-5">
+    <div className="col-12 p-5 boxShadow">
       <div className="mt-3 mb-3">
         <BackButton />
       </div>
       <h1 className="ny-3">Details</h1>
-      <div className="shadow p-4 rounded">
+      <div className=" p-4 rounded">
         <div className="row">
           <div className="col-md-6">
             <div className="tableImg d-flex align-items-center">

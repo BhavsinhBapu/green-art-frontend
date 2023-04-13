@@ -23,8 +23,8 @@ export const OrderTable = ({
                 </tr>
               </thead>
               <tbody>
-                {history.map((item: any) => (
-                  <tr className="tableRow">
+                {history.map((item: any, index: any) => (
+                  <tr className="tableRow" key={index}>
                     <td>
                       <div className="tableImg d-flex align-items-center">
                         <h6 className="">{item.order_id}</h6>
@@ -64,11 +64,11 @@ export const OrderTable = ({
                   {stillHistory?.links?.map((link: any, index: number) =>
                     link.label === "&laquo; Previous" ? (
                       <a
+                        key={index}
                         className="paginate-button"
                         onClick={() => {
                           if (link.url) LinkTopaginationString(link);
                         }}
-                        key={index}
                       >
                         <i className="fa fa-angle-left"></i>
                       </a>

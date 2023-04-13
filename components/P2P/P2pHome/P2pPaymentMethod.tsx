@@ -7,8 +7,8 @@ export const P2pPaymentMethod = ({ data }: any) => {
         </div>
         <div className="col-md-8 pb-4">
           <div className="row">
-            {data.payment_method.map((data: any) => (
-              <div className="col-sm-6 col-lg-4 pt-4">
+            {data.payment_method.map((data: any, index: any) => (
+              <div className="col-sm-6 col-lg-4 pt-4" key={index}>
                 <a className="paymentBox d-flex align-items-center p-3" href="">
                   <div></div>
                   {data?.admin_pamynt_method?.name}
