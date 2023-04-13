@@ -5,6 +5,7 @@ import { NoItemFound } from "components/NoItemFound/NoItemFound";
 import { BUY } from "helpers/core-constants";
 import { RootState } from "state/store";
 import { useSelector } from "react-redux";
+import { useRouter } from "next/router";
 
 export const P2pDataTable = ({
   history,
@@ -14,6 +15,7 @@ export const P2pDataTable = ({
   payment = true,
   edit = false,
 }: any) => {
+  const router = useRouter();
   return (
     <div className="container mt-4">
       <div className="row">
@@ -90,11 +92,21 @@ export const P2pDataTable = ({
                     {edit === true && (
                       <td>
                         {isLoggedIn === true && (
-                          <Link
-                            href={`/p2p/add-post?uid=${item.uid}&&ads_type=${filters.type}`}
+                          // <Link
+                          //   href={`/p2p/add-post?uid=${item.uid}&&ads_type=${filters.type}`}
+                          // >
+                          <button
+                            onClick={async () => {
+                              await router.push(
+                                `/p2p/add-post?uid=${item.uid}&&ads_type=${filters.type}`
+                              );
+                              await router.reload();
+                            }}
+                            className="tableButton"
                           >
-                            <button className="tableButton">Edit</button>
-                          </Link>
+                            Edit
+                          </button>
+                          // </Link>
                         )}
                       </td>
                     )}
