@@ -45,8 +45,8 @@ const MyWallet: NextPage = () => {
     const url = page.url.split("?")[1];
     const number = url.split("=")[1];
     const response: any = await getWalletsAction(5, number);
-    setWalletList(response?.wallets);
-    setChangeable(response?.wallets?.data);
+    setWalletList(response?.data);
+    setChangeable(response?.data?.data);
   };
 
   useEffect(() => {
