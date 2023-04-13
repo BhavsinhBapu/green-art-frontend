@@ -106,14 +106,14 @@ export const useAddPostInitial = () => {
     setregisterDays(ads?.register_days);
     setcoinHolding(ads?.coin_holding);
     // payment_method;
-    ads.payment_method.map((item: any) => {
+    ads?.payment_method?.map((item: any) => {
       const obj = {
         value: item.uid,
         label: item?.admin_pamynt_method?.name,
       };
       payment_method.push(obj);
     });
-    ads.country.map((item: any) => {
+    ads?.country?.map((item: any) => {
       const obj = {
         value: item.key,
         label: item.key,
@@ -202,7 +202,7 @@ export const useAddPostInitial = () => {
     resetData,
   }: any = usePostApiFunction(getMarketHighestLowest);
   useEffect(() => {
-    getAdsDetailsAction();
+    uid && getAdsDetailsAction();
   }, [ads_type, uid]);
   useEffect(() => {
     if (selectedAsset && selectedCurrency) {
