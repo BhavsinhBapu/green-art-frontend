@@ -158,7 +158,22 @@ const DashboardNavbar = () => {
                         </li>
                       </Link>
                     )}
-
+                  {parseInt(settings?.p2p_module) === 1 && (
+                    <Link href={isLoggedIn ? "/p2p" : "/signin"}>
+                      <li
+                        className={
+                          router.pathname == "/p2p" ? "cp-user-active-page" : ""
+                        }
+                      >
+                        <a href="">
+                          <span className="cp-user-icon">
+                            <RiCalendarEventLine />
+                          </span>
+                          <span className="cp-user-name">{t("P2P")}</span>
+                        </a>
+                      </li>
+                    </Link>
+                  )}
                   {parseInt(settings.currency_deposit_status) === 1 &&
                     navbar?.fiat?.status && (
                       <li

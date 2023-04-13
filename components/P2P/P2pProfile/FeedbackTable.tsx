@@ -54,11 +54,19 @@ export const FeedbackTable = ({ details }: any) => {
                           list.feedback && (
                             <div className="single-feedback col-sm-12 col-md-6">
                               <h3>{list?.feedback}</h3>
-                              <p>
-                                <span className="feedback-status negetive">
-                                  active
-                                </span>
-                              </p>
+                              {parseInt(list.feedback_type) === 1 ? (
+                                <p>
+                                  <span className="feedback-status positive">
+                                    Positive
+                                  </span>
+                                </p>
+                              ) : (
+                                <p>
+                                  <span className="feedback-status negetive">
+                                    Negetive
+                                  </span>
+                                </p>
+                              )}
                             </div>
                           )
                       )}
@@ -77,8 +85,8 @@ export const FeedbackTable = ({ details }: any) => {
                             <div className="single-feedback col-sm-12 col-md-6">
                               <h3>{list?.feedback}</h3>
                               <p>
-                                <span className="feedback-status negetive">
-                                  active
+                                <span className="feedback-status positive">
+                                  Positive
                                 </span>
                               </p>
                             </div>
