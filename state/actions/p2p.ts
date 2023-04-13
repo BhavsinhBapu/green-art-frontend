@@ -448,15 +448,12 @@ export const placeP2POrderAction = async (
 };
 export const getP2pOrderDetailsAction = async (
   order_uid: string,
-
   setStep: any,
-  setExpried: any,
   setLoading: any,
   dispatch: any
 ) => {
   setLoading(true);
   const response = await getP2pOrderDetails(order_uid);
-  // setDetails(response?.data);
   dispatch(setP2pDetails(response?.data));
   dispatch(setTradeChatAll(response?.data?.chat_messages));
   if (response?.data?.order.status === TRADE_STATUS_ESCROW) {
@@ -466,19 +463,7 @@ export const getP2pOrderDetailsAction = async (
   } else if (response?.data?.order.status === TRADE_STATUS_TRANSFER_DONE) {
     setStep(3);
   }
-  const now = new Date().getTime();
-  //@ts-ignore
-  const diff: any = new Date(response?.data?.order?.payment_expired_time) - now;
-  if (!response?.data?.order?.payment_expired_time) {
-    setExpried(false);
-    setLoading(false);
-    return;
-  }
-  if (diff > 0) {
-    setExpried(false);
-  } else {
-    setExpried(true);
-  }
+
   setLoading(false);
 };
 // paymentP2pOrder

@@ -28,7 +28,7 @@ export const P2pDataTable = ({ history, filters, isLoggedIn }: any) => {
                 {history?.map((item: any) => (
                   <tr className="tableRow">
                     <td>
-                      <Link href={"/p2p/user-profile"}>
+                      <Link href={"/p2p/profile/" + item?.user_id}>
                         <div className="tableImg d-flex align-items-center">
                           <img
                             src="https://api-tradex.nftarttoken.xyz/images/avatars/yellow-hat.png"

@@ -11,6 +11,7 @@ export const AddPostTwo = ({
   selectedPaymentTime,
   setSelectedPaymentTime,
   amount,
+  selectedCurrency,
   setAmount,
 }: any) => {
   const [PaymentOption, setPaymentOption] = useState([]);
@@ -100,7 +101,7 @@ export const AddPostTwo = ({
                   {minError && <span className="text-danger">{minError}</span>}
                   <button>
                     <span className="ml-3 text-muted">
-                      {selectedAsset?.value}
+                      {selectedCurrency?.value}
                     </span>
                   </button>
                 </div>
@@ -123,7 +124,7 @@ export const AddPostTwo = ({
 
                   <button>
                     <span className="ml-3 text-muted">
-                      {selectedAsset?.value}
+                      {selectedCurrency?.value}
                     </span>
                   </button>
                 </div>

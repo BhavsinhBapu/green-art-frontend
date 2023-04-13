@@ -110,6 +110,7 @@ const AddPost = () => {
                   data={data}
                   selectedPayment={selectedPayment}
                   setSelectedPayment={setSelectedPayment}
+                  selectedCurrency={selectedCurrency}
                   selectedPaymentTime={selectedPaymentTime}
                   setSelectedPaymentTime={setSelectedPaymentTime}
                   amount={Amount}

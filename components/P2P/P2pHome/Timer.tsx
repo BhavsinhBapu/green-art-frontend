@@ -1,31 +1,42 @@
 import React, { useState, useEffect } from "react";
-import moment from "moment";
 
-const Timer = ({ endTime }: { endTime: string }) => {
+const Timer = ({ seconds, getDetails }: any) => {
   const [timeLeft, setTimeLeft] = useState("");
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      const now = moment();
-      const diff = moment(endTime).diff(now);
+    let interval: any = null;
 
-      if (diff > 0) {
-        const duration = moment.duration(diff);
-        const minutes = Math.floor(duration.asMinutes());
-        const seconds = Math.floor(duration.seconds());
-        setTimeLeft(`${minutes}:${seconds < 10 ? "0" : ""}${seconds}`);
+    const countdown = () => {
+      if (seconds > 0) {
+        const hours = Math.floor(seconds / 3600);
+        const minutes = Math.floor((seconds % 3600) / 60);
+        const remainingSeconds = seconds % 60;
+
+        setTimeLeft(
+          `${hours < 10 ? "0" + hours : hours}:${
+            minutes < 10 ? "0" + minutes : minutes
+          }:${
+            remainingSeconds < 10 ? "0" + remainingSeconds : remainingSeconds
+          }`
+        );
+        interval = setTimeout(() => {
+          countdown();
+        }, 1000);
+        seconds--;
       } else {
         setTimeLeft("Expired");
-        clearInterval(interval);
+        clearTimeout(interval);
+        getDetails();
       }
-    }, 1000);
+    };
 
-    return () => clearInterval(interval);
-  }, [endTime]);
+    countdown();
+    return () => clearTimeout(interval);
+  }, [seconds]);
 
   return (
     <div className="mt-5 mb-5">
-      <h3 className="card-title">Payment time left</h3>
+      <h3 className="card-title">Time left:</h3>
       <h4 className="card-text">{timeLeft}</h4>
     </div>
   );

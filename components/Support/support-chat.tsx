@@ -132,7 +132,7 @@ export const SupportChat = ({
         {/* <span ref={messagesEndRef}></span> */}
       </div>
 
-      <div className="col-md-12 mt-4">
+      <div className=" mt-4">
         <div>
           <form
             onSubmit={sendMessage}

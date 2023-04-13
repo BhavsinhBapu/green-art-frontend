@@ -1,6 +1,7 @@
 import { CUstomSelect } from "components/common/CUstomSelect";
 import { AMOUNT, AMOUNT_PRICE, BUY, SELL } from "helpers/core-constants";
 import { useRouter } from "next/router";
+import BackButton from "pages/p2p/BackButton";
 import { useEffect, useState } from "react";
 import { TfiHandPointRight } from "react-icons/tfi";
 import { toast } from "react-toastify";
@@ -34,7 +35,10 @@ export const BuyFrom = ({
   }, [details]);
   return (
     <div className="col-12 p-5">
-      <h1>Details</h1>
+      <div className="mt-3 mb-3">
+        <BackButton />
+      </div>
+      <h1 className="ny-3">Details</h1>
       <div className="shadow p-4 rounded">
         <div className="row">
           <div className="col-md-6">

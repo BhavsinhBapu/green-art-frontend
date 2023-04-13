@@ -11,11 +11,6 @@ export const FeedbackTable = ({ details }: any) => {
           <div className="paymentMethodBox mt-4 rounded shadow-sm">
             <div className="row">
               <div className="col-12">
-                <div className="p-4">
-                  <h5 className="pb-4">Feedback</h5>
-                  <h5>0.00%</h5>
-                  <p>(0) Reviews</p>
-                </div>
                 <ul className="d-flex p2pTabList py-3 tableRow userProfileBg px-4">
                   <li>
                     <a
@@ -50,7 +45,9 @@ export const FeedbackTable = ({ details }: any) => {
                 </ul>
                 {active === 0 && (
                   <>
-                    {details?.feedback_list?.length === 0 && <NoItemFound />}
+                    {details?.feedback_list?.length === 0 && (
+                      <NoItemFound msg="No review found" />
+                    )}
                     <div className="p-4 row">
                       {details?.feedback_list?.map(
                         (list: any) =>
@@ -71,7 +68,7 @@ export const FeedbackTable = ({ details }: any) => {
                 {active === 1 && (
                   <>
                     {details?.positive_feedback_list?.length === 0 && (
-                      <NoItemFound />
+                      <NoItemFound msg="No review found" />
                     )}
                     <div className="p-4 row">
                       {details?.positive_feedback_list?.map(
@@ -93,7 +90,7 @@ export const FeedbackTable = ({ details }: any) => {
                 {active === 2 && (
                   <>
                     {details?.negative_feedback_list?.length === 0 && (
-                      <NoItemFound />
+                      <NoItemFound msg="No review found" />
                     )}
                     <div className="p-4 row">
                       {details?.negative_feedback_list?.map(

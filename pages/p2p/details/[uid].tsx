@@ -5,6 +5,7 @@ import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { getAdsDetailsAction, p2pOrderRateAction } from "state/actions/p2p";
+import BackButton from "../BackButton";
 
 const Details = () => {
   const [details, setDetails] = useState();
