@@ -37,7 +37,23 @@ const UnAuthNav = ({ logo }: any) => {
               <nav className="main-menu mobile-menu">
                 <ul id="nav">
                   <li>
-                    <a href="/exchange/dashboard">{t("Trade")}</a>
+                    <a className="flex" href="#" aria-expanded="true">
+                      <span className="ml-2">{t("Exchange")}</span>
+                    </a>
+                    <ul className="lang-list">
+                      <li>
+                        <Link href="/exchange/dashboard">
+                          <a className="py-1">{t("Spot Trading")}</a>
+                        </Link>
+                      </li>
+                      {parseInt(settings?.p2p_module) === 1 &&
+                        <li>
+                          <Link href="/p2p">
+                            <a className="py-1">{t("P2P Trading")}</a>
+                          </Link>
+                        </li>
+                      }
+                    </ul>
                   </li>
                   <li>
                     <Link href="/signin">{t("Login")}</Link>
