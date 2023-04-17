@@ -2617,7 +2617,7 @@ a#submit {
   box-shadow: none;
   background: var(--card-background-color);
   padding: 5px 15px;
-  border-color: var(--border-color);
+  border-color: var(--border-color) !important;
 }
 
 .cp-user-preferance-setting {
@@ -13238,7 +13238,7 @@ textarea.apply-file-input {
 .ico-input-box {
   width: 100%;
   background: var(--main-background-color);
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--border-color) !important;
   padding: 10px 10px;
   border-radius: 5px;
   color: var(--font-color);
@@ -14332,7 +14332,7 @@ input {
 }
 
 .faqAccordion .card-header button {
-  background: var(--background-color) !important;
+  background: var(--footer-background-color) !important;
   width: 100%;
   border: none;
   padding: 18px 10px;
