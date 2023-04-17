@@ -34,10 +34,10 @@ const PhoneVerification: NextPage = () => {
               }}
               validationSchema={Yup.object({
                 old_password: Yup.string()
-                  .min(6, "Password must be at least 6 characters")
+                  .min(8, "Password must be at least 6 characters")
                   .required("Password is required"),
                 password: Yup.string()
-                  .min(6, "Password must be at least 6 characters")
+                  .min(8, "Password must be at least 6 characters")
                   .required("Password is required"),
                 password_confirmation: Yup.string()
                   .oneOf([Yup.ref("password"), null], "Passwords must match")

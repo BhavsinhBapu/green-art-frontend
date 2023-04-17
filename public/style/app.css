@@ -51,7 +51,7 @@ Tags: admin, best react admin template, das
     --text-primary-color-2: #23262f;
     --text-primary-color-3: #777778;
     --text-primary-color-4: #6e6e6e;
-    --border-color: #dedede;
+    --border-color: rgb(126 126 126 / 20%);
     --border-color-1: #e6e8ec;
     --border-color-2: #353535;
     --hover-color: #f7cf33;
@@ -78,7 +78,7 @@ Tags: admin, best react admin template, das
     --text-primary-color-2: #ffffff;
     --text-primary-color-3: #ffffff;
     --text-primary-color-4: #cbcfd7;
-    --border-color: #535353;
+    --border-color: rgb(126 126 126 / 20%);
     --border-color-1: #535353;
     --border-color-2: #ffffff;
     --hover-color: #f7cf33;

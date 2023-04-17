@@ -104,7 +104,7 @@ const Market = ({
                     </div>
                   </div>
                 </div>
-                <div className="form-group mt-3">
+                <div className="form-group mt-3 boxShadow">
                   <label className="cstmHead">{t("Price")}</label>
                   <input
                     name="price"
@@ -123,7 +123,7 @@ const Market = ({
                     </span>
                   </span>
                 </div>
-                <div className="form-group mt-3">
+                <div className="form-group mt-3 boxShadow">
                   <label className="cstmHead">{t("Amount")}</label>
                   <input
                     name="amount"

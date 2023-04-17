@@ -106,7 +106,7 @@ const Limit = ({
                     </div>
                   </div>
                 </div>
-                <div className="form-group mt-3">
+                <div className="form-group mt-3 boxShadow">
                   <label className="cstmHead">{t("Price")}</label>
                   <input
                     name="price"
@@ -133,7 +133,7 @@ const Limit = ({
                     </span>
                   </span>
                 </div>
-                <div className="form-group mt-3">
+                <div className="form-group mt-3 boxShadow">
                   <label className="cstmHead">{t("Amount")}</label>
                   <input
                     name="amount"
@@ -163,7 +163,7 @@ const Limit = ({
                     </span>
                   </span>
                 </div>
-                <div className="form-group mt-3">
+                <div className="form-group mt-3 boxShadow">
                   <label className="cstmHead">{t("Total Amount")}</label>
                   <input
                     disabled

@@ -102,7 +102,7 @@ const StopLimit = ({
                     </div>
                   </div>
                 </div>
-                <div className="form-group mt-3">
+                <div className="form-group mt-3 boxShadow">
                   <label className="cstmHead">{t("Stop")}</label>
                   <input
                     name="stop"
@@ -129,7 +129,7 @@ const StopLimit = ({
                     </span>
                   </span>
                 </div>
-                <div className="form-group mt-3">
+                <div className="form-group mt-3 boxShadow">
                   <label className="cstmHead">{t("Limit")}</label>
                   <input
                     name="limit"
@@ -157,7 +157,7 @@ const StopLimit = ({
                   </span>
                 </div>
 
-                <div className="form-group mt-3">
+                <div className="form-group mt-3 boxShadow">
                   <label className="cstmHead">{t("Amount")}</label>
                   <input
                     name="amount"
@@ -187,7 +187,7 @@ const StopLimit = ({
                     </span>
                   </span>
                 </div>
-                <div className="form-group mt-3">
+                <div className="form-group mt-3 boxShadow">
                   <label className="cstmHead">{t("Total Amount")}</label>
                   <input
                     disabled
@@ -195,7 +195,9 @@ const StopLimit = ({
                     type="number"
                     placeholder=""
                     className="form-control number_only"
-                    value={parseFloat(buySellStopLimitCoinData.total).toFixed(8)}
+                    value={parseFloat(buySellStopLimitCoinData.total).toFixed(
+                      8
+                    )}
                   />
                   <span
                     className="text-warning blns"

@@ -3948,15 +3948,18 @@ body._toggle .swipe-area-overlay:before {
   line-height: 35px;
 }
 
-.exchange-area .cp-user-profile-info .form-group {
-  position: relative;
-  margin-bottom: 0;
+.exchange-area .cp-user-profile-info .boxShadow {
+  /* position: relative; */
+  /* margin-bottom: 0; */
+  display: flex;
+  align-items: center;
 }
 
 .exchange-area .cp-user-profile-info span.blns {
-  position: absolute;
+  /* position: absolute;
   right: 10px;
-  top: 11px;
+  top: 11px; */
+  margin-right: 10px;
 }
 
 .cstmHead {
@@ -4178,7 +4181,6 @@ table.dataTable tbody tr.selected td {
   .tableButton {
     font-size: 10px !important;
     padding: 6px 26px !important;
-
   }
 }
 
@@ -4934,7 +4936,7 @@ select:-webkit-autofill:focus {
   border: 1px solid rgb(126 126 126 / 20%);
   /* padding-left: 112px; */
   text-align: right;
-  padding-right: 53px;
+  /* padding-right: 53px; */
 }
 
 .input_1 {
@@ -13609,8 +13611,8 @@ label.upload-file-btn.press-enter {
 }
 
 .chat_list {
-    height: 70vh;
-    padding: 26px;
+  height: 70vh;
+  padding: 26px;
 }
 
 .chat_img {
@@ -14714,4 +14716,7 @@ input {
 }
 .single-feedback .feedback-status.negetive {
   background: red;
+}
+.form-group .number_only {
+  border: 0 !important;
 }
