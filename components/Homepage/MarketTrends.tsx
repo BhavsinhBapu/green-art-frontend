@@ -177,14 +177,14 @@ const MarketTrends = ({
                               </td>
                               <td>
                                 {item.price_change >= 0 ? (
-                                  <ImageComponent
-                                    src={"/chart-image-1.png"}
-                                    height={80}
+                                  <img
+                                    src="/chart-image-1.png"
+                                    alt="chart-image"
                                   />
                                 ) : (
-                                  <ImageComponent
-                                    src={"/chart-image-2.png"}
-                                    height={80}
+                                  <img
+                                    src="/chart-image-2.png"
+                                    alt="chart-image"
                                   />
                                 )}
                               </td>
@@ -343,14 +343,14 @@ const MarketTrends = ({
                                 </td>
                                 <td>
                                   {item.price_change >= 0 ? (
-                                    <ImageComponent
-                                      src={"/chart-image-1.png"}
-                                      height={80}
+                                    <img
+                                      src="/chart-image-1.png"
+                                      alt="chart-image"
                                     />
                                   ) : (
-                                    <ImageComponent
-                                      src={"/chart-image-2.png"}
-                                      height={80}
+                                    <img
+                                      src="/chart-image-2.png"
+                                      alt="chart-image"
                                     />
                                   )}
                                 </td>
@@ -506,14 +506,14 @@ const MarketTrends = ({
                                 </td>
                                 <td>
                                   {item.price_change >= 0 ? (
-                                    <ImageComponent
-                                      src={"/chart-image-1.png"}
-                                      height={80}
+                                    <img
+                                      src="/chart-image-1.png"
+                                      alt="chart-image"
                                     />
                                   ) : (
-                                    <ImageComponent
-                                      src={"/chart-image-2.png"}
-                                      height={80}
+                                    <img
+                                      src="/chart-image-2.png"
+                                      alt="chart-image"
                                     />
                                   )}
                                 </td>
