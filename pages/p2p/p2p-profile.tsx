@@ -22,6 +22,13 @@ const P2pProfile = () => {
         <SectionLoading />
       ) : (
         <div className="mb-5">
+          <div className="section-top-wrap mb-25">
+            <div className="overview-area">
+              <div className="overview-left">
+                <h2 className="section-top-title">User center</h2>
+              </div>
+            </div>
+          </div>
           <P2pTopBar />
           <ProfileHeader details={details} />
           <TradeDetails details={details} />

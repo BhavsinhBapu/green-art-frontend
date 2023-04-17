@@ -3,7 +3,6 @@ import { CommonLandingCustomSettings } from "service/landing-page";
 import useTranslation from "next-translate/useTranslation";
 import Navbar from "components/common/Navbar";
 import { parseCookies } from "nookies";
-import { useRouter } from "next/router";
 import { useEffect } from "react";
 import Footer from "components/common/footer";
 import { useSelector } from "react-redux";

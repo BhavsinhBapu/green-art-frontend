@@ -22,14 +22,16 @@ const UnAuthNav = ({ logo }: any) => {
       <div className="container">
         <div className="row align-items-center">
           <div className="col-md-2">
-            <div className="logo-area">
-              <a href="/">
-                <img
-                  src={logo || ""}
-                  className="img-fluid cp-user-logo-large"
-                  alt=""
-                />
-              </a>
+            <div className="cp-user-logo">
+              <Link href="/">
+                <a href="">
+                  <img
+                    src={logo || ""}
+                    className="img-fluid cp-user-logo-large"
+                    alt=""
+                  />
+                </a>
+              </Link>
             </div>
           </div>
           <div className="col-md-10">
@@ -46,13 +48,13 @@ const UnAuthNav = ({ logo }: any) => {
                           <a className="py-1">{t("Spot Trading")}</a>
                         </Link>
                       </li>
-                      {parseInt(settings?.p2p_module) === 1 &&
+                      {parseInt(settings?.p2p_module) === 1 && (
                         <li>
                           <Link href="/p2p">
                             <a className="py-1">{t("P2P Trading")}</a>
                           </Link>
                         </li>
-                      }
+                      )}
                     </ul>
                   </li>
                   <li>

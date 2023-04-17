@@ -1,7 +1,7 @@
 import { FaAngleDown } from "react-icons/fa";
 import { useState } from "react";
 
-export const CustomAccordion = ({ title, discription }: any) => {
+export const CustomAccordion = ({ faqIten }: any) => {
   const [faqDown, setFaqDown] = useState(true);
   const faqArrow = () => setFaqDown(!faqDown);
 
@@ -16,8 +16,9 @@ export const CustomAccordion = ({ title, discription }: any) => {
             data-toggle="collapse"
             data-target="#collapseThree"
             aria-expanded="false"
-            aria-controls="collapseThree">
-            Collapsible Group Item #3
+            aria-controls="collapseThree"
+          >
+            {faqIten?.question}
             <FaAngleDown className={`${faqDown ? "faqDown" : ""}`} />
           </button>
         </div>
@@ -25,11 +26,9 @@ export const CustomAccordion = ({ title, discription }: any) => {
           id="collapseThree"
           className="collapse"
           aria-labelledby="headingThree"
-          data-parent="#accordionExample">
-          <div className="p-3">
-            And lastly, the placeholder content for the third and final
-            accordion panel. This panel is hidden by default.
-          </div>
+          data-parent="#accordionExample"
+        >
+          <div className="p-3">{faqIten?.answer}</div>
         </div>
       </div>
     </div>

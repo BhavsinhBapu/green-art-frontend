@@ -365,6 +365,7 @@ ul {
 .mean-container .mean-bar {
     background: var(--main-background-color);
     padding: 14px 0;
+    display: none;
 }
 
 .mean-container .mean-bar::after {

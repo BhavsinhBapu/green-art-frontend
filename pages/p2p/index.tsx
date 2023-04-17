@@ -1,4 +1,5 @@
 import Footer from "components/common/footer";
+import SectionLoading from "components/common/SectionLoading";
 import { P2pAdvantage } from "components/P2P/P2pHome/P2pAdvantage";
 import { P2pDataTable } from "components/P2P/P2pHome/P2pDataTable";
 import { P2pFaq } from "components/P2P/P2pHome/p2pFAQ";
@@ -62,7 +63,7 @@ const P2P = ({ data }: any) => {
       elements[i].style.backgroundImage = `url('${data?.p2p_banner_img}')`;
     }
   };
-
+  console.log(data, "datadatadata");
   useEffect(() => {
     changeBackground();
   }, []);
@@ -108,11 +109,16 @@ const P2P = ({ data }: any) => {
           filters={filters}
           settings={settings}
         />
-        <P2pDataTable
-          history={history}
-          filters={filters}
-          isLoggedIn={isLoggedIn}
-        />
+        {processing ? (
+          <SectionLoading />
+        ) : (
+          <P2pDataTable
+            history={history}
+            filters={filters}
+            isLoggedIn={isLoggedIn}
+          />
+        )}
+
         {history?.length > 0 && (
           <div className="pagination-wrapper" id="assetBalances_paginate">
             <span>
@@ -154,7 +160,7 @@ const P2P = ({ data }: any) => {
         )}
         <P2pWork data={data} />
         <P2pAdvantage data={data} />
-        {/* <P2pFaq data={data} /> */}
+        {data?.p2p_faq.length > 0 && <P2pFaq data={data} />}
         <P2pPaymentMethod data={data} />
       </div>
       <Footer />

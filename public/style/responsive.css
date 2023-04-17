@@ -100,7 +100,7 @@
 
 @media (max-width: 991px) {
     .header-area {
-        display: none;
+        /* display: none; */
     }
     .about-us-area .about-left {
         position: inherit;
@@ -135,7 +135,7 @@
         height: 150px;
     }
     .header-area {
-        display: none;
+        /* display: none; */
     }
     .about-us-area .about-left {
         position: inherit;

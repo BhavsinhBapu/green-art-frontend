@@ -69,21 +69,33 @@ const P2pOrder = () => {
   return (
     <>
       <div className="mb-5">
+        <div className="section-top-wrap mb-25">
+          <div className="overview-area">
+            <div className="overview-left">
+              <h2 className="section-top-title">My Sell Order History</h2>
+            </div>
+          </div>
+        </div>
         <P2pTopBar />
         <>
-          <P2pFilter
+          {/* <P2pFilter
             setFilters={setFilters}
             filters={filters}
             settings={settings}
-          />
-          <P2pDataTable
-            history={history}
-            filters={filters}
-            isLoggedIn={isLoggedIn}
-            action={false}
-            payment={false}
-            edit={true}
-          />
+          /> */}
+          {processing ? (
+            <SectionLoading />
+          ) : (
+            <P2pDataTable
+              history={history}
+              filters={filters}
+              isLoggedIn={isLoggedIn}
+              action={false}
+              payment={false}
+              edit={true}
+            />
+          )}
+
           {history?.length > 0 && (
             <div className="pagination-wrapper" id="assetBalances_paginate">
               <span>
