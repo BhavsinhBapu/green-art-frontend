@@ -92,22 +92,56 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                               : ""
                           }
                         >
-                          <a
+                          <Link
                             href={
                               router.locale !== "en"
                                 ? `/${router.locale}/exchange/dashboard`
                                 : "/exchange/dashboard"
                             }
                           >
-                            <span className="cp-user-icon">
-                              <BsBarChartLine />
-                            </span>
-                            <span className="cp-user-name">
-                              {navbar?.trade?.name
-                                ? navbar?.trade?.name
-                                : t("Trade")}
-                            </span>
-                          </a>
+                            <a
+                              className="arrow-icon"
+                              href="#"
+                              aria-expanded="true"
+                            >
+                              <span className="cp-user-icon">
+                                <BsBarChartLine />
+                              </span>
+                              <span className="cp-user-name">
+                                {navbar?.trade?.name
+                                  ? navbar?.trade?.name
+                                  : t("Exchange")}
+                              </span>
+                            </a>
+                          </Link>
+                          <ul className="">
+                            {navbar?.trade?.status && (
+                              <Link
+                                href={
+                                  router.locale !== "en"
+                                    ? `/${router.locale}/exchange/dashboard`
+                                    : "/exchange/dashboard"
+                                }
+                              >
+                                <li>
+                                  <a href="">{t("Spot Trading")}</a>
+                                </li>
+                              </Link>
+                            )}
+                            {parseInt(settings?.p2p_module) === 1 && (
+                              <Link href={isLoggedIn ? "/p2p" : "/signin"}>
+                                <li
+                                  className={
+                                    router.pathname == "/p2p"
+                                      ? "cp-user-active-page"
+                                      : ""
+                                  }
+                                >
+                                  <a href="">{t("P2P Trading")}</a>
+                                </li>
+                              </Link>
+                            )}
+                          </ul>
                         </li>
                       )}
                       {navbar?.wallet?.status && (
@@ -161,24 +195,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                             </li>
                           </Link>
                         )}
-                      {parseInt(settings?.p2p_module) === 1 && (
-                        <Link href={isLoggedIn ? "/p2p" : "/signin"}>
-                          <li
-                            className={
-                              router.pathname == "/p2p"
-                                ? "cp-user-active-page"
-                                : ""
-                            }
-                          >
-                            <a href="">
-                              <span className="cp-user-icon">
-                                <RiCalendarEventLine />
-                              </span>
-                              <span className="cp-user-name">{t("P2P")}</span>
-                            </a>
-                          </li>
-                        </Link>
-                      )}
+                      
                       {parseInt(settings.currency_deposit_status) === 1 &&
                         navbar?.fiat?.status && (
                           <li
