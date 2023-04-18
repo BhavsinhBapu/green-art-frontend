@@ -32,14 +32,14 @@ export const AddPostOne = ({
     data?.data?.currency?.map((asset: any) => {
       const obj = {
         value: asset.currency_code,
-        label: asset.name,
+        label: asset.currency_code,
       };
       myCurrency.push(obj);
     });
     data?.data?.assets?.map((asset: any) => {
       const obj = {
         value: asset.coin_type,
-        label: asset.name,
+        label: asset.coin_type,
       };
       myAssets.push(obj);
     });
@@ -74,11 +74,15 @@ export const AddPostOne = ({
             <div className="row">
               <div className="col-md-5 col-6 adFromPrice">
                 <p>Your Price</p>
-                <h4>TK. {pricePoint.highest_price}</h4>
+                <h4>
+                  {selectedCurrency?.value} {pricePoint.highest_price}
+                </h4>
               </div>
               <div className="col-md-5 col-6 adFromPrice">
                 <p>Lowest Order Price</p>
-                <h4>TK. {pricePoint.lowest_price}</h4>
+                <h4>
+                  {selectedCurrency?.value} {pricePoint.lowest_price}
+                </h4>
               </div>
             </div>
           </div>

@@ -6,51 +6,62 @@ import { OrderTable } from "components/P2P/P2pOrder/OrderTable";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
 import { useEffect, useState } from "react";
-import { myP2pOrderAction } from "state/actions/p2p";
+import { myP2pDisputeAction, myP2pOrderAction } from "state/actions/p2p";
 
 const P2pOrder = () => {
-  const [processing, setProcessing] = useState<boolean>(false);
-  const [history, setHistory] = useState<any>([]);
-  const [stillHistory, setStillHistory] = useState<any>([]);
-  const LinkTopaginationString = (page: any) => {
-    const url = page.url.split("?")[1];
-    const number = url.split("=")[1];
-    myP2pOrderAction(
-      5,
-      parseInt(number),
-      setHistory,
-      setProcessing,
-      setStillHistory
-    );
-  };
-  useEffect(() => {
-    myP2pOrderAction(5, 1, setHistory, setProcessing, setStillHistory);
-  }, []);
+  const [selectedMenu, setselectedMenu] = useState<any>(1);
+
   return (
     <>
       <div className="mb-5">
+        <div className="section-top-wrap mb-25">
+          <div className="overview-area">
+            <div className="overview-left">
+              <h2 className="section-top-title">My Orders</h2>
+            </div>
+          </div>
+        </div>
         <P2pTopBar />
         <div className="container">
           <div className="row">
             <div className="col-12">
               <ul className="d-flex p2pTabList py-3 tableRow">
-                <li>
-                  <a className="p2pOrderTabListActive" href="">
+                <li
+                  onClick={() => {
+                    setselectedMenu(1);
+                  }}
+                >
+                  <a
+                    className={`${
+                      selectedMenu === 1 && "p2pOrderTabListActive"
+                    }`}
+                  >
                     All Orders
+                  </a>
+                </li>
+                <li
+                  onClick={() => {
+                    setselectedMenu(2);
+                  }}
+                >
+                  <a
+                    className={`${
+                      selectedMenu === 2 && "p2pOrderTabListActive"
+                    }`}
+                  >
+                    Disputed Orders
                   </a>
                 </li>
               </ul>
             </div>
           </div>
         </div>
-        {processing ? (
-          <SectionLoading />
-        ) : (
-          <OrderTable
-            stillHistory={stillHistory}
-            history={history}
-            LinkTopaginationString={LinkTopaginationString}
-          />
+
+        {selectedMenu === 1 && (
+          <OrderTable actionFunction={myP2pOrderAction} filter={true} />
+        )}
+        {selectedMenu === 2 && (
+          <OrderTable actionFunction={myP2pDisputeAction} />
         )}
       </div>
       <Footer />

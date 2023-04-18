@@ -1,13 +1,79 @@
+import { NoItemFound } from "components/NoItemFound/NoItemFound";
+import SectionLoading from "components/common/SectionLoading";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { OrderFilter } from "./OrderFilter";
+import { myP2pOrderListData } from "service/p2p";
 
-export const OrderTable = ({
-  stillHistory,
-  history,
-  LinkTopaginationString,
-}: any) => {
-  console.log(history, "historyhistoryhistoryhistory");
+export const OrderTable = ({ actionFunction, filter = false }: any) => {
+  const [fromDate, setFromData] = useState();
+  const [toDate, setToData] = useState();
+  const [selectedStatus, setSelectedStatus] = useState("all");
+  const [selectedCoin, setSelectedCoins] = useState("all");
+  const [processing, setProcessing] = useState<boolean>(false);
+  const [history, setHistory] = useState<any>([]);
+  const [stillHistory, setStillHistory] = useState<any>([]);
+  const [filterData, setfilterData] = useState<any>([]);
+  const LinkTopaginationString = (page: any) => {
+    const url = page.url.split("?")[1];
+    const number = url.split("=")[1];
+    actionFunction(
+      5,
+      parseInt(number),
+      setHistory,
+      setProcessing,
+      setStillHistory,
+      selectedStatus,
+      selectedCoin,
+      fromDate,
+      toDate
+    );
+  };
+  const getFilterData = async () => {
+    const response = await myP2pOrderListData();
+    console.log(response.data.coins, "RESPONSE");
+    setfilterData(response.data);
+  };
+  useEffect(() => {
+    actionFunction(
+      5,
+      1,
+      setHistory,
+      setProcessing,
+      setStillHistory,
+      selectedStatus,
+      selectedCoin,
+      fromDate,
+      toDate
+    );
+    getFilterData();
+  }, [fromDate, toDate, selectedStatus, selectedCoin]);
+  if (history?.length <= 0 || !history)
+    return (
+      <div className="container">
+        {filter && (
+          <OrderFilter
+            setSelectedStatus={setSelectedStatus}
+            filterData={filterData}
+            setSelectedCoins={setSelectedCoins}
+            setFromData={setFromData}
+            setToData={setToData}
+          />
+        )}
+        <NoItemFound />
+      </div>
+    );
   return (
     <div className="container">
+      {filter && (
+        <OrderFilter
+          setSelectedStatus={setSelectedStatus}
+          filterData={filterData}
+          setSelectedCoins={setSelectedCoins}
+          setFromData={setFromData}
+          setToData={setToData}
+        />
+      )}
       <div className="row">
         <div className="col-12">
           <div className="table-responsive">
@@ -23,7 +89,7 @@ export const OrderTable = ({
                 </tr>
               </thead>
               <tbody>
-                {history.map((item: any, index: any) => (
+                {history?.map((item: any, index: any) => (
                   <tr className="tableRow" key={index}>
                     <td>
                       <div className="tableImg d-flex align-items-center">

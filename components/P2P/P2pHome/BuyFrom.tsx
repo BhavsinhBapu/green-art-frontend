@@ -5,6 +5,7 @@ import BackButton from "pages/p2p/BackButton";
 import { useEffect, useState } from "react";
 import { TfiHandPointRight } from "react-icons/tfi";
 import { toast } from "react-toastify";
+import { getAvailableBalance } from "service/p2p";
 import { placeP2POrderAction } from "state/actions/p2p";
 
 export const BuyFrom = ({
@@ -20,6 +21,24 @@ export const BuyFrom = ({
   const router = useRouter();
   const [paymentMethods, setPaymethods] = useState([]);
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState();
+  const getAvailableBalanceAction = async () => {
+    const response = await getAvailableBalance(
+      parseInt(ads_type) === BUY ? SELL : BUY,
+      details?.ads?.coin_type,
+      details?.ads?.uid
+    );
+    if (response.success) {
+      //  setAmount({
+      //    ...Amount,
+      //    amount: response?.data?.balance,
+      //  });
+      setRate({ ...rate, amount: parseFloat(response?.data?.balance) });
+      getRate(parseFloat(response?.data?.balance), null);
+      setlastChanged(AMOUNT);
+    } else {
+      toast.error(response?.message);
+    }
+  };
   const handlePayment = (e: any) => {
     setSelectedPaymentMethod(e.value);
   };
@@ -180,6 +199,15 @@ export const BuyFrom = ({
                   <span className="ml-3 text-muted">
                     {details?.ads?.coin_type}
                   </span>
+                </button>
+              </div>
+              <div className="adFromPriceInecDecButton mt-3">
+                <button
+                  className=" py-2"
+                  type="button"
+                  onClick={getAvailableBalanceAction}
+                >
+                  Get all balance
                 </button>
               </div>
               <label className="pt-3">Select payment method</label>

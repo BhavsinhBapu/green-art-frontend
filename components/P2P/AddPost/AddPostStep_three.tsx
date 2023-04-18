@@ -32,7 +32,6 @@ export const AddPostThree = ({
       };
       country.push(obj);
     });
-    console.log(data?.data?.country, "data?.data?.country");
     setCountries(country);
   }, [data.data.payment_method, data.data.payment_time]);
   return (

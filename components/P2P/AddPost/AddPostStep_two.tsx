@@ -13,6 +13,7 @@ export const AddPostTwo = ({
   amount,
   selectedCurrency,
   setAmount,
+  getAvailableBalanceAction,
 }: any) => {
   const [PaymentOption, setPaymentOption] = useState([]);
   const [PaymentTime, setPaymentTime] = useState([]);
@@ -78,6 +79,11 @@ export const AddPostTwo = ({
               />
               <button>
                 <span className="ml-3 text-muted">{selectedAsset?.value}</span>
+              </button>
+            </div>
+            <div className="adFromPriceInecDecButton mt-3">
+              <button className=" py-2" onClick={getAvailableBalanceAction}>
+                Get all balance
               </button>
             </div>
           </div>

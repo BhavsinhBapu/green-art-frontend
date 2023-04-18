@@ -45,6 +45,7 @@ const AddPost = () => {
     setAdsType,
     createUpdateP2pAdsAction,
     uid,
+    getAvailableBalanceAction,
   } = useAddPostInitial();
   const router = useRouter();
 
@@ -124,6 +125,7 @@ const AddPost = () => {
                   setSelectedPaymentTime={setSelectedPaymentTime}
                   amount={Amount}
                   setAmount={setAmount}
+                  getAvailableBalanceAction={getAvailableBalanceAction}
                 />
               )}
               {addStep === "stepThree" && (

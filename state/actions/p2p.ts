@@ -39,6 +39,8 @@ import {
   userAdsFilterChange,
   getMyAdsDetails,
   UpdateP2pAds,
+  getAvailableBalance,
+  myP2pDisputeOrder,
 } from "service/p2p";
 import {
   setP2pDetails,
@@ -122,10 +124,18 @@ export const useAddPostInitial = () => {
     });
     setSelectedPayment(payment_method);
     setSelectedCountry(country);
-    console.log(
-      ads,
-      "responseresponseresponseresponseresponseresponseresponseresponseresponse"
-    );
+  };
+
+  const getAvailableBalanceAction = async () => {
+    const response = await getAvailableBalance(adsType, selectedAsset.value);
+    if (response.success) {
+      setAmount({
+        ...Amount,
+        amount: response?.data?.balance,
+      });
+    } else {
+      toast.error(response?.message);
+    }
   };
   const createUpdateP2pAdsAction = async () => {
     let paymentMethodsCommaSeparated = selectedPayment
@@ -133,6 +143,9 @@ export const useAddPostInitial = () => {
       .join(",");
     let selectedCountryCommaSeparated = selectedCountry
       .map((method: any) => method.value)
+      .join(",");
+    let allCountries = data?.data?.country
+      ?.map((method: any) => method.key)
       .join(",");
     const formData: any = new FormData();
     formData.append("ads_type", adsType);
@@ -146,7 +159,10 @@ export const useAddPostInitial = () => {
     formData.append("max_limit", Amount.max_limit);
     formData.append("terms", terms);
     formData.append("auto_reply", auto_reply);
-    formData.append("countrys", selectedCountryCommaSeparated);
+    formData.append(
+      "countrys",
+      selectedCountry.length > 0 ? selectedCountryCommaSeparated : allCountries
+    );
     formData.append("payment_methods", paymentMethodsCommaSeparated);
     formData.append("time_limit", selectedPaymentTime.value);
     formData.append("register_days", registerDays);
@@ -250,6 +266,7 @@ export const useAddPostInitial = () => {
     adsType,
     setAdsType,
     createUpdateP2pAdsAction,
+    getAvailableBalanceAction,
   };
 };
 
@@ -422,10 +439,37 @@ export const myP2pOrderAction = async (
   page: number,
   setReport: React.Dispatch<SetStateAction<object>>,
   setProcessing: React.Dispatch<SetStateAction<boolean>>,
+  setStillHistory: React.Dispatch<SetStateAction<boolean>>,
+  selectedStatus: any,
+  selectedCoin: any,
+  fromDate: any,
+  toDate: any
+) => {
+  setProcessing(true);
+  console.log(selectedStatus, "selectedStatus");
+  const response = await myP2pOrder(
+    per_page,
+    page,
+    selectedStatus,
+    selectedCoin.value,
+    fromDate,
+    toDate
+  );
+  setReport(response.data.data);
+  setStillHistory(response.data);
+  setProcessing(false);
+  return response;
+};
+// myP2pOrderListData;
+export const myP2pDisputeAction = async (
+  per_page: number,
+  page: number,
+  setReport: React.Dispatch<SetStateAction<object>>,
+  setProcessing: React.Dispatch<SetStateAction<boolean>>,
   setStillHistory: React.Dispatch<SetStateAction<boolean>>
 ) => {
   setProcessing(true);
-  const response = await myP2pOrder(per_page, page);
+  const response = await myP2pDisputeOrder(per_page, page);
   setReport(response.data.data);
   setStillHistory(response.data);
   setProcessing(false);

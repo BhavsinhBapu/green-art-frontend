@@ -56,11 +56,11 @@ export const P2pTopBar = () => {
                   <Link href="/p2p/add-post">
                     <a className="dropdown-item">Ad Create</a>
                   </Link>
-                  <Link href="/p2p/my-buy-order">
-                    <a className="dropdown-item">My Buy Order</a>
+                  <Link href="/p2p/my-buy-ads">
+                    <a className="dropdown-item">My Buy Ads</a>
                   </Link>
-                  <Link href="/p2p/my-sell-order">
-                    <a className="dropdown-item">My Sell Order</a>
+                  <Link href="/p2p/my-sell-ads">
+                    <a className="dropdown-item">My Sell Ads</a>
                   </Link>
                 </div>
               </li>

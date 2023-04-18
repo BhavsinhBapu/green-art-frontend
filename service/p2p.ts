@@ -197,9 +197,30 @@ export const getP2pOrderDetails = async (order_uid: string) => {
   });
   return data;
 };
-export const myP2pOrder = async (per_page: number, page: number) => {
+export const myP2pOrder = async (
+  per_page: number,
+  page: number,
+  selectedStatus: any,
+  selectedCoin: any,
+  fromDate: any,
+  toDate: any
+) => {
   const { data } = await p2pResuest.get(
-    `/my-p2p-order?per_page=${per_page}&page=${page}`
+    `/my-p2p-order?per_page=${per_page}&page=${page}&ads_status=${
+      selectedStatus ? selectedStatus : "alll"
+    }&type=all&coin=${
+      selectedCoin ? selectedCoin : "all"
+    }&fromDate=${fromDate}&toDate=${toDate}`
+  );
+  return data;
+};
+export const myP2pOrderListData = async () => {
+  const { data } = await p2pResuest.get(`/my-order-list-data`);
+  return data;
+};
+export const myP2pDisputeOrder = async (per_page: number, page: number) => {
+  const { data } = await p2pResuest.get(
+    `/my-p2p-dispute?per_page=${per_page}&page=${page}&type=all&coin=all`
   );
   return data;
 };
@@ -208,6 +229,26 @@ export const getMyAdsDetails = async (ads_type: any, uid: any) => {
     uid: uid,
     ads_type: ads_type,
   });
+  return data;
+};
+export const getAvailableBalance = async (
+  ads_type: any,
+  coin_type: any,
+  uid = null
+) => {
+  const { data } = await p2pResuest.post(
+    `/ads-available-balance`,
+    uid
+      ? {
+          coin_type: coin_type,
+          type: ads_type,
+          uid: uid,
+        }
+      : {
+          coin_type: coin_type,
+          type: ads_type,
+        }
+  );
   return data;
 };
 export const paymentP2pOrder = async (formData: any) => {
