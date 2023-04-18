@@ -9,8 +9,10 @@ export const P2pFaq = ({ data }: any) => {
           <h3 className="pb-2">FAQS</h3>
         </div>
         <div className="col-md-6">
-          {data.p2p_faq.map((faqIten: any) => (
-            <CustomAccordion faqIten={faqIten} />
+          {data.p2p_faq.map((faqIten: any, index: any) => (
+            <span key={index}>
+              <CustomAccordion faqIten={faqIten} />
+            </span>
           ))}
         </div>
       </div>
