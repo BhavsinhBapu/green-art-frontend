@@ -145,14 +145,14 @@ const Trading = () => {
             {details?.user_type === BUY && (
               <h1>
                 {"Buy"} {details?.order?.coin_type} from{" "}
-                {details?.user_seller?.nick_name}
+                {details?.user_seller?.nickname}
               </h1>
             )}
 
             {details?.user_type === SELL && (
               <h1>
                 {"Sell"} {details?.order?.coin_type} to{" "}
-                {details?.user_buyer?.nick_name}
+                {details?.user_buyer?.nickname}
               </h1>
             )}
           </div>
@@ -169,7 +169,9 @@ const Trading = () => {
             </span>
           </div>
           {/* order.status */}
-          <TradeSteps step={step} order={details?.order} />
+          {details?.order < 4 && (
+            <TradeSteps step={step} order={details?.order} />
+          )}
           <div className="p-2">
             <h4 className="mb-3">Confirm order info </h4>
             <div className="order-info ">
@@ -232,7 +234,60 @@ const Trading = () => {
                       <div className="mt-4 badge badge-warning p-2">
                         Transfer the fund to the seller account provided below
                       </div>
-                      {}
+                      <div>
+                        {details?.payment_methods?.username && (
+                          <div className="mb-3 mt-3">
+                            <span className="mr-1">Account Name</span>:{" "}
+                            <span className="badge badge-warning ">
+                              {details?.payment_methods?.username}
+                            </span>
+                          </div>
+                        )}
+                        {details?.payment_methods?.admin_pamynt_method
+                          ?.name && (
+                          <div className="mb-3 mt-3">
+                            <span className="mr-1">Payment Method Name</span>:{" "}
+                            <span className="badge badge-warning ">
+                              {
+                                details?.payment_methods?.admin_pamynt_method
+                                  ?.name
+                              }
+                            </span>
+                          </div>
+                        )}
+                        {details?.payment_methods?.bank_name && (
+                          <div className="mb-3">
+                            <span className="mr-1">Bank Name</span>:{" "}
+                            <span className="badge badge-warning ">
+                              {details?.payment_methods?.bank_name}
+                            </span>
+                          </div>
+                        )}
+                        {details?.payment_methods?.bank_account_number && (
+                          <div className="mb-3">
+                            <span className="mr-1">Bank Account Number</span>
+                            <span className="badge badge-warning ">
+                              {details?.payment_methods?.bank_account_number}
+                            </span>
+                          </div>
+                        )}
+                        {details?.payment_methods?.card_number && (
+                          <div className="mb-3">
+                            <span className="mr-1">Card Number</span>
+                            <span className="badge badge-warning ">
+                              {details?.payment_methods?.card_number}
+                            </span>
+                          </div>
+                        )}
+                        {details?.payment_methods?.mobile_account_number && (
+                          <div className="mb-3">
+                            <span className="mr-1">Mobile Number</span>
+                            <span className="badge badge-warning ">
+                              {details?.payment_methods?.mobile_account_number}
+                            </span>
+                          </div>
+                        )}
+                      </div>
                       {details?.due_minute && (
                         <Timer
                           // endTime={details?.order?.payment_expired_time}
@@ -241,8 +296,7 @@ const Trading = () => {
                           seconds={details?.due_minute}
                         />
                       )}
-
-                      <div className="swap-wrap">
+                      <div className="swap-wrap mt-5">
                         <div className="">
                           <span className="file-lable">
                             {t("Select document")}
