@@ -11,7 +11,7 @@ export default {
     const trade = localStorage.getItem("trade_coin_id");
     if (this.hitted === false) {
       this.hitted = true;
-      return getChartData(15, from, to, base, trade).then((data: any) => {
+      return getChartData(5, from, to, base, trade).then((data: any) => {
         if (data.data.data.length) {
           const myBars = data.data.data;
           let klines4800 = [...myBars, ...myBars];

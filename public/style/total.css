@@ -5368,7 +5368,14 @@ select:-webkit-autofill:focus {
 .total-blance span {
   color: var(--primary-color);
 }
-
+.total-blance {
+  display: flex;
+  flex-wrap: wrap;
+}
+.avilable-blance {
+  display: flex;
+  flex-wrap: wrap;
+}
 .trade_coin_type {
   color: var(--primary-color);
 }
@@ -13099,7 +13106,7 @@ input[type="number"] {
 }
 
 .wallet-border-history {
-  border: 1px solid var(--border-color-1);
+  border: 1px solid var(--border-color);
   border-radius: 8px !important;
   margin-bottom: 40px;
 }
@@ -14721,6 +14728,6 @@ input {
 .form-group .number_only {
   border: 0 !important;
 }
-body::-webkit-scrollbar{
-    display: none;
-  }
+body::-webkit-scrollbar {
+  display: none;
+}

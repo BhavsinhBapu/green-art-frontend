@@ -85,15 +85,8 @@ const DashboardNavbar = () => {
             <div className="col-xl-8 col-lg-8 d-none d-lg-block">
               <nav className="main-menu">
                 <ul>
-                  
                   {navbar?.trade?.status && (
-                    <li
-                      className={
-                        router.pathname == "/exchange/dashboard"
-                          ? "cp-user-active-page"
-                          : ""
-                      }
-                    >
+                    <li>
                       <Link
                         href={
                           router.locale !== "en"
@@ -121,13 +114,19 @@ const DashboardNavbar = () => {
                                 : "/exchange/dashboard"
                             }
                           >
-                            <li>
+                            <li
+                              className={
+                                router.pathname == "/exchange/dashboard"
+                                  ? "cp-user-active-page"
+                                  : ""
+                              }
+                            >
                               <a href="">{t("Spot Trading")}</a>
                             </li>
                           </Link>
                         )}
                         {parseInt(settings?.p2p_module) === 1 && (
-                          <Link href={ "/p2p" }>
+                          <Link href={isLoggedIn ? "/p2p" : "/signin"}>
                             <li
                               className={
                                 router.pathname == "/p2p"
@@ -135,9 +134,7 @@ const DashboardNavbar = () => {
                                   : ""
                               }
                             >
-                              <a href="">
-                                { t("P2P Trading")}
-                              </a>
+                              <a href="">{t("P2P Trading")}</a>
                             </li>
                           </Link>
                         )}

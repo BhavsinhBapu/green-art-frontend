@@ -78,7 +78,7 @@ export const P2pFilter = ({ filters, setFilters, settings }: any) => {
           <div className="row">
             <div className="col-md-4 mt-3">
               <div className="form-group p2pSelectFilter">
-                <label> Fiat:</label>
+                <label> Fiat</label>
                 <CUstomSelect
                   options={currency}
                   handleFunction={handleCurrency}
@@ -87,7 +87,7 @@ export const P2pFilter = ({ filters, setFilters, settings }: any) => {
             </div>
             <div className="col-md-4 mt-3">
               <div className="form-group p2pSelectFilter">
-                <label> Payment:</label>
+                <label> Payment</label>
                 <CUstomSelect
                   options={payment}
                   handleFunction={handlePayment}
@@ -96,7 +96,7 @@ export const P2pFilter = ({ filters, setFilters, settings }: any) => {
             </div>
             <div className="col-md-4 mt-3">
               <div className="form-group p2pSelectFilter">
-                <label>Available Region(s):</label>
+                <label>Available Region(s)</label>
                 <CUstomSelect
                   options={country}
                   handleFunction={handleCountry}
