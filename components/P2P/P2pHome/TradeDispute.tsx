@@ -88,7 +88,7 @@ const TradeDispute = ({ uid }: any) => {
 
                   <input
                     type="text"
-                    placeholder="Enter your account name"
+                    placeholder="Subject"
                     value={reasonSubject}
                     onChange={(e) => {
                       setReasonSubject(e.target.value);
