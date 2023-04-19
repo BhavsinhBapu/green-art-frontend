@@ -37,7 +37,7 @@ import { setP2pDetailsOrder, setTradeChat } from "state/reducer/user";
 import { RootState } from "state/store";
 import { GetServerSideProps } from "next";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
-import BackButton from "../BackButton";
+import BackButton from "../../../components/P2P/BackButton";
 import { NoItemFound } from "components/NoItemFound/NoItemFound";
 import { P2pTopBar } from "components/P2P/P2pHome/TopBar";
 
@@ -516,7 +516,7 @@ const Trading = () => {
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
-  await SSRAuthCheck(ctx, "");
+  await SSRAuthCheck(ctx, "/p2p");
   return {
     props: {},
   };

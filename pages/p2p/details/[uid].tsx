@@ -5,7 +5,7 @@ import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { getAdsDetailsAction, p2pOrderRateAction } from "state/actions/p2p";
-import BackButton from "../BackButton";
+import BackButton from "../../../components/P2P/BackButton";
 
 const Details = () => {
   const [details, setDetails] = useState();
@@ -52,7 +52,8 @@ const Details = () => {
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
-  await SSRAuthCheck(ctx, "");
+  await SSRAuthCheck(ctx, "/p2p");
+
   return {
     props: {},
   };

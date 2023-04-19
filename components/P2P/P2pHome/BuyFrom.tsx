@@ -1,7 +1,7 @@
 import { CUstomSelect } from "components/common/CUstomSelect";
 import { AMOUNT, AMOUNT_PRICE, BUY, SELL } from "helpers/core-constants";
 import { useRouter } from "next/router";
-import BackButton from "pages/p2p/BackButton";
+import BackButton from "components/P2P/BackButton";
 import { useEffect, useState } from "react";
 import { TfiHandPointRight } from "react-icons/tfi";
 import { toast } from "react-toastify";

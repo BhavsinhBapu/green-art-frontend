@@ -142,7 +142,7 @@ const P2pOrder = () => {
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
-  await SSRAuthCheck(ctx, "");
+  await SSRAuthCheck(ctx, "/p2p");
 
   return {
     props: {},
