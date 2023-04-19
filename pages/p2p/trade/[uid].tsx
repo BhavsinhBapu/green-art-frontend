@@ -179,7 +179,7 @@ const Trading = () => {
                 <p>Amount</p>
                 <h4 className="">
                   {" "}
-                  {parseFloat(details?.order?.amount)}{" "}
+                  {parseFloat(details?.order?.amount).toFixed(8)}{" "}
                   {details?.order?.coin_type}
                 </h4>
               </div>
@@ -187,7 +187,8 @@ const Trading = () => {
                 <p>Price</p>
                 <h4 className="">
                   {" "}
-                  {parseFloat(details?.order?.price)} {details?.order?.currency}
+                  {parseFloat(details?.order?.price).toFixed(8)}{" "}
+                  {details?.order?.currency}
                 </h4>
               </div>
             </div>
