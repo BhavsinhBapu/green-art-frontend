@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { OrderFilter } from "./OrderFilter";
 import { myP2pOrderListData } from "service/p2p";
+import { TRADE_STATUS_CANCELED, TRADE_STATUS_CANCELED_TIME_EXPIRED, TRADE_STATUS_ESCROW, TRADE_STATUS_PAYMENT_DONE, TRADE_STATUS_REFUNDED_BY_ADMIN } from "helpers/core-constants";
 
 export const OrderTable = ({ actionFunction, filter = false }: any) => {
   const [fromDate, setFromData] = useState();
@@ -108,10 +109,21 @@ export const OrderTable = ({ actionFunction, filter = false }: any) => {
                     <td>
                       {parseInt(item?.is_reported) !== 0
                         ? "Disputed"
-                        : parseInt(item.is_success) === 0
-                        ? "Pending"
                         : parseInt(item.is_success) === 1
                         ? "Completed"
+                        : parseInt(item.status) === TRADE_STATUS_ESCROW
+                        ? "In Escrowed"
+                        : parseInt(item.status) === TRADE_STATUS_PAYMENT_DONE
+                        ? "Payment Complete"
+                        : parseInt(item.status) ===
+                          TRADE_STATUS_CANCELED_TIME_EXPIRED
+                        ? "Time Expired"
+                        : parseInt(item.status) === TRADE_STATUS_CANCELED ||
+                          parseInt(item.status) ===
+                            TRADE_STATUS_REFUNDED_BY_ADMIN
+                        ? "Cancelled"
+                        : parseInt(item.is_success) === 0
+                        ? "Pending"
                         : ""}
                     </td>
 
