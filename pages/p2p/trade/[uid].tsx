@@ -172,7 +172,7 @@ const Trading = () => {
           {details?.order < 4 && (
             <TradeSteps step={step} order={details?.order} />
           )}
-          <div className="p-2">
+          <div className="">
             <h4 className="mb-3">Confirm order info </h4>
             <div className="order-info ">
               <div className="">
