@@ -164,7 +164,10 @@ export const useAddPostInitial = () => {
       selectedCountry.length > 0 ? selectedCountryCommaSeparated : allCountries
     );
     formData.append("payment_methods", paymentMethodsCommaSeparated);
-    formData.append("time_limit", selectedPaymentTime.value);
+    formData.append(
+      "time_limit",
+      selectedPaymentTime?.value ? selectedPaymentTime?.value : 0
+    );
     formData.append("register_days", registerDays);
     formData.append("coin_holding", coinHolding);
     const response = await createUpdateP2pAds(formData);
