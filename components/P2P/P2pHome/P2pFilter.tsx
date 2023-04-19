@@ -47,7 +47,7 @@ export const P2pFilter = ({ filters, setFilters, settings }: any) => {
     settings?.payment_method?.map((item: any) =>
       payment.push({
         value: item?.uid,
-        label: item?.admin_pamynt_method?.name,
+        label: item?.name,
       })
     );
     setCurrency(currency);

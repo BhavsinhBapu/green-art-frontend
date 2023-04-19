@@ -525,10 +525,10 @@ export const landingSettingsAction = async (
   setProcessing: any,
   setSettings: any,
   setFilters: any,
-  filters: any
+  filters: any,
+  data: any
 ) => {
   setProcessing(true);
-  const { data } = await getAdsMarketSettings();
   setSettings(data);
   if (data?.assets?.length > 0) {
     setFilters({ ...filters, coin: data?.assets[0]?.coin_type });

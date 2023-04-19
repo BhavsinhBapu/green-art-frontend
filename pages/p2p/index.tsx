@@ -52,7 +52,13 @@ const P2P = ({ data }: any) => {
     );
   };
   useEffect(() => {
-    landingSettingsAction(setProcessing, setSettings, setFilters, filters);
+    landingSettingsAction(
+      setProcessing,
+      setSettings,
+      setFilters,
+      filters,
+      data
+    );
   }, []);
   const changeBackground = () => {
     const elements = document.getElementsByClassName("p2p_bg");
