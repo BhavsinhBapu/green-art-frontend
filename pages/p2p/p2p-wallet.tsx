@@ -36,7 +36,7 @@ const MyWallet: NextPage = () => {
   const [tradeList, setTradeList]: any = useState();
 
   const getWalletLists = async () => {
-    const response: any = await getWalletsAction(5, 1);
+    const response: any = await getWalletsAction(10, 1);
     setWalletList(response?.data);
     setChangeable(response?.data?.data);
   };
@@ -44,7 +44,7 @@ const MyWallet: NextPage = () => {
   const LinkTopaginationString = async (page: any) => {
     const url = page.url.split("?")[1];
     const number = url.split("=")[1];
-    const response: any = await getWalletsAction(5, number);
+    const response: any = await getWalletsAction(10, number);
     setWalletList(response?.data);
     setChangeable(response?.data?.data);
   };
