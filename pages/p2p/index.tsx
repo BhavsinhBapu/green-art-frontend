@@ -30,7 +30,7 @@ const P2P = ({ data }: any) => {
     currency: "all",
     payment_method: "all",
     country: "all",
-    per_page: 5,
+    per_page: 10,
     page: 1,
   });
   const LinkTopaginationString = (page: any) => {
