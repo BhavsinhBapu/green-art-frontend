@@ -37,7 +37,8 @@ export const SingleLaunchPad = ({ data }: any) => {
                     <a
                       href={data?.website_link}
                       target="_blank"
-                      rel="noreferrer">
+                      rel="noreferrer"
+                    >
                       <div>
                         <i className="fa-sharp fa-solid fa-link"></i>
                         <p>{t("Website")}</p>
@@ -73,17 +74,23 @@ export const SingleLaunchPad = ({ data }: any) => {
           </div>
           <div>
             <p>{t("Tokens Offered")}</p>
-            <span>{`${parseFloat(data?.total_token_supply)} `}</span>
+            <span>{`${parseFloat(data?.total_token_supply)} `}{" "}
+              {data?.coin_type}</span>
           </div>
 
           <div>
             <p>{t("Token Sold")}</p>
-            <span>{data?.sold ? data?.sold : "0"}</span>
+            <span>
+              {data?.sold_phase_tokens ? data?.sold_phase_tokens : "0"}{" "}
+              {data?.coin_type}
+            </span>
           </div>
           <div>
             <p>{t("Token Available")}</p>
             <span>
-              {parseFloat(data?.available_token_supply)} {data?.coin_type}
+              {parseFloat(data?.total_token_supply) -
+                parseFloat(data?.sold_phase_tokens)}{" "}
+              {data?.coin_type}
             </span>
           </div>
           <div>
@@ -208,7 +215,8 @@ export const SingleLaunchPad = ({ data }: any) => {
                     <a
                       href={socialLink?.Facebook}
                       target="_blank"
-                      rel="noopener noreferrer">
+                      rel="noopener noreferrer"
+                    >
                       {"Facebook"}
                     </a>
                   </div>
@@ -219,7 +227,8 @@ export const SingleLaunchPad = ({ data }: any) => {
                     <a
                       href={socialLink?.Twitter}
                       target="_blank"
-                      rel="noopener noreferrer">
+                      rel="noopener noreferrer"
+                    >
                       {"Twitter"}
                     </a>
                   </div>
@@ -230,7 +239,8 @@ export const SingleLaunchPad = ({ data }: any) => {
                     <a
                       href={socialLink?.Linkedin}
                       target="_blank"
-                      rel="noopener noreferrer">
+                      rel="noopener noreferrer"
+                    >
                       {"Linkedin"}
                     </a>
                   </div>

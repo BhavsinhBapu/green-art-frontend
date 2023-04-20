@@ -57,8 +57,16 @@ const LaunchPad = ({ viewMore, data, core, image, link }: any) => {
                 <div className="col-lg-6 col-md-12 pool-row">
                   <p className="pool-title">{t("Total Sell:")}</p>
                   <p className="pool-value">
+                    { parseFloat(data?.sold_phase_tokens)}{" "}
+                    {data?.coin_type}
+                  </p>
+                </div>
+                <div className="col-lg-6 col-md-12 pool-row">
+                  <p className="pool-title">{t("Available:")}</p>
+                  <p className="pool-value">
+                    
                     {parseFloat(data?.total_token_supply) -
-                      parseFloat(data?.available_token_supply)}{" "}
+                      parseFloat(data?.sold_phase_tokens)}{" "}
                     {data?.coin_type}
                   </p>
                 </div>
