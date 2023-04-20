@@ -47,13 +47,13 @@ const StripePayment = ({ initialData, pageInfo, phaseData }: any) => {
         >
           <div className="col-md-6 form-input-div">
             <label className="ico-label-box" htmlFor="">
-              {t("Amount")}
+              {t("Quantity of token")}
             </label>
             <input
               type="number"
               name="amount"
               value={credential.amount}
-              placeholder="amount"
+              placeholder="Quantity of token"
               required
               className={`ico-input-box`}
               onChange={(e: any) => {

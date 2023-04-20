@@ -21,13 +21,13 @@ const PaypalPayment = ({ initialData, pageInfo, phaseData }: any) => {
       <form className="w-100 row mt-3 p-3 boxShadow m-1">
         <div className="col-md-6 form-input-div  pr-0 ">
           <label className="ico-label-box" htmlFor="">
-            {t("Amount")}
+            {t("Quantity of token")}
           </label>
           <input
             type="number"
             name="amount"
             value={credential.amount}
-            placeholder="amount"
+            placeholder="Quantity of token"
             required
             className={`ico-input-box`}
             onChange={(e: any) => {
