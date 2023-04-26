@@ -9,9 +9,10 @@ const PaymentDetails = ({
   payer_wallet,
   token_id,
   payment_method,
+  data,
+  setData
 }: any) => {
   const { t } = useTranslation("common");
-  const [data, setData] = useState<any>(null);
   const getTokenInfo = async () => {
     const response = await TokenPriceInfo(
       amount,

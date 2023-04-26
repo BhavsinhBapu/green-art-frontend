@@ -10,6 +10,7 @@ const CryptoPayment = ({ walletlist, initialData, phaseData }: any) => {
     amount: null,
     payer_wallet: null,
   });
+  const [paymentData, setPaymentData] = useState(null);
   const [loading, setLoading] = useState(false);
   const { t } = useTranslation("common");
   return (
@@ -76,6 +77,8 @@ const CryptoPayment = ({ walletlist, initialData, phaseData }: any) => {
             token_id={initialData.token_id}
             payment_method={CRYPTO_DEPOSIT}
             payer_wallet={data.payer_wallet}
+            data={paymentData}
+            setData={setPaymentData}
           />
         ) : (
           ""

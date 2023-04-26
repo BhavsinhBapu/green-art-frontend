@@ -7,6 +7,7 @@ import AmountCheck from "./AmountCheck";
 
 const PaypalPayment = ({ initialData, pageInfo, phaseData }: any) => {
   const { t } = useTranslation("common");
+  const [paymentData, setPaymentData] = useState(null);
   const [credential, setCredential] = useState<any>({
     payment_method_id: PAYPAL,
     amount: null,
@@ -14,12 +15,12 @@ const PaypalPayment = ({ initialData, pageInfo, phaseData }: any) => {
     paypal_token: null,
     phase_id: initialData.phase_id,
     token_id: initialData.token_id,
-    pay_currency: null,
+    pay_currency: "USD",
   });
   return (
     <div className=" text-center">
       <form className="w-100 row mt-3 p-3 boxShadow m-1">
-        <div className="col-md-6 form-input-div  pr-0 ">
+        <div className="col-md-12 form-input-div  pr-0 ">
           <label className="ico-label-box" htmlFor="">
             {t("Quantity of token")}
           </label>
@@ -39,7 +40,7 @@ const PaypalPayment = ({ initialData, pageInfo, phaseData }: any) => {
           />
           <AmountCheck phaseData={phaseData} data={credential} />
         </div>
-        <div className="col-md-6 form-input-div pr-0 pr-sm-3">
+        {/* <div className="col-md-6 form-input-div pr-0 pr-sm-3">
           <label className="ico-label-box" htmlFor="">
             {t("Select Currency")}
           </label>
@@ -63,16 +64,18 @@ const PaypalPayment = ({ initialData, pageInfo, phaseData }: any) => {
               ))}
             </select>
           </div>
-        </div>
+        </div> */}
         {credential.pay_currency &&
         credential.amount &&
-        initialData.phase_id ? (
+        initialData?.phase_id ? (
           <PaymentDetails
             currency={credential.pay_currency}
             amount={credential.amount}
             phase_id={initialData.phase_id}
             token_id={initialData.token_id}
             payment_method={PAYPAL}
+            data={paymentData}
+            setData={setPaymentData}
           />
         ) : (
           ""
@@ -82,6 +85,7 @@ const PaypalPayment = ({ initialData, pageInfo, phaseData }: any) => {
             <PaypalButtons
               credential={credential}
               setCredential={setCredential}
+              paymentData={paymentData}
             />
           </div>
         )}

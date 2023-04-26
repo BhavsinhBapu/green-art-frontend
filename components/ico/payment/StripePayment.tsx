@@ -9,6 +9,7 @@ import PaymentDetails from "./paymentDetails";
 import AmountCheck from "./AmountCheck";
 const StripePayment = ({ initialData, pageInfo, phaseData }: any) => {
   const [loading, setLoading] = useState(false);
+  const [paymentData, setPaymentData] = useState(null);
   const [credential, setCredential] = useState<any>({
     amount: null,
     stripe_token: null,
@@ -97,6 +98,8 @@ const StripePayment = ({ initialData, pageInfo, phaseData }: any) => {
               phase_id={initialData.phase_id}
               token_id={initialData.token_id}
               payment_method={STRIPE}
+              data={paymentData}
+              setData={setPaymentData}
             />
           ) : (
             ""

@@ -8,6 +8,7 @@ import AmountCheck from "./AmountCheck";
 const Paystack = ({ pageInfo, initialData, phaseData }: any) => {
   const { t } = useTranslation("common");
   const [loading, setLoading] = useState(false);
+  const [paymentData, setPaymentData] = useState(null);
   const [data, setData] = useState<any>({
     email: null,
     amount: null,
@@ -73,6 +74,8 @@ const Paystack = ({ pageInfo, initialData, phaseData }: any) => {
             phase_id={initialData.phase_id}
             token_id={initialData.token_id}
             payment_method={PAYSTACK}
+            data={paymentData}
+            setData={setPaymentData}
           />
         ) : (
           ""

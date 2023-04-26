@@ -14,7 +14,7 @@ const paypalScriptOptions: PayPalScriptOptions = {
   "client-id": process.env.NEXT_PUBLIC_PAYPAL_CLIENT_KEY,
   currency: "USD",
 };
-function Button({ credential, setCredential }: any) {
+function Button({ credential, paymentData }: any) {
   const router = useRouter();
   const [{ isPending }] = usePayPalScriptReducer();
   const paypalbuttonTransactionProps: PayPalButtonsComponentProps = {
@@ -24,7 +24,7 @@ function Button({ credential, setCredential }: any) {
         purchase_units: [
           {
             amount: {
-              value: credential.amount,
+              value: parseInt(paymentData.token_total_price),
             },
           },
         ],
@@ -53,12 +53,17 @@ function Button({ credential, setCredential }: any) {
     </>
   );
 }
-export default function PaypalButtons({ credential, setCredential }: any) {
+export default function PaypalButtons({ credential, setCredential,paymentData }: any) {
   return (
     <div className="paypal-container">
       <PayPalScriptProvider options={paypalScriptOptions}>
-        <Button credential={credential} setCredential={setCredential} />
+        <Button
+          credential={credential}
+          setCredential={setCredential}
+          paymentData={paymentData}
+        />
       </PayPalScriptProvider>
     </div>
   );
 }
+// data.token_total_price;

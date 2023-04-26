@@ -12,6 +12,8 @@ const BankPayment = ({ pageInfo, initialData, phaseData }: any) => {
   const [loading, setLoading] = useState(false);
   const [selectedBank, setSelectedBank] = useState(null);
   const [doc, setDoc] = useState(null);
+  const [paymentData, setPaymentData] = useState(null);
+
   const [data, setData] = useState<any>({
     amount: null,
     bank_id: null,
@@ -169,6 +171,8 @@ const BankPayment = ({ pageInfo, initialData, phaseData }: any) => {
             phase_id={initialData.phase_id}
             token_id={initialData.token_id}
             payment_method={BANK_DEPOSIT}
+            data={paymentData}
+            setData={setPaymentData}
           />
         ) : (
           ""
