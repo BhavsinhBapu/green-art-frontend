@@ -7,6 +7,7 @@ import {
   customPage,
   landingPage,
 } from "service/landing-page";
+import ReactGA from "react-ga";
 import { useEffect, useState } from "react";
 import { GetUserInfoByTokenAction } from "state/actions/user";
 import { useDispatch, useSelector } from "react-redux";
@@ -85,6 +86,10 @@ const Index = ({ children }: any) => {
       dispatch(setSocialData(CommonLanding.landing_settings.media_list));
       setMetaData(CommonLanding?.common_settings);
       checkDarkMode(CommonLanding?.common_settings);
+      ReactGA.initialize(
+        CommonLanding?.common_settings?.google_analytics_tracking_id
+      );
+      ReactGA.pageview(window.location.pathname + window.location.search);
       dispatch(setLoading(false));
     } catch (error) {
       dispatch(setLoading(false));
