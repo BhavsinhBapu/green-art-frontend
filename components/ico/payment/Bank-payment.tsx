@@ -5,10 +5,12 @@ import { toast } from "react-toastify";
 import { TokenBuyIcoBankAction } from "state/actions/launchpad";
 import PaymentDetails from "./paymentDetails";
 import AmountCheck from "./AmountCheck";
+import BankDetails from "components/deposit/bankDetails";
 
 const BankPayment = ({ pageInfo, initialData, phaseData }: any) => {
   const { t } = useTranslation("common");
   const [loading, setLoading] = useState(false);
+  const [selectedBank, setSelectedBank] = useState(null);
   const [doc, setDoc] = useState(null);
   const [data, setData] = useState<any>({
     amount: null,
@@ -30,6 +32,7 @@ const BankPayment = ({ pageInfo, initialData, phaseData }: any) => {
     //@ts-ignore
     inputRef.current.click();
   };
+  console.log(pageInfo, "pageInfopageInfopageInfo");
   return (
     <div className="boxShadow mt-3">
       <form
@@ -81,11 +84,16 @@ const BankPayment = ({ pageInfo, initialData, phaseData }: any) => {
                 ...data,
                 bank_id: e.target.value,
               });
+              const findBank = pageInfo.bank.find(
+                (bank: any) => parseInt(bank.id) === parseInt(e.target.value)
+              );
+              setSelectedBank(findBank);
+              console.log(findBank, "findBank");
             }}
           >
             <option value="">{t("Select Bank")}</option>
             {pageInfo?.bank?.map((item: any, index: any) => (
-              <option value={item.id} key={index}>
+              <option value={item.id} key={index} onClick={() => {}}>
                 {item?.bank_name}
               </option>
             ))}
@@ -147,6 +155,13 @@ const BankPayment = ({ pageInfo, initialData, phaseData }: any) => {
             />
           </div>
         </div>
+        {selectedBank && (
+          <div className="col-md-12 form-input-div">
+            <h1 className="mb-3">Bank information</h1>
+            <BankDetails bankInfo={selectedBank} />
+          </div>
+        )}
+
         {data.pay_currency && data.amount && initialData.phase_id ? (
           <PaymentDetails
             currency={data.pay_currency}
