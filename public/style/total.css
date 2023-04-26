@@ -12697,9 +12697,9 @@ input[type="number"] {
 }
 
 .wallet-bar-code svg {
-  background: #fff;
+  /* background: #fff;
   padding: 20px;
-  border-radius: 4px;
+  border-radius: 4px; */
 }
 
 .input-copy {
