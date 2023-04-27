@@ -9,7 +9,7 @@ const PaypalPayment = ({ initialData, pageInfo, phaseData }: any) => {
   const { t } = useTranslation("common");
   const [paymentData, setPaymentData] = useState(null);
   const [credential, setCredential] = useState<any>({
-    payment_method_id: PAYPAL,
+  payment_method_id: PAYPAL,
     amount: null,
     currency: "USD",
     paypal_token: null,
