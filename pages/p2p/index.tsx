@@ -90,7 +90,6 @@ const P2P = ({ data }: any) => {
         setSettings
       );
   }, [filters]);
-  console.log(data, "data");
   return (
     <>
       <div className="mb-5">
