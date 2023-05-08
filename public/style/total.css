@@ -14746,3 +14746,8 @@ body::-webkit-scrollbar {
   border: 2px solid var(--primary-color);
   border-radius: 10px;
 }
+.est-price{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
