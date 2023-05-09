@@ -360,6 +360,7 @@ async function checkEstimateGasFees(req, res)
                     const dataGas = await calculateEstimateGasFees(req,1);
                     let usedGasLimit = dataGas.gasLimit;
                     console.log("used gaslimit", usedGasLimit);
+                    
                     try {
                         const tx = {
                           from: fromAddress,
@@ -787,14 +788,14 @@ async function getLatestEvents(req, res)
             const web3 = new Web3(new Web3.providers.HttpProvider(network));
             const contract = new web3.eth.Contract(contractJsons, contractAddress);
             decimalValue = await getContractDecimal(contract);
-
+            
             const latestBlockNumber = await web3.eth.getBlockNumber();
             if (numberOfBlock) {
                 prevBlock = numberOfBlock;
             }
             const fromBlockNumber = latestBlockNumber - prevBlock;
             const result = await getBlockDetails(contract,fromBlockNumber,latestBlockNumber);
-
+            
           if (result.status === true) {
               let resultData = [];
               result.data.forEach(function (res) {
@@ -810,7 +811,7 @@ async function getLatestEvents(req, res)
                   };
                   resultData.push(innerData)
               });
-            //   console.log(resultData)
+              
               res.json({
                   status: true,
                   message: result.message,
@@ -834,6 +835,7 @@ async function getLatestEvents(req, res)
           });
       }
   } catch (e) {
+      console.log("getLatestEvents ex");
       console.log(e);
       res.json({
           status: false,

@@ -42,7 +42,12 @@ function customFromWei(amount,decimal)
 }
 function customToWei(amount,decimal)
 {
-    return (amount*powerOfTen(decimal)).toString()
+    // return (amount*powerOfTen(decimal)).toString()
+    const amountData = Web3.utils
+      .toBN(amount)
+      .mul(Web3.utils.toBN(10).pow(Web3.utils.toBN(decimal)));
+    
+    return amountData.toString();
 }
 function powerOfTen(x) {
   return Math.pow(10, x);
