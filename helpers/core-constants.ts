@@ -120,3 +120,14 @@ export const SEND = 1;
 export const RECEIVE = 2;
 export const POSITIVE = 1;
 export const NEGATIVE = 0;
+
+//staking terms type
+export const STAKING_TERMS_TYPE_STRICT = 1;
+export const STAKING_TERMS_TYPE_FLEXIBLE = 2;
+
+//staking investment status
+export const STAKING_INVESTMENT_STATUS_RUNNING = 1;
+export const STAKING_INVESTMENT_STATUS_CANCELED = 2;
+export const STAKING_INVESTMENT_STATUS_UNPAID = 3;
+export const STAKING_INVESTMENT_STATUS_PAID = 4;
+export const STAKING_INVESTMENT_STATUS_SUCCESS = 5;

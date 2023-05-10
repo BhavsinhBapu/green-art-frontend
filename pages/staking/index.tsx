@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { StakingTopBar } from "components/Staking/common/TopBar";
 import { StakingFilter } from "components/Staking/common/StakingFilter";
 import OfferTable from "components/Staking/Home/OfferTable";
 import FaqStaking from "components/Staking/Home/FaqStaking";
 import Footer from "components/common/footer";
+import { getOfferListAction } from "state/actions/staking";
 
 const index = () => {
   return (

@@ -52,7 +52,6 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
       });
     }
   };
-  console.log(settings.two_factor_withdraw, "settings.two_factor_withdraw");
   React.useEffect(() => {
     if (responseData?.data && responseData?.data[0]) {
       setSelectedNetwork(responseData?.data[0]);
