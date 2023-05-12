@@ -69,7 +69,6 @@ const P2P = ({ data }: any) => {
       elements[i].style.backgroundImage = `url('${data?.p2p_banner_img}')`;
     }
   };
-  console.log(data, "datadatadata");
   useEffect(() => {
     changeBackground();
   }, []);
@@ -90,7 +89,6 @@ const P2P = ({ data }: any) => {
         setSettings
       );
   }, [filters]);
-  console.log(data, "data");
   return (
     <>
       <div className="mb-5">

@@ -50,7 +50,7 @@ export async function listenMessages(dispatch: any, user: any) {
     wsHost: process.env.NEXT_PUBLIC_HOST_SOCKET,
     wsPort: process.env.NEXT_PUBLIC_WSS_PORT
       ? process.env.NEXT_PUBLIC_WSS_PORT
-      : 6006,
+      : 6010,
     wssPort: 443,
     forceTLS: false,
     cluster: "mt1",

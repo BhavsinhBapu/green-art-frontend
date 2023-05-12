@@ -36,7 +36,9 @@ async function listenMessages(dispatch: any) {
     broadcaster: "pusher",
     key: "test",
     wsHost: process.env.NEXT_PUBLIC_HOST_SOCKET,
-    wsPort: 6006,
+    wsPort: process.env.NEXT_PUBLIC_WSS_PORT
+      ? process.env.NEXT_PUBLIC_WSS_PORT
+      : 6006,
     wssPort: 443,
     forceTLS: false,
     cluster: "mt1",
