@@ -55,3 +55,11 @@ export const investmentCanceled = async (uid: string) => {
   });
   return data;
 };
+// staking/get-total-investment-bonus
+export const TotalInvestmentBonus = async (uid: any, amount: any) => {
+  const { data } = await request.post("/staking/get-total-investment-bonus", {
+    uid: uid,
+    amount: amount,
+  });
+  return data;
+};
