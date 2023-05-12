@@ -19,7 +19,7 @@ const LockedStaking = () => {
   const [isChecked, setisChecked] = useState(false);
 
   const [amount, setAmount] = useState(0);
-  const [autoRenew, setAutoRenew] = useState(0);
+  const [autoRenew, setAutoRenew] = useState(2);
   const [details, setDetails] = useState<any>();
   const router = useRouter();
   const { uid } = router.query;
@@ -30,7 +30,7 @@ const LockedStaking = () => {
     if (event.target.checked) {
       setAutoRenew(1);
     } else {
-      setAutoRenew(0);
+      setAutoRenew(2);
     }
   };
   useEffect(() => {
@@ -93,7 +93,7 @@ const LockedStaking = () => {
                         <label className="switch">
                           <input
                             type="checkbox"
-                            checked={autoRenew === 0 ? false : true}
+                            checked={autoRenew === 2 ? false : true}
                             name="auto_renew_status"
                             onChange={handleAutoRenewChange}
                           />

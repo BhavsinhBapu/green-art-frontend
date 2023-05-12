@@ -9,9 +9,11 @@ import {
   investmentCanceled,
 } from "service/staking";
 
-export const getOfferListAction = async (setOffers: any) => {
+export const getOfferListAction = async (setOffers: any, setLoading: any) => {
+  setLoading(true);
   const response = await GetOfferlist();
   setOffers(response.data);
+  setLoading(false);
 };
 export const myOrderAction = async (
   per_page: number,
