@@ -138,6 +138,10 @@ export const useAddPostInitial = () => {
     }
   };
   const createUpdateP2pAdsAction = async () => {
+    console.log(
+      selectedPaymentTime,
+      "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCc"
+    );
     let paymentMethodsCommaSeparated = selectedPayment
       .map((method: any) => method.value)
       .join(",");
@@ -200,7 +204,13 @@ export const useAddPostInitial = () => {
     formData.append("auto_reply", auto_reply);
     formData.append("countrys", selectedCountryCommaSeparated);
     formData.append("payment_methods", paymentMethodsCommaSeparated);
-    formData.append("time_limit", selectedPaymentTime.value);
+    {
+      selectedPaymentTime?.value &&
+        formData.append(
+          "time_limit",
+          selectedPaymentTime?.value ? selectedPaymentTime?.value : 0
+        );
+    }
     formData.append("register_days", registerDays);
     formData.append("coin_holding", coinHolding);
     const response = await UpdateP2pAds(formData);
