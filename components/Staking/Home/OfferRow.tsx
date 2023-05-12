@@ -7,7 +7,6 @@ const OfferRow = ({ offers, item, isLoggedIn }: any) => {
   useEffect(() => {
     setSelectedData(offers?.offer_list[item][0]);
   }, []);
-  console.log(offers, "offers");
   return (
     <tr className="tableRow">
       <td>
@@ -27,7 +26,7 @@ const OfferRow = ({ offers, item, isLoggedIn }: any) => {
       </td>
       <td>
         <div className="d-flex align-items-center">
-          {offers?.offer_list[item].map((offer: any, index: any) => (
+          {offers?.offer_list[item]?.map((offer: any, index: any) => (
             <div
               className={
                 selectedDays === index ? "StakingDaysActive" : "StakingDays"
