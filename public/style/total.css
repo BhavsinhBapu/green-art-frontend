@@ -14751,3 +14751,7 @@ body::-webkit-scrollbar {
   align-items: center;
   justify-content: space-between;
 }
+.primary-text{
+  color: var(--primary-color) !important;
+  cursor:pointer
+}

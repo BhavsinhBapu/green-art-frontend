@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
-const OfferRow = ({ offers, item }: any) => {
+const OfferRow = ({ offers, item, isLoggedIn }: any) => {
   const [selectedDays, setSelectedDays] = useState(0);
   const [selectedData, setSelectedData] = useState<any>();
   useEffect(() => {
@@ -44,9 +44,11 @@ const OfferRow = ({ offers, item }: any) => {
       </td>
 
       <td>
-        <Link href={`/staking/locked-staking/${item}/${selectedData?.uid}`}>
-          <button className="tableButton">Stake now</button>
-        </Link>
+        {isLoggedIn && (
+          <Link href={`/staking/locked-staking/${item}/${selectedData?.uid}`}>
+            <button className="tableButton">Stake now</button>
+          </Link>
+        )}
       </td>
     </tr>
   );

@@ -1,6 +1,8 @@
 import { InvesmentOrderTable } from "components/Staking/MyOrders";
 import { StakingTopBar } from "components/Staking/common/TopBar";
 import Footer from "components/common/footer";
+import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
+import { GetServerSideProps } from "next";
 import React from "react";
 import { myOrderAction } from "state/actions/staking";
 
@@ -22,5 +24,11 @@ const myOrder = () => {
     </>
   );
 };
+export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
+  await SSRAuthCheck(ctx, "/staking");
 
+  return {
+    props: {},
+  };
+};
 export default myOrder;

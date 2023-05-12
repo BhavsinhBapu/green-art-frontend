@@ -2,6 +2,7 @@ import BackButton from "components/P2P/BackButton";
 import SectionLoading from "components/common/SectionLoading";
 import Footer from "components/common/footer";
 import { STAKING_TERMS_TYPE_STRICT } from "helpers/core-constants";
+import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
@@ -190,9 +191,11 @@ const lockedStaking = () => {
     </div>
   );
 };
-export const getServerSideProps: GetServerSideProps = async ({
-  params,
-}: any) => {
-  return { props: {} };
+export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
+  await SSRAuthCheck(ctx, "/staking");
+
+  return {
+    props: {},
+  };
 };
 export default lockedStaking;

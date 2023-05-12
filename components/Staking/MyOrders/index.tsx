@@ -1,5 +1,7 @@
 import SectionLoading from "components/common/SectionLoading";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import { investmentCanceled } from "service/staking";
 
 export const InvesmentOrderTable = ({
   actionFunction,
@@ -35,6 +37,23 @@ export const InvesmentOrderTable = ({
       selectedCoin
     );
   }, [selectedStatus, selectedCoin]);
+  const investmentCanceledAction = async (uid: string) => {
+    const response = await investmentCanceled(uid);
+    if (response.success) {
+      actionFunction(
+        5,
+        1,
+        setHistory,
+        setProcessing,
+        setStillHistory,
+        selectedStatus,
+        selectedCoin
+      );
+      toast.success(response.message);
+    } else {
+      toast.error(response.message);
+    }
+  };
 
   return (
     <div className="container">
@@ -85,6 +104,18 @@ export const InvesmentOrderTable = ({
                         {item.total_bonus} {item?.coin_type}
                       </td>
                       <td>{item.period} Days</td>
+                      {parseInt(item?.status) === 1 ? (
+                        <td
+                          onClick={() => {
+                            investmentCanceledAction(item?.uid);
+                          }}
+                          className="primary-text"
+                        >
+                          Cancel
+                        </td>
+                      ) : (
+                        <td className="text-danger">Cancelled</td>
+                      )}
                     </tr>
                   ))}
                 </tbody>

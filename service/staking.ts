@@ -44,3 +44,14 @@ export const InvesmentStatistics = async () => {
   const { data } = await request.get("/staking/investment-statistics");
   return data;
 };
+// staking/landing-details
+export const LandingDetailsStaking = async () => {
+  const { data } = await request.get("/staking/landing-details");
+  return data;
+};
+export const investmentCanceled = async (uid: string) => {
+  const { data } = await request.post("/staking/investment-canceled", {
+    uid: uid,
+  });
+  return data;
+};

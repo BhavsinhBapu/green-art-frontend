@@ -6,6 +6,7 @@ import {
   InvesmentList,
   InvesmentStatistics,
   InvesmentSubmit,
+  investmentCanceled,
 } from "service/staking";
 
 export const getOfferListAction = async (setOffers: any) => {
@@ -70,5 +71,5 @@ export const InvesmentSubmitAction = async (
 export const earningsAction = async (setStatsDetails: any) => {
   const { data } = await InvesmentStatistics();
   setStatsDetails(data);
-  console.log(data, "This is dataaaaaaaaaaaa");
 };
+// investmentCanceled();

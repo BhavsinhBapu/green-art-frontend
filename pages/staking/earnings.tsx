@@ -1,4 +1,7 @@
 import { NoItemFound } from "components/NoItemFound/NoItemFound";
+import { StakingTopBar } from "components/Staking/common/TopBar";
+import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
+import { GetServerSideProps } from "next";
 import React, { useEffect, useState } from "react";
 import { InvesmentStatistics } from "service/staking";
 import { earningsAction } from "state/actions/staking";
@@ -19,12 +22,15 @@ const Earnings = () => {
           </div>
         </div>
       </div>
+      <StakingTopBar />
       <div className="container">
         <div className=" row">
           <div className="col-6 mt-3">
             <h5>Total Investment Cancelled</h5>
             {statsDetails?.total_cancel_investment.length === 0 ? (
-              <p className="p-5 boxShadow text-center mt-3">No data available</p>
+              <p className="p-5 boxShadow text-center mt-3">
+                No data available
+              </p>
             ) : (
               <table className="table mt-4">
                 <thead>
@@ -57,7 +63,9 @@ const Earnings = () => {
           <div className="col-6 mt-3">
             <h5>Total Investment</h5>
             {statsDetails?.total_investment.length === 0 ? (
-              <p className="p-5 boxShadow text-center mt-3">No data available</p>
+              <p className="p-5 boxShadow text-center mt-3">
+                No data available
+              </p>
             ) : (
               <table className="table mt-4">
                 <thead>
@@ -90,7 +98,9 @@ const Earnings = () => {
           <div className="col-6 mt-3">
             <h5>Total Paid Investment</h5>
             {statsDetails?.total_paid_investment.length === 0 ? (
-              <p className="p-5 boxShadow text-center mt-3">No data available</p>
+              <p className="p-5 boxShadow text-center mt-3">
+                No data available
+              </p>
             ) : (
               <table className="table mt-4">
                 <thead>
@@ -123,7 +133,9 @@ const Earnings = () => {
           <div className="col-6 mt-3">
             <h5>Total Running Investment</h5>
             {statsDetails?.total_running_investment.length === 0 ? (
-              <p className="p-5 boxShadow text-center mt-3">No data available</p>
+              <p className="p-5 boxShadow text-center mt-3">
+                No data available
+              </p>
             ) : (
               <table className="table mt-4">
                 <thead>
@@ -156,7 +168,9 @@ const Earnings = () => {
           <div className="col-6 mt-3">
             <h5>Total Unpaid Investment</h5>
             {statsDetails?.total_unpaid_investment.length === 0 ? (
-              <p className="p-5 boxShadow text-center mt-3">No data available</p>
+              <p className="p-5 boxShadow text-center mt-3">
+                No data available
+              </p>
             ) : (
               <table className="table mt-4">
                 <thead>
@@ -191,5 +205,11 @@ const Earnings = () => {
     </div>
   );
 };
+export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
+  await SSRAuthCheck(ctx, "/staking");
 
+  return {
+    props: {},
+  };
+};
 export default Earnings;

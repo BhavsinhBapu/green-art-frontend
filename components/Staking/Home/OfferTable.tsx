@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getOfferListAction } from "state/actions/staking";
 import OfferRow from "./OfferRow";
 
-const OfferTable = () => {
+const OfferTable = ({ isLoggedIn }: any) => {
   const [offers, setOffers] = useState<any>([]);
   useEffect(() => {
     getOfferListAction(setOffers);
@@ -24,7 +24,11 @@ const OfferTable = () => {
               </thead>
               <tbody>
                 {offers?.coin_type?.map((item: any) => (
-                  <OfferRow offers={offers} item={item} />
+                  <OfferRow
+                    offers={offers}
+                    item={item}
+                    isLoggedIn={isLoggedIn}
+                  />
                 ))}
               </tbody>
             </table>
