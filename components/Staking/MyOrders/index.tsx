@@ -1,4 +1,11 @@
 import SectionLoading from "components/common/SectionLoading";
+import {
+  STAKING_INVESTMENT_STATUS_CANCELED,
+  STAKING_INVESTMENT_STATUS_PAID,
+  STAKING_INVESTMENT_STATUS_RUNNING,
+  STAKING_INVESTMENT_STATUS_SUCCESS,
+  STAKING_INVESTMENT_STATUS_UNPAID,
+} from "helpers/core-constants";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { investmentCanceled } from "service/staking";
@@ -73,6 +80,7 @@ export const InvesmentOrderTable = ({
                     <th scope="col">Status</th>
                     <th scope="col">Total Bonus</th>
                     <th scope="col">Time Period</th>
+                    <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -97,14 +105,30 @@ export const InvesmentOrderTable = ({
                           : ""}
                       </td>
                       <td>
-                        {parseInt(item?.status) === 1 ? "Active" : "In Active"}
+                        {parseInt(item?.status) ===
+                        STAKING_INVESTMENT_STATUS_SUCCESS
+                          ? "Success"
+                          : parseInt(item?.status) ===
+                            STAKING_INVESTMENT_STATUS_PAID
+                          ? "Paid"
+                          : parseInt(item?.status) ===
+                            STAKING_INVESTMENT_STATUS_UNPAID
+                          ? "Un Paid"
+                          : parseInt(item?.status) ===
+                            STAKING_INVESTMENT_STATUS_CANCELED
+                          ? "Canceled"
+                          : parseInt(item?.status) ===
+                            STAKING_INVESTMENT_STATUS_RUNNING
+                          ? "Running"
+                          : ""}
                       </td>
 
                       <td>
                         {item.total_bonus} {item?.coin_type}
                       </td>
                       <td>{item.period} Days</td>
-                      {parseInt(item?.status) === 1 ? (
+                      {parseInt(item?.status) ===
+                      STAKING_INVESTMENT_STATUS_RUNNING ? (
                         <td
                           onClick={() => {
                             investmentCanceledAction(item?.uid);

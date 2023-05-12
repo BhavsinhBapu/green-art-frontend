@@ -19,9 +19,7 @@ const Index = ({ data }: any) => {
     // Loop through the elements and add the background image
     for (let i = 0; i < elements.length; i++) {
       //@ts-ignore
-      elements[
-        i
-      ].style.backgroundImage = `url('${data?.staking_landing_cover_image}')`;
+      elements[i].style.backgroundImage = `url('${data?.staking_landing_cover_image}')`;
     }
   };
   useEffect(() => {
