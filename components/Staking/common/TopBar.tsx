@@ -32,6 +32,14 @@ export const StakingTopBar = () => {
                   </a>
                 </Link>
               </li>
+              <li>
+                <Link href="/staking/payment-list">
+                  <a>
+                    <HiUsers />
+                    My Payments
+                  </a>
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

@@ -63,3 +63,10 @@ export const TotalInvestmentBonus = async (uid: any, amount: any) => {
   });
   return data;
 };
+// /staking/investment-get-payment-list
+export const GetPaymentList = async (per_page: number, page: number) => {
+  const { data } = await request.get(
+    `/staking/investment-get-payment-list??per_page=${per_page}&page=${page}`
+  );
+  return data;
+};
