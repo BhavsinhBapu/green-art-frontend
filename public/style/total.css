@@ -14733,3 +14733,25 @@ input {
 body::-webkit-scrollbar {
   display: none;
 }
+.p2p_top_bg {
+  background-color: var(--footer-background-color);
+}
+.StakingDays {
+  padding: 7px;
+  margin-right: 3px;
+}
+.StakingDaysActive {
+  padding: 7px;
+  margin-right: 3px;
+  border: 2px solid var(--primary-color);
+  border-radius: 10px;
+}
+.est-price{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.primary-text{
+  color: var(--primary-color) !important;
+  cursor:pointer
+}
