@@ -95,10 +95,10 @@ export const useAddPostInitial = () => {
       max_limit: ads.maximum_trade_size,
       min_limit: ads.minimum_trade_size,
     });
-    if (ads?.payment_times?.uid) {
+    if (response.data?.payment_time[0]?.uid) {
       setSelectedPaymentTime({
-        label: ads?.payment_times?.uid,
-        value: ads?.payment_times?.payment_times,
+        label: response.data?.payment_time[0]?.time,
+        value: response.data?.payment_time[0]?.uid,
       });
     }
 
@@ -138,10 +138,6 @@ export const useAddPostInitial = () => {
     }
   };
   const createUpdateP2pAdsAction = async () => {
-    console.log(
-      selectedPaymentTime,
-      "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCc"
-    );
     let paymentMethodsCommaSeparated = selectedPayment
       .map((method: any) => method.value)
       .join(",");
