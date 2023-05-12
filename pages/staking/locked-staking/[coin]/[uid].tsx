@@ -7,13 +7,31 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { TfiHandPointRight } from "react-icons/tfi";
 import { GetOfferlistDetails } from "service/staking";
-import { GetOfferlistDetailsAction } from "state/actions/staking";
+import {
+  GetOfferlistDetailsAction,
+  InvesmentSubmitAction,
+} from "state/actions/staking";
 
 const lockedStaking = () => {
   const [loading, setLoading] = useState(true);
+  const [buttonLoading, setbuttonLoading] = useState(true);
+  const [isChecked, setisChecked] = useState(false);
+
+  const [amount, setAmount] = useState(0);
+  const [autoRenew, setAutoRenew] = useState(0);
   const [details, setDetails] = useState<any>();
   const router = useRouter();
   const { uid } = router.query;
+  const handleCheckboxChange = (event: any) => {
+    setisChecked(event.target.checked);
+  };
+  const handleAutoRenewChange = (event: any) => {
+    if (event.target.checked) {
+      setAutoRenew(1);
+    } else {
+      setAutoRenew(0);
+    }
+  };
   useEffect(() => {
     uid && GetOfferlistDetailsAction(uid, setDetails, setLoading);
   }, [uid]);
@@ -65,28 +83,33 @@ const lockedStaking = () => {
                       <div className="est-price">
                         <p>Minimum Maturity Period</p>
                         <h6 className="pl-3">
-                          {details?.minimum_maturity_period}
+                          {details?.minimum_maturity_period} Day
                         </h6>
                       </div>
-                      <div className="est-price">
-                        <p>Interest Period</p>
-                        <h6 className="pl-3">12 Days</h6>
-                      </div>
-                      <div className="est-price">
-                        <p>End Date</p>
-                        <h6 className="pl-3">12 November 2023</h6>
-                      </div>
-                      <div className="est-price">
-                        <p>Redemption Period</p>
-                        <h6 className="pl-3">2days</h6>
-                      </div>
-                      <div className="est-price mt-5">
-                        <h4>Est APY</h4>
-                        <h4 className="text-success">9.78%</h4>
+
+                      <div className=" mt-5">
+                        <h4>Enable Auto Renew</h4>
+                        <label className="switch">
+                          <input
+                            type="checkbox"
+                            checked={autoRenew === 0 ? false : true}
+                            name="auto_renew_status"
+                            onChange={handleAutoRenewChange}
+                          />
+                          <span className="slider round"></span>
+                        </label>
                       </div>
                       <div className="est-price mt-5">
-                        <h4>Estimated </h4>
-                        <h4 className="text-success">9.78%</h4>
+                        <h4>User Minimum Holding Amount</h4>
+                        <h4 className="text-success">
+                          {details?.user_minimum_holding_amount}
+                        </h4>
+                      </div>
+                      <div className="est-price mt-5">
+                        <h4>Offer Percentage </h4>
+                        <h4 className="text-success">
+                          {details?.offer_percentage}%
+                        </h4>
                       </div>
                     </div>
                   </div>
@@ -96,44 +119,65 @@ const lockedStaking = () => {
                     <label>Lock Amount</label>
                     <div className="P2psearchBox position-relative">
                       <input
-                        type="text"
-                        placeholder="233.0555 - 24.24240"
-                        defaultValue={0}
+                        type="number"
+                        placeholder=""
+                        defaultValue={amount}
+                        onChange={(e: any) => {
+                          setAmount(e.target.value);
+                        }}
                       />
-                      <p className="limitBalance my-2">
+                      {/* <p className="limitBalance my-2">
                         Available Amount 500000.3215
-                      </p>
+                      </p> */}
                       <button>
-                        <span className="ml-3 text-muted">EOS</span>
+                        <span className="ml-3 text-muted">
+                          {details?.coin_type}
+                        </span>
                       </button>
                     </div>
                   </div>
+
                   <div className="">
                     <div className="pt-5">
                       <h5>Terms and Conditions</h5>
-                      <div className="d-flex align-items-center p2pTerms pt-3">
-                        <TfiHandPointRight />
-
-                        <p>
-                          Include popular icons in your React projects easily
-                          with react-icons.
-                        </p>
-                      </div>
-                      <div className="d-flex align-items-center p2pTerms pt-3">
-                        <TfiHandPointRight />
-                        <p>
-                          Include popular icons in your React projects easily
-                          with react-icons.
-                        </p>
-                      </div>
+                      <div
+                        dangerouslySetInnerHTML={{
+                          // __html: clean(details.description),
+                          __html: details?.terms_condition,
+                        }}
+                      ></div>
+                    </div>
+                  </div>
+                  <div className="form-group mt-2">
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        id="agreeCheck"
+                        checked={isChecked}
+                        onChange={handleCheckboxChange}
+                      />
+                      <label className="form-check-label" htmlFor="agreeCheck">
+                        I agree to the terms and conditions
+                      </label>
                     </div>
                   </div>
                   <div className="mt-3 d-flex justify-content-center">
                     <button
                       className="primary-btn-outline w-100 "
-                      type="submit"
+                      type="button"
+                      disabled={isChecked ? false : true}
+                      onClick={() => {
+                        InvesmentSubmitAction(
+                          uid,
+                          autoRenew,
+                          amount,
+                          setbuttonLoading,
+                          router
+                        );
+                      }}
                     >
-                      Buy
+                      {buttonLoading ? "Please wait" : "Procced"}
                     </button>
                   </div>
                 </form>

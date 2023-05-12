@@ -17,15 +17,15 @@ export const StakingTopBar = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/staking/my-order">
+                <Link href="/staking/earnings">
                   <a>
                     <RiPagesLine />
-                    Earn
+                    Earnings
                   </a>
                 </Link>
               </li>
               <li>
-                <Link href="/p2p/p2p-profile">
+                <Link href="/staking/my-investments">
                   <a>
                     <HiUsers />
                     Invested

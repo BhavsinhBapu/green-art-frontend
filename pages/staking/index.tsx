@@ -27,7 +27,6 @@ const index = () => {
           </div>
         </div>
         <StakingTopBar />
-        <StakingFilter />
         <OfferTable />
         <FaqStaking />
       </div>

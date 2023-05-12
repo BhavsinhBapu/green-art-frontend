@@ -1,10 +1,43 @@
-import { GetOfferlist, GetOfferlistDetails } from "service/staking";
+import { SetStateAction } from "react";
+import { toast } from "react-toastify";
+import {
+  GetOfferlist,
+  GetOfferlistDetails,
+  InvesmentList,
+  InvesmentStatistics,
+  InvesmentSubmit,
+} from "service/staking";
 
 export const getOfferListAction = async (setOffers: any) => {
   const response = await GetOfferlist();
   setOffers(response.data);
-  console.log(response, "This is a response");
 };
+export const myOrderAction = async (
+  per_page: number,
+  page: number,
+  setReport: React.Dispatch<SetStateAction<object>>,
+  setProcessing: React.Dispatch<SetStateAction<boolean>>,
+  setStillHistory: React.Dispatch<SetStateAction<boolean>>,
+  selectedStatus: any,
+  selectedCoin: any,
+  fromDate: any,
+  toDate: any
+) => {
+  setProcessing(true);
+  const response = await InvesmentList(
+    per_page,
+    page,
+    selectedStatus,
+    selectedCoin.value,
+    fromDate,
+    toDate
+  );
+  setReport(response.data.data);
+  setStillHistory(response.data);
+  setProcessing(false);
+  return response;
+};
+// InvesmentList;
 export const GetOfferlistDetailsAction = async (
   uid: any,
   setDetails: any,
@@ -15,4 +48,27 @@ export const GetOfferlistDetailsAction = async (
   setDetails(response.data);
   console.log(response.data, "response.data");
   setLoading(false);
+};
+// InvesmentSubmit;
+export const InvesmentSubmitAction = async (
+  uid: any,
+  auto_renew_status: number,
+  amount: number,
+  setbuttonLoading: any,
+  router: any
+) => {
+  setbuttonLoading(true);
+  const response = await InvesmentSubmit(uid, auto_renew_status, amount);
+  if (response.success) {
+    router.push("/staking");
+    toast.success(response.message);
+  } else {
+    toast.error(response.message);
+  }
+  setbuttonLoading(false);
+};
+export const earningsAction = async (setStatsDetails: any) => {
+  const { data } = await InvesmentStatistics();
+  setStatsDetails(data);
+  console.log(data, "This is dataaaaaaaaaaaa");
 };
