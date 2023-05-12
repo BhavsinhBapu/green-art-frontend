@@ -7,6 +7,7 @@ const OfferRow = ({ offers, item, isLoggedIn }: any) => {
   useEffect(() => {
     setSelectedData(offers?.offer_list[item][0]);
   }, []);
+  console.log(offers, "offers");
   return (
     <tr className="tableRow">
       <td>
@@ -19,7 +20,7 @@ const OfferRow = ({ offers, item, isLoggedIn }: any) => {
         </div>
       </td>
       <td className="d-flex">
-        <h5 className="mr-1">{selectedData?.uid}</h5>
+        <h5 className="mr-1">{selectedData?.maximum_investment}</h5>
       </td>
       <td>
         <h6 className="">{selectedData?.minimum_investment}</h6>

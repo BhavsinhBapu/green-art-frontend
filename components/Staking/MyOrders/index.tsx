@@ -90,9 +90,9 @@ export const InvesmentOrderTable = ({
                       </td>
                       <td>{parseFloat(item.investment_amount)}</td>
                       <td>
-                        {parseInt(item.is_auto_renew) === 1
+                        {parseInt(item.auto_renew_status) === 1
                           ? "Disabled"
-                          : parseInt(item.is_auto_renew) === 2
+                          : parseInt(item.auto_renew_status) === 2
                           ? "Enabled"
                           : ""}
                       </td>
