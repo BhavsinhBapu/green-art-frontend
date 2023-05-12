@@ -13,7 +13,7 @@ import {
   InvesmentSubmitAction,
 } from "state/actions/staking";
 
-const lockedStaking = () => {
+const LockedStaking = () => {
   const [loading, setLoading] = useState(true);
   const [buttonLoading, setbuttonLoading] = useState(true);
   const [isChecked, setisChecked] = useState(false);
@@ -198,4 +198,4 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
     props: {},
   };
 };
-export default lockedStaking;
+export default LockedStaking;

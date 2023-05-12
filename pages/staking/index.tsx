@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "state/store";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 
-const index = ({ data }: any) => {
+const Index = ({ data }: any) => {
   const { isLoggedIn } = useSelector((state: RootState) => state.user);
 
   const changeBackground = () => {
@@ -57,4 +57,4 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
     },
   };
 };
-export default index;
+export default Index;

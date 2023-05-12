@@ -31,6 +31,7 @@ const OfferRow = ({ offers, item, isLoggedIn }: any) => {
               className={
                 selectedDays === index ? "StakingDaysActive" : "StakingDays"
               }
+              key={index}
               onClick={() => {
                 setSelectedDays(index);
                 console.log(offer, "offeroffer");

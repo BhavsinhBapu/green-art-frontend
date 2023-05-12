@@ -23,8 +23,9 @@ const OfferTable = ({ isLoggedIn }: any) => {
                 </tr>
               </thead>
               <tbody>
-                {offers?.coin_type?.map((item: any) => (
+                {offers?.coin_type?.map((item: any, index: any) => (
                   <OfferRow
+                    key={index}
                     offers={offers}
                     item={item}
                     isLoggedIn={isLoggedIn}
