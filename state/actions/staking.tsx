@@ -3,15 +3,18 @@ import { toast } from "react-toastify";
 import {
   GetOfferlist,
   GetOfferlistDetails,
+  GetPaymentList,
   InvesmentList,
   InvesmentStatistics,
   InvesmentSubmit,
   investmentCanceled,
 } from "service/staking";
 
-export const getOfferListAction = async (setOffers: any) => {
+export const getOfferListAction = async (setOffers: any, setLoading: any) => {
+  setLoading(true);
   const response = await GetOfferlist();
   setOffers(response.data);
+  setLoading(false);
 };
 export const myOrderAction = async (
   per_page: number,
@@ -72,4 +75,19 @@ export const earningsAction = async (setStatsDetails: any) => {
   const { data } = await InvesmentStatistics();
   setStatsDetails(data);
 };
+export const GetPaymentListAction = async (
+  per_page: number,
+  page: number,
+  setReport: React.Dispatch<SetStateAction<object>>,
+  setProcessing: React.Dispatch<SetStateAction<boolean>>,
+  setStillHistory: React.Dispatch<SetStateAction<boolean>>,
+  
+) => {
+  setProcessing(true);
+  const response = await GetPaymentList(per_page, page);
+  setReport(response.data.data);
+  setStillHistory(response.data);
+  setProcessing(false);
+};
+
 // investmentCanceled();

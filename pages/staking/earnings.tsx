@@ -26,41 +26,6 @@ const Earnings = () => {
       <div className="container">
         <div className=" row">
           <div className="col-6 mt-3">
-            <h5>Total Investment Cancelled</h5>
-            {statsDetails?.total_cancel_investment.length === 0 ? (
-              <p className="p-5 boxShadow text-center mt-3">
-                No data available
-              </p>
-            ) : (
-              <table className="table mt-4">
-                <thead>
-                  <tr>
-                    <th scope="col">Coin Type</th>
-                    <th scope="col">Total Bonus</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {statsDetails?.total_cancel_investment?.map(
-                    (item: any, index: any) => (
-                      <tr className="tableRow" key={index}>
-                        <td>
-                          <div className="tableImg d-flex align-items-center">
-                            <h6 className="">{item?.coin_type}</h6>
-                          </div>
-                        </td>
-                        <td>
-                          <h6 className="mx-2">
-                            {parseFloat(item?.total_investment)}
-                          </h6>
-                        </td>
-                      </tr>
-                    )
-                  )}
-                </tbody>
-              </table>
-            )}
-          </div>
-          <div className="col-6 mt-3">
             <h5>Total Investment</h5>
             {statsDetails?.total_investment.length === 0 ? (
               <p className="p-5 boxShadow text-center mt-3">
@@ -95,8 +60,9 @@ const Earnings = () => {
               </table>
             )}
           </div>
+
           <div className="col-6 mt-3">
-            <h5>Total Paid Investment</h5>
+            <h5>Disputed Investment</h5>
             {statsDetails?.total_paid_investment.length === 0 ? (
               <p className="p-5 boxShadow text-center mt-3">
                 No data available
@@ -166,7 +132,7 @@ const Earnings = () => {
             )}
           </div>
           <div className="col-6 mt-3">
-            <h5>Total Unpaid Investment</h5>
+            <h5>Total Dispributable Investment</h5>
             {statsDetails?.total_unpaid_investment.length === 0 ? (
               <p className="p-5 boxShadow text-center mt-3">
                 No data available
@@ -181,6 +147,41 @@ const Earnings = () => {
                 </thead>
                 <tbody>
                   {statsDetails?.total_unpaid_investment?.map(
+                    (item: any, index: any) => (
+                      <tr className="tableRow" key={index}>
+                        <td>
+                          <div className="tableImg d-flex align-items-center">
+                            <h6 className="">{item?.coin_type}</h6>
+                          </div>
+                        </td>
+                        <td>
+                          <h6 className="mx-2">
+                            {parseFloat(item?.total_investment)}
+                          </h6>
+                        </td>
+                      </tr>
+                    )
+                  )}
+                </tbody>
+              </table>
+            )}
+          </div>
+          <div className="col-6 mt-3">
+            <h5>Total Investment Cancelled</h5>
+            {statsDetails?.total_cancel_investment.length === 0 ? (
+              <p className="p-5 boxShadow text-center mt-3">
+                No data available
+              </p>
+            ) : (
+              <table className="table mt-4">
+                <thead>
+                  <tr>
+                    <th scope="col">Coin Type</th>
+                    <th scope="col">Total Bonus</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {statsDetails?.total_cancel_investment?.map(
                     (item: any, index: any) => (
                       <tr className="tableRow" key={index}>
                         <td>

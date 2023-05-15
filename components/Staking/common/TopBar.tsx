@@ -1,6 +1,7 @@
 import { RiPagesLine } from "react-icons/ri";
 import { HiOutlineHome, HiUsers } from "react-icons/hi";
 import Link from "next/link";
+import { MdPayment } from "react-icons/md";
 export const StakingTopBar = () => {
   return (
     <div className="p2p_top_bg py-3">
@@ -29,6 +30,14 @@ export const StakingTopBar = () => {
                   <a>
                     <HiUsers />
                     Invested
+                  </a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/staking/payment-list">
+                  <a>
+                    <MdPayment />
+                    My Payments
                   </a>
                 </Link>
               </li>

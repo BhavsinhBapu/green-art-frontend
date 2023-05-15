@@ -7,19 +7,19 @@ import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { TfiHandPointRight } from "react-icons/tfi";
-import { GetOfferlistDetails } from "service/staking";
+import { GetOfferlistDetails, TotalInvestmentBonus } from "service/staking";
 import {
   GetOfferlistDetailsAction,
   InvesmentSubmitAction,
 } from "state/actions/staking";
 
-const lockedStaking = () => {
+const LockedStaking = () => {
   const [loading, setLoading] = useState(true);
+  const [totalBonus, setTotalBonus] = useState(null);
   const [buttonLoading, setbuttonLoading] = useState(true);
   const [isChecked, setisChecked] = useState(false);
-
   const [amount, setAmount] = useState(0);
-  const [autoRenew, setAutoRenew] = useState(0);
+  const [autoRenew, setAutoRenew] = useState(1);
   const [details, setDetails] = useState<any>();
   const router = useRouter();
   const { uid } = router.query;
@@ -28,14 +28,25 @@ const lockedStaking = () => {
   };
   const handleAutoRenewChange = (event: any) => {
     if (event.target.checked) {
-      setAutoRenew(1);
+      setAutoRenew(2);
     } else {
-      setAutoRenew(0);
+      setAutoRenew(1);
     }
   };
   useEffect(() => {
     uid && GetOfferlistDetailsAction(uid, setDetails, setLoading);
   }, [uid]);
+  const getBonus = async () => {
+    const response = await TotalInvestmentBonus(uid, amount);
+    if (response.success) {
+      setTotalBonus(response?.data?.total_bonus);
+    }
+  };
+  useEffect(() => {
+    setTimeout(() => {
+      getBonus();
+    }, 1000);
+  }, [amount]);
   return (
     <div className="">
       <div className="container">
@@ -64,7 +75,7 @@ const lockedStaking = () => {
                         <p>Type</p>
                         <h6 className="pl-3 text-warning">
                           {details?.terms_type === STAKING_TERMS_TYPE_STRICT
-                            ? "Locked"
+                            ? "Strict"
                             : "Flexible"}
                         </h6>
                       </div>
@@ -80,12 +91,17 @@ const lockedStaking = () => {
                         <p>Minimum Investment</p>
                         <h6 className="pl-3">{details?.minimum_investment}</h6>
                       </div>
-
+                      {details?.terms_type !== STAKING_TERMS_TYPE_STRICT && (
+                        <div className="est-price">
+                          <p>Minimum Maturity Period</p>
+                          <h6 className="pl-3">
+                            {details?.minimum_maturity_period} Day
+                          </h6>
+                        </div>
+                      )}
                       <div className="est-price">
-                        <p>Minimum Maturity Period</p>
-                        <h6 className="pl-3">
-                          {details?.minimum_maturity_period} Day
-                        </h6>
+                        <p>Total Bonus</p>
+                        <h6 className="pl-3">{totalBonus}</h6>
                       </div>
 
                       <div className=" mt-5">
@@ -93,7 +109,7 @@ const lockedStaking = () => {
                         <label className="switch">
                           <input
                             type="checkbox"
-                            checked={autoRenew === 0 ? false : true}
+                            checked={autoRenew === 1 ? false : true}
                             name="auto_renew_status"
                             onChange={handleAutoRenewChange}
                           />
@@ -198,4 +214,4 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
     props: {},
   };
 };
-export default lockedStaking;
+export default LockedStaking;

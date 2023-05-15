@@ -19,18 +19,19 @@ const OfferRow = ({ offers, item, isLoggedIn }: any) => {
         </div>
       </td>
       <td className="d-flex">
-        <h5 className="mr-1">{selectedData?.uid}</h5>
+        <h5 className="mr-1">{selectedData?.maximum_investment}</h5>
       </td>
       <td>
         <h6 className="">{selectedData?.minimum_investment}</h6>
       </td>
       <td>
         <div className="d-flex align-items-center">
-          {offers?.offer_list[item].map((offer: any, index: any) => (
+          {offers?.offer_list[item]?.map((offer: any, index: any) => (
             <div
               className={
                 selectedDays === index ? "StakingDaysActive" : "StakingDays"
               }
+              key={index}
               onClick={() => {
                 setSelectedDays(index);
                 console.log(offer, "offeroffer");

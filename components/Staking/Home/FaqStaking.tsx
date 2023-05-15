@@ -8,8 +8,8 @@ function FaqStaking({ faq_list }: any) {
           <div className="col-12">
             <h3 className="pb-2">FAQS</h3>
           </div>
-          {faq_list?.map((faq: any) => (
-            <div className="col-md-6">
+          {faq_list?.map((faq: any, index: any) => (
+            <div className="col-md-6" key={index}>
               <span>
                 <div className="accordion" id="accordionExample">
                   <div className="card faqAccordion shadow-sm">

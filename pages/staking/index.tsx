@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "state/store";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 
-const index = ({ data }: any) => {
+const Index = ({ data }: any) => {
   const { isLoggedIn } = useSelector((state: RootState) => state.user);
 
   const changeBackground = () => {
@@ -23,7 +23,7 @@ const index = ({ data }: any) => {
     }
   };
   useEffect(() => {
-    changeBackground();
+    data?.staking_landing_cover_image && changeBackground();
   }, []);
   return (
     <>
@@ -49,7 +49,6 @@ const index = ({ data }: any) => {
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
- 
   const { data } = await LandingDetailsStaking();
   return {
     props: {
@@ -57,4 +56,4 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
     },
   };
 };
-export default index;
+export default Index;

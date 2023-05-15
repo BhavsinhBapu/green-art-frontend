@@ -55,3 +55,18 @@ export const investmentCanceled = async (uid: string) => {
   });
   return data;
 };
+// staking/get-total-investment-bonus
+export const TotalInvestmentBonus = async (uid: any, amount: any) => {
+  const { data } = await request.post("/staking/get-total-investment-bonus", {
+    uid: uid,
+    amount: amount,
+  });
+  return data;
+};
+// /staking/investment-get-payment-list
+export const GetPaymentList = async (per_page: number, page: number) => {
+  const { data } = await request.get(
+    `/staking/investment-get-payment-list??per_page=${per_page}&page=${page}`
+  );
+  return data;
+};
