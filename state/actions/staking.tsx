@@ -45,11 +45,13 @@ export const myOrderAction = async (
 export const GetOfferlistDetailsAction = async (
   uid: any,
   setDetails: any,
-  setLoading: any
+  setLoading: any,
+  setOfferList: any
 ) => {
   setLoading(true);
   const response = await GetOfferlistDetails(uid);
-  setDetails(response.data);
+  setDetails(response.data?.offer_details);
+  setOfferList(response.data?.offer_list);
   console.log(response.data, "response.data");
   setLoading(false);
 };
@@ -80,8 +82,7 @@ export const GetPaymentListAction = async (
   page: number,
   setReport: React.Dispatch<SetStateAction<object>>,
   setProcessing: React.Dispatch<SetStateAction<boolean>>,
-  setStillHistory: React.Dispatch<SetStateAction<boolean>>,
-  
+  setStillHistory: React.Dispatch<SetStateAction<boolean>>
 ) => {
   setProcessing(true);
   const response = await GetPaymentList(per_page, page);

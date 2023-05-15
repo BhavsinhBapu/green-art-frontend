@@ -24,8 +24,8 @@ const OfferTable = ({ isLoggedIn }: any) => {
                     <thead>
                       <tr>
                         <th scope="col">Token</th>
-                        <th scope="col">Maximum Amount</th>
                         <th scope="col">Minimum Amount</th>
+                        <th scope="col">Est. APR</th>
                         <th scope="col">Duration Days</th>
                         <th scope="col"></th>
                       </tr>

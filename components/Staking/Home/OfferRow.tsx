@@ -7,23 +7,25 @@ const OfferRow = ({ offers, item, isLoggedIn }: any) => {
   useEffect(() => {
     setSelectedData(offers?.offer_list[item][0]);
   }, []);
+  console.log(selectedData, "selectedData");
   return (
     <tr className="tableRow">
       <td>
         <div className="tableImg d-flex align-items-center">
-          <img
-            src="https://cdn4.iconfinder.com/data/icons/crypto-currency-and-coin-2/256/cardano_ada-512.png"
-            alt=""
-          />
+          <img src={selectedData?.coin_icon} alt="" />
           <h5>{item}</h5>
         </div>
       </td>
-      <td className="d-flex">
-        <h5 className="mr-1">{selectedData?.maximum_investment}</h5>
+
+      <td>
+        <h6 className="">
+          {selectedData?.minimum_investment} {item}
+        </h6>
       </td>
       <td>
-        <h6 className="">{selectedData?.minimum_investment}</h6>
+        <h6 className="">{selectedData?.offer_percentage}%</h6>
       </td>
+
       <td>
         <div className="d-flex align-items-center">
           {offers?.offer_list[item]?.map((offer: any, index: any) => (
@@ -43,7 +45,6 @@ const OfferRow = ({ offers, item, isLoggedIn }: any) => {
           ))}
         </div>
       </td>
-
       <td>
         {isLoggedIn && (
           <Link href={`/staking/locked-staking/${item}/${selectedData?.uid}`}>

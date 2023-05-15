@@ -1,3 +1,4 @@
+import { formateData } from "common";
 import BackButton from "components/P2P/BackButton";
 import SectionLoading from "components/common/SectionLoading";
 import Footer from "components/common/footer";
@@ -14,18 +15,21 @@ import {
 } from "state/actions/staking";
 
 const LockedStaking = () => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [offerList, setofferList] = useState([]);
   const [totalBonus, setTotalBonus] = useState(null);
-  const [buttonLoading, setbuttonLoading] = useState(true);
+  const [buttonLoading, setbuttonLoading] = useState(false);
   const [isChecked, setisChecked] = useState(false);
   const [amount, setAmount] = useState(0);
   const [autoRenew, setAutoRenew] = useState(1);
   const [details, setDetails] = useState<any>();
   const router = useRouter();
-  const { uid } = router.query;
+  const { uid, coin } = router.query;
   const handleCheckboxChange = (event: any) => {
     setisChecked(event.target.checked);
   };
+  const [selectedDayUid, setSelectedDayUid] = useState(uid);
+
   const handleAutoRenewChange = (event: any) => {
     if (event.target.checked) {
       setAutoRenew(2);
@@ -34,13 +38,15 @@ const LockedStaking = () => {
     }
   };
   useEffect(() => {
-    uid && GetOfferlistDetailsAction(uid, setDetails, setLoading);
+    uid && GetOfferlistDetailsAction(uid, setDetails, setLoading, setofferList);
+    setSelectedDayUid(uid);
   }, [uid]);
   const getBonus = async () => {
     const response = await TotalInvestmentBonus(uid, amount);
     if (response.success) {
       setTotalBonus(response?.data?.total_bonus);
     }
+    console.log(response, "responseresponse");
   };
   useEffect(() => {
     setTimeout(() => {
@@ -57,16 +63,13 @@ const LockedStaking = () => {
             <div className="mt-3 mb-3">
               <BackButton />
             </div>
-            <h1 className="ny-3">Locked staking</h1>
+            <h1 className="ny-3">Staking</h1>
             <hr />
             <div className="rounded">
               <div className="row">
                 <div className="col-md-6">
                   <div className="tableImg d-flex align-items-center">
-                    <img
-                      src="https://api-tradex.nftarttoken.xyz/images/avatars/yellow-hat.png"
-                      alt=""
-                    />
+                    <img src={details?.coin_icon} alt="" />
                     <h5>{details?.coin_type}</h5>
                   </div>
                   <div className="row pt-6 mt-3">
@@ -75,21 +78,58 @@ const LockedStaking = () => {
                         <p>Type</p>
                         <h6 className="pl-3 text-warning">
                           {details?.terms_type === STAKING_TERMS_TYPE_STRICT
-                            ? "Strict"
+                            ? "Locked"
                             : "Flexible"}
                         </h6>
                       </div>
                       <div className="est-price">
                         <p>Duration</p>
-                        <h6 className="pl-3">{details?.period} Days</h6>
+                        <td>
+                          <div className="d-flex align-items-center">
+                            {offerList?.map((offer: any, index: any) => (
+                              <div
+                                className={
+                                  selectedDayUid === offer?.uid
+                                    ? "StakingDaysActive"
+                                    : "StakingDays"
+                                }
+                                key={index}
+                                onClick={() => {
+                                  // setSelectedDayUid(offer?.uid);
+                                  router.push(
+                                    `/staking/locked-staking/${coin}/${offer?.uid}`
+                                  );
+                                }}
+                              >
+                                {offer?.period} Days
+                              </div>
+                            ))}
+                          </div>
+                        </td>
                       </div>
                       <div className="est-price">
-                        <p>Maximum Investment</p>
-                        <h6 className="pl-3">{details?.maximum_investment}</h6>
+                        <p>Stake Date</p>
+                        <h6 className="pl-3">
+                          {formateData(details?.stake_date)}
+                        </h6>
                       </div>
                       <div className="est-price">
-                        <p>Minimum Investment</p>
-                        <h6 className="pl-3">{details?.minimum_investment}</h6>
+                        <p>Value Date</p>
+                        <h6 className="pl-3">
+                          {formateData(details?.value_date)}
+                        </h6>
+                      </div>
+                      <div className="est-price">
+                        <p>Interest Period</p>
+                        <h6 className="pl-3">
+                          {details?.interest_period} Days
+                        </h6>
+                      </div>
+                      <div className="est-price">
+                        <p>Interest End Date</p>
+                        <h6 className="pl-3">
+                          {details?.interest_end_date} Days
+                        </h6>
                       </div>
                       {details?.terms_type !== STAKING_TERMS_TYPE_STRICT && (
                         <div className="est-price">
@@ -100,12 +140,32 @@ const LockedStaking = () => {
                         </div>
                       )}
                       <div className="est-price">
-                        <p>Total Bonus</p>
+                        <p>Minimum Amount</p>
+                        <h6 className="pl-3">{details?.minimum_investment}</h6>
+                      </div>
+                      <div className="est-price">
+                        <p>Available Amount</p>
+                        <h6 className="pl-3">
+                          {!parseFloat(details?.total_investment_amount)
+                            ? parseFloat(details?.maximum_investment) - 0
+                            : parseFloat(details?.maximum_investment) -
+                              parseFloat(details?.total_investment_amount)}
+                        </h6>
+                      </div>
+                      {details?.terms_type !== STAKING_TERMS_TYPE_STRICT && (
+                        <div className="est-price">
+                          <p>Minimum Maturity Period</p>
+                          <h6 className="pl-3">
+                            {details?.minimum_maturity_period} Day
+                          </h6>
+                        </div>
+                      )}
+                      <div className="est-price">
+                        <p>Estimated Interest</p>
                         <h6 className="pl-3">{totalBonus}</h6>
                       </div>
-
                       <div className=" mt-5">
-                        <h4>Enable Auto Renew</h4>
+                        <h4>Enable Auto Staking</h4>
                         <label className="switch">
                           <input
                             type="checkbox"
@@ -115,15 +175,14 @@ const LockedStaking = () => {
                           />
                           <span className="slider round"></span>
                         </label>
+                        <br />
+                        <small>
+                          Auto Staking is a feature that lets you earn staking
+                          rewards automatically without any manual effort.
+                        </small>
                       </div>
                       <div className="est-price mt-5">
-                        <h4>User Minimum Holding Amount</h4>
-                        <h4 className="text-success">
-                          {details?.user_minimum_holding_amount}
-                        </h4>
-                      </div>
-                      <div className="est-price mt-5">
-                        <h4>Offer Percentage </h4>
+                        <h4>Est. APR</h4>
                         <h4 className="text-success">
                           {details?.offer_percentage}%
                         </h4>
@@ -156,7 +215,35 @@ const LockedStaking = () => {
 
                   <div className="">
                     <div className="pt-5">
-                      <h5>Terms and Conditions</h5>
+                      <h5 className="mb-4">Terms and Conditions</h5>
+                      {parseFloat(details?.user_minimum_holding_amount) > 0 && (
+                        <div className="">
+                          <b>
+                            - You must have atlest{" "}
+                            {parseFloat(details?.user_minimum_holding_amount)}{" "}
+                            {details?.coin_type} in your account
+                          </b>
+                        </div>
+                      )}
+                      {parseFloat(details?.registration_before) > 0 && (
+                        <div className="">
+                          <b>
+                            - You must have registered before{" "}
+                            {parseFloat(details?.registration_before)} days
+                          </b>
+                        </div>
+                      )}
+                      {parseFloat(details?.phone_verification) > 0 && (
+                        <div className="">
+                          <b>- You must have verified phone number </b>
+                        </div>
+                      )}
+                      {parseFloat(details?.kyc_verification) > 0 && (
+                        <div className="">
+                          <b>- You must have completed your KYC Verification</b>
+                        </div>
+                      )}
+
                       <div
                         dangerouslySetInnerHTML={{
                           // __html: clean(details.description),
@@ -194,7 +281,7 @@ const LockedStaking = () => {
                         );
                       }}
                     >
-                      {buttonLoading ? "Please wait" : "Procced"}
+                      {buttonLoading ? "Please wait" : "Confirm"}
                     </button>
                   </div>
                 </form>
