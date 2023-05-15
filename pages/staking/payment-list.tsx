@@ -1,4 +1,5 @@
 import { formateData } from "common";
+import { NoItemFound } from "components/NoItemFound/NoItemFound";
 import { StakingTopBar } from "components/Staking/common/TopBar";
 import SectionLoading from "components/common/SectionLoading";
 import Footer from "components/common/footer";
@@ -57,23 +58,27 @@ const PaymentList = ({}: any) => {
                         </tr>
                       </thead>
                       <tbody>
-                        {history?.map((item: any, index: any) => (
-                          <tr className="tableRow" key={index}>
-                            <td>
-                              <div className="tableImg d-flex align-items-center">
-                                <h6 className="">{item?.coin_type}</h6>
-                              </div>
-                            </td>
-                            <td>
-                              <h6 className="mx-2">
-                                {formateData(item.created_at)}
-                              </h6>
-                            </td>
-                            <td>{item.total_amount}</td>
-                            <td>{item.total_bonus}</td>
-                            <td>{item.total_investment}</td>
-                          </tr>
-                        ))}
+                        {history?.length > 0 ? (
+                          history?.map((item: any, index: any) => (
+                            <tr className="tableRow" key={index}>
+                              <td>
+                                <div className="tableImg d-flex align-items-center">
+                                  <h6 className="">{item?.coin_type}</h6>
+                                </div>
+                              </td>
+                              <td>
+                                <h6 className="mx-2">
+                                  {formateData(item.created_at)}
+                                </h6>
+                              </td>
+                              <td>{item?.total_amount}</td>
+                              <td>{item?.total_bonus}</td>
+                              <td>{item?.total_investment}</td>
+                            </tr>
+                          ))
+                        ) : (
+                          <NoItemFound />
+                        )}
                       </tbody>
                     </table>
                     {history?.length > 0 && (

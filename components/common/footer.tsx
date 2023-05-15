@@ -32,6 +32,11 @@ const Footer = () => {
                               <Link href={"/blog"}>{t("Blog")}</Link>
                             </li>
                           )}
+
+                          <li>
+                            <Link href={"/staking"}>{t("Staking")}</Link>
+                          </li>
+
                           {parseInt(settings?.knowledgebase_support_module) ===
                             1 && (
                             <li>

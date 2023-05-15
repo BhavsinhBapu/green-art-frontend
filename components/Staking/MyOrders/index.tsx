@@ -1,3 +1,4 @@
+import { NoItemFound } from "components/NoItemFound/NoItemFound";
 import SectionLoading from "components/common/SectionLoading";
 import {
   STAKING_INVESTMENT_STATUS_CANCELED,
@@ -84,64 +85,69 @@ export const InvesmentOrderTable = ({
                   </tr>
                 </thead>
                 <tbody>
-                  {history?.map((item: any, index: any) => (
-                    <tr className="tableRow" key={index}>
-                      <td>
-                        <div className="tableImg d-flex align-items-center">
-                          <h6 className="">{item?.coin_type}</h6>
-                        </div>
-                      </td>
-                      <td>
-                        <h6 className="mx-2">
-                          {parseFloat(item.earn_daily_bonus)} {item?.coin_type}
-                        </h6>
-                      </td>
-                      <td>{parseFloat(item.investment_amount)}</td>
-                      <td>
-                        {parseInt(item.auto_renew_status) === 1
-                          ? "Disabled"
-                          : parseInt(item.auto_renew_status) === 2
-                          ? "Enabled"
-                          : ""}
-                      </td>
-                      <td>
-                        {parseInt(item?.status) ===
-                        STAKING_INVESTMENT_STATUS_SUCCESS
-                          ? "Success"
-                          : parseInt(item?.status) ===
-                            STAKING_INVESTMENT_STATUS_PAID
-                          ? "Paid"
-                          : parseInt(item?.status) ===
-                            STAKING_INVESTMENT_STATUS_UNPAID
-                          ? "Un Paid"
-                          : parseInt(item?.status) ===
-                            STAKING_INVESTMENT_STATUS_CANCELED
-                          ? "Canceled"
-                          : parseInt(item?.status) ===
-                            STAKING_INVESTMENT_STATUS_RUNNING
-                          ? "Running"
-                          : ""}
-                      </td>
-
-                      <td>
-                        {item.total_bonus} {item?.coin_type}
-                      </td>
-                      <td>{item.period} Days</td>
-                      {parseInt(item?.status) ===
-                      STAKING_INVESTMENT_STATUS_RUNNING ? (
-                        <td
-                          onClick={() => {
-                            investmentCanceledAction(item?.uid);
-                          }}
-                          className="primary-text"
-                        >
-                          Cancel
+                  {history.length > 0 ? (
+                    history?.map((item: any, index: any) => (
+                      <tr className="tableRow" key={index}>
+                        <td>
+                          <div className="tableImg d-flex align-items-center">
+                            <h6 className="">{item?.coin_type}</h6>
+                          </div>
                         </td>
-                      ) : (
-                        <td className="text-danger">Cancelled</td>
-                      )}
-                    </tr>
-                  ))}
+                        <td>
+                          <h6 className="mx-2">
+                            {parseFloat(item.earn_daily_bonus)}{" "}
+                            {item?.coin_type}
+                          </h6>
+                        </td>
+                        <td>{parseFloat(item.investment_amount)}</td>
+                        <td>
+                          {parseInt(item.auto_renew_status) === 1
+                            ? "Disabled"
+                            : parseInt(item.auto_renew_status) === 2
+                            ? "Enabled"
+                            : ""}
+                        </td>
+                        <td>
+                          {parseInt(item?.status) ===
+                          STAKING_INVESTMENT_STATUS_SUCCESS
+                            ? "Success"
+                            : parseInt(item?.status) ===
+                              STAKING_INVESTMENT_STATUS_PAID
+                            ? "Paid"
+                            : parseInt(item?.status) ===
+                              STAKING_INVESTMENT_STATUS_UNPAID
+                            ? "Un Paid"
+                            : parseInt(item?.status) ===
+                              STAKING_INVESTMENT_STATUS_CANCELED
+                            ? "Canceled"
+                            : parseInt(item?.status) ===
+                              STAKING_INVESTMENT_STATUS_RUNNING
+                            ? "Running"
+                            : ""}
+                        </td>
+
+                        <td>
+                          {item.total_bonus} {item?.coin_type}
+                        </td>
+                        <td>{item.period} Days</td>
+                        {parseInt(item?.status) ===
+                        STAKING_INVESTMENT_STATUS_RUNNING ? (
+                          <td
+                            onClick={() => {
+                              investmentCanceledAction(item?.uid);
+                            }}
+                            className="primary-text"
+                          >
+                            Cancel
+                          </td>
+                        ) : (
+                          <td className="text-danger">Cancelled</td>
+                        )}
+                      </tr>
+                    ))
+                  ) : (
+                    <NoItemFound />
+                  )}
                 </tbody>
               </table>
               {history?.length > 0 && (
