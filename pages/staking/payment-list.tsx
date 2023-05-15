@@ -53,7 +53,7 @@ const PaymentList = ({}: any) => {
                           <th scope="col">Coin Type</th>
                           <th scope="col">Payment Date</th>
                           <th scope="col">Total Amount</th>
-                          <th scope="col">Total Bonus</th>
+                          <th scope="col">Total Interest</th>
                           <th scope="col">Total Invested</th>
                         </tr>
                       </thead>
