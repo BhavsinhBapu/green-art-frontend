@@ -10,12 +10,14 @@ import {
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { investmentCanceled } from "service/staking";
+import MyModalsPayment from "./modal";
 
 export const InvesmentOrderTable = ({
   actionFunction,
   filter = false,
 }: any) => {
   const [selectedStatus, setSelectedStatus] = useState("all");
+  const [modalData, setModalData] = useState({});
   const [selectedCoin, setSelectedCoins] = useState("all");
   const [processing, setProcessing] = useState<boolean>(false);
   const [history, setHistory] = useState<any>([]);
@@ -79,7 +81,7 @@ export const InvesmentOrderTable = ({
                     <th scope="col">Investment Amount</th>
                     <th scope="col">Auto Renew</th>
                     <th scope="col">Status</th>
-                    <th scope="col">Total Bonus</th>
+                    <th scope="col">Estimated Interest</th>
                     <th scope="col">Time Period</th>
                     <th scope="col"></th>
                   </tr>
@@ -140,15 +142,31 @@ export const InvesmentOrderTable = ({
                           >
                             Cancel
                           </td>
-                        ) : (
+                        ) : parseInt(item?.status) ===
+                          STAKING_INVESTMENT_STATUS_CANCELED ? (
                           <td className="text-danger">Cancelled</td>
+                        ) : parseInt(item?.status) ===
+                          STAKING_INVESTMENT_STATUS_PAID ? (
+                          <td className="text-danger">Paid</td>
+                        ) : (
+                          ""
                         )}
+                        <td
+                          data-target="#exampleModal"
+                          data-toggle="modal"
+                          onClick={() => {
+                            setModalData(item);
+                          }}
+                        >
+                          Details
+                        </td>
                       </tr>
                     ))
                   ) : (
                     <NoItemFound />
                   )}
                 </tbody>
+                <MyModalsPayment modalData={modalData} />
               </table>
               {history?.length > 0 && (
                 <div className="pagination-wrapper" id="assetBalances_paginate">

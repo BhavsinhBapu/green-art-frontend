@@ -34,7 +34,7 @@ const PaymentList = ({}: any) => {
             <div className="section-top-wrap mb-25">
               <div className="overview-area">
                 <div className="overview-left">
-                  <h2 className="section-top-title">My Payments</h2>
+                  <h2 className="section-top-title">My Earnings</h2>
                 </div>
               </div>
             </div>

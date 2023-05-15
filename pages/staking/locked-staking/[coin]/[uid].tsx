@@ -127,9 +127,7 @@ const LockedStaking = () => {
                       </div>
                       <div className="est-price">
                         <p>Interest End Date</p>
-                        <h6 className="pl-3">
-                          {details?.interest_end_date} Days
-                        </h6>
+                        <h6 className="pl-3">{details?.interest_end_date}</h6>
                       </div>
                       {details?.terms_type !== STAKING_TERMS_TYPE_STRICT && (
                         <div className="est-price">
@@ -161,7 +159,7 @@ const LockedStaking = () => {
                         </div>
                       )}
                       <div className="est-price">
-                        <p>Estimated Interest</p>
+                        <p>Estimated Intereste</p>
                         <h6 className="pl-3">{totalBonus}</h6>
                       </div>
                       <div className=" mt-5">

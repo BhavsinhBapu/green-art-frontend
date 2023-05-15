@@ -21,7 +21,7 @@ export const StakingTopBar = () => {
                 <Link href="/staking/earnings">
                   <a>
                     <RiPagesLine />
-                    Earnings
+                    Reports
                   </a>
                 </Link>
               </li>
@@ -29,7 +29,7 @@ export const StakingTopBar = () => {
                 <Link href="/staking/my-investments">
                   <a>
                     <HiUsers />
-                    Invested
+                    My Invesments
                   </a>
                 </Link>
               </li>
@@ -37,7 +37,7 @@ export const StakingTopBar = () => {
                 <Link href="/staking/payment-list">
                   <a>
                     <MdPayment />
-                    My Payments
+                    My Earnings
                   </a>
                 </Link>
               </li>
