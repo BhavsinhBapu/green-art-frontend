@@ -147,7 +147,7 @@ export const InvesmentOrderTable = ({
                           <td className="text-danger">Cancelled</td>
                         ) : parseInt(item?.status) ===
                           STAKING_INVESTMENT_STATUS_PAID ? (
-                          <td className="text-danger">Paid</td>
+                          <td className="text-success">Paid</td>
                         ) : (
                           ""
                         )}

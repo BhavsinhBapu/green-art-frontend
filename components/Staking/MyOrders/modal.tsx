@@ -20,7 +20,7 @@ const MyModalsPayment = ({ modalData }: any) => {
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title" id="exampleModalLabel">
-              {t("Google Authentication")}
+              {t("Details")}
             </h5>
             <button
               type="button"
@@ -42,42 +42,30 @@ const MyModalsPayment = ({ modalData }: any) => {
                       : "Flexible"}
                   </h6>
                 </div>
-
                 <div className="est-price">
                   <p>Stake Date</p>
-                  <h6 className="pl-3">{formateData(modalData?.stake_date)}</h6>
+                  <h6 className="pl-3">{formateData(modalData?.created_at)}</h6>
                 </div>
                 <div className="est-price">
-                  <p>Value Date</p>
-                  <h6 className="pl-3">{formateData(modalData?.value_date)}</h6>
+                  <p>Daily Interest</p>
+                  <h6 className="pl-3">{modalData?.earn_daily_bonus}</h6>
                 </div>
                 <div className="est-price">
-                  <p>Interest Period</p>
-                  <h6 className="pl-3">{modalData?.interest_period} Days</h6>
+                  <p>End Date</p>
+                  <h6 className="pl-3">{formateData(modalData?.end_date)}</h6>
                 </div>
                 <div className="est-price">
-                  <p>Interest End Date</p>
-                  <h6 className="pl-3">{modalData?.interest_end_date} </h6>
-                </div>
-                {modalData?.terms_type !== STAKING_TERMS_TYPE_STRICT && (
-                  <div className="est-price">
-                    <p>Minimum Maturity Period</p>
-                    <h6 className="pl-3">
-                      {modalData?.minimum_maturity_period} Day
-                    </h6>
-                  </div>
-                )}
-                <div className="est-price">
-                  <p>Minimum Amount</p>
-                  <h6 className="pl-3">{modalData?.minimum_investment}</h6>
+                  <p>Minimum Maturity Period</p>
+                  <h6 className="pl-3">{modalData?.minimum_maturity_period}</h6>
                 </div>
                 <div className="est-price">
-                  <p>Available Amount</p>
+                  <p>Offer Percentage</p>
+                  <h6 className="pl-3">{modalData?.offer_percentage}%</h6>
+                </div>
+                <div className="est-price">
+                  <p>Remain interest day</p>
                   <h6 className="pl-3">
-                    {!parseFloat(modalData?.total_investment_amount)
-                      ? parseFloat(modalData?.maximum_investment) - 0
-                      : parseFloat(modalData?.maximum_investment) -
-                        parseFloat(modalData?.total_investment_amount)}
+                    {modalData?.remain_interest_day} Days
                   </h6>
                 </div>
                 {modalData?.terms_type !== STAKING_TERMS_TYPE_STRICT && (
@@ -88,7 +76,28 @@ const MyModalsPayment = ({ modalData }: any) => {
                     </h6>
                   </div>
                 )}
+                <div className="est-price">
+                  <p>Invested Amount</p>
+                  <h6 className="pl-3">
+                    {parseFloat(modalData?.investment_amount)}{" "}
+                    {modalData?.coin_type}
+                  </h6>
+                </div>
+                <div className="est-price">
+                  <p>Total Bonus</p>
+                  <h6 className="pl-3">
+                    {parseFloat(modalData?.total_bonus)} {modalData?.coin_type}
+                  </h6>
+                </div>
 
+                {modalData?.terms_type !== STAKING_TERMS_TYPE_STRICT && (
+                  <div className="est-price">
+                    <p>Minimum Maturity Period</p>
+                    <h6 className="pl-3">
+                      {modalData?.minimum_maturity_period} Day
+                    </h6>
+                  </div>
+                )}
                 <div className="est-price mt-5">
                   <h4>Est. APR</h4>
                   <h4 className="text-success">
