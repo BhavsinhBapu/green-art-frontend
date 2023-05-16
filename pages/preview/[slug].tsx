@@ -92,7 +92,7 @@ const Home: NextPage = ({
     <SEO seoData={customSettings}>
       <div>
         <div>
-          {loggedin ? <Navbar /> : <UnAuthNav logo={logo} />}
+          {loggedin ? <Navbar /> : <UnAuthNav  />}
           {landing?.page_builder_landing === true ? (
             <div className="custom-page-container container">
               <div
