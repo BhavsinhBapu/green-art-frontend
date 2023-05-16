@@ -1131,7 +1131,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
           </OutsideClickHandler>
         </>
       ) : !isLoggedIn && isLoading === false ? (
-        <UnAuthNav logo={logo} />
+        <UnAuthNav  />
       ) : (
         ""
       )}
