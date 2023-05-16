@@ -1,36 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
-import { BsBarChartLine, BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
-import { BiNetworkChart } from "react-icons/bi";
-import { IoLanguageSharp } from "react-icons/io5";
-import { FiSettings } from "react-icons/fi";
-import { CgProfile } from "react-icons/cg";
-import { HiArrowNarrowRight, HiOutlineDocumentReport } from "react-icons/hi";
-import { BiWalletAlt } from "react-icons/bi";
+import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
+
 import OutsideClickHandler from "react-outside-click-handler";
-import {
-  RiCalendarEventLine,
-  RiNotificationBadgeLine,
-  RiWallet3Line,
-} from "react-icons/ri";
+
 import { RootState } from "state/store";
-import { LogoutAction } from "state/actions/user";
 import useTranslation from "next-translate/useTranslation";
 import { notification, notificationSeen } from "service/notification";
-import { LanguageList } from "helpers/lang";
 import { useRouter } from "next/router";
-import moment from "moment";
-import {
-  checkThemeState,
-  darkModeToggle,
-  darkModeToggleDashboard,
-} from "helpers/functions";
+import { checkThemeState, darkModeToggle } from "helpers/functions";
 import { IoMdGlobe } from "react-icons/io";
-import {
-  REFERRAL_TYPE_DEPOSIT,
-  REFERRAL_TYPE_TRADE,
-} from "helpers/core-constants";
 
 const UnAuthNav = () => {
   const { isLoggedIn, user, logo } = useSelector(
@@ -43,20 +23,11 @@ const UnAuthNav = () => {
   const [active, setActive] = useState(false);
   const [notificationData, setNotification] = useState<any>([]);
   const { t } = useTranslation("common");
-  const dispatch = useDispatch();
   const getNotifications = async () => {
     const data = await notification();
     setNotification(data.data.data);
   };
-  const seen = async () => {
-    let arr: any = [];
-    notificationData.map((notification: any) => {
-      arr.push(notification.id);
-    });
-    notificationSeen(arr).then((data: any) => {
-      setNotification([]);
-    });
-  };
+
   useEffect(() => {
     checkThemeState(setTheme);
     isLoggedIn && getNotifications();
@@ -180,31 +151,12 @@ const UnAuthNav = () => {
               <ul id="metismenu">
                 <li>
                   <ul>
-                    <Link href={isLoggedIn ? "/user/profile" : "/signin"}>
-                      <li>
-                        <a href="">{t("My Profile")}</a>
-                      </li>
-                    </Link>
+                    <Link href="/signin">{t("Login")}</Link>
                   </ul>
                 </li>{" "}
                 <li>
                   <ul>
-                    <Link href={isLoggedIn ? "/user/edit-profile" : "/signin"}>
-                      <li>
-                        <a href="">{t("Edit Profile")}</a>
-                      </li>
-                    </Link>
-                  </ul>
-                </li>
-                <li>
-                  <ul>
-                    <Link
-                      href={isLoggedIn ? "/user/phone-verification" : "/signin"}
-                    >
-                      <li>
-                        <a href="">{t("Phone Verification")}</a>
-                      </li>
-                    </Link>
+                    <Link href="/signup">{t("Sign up")}</Link>
                   </ul>
                 </li>
               </ul>
@@ -217,4 +169,3 @@ const UnAuthNav = () => {
 };
 
 export default UnAuthNav;
-
