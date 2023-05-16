@@ -2,6 +2,8 @@ import * as React from "react";
 import styles from "./index.module.css";
 import { widget } from "../../public/static/charting_library";
 import Datafeed from "components/exchange/api";
+import { connect } from "react-redux";
+
 import {
   DISABLED_FEATURES,
   ENABLED_FEATURES,
@@ -18,9 +20,15 @@ function getLanguageFromURL() {
 }
 type MyProps = {
   coinpair: any;
+  dispatch: any;
+};
+const mapStateToProps = (state: any) => {
+  return {
+    reduxData: state, // Replace "reduxData" with the appropriate property name for your Redux data
+  };
 };
 const pair = localStorage.getItem("current_pair")?.replace("_", "/");
-export class TVChartContainer extends React.Component<MyProps> {
+class TVChartContainer extends React.Component<MyProps> {
   static defaultProps = {
     symbol: `:${pair && pair}`,
     interval: "15",
@@ -175,6 +183,10 @@ export class TVChartContainer extends React.Component<MyProps> {
   }
 
   render() {
+    //@ts-ignore
+    const { reduxData } = this.props;
+    const someValue = reduxData.someProperty;
+    console.log(reduxData, "exchange");
     return (
       <>
         <header className={styles.VersionHeader}></header>
@@ -184,3 +196,6 @@ export class TVChartContainer extends React.Component<MyProps> {
     );
   }
 }
+const ConnectedTVChartContainer = connect(mapStateToProps)(TVChartContainer);
+
+export { ConnectedTVChartContainer as TVChartContainer };
