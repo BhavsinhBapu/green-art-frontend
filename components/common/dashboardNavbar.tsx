@@ -671,8 +671,8 @@ const DashboardNavbar = () => {
             </div>
 
             <div className="col-xl-2 col-lg-2 col-8">
-              {isLoggedIn ? (
-                <div className="cp-user-top-bar-right">
+              <div className="cp-user-top-bar-right">
+                {isLoggedIn ? (
                   <OutsideClickHandler onOutsideClick={() => setActive(false)}>
                     <div>
                       <ul>
@@ -895,18 +895,18 @@ const DashboardNavbar = () => {
                       </ul>
                     </div>
                   </OutsideClickHandler>
-                  <div
-                    className="cp-user-sidebar-toggler-s2"
-                    onClick={() => {
-                      setActive(active ? false : true);
-                    }}
-                  >
-                    <img src="/menu.svg" className="img-fluid" alt="" />
-                  </div>
+                ) : (
+                  ""
+                )}
+                <div
+                  className="cp-user-sidebar-toggler-s2"
+                  onClick={() => {
+                    setActive(active ? false : true);
+                  }}
+                >
+                  <img src="/menu.svg" className="img-fluid" alt="" />
                 </div>
-              ) : (
-                ""
-              )}
+              </div>
             </div>
           </div>
         </div>
