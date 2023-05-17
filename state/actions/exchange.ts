@@ -124,7 +124,6 @@ export const initialDashboardCallAction =
 
     if (pair) {
       response = await appDashboardData(pair);
-      console.log(response?.pair_status, "pair_statuspair_statuspair_status");
       if (response?.pair_status === false) {
         response = await appDashboardData(response.pairs[0].coin_pair);
         await localStorage.setItem(
@@ -151,7 +150,6 @@ export const initialDashboardCallAction =
       }
     } else {
       response = await appDashboardDataWithoutPair();
-      console.log(response?.pairs, "RRRRRRRRRRRRRRRRRR");
       if (!response?.pairs) {
         setisLoading && setisLoading(false);
         return;
