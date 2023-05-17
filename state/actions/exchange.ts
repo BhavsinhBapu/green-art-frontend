@@ -124,7 +124,23 @@ export const initialDashboardCallAction =
 
     if (pair) {
       response = await appDashboardData(pair);
-      console.log(response?.pairs, "RRRRRRRRRRRRRRRRRR");
+      if (response?.pair_status === false) {
+        response = await appDashboardData(response.pairs[0].coin_pair);
+        await localStorage.setItem(
+          "base_coin_id",
+          response?.pairs[0]?.parent_coin_id
+        );
+        await localStorage.setItem(
+          "trade_coin_id",
+          response?.pairs[0]?.child_coin_id
+        );
+        await localStorage.setItem(
+          "current_pair",
+          response?.pairs[0]?.coin_pair
+        );
+        response?.pairs[0]?.coin_pair &&
+          dispatch(setCurrentPair(response?.pairs[0]?.coin_pair));
+      }
       if (!response?.pairs) {
         setisLoading && setisLoading(false);
         return;
@@ -134,7 +150,6 @@ export const initialDashboardCallAction =
       }
     } else {
       response = await appDashboardDataWithoutPair();
-      console.log(response?.pairs, "RRRRRRRRRRRRRRRRRR");
       if (!response?.pairs) {
         setisLoading && setisLoading(false);
         return;
