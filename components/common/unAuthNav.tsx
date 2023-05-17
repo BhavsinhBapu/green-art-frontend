@@ -150,14 +150,16 @@ const UnAuthNav = () => {
             <nav>
               <ul id="metismenu">
                 <li>
-                  <ul>
-                    <Link href="/signin">{t("Login")}</Link>
-                  </ul>
-                </li>{" "}
+                  <Link href="/exchange/dashboard">{t("Spot Trading")}</Link>
+                </li>
                 <li>
-                  <ul>
-                    <Link href="/signup">{t("Sign up")}</Link>
-                  </ul>
+                  <Link href="/p2p">{t("P2p Trading")}</Link>
+                </li>
+                <li>
+                  <Link href="/signin">{t("Login")}</Link>
+                </li>
+                <li>
+                  <Link href="/signup">{t("Sign up")}</Link>
                 </li>
               </ul>
             </nav>
