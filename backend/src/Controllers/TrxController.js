@@ -372,6 +372,33 @@ async function getTrxConfirmedTransaction(req, res) {
     }
 }
 
+async function getTrxTransactionBlock(req, res){
+    try {
+        const tronWeb = tronWebCall(req,res);
+        const txId = req.body.transaction_hash ?? "trx_hash";
+        console.log("aaaaa",txId);
+        const response = await tronWeb.getEventByTransactionID(txId);
+        console.log(response);
+        let transaction = response[0];
+        let from = transaction.result.from; 
+        let to = transaction.result.to; 
+        transaction.result.from = tronWeb.address.fromHex(tronWeb.address.toHex(from));
+        transaction.result.to = tronWeb.address.fromHex(tronWeb.address.toHex(to));
+        console.log("Response",transaction);
+        res.json({
+            status: true,
+            message: "Transaction details get successfully",
+            data: transaction,
+        });
+    } catch(err){
+        res.json({
+            status: false,
+            message: err.error,
+            data: {}
+        });
+    }
+}
+
 module.exports = {
     createAccount,
     getTronBalance,
@@ -381,5 +408,6 @@ module.exports = {
     checkTrxAddress,
     sendTrxProcess,
     getTrxTransaction,
-    getTrxConfirmedTransaction
+    getTrxConfirmedTransaction,
+    getTrxTransactionBlock
 }
