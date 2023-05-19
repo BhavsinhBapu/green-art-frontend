@@ -34,7 +34,7 @@ const Bannerdetails = ({
         {loggedin ? (
           <Navbar settings={customSettings} isLoggedIn={loggedin} />
         ) : (
-          <UnAuthNav logo={logo} />
+          <UnAuthNav />
         )}
         <div className="notFound-container">
           {/* <h1 className="">404</h1> */}
@@ -49,7 +49,7 @@ const Bannerdetails = ({
       {loggedin ? (
         <Navbar settings={customSettings} isLoggedIn={loggedin} />
       ) : (
-        <UnAuthNav logo={logo} />
+        <UnAuthNav />
       )}
       <div className="container mb-5 mt-5">
         <div className="section-wrapper-withHtml ">

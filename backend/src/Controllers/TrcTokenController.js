@@ -170,13 +170,13 @@ async function getTrc20LatestEvent(req, res)
         const getDecimal = powerOfTen(decimal);
 
         const tronGrid = new TronGrid(tronWeb);
-
+        
         var result = await tronGrid.contract.getEvents(contractAddress, {
-            only_confirmed: true,
-            event_name: "Transfer",
-            limit: 100,
-            // min_timestamp: min_timestamp,
-            order_by: "timestamp,asc"
+          only_confirmed: true,
+          event_name: "Transfer",
+          limit: 200,
+          // min_timestamp: min_timestamp,
+          order_by: "timestamp,desc",
         });
         let transactionData = [];
         if (result.data.length > 0) {

@@ -58,7 +58,7 @@ const Home: NextPage = ({
           {loggedin ? (
             <Navbar settings={customSettings} isLoggedIn={loggedin} />
           ) : (
-            <UnAuthNav logo={logo} />
+            <UnAuthNav />
           )}
           <>
             <Cover

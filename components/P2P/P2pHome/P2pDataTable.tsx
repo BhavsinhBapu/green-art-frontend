@@ -26,7 +26,7 @@ export const P2pDataTable = ({
             <table className="table">
               <thead>
                 <tr>
-                  <th scope="col">Advertisers (Completion reate)</th>
+                  <th scope="col">Advertisers</th>
                   <th scope="col">Price</th>
                   <th scope="col">Limit/Available</th>
                   {payment === true && <th scope="col">Payment</th>}
@@ -40,10 +40,7 @@ export const P2pDataTable = ({
                     <td>
                       <Link href={"/p2p/profile/" + item?.user_id}>
                         <div className="tableImg d-flex align-items-center">
-                          <img
-                            src="https://api-tradex.nftarttoken.xyz/images/avatars/yellow-hat.png"
-                            alt=""
-                          />
+                          <img src={item?.user?.photo} alt="" />
                           <h5>{item?.user?.nickname}</h5>
                         </div>
                       </Link>

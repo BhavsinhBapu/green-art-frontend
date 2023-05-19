@@ -9,7 +9,7 @@ export const SupportChat = ({
   setFile,
   message,
   col,
-}: any) => {
+}: any): JSX.Element => {
   // const messagesEndRef = useRef(null);
 
   const { user } = useSelector((state: RootState) => state.user);
