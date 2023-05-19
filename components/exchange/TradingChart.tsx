@@ -24,13 +24,12 @@ type MyProps = {
 };
 const mapStateToProps = (state: any) => {
   return {
-    reduxData: state, // Replace "reduxData" with the appropriate property name for your Redux data
+    reduxData: state, 
   };
 };
-const pair = localStorage.getItem("current_pair")?.replace("_", "/");
 class TVChartContainer extends React.Component<MyProps> {
   static defaultProps = {
-    symbol: `:${pair && pair}`,
+    symbol: ``,
     interval: "15",
     containerId: "tv_chart_container",
     libraryPath: "/static/charting_library/",
@@ -101,6 +100,10 @@ class TVChartContainer extends React.Component<MyProps> {
   //@ts-ignore
   constructor(props) {
     super(props);
+    console.log(props.exchange.currentPair, "props,props,props");
+    this.state = {
+      currentPair: props.exchange.currentPair, // Set the initial state using the currentPair from props
+    };
     //@ts-ignore
     this.ref = React.createRef();
   }
@@ -111,8 +114,7 @@ class TVChartContainer extends React.Component<MyProps> {
       width: 1400,
 
       //@ts-ignore
-      symbol: this.props.symbol,
-      style: 1,
+      symbol: `${this.state.currentPair.replace("_", "/")}`, // Use the currentPair from state      style: 1,
       theme: theme === "dark" ? "dark" : "light",
       //@ts-ignore
       datafeed: Datafeed,
@@ -183,10 +185,6 @@ class TVChartContainer extends React.Component<MyProps> {
   }
 
   render() {
-    //@ts-ignore
-    const { reduxData } = this.props;
-    const someValue = reduxData.someProperty;
-    console.log(reduxData, "exchange");
     return (
       <>
         <header className={styles.VersionHeader}></header>

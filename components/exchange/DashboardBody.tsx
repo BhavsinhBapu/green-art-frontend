@@ -29,6 +29,7 @@ const DashboardBody = () => {
 
   const { dashboard, OpenBookBuy, OpenBooksell, marketTrades, currentPair } =
     useSelector((state: RootState) => state.exchange);
+  const exchange = useSelector((state: RootState) => state.exchange);
   const { settings } = useSelector((state: RootState) => state.common);
 
   return (
@@ -44,49 +45,58 @@ const DashboardBody = () => {
                 onClick={() => {
                   setSelect(2);
                 }}
-                className="icon-center">
+                className="icon-center"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="none"
-                  className="css-3kwgah w-25">
+                  className="css-3kwgah w-25"
+                >
                   <path d="M4 4h7v16H4V4z" fill="#0ECB81"></path>
                   <path
                     d="M13 4h7v4h-7V4zm0 6h7v4h-7v-4zm7 6h-7v4h7v-4z"
-                    fill="currentColor"></path>
+                    fill="currentColor"
+                  ></path>
                 </svg>
               </h3>
               <h3
                 onClick={() => {
                   setSelect(1);
                 }}
-                className="icon-center">
+                className="icon-center"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="none"
-                  className="css-3kwgah  w-25">
+                  className="css-3kwgah  w-25"
+                >
                   <path d="M4 4h7v16H4V4z" fill="#F6465D"></path>
                   <path
                     d="M13 4h7v4h-7V4zm0 6h7v4h-7v-4zm7 6h-7v4h7v-4z"
-                    fill="currentColor"></path>
+                    fill="currentColor"
+                  ></path>
                 </svg>
               </h3>
               <h3
                 onClick={() => {
                   setSelect(3);
                 }}
-                className="icon-center">
+                className="icon-center"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="none"
-                  className="css-3kwgah w-25">
+                  className="css-3kwgah w-25"
+                >
                   <path d="M4 4h7v7H4V4z" fill="#F6465D"></path>
                   <path d="M4 13h7v7H4v-7z" fill="#0ECB81"></path>
                   <path
                     d="M13 4h7v4h-7V4zm0 6h7v4h-7v-4zm7 6h-7v4h7v-4z"
-                    fill="currentColor"></path>
+                    fill="currentColor"
+                  ></path>
                 </svg>
               </h3>
             </div>
@@ -117,7 +127,8 @@ const DashboardBody = () => {
                           )
                         ? "value-decrease"
                         : "value-same"
-                    }>
+                    }
+                  >
                     {parseFloat(
                       dashboard?.last_price_data[0]?.price
                         ? dashboard?.last_price_data[0]?.price
@@ -183,7 +194,8 @@ const DashboardBody = () => {
                           )
                         ? "value-decrease"
                         : "value-same"
-                    }>
+                    }
+                  >
                     {parseFloat(
                       dashboard?.last_price_data[0]?.price
                         ? dashboard?.last_price_data[0]?.price
@@ -252,7 +264,8 @@ const DashboardBody = () => {
                             )
                           ? "value-decrease"
                           : "value-same"
-                      }>
+                      }
+                    >
                       {parseFloat(
                         dashboard?.last_price_data
                           ? dashboard?.last_price_data[0]?.price
@@ -313,7 +326,8 @@ const DashboardBody = () => {
                             )
                           ? "value-decrease"
                           : "value-same"
-                      }>
+                      }
+                    >
                       0
                     </span>
                     <span className="value-previous">
@@ -334,6 +348,7 @@ const DashboardBody = () => {
               <TradingChart
                 //  @ts-ignore
                 coinpair={dashboard?.order_data?.exchange_coin_pair}
+                exchange={exchange}
               />
             )}
           </div>
