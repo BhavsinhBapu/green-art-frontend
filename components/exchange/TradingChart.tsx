@@ -102,7 +102,6 @@ class TVChartContainer extends React.Component<MyProps> {
   //@ts-ignore
   constructor(props) {
     super(props);
-    console.log(props.exchange.currentPair, "props,props,props");
     this.state = {
       currentPair: props.exchange.currentPair, // Set the initial state using the currentPair from props
     };

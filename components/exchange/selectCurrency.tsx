@@ -98,7 +98,7 @@ const SelectCurrency = () => {
                 await localStorage.setItem("trade_coin_id", row?.child_coin_id);
                 await localStorage.setItem("current_pair", row.coin_pair);
                 await dispatch(setCurrentPair(row.coin_pair));
-                router.reload();
+                // router.reload();
               }}
             >
               {parseFloat(row.last_price).toFixed(4)}
@@ -137,7 +137,7 @@ const SelectCurrency = () => {
                 await localStorage.setItem("trade_coin_id", row?.child_coin_id);
                 await localStorage.setItem("current_pair", row.coin_pair);
                 await dispatch(setCurrentPair(row.coin_pair));
-                router.reload();
+                // router.reload();
               }}
             >
               {parseFloat(row.price_change).toFixed(2)}%
@@ -152,7 +152,7 @@ const SelectCurrency = () => {
     if (dashboard?.pairs) {
       setPairs(dashboard.pairs);
     }
-  }, [dashboard]);
+  }, [dashboard?.pairs]);
   return (
     <div
       className="cp-user-buy-coin-content-area dropdown-menu"
