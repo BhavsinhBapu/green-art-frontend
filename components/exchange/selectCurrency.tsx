@@ -7,6 +7,7 @@ import { setCurrentPair } from "state/reducer/exchange";
 import { useRouter } from "next/router";
 import useTranslation from "next-translate/useTranslation";
 import DataTable from "react-data-table-component";
+import { setLoading } from "state/reducer/user";
 const SelectCurrency = () => {
   const router = useRouter();
   const [pairs, setPairs] = React.useState([]);
@@ -63,7 +64,7 @@ const SelectCurrency = () => {
                 await localStorage.setItem("trade_coin_id", row?.child_coin_id);
                 await localStorage.setItem("current_pair", row.coin_pair);
                 await dispatch(setCurrentPair(row.coin_pair));
-                router.reload();
+                // router.reload();
               }}
             >
               <span className="coin-name">{row?.coin_pair_name}</span>

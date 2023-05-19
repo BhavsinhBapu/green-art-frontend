@@ -53,6 +53,11 @@ const Dashboard: NextPage = () => {
     }
   }, [dashboard?.order_data?.base_coin_id]);
   useEffect(() => {
+    // Code to execute when currentPair changes
+    // You can perform any necessary actions here
+    // For example, fetch data for the new currentPair
+  }, [currentPair]);
+  useEffect(() => {
     if (socketCall === 0) {
       listenMessages(dispatch, user);
     }

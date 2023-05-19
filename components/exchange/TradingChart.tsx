@@ -18,15 +18,18 @@ function getLanguageFromURL() {
     ? null
     : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
+
 type MyProps = {
   coinpair: any;
   dispatch: any;
 };
+
 const mapStateToProps = (state: any) => {
   return {
-    reduxData: state, 
+    reduxData: state,
   };
 };
+
 class TVChartContainer extends React.Component<MyProps> {
   static defaultProps = {
     symbol: ``,
@@ -72,7 +75,6 @@ class TVChartContainer extends React.Component<MyProps> {
         "mainSeriesProperties.candleStyle.borderDownColor": "#dc3545",
         "mainSeriesProperties.candleStyle.wickUpColor": "#32d777",
         "mainSeriesProperties.candleStyle.wickDownColor": "#dc3545",
-        "mainSeriesProperties.candleStyle.barColorsOnPrevClose": false,
         "mainSeriesProperties.hollowCandleStyle.upColor": "#32d777",
         "mainSeriesProperties.hollowCandleStyle.downColor": "#dc3545",
         "mainSeriesProperties.hollowCandleStyle.drawWick": true,
@@ -114,7 +116,8 @@ class TVChartContainer extends React.Component<MyProps> {
       width: 1400,
 
       //@ts-ignore
-      symbol: `${this.state.currentPair.replace("_", "/")}`, // Use the currentPair from state      style: 1,
+      symbol: `${this.state?.currentPair?.replace("_", "/")}`, // Use the currentPair from state
+      style: 1,
       theme: theme === "dark" ? "dark" : "light",
       //@ts-ignore
       datafeed: Datafeed,
@@ -176,6 +179,80 @@ class TVChartContainer extends React.Component<MyProps> {
     this.chartInit(widgetOptions);
   }
 
+  componentDidUpdate(prevProps: MyProps) {
+    console.log(prevProps.coinpair, "prevProps.coinpairprevProps.coinpair");
+    const widgetOptions = {
+      height: 480,
+      width: 1400,
+
+      //@ts-ignore
+      symbol: `${this.state?.currentPair?.replace("_", "/")}`, // Use the currentPair from state
+      style: 1,
+      theme: theme === "dark" ? "dark" : "light",
+      //@ts-ignore
+      datafeed: Datafeed,
+      //@ts-ignore
+      interval: this.props.interval,
+      //@ts-ignore
+      container: this.ref.current,
+      //@ts-ignore
+      library_path: this.props.libraryPath,
+      //@ts-ignore
+      locale: getLanguageFromURL() || "en",
+      //@ts-ignore
+      charts_storage_url: this.props.chartsStorageUrl,
+      //@ts-ignore
+      charts_storage_api_version: this.props.chartsStorageApiVersion,
+      //@ts-ignore
+      client_id: this.props.clientId,
+      //@ts-ignore
+      user_id: this.props.userId,
+      //@ts-ignore
+      fullscreen: this.props.fullscreen,
+      //@ts-ignore
+      autosize: this.props.autosize,
+      //@ts-ignore
+      studies_overrides: this.props.studiesOverrides,
+      // drawings_access: { type: "black", tools: [{ name: "Regression Trend" }] },
+      //@ts-ignore
+      enabled_features: ENABLED_FEATURES,
+      //@ts-ignore
+      disabled_features: DISABLED_FEATURES,
+
+      //@ts-ignore
+      // overrides: getChartOverrides(this.props.theme),
+      custom_css_url: "css/style.css",
+      //@ts-ignore
+      time_frames: TIME_FRAMES,
+
+      //@ts-ignore
+      studies_overrides: {
+        "volume.volume.color.0": "#dc3545",
+        "volume.volume.color.1": "#32d777",
+        "volume.volume.transparency": 0,
+        "volume.volume ma.color": "#32d777",
+        "volume.volume ma.transparency": 0,
+        "volume.options.showStudyArguments": false,
+        "volume.options.showStudyTitles": false,
+        "volume.options.showStudyValues": false,
+        "volume.options.showLegend": false,
+        "volume.options.showStudyOutput": false,
+        "volume.options.showStudyOverlay": false,
+        "volume.options.showSeriesTitle": false,
+        "volume.options.showSeriesOHLC": false,
+        "volume.options.showBarChange": false,
+        "volume.options.showCountdown": false,
+      },
+      toolbar: false,
+    };
+    //@ts-ignore
+    this.chartInit(widgetOptions);
+    if (prevProps.coinpair !== this.props.coinpair) {
+      //@ts-ignore
+      this.setState({ currentPair: this.props.coinpair });
+    }
+  }
+
   componentWillUnmount() {
     if (this.tvWidget !== null) {
       //@ts-ignore
@@ -194,6 +271,7 @@ class TVChartContainer extends React.Component<MyProps> {
     );
   }
 }
+
 const ConnectedTVChartContainer = connect(mapStateToProps)(TVChartContainer);
 
 export { ConnectedTVChartContainer as TVChartContainer };
