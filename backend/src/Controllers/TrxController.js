@@ -376,7 +376,6 @@ async function getTrxTransactionBlock(req, res){
     try {
         const tronWeb = tronWebCall(req,res);
         const txId = req.body.transaction_hash ?? "trx_hash";
-        console.log("aaaaa",txId);
         const response = await tronWeb.getEventByTransactionID(txId);
         console.log(response);
         let transaction = response[0];
