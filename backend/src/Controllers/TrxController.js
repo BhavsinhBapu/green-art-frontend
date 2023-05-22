@@ -372,6 +372,41 @@ async function getTrxConfirmedTransaction(req, res) {
     }
 }
 
+async function getTrxTransactionBlock(req, res){
+    try {
+        const tronWeb = tronWebCall(req,res);
+        const txId = req.body.transaction_hash ?? "trx_hash";
+        const response = await tronWeb.getEventByTransactionID(txId);
+        
+        if (typeof response == 'object' && response.length > 0) {
+            let transaction = response[0];
+            let from = transaction.result.from; 
+            let to = transaction.result.to; 
+            transaction.result.from = tronWeb.address.fromHex(tronWeb.address.toHex(from));
+            transaction.result.to = tronWeb.address.fromHex(tronWeb.address.toHex(to));
+            
+            res.json({
+                status: true,
+                message: "Transaction details get successfully",
+                data: transaction,
+            });
+        }else{
+            res.json({
+                status: false,
+                message: "Transaction details not found",
+                data: {},
+            });
+        }
+        
+    } catch(err){console.log(err);
+        res.json({
+            status: false,
+            message: err.error ?? "Something went wrong with node api",
+            data: {}
+        });
+    }
+}
+
 module.exports = {
     createAccount,
     getTronBalance,
@@ -381,5 +416,6 @@ module.exports = {
     checkTrxAddress,
     sendTrxProcess,
     getTrxTransaction,
-    getTrxConfirmedTransaction
+    getTrxConfirmedTransaction,
+    getTrxTransactionBlock
 }
