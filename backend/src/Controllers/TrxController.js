@@ -377,14 +377,14 @@ async function getTrxTransactionBlock(req, res){
         const tronWeb = tronWebCall(req,res);
         const txId = req.body.transaction_hash ?? "trx_hash";
         const response = await tronWeb.getEventByTransactionID(txId);
-        console.log(response, typeof response);
+        
         if (typeof response == 'object' && response.length > 0) {
             let transaction = response[0];
             let from = transaction.result.from; 
             let to = transaction.result.to; 
             transaction.result.from = tronWeb.address.fromHex(tronWeb.address.toHex(from));
             transaction.result.to = tronWeb.address.fromHex(tronWeb.address.toHex(to));
-            console.log("Response",transaction);
+            
             res.json({
                 status: true,
                 message: "Transaction details get successfully",
