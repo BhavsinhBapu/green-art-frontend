@@ -31,11 +31,11 @@ const DashboardBody = () => {
     useSelector((state: RootState) => state.exchange);
   const exchange = useSelector((state: RootState) => state.exchange);
   const { settings } = useSelector((state: RootState) => state.common);
-//  useEffect(() => {
-//    // Code to execute when currentPair changes
-//    // You can perform any necessary actions here
-//    // For example, fetch data for the new currentPair
-//  }, [currentPair]);
+  //  useEffect(() => {
+  //    // Code to execute when currentPair changes
+  //    // You can perform any necessary actions here
+  //    // For example, fetch data for the new currentPair
+  //  }, [currentPair]);
   return (
     <>
       <div className="col-xl-3">
@@ -348,13 +348,7 @@ const DashboardBody = () => {
       <div className="col-xl-6">
         <div className="cp-user-buy-coin-content-area">
           <div className="card cp-user-custom-card">
-            {currentPair && (
-              <TradingChart
-                //  @ts-ignore
-                coinpair={dashboard?.order_data?.exchange_coin_pair}
-                exchange={exchange}
-              />
-            )}
+            {currentPair && <TradingChart />}
           </div>
         </div>
         {parseInt(settings?.exchange_layout_view) === EXCHANGE_LAYOUT_ONE && (

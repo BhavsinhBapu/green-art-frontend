@@ -1,5 +1,8 @@
 import { getChartData, getChartDataWithoutTime } from "service/trading-chart";
+
 const history: any = {};
+let previousBase: string | null = null;
+let previousTrade: string | null = null;
 
 export default {
   history: history,
@@ -9,7 +12,15 @@ export default {
   getBars: function (symbolInfo, resolution, from, to, first, limit) {
     const base = localStorage.getItem("base_coin_id");
     const trade = localStorage.getItem("trade_coin_id");
-    if (this.hitted === false) {
+
+    if (base !== previousBase || trade !== previousTrade) {
+      // Reset the 'hitted' flag if base or trade has changed
+      this.hitted = false;
+      previousBase = base;
+      previousTrade = trade;
+    }
+
+    if (!this.hitted) {
       this.hitted = true;
       return getChartData(15, from, to, base, trade).then((data: any) => {
         if (data.data.data.length) {
@@ -37,11 +48,6 @@ export default {
           if (data.data.data.length) {
             const myBars = data.data.data;
             let klines4800 = [...myBars, ...myBars];
-            // if (klines4800.length < 320) {
-            //   for (let i = 0; i < 320; i++) {
-            //     klines4800 = [...klines4800, ...myBars];
-            //   }
-            // }
             const bars = klines4800.map((el: any) => ({
               time: el.time * 1000,
               low: parseFloat(el.low),

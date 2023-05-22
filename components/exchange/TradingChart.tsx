@@ -8,6 +8,8 @@ import {
   ENABLED_FEATURES,
   TIME_FRAMES,
 } from "./api/chartConfig";
+import { RootState } from "state/store";
+import { useSelector } from "react-redux";
 const theme = localStorage.getItem("theme");
 
 function getLanguageFromURL() {
@@ -18,19 +20,15 @@ function getLanguageFromURL() {
     : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
-type Props = {
-  coinpair: any;
-};
-
-export const TVChartContainer: React.FC<Props> = ({ coinpair }) => {
+export const TVChartContainer: React.FC = () => {
   const ref = useRef(null);
-  let tvWidget = null;
-
+  let tvWidget: any = null;
+  const { currentPair } = useSelector((state: RootState) => state.exchange);
   useEffect(() => {
     const widgetOptions = {
       height: 480,
       width: 1400,
-      symbol: `${coinpair?.replace("_", "/")}`,
+      symbol: `${currentPair?.replace("_", "/")}`,
       style: 1,
       theme: theme === "dark" ? "dark" : "light",
       datafeed: Datafeed,
@@ -59,7 +57,7 @@ export const TVChartContainer: React.FC<Props> = ({ coinpair }) => {
       toolbar: false,
     };
 
-    const chartInit = (config) => {
+    const chartInit = (config: any) => {
       const widgetInstance = new widget(config);
       tvWidget = widgetInstance;
       tvWidget.onChartReady(() => {
@@ -106,7 +104,7 @@ export const TVChartContainer: React.FC<Props> = ({ coinpair }) => {
         tvWidget = null;
       }
     };
-  }, [coinpair]);
+  }, [currentPair]);
 
   return (
     <>
@@ -115,5 +113,3 @@ export const TVChartContainer: React.FC<Props> = ({ coinpair }) => {
     </>
   );
 };
-
-
