@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import useTranslation from "next-translate/useTranslation";
 import DataTable from "react-data-table-component";
 import { setLoading } from "state/reducer/user";
+import { unlistenAllChannels } from "state/actions/exchange";
 const SelectCurrency = () => {
   const router = useRouter();
   const [pairs, setPairs] = React.useState([]);
@@ -60,6 +61,7 @@ const SelectCurrency = () => {
           >
             <div
               onClick={async () => {
+                await unlistenAllChannels();
                 await localStorage.setItem("base_coin_id", row?.parent_coin_id);
                 await localStorage.setItem("trade_coin_id", row?.child_coin_id);
                 await localStorage.setItem("current_pair", row.coin_pair);
@@ -94,6 +96,7 @@ const SelectCurrency = () => {
             <span
               className="text-center w-40 text-white"
               onClick={async () => {
+                await unlistenAllChannels();
                 await localStorage.setItem("base_coin_id", row?.parent_coin_id);
                 await localStorage.setItem("trade_coin_id", row?.child_coin_id);
                 await localStorage.setItem("current_pair", row.coin_pair);
@@ -133,6 +136,7 @@ const SelectCurrency = () => {
                   : "text-danger"
               }
               onClick={async () => {
+                await unlistenAllChannels();
                 await localStorage.setItem("base_coin_id", row?.parent_coin_id);
                 await localStorage.setItem("trade_coin_id", row?.child_coin_id);
                 await localStorage.setItem("current_pair", row.coin_pair);

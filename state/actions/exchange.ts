@@ -40,7 +40,40 @@ export const getDashboardData = (pair: string) => async (dispatch: any) => {
   const response = await appDashboardData(pair);
   dispatch(setDashboard(response));
 };
+export function unlistenAllChannels() {
+  //@ts-ignore
+  if (window.Echo) {
+    //@ts-ignore
+    window.Echo.leaveChannel(); // Leave the currently subscribed channel
+    //@ts-ignore
+    window.Echo.leave(
+      `trade-info-${localStorage.getItem(
+        "base_coin_id"
+      )}-${localStorage.getItem("trade_coin_id")}`
+    );
+    //@ts-ignore
+    window.Echo.leave(
+      `dashboard-${localStorage.getItem("base_coin_id")}-${localStorage.getItem(
+        "trade_coin_id"
+      )}`
+    );
+    //@ts-ignore
+    window.Echo.leave(
+      `dashboard-${localStorage.getItem("base_coin_id")}-${localStorage.getItem(
+        "trade_coin_id"
+      )}.process-${localStorage.getItem("user_id")}`
+    );
+    //@ts-ignore
+    window.Echo.leave(
+      `dashboard-${localStorage.getItem("base_coin_id")}-${localStorage.getItem(
+        "trade_coin_id"
+      )}.order_place_${localStorage.getItem("user_id")}`
+    );
+  }
+}
+
 export async function listenMessages(dispatch: any, user: any) {
+  console.log("CALLUING");
   //@ts-ignore
   window.Pusher = Pusher;
   //@ts-ignore

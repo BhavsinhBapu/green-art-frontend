@@ -26,16 +26,10 @@ const TradingChart = dynamic(
 const DashboardBody = () => {
   const { t } = useTranslation("common");
   const [select, setSelect] = React.useState(3);
-
   const { dashboard, OpenBookBuy, OpenBooksell, marketTrades, currentPair } =
     useSelector((state: RootState) => state.exchange);
-  const exchange = useSelector((state: RootState) => state.exchange);
   const { settings } = useSelector((state: RootState) => state.common);
-  //  useEffect(() => {
-  //    // Code to execute when currentPair changes
-  //    // You can perform any necessary actions here
-  //    // For example, fetch data for the new currentPair
-  //  }, [currentPair]);
+
   return (
     <>
       <div className="col-xl-3">

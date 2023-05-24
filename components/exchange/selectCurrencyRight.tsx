@@ -7,6 +7,7 @@ import { setCurrentPair } from "state/reducer/exchange";
 import { useRouter } from "next/router";
 import useTranslation from "next-translate/useTranslation";
 import DataTable from "react-data-table-component";
+import { unlistenAllChannels } from "state/actions/exchange";
 const SelectCurrencyRight = () => {
   const router = useRouter();
   const [pairs, setPairs] = React.useState([]);
@@ -59,6 +60,7 @@ const SelectCurrencyRight = () => {
           >
             <div
               onClick={async () => {
+                await unlistenAllChannels();
                 await localStorage.setItem("base_coin_id", row?.parent_coin_id);
                 await localStorage.setItem("trade_coin_id", row?.child_coin_id);
                 await localStorage.setItem("current_pair", row.coin_pair);
@@ -70,6 +72,7 @@ const SelectCurrencyRight = () => {
               <span
                 className=""
                 onClick={async () => {
+                  await unlistenAllChannels();
                   await localStorage.setItem(
                     "base_coin_id",
                     row?.parent_coin_id
@@ -89,6 +92,8 @@ const SelectCurrencyRight = () => {
               <span
                 className="coin-name"
                 onClick={async () => {
+                  await unlistenAllChannels();
+
                   await localStorage.setItem(
                     "base_coin_id",
                     row?.parent_coin_id
@@ -131,6 +136,7 @@ const SelectCurrencyRight = () => {
             <span
               className="text-center w-40"
               onClick={async () => {
+                await unlistenAllChannels();
                 await localStorage.setItem("base_coin_id", row?.parent_coin_id);
                 await localStorage.setItem("trade_coin_id", row?.child_coin_id);
                 await localStorage.setItem("current_pair", row.coin_pair);
@@ -170,6 +176,7 @@ const SelectCurrencyRight = () => {
                   : "text-danger"
               }
               onClick={async () => {
+                await unlistenAllChannels();
                 await localStorage.setItem("base_coin_id", row?.parent_coin_id);
                 await localStorage.setItem("trade_coin_id", row?.child_coin_id);
                 await localStorage.setItem("current_pair", row.coin_pair);

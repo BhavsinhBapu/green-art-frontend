@@ -9,7 +9,8 @@ import {
   TIME_FRAMES,
 } from "./api/chartConfig";
 import { RootState } from "state/store";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { listenMessages } from "state/actions/exchange";
 const theme = localStorage.getItem("theme");
 
 function getLanguageFromURL() {
@@ -19,9 +20,13 @@ function getLanguageFromURL() {
     ? null
     : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
+let socketCall = 0;
 
 export const TVChartContainer: React.FC = () => {
   const ref = useRef(null);
+  const { isLoggedIn, user } = useSelector((state: RootState) => state.user);
+  const dispatch = useDispatch();
+
   let tvWidget: any = null;
   const { currentPair } = useSelector((state: RootState) => state.exchange);
   useEffect(() => {
@@ -42,7 +47,23 @@ export const TVChartContainer: React.FC = () => {
       user_id: "public_user_id",
       fullscreen: false,
       autosize: true,
-      studies_overrides: {},
+      studies_overrides: {
+        "volume.volume.color.0": "#dc3545",
+        "volume.volume.color.1": "#32d777",
+        "volume.volume.transparency": 0,
+        "volume.volume ma.color": "#32d777",
+        "volume.volume ma.transparency": 0,
+        "volume.options.showStudyArguments": false,
+        "volume.options.showStudyTitles": false,
+        "volume.options.showStudyValues": false,
+        "volume.options.showLegend": false,
+        "volume.options.showStudyOutput": false,
+        "volume.options.showStudyOverlay": false,
+        "volume.options.showSeriesTitle": false,
+        "volume.options.showSeriesOHLC": false,
+        "volume.options.showBarChange": false,
+        "volume.options.showCountdown": false,
+      },
       overrides: {
         "mainSeriesProperties.candleStyle.upColor": "#ffffff",
         "mainSeriesProperties.candleStyle.downColor": "#000000",
@@ -104,6 +125,9 @@ export const TVChartContainer: React.FC = () => {
         tvWidget = null;
       }
     };
+  }, [currentPair]);
+  useEffect(() => {
+    listenMessages(dispatch, user);
   }, [currentPair]);
 
   return (
