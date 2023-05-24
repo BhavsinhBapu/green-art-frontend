@@ -3,6 +3,7 @@ import { getChartData, getChartDataWithoutTime } from "service/trading-chart";
 const history: any = {};
 let previousBase: string | null = null;
 let previousTrade: string | null = null;
+let previousURL: string | null = null;
 
 export default {
   history: history,
@@ -13,11 +14,18 @@ export default {
     const base = localStorage.getItem("base_coin_id");
     const trade = localStorage.getItem("trade_coin_id");
 
-    if (base !== previousBase || trade !== previousTrade) {
-      // Reset the 'hitted' flag if base or trade has changed
+    const currentURL = window.location.href;
+
+    if (
+      base !== previousBase ||
+      trade !== previousTrade ||
+      currentURL !== previousURL
+    ) {
+      // Reset the 'hitted' flag if base, trade, or URL has changed
       this.hitted = false;
       previousBase = base;
       previousTrade = trade;
+      previousURL = currentURL;
     }
 
     if (!this.hitted) {
