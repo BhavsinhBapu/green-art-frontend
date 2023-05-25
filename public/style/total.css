@@ -5791,6 +5791,7 @@ select:-webkit-autofill:focus {
   margin-right: 5px;
   text-align: center;
   font-size: 17px;
+  margin-bottom: 5px;
 }
 
 .secendary-table tbody tr td .market.decree {
@@ -9495,7 +9496,9 @@ a.paginate_button.paginate-number.text-warning {
 
 .blance-text {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
   /* justify-content: center;
 }
 .dataTables_wrapper .dataTables_paginate .paginate_button.previous,
