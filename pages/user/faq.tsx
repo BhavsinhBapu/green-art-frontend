@@ -22,13 +22,15 @@ const Index: NextPage = ({ faq }: any) => {
         <div
           className="alert alert-success alert-dismissible fade show d-none"
           role="alert"
-          id="web_socket_notification">
+          id="web_socket_notification"
+        >
           <span id="socket_message" />
           <button
             type="button"
             className="close"
             data-dismiss="alert"
-            aria-label="Close">
+            aria-label="Close"
+          >
             <span aria-hidden="true">×</span>
           </button>
         </div>
@@ -38,14 +40,16 @@ const Index: NextPage = ({ faq }: any) => {
           tabIndex={-1}
           role="dialog"
           aria-labelledby="exampleModalCenterTitle"
-          aria-hidden="true">
+          aria-hidden="true"
+        >
           <div className="modal-dialog modal-dialog-centered" role="document">
             <div className="modal-content">
               <button
                 type="button"
                 className="close"
                 data-dismiss="modal"
-                aria-label="Close"></button>
+                aria-label="Close"
+              ></button>
               <div className="text-center">
                 <img
                   src="/add-pockaet-vector.svg"
@@ -58,7 +62,8 @@ const Index: NextPage = ({ faq }: any) => {
                 <a
                   id="confirm-link"
                   href="#"
-                  className="btn btn-block cp-user-move-btn">
+                  className="btn btn-block cp-user-move-btn"
+                >
                   {t("Confirm")}
                 </a>
               </div>
@@ -71,26 +76,29 @@ const Index: NextPage = ({ faq }: any) => {
           </div>
         </div>
         <div className=" mb-25">
-          <div className="section-wrapper boxShadow">
+          <div className="section-wrapper">
             <div className="row">
               <div className="col-lg-6">
                 <div className="accordion" id="accordionExample">
                   {faq?.data?.map((item: any, index: number) => (
                     <div
                       key={`faq${index}`}
-                      className="cp-user-referral-content">
+                      className="cp-user-referral-content"
+                    >
                       <div className="card">
                         <div
                           className="card-header"
                           id="headingOne"
-                          onClick={() => handleActive(index + 1)}>
+                          onClick={() => handleActive(index + 1)}
+                        >
                           <h5 className="mb-0 header-align">
                             <button
                               className="btn btn-link collapsed"
                               data-toggle="collapse"
                               data-target={`#collapseOne1${index + 1}`}
                               aria-expanded="true"
-                              aria-controls="collapseOne">
+                              aria-controls="collapseOne"
+                            >
                               {item.question}
                             </button>
                             <i
@@ -98,7 +106,8 @@ const Index: NextPage = ({ faq }: any) => {
                                 active === index + 1
                                   ? "fa-caret-up"
                                   : "fa-caret-down"
-                              } mright-5`}></i>
+                              } mright-5`}
+                            ></i>
                           </h5>
                         </div>
 
@@ -107,7 +116,8 @@ const Index: NextPage = ({ faq }: any) => {
                             id={`collapseOne1${index + 1}`}
                             className="collapse show"
                             aria-labelledby="headingOne"
-                            data-parent="#accordion">
+                            data-parent="#accordion"
+                          >
                             <div className="card-body">{item.answer}</div>
                           </div>
                         )}

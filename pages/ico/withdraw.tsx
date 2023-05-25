@@ -75,7 +75,7 @@ const Withdraw = () => {
             </div>
             <div className="asset-balances-area cstm-loader-area">
               <div className="asset-balances-left">
-                <div className="section-wrapper boxShadow">
+                <div className="section-wrapper">
                   <div className="row p-3 p-md-0">
                     <div className="col-md-4 col-sm-6">
                       <div className="boxShadow text-center py-5 px-4 shadow-sm">
@@ -169,7 +169,8 @@ const Withdraw = () => {
                                 } else {
                                   setCurrencyCoin(data?.coins);
                                 }
-                              }}>
+                              }}
+                            >
                               <option value="">
                                 {t("Select Currency Type")}
                               </option>
@@ -190,7 +191,8 @@ const Withdraw = () => {
                               required
                               onChange={(e) => {
                                 setSelectedCurrency(e.target.value);
-                              }}>
+                              }}
+                            >
                               <option value="">{t("Select currency")}</option>
                               {currencyFiat.map((item: any, index: any) => (
                                 <option value={item.code} key={index}>
@@ -213,7 +215,8 @@ const Withdraw = () => {
                               required
                               onChange={(e) => {
                                 setSelectedCurrency(e.target.value);
-                              }}>
+                              }}
+                            >
                               <option value="">{t("Select currency")}</option>
                               {currencyCoin?.map((item: any, index: any) => (
                                 <option value={item.coin_type} key={index}>

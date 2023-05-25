@@ -87,7 +87,7 @@ const Deposit = () => {
               <div className="asset-balances-area">
                 <div className=" bank-section">
                   <div className="">
-                    <div className="deposit-conatiner boxShadow">
+                    <div className="deposit-conatiner">
                       {selectedMethod.method && (
                         <div className="cp-user-title">
                           <h4>{t("Select method")}</h4>

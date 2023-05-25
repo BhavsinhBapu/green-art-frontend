@@ -80,7 +80,7 @@ const List = () => {
                 <TableLoading />
               ) : (
                 <div className="asset-balances-left">
-                  <div className="section-wrapper boxShadow">
+                  <div className="section-wrapper">
                     <div className="table-responsive tableScroll">
                       <div
                         id="assetBalances_wrapper"

@@ -28,7 +28,7 @@ const Profile: NextPage = ({ user, profileActivity }: any) => {
               </div>
             </div>
             <div className="profile-area">
-              <div className="section-wrapper boxShadow">
+              <div className="section-wrapper">
                 <div className="user-profile">
                   <div className="row">
                     <div className="col-lg-4 col-md-5">
@@ -38,7 +38,8 @@ const Profile: NextPage = ({ user, profileActivity }: any) => {
                             user?.online_status?.online_status
                               ? "userProfileActive"
                               : "userProfileDeactive"
-                          } user-thumbnail`}>
+                          } user-thumbnail`}
+                        >
                           <img
                             src={user?.photo}
                             className="img-fluid"
@@ -67,9 +68,7 @@ const Profile: NextPage = ({ user, profileActivity }: any) => {
                             <span>{t("NickName")}</span>
                             <span className="cp-user-dot">:</span>
                             <span>
-                              {user?.nickname
-                                ? user?.nickname
-                                : "no name"}
+                              {user?.nickname ? user?.nickname : "no name"}
                             </span>
                           </li>
                           <li>
