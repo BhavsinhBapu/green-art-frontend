@@ -179,6 +179,7 @@ export const DynamicSubmittedFormListAction = async (
   column_name: string,
   order_by: string
 ) => {
+  setProcessing(true)
   const response = await DynamicSubmittedFormList(
     per_page,
     page,
@@ -190,6 +191,8 @@ export const DynamicSubmittedFormListAction = async (
     setReport(response.data.data);
     setStillHistory(response.data);
   }
+  setProcessing(false);
+
 };
 
 export const launchpadCreateUpdateTokenAction = async (

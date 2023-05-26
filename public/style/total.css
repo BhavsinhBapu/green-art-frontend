@@ -410,7 +410,7 @@ p {
   background: var(--main-background-color);
   color: var(--text-primary-color-2);
   border: 1px solid var(--border-color-2);
-  border: 1px solid var(--border-color-1);
+  border: 1px solid var(--border-color);
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
   border-radius: 0;
   padding: 15px;
@@ -1095,7 +1095,7 @@ table.dataTable.dtr-inline.collapsed
 
 .cp-user-buy-coin-content-area p {
   color: var(--text-primary-color-2);
-  border-bottom: 1px dashed var(--border-color-1);
+  border-bottom: 1px dashed var(--border-color);
   padding-bottom: 50px;
   margin-bottom: 50px;
   font-size: 16px;
@@ -1104,7 +1104,7 @@ table.dataTable.dtr-inline.collapsed
 .cp-user-coin-info .form-control {
   height: 60px;
   border-radius: 3px;
-  border: 1px solid var(--border-color-1);
+  border: 1px solid var(--border-color);
   background: var(--card-background-color);
   box-shadow: none;
   color: #b1b5c3;
@@ -1238,7 +1238,7 @@ table.dataTable.dtr-inline.collapsed
 .cp-user-copy .input-group .form-control,
 .cp-user-copy .input-group .form-control:active,
 .cp-user-copy .input-group .form-control:focus {
-  border: 1px solid var(--border-color-1);
+  border: 1px solid var(--border-color);
   box-shadow: none;
   border-radius: 0 24px 24px 0;
 }
@@ -1581,7 +1581,7 @@ tr {
 
 .cp-user-withdraw-card .cp-user-card-header-area,
 .cp-user-deposit-card .cp-user-card-header-area {
-  border-bottom: 1px dashed var(--border-color-1);
+  border-bottom: 1px dashed var(--border-color);
   padding-top: 10px;
   padding-bottom: 30px;
   margin-bottom: 40px;
@@ -2021,7 +2021,7 @@ a#submit {
 }
 
 .cp-user-profile-tab-content .cp-user-custom-card .cp-user-profile-info ul li {
-  border-bottom: 1px solid var(--border-color-1);
+  border-bottom: 1px solid var(--border-color);
   padding: 20px 0;
   color: var(--text-primary-color-2);
   font-size: 16px;
@@ -2050,7 +2050,7 @@ a#submit {
   .cp-user-profile-info
   ul
   li:first-child {
-  border-top: 1px solid var(--border-color-1);
+  border-top: 1px solid var(--border-color);
 }
 
 .cp-user-profile-tab-content
@@ -2088,7 +2088,7 @@ a#submit {
   display: block;
   margin: auto;
   background: var(--card-background-color);
-  border: 4px solid var(--border-color-1);
+  border: 4px solid var(--border-color);
   position: relative;
   overflow: hidden;
   box-shadow: 0px 64px 64px -48px rgb(15 15 15 / 10%);
@@ -2142,7 +2142,7 @@ a#submit {
 
 .cp-user-profile-info .form-control {
   background: transparent;
-  border: 1px solid var(--border-color-1);
+  border: 1px solid var(--border-color);
   border-radius: 12px;
   padding: 5px 15px;
   height: 55px;
@@ -2491,7 +2491,7 @@ a#submit {
   height: 172px;
   width: 172px;
   border-radius: 10px;
-  border: 1px solid var(--border-color-1);
+  border: 1px solid var(--border-color);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2668,7 +2668,7 @@ a#submit {
 
 .cp-user-referral-content .form-control {
   background: transparent;
-  border: 1px solid var(--border-color-1);
+  border: 1px solid var(--border-color);
   border-radius: 12px;
   text-align: center;
   color: var(--text-primary-color-2);
@@ -2786,12 +2786,12 @@ a#submit {
 }
 
 .cp-user-myreferral table.dataTable thead th {
-  border-top: 1px solid var(--border-color-1);
+  border-top: 1px solid var(--border-color);
 }
 
 .cp-user-myreferral table.dataTable thead th,
 .cp-user-myreferral table.dataTable tbody td {
-  border-bottom: 1px solid var(--border-color-1);
+  border-bottom: 1px solid var(--border-color);
 }
 
 /*
@@ -3442,7 +3442,7 @@ div.dataTables_wrapper div.dataTables_filter {
 
 .dark-modal.modal-content .modal-header {
   background: var(--main-background-color);
-  border-bottom: 1px solid var(--border-color-1);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .dark-modal.modal-content .modal-header button span,
@@ -3799,7 +3799,7 @@ body._toggle .swipe-area-overlay:before {
   align-items: center;
   width: 96%;
   color: var(--text-primary-color);
-  border: 1px solid var(--border-color-1);
+  border: 1px solid var(--border-color);
   height: 60px;
   padding-left: 20px;
 }
@@ -3807,7 +3807,7 @@ body._toggle .swipe-area-overlay:before {
 .coin-menu ul li {
   border: 0;
   padding-left: 10px;
-  border-bottom: 1px solid var(--border-color-1);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .coin-menu .countries-name {
@@ -4434,7 +4434,7 @@ div.dataTables_wrapper div.dataTables_length label {
 .dropify-wrapper {
   color: var(--text-primary-color-2);
   background-color: #f3f3f3;
-  border: 2px solid var(--border-color-1);
+  border: 2px solid var(--border-color);
 }
 
 .dropify-wrapper:hover {
@@ -5211,11 +5211,11 @@ select:-webkit-autofill:focus {
 }
 
 .modal-header {
-  border-bottom: 1px solid var(--border-color-1);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .modal-footer {
-  border-top: 1px solid var(--border-color-1);
+  border-top: 1px solid var(--border-color);
 }
 
 .btn {
@@ -5459,7 +5459,7 @@ select:-webkit-autofill:focus {
 
 .section-wrapper {
  background: var(--card-background-color);
-    padding: 36px 253px;
+    padding: 36px ;
     display: flex;
     flex-direction: column;
     /* border: 1px solid var(--border-color); */
@@ -5507,11 +5507,11 @@ select:-webkit-autofill:focus {
   width: 250px;
   background: var(--card-background-color);
   /* border-radius: 5px; */
-  min-height: 100%;
   min-width: 250px;
   box-shadow: var(--box-shadow-color);
   /* box-shadow: var(--box-shadow-color); */
   border-right: 1px solid var(--border-color);
+  min-height: 99vh !important;
 }
 
 .gZWIKX {
@@ -10239,7 +10239,7 @@ label {
 
 .form-control {
   background: var(--card-background-color);
-  border: 1px solid var(--border-color-1);
+  border: 1px solid var(--border-color);
   box-shadow: none;
   color: var(--text-primary-color-4);
 }
@@ -11144,7 +11144,7 @@ input[type="number"] {
   border-radius: 8px;
   /* box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px; */
   border: 1px solid;
-  border-color: var(--border-color-1);
+  border-color: var(--border-color);
   cursor: pointer;
 }
 
@@ -11959,7 +11959,7 @@ input[type="number"] {
     ),
     url("https://cdn.pixabay.com/photo/2017/06/15/07/41/yellow-2404380_960_720.jpg")
       no-repeat;
-  background-color: #cccccc;
+  background-color: var(--main-background-color);
   min-height: 400px;
   background-position: center;
   background-repeat: no-repeat;
@@ -12074,7 +12074,7 @@ input[type="number"] {
   border-radius: 8px;
   /* box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px; */
   border: 1px solid;
-  border-color: var(--border-color-1);
+  border-color: var(--border-color);
   cursor: pointer;
 }
 
@@ -12691,7 +12691,7 @@ input[type="number"] {
   padding: 0;
   justify-content: center;
   margin: 0 auto;
-  border: 1px solid var(--border-color-1);
+  border: 1px solid var(--border-color);
 }
 
 .input-copy .cp-button {
@@ -13163,7 +13163,7 @@ input[type="number"] {
 textarea.apply-file-input {
   width: 100%;
   height: 200px;
-  border: 1px solid var(--border-color-1);
+  border: 1px solid var(--border-color);
 }
 
 .radio-inline {
@@ -13199,11 +13199,10 @@ textarea.apply-file-input {
 
 .ico-tokenCreate {
   margin: 20px 0px 50px 0px;
-  /* box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; */
   padding: 50px;
   margin: 0px 0px 50px 0px;
-  /* box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; */
   padding: 15px;
+  background: var(--card-background-color);
 }
 
 .bank-table-header {
@@ -13227,7 +13226,7 @@ textarea.apply-file-input {
 
 .ico-input-box {
   width: 100%;
-  background: var(--main-background-color);
+  background: var(--card-background-color);
   border: 1px solid var(--border-color) !important;
   padding: 10px 10px;
   border-radius: 5px;
@@ -13344,7 +13343,7 @@ label.ico-label-box {
   justify-content: space-between;
   padding: 0px;
   align-items: center;
-  border: 1px solid var(--border-color-1);
+  border: 1px solid var(--border-color);
 }
 
 input#msgFile {
@@ -13531,7 +13530,7 @@ label.upload-file-btn.press-enter {
 
 .sub_title {
   border-radius: 10px 10px 0px 0px;
-  border: 1px solid var(--border-color-1);
+  border: 1px solid var(--border-color);
   padding: 10px;
 }
 
@@ -13546,7 +13545,7 @@ label.upload-file-btn.press-enter {
 
 .article_card {
   border-radius: 10px 10px 0px 0px;
-  border: 1px solid var(--border-color-1);
+  border: 1px solid var(--border-color);
   padding: 10px;
   height: 310px;
   overflow: hidden;
@@ -13579,12 +13578,12 @@ label.upload-file-btn.press-enter {
 
 .chat_text {
   background-color: var(--main-background-color);
-  border: 1px solid var(--border-color-1) !important;
+  border: 1px solid var(--border-color) !important;
   border-radius: 8px;
   padding: 8px;
   margin-left: 7px;
   background-color: var(--main-background-color);
-  border: 1px solid var(--border-color-1) !important;
+  border: 1px solid var(--border-color) !important;
   border-radius: 8px;
   padding: 8px;
   margin-left: 7px;
@@ -13597,7 +13596,7 @@ label.upload-file-btn.press-enter {
 }
 
 .wallet-border-history {
-  border: 1px solid var(--border-color-1);
+  border: 1px solid var(--border-color);
   border-radius: 8px !important;
   margin-bottom: 40px;
 }
@@ -13630,7 +13629,7 @@ label.upload-file-btn.press-enter {
 
 .chat_btn {
   padding: 5px 12px !important;
-  border: 1px solid var(--border-color-1) !important;
+  border: 1px solid var(--border-color) !important;
   background: transparent;
   color: var(--text-primary-color-4) !important;
 }
@@ -13644,7 +13643,7 @@ label.upload-file-btn.press-enter {
 .login_bg {
   background-color: var(--main-background-color) !important;
   width: 40%;
-  border: 3px solid var(--border-color-1);
+  border: 3px solid var(--border-color);
   border-radius: 12px;
 }
 
@@ -13756,7 +13755,7 @@ label.upload-file-btn.press-enter {
 }
 
 .support-left-user {
-  border: 1px solid var(--border-color-1);
+  border: 1px solid var(--border-color);
   border-radius: 4px;
 }
 
@@ -13765,7 +13764,7 @@ label.upload-file-btn.press-enter {
   padding: 8px 14px;
   margin-top: 5px;
   color: var(--font-color);
-  border-left: 3px solid var(--border-color-1);
+  border-left: 3px solid var(--border-color);
 }
 
 .user-item-list li:hover {
@@ -13799,13 +13798,13 @@ label.upload-file-btn.press-enter {
 }
 
 .search-field {
-  border: 1px solid var(--border-color-1);
+  border: 1px solid var(--border-color);
   background: transparent;
   color: var(--font-color);
 }
 
 .btn_ticket_search {
-  border: 1px solid var(--border-color-1);
+  border: 1px solid var(--border-color);
   color: var(--font-color) !important;
   background: transparent;
 }
@@ -13841,18 +13840,18 @@ label.upload-file-btn.press-enter {
 }
 
 select {
-  border: 1px solid var(--border-color-1) !important;
+  border: 1px solid var(--border-color) !important;
   color: var(--font-color) !important;
 }
 
 input {
-  border: 1px solid var(--border-color-1) !important;
+  border: 1px solid var(--border-color) !important;
   color: var(--text-primary-color-4);
 }
 
 .chat-side-info {
   padding: 5px;
-  border: 1px solid var(--border-color-1) !important;
+  border: 1px solid var(--border-color) !important;
 }
 
 .chat-side-info input {
@@ -13873,12 +13872,12 @@ input {
 }
 
 .ticket_create_box {
-  border: 1px solid var(--border-color-1);
+  border: 1px solid var(--border-color);
 }
 
 .custom_file_uploder {
   background-color: transparent;
-  border: 1px solid var(--border-color-1);
+  border: 1px solid var(--border-color);
 }
 
 .top_search button {
@@ -14130,7 +14129,7 @@ input {
   padding: 8px;
   border-radius: 5px;
   background-color: var(--main-background-color);
-  border: 2px solid var(--border-color-1) !important;
+  border: 2px solid var(--border-color) !important;
   color: var(--text-primary-color-2);
 }
 
@@ -14245,7 +14244,7 @@ input {
 }
 
 .tableRow {
-  border-bottom: 1px solid var(--border-color-1);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .tableRow td {
@@ -14283,7 +14282,7 @@ input {
 
 .workCard {
   text-align: center;
-  border: 1px solid var(--border-color-1);
+  border: 1px solid var(--border-color);
   border-radius: 12px;
 }
 
@@ -14321,7 +14320,7 @@ input {
 .faqAccordion .card-header {
   width: 100%;
   background: transparent !important;
-  border-bottom: 1px solid var(--border-color-1) !important;
+  border-bottom: 1px solid var(--border-color) !important;
 }
 
 .faqAccordion .card-header button {
@@ -14338,7 +14337,7 @@ input {
 }
 
 .paymentBox {
-  border: 2px solid var(--border-color-1);
+  border: 2px solid var(--border-color);
   border-radius: 8px;
   gap: 12px;
   font-size: 15px;
@@ -14592,6 +14591,7 @@ input {
   transition: all 0.5s;
   min-width: 140px;
   border: 2px solid var(--primary-color);
+  border-radius:14px
 }
 
 .krGCyK {
