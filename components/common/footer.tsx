@@ -9,7 +9,7 @@ import { RootState } from "state/store";
 const Footer = () => {
   const { t } = useTranslation("common");
   const { settings } = useSelector((state: RootState) => state.common);
-  const { isLoggedIn, customPageData, socialData, copyright_text } =
+  const { isLoggedIn, customPageData, logo,socialData, copyright_text } =
     useSelector((state: RootState) => state.user);
 
   return (
@@ -19,6 +19,19 @@ const Footer = () => {
           <div className="footer-top">
             <div className="container">
               <div className="row">
+                <div className="col-lg-2 col-md-6 col-sm-6 mb-30">
+                  <div className="cp-user-logo">
+                    <Link href="/">
+                      <a href="">
+                        <img
+                          src={logo || ""}
+                          className="img-fluid cp-user-logo-large"
+                          alt=""
+                        />
+                      </a>
+                    </Link>
+                  </div>
+                </div>
                 <div className="col-lg-2 col-md-6 col-sm-6 mb-30">
                   <div className="single-wedgets text-widget">
                     <div className="widget-title">
