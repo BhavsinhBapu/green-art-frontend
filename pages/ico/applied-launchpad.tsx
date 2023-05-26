@@ -18,6 +18,7 @@ import { handleSwapHistorySearch } from "state/actions/reports";
 import Link from "next/link";
 import { IoWalletOutline } from "react-icons/io5";
 import { GiToken } from "react-icons/gi";
+import SectionLoading from "components/common/SectionLoading";
 const Profile: NextPage = () => {
   const [history, setHistory] = useState<any>([]);
   const { t } = useTranslation("common");
@@ -145,7 +146,11 @@ const Profile: NextPage = () => {
                         </div>
                       </div>
                     </div>
-                    <DataTable columns={columns} data={history} />
+                    {processing ? (
+                      <SectionLoading />
+                    ) : (
+                      <DataTable columns={columns} data={history} />
+                    )}
                     <div
                       className="pagination-wrapper"
                       id="assetBalances_paginate"

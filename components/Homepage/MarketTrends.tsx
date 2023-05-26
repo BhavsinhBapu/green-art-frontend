@@ -180,11 +180,13 @@ const MarketTrends = ({
                                   <img
                                     src="/chart-image-1.png"
                                     alt="chart-image"
+                                    className="chart-img"
                                   />
                                 ) : (
                                   <img
                                     src="/chart-image-2.png"
                                     alt="chart-image"
+                                    className="chart-img"
                                   />
                                 )}
                               </td>
@@ -346,11 +348,13 @@ const MarketTrends = ({
                                     <img
                                       src="/chart-image-1.png"
                                       alt="chart-image"
+                                      className="chart-img"
                                     />
                                   ) : (
                                     <img
                                       src="/chart-image-2.png"
                                       alt="chart-image"
+                                      className="chart-img"
                                     />
                                   )}
                                 </td>
@@ -509,11 +513,13 @@ const MarketTrends = ({
                                     <img
                                       src="/chart-image-1.png"
                                       alt="chart-image"
+                                      className="chart-img"
                                     />
                                   ) : (
                                     <img
                                       src="/chart-image-2.png"
                                       alt="chart-image"
+                                      className="chart-img"
                                     />
                                   )}
                                 </td>
