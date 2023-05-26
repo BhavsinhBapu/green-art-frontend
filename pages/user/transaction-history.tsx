@@ -132,7 +132,7 @@ const TransactionHistory: NextPage = () => {
                 <TableLoading />
               ) : (
                 <div className="asset-balances-left">
-                  <div className="section-wrapper boxShadow">
+                  <div className="section-wrapper">
                     <div className="tableScroll">
                       <div
                         id="assetBalances_wrapper"

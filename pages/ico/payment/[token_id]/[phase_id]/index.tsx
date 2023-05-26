@@ -70,7 +70,7 @@ const Index = () => {
               </div>
             </div>
             <div className="asset-balances-area">
-              <div className="section-wrapper boxShadow bank-section">
+              <div className="section-wrapper bank-section">
                 <div className="container">
                   <div className="deposit-conatiner">
                     <LaunchPad

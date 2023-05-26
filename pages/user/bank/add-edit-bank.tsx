@@ -35,7 +35,7 @@ const AddBank = ({ id, data }: any) => {
             </div>
 
             <div className="asset-balances-area">
-              <div className="section-wrapper boxShadow bank-section">
+              <div className="section-wrapper bank-section">
                 <div className="container">
                   <div className="row">
                     <div className="ico-tokenCreate">

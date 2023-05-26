@@ -48,5 +48,6 @@ route.post("/get-trx-confirmed-transaction", trx.getTrxConfirmedTransaction);
 route.post("/get-trc-transaction-event-watch", trc20.getTrc20TransferEvent);
 route.post("/check-gas", trc20.getTrc20TransferEvent);
 route.post("/get-trx-transaction", trx.getTrxTransactionBlock);
+route.post("/get-trx-estimate-gas", trx.getTrxEstimateGas);
 
 module.exports = route;

@@ -59,7 +59,7 @@ const MyWallet: NextPage = () => {
             </div>
             <div className="asset-balances-area cstm-loader-area">
               <div className="asset-balances-left">
-                <div className="section-wrapper boxShadow">
+                <div className="section-wrapper">
                   <div
                     id="assetBalances_wrapper"
                     className="dataTables_wrapper no-footer"

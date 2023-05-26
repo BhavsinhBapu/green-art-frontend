@@ -74,6 +74,7 @@ const SliderSection = ({
                   </div>
                 ))}
               </div>
+              <img src={"/tradex-cover.png"} className="cover-img" />
             </div>
           </section>
         )}

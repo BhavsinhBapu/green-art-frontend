@@ -117,11 +117,12 @@ const Profile: NextPage = () => {
             </div>
             <div className="asset-balances-area">
               <div className="asset-balances-left">
-                <div className="section-wrapper boxShadow">
+                <div className="section-wrapper">
                   <div className="tableScroll">
                     <div
                       id="assetBalances_wrapper"
-                      className="dataTables_wrapper no-footer">
+                      className="dataTables_wrapper no-footer"
+                    >
                       <div className="dataTables_head">
                         <div id="table_filter" className="dataTables_filter">
                           <label>
@@ -147,7 +148,8 @@ const Profile: NextPage = () => {
                     <DataTable columns={columns} data={history} />
                     <div
                       className="pagination-wrapper"
-                      id="assetBalances_paginate">
+                      id="assetBalances_paginate"
+                    >
                       <span>
                         {stillHistory?.links?.map((link: any, index: number) =>
                           link.label === "&laquo; Previous" ? (
@@ -156,14 +158,16 @@ const Profile: NextPage = () => {
                               onClick={() => {
                                 if (link.url) LinkTopaginationString(link);
                               }}
-                              key={index}>
+                              key={index}
+                            >
                               <i className="fa fa-angle-left"></i>
                             </a>
                           ) : link.label === "Next &raquo;" ? (
                             <a
                               className="paginate-button"
                               onClick={() => LinkTopaginationString(link)}
-                              key={index}>
+                              key={index}
+                            >
                               <i className="fa fa-angle-right"></i>
                             </a>
                           ) : (
@@ -172,7 +176,8 @@ const Profile: NextPage = () => {
                               aria-controls="assetBalances"
                               data-dt-idx="1"
                               onClick={() => LinkTopaginationString(link)}
-                              key={index}>
+                              key={index}
+                            >
                               {link.label}
                             </a>
                           )

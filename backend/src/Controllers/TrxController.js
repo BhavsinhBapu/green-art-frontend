@@ -407,6 +407,64 @@ async function getTrxTransactionBlock(req, res){
     }
 }
 
+async function getTrxEstimateGas(req, res){
+    try {
+        const tronWeb         = tronWebCall(req,res);
+        const ownerWallet     = req.body.from_wallet;
+        const receiverWallet  = req.body.to_wallet;
+        const contractAddress = req.body.contract;
+        const amount          = req.body.amount;
+        const perTrx          = req.body.sun;
+        const _function       = "transfer(address,uint256)";
+        const options   = {
+            feeLimit: 1_000_000,
+            callValue: 0
+        };
+        const parameter = [
+            {
+              "name" : "recipient",
+              "type" : "address",
+              "value": receiverWallet
+            },
+            {
+              "name" : "amount",
+              "type" : "uint256",
+              "value": amount
+            }
+        ];
+        const response = await tronWeb.transactionBuilder
+                        .triggerConstantContract(
+                            contractAddress,_function,options,parameter,ownerWallet
+                        );
+        
+        if (typeof response == 'object' && response.result.result) {
+            let energy = response.energy_used;
+            let gas = ((energy * perTrx) / 1000000 );
+            res.json({
+                status: true,
+                message: "Estimted energy found successfully",
+                data: {
+                    gas : gas,
+                    energy : energy,
+                },
+            });
+        }else{
+            res.json({
+                status: false,
+                message: "Estimted energy not found",
+                data: {},
+            });
+        }
+        
+    } catch(err){console.log(err);
+        res.json({
+            status: false,
+            message: err.error ?? "Something went wrong with node api",
+            data: {}
+        });
+    }
+}
+
 module.exports = {
     createAccount,
     getTronBalance,
@@ -417,5 +475,6 @@ module.exports = {
     sendTrxProcess,
     getTrxTransaction,
     getTrxConfirmedTransaction,
-    getTrxTransactionBlock
+    getTrxTransactionBlock,
+    getTrxEstimateGas
 }

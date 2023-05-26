@@ -112,7 +112,7 @@ const ReferralEarningWithdraw: NextPage = () => {
                 <SectionLoading />
               ) : (
                 <div className="asset-balances-left">
-                  <div className="section-wrapper boxShadow ">
+                  <div className="section-wrapper ">
                     <div className="tableScroll">
                       <div
                         id="assetBalances_wrapper"
