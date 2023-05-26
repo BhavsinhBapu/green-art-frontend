@@ -46,10 +46,10 @@ const SliderSection = ({
   };
   return (
     <div>
-      {bannerListdata.length > 0 &&
-        parseInt(landing?.landing_second_section_status) === 1 && (
-          <section className="about-area">
-            <div className="container">
+      <section className="about-area">
+        <div className="container">
+          {bannerListdata.length > 0 &&
+            parseInt(landing?.landing_second_section_status) === 1 && (
               <Slider {...settings}>
                 {bannerListdata?.map((item: any, index: number) => (
                   <Link href={`/banner/${item.slug}`} key={index}>
@@ -64,20 +64,20 @@ const SliderSection = ({
                   </Link>
                 ))}
               </Slider>
-              <div className="about-info">
-                {announcementListdata?.map((item: any, index: number) => (
-                  <div className="single-info" key={index}>
-                    <p>
-                      <TfiAnnouncement />
-                      {item.title}
-                    </p>
-                  </div>
-                ))}
+            )}
+          <div className="about-info">
+            {announcementListdata?.map((item: any, index: number) => (
+              <div className="single-info" key={index}>
+                <p>
+                  <TfiAnnouncement />
+                  {item.title}
+                </p>
               </div>
-              <img src={"/tradex-cover.png"} className="cover-img" />
-            </div>
-          </section>
-        )}
+            ))}
+          </div>
+          <img src={"/tradex-cover.png"} className="cover-img" />
+        </div>
+      </section>
     </div>
   );
 };

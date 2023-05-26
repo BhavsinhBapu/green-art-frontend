@@ -311,11 +311,15 @@ export const getEarningDetailsAction = async (
   setLoading: any,
   setData: any
 ) => {
+  setLoading(true);
+
   const response = await getEarningtDetails();
   checkDisable(response);
   if (response.success === true) {
     setData(response.data);
   }
+  setLoading(false);
+
 };
 
 export const getMyTokenBalanceAction = async (
@@ -327,6 +331,7 @@ export const getMyTokenBalanceAction = async (
   column_name: string,
   order_by: string
 ) => {
+  setProcessing(true)
   const response = await getMyTokenBalance(
     per_page,
     page,
@@ -338,6 +343,8 @@ export const getMyTokenBalanceAction = async (
     setReport(response.data.data);
     setStillHistory(response.data);
   }
+  setProcessing(false);
+
 };
 export const getTokenBuyHistoryAction = async (
   per_page: number,
@@ -348,6 +355,7 @@ export const getTokenBuyHistoryAction = async (
   column_name: string,
   order_by: string
 ) => {
+  setProcessing(true)
   const response = await getTokenBuyHistory(
     per_page,
     page,
@@ -359,6 +367,7 @@ export const getTokenBuyHistoryAction = async (
     setReport(response.data.data);
     setStillHistory(response.data);
   }
+  setProcessing(false);
 };
 export const TokenBuyPageAction = async (setPage: any, setLoading: any) => {
   const response = await TokenBuyPage();

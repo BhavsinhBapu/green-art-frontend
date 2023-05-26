@@ -76,7 +76,7 @@ const Profile: NextPage = ({}: any) => {
       selector: (row: any) => row?.status,
       sortable: true,
       cell: (row: any) => (
-        <div className="blance-text">
+        <div className="blance-text flex flex-row">
           {row.approved_status === 1 ? (
             <Link href={`/ico/create-edit-phase/${row?.id}`}>
               <li className="toolTip" title="Create Phase">
