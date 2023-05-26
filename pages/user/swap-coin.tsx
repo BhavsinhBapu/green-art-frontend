@@ -133,7 +133,7 @@ const SwapCoin: NextPage = ({
 
             <div className="row">
               <div className="col-lg-12">
-                <div className="section-wrapper boxShadow">
+                <div className="section-wrapper">
                   <div className="swap-area">
                     <div className="swap-area-top">
                       <div className="form-group">
@@ -202,7 +202,8 @@ const SwapCoin: NextPage = ({
                                       amount: data?.convert_rate,
                                     });
                                   });
-                                }}>
+                                }}
+                              >
                                 <option value="" selected disabled hidden>
                                   {fromSelected.selected
                                     ? fromSelected.selected
@@ -216,7 +217,8 @@ const SwapCoin: NextPage = ({
                                       selected={
                                         fromSelected.coin_id ===
                                         item.id.toString()
-                                      }>
+                                      }
+                                    >
                                       {item.coin_type}
                                     </option>
                                   )
@@ -240,7 +242,8 @@ const SwapCoin: NextPage = ({
                               setRate
                             );
                             setLoading(false);
-                          }}>
+                          }}
+                        >
                           <i className="fa fa-refresh" />
                         </button>
                       </div>
@@ -283,7 +286,8 @@ const SwapCoin: NextPage = ({
                                       amount: data?.convert_rate,
                                     });
                                   });
-                                }}>
+                                }}
+                              >
                                 <option value="" selected disabled hidden>
                                   {toSelected.selected
                                     ? toSelected.selected
@@ -297,7 +301,8 @@ const SwapCoin: NextPage = ({
                                       selected={
                                         toSelected.coin_id ===
                                         item.id.toString()
-                                      }>
+                                      }
+                                    >
                                       {item.coin_type}
                                     </option>
                                   )
@@ -344,7 +349,8 @@ const SwapCoin: NextPage = ({
                           !toSelected.coin_id
                         }
                         data-toggle="modal"
-                        data-target="#exampleModal">
+                        data-target="#exampleModal"
+                      >
                         {t("convert")}
                       </button>
 
@@ -353,13 +359,15 @@ const SwapCoin: NextPage = ({
                         id="exampleModal"
                         role="dialog"
                         aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
+                        aria-hidden="true"
+                      >
                         <div className="modal-dialog" role="document">
                           <div className="modal-content">
                             <div className="modal-header">
                               <h5
                                 className="modal-title"
-                                id="exampleModalLabel">
+                                id="exampleModalLabel"
+                              >
                                 {t("Are You sure?")}
                               </h5>
                             </div>
@@ -368,7 +376,8 @@ const SwapCoin: NextPage = ({
                               <button
                                 type="button"
                                 className="btn btn-danger"
-                                data-dismiss="modal">
+                                data-dismiss="modal"
+                              >
                                 {t("No")}
                               </button>
                               <button
@@ -382,7 +391,8 @@ const SwapCoin: NextPage = ({
                                     setLoading
                                   );
                                 }}
-                                data-dismiss="modal">
+                                data-dismiss="modal"
+                              >
                                 {t("Yes")}
                               </button>
                             </div>

@@ -66,7 +66,7 @@ const FiatWithdrawal = () => {
             <div className="asset-balances-area">
               <div className=" bank-section">
                 <div className="">
-                  <div className="ico-tokenCreate boxShadow">
+                  <div className="ico-tokenCreate ">
                     <div className="ico-create-form col-12">
                       {loading ? (
                         <SectionLoading />

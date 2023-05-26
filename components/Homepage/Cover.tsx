@@ -16,7 +16,7 @@ const Cover = ({ landing, loggedin, landing_banner_image }: any) => {
         <section className="hero-banner-area">
           <div className="container">
             <div className="row">
-              <div className="col-md-6">
+              <div className="col-md-6 conver-col1">
                 <h1 className="banner-title">
                   {landing?.landing_title ||
                     t("Buy & Sell Instantly And Hold Cryptocurrency")}

@@ -10,6 +10,7 @@ import useTranslation from "next-translate/useTranslation";
 import Footer from "components/common/footer";
 import { customPage, landingPage } from "service/landing-page";
 import LaunchpadSidebar from "layout/launchpad-sidebar";
+import SectionLoading from "components/common/SectionLoading";
 
 const MyWallet: NextPage = () => {
   const [history, setHistory] = useState<any>([]);
@@ -59,7 +60,7 @@ const MyWallet: NextPage = () => {
             </div>
             <div className="asset-balances-area cstm-loader-area">
               <div className="asset-balances-left">
-                <div className="section-wrapper boxShadow">
+                <div className="section-wrapper">
                   <div
                     id="assetBalances_wrapper"
                     className="dataTables_wrapper no-footer"
@@ -110,7 +111,7 @@ const MyWallet: NextPage = () => {
                   </div>
                   <div className="table-responsive tableScroll">
                     {processing ? (
-                      <Loading />
+                      <SectionLoading />
                     ) : (
                       <table
                         id="assetBalances"

@@ -19,6 +19,7 @@ import {
   STATUS_MODIFICATION,
   STATUS_PENDING,
 } from "helpers/core-constants";
+import SectionLoading from "components/common/SectionLoading";
 
 const TokenBuyHistory = () => {
   const [history, setHistory] = useState<any>([]);
@@ -129,11 +130,12 @@ const TokenBuyHistory = () => {
             </div>
             <div className="asset-balances-area">
               <div className="asset-balances-left">
-                <div className="section-wrapper boxShadow">
+                <div className="section-wrapper">
                   <div className="tableScroll">
                     <div
                       id="assetBalances_wrapper"
-                      className="dataTables_wrapper no-footer">
+                      className="dataTables_wrapper no-footer"
+                    >
                       <div className="dataTables_head">
                         <div id="table_filter" className="dataTables_filter">
                           <label>
@@ -156,43 +158,58 @@ const TokenBuyHistory = () => {
                         </div>
                       </div>
                     </div>
-                    <DataTable columns={columns} data={history} />
-                    {history.length > 0 && (
-                      <div
-                        className="pagination-wrapper"
-                        id="assetBalances_paginate">
-                        <span>
-                          {stillHistory?.links?.map(
-                            (link: any, index: number) =>
-                              link.label === "&laquo; Previous" ? (
-                                <a
-                                  className="paginate-button"
-                                  onClick={() => {
-                                    if (link.url) LinkTopaginationString(link);
-                                  }}
-                                  key={index}>
-                                  <i className="fa fa-angle-left"></i>
-                                </a>
-                              ) : link.label === "Next &raquo;" ? (
-                                <a
-                                  className="paginate-button"
-                                  onClick={() => LinkTopaginationString(link)}
-                                  key={index}>
-                                  <i className="fa fa-angle-right"></i>
-                                </a>
-                              ) : (
-                                <a
-                                  className="paginate_button paginate-number"
-                                  aria-controls="assetBalances"
-                                  data-dt-idx="1"
-                                  onClick={() => LinkTopaginationString(link)}
-                                  key={index}>
-                                  {link.label}
-                                </a>
-                              )
-                          )}
-                        </span>
-                      </div>
+                    {processing ? (
+                      <SectionLoading />
+                    ) : (
+                      <>
+                        <DataTable columns={columns} data={history} />
+                        {history.length > 0 && (
+                          <div
+                            className="pagination-wrapper"
+                            id="assetBalances_paginate"
+                          >
+                            <span>
+                              {stillHistory?.links?.map(
+                                (link: any, index: number) =>
+                                  link.label === "&laquo; Previous" ? (
+                                    <a
+                                      className="paginate-button"
+                                      onClick={() => {
+                                        if (link.url)
+                                          LinkTopaginationString(link);
+                                      }}
+                                      key={index}
+                                    >
+                                      <i className="fa fa-angle-left"></i>
+                                    </a>
+                                  ) : link.label === "Next &raquo;" ? (
+                                    <a
+                                      className="paginate-button"
+                                      onClick={() =>
+                                        LinkTopaginationString(link)
+                                      }
+                                      key={index}
+                                    >
+                                      <i className="fa fa-angle-right"></i>
+                                    </a>
+                                  ) : (
+                                    <a
+                                      className="paginate_button paginate-number"
+                                      aria-controls="assetBalances"
+                                      data-dt-idx="1"
+                                      onClick={() =>
+                                        LinkTopaginationString(link)
+                                      }
+                                      key={index}
+                                    >
+                                      {link.label}
+                                    </a>
+                                  )
+                              )}
+                            </span>
+                          </div>
+                        )}
+                      </>
                     )}
                   </div>
                 </div>

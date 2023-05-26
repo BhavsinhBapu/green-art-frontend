@@ -1,6 +1,6 @@
 const TronWeb =  require('tronweb');
 const Web3 = require("web3");
-
+const BigNumber = require("bignumber.js");
 
 function contract_decimals($input = null)
 {
@@ -42,12 +42,23 @@ function customFromWei(amount,decimal)
 }
 function customToWei(amount,decimal)
 {
-    // return (amount*powerOfTen(decimal)).toString()
+  // return (amount*powerOfTen(decimal)).toString()
+  const isDecimal = !Number.isInteger(amount);
+  if (isDecimal) {
+    const tokenDecimals = new BigNumber(10).pow(decimal);
+    const tokenToSend = new BigNumber(amount).times(tokenDecimals);
+
+    return tokenToSend.c[0].toString();
+  } else {
     const amountData = Web3.utils
       .toBN(amount)
       .mul(Web3.utils.toBN(10).pow(Web3.utils.toBN(decimal)));
     
     return amountData.toString();
+  }
+  
+  
+  
 }
 function powerOfTen(x) {
   return Math.pow(10, x);

@@ -3,7 +3,7 @@ const TronWeb = require("tronweb");
 const TronGrid = require("trongrid");
 
 const { contractJson } = require('../src/ContractAbiJson');
-const { powerOfTen } = require('../src/Heplers/helper');
+const { powerOfTen, customToWei } = require('../src/Heplers/helper');
 
 const client = new web3(
   //   "https://bsc.rpc.blxrbdn.com"
@@ -20,6 +20,12 @@ const tronWeb = new TronWeb({
 });
 
 async function test() {
+
+  let amount = 50000000; 
+  let decimal = 18;
+  const check = customToWei(amount, decimal);
+  console.log(check);
+  return check;
   // let contractABI = contractJson();
     // res = await client.eth.getBlockNumber();
     // console.log(res);
@@ -49,14 +55,19 @@ async function test() {
     console.log(getDecimal);
 
     const tronGrid = new TronGrid(tronWeb);
-    var result = await tronGrid.contract.getEvents(contractAddress, {
-      only_confirmed: true,
-      event_name: "Transfer",
-      limit: 100,
-      // min_timestamp: min_timestamp,
-      order_by: "timestamp,desc",
-    });
-    console.log(result);
+    // var result = await tronGrid.contract.getEvents(contractAddress, {
+    //   only_confirmed: true,
+    //   event_name: "Transfer",
+    //   limit: 100,
+    //   // min_timestamp: min_timestamp,
+    //   order_by: "timestamp,desc",
+    // });
+    // console.log(result);
+    const address = "TBnQHhTJfaiihLJxfRH9CURwsNUnuDLdDc";
+    const response = await contract.balanceOf(address).call();
+    const balance = tronWeb.BigNumber(response._hex) / getDecimal;
+
+    console.log(balance);
   } catch (err) {
     console.log(err);
   }
