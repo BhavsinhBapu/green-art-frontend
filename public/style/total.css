@@ -124,8 +124,8 @@ p {
 
 .container-dashboard {
   background: var(--background-color) !important;
-  /* padding-right: 5%; */
-  /* padding-left: 5%; */
+  padding-right: 7%;
+  padding-left: 7%;
   margin-right: auto;
   margin-left: auto;
 }
@@ -13529,9 +13529,9 @@ label.upload-file-btn.press-enter {
 }
 
 .sub_title {
-  border-radius: 10px 10px 0px 0px;
-  border: 1px solid var(--border-color);
-  padding: 10px;
+    border-radius: 10px 10px 0px 0px;
+    padding: 10px;
+    background: var(--card-background-color);
 }
 
 .sub_title div h5 {
@@ -13777,7 +13777,7 @@ label.upload-file-btn.press-enter {
 }
 
 .ticket-card .card {
-  border: 1px solid var(--border-color);
+  /* border: 1px solid var(--border-color); */
 }
 
 .ticket-card .card hr {
@@ -14744,7 +14744,7 @@ body::-webkit-scrollbar {
 }
 .conver-col1{
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   flex-direction: column;
 }

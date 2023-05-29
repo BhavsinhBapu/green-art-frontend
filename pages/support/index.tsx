@@ -106,24 +106,28 @@ const Support = () => {
                     <div className="row  mb-5">
                       <SupportCard
                         name="Total Ticket"
+                        icon_name="fas fa-ticket-alt"
                         ticketNumber={
                           fullDashboar?.ticket_count?.total_ticket_count
                         }
                       />
                       <SupportCard
                         name="Pending Ticket"
+                        icon_name="fas fa-clock"
                         ticketNumber={
                           fullDashboar?.ticket_count?.total_pending_ticket_count
                         }
                       />
                       <SupportCard
                         name="Open Ticket"
+                        icon_name="fas fa-folder-open"
                         ticketNumber={
                           fullDashboar?.ticket_count?.total_open_ticket_count
                         }
                       />
                       <SupportCard
                         name="Close Ticket"
+                        icon_name="fas fa-check-circle"
                         ticketNumber={
                           fullDashboar?.ticket_count
                             ?.total_close_forever_ticket_count

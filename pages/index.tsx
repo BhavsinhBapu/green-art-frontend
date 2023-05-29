@@ -28,8 +28,6 @@ const Home: NextPage = ({
   landing_banner_image,
   customSettings,
 }: any) => {
-  const { t } = useTranslation("common");
-  const { logo } = useSelector((state: RootState) => state.user);
   const { settings: common } = useSelector((state: RootState) => state.common);
   useEffect(() => {
     //@ts-ignore
