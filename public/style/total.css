@@ -124,8 +124,8 @@ p {
 
 .container-dashboard {
   background: var(--background-color) !important;
-  /* padding-right: 5%; */
-  /* padding-left: 5%; */
+  padding-right: 7%;
+  padding-left: 7%;
   margin-right: auto;
   margin-left: auto;
 }
@@ -14744,7 +14744,7 @@ body::-webkit-scrollbar {
 }
 .conver-col1{
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   flex-direction: column;
 }
