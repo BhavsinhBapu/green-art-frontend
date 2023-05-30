@@ -15,6 +15,7 @@ import NProgress from "nprogress";
 import { useEffect } from "react";
 import Router, { useRouter } from "next/router";
 import { checkDarkMode, rootThemeCheck } from "helpers/functions";
+import { unlistenAllChannels } from "state/actions/exchange";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -24,6 +25,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     Router.events.on("routeChangeComplete", () => NProgress.done());
     Router.events.on("routeChangeError", () => NProgress.done());
   }, []);
+  useEffect(() => {
+    Router.events.on("routeChangeStart", () => unlistenAllChannels());
+  }, [router.pathname]);
   if (router.pathname === "/maintenance") {
     return (
       <>

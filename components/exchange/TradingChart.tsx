@@ -11,6 +11,7 @@ import {
 import { RootState } from "state/store";
 import { useDispatch, useSelector } from "react-redux";
 import { listenMessages } from "state/actions/exchange";
+import { useRouter } from "next/router";
 const theme = localStorage.getItem("theme");
 
 function getLanguageFromURL() {
@@ -26,6 +27,7 @@ export const TVChartContainer: React.FC = () => {
   const ref = useRef(null);
   const { isLoggedIn, user } = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
+  const router = useRouter();
 
   let tvWidget: any = null;
   const { currentPair } = useSelector((state: RootState) => state.exchange);
@@ -83,7 +85,8 @@ export const TVChartContainer: React.FC = () => {
       tvWidget = widgetInstance;
       tvWidget.onChartReady(() => {
         tvWidget.applyOverrides({
-          "paneProperties.background": theme === "dark" ? "#151515" : "#fff",
+          "paneProperties.background":
+            theme === "dark" ? "rgb(22, 26, 30)" : "#fff",
           "paneProperties.backgroundType": "solid",
           "mainSeriesProperties.candleStyle.upColor": "#32d777",
           "mainSeriesProperties.candleStyle.downColor": "#dc3545",

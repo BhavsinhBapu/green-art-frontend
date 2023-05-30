@@ -40,56 +40,77 @@ export const getDashboardData = (pair: string) => async (dispatch: any) => {
   const response = await appDashboardData(pair);
   dispatch(setDashboard(response));
 };
-export function unlistenAllChannels() {
+export async function unlistenAllChannels() {
   //@ts-ignore
-  if (window.Echo) {
+  if (!window.Echo) {
     //@ts-ignore
-    window.Echo.leaveChannel(); // Leave the currently subscribed channel
+    window.Pusher = Pusher;
     //@ts-ignore
-    window.Echo.leave(
-      `trade-info-${localStorage.getItem(
-        "base_coin_id"
-      )}-${localStorage.getItem("trade_coin_id")}`
-    );
-    //@ts-ignore
-    window.Echo.leave(
-      `dashboard-${localStorage.getItem("base_coin_id")}-${localStorage.getItem(
-        "trade_coin_id"
-      )}`
-    );
-    //@ts-ignore
-    window.Echo.leave(
-      `dashboard-${localStorage.getItem("base_coin_id")}-${localStorage.getItem(
-        "trade_coin_id"
-      )}.process-${localStorage.getItem("user_id")}`
-    );
-    //@ts-ignore
-    window.Echo.leave(
-      `dashboard-${localStorage.getItem("base_coin_id")}-${localStorage.getItem(
-        "trade_coin_id"
-      )}.order_place_${localStorage.getItem("user_id")}`
-    );
+    window.Echo = new Echo({
+      broadcaster: "pusher",
+      key: "test",
+      wsHost: process.env.NEXT_PUBLIC_HOST_SOCKET,
+      wsPort: process.env.NEXT_PUBLIC_WSS_PORT
+        ? process.env.NEXT_PUBLIC_WSS_PORT
+        : 6010,
+      wssPort: 443,
+      forceTLS: false,
+      cluster: "mt1",
+      disableStats: true,
+      enabledTransports: ["ws", "wss"],
+    });
   }
+  console.log("unlisten calling");
+  //@ts-ignore
+  window.Echo.leaveChannel(); // Leave the currently subscribed channel
+  //@ts-ignore
+  window.Echo.leave(
+    `trade-info-${localStorage.getItem("base_coin_id")}-${localStorage.getItem(
+      "trade_coin_id"
+    )}`
+  );
+  //@ts-ignore
+  window.Echo.leave(
+    `dashboard-${localStorage.getItem("base_coin_id")}-${localStorage.getItem(
+      "trade_coin_id"
+    )}`
+  );
+  //@ts-ignore
+  window.Echo.leave(
+    `dashboard-${localStorage.getItem("base_coin_id")}-${localStorage.getItem(
+      "trade_coin_id"
+    )}.process-${localStorage.getItem("user_id")}`
+  );
+  //@ts-ignore
+  window.Echo.leave(
+    `dashboard-${localStorage.getItem("base_coin_id")}-${localStorage.getItem(
+      "trade_coin_id"
+    )}.order_place_${localStorage.getItem("user_id")}`
+  );
 }
 
 export async function listenMessages(dispatch: any, user: any) {
-  console.log("CALLUING");
+  await unlistenAllChannels();
   //@ts-ignore
-  window.Pusher = Pusher;
-  //@ts-ignore
-  window.Echo = new Echo({
-    broadcaster: "pusher",
-    key: "test",
-    wsHost: process.env.NEXT_PUBLIC_HOST_SOCKET,
-    wsPort: process.env.NEXT_PUBLIC_WSS_PORT
-      ? process.env.NEXT_PUBLIC_WSS_PORT
-      : 6010,
-    wssPort: 443,
-    forceTLS: false,
-    cluster: "mt1",
-    disableStats: true,
-    enabledTransports: ["ws", "wss"],
-  });
+  if (!window.Echo) {
+    //@ts-ignore
+    window.Pusher = Pusher;
+    //@ts-ignore
+    window.Echo = new Echo({
+      broadcaster: "pusher",
+      key: "test",
+      wsHost: process.env.NEXT_PUBLIC_HOST_SOCKET,
+      wsPort: process.env.NEXT_PUBLIC_WSS_PORT
+        ? process.env.NEXT_PUBLIC_WSS_PORT
+        : 6010,
+      wssPort: 443,
+      forceTLS: false,
+      cluster: "mt1",
+      disableStats: true,
+      enabledTransports: ["ws", "wss"],
+    });
+  }
+
   //@ts-ignore
   // dashboard-base_coin_id-trade_coin_id
   window.Echo.channel(
