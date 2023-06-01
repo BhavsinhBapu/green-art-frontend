@@ -1,9 +1,7 @@
-import { NoItemFound } from "components/NoItemFound/NoItemFound";
 import { StakingTopBar } from "components/Staking/common/TopBar";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
 import React, { useEffect, useState } from "react";
-import { InvesmentStatistics } from "service/staking";
 import { earningsAction } from "state/actions/staking";
 
 const Earnings = () => {

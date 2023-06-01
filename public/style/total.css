@@ -124,8 +124,6 @@ p {
 
 .container-dashboard {
   background: var(--background-color) !important;
-  padding-right: 7%;
-  padding-left: 7%;
   margin-right: auto;
   margin-left: auto;
 }
@@ -3034,10 +3032,12 @@ div.dataTables_wrapper div.dataTables_length select {
 }
 
 div.dataTables_wrapper div.dataTables_filter {
-  margin-bottom: 20px;
+  margin-bottom: 14px;
   text-align: center !important;
 }
-
+.dataTables_scroll{
+  padding: 20px
+}
 .dataTables_wrapper .dataTables_length,
 .dataTables_wrapper .dataTables_filter,
 .dataTables_wrapper .dataTables_info,
@@ -4005,7 +4005,7 @@ table.dataTable tbody tr.selected td {
   padding: 10px;
   background: var(--background-color);
   /* background: rgba(30, 35, 41, 1); */
-  height: 1000px;
+  height: 100%;
 }
 
 .trades-section1 {
@@ -4014,7 +4014,7 @@ table.dataTable tbody tr.selected td {
   padding: 10px;
   background: var(--background-color);
   /* background: rgba(30, 35, 41, 1); */
-  height: 466px;
+  height: 598px;
 }
 
 .icon-center {
@@ -5352,7 +5352,7 @@ select:-webkit-autofill:focus {
   font-size: 16px;
   font-weight: 400;
   text-transform: capitalize;
-  color: var(--text-primary-color) !important;
+  color: var(--font-color) !important;
 }
 
 .overview-area .overview-left .blance {

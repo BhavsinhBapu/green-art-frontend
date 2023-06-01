@@ -3,7 +3,6 @@ import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import React from "react";
 import { useSelector } from "react-redux";
-import { commomSettings } from "service/landing-page";
 import { RootState } from "state/store";
 
 const Footer = () => {
@@ -195,7 +194,7 @@ const Footer = () => {
                       </h4>
                     </div>
                     <div className="widget-inner">
-                      <ul className="d-flex align-items-center">
+                      <ul className="d-flex flex-wrap align-items-center">
                         {socialData?.map((social: any, index: any) => (
                           <li key={index}>
                             <a

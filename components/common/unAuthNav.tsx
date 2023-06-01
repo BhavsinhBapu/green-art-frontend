@@ -152,9 +152,12 @@ const UnAuthNav = () => {
                 <li>
                   <Link href="/exchange/dashboard">{t("Spot Trading")}</Link>
                 </li>
-                <li>
-                  <Link href="/p2p">{t("P2p Trading")}</Link>
-                </li>
+                {parseInt(settings?.p2p_module) === 1 && (
+                  <li>
+                    <Link href="/p2p">{t("P2p Trading")}</Link>
+                  </li>
+                )}
+
                 <li>
                   <Link href="/signin">{t("Login")}</Link>
                 </li>

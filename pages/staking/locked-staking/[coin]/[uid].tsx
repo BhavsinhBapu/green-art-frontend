@@ -7,8 +7,7 @@ import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { TfiHandPointRight } from "react-icons/tfi";
-import { GetOfferlistDetails, TotalInvestmentBonus } from "service/staking";
+import { TotalInvestmentBonus } from "service/staking";
 import {
   GetOfferlistDetailsAction,
   InvesmentSubmitAction,
@@ -59,7 +58,7 @@ const LockedStaking = () => {
         {loading ? (
           <SectionLoading />
         ) : (
-          <div className="col-12 p-5 boxShadow mb-5">
+          <div className="col-12 p-5 boxShadow mb-5 mt-5">
             <div className="mt-3 mb-3">
               <BackButton />
             </div>
@@ -95,7 +94,6 @@ const LockedStaking = () => {
                                 }
                                 key={index}
                                 onClick={() => {
-                                  // setSelectedDayUid(offer?.uid);
                                   router.push(
                                     `/staking/locked-staking/${coin}/${offer?.uid}`
                                   );
