@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
-import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
+import { BsFillMoonFill, BsFillSunFill, BsBarChartLine } from "react-icons/bs";
+import { FaPeopleArrows } from "react-icons/fa";
+import { BiShapeCircle } from "react-icons/bi";
 
 import OutsideClickHandler from "react-outside-click-handler";
 
@@ -43,8 +45,8 @@ const UnAuthNav = () => {
     <div className="">
       <div className="cp-user-top-bar ">
         <div className="container-fluid">
-          <div className="row align-items-center justify-content-between">
-            <div className="col-xl-2 col-lg-2 col-4">
+          <div className="d-flex align-items-center justify-content-between">
+            <div className="d-flex align-items-center" style={{ gap: '20px' }}>
               <div className="cp-user-logo">
                 <Link href="/">
                   <a href="">
@@ -54,13 +56,43 @@ const UnAuthNav = () => {
                       alt=""
                     />
                   </a>
+
                 </Link>
+
               </div>
-            </div>
-            <div className="col-xl-8 col-lg-8 d-none d-lg-block">
-              <nav className="main-menu">
+              <div className="main-menu">
                 <ul>
                   <li>
+
+                    <a className="flex" href="#" aria-expanded="true" style={{ height: '48px' }}>
+                      <span className="cp-user-icon">
+                        <BsBarChartLine />
+                      </span>
+                      <span>{t("Exchange")}</span>
+                    </a>
+
+                    <ul className="lang-list dropdown-menu-main">
+                      <li>
+                        <Link href="/exchange/dashboard">
+                          <a className="py-1 menu-hover"><span className="cp-user-icon"> <BiShapeCircle /> </span> <span>{t("Spot Trading")}</span> </a>
+                        </Link>
+                      </li>
+                      {parseInt(settings?.p2p_module) === 1 && (
+                        <li>
+                          <Link href="/p2p">
+                            <a className="py-1 menu-hover"> <span className="cp-user-icon"><FaPeopleArrows /></span><span>{t("P2P Trading")}</span> </a>
+                          </Link>
+                        </li>
+                      )}
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div className="d-none d-lg-flex align-items-center">
+              <nav className="main-menu">
+                <ul>
+                  {/* <li>
                     <a className="flex" href="#" aria-expanded="true">
                       <span className="ml-2">{t("Exchange")}</span>
                     </a>
@@ -78,13 +110,32 @@ const UnAuthNav = () => {
                         </li>
                       )}
                     </ul>
-                  </li>
+                  </li> */}
                   <li>
                     <Link href="/signin">{t("Login")}</Link>
                   </li>
                   <li>
-                    <Link href="/signup">{t("Sign up")}</Link>
+                    <Link href="/signup"><a style={{ padding: '3px 10px', background: '#fdd636', borderRadius: '5px', gap: '4px' }} ><svg style={{ width: '16px', height: '16px' }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" className="text-dark"><path d="M13.5 6.379V3h-3v3.379l-2.94-2.94-2.12 2.122L7.878 8H4v3h6.75V8h2.5v3H20V8h-3.879l2.44-2.44-2.122-2.12L13.5 6.378zM4 13.5V20h6.75v-6.5H4zM13.25 20H20v-6.5h-6.75V20z" fill="currentColor"></path></svg><span className="text-dark">{t("Sign up")}</span> </a></Link>
                   </li>
+
+                  <li  style={{ height: '48px' }} className="d-flex align-items-center">
+                    <a className="flex" href="#" aria-expanded="true">
+                      <IoMdGlobe size={20} />{" "}
+                      <span className="ml-2">
+                        {router.locale?.toLocaleUpperCase()}
+                      </span>
+                    </a>
+                    <ul className="lang-list dropdown-menu-main" style={{ right: '0', left: 'auto'}}>
+                      {settings?.LanguageList?.map((item: any, index: any) => (
+                        <li key={index}>
+                          <Link href={router.asPath} locale={item.key}>
+                            <a className="py-1 menu-hover">{item.name}</a>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+
                   <li
                     onClick={() => {
                       darkModeToggle(settings, setTheme);
@@ -94,38 +145,21 @@ const UnAuthNav = () => {
                       {theme === 0 ? (
                         <>
                           <BsFillSunFill size={20} className="mr-2" />
-                          {t("Light")}
+                          {/* {t("Light")} */}
                         </>
                       ) : (
                         <>
                           <BsFillMoonFill size={14} className="mr-2" />
-                          {t("Dark")}
+                          {/* {t("Dark")} */}
                         </>
                       )}
                     </a>
-                  </li>
-                  <li>
-                    <a className="flex" href="#" aria-expanded="true">
-                      <IoMdGlobe size={20} />{" "}
-                      <span className="ml-2">
-                        {router.locale?.toLocaleUpperCase()}
-                      </span>
-                    </a>
-                    <ul className="lang-list">
-                      {settings?.LanguageList?.map((item: any, index: any) => (
-                        <li key={index}>
-                          <Link href={router.asPath} locale={item.key}>
-                            <a className="py-1">{item.name}</a>
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
                   </li>
                 </ul>
               </nav>
             </div>
 
-            <div className="">
+            <div className="d-xl-none d-block">
               <div className="cp-user-top-bar-right">
                 <div
                   className="cp-user-sidebar-toggler-s2"

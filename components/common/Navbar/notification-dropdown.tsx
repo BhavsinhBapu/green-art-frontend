@@ -23,7 +23,7 @@ const NotificationDropdown = ({
   const dispatch = useDispatch();
   const { t } = useTranslation("common");
   return (
-    <div className="col-xl-2 col-lg-2 col-8">
+    <div className="">
       {isLoggedIn ? (
         <div className="cp-user-top-bar-right">
           <div>
