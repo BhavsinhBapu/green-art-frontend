@@ -4617,9 +4617,6 @@ select:-webkit-autofill:focus {
   justify-content: center;
 }
 
-.main-menu ul li a .cp-user-icon {
-  margin-right: 5px;
-}
 
 .main-menu ul li a .cp-user-icon img {
   width: 16px;

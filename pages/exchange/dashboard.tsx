@@ -17,6 +17,7 @@ import { setCurrentPair } from "state/reducer/exchange";
 import useTranslation from "next-translate/useTranslation";
 import Head from "next/head";
 import { formatCurrency } from "common";
+import Navbar from "components/common/Navbar";
 
 const Dashboard: NextPage = () => {
   const { t } = useTranslation("common");
@@ -51,7 +52,7 @@ const Dashboard: NextPage = () => {
       );
     }
   }, [dashboard?.order_data?.base_coin_id]);
-
+  const { settings } = useSelector((state: RootState) => state.common);
   return (
     <div className="container-dashboard">
       <div className="background-col">
@@ -63,7 +64,7 @@ const Dashboard: NextPage = () => {
             | {currentPair ? currentPair.replace("_", "") : "----"}
           </title>
         </Head>
-        <DashboardNavbar />
+        <Navbar settings={settings} isLoggedIn={isLoggedIn} />
         {isLoading && <Loading />}
         <div className="mt-5"></div>
         <div className="cp-user-sidebar-area">
