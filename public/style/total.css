@@ -5273,7 +5273,7 @@ select:-webkit-autofill:focus {
     padding: 25px;
     border-radius: 5px;
     overflow: hidden;
-    background: linear-gradient(to  right, var(--main-background-color), var(--card-background-color));
+    background: var(--card-background-color);
 }
 
 /* .section-top-wrap::before {
@@ -5852,7 +5852,7 @@ select:-webkit-autofill:focus {
 
 .user-profile .user-profile-left {
   padding: 45px 25px;
-  background: var(--main-background-color);
+  background: var(--card-background-color);
   border-radius: 7px;
   text-align: center;
 }
@@ -13201,7 +13201,7 @@ textarea.apply-file-input {
   margin: 20px 0px 50px 0px;
   padding: 50px;
   margin: 0px 0px 50px 0px;
-  padding: 15px;
+  padding: 46px;
   background: var(--card-background-color);
 }
 
@@ -13318,7 +13318,7 @@ label.ico-label-box {
   padding-top: 20px;
   direction: rtl;
   border-radius: 50%;
-  border: 1px solid var(--border-color);
+  /* border: 1px solid var(--border-color); */
 }
 
 .chat-details {

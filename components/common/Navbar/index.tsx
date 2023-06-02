@@ -866,7 +866,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                             </li>
                           </Link>
                         )}
-                      
+
                       {parseInt(settings.currency_deposit_status) === 1 &&
                         navbar?.fiat?.status && (
                           <li

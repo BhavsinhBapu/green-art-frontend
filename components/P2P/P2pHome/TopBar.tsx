@@ -6,7 +6,7 @@ import { GrHomeRounded } from "react-icons/gr";
 ;
 export const P2pTopBar = () => {
   return (
-    <div className="p2p_top_bg py-3">
+    <div className="p2p_top_bg py-3 mt-5">
       <div className="container">
         <div className="row">
           <div className="col-12">

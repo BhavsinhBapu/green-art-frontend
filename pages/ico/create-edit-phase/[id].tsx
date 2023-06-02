@@ -45,7 +45,7 @@ const CreateEditPhase = ({ id, edit, data }: any) => {
   return (
     <div className="container">
       <div className="row">
-        <div className="ico-tokenCreate boxShadow">
+        <div className="ico-tokenCreate boxShadow mt-5">
           <div className="col-12">
             <h2>
               {t(
@@ -59,7 +59,8 @@ const CreateEditPhase = ({ id, edit, data }: any) => {
               onSubmit={(e) => {
                 e.preventDefault();
                 launchpadCreateUpdatePhaseAction(phaseForm, setLoading, id);
-              }}>
+              }}
+            >
               <div className="col-md-6 form-input-div">
                 <label className="ico-label-box" htmlFor="">
                   {t("Coin price")}
@@ -91,13 +92,15 @@ const CreateEditPhase = ({ id, edit, data }: any) => {
                       ...phaseForm,
                       coin_currency: e.target.value,
                     });
-                  }}>
+                  }}
+                >
                   <option value="">{t("Select currency")}</option>
                   {coinList.map((item: any, index: any) => (
                     <option
                       key={index}
                       selected={phaseForm.coin_currency === item.coin_type}
-                      value={item.coin_type}>
+                      value={item.coin_type}
+                    >
                       {item?.name}
                     </option>
                   ))}

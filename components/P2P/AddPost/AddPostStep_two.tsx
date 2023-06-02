@@ -64,7 +64,7 @@ export const AddPostTwo = ({
 
   return (
     <div className="col-12 mt-4">
-      <div className="buySellAddBox px-4 py-5 rounded">
+      <div className="buySellAddBox px-5 py-5 rounded">
         <div className="row">
           <div className="col-md-6">
             <label> Total Amount:</label>
@@ -168,12 +168,7 @@ export const AddPostTwo = ({
           </div>
         </div>
       </div>
-      <div className="mt-4 adFromHelp">
-        <a href="">
-          <BsQuestionSquareFill className="shadow" />
-          Help & Guide
-        </a>
-      </div>
+
       <div className="addPostNextButton mt-3">
         <p className="d-flex align-items-center">
           Reserved Fee <h6> -- {selectedAsset?.value}</h6>
