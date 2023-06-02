@@ -125,11 +125,11 @@ const UnAuthNav = () => {
                         {router.locale?.toLocaleUpperCase()}
                       </span>
                     </a>
-                    <ul className="lang-list" style={{ right: '0', left: 'auto', alignItems: 'initial',background: '#181a20', borderRadius: '0 0px 10px 10px', padding: '10px 0',top: '40px' }}>
+                    <ul className="lang-list dropdown-menu-main" style={{ right: '0', left: 'auto'}}>
                       {settings?.LanguageList?.map((item: any, index: any) => (
                         <li key={index}>
                           <Link href={router.asPath} locale={item.key}>
-                            <a className="py-1">{item.name}</a>
+                            <a className="py-1 menu-hover">{item.name}</a>
                           </Link>
                         </li>
                       ))}

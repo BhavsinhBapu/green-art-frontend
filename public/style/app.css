@@ -70,6 +70,8 @@ Tags: admin, best react admin template, das
     --background-color-hover: #fafafa;
     --loading-color: #4b4b4b;
     --box-shadow-color: rgb(0 0 0 / 5%) 0px 0px 0px 2px;
+    --hover-bg-color: #fafafa;
+
 }
 
 :root[data-theme="dark"] {
@@ -97,6 +99,7 @@ Tags: admin, best react admin template, das
     --background-color-hover: rgb(24, 26, 35);;
     --loading-color: #4b4b4b;
     --box-shadow-color: rgba(247, 247, 247, 0.05);
+    --hover-bg-color: #383839;
 }
 
 html,
