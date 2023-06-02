@@ -71,7 +71,7 @@ const UnAuthNav = () => {
                       <span>{t("Exchange")}</span>
                     </a>
 
-                    <ul className="lang-list" style={{ background: '#181a20', borderRadius: '0 0px 10px 10px', top: '40px', width: '200px', padding: '10px 0', alignItems: 'inherit' }}>
+                    <ul className="lang-list dropdown-menu-main">
                       <li>
                         <Link href="/exchange/dashboard">
                           <a className="py-1 menu-hover"><span className="cp-user-icon"> <BiShapeCircle /> </span> <span>{t("Spot Trading")}</span> </a>

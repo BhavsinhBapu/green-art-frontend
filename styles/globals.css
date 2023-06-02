@@ -137,12 +137,21 @@ input:focus,
   height: 40px;
 }
 
-.menu-hover{
+.menu-hover {
   height: 40px;
   display: flex !important;
   align-items: center !important;
 }
 
-.menu-hover:hover{
+.menu-hover:hover {
   background: #383839 !important;
+}
+
+.dropdown-menu-main {
+  background: #181a20 !important;
+  border-radius: 0 0px 10px 10px !important;
+  top: 40px !important;
+  width: 200px !important;
+  padding: 10px 0 !important;
+  align-items: inherit !important;
 }
