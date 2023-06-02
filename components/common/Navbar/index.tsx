@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { BsBarChartLine, BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
+import { BsBarChartLine } from "react-icons/bs";
 import { BiNetworkChart } from "react-icons/bi";
-import { IoLanguageSharp } from "react-icons/io5";
 import { FiSettings } from "react-icons/fi";
 import { CgProfile } from "react-icons/cg";
 import { HiOutlineDocumentReport } from "react-icons/hi";
@@ -195,7 +194,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                             </li>
                           </Link>
                         )}
-                      
+
                       {parseInt(settings.currency_deposit_status) === 1 &&
                         navbar?.fiat?.status && (
                           <li
@@ -1131,7 +1130,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
           </OutsideClickHandler>
         </>
       ) : !isLoggedIn && isLoading === false ? (
-        <UnAuthNav  />
+        <UnAuthNav />
       ) : (
         ""
       )}

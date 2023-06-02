@@ -7,6 +7,7 @@ import { TfiHandPointRight } from "react-icons/tfi";
 import { toast } from "react-toastify";
 import { getAvailableBalance } from "service/p2p";
 import { placeP2POrderAction } from "state/actions/p2p";
+import useTranslation from "next-translate/useTranslation";
 
 export const BuyFrom = ({
   details,
@@ -20,6 +21,7 @@ export const BuyFrom = ({
 }: any) => {
   const router = useRouter();
   const [paymentMethods, setPaymethods] = useState([]);
+  const { t } = useTranslation("common");
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState();
   const getAvailableBalanceAction = async () => {
     const response = await getAvailableBalance(
@@ -54,11 +56,11 @@ export const BuyFrom = ({
   }, [details]);
   console.log(details, "details");
   return (
-    <div className="col-12 p-5 boxShadow">
+    <div className="col-12 p-5 boxShadow mt-5 mb-5">
       <div className="mt-3 mb-3">
         <BackButton />
       </div>
-      <h1 className="ny-3">Details</h1>
+      <h1 className="ny-3">{t("Details")}</h1>
       <div className=" p-4 rounded">
         <div className="row">
           <div className="col-md-6">
@@ -71,7 +73,7 @@ export const BuyFrom = ({
                 {details?.ads?.user?.first_name} {details?.ads?.user?.last_name}
               </h5>
               <p className="px-3">{details?.orders} orders</p>
-              <p>{details?.completion}% completion</p>
+              <p>{details?.completion}% {t("completion")}</p>
             </div>
             <div className="row pt-4">
               <div className="col-lg-6">
@@ -82,14 +84,14 @@ export const BuyFrom = ({
                   </h6>
                 </div>
                 <div className="d-flex align-items-center">
-                  <p>Payment Time Limit</p>
-                  <h6 className="pl-3">{details?.payment_time} Minutes</h6>
+                  <p>(t{"Payment Time Limit"})</p>
+                  <h6 className="pl-3">{details?.payment_time} {t("Minutes")}</h6>
                 </div>
               </div>
 
               <div className="col-lg-6">
                 <div className="d-flex align-items-center">
-                  <p>Available</p>
+                  <p>{t("Available")}</p>
                   <h6 className="pl-3">
                     {parseFloat(details?.available)} {details?.ads?.coin_type}
                   </h6>
@@ -105,12 +107,11 @@ export const BuyFrom = ({
               </div>
               <div className="col-12">
                 <div className="pt-5">
-                  <h5>Terms and Conditions</h5>
+                  <h5>{t("Terms and Conditions")}</h5>
                   <div className="d-flex align-items-center p2pTerms pt-3">
                     <TfiHandPointRight />
                     <p>
-                      Include popular icons in your React projects easily with
-                      react-icons.
+                      {t("Include popular icons in your React projects easily")}
                     </p>
                   </div>
                   <div className="d-flex align-items-center p2pTerms pt-3">
