@@ -133,7 +133,13 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                                     : "/exchange/dashboard"
                                 }
                               >
-                                <li>
+                                <li
+                                  className={
+                                    router.pathname == "/exchange/dashboard"
+                                      ? "cp-user-active-page"
+                                      : ""
+                                  }
+                                >
                                   <a href="" className="menu-hover">
                                     <span className="cp-user-icon">
                                       {" "}
@@ -258,7 +264,13 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                                     isLoggedIn ? "/fiat-deposit" : "/signin"
                                   }
                                 >
-                                  <li>
+                                  <li
+                                    className={
+                                      router.pathname == "/fiat-deposit"
+                                        ? "cp-user-active-page"
+                                        : ""
+                                    }
+                                  >
                                     <a href="" className="menu-hover">
                                       <span className="cp-user-icon">
                                         <RiLuggageDepositLine />
@@ -302,22 +314,27 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                           </li>
                         )}
                       <li
-                      // className={
-                      //   router.pathname == "/user/wallet-history"
-                      //     ? "cp-user-active-page"
-                      //     : router.pathname == "/user/swap-history"
-                      //     ? "cp-user-active-page"
-                      //     : router.pathname == "/user/buy-order-history"
-                      //     ? "cp-user-active-page"
-                      //     : router.pathname == "/user/sell-order-history"
-                      //     ? "cp-user-active-page"
-                      //     : router.pathname == "/user/transaction-history"
-                      //     ? "cp-user-active-page"
-                      //     : router.pathname ==
-                      //       "/user/currency-deposit-history"
-                      //     ? "cp-user-active-page"
-                      //     : ""
-                      // }
+                        className={
+                          router.asPath == "/user/swap-history" ||
+                          router.asPath == "/user/buy-order-history" ||
+                          router.asPath == "/user/sell-order-history" ||
+                          router.asPath == "/user/transaction-history" ||
+                          router.asPath == "/user/currency-deposit-history" ||
+                          router.asPath ==
+                            "/user/wallet-history?type=deposit" ||
+                          router.asPath ==
+                            "/user/wallet-history?type=withdrawal" ||
+                          router.asPath == "/user/stop-limit-order-history" ||
+                          router.asPath == "/user/currency-withdraw-history" ||
+                          router.asPath ==
+                            "/user/referral-earning-withdrawal/" +
+                              REFERRAL_TYPE_DEPOSIT ||
+                          router.asPath ==
+                            "/user/referral-earning-trade/" +
+                              REFERRAL_TYPE_TRADE
+                            ? "cp-user-active-page"
+                            : ""
+                        }
                       >
                         {navbar?.reports?.status && (
                           <Link
@@ -356,7 +373,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                             >
                               <li
                                 className={
-                                  router.pathname ==
+                                  router.asPath ==
                                   "/user/wallet-history?type=deposit"
                                     ? "cp-user-active-page"
                                     : ""
@@ -385,7 +402,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                             >
                               <li
                                 className={
-                                  router.pathname ==
+                                  router.asPath ==
                                   "/user/wallet-history?type=withdrawal"
                                     ? "cp-user-active-page"
                                     : ""
@@ -412,7 +429,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                             >
                               <li
                                 className={
-                                  router.pathname == "/user/swap-history"
+                                  router.asPath == "/user/swap-history"
                                     ? "cp-user-active-page"
                                     : ""
                                 }
@@ -440,7 +457,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                             >
                               <li
                                 className={
-                                  router.pathname == "/user/buy-order-history"
+                                  router.asPath == "/user/buy-order-history"
                                     ? "cp-user-active-page"
                                     : ""
                                 }
@@ -468,7 +485,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                             >
                               <li
                                 className={
-                                  router.pathname == "/user/sell-order-history"
+                                  router.asPath == "/user/sell-order-history"
                                     ? "cp-user-active-page"
                                     : ""
                                 }
@@ -496,7 +513,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                             >
                               <li
                                 className={
-                                  router.pathname == "/user/transaction-history"
+                                  router.asPath == "/user/transaction-history"
                                     ? "cp-user-active-page"
                                     : ""
                                 }
@@ -527,7 +544,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                               >
                                 <li
                                   className={
-                                    router.pathname ==
+                                    router.asPath ==
                                     "/user/currency-deposit-history"
                                       ? "cp-user-active-page"
                                       : ""
@@ -556,7 +573,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                           >
                             <li
                               className={
-                                router.pathname ==
+                                router.asPath ==
                                 "/user/stop-limit-order-history"
                                   ? "cp-user-active-page"
                                   : ""
@@ -580,7 +597,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                           >
                             <li
                               className={
-                                router.pathname ==
+                                router.asPath ==
                                 "/user/referral-earning-withdrawal/" +
                                   REFERRAL_TYPE_DEPOSIT
                                   ? "cp-user-active-page"
@@ -607,7 +624,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                           >
                             <li
                               className={
-                                router.pathname ==
+                                router.asPath ==
                                 "/user/referral-earning-trade/" +
                                   REFERRAL_TYPE_TRADE
                                   ? "cp-user-active-page"
@@ -632,7 +649,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                             >
                               <li
                                 className={
-                                  router.pathname ==
+                                  router.asPath ==
                                   "/user/currency-withdraw-history"
                                     ? "cp-user-active-page"
                                     : ""
@@ -737,7 +754,13 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                             <Link
                               href={isLoggedIn ? "/user/settings" : "/signin"}
                             >
-                              <li>
+                              <li
+                                className={
+                                  router.pathname == "/user/settings"
+                                    ? "cp-user-active-page"
+                                    : ""
+                                }
+                              >
                                 <a href="" className="menu-hover">
                                   <span className="cp-user-icon">
                                     <RiUserSettingsLine />
