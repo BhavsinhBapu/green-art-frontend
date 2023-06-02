@@ -136,3 +136,13 @@ input:focus,
 .StripeElement.PaymentRequestButton {
   height: 40px;
 }
+
+.menu-hover{
+  height: 40px;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.menu-hover:hover{
+  background: #383839 !important;
+}
