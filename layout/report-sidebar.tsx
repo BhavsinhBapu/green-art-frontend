@@ -128,7 +128,7 @@ const ReportSidebar = () => {
           >
             <li
               className={
-                router.pathname ==
+                router.asPath ==
                 `/user/referral-earning-withdrawal/${REFERRAL_TYPE_DEPOSIT}`
                   ? "active"
                   : ""
@@ -143,7 +143,7 @@ const ReportSidebar = () => {
           <Link href={"/user/referral-earning-trade/" + REFERRAL_TYPE_TRADE}>
             <li
               className={
-                router.pathname ==
+                router.asPath ==
                 "/user/referral-earning-trade/" + REFERRAL_TYPE_TRADE
                   ? "active"
                   : ""
