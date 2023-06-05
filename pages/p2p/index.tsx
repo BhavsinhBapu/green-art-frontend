@@ -103,6 +103,7 @@ const P2P = ({ data }: any) => {
                   <p className="text-white">{data?.p2p_banner_des}</p>
                 )}
               </div>
+              {/* <div className="col-md-12">{isLoggedIn && <P2pTopBar />}</div> */}
             </div>
           </div>
         </div>
