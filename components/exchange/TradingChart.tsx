@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import styles from "./index.module.css";
 import { widget } from "../../public/static/charting_library";
 import Datafeed from "components/exchange/api";
+import { StudyOverrides } from "../../public/static/charting_library/charting_library";
 
 import {
   DISABLED_FEATURES,
@@ -66,6 +67,10 @@ export const TVChartContainer: React.FC = () => {
         "volume.options.showSeriesOHLC": false,
         "volume.options.showBarChange": false,
         "volume.options.showCountdown": false,
+        "moving average.show": true,
+        "moving average.period": 20,
+        "moving average.color": "#ff9900",
+        "moving average.plottype": "line",
       },
       overrides: {
         "mainSeriesProperties.candleStyle.upColor": "#ffffff",
@@ -82,6 +87,7 @@ export const TVChartContainer: React.FC = () => {
     };
 
     const chartInit = (config: any) => {
+      
       const widgetInstance = new widget(config);
       //@ts-ignore
 

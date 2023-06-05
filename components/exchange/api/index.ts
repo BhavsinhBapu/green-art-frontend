@@ -1,5 +1,6 @@
 import historyProvider from "./historyProvider";
 import stream from "./stream";
+
 const supportedResolutions = [
   "1",
   "3",
@@ -18,6 +19,7 @@ const supportedResolutions = [
 const config = {
   supported_resolutions: supportedResolutions,
 };
+
 export default {
   onReady: (cb: any) => {
     cb(config);
@@ -33,10 +35,8 @@ export default {
     onSymbolResolvedCallback: any,
     onResolveErrorCallback: any
   ) => {
-    // expects a symbolInfo object in response
-
+    // Expects a symbolInfo object in response
     var split_data = symbolName.split(/[:/]/);
-
     var symbol_stub = {
       name: symbolName,
       description: "",
@@ -54,14 +54,9 @@ export default {
       data_status: "streaming",
     };
 
-    // if (split_data[2].match(/USD|EUR|JPY|AUD|GBP|KRW|CNY/)) {
-    //   symbol_stub.pricescale = 100;
-    // }
     setTimeout(function () {
       onSymbolResolvedCallback(symbol_stub);
     }, 0);
-
-    // onResolveErrorCallback('Not feeling it today')
   },
 
   getBars: function (
@@ -75,7 +70,7 @@ export default {
     const { from, to } = periodParams;
     const countBack = periodParams.countBack;
     const countForward = periodParams.countForward;
-    //@ts-ignore
+
     historyProvider
       .getBars(
         symbolInfo,
@@ -85,10 +80,21 @@ export default {
         countBack,
         countForward
       )
-      //@ts-ignore
       .then((bars: any) => {
         if (bars.length) {
-          onHistoryCallback(bars, { noData: false });
+          // Calculate the Moving Average (MA)
+          const maPeriod = 20; // Adjust this value as needed
+          const maValues = calculateMovingAverage(bars, maPeriod);
+
+          // Add MA values to each bar
+          const barsWithMA = bars.map((bar: any, index: number) => {
+            return {
+              ...bar,
+              ma: maValues[index],
+            };
+          });
+
+          onHistoryCallback(barsWithMA, { noData: false });
         } else {
           onHistoryCallback(bars, { noData: true });
         }
@@ -113,6 +119,7 @@ export default {
       onResetCacheNeededCallback
     );
   },
+
   unsubscribeBars: (subscriberUID: any) => {
     stream.unsubscribeBars(subscriberUID);
   },
@@ -122,14 +129,14 @@ export default {
     resolutionBack: any,
     intervalBack: any
   ) => {
-    //optional
-
-    // while optional, this makes sure we request 24 hours of minute data at a time
+    // Optional
+    // While optional, this makes sure we request 24 hours of minute data at a time
     // CryptoCompare's minute data endpoint will throw an error if we request data beyond 7 days in the past, and return no data
     return resolution < 60
       ? { resolutionBack: "D", intervalBack: "1" }
       : undefined;
   },
+
   getMarks: (
     symbolInfo: any,
     startDate: any,
@@ -137,8 +144,9 @@ export default {
     onDataCallback: any,
     resolution: any
   ) => {
-    //optional
+    // Optional
   },
+
   getTimeScaleMarks: (
     symbolInfo: any,
     startDate: any,
@@ -146,7 +154,26 @@ export default {
     onDataCallback: any,
     resolution: any
   ) => {
-    //optional
+    // Optional
   },
+
   getServerTime: (cb: any) => {},
 };
+
+function calculateMovingAverage(bars: any, period: number) {
+  const maValues = [];
+
+  for (let i = period - 1; i < bars.length; i++) {
+    const closePrices = bars
+      .slice(i - period + 1, i + 1)
+      .map((bar: any) => bar.close);
+    const sum = closePrices.reduce(
+      (total: number, price: number) => total + price,
+      0
+    );
+    const ma = sum / period;
+    maValues.push(ma);
+  }
+
+  return maValues;
+}
