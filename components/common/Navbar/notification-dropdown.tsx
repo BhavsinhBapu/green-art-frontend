@@ -83,27 +83,6 @@ const NotificationDropdown = ({
                         </a>
                       </button>
                     </Link>
-                    <button
-                      className="dropdown-item"
-                      type="button"
-                      onClick={() => {
-                        darkModeToggle(settings, setTheme, dispatch);
-                      }}
-                    >
-                      <a href="#">
-                        {theme === 0 ? (
-                          <>
-                            <BsFillSunFill size={26} className="mr-2" />
-                            {t("Light")}
-                          </>
-                        ) : (
-                          <>
-                            <BsFillMoonFill size={20} className="mr-2" />
-                            {t("Dark")}
-                          </>
-                        )}
-                      </a>
-                    </button>
 
                     <Link href="/user/my-wallet">
                       <button className="dropdown-item" type="button">

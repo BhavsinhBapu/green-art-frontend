@@ -798,32 +798,6 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                           )}
                         </ul>
                       </li>
-                      <li>
-                        <a
-                          className="arrow-icon"
-                          href="#"
-                          aria-expanded="true"
-                          style={{ height: "48px" }}
-                        >
-                          <span className="cp-user-icon">
-                            <IoMdGlobe size={20} />
-                          </span>
-                          <span className="cp-user-name">
-                            {router.locale?.toLocaleUpperCase()}
-                          </span>
-                        </a>
-                        <ul className="dropdown-menu-main">
-                          {settings?.LanguageList?.map(
-                            (item: any, index: any) => (
-                              <li key={index}>
-                                <Link href={router.asPath} locale={item.key}>
-                                  <a className="py-1 menu-hover">{item.name}</a>
-                                </Link>
-                              </li>
-                            )
-                          )}
-                        </ul>
-                      </li>
                     </ul>
                   </nav>
                 </div>
