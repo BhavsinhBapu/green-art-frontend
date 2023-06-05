@@ -14734,3 +14734,8 @@ body::-webkit-scrollbar {
 .secendary-dropdown-bg{
   background: var(--main-background-color);
 }
+
+.no-item-found-border{
+  border: var(--border-color) 1px solid;
+  border-radius: 10px;
+}
