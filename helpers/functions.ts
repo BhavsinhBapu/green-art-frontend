@@ -1,10 +1,10 @@
-import { setTheme } from "state/reducer/common";
+import { setThemeColor } from "state/reducer/common";
 
 export const checkDarkMode = (settings: any, dispatch: any) => {
   const theme = localStorage.getItem("theme");
   if (theme === "light") {
     localStorage.setItem("theme", "light");
-    dispatch(setTheme("light"));
+    dispatch(setThemeColor("light"));
     document.documentElement.setAttribute("data-theme", "light");
     settings.theme_color.map((themeColors: any) => {
       if (!themeColors.value) {
@@ -17,7 +17,7 @@ export const checkDarkMode = (settings: any, dispatch: any) => {
     });
   } else {
     localStorage.setItem("theme", "dark");
-    dispatch(setTheme("dark"));
+    dispatch(setThemeColor("dark"));
     document.documentElement.setAttribute("data-theme", "dark");
     settings.dark_theme_color.map((themeColors: any) => {
       if (!themeColors.value) {
@@ -47,7 +47,7 @@ export const darkModeToggle = (settings: any, setTheme: any, dispatch: any) => {
   const theme = localStorage.getItem("theme");
   if (theme === "dark") {
     setTheme(1);
-    dispatch(setTheme("light"));
+    dispatch(setThemeColor("light"));
     document.documentElement.setAttribute("data-theme", "light");
     localStorage.setItem("theme", "light");
     settings.theme_color.map((theme_color: any) => {
@@ -61,7 +61,7 @@ export const darkModeToggle = (settings: any, setTheme: any, dispatch: any) => {
     });
   } else {
     setTheme(0);
-    dispatch(setTheme("dark"));
+    dispatch(setThemeColor("dark"));
 
     document.documentElement.setAttribute("data-theme", "dark");
     settings.dark_theme_color.map((theme_color: any) => {
@@ -81,10 +81,10 @@ export const darkModeToggleDashboard = (dispatch:any) => {
   const theme = localStorage.getItem("theme");
   if (theme === "dark") {
     document.documentElement.setAttribute("data-theme", "light");
-    dispatch(setTheme('light'))
+    dispatch(setThemeColor("light"));
     localStorage.setItem("theme", "light");
   } else {
-    dispatch(setTheme("dark"));
+    dispatch(setThemeColor("dark"));
     document.documentElement.setAttribute("data-theme", "dark");
     localStorage.setItem("theme", "dark");
   }

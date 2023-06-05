@@ -129,7 +129,7 @@ export const TVChartContainer: React.FC = () => {
         tvWidget = null;
       }
     };
-  }, [currentPair]);
+  }, [currentPair, theme]);
   useEffect(() => {
     listenMessages(dispatch, user);
   }, [currentPair]);

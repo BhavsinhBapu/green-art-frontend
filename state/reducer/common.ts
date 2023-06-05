@@ -17,11 +17,11 @@ export const commonSlice = createSlice({
     setSettings: (state, action: PayloadAction<commonType>) => {
       state.settings = action.payload;
     },
-    setTheme: (state, action: any) => {
+    setThemeColor: (state, action: any) => {
       state.theme = action.payload;
     },
   },
 });
 
-export const { setSettings, setTheme } = commonSlice.actions;
+export const { setSettings, setThemeColor } = commonSlice.actions;
 export default commonSlice.reducer;
