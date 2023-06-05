@@ -50,7 +50,7 @@ export const AddPostOne = ({
     <div className="col-12 mt-4">
       <div className="buySellAddBox px-5 py-5 rounded">
         <div className="row">
-          <div className="col-md-6 col-lg-4">
+          <div className="col-3">
             <label> Asset:</label>
             <CUstomSelect
               options={AssetOptions}
@@ -60,7 +60,7 @@ export const AddPostOne = ({
               defaultValue={selectedAsset}
             />
           </div>
-          <div className="col-md-6 col-lg-4 mt-4 mt-md-0">
+          <div className="col-3">
             <label> With Fiat:</label>
             <CUstomSelect
               options={CurrencyOptions}
@@ -70,86 +70,85 @@ export const AddPostOne = ({
               defaultValue={selectedCurrency}
             />
           </div>
+          <div className="col-3 adFromPrice">
+            <label> Your Price</label>
+            <h5 className="custom-border-box">
+              {selectedCurrency?.value} {pricePoint.highest_price}
+            </h5>
+          </div>
+          <div className="col-3 adFromPrice">
+            <label>Lowest Order Price</label>
+            <h5 className="custom-border-box">
+              {selectedCurrency?.value} {pricePoint.lowest_price}
+            </h5>
+          </div>
+
           <div className="col-12 mt-5">
             <div className="row">
-              <div className="col-md-5 col-6 adFromPrice">
-                <p>Your Price</p>
-                <h4>
-                  {selectedCurrency?.value} {pricePoint.highest_price}
-                </h4>
-              </div>
-              <div className="col-md-5 col-6 adFromPrice">
-                <p>Lowest Order Price</p>
-                <h4>
-                  {selectedCurrency?.value} {pricePoint.lowest_price}
-                </h4>
-              </div>
-            </div>
-          </div>
-          <div className="col-12 mt-4">
-            <div className="row">
-              <div className="col-md-3 col-6">
+              <div className="col-6">
                 <label>Price Type</label>
-                <div className="adFromCheckBox">
-                  <input
-                    type="radio"
-                    name="optradio"
-                    checked={priceType === FIXED_PRICE}
-                    onChange={() => setPriceType(FIXED_PRICE)}
-                  />
-                  <p>Fixed</p>
+                <div className="d-flex" style={{ gap: "20px" }}>
+                  <div className="adFromCheckBox">
+                    <input
+                      type="radio"
+                      name="optradio"
+                      checked={priceType === FIXED_PRICE}
+                      onChange={() => setPriceType(FIXED_PRICE)}
+                    />
+                    <p>Fixed</p>
+                  </div>
+                  <div className="adFromCheckBox">
+                    <input
+                      type="radio"
+                      name="optradio"
+                      checked={priceType === FLOAT_PRICE}
+                      onChange={() => setPriceType(FLOAT_PRICE)}
+                    />
+                    <p>Floating</p>
+                  </div>
                 </div>
               </div>
-              <div className="col-md-3 col-6">
-                <label></label>
-                <div className="adFromCheckBox">
+              <div className="col-6">
+                <label>
+                  {priceType === FIXED_PRICE ? "Fixed" : "Floating"}
+                </label>
+                <span className="adFromPriceInecDecButton d-flex align-items-center custom-border-box">
+                  <button
+                    onClick={() =>
+                      setPricePoint({
+                        ...pricePoint,
+                        price: Math.max(
+                          0,
+                          parseFloat(pricePoint.price) - 1
+                        ).toFixed(2),
+                      })
+                    }
+                  >
+                    <FaMinus />
+                  </button>
                   <input
-                    type="radio"
-                    name="optradio"
-                    checked={priceType === FLOAT_PRICE}
-                    onChange={() => setPriceType(FLOAT_PRICE)}
+                    type="number"
+                    value={pricePoint.price}
+                    className="pricePoint_field border-none"
+                    style={{ width: "100%" }}
+                    onChange={(e) =>
+                      setPricePoint({ ...pricePoint, price: e.target.value })
+                    }
                   />
-                  <p>Floating</p>
-                </div>
+                  {priceType === FLOAT_PRICE && "%"}
+                  <button
+                    onClick={() =>
+                      setPricePoint({
+                        ...pricePoint,
+                        price: (parseFloat(pricePoint.price) + 1).toFixed(2),
+                      })
+                    }
+                  >
+                    <BsPlusLg />
+                  </button>
+                </span>
               </div>
             </div>
-          </div>
-          <div className="col-12 mt-4">
-            <label>Fixed</label>
-            <span className="adFromPriceInecDecButton d-flex align-items-center">
-              <button
-                onClick={() =>
-                  setPricePoint({
-                    ...pricePoint,
-                    price: Math.max(
-                      0,
-                      parseFloat(pricePoint.price) - 1
-                    ).toFixed(2),
-                  })
-                }
-              >
-                <FaMinus />
-              </button>
-              <input
-                type="number"
-                value={pricePoint.price}
-                className="pricePoint_field"
-                onChange={(e) =>
-                  setPricePoint({ ...pricePoint, price: e.target.value })
-                }
-              />
-              {priceType === FLOAT_PRICE && "%"}
-              <button
-                onClick={() =>
-                  setPricePoint({
-                    ...pricePoint,
-                    price: (parseFloat(pricePoint.price) + 1).toFixed(2),
-                  })
-                }
-              >
-                <BsPlusLg />
-              </button>
-            </span>
           </div>
         </div>
       </div>
