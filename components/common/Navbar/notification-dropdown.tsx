@@ -211,9 +211,9 @@ const NotificationDropdown = ({
                       type="button"
                       onClick={() => {
                         // darkModeToggle(settings, setTheme);
-                        darkModeToggleDashboard();
+                        darkModeToggleDashboard(dispatch);
 
-                        router.reload();
+                        // router.reload();
                       }}
                     >
                       <a href="#">

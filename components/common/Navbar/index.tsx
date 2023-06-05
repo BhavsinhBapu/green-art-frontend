@@ -57,7 +57,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
     });
   };
   useEffect(() => {
-    checkThemeState(setTheme);
+    checkThemeState(setTheme, dispatch);
     isLoggedIn && getNotifications();
   }, [isLoggedIn]);
   useEffect(() => {

@@ -54,7 +54,7 @@ const DashboardNavbar = () => {
     });
   };
   useEffect(() => {
-    checkThemeState(setTheme);
+    checkThemeState(setTheme,dispatch);
     isLoggedIn && getNotifications();
   }, [isLoggedIn]);
   useEffect(() => {
@@ -846,7 +846,7 @@ const DashboardNavbar = () => {
                                 type="button"
                                 onClick={async () => {
                                   router.reload();
-                                  darkModeToggleDashboard();
+                                  darkModeToggleDashboard(dispatch);
                                 }}
                               >
                                 <a href="#">

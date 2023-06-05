@@ -87,7 +87,7 @@ const Index = ({ children }: any) => {
       );
       dispatch(setSocialData(CommonLanding.landing_settings.media_list));
       setMetaData(CommonLanding?.common_settings);
-      checkDarkMode(CommonLanding?.common_settings);
+      checkDarkMode(CommonLanding?.common_settings, dispatch);
       ReactGA.initialize(
         CommonLanding?.common_settings?.google_analytics_tracking_id
       );
