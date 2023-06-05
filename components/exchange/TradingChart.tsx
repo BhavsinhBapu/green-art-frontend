@@ -29,7 +29,7 @@ export const TVChartContainer: React.FC = () => {
 
   const dispatch = useDispatch();
   const router = useRouter();
-
+  console.log(theme, "This is theme");
   let tvWidget: any = null;
   const { currentPair } = useSelector((state: RootState) => state.exchange);
   useEffect(() => {
