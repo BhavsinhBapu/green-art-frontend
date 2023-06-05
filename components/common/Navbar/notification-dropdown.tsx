@@ -1,4 +1,4 @@
-import { darkModeToggle } from "helpers/functions";
+import { darkModeToggle, darkModeToggleDashboard } from "helpers/functions";
 import moment from "moment";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
@@ -87,7 +87,7 @@ const NotificationDropdown = ({
                       className="dropdown-item"
                       type="button"
                       onClick={() => {
-                        darkModeToggle(settings, setTheme);
+                        darkModeToggle(settings, setTheme, dispatch);
                       }}
                     >
                       <a href="#">
@@ -273,7 +273,7 @@ const NotificationDropdown = ({
                   </li>
                   <li
                     onClick={() => {
-                      darkModeToggle(settings, setTheme);
+                      darkModeToggle(settings, setTheme, dispatch);
                     }}
                   >
                     <a href="">

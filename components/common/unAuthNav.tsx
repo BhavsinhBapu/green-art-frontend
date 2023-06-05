@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { BsFillMoonFill, BsFillSunFill, BsBarChartLine } from "react-icons/bs";
 import { FaPeopleArrows } from "react-icons/fa";
 import { BiShapeCircle } from "react-icons/bi";
@@ -29,9 +29,10 @@ const UnAuthNav = () => {
     const data = await notification();
     setNotification(data.data.data);
   };
+  const dispatch=useDispatch()
 
   useEffect(() => {
-    checkThemeState(setTheme);
+    checkThemeState(setTheme,dispatch);
     isLoggedIn && getNotifications();
   }, [isLoggedIn]);
   useEffect(() => {
@@ -162,7 +163,7 @@ const UnAuthNav = () => {
 
                   <li
                     onClick={() => {
-                      darkModeToggle(settings, setTheme);
+                      darkModeToggle(settings, setTheme,dispatch);
                     }}
                   >
                     <a href="">

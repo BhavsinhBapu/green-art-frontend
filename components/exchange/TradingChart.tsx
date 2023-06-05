@@ -12,7 +12,6 @@ import { RootState } from "state/store";
 import { useDispatch, useSelector } from "react-redux";
 import { listenMessages } from "state/actions/exchange";
 import { useRouter } from "next/router";
-const theme = localStorage.getItem("theme");
 
 function getLanguageFromURL() {
   const regex = new RegExp("[\\?&]lang=([^&#]*)");
@@ -26,6 +25,8 @@ let socketCall = 0;
 export const TVChartContainer: React.FC = () => {
   const ref = useRef(null);
   const { isLoggedIn, user } = useSelector((state: RootState) => state.user);
+  const { theme } = useSelector((state: RootState) => state.common);
+
   const dispatch = useDispatch();
   const router = useRouter();
 
