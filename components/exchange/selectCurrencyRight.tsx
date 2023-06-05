@@ -16,14 +16,14 @@ const SelectCurrencyRight = () => {
   const customStyles = {
     rows: {
       style: {
-        backgroundColor: "var(--background-color)",
+        backgroundColor: "var(--main-background-color)",
         color: "var(--font-color)",
         borderColor: "var(--border-color)",
       },
     },
     headCells: {
       style: {
-        backgroundColor: "var(--background-color)",
+        backgroundColor: "var(--main-background-color)",
         color: "var(--font-color)",
         borderColor: "var(--border-color)",
       },
@@ -31,7 +31,7 @@ const SelectCurrencyRight = () => {
     cells: {
       style: {
         width: "100%",
-        backgroundColor: "var(--background-color)",
+        backgroundColor: "var(--main-background-color)",
         color: "var(--font-color)",
         borderColor: "var(--border-color)",
         fontSize: "11px",
