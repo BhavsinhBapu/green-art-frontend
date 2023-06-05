@@ -82,10 +82,13 @@ export const TVChartContainer: React.FC = () => {
 
     const chartInit = (config: any) => {
       const widgetInstance = new widget(config);
+      //@ts-ignore
 
       window.tvWidget = widgetInstance;
+      //@ts-ignore
 
       window.tvWidget.onChartReady(() => {
+        //@ts-ignore
         window.tvWidget.applyOverrides({
           "paneProperties.background":
             theme === "dark" ? "rgb(11, 14, 17)" : "#fff",
@@ -125,8 +128,13 @@ export const TVChartContainer: React.FC = () => {
     chartInit(widgetOptions);
 
     return () => {
+      //@ts-ignore
       if (window.tvWidget !== null) {
+        //@ts-ignore
+
         window.tvWidget.remove();
+        //@ts-ignore
+
         window.tvWidget = null;
       }
     };
@@ -134,77 +142,80 @@ export const TVChartContainer: React.FC = () => {
   useEffect(() => {
     //@ts-ignore
     window.tvWidget?.onChartReady(() => {
-       window.tvWidget.applyOverrides({
-         "paneProperties.background":
-           theme === "dark" ? "rgb(11, 14, 17)" : "#fff",
-         "paneProperties.backgroundType": "solid",
-         "mainSeriesProperties.candleStyle.upColor": "#32d777",
-         "mainSeriesProperties.candleStyle.downColor": "#dc3545",
-         "mainSeriesProperties.candleStyle.drawBorder": true,
-         "mainSeriesProperties.candleStyle.borderUpColor": "#32d777",
-         "mainSeriesProperties.candleStyle.borderDownColor": "#dc3545",
-         "mainSeriesProperties.candleStyle.wickUpColor": "#32d777",
-         "mainSeriesProperties.candleStyle.wickDownColor": "#dc3545",
-         "mainSeriesProperties.hollowCandleStyle.upColor": "#32d777",
-         "mainSeriesProperties.hollowCandleStyle.downColor": "#dc3545",
-         "mainSeriesProperties.hollowCandleStyle.drawWick": true,
-         "mainSeriesProperties.hollowCandleStyle.drawBorder": true,
-         "mainSeriesProperties.hollowCandleStyle.borderUpColor": "#32d777",
-         "mainSeriesProperties.hollowCandleStyle.borderDownColor": "#dc3545",
-         "mainSeriesProperties.hollowCandleStyle.wickUpColor": "#32d777",
-         "mainSeriesProperties.hollowCandleStyle.wickDownColor": "#dc3545",
-         "mainSeriesProperties.haStyle.upColor": "#32d777",
-         "mainSeriesProperties.haStyle.downColor": "#dc3545",
-         "mainSeriesProperties.haStyle.drawWick": true,
-         "mainSeriesProperties.haStyle.drawBorder": true,
-         "mainSeriesProperties.haStyle.borderUpColor": "#32d777",
-         "mainSeriesProperties.haStyle.borderDownColor": "#dc3545",
-         "mainSeriesProperties.haStyle.wickUpColor": "#32d777",
-         "mainSeriesProperties.haStyle.wickDownColor": "#dc3545",
-         "mainSeriesProperties.barStyle.upColor": "#32d777",
-         "mainSeriesProperties.barStyle.downColor": "#dc3545",
-         "mainSeriesProperties.barStyle.barColorsOnPrevClose": false,
-         "mainSeriesProperties.barStyle.dontDrawOpen": false,
-         "mainSeriesProperties.lineStyle.color": "#dc3545",
-       });
+      //@ts-ignore
+      window.tvWidget.applyOverrides({
+        "paneProperties.background":
+          theme === "dark" ? "rgb(11, 14, 17)" : "#fff",
+        "paneProperties.backgroundType": "solid",
+        "mainSeriesProperties.candleStyle.upColor": "#32d777",
+        "mainSeriesProperties.candleStyle.downColor": "#dc3545",
+        "mainSeriesProperties.candleStyle.drawBorder": true,
+        "mainSeriesProperties.candleStyle.borderUpColor": "#32d777",
+        "mainSeriesProperties.candleStyle.borderDownColor": "#dc3545",
+        "mainSeriesProperties.candleStyle.wickUpColor": "#32d777",
+        "mainSeriesProperties.candleStyle.wickDownColor": "#dc3545",
+        "mainSeriesProperties.hollowCandleStyle.upColor": "#32d777",
+        "mainSeriesProperties.hollowCandleStyle.downColor": "#dc3545",
+        "mainSeriesProperties.hollowCandleStyle.drawWick": true,
+        "mainSeriesProperties.hollowCandleStyle.drawBorder": true,
+        "mainSeriesProperties.hollowCandleStyle.borderUpColor": "#32d777",
+        "mainSeriesProperties.hollowCandleStyle.borderDownColor": "#dc3545",
+        "mainSeriesProperties.hollowCandleStyle.wickUpColor": "#32d777",
+        "mainSeriesProperties.hollowCandleStyle.wickDownColor": "#dc3545",
+        "mainSeriesProperties.haStyle.upColor": "#32d777",
+        "mainSeriesProperties.haStyle.downColor": "#dc3545",
+        "mainSeriesProperties.haStyle.drawWick": true,
+        "mainSeriesProperties.haStyle.drawBorder": true,
+        "mainSeriesProperties.haStyle.borderUpColor": "#32d777",
+        "mainSeriesProperties.haStyle.borderDownColor": "#dc3545",
+        "mainSeriesProperties.haStyle.wickUpColor": "#32d777",
+        "mainSeriesProperties.haStyle.wickDownColor": "#dc3545",
+        "mainSeriesProperties.barStyle.upColor": "#32d777",
+        "mainSeriesProperties.barStyle.downColor": "#dc3545",
+        "mainSeriesProperties.barStyle.barColorsOnPrevClose": false,
+        "mainSeriesProperties.barStyle.dontDrawOpen": false,
+        "mainSeriesProperties.lineStyle.color": "#dc3545",
+      });
+      //@ts-ignore
 
       window.tvWidget
         ?.changeTheme(theme === "dark" ? "Dark" : "Light")
         .then(() => {
-           window.tvWidget.applyOverrides({
-             "paneProperties.background":
-               theme === "dark" ? "rgb(11, 14, 17)" : "#fff",
-             "paneProperties.backgroundType": "solid",
-             "mainSeriesProperties.candleStyle.upColor": "#32d777",
-             "mainSeriesProperties.candleStyle.downColor": "#dc3545",
-             "mainSeriesProperties.candleStyle.drawBorder": true,
-             "mainSeriesProperties.candleStyle.borderUpColor": "#32d777",
-             "mainSeriesProperties.candleStyle.borderDownColor": "#dc3545",
-             "mainSeriesProperties.candleStyle.wickUpColor": "#32d777",
-             "mainSeriesProperties.candleStyle.wickDownColor": "#dc3545",
-             "mainSeriesProperties.hollowCandleStyle.upColor": "#32d777",
-             "mainSeriesProperties.hollowCandleStyle.downColor": "#dc3545",
-             "mainSeriesProperties.hollowCandleStyle.drawWick": true,
-             "mainSeriesProperties.hollowCandleStyle.drawBorder": true,
-             "mainSeriesProperties.hollowCandleStyle.borderUpColor": "#32d777",
-             "mainSeriesProperties.hollowCandleStyle.borderDownColor":
-               "#dc3545",
-             "mainSeriesProperties.hollowCandleStyle.wickUpColor": "#32d777",
-             "mainSeriesProperties.hollowCandleStyle.wickDownColor": "#dc3545",
-             "mainSeriesProperties.haStyle.upColor": "#32d777",
-             "mainSeriesProperties.haStyle.downColor": "#dc3545",
-             "mainSeriesProperties.haStyle.drawWick": true,
-             "mainSeriesProperties.haStyle.drawBorder": true,
-             "mainSeriesProperties.haStyle.borderUpColor": "#32d777",
-             "mainSeriesProperties.haStyle.borderDownColor": "#dc3545",
-             "mainSeriesProperties.haStyle.wickUpColor": "#32d777",
-             "mainSeriesProperties.haStyle.wickDownColor": "#dc3545",
-             "mainSeriesProperties.barStyle.upColor": "#32d777",
-             "mainSeriesProperties.barStyle.downColor": "#dc3545",
-             "mainSeriesProperties.barStyle.barColorsOnPrevClose": false,
-             "mainSeriesProperties.barStyle.dontDrawOpen": false,
-             "mainSeriesProperties.lineStyle.color": "#dc3545",
-           });
+          //@ts-ignore
+
+          window.tvWidget.applyOverrides({
+            "paneProperties.background":
+              theme === "dark" ? "rgb(11, 14, 17)" : "#fff",
+            "paneProperties.backgroundType": "solid",
+            "mainSeriesProperties.candleStyle.upColor": "#32d777",
+            "mainSeriesProperties.candleStyle.downColor": "#dc3545",
+            "mainSeriesProperties.candleStyle.drawBorder": true,
+            "mainSeriesProperties.candleStyle.borderUpColor": "#32d777",
+            "mainSeriesProperties.candleStyle.borderDownColor": "#dc3545",
+            "mainSeriesProperties.candleStyle.wickUpColor": "#32d777",
+            "mainSeriesProperties.candleStyle.wickDownColor": "#dc3545",
+            "mainSeriesProperties.hollowCandleStyle.upColor": "#32d777",
+            "mainSeriesProperties.hollowCandleStyle.downColor": "#dc3545",
+            "mainSeriesProperties.hollowCandleStyle.drawWick": true,
+            "mainSeriesProperties.hollowCandleStyle.drawBorder": true,
+            "mainSeriesProperties.hollowCandleStyle.borderUpColor": "#32d777",
+            "mainSeriesProperties.hollowCandleStyle.borderDownColor": "#dc3545",
+            "mainSeriesProperties.hollowCandleStyle.wickUpColor": "#32d777",
+            "mainSeriesProperties.hollowCandleStyle.wickDownColor": "#dc3545",
+            "mainSeriesProperties.haStyle.upColor": "#32d777",
+            "mainSeriesProperties.haStyle.downColor": "#dc3545",
+            "mainSeriesProperties.haStyle.drawWick": true,
+            "mainSeriesProperties.haStyle.drawBorder": true,
+            "mainSeriesProperties.haStyle.borderUpColor": "#32d777",
+            "mainSeriesProperties.haStyle.borderDownColor": "#dc3545",
+            "mainSeriesProperties.haStyle.wickUpColor": "#32d777",
+            "mainSeriesProperties.haStyle.wickDownColor": "#dc3545",
+            "mainSeriesProperties.barStyle.upColor": "#32d777",
+            "mainSeriesProperties.barStyle.downColor": "#dc3545",
+            "mainSeriesProperties.barStyle.barColorsOnPrevClose": false,
+            "mainSeriesProperties.barStyle.dontDrawOpen": false,
+            "mainSeriesProperties.lineStyle.color": "#dc3545",
+          });
         });
     });
   }, [theme]);
