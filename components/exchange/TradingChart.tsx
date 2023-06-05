@@ -29,7 +29,6 @@ export const TVChartContainer: React.FC = () => {
 
   const dispatch = useDispatch();
   const router = useRouter();
-  console.log(theme, "This is theme");
   let tvWidget: any = null;
   const { currentPair } = useSelector((state: RootState) => state.exchange);
   useEffect(() => {
@@ -87,7 +86,7 @@ export const TVChartContainer: React.FC = () => {
       tvWidget.onChartReady(() => {
         tvWidget.applyOverrides({
           "paneProperties.background":
-            theme === "dark" ? "rgb(22, 26, 30)" : "#fff",
+            theme === "dark" ? "rgb(11, 14, 17)" : "#fff",
           "paneProperties.backgroundType": "solid",
           "mainSeriesProperties.candleStyle.upColor": "#32d777",
           "mainSeriesProperties.candleStyle.downColor": "#dc3545",
@@ -129,7 +128,8 @@ export const TVChartContainer: React.FC = () => {
         tvWidget = null;
       }
     };
-  }, [currentPair, theme]);
+  }, [currentPair, theme]); // Include 'theme' in the dependencies array
+
   useEffect(() => {
     listenMessages(dispatch, user);
   }, [currentPair]);
