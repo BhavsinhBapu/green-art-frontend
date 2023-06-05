@@ -9659,7 +9659,7 @@ table.dataTable thead .sorting_asc:after {
   content: "";
   height: 59px;
   width: 100%;
-  background: #333843;
+  background: var(--main-background-color);
   position: absolute;
   left: 0;
   top: 0;
@@ -10954,19 +10954,7 @@ input[type="number"] {
   cursor: pointer;
 }
 
-.wrapper {
-  position: fixed;
-  bottom: 30px;
-  left: 30px;
-  background: #fff;
-  background: var(--background-color-trade);
-  max-width: 365px;
-  border-radius: 15px;
-  text-align: center;
-  padding: 25px 25px 30px 25px;
-  box-shadow: 1px 7px 14px -5px rgba(0, 0, 0, 0.15);
-  text-align: center;
-}
+
 
 .wrapper.hide {
   opacity: 0;
@@ -11871,7 +11859,7 @@ input[type="number"] {
   position: fixed;
   bottom: 30px;
   left: 30px;
-  background: var(--background-color-trade);
+  background: var(--main-background-color);
   max-width: 365px;
   border-radius: 15px;
   text-align: center;
