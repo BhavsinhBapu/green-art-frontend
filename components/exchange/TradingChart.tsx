@@ -32,12 +32,13 @@ export const TVChartContainer: React.FC = () => {
 
   const { currentPair } = useSelector((state: RootState) => state.exchange);
   useEffect(() => {
+    const localTheme = localStorage.getItem("theme");
     const widgetOptions = {
       height: 480,
       width: 1400,
       symbol: `${currentPair?.replace("_", "/")}`,
       style: 1,
-      theme: theme === "dark" ? "dark" : "light",
+      theme: localTheme === "dark" ? "dark" : "light",
       datafeed: Datafeed,
       interval: "15",
       container: ref.current,
@@ -91,7 +92,7 @@ export const TVChartContainer: React.FC = () => {
         //@ts-ignore
         window.tvWidget.applyOverrides({
           "paneProperties.background":
-            theme === "dark" ? "rgb(11, 14, 17)" : "#fff",
+            localTheme === "dark" ? "rgb(11, 14, 17)" : "#fff",
           "paneProperties.backgroundType": "solid",
           "mainSeriesProperties.candleStyle.upColor": "#32d777",
           "mainSeriesProperties.candleStyle.downColor": "#dc3545",
