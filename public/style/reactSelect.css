@@ -48,5 +48,10 @@
 }
 
 .custom-select__option--is-selected {
-  color: #fff !important;
+  color: var(--primary-color) !important;
+  background: var(--card-background-color) !important;
+}
+
+.custom-select__option--is-focused {
+  background: var(--background-color-hover) !important;
 }
