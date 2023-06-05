@@ -1122,7 +1122,7 @@ client-area
 
 .trade-anywhere-area {
     padding: 60px 0;
-    background: var(--main-background-color);
+    background: var(--card-background-color);
 }
 
 .trade-anywhere-area .qr-code-area {
