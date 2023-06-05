@@ -2,9 +2,11 @@ import { darkModeToggle } from "helpers/functions";
 import moment from "moment";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
 import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
-import { HiArrowNarrowRight } from "react-icons/hi";
+import { HiArrowNarrowRight, HiUserCircle } from "react-icons/hi";
+import { IoMdGlobe } from "react-icons/io";
 import { RiNotificationBadgeLine } from "react-icons/ri";
 import { useDispatch } from "react-redux";
 import { LogoutAction } from "state/actions/user";
@@ -22,23 +24,123 @@ const NotificationDropdown = ({
 }: any) => {
   const dispatch = useDispatch();
   const { t } = useTranslation("common");
+  const router = useRouter();
   return (
     <div className="">
       {isLoggedIn ? (
         <div className="cp-user-top-bar-right">
           <div>
             <ul>
-              <li className="hm-notify" id="notification_item">
+              <li className="hm-notify" id="notification_item" style={{margin: '0 10px'}}>
+                <div className="btn-group profile-dropdown">
+                  <button
+                    type="button"
+                    className="btn dropdown-toggle"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    style={{marginLeft: '0'}}
+                  >
+                    <span className="cp-user-avater">
+                      <span>
+                        <HiUserCircle size={30}/>
+                      </span>
+                      <span className="cp-user-avater-info"></span>
+                    </span>
+                  </button>
+                  <div className="dropdown-menu dropdown-menu-right">
+                    <p
+                      className={`${
+                        user?.online_status?.online_status
+                          ? "userActive"
+                          : "userDeactive"
+                      } big-user-thumb`}
+                    >
+                      <img
+                        src={user?.photo}
+                        className="img-fluid profile-avatar"
+                        alt=""
+                      />
+                    </p>
+                    <div className="user-name">
+                      <p className="nav-userName">
+                        {user?.first_name!} {user?.last_name!}
+                      </p>
+                    </div>
+                    <Link href="/user/profile">
+                      <button className="dropdown-item" type="button">
+                        <a href="">
+                          <i className="fa-regular fa-user"></i>
+                          {t("Profile")}
+                        </a>
+                      </button>
+                    </Link>
+                    <Link href="/user/settings">
+                      <button className="dropdown-item" type="button">
+                        <a href="">
+                          <i className="fa fa-cog"></i>
+                          {t("My Settings")}
+                        </a>
+                      </button>
+                    </Link>
+                    <button
+                      className="dropdown-item"
+                      type="button"
+                      onClick={() => {
+                        darkModeToggle(settings, setTheme);
+                      }}
+                    >
+                      <a href="#">
+                        {theme === 0 ? (
+                          <>
+                            <BsFillSunFill size={26} className="mr-2" />
+                            {t("Light")}
+                          </>
+                        ) : (
+                          <>
+                            <BsFillMoonFill size={20} className="mr-2" />
+                            {t("Dark")}
+                          </>
+                        )}
+                      </a>
+                    </button>
+
+                    <Link href="/user/my-wallet">
+                      <button className="dropdown-item" type="button">
+                        <a href="-wallet">
+                          <i className="fa fa-credit-card"></i>
+                          {t("My Wallet")}
+                        </a>
+                      </button>
+                    </Link>
+                    <button
+                      className="dropdown-item"
+                      type="button"
+                      onClick={() => {
+                        dispatch(LogoutAction());
+                      }}
+                    >
+                      <a>
+                        <i className="fa fa-sign-out"></i> {t("Logout")}
+                      </a>
+                    </button>
+                  </div>
+                </div>
+              </li>
+
+              <li className="hm-notify" id="notification_item" style={{margin: '0 10px'}}>
                 <div className="btn-group dropdown">
                   <button
                     type="button"
                     className="notification-btn dropdown-toggle"
                     data-toggle="dropdown"
                     aria-haspopup="true"
-                    aria-expanded="false">
+                    aria-expanded="false"
+                  >
                     <span
                       className="notify-value hm-notify-number"
-                      onClick={() => {}}>
+                      onClick={() => {}}
+                    >
                       {notificationData?.length > 100
                         ? "99+"
                         : notificationData?.length}
@@ -59,7 +161,8 @@ const NotificationDropdown = ({
                                 seen();
                               }}
                               className="clear-all"
-                              href="#">
+                              href="#"
+                            >
                               {t("Clear All")}
                             </a>
                           </div>
@@ -109,7 +212,8 @@ const NotificationDropdown = ({
                       className="scroll-wrapper scrollbar-inner"
                       style={{
                         position: "relative",
-                      }}>
+                      }}
+                    >
                       <ul
                         className="scrollbar-inner scroll-content"
                         style={{
@@ -117,7 +221,8 @@ const NotificationDropdown = ({
                           marginBottom: "0px",
                           marginRight: "0px",
                           maxHeight: "0px",
-                        }}></ul>
+                        }}
+                      ></ul>
                       <div className="scroll-element scroll-x">
                         <div className="scroll-element_outer">
                           <div className="scroll-element_size"></div>
@@ -136,115 +241,63 @@ const NotificationDropdown = ({
                   </div>
                 </div>
               </li>
-              <li className="hm-notify" id="notification_item">
-                <div className="btn-group profile-dropdown">
-                  <button
-                    type="button"
-                    className="btn dropdown-toggle"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false">
-                    <span className="cp-user-avater">
-                      <span
-                        className={`${
-                          user?.online_status?.online_status
-                            ? "tradeUserActive"
-                            : "tradeUserDeactive"
-                        } cp-user-img`}>
-                        {user?.photo && (
-                          <img
-                            src={user?.photo}
-                            className="img-fluid"
-                            alt="user"
-                          />
-                        )}
-                      </span>
-                      <span className="cp-user-avater-info"></span>
-                    </span>
-                  </button>
-                  <div className="dropdown-menu dropdown-menu-right">
-                    <p
-                      className={`${
-                        user?.online_status?.online_status
-                          ? "userActive"
-                          : "userDeactive"
-                      } big-user-thumb`}>
-                      <img
-                        src={user?.photo}
-                        className="img-fluid profile-avatar"
-                        alt=""
-                      />
-                    </p>
-                    <div className="user-name">
-                      <p className="nav-userName">
-                        {user?.first_name!} {user?.last_name!}
-                      </p>
-                    </div>
-                    <Link href="/user/profile">
-                      <button className="dropdown-item" type="button">
-                        <a href="">
-                          <i className="fa-regular fa-user"></i>
-                          {t("Profile")}
-                        </a>
-                      </button>
-                    </Link>
-                    <Link href="/user/settings">
-                      <button className="dropdown-item" type="button">
-                        <a href="">
-                          <i className="fa fa-cog"></i>
-                          {t("My Settings")}
-                        </a>
-                      </button>
-                    </Link>
-                    <button
-                      className="dropdown-item"
-                      type="button"
-                      onClick={() => {
-                        darkModeToggle(settings, setTheme);
-                      }}>
-                      <a href="#">
-                        {theme === 0 ? (
-                          <>
-                            <BsFillSunFill size={26} className="mr-2" />
-                            {t("Light")}
-                          </>
-                        ) : (
-                          <>
-                            <BsFillMoonFill size={20} className="mr-2" />
-                            {t("Dark")}
-                          </>
-                        )}
-                      </a>
-                    </button>
 
-                    <Link href="/user/my-wallet">
-                      <button className="dropdown-item" type="button">
-                        <a href="-wallet">
-                          <i className="fa fa-credit-card"></i>
-                          {t("My Wallet")}
-                        </a>
-                      </button>
-                    </Link>
-                    <button
-                      className="dropdown-item"
-                      type="button"
-                      onClick={() => {
-                        dispatch(LogoutAction());
-                      }}>
-                      <a>
-                        <i className="fa fa-sign-out"></i> {t("Logout")}
-                      </a>
-                    </button>
-                  </div>
-                </div>
-              </li>
+              <nav className="main-menu">
+                <ul>
+                  <li className="hm-notify">
+                    <a
+                      className="arrow-icon"
+                      href="#"
+                      aria-expanded="true"
+                      style={{ height: "48px" }}
+                    >
+                      <span className="">
+                        <IoMdGlobe size={25} />
+                      </span>
+                      {/* <span className="cp-user-name">
+                        {router.locale?.toLocaleUpperCase()}
+                      </span> */}
+                    </a>
+                    <ul
+                      className="dropdown-menu-main"
+                      style={{ right: "0", left: "auto" }}
+                    >
+                      {settings?.LanguageList?.map((item: any, index: any) => (
+                        <li key={index}>
+                          <Link href={router.asPath} locale={item.key}>
+                            <a className="py-1 menu-hover">{item.name}</a>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+                  <li
+                    onClick={() => {
+                      darkModeToggle(settings, setTheme);
+                    }}
+                  >
+                    <a href="">
+                      {theme === 0 ? (
+                        <>
+                          <BsFillSunFill size={25} className="mr-2" />
+                        </>
+                      ) : (
+                        <>
+                          <BsFillMoonFill size={20} className="mr-2" />
+                        </>
+                      )}
+                    </a>
+                  </li>
+                </ul>
+              </nav>
             </ul>
           </div>
           <div
             className="cp-user-sidebar-toggler-s2"
             onClick={() => {
               setActive(active ? false : true);
-            }}>
+            }}
+          >
             <img src="/menu.svg" className="img-fluid" alt="" />
           </div>
         </div>
