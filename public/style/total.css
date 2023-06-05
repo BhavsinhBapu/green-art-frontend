@@ -14737,3 +14737,7 @@ body::-webkit-scrollbar {
 .chart-img{
   height: 30px;
 }
+
+.secendary-dropdown-bg{
+  background: var(--main-background-color);
+}

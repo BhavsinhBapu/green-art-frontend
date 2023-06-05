@@ -4,7 +4,7 @@ import { useState } from "react";
 export const P2pTab = ({ filters, setFilters, settings }: any) => {
   const [coins, setCoins] = useState(["USDT", "BTC", "BUSD", "BNB", "ETH"]);
   return (
-    <div className="p2pTabList_bg py-3 shadow-sm">
+    <div className="p2pTabList_bg shadow-sm">
       <div className="container">
         <div className="row">
           <div className="col-12">
