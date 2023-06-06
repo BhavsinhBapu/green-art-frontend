@@ -12292,7 +12292,7 @@ input[type="number"] {
 
 .toolTip {
   /* font-style: italic; */
-  /* position: relative; */
+  position: relative;
   display: inline-block;
 }
 
@@ -14746,4 +14746,22 @@ body::-webkit-scrollbar {
 
 .secendary-dropdown-bg{
   background: var(--main-background-color);
+}
+
+.no-item-found-border{
+  border: var(--border-color) 1px solid;
+  border-radius: 10px;
+}
+
+.custom-border-box{
+    height: 41px;
+    display: flex;
+    align-items: center;
+    border: var(--border-color) 2px solid;
+    border-radius: 5px;
+    padding: 0 10px;
+}
+
+.border-none{
+  border: none !important;
 }

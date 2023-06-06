@@ -121,10 +121,10 @@ const Profile: NextPage = ({ user, profileActivity }: any) => {
               </div>
             </div>
 
-            <div className="profile-status-area boxShadow tableScroll mb-5">
+            <div className="profile-status-area section-wrapper boxShadow tableScroll mb-5" style={{border: 'none'}}>
               <h5>{t("Profile Activity")}</h5>
               <table className="table">
-                <thead className="thead-light">
+                <thead className="">
                   <tr>
                     <th scope="col">{t("Source")}</th>
                     <th scope="col">{t("Ip Address")}:</th>
