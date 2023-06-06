@@ -7,10 +7,13 @@ export const ENABLED_FEATURES = [
   // "hide_last_na_study_output",
   "save_chart_properties_to_local_storage",
   "use_localstorage_for_settings",
+  "study_templates",
+  "save_all_chart_properties_to_local_storage",
 ];
+
 export const DISABLED_FEATURES = [
   // "header_symbol_search",
-  "header_widget",
+  // "header_widget",
   "symbol_info",
   "header_compare",
   // "header_chart_type",
@@ -32,6 +35,7 @@ export const DISABLED_FEATURES = [
   // "header_indicators",
   // "header_interval_dialog_button",
 ];
+
 
 export const INTERVAL = {
   MINUTES_5: "5",

@@ -166,7 +166,7 @@ const UnAuthNav = () => {
                       darkModeToggle(settings, setTheme,dispatch);
                     }}
                   >
-                    <a href="">
+                    <a href="#">
                       {theme === 0 ? (
                         <>
                           <BsFillSunFill size={20} className="mr-2" />
