@@ -42,14 +42,9 @@ export default {
             close: parseFloat(el.close),
             volume: parseFloat(el.volume),
           }));
-
-          // Calculate the moving average (MA)
-          const maPeriod = 20; // Adjust this value as needed
-          const maValues = calculateMovingAverage(bars, maPeriod);
-
           if (first) {
             const lastBar = bars[bars.length - 1];
-            history[symbolInfo.name] = { lastBar, maValues };
+            history[symbolInfo.name] = { lastBar };
           }
           return bars;
         }
@@ -69,14 +64,9 @@ export default {
               close: parseFloat(el.close),
               volume: parseFloat(el.volume),
             }));
-
-            // Calculate the moving average (MA)
-            const maPeriod = 20; // Adjust this value as needed
-            const maValues = calculateMovingAverage(bars, maPeriod);
-
             if (first) {
               const lastBar = bars[bars.length - 1];
-              history[symbolInfo.name] = { lastBar, maValues };
+              history[symbolInfo.name] = { lastBar };
             }
             return bars;
           }
@@ -87,21 +77,3 @@ export default {
     }
   },
 };
-
-function calculateMovingAverage(bars: any, period: any) {
-  const maValues = [];
-
-  for (let i = period - 1; i < bars.length; i++) {
-    const closePrices = bars
-      .slice(i - period + 1, i + 1)
-      .map((bar: any) => bar.close);
-    const sum = closePrices.reduce(
-      (total: any, price: any) => total + price,
-      0
-    );
-    const ma = sum / period;
-    maValues.push(ma);
-  }
-  console.log(maValues, "maValuesmaValuesmaValuesmaValues");
-  return maValues;
-}

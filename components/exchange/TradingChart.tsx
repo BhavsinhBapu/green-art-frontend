@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from "react";
 import styles from "./index.module.css";
 import { widget } from "../../public/static/charting_library";
 import Datafeed from "components/exchange/api";
-import { StudyOverrides } from "../../public/static/charting_library/charting_library";
 
 import {
   DISABLED_FEATURES,
@@ -34,6 +33,8 @@ export const TVChartContainer: React.FC = () => {
   const { currentPair } = useSelector((state: RootState) => state.exchange);
   useEffect(() => {
     const localTheme = localStorage.getItem("theme");
+    const localThemesssssss = localStorage.setItem("tradingview.symbolWatermark",'{"visibility":true,"color":"rgba(0, 0, 0, 0.00)"}');
+   
     const widgetOptions = {
       height: 480,
       width: 1400,
@@ -55,7 +56,7 @@ export const TVChartContainer: React.FC = () => {
         "volume.volume.color.0": "#dc3545",
         "volume.volume.color.1": "#32d777",
         "volume.volume.transparency": 0,
-        "volume.volume ma.color": "#32d777",
+        "volume.volume ma.color": "#3742fa",
         "volume.volume ma.transparency": 0,
         "volume.options.showStudyArguments": false,
         "volume.options.showStudyTitles": false,
@@ -67,10 +68,8 @@ export const TVChartContainer: React.FC = () => {
         "volume.options.showSeriesOHLC": false,
         "volume.options.showBarChange": false,
         "volume.options.showCountdown": false,
-        "moving average.show": true,
-        "moving average.period": 20,
-        "moving average.color": "#ff9900",
-        "moving average.plottype": "line",
+        "volume.volume ma.linewidth": 2,
+        "volume.volume ma.visible": true,
       },
       overrides: {
         "mainSeriesProperties.candleStyle.upColor": "#ffffff",
@@ -78,6 +77,7 @@ export const TVChartContainer: React.FC = () => {
         "mainSeriesProperties.candleStyle.drawBorder": true,
         "mainSeriesProperties.candleStyle.borderUpColor": "#00ff00",
         "mainSeriesProperties.candleStyle.borderDownColor": "#ff0000",
+        "mainSeriesProperties.style": 1,
       },
       enabled_features: ENABLED_FEATURES,
       disabled_features: DISABLED_FEATURES,
@@ -87,14 +87,34 @@ export const TVChartContainer: React.FC = () => {
     };
 
     const chartInit = (config: any) => {
-      
       const widgetInstance = new widget(config);
       //@ts-ignore
 
       window.tvWidget = widgetInstance;
+
       //@ts-ignore
 
       window.tvWidget.onChartReady(() => {
+        //@ts-ignore
+        window.tvWidget
+          .activeChart()
+          .createStudy("Moving Average", false, false, {
+            length: 5,
+          });
+        //@ts-ignore
+
+        window.tvWidget
+          .activeChart()
+          .createStudy("Moving Average", false, false, {
+            length: 10,
+          });
+        //@ts-ignore
+
+        window.tvWidget
+          .activeChart()
+          .createStudy("Moving Average", false, false, {
+            length: 30,
+          });
         //@ts-ignore
         window.tvWidget.applyOverrides({
           "paneProperties.background":
@@ -147,82 +167,48 @@ export const TVChartContainer: React.FC = () => {
     };
   }, [currentPair]); // Include 'theme' in the dependencies array
   useEffect(() => {
+     const overwriteObj = {
+    "paneProperties.background": theme === "dark" ? "rgb(11, 14, 17)" : "#fff",
+    "paneProperties.backgroundType": "solid",
+    "mainSeriesProperties.candleStyle.upColor": "#32d777",
+    "mainSeriesProperties.candleStyle.downColor": "#dc3545",
+    "mainSeriesProperties.candleStyle.drawBorder": true,
+    "mainSeriesProperties.candleStyle.borderUpColor": "#32d777",
+    "mainSeriesProperties.candleStyle.borderDownColor": "#dc3545",
+    "mainSeriesProperties.candleStyle.wickUpColor": "#32d777",
+    "mainSeriesProperties.candleStyle.wickDownColor": "#dc3545",
+    "mainSeriesProperties.hollowCandleStyle.upColor": "#32d777",
+    "mainSeriesProperties.hollowCandleStyle.downColor": "#dc3545",
+    "mainSeriesProperties.hollowCandleStyle.drawWick": true,
+    "mainSeriesProperties.hollowCandleStyle.drawBorder": true,
+    "mainSeriesProperties.hollowCandleStyle.borderUpColor": "#32d777",
+    "mainSeriesProperties.hollowCandleStyle.borderDownColor": "#dc3545",
+    "mainSeriesProperties.hollowCandleStyle.wickUpColor": "#32d777",
+    "mainSeriesProperties.hollowCandleStyle.wickDownColor": "#dc3545",
+    "mainSeriesProperties.haStyle.upColor": "#32d777",
+    "mainSeriesProperties.haStyle.downColor": "#dc3545",
+    "mainSeriesProperties.haStyle.drawWick": true,
+    "mainSeriesProperties.haStyle.drawBorder": true,
+    "mainSeriesProperties.haStyle.borderUpColor": "#32d777",
+    "mainSeriesProperties.haStyle.borderDownColor": "#dc3545",
+    "mainSeriesProperties.haStyle.wickUpColor": "#32d777",
+    "mainSeriesProperties.haStyle.wickDownColor": "#dc3545",
+    "mainSeriesProperties.barStyle.upColor": "#32d777",
+    "mainSeriesProperties.barStyle.downColor": "#dc3545",
+    "mainSeriesProperties.barStyle.barColorsOnPrevClose": false,
+    "mainSeriesProperties.barStyle.dontDrawOpen": false,
+    "mainSeriesProperties.lineStyle.color": "#dc3545",
+  };
     //@ts-ignore
     window.tvWidget?.onChartReady(() => {
       //@ts-ignore
-      window.tvWidget.applyOverrides({
-        "paneProperties.background":
-          theme === "dark" ? "rgb(11, 14, 17)" : "#fff",
-        "paneProperties.backgroundType": "solid",
-        "mainSeriesProperties.candleStyle.upColor": "#32d777",
-        "mainSeriesProperties.candleStyle.downColor": "#dc3545",
-        "mainSeriesProperties.candleStyle.drawBorder": true,
-        "mainSeriesProperties.candleStyle.borderUpColor": "#32d777",
-        "mainSeriesProperties.candleStyle.borderDownColor": "#dc3545",
-        "mainSeriesProperties.candleStyle.wickUpColor": "#32d777",
-        "mainSeriesProperties.candleStyle.wickDownColor": "#dc3545",
-        "mainSeriesProperties.hollowCandleStyle.upColor": "#32d777",
-        "mainSeriesProperties.hollowCandleStyle.downColor": "#dc3545",
-        "mainSeriesProperties.hollowCandleStyle.drawWick": true,
-        "mainSeriesProperties.hollowCandleStyle.drawBorder": true,
-        "mainSeriesProperties.hollowCandleStyle.borderUpColor": "#32d777",
-        "mainSeriesProperties.hollowCandleStyle.borderDownColor": "#dc3545",
-        "mainSeriesProperties.hollowCandleStyle.wickUpColor": "#32d777",
-        "mainSeriesProperties.hollowCandleStyle.wickDownColor": "#dc3545",
-        "mainSeriesProperties.haStyle.upColor": "#32d777",
-        "mainSeriesProperties.haStyle.downColor": "#dc3545",
-        "mainSeriesProperties.haStyle.drawWick": true,
-        "mainSeriesProperties.haStyle.drawBorder": true,
-        "mainSeriesProperties.haStyle.borderUpColor": "#32d777",
-        "mainSeriesProperties.haStyle.borderDownColor": "#dc3545",
-        "mainSeriesProperties.haStyle.wickUpColor": "#32d777",
-        "mainSeriesProperties.haStyle.wickDownColor": "#dc3545",
-        "mainSeriesProperties.barStyle.upColor": "#32d777",
-        "mainSeriesProperties.barStyle.downColor": "#dc3545",
-        "mainSeriesProperties.barStyle.barColorsOnPrevClose": false,
-        "mainSeriesProperties.barStyle.dontDrawOpen": false,
-        "mainSeriesProperties.lineStyle.color": "#dc3545",
-      });
+      window.tvWidget.applyOverrides(overwriteObj);
       //@ts-ignore
-
       window.tvWidget
         ?.changeTheme(theme === "dark" ? "Dark" : "Light")
         .then(() => {
           //@ts-ignore
-
-          window.tvWidget.applyOverrides({
-            "paneProperties.background":
-              theme === "dark" ? "rgb(11, 14, 17)" : "#fff",
-            "paneProperties.backgroundType": "solid",
-            "mainSeriesProperties.candleStyle.upColor": "#32d777",
-            "mainSeriesProperties.candleStyle.downColor": "#dc3545",
-            "mainSeriesProperties.candleStyle.drawBorder": true,
-            "mainSeriesProperties.candleStyle.borderUpColor": "#32d777",
-            "mainSeriesProperties.candleStyle.borderDownColor": "#dc3545",
-            "mainSeriesProperties.candleStyle.wickUpColor": "#32d777",
-            "mainSeriesProperties.candleStyle.wickDownColor": "#dc3545",
-            "mainSeriesProperties.hollowCandleStyle.upColor": "#32d777",
-            "mainSeriesProperties.hollowCandleStyle.downColor": "#dc3545",
-            "mainSeriesProperties.hollowCandleStyle.drawWick": true,
-            "mainSeriesProperties.hollowCandleStyle.drawBorder": true,
-            "mainSeriesProperties.hollowCandleStyle.borderUpColor": "#32d777",
-            "mainSeriesProperties.hollowCandleStyle.borderDownColor": "#dc3545",
-            "mainSeriesProperties.hollowCandleStyle.wickUpColor": "#32d777",
-            "mainSeriesProperties.hollowCandleStyle.wickDownColor": "#dc3545",
-            "mainSeriesProperties.haStyle.upColor": "#32d777",
-            "mainSeriesProperties.haStyle.downColor": "#dc3545",
-            "mainSeriesProperties.haStyle.drawWick": true,
-            "mainSeriesProperties.haStyle.drawBorder": true,
-            "mainSeriesProperties.haStyle.borderUpColor": "#32d777",
-            "mainSeriesProperties.haStyle.borderDownColor": "#dc3545",
-            "mainSeriesProperties.haStyle.wickUpColor": "#32d777",
-            "mainSeriesProperties.haStyle.wickDownColor": "#dc3545",
-            "mainSeriesProperties.barStyle.upColor": "#32d777",
-            "mainSeriesProperties.barStyle.downColor": "#dc3545",
-            "mainSeriesProperties.barStyle.barColorsOnPrevClose": false,
-            "mainSeriesProperties.barStyle.dontDrawOpen": false,
-            "mainSeriesProperties.lineStyle.color": "#dc3545",
-          });
+          window.tvWidget.applyOverrides(overwriteObj);
         });
     });
   }, [theme]);
