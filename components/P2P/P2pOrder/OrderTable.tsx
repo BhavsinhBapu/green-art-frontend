@@ -77,7 +77,7 @@ export const OrderTable = ({ actionFunction, filter = false }: any) => {
       )}
       <div className="row">
         <div className="col-12">
-          <div className="table-responsive">
+          <div className="table-responsive overflow-hidden">
             <table className="table mt-4">
               <thead>
                 <tr>
@@ -137,7 +137,7 @@ export const OrderTable = ({ actionFunction, filter = false }: any) => {
               </tbody>
             </table>
             {history?.length > 0 && (
-              <div className="pagination-wrapper" id="assetBalances_paginate">
+              <div className="pagination-wrapper mb-34" id="assetBalances_paginate">
                 <span>
                   {stillHistory?.links?.map((link: any, index: number) =>
                     link.label === "&laquo; Previous" ? (

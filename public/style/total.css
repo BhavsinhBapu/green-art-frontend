@@ -14765,3 +14765,7 @@ body::-webkit-scrollbar {
 .border-none{
   border: none !important;
 }
+
+.mb-34{
+  margin-bottom: 34px !important;
+}
