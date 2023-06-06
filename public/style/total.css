@@ -5262,11 +5262,24 @@ select:-webkit-autofill:focus {
 }
 
 .section-top-wrap {
-    position: relative;
-    padding: 25px;
-    border-radius: 5px;
-    overflow: hidden;
-    background: var(--card-background-color);
+  position: relative;
+  padding: 25px;
+  border-radius: 5px;
+  overflow: hidden;
+  background: var(--card-background-color);
+}
+
+.section-top-wrap::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 150px;
+  height: 150px;
+  background-image: url('/all-covers.svg');
+  background-size: cover;
+  padding: 50px;
+  background-repeat: no-repeat;
 }
 
 /* .section-top-wrap::before {

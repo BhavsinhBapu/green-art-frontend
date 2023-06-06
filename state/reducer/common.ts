@@ -2,12 +2,12 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export type commonType = {
   settings: {};
-  theme: "dark";
+  theme: "";
 };
 
 const initialState: any = {
   settings: {},
-  theme: "dark",
+  theme: "",
 };
 
 export const commonSlice = createSlice({
