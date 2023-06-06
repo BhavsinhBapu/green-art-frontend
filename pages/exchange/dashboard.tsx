@@ -18,6 +18,7 @@ import useTranslation from "next-translate/useTranslation";
 import Head from "next/head";
 import { formatCurrency } from "common";
 import Navbar from "components/common/Navbar";
+let socketCall = 0;
 
 const Dashboard: NextPage = () => {
   const { t } = useTranslation("common");
@@ -52,7 +53,11 @@ const Dashboard: NextPage = () => {
       );
     }
   }, [dashboard?.order_data?.base_coin_id]);
-  const { settings } = useSelector((state: RootState) => state.common);
+ useEffect(() => {
+   listenMessages(dispatch, user);
+ }, [currentPair]);
+    const { settings } = useSelector((state: RootState) => state.common);
+
   return (
     <div className="container-dashboard">
       <div className="background-col">
