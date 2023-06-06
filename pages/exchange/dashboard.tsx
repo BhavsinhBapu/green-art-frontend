@@ -52,7 +52,11 @@ const Dashboard: NextPage = () => {
       );
     }
   }, [dashboard?.order_data?.base_coin_id]);
-  const { settings } = useSelector((state: RootState) => state.common);
+ useEffect(() => {
+   listenMessages(dispatch, user);
+ }, [currentPair]);
+    const { settings } = useSelector((state: RootState) => state.common);
+
   return (
     <div className="container-dashboard">
       <div className="background-col">
