@@ -343,6 +343,7 @@ const DashboardBody = () => {
         <div className="cp-user-buy-coin-content-area">
           <div className="card cp-user-custom-card">
             {currentPair && (
+              //@ts-ignore
               <TradingChart currentPair={currentPair} theme={theme} />
             )}
           </div>

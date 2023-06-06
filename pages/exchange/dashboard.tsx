@@ -18,7 +18,6 @@ import useTranslation from "next-translate/useTranslation";
 import Head from "next/head";
 import { formatCurrency } from "common";
 import Navbar from "components/common/Navbar";
-let socketCall = 0;
 
 const Dashboard: NextPage = () => {
   const { t } = useTranslation("common");
