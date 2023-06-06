@@ -68,7 +68,7 @@ export const AddPostTwo = ({
         <div className="row">
           <div className="col-12 mt-4">
             <div className="row">
-              <div className="col-6">
+              <div className="col-md-6 col-lg-6 col-12">
                 <label className="d-block">Payment Method</label>
 
                 <div className="col-12 p-0">
@@ -83,7 +83,7 @@ export const AddPostTwo = ({
                 </div>
                 <small>Select up to 5 payment methods</small>
               </div>
-              <div className="col-6">
+              <div className="col-md-6 col-lg-6 col-12">
                 <label>Payment Time Limit</label>
                 <div className="col-12 p-0">
                   <CUstomSelect
@@ -95,7 +95,7 @@ export const AddPostTwo = ({
                   />
                 </div>
               </div>
-              <div className="col-6">
+              <div className="col-md-6 col-lg-6 col-12">
                 <label> Order Limit:</label>
                 <div className="P2psearchBox position-relative">
                   <input
@@ -117,7 +117,7 @@ export const AddPostTwo = ({
                   </button>
                 </div>
               </div>
-              <div className="col-6">
+              <div className="col-md-6 col-lg-6 col-12">
                 <label></label>
                 <div className="P2psearchBox position-relative mt-2">
                   <input
@@ -142,7 +142,7 @@ export const AddPostTwo = ({
               </div>
             </div>
           </div>
-          <div className="col-6 mt-1">
+          <div className="col-md-6 col-lg-6 col-12 mt-1">
             <label> Total Amount:</label>
             <div className="P2psearchBox position-relative">
               <input
@@ -169,10 +169,8 @@ export const AddPostTwo = ({
         </div>
       </div>
 
-      <div className="addPostNextButton mt-3">
-        <p className="d-flex align-items-center">
-          Reserved Fee <h6> -- {selectedAsset?.value}</h6>
-        </p>
+      <div className="addPostNextButton mt-3" style={{justifyContent: 'end'}}>
+        
         <div>
           <button onClick={() => setAddStep("stepOne")} className=" py-2">
             Previous

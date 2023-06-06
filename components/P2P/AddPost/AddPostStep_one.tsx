@@ -50,7 +50,7 @@ export const AddPostOne = ({
     <div className="col-12 mt-4">
       <div className="buySellAddBox px-5 py-5 rounded">
         <div className="row">
-          <div className="col-3">
+          <div className="col-md-3 col-lg-3 col-12">
             <label> Asset:</label>
             <CUstomSelect
               options={AssetOptions}
@@ -60,7 +60,7 @@ export const AddPostOne = ({
               defaultValue={selectedAsset}
             />
           </div>
-          <div className="col-3">
+          <div className="col-md-3 col-lg-3 col-12">
             <label> With Fiat:</label>
             <CUstomSelect
               options={CurrencyOptions}
@@ -70,22 +70,22 @@ export const AddPostOne = ({
               defaultValue={selectedCurrency}
             />
           </div>
-          <div className="col-3 adFromPrice">
+          <div className="col-md-3 col-lg-3 col-12 adFromPrice">
             <label> Your Price</label>
             <h5 className="custom-border-box">
-              {selectedCurrency?.value} {pricePoint.highest_price}
+            {selectedCurrency?.value} {parseFloat(pricePoint.highest_price)}
             </h5>
           </div>
-          <div className="col-3 adFromPrice">
+          <div className="col-md-3 col-lg-3 col-12 adFromPrice">
             <label>Lowest Order Price</label>
             <h5 className="custom-border-box">
-              {selectedCurrency?.value} {pricePoint.lowest_price}
+              {selectedCurrency?.value} {parseFloat(pricePoint.lowest_price)}
             </h5>
           </div>
 
           <div className="col-12 mt-5">
             <div className="row">
-              <div className="col-6">
+              <div className="col-md-6 col-lg-6 col-12">
                 <label>Price Type</label>
                 <div className="d-flex" style={{ gap: "20px" }}>
                   <div className="adFromCheckBox">
@@ -108,7 +108,7 @@ export const AddPostOne = ({
                   </div>
                 </div>
               </div>
-              <div className="col-6">
+              <div className="col-md-6 col-lg-6 col-12">
                 <label>
                   {priceType === FIXED_PRICE ? "Fixed" : "Floating"}
                 </label>
