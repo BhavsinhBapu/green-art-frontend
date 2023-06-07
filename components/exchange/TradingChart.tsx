@@ -195,7 +195,7 @@ export class TVChartContainer extends React.Component<MyProps> {
         "volume.volume.transparency": 0,
         "volume.volume ma.color": "#9b59b6",
         "volume.volume ma.transparency": 0,
-        "volume.volume ma.linewidth": 2,
+        "volume.volume ma.linewidth": 1,
         "volume.volume ma.visible": true,
       },
       toolbar: false,
