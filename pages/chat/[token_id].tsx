@@ -115,7 +115,7 @@ export const Chat = () => {
               <div className="asset-balances-area cstm-loader-area">
                 <div className="asset-balances-left">
                   <div className="section-wrapper border-0">
-                    <div className="live-chat rounded mx-auto border-bottom-0">
+                    <div className="live-chat rounded mx-auto border-bottom-0 w-full">
                       <div className="chat-inner">
                         <div className="chat-header">
                           {/* <img

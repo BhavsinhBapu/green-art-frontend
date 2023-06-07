@@ -239,7 +239,7 @@ const MyWallet: NextPage = () => {
                                           href={`/user/my-wallet/deposit?type=deposit&coin_id=${item.id}`}
                                         >
                                           <li
-                                            className="toolTip"
+                                            className="toolTip relative"
                                             title="Deposit"
                                           >
                                             <HiOutlineBanknotes size={25} />
@@ -251,7 +251,7 @@ const MyWallet: NextPage = () => {
                                           href={`/user/my-wallet/withdraw?type=withdraw&coin_id=${item.id}`}
                                         >
                                           <li
-                                            className="toolTip"
+                                            className="toolTip relative"
                                             title="Withdraw"
                                           >
                                             <IoWalletOutline size={25} />
@@ -285,7 +285,7 @@ const MyWallet: NextPage = () => {
                                             href={`/user/swap-coin?coin_id=${item.id}`}
                                           >
                                             <li
-                                              className="toolTip"
+                                              className="toolTip relative"
                                               title="swap"
                                             >
                                               <TiArrowRepeat size={25} />
@@ -293,7 +293,7 @@ const MyWallet: NextPage = () => {
                                           </Link>
                                         ) : (
                                           <li
-                                            className="toolTip"
+                                            className="toolTip relative"
                                             title="swap"
                                             onClick={() => {
                                               toast.error(
