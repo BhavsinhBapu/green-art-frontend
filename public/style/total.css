@@ -14521,7 +14521,6 @@ input {
   border: none;
   padding: 8px 22px;
   border-radius: 4px;
-  background: var(--primary-color);
   border: none;
   color: var(--text-primary-color-1);
 }
