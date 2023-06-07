@@ -13298,7 +13298,7 @@ label.ico-label-box {
   background: var(--primary-color);
   padding: 10px;
   border-radius: 3px;
-  margin: 10px;
+  /* margin: 10px; */
   word-break: break-all;
 }
 
@@ -13313,11 +13313,12 @@ label.ico-label-box {
 }
 
 .chat-details {
-  background: var(--primary-color);
+  background: var(--background-color);
   padding: 10px;
-  border-radius: 3px;
-  margin: 10px;
+  border-radius: 8px;
+  margin: 0 10px;
   word-break: break-all;
+  border: var(--border-color) 1px  solid;
 }
 
 .chat-right {
@@ -14771,4 +14772,8 @@ body::-webkit-scrollbar {
 
 .relative{
   position: relative;
+}
+
+.w-full{
+  width: 100% !important;
 }
