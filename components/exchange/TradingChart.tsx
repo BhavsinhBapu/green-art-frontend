@@ -103,7 +103,7 @@ export class TVChartContainer extends React.Component<MyProps> {
         {
           length: 30,
         },
-        { "plot.color.0": "#f1c40f" }
+        { "plot.color.0": "#00cec9" }
       );
       const localTheme = localStorage.getItem("theme");
       //@ts-ignore
@@ -193,7 +193,7 @@ export class TVChartContainer extends React.Component<MyProps> {
         "volume.volume.color.0": "#dc3545",
         "volume.volume.color.1": "#32d777",
         "volume.volume.transparency": 0,
-        "volume.volume ma.color": "#3742fa",
+        "volume.volume ma.color": "#9b59b6",
         "volume.volume ma.transparency": 0,
         "volume.volume ma.linewidth": 2,
         "volume.volume ma.visible": true,
