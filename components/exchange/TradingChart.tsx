@@ -76,23 +76,35 @@ export class TVChartContainer extends React.Component<MyProps> {
     //@ts-ignore
     window.tvWidget.onChartReady(() => {
       //@ts-ignore
-      window.tvWidget
-        .activeChart()
-        .createStudy("Moving Average", false, false, {
+      window.tvWidget.activeChart().createStudy(
+        "Moving Average",
+        false,
+        false,
+        {
           length: 5,
-        });
+        },
+        { "plot.color.0": "#9b59b6" }
+      );
       //@ts-ignore
-      window.tvWidget
-        .activeChart()
-        .createStudy("Moving Average", false, false, {
+      window.tvWidget.activeChart().createStudy(
+        "Moving Average",
+        false,
+        false,
+        {
           length: 10,
-        });
+        },
+        { "plot.color.0": "#d35400" }
+      );
       //@ts-ignore
-      window.tvWidget
-        .activeChart()
-        .createStudy("Moving Average", false, false, {
+      window.tvWidget.activeChart().createStudy(
+        "Moving Average",
+        false,
+        false,
+        {
           length: 30,
-        });
+        },
+        { "plot.color.0": "#f1c40f" }
+      );
       const localTheme = localStorage.getItem("theme");
       //@ts-ignore
       window.tvWidget.applyOverrides({
