@@ -14905,3 +14905,33 @@ body::-webkit-scrollbar {
   align-items: center;
   justify-content: center;
 }
+
+.bg-primary-color{
+  background: var(--primary-color) !important;
+}
+
+.border-primary-color{
+  border-color: var(--primary-color) !important;
+}
+
+.mt-40{
+  margin-top: 40px;
+}
+
+.w-half{
+  width: 50% !important;
+}
+
+
+
+@media (max-width: 991px) {
+  .text-45{
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 450px) {
+  .text-45{
+    font-size: 32px;
+  }
+}

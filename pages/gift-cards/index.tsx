@@ -24,13 +24,13 @@ export default function index() {
               <button className="gift-btn">
                 {t("Send a crypto gift card")} <BsArrowRight />{" "}
               </button>
-              <div className="gift-inner-card my-3 gift-font-color">
+              <div className="gift-inner-card my-5 gift-font-color">
                 <div className="gift-inner-card-btns">
                   <button className="btn bg-primary-gift">
                     {t("Redeem to crypto")}{" "}
                   </button>
-                  <span>{t("Add Card")}</span>
-                  <span>{t("Check Card")}</span>
+                  <span className="block w-half">{t("Add Card")}</span>
+                  <span className="block w-half">{t("Check Card")}</span>
                 </div>
                 <div className="gift-inner-card-input-section">
                   <div className="w-full">
@@ -59,45 +59,60 @@ export default function index() {
       {/* gift card banner end */}
 
       {/* Themed Gift Cards start */}
-      <div className="container py-80">
-        <div className="d-flex justify-content-between">
-          <div>
-            <h3>Themed Gift Cards</h3>
-            <small>Send a crypto gift card for any occasion</small>
-          </div>
-          <div>
-            <div className="d-flex align-items-center">
-              <span className="inline-block pr-2">View All Cards</span>
-              <span className="gift-card-arrow">
-                <BsArrowRight />
-              </span>
+      <div className="py-80">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-12">
+              <div className="d-flex justify-content-between">
+                <div>
+                  <h3>Themed Gift Cards</h3>
+                  <small>Send a crypto gift card for any occasion</small>
+                </div>
+                <div>
+                  <div className="d-flex align-items-center">
+                    <span className="inline-block pr-2">View All Cards</span>
+                    <span className="gift-card-arrow">
+                      <BsArrowRight />
+                    </span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="row mt-3">
-          <div className="col-lg-3 my-1">
-            <img src="/demo_gift_banner.png" alt="" />
+          <div className="row mt-3">
+            <div className="col-lg-3 my-1">
+              <img src="/demo_gift_banner.png" alt="" />
+            </div>
+            <div className="col-lg-3 my-1">
+              <img src="/demo_gift_banner.png" alt="" />
+            </div>
+            <div className="col-lg-3 my-1">
+              <img src="/demo_gift_banner.png" alt="" />
+            </div>
+            <div className="col-lg-3 my-1">
+              <img src="/demo_gift_banner.png" alt="" />
+            </div>
+            <div className="col-lg-3 my-1">
+              <img src="/demo_gift_banner.png" alt="" />
+            </div>
+            <div className="col-lg-3 my-1">
+              <img src="/demo_gift_banner.png" alt="" />
+            </div>
+            <div className="col-lg-3 my-1">
+              <img src="/demo_gift_banner.png" alt="" />
+            </div>
+            <div className="col-lg-3 my-1">
+              <img src="/demo_gift_banner.png" alt="" />
+            </div>
           </div>
-          <div className="col-lg-3 my-1">
-            <img src="/demo_gift_banner.png" alt="" />
-          </div>
-          <div className="col-lg-3 my-1">
-            <img src="/demo_gift_banner.png" alt="" />
-          </div>
-          <div className="col-lg-3 my-1">
-            <img src="/demo_gift_banner.png" alt="" />
-          </div>
-          <div className="col-lg-3 my-1">
-            <img src="/demo_gift_banner.png" alt="" />
-          </div>
-          <div className="col-lg-3 my-1">
-            <img src="/demo_gift_banner.png" alt="" />
-          </div>
-          <div className="col-lg-3 my-1">
-            <img src="/demo_gift_banner.png" alt="" />
-          </div>
-          <div className="col-lg-3 my-1">
-            <img src="/demo_gift_banner.png" alt="" />
+          <div className="row mt-3">
+            <div className="col-md-12">
+              <div className="d-flex justify-content-center align-items-center">
+                <button className="gift-btn bg-primary-color border-primary-color">
+                  {t("View More Theme Gift Cards")} <BsArrowRight />{" "}
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -135,6 +150,9 @@ export default function index() {
                   "Tradexpro exchange is such a marketplace where people can trade directly with each other"
                 )}
               </p>
+              <button className="gift-btn bg-primary-color border-primary-color mt-40">
+                {t("Learn More")} <BsArrowRight />{" "}
+              </button>
             </div>
           </div>
         </div>
@@ -142,141 +160,147 @@ export default function index() {
       {/* feature section end*/}
 
       {/* faq section start*/}
-      <div className="container py-80">
-        <div className="d-flex justify-content-between">
-          <div>
-            <h3>Faq</h3>
-          </div>
-        </div>
-        <div className="row mt-4">
-          <div className="col-lg-6 my-2">
-            <div id="accordionExample">
-              <div>
-                <div id="headingThree">
-                  <button
-                    className="collapsed d-flex align-items-center gap-15 w-full bg-transparent border-0"
-                    type="button"
-                    // onClick={faqArrow}
-                    data-toggle="collapse"
-                    data-target="#collapseThree1"
-                    aria-expanded="false"
-                    aria-controls="collapseThree"
-                  >
-                    <span
-                      className="gift-card-add-btn"
-                      style={{ color: "white" }}
-                    >
-                      <GrFormAdd />
-                    </span>
-                    What is Gift Card?
-                  </button>
-                </div>
-                <div
-                  id="collapseThree1"
-                  className="collapse"
-                  aria-labelledby="headingThree"
-                  data-parent="#accordionExample"
-                >
-                  <div className="p-3">Answer</div>
+      <div className="py-80">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-12">
+              <div className="d-flex justify-content-between">
+                <div>
+                  <h3>Faq</h3>
                 </div>
               </div>
             </div>
           </div>
-          <div className="col-lg-6 my-2">
-            <div id="accordionExample">
-              <div>
-                <div id="headingThree">
-                  <button
-                    className="collapsed d-flex align-items-center gap-15 w-full bg-transparent border-0"
-                    type="button"
-                    // onClick={faqArrow}
-                    data-toggle="collapse"
-                    data-target="#collapseThree2"
-                    aria-expanded="false"
-                    aria-controls="collapseThree"
-                  >
-                    <span
-                      className="gift-card-add-btn"
-                      style={{ color: "white" }}
+          <div className="row mt-4">
+            <div className="col-lg-6 my-2">
+              <div id="accordionExample">
+                <div>
+                  <div id="headingThree">
+                    <button
+                      className="collapsed d-flex align-items-center gap-15 w-full bg-transparent border-0"
+                      type="button"
+                      // onClick={faqArrow}
+                      data-toggle="collapse"
+                      data-target="#collapseThree1"
+                      aria-expanded="false"
+                      aria-controls="collapseThree"
                     >
-                      <GrFormAdd />
-                    </span>
-                    What is Gift Card?
-                  </button>
-                </div>
-                <div
-                  id="collapseThree2"
-                  className="collapse"
-                  aria-labelledby="headingThree"
-                  data-parent="#accordionExample"
-                >
-                  <div className="p-3">Answer</div>
+                      <span
+                        className="gift-card-add-btn"
+                        style={{ color: "white" }}
+                      >
+                        <GrFormAdd />
+                      </span>
+                      What is Gift Card?
+                    </button>
+                  </div>
+                  <div
+                    id="collapseThree1"
+                    className="collapse"
+                    aria-labelledby="headingThree"
+                    data-parent="#accordionExample"
+                  >
+                    <div className="p-3">Answer</div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="col-lg-6 my-2">
-            <div id="accordionExample">
-              <div>
-                <div id="headingThree">
-                  <button
-                    className="collapsed d-flex align-items-center gap-15 w-full bg-transparent border-0"
-                    type="button"
-                    // onClick={faqArrow}
-                    data-toggle="collapse"
-                    data-target="#collapseThree3"
-                    aria-expanded="false"
-                    aria-controls="collapseThree"
-                  >
-                    <span
-                      className="gift-card-add-btn"
-                      style={{ color: "white" }}
+            <div className="col-lg-6 my-2">
+              <div id="accordionExample">
+                <div>
+                  <div id="headingThree">
+                    <button
+                      className="collapsed d-flex align-items-center gap-15 w-full bg-transparent border-0"
+                      type="button"
+                      // onClick={faqArrow}
+                      data-toggle="collapse"
+                      data-target="#collapseThree2"
+                      aria-expanded="false"
+                      aria-controls="collapseThree"
                     >
-                      <GrFormAdd />
-                    </span>
-                    What is Gift Card?
-                  </button>
-                </div>
-                <div
-                  id="collapseThree3"
-                  className="collapse"
-                  aria-labelledby="headingThree"
-                  data-parent="#accordionExample"
-                >
-                  <div className="p-3">Answer</div>
+                      <span
+                        className="gift-card-add-btn"
+                        style={{ color: "white" }}
+                      >
+                        <GrFormAdd />
+                      </span>
+                      What is Gift Card?
+                    </button>
+                  </div>
+                  <div
+                    id="collapseThree2"
+                    className="collapse"
+                    aria-labelledby="headingThree"
+                    data-parent="#accordionExample"
+                  >
+                    <div className="p-3">Answer</div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="col-lg-6 my-2">
-            <div id="accordionExample">
-              <div>
-                <div id="headingThree">
-                  <button
-                    className="collapsed d-flex align-items-center gap-15 w-full bg-transparent border-0"
-                    type="button"
-                    // onClick={faqArrow}
-                    data-toggle="collapse"
-                    data-target="#collapseThree4"
-                    aria-expanded="false"
-                    aria-controls="collapseThree"
-                  >
-                    <span
-                      className="gift-card-add-btn"
-                      style={{ color: "white" }}
+            <div className="col-lg-6 my-2">
+              <div id="accordionExample">
+                <div>
+                  <div id="headingThree">
+                    <button
+                      className="collapsed d-flex align-items-center gap-15 w-full bg-transparent border-0"
+                      type="button"
+                      // onClick={faqArrow}
+                      data-toggle="collapse"
+                      data-target="#collapseThree3"
+                      aria-expanded="false"
+                      aria-controls="collapseThree"
                     >
-                      <GrFormAdd />
-                    </span>
-                    What is Gift Card?
-                  </button>
+                      <span
+                        className="gift-card-add-btn"
+                        style={{ color: "white" }}
+                      >
+                        <GrFormAdd />
+                      </span>
+                      What is Gift Card?
+                    </button>
+                  </div>
+                  <div
+                    id="collapseThree3"
+                    className="collapse"
+                    aria-labelledby="headingThree"
+                    data-parent="#accordionExample"
+                  >
+                    <div className="p-3">Answer</div>
+                  </div>
                 </div>
-                <div
-                  id="collapseThree4"
-                  className="collapse"
-                  aria-labelledby="headingThree"
-                  data-parent="#accordionExample"
-                >
-                  <div className="p-3">Answer</div>
+              </div>
+            </div>
+            <div className="col-lg-6 my-2">
+              <div id="accordionExample">
+                <div>
+                  <div id="headingThree">
+                    <button
+                      className="collapsed d-flex align-items-center gap-15 w-full bg-transparent border-0"
+                      type="button"
+                      // onClick={faqArrow}
+                      data-toggle="collapse"
+                      data-target="#collapseThree4"
+                      aria-expanded="false"
+                      aria-controls="collapseThree"
+                    >
+                      <span
+                        className="gift-card-add-btn"
+                        style={{ color: "white" }}
+                      >
+                        <GrFormAdd />
+                      </span>
+                      What is Gift Card?
+                    </button>
+                  </div>
+                  <div
+                    id="collapseThree4"
+                    className="collapse"
+                    aria-labelledby="headingThree"
+                    data-parent="#accordionExample"
+                  >
+                    <div className="p-3">Answer</div>
+                  </div>
                 </div>
               </div>
             </div>
