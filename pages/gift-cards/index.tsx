@@ -177,7 +177,7 @@ export default function index() {
                 <div>
                   <div id="headingThree">
                     <button
-                      className="collapsed d-flex align-items-center gap-15 w-full bg-transparent border-0"
+                      className="collapsed d-flex align-items-center gap-15 w-full bg-transparent border-0 text-primary"
                       type="button"
                       // onClick={faqArrow}
                       data-toggle="collapse"
@@ -187,7 +187,6 @@ export default function index() {
                     >
                       <span
                         className="gift-card-add-btn"
-                        style={{ color: "white" }}
                       >
                         <GrFormAdd />
                       </span>
@@ -210,7 +209,7 @@ export default function index() {
                 <div>
                   <div id="headingThree">
                     <button
-                      className="collapsed d-flex align-items-center gap-15 w-full bg-transparent border-0"
+                      className="collapsed d-flex align-items-center gap-15 w-full bg-transparent border-0 text-primary"
                       type="button"
                       // onClick={faqArrow}
                       data-toggle="collapse"
@@ -243,7 +242,7 @@ export default function index() {
                 <div>
                   <div id="headingThree">
                     <button
-                      className="collapsed d-flex align-items-center gap-15 w-full bg-transparent border-0"
+                      className="collapsed d-flex align-items-center gap-15 w-full bg-transparent border-0 text-primary"
                       type="button"
                       // onClick={faqArrow}
                       data-toggle="collapse"
@@ -276,7 +275,7 @@ export default function index() {
                 <div>
                   <div id="headingThree">
                     <button
-                      className="collapsed d-flex align-items-center gap-15 w-full bg-transparent border-0"
+                      className="collapsed d-flex align-items-center gap-15 w-full bg-transparent border-0 text-primary"
                       type="button"
                       // onClick={faqArrow}
                       data-toggle="collapse"

@@ -7,6 +7,7 @@ export const CUstomSelect = ({
   placeholder,
   handleFunction,
   defaultValue,
+  classname,
   isMulti = false,
   disable = false,
 }: any) => {
@@ -23,6 +24,7 @@ export const CUstomSelect = ({
         classNamePrefix={"custom-select"}
         isSearchable={isSearchable}
         placeholder={placeholder}
+        className={classname}
         isMulti={isMulti}
         isDisabled={disable}
         value={selectedOption}
