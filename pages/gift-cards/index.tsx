@@ -26,11 +26,11 @@ export default function index() {
               </button>
               <div className="gift-inner-card my-5 gift-font-color">
                 <div className="gift-inner-card-btns">
-                  <button className="btn bg-primary-gift">
+                  <button className="btn bg-primary-gift w-none">
                     {t("Redeem to crypto")}{" "}
                   </button>
-                  <span className="block w-half">{t("Add Card")}</span>
-                  <span className="block w-half">{t("Check Card")}</span>
+                  <span className="block">{t("Add Card")}</span>
+                  <span className="block">{t("Check Card")}</span>
                 </div>
                 <div className="gift-inner-card-input-section">
                   <div className="w-full">

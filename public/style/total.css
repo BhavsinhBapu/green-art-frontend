@@ -14918,9 +14918,11 @@ body::-webkit-scrollbar {
   margin-top: 40px;
 }
 
-.w-half{
-  width: 50% !important;
+.w-none{
+  width: unset !important;
 }
+
+
 
 
 
@@ -14933,5 +14935,8 @@ body::-webkit-scrollbar {
 @media (max-width: 450px) {
   .text-45{
     font-size: 32px;
+  }
+  .gift-inner-card-btns{
+    gap: 10px;
   }
 }
