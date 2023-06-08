@@ -14922,6 +14922,10 @@ body::-webkit-scrollbar {
   width: unset !important;
 }
 
+.text-primary{
+  color: var(--font-color) !important;
+}
+
 
 
 
