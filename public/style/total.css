@@ -14899,6 +14899,9 @@ body::-webkit-scrollbar {
 .gap-15{
   gap: 15px;
 }
+.gap-5{
+  gap: 5px;
+}
 
 .gift-card-add-btn{
   background: var(--primary-color);
@@ -14947,8 +14950,12 @@ body::-webkit-scrollbar {
   display: inline-block;
   padding-bottom: 20px;
   margin-bottom: 20px;
+  
+}
+.gift-card-inner-buy-tab-active{
   border-bottom: var(--primary-color) 4px solid;
 }
+
 .gift-card-banner-section-bottom-border{
   padding-bottom: 10px;
   border-bottom: var(--border-color) 1px solid;
@@ -15003,14 +15010,108 @@ body::-webkit-scrollbar {
   box-shadow: unset !important;
 }
 
+.buy-amount-select-section-width{
+  width: 30%;
+}
+
 .buy-border-right{
   border-right: 1px var(--border-color) solid !important;
 }
+.gift-card-buy-switch {
+  position: relative;
+  display: inline-block;
+  width: 35px;
+  height: 18px;
+}
 
+.gift-card-buy-switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.gift-card-buy-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.gift-card-buy-slider:before {
+  position: absolute;
+  content: "";
+  height: 12px;
+  width: 12px;
+  left: 4px;
+  bottom: 3px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .gift-card-buy-slider {
+  background-color: var(--primary-color);
+}
+
+input:focus + .gift-card-buy-slider {
+  box-shadow: 0 0 1px var(--primary-color);
+}
+
+input:checked + .gift-card-buy-slider:before {
+  -webkit-transform: translateX(15px);
+  -ms-transform: translateX(15px);
+  transform: translateX(15px);
+}
+
+/* Rounded sliders */
+.gift-card-buy-slider.gift-card-buy {
+  border-radius: 34px;
+}
+
+.gift-card-buy-slider.gift-card-buy:before {
+  border-radius: 50%;
+}
+
+.buy-checkbox{
+  accent-color: var(--primary-color);
+}
+
+.buy-triangle{
+  display: inline-block;
+  width: 1px;
+  height: 1px;
+  border-right: solid 15px var(--primary-color);
+  border-bottom: solid 15px transparent;
+  border-top: solid 15px transparent;
+}
+.buy-trinagle-btn{
+  background: var(--primary-color);
+  height: 30px;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 0 5px 5px 0;
+}
+
+.pointer{
+  cursor: pointer;
+}
 
 @media (max-width: 991px) {
   .text-45{
     font-size: 36px;
+  }
+  .gift-card-buy-btn{
+    padding: 5px 0;
+    margin-top: 20px;
+  }
+  .gift-card-buy-banner-margin{
+    margin-top: 20px;
   }
 }
 
@@ -15020,5 +15121,8 @@ body::-webkit-scrollbar {
   }
   .gift-inner-card-btns{
     gap: 10px;
+  }
+  .buy-amount-select-section-width{
+    width: 50%;
   }
 }
