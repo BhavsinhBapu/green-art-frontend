@@ -43,7 +43,7 @@ import {
 
 export const VerifyEmailAction =
   (
-    credentials: { email: string; code: any; recapcha: string },
+    credentials: { email: string; verify_code: any; recapcha: string },
     setProcessing: any
   ) =>
   async (dispatch: any) => {
