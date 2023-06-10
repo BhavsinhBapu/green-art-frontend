@@ -821,7 +821,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
           <OutsideClickHandler onOutsideClick={() => setActive(false)}>
             <div className={`cp-user-sidebar w-full ${active ? "active" : ""}`}>
               <div
-                className="cp-user-sidebar-menu scrollbar-inner"
+                className="cp-user-sidebar-menu cp-user-sidebar-menu-mobile scrollbar-inner"
               >
 
                 <nav className="navbar navbar-expand-lg navbar-light">

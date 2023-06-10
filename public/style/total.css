@@ -14798,3 +14798,7 @@ body::-webkit-scrollbar {
 .text-primary-color-two {
   color: var(--text-primary-color-2) !important;
 }
+
+.cp-user-sidebar-menu-mobile ul li a {
+  font-size: 16px !important;
+}
