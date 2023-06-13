@@ -1,11 +1,27 @@
 import ImageComponent from "components/common/ImageComponent";
 import GiftCardsFaq from "components/gift-cards/faq/GiftCardsFaq";
+import request from "lib/request";
+import { GetServerSideProps } from "next";
 import useTranslation from "next-translate/useTranslation";
+import { parseCookies } from "nookies";
 import React from "react";
 import { BsArrowRight } from "react-icons/bs";
 import { GrFormAdd } from "react-icons/gr";
+import { getGiftCardsData } from "service/gift-cards";
 
-export default function index() {
+export default function index({ giftCards }: any) {
+  console.log("giftCards", giftCards);
+  const {
+    header,
+    description,
+    banner,
+    second_header,
+    second_description,
+    second_banner,
+    banners,
+    my_cards,
+    faq,
+  } = giftCards || {};
   const { t } = useTranslation("common");
   return (
     <section>
@@ -15,12 +31,10 @@ export default function index() {
           <div className="row">
             <div className="col-lg-6">
               <h1 className="text-45 text-capitalize font-bold gift-font-color">
-                {t("Buy & Sell Instantly And Hold Cryptocurrency")}
+                {t(header)}
               </h1>
               <p className="my-3 gift-font-color font-medium text-16">
-                {t(
-                  "Tradexpro exchange is such a marketplace where people can trade directly with each other"
-                )}
+                {t(description)}
               </p>
               <button className="gift-btn">
                 {t("Send a crypto gift card")} <BsArrowRight />{" "}
@@ -52,7 +66,10 @@ export default function index() {
               </div>
             </div>
             <div className="col-lg-6 grid">
-              <ImageComponent src={"/demo_gift_banner.png"} height={300} />{" "}
+              <ImageComponent
+                src={banner || "/demo_gift_banner.png"}
+                height={300}
+              />{" "}
             </div>
           </div>
         </div>
@@ -123,14 +140,12 @@ export default function index() {
       <div className="bg-card-primary-color py-80">
         <div className="container">
           <div className="row">
-            <div className="col-lg-6">
+            <div className="col-lg-8">
               <h1 className="text-45 text-capitalize font-bold gift-font-color">
-                {t("Buy & Sell Instantly And Hold Cryptocurrency")}
+                {t(second_header)}
               </h1>
               <p className="my-3 gift-font-color font-medium text-16">
-                {t(
-                  "Tradexpro exchange is such a marketplace where people can trade directly with each other"
-                )}
+                {t(second_description)}
               </p>
               <button className="gift-btn bg-primary-color border-primary-color mt-40">
                 {t("Learn More")} <BsArrowRight />{" "}
@@ -164,3 +179,13 @@ export default function index() {
     </section>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
+  const cookies = parseCookies(ctx);
+  const { data: giftCards } = await getGiftCardsData(cookies.token);
+  return {
+    props: {
+      giftCards,
+    },
+  };
+};
