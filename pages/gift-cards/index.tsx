@@ -1,4 +1,5 @@
 import ImageComponent from "components/common/ImageComponent";
+import GiftCardFaqLists from "components/gift-cards/faq/GiftCardFaqLists";
 import GiftCardsFaq from "components/gift-cards/faq/GiftCardsFaq";
 import request from "lib/request";
 import { GetServerSideProps } from "next";
@@ -157,24 +158,7 @@ export default function index({ giftCards }: any) {
       {/* feature section end*/}
 
       {/* faq section start*/}
-      <div className="py-80">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-12">
-              <div className="d-flex justify-content-between">
-                <div>
-                  <h3>Faq</h3>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="row mt-4">
-            {[1, 2, 3, 4].map((item) => (
-              <GiftCardsFaq key={item} faqId={item} />
-            ))}
-          </div>
-        </div>
-      </div>
+       <GiftCardFaqLists faqLists={faq}/>
       {/* faq section end*/}
     </section>
   );
