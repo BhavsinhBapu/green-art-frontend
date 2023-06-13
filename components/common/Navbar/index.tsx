@@ -97,7 +97,8 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                       {navbar?.trade?.status && (
                         <li
                           className={
-                            router.pathname == "/exchange/dashboard" || router.pathname == "/p2p"
+                            router.pathname == "/exchange/dashboard" ||
+                            router.pathname == "/p2p"
                               ? "cp-user-active-page"
                               : ""
                           }
@@ -183,8 +184,8 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                               router.pathname == "/user/my-wallet"
                                 ? "cp-user-active-page"
                                 : router.pathname == "/user/swap-coin"
-                                  ? "cp-user-active-page"
-                                  : ""
+                                ? "cp-user-active-page"
+                                : ""
                             }
                           >
                             <a href="">
@@ -231,8 +232,8 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                               router.pathname == "/fiat-deposit"
                                 ? "cp-user-active-page"
                                 : router.pathname == "/fiat-withdrawal"
-                                  ? "cp-user-active-page"
-                                  : ""
+                                ? "cp-user-active-page"
+                                : ""
                             }
                           >
                             <Link
@@ -317,22 +318,22 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                       <li
                         className={
                           router.asPath == "/user/swap-history" ||
-                            router.asPath == "/user/buy-order-history" ||
-                            router.asPath == "/user/sell-order-history" ||
-                            router.asPath == "/user/transaction-history" ||
-                            router.asPath == "/user/currency-deposit-history" ||
-                            router.asPath ==
+                          router.asPath == "/user/buy-order-history" ||
+                          router.asPath == "/user/sell-order-history" ||
+                          router.asPath == "/user/transaction-history" ||
+                          router.asPath == "/user/currency-deposit-history" ||
+                          router.asPath ==
                             "/user/wallet-history?type=deposit" ||
-                            router.asPath ==
+                          router.asPath ==
                             "/user/wallet-history?type=withdrawal" ||
-                            router.asPath == "/user/stop-limit-order-history" ||
-                            router.asPath == "/user/currency-withdraw-history" ||
-                            router.asPath ==
+                          router.asPath == "/user/stop-limit-order-history" ||
+                          router.asPath == "/user/currency-withdraw-history" ||
+                          router.asPath ==
                             "/user/referral-earning-withdrawal/" +
-                            REFERRAL_TYPE_DEPOSIT ||
-                            router.asPath ==
+                              REFERRAL_TYPE_DEPOSIT ||
+                          router.asPath ==
                             "/user/referral-earning-trade/" +
-                            REFERRAL_TYPE_TRADE
+                              REFERRAL_TYPE_TRADE
                             ? "cp-user-active-page"
                             : ""
                         }
@@ -375,7 +376,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                               <li
                                 className={
                                   router.asPath ==
-                                    "/user/wallet-history?type=deposit"
+                                  "/user/wallet-history?type=deposit"
                                     ? "cp-user-active-page"
                                     : ""
                                 }
@@ -404,7 +405,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                               <li
                                 className={
                                   router.asPath ==
-                                    "/user/wallet-history?type=withdrawal"
+                                  "/user/wallet-history?type=withdrawal"
                                     ? "cp-user-active-page"
                                     : ""
                                 }
@@ -526,7 +527,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                                   <span>
                                     {navbar?.reports?.transactionHistory?.name
                                       ? navbar?.reports?.transactionHistory
-                                        ?.name
+                                          ?.name
                                       : t("Transaction History")}
                                   </span>
                                 </a>
@@ -535,7 +536,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                           )}
                           {navbar?.reports?.fiatDepositHistory?.status &&
                             parseInt(settings.currency_deposit_status) ===
-                            1 && (
+                              1 && (
                               <Link
                                 href={
                                   isLoggedIn
@@ -546,7 +547,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                                 <li
                                   className={
                                     router.asPath ==
-                                      "/user/currency-deposit-history"
+                                    "/user/currency-deposit-history"
                                       ? "cp-user-active-page"
                                       : ""
                                   }
@@ -558,7 +559,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                                     <span>
                                       {navbar?.reports?.fiatDepositHistory?.name
                                         ? navbar?.reports?.fiatDepositHistory
-                                          ?.name
+                                            ?.name
                                         : t("Fiat Deposit History")}
                                     </span>
                                   </a>
@@ -575,7 +576,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                             <li
                               className={
                                 router.asPath ==
-                                  "/user/stop-limit-order-history"
+                                "/user/stop-limit-order-history"
                                   ? "cp-user-active-page"
                                   : ""
                               }
@@ -592,14 +593,14 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                             href={
                               isLoggedIn
                                 ? "/user/referral-earning-withdrawal/" +
-                                REFERRAL_TYPE_DEPOSIT
+                                  REFERRAL_TYPE_DEPOSIT
                                 : "/signin"
                             }
                           >
                             <li
                               className={
                                 router.asPath ==
-                                  "/user/referral-earning-withdrawal/" +
+                                "/user/referral-earning-withdrawal/" +
                                   REFERRAL_TYPE_DEPOSIT
                                   ? "cp-user-active-page"
                                   : ""
@@ -619,14 +620,14 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                             href={
                               isLoggedIn
                                 ? "/user/referral-earning-trade/" +
-                                REFERRAL_TYPE_TRADE
+                                  REFERRAL_TYPE_TRADE
                                 : "/signin"
                             }
                           >
                             <li
                               className={
                                 router.asPath ==
-                                  "/user/referral-earning-trade/" +
+                                "/user/referral-earning-trade/" +
                                   REFERRAL_TYPE_TRADE
                                   ? "cp-user-active-page"
                                   : ""
@@ -651,7 +652,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                               <li
                                 className={
                                   router.asPath ==
-                                    "/user/currency-withdraw-history"
+                                  "/user/currency-withdraw-history"
                                     ? "cp-user-active-page"
                                     : ""
                                 }
@@ -664,7 +665,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                                     {navbar?.reports?.fiatWithdrawalHistory
                                       ?.name
                                       ? navbar?.reports?.fiatWithdrawalHistory
-                                        ?.name
+                                          ?.name
                                       : t("Fiat Withdrawal History")}
                                   </span>
                                 </a>
@@ -724,8 +725,8 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                           router.pathname == "/user/settings"
                             ? "cp-user-active-page"
                             : router.pathname == "/user/faq"
-                              ? "cp-user-active-page"
-                              : ""
+                            ? "cp-user-active-page"
+                            : ""
                         }
                       >
                         {navbar?.settings?.status && (
@@ -817,600 +818,739 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
               </div>
             </div>
           </div>
-
-          <OutsideClickHandler onOutsideClick={() => setActive(false)}>
-            <div className={`cp-user-sidebar w-full ${active ? "active" : ""}`}>
+            <OutsideClickHandler onOutsideClick={() => setActive(false)}>
               <div
-                className="cp-user-sidebar-menu cp-user-sidebar-menu-mobile scrollbar-inner"
+                className={`cp-user-sidebar w-full ${active ? "active" : ""}`}
               >
-
-                <nav className="navbar navbar-expand-lg navbar-light">
-                  <div className="navbar-collapse">
-                    <ul className="navbar-nav mr-auto">
-                      <li className="text-right"><span onClick={() => setActive(false)}><AiOutlineClose size={20} /></span></li>
-                      {navbar?.trade?.status && (
-
-                        <li className={
-                          router.pathname == "/exchange/dashboard" || router.pathname == "/p2p"
-                            ? "active-navbar nav-item dropdown"
-                            : "nav-item dropdown"
-                        }>
-                          <a className="nav-link text-primary-color-two dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {navbar?.trade?.name
-                              ? navbar?.trade?.name
-                              : t("Exchange")}
-                          </a>
-                          <div className="dropdown-menu bg-transparent border-0 py-0 my-0" aria-labelledby="navbarDropdown">
-                            {navbar?.trade?.status && (
-                              <Link
-                                href={
-                                  router.locale !== "en"
-                                    ? `/${router.locale}/exchange/dashboard`
-                                    : "/exchange/dashboard"
-                                }
-                              >
-                                <li
-                                  className={
-                                    router.pathname == "/exchange/dashboard"
-                                      ? "active-navbar"
-                                      : ""
-                                  }
-                                >
-                                  <a href="" className="px-3 py-2 text-primary-color-two" onClick={() => setActive(false)}>
-                                    <span>{t("Spot Trading")}</span>
-                                  </a>
-                                </li>
-                              </Link>
-                            )}
-                            {parseInt(settings?.p2p_module) === 1 && (
-                              <Link href={isLoggedIn ? "/p2p" : "/signin"}>
-                                <li
-                                  className={
-                                    router.pathname == "/p2p"
-                                      ? "active-navbar"
-                                      : ""
-                                  }
-                                >
-                                  <a href="" className="px-3 py-2 text-primary-color-two" onClick={() => setActive(false)}>
-                                    <span>{t("P2P Trading")}</span>
-                                  </a>
-                                </li>
-                              </Link>
-                            )}
-                          </div>
+                <div className="cp-user-sidebar-menu cp-user-sidebar-menu-mobile scrollbar-inner">
+                  <nav className="navbar navbar-expand-lg navbar-light">
+                    <div className="navbar-collapse">
+                      <ul className="navbar-nav mr-auto">
+                        <li className="text-right">
+                          <span onClick={() => setActive(false)}>
+                            <AiOutlineClose size={20} />
+                          </span>
                         </li>
-                      )}
-
-                      {navbar?.wallet?.status && (
-                        <Link
-                          href={
-                            isLoggedIn === true ? "/user/my-wallet" : "/signin"
-                          }
-
-                        >
+                        {navbar?.trade?.status && (
                           <li
                             className={
-                              router.pathname == "/user/my-wallet"
-                                ? "active-navbar nav-item"
-                                : router.pathname == "/user/swap-coin"
-                                  ? "active-navbar nav-item"
-                                  : "nav-item"
+                              router.pathname == "/exchange/dashboard" ||
+                              router.pathname == "/p2p"
+                                ? "active-navbar nav-item dropdown"
+                                : "nav-item dropdown"
                             }
                           >
-                            <a href="#" className="nav-link text-primary-color-two" onClick={() => setActive(false)}>
-
-                              {navbar?.wallet?.name
-                                ? navbar?.wallet?.name
-                                : t("Wallet")}
+                            <a
+                              className="nav-link text-primary-color-two dropdown-toggle"
+                              href="#"
+                              id="navbarDropdown"
+                              role="button"
+                              data-toggle="dropdown"
+                              aria-haspopup="true"
+                              aria-expanded="false"
+                            >
+                              {navbar?.trade?.name
+                                ? navbar?.trade?.name
+                                : t("Exchange")}
                             </a>
+                            <ul
+                              className="dropdown-menu bg-transparent border-0 py-0 my-0"
+                              aria-labelledby="navbarDropdown"
+                            >
+                              {navbar?.trade?.status && (
+                                <Link
+                                  href={
+                                    router.locale !== "en"
+                                      ? `/${router.locale}/exchange/dashboard`
+                                      : "/exchange/dashboard"
+                                  }
+                                >
+                                  <li
+                                    className={
+                                      router.pathname == "/exchange/dashboard"
+                                        ? "active-navbar"
+                                        : ""
+                                    }
+                                  >
+                                    <a
+                                      href=""
+                                      className="px-3 py-2 text-primary-color-two"
+                                      onClick={() => setActive(false)}
+                                    >
+                                      <span>{t("Spot Trading")}</span>
+                                    </a>
+                                  </li>
+                                </Link>
+                              )}
+                              {parseInt(settings?.p2p_module) === 1 && (
+                                <Link href={isLoggedIn ? "/p2p" : "/signin"}>
+                                  <li
+                                    className={
+                                      router.pathname == "/p2p"
+                                        ? "active-navbar"
+                                        : ""
+                                    }
+                                  >
+                                    <a
+                                      href=""
+                                      className="px-3 py-2 text-primary-color-two"
+                                      onClick={() => setActive(false)}
+                                    >
+                                      <span>{t("P2P Trading")}</span>
+                                    </a>
+                                  </li>
+                                </Link>
+                              )}
+                            </ul>
                           </li>
-                        </Link>
-                      )}
+                        )}
 
-                      {parseInt(settings.launchpad_settings) === 1 &&
-                        navbar?.ico?.status && (
-                          <Link href={isLoggedIn ? "/ico" : "/signin"}>
+                        {navbar?.wallet?.status && (
+                          <Link
+                            href={
+                              isLoggedIn === true
+                                ? "/user/my-wallet"
+                                : "/signin"
+                            }
+                          >
                             <li
                               className={
-                                router.pathname == "/ico"
+                                router.pathname == "/user/my-wallet"
+                                  ? "active-navbar nav-item"
+                                  : router.pathname == "/user/swap-coin"
                                   ? "active-navbar nav-item"
                                   : "nav-item"
                               }
                             >
-                              <a href="#" className="nav-link text-primary-color-two" onClick={() => setActive(false)}>
-                                {navbar?.ico?.name
-                                  ? navbar?.ico?.name
-                                  : t("ICO")}
+                              <a
+                                href="#"
+                                className="nav-link text-primary-color-two"
+                                onClick={() => setActive(false)}
+                              >
+                                {navbar?.wallet?.name
+                                  ? navbar?.wallet?.name
+                                  : t("Wallet")}
                               </a>
                             </li>
                           </Link>
                         )}
 
-                      {parseInt(settings.currency_deposit_status) === 1 &&
-                        navbar?.fiat?.status && (
-                          <li
-                            className={
-                              router.pathname == "/fiat-deposit"
-                                ? "active-navbar nav-item dropdown"
-                                : router.pathname == "/fiat-withdrawal"
+                        {parseInt(settings.launchpad_settings) === 1 &&
+                          navbar?.ico?.status && (
+                            <Link href={isLoggedIn ? "/ico" : "/signin"}>
+                              <li
+                                className={
+                                  router.pathname == "/ico"
+                                    ? "active-navbar nav-item"
+                                    : "nav-item"
+                                }
+                              >
+                                <a
+                                  href="#"
+                                  className="nav-link text-primary-color-two"
+                                  onClick={() => setActive(false)}
+                                >
+                                  {navbar?.ico?.name
+                                    ? navbar?.ico?.name
+                                    : t("ICO")}
+                                </a>
+                              </li>
+                            </Link>
+                          )}
+
+                        {parseInt(settings.currency_deposit_status) === 1 &&
+                          navbar?.fiat?.status && (
+                            <li
+                              className={
+                                router.pathname == "/fiat-deposit"
+                                  ? "active-navbar nav-item dropdown"
+                                  : router.pathname == "/fiat-withdrawal"
                                   ? "active-navbar nav-item dropdown"
                                   : "nav-item dropdown"
-                            }
-                          >
-                            <a className="nav-link text-primary-color-two dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              {navbar?.fiat?.name
-                                ? navbar?.fiat?.name
-                                : t("Fiat")}
-                            </a>
-                            <div className="dropdown-menu bg-transparent border-0 py-0 my-0" aria-labelledby="navbarDropdown">
-                              {navbar?.fiat?.deposit?.status && (
-                                <Link
-                                  href={
-                                    isLoggedIn ? "/fiat-deposit" : "/signin"
-                                  }
-                                >
-                                  <li
-                                    className={
-                                      router.pathname == "/fiat-deposit"
-                                        ? "active-navbar"
-                                        : ""
+                              }
+                            >
+                              <a
+                                className="nav-link text-primary-color-two dropdown-toggle"
+                                href="#"
+                                id="navbarDropdown"
+                                role="button"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                              >
+                                {navbar?.fiat?.name
+                                  ? navbar?.fiat?.name
+                                  : t("Fiat")}
+                              </a>
+                              <ul
+                                className="dropdown-menu bg-transparent border-0 py-0 my-0"
+                                aria-labelledby="navbarDropdown"
+                              >
+                                {navbar?.fiat?.deposit?.status && (
+                                  <Link
+                                    href={
+                                      isLoggedIn ? "/fiat-deposit" : "/signin"
                                     }
                                   >
-                                    <a href="" className="px-3 py-2 text-primary-color-two" onClick={() => setActive(false)}>
-                                      <span>
-                                        {navbar?.fiat?.deposit.name
-                                          ? navbar?.fiat?.deposit.name
-                                          : t("Deposit")}
-                                      </span>
-                                    </a>
-                                  </li>
-                                </Link>
-                              )}
-                              {navbar?.fiat?.withdrawal?.status && (
-                                <Link
-                                  href={
-                                    isLoggedIn ? "/fiat-withdrawal" : "/signin"
-                                  }
-                                >
-                                  <li
-                                    className={
-                                      router.pathname == "/fiat-withdrawal"
-                                        ? "active-navbar"
-                                        : ""
+                                    <li
+                                      className={
+                                        router.pathname == "/fiat-deposit"
+                                          ? "active-navbar"
+                                          : ""
+                                      }
+                                    >
+                                      <a
+                                        href=""
+                                        className="px-3 py-2 text-primary-color-two"
+                                        onClick={() => setActive(false)}
+                                      >
+                                        <span>
+                                          {navbar?.fiat?.deposit.name
+                                            ? navbar?.fiat?.deposit.name
+                                            : t("Deposit")}
+                                        </span>
+                                      </a>
+                                    </li>
+                                  </Link>
+                                )}
+                                {navbar?.fiat?.withdrawal?.status && (
+                                  <Link
+                                    href={
+                                      isLoggedIn
+                                        ? "/fiat-withdrawal"
+                                        : "/signin"
                                     }
                                   >
-                                    <a href="" className="px-3 py-2 text-primary-color-two" onClick={() => setActive(false)}>
-                                      <span>
-                                        {navbar?.fiat?.withdrawal.name
-                                          ? navbar?.fiat?.withdrawal.name
-                                          : t("Withdrawal")}
-                                      </span>
-                                    </a>
-                                  </li>
-                                </Link>
-                              )}
-                            </div>
-                          </li>
-                        )}
+                                    <li
+                                      className={
+                                        router.pathname == "/fiat-withdrawal"
+                                          ? "active-navbar"
+                                          : ""
+                                      }
+                                    >
+                                      <a
+                                        href=""
+                                        className="px-3 py-2 text-primary-color-two"
+                                        onClick={() => setActive(false)}
+                                      >
+                                        <span>
+                                          {navbar?.fiat?.withdrawal.name
+                                            ? navbar?.fiat?.withdrawal.name
+                                            : t("Withdrawal")}
+                                        </span>
+                                      </a>
+                                    </li>
+                                  </Link>
+                                )}
+                              </ul>
+                            </li>
+                          )}
 
-                      <li
-                        className={
-                          router.asPath == "/user/swap-history" ||
+                        <li
+                          className={
+                            router.asPath == "/user/swap-history" ||
                             router.asPath == "/user/buy-order-history" ||
                             router.asPath == "/user/sell-order-history" ||
                             router.asPath == "/user/transaction-history" ||
                             router.asPath == "/user/currency-deposit-history" ||
                             router.asPath ==
-                            "/user/wallet-history?type=deposit" ||
+                              "/user/wallet-history?type=deposit" ||
                             router.asPath ==
-                            "/user/wallet-history?type=withdrawal" ||
+                              "/user/wallet-history?type=withdrawal" ||
                             router.asPath == "/user/stop-limit-order-history" ||
-                            router.asPath == "/user/currency-withdraw-history" ||
                             router.asPath ==
-                            "/user/referral-earning-withdrawal/" +
-                            REFERRAL_TYPE_DEPOSIT ||
+                              "/user/currency-withdraw-history" ||
                             router.asPath ==
-                            "/user/referral-earning-trade/" +
-                            REFERRAL_TYPE_TRADE
-                            ? "active-navbar nav-item dropdown"
-                            : "nav-item dropdown"
-                        }
-                      >
-                        {navbar?.reports?.status && (
-                          <a className="nav-link text-primary-color-two dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {navbar?.reports?.name
-                              ? navbar?.reports?.name
-                              : t("Reports")}
-                          </a>
-                        )}
-                        <div className="dropdown-menu bg-transparent border-0 py-0 my-0" aria-labelledby="navbarDropdown">
-                          {navbar?.reports?.depositHistory?.status && (
-                            <Link
-                              href={
-                                isLoggedIn
-                                  ? "/user/wallet-history?type=deposit"
-                                  : "/signin"
-                              }
+                              "/user/referral-earning-withdrawal/" +
+                                REFERRAL_TYPE_DEPOSIT ||
+                            router.asPath ==
+                              "/user/referral-earning-trade/" +
+                                REFERRAL_TYPE_TRADE
+                              ? "active-navbar nav-item dropdown"
+                              : "nav-item dropdown"
+                          }
+                        >
+                          {navbar?.reports?.status && (
+                            <a
+                              className="nav-link text-primary-color-two dropdown-toggle"
+                              href="#"
+                              id="navbarDropdown"
+                              role="button"
+                              data-toggle="dropdown"
+                              aria-haspopup="true"
+                              aria-expanded="false"
                             >
-                              <li
-                                className={
-                                  router.asPath ==
-                                    "/user/wallet-history?type=deposit"
-                                    ? "active-navbar"
-                                    : ""
-                                }
-                              >
-                                <a href="" className="px-3 py-2 text-primary-color-two" onClick={() => setActive(false)}>
-                                  <span>
-                                    {navbar?.reports?.depositHistory?.name
-                                      ? navbar?.reports?.depositHistory?.name
-                                      : t("Deposit History")}
-                                  </span>
-                                </a>
-                              </li>
-                            </Link>
+                              {navbar?.reports?.name
+                                ? navbar?.reports?.name
+                                : t("Reports")}
+                            </a>
                           )}
-                          {navbar?.reports?.withdrawalHistory?.status && (
-                            <Link
-                              href={
-                                isLoggedIn
-                                  ? "/user/wallet-history?type=withdrawal"
-                                  : "/signin"
-                              }
-                            >
-                              <li
-                                className={
-                                  router.asPath ==
-                                    "/user/wallet-history?type=withdrawal"
-                                    ? "active-navbar"
-                                    : ""
-                                }
-                              >
-                                <a href="" className="px-3 py-2 text-primary-color-two" onClick={() => setActive(false)}>
-                                  <span>
-                                    {navbar?.reports?.withdrawalHistory?.name
-                                      ? navbar?.reports?.withdrawalHistory?.name
-                                      : t("Withdrawal History")}
-                                  </span>
-                                </a>
-                              </li>
-                            </Link>
-                          )}
-                          {navbar?.reports?.swapHistory?.status && (
-                            <Link
-                              href={
-                                isLoggedIn ? "/user/swap-history" : "/signin"
-                              }
-                            >
-                              <li
-                                className={
-                                  router.asPath == "/user/swap-history"
-                                    ? "active-navbar"
-                                    : ""
-                                }
-                              >
-                                <a href="" className="px-3 py-2 text-primary-color-two" onClick={() => setActive(false)}>
-                                  <span>
-                                    {navbar?.reports?.swapHistory?.name
-                                      ? navbar?.reports?.swapHistory?.name
-                                      : t("Swap History")}
-                                  </span>
-                                </a>
-                              </li>
-                            </Link>
-                          )}
-                          {navbar?.reports?.buyOrderHistory?.status && (
-                            <Link
-                              href={
-                                isLoggedIn
-                                  ? "/user/buy-order-history"
-                                  : "/signin"
-                              }
-                            >
-                              <li
-                                className={
-                                  router.asPath == "/user/buy-order-history"
-                                    ? "active-navbar"
-                                    : ""
-                                }
-                              >
-                                <a href="" className="px-3 py-2 text-primary-color-two" onClick={() => setActive(false)}>
-                                  <span>
-                                    {navbar?.reports?.buyOrderHistory?.name
-                                      ? navbar?.reports?.buyOrderHistory?.name
-                                      : t("Buy Order History")}
-                                  </span>
-                                </a>
-                              </li>
-                            </Link>
-                          )}
-                          {navbar?.reports?.sellOrderHistory?.status && (
-                            <Link
-                              href={
-                                isLoggedIn
-                                  ? "/user/sell-order-history"
-                                  : "/signin"
-                              }
-                            >
-                              <li
-                                className={
-                                  router.asPath == "/user/sell-order-history"
-                                    ? "active-navbar"
-                                    : ""
-                                }
-                              >
-                                <a href="" className="px-3 py-2 text-primary-color-two" onClick={() => setActive(false)}>
-                                  <span>
-                                    {navbar?.reports?.sellOrderHistory?.name
-                                      ? navbar?.reports?.sellOrderHistory?.name
-                                      : t("Sell Order History")}
-                                  </span>
-                                </a>
-                              </li>
-                            </Link>
-                          )}
-                          {navbar?.reports?.transactionHistory?.status && (
-                            <Link
-                              href={
-                                isLoggedIn
-                                  ? "/user/transaction-history"
-                                  : "/signin"
-                              }
-                            >
-                              <li
-                                className={
-                                  router.asPath == "/user/transaction-history"
-                                    ? "active-navbar"
-                                    : ""
-                                }
-                              >
-                                <a href="" className="px-3 py-2 text-primary-color-two" onClick={() => setActive(false)}>
-                                  <span>
-                                    {navbar?.reports?.transactionHistory?.name
-                                      ? navbar?.reports?.transactionHistory
-                                        ?.name
-                                      : t("Transaction History")}
-                                  </span>
-                                </a>
-                              </li>
-                            </Link>
-                          )}
-                          {navbar?.reports?.fiatDepositHistory?.status &&
-                            parseInt(settings.currency_deposit_status) ===
-                            1 && (
+                          <ul
+                            className="dropdown-menu bg-transparent border-0 py-0 my-0"
+                            aria-labelledby="navbarDropdown"
+                          >
+                            {navbar?.reports?.depositHistory?.status && (
                               <Link
                                 href={
                                   isLoggedIn
-                                    ? "/user/currency-deposit-history"
+                                    ? "/user/wallet-history?type=deposit"
                                     : "/signin"
                                 }
                               >
                                 <li
                                   className={
                                     router.asPath ==
-                                      "/user/currency-deposit-history"
+                                    "/user/wallet-history?type=deposit"
                                       ? "active-navbar"
                                       : ""
                                   }
                                 >
-                                  <a href="" className="px-3 py-2 text-primary-color-two" onClick={() => setActive(false)}>
+                                  <a
+                                    href=""
+                                    className="px-3 py-2 text-primary-color-two"
+                                    onClick={() => setActive(false)}
+                                  >
                                     <span>
-                                      {navbar?.reports?.fiatDepositHistory?.name
-                                        ? navbar?.reports?.fiatDepositHistory
-                                          ?.name
-                                        : t("Fiat Deposit History")}
+                                      {navbar?.reports?.depositHistory?.name
+                                        ? navbar?.reports?.depositHistory?.name
+                                        : t("Deposit History")}
                                     </span>
                                   </a>
                                 </li>
                               </Link>
                             )}
-                          <Link
-                            href={
-                              isLoggedIn
-                                ? "/user/stop-limit-order-history"
-                                : "/signin"
-                            }
-                          >
-                            <li
-                              className={
-                                router.asPath ==
-                                  "/user/stop-limit-order-history"
-                                  ? "active-navbar"
-                                  : ""
-                              }
-                            >
-                              <a href="" className="px-3 py-2 text-primary-color-two" onClick={() => setActive(false)}>
-                                <span>{t("Stop Limit History")}</span>
-                              </a>
-                            </li>
-                          </Link>
-                          <Link
-                            href={
-                              isLoggedIn
-                                ? "/user/referral-earning-withdrawal/" +
-                                REFERRAL_TYPE_DEPOSIT
-                                : "/signin"
-                            }
-                          >
-                            <li
-                              className={
-                                router.asPath ==
-                                  "/user/referral-earning-withdrawal/" +
-                                  REFERRAL_TYPE_DEPOSIT
-                                  ? "active-navbar"
-                                  : ""
-                              }
-                            >
-                              <a href="" className="px-3 py-2 text-primary-color-two" onClick={() => setActive(false)}>
-                                <span>
-                                  {t("Referral earning from withdrawal")}
-                                </span>
-                              </a>
-                            </li>
-                          </Link>
-                          <Link
-                            href={
-                              isLoggedIn
-                                ? "/user/referral-earning-trade/" +
-                                REFERRAL_TYPE_TRADE
-                                : "/signin"
-                            }
-                          >
-                            <li
-                              className={
-                                router.asPath ==
-                                  "/user/referral-earning-trade/" +
-                                  REFERRAL_TYPE_TRADE
-                                  ? "active-navbar"
-                                  : ""
-                              }
-                            >
-                              <a href="" className="px-3 py-2 text-primary-color-two" onClick={() => setActive(false)}>
-                                <span>{t("Referral earning from trade")}</span>
-                              </a>
-                            </li>
-                          </Link>
-                          {navbar?.reports?.fiatWithdrawalHistory?.status && (
+                            {navbar?.reports?.withdrawalHistory?.status && (
+                              <Link
+                                href={
+                                  isLoggedIn
+                                    ? "/user/wallet-history?type=withdrawal"
+                                    : "/signin"
+                                }
+                              >
+                                <li
+                                  className={
+                                    router.asPath ==
+                                    "/user/wallet-history?type=withdrawal"
+                                      ? "active-navbar"
+                                      : ""
+                                  }
+                                >
+                                  <a
+                                    href=""
+                                    className="px-3 py-2 text-primary-color-two"
+                                    onClick={() => setActive(false)}
+                                  >
+                                    <span>
+                                      {navbar?.reports?.withdrawalHistory?.name
+                                        ? navbar?.reports?.withdrawalHistory
+                                            ?.name
+                                        : t("Withdrawal History")}
+                                    </span>
+                                  </a>
+                                </li>
+                              </Link>
+                            )}
+                            {navbar?.reports?.swapHistory?.status && (
+                              <Link
+                                href={
+                                  isLoggedIn ? "/user/swap-history" : "/signin"
+                                }
+                              >
+                                <li
+                                  className={
+                                    router.asPath == "/user/swap-history"
+                                      ? "active-navbar"
+                                      : ""
+                                  }
+                                >
+                                  <a
+                                    href=""
+                                    className="px-3 py-2 text-primary-color-two"
+                                    onClick={() => setActive(false)}
+                                  >
+                                    <span>
+                                      {navbar?.reports?.swapHistory?.name
+                                        ? navbar?.reports?.swapHistory?.name
+                                        : t("Swap History")}
+                                    </span>
+                                  </a>
+                                </li>
+                              </Link>
+                            )}
+                            {navbar?.reports?.buyOrderHistory?.status && (
+                              <Link
+                                href={
+                                  isLoggedIn
+                                    ? "/user/buy-order-history"
+                                    : "/signin"
+                                }
+                              >
+                                <li
+                                  className={
+                                    router.asPath == "/user/buy-order-history"
+                                      ? "active-navbar"
+                                      : ""
+                                  }
+                                >
+                                  <a
+                                    href=""
+                                    className="px-3 py-2 text-primary-color-two"
+                                    onClick={() => setActive(false)}
+                                  >
+                                    <span>
+                                      {navbar?.reports?.buyOrderHistory?.name
+                                        ? navbar?.reports?.buyOrderHistory?.name
+                                        : t("Buy Order History")}
+                                    </span>
+                                  </a>
+                                </li>
+                              </Link>
+                            )}
+                            {navbar?.reports?.sellOrderHistory?.status && (
+                              <Link
+                                href={
+                                  isLoggedIn
+                                    ? "/user/sell-order-history"
+                                    : "/signin"
+                                }
+                              >
+                                <li
+                                  className={
+                                    router.asPath == "/user/sell-order-history"
+                                      ? "active-navbar"
+                                      : ""
+                                  }
+                                >
+                                  <a
+                                    href=""
+                                    className="px-3 py-2 text-primary-color-two"
+                                    onClick={() => setActive(false)}
+                                  >
+                                    <span>
+                                      {navbar?.reports?.sellOrderHistory?.name
+                                        ? navbar?.reports?.sellOrderHistory
+                                            ?.name
+                                        : t("Sell Order History")}
+                                    </span>
+                                  </a>
+                                </li>
+                              </Link>
+                            )}
+                            {navbar?.reports?.transactionHistory?.status && (
+                              <Link
+                                href={
+                                  isLoggedIn
+                                    ? "/user/transaction-history"
+                                    : "/signin"
+                                }
+                              >
+                                <li
+                                  className={
+                                    router.asPath == "/user/transaction-history"
+                                      ? "active-navbar"
+                                      : ""
+                                  }
+                                >
+                                  <a
+                                    href=""
+                                    className="px-3 py-2 text-primary-color-two"
+                                    onClick={() => setActive(false)}
+                                  >
+                                    <span>
+                                      {navbar?.reports?.transactionHistory?.name
+                                        ? navbar?.reports?.transactionHistory
+                                            ?.name
+                                        : t("Transaction History")}
+                                    </span>
+                                  </a>
+                                </li>
+                              </Link>
+                            )}
+                            {navbar?.reports?.fiatDepositHistory?.status &&
+                              parseInt(settings.currency_deposit_status) ===
+                                1 && (
+                                <Link
+                                  href={
+                                    isLoggedIn
+                                      ? "/user/currency-deposit-history"
+                                      : "/signin"
+                                  }
+                                >
+                                  <li
+                                    className={
+                                      router.asPath ==
+                                      "/user/currency-deposit-history"
+                                        ? "active-navbar"
+                                        : ""
+                                    }
+                                  >
+                                    <a
+                                      href=""
+                                      className="px-3 py-2 text-primary-color-two"
+                                      onClick={() => setActive(false)}
+                                    >
+                                      <span>
+                                        {navbar?.reports?.fiatDepositHistory
+                                          ?.name
+                                          ? navbar?.reports?.fiatDepositHistory
+                                              ?.name
+                                          : t("Fiat Deposit History")}
+                                      </span>
+                                    </a>
+                                  </li>
+                                </Link>
+                              )}
                             <Link
                               href={
                                 isLoggedIn
-                                  ? "/user/currency-withdraw-history"
+                                  ? "/user/stop-limit-order-history"
                                   : "/signin"
                               }
                             >
                               <li
                                 className={
                                   router.asPath ==
-                                    "/user/currency-withdraw-history"
+                                  "/user/stop-limit-order-history"
                                     ? "active-navbar"
                                     : ""
                                 }
                               >
-                                <a href="" className="px-3 py-2 text-primary-color-two" onClick={() => setActive(false)}>
+                                <a
+                                  href=""
+                                  className="px-3 py-2 text-primary-color-two"
+                                  onClick={() => setActive(false)}
+                                >
+                                  <span>{t("Stop Limit History")}</span>
+                                </a>
+                              </li>
+                            </Link>
+                            <Link
+                              href={
+                                isLoggedIn
+                                  ? "/user/referral-earning-withdrawal/" +
+                                    REFERRAL_TYPE_DEPOSIT
+                                  : "/signin"
+                              }
+                            >
+                              <li
+                                className={
+                                  router.asPath ==
+                                  "/user/referral-earning-withdrawal/" +
+                                    REFERRAL_TYPE_DEPOSIT
+                                    ? "active-navbar"
+                                    : ""
+                                }
+                              >
+                                <a
+                                  href=""
+                                  className="px-3 py-2 text-primary-color-two"
+                                  onClick={() => setActive(false)}
+                                >
                                   <span>
-                                    {navbar?.reports?.fiatWithdrawalHistory
-                                      ?.name
-                                      ? navbar?.reports?.fiatWithdrawalHistory
-                                        ?.name
-                                      : t("Fiat Withdrawal History")}
+                                    {t("Referral earning from withdrawal")}
                                   </span>
                                 </a>
                               </li>
                             </Link>
-                          )}
-                        </div>
-                      </li>
+                            <Link
+                              href={
+                                isLoggedIn
+                                  ? "/user/referral-earning-trade/" +
+                                    REFERRAL_TYPE_TRADE
+                                  : "/signin"
+                              }
+                            >
+                              <li
+                                className={
+                                  router.asPath ==
+                                  "/user/referral-earning-trade/" +
+                                    REFERRAL_TYPE_TRADE
+                                    ? "active-navbar"
+                                    : ""
+                                }
+                              >
+                                <a
+                                  href=""
+                                  className="px-3 py-2 text-primary-color-two"
+                                  onClick={() => setActive(false)}
+                                >
+                                  <span>
+                                    {t("Referral earning from trade")}
+                                  </span>
+                                </a>
+                              </li>
+                            </Link>
+                            {navbar?.reports?.fiatWithdrawalHistory?.status && (
+                              <Link
+                                href={
+                                  isLoggedIn
+                                    ? "/user/currency-withdraw-history"
+                                    : "/signin"
+                                }
+                              >
+                                <li
+                                  className={
+                                    router.asPath ==
+                                    "/user/currency-withdraw-history"
+                                      ? "active-navbar"
+                                      : ""
+                                  }
+                                >
+                                  <a
+                                    href=""
+                                    className="px-3 py-2 text-primary-color-two"
+                                    onClick={() => setActive(false)}
+                                  >
+                                    <span>
+                                      {navbar?.reports?.fiatWithdrawalHistory
+                                        ?.name
+                                        ? navbar?.reports?.fiatWithdrawalHistory
+                                            ?.name
+                                        : t("Fiat Withdrawal History")}
+                                    </span>
+                                  </a>
+                                </li>
+                              </Link>
+                            )}
+                          </ul>
+                        </li>
 
-                      {navbar?.myProfile?.status && (
-                        <Link href={isLoggedIn ? "/user/profile" : "/signin"}>
+                        {navbar?.myProfile?.status && (
+                          <Link href={isLoggedIn ? "/user/profile" : "/signin"}>
+                            <li
+                              className={
+                                router.pathname == "/user/profile"
+                                  ? "active-navbar nav-item"
+                                  : "nav-item"
+                              }
+                            >
+                              <a
+                                href="#"
+                                className="nav-link text-primary-color-two"
+                                onClick={() => setActive(false)}
+                              >
+                                <span>
+                                  {navbar?.myProfile?.name
+                                    ? navbar?.myProfile?.name
+                                    : t("My Profile")}
+                                </span>
+                              </a>
+                            </li>
+                          </Link>
+                        )}
+
+                        <Link href={isLoggedIn ? "/user/referral" : "/signin"}>
                           <li
                             className={
-                              router.pathname == "/user/profile"
+                              router.pathname == "/user/referral"
                                 ? "active-navbar nav-item"
                                 : "nav-item"
                             }
                           >
-                            <a href="#" className="nav-link text-primary-color-two" onClick={() => setActive(false)}>
-                              <span>
-                                {navbar?.myProfile?.name
-                                  ? navbar?.myProfile?.name
-                                  : t("My Profile")}
-                              </span>
-                            </a>
+                            {navbar?.myReferral?.status && (
+                              <Link href="/user/referral">
+                                <a
+                                  href="#"
+                                  className="nav-link text-primary-color-two"
+                                  onClick={() => setActive(false)}
+                                >
+                                  <span>
+                                    {navbar?.myReferral?.name
+                                      ? navbar.myReferral?.name
+                                      : t("My Referral")}
+                                  </span>
+                                </a>
+                              </Link>
+                            )}
                           </li>
                         </Link>
-                      )}
 
-                      <Link href={isLoggedIn ? "/user/referral" : "/signin"}>
                         <li
                           className={
-                            router.pathname == "/user/referral"
-                              ? "active-navbar nav-item"
-                              : "nav-item"
-                          }
-                        >
-                          {navbar?.myReferral?.status && (
-                            <Link href="/user/referral">
-                              <a href="#" className="nav-link text-primary-color-two" onClick={() => setActive(false)}>
-                                <span>
-                                  {navbar?.myReferral?.name
-                                    ? navbar.myReferral?.name
-                                    : t("My Referral")}
-                                </span>
-                              </a>
-                            </Link>
-                          )}
-                        </li>
-                      </Link>
-
-                      <li
-                        className={
-                          router.pathname == "/user/settings"
-                            ? "active-navbar nav-item dropdown"
-                            : router.pathname == "/user/faq"
+                            router.pathname == "/user/settings"
+                              ? "active-navbar nav-item dropdown"
+                              : router.pathname == "/user/faq"
                               ? "active-navbar nav-item dropdown"
                               : "nav-item dropdown"
-                        }
-                      >
-                        {navbar?.settings?.status && (
-                          <a className="nav-link text-primary-color-two dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span>
-                              {navbar?.settings?.name
-                                ? navbar?.settings?.name
-                                : t("Settings")}
-                            </span>
-                          </a>
-                        )}
-                        <div className="dropdown-menu bg-transparent border-0 py-0 my-0" aria-labelledby="navbarDropdown">
-                          {navbar?.settings?.mySettings?.status && (
-                            <Link
-                              href={isLoggedIn ? "/user/settings" : "/signin"}
+                          }
+                        >
+                          {navbar?.settings?.status && (
+                            <a
+                              className="nav-link text-primary-color-two dropdown-toggle"
+                              href="#"
+                              id="navbarDropdown"
+                              role="button"
+                              data-toggle="dropdown"
+                              aria-haspopup="true"
+                              aria-expanded="false"
                             >
-                              <li
-                                className={
-                                  router.pathname == "/user/settings"
-                                    ? "active-navbar"
-                                    : ""
-                                }
-                              >
-                                <a href="" className="px-3 py-2 text-primary-color-two" onClick={() => setActive(false)}>
-                                  <span>
-                                    {navbar?.settings?.mySettings?.name
-                                      ? navbar?.settings?.mySettings?.name
-                                      : t("My Settings")}
-                                  </span>
-                                </a>
-                              </li>
-                            </Link>
+                              <span>
+                                {navbar?.settings?.name
+                                  ? navbar?.settings?.name
+                                  : t("Settings")}
+                              </span>
+                            </a>
                           )}
-                          {navbar?.settings?.faq?.status && (
-                            <Link href={isLoggedIn ? "/user/faq" : "/signin"}>
-                              <li
-                                className={
-                                  router.pathname == "/user/faq"
-                                    ? "active-navbar"
-                                    : ""
-                                }
+                          <ul
+                            className="dropdown-menu bg-transparent border-0 py-0 my-0"
+                            aria-labelledby="navbarDropdown"
+                          >
+                            {navbar?.settings?.mySettings?.status && (
+                              <Link
+                                href={isLoggedIn ? "/user/settings" : "/signin"}
                               >
-                                <a href="" className="px-3 py-2 text-primary-color-two" onClick={() => setActive(false)}>
-                                  <span>
-                                    {navbar?.settings?.faq?.name
-                                      ? navbar?.settings?.faq?.name
-                                      : t("FAQ")}
-                                  </span>
-                                </a>
-                              </li>
-                            </Link>
-                          )}
-                        </div>
-
-                      </li>
-                    </ul>
-                  </div>
-                </nav>
+                                <li
+                                  className={
+                                    router.pathname == "/user/settings"
+                                      ? "active-navbar"
+                                      : ""
+                                  }
+                                >
+                                  <a
+                                    href=""
+                                    className="px-3 py-2 text-primary-color-two"
+                                    onClick={() => setActive(false)}
+                                  >
+                                    <span>
+                                      {navbar?.settings?.mySettings?.name
+                                        ? navbar?.settings?.mySettings?.name
+                                        : t("My Settings")}
+                                    </span>
+                                  </a>
+                                </li>
+                              </Link>
+                            )}
+                            {navbar?.settings?.faq?.status && (
+                              <Link href={isLoggedIn ? "/user/faq" : "/signin"}>
+                                <li
+                                  className={
+                                    router.pathname == "/user/faq"
+                                      ? "active-navbar"
+                                      : ""
+                                  }
+                                >
+                                  <a
+                                    href=""
+                                    className="px-3 py-2 text-primary-color-two"
+                                    onClick={() => setActive(false)}
+                                  >
+                                    <span>
+                                      {navbar?.settings?.faq?.name
+                                        ? navbar?.settings?.faq?.name
+                                        : t("FAQ")}
+                                    </span>
+                                  </a>
+                                </li>
+                              </Link>
+                            )}
+                          </ul>
+                        </li>
+                      </ul>
+                    </div>
+                  </nav>
+                </div>
               </div>
-            </div>
-          </OutsideClickHandler>
+            </OutsideClickHandler>
         </>
       ) : !isLoggedIn && isLoading === false ? (
         <UnAuthNav />
