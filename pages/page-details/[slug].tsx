@@ -5,12 +5,8 @@ import useTranslation from "next-translate/useTranslation";
 import React from "react";
 import {
   CommonLandingCustomSettings,
-  customPage,
   customPageWithSlug,
-  landingPage,
 } from "service/landing-page";
-//@ts-ignore
-import sanitizeHtml from "sanitize-html";
 import UnAuthNav from "components/common/unAuthNav";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
@@ -46,11 +42,6 @@ const Bannerdetails = ({
   }
   return (
     <div>
-      {loggedin ? (
-        <Navbar settings={customSettings} isLoggedIn={loggedin} />
-      ) : (
-        <UnAuthNav />
-      )}
       <div className="container mb-5 mt-5">
         <div className="section-wrapper-withHtml ">
           <img src={details.image} />
@@ -60,7 +51,6 @@ const Bannerdetails = ({
           </p>
           <div
             dangerouslySetInnerHTML={{
-              // __html: clean(details.description),
               __html: details.description,
             }}
           ></div>
