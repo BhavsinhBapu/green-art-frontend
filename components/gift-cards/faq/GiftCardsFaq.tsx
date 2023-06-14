@@ -1,11 +1,20 @@
 import useTranslation from "next-translate/useTranslation";
 import React from "react";
 import { GrFormAdd } from "react-icons/gr";
+type faq = {
+  question: string;
+  answer: string;
+};
 
-
-export default function GiftCardsFaq({ faq, index }: { faq: object, index: number }) {
-  const {question, answer} = faq || {} ;
-  const {t} = useTranslation();
+export default function GiftCardsFaq({
+  faq,
+  index,
+}: {
+  faq: faq;
+  index: number;
+}) {
+  const { question, answer } = faq || {};
+  const { t } = useTranslation();
   return (
     <div className="col-lg-6 my-2">
       <div id="accordionExample">
