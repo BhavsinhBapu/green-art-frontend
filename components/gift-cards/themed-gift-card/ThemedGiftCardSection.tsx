@@ -1,4 +1,5 @@
 import useTranslation from "next-translate/useTranslation";
+import Link from "next/link";
 import React from "react";
 import { BsArrowRight } from "react-icons/bs";
 type item = {
@@ -18,14 +19,16 @@ export default function ThemedGiftCardSection({ giftCards }: any) {
                 <small>{t("Send a crypto gift card for any occasion")}</small>
               </div>
               <div>
-                <div className="d-flex align-items-center">
-                  <span className="inline-block pr-2">
-                    {t("View All Cards")}
-                  </span>
-                  <span className="gift-card-arrow">
-                    <BsArrowRight />
-                  </span>
-                </div>
+                <Link href={`/gift-cards/theme-cards`}>
+                  <a className="d-flex align-items-center">
+                    <span className="inline-block pr-2">
+                      {t("View All Cards")}
+                    </span>
+                    <span className="gift-card-arrow">
+                      <BsArrowRight />
+                    </span>
+                  </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -42,9 +45,11 @@ export default function ThemedGiftCardSection({ giftCards }: any) {
             <div className="row mt-3">
               <div className="col-md-12">
                 <div className="d-flex justify-content-center align-items-center">
-                  <button className="gift-btn bg-primary-color border-primary-color">
-                    {t("View More Theme Gift Cards")} <BsArrowRight />{" "}
-                  </button>
+                  <Link href={`/gift-cards/theme-cards`}>
+                    <a className="gift-btn bg-primary-color border-primary-color">
+                      {t("View More Theme Gift Cards")} <BsArrowRight />{" "}
+                    </a>
+                  </Link>
                 </div>
               </div>
             </div>
