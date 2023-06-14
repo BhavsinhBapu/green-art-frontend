@@ -1014,6 +1014,7 @@ async function getETHAddressFromPk(req) {
     };
   }
 }
+
 module.exports = {
   getData,
   generateAddress,
@@ -1025,5 +1026,5 @@ module.exports = {
   getDataByTransactionHash,
   getLatestEvents,
   getContractDetails,
-  getAddressFromPK,
+  getAddressFromPK
 };
