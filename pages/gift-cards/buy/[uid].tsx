@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import { CUstomSelect } from "components/common/CUstomSelect";
 import ImageComponent from "components/common/ImageComponent";
 import useTranslation from "next-translate/useTranslation";
@@ -7,6 +8,9 @@ import { BsGiftFill } from "react-icons/bs";
 import { FaAngleRight } from "react-icons/fa";
 import { HiOutlineRefresh } from "react-icons/hi";
 import { RiCreativeCommonsZeroFill } from "react-icons/ri";
+import { useRouter } from "next/router";
+import request from "lib/request";
+import Error from "next/error";
 
 const options = [
   { value: "chocolate", label: "Chocolate" },
@@ -14,8 +18,16 @@ const options = [
   { value: "vanilla", label: "Vanilla" },
 ];
 export default function index() {
+  const router = useRouter();
   const [isSingle, setIsSingle] = useState(true);
+  const [buyPageData, setBuyPageData] = useState<any>(null);
+  const [selectCoin, setSelectCoin] = useState(null);
+  const [isError, setIsError] = useState(false);
   const { t } = useTranslation("common");
+  const handleCoins = (event: any) => {
+    console.log("event", event);
+    setSelectCoin(event);
+  };
 
   const buySingleOrBulkHandler = (value: string) => {
     if (value === "single") {
@@ -25,6 +37,26 @@ export default function index() {
     setIsSingle(false);
   };
 
+  useEffect(() => {
+    console.log("Router", router?.query?.uid);
+    if (router?.query?.uid) {
+      getBuyPageData();
+    }
+  }, [router?.query?.uid]);
+
+  const getBuyPageData = async () => {
+    const { data } = await request.get(
+      `/gift-card/buy-card-page-data?uid=${router?.query?.uid}`
+    );
+    if (!data.success) {
+      setIsError(true);
+      return;
+    }
+    setBuyPageData(data.data);
+    setIsError(false);
+  };
+  console.log("data", buyPageData);
+  if (isError) return <Error statusCode={404} />;
   return (
     <section className="main-bg">
       <div className="bg-primary-color">
@@ -32,9 +64,9 @@ export default function index() {
           <div className="row">
             <div className="col-lg-6">
               <div className="text-center">
-                <h4>{t("Buy & Sell Instantly And Hold")}</h4>
+                <h4>{buyPageData?.header || t("Buy & Sell Instantly And Hold")}</h4>
                 <h4 className="font-normal mt-3">
-                  {t(
+                  {buyPageData?.description || t(
                     "Tradexpro exchange is such a marketplace where people can trade directly with each other"
                   )}
                 </h4>
@@ -76,7 +108,7 @@ export default function index() {
                   }`}
                   onClick={() => buySingleOrBulkHandler("single")}
                 >
-                  Buy 1 Card
+                  {t("Buy 1 Card")}
                 </h4>
                 <div className="d-flex">
                   <h4
@@ -85,11 +117,11 @@ export default function index() {
                     } mr-2`}
                     onClick={() => buySingleOrBulkHandler("bulk")}
                   >
-                    Bulk Create
+                    {t("Bulk Create")}
                   </h4>
                   <div className="d-flex">
                     <span className="buy-triangle"></span>
-                    <span className="buy-trinagle-btn">Business</span>
+                    <span className="buy-trinagle-btn">{t("Business")}</span>
                   </div>
                 </div>
               </div>
@@ -100,7 +132,13 @@ export default function index() {
             <div className="col-lg-5">
               <div className="gift-card-banner-section-bottom-border">
                 <div className="relative">
-                  <ImageComponent src={"/demo_gift_banner.png"} height={300} />{" "}
+                  <ImageComponent
+                    src={
+                      buyPageData?.selected_banner?.banner ||
+                      "/demo_gift_banner.png"
+                    }
+                    height={300}
+                  />{" "}
                   <div>
                     <div className="d-flex gap-10 buy-absolute-btn">
                       <BsGiftFill size={22} />
@@ -109,9 +147,11 @@ export default function index() {
                   </div>
                 </div>
                 <div className="mt-5 mb-4">
-                  <h3 className="mb-3">{t("My First Crypto")}</h3>
+                  <h3 className="mb-3">
+                    {t(buyPageData?.selected_banner?.title)}
+                  </h3>
                   <h5 className="font-normal">
-                    {t("Welcome to the exciting world crypto!")}
+                    {t(buyPageData?.selected_banner?.sub_title)}
                   </h5>
                 </div>
               </div>
@@ -125,65 +165,24 @@ export default function index() {
 
               {/* al gift cards  start*/}
               <div className="row buy-all-gift-cards">
-                <div className="col-lg-4 col-md-4 col-6 my-1">
-                  <div>
-                    <ImageComponent src={"/demo_gift_banner.png"} />
+                {buyPageData?.banners.map((item: object, index: number) => (
+                  <div className="col-lg-4 col-md-4 col-6 my-1" key={index}>
+                    <div
+                      className={`${
+                        router.query.uid == item.uid && "active-gift-card"
+                      }`}
+                    >
+                      <Link href={`/gift-cards/buy/${item.uid}`}>
+                        <a>
+                          <ImageComponent
+                            src={item.banner || "/demo_gift_banner.png"}
+                            height={300}
+                          />
+                        </a>
+                      </Link>
+                    </div>
                   </div>
-                </div>
-                <div className="col-lg-4 col-md-4 col-6 my-1">
-                  <ImageComponent src={"/demo_gift_banner.png"} />
-                </div>
-                <div className="col-lg-4 col-md-4 col-6 my-1">
-                  <ImageComponent src={"/demo_gift_banner.png"} />
-                </div>
-
-                <div className="col-lg-4 col-md-4 col-6 my-1">
-                  <div>
-                    <ImageComponent src={"/demo_gift_banner.png"} />
-                  </div>
-                </div>
-                <div className="col-lg-4 col-md-4 col-6 my-1">
-                  <ImageComponent src={"/demo_gift_banner.png"} />
-                </div>
-                <div className="col-lg-4 col-md-4 col-6 my-1">
-                  <ImageComponent src={"/demo_gift_banner.png"} />
-                </div>
-
-                <div className="col-lg-4 col-md-4 col-6 my-1">
-                  <div>
-                    <ImageComponent src={"/demo_gift_banner.png"} />
-                  </div>
-                </div>
-                <div className="col-lg-4 col-md-4 col-6 my-1">
-                  <ImageComponent src={"/demo_gift_banner.png"} />
-                </div>
-                <div className="col-lg-4 col-md-4 col-6 my-1">
-                  <ImageComponent src={"/demo_gift_banner.png"} />
-                </div>
-
-                <div className="col-lg-4 col-md-4 col-6 my-1">
-                  <div>
-                    <ImageComponent src={"/demo_gift_banner.png"} />
-                  </div>
-                </div>
-                <div className="col-lg-4 col-md-4 col-6 my-1">
-                  <ImageComponent src={"/demo_gift_banner.png"} />
-                </div>
-                <div className="col-lg-4 col-md-4 col-6 my-1">
-                  <ImageComponent src={"/demo_gift_banner.png"} />
-                </div>
-
-                <div className="col-lg-4 col-md-4 col-6 my-1">
-                  <div>
-                    <ImageComponent src={"/demo_gift_banner.png"} />
-                  </div>
-                </div>
-                <div className="col-lg-4 col-md-4 col-6 my-1">
-                  <ImageComponent src={"/demo_gift_banner.png"} />
-                </div>
-                <div className="col-lg-4 col-md-4 col-6 my-1">
-                  <ImageComponent src={"/demo_gift_banner.png"} />
-                </div>
+                ))}
               </div>
               {/* al gift cards  start*/}
             </div>
@@ -196,8 +195,9 @@ export default function index() {
                       Buy
                     </h6>
                     <CUstomSelect
-                      options={options}
+                      options={buyPageData?.coins}
                       classname={"buy-amount-select-section"}
+                      handleFunction={handleCoins}
                     />
                   </div>
                 </div>
@@ -213,12 +213,13 @@ export default function index() {
                         placeholder="Enter Amount"
                         className="px-3 w-full bg-transparent border-none buy-border-right"
                       />
-                      <CUstomSelect
+                      {/* <CUstomSelect
                         options={options}
                         classname={
                           "buy-amount-select-section buy-amount-select-section-width"
                         }
-                      />
+                      /> */}
+                      <span className="buy-amount-select-section-width pl-3">{selectCoin?.label}</span>
                     </div>
                   </div>
                 </div>
@@ -228,7 +229,7 @@ export default function index() {
                     <div className="mb-3 d-flex justify-content-between">
                       <div className="d-flex align-items-center gap-20">
                         <h6 className="gift-buy-input-label font-normal  border-bottom-dashed">
-                          Available
+                          {t("Available")}
                         </h6>
                         <div className="text-primary-color">
                           <h6 className="gift-buy-input-label mr-2">0 BTC</h6>

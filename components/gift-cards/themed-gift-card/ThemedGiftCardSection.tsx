@@ -1,9 +1,11 @@
+import ImageComponent from "components/common/ImageComponent";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import React from "react";
 import { BsArrowRight } from "react-icons/bs";
 type item = {
   banner: string;
+  uid: string;
 };
 
 export default function ThemedGiftCardSection({ giftCards }: any) {
@@ -38,11 +40,18 @@ export default function ThemedGiftCardSection({ giftCards }: any) {
             <div className="row mt-3">
               {giftCards.map((item: item, index: number) => (
                 <div className="col-lg-3 my-1" key={index}>
-                  <img src={item.banner || "/demo_gift_banner.png"} alt="" />
+                  <Link href={`/gift-cards/buy/${item.uid}`}>
+                    <a>
+                      <ImageComponent
+                        src={item.banner || "/demo_gift_banner.png"}
+                        height={300}
+                      />
+                    </a>
+                  </Link>
                 </div>
               ))}
             </div>
-            <div className="row mt-3">
+            <div className="row mt-4">
               <div className="col-md-12">
                 <div className="d-flex justify-content-center align-items-center">
                   <Link href={`/gift-cards/theme-cards`}>
