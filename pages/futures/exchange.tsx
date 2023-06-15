@@ -1,9 +1,14 @@
-import React from 'react'
+import TopBar from "components/FutureTrades/Topbar";
+import TradeBox from "components/FutureTrades/TradeBox";
+import React from "react";
 
 const Exchange = () => {
   return (
-    <div>Exchange</div>
-  )
-}
+    <div>
+      <TopBar />
+      <TradeBox />
+    </div>
+  );
+};
 
-export default Exchange
+export default Exchange;
