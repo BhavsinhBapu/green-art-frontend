@@ -2,6 +2,7 @@ import ImageComponent from "components/common/ImageComponent";
 import GiftCardFaqLists from "components/gift-cards/faq/GiftCardFaqLists";
 import GiftCardsFaq from "components/gift-cards/faq/GiftCardsFaq";
 import MainBannerSection from "components/gift-cards/main-banner/MainBannerSection";
+import MyCards from "components/gift-cards/my-cards/MyCards";
 import SecondBannerSection from "components/gift-cards/second-banner/SecondBannerSection";
 import ThemedGiftCardSection from "components/gift-cards/themed-gift-card/ThemedGiftCardSection";
 import request from "lib/request";
@@ -42,22 +43,7 @@ export default function index({ giftCards }: any) {
       {/* Themed Gift Cards end */}
 
       {/* my gift card  start*/}
-      <div className="container pb-80">
-        <div className="d-flex justify-content-between">
-          <div>
-            <h3>My Cards</h3>
-          </div>
-          <div>
-            <div className="d-flex align-items-center">
-              <span className="inline-block pr-2">All(0)</span>
-              <span className="gift-card-arrow">
-                <BsArrowRight />
-              </span>
-            </div>
-          </div>
-        </div>
-        <div className="mt-3 no-gift-card">No Gift Card Avilable</div>
-      </div>
+      <MyCards myCards={my_cards}/>
       {/* my gift card  end*/}
 
       {/* feature section start*/}
