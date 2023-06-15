@@ -1,9 +1,17 @@
+import { CUstomSelect } from "components/common/CUstomSelect";
 import ImageComponent from "components/common/ImageComponent";
 import useTranslation from "next-translate/useTranslation";
 import React from "react";
-
+const options = [
+  { value: "chocolate", label: "Chocolate" },
+  { value: "strawberry", label: "Strawberry" },
+  { value: "vanilla", label: "Vanilla" },
+];
 export default function index() {
   const { t } = useTranslation();
+  const handleCategory = (event: any) => {
+    console.log("event", event);
+  };
   return (
     <section>
       {/* gift card banner start */}
@@ -39,6 +47,15 @@ export default function index() {
                 <div>
                   <h3>Themed Gift Cards</h3>
                   <small>Send a crypto gift card for any occasion</small>
+                </div>
+                <div className="d-flex align-items-center gap-10 border px-2 rounded ">
+                  <span><b>Category:</b> </span>
+                  <CUstomSelect
+                    options={options}
+                    classname={"themed-category-select-section"}
+                    handleFunction={handleCategory}
+                    defaultValue={options[0]}
+                  />
                 </div>
               </div>
             </div>

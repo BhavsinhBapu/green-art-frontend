@@ -14998,6 +14998,11 @@ body::-webkit-scrollbar {
   box-shadow: unset !important;
 }
 
+.themed-category-select-section .custom-select__control {
+  background: transparent !important;
+  box-shadow: unset !important;
+}
+
 .buy-amount-select-section-width {
   width: 30%;
 }
