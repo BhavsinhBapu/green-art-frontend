@@ -15114,6 +15114,10 @@ input:checked + .gift-card-buy-slider:before {
 .cursor-not-allowed{
   cursor: not-allowed;
 }
+
+.capitalize{
+  text-transform: capitalize;
+}
 @media (max-width: 991px) {
   .text-45 {
     font-size: 36px;
