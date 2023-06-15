@@ -15106,6 +15106,9 @@ input:checked + .gift-card-buy-slider:before {
   border: var(--primary-color) 3px solid;
 }
 
+.cursor-not-allowed{
+  cursor: not-allowed;
+}
 @media (max-width: 991px) {
   .text-45 {
     font-size: 36px;

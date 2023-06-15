@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 import Link from "next/link";
 import { CUstomSelect } from "components/common/CUstomSelect";
 import ImageComponent from "components/common/ImageComponent";
@@ -22,10 +23,24 @@ export default function index() {
   const [isSingle, setIsSingle] = useState(true);
   const [buyPageData, setBuyPageData] = useState<any>(null);
   const [selectCoin, setSelectCoin] = useState(null);
+  const [availableCoin, setAvailableCoin] = useState(0);
   const [isError, setIsError] = useState(false);
+  const [amount, setAmount] = useState("");
+  const [wallet, setWallet] = useState("");
+  const [isLock, setIsLock] = useState(false);
+  const [note, setNote] = useState("");
+  const [quantity, setQuantity] = useState(0);
   const { t } = useTranslation("common");
-  const handleCoins = (event: any) => {
+  const handleCoins = async (event: any) => {
     console.log("event", event);
+    const { data } = await request.get(
+      `/gift-card/gift-card-wallet-data?coin_type=${event.coin_type}`
+    );
+    console.log("data", data);
+    if (!data.success) {
+      return;
+    }
+    setAvailableCoin(data?.data?.exchange_wallet_balance);
     setSelectCoin(event);
   };
 
@@ -56,6 +71,54 @@ export default function index() {
     setIsError(false);
   };
   console.log("data", buyPageData);
+
+  const handleAmount = (e: any) => {
+    if (Number(e.target.value) > Number(availableCoin)) {
+      toast.error(`Amount Can Not Be Greater Then ${availableCoin}`);
+      return;
+    }
+    setAmount(e.target.value);
+  };
+
+  const handleBuyCard = async () => {
+    if (!isSingle && quantity <= 0) {
+      toast.error("Quantity is Requierd and Greater then 0");
+      return;
+    }
+
+    let buyDetails = {
+      coin_type: selectCoin?.coin_type,
+      wallet_type: wallet === "spot" ? 1 : 2,
+      amount: amount,
+      note: note,
+      banner_id: buyPageData?.selected_banner?.uid,
+      lock: isLock ? 1 : 0,
+      bulk: 0,
+    };
+    if (!isSingle) {
+      buyDetails = {
+        coin_type: selectCoin?.coin_type,
+        wallet_type: wallet === "spot" ? 1 : 2,
+        amount: amount,
+        note: note,
+        banner_id: buyPageData?.selected_banner?.uid,
+        lock: isLock ? 1 : 0,
+        bulk: 1,
+        quantity: quantity,
+      };
+    }
+
+    const { data } = await request.post(`/gift-card/buy-card`, {
+      ...buyDetails,
+    });
+
+    if (data.success) {
+      router.push("/gift-cards/my-cards");
+    } else {
+      toast.error(data.message);
+    }
+  };
+
   if (isError) return <Error statusCode={404} />;
   return (
     <section className="main-bg">
@@ -64,11 +127,14 @@ export default function index() {
           <div className="row">
             <div className="col-lg-6">
               <div className="text-center">
-                <h4>{buyPageData?.header || t("Buy & Sell Instantly And Hold")}</h4>
+                <h4>
+                  {buyPageData?.header || t("Buy & Sell Instantly And Hold")}
+                </h4>
                 <h4 className="font-normal mt-3">
-                  {buyPageData?.description || t(
-                    "Tradexpro exchange is such a marketplace where people can trade directly with each other"
-                  )}
+                  {buyPageData?.description ||
+                    t(
+                      "Tradexpro exchange is such a marketplace where people can trade directly with each other"
+                    )}
                 </h4>
               </div>
             </div>
@@ -142,7 +208,7 @@ export default function index() {
                   <div>
                     <div className="d-flex gap-10 buy-absolute-btn">
                       <BsGiftFill size={22} />
-                      <h4>0 BTC</h4>
+                      <h4>{`${amount !== "" ? amount : 0} BTC`}</h4>
                     </div>
                   </div>
                 </div>
@@ -212,6 +278,9 @@ export default function index() {
                         type="text"
                         placeholder="Enter Amount"
                         className="px-3 w-full bg-transparent border-none buy-border-right"
+                        onChange={handleAmount}
+                        value={amount}
+                        disabled={availableCoin <= 0}
                       />
                       {/* <CUstomSelect
                         options={options}
@@ -219,7 +288,9 @@ export default function index() {
                           "buy-amount-select-section buy-amount-select-section-width"
                         }
                       /> */}
-                      <span className="buy-amount-select-section-width pl-3">{selectCoin?.label}</span>
+                      <span className="buy-amount-select-section-width pl-3">
+                        {selectCoin?.label}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -252,20 +323,23 @@ export default function index() {
                       <div className="d-flex gap-20 mb-3">
                         <input
                           type="checkbox"
-                          name=""
-                          id=""
+                          onChange={() => setWallet("spot")}
+                          checked={wallet === "spot"}
                           className="checkbox-w-25"
                         />
                         <div className="d-flex justify-content-between w-full">
                           <h6 className="font-normal"> Spot Wallet</h6>
-                          <h6 className="font-normal"> 0 BTC</h6>
+                          <h6 className="font-normal">
+                            {" "}
+                            {t(`${availableCoin} BTC`)}
+                          </h6>
                         </div>
                       </div>
                       <div className="d-flex gap-20">
                         <input
                           type="checkbox"
-                          name=""
-                          id=""
+                          onChange={() => setWallet("p2p")}
+                          checked={wallet === "p2p"}
                           className="checkbox-w-25"
                         />
                         <div className="d-flex justify-content-between w-full">
@@ -286,9 +360,11 @@ export default function index() {
                       </h6>
                       <div className="d-flex buy-input-bg py-2 rounded">
                         <input
-                          type="text"
+                          type="number"
+                          min={1}
                           placeholder="Enter Quantity"
                           className="px-3 w-full bg-transparent border-none buy-border-right"
+                          onChange={(e) => setQuantity(Number(e.target.value))}
                         />
                       </div>
                     </div>
@@ -307,6 +383,8 @@ export default function index() {
                         placeholder="Enter note for this order"
                         className="px-3 w-full bg-transparent border-none"
                         rows={4}
+                        value={note}
+                        onChange={(event) => setNote(event.target.value)}
                       ></textarea>
                     </div>
                   </div>
@@ -319,7 +397,11 @@ export default function index() {
                       </h6>
 
                       <label className="gift-card-buy-switch mb-0">
-                        <input type="checkbox" />
+                        <input
+                          type="checkbox"
+                          onChange={() => setIsLock((prev) => !prev)}
+                          checked={isLock}
+                        />
                         <span className="gift-card-buy-slider gift-card-buy"></span>
                       </label>
                     </div>
@@ -336,33 +418,37 @@ export default function index() {
 
                 <div className="col-lg-12">
                   <div className="row">
-                    <div className="col-lg-6">
+                    <div className="col-lg-8">
                       <div className="row mb-2">
-                        <div className="col-lg-8 col-md-8 col-6">
+                        <div className="col-lg-5 col-md-5 col-6">
                           <p className="font-normal">Fees</p>
                         </div>
-                        <div className="col-lg-4 col-md-4 col-6">
+                        <div className="col-lg-7 col-md-7 col-6">
                           <p className="font-normal">0</p>
                         </div>
                       </div>
 
                       <div className="row">
-                        <div className="col-lg-8 col-md-8 col-6">
+                        <div className="col-lg-5 col-md-5 col-6">
                           <h5>Total Amount</h5>
                         </div>
-                        <div className="col-lg-4 col-md-4 col-6">
-                          <h5>0 BTC</h5>
+                        <div className="col-lg-7 col-md-7 col-6">
+                          <h5>{`${amount !== "" ? amount : 0} BTC`}</h5>
                         </div>
                       </div>
                     </div>
-                    <div className="col-lg-2"></div>
                     <div className="col-lg-4 ">
-                      <a
-                        href="#"
-                        className="h-full d-flex justify-content-center align-items-center text-white bg-primary-color rounded gift-card-buy-btn"
+                      <button
+                        className={`h-full w-full border-none d-flex justify-content-center align-items-center rounded gift-card-buy-btn ${
+                          amount !== "" && wallet !== ""
+                            ? "text-white bg-primary-color"
+                            : "cursor-not-allowed"
+                        }`}
+                        disabled={amount !== "" && wallet !== "" ? false : true}
+                        onClick={handleBuyCard}
                       >
                         Buy
-                      </a>
+                      </button>
                     </div>
                   </div>
                 </div>
