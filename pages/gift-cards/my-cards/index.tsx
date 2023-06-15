@@ -1,9 +1,26 @@
 import ImageComponent from "components/common/ImageComponent";
+import request from "lib/request";
 import useTranslation from "next-translate/useTranslation";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 export default function index() {
   const { t } = useTranslation();
+  const [myCards, setMyCards] = useState({});
+  useEffect(() => {
+    getMyCards();
+  }, []);
+
+  const getMyCards = async () => {
+    const { data } = await request.get("/gift-card/my-gift-card-list");
+    console.log("my cards", data);
+    if (data.success) {
+      setMyCards(data.data);
+    }
+  };
+
+  if (myCards?.data?.length <= 0)
+    return <div className="mt-3 no-gift-card">No Gift Card Avilable</div>;
+
   return (
     <section>
       {/* gift card banner start */}
@@ -44,30 +61,11 @@ export default function index() {
             </div>
           </div>
           <div className="row mt-3">
-            <div className="col-lg-3 col-md-3 col-sm-6 col-12 my-1">
-              <img src="/demo_gift_banner.png" alt="" />
-            </div>
-            <div className="col-lg-3 col-md-3 col-sm-6 col-12 my-1">
-              <img src="/demo_gift_banner.png" alt="" />
-            </div>
-            <div className="col-lg-3 col-md-3 col-sm-6 col-12 my-1">
-              <img src="/demo_gift_banner.png" alt="" />
-            </div>
-            <div className="col-lg-3 col-md-3 col-sm-6 col-12 my-1">
-              <img src="/demo_gift_banner.png" alt="" />
-            </div>
-            <div className="col-lg-3 col-md-3 col-sm-6 col-12 my-1">
-              <img src="/demo_gift_banner.png" alt="" />
-            </div>
-            <div className="col-lg-3 col-md-3 col-sm-6 col-12 my-1">
-              <img src="/demo_gift_banner.png" alt="" />
-            </div>
-            <div className="col-lg-3 col-md-3 col-sm-6 col-12 my-1">
-              <img src="/demo_gift_banner.png" alt="" />
-            </div>
-            <div className="col-lg-3 col-md-3 col-sm-6 col-12 my-1">
-              <img src="/demo_gift_banner.png" alt="" />
-            </div>
+            {myCards?.data?.map((item: any, index: number) => (
+              <div className="col-lg-3 col-md-3 col-sm-6 col-12 my-1" key={index}>
+                <img src="/demo_gift_banner.png" alt="" />
+              </div>
+            ))}
           </div>
         </div>
       </div>
