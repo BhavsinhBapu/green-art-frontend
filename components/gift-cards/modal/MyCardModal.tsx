@@ -59,13 +59,12 @@ export default function MyCardModal({ setIsModalOpen, giftCardData }: any) {
           </div>
         </div>
 
-        <a
-          href="#"
-          className="gift-card-modal__close text-45"
+        <span
+          className="gift-card-modal__close text-45 pointer"
           onClick={() => setIsModalOpen(false)}
         >
           &times;
-        </a>
+        </span>
       </div>
     </div>
   );
