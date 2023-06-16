@@ -454,7 +454,7 @@ export default function index() {
                 </div>
                 {/* only for single buy start */}
                 {isSingle && (
-                  <div className="col-lg-12 my-4 text-primary-color">
+                  <div className="col-lg-12 my-4 text-primary-color pointer" onClick={() => buySingleOrBulkHandler("bulk")}>
                     <div className="d-flex align-items-center">
                       <h5 className="font-normal text-primary-color inline-block">
                         <u>Buy multiple gift cards</u>{" "}

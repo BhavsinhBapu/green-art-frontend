@@ -1,7 +1,10 @@
 import { CUstomSelect } from "components/common/CUstomSelect";
 import ImageComponent from "components/common/ImageComponent";
+import request from "lib/request";
 import useTranslation from "next-translate/useTranslation";
-import React from "react";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 const options = [
   { value: "chocolate", label: "Chocolate" },
   { value: "strawberry", label: "Strawberry" },
@@ -9,9 +12,55 @@ const options = [
 ];
 export default function index() {
   const { t } = useTranslation();
-  const handleCategory = (event: any) => {
-    console.log("event", event);
+  const [themedCardData, setThemedCardData] = useState({});
+  const [allGiftCards, setAllGiftCards] = useState({});
+  const [categories, setCategories] = useState([
+    {
+      value: "all",
+      label: "All",
+    },
+  ]);
+
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    getCategoryData();
+    getThemedGiftCardData("all", 1, 10);
+  }, []);
+
+  const getCategoryData = async () => {
+    setLoading(true);
+    const { data } = await request.get(`/gift-card/gift-card-themes-page`);
+    console.log("data", data);
+    if (!data.success) {
+      toast.error(data.message);
+      setLoading(false);
+      return;
+    }
+    setThemedCardData(data.data);
+    setCategories((prev) => [...prev, ...data.data.categories]);
+    setLoading(false);
   };
+
+  const getThemedGiftCardData = async (
+    category: any,
+    page: any,
+    limit: any
+  ) => {
+    const { data } = await request.get(
+      `/gift-card/get-gift-card-themes?uid=${category}&limit=${limit}&page=${page}`
+    );
+    if (!data.success) {
+      toast.error(data.message);
+      return;
+    }
+    setAllGiftCards(data.data);
+  };
+
+  const handleCategory = (event: any) => {
+    getThemedGiftCardData(event.value, 1, 10);
+  };
+
+  if (loading) return <></>;
   return (
     <section>
       {/* gift card banner start */}
@@ -42,50 +91,45 @@ export default function index() {
       <div className="py-80">
         <div className="container">
           <div className="row">
-            <div className="col-lg-12">
-              <div className="d-flex justify-content-between">
-                <div>
-                  <h3>Themed Gift Cards</h3>
-                  <small>Send a crypto gift card for any occasion</small>
-                </div>
-                <div className="d-flex align-items-center gap-10 border px-2 rounded ">
-                  <span><b>Category:</b> </span>
-                  <CUstomSelect
-                    options={options}
-                    classname={"themed-category-select-section"}
-                    handleFunction={handleCategory}
-                    defaultValue={options[0]}
-                  />
-                </div>
+            <div className="col-lg-9 col-md-9 col-6">
+              <div>
+                <h3>Themed Gift Cards</h3>
+                <small>Send a crypto gift card for any occasion</small>
+              </div>
+            </div>
+
+            <div className="col-lg-3 col-md-3 col-6">
+              <div className="d-flex align-items-center gap-10 border px-2 rounded ">
+                <span>
+                  <b>Category:</b>{" "}
+                </span>
+                <CUstomSelect
+                  options={categories}
+                  classname={"themed-category-select-section w-full"}
+                  handleFunction={handleCategory}
+                  defaultValue={categories[0]}
+                />
               </div>
             </div>
           </div>
-          <div className="row mt-3">
-            <div className="col-lg-3 col-md-3 col-sm-6 col-12 my-1">
-              <img src="/demo_gift_banner.png" alt="" />
+          {allGiftCards?.data?.length > 0 ? (
+            <div className="row mt-3">
+              {allGiftCards?.data?.map((item: any, index: number) => (
+                <div className="col-lg-3 my-1" key={index}>
+                  <Link href={`/gift-cards/buy/${item.uid}`}>
+                    <a>
+                      <ImageComponent
+                        src={item.banner || "/demo_gift_banner.png"}
+                        height={300}
+                      />
+                    </a>
+                  </Link>
+                </div>
+              ))}
             </div>
-            <div className="col-lg-3 col-md-3 col-sm-6 col-12 my-1">
-              <img src="/demo_gift_banner.png" alt="" />
-            </div>
-            <div className="col-lg-3 col-md-3 col-sm-6 col-12 my-1">
-              <img src="/demo_gift_banner.png" alt="" />
-            </div>
-            <div className="col-lg-3 col-md-3 col-sm-6 col-12 my-1">
-              <img src="/demo_gift_banner.png" alt="" />
-            </div>
-            <div className="col-lg-3 col-md-3 col-sm-6 col-12 my-1">
-              <img src="/demo_gift_banner.png" alt="" />
-            </div>
-            <div className="col-lg-3 col-md-3 col-sm-6 col-12 my-1">
-              <img src="/demo_gift_banner.png" alt="" />
-            </div>
-            <div className="col-lg-3 col-md-3 col-sm-6 col-12 my-1">
-              <img src="/demo_gift_banner.png" alt="" />
-            </div>
-            <div className="col-lg-3 col-md-3 col-sm-6 col-12 my-1">
-              <img src="/demo_gift_banner.png" alt="" />
-            </div>
-          </div>
+          ) : (
+            <div className="mt-3 no-gift-card">No Gift Card Avilable</div>
+          )}
         </div>
       </div>
       {/* Themed Gift Cards end */}
