@@ -14,6 +14,7 @@ import Footer from "components/common/footer";
 import { toast } from "react-toastify";
 import { BiCopy } from "react-icons/bi";
 import SectionLoading from "components/common/SectionLoading";
+import CustomDataTable from "components/Datatable";
 const DepositHistory: NextPage = () => {
   const router = useRouter();
   const { type } = router.query;
@@ -48,70 +49,33 @@ const DepositHistory: NextPage = () => {
   };
   const columns = [
     {
-      name: t("Created At"),
-      selector: (row: any) => row.created_at,
-      sortable: true,
-      cell: (row: any) => (
-        <div>{moment(row.created_at).format("YYYY-MM-DD HH:mm:ss")}</div>
-      ),
+      Header: t("Created At"),
+      accessor: "created_at",
     },
     {
-      name: t("Address"),
-      selector: (row: any) => row.address,
-      sortable: true,
+      Header: t("Address"),
+      accessor: "address",
     },
     {
-      name: t("Coin Type"),
-      selector: (row: any) => row.coin_type,
-      sortable: true,
+      Header: t("Coin Type"),
+      accessor: "coin_type",
     },
     {
-      name: t("Amount"),
-      selector: (row: any) => row.amount,
-      sortable: true,
+      Header: t("Amount"),
+      accessor: "amount",
     },
     {
-      name: t("Fees"),
-      selector: (row: any) => parseFloat(row.fees).toFixed(8),
-      sortable: true,
+      Header: t("Fees"),
+      accessor: "fees",
     },
     {
-      name: type === t("deposit") ? t("Transaction Id") : t("Transaction Hash"),
-      cell: (row: any) => (
-        <div>
-          <span
-            className="withdrawTransactionCopy"
-            onClick={() => {
-              navigator.clipboard.writeText(
-                type === "deposit" ? row.transaction_id : row.transaction_hash
-              );
-              toast.success(t("Copied to clipboard"));
-            }}
-          >
-            {type === "deposit" ? row.transaction_id : row.transaction_hash}
-          </span>
-          <BiCopy className="copyIcon" />
-        </div>
-      ),
-      // selector: (row: any) =>
-      //   type === "deposit" ? row.transaction_id : row.transaction_hash,
-      sortable: true,
+      Header:
+        type === t("deposit") ? t("Transaction Id") : t("Transaction Hash"),
+      accessor: "transaction_id",
     },
     {
-      name: t("Status"),
-      selector: (row: any) => row.status,
-      sortable: true,
-      cell: (row: any) => (
-        <div>
-          {row.status == 0 ? (
-            <span className="text-warning">{t("Pending")}</span>
-          ) : row.status == 1 ? (
-            <span className="text-success"> {t("Success")}</span>
-          ) : (
-            <span className="text-danger">{t("Failed")}</span>
-          )}
-        </div>
-      ),
+      Header: t("Status"),
+      accessor: "status",
     },
   ];
   React.useEffect(() => {
@@ -145,66 +109,8 @@ const DepositHistory: NextPage = () => {
                 <div className="asset-balances-left">
                   <div className="section-wrapper">
                     <div className="tableScroll">
-                      <div
-                        id="assetBalances_wrapper"
-                        className="dataTables_wrapper no-footer"
-                      >
-                        <div className="dataTables_head">
-                          <div
-                            className="dataTables_length"
-                            id="assetBalances_length"
-                          >
-                            <label className="">
-                              {t("Show")}
-                              <select
-                                name="assetBalances_length"
-                                aria-controls="assetBalances"
-                                className=""
-                                onChange={(e) => {
-                                  WithdrawAndDepositHistoryAction(
-                                    type === "withdrawal"
-                                      ? "withdraw"
-                                      : "deposit",
-                                    parseInt(e.target.value),
-                                    1,
-                                    setHistory,
-                                    setProcessing,
-                                    setStillHistory
-                                  );
-                                }}
-                              >
-                                <option value="10">10</option>
-                                <option value="25">25</option>
-                                <option value="50">50</option>
-                                <option value="100">100</option>
-                              </select>
-                            </label>
-                          </div>
-                          <div id="table_filter" className="dataTables_filter">
-                            <label>
-                              {t("Search")}:
-                              <input
-                                type="search"
-                                name="search"
-                                className="data_table_input"
-                                placeholder=""
-                                value={search}
-                                aria-controls="table"
-                                onChange={(e) => {
-                                  handleSearch(
-                                    e,
-                                    setSearch,
-                                    stillHistory,
-                                    setHistory
-                                  );
-                                }}
-                              />
-                            </label>
-                          </div>
-                        </div>
-                      </div>
                       <div className="cp-user-wallet-table table-responsive tableScroll">
-                        <DataTable columns={columns} data={history} />
+                        <CustomDataTable columns={columns} data={history} />
                       </div>
                       {history?.length > 0 && (
                         <div

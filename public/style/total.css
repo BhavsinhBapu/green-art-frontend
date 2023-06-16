@@ -4463,7 +4463,7 @@ select:-webkit-autofill:focus {
 .main-menu ul li ul {
   display: block;
   position: absolute;
-  width: 200px;
+  width: 300px;
   background: var(--main-background-color);
   left: 0;
   top: 100%;
