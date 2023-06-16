@@ -13,14 +13,16 @@ const options = [
   { value: "4", label: "Trading" },
   { value: "5", label: "Locked" },
 ];
-
+const limit = 2;
 export default function index() {
   const { t } = useTranslation();
   const [myCards, setMyCards] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [giftCardData, setGiftCardData] = useState({});
+  const [activeStatus, setActiveStatus] = useState("1");
+
   useEffect(() => {
-    getMyCards("1", 9, 1);
+    getMyCards("1", limit, 1);
   }, []);
 
   const myCardHandle = (cardData: any) => {
@@ -42,7 +44,18 @@ export default function index() {
 
   const handleStatus = (event: any) => {
     console.log("event", event);
-    getMyCards(event.value, 9, 1);
+    getMyCards(event.value, limit , 1);
+    setActiveStatus(event.value);
+  };
+
+  const LinkTopaginationString = (links: any) => {
+    console.log("sfsf",myCards, links )
+    if (links.url === null) return;
+    if (links.label === myCards.current_page.toString()) return;
+    const queryString = links.url.split("?")[1];
+    const params = new URLSearchParams(queryString);
+    const pageValue = params.get("page");
+    getMyCards(activeStatus, limit , pageValue);
   };
 
   return (
@@ -97,30 +110,68 @@ export default function index() {
             </div>
           </div>
           {myCards?.data?.length > 0 ? (
-            <div className="row mt-3">
-              {myCards?.data?.map((item: any, index: number) => (
-                <div className="col-lg-4 my-3 pointer" key={index}>
-                  <div
-                    className="single-card h-full"
-                    onClick={() => myCardHandle(item)}
-                  >
-                    <ImageComponent
-                      src={item.banner.image || "/demo_gift_banner.png"}
-                      height={300}
-                    />
-                    <div className="mt-4">
-                      <h4>{t(item.banner.title)}</h4>
-                      <p>{t(item.banner.sub_title)}</p>
+            <>
+              <div className="row mt-3">
+                {myCards?.data?.map((item: any, index: number) => (
+                  <div className="col-lg-4 my-3 pointer" key={index}>
+                    <div
+                      className="single-card h-full"
+                      onClick={() => myCardHandle(item)}
+                    >
+                      <ImageComponent
+                        src={item.banner.image || "/demo_gift_banner.png"}
+                        height={300}
+                      />
+                      <div className="mt-4">
+                        <h4>{t(item.banner.title)}</h4>
+                        <p>{t(item.banner.sub_title)}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+              <div className="pagination-wrapper" id="assetBalances_paginate">
+                <span>
+                  {myCards?.links?.map((link: any, index: number) =>
+                    link.label === "&laquo; Previous" ? (
+                      <a
+                        className="paginate-button"
+                        onClick={() => LinkTopaginationString(link)}
+                        key={index}
+                      >
+                        <i className="fa fa-angle-left"></i>
+                      </a>
+                    ) : link.label === "Next &raquo;" ? (
+                      <a
+                        className="paginate-button"
+                        onClick={() => LinkTopaginationString(link)}
+                        key={index}
+                      >
+                        <i className="fa fa-angle-right"></i>
+                      </a>
+                    ) : (
+                      <a
+                        className={`paginate_button paginate-number ${
+                          link.active === true && "text-warning"
+                        }`}
+                        aria-controls="assetBalances"
+                        data-dt-idx="1"
+                        onClick={() => LinkTopaginationString(link)}
+                        key={index}
+                      >
+                        {link.label}
+                      </a>
+                    )
+                  )}
+                </span>
+              </div>
+            </>
           ) : (
             <div className="mt-3 no-gift-card">No Gift Card Avilable</div>
           )}
         </div>
       </div>
+
       {/* Themed Gift Cards end */}
       {isModalOpen && (
         <MyCardModal
