@@ -104,7 +104,7 @@ const TransactionHistory: NextPage = () => {
                       <CustomDataTable
                         columns={columns}
                         data={history}
-                        stillHistory={stillHistory}
+                        Links={stillHistory?.items?.links}
                         paginateFunction={LinkTopaginationString}
                       />
                     </div>
