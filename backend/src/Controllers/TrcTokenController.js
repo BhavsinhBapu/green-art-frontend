@@ -1,6 +1,7 @@
 const { powerOfTen, tronWebCall, checkTx } = require("../Heplers/helper");
 const TronGrid = require('trongrid');
 const axios = require('axios');
+const { response } = require("express");
 
 // get trc20 token  balance
 async function getTrc20TokenBalance(req, res) {
@@ -215,6 +216,7 @@ async function tornWebTransactionListByContractAddress(req, res){
         const contractAddress = req.body.contract_address;  //'TRwptGFfX3fuffAMbWDDLJZAZFmP6bGfqL'
         const adminAccount = req.body.admin_address;
         const lastTimeStamp = req.body.last_timestamp;
+        const limit = 200;
 
         const tronWeb = tronWebCall(req,res);
         tronWeb.setAddress(adminAccount);
@@ -223,16 +225,23 @@ async function tornWebTransactionListByContractAddress(req, res){
         const decimal = await contract.decimals().call();
         const getDecimal = powerOfTen(decimal);
         
-        const currentBlock = await tronWeb.trx.getCurrentBlock();
-        const timestamp = currentBlock.block_header.raw_data.timestamp;
-        // console.log({'timestamp':timestamp});
-
         const tronGrid = new TronGrid(tronWeb);
+
+        // var latestTransactionContract = await tronGrid.contract.getEvents(contractAddress, {
+        //     only_confirmed: true,
+        //     event_name: "Transfer",
+        //     limit: 1,
+        //     order_by: "timestamp,desc"
+        // });
+
+        // const timestamp = latestTransactionContract.data[0].block_timestamp;
+
+        // res.send({latestTransactionContract})
 
         var result = await tronGrid.contract.getEvents(contractAddress, {
             only_confirmed: true,
             event_name: "Transfer",
-            limit: 200,
+            limit: limit,
             order_by: "timestamp,asc",
             min_block_timestamp:lastTimeStamp
         });
@@ -251,9 +260,11 @@ async function tornWebTransactionListByContractAddress(req, res){
             });
         }
 
+        // res.send({result})
+
         const nextLink = result.meta.links.next;
 
-        const nextData = await hitNextLink(tronWeb,nextLink,transactionData,timestamp,getDecimal);
+        const nextData = await hitNextLink(contractAddress,tronGrid,tronWeb,nextLink,transactionData,getDecimal,limit,lastTimeStamp);
 
          res.send({nextData});
         
@@ -268,43 +279,100 @@ async function tornWebTransactionListByContractAddress(req, res){
     }
 }
 
-async function hitNextLink(tronWeb, nextLink, transactionData, timestamp,getDecimal) {
+async function hitNextLink(contractAddress,tronGrid,tronWeb, nextLink, transactionData,getDecimal,limit, lastTimeStamp) {
     try {
-      const response = await axios.get(nextLink);
-      const result = response.data;
-     
-      let recursiveStatus = true;
+        // console.log('axios call.....')
+        var response;
+        let recursiveStatus = true;
+        // console.log('totalLimit',limit)
 
-        if (result.data.length > 0) {
+        if(limit >= 1000)
+        {
+            limit = 200;
+            response = await tornGridApiCall(contractAddress,tronGrid,tronWeb,transactionData,lastTimeStamp,getDecimal,limit);
             
-            for(let i = 0; i < result.data.length; i++ )
-            {
-                if(timestamp < result.data[i].block_timestamp)
-                {
-                    recursiveStatus =  false;
-                    break;
-                }
 
-                result.data[i].from_address = tronWeb.address.fromHex(result.data[i].result.from); // this makes it easy for me to check the address at the other end
-                result.data[i].to_address = tronWeb.address.fromHex(result.data[i].result.to); // this makes it easy for me to check the address at the other end
-                result.data[i].amount = (result.data[i].result.value / getDecimal);
-                result.data[i].event = result.data[i].event_name;
-                result.data[i].tx_hash = result.data[i].transaction_id;
-                transactionData.push(result.data[i]);
-            }
-            
+            transactionData = response.transactionData;
+            nextLink = response.nextLink;
+        }else{
+           response = await axiosApiCall(tronWeb,nextLink, transactionData,getDecimal,recursiveStatus);
+           
+           limit +=200;
+           
+           transactionData = response.transactionData;
+           nextLink = response.nextLink;
+           recursiveStatus = response.recursiveStatus;
+           lastTimeStamp = response.lastTimeStamp;
         }
+        
         // console.log(recursiveStatus);
         
-        if (result.meta.links.next && recursiveStatus == true) {
-            await hitNextLink(tronWeb, result.meta.links.next, transactionData, timestamp,getDecimal); // Recursively call hitNextLink with the next link
+        if (recursiveStatus == true) {
+            
+            await hitNextLink(contractAddress,tronGrid,tronWeb, nextLink, transactionData,getDecimal,limit,lastTimeStamp); // Recursively call hitNextLink with the next link
         }
 
         return transactionData;
     } catch (error) {
-      console.error('An error occurred:', error);
+      console.error('An error occurred:', error.message);
     }
-  }
+}
+
+async function tornGridApiCall(contractAddress,tronGrid,tronWeb,transactionData,lastTimeStamp,getDecimal,limit)
+{
+    var result = await tronGrid.contract.getEvents(contractAddress, {
+        only_confirmed: true,
+        event_name: "Transfer",
+        limit: limit,
+        order_by: "timestamp,asc",
+        min_block_timestamp:lastTimeStamp
+    });
+    if (result.data.length > 0) {
+        result.data.map(tx => {
+
+            tx.from_address = tronWeb.address.fromHex(tx.result.from); // this makes it easy for me to check the address at the other end
+            tx.to_address = tronWeb.address.fromHex(tx.result.to); // this makes it easy for me to check the address at the other end
+            tx.amount = (tx.result.value / getDecimal);
+            tx.event = tx.event_name;
+            tx.tx_hash = tx.transaction_id;
+            transactionData.push(tx);
+            
+        });
+    }
+
+    const nextLink = result.meta.links.next;
+
+    return {transactionData, nextLink};
+}
+
+async function axiosApiCall(tronWeb,nextLink, transactionData,getDecimal,recursiveStatus)
+{
+    const response = await axios.get(nextLink);
+    const result = response.data;
+    var lastTimeStamp;
+    
+    if (result.data.length > 0) {
+        
+        for(let i = 0; i < result.data.length; i++ )
+        {
+            result.data[i].from_address = tronWeb.address.fromHex(result.data[i].result.from); // this makes it easy for me to check the address at the other end
+            result.data[i].to_address = tronWeb.address.fromHex(result.data[i].result.to); // this makes it easy for me to check the address at the other end
+            result.data[i].amount = (result.data[i].result.value / getDecimal);
+            result.data[i].event = result.data[i].event_name;
+            result.data[i].tx_hash = result.data[i].transaction_id;
+            transactionData.push(result.data[i]);
+
+            lastTimeStamp = result.data[i].block_timestamp;
+        }
+        
+    }
+    
+    recursiveStatus = result.meta.links ? true: false;
+    
+    nextLink = result.meta.links?.next;
+
+    return {transactionData, nextLink, recursiveStatus,lastTimeStamp};
+}
 
 module.exports = {
     getTrc20TokenBalance,
