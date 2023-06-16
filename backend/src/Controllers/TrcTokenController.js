@@ -227,17 +227,6 @@ async function tornWebTransactionListByContractAddress(req, res){
         
         const tronGrid = new TronGrid(tronWeb);
 
-        // var latestTransactionContract = await tronGrid.contract.getEvents(contractAddress, {
-        //     only_confirmed: true,
-        //     event_name: "Transfer",
-        //     limit: 1,
-        //     order_by: "timestamp,desc"
-        // });
-
-        // const timestamp = latestTransactionContract.data[0].block_timestamp;
-
-        // res.send({latestTransactionContract})
-
         var result = await tronGrid.contract.getEvents(contractAddress, {
             only_confirmed: true,
             event_name: "Transfer",
@@ -262,11 +251,15 @@ async function tornWebTransactionListByContractAddress(req, res){
 
         // res.send({result})
 
-        const nextLink = result.meta.links.next;
+        const nextLink = result.meta.links?.next;
 
-        const nextData = await hitNextLink(contractAddress,tronGrid,tronWeb,nextLink,transactionData,getDecimal,limit,lastTimeStamp);
-
-         res.send({nextData});
+        if(result.meta.links)
+        {
+            transactionData = await hitNextLink(contractAddress,tronGrid,tronWeb,nextLink,transactionData,getDecimal,limit,lastTimeStamp);
+        }
+        console.log('transactionData.length',transactionData.length)
+        
+        res.send({transactionData});
         
 
     }catch(err){
@@ -314,7 +307,7 @@ async function hitNextLink(contractAddress,tronGrid,tronWeb, nextLink, transacti
 
         return transactionData;
     } catch (error) {
-      console.error('An error occurred:', error.message);
+      console.error('An error occurred:', error);
     }
 }
 
