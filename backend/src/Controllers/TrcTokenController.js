@@ -254,7 +254,7 @@ async function tornWebTransactionListByContractAddress(req, res){
 
         const nextLink = result.meta.links?.next;
 
-        if(result.meta.links)
+        if(nextLink)
         {
             transactionData = await hitNextLink(contractAddress,tronGrid,tronWeb,nextLink,transactionData,getDecimal,limit,lastTimeStamp);
         }
