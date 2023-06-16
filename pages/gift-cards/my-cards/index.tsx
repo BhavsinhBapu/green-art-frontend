@@ -1,5 +1,6 @@
 import { CUstomSelect } from "components/common/CUstomSelect";
 import ImageComponent from "components/common/ImageComponent";
+import MyCardModal from "components/gift-cards/modal/MyCardModal";
 import request from "lib/request";
 import useTranslation from "next-translate/useTranslation";
 import React, { useEffect, useState } from "react";
@@ -16,9 +17,17 @@ const options = [
 export default function index() {
   const { t } = useTranslation();
   const [myCards, setMyCards] = useState({});
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [giftCardData, setGiftCardData] = useState({});
   useEffect(() => {
     getMyCards("1", 9, 1);
   }, []);
+
+  const myCardHandle = (cardData: any) => {
+    console.log("adt", cardData);
+    setGiftCardData(cardData);
+    setIsModalOpen(true);
+  };
 
   const getMyCards = async (status: any, limit: any, page: any) => {
     const { data } = await request.get(
@@ -91,7 +100,10 @@ export default function index() {
             <div className="row mt-3">
               {myCards?.data?.map((item: any, index: number) => (
                 <div className="col-lg-4 my-3 pointer" key={index}>
-                  <div className="single-card h-full">
+                  <div
+                    className="single-card h-full"
+                    onClick={() => myCardHandle(item)}
+                  >
                     <ImageComponent
                       src={item.banner.image || "/demo_gift_banner.png"}
                       height={300}
@@ -110,6 +122,12 @@ export default function index() {
         </div>
       </div>
       {/* Themed Gift Cards end */}
+      {isModalOpen && (
+        <MyCardModal
+          giftCardData={giftCardData}
+          setIsModalOpen={setIsModalOpen}
+        />
+      )}
     </section>
   );
 }
