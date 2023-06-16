@@ -161,6 +161,7 @@ async function getTrc20TransferEvent(req, res)
 // get trc20 latest transaction
 async function getTrc20LatestEvent(req, res)
 {
+    return tornWebTransactionListByContractAddress(req, res)
     try { 
         const contractAddress = req.body.contract_address;
         const tronWeb = tronWebCall(req,res);
@@ -258,7 +259,7 @@ async function tornWebTransactionListByContractAddress(req, res){
             transactionData = await hitNextLink(contractAddress,tronGrid,tronWeb,nextLink,transactionData,getDecimal,limit,lastTimeStamp);
         }
         console.log('transactionData.length',transactionData.length)
-        
+
         res.send({transactionData});
         
 
