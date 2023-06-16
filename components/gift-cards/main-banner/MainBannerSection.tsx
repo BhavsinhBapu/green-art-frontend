@@ -19,7 +19,7 @@ export default function MainBannerSection({
   const [code, setCode] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [giftCardData, setGiftCardData] = useState({});
-  const [error, setError] = useState("")
+  const [error, setError] = useState("");
   const { t } = useTranslation();
 
   const handleGiftCard = async () => {
@@ -28,11 +28,44 @@ export default function MainBannerSection({
     console.log("data", data);
     if (!data.success) {
       setGiftCardData({});
-      setError(data.message)
+      toast.error(data.message);
       return;
     }
     setGiftCardData(data.data);
     setIsModalOpen(true);
+  };
+
+  const handleGiftCardSubmit = () => {
+    if (activeBtn === "add") {
+      addGiftCardHandler();
+      return;
+    }
+    redeemGiftCardHandler();
+  };
+
+  const addGiftCardHandler = async () => {
+    console.log("addGiftCardHandler", code);
+    const { data } = await request.get(`gift-card/add-gift-card?code=${code}`);
+    if (data.success) {
+      setCode("");
+      console.log("add", data);
+      setIsModalOpen(false);
+      return;
+    }
+    toast.error(data.message);
+    setIsModalOpen(false);
+  };
+
+  const redeemGiftCardHandler = async () => {
+    const { data } = await request.get(`gift-card/check-card?code=${code}`);
+    if (data.success) {
+      toast.success(data.message);
+      setCode("");
+      setIsModalOpen(false);
+      return;
+    }
+    toast.error(data.message);
+    setIsModalOpen(false);
   };
 
   return (
@@ -116,9 +149,14 @@ export default function MainBannerSection({
           </div>
         </div>
       </div>
-     
-        <GiftCardModal activeBtn={activeBtn} setIsModalOpen={setIsModalOpen} giftCardData={giftCardData} error={error}/>
-      
+      {isModalOpen && (
+        <GiftCardModal
+          activeBtn={activeBtn}
+          setIsModalOpen={setIsModalOpen}
+          giftCardData={giftCardData}
+          handleGiftCardSubmit={handleGiftCardSubmit}
+        />
+      )}
     </>
   );
 }
