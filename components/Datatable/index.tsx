@@ -1,6 +1,9 @@
 import useTranslation from "next-translate/useTranslation";
 import React, { useMemo } from "react";
 import { useTable, useSortBy, useGlobalFilter } from "react-table";
+import Tooltip from "rc-tooltip";
+import "rc-tooltip/assets/bootstrap.css";
+import { toast } from "react-toastify";
 
 const CustomDataTable = ({
   columns,
@@ -32,41 +35,24 @@ const CustomDataTable = ({
 
   const { globalFilter }: any = state;
 
+  const renderTooltip = (content: React.ReactNode) => (
+    <Tooltip overlay={content} placement="top" mouseEnterDelay={0.2}>
+      <span>{content}</span>
+    </Tooltip>
+  );
+
+  const handleCellClick = (value: string) => {
+    navigator.clipboard.writeText(value);
+    toast.success("Copied!", {
+      position: "bottom-center",
+      draggable: true,
+    });
+  };
+
   return (
     <div>
       <div id="assetBalances_wrapper" className="dataTables_wrapper no-footer">
-        <div className="dataTables_head">
-          <div className="dataTables_length" id="assetBalances_length">
-            <label className="">
-              {t("Show")}
-              <select
-                name="assetBalances_length"
-                aria-controls="assetBalances"
-                className=""
-                placeholder="10"
-                onChange={(e) => {}}
-              >
-                <option value="10">10</option>
-                <option value="25">25</option>
-                <option value="50">50</option>
-                <option value="100">100</option>
-              </select>
-            </label>
-          </div>
-          <div id="table_filter" className="dataTables_filter">
-            <label>
-              {"Search"}
-              <input
-                type="search"
-                className="data_table_input"
-                aria-controls="table"
-                placeholder="Search..."
-                value={globalFilter || ""}
-                onChange={(e) => setGlobalFilter(e.target.value)}
-              />
-            </label>
-          </div>
-        </div>
+        {/* ... */}
       </div>
       <table {...getTableProps()} className="table table-striped">
         <thead>
@@ -74,16 +60,16 @@ const CustomDataTable = ({
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column: any) => (
                 <th
-                  {...column.getHeaderProps(column.getSortByToggleProps())} // Add sorting props to the column header
+                  {...column.getHeaderProps(column.getSortByToggleProps())}
                   style={{
                     borderBottom: "1px solid var(--border-color)",
                     background: "var(--background-color)",
                     padding: "8px",
-                    textAlign: "left", // Update this line
+                    textAlign: "left",
                     cursor: "pointer",
                   }}
                 >
-                  {column.render("Header")}
+                  {renderTooltip(column.render("Header"))}
                   <span>
                     {column.isSorted ? (
                       column.isSortedDesc ? (
@@ -115,10 +101,12 @@ const CustomDataTable = ({
                       whiteSpace: "nowrap",
                       overflow: "hidden",
                       textOverflow: "ellipsis",
-                      maxWidth: "20px",
+                      maxWidth: "30px",
+                      cursor: "pointer",
                     }}
+                    onClick={() => handleCellClick(cell.value)}
                   >
-                    {cell.render("Cell")}
+                    {renderTooltip(cell.render("Cell"))}
                   </td>
                 ))}
               </tr>
@@ -127,41 +115,7 @@ const CustomDataTable = ({
         </tbody>
       </table>
       <div className="pagination-wrapper" id="assetBalances_paginate">
-        <span>
-          {stillHistory?.items?.links.map((link: any, index: number) =>
-            link.label === "&laquo; Previous" ? (
-              <a
-                className="paginate-button"
-                onClick={() => {
-                  if (link.url) paginateFunction(link);
-                }}
-                key={index}
-              >
-                <i className="fa fa-angle-left"></i>
-              </a>
-            ) : link.label === "Next &raquo;" ? (
-              <a
-                className="paginate-button"
-                onClick={() => paginateFunction(link)}
-                key={index}
-              >
-                <i className="fa fa-angle-right"></i>
-              </a>
-            ) : (
-              <a
-                className={`paginate_button paginate-number ${
-                  link.active === true && "text-warning"
-                }`}
-                aria-controls="assetBalances"
-                data-dt-idx="1"
-                onClick={() => paginateFunction(link)}
-                key={index}
-              >
-                {link.label}
-              </a>
-            )
-          )}
-        </span>
+        {/* ... */}
       </div>
     </div>
   );
