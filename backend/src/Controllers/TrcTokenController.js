@@ -216,7 +216,7 @@ async function tornWebTransactionListByContractAddress(req, res){
     try{
         const contractAddress = req.body.contract_address;  //'TRwptGFfX3fuffAMbWDDLJZAZFmP6bGfqL'
         const adminAccount = req.body.admin_address;
-        const lastTimeStamp = req.body.last_timestamp;
+        var lastTimeStamp = req.body.last_timestamp;
         const limit = 200;
 
         const tronWeb = tronWebCall(req,res);
@@ -227,6 +227,23 @@ async function tornWebTransactionListByContractAddress(req, res){
         const getDecimal = powerOfTen(decimal);
         
         const tronGrid = new TronGrid(tronWeb);
+
+        if(lastTimeStamp == 0)
+        {
+            var latestTransaction = await tronGrid.contract.getEvents(contractAddress, {
+                only_confirmed: true,
+                event_name: "Transfer",
+                limit: limit,
+                order_by: "timestamp,desc",
+            });
+    
+            console.log('current timestamp before set', lastTimeStamp);
+
+            lastTimeStamp = latestTransaction.data[0].block_timestamp;
+
+            console.log('current timestamp after set', lastTimeStamp);
+        }
+        
 
         var result = await tronGrid.contract.getEvents(contractAddress, {
             only_confirmed: true,
@@ -254,14 +271,20 @@ async function tornWebTransactionListByContractAddress(req, res){
 
         const nextLink = result.meta.links?.next;
 
-        if(nextLink)
+        if(result.meta.links)
         {
             transactionData = await hitNextLink(contractAddress,tronGrid,tronWeb,nextLink,transactionData,getDecimal,limit,lastTimeStamp);
         }
         console.log('transactionData.length',transactionData.length)
 
-        res.send({transactionData});
-        
+        // res.send({transactionData});
+        return res.json({
+            status: true,
+            message: "Get TRC20 token transactions",
+            data: {
+                result: transactionData,
+            } 
+        });
 
     }catch(err){
         console.log(err)
