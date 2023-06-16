@@ -4,7 +4,7 @@ import React from "react";
 import { BsGiftFill } from "react-icons/bs";
 
 export default function MyCardModal({ setIsModalOpen, giftCardData }: any) {
-    const {t} = useTranslation();
+  const { t } = useTranslation();
   return (
     <div id="demo-modal" className="gift-card-modal">
       <div className="gift-card-modal__content p-5">
@@ -32,6 +32,30 @@ export default function MyCardModal({ setIsModalOpen, giftCardData }: any) {
             <h5 className="font-normal">
               {t(giftCardData?.banner?.sub_title)}
             </h5>
+            <div className="mt-3">
+              <p>
+                <strong>Coin Type: </strong> {t(giftCardData?.coin_type)}
+              </p>
+              <p>
+                <strong>Category: </strong>{" "}
+                {t(giftCardData?.banner?.category?.name)}
+              </p>
+              {giftCardData?.lock && (
+                <p>
+                  <strong>Lock: </strong> {t(giftCardData?.lock)}
+                </p>
+              )}
+
+              {giftCardData?.wallet_type && (
+                <p>
+                  <strong>Wallet Type: </strong> {t(giftCardData?.wallet_type)}
+                </p>
+              )}
+
+              <p>
+                <strong>Status: </strong> {t(giftCardData?.status ?? "Active")}
+              </p>
+            </div>
           </div>
         </div>
 
