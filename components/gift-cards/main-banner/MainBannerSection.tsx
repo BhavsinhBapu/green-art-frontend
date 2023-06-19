@@ -5,6 +5,8 @@ import { BsArrowRight } from "react-icons/bs";
 import GiftCardModal from "../modal/GiftCardModal";
 import request from "lib/request";
 import { toast } from "react-toastify";
+import SendCryptoCardModal from "../modal/SendCryptoCardModal";
+import Link from "next/link";
 
 export default function MainBannerSection({
   header,
@@ -68,6 +70,8 @@ export default function MainBannerSection({
     setIsModalOpen(false);
   };
 
+ 
+
   return (
     <>
       <div className="bg-card-primary-color py-80">
@@ -80,9 +84,11 @@ export default function MainBannerSection({
               <p className="my-3 gift-font-color font-medium text-16">
                 {t(description)}
               </p>
-              <button className="gift-btn">
-                {t("Send a crypto gift card")} <BsArrowRight />{" "}
-              </button>
+              <Link href={`/gift-cards/my-cards`}>
+                <a className="gift-btn d-inline-block">
+                  {t("Send a crypto gift card")} <BsArrowRight />{" "}
+                </a>
+              </Link>
               <div className="gift-inner-card my-5 gift-font-color">
                 <div className="gift-inner-card-btns">
                   <span
@@ -157,6 +163,7 @@ export default function MainBannerSection({
           handleGiftCardSubmit={handleGiftCardSubmit}
         />
       )}
+
     </>
   );
 }

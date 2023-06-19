@@ -3,7 +3,11 @@ import useTranslation from "next-translate/useTranslation";
 import React from "react";
 import { BsGiftFill } from "react-icons/bs";
 
-export default function MyCardModal({ setIsModalOpen, giftCardData }: any) {
+export default function MyCardModal({
+  setIsModalOpen,
+  giftCardData,
+  sendCryptoCardModalHandler,
+}: any) {
   const { t } = useTranslation();
   return (
     <div id="demo-modal" className="gift-card-modal">
@@ -58,6 +62,17 @@ export default function MyCardModal({ setIsModalOpen, giftCardData }: any) {
             </div>
           </div>
         </div>
+        {giftCardData.status === "Active" && (
+          <div className="text-right">
+            <button
+              type="button"
+              className="btn bg-primary-color capitalize"
+              onClick={sendCryptoCardModalHandler}
+            >
+              {t("Send crypto gift card")}
+            </button>
+          </div>
+        )}
 
         <span
           className="gift-card-modal__close text-45 pointer"

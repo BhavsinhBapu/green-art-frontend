@@ -4,15 +4,23 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { BsArrowRight } from "react-icons/bs";
 import MyCardModal from "../modal/MyCardModal";
+import SendCryptoCardModal from "../modal/SendCryptoCardModal";
 
 export default function MyCards({ myCards }: any) {
   const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSendCryptoCardModalOpen, setIsSendCryptoCardModalOpen] =
+    useState(false);
   const [giftCardData, setGiftCardData] = useState({});
   const myCardHandle = (cardData: any) => {
     console.log("adt", cardData);
     setGiftCardData(cardData);
     setIsModalOpen(true);
+  };
+
+  const sendCryptoCardModalHandler = () => {
+    setIsSendCryptoCardModalOpen(true);
+    setIsModalOpen(false);
   };
   console.log("myCards", myCards);
   return (
@@ -61,6 +69,13 @@ export default function MyCards({ myCards }: any) {
         <MyCardModal
           giftCardData={giftCardData}
           setIsModalOpen={setIsModalOpen}
+          sendCryptoCardModalHandler={sendCryptoCardModalHandler}
+        />
+      )}
+      {isSendCryptoCardModalOpen && (
+        <SendCryptoCardModal
+          setIsSendCryptoCardModalOpen={setIsSendCryptoCardModalOpen}
+          giftCardData={giftCardData}
         />
       )}
     </div>

@@ -15162,6 +15162,14 @@ input:checked + .gift-card-buy-slider:before {
   text-decoration: none;
 }
 
+.send-crypto-w{
+  width: 50%;
+}
+
+.h-40{
+  height: 42px !important;
+}
+
 @media (max-width: 991px) {
   .text-45 {
     font-size: 36px;
@@ -15184,5 +15192,8 @@ input:checked + .gift-card-buy-slider:before {
   }
   .buy-amount-select-section-width {
     width: 50%;
+  }
+  .send-crypto-w{
+    width: 100%;
   }
 }

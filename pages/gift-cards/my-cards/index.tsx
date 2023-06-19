@@ -1,6 +1,7 @@
 import { CUstomSelect } from "components/common/CUstomSelect";
 import ImageComponent from "components/common/ImageComponent";
 import MyCardModal from "components/gift-cards/modal/MyCardModal";
+import SendCryptoCardModal from "components/gift-cards/modal/SendCryptoCardModal";
 import request from "lib/request";
 import useTranslation from "next-translate/useTranslation";
 import React, { useEffect, useState } from "react";
@@ -20,6 +21,8 @@ export default function index() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [giftCardData, setGiftCardData] = useState({});
   const [activeStatus, setActiveStatus] = useState("1");
+  const [isSendCryptoCardModalOpen, setIsSendCryptoCardModalOpen] =
+    useState(false);
 
   useEffect(() => {
     getMyCards("1", limit, 1);
@@ -29,6 +32,11 @@ export default function index() {
     console.log("adt", cardData);
     setGiftCardData(cardData);
     setIsModalOpen(true);
+  };
+
+  const sendCryptoCardModalHandler = () => {
+    setIsSendCryptoCardModalOpen(true);
+    setIsModalOpen(false);
   };
 
   const getMyCards = async (status: any, limit: any, page: any) => {
@@ -44,18 +52,18 @@ export default function index() {
 
   const handleStatus = (event: any) => {
     console.log("event", event);
-    getMyCards(event.value, limit , 1);
+    getMyCards(event.value, limit, 1);
     setActiveStatus(event.value);
   };
 
   const LinkTopaginationString = (links: any) => {
-    console.log("sfsf",myCards, links )
+    console.log("sfsf", myCards, links);
     if (links.url === null) return;
     if (links.label === myCards.current_page.toString()) return;
     const queryString = links.url.split("?")[1];
     const params = new URLSearchParams(queryString);
     const pageValue = params.get("page");
-    getMyCards(activeStatus, limit , pageValue);
+    getMyCards(activeStatus, limit, pageValue);
   };
 
   return (
@@ -177,6 +185,13 @@ export default function index() {
         <MyCardModal
           giftCardData={giftCardData}
           setIsModalOpen={setIsModalOpen}
+          sendCryptoCardModalHandler={sendCryptoCardModalHandler}
+        />
+      )}
+      {isSendCryptoCardModalOpen && (
+        <SendCryptoCardModal
+          setIsSendCryptoCardModalOpen={setIsSendCryptoCardModalOpen}
+          giftCardData={giftCardData}
         />
       )}
     </section>
