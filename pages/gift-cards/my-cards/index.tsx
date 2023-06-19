@@ -7,6 +7,7 @@ import useTranslation from "next-translate/useTranslation";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import ReactPaginate from "react-paginate";
+import Footer from "components/common/footer";
 
 const options = [
   { value: "1", label: "Active" },
@@ -185,6 +186,7 @@ export default function Index() {
           giftCardData={giftCardData}
         />
       )}
+      <Footer />
     </section>
   );
 }

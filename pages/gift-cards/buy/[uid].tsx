@@ -14,7 +14,7 @@ import request from "lib/request";
 import Error from "next/error";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
-
+import Footer from "components/common/footer";
 
 export default function Index() {
   const { settings } = useSelector((state: RootState) => state.common);
@@ -512,6 +512,7 @@ export default function Index() {
           </div>
         </div>
       </div>
+      <Footer />
     </section>
   );
 }

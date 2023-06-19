@@ -1,5 +1,6 @@
 import { CUstomSelect } from "components/common/CUstomSelect";
 import ImageComponent from "components/common/ImageComponent";
+import Footer from "components/common/footer";
 import request from "lib/request";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
@@ -161,6 +162,7 @@ export default function Index() {
         </div>
       </div>
       {/* Themed Gift Cards end */}
+      <Footer />
     </section>
   );
 }
