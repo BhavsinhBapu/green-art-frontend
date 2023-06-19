@@ -784,6 +784,7 @@ async function getLatestEvents(req, res)
             let prevBlock = 1000;
             const contractAddress = req.body.contract_address;
             const numberOfBlock = req.body.number_of_previous_block;
+            const lastBlockNumber = req.body.last_block_number;
 
             const web3 = new Web3(new Web3.providers.HttpProvider(network));
             const contract = new web3.eth.Contract(contractJsons, contractAddress);
@@ -793,7 +794,17 @@ async function getLatestEvents(req, res)
             if (numberOfBlock) {
                 prevBlock = numberOfBlock;
             }
-            const fromBlockNumber = latestBlockNumber - prevBlock;
+
+            let fromBlockNumber = latestBlockNumber - prevBlock;
+
+            if (lastBlockNumber > 0) {
+                if ((latestBlockNumber - lastBlockNumber) > 5000) {
+                    fromBlockNumber = latestBlockNumber - prevBlock;
+                } else {
+                    fromBlockNumber = lastBlockNumber;
+                }
+            } 
+
             const result = await getBlockDetails(contract,fromBlockNumber,latestBlockNumber);
             
           if (result.status === true) {
@@ -807,7 +818,9 @@ async function getLatestEvents(req, res)
                       block_hash: res.blockHash,
                       from_address: res.returnValues.from,
                       to_address: res.returnValues.to,
-                      amount: customFromWei(res.returnValues.value,decimalValue)
+                      amount: customFromWei(res.returnValues.value,decimalValue),
+                      block_number: res.blockNumber,
+                      block_timestamp: 0
                   };
                   resultData.push(innerData)
               });
