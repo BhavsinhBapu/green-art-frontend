@@ -151,7 +151,9 @@ export default function Index() {
               </div>
             </>
           ) : (
-            <NoItemFound />
+            <div className="mt-4">
+              <NoItemFound />
+            </div>
           )}
         </div>
         <div className="row justify-content-center mt-5">

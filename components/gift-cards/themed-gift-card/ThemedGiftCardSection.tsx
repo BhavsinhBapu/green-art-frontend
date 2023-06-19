@@ -65,7 +65,9 @@ export default function ThemedGiftCardSection({ giftCards }: any) {
             </div>
           </>
         ) : (
-          <NoItemFound />
+          <div className="mt-4">
+            <NoItemFound />
+          </div>
         )}
       </div>
     </div>

@@ -62,7 +62,9 @@ export default function MyCards({ myCards }: any) {
           ))}
         </div>
       ) : (
-        <NoItemFound />
+        <div className="mt-4">
+          <NoItemFound />
+        </div>
       )}
       {isModalOpen && (
         <MyCardModal
