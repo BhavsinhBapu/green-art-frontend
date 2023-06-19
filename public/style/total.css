@@ -14991,11 +14991,11 @@ body::-webkit-scrollbar {
 }
 
 .buy-input-bg {
-  background: var(--background-color) !important;
+  background: var(--hover-bg-color) !important;
 }
 
 .buy-amount-select-section .custom-select__control {
-  background: #f5f5f5 !important;
+  background: var(--hover-bg-color) !important;
   box-shadow: unset !important;
 }
 

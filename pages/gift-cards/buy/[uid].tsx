@@ -333,18 +333,7 @@ export default function Index() {
                           <h6 className="gift-buy-input-label mr-2">
                             {t(`${Number(availableCoin)} BTC`)}
                           </h6>
-                          <span>
-                            <HiOutlineRefresh size={20} />
-                          </span>
                         </div>
-                      </div>
-                      <div className=" text-primary-color">
-                        <h6 className="gift-buy-input-label font-normal text-primary-color mr-2">
-                          {t(`Transfer`)}
-                        </h6>
-                        <span>
-                          <BiTransferAlt size={20} />
-                        </span>
                       </div>
                     </div>
 
