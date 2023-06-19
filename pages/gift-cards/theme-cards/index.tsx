@@ -8,7 +8,7 @@ import ReactPaginate from "react-paginate";
 import { toast } from "react-toastify";
 
 const limit = 1;
-export default function index() {
+export default function Index() {
   const { t } = useTranslation();
   const [themedCardData, setThemedCardData] = useState<any>({});
   const [activeCategory, setActiveCategory] = useState({

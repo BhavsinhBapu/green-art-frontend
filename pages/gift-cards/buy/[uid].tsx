@@ -15,12 +15,8 @@ import Error from "next/error";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
 
-const options = [
-  { value: "chocolate", label: "Chocolate" },
-  { value: "strawberry", label: "Strawberry" },
-  { value: "vanilla", label: "Vanilla" },
-];
-export default function index() {
+
+export default function Index() {
   const { settings } = useSelector((state: RootState) => state.common);
   const router = useRouter();
   const [isSingle, setIsSingle] = useState(true);

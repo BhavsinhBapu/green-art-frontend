@@ -16,7 +16,7 @@ const options = [
   { value: "5", label: "Locked" },
 ];
 const limit = 2;
-export default function index() {
+export default function Index() {
   const { t } = useTranslation();
   const [myCards, setMyCards] = useState<any>({});
   const [pageData, setPageData] = useState<any>({});

@@ -14,7 +14,7 @@ import { BsArrowRight } from "react-icons/bs";
 import { GrFormAdd } from "react-icons/gr";
 import { getGiftCardsData } from "service/gift-cards";
 
-export default function index({ giftCards }: any) {
+export default function Index({ giftCards }: any) {
   console.log("giftCards", giftCards);
   const {
     header,
