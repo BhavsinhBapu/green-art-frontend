@@ -8,6 +8,7 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import ReactPaginate from "react-paginate";
 import Footer from "components/common/footer";
+import { NoItemFound } from "components/NoItemFound/NoItemFound";
 
 const options = [
   { value: "1", label: "Active" },
@@ -150,9 +151,7 @@ export default function Index() {
               </div>
             </>
           ) : (
-            <div className="mt-3 no-gift-card">
-              {t(`No Gift Card Avilable`)}
-            </div>
+            <NoItemFound />
           )}
         </div>
         <div className="row justify-content-center mt-5">

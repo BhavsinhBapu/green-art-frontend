@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { BsArrowRight } from "react-icons/bs";
 import MyCardModal from "../modal/MyCardModal";
 import SendCryptoCardModal from "../modal/SendCryptoCardModal";
+import { NoItemFound } from "components/NoItemFound/NoItemFound";
 
 export default function MyCards({ myCards }: any) {
   const { t } = useTranslation();
@@ -61,7 +62,7 @@ export default function MyCards({ myCards }: any) {
           ))}
         </div>
       ) : (
-        <div className="mt-3 no-gift-card">{t(`No Gift Card Avilable`)}</div>
+        <NoItemFound />
       )}
       {isModalOpen && (
         <MyCardModal

@@ -1,3 +1,4 @@
+import { NoItemFound } from "components/NoItemFound/NoItemFound";
 import { CUstomSelect } from "components/common/CUstomSelect";
 import ImageComponent from "components/common/ImageComponent";
 import Footer from "components/common/footer";
@@ -139,9 +140,7 @@ export default function Index() {
               ))}
             </div>
           ) : (
-            <div className="mt-3 no-gift-card">
-              {t(`No Gift Card Avilable`)}
-            </div>
+            <NoItemFound />
           )}
 
           <div className="row justify-content-center mt-5">

@@ -1,3 +1,4 @@
+import { NoItemFound } from "components/NoItemFound/NoItemFound";
 import ImageComponent from "components/common/ImageComponent";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
@@ -64,7 +65,7 @@ export default function ThemedGiftCardSection({ giftCards }: any) {
             </div>
           </>
         ) : (
-          <div className="mt-3 no-gift-card">{t(`No Gift Card Avilable`)}</div>
+          <NoItemFound />
         )}
       </div>
     </div>

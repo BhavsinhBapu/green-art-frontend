@@ -800,85 +800,89 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                           )}
                         </ul>
                       </li>
-                      <li
-                        className={
-                          router.pathname == "/gift-cards" ||
-                          router.pathname == "/gift-cards/theme-cards" ||
-                          router.pathname == "/gift-cards/my-cards"
-                            ? "cp-user-active-page"
-                            : ""
-                        }
-                      >
-                        <Link href={isLoggedIn ? "/gift-cards" : "/signin"}>
-                          <a
-                            className="arrow-icon"
-                            href="#"
-                            aria-expanded="true"
-                            style={{ height: "48px" }}
-                          >
-                            <span className="cp-user-icon">
-                              <AiFillGift />
-                            </span>
-                            <span className="cp-user-name">
-                              {navbar?.giftCards?.name
-                                ? navbar?.giftCards?.name
-                                : t("Gift Cards")}
-                            </span>
-                          </a>
-                        </Link>
-
-                        <ul className="dropdown-menu bg-transparent-main">
-                          <Link
-                            href={
-                              isLoggedIn ? "/gift-cards/theme-cards" : "/signin"
-                            }
-                          >
-                            <li
-                              className={
-                                router.pathname == "/gift-cards/theme-cards"
-                                  ? "cp-user-active-page"
-                                  : ""
-                              }
+                      {Number(settings?.enable_gift_card) === 1 && (
+                        <li
+                          className={
+                            router.pathname == "/gift-cards" ||
+                            router.pathname == "/gift-cards/theme-cards" ||
+                            router.pathname == "/gift-cards/my-cards"
+                              ? "cp-user-active-page"
+                              : ""
+                          }
+                        >
+                          <Link href={isLoggedIn ? "/gift-cards" : "/signin"}>
+                            <a
+                              className="arrow-icon"
+                              href="#"
+                              aria-expanded="true"
+                              style={{ height: "48px" }}
                             >
-                              <a href="" className="menu-hover">
-                                <span className="cp-user-icon">
-                                  <IoCardSharp />
-                                </span>
-                                <span>
-                                  {navbar?.giftCards?.themedCards?.name
-                                    ? navbar?.giftCards?.themedCards?.name
-                                    : t("Themed Cards")}
-                                </span>
-                              </a>
-                            </li>
+                              <span className="cp-user-icon">
+                                <AiFillGift />
+                              </span>
+                              <span className="cp-user-name">
+                                {navbar?.giftCards?.name
+                                  ? navbar?.giftCards?.name
+                                  : t("Gift Cards")}
+                              </span>
+                            </a>
                           </Link>
 
-                          <Link
-                            href={
-                              isLoggedIn ? "/gift-cards/my-cards" : "/signin"
-                            }
-                          >
-                            <li
-                              className={
-                                router.pathname == "/gift-cards/my-cards"
-                                  ? "cp-user-active-page"
-                                  : ""
+                          <ul className="dropdown-menu bg-transparent-main">
+                            <Link
+                              href={
+                                isLoggedIn
+                                  ? "/gift-cards/theme-cards"
+                                  : "/signin"
                               }
                             >
-                              <a href="" className="menu-hover">
-                                <span className="cp-user-icon">
-                                  <IoCardSharp />
-                                </span>
-                                <span>
-                                  {navbar?.giftCards?.themedCards?.name
-                                    ? navbar?.giftCards?.themedCards?.name
-                                    : t("My Cards")}
-                                </span>
-                              </a>
-                            </li>
-                          </Link>
-                        </ul>
-                      </li>
+                              <li
+                                className={
+                                  router.pathname == "/gift-cards/theme-cards"
+                                    ? "cp-user-active-page"
+                                    : ""
+                                }
+                              >
+                                <a href="" className="menu-hover">
+                                  <span className="cp-user-icon">
+                                    <IoCardSharp />
+                                  </span>
+                                  <span>
+                                    {navbar?.giftCards?.themedCards?.name
+                                      ? navbar?.giftCards?.themedCards?.name
+                                      : t("Themed Cards")}
+                                  </span>
+                                </a>
+                              </li>
+                            </Link>
+
+                            <Link
+                              href={
+                                isLoggedIn ? "/gift-cards/my-cards" : "/signin"
+                              }
+                            >
+                              <li
+                                className={
+                                  router.pathname == "/gift-cards/my-cards"
+                                    ? "cp-user-active-page"
+                                    : ""
+                                }
+                              >
+                                <a href="" className="menu-hover">
+                                  <span className="cp-user-icon">
+                                    <IoCardSharp />
+                                  </span>
+                                  <span>
+                                    {navbar?.giftCards?.themedCards?.name
+                                      ? navbar?.giftCards?.themedCards?.name
+                                      : t("My Cards")}
+                                  </span>
+                                </a>
+                              </li>
+                            </Link>
+                          </ul>
+                        </li>
+                      )}
                     </ul>
                   </nav>
                 </div>
@@ -1612,88 +1616,92 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                           )}
                         </ul>
                       </li>
-                      <li
-                        className={
-                          router.pathname == "/gift-cards" ||
-                          router.pathname == "/gift-cards/theme-cards" ||
-                          router.pathname == "/gift-cards/my-cards"
-                            ? "active-navbar nav-item dropdown"
-                            : "nav-item dropdown"
-                        }
-                      >
-                        <a
-                          className="nav-link text-primary-color-two dropdown-toggle"
-                          href="#"
-                          id="navbarDropdown"
-                          role="button"
-                          data-toggle="dropdown"
-                          aria-haspopup="true"
-                          aria-expanded="false"
+                      {Number(settings?.enable_gift_card) === 1 && (
+                        <li
+                          className={
+                            router.pathname == "/gift-cards" ||
+                            router.pathname == "/gift-cards/theme-cards" ||
+                            router.pathname == "/gift-cards/my-cards"
+                              ? "active-navbar nav-item dropdown"
+                              : "nav-item dropdown"
+                          }
                         >
-                          <span>
-                            {navbar?.giftCards?.name
-                              ? navbar?.giftCards?.name
-                              : t("Gift Cards")}
-                          </span>
-                        </a>
-
-                        <ul
-                          className="dropdown-menu bg-transparent border-0 py-0 my-0"
-                          aria-labelledby="navbarDropdown"
-                        >
-                          <Link
-                            href={
-                              isLoggedIn ? "/gift-cards/theme-cards" : "/signin"
-                            }
+                          <a
+                            className="nav-link text-primary-color-two dropdown-toggle"
+                            href="#"
+                            id="navbarDropdown"
+                            role="button"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
                           >
-                            <li
-                              className={
-                                router.pathname == "/gift-cards/theme-cards"
-                                  ? "active-navbar"
-                                  : ""
+                            <span>
+                              {navbar?.giftCards?.name
+                                ? navbar?.giftCards?.name
+                                : t("Gift Cards")}
+                            </span>
+                          </a>
+
+                          <ul
+                            className="dropdown-menu bg-transparent border-0 py-0 my-0"
+                            aria-labelledby="navbarDropdown"
+                          >
+                            <Link
+                              href={
+                                isLoggedIn
+                                  ? "/gift-cards/theme-cards"
+                                  : "/signin"
                               }
                             >
-                              <a
-                                href=""
-                                className="px-3 py-2 text-primary-color-two"
-                                onClick={() => setActive(false)}
+                              <li
+                                className={
+                                  router.pathname == "/gift-cards/theme-cards"
+                                    ? "active-navbar"
+                                    : ""
+                                }
                               >
-                                <span>
-                                  {navbar?.giftCards?.themedCards?.name
-                                    ? navbar?.giftCards?.themedCards?.name
-                                    : t("Themed Cards")}
-                                </span>
-                              </a>
-                            </li>
-                          </Link>
+                                <a
+                                  href=""
+                                  className="px-3 py-2 text-primary-color-two"
+                                  onClick={() => setActive(false)}
+                                >
+                                  <span>
+                                    {navbar?.giftCards?.themedCards?.name
+                                      ? navbar?.giftCards?.themedCards?.name
+                                      : t("Themed Cards")}
+                                  </span>
+                                </a>
+                              </li>
+                            </Link>
 
-                          <Link
-                            href={
-                              isLoggedIn ? "/gift-cards/my-cards" : "/signin"
-                            }
-                          >
-                            <li
-                              className={
-                                router.pathname == "/gift-cards/my-cards"
-                                  ? "active-navbar"
-                                  : ""
+                            <Link
+                              href={
+                                isLoggedIn ? "/gift-cards/my-cards" : "/signin"
                               }
                             >
-                              <a
-                                href=""
-                                className="px-3 py-2 text-primary-color-two"
-                                onClick={() => setActive(false)}
+                              <li
+                                className={
+                                  router.pathname == "/gift-cards/my-cards"
+                                    ? "active-navbar"
+                                    : ""
+                                }
                               >
-                                <span>
-                                  {navbar?.giftCards?.themedCards?.name
-                                    ? navbar?.giftCards?.themedCards?.name
-                                    : t("My Cards")}
-                                </span>
-                              </a>
-                            </li>
-                          </Link>
-                        </ul>
-                      </li>
+                                <a
+                                  href=""
+                                  className="px-3 py-2 text-primary-color-two"
+                                  onClick={() => setActive(false)}
+                                >
+                                  <span>
+                                    {navbar?.giftCards?.themedCards?.name
+                                      ? navbar?.giftCards?.themedCards?.name
+                                      : t("My Cards")}
+                                  </span>
+                                </a>
+                              </li>
+                            </Link>
+                          </ul>
+                        </li>
+                      )}
                     </ul>
                   </div>
                 </nav>
