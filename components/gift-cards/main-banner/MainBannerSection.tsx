@@ -12,11 +12,10 @@ export default function MainBannerSection({
   header,
   description,
   banner,
-}: {
-  header: string;
-  description: string;
-  banner: string;
-}) {
+  gif_card_redeem_description,
+  gif_card_add_card_description,
+  gif_card_check_card_description,
+}: any) {
   const [activeBtn, setActiveBtn] = useState("redeem");
   const [code, setCode] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -146,13 +145,9 @@ export default function MainBannerSection({
                   </button>
                 </div>
                 <p className="gift-font-color line-16 my-3 text-12">
-                  {t(`Tradexpro exchange is such a marketplace where people can
-                  trade`)}
-                </p>
-                <p className="gift-font-color line-16 text-12">
-                  {t(`Tradexpro exchange is such a marketplace where people can
-                  trade directly with each other Tradexpro exchange is such a
-                  marketplace where people can trade`)}
+                  {activeBtn === "redeem" && t(gif_card_redeem_description)}
+                  {activeBtn === "add" && t(gif_card_add_card_description)}
+                  {activeBtn === "check" && t(gif_card_check_card_description)}
                 </p>
               </div>
             </div>

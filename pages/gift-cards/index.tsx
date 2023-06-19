@@ -26,6 +26,9 @@ export default function Index({ giftCards }: any) {
     banners,
     my_cards,
     faq,
+    gif_card_redeem_description,
+    gif_card_add_card_description,
+    gif_card_check_card_description
   } = giftCards || {};
   const { t } = useTranslation("common");
   return (
@@ -35,6 +38,9 @@ export default function Index({ giftCards }: any) {
         header={header}
         description={description}
         banner={banner}
+        gif_card_redeem_description={gif_card_redeem_description}
+        gif_card_add_card_description={gif_card_add_card_description}
+        gif_card_check_card_description={gif_card_check_card_description}
       />
       {/* gift card banner end */}
 
