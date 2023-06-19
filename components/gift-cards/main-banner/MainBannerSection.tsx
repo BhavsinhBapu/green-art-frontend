@@ -118,7 +118,7 @@ export default function MainBannerSection({
                 </div>
                 <div className="gift-inner-card-input-section">
                   <div className="w-full">
-                    <label className="gift-font-color">Redemption Code</label>
+                    <label className="gift-font-color">{t(`Redemption Code`)}</label>
                     <input
                       type="text"
                       className="gift-inner-card-input"
@@ -136,13 +136,13 @@ export default function MainBannerSection({
                   </button>
                 </div>
                 <p className="gift-font-color line-16 my-3 text-12">
-                  Tradexpro exchange is such a marketplace where people can
-                  trade
+                  {t(`Tradexpro exchange is such a marketplace where people can
+                  trade`)}
                 </p>
                 <p className="gift-font-color line-16 text-12">
-                  Tradexpro exchange is such a marketplace where people can
+                  {t(`Tradexpro exchange is such a marketplace where people can
                   trade directly with each other Tradexpro exchange is such a
-                  marketplace where people can trade
+                  marketplace where people can trade`)}
                 </p>
               </div>
             </div>

@@ -63,7 +63,7 @@ export default function MyCards({ myCards }: any) {
           ))}
         </div>
       ) : (
-        <div className="mt-3 no-gift-card">No Gift Card Avilable</div>
+        <div className="mt-3 no-gift-card">{t(`No Gift Card Avilable`)}</div>
       )}
       {isModalOpen && (
         <MyCardModal
