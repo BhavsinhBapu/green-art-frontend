@@ -378,7 +378,9 @@ export default function index() {
                           />
                           <div className="d-flex justify-content-between w-full">
                             <h6 className="font-normal"> P2P Wallet</h6>
-                            <h6 className="font-normal"> 0 BTC</h6>
+                            <h6 className="font-normal">
+                              {t(`${availableCoin} BTC`)}
+                            </h6>
                           </div>
                         </div>
                       )}
