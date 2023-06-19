@@ -62,7 +62,7 @@ export default function MyCardModal({
             </div>
           </div>
         </div>
-        {giftCardData.status === "Active" && (
+        {giftCardData._status == 1 && (
           <div className="text-right">
             <button
               type="button"
