@@ -291,7 +291,7 @@ export default function index() {
                   <div className="form-group p2pSelectFilter">
                     <h6 className="gift-buy-input-label font-normal mb-3 border-bottom-dashed">
                       {" "}
-                      Buy
+                      {t(`Buy`)}
                     </h6>
                     <CUstomSelect
                       options={buyPageData?.coins}
@@ -304,7 +304,7 @@ export default function index() {
                 <div className="col-lg-12">
                   <div className="form-group p2pSelectFilter">
                     <h6 className="gift-buy-input-label font-normal mb-3 border-bottom-dashed">
-                      Amount
+                      {t(`Amount`)}
                     </h6>
                     <div className="d-flex buy-input-bg py-2 rounded">
                       <input
@@ -336,7 +336,9 @@ export default function index() {
                           {t("Available")}
                         </h6>
                         <div className="text-primary-color">
-                          <h6 className="gift-buy-input-label mr-2">0 BTC</h6>
+                          <h6 className="gift-buy-input-label mr-2">
+                            {t(`${Number(availableCoin)} BTC`)}
+                          </h6>
                           <span>
                             <HiOutlineRefresh size={20} />
                           </span>
@@ -344,7 +346,7 @@ export default function index() {
                       </div>
                       <div className=" text-primary-color">
                         <h6 className="gift-buy-input-label font-normal text-primary-color mr-2">
-                          Transfer
+                          {t(`Transfer`)}
                         </h6>
                         <span>
                           <BiTransferAlt size={20} />
@@ -361,7 +363,7 @@ export default function index() {
                           className="checkbox-w-25"
                         />
                         <div className="d-flex justify-content-between w-full">
-                          <h6 className="font-normal"> Spot Wallet</h6>
+                          <h6 className="font-normal"> {t(`Spot Wallet`)}</h6>
                           <h6 className="font-normal">
                             {" "}
                             {t(`${availableCoin} BTC`)}
@@ -377,7 +379,7 @@ export default function index() {
                             className="checkbox-w-25"
                           />
                           <div className="d-flex justify-content-between w-full">
-                            <h6 className="font-normal"> P2P Wallet</h6>
+                            <h6 className="font-normal"> {t(`P2P Wallet`)}</h6>
                             <h6 className="font-normal">
                               {t(`${availableCoin} BTC`)}
                             </h6>
