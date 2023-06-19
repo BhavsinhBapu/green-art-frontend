@@ -49,6 +49,7 @@ export default function MainBannerSection({
     if (data.success) {
       setCode("");
       setIsModalOpen(false);
+      toast.success(data.message);
       return;
     }
     toast.error(data.message);
@@ -66,8 +67,6 @@ export default function MainBannerSection({
     toast.error(data.message);
     setIsModalOpen(false);
   };
-
- 
 
   return (
     <>
@@ -92,7 +91,10 @@ export default function MainBannerSection({
                     className={`pointer btn w-none ${
                       activeBtn === "redeem" ? " bg-primary-gift" : "block"
                     }`}
-                    onClick={() => setActiveBtn("redeem")}
+                    onClick={() => {
+                      setActiveBtn("redeem");
+                      setCode("");
+                    }}
                   >
                     {t("Redeem to crypto")}{" "}
                   </span>
@@ -100,7 +102,10 @@ export default function MainBannerSection({
                     className={`btn w-none pointer ${
                       activeBtn === "add" ? " bg-primary-gift" : "block"
                     }`}
-                    onClick={() => setActiveBtn("add")}
+                    onClick={() => {
+                      setActiveBtn("add");
+                      setCode("");
+                    }}
                   >
                     {t("Add Card")}
                   </span>
@@ -108,22 +113,30 @@ export default function MainBannerSection({
                     className={`pointer btn w-none ${
                       activeBtn === "check" ? " bg-primary-gift" : "block"
                     }`}
-                    onClick={() => setActiveBtn("check")}
+                    onClick={() => {
+                      setActiveBtn("check");
+                      setCode("");
+                    }}
                   >
                     {t("Check Card")}
                   </span>
                 </div>
                 <div className="gift-inner-card-input-section">
                   <div className="w-full">
-                    <label className="gift-font-color">{t(`Redemption Code`)}</label>
+                    <label className="gift-font-color">
+                      {t(`Redemption Code`)}
+                    </label>
                     <input
                       type="text"
                       className="gift-inner-card-input"
                       onChange={(e) => setCode(e.target.value)}
+                      value={code}
                     />
                   </div>
                   <button
-                    className="gift-btn capitalize"
+                    className={`gift-btn capitalize ${
+                      !code && "cursor-not-allowed"
+                    }`}
                     data-toggle="modal"
                     data-target="#giftCardModal"
                     disabled={code ? false : true}
@@ -160,7 +173,6 @@ export default function MainBannerSection({
           handleGiftCardSubmit={handleGiftCardSubmit}
         />
       )}
-
     </>
   );
 }
