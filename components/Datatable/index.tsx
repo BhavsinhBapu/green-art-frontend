@@ -70,10 +70,11 @@ const CustomDataTable = ({
       </div>
       <table {...getTableProps()} className="table table-striped">
         <thead>
-          {headerGroups.map((headerGroup) => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column: any) => (
+          {headerGroups.map((headerGroup, index) => (
+            <tr {...headerGroup.getHeaderGroupProps()} key={index}>
+              {headerGroup.headers.map((column: any, key: number) => (
                 <th
+                  key={key}
                   {...column.getHeaderProps(column.getSortByToggleProps())} // Add sorting props to the column header
                   style={{
                     borderBottom: "1px solid #7d7d7d33",
@@ -101,12 +102,14 @@ const CustomDataTable = ({
           ))}
         </thead>
         <tbody {...getTableBodyProps()}>
-          {rows.map((row) => {
+          {rows.map((row, index) => {
             prepareRow(row);
             return (
-              <tr {...row.getRowProps()}>
-                {row.cells.map((cell) => (
+              <tr {...row.getRowProps()} key={index}>
+                {row.cells.map((cell, key) => (
                   <td
+                    //@ts-ignore
+                    key={key}
                     {...cell.getCellProps()}
                     style={{
                       borderBottom: "1px solid #7d7d7d33",
