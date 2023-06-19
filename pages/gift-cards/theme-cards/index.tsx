@@ -64,7 +64,6 @@ export default function index() {
   };
 
   const handlePageClick = (event: any) => {
-    console.log("event", event)
     getThemedGiftCardData(activeCategory.value, event.selected + 1, limit);
   };
 
@@ -78,17 +77,21 @@ export default function index() {
             <div className="col-lg-6 d-flex align-items-center justify-content-center">
               <div>
                 <h1 className="text-45 text-capitalize font-bold gift-font-color">
-                  {t("Themed Gift Cards")}
+                  {t(themedCardData?.header || "Themed Gift Cards")}
                 </h1>
                 <p className="my-3 gift-font-color font-medium text-16">
                   {t(
-                    "Tradexpro exchange is such a marketplace where people can trade directly with each other"
+                    themedCardData?.description ||
+                      "Tradexpro exchange is such a marketplace where people can trade directly with each other"
                   )}
                 </p>
               </div>
             </div>
             <div className="col-lg-6 grid">
-              <ImageComponent src={"/demo_gift_banner.png"} height={300} />{" "}
+              <ImageComponent
+                src={themedCardData?.banner || "/demo_gift_banner.png"}
+                height={300}
+              />{" "}
             </div>
           </div>
         </div>
