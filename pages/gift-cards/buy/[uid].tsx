@@ -395,7 +395,7 @@ export default function index() {
                   <div className="col-lg-12">
                     <div className="form-group p2pSelectFilter">
                       <h6 className="gift-buy-input-label font-normal mb-3 border-bottom-dashed">
-                        Quantity
+                        {t(`Quantity`)}
                       </h6>
                       <div className="d-flex buy-input-bg py-2 rounded">
                         <input
@@ -415,7 +415,7 @@ export default function index() {
                 <div className="col-lg-12">
                   <div className="form-group p2pSelectFilter">
                     <h6 className="gift-buy-input-label font-normal mb-3">
-                      Note (Optional)
+                      {t(`Note (Optional)`)}
                     </h6>
                     <div className="d-flex buy-input-bg py-2 rounded">
                       <textarea
@@ -432,7 +432,7 @@ export default function index() {
                   <div className="form-group p2pSelectFilter">
                     <div className=" d-flex align-items-center gap-10">
                       <h6 className="gift-buy-input-label font-normal  border-bottom-dashed">
-                        Lock
+                        {t(`Lock`)}
                       </h6>
 
                       <label className="gift-card-buy-switch mb-0">
@@ -447,9 +447,9 @@ export default function index() {
 
                     <div>
                       <small>
-                        Lorem Ipsum is simply dummy text of the printing and
+                        {t(`Lorem Ipsum is simply dummy text of the printing and
                         typesetting industry. Lorem Ipsum has been the
-                        industry's
+                        industry's`)}
                       </small>
                     </div>
                   </div>
@@ -460,7 +460,7 @@ export default function index() {
                     <div className="col-lg-8">
                       <div className="row mb-2">
                         <div className="col-lg-5 col-md-5 col-6">
-                          <p className="font-normal">Fees</p>
+                          <p className="font-normal">{t(`Fees`)}</p>
                         </div>
                         <div className="col-lg-7 col-md-7 col-6">
                           <p className="font-normal">0</p>
@@ -469,7 +469,7 @@ export default function index() {
 
                       <div className="row">
                         <div className="col-lg-5 col-md-5 col-6">
-                          <h5>Total Amount</h5>
+                          <h5>{t(`Total Amount`)}</h5>
                         </div>
                         <div className="col-lg-7 col-md-7 col-6">
                           <h5>{`${
@@ -492,7 +492,7 @@ export default function index() {
                         disabled={amount !== "" && wallet !== "" ? false : true}
                         onClick={handleBuyCard}
                       >
-                        Buy
+                        {t(`Buy`)}
                       </button>
                     </div>
                   </div>
@@ -505,7 +505,7 @@ export default function index() {
                   >
                     <div className="d-flex align-items-center">
                       <h5 className="font-normal text-primary-color inline-block">
-                        <u>Buy multiple gift cards</u>{" "}
+                        <u>{t(`Buy multiple gift cards`)}</u>{" "}
                       </h5>
                       <span>
                         <FaAngleRight size={15} />
