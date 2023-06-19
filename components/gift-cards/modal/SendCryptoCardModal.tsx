@@ -18,12 +18,10 @@ export default function SendCryptoCardModal({
   const [phone, setPhone] = useState("");
   const [massage, setMassage] = useState("");
   const handleCryptoType = (event: any) => {
-    console.log("event", event);
     setActiveType(event);
   };
 
   const handleGiftCardSubmit = async () => {
-    console.log("shbsbfj", giftCardData);
     if (activeType.value == 1 && !email) {
       toast.error("Email Is Required");
       return;

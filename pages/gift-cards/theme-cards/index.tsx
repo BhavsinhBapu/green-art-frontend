@@ -32,7 +32,6 @@ export default function Index() {
   const getCategoryData = async () => {
     setLoading(true);
     const { data } = await request.get(`/gift-card/gift-card-themes-page`);
-    console.log("data", data);
     if (!data.success) {
       toast.error(data.message);
       setLoading(false);

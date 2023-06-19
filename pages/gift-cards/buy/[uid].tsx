@@ -31,11 +31,9 @@ export default function Index() {
   const [quantity, setQuantity] = useState(0);
   const { t } = useTranslation("common");
   const handleCoins = async (event: any) => {
-    console.log("event", event);
     const { data } = await request.get(
       `/gift-card/gift-card-wallet-data?coin_type=${event.coin_type}`
     );
-    console.log("data", data);
     if (!data.success) {
       return;
     }
@@ -52,7 +50,6 @@ export default function Index() {
   };
 
   useEffect(() => {
-    console.log("Router", router?.query?.uid);
     if (router?.query?.uid) {
       getBuyPageData();
     }
@@ -69,7 +66,6 @@ export default function Index() {
     setBuyPageData(data.data);
     setIsError(false);
   };
-  console.log("data", buyPageData);
 
   const handleAmount = (e: any) => {
     if (Number(e.target.value) > Number(availableCoin)) {

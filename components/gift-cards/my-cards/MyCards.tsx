@@ -13,7 +13,6 @@ export default function MyCards({ myCards }: any) {
     useState(false);
   const [giftCardData, setGiftCardData] = useState({});
   const myCardHandle = (cardData: any) => {
-    console.log("adt", cardData);
     setGiftCardData(cardData);
     setIsModalOpen(true);
   };
@@ -22,7 +21,6 @@ export default function MyCards({ myCards }: any) {
     setIsSendCryptoCardModalOpen(true);
     setIsModalOpen(false);
   };
-  console.log("myCards", myCards);
   return (
     <div className="container pb-80">
       <div className="d-flex justify-content-between">

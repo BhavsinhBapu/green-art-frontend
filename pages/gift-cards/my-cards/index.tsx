@@ -32,7 +32,6 @@ export default function Index() {
   }, []);
 
   const myCardHandle = (cardData: any) => {
-    console.log("adt", cardData);
     setGiftCardData(cardData);
     setIsModalOpen(true);
   };

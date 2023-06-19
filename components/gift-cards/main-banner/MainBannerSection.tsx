@@ -27,7 +27,6 @@ export default function MainBannerSection({
   const handleGiftCard = async () => {
     if (!code) return;
     const { data } = await request.get(`gift-card/check-card?code=${code}`);
-    console.log("data", data);
     if (!data.success) {
       setGiftCardData({});
       toast.error(data.message);
@@ -46,11 +45,9 @@ export default function MainBannerSection({
   };
 
   const addGiftCardHandler = async () => {
-    console.log("addGiftCardHandler", code);
     const { data } = await request.get(`gift-card/add-gift-card?code=${code}`);
     if (data.success) {
       setCode("");
-      console.log("add", data);
       setIsModalOpen(false);
       return;
     }
