@@ -15111,14 +15111,13 @@ input:checked + .gift-card-buy-slider:before {
   border: var(--primary-color) 3px solid;
 }
 
-.cursor-not-allowed{
+.cursor-not-allowed {
   cursor: not-allowed;
 }
 
-.capitalize{
+.capitalize {
   text-transform: capitalize;
 }
-
 
 .gift-card-modal {
   visibility: visible;
@@ -15131,11 +15130,10 @@ input:checked + .gift-card-buy-slider:before {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(77, 77, 77, .7);
-  transition: all .4s;
+  background: rgba(77, 77, 77, 0.7);
+  transition: all 0.4s;
   z-index: 10;
 }
-
 
 .gift-card-modal__content {
   border-radius: 4px;
@@ -15162,35 +15160,34 @@ input:checked + .gift-card-buy-slider:before {
   text-decoration: none;
 }
 
-.send-crypto-w{
+.send-crypto-w {
   width: 50%;
 }
 
-.h-40{
+.h-40 {
   height: 42px !important;
 }
 
-.active-paginate-cls{
+.active-paginate-cls {
   background: var(--primary-color) !important;
-    color: white !important;
-    border-radius: 3px;
-    font-weight: bold;
+  color: white !important;
+  border-radius: 3px;
+  font-weight: bold;
 }
 
-.text-25{
+.text-25 {
   font-size: 25px;
 }
 
-.bg-primary-banner{
+.bg-primary-banner {
   background-color: var(--primary-color);
 }
 
-.feature-icon-img{
+.feature-icon-img {
   width: 50px;
   height: 50px;
   border-radius: 100%;
 }
-
 
 @media (max-width: 991px) {
   .text-45 {
@@ -15215,7 +15212,7 @@ input:checked + .gift-card-buy-slider:before {
   .buy-amount-select-section-width {
     width: 50%;
   }
-  .send-crypto-w{
+  .send-crypto-w {
     width: 100%;
   }
 }
