@@ -104,15 +104,15 @@ export default function index() {
           <div className="row">
             <div className="col-lg-9 col-md-9 col-6">
               <div>
-                <h3>Themed Gift Cards</h3>
-                <small>Send a crypto gift card for any occasion</small>
+                <h3>{t(`Themed Gift Cards`)}</h3>
+                <small>{t(`Send a crypto gift card for any occasion`)}</small>
               </div>
             </div>
 
             <div className="col-lg-3 col-md-3 col-6">
               <div className="d-flex align-items-center gap-10 border px-2 rounded ">
                 <span>
-                  <b>Category:</b>{" "}
+                  <b>{t(`Category:`)}</b>{" "}
                 </span>
                 <CUstomSelect
                   options={categories}
@@ -139,7 +139,9 @@ export default function index() {
               ))}
             </div>
           ) : (
-            <div className="mt-3 no-gift-card">No Gift Card Avilable</div>
+            <div className="mt-3 no-gift-card">
+              {t(`No Gift Card Avilable`)}
+            </div>
           )}
 
           <div className="row justify-content-center mt-5">
