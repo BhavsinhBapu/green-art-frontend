@@ -145,9 +145,9 @@ export default function MainBannerSection({
                   </button>
                 </div>
                 <p className="gift-font-color line-16 my-3 text-12">
-                  {activeBtn === "redeem" && t(gif_card_redeem_description)}
-                  {activeBtn === "add" && t(gif_card_add_card_description)}
-                  {activeBtn === "check" && t(gif_card_check_card_description)}
+                  {activeBtn === "redeem" && gif_card_redeem_description}
+                  {activeBtn === "add" && gif_card_add_card_description}
+                  {activeBtn === "check" && gif_card_check_card_description}
                 </p>
               </div>
             </div>
