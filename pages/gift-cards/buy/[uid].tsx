@@ -12,6 +12,8 @@ import { RiCreativeCommonsZeroFill } from "react-icons/ri";
 import { useRouter } from "next/router";
 import request from "lib/request";
 import Error from "next/error";
+import { useSelector } from "react-redux";
+import { RootState } from "state/store";
 
 const options = [
   { value: "chocolate", label: "Chocolate" },
@@ -19,6 +21,7 @@ const options = [
   { value: "vanilla", label: "Vanilla" },
 ];
 export default function index() {
+  const { settings } = useSelector((state: RootState) => state.common);
   const router = useRouter();
   const [isSingle, setIsSingle] = useState(true);
   const [buyPageData, setBuyPageData] = useState<any>(null);
@@ -146,7 +149,10 @@ export default function index() {
                 <div className="text-center">
                   <div className="gift-card-buy-icon">
                     {buyPageData?.feature_one_icon ? (
-                      <img className="feature-icon-img" src={buyPageData.feature_one_icon} />
+                      <img
+                        className="feature-icon-img"
+                        src={buyPageData.feature_one_icon}
+                      />
                     ) : (
                       <RiCreativeCommonsZeroFill size={50} />
                     )}
@@ -158,7 +164,10 @@ export default function index() {
                 <div className="text-center">
                   <div className="gift-card-buy-icon">
                     {buyPageData?.feature_one_icon ? (
-                      <img className="feature-icon-img" src={buyPageData.feature_two_icon} />
+                      <img
+                        className="feature-icon-img"
+                        src={buyPageData.feature_two_icon}
+                      />
                     ) : (
                       <RiCreativeCommonsZeroFill size={50} />
                     )}
@@ -170,7 +179,10 @@ export default function index() {
                 <div className="text-center">
                   <div className="gift-card-buy-icon">
                     {buyPageData?.feature_one_icon ? (
-                      <img className="feature-icon-img" src={buyPageData.feature_three_icon} />
+                      <img
+                        className="feature-icon-img"
+                        src={buyPageData.feature_three_icon}
+                      />
                     ) : (
                       <RiCreativeCommonsZeroFill size={50} />
                     )}
@@ -341,7 +353,7 @@ export default function index() {
                     </div>
 
                     <div className="buy-input-bg p-3 rounded buy-checkbox">
-                      <div className="d-flex gap-20 mb-3">
+                      <div className="d-flex gap-20">
                         <input
                           type="checkbox"
                           onChange={() => setWallet("spot")}
@@ -356,18 +368,20 @@ export default function index() {
                           </h6>
                         </div>
                       </div>
-                      <div className="d-flex gap-20">
-                        <input
-                          type="checkbox"
-                          onChange={() => setWallet("p2p")}
-                          checked={wallet === "p2p"}
-                          className="checkbox-w-25"
-                        />
-                        <div className="d-flex justify-content-between w-full">
-                          <h6 className="font-normal"> P2P Wallet</h6>
-                          <h6 className="font-normal"> 0 BTC</h6>
+                      {parseInt(settings?.p2p_module) === 1 && (
+                        <div className="d-flex gap-20 mt-3">
+                          <input
+                            type="checkbox"
+                            onChange={() => setWallet("p2p")}
+                            checked={wallet === "p2p"}
+                            className="checkbox-w-25"
+                          />
+                          <div className="d-flex justify-content-between w-full">
+                            <h6 className="font-normal"> P2P Wallet</h6>
+                            <h6 className="font-normal"> 0 BTC</h6>
+                          </div>
                         </div>
-                      </div>
+                      )}
                     </div>
                   </div>
                 </div>
