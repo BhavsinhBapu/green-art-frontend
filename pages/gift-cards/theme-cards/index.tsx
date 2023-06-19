@@ -10,12 +10,12 @@ import { toast } from "react-toastify";
 const limit = 1;
 export default function index() {
   const { t } = useTranslation();
-  const [themedCardData, setThemedCardData] = useState({});
+  const [themedCardData, setThemedCardData] = useState<any>({});
   const [activeCategory, setActiveCategory] = useState({
     value: "all",
     label: "All",
   });
-  const [allGiftCards, setAllGiftCards] = useState({});
+  const [allGiftCards, setAllGiftCards] = useState<any>({});
   const [categories, setCategories] = useState([
     {
       value: "all",

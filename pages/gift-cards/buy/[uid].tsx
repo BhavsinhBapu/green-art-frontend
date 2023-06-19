@@ -25,7 +25,7 @@ export default function index() {
   const router = useRouter();
   const [isSingle, setIsSingle] = useState(true);
   const [buyPageData, setBuyPageData] = useState<any>(null);
-  const [selectCoin, setSelectCoin] = useState(null);
+  const [selectCoin, setSelectCoin] = useState<any>(null);
   const [availableCoin, setAvailableCoin] = useState(0);
   const [isError, setIsError] = useState(false);
   const [amount, setAmount] = useState("");
@@ -89,7 +89,7 @@ export default function index() {
       return;
     }
 
-    let buyDetails = {
+    let buyDetails: any = {
       coin_type: selectCoin?.coin_type,
       wallet_type: wallet === "spot" ? 1 : 2,
       amount: amount,
@@ -264,7 +264,7 @@ export default function index() {
 
               {/* al gift cards  start*/}
               <div className="row buy-all-gift-cards">
-                {buyPageData?.banners.map((item: object, index: number) => (
+                {buyPageData?.banners.map((item: any, index: number) => (
                   <div className="col-lg-4 col-md-4 col-6 my-1" key={index}>
                     <div
                       className={`${

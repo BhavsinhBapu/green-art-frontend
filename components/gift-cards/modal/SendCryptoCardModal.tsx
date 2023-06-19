@@ -47,7 +47,7 @@ export default function SendCryptoCardModal({
     setIsSendCryptoCardModalOpen(false);
   };
 
-  const [activeType, setActiveType] = useState({});
+  const [activeType, setActiveType] = useState<any>({});
   return (
     <div id="demo-modal" className="gift-card-modal">
       <div className="gift-card-modal__content p-5 send-crypto-w">

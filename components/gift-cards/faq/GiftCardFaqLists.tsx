@@ -1,7 +1,10 @@
 import React from "react";
 import GiftCardsFaq from "./GiftCardsFaq";
 import useTranslation from "next-translate/useTranslation";
-
+type faq = {
+  question: string;
+  answer: string;
+};
 export default function GiftCardFaqLists({ faqLists }: any) {
   const { t } = useTranslation();
   console.log("faqs", faqLists);
@@ -18,7 +21,7 @@ export default function GiftCardFaqLists({ faqLists }: any) {
           </div>
         </div>
         <div className="row mt-4">
-          {faqLists.map((item: object, index: number) => (
+          {faqLists.map((item: faq, index: number) => (
             <GiftCardsFaq key={index} faq={item} index={index} />
           ))}
         </div>

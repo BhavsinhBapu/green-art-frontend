@@ -15145,12 +15145,6 @@ input:checked + .gift-card-buy-slider:before {
 
 .gift-card-modal__footer {
   text-align: right;
-  a {
-    color: #585858;
-  }
-  i {
-    color: #d02d2c;
-  }
 }
 .gift-card-modal__close {
   position: absolute;

@@ -18,8 +18,8 @@ const options = [
 const limit = 2;
 export default function index() {
   const { t } = useTranslation();
-  const [myCards, setMyCards] = useState({});
-  const [pageData, setPageData] = useState({});
+  const [myCards, setMyCards] = useState<any>({});
+  const [pageData, setPageData] = useState<any>({});
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [giftCardData, setGiftCardData] = useState({});
   const [activeStatus, setActiveStatus] = useState("1");
