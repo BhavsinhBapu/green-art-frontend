@@ -6,6 +6,7 @@ import request from "lib/request";
 import useTranslation from "next-translate/useTranslation";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import ReactPaginate from "react-paginate";
 
 const options = [
   { value: "1", label: "Active" },
@@ -64,6 +65,10 @@ export default function index() {
     const params = new URLSearchParams(queryString);
     const pageValue = params.get("page");
     getMyCards(activeStatus, limit, pageValue);
+  };
+
+  const handlePageClick = (event: any) => {
+    getMyCards(activeStatus, limit, event.selected + 1);
   };
 
   return (
@@ -138,45 +143,25 @@ export default function index() {
                   </div>
                 ))}
               </div>
-              <div className="pagination-wrapper" id="assetBalances_paginate">
-                <span>
-                  {myCards?.links?.map((link: any, index: number) =>
-                    link.label === "&laquo; Previous" ? (
-                      <a
-                        className="paginate-button"
-                        onClick={() => LinkTopaginationString(link)}
-                        key={index}
-                      >
-                        <i className="fa fa-angle-left"></i>
-                      </a>
-                    ) : link.label === "Next &raquo;" ? (
-                      <a
-                        className="paginate-button"
-                        onClick={() => LinkTopaginationString(link)}
-                        key={index}
-                      >
-                        <i className="fa fa-angle-right"></i>
-                      </a>
-                    ) : (
-                      <a
-                        className={`paginate_button paginate-number ${
-                          link.active === true && "text-warning"
-                        }`}
-                        aria-controls="assetBalances"
-                        data-dt-idx="1"
-                        onClick={() => LinkTopaginationString(link)}
-                        key={index}
-                      >
-                        {link.label}
-                      </a>
-                    )
-                  )}
-                </span>
-              </div>
             </>
           ) : (
             <div className="mt-3 no-gift-card">No Gift Card Avilable</div>
           )}
+        </div>
+        <div className="row justify-content-center mt-5">
+          <ReactPaginate
+            nextLabel=">"
+            onPageChange={handlePageClick}
+            pageRangeDisplayed={5}
+            pageCount={Math.ceil(myCards.total / limit)}
+            previousLabel="<"
+            renderOnZeroPageCount={null}
+            className={`d-flex align-items-center justify-content-center`}
+            pageLinkClassName={`paginate-number`}
+            activeLinkClassName={`active-paginate-cls`}
+            previousLinkClassName={`text-primary-color text-25 mr-2`}
+            nextLinkClassName={`text-primary-color text-25 ml-2`}
+          />
         </div>
       </div>
 

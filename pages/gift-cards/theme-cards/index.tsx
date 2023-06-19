@@ -4,11 +4,17 @@ import request from "lib/request";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import ReactPaginate from "react-paginate";
 import { toast } from "react-toastify";
 
+const limit = 1;
 export default function index() {
   const { t } = useTranslation();
   const [themedCardData, setThemedCardData] = useState({});
+  const [activeCategory, setActiveCategory] = useState({
+    value: "all",
+    label: "All",
+  });
   const [allGiftCards, setAllGiftCards] = useState({});
   const [categories, setCategories] = useState([
     {
@@ -20,7 +26,7 @@ export default function index() {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     getCategoryData();
-    getThemedGiftCardData("all", 1, 10);
+    getThemedGiftCardData("all", 1, limit);
   }, []);
 
   const getCategoryData = async () => {
@@ -53,7 +59,13 @@ export default function index() {
   };
 
   const handleCategory = (event: any) => {
-    getThemedGiftCardData(event.value, 1, 10);
+    getThemedGiftCardData(event.value, 1, limit);
+    setActiveCategory(event);
+  };
+
+  const handlePageClick = (event: any) => {
+    console.log("event", event)
+    getThemedGiftCardData(activeCategory.value, event.selected + 1, limit);
   };
 
   if (loading) return <></>;
@@ -126,6 +138,22 @@ export default function index() {
           ) : (
             <div className="mt-3 no-gift-card">No Gift Card Avilable</div>
           )}
+
+          <div className="row justify-content-center mt-5">
+            <ReactPaginate
+              nextLabel=">"
+              onPageChange={handlePageClick}
+              pageRangeDisplayed={5}
+              pageCount={Math.ceil(allGiftCards.total / limit)}
+              previousLabel="<"
+              renderOnZeroPageCount={null}
+              className={`d-flex align-items-center justify-content-center`}
+              pageLinkClassName={`paginate-number`}
+              activeLinkClassName={`active-paginate-cls`}
+              previousLinkClassName={`text-primary-color text-25 mr-2`}
+              nextLinkClassName={`text-primary-color text-25 ml-2`}
+            />
+          </div>
         </div>
       </div>
       {/* Themed Gift Cards end */}
