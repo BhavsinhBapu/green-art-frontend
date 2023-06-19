@@ -29,7 +29,7 @@ export default function Index() {
   const [pageData, setPageData] = useState<any>({});
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [giftCardData, setGiftCardData] = useState({});
-  const [activeStatus, setActiveStatus] = useState("1");
+  const [activeStatus, setActiveStatus] = useState("all");
   const [isSendCryptoCardModalOpen, setIsSendCryptoCardModalOpen] =
     useState(false);
 
