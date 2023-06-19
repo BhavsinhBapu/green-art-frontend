@@ -56,7 +56,7 @@ export default function MainBannerSection({
   };
 
   const redeemGiftCardHandler = async () => {
-    const { data } = await request.get(`gift-card/check-card?code=${code}`);
+    const { data } = await request.get(`gift-card/redeem-card?code=${code}`);
     if (data.success) {
       toast.success(data.message);
       setCode("");

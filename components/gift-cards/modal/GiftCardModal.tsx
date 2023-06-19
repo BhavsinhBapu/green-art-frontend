@@ -28,7 +28,9 @@ export default function GiftCardModal({
                 <div>
                   <div className="d-flex gap-10 buy-absolute-btn">
                     <BsGiftFill size={22} />
-                    <h4>{`${parseFloat(giftCardData?.card?.amount)} BTC`}</h4>
+                    <h4>{`${parseFloat(giftCardData?.card?.amount)} ${
+                      giftCardData?.card?.coin_type || ''
+                    }`}</h4>
                   </div>
                 </div>
               </div>
