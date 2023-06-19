@@ -19,6 +19,7 @@ const limit = 2;
 export default function index() {
   const { t } = useTranslation();
   const [myCards, setMyCards] = useState({});
+  const [pageData, setPageData] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [giftCardData, setGiftCardData] = useState({});
   const [activeStatus, setActiveStatus] = useState("1");
@@ -26,6 +27,7 @@ export default function index() {
     useState(false);
 
   useEffect(() => {
+    getMyCardPageData();
     getMyCards("1", limit, 1);
   }, []);
 
@@ -40,6 +42,16 @@ export default function index() {
     setIsModalOpen(false);
   };
 
+  const getMyCardPageData = async () => {
+    const { data } = await request.get(`/gift-card/my-gift-card-page`);
+
+    if (!data.success) {
+      toast.error(data.message);
+      return;
+    }
+    setPageData(data.data);
+  };
+
   const getMyCards = async (status: any, limit: any, page: any) => {
     const { data } = await request.get(
       `/gift-card/my-gift-card-list?status=${status}&limit=${limit}&page=${page}`
@@ -52,19 +64,8 @@ export default function index() {
   };
 
   const handleStatus = (event: any) => {
-    console.log("event", event);
     getMyCards(event.value, limit, 1);
     setActiveStatus(event.value);
-  };
-
-  const LinkTopaginationString = (links: any) => {
-    console.log("sfsf", myCards, links);
-    if (links.url === null) return;
-    if (links.label === myCards.current_page.toString()) return;
-    const queryString = links.url.split("?")[1];
-    const params = new URLSearchParams(queryString);
-    const pageValue = params.get("page");
-    getMyCards(activeStatus, limit, pageValue);
   };
 
   const handlePageClick = (event: any) => {
@@ -80,17 +81,21 @@ export default function index() {
             <div className="col-lg-6 d-flex align-items-center justify-content-center">
               <div>
                 <h1 className="text-45 text-capitalize font-bold gift-font-color">
-                  {t("My Cards")}
+                  {t(pageData?.header || "My Cards")}
                 </h1>
                 <p className="my-3 gift-font-color font-medium text-16">
                   {t(
-                    "Tradexpro exchange is such a marketplace where people can trade directly with each other"
+                    pageData?.description ||
+                      "Tradexpro exchange is such a marketplace where people can trade directly with each other"
                   )}
                 </p>
               </div>
             </div>
             <div className="col-lg-6 grid">
-              <ImageComponent src={"/demo_gift_banner.png"} height={300} />{" "}
+              <ImageComponent
+                src={pageData?.banner || "/demo_gift_banner.png"}
+                height={300}
+              />{" "}
             </div>
           </div>
         </div>
