@@ -15141,7 +15141,7 @@ input:checked + .gift-card-buy-slider:before {
   position: relative;
   width: 100%;
   max-width: 90%;
-  background: #fff;
+  background: var(--background-color);
 }
 
 .gift-card-modal__footer {
