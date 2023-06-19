@@ -1,6 +1,7 @@
 import { NoItemFound } from "components/NoItemFound/NoItemFound";
 import { CUstomSelect } from "components/common/CUstomSelect";
 import ImageComponent from "components/common/ImageComponent";
+import SectionLoading from "components/common/SectionLoading";
 import Footer from "components/common/footer";
 import request from "lib/request";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
@@ -28,6 +29,7 @@ export default function Index() {
   ]);
 
   const [loading, setLoading] = useState(true);
+  const [productLoading, setProductLoading] = useState(false);
   useEffect(() => {
     getCategoryData();
     getThemedGiftCardData("all", 1, limit);
@@ -51,14 +53,17 @@ export default function Index() {
     page: any,
     limit: any
   ) => {
+    setProductLoading(true);
     const { data } = await request.get(
       `/gift-card/get-gift-card-themes?uid=${category}&limit=${limit}&page=${page}`
     );
     if (!data.success) {
       toast.error(data.message);
+      setProductLoading(false);
       return;
     }
     setAllGiftCards(data.data);
+    setProductLoading(false);
   };
 
   const handleCategory = (event: any) => {
@@ -70,7 +75,7 @@ export default function Index() {
     getThemedGiftCardData(activeCategory.value, event.selected + 1, limit);
   };
 
-  // if (loading) return <></>;
+  if (loading) return <></>;
   return (
     <section>
       {/* gift card banner start */}
@@ -126,26 +131,31 @@ export default function Index() {
               </div>
             </div>
           </div>
-          
-          {allGiftCards?.data?.length > 0 ? (
-            <div className="row mt-3">
-              {allGiftCards?.data?.map((item: any, index: number) => (
-                <div className="col-lg-3 my-1" key={index}>
-                  <Link href={`/gift-cards/buy/${item.uid}`}>
-                    <a>
-                      <ImageComponent
-                        src={item.banner || "/demo_gift_banner.png"}
-                        height={300}
-                      />
-                    </a>
-                  </Link>
-                </div>
-              ))}
-            </div>
+          {productLoading ? (
+            <SectionLoading />
           ) : (
-            <div className="mt-4">
-              <NoItemFound />
-            </div>
+            <>
+              {allGiftCards?.data?.length > 0 ? (
+                <div className="row mt-3">
+                  {allGiftCards?.data?.map((item: any, index: number) => (
+                    <div className="col-lg-3 my-1" key={index}>
+                      <Link href={`/gift-cards/buy/${item.uid}`}>
+                        <a>
+                          <ImageComponent
+                            src={item.banner || "/demo_gift_banner.png"}
+                            height={300}
+                          />
+                        </a>
+                      </Link>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="mt-4">
+                  <NoItemFound />
+                </div>
+              )}
+            </>
           )}
 
           <div className="row justify-content-center mt-5">

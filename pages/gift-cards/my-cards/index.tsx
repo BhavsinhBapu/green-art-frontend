@@ -11,6 +11,7 @@ import Footer from "components/common/footer";
 import { NoItemFound } from "components/NoItemFound/NoItemFound";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
+import SectionLoading from "components/common/SectionLoading";
 
 const options = [
   { value: "1", label: "Active" },
@@ -22,6 +23,7 @@ const options = [
 const limit = 9;
 export default function Index() {
   const { t } = useTranslation();
+  const [loading, setLoading] = useState(false);
   const [myCards, setMyCards] = useState<any>({});
   const [pageData, setPageData] = useState<any>({});
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -50,20 +52,24 @@ export default function Index() {
 
     if (!data.success) {
       toast.error(data.message);
+
       return;
     }
     setPageData(data.data);
   };
 
   const getMyCards = async (status: any, limit: any, page: any) => {
+    setLoading(true);
     const { data } = await request.get(
       `/gift-card/my-gift-card-list?status=${status}&limit=${limit}&page=${page}`
     );
     if (!data.success) {
       toast.error(data.message);
+      setLoading(false);
       return;
     }
     setMyCards(data.data);
+    setLoading(false);
   };
 
   const handleStatus = (event: any) => {
@@ -130,7 +136,9 @@ export default function Index() {
               </div>
             </div>
           </div>
-          {myCards?.data?.length > 0 ? (
+          {loading ? (
+            <SectionLoading />
+          ) : myCards?.data?.length > 0 ? (
             <>
               <div className="row mt-3">
                 {myCards?.data?.map((item: any, index: number) => (
