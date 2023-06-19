@@ -19,7 +19,7 @@ const options = [
   { value: "4", label: "Trading" },
   { value: "5", label: "Locked" },
 ];
-const limit = 2;
+const limit = 9;
 export default function Index() {
   const { t } = useTranslation();
   const [myCards, setMyCards] = useState<any>({});

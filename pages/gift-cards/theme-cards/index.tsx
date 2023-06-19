@@ -11,7 +11,7 @@ import React, { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { toast } from "react-toastify";
 
-const limit = 1;
+const limit = 10;
 export default function Index() {
   const { t } = useTranslation();
   const [themedCardData, setThemedCardData] = useState<any>({});
@@ -70,7 +70,7 @@ export default function Index() {
     getThemedGiftCardData(activeCategory.value, event.selected + 1, limit);
   };
 
-  if (loading) return <></>;
+  // if (loading) return <></>;
   return (
     <section>
       {/* gift card banner start */}
@@ -126,6 +126,7 @@ export default function Index() {
               </div>
             </div>
           </div>
+          
           {allGiftCards?.data?.length > 0 ? (
             <div className="row mt-3">
               {allGiftCards?.data?.map((item: any, index: number) => (
