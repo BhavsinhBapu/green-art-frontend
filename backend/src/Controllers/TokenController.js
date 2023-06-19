@@ -780,6 +780,7 @@ async function getLatestEvents(req, res)
         if (parseInt(networkType) == 6) {
             await trc20Token.getTrc20LatestEvent(req,res);
         } else {
+            
             let contractJsons = contractJson();
             let prevBlock = 1000;
             const contractAddress = req.body.contract_address;
@@ -794,7 +795,6 @@ async function getLatestEvents(req, res)
             if (numberOfBlock) {
                 prevBlock = numberOfBlock;
             }
-
             let fromBlockNumber = latestBlockNumber - prevBlock;
 
             if (lastBlockNumber > 0) {
@@ -804,7 +804,6 @@ async function getLatestEvents(req, res)
                     fromBlockNumber = lastBlockNumber;
                 }
             } 
-
             const result = await getBlockDetails(contract,fromBlockNumber,latestBlockNumber);
             
           if (result.status === true) {
@@ -824,7 +823,6 @@ async function getLatestEvents(req, res)
                   };
                   resultData.push(innerData)
               });
-              
               res.json({
                   status: true,
                   message: result.message,
