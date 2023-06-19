@@ -25,7 +25,7 @@ const AllSellOrders = ({ OpenBooksell }: any) => {
           >
             {t("Processing")}...
           </div>
-          <div className="dataTables_scroll">
+          <div className="">
             <div
               className="dataTables_scrollHead"
               style={{
