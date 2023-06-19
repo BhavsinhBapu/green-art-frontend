@@ -9,6 +9,8 @@ import { toast } from "react-toastify";
 import ReactPaginate from "react-paginate";
 import Footer from "components/common/footer";
 import { NoItemFound } from "components/NoItemFound/NoItemFound";
+import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
+import { GetServerSideProps } from "next";
 
 const options = [
   { value: "1", label: "Active" },
@@ -191,3 +193,10 @@ export default function Index() {
     </section>
   );
 }
+export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
+  await SSRAuthCheck(ctx, "/gift-cards");
+
+  return {
+    props: {},
+  };
+};

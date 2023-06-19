@@ -14991,7 +14991,7 @@ body::-webkit-scrollbar {
 }
 
 .buy-input-bg {
-  background: #f5f5f5 !important;
+  background: var(--background-color) !important;
 }
 
 .buy-amount-select-section .custom-select__control {
