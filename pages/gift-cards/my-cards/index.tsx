@@ -14,6 +14,7 @@ import { GetServerSideProps } from "next";
 import SectionLoading from "components/common/SectionLoading";
 
 const options = [
+  { value: "all", label: "All" },
   { value: "1", label: "Active" },
   { value: "2", label: "Redeemed" },
   { value: "3", label: "Transfared" },
@@ -34,7 +35,7 @@ export default function Index() {
 
   useEffect(() => {
     getMyCardPageData();
-    getMyCards("1", limit, 1);
+    getMyCards("all", limit, 1);
   }, []);
 
   const myCardHandle = (cardData: any) => {
