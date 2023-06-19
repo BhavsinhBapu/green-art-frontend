@@ -1,3 +1,4 @@
+import { url } from "inspector";
 import useTranslation from "next-translate/useTranslation";
 import React from "react";
 import { BsArrowRight } from "react-icons/bs";
@@ -13,7 +14,7 @@ export default function SecondBannerSection({
 }) {
   const { t } = useTranslation();
   return (
-    <div className="bg-card-primary-color py-80">
+    <div className="bg-card-primary-color py-80" style={{backgroundImage: `url(${second_banner})` }}>
       <div className="container">
         <div className="row">
           <div className="col-lg-8">

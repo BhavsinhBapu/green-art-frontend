@@ -122,7 +122,10 @@ export default function index() {
   if (isError) return <Error statusCode={404} />;
   return (
     <section className="main-bg">
-      <div className="bg-primary-color">
+      <div
+        className="bg-primary-banner"
+        style={{ backgroundImage: `url(${buyPageData?.banner})` }}
+      >
         <div className="container py-5">
           <div className="row">
             <div className="col-lg-6">
@@ -142,21 +145,39 @@ export default function index() {
               <div className="d-flex justify-content-between align-items-center h-full gift-card-buy-banner-margin">
                 <div className="text-center">
                   <div className="gift-card-buy-icon">
-                    <RiCreativeCommonsZeroFill size={50} />
+                    {buyPageData?.feature_one_icon ? (
+                      <img className="feature-icon-img" src={buyPageData.feature_one_icon} />
+                    ) : (
+                      <RiCreativeCommonsZeroFill size={50} />
+                    )}
                   </div>
-                  <h4 className="font-normal">{t("Zero Fees")}</h4>
+                  <h4 className="font-normal">
+                    {t(buyPageData?.feature_one || "Zero Fees")}
+                  </h4>
                 </div>
                 <div className="text-center">
                   <div className="gift-card-buy-icon">
-                    <RiCreativeCommonsZeroFill size={50} />
+                    {buyPageData?.feature_one_icon ? (
+                      <img className="feature-icon-img" src={buyPageData.feature_two_icon} />
+                    ) : (
+                      <RiCreativeCommonsZeroFill size={50} />
+                    )}
                   </div>
-                  <h4 className="font-normal">{t("270+ Tokens")}</h4>
+                  <h4 className="font-normal">
+                    {t(buyPageData?.feature_two || "270+ Tokens")}
+                  </h4>
                 </div>
                 <div className="text-center">
                   <div className="gift-card-buy-icon">
-                    <RiCreativeCommonsZeroFill size={50} />
+                    {buyPageData?.feature_one_icon ? (
+                      <img className="feature-icon-img" src={buyPageData.feature_three_icon} />
+                    ) : (
+                      <RiCreativeCommonsZeroFill size={50} />
+                    )}
                   </div>
-                  <h4 className="font-normal">{t("Instant Transfer")}</h4>
+                  <h4 className="font-normal">
+                    {t(buyPageData?.feature_three || "Instant Transfer")}
+                  </h4>
                 </div>
               </div>
             </div>
