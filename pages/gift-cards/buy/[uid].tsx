@@ -23,7 +23,7 @@ export default function Index() {
   const router = useRouter();
   const [isSingle, setIsSingle] = useState(true);
   const [buyPageData, setBuyPageData] = useState<any>(null);
-  const [selectCoin, setSelectCoin] = useState<any>(null);
+  const [selectCoin, setSelectCoin] = useState<any>({});
   const [availableCoin, setAvailableCoin] = useState(0);
   const [isError, setIsError] = useState(false);
   const [amount, setAmount] = useState("");
@@ -235,7 +235,9 @@ export default function Index() {
                   <div>
                     <div className="d-flex gap-10 buy-absolute-btn">
                       <BsGiftFill size={22} />
-                      <h4>{`${amount !== "" ? amount : 0} BTC`}</h4>
+                      <h4>{`${amount !== "" ? amount : 0} ${
+                        selectCoin?.label || ''
+                      }`}</h4>
                     </div>
                   </div>
                 </div>
@@ -316,7 +318,7 @@ export default function Index() {
                         }
                       /> */}
                       <span className="buy-amount-select-section-width pl-3">
-                        {selectCoin?.label}
+                        {selectCoin?.label || ''}
                       </span>
                     </div>
                   </div>
@@ -331,7 +333,7 @@ export default function Index() {
                         </h6>
                         <div className="text-primary-color">
                           <h6 className="gift-buy-input-label mr-2">
-                            {t(`${Number(availableCoin)} BTC`)}
+                            {t(`${Number(availableCoin)} ${selectCoin?.label || ''}`)}
                           </h6>
                         </div>
                       </div>
@@ -349,7 +351,7 @@ export default function Index() {
                           <h6 className="font-normal"> {t(`Spot Wallet`)}</h6>
                           <h6 className="font-normal">
                             {" "}
-                            {t(`${availableCoin} BTC`)}
+                            {t(`${availableCoin} ${selectCoin?.label || ''}`)}
                           </h6>
                         </div>
                       </div>
@@ -364,7 +366,7 @@ export default function Index() {
                           <div className="d-flex justify-content-between w-full">
                             <h6 className="font-normal"> {t(`P2P Wallet`)}</h6>
                             <h6 className="font-normal">
-                              {t(`${availableCoin} BTC`)}
+                              {t(`${availableCoin} ${selectCoin?.label || ''}`)}
                             </h6>
                           </div>
                         </div>
@@ -461,7 +463,7 @@ export default function Index() {
                                 ? amount
                                 : Number(amount) * Number(quantity)
                               : 0
-                          } BTC`}</h5>
+                          } ${selectCoin?.label || ''}`}</h5>
                         </div>
                       </div>
                     </div>

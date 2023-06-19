@@ -24,9 +24,9 @@ export default function SecondBannerSection({
             <p className="my-3 gift-font-color font-medium text-16">
               {t(second_description)}
             </p>
-            <button className="gift-btn bg-primary-color border-primary-color mt-40">
+            {/* <button className="gift-btn bg-primary-color border-primary-color mt-40">
               {t("Learn More")} <BsArrowRight />{" "}
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
