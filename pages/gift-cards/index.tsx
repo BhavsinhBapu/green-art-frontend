@@ -1,4 +1,5 @@
 import ImageComponent from "components/common/ImageComponent";
+import Footer from "components/common/footer";
 import GiftCardFaqLists from "components/gift-cards/faq/GiftCardFaqLists";
 import GiftCardsFaq from "components/gift-cards/faq/GiftCardsFaq";
 import MainBannerSection from "components/gift-cards/main-banner/MainBannerSection";
@@ -38,11 +39,11 @@ export default function Index({ giftCards }: any) {
       {/* gift card banner end */}
 
       {/* Themed Gift Cards start */}
-      <ThemedGiftCardSection giftCards={banners}/>
+      <ThemedGiftCardSection giftCards={banners} />
       {/* Themed Gift Cards end */}
 
       {/* my gift card  start*/}
-      <MyCards myCards={my_cards}/>
+      <MyCards myCards={my_cards} />
       {/* my gift card  end*/}
 
       {/* feature section start*/}
@@ -56,6 +57,7 @@ export default function Index({ giftCards }: any) {
       {/* faq section start*/}
       <GiftCardFaqLists faqLists={faq} />
       {/* faq section end*/}
+      <Footer />
     </section>
   );
 }

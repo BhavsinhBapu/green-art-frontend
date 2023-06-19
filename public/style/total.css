@@ -14818,6 +14818,7 @@ body::-webkit-scrollbar {
   text-transform: capitalize;
   border-color: #eaecef !important;
   display: flex;
+  color: var(--black);
   align-items: center;
   gap: 5px;
 }
