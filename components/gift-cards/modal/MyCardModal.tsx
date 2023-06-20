@@ -62,7 +62,7 @@ export default function MyCardModal({
   return (
     <div id="demo-modal" className="gift-card-modal">
       <div className="gift-card-modal__content p-5">
-        <h2>Gift Card Details</h2>
+        <h2>{t(`Gift Card Details`)}</h2>
 
         <div className="row my-5">
           <div className="col-lg-6 col-md-6 col-12">
@@ -90,30 +90,30 @@ export default function MyCardModal({
             </h5>
             <div className="mt-3">
               <p>
-                <strong>Coin Type: </strong> {t(giftCardData?.coin_type)}
+                <strong>{t(`Coin Type:`)} </strong> {t(giftCardData?.coin_type)}
               </p>
               <p>
-                <strong>Category: </strong>{" "}
+                <strong>{t(`Category:`)} </strong>{" "}
                 {t(giftCardData?.banner?.category?.name)}
               </p>
               {giftCardData?.lock && (
                 <p>
-                  <strong>Lock: </strong> {t(giftCardData?.lock)}
+                  <strong>{t(`Lock:`)} </strong> {t(giftCardData?.lock)}
                 </p>
               )}
 
               {giftCardData?.wallet_type && (
                 <p>
-                  <strong>Wallet Type: </strong> {t(giftCardData?.wallet_type)}
+                  <strong>{t(`Wallet Type:`)} </strong> {t(giftCardData?.wallet_type)}
                 </p>
               )}
 
               <p>
-                <strong>Status: </strong> {t(giftCardData?.status ?? "Active")}
+                <strong>{t(`Status:`)} </strong> {t(giftCardData?.status ?? "Active")}
               </p>
               <div className="d-flex align-items-center gap-10">
                 <p>
-                  <strong>Redeem Code: </strong>
+                  <strong>{t(`Redeem Code:`)} </strong>
                 </p>
                 {redeemCode !== "" ? (
                   <>
