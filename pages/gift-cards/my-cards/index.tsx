@@ -83,6 +83,10 @@ export default function Index() {
     getMyCards(activeStatus, limit, event.selected + 1);
   };
 
+  const handleModalData = () => {
+    getMyCards(activeStatus, limit, 1);
+  }
+
   return (
     <section>
       {/* gift card banner start */}
@@ -191,6 +195,8 @@ export default function Index() {
           giftCardData={giftCardData}
           setIsModalOpen={setIsModalOpen}
           sendCryptoCardModalHandler={sendCryptoCardModalHandler}
+          modalFunc={handleModalData}
+          isHome={false}
         />
       )}
       {isSendCryptoCardModalOpen && (

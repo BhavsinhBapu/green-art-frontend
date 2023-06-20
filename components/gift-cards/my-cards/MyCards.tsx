@@ -7,7 +7,7 @@ import MyCardModal from "../modal/MyCardModal";
 import SendCryptoCardModal from "../modal/SendCryptoCardModal";
 import { NoItemFound } from "components/NoItemFound/NoItemFound";
 
-export default function MyCards({ myCards }: any) {
+export default function MyCards({ myCards, hanldeMyCards }: any) {
   const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSendCryptoCardModalOpen, setIsSendCryptoCardModalOpen] =
@@ -71,6 +71,8 @@ export default function MyCards({ myCards }: any) {
           giftCardData={giftCardData}
           setIsModalOpen={setIsModalOpen}
           sendCryptoCardModalHandler={sendCryptoCardModalHandler}
+          isHome= {true}
+          modalFunc={hanldeMyCards}
         />
       )}
       {isSendCryptoCardModalOpen && (

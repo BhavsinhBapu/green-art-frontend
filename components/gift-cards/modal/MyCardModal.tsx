@@ -9,25 +9,33 @@ export default function MyCardModal({
   setIsModalOpen,
   giftCardData,
   sendCryptoCardModalHandler,
+  modalFunc,
+  isHome,
 }: any) {
   const { t } = useTranslation();
   const changeStatusGiftCard = async () => {
     let buyDetails: any = {
-      coin_type: giftCardData?.coin_type,
-      wallet_type: 1,
-      uid: giftCardData.uid,
-      status: giftCardData?.lock_status,
-      amount: giftCardData?.amount,
-      banner_id: giftCardData?.gift_card_banner_id,
+      card_uid: giftCardData.uid,
       lock: giftCardData._lock == 1 ? 0 : 1,
-      bulk: 0,
     };
-    const { data } = await request.post(`/gift-card/buy-card`, {
+    if (isHome) {
+      buyDetails = {
+        card_uid: giftCardData.uid,
+        lock: giftCardData._lock == 1 ? 0 : 1,
+        from: "home",
+      };
+    }
+    const { data } = await request.post(`/gift-card/update-card`, {
       ...buyDetails,
     });
     if (data.success) {
       toast.success(data.message);
       setIsModalOpen(false);
+      if (isHome) {
+        modalFunc(data.data.my_cards);
+        return;
+      }
+      modalFunc();
     } else {
       toast.error(data.message);
       setIsModalOpen(false);
