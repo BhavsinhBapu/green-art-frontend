@@ -40,7 +40,18 @@ export const AddPostThree = ({
     <div className="col-12 mt-4">
       <div className="buySellAddBox px-5 py-5 rounded">
         <div className="row">
-          <div className="col-md-6">
+          <div className="col-12">
+            <label className="">{t("Available Region[s]")}</label>
+            <CUstomSelect
+              options={Countries}
+              isSearchable={true}
+              isMulti={true}
+              placeholder="All Region[s]"
+              handleFunction={handleCountry}
+              defaultValue={selectedCountry}
+            />
+          </div>
+          <div className="col-md-6 mt-2">
             <label> {t("Terms [Optional]")}</label>
             <div className="P2psearchBox position-relative">
               <textarea
@@ -52,9 +63,7 @@ export const AddPostThree = ({
               ></textarea>
             </div>
           </div>
-        </div>
-        <div className="row mt-4">
-          <div className="col-md-6">
+          <div className="col-md-6 mt-2">
             <label> {t("Auto-reply [Optional]")}</label>
             <div className="P2psearchBox position-relative">
               <textarea
@@ -66,32 +75,48 @@ export const AddPostThree = ({
               ></textarea>
             </div>
           </div>
-          <div className="col-12 mt-4">
-            <label className="d-block pb-0 mb-0">{t("Counterparty Conditions")}</label>
-            <span>
-              {t("Adding counterparty requirements will reduce the exposure of your Ad")}
-            </span>
+        </div>
+        <div className="row">
+          {/* <div className="col-md-6">
+            <label> {t("Auto-reply [Optional]")}</label>
+            <div className="P2psearchBox position-relative">
+              <textarea
+                placeholder="Terms will be displayed the counterparty"
+                value={auto_reply}
+                onChange={(e) => {
+                  setAuto_reply(e.target.value);
+                }}
+              ></textarea>
+            </div>
+          </div> */}
+          <div className="col-12 mt-2">
+            <label className="d-block pb-0 mb-0">
+              <strong>{t("Counterparty Conditions")}</strong>
+            </label>
+            
             <div className="row">
-              <div className="col-md-6 col-lg-3 mt-3">
+              <div className="col-md-6 col-lg-6 col-12">
+                <label>{t("Register days")}</label>
                 <div className="adFromCheckBox">
-                  <p>{t("Register days")}</p>
                   <input
                     type="number"
                     value={registerDays}
-                    className="pricePoint_field"
+                    className="pricePoint_field custom-border-box"
+                    style={{ width: "100%", height:'41px' }}
                     onChange={(e) => {
                       setregisterDays(e.target.value);
                     }}
                   />
                 </div>
               </div>
-              <div className="col-md-6 col-lg-3 mt-3">
+              <div className="col-md-6 col-lg-6 col-12">
+                <label>{t("Coin holding")}</label>
                 <div className="adFromCheckBox">
-                  <p>{t("Coin holding")}</p>
                   <input
                     type="number"
+                    style={{ width: "100%", height:'41px' }}
                     value={coinHolding}
-                    className="pricePoint_field"
+                    className="pricePoint_field custom-border-box"
                     onChange={(e) => {
                       setcoinHolding(e.target.value);
                     }}
@@ -99,17 +124,11 @@ export const AddPostThree = ({
                 </div>
               </div>
             </div>
-            <label className="mt-4">{t("Available Region[s]")}</label>
-            <div className="col-md-3 p-0">
-              <CUstomSelect
-                options={Countries}
-                isSearchable={true}
-                isMulti={true}
-                placeholder="All Region[s]"
-                handleFunction={handleCountry}
-                defaultValue={selectedCountry}
-              />
-            </div>
+            <small>
+              {t(
+                "Adding counterparty requirements will reduce the exposure of your Ad"
+              )}
+            </small>
           </div>
         </div>
       </div>

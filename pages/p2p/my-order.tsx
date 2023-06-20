@@ -13,7 +13,7 @@ const P2pOrder = () => {
 
   return (
     <>
-      <div className="mb-5">
+      <div>
         <div className="section-top-wrap mb-25">
           <div className="overview-area">
             <div className="overview-left">

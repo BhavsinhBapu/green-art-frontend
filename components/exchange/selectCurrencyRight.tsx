@@ -145,7 +145,7 @@ const SelectCurrencyRight = () => {
                 // router.reload();
               }}
             >
-              {parseFloat(row.last_price).toFixed(8)}
+              {parseFloat(row.last_price)}
             </span>
           </Tooltip>
         );

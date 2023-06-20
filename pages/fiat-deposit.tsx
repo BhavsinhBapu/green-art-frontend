@@ -52,6 +52,7 @@ const Deposit = () => {
       }
     });
     setFaqs(tempFaq);
+
     if (parseInt(settings.currency_deposit_faq_status) === 1) {
       setFullScreen(true);
     } else if (tempFaq.length === 0) {
@@ -69,8 +70,10 @@ const Deposit = () => {
     setLoading(false);
   };
   useEffect(() => {
-    getDepositInfo();
-  }, []);
+    if (Object.keys(settings).length > 0) {
+      getDepositInfo();
+    }
+  }, [settings]);
   return (
     <>
       <div className="page-wrap">

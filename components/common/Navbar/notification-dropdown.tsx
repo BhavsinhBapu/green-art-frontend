@@ -31,7 +31,7 @@ const NotificationDropdown = ({
         <div className="cp-user-top-bar-right">
           <div>
             <ul>
-              <li className="hm-notify" id="notification_item" style={{margin: '0 10px'}}>
+              <li className="hm-notify" id="notification_item" style={{ margin: '0 10px' }}>
                 <div className="btn-group profile-dropdown">
                   <button
                     type="button"
@@ -39,22 +39,21 @@ const NotificationDropdown = ({
                     data-toggle="dropdown"
                     aria-haspopup="true"
                     aria-expanded="false"
-                    style={{marginLeft: '0'}}
+                    style={{ marginLeft: '0' }}
                   >
                     <span className="cp-user-avater">
                       <span>
-                        <HiUserCircle size={30}/>
+                        <HiUserCircle size={30} />
                       </span>
                       <span className="cp-user-avater-info"></span>
                     </span>
                   </button>
                   <div className="dropdown-menu dropdown-menu-right">
                     <p
-                      className={`${
-                        user?.online_status?.online_status
+                      className={`${user?.online_status?.online_status
                           ? "userActive"
                           : "userDeactive"
-                      } big-user-thumb`}
+                        } big-user-thumb`}
                     >
                       <img
                         src={user?.photo}
@@ -107,7 +106,7 @@ const NotificationDropdown = ({
                 </div>
               </li>
 
-              <li className="hm-notify" id="notification_item" style={{margin: '0 10px'}}>
+              <li className="hm-notify" id="notification_item" style={{ margin: '0 10px' }}>
                 <div className="btn-group dropdown">
                   <button
                     type="button"
@@ -118,7 +117,7 @@ const NotificationDropdown = ({
                   >
                     <span
                       className="notify-value hm-notify-number"
-                      onClick={() => {}}
+                      onClick={() => { }}
                     >
                       {notificationData?.length > 100
                         ? "99+"
@@ -274,7 +273,7 @@ const NotificationDropdown = ({
           <div
             className="cp-user-sidebar-toggler-s2"
             onClick={() => {
-              setActive(active ? false : true);
+              setActive(true);
             }}
           >
             <img src="/menu.svg" className="img-fluid" alt="" />

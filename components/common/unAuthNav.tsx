@@ -44,7 +44,7 @@ const UnAuthNav = () => {
   }, [router.locale]);
   return (
     <div className="">
-      <div className="cp-user-top-bar ">
+      <div className="cp-user-top-bar position-fixed">
         <div className="container-fluid">
           <div className="d-flex align-items-center justify-content-between">
             <div className="d-flex align-items-center" style={{ gap: "20px" }}>
@@ -166,7 +166,7 @@ const UnAuthNav = () => {
                       darkModeToggle(settings, setTheme,dispatch);
                     }}
                   >
-                    <a href="">
+                    <a href="#">
                       {theme === 0 ? (
                         <>
                           <BsFillSunFill size={20} className="mr-2" />

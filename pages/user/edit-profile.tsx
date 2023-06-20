@@ -49,7 +49,7 @@ const Edit: NextPage = () => {
               <div className="section-wrapper">
                 <div className="user-profile">
                   <div className="row">
-                    <div className="col-lg-12">
+                    <div className="col-lg-4 col-md-4 col-12">
                       <div className="user-profile-left">
                         <div className="user-thumbnail">
                           <img src={user?.photo} className="img-fluid" alt="" />
@@ -90,108 +90,110 @@ const Edit: NextPage = () => {
                       }}
                     >
                       {({ setFieldValue }) => (
-                        <div className="col-lg-12">
+                        <div className="col-lg-8 col-md-8 col-12">
                           <div className="user-profile-form">
                             <Form>
-                              <div className="form-group">
-                                <label>{t("First Name")}</label>
-                                <Field
-                                  type="text"
-                                  name="first_name"
-                                  className="form-control"
-                                  placeholder={t("First Name")}
-                                  id="first_name"
-                                />
-                              </div>
-                              <div className="form-group">
-                                <label>{t("Last Name")}</label>
-                                <Field
-                                  type="text"
-                                  name="last_name"
-                                  className="form-control"
-                                  placeholder={t("Last Name")}
-                                  id="last_name"
-                                />
-                              </div>
-                              <div className="form-group">
-                                <label>{t("NickName")}</label>
-                                <Field
-                                  type="text"
-                                  name="nickname"
-                                  className="form-control"
-                                  placeholder={t("Nick Name")}
-                                  id="nickname"
-                                />
-                              </div>
-                              <div className="form-group">
-                                <label>{t("Phone")}</label>
-
-                                <PhoneInput
-                                  country={"us"}
-                                  inputStyle={{ marginLeft: 23 }}
-                                  value={user?.phone}
-                                  onChange={(phone) => {
-                                    setFieldValue("phone", phone);
-                                  }}
-                                />
-
-                                <small>
-                                  {t(
-                                    "Please add phone number with country phone code but not (+ sign.) Ex. for portugal 351*****"
-                                  )}
-                                </small>
-                              </div>
-                              <div className="form-group">
-                                <label>{t("Country")}</label>
-                                <div className="cp-select-area">
+                              <div className="row">
+                                <div className="form-group col-12 col-md-6 col-lg-6">
+                                  <label>{t("First Name")}</label>
                                   <Field
-                                    as="select"
-                                    name="country"
-                                    id="country"
+                                    type="text"
+                                    name="first_name"
                                     className="form-control"
-                                  >
-                                    {countries.map((country: any) => (
-                                      <option
-                                        key={country.value}
-                                        value={country.value.toUpperCase()}
-                                        selected={
-                                          country.value === user?.country
-                                        }
-                                      >
-                                        {country.name}
-                                      </option>
-                                    ))}
-                                  </Field>
+                                    placeholder={t("First Name")}
+                                    id="first_name"
+                                  />
                                 </div>
-                              </div>
-                              <div className="form-group">
-                                <label>{t("Gender")}</label>
-                                <div className="cp-select-area">
+                                <div className="form-group col-12 col-md-6 col-lg-6">
+                                  <label>{t("Last Name")}</label>
                                   <Field
+                                    type="text"
+                                    name="last_name"
                                     className="form-control"
-                                    name="gender"
-                                    id=""
-                                    as="select"
-                                  >
-                                    <option
-                                      selected={user?.gender === 1}
-                                      value={1}
+                                    placeholder={t("Last Name")}
+                                    id="last_name"
+                                  />
+                                </div>
+                                <div className="form-group col-12 col-md-6 col-lg-6">
+                                  <label>{t("NickName")}</label>
+                                  <Field
+                                    type="text"
+                                    name="nickname"
+                                    className="form-control"
+                                    placeholder={t("Nick Name")}
+                                    id="nickname"
+                                  />
+                                </div>
+                                <div className="form-group col-12 col-md-6 col-lg-6">
+                                  <label>{t("Phone")}</label>
+
+                                  <PhoneInput
+                                    country={"us"}
+                                    inputStyle={{ paddingLeft: 50 }}
+                                    value={user?.phone}
+                                    onChange={(phone) => {
+                                      setFieldValue("phone", phone);
+                                    }}
+                                  />
+
+                                  <small>
+                                    {t(
+                                      "Please add phone number with country phone code but not (+ sign.) Ex. for portugal 351*****"
+                                    )}
+                                  </small>
+                                </div>
+                                <div className="form-group col-12 col-md-6 col-lg-6">
+                                  <label>{t("Country")}</label>
+                                  <div className="cp-select-area">
+                                    <Field
+                                      as="select"
+                                      name="country"
+                                      id="country"
+                                      className="form-control"
                                     >
-                                      {t("Male")}
-                                    </option>
-                                    <option
-                                      selected={user?.gender === 2}
-                                      value={2}
+                                      {countries.map((country: any) => (
+                                        <option
+                                          key={country.value}
+                                          value={country.value.toUpperCase()}
+                                          selected={
+                                            country.value === user?.country
+                                          }
+                                        >
+                                          {country.name}
+                                        </option>
+                                      ))}
+                                    </Field>
+                                  </div>
+                                </div>
+                                <div className="form-group col-12 col-md-6 col-lg-6">
+                                  <label>{t("Gender")}</label>
+                                  <div className="cp-select-area">
+                                    <Field
+                                      className="form-control"
+                                      name="gender"
+                                      id=""
+                                      as="select"
                                     >
-                                      {t("Female")}
-                                    </option>
-                                    <option
-                                      selected={user?.gender === 3}
-                                      value={3}
-                                    >
-                                      {t("Others")}
-                                    </option>
-                                  </Field>
+                                      <option
+                                        selected={user?.gender === 1}
+                                        value={1}
+                                      >
+                                        {t("Male")}
+                                      </option>
+                                      <option
+                                        selected={user?.gender === 2}
+                                        value={2}
+                                      >
+                                        {t("Female")}
+                                      </option>
+                                      <option
+                                        selected={user?.gender === 3}
+                                        value={3}
+                                      >
+                                        {t("Others")}
+                                      </option>
+                                    </Field>
+                                  </div>
                                 </div>
                               </div>
                               <button

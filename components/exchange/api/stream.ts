@@ -41,7 +41,6 @@ export function updateChart(e: any) {
     base_coin_id: e.base_coin_id,
     trade_coin_id: e.trade_coin_id,
   };
-
   // const sub = _subs.find(
   //   (obj: any) =>
   //     obj.channelString === `${data.base_coin_id}~${data.trade_coin_id}`

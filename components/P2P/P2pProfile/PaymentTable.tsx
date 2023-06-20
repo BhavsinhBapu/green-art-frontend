@@ -63,7 +63,7 @@ export const PaymentTable = () => {
                 <div className="paymentMethodSubBox rounded mt-4">
                   {history.map((item: any, index: any) => (
                     <div
-                      className="userProfileBg px-3 py-2 mb-3 d-flex align-items-center justify-content-between"
+                      className="userProfileBg px-3 py-2 my-3 d-flex align-items-center justify-content-between"
                       key={index}
                     >
                       <div className="paymentBox d-flex align-items-center border-0">

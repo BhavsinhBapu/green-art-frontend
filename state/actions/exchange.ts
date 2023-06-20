@@ -134,6 +134,7 @@ export async function listenMessages(dispatch: any, user: any) {
     )}`
   ).listen(".process", (e: any) => {
     dispatch(setAllmarketTrades(e.trades.transactions));
+  
     updateChart({
       price: parseFloat(e?.last_trade?.price),
       ts: e?.last_trade?.time,

@@ -111,16 +111,14 @@ const Index: NextPage = ({ faq }: any) => {
                           </h5>
                         </div>
 
-                        {active === index + 1 && (
-                          <div
-                            id={`collapseOne1${index + 1}`}
-                            className="collapse show"
-                            aria-labelledby="headingOne"
-                            data-parent="#accordion"
-                          >
-                            <div className="card-body">{item.answer}</div>
-                          </div>
-                        )}
+                        <div
+                          id={`collapseOne1${index + 1}`}
+                          className={`collapse ${index + 1 === 1 && "show"}`}
+                          aria-labelledby="headingOne"
+                          data-parent="#accordionExample"
+                        >
+                          <div className="card-body">{item.answer}</div>
+                        </div>
                       </div>
                     </div>
                   ))}

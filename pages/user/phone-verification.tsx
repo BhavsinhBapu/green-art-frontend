@@ -43,8 +43,8 @@ const PhoneVerification: NextPage = () => {
             <div className="reset-password-area">
               <div className="section-wrapper">
                 <div className="row">
-                  <div className="col-lg-6 col-md-8">
-                    <div className="user-profile-form">
+                  <div className="col-lg-6 col-md-8 d-flex align-items-center">
+                    <div className="user-profile-form" style={{width: '100%'}}>
                       <div className="form-group">
                         <label htmlFor="number">{t("Phone number")}</label>
                         {user?.phone ? (

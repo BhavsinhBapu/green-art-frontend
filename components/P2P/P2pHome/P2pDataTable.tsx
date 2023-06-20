@@ -66,15 +66,21 @@ export const P2pDataTable = ({
                         </h6>
                       </div>
                     </td>
-                    <td>
-                      {item?.payment_method_list?.map(
-                        (payment: any, index: any) => (
-                          <span className="badge badge-light mr-2" key={index}>
-                            {payment?.admin_pamynt_method?.name}
-                          </span>
-                        )
-                      )}
-                    </td>
+                    {payment && (
+                      <td>
+                        {item?.payment_method_list?.map(
+                          (payment: any, index: any) => (
+                            <span
+                              className="badge badge-light mr-2"
+                              key={index}
+                            >
+                              {payment?.admin_pamynt_method?.name}
+                            </span>
+                          )
+                        )}
+                      </td>
+                    )}
+
                     {action === true && (
                       <td>
                         {isLoggedIn === true && (
