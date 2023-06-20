@@ -181,10 +181,4 @@ export default function Index() {
     </section>
   );
 }
-export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
-  await SSRAuthCheck(ctx, "/gift-cards");
 
-  return {
-    props: {},
-  };
-};

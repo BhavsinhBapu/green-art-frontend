@@ -4,6 +4,8 @@ import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import React from "react";
 import { BsArrowRight } from "react-icons/bs";
+import { useSelector } from "react-redux";
+import { RootState } from "state/store";
 type item = {
   banner: string;
   uid: string;
@@ -11,6 +13,9 @@ type item = {
 
 export default function ThemedGiftCardSection({ giftCards }: any) {
   const { t } = useTranslation();
+  const {isLoggedIn } = useSelector(
+    (state: RootState) => state.user
+  );
   return (
     <div className="py-80">
       <div className="container">
@@ -41,7 +46,7 @@ export default function ThemedGiftCardSection({ giftCards }: any) {
             <div className="row mt-3">
               {giftCards.map((item: item, index: number) => (
                 <div className="col-lg-3 my-1" key={index}>
-                  <Link href={`/gift-cards/buy/${item.uid}`}>
+                  <Link href={isLoggedIn ? `/gift-cards/buy/${item.uid}`: '/signin' }>
                     <a>
                       <ImageComponent
                         src={item.banner || "/demo_gift_banner.png"}

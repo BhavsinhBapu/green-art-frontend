@@ -6,8 +6,11 @@ import { BsArrowRight } from "react-icons/bs";
 import MyCardModal from "../modal/MyCardModal";
 import SendCryptoCardModal from "../modal/SendCryptoCardModal";
 import { NoItemFound } from "components/NoItemFound/NoItemFound";
+import { useSelector } from "react-redux";
+import { RootState } from "state/store";
 
 export default function MyCards({ myCards, hanldeMyCards }: any) {
+  const { isLoggedIn } = useSelector((state: RootState) => state.user);
   const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSendCryptoCardModalOpen, setIsSendCryptoCardModalOpen] =
@@ -29,7 +32,7 @@ export default function MyCards({ myCards, hanldeMyCards }: any) {
           <h3>My Cards</h3>
         </div>
         <div>
-          <Link href={`/gift-cards/my-cards`}>
+          <Link href={isLoggedIn ? `/gift-cards/my-cards` : "/signin"}>
             <a>
               <div className="d-flex align-items-center">
                 <span className="inline-block pr-2">All({myCards.length})</span>
@@ -71,7 +74,7 @@ export default function MyCards({ myCards, hanldeMyCards }: any) {
           giftCardData={giftCardData}
           setIsModalOpen={setIsModalOpen}
           sendCryptoCardModalHandler={sendCryptoCardModalHandler}
-          isHome= {true}
+          isHome={true}
           modalFunc={hanldeMyCards}
         />
       )}
