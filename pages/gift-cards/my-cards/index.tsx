@@ -74,6 +74,7 @@ export default function Index() {
   };
 
   const handleStatus = (event: any) => {
+    if (activeStatus === event.value) return;
     getMyCards(event.value, limit, 1);
     setActiveStatus(event.value);
   };

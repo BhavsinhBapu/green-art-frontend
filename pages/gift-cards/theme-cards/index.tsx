@@ -67,6 +67,7 @@ export default function Index() {
   };
 
   const handleCategory = (event: any) => {
+    if (activeCategory.value === event.value) return;
     getThemedGiftCardData(event.value, 1, limit);
     setActiveCategory(event);
   };
