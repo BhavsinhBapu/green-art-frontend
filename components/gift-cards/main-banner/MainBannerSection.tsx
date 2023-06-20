@@ -7,6 +7,9 @@ import request from "lib/request";
 import { toast } from "react-toastify";
 import SendCryptoCardModal from "../modal/SendCryptoCardModal";
 import Link from "next/link";
+import { useSelector } from "react-redux";
+import { RootState } from "state/store";
+import { useRouter } from "next/router";
 
 export default function MainBannerSection({
   header,
@@ -16,14 +19,20 @@ export default function MainBannerSection({
   gif_card_add_card_description,
   gif_card_check_card_description,
 }: any) {
+  const router = useRouter();
   const [activeBtn, setActiveBtn] = useState("redeem");
   const [code, setCode] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [giftCardData, setGiftCardData] = useState({});
   const [error, setError] = useState("");
   const { t } = useTranslation();
+  const { isLoggedIn } = useSelector((state: RootState) => state.user);
 
   const handleGiftCard = async () => {
+    if (!isLoggedIn) {
+      router.push("/signin");
+      return;
+    }
     if (!code) return;
     const { data } = await request.get(`gift-card/check-card?code=${code}`);
     if (!data.success) {
@@ -79,7 +88,7 @@ export default function MainBannerSection({
               <p className="my-3 gift-font-color font-medium text-16">
                 {t(description)}
               </p>
-              <Link href={`/gift-cards/my-cards`}>
+              <Link href={isLoggedIn ? `/gift-cards/my-cards` : "/signin"}>
                 <a className="gift-btn d-inline-block">
                   {t("Send a crypto gift card")} <BsArrowRight />{" "}
                 </a>
