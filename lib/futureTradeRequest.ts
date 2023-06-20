@@ -2,7 +2,7 @@ import axios from "axios";
 import Cookie from "js-cookie";
 
 const FutureTradeRequest = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_BASE_URL + "/ico-launchpad/api",
+  baseURL: process.env.NEXT_PUBLIC_BASE_URL + "/api/future-trade",
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",
