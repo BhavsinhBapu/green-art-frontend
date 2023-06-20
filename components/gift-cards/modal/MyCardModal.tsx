@@ -1,7 +1,7 @@
 import ImageComponent from "components/common/ImageComponent";
 import request from "lib/request";
 import useTranslation from "next-translate/useTranslation";
-import React from "react";
+import React, { useState } from "react";
 import { BsGiftFill } from "react-icons/bs";
 import { toast } from "react-toastify";
 
@@ -13,6 +13,7 @@ export default function MyCardModal({
   isHome,
 }: any) {
   const { t } = useTranslation();
+  const [redeemCode, setRedeemCode] = useState("");
   const changeStatusGiftCard = async () => {
     let buyDetails: any = {
       card_uid: giftCardData.uid,
@@ -40,6 +41,23 @@ export default function MyCardModal({
       toast.error(data.message);
       setIsModalOpen(false);
     }
+  };
+
+  const seeRedeemCodeHandler = async () => {
+    let userPass = prompt("Please enter Password");
+    console.log("Pass", userPass);
+    if (userPass === null) return;
+
+    const { data } = await request.get(
+      `/gift-card/get-redeem-code?card_uid=${giftCardData.uid}&password=${userPass}`
+    );
+    if (!data.success) {
+      toast.error(data.message);
+      setRedeemCode("");
+      return;
+    }
+    toast.success(data.message);
+    setRedeemCode(data.data.redeem_code);
   };
   return (
     <div id="demo-modal" className="gift-card-modal">
@@ -93,6 +111,32 @@ export default function MyCardModal({
               <p>
                 <strong>Status: </strong> {t(giftCardData?.status ?? "Active")}
               </p>
+              <div className="d-flex align-items-center gap-10">
+                <p>
+                  <strong>Redeem Code: </strong>
+                </p>
+                {redeemCode !== "" ? (
+                  <>
+                    <b>{redeemCode}</b>
+                    <span
+                      className="btn bg-primary-color capitalize p-1"
+                      onClick={() => {
+                        navigator.clipboard.writeText(redeemCode);
+                        toast.success("Successfully copied")
+                      }}
+                    >
+                      {t("Copy Code")}
+                    </span>
+                  </>
+                ) : (
+                  <span
+                    className="btn bg-primary-color capitalize p-1"
+                    onClick={seeRedeemCodeHandler}
+                  >
+                    {t("See Code")}
+                  </span>
+                )}
+              </div>
             </div>
           </div>
         </div>
