@@ -19,7 +19,6 @@ const SelectCurrencyRight = () => {
         backgroundColor: "var(--main-background-color)",
         color: "var(--font-color)",
         borderColor: "var(--border-color)",
-      
       },
     },
     headCells: {
@@ -31,10 +30,11 @@ const SelectCurrencyRight = () => {
     },
     cells: {
       style: {
+        width: "100%",
         backgroundColor: "var(--main-background-color)",
         color: "var(--font-color)",
         borderColor: "var(--border-color)",
-        fontSize: "10px",
+        fontSize: "11px",
         cursor: "pointer",
       },
     },
@@ -71,10 +71,6 @@ const SelectCurrencyRight = () => {
             >
               <span
                 className=""
-                style={{
-                  margin: 0,
-                  padding: 0,
-                }}
                 onClick={async () => {
                   await unlistenAllChannels();
                   await localStorage.setItem(
@@ -138,11 +134,7 @@ const SelectCurrencyRight = () => {
             overlayClassName="rcTooltipOverlay"
           >
             <span
-              className="text-center w-20"
-              style={{
-                margin: 0,
-                padding: 0,
-              }}
+              className="text-center w-40"
               onClick={async () => {
                 await unlistenAllChannels();
                 await localStorage.setItem("base_coin_id", row?.parent_coin_id);
@@ -183,10 +175,6 @@ const SelectCurrencyRight = () => {
                   ? "text-success"
                   : "text-danger"
               }
-              style={{
-                margin: 0,
-                padding: 0,
-              }}
               onClick={async () => {
                 await unlistenAllChannels();
                 await localStorage.setItem("base_coin_id", row?.parent_coin_id);

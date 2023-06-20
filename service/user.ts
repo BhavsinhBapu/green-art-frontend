@@ -126,7 +126,11 @@ export const captchaSettings = async () => {
 };
 
 export const verifyEmailApi = async (credential: any) => {
-  const { data } = await request.post("/verify-email", credential);
+  const { data } = await request.post("/verify-email", {
+    email: credential.email,
+    verify_code: credential.code,
+    recapcha: credential.recapcha,
+  });
   return data;
 };
 export const resendEmailApi = async (email: string) => {

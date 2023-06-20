@@ -121,7 +121,7 @@ const Signin: NextPage = () => {
                   <Formik
                     initialValues={{
                       email: "",
-                      verify_code: "",
+                      code: "",
                       recapcha:
                         parseInt(captchaData?.select_captcha_type) !==
                         CAPTCHA_TYPE_RECAPTCHA
@@ -132,9 +132,7 @@ const Signin: NextPage = () => {
                       email: Yup.string()
                         .email(t("Invalid email address"))
                         .required(t("Email is required")),
-                      verify_code: Yup.string()
-                        .min(6)
-                        .required(t("Code is required")),
+                      code: Yup.string().min(6).required(t("Code is required")),
                       recapcha: Yup.string()
                         .min(6)
                         .required(t("Recapcha is required")),
@@ -196,18 +194,16 @@ const Signin: NextPage = () => {
                         <div className="form-group">
                           <Field
                             type={"number"}
-                            name="verify_code"
-                            id="verify_code"
+                            name="code"
+                            id="code"
                             className={`form-control form-control-password look-pass ${
-                              touched.verify_code && errors.verify_code
-                                ? "is-invalid"
-                                : ""
+                              touched.code && errors.code ? "is-invalid" : ""
                             }`}
                             placeholder={t("Your code here")}
                           />
                         </div>
                         <ErrorMessage
-                          name="verify_code"
+                          name="code"
                           component="div"
                           className="red-text"
                         />
