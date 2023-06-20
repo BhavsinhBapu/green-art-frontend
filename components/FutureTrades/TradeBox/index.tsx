@@ -1,5 +1,6 @@
 import React from "react";
 import OrderBook from "../OrderBook";
+import ExchangeBox from "../ExchangeBox";
 
 const TradeBox = () => {
   return (
@@ -11,7 +12,9 @@ const TradeBox = () => {
             <div className="col-lg-5 col-md-5 col-sm-5">
               <OrderBook />
             </div>
-            <div className="col-lg-6 col-md-6 col-sm-6">Responsive</div>
+            <div className="col-lg-6 col-md-6 col-sm-6 exchange-area">
+              <ExchangeBox />
+            </div>
           </div>
         </div>
       </div>
