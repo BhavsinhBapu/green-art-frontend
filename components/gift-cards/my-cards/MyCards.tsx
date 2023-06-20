@@ -42,7 +42,7 @@ export default function MyCards({ myCards }: any) {
         </div>
       </div>
       {myCards.length > 0 ? (
-        <div className="row mt-3 get-touch-area">
+        <div className="row mt-3 get-touch-area py-2">
           {myCards.map((item: any, index: number) => (
             <div className="col-lg-4 my-3 pointer" key={index}>
               <div
