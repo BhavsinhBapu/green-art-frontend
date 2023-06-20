@@ -44,7 +44,7 @@ export default function MyCardModal({
   };
 
   const seeRedeemCodeHandler = async () => {
-    let userPass = prompt("Please enter Password");
+    let userPass = prompt("Please enter password");
     console.log("Pass", userPass);
     if (userPass === null) return;
 
