@@ -15185,6 +15185,10 @@ input:checked + .gift-card-buy-slider:before {
   border-radius: 100%;
 }
 
+.input-padding-y {
+  padding: 9px 0;
+}
+
 @media (max-width: 991px) {
   .text-45 {
     font-size: 36px;
@@ -15219,11 +15223,11 @@ input:checked + .gift-card-buy-slider:before {
     background: var(--background-color);
     padding: 1rem !important;
   }
-  .my-card-modal-margin{
+  .my-card-modal-margin {
     margin-top: 2rem;
   }
 
-  .my-card-modal-btn{
+  .my-card-modal-btn {
     margin-top: 1rem;
   }
 }

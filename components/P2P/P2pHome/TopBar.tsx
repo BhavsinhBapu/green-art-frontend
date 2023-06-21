@@ -1,7 +1,7 @@
 import { RiPagesLine } from "react-icons/ri";
 import { HiOutlineHome, HiUsers } from "react-icons/hi";
 import Link from "next/link";
-import { AiOutlineWallet } from "react-icons/ai";
+import { AiOutlineGift, AiOutlineWallet } from "react-icons/ai";
 import { GrHomeRounded } from "react-icons/gr";
 export const P2pTopBar = () => {
   return (
@@ -40,6 +40,14 @@ export const P2pTopBar = () => {
                     <a>
                       <AiOutlineWallet />
                       P2P Wallet
+                    </a>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/p2p/gift-card">
+                    <a>
+                      <AiOutlineGift />
+                      Gift Card
                     </a>
                   </Link>
                 </li>
