@@ -15142,6 +15142,7 @@ input:checked + .gift-card-buy-slider:before {
   width: 100%;
   max-width: 90%;
   background: var(--background-color);
+  padding: 3rem !important;
 }
 
 .gift-card-modal__footer {
@@ -15209,5 +15210,20 @@ input:checked + .gift-card-buy-slider:before {
   }
   .send-crypto-w {
     width: 100%;
+  }
+  .gift-card-modal__content {
+    border-radius: 4px;
+    position: relative;
+    width: 100%;
+    max-width: 90%;
+    background: var(--background-color);
+    padding: 1rem !important;
+  }
+  .my-card-modal-margin{
+    margin-top: 2rem;
+  }
+
+  .my-card-modal-btn{
+    margin-top: 1rem;
   }
 }

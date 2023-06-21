@@ -45,7 +45,7 @@ export default function ThemedGiftCardSection({ giftCards }: any) {
           <>
             <div className="row mt-3">
               {giftCards.map((item: item, index: number) => (
-                <div className="col-lg-3 my-1" key={index}>
+                <div className="col-lg-3 col-md-4 col-6 my-1" key={index}>
                   <Link href={isLoggedIn ? `/gift-cards/buy/${item.uid}`: '/signin' }>
                     <a>
                       <ImageComponent

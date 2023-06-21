@@ -10,6 +10,11 @@ import Link from "next/link";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
 import { useRouter } from "next/router";
+import {
+  addGiftCardApi,
+  checkGiftCardApi,
+  redeemGiftCardApi,
+} from "service/gift-cards";
 
 export default function MainBannerSection({
   header,
@@ -34,7 +39,7 @@ export default function MainBannerSection({
       return;
     }
     if (!code) return;
-    const { data } = await request.get(`gift-card/check-card?code=${code}`);
+    const data = await checkGiftCardApi(code);
     if (!data.success) {
       setGiftCardData({});
       toast.error(data.message);
@@ -53,7 +58,7 @@ export default function MainBannerSection({
   };
 
   const addGiftCardHandler = async () => {
-    const { data } = await request.get(`gift-card/add-gift-card?code=${code}`);
+    const data = await addGiftCardApi(code);
     if (data.success) {
       setCode("");
       setIsModalOpen(false);
@@ -65,7 +70,7 @@ export default function MainBannerSection({
   };
 
   const redeemGiftCardHandler = async () => {
-    const { data } = await request.get(`gift-card/redeem-card?code=${code}`);
+    const data = await redeemGiftCardApi(code);
     if (data.success) {
       toast.success(data.message);
       setCode("");
