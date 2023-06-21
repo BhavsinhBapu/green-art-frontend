@@ -5,36 +5,6 @@ const BuyBook = ({ height = 425 }) => {
     <div>
       <div className="">
         <div
-          className=""
-          style={{
-            overflow: "hidden",
-            position: "relative",
-            border: "0px",
-            width: "100%",
-          }}
-        >
-          <div
-            className="dataTables_scrollHeadInner"
-            style={{
-              boxSizing: "content-box",
-              width: "431.25px",
-              paddingRight: "0px",
-            }}
-          >
-            <table
-              className="table dataTable no-footer"
-              role="grid"
-              style={{ marginLeft: "0px", width: "431.25px" }}
-            >
-              <thead>
-                <tr role="row" />
-                <tr role="row" />
-                <tr role="row" />
-              </thead>
-            </table>
-          </div>
-        </div>
-        <div
           className="dataTables_scrollBody"
           style={{
             position: "relative",
@@ -61,31 +31,7 @@ const BuyBook = ({ height = 425 }) => {
             role="grid"
             style={{ width: "100%" }}
           >
-            <thead>
-              <tr role="row">
-                <th
-                  className="table-col price sorting_disabled"
-                  rowSpan={1}
-                  colSpan={1}
-                  aria-label="Price"
-                  style={{ width: "170.656px" }}
-                />
-                <th
-                  className="table-col amount sorting_disabled"
-                  rowSpan={1}
-                  colSpan={1}
-                  aria-label="Amount"
-                  style={{ width: "120.75px" }}
-                />
-                <th
-                  className="table-col time text-right sorting_desc"
-                  rowSpan={1}
-                  colSpan={1}
-                  aria-label="Time"
-                  style={{ width: "79.8438px" }}
-                />
-              </tr>
-            </thead>
+            <thead></thead>
             <tbody>
               <tr className="odd trade_tableList_two">
                 <td>

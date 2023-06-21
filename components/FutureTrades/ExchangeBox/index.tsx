@@ -17,11 +17,15 @@ const ExchangeBox = () => {
   const [tradingTab, setTradingTab] = useState<tradingTabType>(1);
   const [OpenCloseLimitCoinData, setOpenCloseLimitCoinData] = useState<any>({
     price: dashboard?.order_data?.sell_price,
+    amount: 0.0,
+    total: 0.0,
     total_profit: 0.0,
     total_loss: 0,
   });
   const [OpenCloseMarketCoinData, setOpenCloseMarketCoinData] = useState<any>({
     price: dashboard?.order_data?.sell_price,
+    amount: 0.0,
+    total: 0.0,
     total_profit: 0.0,
     total_loss: 0,
   });
@@ -38,7 +42,7 @@ const ExchangeBox = () => {
         tradingTab === 1
           ? dashboard?.order_data?.sell_price
           : dashboard?.order_data?.buy_price,
-      size: 0,
+      amount: 0,
       total_profit: 0,
       total_loss: 0,
     });
@@ -47,7 +51,7 @@ const ExchangeBox = () => {
         tradingTab === 1
           ? dashboard?.order_data?.sell_price
           : dashboard?.order_data?.buy_price,
-      size: 0,
+      amount: 0,
       total_profit: 0,
       total_loss: 0,
     });

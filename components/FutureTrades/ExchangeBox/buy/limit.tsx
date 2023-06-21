@@ -1,7 +1,7 @@
 import { formateZert } from "common";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { buyLimitAppAction } from "state/actions/exchange";
 
@@ -14,6 +14,7 @@ const Limit = ({
 }: any) => {
   const { t } = useTranslation("common");
   const [loading, setLoading] = React.useState(false);
+  const [tpSlchecked, setChecked] = useState(false);
   const dispatch = useDispatch();
 
   const setSizeBasedOnPercentage = (percentage: any) => {
@@ -163,6 +164,62 @@ const Limit = ({
                     </span>
                   </div>
                 </div>
+                <div className="total-top">
+                  <label>
+                    <input
+                      type="checkbox"
+                      className="mr-2"
+                      onChange={(e) => {
+                        setChecked(e.target.checked);
+                      }}
+                    />
+                    TP/SL
+                  </label>{" "}
+                  <label>Advance %</label>
+                </div>
+                {tpSlchecked === true && (
+                  <div>
+                    <div className="form-group boxShadow">
+                      <label className="cstmHead">Take Profit</label>
+                      <input
+                        name="price"
+                        type="number"
+                        placeholder=""
+                        className="form-control number_only input_1"
+                        value=""
+                      />
+                      {/* make a select here */}
+                      <select
+                        name=""
+                        className="form-control border-0 swapSelect"
+                        id=""
+                      >
+                        <option value="">Mark</option>
+                        <option value="">Last</option>
+                      </select>
+                    </div>
+                    <div className="form-group boxShadow">
+                      <label className="cstmHead">Stop Loss</label>
+                      <input
+                        name="price"
+                        type="number"
+                        placeholder=""
+                        className="form-control number_only input_1"
+                        value=""
+                      />
+
+                      <select
+                        name=""
+                        className="form-control border-0 swapSelect"
+                        id=""
+                      >
+                        <option value="">Mark</option>
+                        <option value="">Last</option>
+                      </select>
+                    </div>
+                  </div>
+                )}
+
                 {isLoggedIn && (
                   <div className=" mt-3 percent-container ">
                     <span
@@ -228,6 +285,36 @@ const Limit = ({
                     </button>
                   </div>
                 )}
+                <div className="future-balance-container mt-3">
+                  <div>
+                    <label>Cost</label>
+                    <span className="text-warning ml-1">
+                      55 {dashboard?.order_data?.total?.base_wallet?.coin_type}
+                    </span>
+                  </div>
+                  <div>
+                    <label>Cost</label>
+                    <span className="text-warning ml-1">
+                      886.53{" "}
+                      {dashboard?.order_data?.total?.base_wallet?.coin_type}
+                    </span>
+                  </div>
+                </div>
+                <div className="future-balance-container">
+                  <div>
+                    <label>Max</label>
+                    <span className="text-warning ml-1">
+                      55 {dashboard?.order_data?.total?.base_wallet?.coin_type}
+                    </span>
+                  </div>
+                  <div>
+                    <label>Max</label>
+                    <span className="text-warning ml-1">
+                      886.53{" "}
+                      {dashboard?.order_data?.total?.base_wallet?.coin_type}
+                    </span>
+                  </div>
+                </div>
               </form>
             </div>
           </div>

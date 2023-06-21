@@ -5,36 +5,6 @@ const SellBook = ({ height = 425 }) => {
     <div>
       <div className="">
         <div
-          className=""
-          style={{
-            overflow: "hidden",
-            position: "relative",
-            border: "0px",
-            width: "100%",
-          }}
-        >
-          <div
-            className="dataTables_scrollHeadInner"
-            style={{
-              boxSizing: "content-box",
-              width: "431.25px",
-              paddingRight: "0px",
-            }}
-          >
-            <table
-              className="table dataTable no-footer"
-              role="grid"
-              style={{ marginLeft: "0px", width: "431.25px" }}
-            >
-              <thead>
-                <tr role="row" />
-                <tr role="row" />
-                <tr role="row" />
-              </thead>
-            </table>
-          </div>
-        </div>
-        <div
           className="dataTables_scrollBody"
           style={{
             position: "relative",
@@ -43,18 +13,6 @@ const SellBook = ({ height = 425 }) => {
             width: "100%",
           }}
         >
-          <div className="progress-green" style={{ width: "0%" }} />
-          <div className="progress-green" style={{ width: "0%" }} />
-          <div className="progress-green" style={{ width: "0%" }} />
-          <div className="progress-green" style={{ width: "0%" }} />
-          <div className="progress-green" style={{ width: "0%" }} />
-          <div className="progress-green" style={{ width: "0%" }} />
-          <div className="progress-green" style={{ width: "0%" }} />
-          <div className="progress-green" style={{ width: "0%" }} />
-          <div className="progress-green" style={{ width: "0%" }} />
-          <div className="progress-green" style={{ width: "0%" }} />
-          <div className="progress-green" style={{ width: "0%" }} />
-          <div className="progress-green" style={{ width: "0%" }} />
           <table
             id="exchangeAllSellOrders"
             className="table dataTable no-footer"
