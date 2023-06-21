@@ -10,8 +10,8 @@ import {
 
 const Market = ({
   dashboard,
-  buySellMarketCoinData,
-  setBuySellMarketCoinData,
+  OpenCloseMarketCoinData,
+  setOpenCloseMarketCoinData,
   isLoggedIn,
   currentPair,
 }: any) => {
@@ -22,10 +22,10 @@ const Market = ({
     const amountPercentage =
       parseFloat(dashboard?.order_data?.total?.trade_wallet?.balance) *
       percentage;
-    setBuySellMarketCoinData({
-      ...buySellMarketCoinData,
+    setOpenCloseMarketCoinData({
+      ...OpenCloseMarketCoinData,
       amount: amountPercentage,
-      total: amountPercentage * parseFloat(buySellMarketCoinData.price),
+      total: amountPercentage * parseFloat(OpenCloseMarketCoinData.price),
     });
   };
   return (
@@ -46,35 +46,15 @@ const Market = ({
                   defaultValue="g2OWJq3pDqYRQmVvmGt799aCsDmkkV4UjrWDhzcF"
                 />
                 <div className="form-group ">
-                  <div className="total-top">
+                  {/* <div className="total-top">
                     <label>{t("Total")}</label> <label>{t("Available")}</label>
-                  </div>
+                  </div> */}
                   <div className="total-top-blance">
                     <div className="total-blance">
-                      <span
-                        className="text-warning"
-                        style={{ fontWeight: 700 }}
-                      >
-                        <span>
-                          {parseFloat(
-                            dashboard?.order_data?.total?.trade_wallet?.balance
-                              ? dashboard?.order_data?.total?.trade_wallet
-                                  ?.balance
-                              : 0
-                          ).toFixed(4)}
-                        </span>
-                      </span>
-                      <span
-                        className="text-warning"
-                        style={{ fontWeight: 700 }}
-                      >
-                        <span className="trade_coin_type ml-1">
-                          {
-                            dashboard?.order_data?.total?.trade_wallet
-                              ?.coin_type
-                          }
-                        </span>
-                      </span>
+                      <div className="total-blance">
+                        <label>{t("Available")}</label>
+                      </div>
+                  
                     </div>
                     <div className="avilable-blance">
                       <span
@@ -111,7 +91,7 @@ const Market = ({
                     type="text"
                     placeholder=""
                     className="form-control number_only"
-                    value={buySellMarketCoinData?.price}
+                    value={OpenCloseMarketCoinData?.price}
                     disabled
                   />
                   <span
@@ -131,16 +111,16 @@ const Market = ({
                     placeholder="0"
                     className="form-control number_only"
                     value={
-                      buySellMarketCoinData?.amount !== 0 &&
-                      buySellMarketCoinData?.amount
+                      OpenCloseMarketCoinData?.amount !== 0 &&
+                      OpenCloseMarketCoinData?.amount
                     }
                     onChange={async (e) => {
-                      setBuySellMarketCoinData({
-                        ...buySellMarketCoinData,
+                      setOpenCloseMarketCoinData({
+                        ...OpenCloseMarketCoinData,
                         amount: e.target.value,
                         total:
                           parseFloat(e.target.value) *
-                          buySellMarketCoinData.price,
+                          OpenCloseMarketCoinData.price,
                       });
                     }}
                   />
@@ -208,15 +188,15 @@ const Market = ({
                       onClick={async (e) => {
                         e.preventDefault();
                         await sellMarketAppAction(
-                          buySellMarketCoinData.amount,
-                          buySellMarketCoinData?.price,
+                          OpenCloseMarketCoinData.amount,
+                          OpenCloseMarketCoinData?.price,
                           dashboard?.order_data?.trade_coin_id,
                           dashboard?.order_data?.base_coin_id,
                           setLoading
                         );
                         // await dispatch(getDashboardData(currentPair));
-                        setBuySellMarketCoinData({
-                          ...buySellMarketCoinData,
+                        setOpenCloseMarketCoinData({
+                          ...OpenCloseMarketCoinData,
                           amount: 0,
                           total: 0,
                         });

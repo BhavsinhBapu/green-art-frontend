@@ -15,45 +15,41 @@ const ExchangeBox = () => {
     (state: RootState) => state.exchange
   );
   const [tradingTab, setTradingTab] = useState<tradingTabType>(1);
-  const [buySellLimitCoinData, setBuySellLimitCoinData] = useState<any>({
-    price:
-      tradingTab === 1
-        ? dashboard?.order_data?.sell_price
-        : dashboard?.order_data?.buy_price,
-    amount: 0.0,
-    total: 0.0,
+  const [OpenCloseLimitCoinData, setOpenCloseLimitCoinData] = useState<any>({
+    price: dashboard?.order_data?.sell_price,
+    total_profit: 0.0,
+    total_loss: 0,
   });
-  const [buySellMarketCoinData, setBuySellMarketCoinData] = useState<any>({
-    price:
-      tradingTab === 1
-        ? dashboard?.order_data?.sell_price
-        : dashboard?.order_data?.buy_price,
-    amount: 0.0,
-    total: 0.0,
+  const [OpenCloseMarketCoinData, setOpenCloseMarketCoinData] = useState<any>({
+    price: dashboard?.order_data?.sell_price,
+    total_profit: 0.0,
+    total_loss: 0,
   });
 
-  const [buySelectedTab, setBuySelectedTab] = useState<number>(1);
-  const [sellSelectedTab, setSellSelectedTab] = useState<number>(1);
+  const [openSelectedTab, setopenSelectedTab] = useState<number>(1);
+  const [closeSelectedTab, setcloseSelectedTab] = useState<number>(1);
 
   const handletradingTab = (tab: number) => {
     setTradingTab(tab);
   };
   const initialSetUp = () => {
-    setBuySellLimitCoinData({
+    setOpenCloseLimitCoinData({
       price:
         tradingTab === 1
           ? dashboard?.order_data?.sell_price
           : dashboard?.order_data?.buy_price,
-      amount: 0,
-      total: 0,
+      size: 0,
+      total_profit: 0,
+      total_loss: 0,
     });
-    setBuySellMarketCoinData({
+    setOpenCloseMarketCoinData({
       price:
         tradingTab === 1
           ? dashboard?.order_data?.sell_price
           : dashboard?.order_data?.buy_price,
-      amount: 0,
-      total: 0,
+      size: 0,
+      total_profit: 0,
+      total_loss: 0,
     });
   };
 
@@ -85,7 +81,7 @@ const ExchangeBox = () => {
               aria-selected="true"
               className={`nav-link ${tradingTab === 1 ? "active" : ""}`}
             >
-              {t("Buy")}
+              {t("Open")}
             </a>
           </li>
           <li
@@ -104,7 +100,7 @@ const ExchangeBox = () => {
               aria-selected="false"
               className={`nav-link ${tradingTab === 2 ? "activeSell" : ""}`}
             >
-              {t("Sell")}
+              {t("Close")}
             </a>
           </li>
         </ul>
@@ -130,7 +126,7 @@ const ExchangeBox = () => {
                 aria-selected="true"
                 className="nav-link active"
                 onClick={() => {
-                  setBuySelectedTab(1);
+                  setopenSelectedTab(1);
                 }}
               >
                 {t("Limit")}
@@ -145,28 +141,27 @@ const ExchangeBox = () => {
                 aria-selected="false"
                 className="nav-link"
                 onClick={() => {
-                  setBuySelectedTab(2);
+                  setopenSelectedTab(2);
                 }}
               >
                 {t("Market")}
               </a>
             </li>
-            
           </ul>
-          {buySelectedTab === 1 && (
+          {openSelectedTab === 1 && (
             <Limit
               dashboard={dashboard}
-              buySellLimitCoinData={buySellLimitCoinData}
-              setBuySellLimitCoinData={setBuySellLimitCoinData}
+              OpenCloseLimitCoinData={OpenCloseLimitCoinData}
+              setOpenCloseLimitCoinData={setOpenCloseLimitCoinData}
               isLoggedIn={isLoggedIn}
               currentPair={currentPair}
             />
           )}
-          {buySelectedTab === 2 && (
+          {openSelectedTab === 2 && (
             <Market
               dashboard={dashboard}
-              buySellMarketCoinData={buySellMarketCoinData}
-              setBuySellMarketCoinData={setBuySellMarketCoinData}
+              OpenCloseMarketCoinData={OpenCloseMarketCoinData}
+              setOpenCloseMarketCoinData={setOpenCloseMarketCoinData}
               isLoggedIn={isLoggedIn}
               currentPair={currentPair}
             />
@@ -187,7 +182,7 @@ const ExchangeBox = () => {
               role="presentation"
               className="nav-item sellBox"
               onClick={() => {
-                setSellSelectedTab(1);
+                setcloseSelectedTab(1);
               }}
             >
               <a
@@ -205,7 +200,7 @@ const ExchangeBox = () => {
               role="presentation"
               className="nav-item sellBox"
               onClick={() => {
-                setSellSelectedTab(2);
+                setcloseSelectedTab(2);
               }}
             >
               <a
@@ -219,22 +214,21 @@ const ExchangeBox = () => {
                 {t("Market")}
               </a>
             </li>
-          
           </ul>
-          {sellSelectedTab === 1 && (
+          {closeSelectedTab === 1 && (
             <SellLimit
               dashboard={dashboard}
-              buySellLimitCoinData={buySellLimitCoinData}
-              setBuySellLimitCoinData={setBuySellLimitCoinData}
+              OpenCloseMarketCoinData={OpenCloseMarketCoinData}
+              setOpenCloseLimitCoinData={setOpenCloseLimitCoinData}
               isLoggedIn={isLoggedIn}
               currentPair={currentPair}
             />
           )}
-          {sellSelectedTab === 2 && (
+          {closeSelectedTab === 2 && (
             <SellMarket
               dashboard={dashboard}
-              buySellMarketCoinData={buySellMarketCoinData}
-              setBuySellMarketCoinData={setBuySellMarketCoinData}
+              OpenCloseMarketCoinData={OpenCloseMarketCoinData}
+              setOpenCloseMarketCoinData={setOpenCloseMarketCoinData}
               isLoggedIn={isLoggedIn}
               currentPair={currentPair}
             />

@@ -11,8 +11,8 @@ import {
 
 const Limit = ({
   dashboard,
-  buySellLimitCoinData,
-  setBuySellLimitCoinData,
+  OpenCloseMarketCoinData,
+  setOpenCloseMarketCoinData,
   isLoggedIn,
   currentPair,
 }: any) => {
@@ -23,10 +23,10 @@ const Limit = ({
     const amountPercentage =
       parseFloat(dashboard?.order_data?.total?.trade_wallet?.balance) *
       percentage;
-    setBuySellLimitCoinData({
-      ...buySellLimitCoinData,
+    setOpenCloseMarketCoinData({
+      ...OpenCloseMarketCoinData,
       amount: amountPercentage,
-      total: amountPercentage * parseFloat(buySellLimitCoinData.price),
+      total: amountPercentage * parseFloat(OpenCloseMarketCoinData.price),
     });
   };
   return (
@@ -47,35 +47,12 @@ const Limit = ({
                   defaultValue="g2OWJq3pDqYRQmVvmGt799aCsDmkkV4UjrWDhzcF"
                 />
                 <div className="form-group ">
-                  <div className="total-top">
+                  {/* <div className="total-top">
                     <label>{t("Total")}</label> <label>{t("Available")}</label>
-                  </div>
+                  </div> */}
                   <div className="total-top-blance">
                     <div className="total-blance">
-                      <span
-                        className="text-warning"
-                        style={{ fontWeight: 700 }}
-                      >
-                        <span>
-                          {parseFloat(
-                            dashboard?.order_data?.total?.trade_wallet?.balance
-                              ? dashboard?.order_data?.total?.trade_wallet
-                                  ?.balance
-                              : 0
-                          ).toFixed(4)}
-                        </span>
-                      </span>
-                      <span
-                        className="text-warning"
-                        style={{ fontWeight: 700 }}
-                      >
-                        <span className="trade_coin_type ml-1">
-                          {
-                            dashboard?.order_data?.total?.trade_wallet
-                              ?.coin_type
-                          }
-                        </span>
-                      </span>
+                      <label>{t("Available")}</label>
                     </div>
                     <div className="avilable-blance">
                       <span
@@ -113,14 +90,14 @@ const Limit = ({
                     type="text"
                     placeholder=""
                     className="form-control number_only"
-                    value={buySellLimitCoinData.price}
+                    value={OpenCloseMarketCoinData.price}
                     onChange={async (e) => {
-                      await setBuySellLimitCoinData({
-                        ...buySellLimitCoinData,
+                      await setOpenCloseMarketCoinData({
+                        ...OpenCloseMarketCoinData,
                         price: e.target.value,
                         total:
                           parseFloat(e.target.value) *
-                          buySellLimitCoinData.amount,
+                          OpenCloseMarketCoinData.amount,
                       });
                     }}
                   />
@@ -141,16 +118,16 @@ const Limit = ({
                     placeholder="0"
                     className="form-control number_only"
                     value={
-                      buySellLimitCoinData.amount !== 0 &&
-                      buySellLimitCoinData.amount
+                      OpenCloseMarketCoinData.amount !== 0 &&
+                      OpenCloseMarketCoinData.amount
                     }
                     onChange={(e) => {
-                      setBuySellLimitCoinData({
-                        ...buySellLimitCoinData,
+                      setOpenCloseMarketCoinData({
+                        ...OpenCloseMarketCoinData,
                         amount: e.target.value,
                         total:
                           parseFloat(e.target.value) *
-                          buySellLimitCoinData.price,
+                          OpenCloseMarketCoinData.price,
                       });
                     }}
                   />
@@ -172,8 +149,8 @@ const Limit = ({
                     placeholder=""
                     className="form-control number_only"
                     value={
-                      parseFloat(buySellLimitCoinData.total).toFixed(8)
-                        ? parseFloat(buySellLimitCoinData.total).toFixed(8)
+                      parseFloat(OpenCloseMarketCoinData.total).toFixed(8)
+                        ? parseFloat(OpenCloseMarketCoinData.total).toFixed(8)
                         : 0
                     }
                   />
@@ -241,16 +218,16 @@ const Limit = ({
                       onClick={async (e) => {
                         e.preventDefault();
                         await sellLimitAppAction(
-                          buySellLimitCoinData.amount,
-                          buySellLimitCoinData.price,
+                          OpenCloseMarketCoinData.amount,
+                          OpenCloseMarketCoinData.price,
                           dashboard?.order_data?.trade_coin_id,
                           dashboard?.order_data?.base_coin_id,
                           setLoading,
-                          setBuySellLimitCoinData
+                          setOpenCloseMarketCoinData
                         );
                         // await dispatch(getDashboardData(currentPair));
-                        setBuySellLimitCoinData({
-                          ...buySellLimitCoinData,
+                        setOpenCloseMarketCoinData({
+                          ...OpenCloseMarketCoinData,
                           amount: 0,
                           total: 0,
                         });
