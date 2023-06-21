@@ -111,14 +111,14 @@ export default function Index() {
       <div className="py-80">
         <div className="container">
           <div className="row">
-            <div className="col-lg-9 col-md-9 col-6">
+            <div className="col-lg-9 col-md-9 col-12">
               <div>
                 <h3>{t(`Themed Gift Cards`)}</h3>
                 <small>{t(`Send a crypto gift card for any occasion`)}</small>
               </div>
             </div>
 
-            <div className="col-lg-3 col-md-3 col-6">
+            <div className="col-lg-3 col-md-3 col-12">
               <div className="d-flex align-items-center gap-10 border px-2 rounded ">
                 <span>
                   <b>{t(`Category:`)}</b>{" "}
@@ -139,7 +139,7 @@ export default function Index() {
               {allGiftCards?.data?.length > 0 ? (
                 <div className="row mt-3">
                   {allGiftCards?.data?.map((item: any, index: number) => (
-                    <div className="col-lg-3 my-1" key={index}>
+                    <div className="col-lg-3 col-md-4 col-6 my-1" key={index}>
                       <Link href={`/gift-cards/buy/${item.uid}`}>
                         <a>
                           <ImageComponent

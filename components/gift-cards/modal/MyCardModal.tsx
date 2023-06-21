@@ -83,7 +83,7 @@ export default function MyCardModal({
               </div>
             </div>
           </div>
-          <div className="col-lg-6 col-md-6 col-12">
+          <div className="col-lg-6 col-md-6 col-12 my-card-modal-margin">
             <h3 className="mb-3">{t(giftCardData?.banner?.title)}</h3>
             <h5 className="font-normal">
               {t(giftCardData?.banner?.sub_title)}
@@ -154,7 +154,7 @@ export default function MyCardModal({
           {giftCardData._status == 1 && (
             <button
               type="button"
-              className="btn bg-primary-color capitalize"
+              className="btn bg-primary-color capitalize my-card-modal-btn"
               onClick={sendCryptoCardModalHandler}
             >
               {t("Send crypto gift card")}

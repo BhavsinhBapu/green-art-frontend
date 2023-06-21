@@ -121,14 +121,14 @@ export default function Index() {
       <div className="py-80">
         <div className="container">
           <div className="row">
-            <div className="col-lg-9 col-md-9 col-6">
+            <div className="col-lg-9 col-md-9 col-12">
               <div>
                 <h3>{t(`My Cards`)}</h3>
                 <small>{t(`Send a crypto gift card for any occasion`)}</small>
               </div>
             </div>
 
-            <div className="col-lg-3 col-md-3 col-6">
+            <div className="col-lg-3 col-md-3 col-12">
               <div className="d-flex align-items-center gap-10 border px-2 rounded ">
                 <span>
                   <b>{t(`Status:`)}</b>{" "}
