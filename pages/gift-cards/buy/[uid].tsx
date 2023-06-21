@@ -236,7 +236,7 @@ export default function Index() {
                     <div className="d-flex gap-10 buy-absolute-btn">
                       <BsGiftFill size={22} />
                       <h4>{`${amount !== "" ? amount : 0} ${
-                        selectCoin?.label || ''
+                        selectCoin?.label || ""
                       }`}</h4>
                     </div>
                   </div>
@@ -304,7 +304,7 @@ export default function Index() {
                     </h6>
                     <div className="d-flex buy-input-bg py-2 rounded">
                       <input
-                        type="text"
+                        type="number"
                         placeholder="Enter Amount"
                         className="px-3 w-full bg-transparent border-none buy-border-right"
                         onChange={handleAmount}
@@ -318,7 +318,7 @@ export default function Index() {
                         }
                       /> */}
                       <span className="buy-amount-select-section-width pl-3">
-                        {selectCoin?.label || ''}
+                        {selectCoin?.label || ""}
                       </span>
                     </div>
                   </div>
@@ -333,7 +333,11 @@ export default function Index() {
                         </h6>
                         <div className="text-primary-color">
                           <h6 className="gift-buy-input-label mr-2">
-                            {t(`${Number(availableCoin)} ${selectCoin?.label || ''}`)}
+                            {t(
+                              `${Number(availableCoin)} ${
+                                selectCoin?.label || ""
+                              }`
+                            )}
                           </h6>
                         </div>
                       </div>
@@ -351,7 +355,7 @@ export default function Index() {
                           <h6 className="font-normal"> {t(`Spot Wallet`)}</h6>
                           <h6 className="font-normal">
                             {" "}
-                            {t(`${availableCoin} ${selectCoin?.label || ''}`)}
+                            {t(`${availableCoin} ${selectCoin?.label || ""}`)}
                           </h6>
                         </div>
                       </div>
@@ -366,7 +370,7 @@ export default function Index() {
                           <div className="d-flex justify-content-between w-full">
                             <h6 className="font-normal"> {t(`P2P Wallet`)}</h6>
                             <h6 className="font-normal">
-                              {t(`${availableCoin} ${selectCoin?.label || ''}`)}
+                              {t(`${availableCoin} ${selectCoin?.label || ""}`)}
                             </h6>
                           </div>
                         </div>
@@ -463,7 +467,7 @@ export default function Index() {
                                 ? amount
                                 : Number(amount) * Number(quantity)
                               : 0
-                          } ${selectCoin?.label || ''}`}</h5>
+                          } ${selectCoin?.label || ""}`}</h5>
                         </div>
                       </div>
                     </div>
