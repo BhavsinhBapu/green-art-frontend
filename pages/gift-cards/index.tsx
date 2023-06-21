@@ -10,7 +10,7 @@ import request from "lib/request";
 import { GetServerSideProps } from "next";
 import useTranslation from "next-translate/useTranslation";
 import { parseCookies } from "nookies";
-import React from "react";
+import React, { useState } from "react";
 import { BsArrowRight } from "react-icons/bs";
 import { GrFormAdd } from "react-icons/gr";
 import { getGiftCardsData } from "service/gift-cards";
@@ -31,6 +31,10 @@ export default function Index({ giftCards }: any) {
     gif_card_check_card_description
   } = giftCards || {};
   const { t } = useTranslation("common");
+  const [myCards, setMyCards] = useState(my_cards);
+  const hanldeMyCards = (cards: any) => {
+    setMyCards(cards);
+  }
   return (
     <section>
       {/* gift card banner start */}
@@ -49,7 +53,7 @@ export default function Index({ giftCards }: any) {
       {/* Themed Gift Cards end */}
 
       {/* my gift card  start*/}
-      <MyCards myCards={my_cards} />
+      <MyCards myCards={myCards} hanldeMyCards={hanldeMyCards}/>
       {/* my gift card  end*/}
 
       {/* feature section start*/}
