@@ -3,6 +3,7 @@ import request from "lib/request";
 import useTranslation from "next-translate/useTranslation";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
+import { sendGiftCardApi } from "service/gift-cards";
 
 const options = [
   { value: 1, label: "Email" },
@@ -35,7 +36,7 @@ export default function SendCryptoCardModal({
     if (activeType.value == 2) {
       url = `/gift-card/send-gift-card?send_by=${activeType.value}&to_phone=${phone}&card_uid=${giftCardData.uid}&message=${massage}`;
     }
-    const { data } = await request.get(url);
+    const data  = await sendGiftCardApi(url);
 
     if (!data.success) {
       toast.error(data.message);

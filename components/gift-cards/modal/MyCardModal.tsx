@@ -4,6 +4,7 @@ import useTranslation from "next-translate/useTranslation";
 import React, { useState } from "react";
 import { BsGiftFill } from "react-icons/bs";
 import { toast } from "react-toastify";
+import { getRedeemCodeApi, giftCardUpdateApi } from "service/gift-cards";
 
 export default function MyCardModal({
   setIsModalOpen,
@@ -26,9 +27,7 @@ export default function MyCardModal({
         from: "home",
       };
     }
-    const { data } = await request.post(`/gift-card/update-card`, {
-      ...buyDetails,
-    });
+    const data = await giftCardUpdateApi(buyDetails);
     if (data.success) {
       toast.success(data.message);
       setIsModalOpen(false);
@@ -48,9 +47,8 @@ export default function MyCardModal({
     console.log("Pass", userPass);
     if (userPass === null) return;
 
-    const { data } = await request.get(
-      `/gift-card/get-redeem-code?card_uid=${giftCardData.uid}&password=${userPass}`
-    );
+    const data = await getRedeemCodeApi(giftCardData.uid, userPass);
+
     if (!data.success) {
       toast.error(data.message);
       setRedeemCode("");
@@ -104,12 +102,14 @@ export default function MyCardModal({
 
               {giftCardData?.wallet_type && (
                 <p>
-                  <strong>{t(`Wallet Type:`)} </strong> {t(giftCardData?.wallet_type)}
+                  <strong>{t(`Wallet Type:`)} </strong>{" "}
+                  {t(giftCardData?.wallet_type)}
                 </p>
               )}
 
               <p>
-                <strong>{t(`Status:`)} </strong> {t(giftCardData?.status ?? "Active")}
+                <strong>{t(`Status:`)} </strong>{" "}
+                {t(giftCardData?.status ?? "Active")}
               </p>
               <div className="d-flex align-items-center gap-10">
                 <p>
@@ -122,7 +122,7 @@ export default function MyCardModal({
                       className="btn bg-primary-color capitalize p-1"
                       onClick={() => {
                         navigator.clipboard.writeText(redeemCode);
-                        toast.success("Successfully copied")
+                        toast.success("Successfully copied");
                       }}
                     >
                       {t("Copy Code")}

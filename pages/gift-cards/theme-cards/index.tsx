@@ -3,14 +3,14 @@ import { CUstomSelect } from "components/common/CUstomSelect";
 import ImageComponent from "components/common/ImageComponent";
 import SectionLoading from "components/common/SectionLoading";
 import Footer from "components/common/footer";
-import request from "lib/request";
-import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
-import { GetServerSideProps } from "next";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
-import { toast } from "react-toastify";
+import {
+  getThemedCardCat,
+  getThemedGiftCardData,
+} from "state/actions/giftCards";
 
 const limit = 10;
 export default function Index() {
@@ -31,49 +31,30 @@ export default function Index() {
   const [loading, setLoading] = useState(true);
   const [productLoading, setProductLoading] = useState(false);
   useEffect(() => {
-    getCategoryData();
-    getThemedGiftCardData("all", 1, limit);
+    getThemedCardCat(setLoading, setThemedCardData, setCategories);
+    getThemedGiftCardData("all", 1, limit, setProductLoading, setAllGiftCards);
   }, []);
-
-  const getCategoryData = async () => {
-    setLoading(true);
-    const { data } = await request.get(`/gift-card/gift-card-themes-page`);
-    if (!data.success) {
-      toast.error(data.message);
-      setLoading(false);
-      return;
-    }
-    setThemedCardData(data.data);
-    setCategories((prev) => [...prev, ...data.data.categories]);
-    setLoading(false);
-  };
-
-  const getThemedGiftCardData = async (
-    category: any,
-    page: any,
-    limit: any
-  ) => {
-    setProductLoading(true);
-    const { data } = await request.get(
-      `/gift-card/get-gift-card-themes?uid=${category}&limit=${limit}&page=${page}`
-    );
-    if (!data.success) {
-      toast.error(data.message);
-      setProductLoading(false);
-      return;
-    }
-    setAllGiftCards(data.data);
-    setProductLoading(false);
-  };
 
   const handleCategory = (event: any) => {
     if (activeCategory.value === event.value) return;
-    getThemedGiftCardData(event.value, 1, limit);
+    getThemedGiftCardData(
+      event.value,
+      1,
+      limit,
+      setProductLoading,
+      setAllGiftCards
+    );
     setActiveCategory(event);
   };
 
   const handlePageClick = (event: any) => {
-    getThemedGiftCardData(activeCategory.value, event.selected + 1, limit);
+    getThemedGiftCardData(
+      activeCategory.value,
+      event.selected + 1,
+      limit,
+      setProductLoading,
+      setAllGiftCards
+    );
   };
 
   if (loading) return <></>;
@@ -181,4 +162,3 @@ export default function Index() {
     </section>
   );
 }
-

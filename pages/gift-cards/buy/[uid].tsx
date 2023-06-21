@@ -10,13 +10,17 @@ import { FaAngleRight } from "react-icons/fa";
 import { HiOutlineRefresh } from "react-icons/hi";
 import { RiCreativeCommonsZeroFill } from "react-icons/ri";
 import { useRouter } from "next/router";
-import request from "lib/request";
 import Error from "next/error";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
 import Footer from "components/common/footer";
 import { GetServerSideProps } from "next";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
+import {
+  getBuyPageDataApi,
+  handleBuyCardApi,
+  handleCoinsApi,
+} from "service/gift-cards";
 
 export default function Index() {
   const { settings } = useSelector((state: RootState) => state.common);
@@ -33,9 +37,7 @@ export default function Index() {
   const [quantity, setQuantity] = useState(0);
   const { t } = useTranslation("common");
   const handleCoins = async (event: any) => {
-    const { data } = await request.get(
-      `/gift-card/gift-card-wallet-data?coin_type=${event.coin_type}`
-    );
+    const data = await handleCoinsApi(event.coin_type);
     if (!data.success) {
       return;
     }
@@ -58,9 +60,7 @@ export default function Index() {
   }, [router?.query?.uid]);
 
   const getBuyPageData = async () => {
-    const { data } = await request.get(
-      `/gift-card/buy-card-page-data?uid=${router?.query?.uid}`
-    );
+    const data = await getBuyPageDataApi(router?.query?.uid);
     if (!data.success) {
       setIsError(true);
       return;
@@ -104,10 +104,7 @@ export default function Index() {
         quantity: quantity,
       };
     }
-
-    const { data } = await request.post(`/gift-card/buy-card`, {
-      ...buyDetails,
-    });
+    const data = await handleBuyCardApi(buyDetails);
 
     if (data.success) {
       router.push("/gift-cards/my-cards");
