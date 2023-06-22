@@ -141,7 +141,7 @@ const SwapCoin: NextPage = ({
                           <div className="swap-wrap-top">
                             <label>{t("From")}</label>
                             <span className="available">
-                              Available :{" "}
+                              Availableeeeeeeeeeeeeeeee :{" "}
                               {parseFloat(fromSelected.balamce).toFixed(8)}{" "}
                               {fromSelected.selected}
                             </span>
@@ -194,13 +194,14 @@ const SwapCoin: NextPage = ({
                                     e.target.value,
                                     toSelected.coin_id
                                   ).then((data) => {
-                                    setToSelected({
+                                    setFromSelected({
                                       ...toSelected,
-                                      coin_id: data?.to_wallet?.id,
-                                      selected: data?.to_wallet?.coin_type,
-                                      balamce: data?.to_wallet?.balance,
+                                      coin_id: data?.from_wallet?.id,
+                                      selected: data?.from_wallet?.coin_type,
+                                      balamce: data?.from_wallet?.balance,
                                       amount: data?.convert_rate,
                                     });
+                                   
                                   });
                                 }}
                               >
