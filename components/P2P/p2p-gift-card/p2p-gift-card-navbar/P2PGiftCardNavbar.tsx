@@ -13,7 +13,7 @@ export default function P2PGiftCardNavbar() {
               <ul className="d-flex justify-content-between topBarList">
                 <div className="d-flex " style={{ gap: "28px" }}>
                   <li>
-                    <Link href="/p2p">
+                    <Link href="/p2p/gift-card">
                       <a>
                         <HiOutlineHome />
                         Home
@@ -33,6 +33,14 @@ export default function P2PGiftCardNavbar() {
                       <a>
                         <AiOutlineGift />
                         Gift Card Lists
+                      </a>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/p2p/gift-card/my-adds">
+                      <a>
+                        <AiOutlineGift />
+                        My Gift Card Adds
                       </a>
                     </Link>
                   </li>

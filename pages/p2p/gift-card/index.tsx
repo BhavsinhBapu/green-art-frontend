@@ -1,10 +1,11 @@
 import { NoItemFound } from "components/NoItemFound/NoItemFound";
+import P2PGiftCardNavbar from "components/P2P/p2p-gift-card/p2p-gift-card-navbar/P2PGiftCardNavbar";
 import { CUstomSelect } from "components/common/CUstomSelect";
-import Link from "next/link";
-import React from "react";
-import { AiOutlineGift } from "react-icons/ai";
-import { HiOutlineHome } from "react-icons/hi";
-import { RiPagesLine } from "react-icons/ri";
+import SectionLoading from "components/common/SectionLoading";
+import React, { useEffect, useState } from "react";
+import ReactPaginate from "react-paginate";
+import { toast } from "react-toastify";
+import { getAllGiftCardAdsApi } from "service/p2pGiftCards";
 
 const ooptions = [
   { value: 1, label: "Option 1" },
@@ -12,10 +13,36 @@ const ooptions = [
   { value: 3, label: "Option 3" },
 ];
 
+const limit = 2;
+
 export default function Index() {
+  const [allGiftCardAds, setAllGiftCardAds] = useState({});
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    getAllGiftCardAds();
+  }, []);
+
+  const getAllGiftCardAds = async () => {
+    setLoading(true);
+    const data = await getAllGiftCardAdsApi();
+    setLoading(false);
+
+    if (!data.success) {
+      toast.error(data.message);
+      return;
+    }
+    setAllGiftCardAds(data.data);
+
+    console.log("data", data);
+  };
+
   const demoFunc = (event: any) => {
     console.log("Demo Func");
   };
+
+  const handlePageClick = () => {
+    console.log('')
+  }
   return (
     <section>
       <div className="p2p_bg">
@@ -37,63 +64,7 @@ export default function Index() {
         </div>
       </div>
       {/* second nav */}
-      <div className="py-3 border-bottom">
-        <div className="container">
-          <div className="row">
-            <div className="col-12">
-              <ul className="d-flex justify-content-between topBarList">
-                <div className="d-flex " style={{ gap: "28px" }}>
-                  <li>
-                    <Link href="/p2p">
-                      <a>
-                        <HiOutlineHome />
-                        Home
-                      </a>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/p2p/my-order">
-                      <a>
-                        <RiPagesLine />
-                        Orders
-                      </a>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/p2p/gift-card/lists">
-                      <a>
-                        <AiOutlineGift />
-                        Gift Card Lists
-                      </a>
-                    </Link>
-                  </li>
-                </div>
-                {/* <li style={{position:'relative'}}>
-                <a
-                  href=""
-                  className="dropdown-toggle"
-                  data-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  More
-                </a>
-                <div className="dropdown-menu secendary-dropdown-bg">
-                  <Link href="/p2p/add-post">
-                    <a className="dropdown-item menu-hover">Ad Create</a>
-                  </Link>
-                  <Link href="/p2p/my-buy-ads">
-                    <a className="dropdown-item menu-hover">My Buy Ads</a>
-                  </Link>
-                  <Link href="/p2p/my-sell-ads">
-                    <a className="dropdown-item menu-hover">My Sell Ads</a>
-                  </Link>
-                </div>
-              </li> */}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
+      <P2PGiftCardNavbar />
       {/* filter part */}
       <div className="container mt-4">
         <div className="row">
@@ -125,8 +96,59 @@ export default function Index() {
       </div>
       {/* item part */}
       <div className="container">
-        <div className="my-5">
-          <NoItemFound />
+        {loading ? (
+          <SectionLoading />
+        ) : (
+          <div className="table-responsive mt-5">
+            {allGiftCardAds?.data?.length > 0 ? (
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Price</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Created At</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {allGiftCardAds?.data?.map((item: any, index: number) => (
+                    <tr className="tableRow" key={index}>
+                      <td>{item.price}</td>
+                      <td>{item.amount}</td>
+                      <td>{item.status === 1 ? "Active" : "Deactive"}</td>
+                      <td>{item.created_at}</td>
+
+                      <td>
+                        <button className="tableButton p2p-gift-card-adds-margin-bottom">
+                          View
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            ) : (
+              <div className="my-5">
+                <NoItemFound />
+              </div>
+            )}
+          </div>
+        )}
+        <div className="row justify-content-center my-5">
+          <ReactPaginate
+            nextLabel=">"
+            onPageChange={handlePageClick}
+            pageRangeDisplayed={5}
+            pageCount={Math.ceil(allGiftCardAds.total / limit)}
+            previousLabel="<"
+            renderOnZeroPageCount={null}
+            className={`d-flex align-items-center justify-content-center`}
+            pageLinkClassName={`paginate-number`}
+            activeLinkClassName={`active-paginate-cls`}
+            previousLinkClassName={`text-primary-color text-25 mr-2`}
+            nextLinkClassName={`text-primary-color text-25 ml-2`}
+          />
         </div>
       </div>
     </section>

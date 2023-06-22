@@ -15188,6 +15188,9 @@ input:checked + .gift-card-buy-slider:before {
 .input-padding-y {
   padding: 9px 0;
 }
+.p2p-gift-card-adds-margin-left {
+  margin-left: 10px;
+}
 
 @media (max-width: 991px) {
   .text-45 {
@@ -15229,5 +15232,11 @@ input:checked + .gift-card-buy-slider:before {
 
   .my-card-modal-btn {
     margin-top: 1rem;
+  }
+  .p2p-gift-card-adds-margin-bottom {
+    margin-bottom: 10px;
+  }
+  .p2p-gift-card-adds-margin-left {
+    margin-left: 0;
   }
 }

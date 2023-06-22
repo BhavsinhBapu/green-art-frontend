@@ -9,7 +9,8 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import {
   getCreateAdsSettingsDataApi,
-  storeAdsHandlerApi,
+  getGiftCardAddsDetailsApi,
+  updateAdsHandlerApi,
 } from "service/p2pGiftCards";
 import Select from "react-select";
 
@@ -30,19 +31,95 @@ export default function Index() {
 
   const [settings, setSettings] = useState<any>({});
   const [loading, setLoading] = useState(false);
-
-  const [selectedPaymentType, setSelectedPaymentType] = useState(null);
-  const [selectedCurrencyType, setSelectedCurrencyType] = useState(null);
-  const [selectedStatus, setSelectedStatus] = useState(status[0].value);
+  const [adsDetails, setAdsDetails] = useState({});
+  const [selectedPaymentType, setSelectedPaymentType] = useState({});
+  const [selectedCurrencyType, setSelectedCurrencyType] = useState({});
+  const [selectedStatus, setSelectedStatus] = useState({});
   const [selectedPayment, setSelectedPayment] = useState<any>([]);
   const [selectedCountry, setSelectedCountry] = useState([]);
-  const [selectedTime, setSelectedTime] = useState(null);
+  const [selectedTime, setSelectedTime] = useState({});
   const [termsData, setTermsData] = useState("");
   const [price, setPrice] = useState("");
 
   useEffect(() => {
     getCreateAdsSettingsData();
   }, []);
+
+  useEffect(() => {
+    if (Object.keys(settings).length !== 0) {
+      getGiftCardAddsDetails();
+    }
+  }, [settings]);
+
+  const getGiftCardAddsDetails = async () => {
+    const data = await getGiftCardAddsDetailsApi(router.query.uid);
+
+    if (!data.success) {
+      toast.error(data.message);
+      router.push(`/p2p/gift-card/my-adds`);
+      return;
+    }
+    const item = data.data;
+    // set price
+    setPrice(item.price);
+
+    // set Status
+    let selectStatus = status.find((data) => data.value === item.status);
+    setSelectedStatus(selectStatus || {});
+
+    //set Payment Type
+
+    let selectPaymentType = options.find(
+      (data) => data.value === item.payment_currency_type
+    );
+    setSelectedPaymentType(selectPaymentType || {});
+
+    // set Currency Type
+
+    if (item.payment_currency_type === 1) {
+      let selectCurrency = settings?.currency.find(
+        (data) => data.value === item.currency_type
+      );
+      setSelectedCurrencyType(selectCurrency);
+
+      // set Payment Method if payment type 1
+
+      let selectedPaymentMethods = JSON.parse(item.payment_method);
+
+      let paymentMethod = selectedPaymentMethods?.map((data) =>
+        settings.payment_method.find((val) => val.value === data)
+      );
+      setSelectedPayment(paymentMethod);
+    }
+
+    if (item.payment_currency_type === 2) {
+      let selectCurrency = settings?.assets.find(
+        (data) => data.value === item.currency_type
+      );
+      setSelectedCurrencyType(selectCurrency);
+    }
+
+    // set time limit
+
+    let selectedTimeData = settings?.payment_time?.find(
+      (data) => data.value === item.time_limit
+    );
+    setSelectedTime(selectedTimeData);
+
+    // set terms data
+
+    setTermsData(item.terms_condition);
+
+    // set country
+
+    let selectedCountries = JSON.parse(item.country);
+
+    let selectedCountryData = selectedCountries.map((item) =>
+      settings.country.find((val) => val.value === item)
+    );
+
+    setSelectedCountry(selectedCountryData);
+  };
 
   const getCreateAdsSettingsData = async () => {
     setLoading(true);
@@ -59,13 +136,12 @@ export default function Index() {
   };
 
   const paymentTypeHandler = (event: any) => {
-    setSelectedPaymentType(event.value);
-    setSelectedCurrencyType(null);
+    setSelectedPaymentType(event);
+    setSelectedCurrencyType({});
     setSelectedPayment([]);
   };
 
   const handlePayment = (event: any) => {
-    console.log("event", event);
     setSelectedPayment(event);
   };
 
@@ -75,14 +151,13 @@ export default function Index() {
 
   const handleCurrencyType = (event: any) => {
     setSelectedCurrencyType(event);
-    console.log("eent", event);
   };
 
-  const createAdsHandler = async () => {
-    if (!selectedPaymentType) {
+  const updateAdsHandler = async () => {
+    if (Object.keys(selectedPaymentType).length === 0) {
       toast.error("Select Payment Type");
       return;
-    } else if (!selectedCurrencyType) {
+    } else if (Object.keys(selectedCurrencyType).length === 0) {
       toast.error("Select Currency Type");
       return;
     } else if (price === "") {
@@ -91,12 +166,12 @@ export default function Index() {
     } else if (selectedCountry.length === 0) {
       toast.error("Select Country");
       return;
-    } else if (!selectedTime) {
+    } else if (Object.keys(selectedTime).length === 0) {
       toast.error("Select Time Limit");
       return;
     } else if (
-      selectedPaymentType &&
-      selectedPaymentType === 1 &&
+      Object.keys(selectedPaymentType).length !== 0 &&
+      selectedPaymentType.value === 1 &&
       selectedPayment.length === 0
     ) {
       toast.error("Select Payment Method");
@@ -109,8 +184,8 @@ export default function Index() {
     const countries = selectedCountry.map((option: any) => option.value);
 
     const formData: any = new FormData();
-    formData.append("gift_card_id", router.query.id);
-    formData.append("payment_currency_type", selectedPaymentType);
+    formData.append("uid", router.query.uid);
+    formData.append("payment_currency_type", selectedPaymentType.value);
     formData.append("currency_type", selectedCurrencyType.value);
     formData.append("price", price);
     formData.append("terms_condition", termsData);
@@ -118,10 +193,10 @@ export default function Index() {
     countries.forEach((country) => {
       formData.append("country[]", country);
     });
-    formData.append("status", selectedStatus);
-    formData.append("time_limit", selectedTime);
+    formData.append("status", selectedStatus.value);
+    formData.append("time_limit", selectedTime.value);
 
-    if (selectedPaymentType === 1) {
+    if (selectedPaymentType.value === 1) {
       const payment_methods = selectedPayment.map(
         (option: any) => option.value
       );
@@ -129,7 +204,7 @@ export default function Index() {
         formData.append("payment_method[]", payment_method);
       });
     }
-    const data = await storeAdsHandlerApi(formData);
+    const data = await updateAdsHandlerApi(formData);
     if (!data.success) {
       toast.error(data.message);
       return;
@@ -141,7 +216,7 @@ export default function Index() {
   return (
     <section>
       <P2PGiftCardNavbar />
-      <P2PGiftCardHeader title={"Create Gift Card Ads"} />
+      <P2PGiftCardHeader title={"Edit Gift Card Ads"} />
 
       {/* from for create */}
       {loading ? (
@@ -156,10 +231,12 @@ export default function Index() {
                 <h6 className="gift-buy-input-label font-normal mb-3">
                   {t(`Payment Currencey Type`)}
                 </h6>
-                <CUstomSelect
+                <Select
                   options={options}
-                  classname={"buy-amount-select-section border rounded"}
-                  handleFunction={paymentTypeHandler}
+                  classNamePrefix={"custom-select"}
+                  className={"buy-amount-select-section border rounded"}
+                  onChange={paymentTypeHandler}
+                  value={selectedPaymentType}
                 />
               </div>
             </div>
@@ -172,7 +249,7 @@ export default function Index() {
 
                   <Select
                     options={
-                      selectedPaymentType === 1
+                      selectedPaymentType.value === 1
                         ? settings?.currency
                         : settings?.assets
                     }
@@ -207,17 +284,16 @@ export default function Index() {
                 <h6 className="gift-buy-input-label font-normal mb-3">
                   {t(`Status`)}
                 </h6>
-                <CUstomSelect
+                <Select
                   options={status}
-                  classname={"buy-amount-select-section border rounded"}
-                  defaultValue={status[0]}
-                  handleFunction={(event: any) =>
-                    setSelectedStatus(event.value)
-                  }
+                  classNamePrefix={"custom-select"}
+                  className={"buy-amount-select-section border rounded"}
+                  value={selectedStatus}
+                  onChange={(event: any) => setSelectedStatus(event)}
                 />
               </div>
             </div>
-            {selectedPaymentType === 1 && (
+            {selectedPaymentType?.value === 1 && (
               <div className="col-md-6">
                 <div className="form-group p2pSelectFilter">
                   <h6 className="gift-buy-input-label font-normal mb-3">
@@ -241,12 +317,14 @@ export default function Index() {
                 <h6 className="gift-buy-input-label font-normal mb-3">
                   {t(`Country`)}
                 </h6>
-                <CUstomSelect
+                <Select
                   options={settings?.country}
                   isSearchable={true}
                   isMulti={true}
-                  classname={"buy-amount-select-section border rounded"}
-                  handleFunction={handleCountry}
+                  classNamePrefix={"custom-select"}
+                  className={"buy-amount-select-section border rounded"}
+                  onChange={handleCountry}
+                  value={selectedCountry}
                 />
               </div>
             </div>
@@ -255,10 +333,12 @@ export default function Index() {
                 <h6 className="gift-buy-input-label font-normal mb-3">
                   {t(`Time Limit`)}
                 </h6>
-                <CUstomSelect
+                <Select
                   options={settings?.payment_time}
-                  classname={"buy-amount-select-section border rounded"}
-                  handleFunction={(event: any) => setSelectedTime(event.value)}
+                  className={"buy-amount-select-section border rounded"}
+                  onChange={(event: any) => setSelectedTime(event)}
+                  classNamePrefix={"custom-select"}
+                  value={selectedTime}
                 />
               </div>
             </div>
@@ -282,12 +362,12 @@ export default function Index() {
           <div className="text-right my-3">
             <button
               className="tableButton bg-card-primary-color mr-5"
-              onClick={() => router.push(`/p2p/gift-card/lists`)}
+              onClick={() => router.push(`/p2p/gift-card/my-adds`)}
             >
               Cancel
             </button>
-            <button className="tableButton" onClick={createAdsHandler}>
-              Create
+            <button className="tableButton" onClick={updateAdsHandler}>
+              Update
             </button>
           </div>
         </div>
