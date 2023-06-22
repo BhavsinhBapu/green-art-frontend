@@ -87,6 +87,91 @@ const BuyBook = ({ height = 425 }) => {
               <tr className="odd trade_tableList_two">
                 <td>
                   <div className="asset">
+                    <span className="text-success">26443.80000000</span>
+                  </div>
+                </td>
+                <td>
+                  <div className="asset">
+                    <span className="asset-name">0.75411</span>
+                  </div>
+                </td>
+                <td>
+                  <div className="asset">
+                    <span className="asset-name">19941.53</span>
+                  </div>
+                </td>
+              </tr>
+              <tr className="odd trade_tableList_two">
+                <td>
+                  <div className="asset">
+                    <span className="text-success">26443.80000000</span>
+                  </div>
+                </td>
+                <td>
+                  <div className="asset">
+                    <span className="asset-name">0.75411</span>
+                  </div>
+                </td>
+                <td>
+                  <div className="asset">
+                    <span className="asset-name">19941.53</span>
+                  </div>
+                </td>
+              </tr>
+              <tr className="odd trade_tableList_two">
+                <td>
+                  <div className="asset">
+                    <span className="text-success">26443.80000000</span>
+                  </div>
+                </td>
+                <td>
+                  <div className="asset">
+                    <span className="asset-name">0.75411</span>
+                  </div>
+                </td>
+                <td>
+                  <div className="asset">
+                    <span className="asset-name">19941.53</span>
+                  </div>
+                </td>
+              </tr>{" "}
+              <tr className="odd trade_tableList_two">
+                <td>
+                  <div className="asset">
+                    <span className="text-success">26443.80000000</span>
+                  </div>
+                </td>
+                <td>
+                  <div className="asset">
+                    <span className="asset-name">0.75411</span>
+                  </div>
+                </td>
+                <td>
+                  <div className="asset">
+                    <span className="asset-name">19941.53</span>
+                  </div>
+                </td>
+              </tr>{" "}
+              <tr className="odd trade_tableList_two">
+                <td>
+                  <div className="asset">
+                    <span className="text-success">26443.80000000</span>
+                  </div>
+                </td>
+                <td>
+                  <div className="asset">
+                    <span className="asset-name">0.75411</span>
+                  </div>
+                </td>
+                <td>
+                  <div className="asset">
+                    <span className="asset-name">19941.53</span>
+                  </div>
+                </td>
+              </tr>
+              <tr className="odd trade_tableList_two">
+                <td>
+                  <div className="asset">
                     <span className="text-success">26440.60000000</span>
                   </div>
                 </td>

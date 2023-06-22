@@ -3,7 +3,7 @@ import TopBar from "components/FutureTrades/Topbar";
 import TradeBox from "components/FutureTrades/TradeBox";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { initialDashboardCallAction } from "state/actions/futureTrade";
+import { initialDashboardCallAction, listenMessages } from "state/actions/futureTrade";
 import { setCurrentPair } from "state/reducer/exchange";
 import { RootState } from "state/store";
 
@@ -27,11 +27,17 @@ const Exchange = () => {
       );
     }
   }, [isLoggedIn, currentPair]);
+   useEffect(() => {
+     listenMessages(dispatch, user);
+   }, [currentPair]);
   return (
-    <div>
-      <TopBar />
-      <TradeBox />
-      <MyOrderHistory />
+    <div className="exchange-area">
+      <div className="background-col">
+        <div className="cp-user-main-wrapper-dashboard">
+          <TopBar />
+          <TradeBox />
+        </div>
+      </div>
     </div>
   );
 };

@@ -9,5 +9,5 @@
 }
 
 .TVChartContainer {
-  height: calc(100vh - 80px);
+  height: 570px!important;
 }

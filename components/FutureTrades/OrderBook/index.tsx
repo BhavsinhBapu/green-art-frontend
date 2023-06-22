@@ -1,13 +1,25 @@
 import React from "react";
-import SellBook from "./Sell/SellBook";
-import BuyBook from "./Buy/BuyBook";
+import AllSellOrdersFull from "components/exchange/AllSellOrdersFull";
+import AllBuyOrdersFull from "components/exchange/AllBuyOrdersFull";
+import AllSellOrders from "components/exchange/AllSellOrders";
+import AllBuyOrders from "components/exchange/AllBuyOrders";
+import useTranslation from "next-translate/useTranslation";
+import { useSelector } from "react-redux";
+import { RootState } from "state/store";
 
 const OrderBook = () => {
-  const [select, setSelect] = React.useState(3);
+   const { t } = useTranslation("common");
+   const [select, setSelect] = React.useState(3);
+   const { dashboard, OpenBookBuy, OpenBooksell, marketTrades, currentPair } =
+     useSelector((state: RootState) => state.exchange);
+   const { settings, theme } = useSelector((state: RootState) => state.common);
+
 
   return (
-    <div className="tradeBookContainer p-3">
-      <h6>Order Book</h6>
+    <div className="trades-section">
+      <div>
+        <h6 className="text-white">{t("Order Book")}</h6>
+      </div>
       <div className="trades-headers mb-3">
         <div className="orderBookIcons">
           <h3
@@ -70,25 +82,70 @@ const OrderBook = () => {
           </h3>
         </div>
       </div>
-      {select === 3 && (
-        <>
-          <SellBook height={220} />
-          <div className="trades-table-footer">
-            <div className="trades-table-row">
-              <span className="value-same">29011.60</span>
-              <span className="value-previous"> 29011.6(USDT)</span>
-            </div>
-          </div>
-          <BuyBook height={210} />
-        </>
-      )}
       {select === 1 && (
         <>
-          <SellBook height={220} />
+          <AllSellOrdersFull OpenBooksell={OpenBooksell} />
           <div className="trades-table-footer">
             <div className="trades-table-row">
-              <span className="value-same">29011.60</span>
-              <span className="value-previous"> 29011.6(USDT)</span>
+              <span
+                className={
+                  parseFloat(
+                    dashboard?.last_price_data &&
+                      dashboard?.last_price_data[0]?.price
+                  ) >
+                  parseFloat(
+                    dashboard?.last_price_data &&
+                      dashboard?.last_price_data[0]?.last_price
+                  )
+                    ? "value-increase"
+                    : parseFloat(
+                        dashboard?.last_price_data &&
+                          dashboard?.last_price_data[0]?.price
+                      ) <
+                      parseFloat(
+                        dashboard?.last_price_data &&
+                          dashboard?.last_price_data[0]?.last_price
+                      )
+                    ? "value-decrease"
+                    : "value-same"
+                }
+              >
+                {parseFloat(
+                  dashboard?.last_price_data[0]?.price
+                    ? dashboard?.last_price_data[0]?.price
+                    : 0
+                )}
+                {parseFloat(
+                  dashboard?.last_price_data &&
+                    dashboard?.last_price_data[0]?.price
+                ) >
+                parseFloat(
+                  dashboard?.last_price_data &&
+                    dashboard?.last_price_data[0]?.last_price
+                ) ? (
+                  <i className="fa-solid fa-up-long value-increaseicon ml-2"></i>
+                ) : parseFloat(
+                    dashboard?.last_price_data &&
+                      dashboard?.last_price_data[0]?.price
+                  ) <
+                  parseFloat(
+                    dashboard?.last_price_data &&
+                      dashboard?.last_price_data[0]?.last_price
+                  ) ? (
+                  <i className="fa-solid fa-down-long value-decreaseicon ml-2"></i>
+                ) : (
+                  ""
+                )}
+              </span>
+              <span className="value-previous">
+                {" "}
+                {parseFloat(
+                  dashboard?.last_price_data[0]?.last_price
+                    ? dashboard?.last_price_data[0]?.last_price
+                    : 0
+                )}
+                ({dashboard?.order_data?.base_coin})
+              </span>
             </div>
           </div>
         </>
@@ -97,12 +154,171 @@ const OrderBook = () => {
         <>
           <div className="trades-table-footer">
             <div className="trades-table-row">
-              <span className="value-same">29011.60</span>
-              <span className="value-previous"> 29011.6(USDT)</span>
+              <span
+                className={
+                  parseFloat(
+                    dashboard?.last_price_data &&
+                      dashboard?.last_price_data[0]?.price
+                  ) >
+                  parseFloat(
+                    dashboard?.last_price_data &&
+                      dashboard?.last_price_data[0]?.last_price
+                  )
+                    ? "value-increase"
+                    : parseFloat(
+                        dashboard?.last_price_data &&
+                          dashboard?.last_price_data[0]?.price
+                      ) <
+                      parseFloat(
+                        dashboard?.last_price_data &&
+                          dashboard?.last_price_data[0]?.last_price
+                      )
+                    ? "value-decrease"
+                    : "value-same"
+                }
+              >
+                {parseFloat(
+                  dashboard?.last_price_data[0]?.price
+                    ? dashboard?.last_price_data[0]?.price
+                    : 0
+                )}
+                {parseFloat(
+                  dashboard?.last_price_data &&
+                    dashboard?.last_price_data[0]?.price
+                ) >
+                parseFloat(
+                  dashboard?.last_price_data &&
+                    dashboard?.last_price_data[0]?.last_price
+                ) ? (
+                  <i className="fa-solid fa-up-long value-increaseicon ml-2"></i>
+                ) : parseFloat(
+                    dashboard?.last_price_data &&
+                      dashboard?.last_price_data[0]?.price
+                  ) <
+                  parseFloat(
+                    dashboard?.last_price_data &&
+                      dashboard?.last_price_data[0]?.last_price
+                  ) ? (
+                  <i className="fa-solid fa-down-long value-decreaseicon ml-2"></i>
+                ) : (
+                  ""
+                )}
+              </span>
+              <span className="value-previous">
+                {" "}
+                {parseFloat(
+                  dashboard?.last_price_data[0]?.last_price
+                    ? dashboard?.last_price_data[0]?.last_price
+                    : 0
+                )}
+                ({dashboard?.order_data?.base_coin})
+              </span>
             </div>
           </div>
-          <BuyBook height={210} />
+          <AllBuyOrdersFull buy={OpenBookBuy} show={38} />
         </>
+      )}
+      {select === 3 && (
+        <div className="tradeSection-both">
+          <AllSellOrders OpenBooksell={OpenBooksell} show={18} />
+          <div className="trades-table-footer">
+            {dashboard?.last_price_data?.length > 0 ? (
+              <div className="trades-table-row">
+                <span
+                  className={
+                    parseFloat(
+                      dashboard?.last_price_data &&
+                        dashboard?.last_price_data[0]?.price
+                    ) >
+                    parseFloat(
+                      dashboard?.last_price_data &&
+                        dashboard?.last_price_data[0]?.last_price
+                    )
+                      ? "value-increase"
+                      : parseFloat(
+                          dashboard?.last_price_data &&
+                            dashboard?.last_price_data[0]?.price
+                        ) <
+                        parseFloat(
+                          dashboard?.last_price_data &&
+                            dashboard?.last_price_data[0]?.last_price
+                        )
+                      ? "value-decrease"
+                      : "value-same"
+                  }
+                >
+                  {parseFloat(
+                    dashboard?.last_price_data
+                      ? dashboard?.last_price_data[0]?.price
+                      : 0
+                  )}
+                  {parseFloat(
+                    dashboard?.last_price_data &&
+                      dashboard?.last_price_data[0]?.price
+                  ) >
+                  parseFloat(
+                    dashboard?.last_price_data &&
+                      dashboard?.last_price_data[0]?.last_price
+                  ) ? (
+                    <i className="fa-solid fa-up-long value-increaseicon ml-2"></i>
+                  ) : parseFloat(
+                      dashboard?.last_price_data &&
+                        dashboard?.last_price_data[0]?.price
+                    ) <
+                    parseFloat(
+                      dashboard?.last_price_data &&
+                        dashboard?.last_price_data[0]?.last_price
+                    ) ? (
+                    <i className="fa-solid fa-down-long value-decreaseicon ml-2"></i>
+                  ) : (
+                    "0"
+                  )}
+                </span>
+                <span className="value-previous">
+                  {" "}
+                  {parseFloat(
+                    dashboard?.last_price_data
+                      ? dashboard?.last_price_data[0]?.last_price
+                      : 0
+                  )}
+                  ({dashboard?.order_data?.base_coin})
+                </span>
+              </div>
+            ) : (
+              <div className="trades-table-row">
+                <span
+                  className={
+                    parseFloat(
+                      dashboard?.last_price_data &&
+                        dashboard?.last_price_data[0]?.price
+                    ) >
+                    parseFloat(
+                      dashboard?.last_price_data &&
+                        dashboard?.last_price_data[0]?.last_price
+                    )
+                      ? "value-increase"
+                      : parseFloat(
+                          dashboard?.last_price_data &&
+                            dashboard?.last_price_data[0]?.price
+                        ) <
+                        parseFloat(
+                          dashboard?.last_price_data &&
+                            dashboard?.last_price_data[0]?.last_price
+                        )
+                      ? "value-decrease"
+                      : "value-same"
+                  }
+                >
+                  0
+                </span>
+                <span className="value-previous">
+                  ({dashboard?.order_data?.base_coin})
+                </span>
+              </div>
+            )}
+          </div>
+          <AllBuyOrders OpenBookBuy={OpenBookBuy} show={18} />
+        </div>
       )}
     </div>
   );

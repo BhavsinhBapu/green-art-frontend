@@ -82,6 +82,75 @@ const SellBook = ({ height = 425 }) => {
               <tr className="odd trade_tableList_two">
                 <td>
                   <div className="asset">
+                    <span className="text-danger">26444.90000000</span>
+                  </div>
+                </td>
+                <td>
+                  <div className="asset">
+                    <span className="asset-name">1.64009</span>
+                  </div>
+                </td>
+                <td>
+                  <div className="asset">
+                    <span className="asset-name">43372.02</span>
+                  </div>
+                </td>
+              </tr>
+              <tr className="odd trade_tableList_two">
+                <td>
+                  <div className="asset">
+                    <span className="text-danger">26444.90000000</span>
+                  </div>
+                </td>
+                <td>
+                  <div className="asset">
+                    <span className="asset-name">1.64009</span>
+                  </div>
+                </td>
+                <td>
+                  <div className="asset">
+                    <span className="asset-name">43372.02</span>
+                  </div>
+                </td>
+              </tr>
+              <tr className="odd trade_tableList_two">
+                <td>
+                  <div className="asset">
+                    <span className="text-danger">26444.90000000</span>
+                  </div>
+                </td>
+                <td>
+                  <div className="asset">
+                    <span className="asset-name">1.64009</span>
+                  </div>
+                </td>
+                <td>
+                  <div className="asset">
+                    <span className="asset-name">43372.02</span>
+                  </div>
+                </td>
+              </tr>
+              <tr className="odd trade_tableList_two">
+                <td>
+                  <div className="asset">
+                    <span className="text-danger">26444.90000000</span>
+                  </div>
+                </td>
+                <td>
+                  <div className="asset">
+                    <span className="asset-name">1.64009</span>
+                  </div>
+                </td>
+                <td>
+                  <div className="asset">
+                    <span className="asset-name">43372.02</span>
+                  </div>
+                </td>
+              </tr>
+              
+              <tr className="odd trade_tableList_two">
+                <td>
+                  <div className="asset">
                     <span className="text-danger">26443.80000000</span>
                   </div>
                 </td>

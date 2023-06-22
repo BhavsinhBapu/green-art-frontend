@@ -63,7 +63,7 @@ const ExchangeBox = () => {
 
   return (
     <div className="exchange-box order-box">
-      <div className="trades-headers">
+      {/* <div className="trades-headers">
         <ul
           id="pills-tab"
           role="tablist"
@@ -108,7 +108,7 @@ const ExchangeBox = () => {
             </a>
           </li>
         </ul>
-      </div>
+      </div> */}
       <div id="pills-tabContent" className="tab-content">
         <div
           id="pills-transfer-1"

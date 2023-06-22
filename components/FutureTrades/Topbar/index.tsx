@@ -1,9 +1,31 @@
 import React from "react";
 import styles from "./styles.module.css";
+import { RootState } from "state/store";
+import { useSelector } from "react-redux";
+import SelectCurrency from "components/exchange/selectCurrency";
 const TopBar = () => {
+   const { dashboard, currentPair } = useSelector(
+     (state: RootState) => state.exchange
+   );
   return (
     <div className="col-xl-12 col-12">
       <div className="cxchange-summary-wrap mt-5">
+        {currentPair && (
+          <div className="cxchange-summary-name">
+            <div className="summber-coin-type dropdown">
+              <span
+                className="coin-badge dropdown-toggle"
+                id="dropdownMenuButton"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                {currentPair.replace(/_/g, "/")}
+              </span>
+              <SelectCurrency />
+            </div>
+          </div>
+        )}
         <div className="cxchange-summary-featured">
           <ul className="cxchange-summary-items">
             <li>

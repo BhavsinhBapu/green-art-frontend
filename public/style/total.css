@@ -4732,7 +4732,7 @@ select:-webkit-autofill:focus {
   padding: 10px 0;
   border-top: 1px solid rgb(126 126 126 / 20%);
   border-bottom: 1px solid rgb(126 126 126 / 20%);
-  margin-bottom: 31px;
+  /* margin-bottom: 31px; */
 }
 
 .value-increase {
