@@ -5,23 +5,33 @@ import ImageComponent from "components/common/ImageComponent";
 import SectionLoading from "components/common/SectionLoading";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { AiOutlineGift } from "react-icons/ai";
-import { HiOutlineHome } from "react-icons/hi";
-import { RiPagesLine } from "react-icons/ri";
 import ReactPaginate from "react-paginate";
-import { getMyCards } from "state/actions/giftCards";
+import { toast } from "react-toastify";
+import { getP2PGiftCardListsApi } from "service/p2pGiftCards";
 
-const limit = 10;
+const limit = 2;
 export default function Index() {
   const [loading, setLoading] = useState(false);
   const [myCards, setMyCards] = useState<any>({});
 
   useEffect(() => {
-    getMyCards(1, limit, 1, setLoading, setMyCards);
+    getP2PGiftCardLists(limit, 1);
   }, []);
 
+  const getP2PGiftCardLists = async (limit: any, page: any) => {
+    setLoading(true);
+
+    const data = await getP2PGiftCardListsApi(limit, page);
+    setLoading(false);
+    if (!data.success) {
+      toast.error(data.message);
+      return;
+    }
+    setMyCards(data.data);
+  };
+
   const handlePageClick = (event: any) => {
-    getMyCards(1, limit, event.selected + 1, setLoading, setMyCards);
+    getP2PGiftCardLists(limit, event.selected + 1);
   };
   return (
     <section>
