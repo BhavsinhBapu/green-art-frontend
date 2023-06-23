@@ -1,9 +1,31 @@
-import { appDashboardData, appDashboardDataWithoutPair, marketTradesDashboard, ordersHistoryDashboard, tradesHistoryDashboard } from "service/futureTrade";
-import { setAllmarketTrades, setBuyOrderHistory, setCurrentPair, setDashboard, setLastPriceData, setOpenBookBuy, setOpenBooksell, setOpenOrderHistory, setOrderData, setPairs, setSellOrderHistory, setTotalData, setTradeOrderHistory } from "state/reducer/exchange";
+import {
+  appDashboardData,
+  appDashboardDataWithoutPair,
+  marketTradesDashboard,
+  ordersHistoryDashboard,
+  prePlaceOrderData,
+  tradesHistoryDashboard,
+} from "service/futureTrade";
+import {
+  setAllmarketTrades,
+  setBuyOrderHistory,
+  setCurrentPair,
+  setDashboard,
+  setLastPriceData,
+  setOpenBookBuy,
+  setOpenBooksell,
+  setOpenOrderHistory,
+  setOrderData,
+  setPairs,
+  setSellOrderHistory,
+  setTotalData,
+  setTradeOrderHistory,
+} from "state/reducer/exchange";
 import { openBookDashboard } from "service/exchange";
 import Cookies from "js-cookie";
 import { updateChart } from "components/exchange/api/stream";
 import { unlistenAllChannels } from "./exchange";
+import { toast } from "react-toastify";
 
 export const getDashboardData = (pair: string) => async (dispatch: any) => {
   const response = await appDashboardData(pair);
@@ -89,6 +111,41 @@ export async function listenMessages(dispatch: any, user: any) {
     e?.order_data?.total && dispatch(setTotalData(e?.order_data?.total));
   });
 }
+
+export const prePlaceOrderDataAction = async (
+  side: number,
+  margin_mode: number,
+  order_type: number,
+  coin_pair_id: number,
+  price: number,
+  amount_type: number,
+  amount: number,
+  take_profit: number,
+  stop_loss: number,
+  leverage_amount: number
+) => {
+  const formData = new FormData();
+
+  formData.append("side", side.toString());
+  formData.append("margin_mode", margin_mode.toString());
+  formData.append("order_type", order_type.toString());
+  formData.append("coin_pair_id", coin_pair_id.toString());
+  formData.append("price", price.toString());
+  formData.append("amount_type", amount_type.toString());
+  formData.append("amount", amount.toString());
+  formData.append("take_profit", take_profit.toString());
+  formData.append("stop_loss", stop_loss.toString());
+  formData.append("leverage_amount", leverage_amount.toString());
+  const response = await prePlaceOrderData(formData);
+  if (response.success) {
+    toast.success(response.message);
+  } else {
+    toast.error(response.message);
+  }
+
+  return formData;
+};
+
 export const initialDashboardCallAction =
   (pair: string, dashboard: any, setisLoading?: any) =>
   async (dispatch: any) => {

@@ -6,11 +6,17 @@ import Market from "./buy/market";
 import SellLimit from "./sell/limit";
 import SellMarket from "./sell/market";
 import useTranslation from "next-translate/useTranslation";
+import Leverage from "../Modals/leverage";
+import Isolated from "../Modals/isolated";
+import { ISOLATED } from "helpers/core-constants";
 
 const ExchangeBox = () => {
   type tradingTabType = number;
   const { t } = useTranslation("common");
   const { isLoggedIn } = useSelector((state: RootState) => state.user);
+  const [leverage, setLeverage] = useState(20);
+  const [isolated, setIsolated] = useState(ISOLATED);
+
   const { dashboard, currentPair } = useSelector(
     (state: RootState) => state.exchange
   );
@@ -109,6 +115,15 @@ const ExchangeBox = () => {
           </li>
         </ul>
       </div> */}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-around",
+        }}
+      >
+        <Isolated isolated={isolated} setIsolated={setIsolated} />
+        <Leverage leverage={leverage} setLeverage={setLeverage} />
+      </div>
       <div id="pills-tabContent" className="tab-content">
         <div
           id="pills-transfer-1"

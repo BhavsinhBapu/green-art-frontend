@@ -1,6 +1,5 @@
 import request from "lib/futureTradeRequest";
 
-
 export const appDashboardData = async (pair: string | null) => {
   if (pair) {
     const { data } = await request.get(`/app-dashboard/${pair}`);
@@ -9,6 +8,7 @@ export const appDashboardData = async (pair: string | null) => {
     return null;
   }
 };
+
 export const appDashboardDataWithoutPair = async () => {
   const { data } = await request.get(`/app-dashboard`);
   return data;
@@ -26,6 +26,10 @@ export const buyLimitApp = async (
     trade_coin_id,
     base_coin_id,
   });
+  return data;
+};
+export const prePlaceOrderData = async (payload: any) => {
+  const { data } = await request.post(`/preplace-order-data`, payload);
   return data;
 };
 
