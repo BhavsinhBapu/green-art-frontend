@@ -6,27 +6,65 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { toast } from "react-toastify";
-import { getAllGiftCardAdsApi } from "service/p2pGiftCards";
+import {
+  getAllGiftCardAdsApi,
+  getCreateAdsSettingsDataApi,
+} from "service/p2pGiftCards";
 
-const ooptions = [
-  { value: 1, label: "Option 1" },
-  { value: 2, label: "Option 2" },
-  { value: 3, label: "Option 3" },
+const options = [
+  { value: 1, label: "Bank Transfer" },
+  { value: 2, label: "Crypto Transfer" },
 ];
-
-const limit = 2;
+const limit = 1;
 
 export default function Index() {
   const router = useRouter();
   const [allGiftCardAds, setAllGiftCardAds] = useState({});
+  const [settings, setSettings] = useState<any>({});
   const [loading, setLoading] = useState(false);
+
+  const [selectedPaymentType, setSelectedPaymentType] = useState<any>({});
+  const [selectedCurrencyType, setSelectedCurrencyType] = useState<any>({});
+  const [selectedPayment, setSelectedPayment] = useState<any>({});
+  const [selectedCountry, setSelectedCountry] = useState<any>({});
+  const [price, setPrice] = useState("");
+
   useEffect(() => {
-    getAllGiftCardAds();
+    getCreateAdsSettingsData();
   }, []);
 
-  const getAllGiftCardAds = async () => {
+  useEffect(() => {
+    getAllGiftCardAds(1);
+  }, [
+    selectedPaymentType,
+    selectedCurrencyType,
+    selectedPayment,
+    selectedCountry,
+    price,
+  ]);
+
+  const getCreateAdsSettingsData = async () => {
+    const data: any = await getCreateAdsSettingsDataApi();
+    if (!data?.success) {
+      toast.error(data?.message);
+      return;
+    }
+
+    setSettings(data?.data);
+    console.log("data", data, router?.query?.id);
+  };
+
+  const getAllGiftCardAds = async (page: any) => {
     setLoading(true);
-    const data = await getAllGiftCardAdsApi();
+    const data = await getAllGiftCardAdsApi(
+      selectedPaymentType?.value || "",
+      selectedCurrencyType?.value || "",
+      price,
+      selectedPayment?.value || "",
+      selectedCountry?.value || "",
+      page,
+      limit
+    );
     setLoading(false);
 
     if (!data.success) {
@@ -38,12 +76,8 @@ export default function Index() {
     console.log("data", data);
   };
 
-  const demoFunc = (event: any) => {
-    console.log("Demo Func");
-  };
-
-  const handlePageClick = () => {
-    console.log("");
+  const handlePageClick = (event: any) => {
+    getAllGiftCardAds(event.selected + 1);
   };
 
   const handleBuyFunc = (uid: any) => {
@@ -75,27 +109,54 @@ export default function Index() {
       <div className="container mt-4">
         <div className="row">
           <div className="col-md-3">
-            <label>Amount</label>
+            <label>Price</label>
             <div className="P2psearchBox position-relative">
-              <input type="text" placeholder="Enter amount EUR" />
+              <input
+                type="number"
+                placeholder="Enter Price"
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+              />
             </div>
           </div>
-          <div className="col-md-3">
+          <div className="col-md-2">
             <div className="form-group p2pSelectFilter">
-              <label> Fiat</label>
-              <CUstomSelect options={ooptions} handleFunction={demoFunc} />
+              <label> Payment Type</label>
+              <CUstomSelect
+                options={options}
+                handleFunction={setSelectedPaymentType}
+              />
             </div>
           </div>
-          <div className="col-md-3">
+          <div className="col-md-2">
             <div className="form-group p2pSelectFilter">
-              <label> Payment</label>
-              <CUstomSelect options={ooptions} handleFunction={demoFunc} />
+              <label> Currency Type</label>
+              <CUstomSelect
+                options={
+                  selectedPaymentType.value === 1
+                    ? settings?.currency
+                    : settings?.assets
+                }
+                handleFunction={setSelectedCurrencyType}
+              />
             </div>
           </div>
-          <div className="col-md-3">
+          <div className="col-md-2">
+            <div className="form-group p2pSelectFilter">
+              <label>Payment Method</label>
+              <CUstomSelect
+                options={settings?.payment_method}
+                handleFunction={setSelectedPayment}
+              />
+            </div>
+          </div>
+          <div className="col-md-2">
             <div className="form-group p2pSelectFilter">
               <label>Available Region(s)</label>
-              <CUstomSelect options={ooptions} handleFunction={demoFunc} />
+              <CUstomSelect
+                options={settings?.country}
+                handleFunction={setSelectedCountry}
+              />
             </div>
           </div>
         </div>
