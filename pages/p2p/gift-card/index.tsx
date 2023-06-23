@@ -2,6 +2,7 @@ import { NoItemFound } from "components/NoItemFound/NoItemFound";
 import P2PGiftCardNavbar from "components/P2P/p2p-gift-card/p2p-gift-card-navbar/P2PGiftCardNavbar";
 import { CUstomSelect } from "components/common/CUstomSelect";
 import SectionLoading from "components/common/SectionLoading";
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { toast } from "react-toastify";
@@ -16,6 +17,7 @@ const ooptions = [
 const limit = 2;
 
 export default function Index() {
+  const router = useRouter();
   const [allGiftCardAds, setAllGiftCardAds] = useState({});
   const [loading, setLoading] = useState(false);
   useEffect(() => {
@@ -41,8 +43,12 @@ export default function Index() {
   };
 
   const handlePageClick = () => {
-    console.log('')
-  }
+    console.log("");
+  };
+
+  const handleBuyFunc = (uid: any) => {
+    router.push(`/p2p/gift-card/ads/details/${uid}`);
+  };
   return (
     <section>
       <div className="p2p_bg">
@@ -104,24 +110,53 @@ export default function Index() {
               <table className="table">
                 <thead>
                   <tr>
+                    <th scope="col">Advertisers</th>
                     <th scope="col">Price</th>
-                    <th scope="col">Amount</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Created At</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">Limit/Available </th>
+                    <th scope="col">Payment</th>
+                    <th scope="col">Trade</th>
                   </tr>
                 </thead>
                 <tbody>
                   {allGiftCardAds?.data?.map((item: any, index: number) => (
                     <tr className="tableRow" key={index}>
+                      <td>
+                        <div className="tableImg d-flex align-items-center">
+                          <img src={item?.user?.photo} alt="" />
+                          <h5>{item?.user?.nickname || "Unknown"}</h5>
+                        </div>
+                      </td>
                       <td>{item.price}</td>
-                      <td>{item.amount}</td>
-                      <td>{item.status === 1 ? "Active" : "Deactive"}</td>
-                      <td>{item.created_at}</td>
+                      <td>
+                        <div className="d-flex align-items-center">
+                          <small className="mr-2">Available</small>
+                          <h6 className="limitBalance">{item?.amount}</h6>
+                        </div>
+                        <div className="d-flex align-items-center">
+                          <small className="mr-2">Limit</small>
+                          <h6 className="limitBalance">{item?.time_limit}</h6>
+                        </div>
+                      </td>
+                      <td>
+                        {item.payment_methods ? (
+                          item.payment_methods.map((item) => (
+                            <span className="mr-1 bg-primary-color px-2 py-1 rounded text-white">
+                              {item.admin_pamynt_method.name}
+                            </span>
+                          ))
+                        ) : (
+                          <span className="mr-1 bg-card-primary-color px-2 py-1 rounded text-white">
+                            Crypto
+                          </span>
+                        )}
+                      </td>
 
                       <td>
-                        <button className="tableButton p2p-gift-card-adds-margin-bottom">
-                          View
+                        <button
+                          className="tableButton p2p-gift-card-adds-margin-bottom"
+                          onClick={() => handleBuyFunc(item.uid)}
+                        >
+                          Buy {item?.coin_type}
                         </button>
                       </td>
                     </tr>

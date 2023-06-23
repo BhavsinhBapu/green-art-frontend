@@ -45,3 +45,13 @@ export const getAllGiftCardAdsApi= async() => {
     const {data} = await request.get(`/p2p/all-gift-card-ads-list`);
     return data;
 }
+
+export const getGiftCardAdsDetailsForBuyApi = async (ads_uid: any) => {
+    const {data} = await request.get(`/p2p/get-gift-card-ads-details-p2p?uid=${ads_uid}`);
+    return data;
+}
+
+export const buyP2PGiftCardAdsApi = async(params:any) => {
+    const {data} = await request.post(`/p2p/place-gift-card-order`,{...params});
+    return data;
+}
