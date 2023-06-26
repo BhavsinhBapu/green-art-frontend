@@ -15192,6 +15192,11 @@ input:checked + .gift-card-buy-slider:before {
   margin-left: 10px;
 }
 
+.p2p-gift-card-navbar-lists{
+  display: flex;
+  gap: 28px;
+}
+
 @media (max-width: 991px) {
   .text-45 {
     font-size: 36px;
@@ -15202,6 +15207,12 @@ input:checked + .gift-card-buy-slider:before {
   }
   .gift-card-buy-banner-margin {
     margin-top: 20px;
+  }
+  .p2p-gift-card-navbar-margin-top{
+    margin-top: 50px;
+  }
+  .p2p-gift-card-navbar-lists{
+    display: block;
   }
 }
 
@@ -15239,4 +15250,5 @@ input:checked + .gift-card-buy-slider:before {
   .p2p-gift-card-adds-margin-left {
     margin-left: 0;
   }
+  
 }
