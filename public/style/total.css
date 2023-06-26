@@ -15197,6 +15197,10 @@ input:checked + .gift-card-buy-slider:before {
   gap: 28px;
 }
 
+.primary-border-color{
+  border-color: var(--border-color) !important;
+}
+
 @media (max-width: 991px) {
   .text-45 {
     font-size: 36px;

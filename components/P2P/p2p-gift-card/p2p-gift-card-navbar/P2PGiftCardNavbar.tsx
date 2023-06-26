@@ -6,7 +6,7 @@ import { RiPagesLine } from "react-icons/ri";
 export default function P2PGiftCardNavbar() {
   return (
     <div>
-      <div className="py-3 border-bottom p2p-gift-card-navbar-margin-top">
+      <div className="py-3 border-bottom primary-border-color p2p-gift-card-navbar-margin-top">
         <div className="container">
           <div className="row">
             <div className="col-12">
