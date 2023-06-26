@@ -313,6 +313,10 @@ export const sendMessageTrade = async (formData: any) => {
   const { data } = await p2pResuest.post("/send-message", formData);
   return data;
 };
+export const sendMessageGift = async (formData: any) => {
+  const { data } = await p2pResuest.post("/send-message-gift", formData);
+  return data;
+};
 // user-center
 export const userCenter = async () => {
   const { data } = await p2pResuest.get("/user-center");

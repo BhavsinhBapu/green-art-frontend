@@ -31,7 +31,7 @@ import SectionLoading from "components/common/SectionLoading";
 
 import TradeDispute from "components/P2P/P2pHome/TradeDispute";
 import { TradeChat } from "components/P2P/Trade/trade-chat";
-import { sendMessageTrade } from "service/p2p";
+import { sendMessageGift, sendMessageTrade } from "service/p2p";
 import { useDispatch, useSelector } from "react-redux";
 import { setP2pDetailsOrder, setTradeChat } from "state/reducer/user";
 import { RootState } from "state/store";
@@ -61,11 +61,11 @@ const Trading = () => {
   const sendMessage = async (e: any) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("order_uid", uid);
+    formData.append("gift_card_order_id", details?.order?.id);
     formData.append("message", message);
     file && formData.append("file", file);
     setMessage("");
-    await sendMessageTrade(formData);
+    await sendMessageGift(formData);
   };
   async function listenMessages() {
     //@ts-ignore
