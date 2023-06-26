@@ -106,7 +106,7 @@ export default function Index() {
                       <td>
                         {parseFloat(item.price).toFixed(8)} {item.currency_type}
                       </td>
-                      <td>{parseFloat(item.amount).toFixed(8)}</td>
+                      <td>{parseFloat(item.amount).toFixed(8)} {item.gift_card.coin_type}</td>
                       <td>{item.status_name}</td>
                       <td>{item.created_at}</td>
 
