@@ -83,14 +83,14 @@ export default function Index() {
                 <tbody>
                   {orders?.data?.map((item: any, index: number) => (
                     <tr className="tableRow" key={index}>
-                      <td>'fhjkfj'</td>
+                      <td>{item.order_id}</td>
                       <td>{parseFloat(item.amount)}</td>
                       <td>
                         {parseFloat(item.price)} {item.currency_type}
                       </td>
-                      <td>{parseFloat(item.status)}</td>
+                      <td>{item.status_name}</td>
                       <td>
-                        <Link href={`/p2p/gift-card/ads/sell/${item.uid}`}>
+                        <Link href={`/p2p/gift-card/ads/buy/${item.uid}`}>
                           <a className="tableButton">Details</a>
                         </Link>
                       </td>
