@@ -41,6 +41,10 @@ import {
   UpdateP2pAds,
   getAvailableBalance,
   myP2pDisputeOrder,
+  getGiftCardDetails,
+  payNowGiftCardOrder,
+  PaymentConfirmGiftCardOrder,
+  giftCardOrderCancel,
 } from "service/p2p";
 import {
   setP2pDetails,
@@ -626,6 +630,28 @@ export const placeP2POrderAction = async (
   }
   return response;
 };
+// getGiftCardDetails;
+export const getGiftCardDetailsAction = async (
+  order_uid: string,
+  setStep: any,
+  setLoading: any,
+  dispatch: any
+) => {
+  setLoading(true);
+  const response = await getGiftCardDetails(order_uid);
+  dispatch(setP2pDetails(response?.data));
+  dispatch(setTradeChatAll(response?.data?.chat_messages));
+  console.log(response, "responseresponseresponse");
+  if (response?.data?.order?.status === TRADE_STATUS_ESCROW) {
+    setStep(1);
+  } else if (response?.data?.order?.status === TRADE_STATUS_PAYMENT_DONE) {
+    setStep(2);
+  } else if (response?.data?.order?.status === TRADE_STATUS_TRANSFER_DONE) {
+    setStep(3);
+  }
+
+  setLoading(false);
+};
 export const getP2pOrderDetailsAction = async (
   order_uid: string,
   setStep: any,
@@ -646,6 +672,22 @@ export const getP2pOrderDetailsAction = async (
 
   setLoading(false);
 };
+export const payNowGiftCardOrderAction = async (
+  order_id: any,
+  doc: any,
+  setStep: any
+) => {
+  const formData = new FormData();
+  formData.append("gift_card_order_id", order_id);
+  formData.append("payment_slip", doc);
+  const response = await payNowGiftCardOrder(formData);
+  if (response.success) {
+    setStep(2);
+    toast.success(response.message);
+  } else {
+    toast.error(response.message);
+  }
+};
 // paymentP2pOrder
 export const paymentP2pOrderAction = async (
   trade_id: any,
@@ -659,6 +701,23 @@ export const paymentP2pOrderAction = async (
   if (response.success) {
     setStep(2);
     toast.success(response.message);
+  } else {
+    toast.error(response.message);
+  }
+};
+// giftCardOrderCancel;
+export const giftCardOrderCancelAction = async (
+  order_uid: any,
+  reason: any,
+  router: any
+) => {
+  const formData = new FormData();
+  formData.append("order_uid", order_uid);
+  formData.append("reason", reason);
+  const response = await giftCardOrderCancel(formData);
+  if (response.success) {
+    toast.success(response.message);
+    router.push("/p2p");
   } else {
     toast.error(response.message);
   }
@@ -695,6 +754,22 @@ export const submitTradeFeedback = async (
   const response = await orderFeedback(formData);
   if (response.success) {
     toast.success(response.message);
+  } else {
+    toast.error(response.message);
+  }
+};
+// releaseP2pOrder;
+export const PaymentConfirmGiftCardOrderAction = async (
+  order_id: any,
+  dispatch: any
+) => {
+  const formData = new FormData();
+  formData.append("gift_card_order_id", order_id);
+  const response = await PaymentConfirmGiftCardOrder(formData);
+  if (response.success) {
+    toast.success(response.message);
+    // setDetails(response?.data);
+    dispatch(setP2pDetails(response?.data));
   } else {
     toast.error(response.message);
   }
