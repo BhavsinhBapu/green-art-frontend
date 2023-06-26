@@ -24,7 +24,7 @@ const options = [
 const limit = 2;
 export default function Index() {
   const [loading, setLoading] = useState(false);
-  const [orders, setOrders] = useState<any>({});
+  const [orders, setOrders] = useState<any>([]);
   const [selectStatus, setSelectStatus] = useState(options[0]);
 
   useEffect(() => {
