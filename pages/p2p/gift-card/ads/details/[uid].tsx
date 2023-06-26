@@ -63,6 +63,7 @@ export default function Index() {
     }
     toast.success(data.message);
     console.log("response", data);
+    router.push(`/p2p/gift-card/ads/buy/${data?.data?.order_uid}`);
   };
 
   return (
