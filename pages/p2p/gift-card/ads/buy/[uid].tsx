@@ -43,6 +43,7 @@ import BackButton from "components/P2P/BackButton";
 import GiftCardTradeCancel from "components/P2P/P2pHome/GiftCardTradeCancel";
 import P2PGiftCardNavbar from "components/P2P/p2p-gift-card/p2p-gift-card-navbar/P2PGiftCardNavbar";
 import P2PGiftCardHeader from "components/P2P/p2p-gift-card/p2p-gift-card-header/P2PGiftCardHeader";
+import TradeDisputeGift from "components/P2P/P2pHome/TradeDisputeGift";
 
 let socketCall = 0;
 
@@ -378,7 +379,7 @@ const Trading = () => {
                           </button>
                         </a>
                       )}
-                      <TradeDispute uid={uid} />
+                      <TradeDisputeGift uid={details?.order?.id} />
                     </>
                   )}
                   {details.user_type === SELL && (
@@ -418,7 +419,7 @@ const Trading = () => {
                   )}
                 </>
               )}
-              {details?.order?.status === TRADE_STATUS_TRANSFER_DONE && (
+              {/* {details?.order?.status === TRADE_STATUS_TRANSFER_DONE && (
                 <>
                   {details.user_type === BUY && (
                     <>
@@ -560,7 +561,7 @@ const Trading = () => {
                     </>
                   )}
                 </>
-              )}
+              )} */}
             </>
           )}
         </div>
