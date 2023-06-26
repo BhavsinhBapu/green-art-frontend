@@ -6,12 +6,12 @@ import { RiPagesLine } from "react-icons/ri";
 export default function P2PGiftCardNavbar() {
   return (
     <div>
-      <div className="py-3 border-bottom">
+      <div className="py-3 border-bottom p2p-gift-card-navbar-margin-top">
         <div className="container">
           <div className="row">
             <div className="col-12">
               <ul className="d-flex justify-content-between topBarList">
-                <div className="d-flex " style={{ gap: "28px" }}>
+                <div className="p2p-gift-card-navbar-lists" style={{ gap: "28px" }}>
                   <li>
                     <Link href="/p2p/gift-card">
                       <a>
