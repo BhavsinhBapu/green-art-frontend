@@ -29,7 +29,6 @@ import {
 import Timer from "components/P2P/P2pHome/Timer";
 import SectionLoading from "components/common/SectionLoading";
 
-import TradeDispute from "components/P2P/P2pHome/TradeDispute";
 import { TradeChat } from "components/P2P/Trade/trade-chat";
 import { sendMessageGift, sendMessageTrade } from "service/p2p";
 import { useDispatch, useSelector } from "react-redux";
@@ -188,7 +187,7 @@ const Trading = () => {
                 <h4 className="">
                   {" "}
                   {parseFloat(details?.order?.amount).toFixed(8)}{" "}
-                  {details?.order?.p_gift_card?.currency_type}
+                  {details?.order?.p_gift_card?.gift_card?.coin_type}
                 </h4>
               </div>
               <div className="">
@@ -382,6 +381,7 @@ const Trading = () => {
                       <TradeDisputeGift uid={details?.order?.id} />
                     </>
                   )}
+
                   {details.user_type === SELL && (
                     <>
                       <button
@@ -414,7 +414,7 @@ const Trading = () => {
                         </a>
                       )}
 
-                      <TradeDispute uid={uid} />
+                      <TradeDisputeGift uid={details?.order?.id} />
                     </>
                   )}
                 </>
