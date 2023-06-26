@@ -21,7 +21,7 @@ const options = [
   { value: 7, label: "Released By Admin" },
 ];
 
-const limit = 2;
+const limit = 10;
 export default function Index() {
   const [loading, setLoading] = useState(false);
   const [orders, setOrders] = useState<any>({});
