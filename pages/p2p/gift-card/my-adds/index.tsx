@@ -1,6 +1,7 @@
 import { NoItemFound } from "components/NoItemFound/NoItemFound";
 import P2PGiftCardHeader from "components/P2P/p2p-gift-card/p2p-gift-card-header/P2PGiftCardHeader";
 import P2PGiftCardNavbar from "components/P2P/p2p-gift-card/p2p-gift-card-navbar/P2PGiftCardNavbar";
+import { CUstomSelect } from "components/common/CUstomSelect";
 import ImageComponent from "components/common/ImageComponent";
 import SectionLoading from "components/common/SectionLoading";
 import Link from "next/link";
@@ -14,19 +15,29 @@ import {
 } from "service/p2pGiftCards";
 
 const limit = 2;
+const options = [
+  { value: "all", label: "All" },
+  { value: 0, label: "Deactive" },
+  { value: 1, label: "Active" },
+  { value: 2, label: "Success" },
+  { value: 3, label: "Canceled" },
+  { value: 4, label: "Ongoing" },
+];
+
 export default function Index() {
   const [loading, setLoading] = useState(false);
   const [myCards, setMyCards] = useState<any>({});
+  const [selectStatus, setSelectStatus] = useState(options[0]);
   const router = useRouter();
 
   useEffect(() => {
-    getMyGiftCardAdsLists(limit, 1);
-  }, []);
+    getMyGiftCardAdsLists(limit, 1, selectStatus.value);
+  }, [selectStatus]);
 
-  const getMyGiftCardAdsLists = async (limit: any, page: any) => {
+  const getMyGiftCardAdsLists = async (limit: any, page: any, status: any) => {
     setLoading(true);
 
-    const data = await getMyGiftCardAdsListsApi(limit, page);
+    const data = await getMyGiftCardAdsListsApi(limit, page, status);
     setLoading(false);
     if (!data.success) {
       toast.error(data.message);
@@ -36,7 +47,7 @@ export default function Index() {
   };
 
   const handlePageClick = (event: any) => {
-    getMyGiftCardAdsLists(limit, event.selected + 1);
+    getMyGiftCardAdsLists(limit, event.selected + 1, selectStatus.value);
   };
 
   const handleAdsDelete = async (ads_id: any) => {
@@ -48,7 +59,7 @@ export default function Index() {
       return;
     }
     toast.success(data.message);
-    getMyGiftCardAdsLists(limit, 1);
+    getMyGiftCardAdsLists(limit, 1, selectStatus.value);
   };
   const handleAdsEdit = (ads_uid: any) => {
     router.push(`/p2p/gift-card/edit-ads/${ads_uid}`);
@@ -62,6 +73,16 @@ export default function Index() {
       {/* item part */}
 
       <div className="container">
+        <div className="col-md-3">
+          <div className="form-group p2pSelectFilter">
+            <label> Payment Type</label>
+            <CUstomSelect
+              options={options}
+              handleFunction={setSelectStatus}
+              defaultValue={options[0]}
+            />
+          </div>
+        </div>
         {loading ? (
           <SectionLoading />
         ) : (
@@ -82,16 +103,19 @@ export default function Index() {
                     <tr className="tableRow" key={index}>
                       <td>{item.price}</td>
                       <td>{item.amount}</td>
-                      <td>{item.status === 1 ? "Active" : "Deactive"}</td>
+                      <td>{item.status_name}</td>
                       <td>{item.created_at}</td>
 
                       <td>
-                        <button
-                          className="tableButton p2p-gift-card-adds-margin-bottom"
-                          onClick={() => handleAdsEdit(item.uid)}
-                        >
-                          Edit
-                        </button>
+                        {(item.status == 1 || item.status == 2) && (
+                          <button
+                            className="tableButton p2p-gift-card-adds-margin-bottom"
+                            onClick={() => handleAdsEdit(item.uid)}
+                          >
+                            Edit
+                          </button>
+                        )}
+
                         <button
                           className="tableButton bg-card-primary-color p2p-gift-card-adds-margin-left"
                           onClick={() => handleAdsDelete(item.id)}

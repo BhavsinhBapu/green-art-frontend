@@ -51,7 +51,7 @@ export default function Index() {
       {/* second nav */}
       <P2PGiftCardNavbar />
 
-      <P2PGiftCardHeader title={"Gift Card Lists"} />
+      <P2PGiftCardHeader title={"Order Lists"} />
       {/* item part */}
 
       <div className="container">
@@ -84,7 +84,10 @@ export default function Index() {
                   {orders?.data?.map((item: any, index: number) => (
                     <tr className="tableRow" key={index}>
                       <td>{item.order_id}</td>
-                      <td>{parseFloat(item.amount)}</td>
+                      <td>
+                        {parseFloat(item.amount)}{" "}
+                        {item?.p_gift_card?.gift_card?.coin_type}
+                      </td>
                       <td>
                         {parseFloat(item.price)} {item.currency_type}
                       </td>
