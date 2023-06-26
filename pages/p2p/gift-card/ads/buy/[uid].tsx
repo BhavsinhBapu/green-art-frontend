@@ -113,6 +113,7 @@ const Trading = () => {
   const getDetails = () => {
     getGiftCardDetailsAction(uid.toString(), setStep, setLoading, dispatch);
   };
+  console.log(details);
   const handleFileChange = (event: any) => {
     const fileObj = event.target.files && event.target.files[0];
     if (!fileObj) {
@@ -186,7 +187,7 @@ const Trading = () => {
                 <h4 className="">
                   {" "}
                   {parseFloat(details?.order?.amount).toFixed(8)}{" "}
-                  {details?.order?.coin_type}
+                  {details?.order?.p_gift_card?.currency_type}
                 </h4>
               </div>
               <div className="">
@@ -194,7 +195,7 @@ const Trading = () => {
                 <h4 className="">
                   {" "}
                   {parseFloat(details?.order?.price).toFixed(8)}{" "}
-                  {details?.order?.currency}
+                  {details?.order?.currency_type}
                 </h4>
               </div>
             </div>
@@ -345,7 +346,7 @@ const Trading = () => {
                           Cancel
                         </button>
                       </a>
-                      <GiftCardTradeCancel uid={uid} />
+                      <GiftCardTradeCancel uid={details?.order?.id} />
                     </>
                   )}
                   {details.user_type === SELL && (

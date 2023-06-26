@@ -326,3 +326,8 @@ export const userProfileID = async (id: any) => {
   const { data } = await p2pResuest.get(`/user-profile?id=${id}`);
   return data;
 };
+
+export const getGiftCardTradeHeder = async () => {
+  const { data } = await p2pResuest.get(`/get-gift-card-trade-header`);
+  return data;
+};

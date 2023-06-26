@@ -2,10 +2,12 @@ import { NoItemFound } from "components/NoItemFound/NoItemFound";
 import P2PGiftCardNavbar from "components/P2P/p2p-gift-card/p2p-gift-card-navbar/P2PGiftCardNavbar";
 import { CUstomSelect } from "components/common/CUstomSelect";
 import SectionLoading from "components/common/SectionLoading";
+import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { toast } from "react-toastify";
+import { getGiftCardTradeHeder } from "service/p2p";
 import {
   getAllGiftCardAdsApi,
   getCreateAdsSettingsDataApi,
@@ -17,7 +19,8 @@ const options = [
 ];
 const limit = 15;
 
-export default function Index() {
+export default function Index({ data }: any) {
+  console.log(data, "datadatadatadatadatadatadata");
   const router = useRouter();
   const [allGiftCardAds, setAllGiftCardAds] = useState<any>({});
   const [settings, setSettings] = useState<any>({});
@@ -80,21 +83,28 @@ export default function Index() {
   const handleBuyFunc = (uid: any) => {
     router.push(`/p2p/gift-card/ads/details/${uid}`);
   };
+    const changeBackground = () => {
+      const elements = document.getElementsByClassName("p2p_bg");
+
+      // Loop through the elements and add the background image
+      for (let i = 0; i < elements.length; i++) {
+        //@ts-ignore
+        elements[i].style.backgroundImage = `url('${data?.banner}')`;
+      }
+    };
+   useEffect(() => {
+     changeBackground();
+   }, []);
   return (
     <section>
       <div className="p2p_bg">
         <div className="container">
           <div className="row">
             <div className="col-12 text-center">
-              <h2 className="text-white">
-                Tradexpro Peer-to-Peer Ecosystem With unlimited countries and
-                payment system
-              </h2>
-
-              <p className="text-white">
-                Tradexpro is the largest centralized exchange globally. However,
-                it is also a major player in the P2P trading space
-              </p>
+              {data?.header && <h2 className="text-white">{data?.header}</h2>}
+              {data?.p2p_banner_des && (
+                <p className="text-white">{data?.description}</p>
+              )}
             </div>
             {/* <div className="col-md-12">{isLoggedIn && <P2pTopBar />}</div> */}
           </div>
@@ -170,7 +180,7 @@ export default function Index() {
                   <tr>
                     <th scope="col">Advertisers</th>
                     <th scope="col">Price</th>
-                    <th scope="col">Limit/Available </th>
+                    <th scope="col">Value of gift card</th>
                     <th scope="col">Payment</th>
                     <th scope="col">Trade</th>
                   </tr>
@@ -187,13 +197,12 @@ export default function Index() {
                       <td>{item.price}</td>
                       <td>
                         <div className="d-flex align-items-center">
-                          <small className="mr-2">Available</small>
                           <h6 className="limitBalance">{item?.amount}</h6>
                         </div>
-                        <div className="d-flex align-items-center">
+                        {/* <div className="d-flex align-items-center">
                           <small className="mr-2">Limit</small>
                           <h6 className="limitBalance">{item?.time_limit}</h6>
-                        </div>
+                        </div> */}
                       </td>
                       <td>
                         {item.payment_methods ? (
@@ -217,7 +226,7 @@ export default function Index() {
                           className="tableButton p2p-gift-card-adds-margin-bottom"
                           onClick={() => handleBuyFunc(item.uid)}
                         >
-                          Buy {item?.coin_type}
+                          Buy Gift Card
                         </button>
                       </td>
                     </tr>
@@ -250,3 +259,11 @@ export default function Index() {
     </section>
   );
 }
+export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
+  const { data } = await getGiftCardTradeHeder();
+  return {
+    props: {
+      data: data,
+    },
+  };
+};
