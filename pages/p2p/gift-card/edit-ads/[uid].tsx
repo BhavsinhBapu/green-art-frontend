@@ -32,12 +32,12 @@ export default function Index() {
   const [settings, setSettings] = useState<any>({});
   const [loading, setLoading] = useState(false);
   const [adsDetails, setAdsDetails] = useState({});
-  const [selectedPaymentType, setSelectedPaymentType] = useState({});
-  const [selectedCurrencyType, setSelectedCurrencyType] = useState({});
-  const [selectedStatus, setSelectedStatus] = useState({});
+  const [selectedPaymentType, setSelectedPaymentType] = useState<any>({});
+  const [selectedCurrencyType, setSelectedCurrencyType] = useState<any>({});
+  const [selectedStatus, setSelectedStatus] = useState<any>({});
   const [selectedPayment, setSelectedPayment] = useState<any>([]);
   const [selectedCountry, setSelectedCountry] = useState([]);
-  const [selectedTime, setSelectedTime] = useState({});
+  const [selectedTime, setSelectedTime] = useState<any>({});
   const [termsData, setTermsData] = useState("");
   const [price, setPrice] = useState("");
 
@@ -78,7 +78,7 @@ export default function Index() {
 
     if (item.payment_currency_type === 1) {
       let selectCurrency = settings?.currency.find(
-        (data) => data.value === item.currency_type
+        (data:any) => data.value === item.currency_type
       );
       setSelectedCurrencyType(selectCurrency);
 
@@ -86,15 +86,15 @@ export default function Index() {
 
       let selectedPaymentMethods = JSON.parse(item.payment_method);
 
-      let paymentMethod = selectedPaymentMethods?.map((data) =>
-        settings.payment_method.find((val) => val.value === data)
+      let paymentMethod = selectedPaymentMethods?.map((data:any) =>
+        settings.payment_method.find((val:any) => val.value === data)
       );
       setSelectedPayment(paymentMethod);
     }
 
     if (item.payment_currency_type === 2) {
       let selectCurrency = settings?.assets.find(
-        (data) => data.value === item.currency_type
+        (data:any) => data.value === item.currency_type
       );
       setSelectedCurrencyType(selectCurrency);
     }
@@ -102,7 +102,7 @@ export default function Index() {
     // set time limit
 
     let selectedTimeData = settings?.payment_time?.find(
-      (data) => data.value === item.time_limit
+      (data:any) => data.value === item.time_limit
     );
     setSelectedTime(selectedTimeData);
 
@@ -114,8 +114,8 @@ export default function Index() {
 
     let selectedCountries = JSON.parse(item.country);
 
-    let selectedCountryData = selectedCountries.map((item) =>
-      settings.country.find((val) => val.value === item)
+    let selectedCountryData = selectedCountries.map((item:any) =>
+      settings.country.find((val:any) => val.value === item)
     );
 
     setSelectedCountry(selectedCountryData);

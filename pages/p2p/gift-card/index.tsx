@@ -19,7 +19,7 @@ const limit = 1;
 
 export default function Index() {
   const router = useRouter();
-  const [allGiftCardAds, setAllGiftCardAds] = useState({});
+  const [allGiftCardAds, setAllGiftCardAds] = useState<any>({});
   const [settings, setSettings] = useState<any>({});
   const [loading, setLoading] = useState(false);
 
@@ -197,8 +197,11 @@ export default function Index() {
                       </td>
                       <td>
                         {item.payment_methods ? (
-                          item.payment_methods.map((item) => (
-                            <span className="mr-1 bg-primary-color px-2 py-1 rounded text-white">
+                          item.payment_methods.map((item: any, index: any) => (
+                            <span
+                              className="mr-1 bg-primary-color px-2 py-1 rounded text-white"
+                              key={index}
+                            >
                               {item.admin_pamynt_method.name}
                             </span>
                           ))

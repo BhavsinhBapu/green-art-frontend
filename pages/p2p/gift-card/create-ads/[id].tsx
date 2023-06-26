@@ -32,7 +32,7 @@ export default function Index() {
   const [loading, setLoading] = useState(false);
 
   const [selectedPaymentType, setSelectedPaymentType] = useState(null);
-  const [selectedCurrencyType, setSelectedCurrencyType] = useState(null);
+  const [selectedCurrencyType, setSelectedCurrencyType] = useState<any>(null);
   const [selectedStatus, setSelectedStatus] = useState(status[0].value);
   const [selectedPayment, setSelectedPayment] = useState<any>([]);
   const [selectedCountry, setSelectedCountry] = useState([]);
