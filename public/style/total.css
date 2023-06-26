@@ -15200,6 +15200,11 @@ input:checked + .gift-card-buy-slider:before {
 .primary-border-color{
   border-color: var(--border-color) !important;
 }
+.custom-select__multi-value{
+  height: 35px !important;
+  display: flex !important;
+  align-items: center !important;
+}
 
 @media (max-width: 991px) {
   .text-45 {
