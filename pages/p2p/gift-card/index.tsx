@@ -51,7 +51,6 @@ export default function Index() {
     }
 
     setSettings(data?.data);
-    console.log("data", data, router?.query?.id);
   };
 
   const getAllGiftCardAds = async (page: any) => {
@@ -72,8 +71,6 @@ export default function Index() {
       return;
     }
     setAllGiftCardAds(data.data);
-
-    console.log("data", data);
   };
 
   const handlePageClick = (event: any) => {

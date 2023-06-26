@@ -55,7 +55,6 @@ export default function Index() {
     }
 
     setSettings(data?.data);
-    console.log("data", data, router?.query?.id);
   };
 
   const paymentTypeHandler = (event: any) => {
@@ -65,7 +64,6 @@ export default function Index() {
   };
 
   const handlePayment = (event: any) => {
-    console.log("event", event);
     setSelectedPayment(event);
   };
 
@@ -75,7 +73,6 @@ export default function Index() {
 
   const handleCurrencyType = (event: any) => {
     setSelectedCurrencyType(event);
-    console.log("eent", event);
   };
 
   const createAdsHandler = async () => {

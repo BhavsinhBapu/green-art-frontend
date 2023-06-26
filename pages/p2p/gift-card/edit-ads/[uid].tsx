@@ -132,7 +132,6 @@ export default function Index() {
     }
 
     setSettings(data?.data);
-    console.log("data", data, router?.query?.id);
   };
 
   const paymentTypeHandler = (event: any) => {

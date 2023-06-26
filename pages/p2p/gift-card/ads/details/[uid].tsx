@@ -26,7 +26,6 @@ export default function Index() {
   }, []);
 
   const getGiftCardAdsDetailsForBuy = async () => {
-    console.log("router", router?.query?.uid);
     setLoading(true);
     const data = await getGiftCardAdsDetailsForBuyApi(router?.query?.uid);
     setLoading(false);
@@ -62,7 +61,6 @@ export default function Index() {
       return;
     }
     toast.success(data.message);
-    console.log("response", data);
     router.push(`/p2p/gift-card/ads/buy/${data?.data?.order_uid}`);
   };
 
