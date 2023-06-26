@@ -41,6 +41,8 @@ import { NoItemFound } from "components/NoItemFound/NoItemFound";
 import { P2pTopBar } from "components/P2P/P2pHome/TopBar";
 import BackButton from "components/P2P/BackButton";
 import GiftCardTradeCancel from "components/P2P/P2pHome/GiftCardTradeCancel";
+import P2PGiftCardNavbar from "components/P2P/p2p-gift-card/p2p-gift-card-navbar/P2PGiftCardNavbar";
+import P2PGiftCardHeader from "components/P2P/p2p-gift-card/p2p-gift-card-header/P2PGiftCardHeader";
 
 let socketCall = 0;
 
@@ -140,8 +142,9 @@ const Trading = () => {
   // }
   return (
     <>
-      <P2pTopBar />
-      <div className="my-trade-container">
+      <P2PGiftCardNavbar />
+      <P2PGiftCardHeader title={`Gift Card Trade`} />
+      <div className="my-trade-container mt-0">
         <div className="boxShadow p-4 mb-3">
           <BackButton />
           <div className="py-4">
