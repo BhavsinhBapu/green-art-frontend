@@ -679,7 +679,7 @@ export const payNowGiftCardOrderAction = async (
 ) => {
   const formData = new FormData();
   formData.append("gift_card_order_id", order_id);
-  formData.append("payment_slip", doc);
+  formData.append("slip", doc);
   const response = await payNowGiftCardOrder(formData);
   if (response.success) {
     setStep(2);

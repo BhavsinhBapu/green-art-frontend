@@ -86,7 +86,7 @@ const Trading = () => {
     });
     //@ts-ignore
     window.Echo.channel(
-      `Order-Status-${localStorage.getItem("user_id")}${uid}`
+      `Order-Status-${localStorage.getItem("user_id")}-${uid}`
     ).listen(".OrderStatus", (e: any) => {
       dispatch(setP2pDetailsOrder(e.order));
     });
@@ -383,7 +383,10 @@ const Trading = () => {
                         className="btn nimmu-user-sibmit-button mt-3"
                         // disabled={parseInt(details?.order?.is_queue) === 1}
                         onClick={() => {
-                          PaymentConfirmGiftCardOrderAction(uid, dispatch);
+                          PaymentConfirmGiftCardOrderAction(
+                            details?.order?.id,
+                            dispatch
+                          );
                         }}
                       >
                         Release
