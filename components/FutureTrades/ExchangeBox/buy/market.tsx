@@ -253,7 +253,7 @@ const Market = ({
                       </span>
                     </button>
                     <button type="submit" className="btn theme-btn-red-future">
-                      <span v-else="">{t("Close long")}</span>
+                      <span v-else="">{t("open short")}</span>
                     </button>
                   </div>
                 )}
