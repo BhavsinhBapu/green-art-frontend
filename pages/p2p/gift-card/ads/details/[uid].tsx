@@ -3,6 +3,8 @@ import P2PGiftCardHeader from "components/P2P/p2p-gift-card/p2p-gift-card-header
 import P2PGiftCardNavbar from "components/P2P/p2p-gift-card/p2p-gift-card-navbar/P2PGiftCardNavbar";
 import { CUstomSelect } from "components/common/CUstomSelect";
 import SectionLoading from "components/common/SectionLoading";
+import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
+import { GetServerSideProps } from "next";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
@@ -159,3 +161,9 @@ export default function Index() {
     </section>
   );
 }
+export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
+  await SSRAuthCheck(ctx, "/p2p/gift-card");
+  return {
+    props: {},
+  };
+};

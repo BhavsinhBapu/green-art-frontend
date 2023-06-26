@@ -12,6 +12,8 @@ import {
   storeAdsHandlerApi,
 } from "service/p2pGiftCards";
 import Select from "react-select";
+import { GetServerSideProps } from "next";
+import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 
 const options = [
   { value: 1, label: "Bank Transfer" },
@@ -292,3 +294,9 @@ export default function Index() {
     </section>
   );
 }
+export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
+  await SSRAuthCheck(ctx, "/p2p/gift-card");
+  return {
+    props: {},
+  };
+};

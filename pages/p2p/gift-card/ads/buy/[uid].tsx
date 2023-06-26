@@ -580,7 +580,7 @@ const Trading = () => {
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
-  await SSRAuthCheck(ctx, "/p2p");
+  await SSRAuthCheck(ctx, "/p2p/gift-card");
   return {
     props: {},
   };
