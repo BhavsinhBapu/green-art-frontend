@@ -9,7 +9,7 @@ import ReactPaginate from "react-paginate";
 import { toast } from "react-toastify";
 import { getP2PGiftCardListsApi } from "service/p2pGiftCards";
 
-const limit = 2;
+const limit = 10;
 export default function Index() {
   const [loading, setLoading] = useState(false);
   const [myCards, setMyCards] = useState<any>({});

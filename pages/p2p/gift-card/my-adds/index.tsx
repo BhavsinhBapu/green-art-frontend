@@ -14,7 +14,7 @@ import {
   handleAdsDeleteApi,
 } from "service/p2pGiftCards";
 
-const limit = 2;
+const limit = 10;
 const options = [
   { value: "all", label: "All" },
   { value: 0, label: "Deactive" },

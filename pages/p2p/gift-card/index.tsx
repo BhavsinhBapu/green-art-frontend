@@ -15,7 +15,7 @@ const options = [
   { value: 1, label: "Bank Transfer" },
   { value: 2, label: "Crypto Transfer" },
 ];
-const limit = 1;
+const limit = 15;
 
 export default function Index() {
   const router = useRouter();
