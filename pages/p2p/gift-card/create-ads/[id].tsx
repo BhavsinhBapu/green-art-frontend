@@ -38,7 +38,7 @@ export default function Index() {
   const [selectedStatus, setSelectedStatus] = useState(status[0].value);
   const [selectedPayment, setSelectedPayment] = useState<any>([]);
   const [selectedCountry, setSelectedCountry] = useState([]);
-  const [selectedTime, setSelectedTime] = useState(null);
+  const [selectedTime, setSelectedTime] = useState(0);
   const [termsData, setTermsData] = useState("");
   const [price, setPrice] = useState("");
 
@@ -90,10 +90,7 @@ export default function Index() {
     } else if (selectedCountry.length === 0) {
       toast.error("Select Country");
       return;
-    } else if (!selectedTime) {
-      toast.error("Select Time Limit");
-      return;
-    } else if (
+    }else if (
       selectedPaymentType &&
       selectedPaymentType === 1 &&
       selectedPayment.length === 0

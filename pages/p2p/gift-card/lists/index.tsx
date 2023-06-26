@@ -54,7 +54,7 @@ export default function Index() {
                   <tr>
                     <th scope="col">Image</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Price</th>
+                    <th scope="col">Amount</th>
                     <th scope="col">Action</th>
                   </tr>
                 </thead>
@@ -68,10 +68,13 @@ export default function Index() {
                         />
                       </td>
                       <td>{item.banner.title}</td>
-                      <td>{item.amount}</td>
+                      <td>{parseFloat(item.amount).toFixed(8)} {item.coin_type}</td>
                       <td>
                         <Link href={`/p2p/gift-card/create-ads/${item.id}`}>
-                          <a className="tableButton">Create</a>
+                          <a className="tableButton p2p-gift-card-adds-margin-right">Create Ads</a>
+                        </Link>
+                        <Link href={`/gift-cards/my-cards`}>
+                          <a className="tableButton">Details</a>
                         </Link>
                       </td>
                     </tr>

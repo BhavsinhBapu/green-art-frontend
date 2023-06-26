@@ -167,10 +167,7 @@ export default function Index() {
     } else if (selectedCountry.length === 0) {
       toast.error("Select Country");
       return;
-    } else if (Object.keys(selectedTime).length === 0) {
-      toast.error("Select Time Limit");
-      return;
-    } else if (
+    }else if (
       Object.keys(selectedPaymentType).length !== 0 &&
       selectedPaymentType.value === 1 &&
       selectedPayment.length === 0
@@ -195,7 +192,7 @@ export default function Index() {
       formData.append("country[]", country);
     });
     formData.append("status", selectedStatus.value);
-    formData.append("time_limit", selectedTime.value);
+    formData.append("time_limit", selectedTime?.value ?? 0);
 
     if (selectedPaymentType.value === 1) {
       const payment_methods = selectedPayment.map(
