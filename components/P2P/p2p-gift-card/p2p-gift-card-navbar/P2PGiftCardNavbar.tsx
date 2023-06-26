@@ -21,7 +21,7 @@ export default function P2PGiftCardNavbar() {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/p2p/my-order">
+                    <Link href="/p2p/gift-card/ads/orders">
                       <a>
                         <RiPagesLine />
                         Orders

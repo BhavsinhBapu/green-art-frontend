@@ -7,6 +7,13 @@ export const getP2PGiftCardListsApi = async (limit: any, page: any) => {
   return data;
 };
 
+export const getP2PGiftCardOrderListsApi = async (limit: any, page: any, status: any) => {
+  const { data } = await request.get(
+    `/p2p/get-gift-card-orders?status=${status}&limit=${limit}&page=${page}`
+  );
+  return data;
+};
+
 export const getCreateAdsSettingsDataApi = async () => {
   const { data } = await request.get(`/p2p/get-gift-card-page-data`);
   return data;
