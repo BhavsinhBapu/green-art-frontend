@@ -103,15 +103,17 @@ export default function Index() {
                 <tbody>
                   {myCards?.data?.map((item: any, index: number) => (
                     <tr className="tableRow" key={index}>
-                      <td>{item.price}</td>
-                      <td>{item.amount}</td>
+                      <td>
+                        {parseFloat(item.price).toFixed(8)} {item.currency_type}
+                      </td>
+                      <td>{parseFloat(item.amount).toFixed(8)}</td>
                       <td>{item.status_name}</td>
                       <td>{item.created_at}</td>
 
                       <td>
                         {(item.status == 1 || item.status == 2) && (
                           <button
-                            className="tableButton p2p-gift-card-adds-margin-bottom"
+                            className="tableButton p2p-gift-card-adds-margin-bottom p2p-gift-card-adds-margin-right"
                             onClick={() => handleAdsEdit(item.uid)}
                           >
                             Edit
@@ -119,7 +121,7 @@ export default function Index() {
                         )}
 
                         <button
-                          className="tableButton bg-card-primary-color p2p-gift-card-adds-margin-left"
+                          className="tableButton bg-card-primary-color"
                           onClick={() => handleAdsDelete(item.id)}
                         >
                           Delete
