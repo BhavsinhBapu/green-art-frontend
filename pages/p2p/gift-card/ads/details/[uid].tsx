@@ -2,12 +2,14 @@ import BackButton from "components/P2P/BackButton";
 import P2PGiftCardHeader from "components/P2P/p2p-gift-card/p2p-gift-card-header/P2PGiftCardHeader";
 import P2PGiftCardNavbar from "components/P2P/p2p-gift-card/p2p-gift-card-navbar/P2PGiftCardNavbar";
 import { CUstomSelect } from "components/common/CUstomSelect";
+import ImageComponent from "components/common/ImageComponent";
 import SectionLoading from "components/common/SectionLoading";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import { BsGiftFill } from "react-icons/bs";
 import { TfiHandPointRight } from "react-icons/tfi";
 import { toast } from "react-toastify";
 import {
@@ -96,7 +98,34 @@ export default function Index() {
                     </h5>
                   </div>
                   <div className="row pt-4">
-                    <div className="col-lg-6">
+                    <div className="col-12">
+                      <div className="gift-card-banner-section-bottom-border">
+                        <div className="relative">
+                          <ImageComponent
+                            src={
+                              adsDetails?.gift_card?.banner?.banner ||
+                              "/demo_gift_banner.png"
+                            }
+                            height={300}
+                          />{" "}
+                          <div>
+                            <div className="d-flex gap-10 buy-absolute-btn">
+                              <BsGiftFill size={22} />
+                              <h4>{`${parseFloat(
+                                adsDetails?.gift_card?.amount
+                              )} ${adsDetails?.gift_card?.coin_type}`}</h4>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="mt-5 mb-4">
+                          <h3 className="mb-3">
+                            {adsDetails?.gift_card?.banner?.title}
+                          </h3>
+                          <h5 className="font-normal">
+                            {adsDetails?.gift_card?.banner?.sub_title}
+                          </h5>
+                        </div>
+                      </div>
                       <div className="d-flex align-items-center">
                         <p>Price</p>
                         <h6 className="pl-3 text-warning">
@@ -112,7 +141,7 @@ export default function Index() {
                         </h6>
                       </div>
                       <div className="d-flex align-items-center">
-                        <p>(t{"Payment Time Limit"})</p>
+                        <p>({t("Payment Time Limit")})</p>
                         <h6 className="pl-3">
                           {adsDetails?.time_limit} {t("Minutes")}
                         </h6>
@@ -132,7 +161,7 @@ export default function Index() {
                 </div>
               </div>
               {adsDetails?.payment_methods && (
-                <div className="col-md-6 col-12">
+                <div className="col-md-6 col-12 mt-4">
                   <div>
                     <label className="pt-3">Select payment method</label>
 
