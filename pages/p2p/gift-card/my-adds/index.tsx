@@ -5,6 +5,7 @@ import { CUstomSelect } from "components/common/CUstomSelect";
 import ImageComponent from "components/common/ImageComponent";
 import SectionLoading from "components/common/SectionLoading";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
+import moment from "moment";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -66,6 +67,7 @@ export default function Index() {
   const handleAdsEdit = (ads_uid: any) => {
     router.push(`/p2p/gift-card/edit-ads/${ads_uid}`);
   };
+
   return (
     <section>
       {/* second nav */}
@@ -106,9 +108,14 @@ export default function Index() {
                       <td>
                         {parseFloat(item.price).toFixed(8)} {item.currency_type}
                       </td>
-                      <td>{parseFloat(item.amount).toFixed(8)} {item.gift_card.coin_type}</td>
+                      <td>
+                        {parseFloat(item.amount).toFixed(8)}{" "}
+                        {item.gift_card.coin_type}
+                      </td>
                       <td>{item.status_name}</td>
-                      <td>{item.created_at}</td>
+                      <td>
+                        {moment(item?.created_at).calendar()}
+                      </td>
 
                       <td>
                         {(item.status == 1 || item.status == 2) && (
