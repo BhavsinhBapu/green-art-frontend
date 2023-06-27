@@ -32,9 +32,9 @@ const GiftCardTradeCancel = ({ uid }: any) => {
                 <span aria-hidden="true">×</span>
               </button>
             </div>
-            <div className="modal-body">
+            <div className="modal-body px-2 py-4">
               <div className="row">
-                <div className="col-8">
+                <div className="col-12">
                   <p>{t("Reason to cancel the order")}</p>
                   <textarea
                     placeholder={t("Reason")}
