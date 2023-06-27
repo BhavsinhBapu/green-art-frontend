@@ -680,7 +680,7 @@ export const payNowGiftCardOrderAction = async (
 ) => {
   const formData = new FormData();
   formData.append("gift_card_order_id", order_id);
-  formData.append("slip", doc);
+  doc && formData.append("slip", doc);
   const response = await payNowGiftCardOrder(formData);
   if (response.success) {
     setStep(2);
@@ -718,7 +718,7 @@ export const giftCardOrderCancelAction = async (
   const response = await giftCardOrderCancel(formData);
   if (response.success) {
     toast.success(response.message);
-    router.push("/p2p");
+    router.push("/p2p/gift-card");
   } else {
     toast.error(response.message);
   }

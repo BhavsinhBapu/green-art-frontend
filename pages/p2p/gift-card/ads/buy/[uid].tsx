@@ -307,29 +307,34 @@ const Trading = () => {
                           seconds={details?.due_minute}
                         />
                       )}
-                      <div className="swap-wrap mt-5">
-                        <div className="">
-                          <span className="file-lable">
-                            {t("Select document")}
-                          </span>
-                        </div>
-                        <div className="file-upload-wrapper">
-                          {/* @ts-ignore */}
-                          <label htmlFor="upload-photo" onClick={handleClick}>
+                      {details.order.payment_currency_type === 1 && (
+                        <div className="swap-wrap mt-5">
+                          <div className="">
+                            <span className="file-lable">
+                              {t("Select document")}
+                            </span>
+                          </div>
+                          <div className="file-upload-wrapper">
                             {/* @ts-ignore */}
-                            {doc ? doc.name : t("Browse")}
-                          </label>
-                          <input
-                            style={{ display: "none" }}
-                            ref={inputRef}
-                            type="file"
-                            onChange={handleFileChange}
-                          />
+                            <label htmlFor="upload-photo" onClick={handleClick}>
+                              {/* @ts-ignore */}
+                              {doc ? doc.name : t("Browse")}
+                            </label>
+                            <input
+                              style={{ display: "none" }}
+                              ref={inputRef}
+                              type="file"
+                              onChange={handleFileChange}
+                            />
+                          </div>
                         </div>
-                      </div>
+                      )}
+
                       <button
                         className="btn nimmu-user-sibmit-button mt-3"
-                        disabled={!doc}
+                        disabled={
+                          details.order.payment_currency_type === 1 && !doc
+                        }
                         onClick={() => {
                           payNowGiftCardOrderAction(
                             details?.order?.id,
