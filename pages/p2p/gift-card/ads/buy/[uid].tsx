@@ -242,9 +242,9 @@ const Trading = () => {
                 <>
                   {details.user_type === BUY && (
                     <>
-                      <div className="mt-4 badge badge-warning p-2">
+                      {/* <div className="mt-4 badge badge-warning p-2">
                         Transfer the fund to the seller account provided below
-                      </div>
+                      </div> */}
                       <div>
                         {details?.payment_methods?.username && (
                           <div className="mb-3 mt-3">
