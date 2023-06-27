@@ -18,6 +18,7 @@ const options = [
   { value: 1, label: "Escrow" },
   { value: 2, label: "Payment Done" },
   { value: 3, label: "Transfer Done" },
+  { value: 5, label: "Disputed" },
   { value: 4, label: "Canceled" },
   { value: 6, label: "Refunded By Admin" },
   { value: 7, label: "Released By Admin" },

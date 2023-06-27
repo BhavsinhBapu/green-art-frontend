@@ -113,26 +113,25 @@ export default function Index() {
                         {item.gift_card.coin_type}
                       </td>
                       <td>{item.status_name}</td>
-                      <td>
-                        {moment(item?.created_at).calendar()}
-                      </td>
+                      <td>{moment(item?.created_at).calendar()}</td>
 
                       <td>
-                        {(item.status == 1 || item.status == 2) && (
-                          <button
-                            className="tableButton p2p-gift-card-adds-margin-bottom p2p-gift-card-adds-margin-right"
-                            onClick={() => handleAdsEdit(item.uid)}
-                          >
-                            Edit
-                          </button>
+                        {(item.status == 1 || item.status == 0) && (
+                          <>
+                            <button
+                              className="tableButton p2p-gift-card-adds-margin-bottom p2p-gift-card-adds-margin-right"
+                              onClick={() => handleAdsEdit(item.uid)}
+                            >
+                              Edit
+                            </button>
+                            <button
+                              className="tableButton bg-card-primary-color"
+                              onClick={() => handleAdsDelete(item.id)}
+                            >
+                              Delete
+                            </button>
+                          </>
                         )}
-
-                        <button
-                          className="tableButton bg-card-primary-color"
-                          onClick={() => handleAdsDelete(item.id)}
-                        >
-                          Delete
-                        </button>
                       </td>
                     </tr>
                   ))}
