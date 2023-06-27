@@ -8,6 +8,7 @@ import React, { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { toast } from "react-toastify";
 import { getGiftCardTradeHeder } from "service/p2p";
+import Select from "react-select";
 import {
   getAllGiftCardAdsApi,
   getCreateAdsSettingsDataApi,
@@ -83,18 +84,27 @@ export default function Index({ data }: any) {
   const handleBuyFunc = (uid: any) => {
     router.push(`/p2p/gift-card/ads/details/${uid}`);
   };
-    const changeBackground = () => {
-      const elements = document.getElementsByClassName("p2p_bg");
+  const changeBackground = () => {
+    const elements = document.getElementsByClassName("p2p_bg");
 
-      // Loop through the elements and add the background image
-      for (let i = 0; i < elements.length; i++) {
-        //@ts-ignore
-        elements[i].style.backgroundImage = `url('${data?.banner}')`;
-      }
-    };
-   useEffect(() => {
-     changeBackground();
-   }, []);
+    // Loop through the elements and add the background image
+    for (let i = 0; i < elements.length; i++) {
+      //@ts-ignore
+      elements[i].style.backgroundImage = `url('${data?.banner}')`;
+    }
+  };
+  useEffect(() => {
+    changeBackground();
+  }, []);
+
+  const resetHandler = () => {
+    setSelectedPaymentType({});
+    setSelectedCurrencyType({});
+    setSelectedPayment({});
+    setSelectedCountry({});
+    setPrice("");
+  };
+
   return (
     <section>
       <div className="p2p_bg">
@@ -115,7 +125,7 @@ export default function Index({ data }: any) {
       {/* filter part */}
       <div className="container mt-4">
         <div className="row">
-          <div className="col-md-3">
+          <div className="col-md-2">
             <label>Price</label>
             <div className="P2psearchBox position-relative">
               <input
@@ -129,41 +139,56 @@ export default function Index({ data }: any) {
           <div className="col-md-2">
             <div className="form-group p2pSelectFilter">
               <label> Payment Type</label>
-              <CUstomSelect
+              <Select
+                classNamePrefix={"custom-select"}
                 options={options}
-                handleFunction={setSelectedPaymentType}
+                onChange={setSelectedPaymentType}
+                value={selectedPaymentType}
               />
             </div>
           </div>
           <div className="col-md-2">
             <div className="form-group p2pSelectFilter">
               <label> Currency Type</label>
-              <CUstomSelect
+              <Select
+                classNamePrefix={"custom-select"}
                 options={
                   selectedPaymentType.value === 1
                     ? settings?.currency
                     : settings?.assets
                 }
-                handleFunction={setSelectedCurrencyType}
+                value={selectedCurrencyType}
+                onChange={setSelectedCurrencyType}
               />
             </div>
           </div>
           <div className="col-md-2">
             <div className="form-group p2pSelectFilter">
               <label>Payment Method</label>
-              <CUstomSelect
+              <Select
+                classNamePrefix={"custom-select"}
                 options={settings?.payment_method}
-                handleFunction={setSelectedPayment}
+                value={selectedPayment}
+                onChange={setSelectedPayment}
               />
             </div>
           </div>
           <div className="col-md-2">
             <div className="form-group p2pSelectFilter">
               <label>Available Region(s)</label>
-              <CUstomSelect
+              <Select
+                classNamePrefix={"custom-select"}
                 options={settings?.country}
-                handleFunction={setSelectedCountry}
+                value={selectedCountry}
+                onChange={setSelectedCountry}
               />
+            </div>
+          </div>
+          <div className="col-md-2">
+            <div className="d-flex h-full align-items-end pb-3">
+              <button className="tableButton" onClick={resetHandler}>
+                Reset
+              </button>
             </div>
           </div>
         </div>
