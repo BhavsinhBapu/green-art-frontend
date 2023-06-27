@@ -1310,3 +1310,41 @@ client-area
     background-color: var(--background-color);
     color: var(--text-primary-color-2);
 }
+.image_preview_container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+.image_preview {
+  position: relative;
+  display: inline-block;
+}
+
+.image_preview img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.clear_button {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.clear_button svg {
+  width: 12px;
+  height: 12px;
+}

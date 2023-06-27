@@ -64,9 +64,11 @@ const Trading = () => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("gift_card_order_id", details?.order?.id);
-    formData.append("message", message);
-    file && formData.append("file", file);
+    message && formData.append("message", message);
+    file.name && formData.append("file", file);
+    console.log(file, "This is a file");
     setMessage("");
+    setFile(null);
     await sendMessageGift(formData);
   };
   async function listenMessages() {

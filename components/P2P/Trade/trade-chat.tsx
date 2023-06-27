@@ -1,24 +1,22 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
-import { BsFillFileEarmarkImageFill } from "react-icons/bs";
+import { BsFillFileEarmarkImageFill, BsX } from "react-icons/bs";
 
 export const TradeChat = ({
   sendMessage,
   setMessage,
   setFile,
+  clearFile,
   message,
   col,
 }: any) => {
-  // const messagesEndRef = useRef(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
 
   const { user } = useSelector((state: RootState) => state.user);
   const scrollToBottom = () => {
     let container: any = document.querySelector("#conversations_list");
     container.scrollTop = container.scrollHeight;
-
-    //@ts-ignore
-    // messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
   const { tradeChat: conversationDetails } = useSelector(
     (state: RootState) => state.user
@@ -26,6 +24,12 @@ export const TradeChat = ({
   useEffect(() => {
     scrollToBottom();
   }, [conversationDetails]);
+
+  const handleClearFile = () => {
+    setFile(null);
+    setImagePreview(null);
+  };
+
   return (
     <div className={col ? col : "col-lg-8"}>
       <div className="chat_box rounded" id="conversations_list">
@@ -105,13 +109,26 @@ export const TradeChat = ({
             )}
           </div>
         </div>
-        {/* <span ref={messagesEndRef}></span> */}
       </div>
 
-      <div className=" mt-4">
+      <div className="mt-4">
+        <div className="image_preview_container">
+          {imagePreview && (
+            <div className="image_preview">
+              <img src={imagePreview} alt="Preview" />
+              <button className="clear_button" onClick={handleClearFile}>
+                <BsX />
+              </button>
+            </div>
+          )}
+        </div>
         <div>
           <form
-            onSubmit={sendMessage}
+            onSubmit={(e) => {
+              e.preventDefault();
+              sendMessage(e);
+              setImagePreview(null);
+            }}
             className="d-flex gap-2 align-items-center"
           >
             <input
@@ -127,13 +144,19 @@ export const TradeChat = ({
             />
 
             <div className="input-group chat_file_upload mx-1">
-              <div className="custom-file ">
+              <div className="custom-file">
                 <input
                   type="file"
-                  className="custom-file-input "
+                  className="custom-file-input"
                   id="inputGroupFile01"
                   onChange={(e: any) => {
                     setFile(e.target.files[0]);
+
+                    const reader = new FileReader();
+                    reader.onload = (event) => {
+                      setImagePreview(event.target?.result as string);
+                    };
+                    reader.readAsDataURL(e.target.files[0]);
                   }}
                 />
                 <label className="massage_img">
