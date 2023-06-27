@@ -44,7 +44,7 @@ export default function Index() {
 
   const buyGiftCardHandler = async () => {
     if (
-      adsDetails?.payment_methods &&
+      Number(adsDetails?.payment_currency_type) === 1 &&
       Object.keys(selectedPayment).length === 0
     ) {
       toast.error("Select Payment Method");
@@ -53,7 +53,7 @@ export default function Index() {
     let params: any = {
       gift_card_id: adsDetails?.id,
     };
-    if (adsDetails?.payment_methods?.length !== 0) {
+    if (Number(adsDetails?.payment_currency_type) === 1) {
       params = {
         gift_card_id: adsDetails?.id,
         payment_method_uid: selectedPayment?.value,
@@ -160,7 +160,7 @@ export default function Index() {
                   </div>
                 </div>
               </div>
-              {adsDetails?.payment_methods && (
+              {Number(adsDetails?.payment_currency_type === 1) ? (
                 <div className="col-md-6 col-12 mt-4">
                   <div>
                     <label className="pt-3">Select payment method</label>
@@ -171,7 +171,7 @@ export default function Index() {
                     />
                   </div>
                 </div>
-              )}
+              ) : null}
 
               <div className="col-12">
                 <div className="mt-3">

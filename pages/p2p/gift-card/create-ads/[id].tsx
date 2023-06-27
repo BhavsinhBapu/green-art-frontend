@@ -312,7 +312,7 @@ export default function Index() {
                 <div className="d-flex buy-input-bg input-padding-y rounded border">
                   <textarea
                     placeholder="Enter Terms And Condition"
-                    className="px-3 w-full bg-transparent border-none"
+                    className="px-3 w-full bg-transparent border-none text-primary" 
                     rows={4}
                     value={termsData}
                     onChange={(e) => setTermsData(e.target.value)}

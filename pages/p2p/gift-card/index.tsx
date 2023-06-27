@@ -230,7 +230,7 @@ export default function Index({ data }: any) {
                         </div> */}
                       </td>
                       <td>
-                        {item.payment_methods ? (
+                        {Number(item.payment_currency_type) === 1 ? (
                           item.payment_methods.map((item: any, index: any) => (
                             <span
                               className="mr-1 bg-primary-color px-2 py-1 rounded text-white"
