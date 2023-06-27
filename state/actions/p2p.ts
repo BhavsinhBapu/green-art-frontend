@@ -45,6 +45,7 @@ import {
   payNowGiftCardOrder,
   PaymentConfirmGiftCardOrder,
   giftCardOrderCancel,
+  giftCardOrderFeedback,
 } from "service/p2p";
 import {
   setP2pDetails,
@@ -758,6 +759,27 @@ export const submitTradeFeedback = async (
     toast.error(response.message);
   }
 };
+export const giftCardOrderFeedbackAction = async (
+  order_uid: any,
+  feedback_type: any,
+  feedback: any
+) => {
+  if (!feedback) {
+    toast.error("Please enter feedback field first");
+    return;
+  }
+  const formData = new FormData();
+  formData.append("order_id", order_uid);
+  formData.append("feedback_type", feedback_type);
+  formData.append("feedback", feedback);
+  const response = await giftCardOrderFeedback(formData);
+  if (response.success) {
+    toast.success(response.message);
+  } else {
+    toast.error(response.message);
+  }
+};
+// giftCardOrderFeedback;
 // releaseP2pOrder;
 export const PaymentConfirmGiftCardOrderAction = async (
   order_id: any,

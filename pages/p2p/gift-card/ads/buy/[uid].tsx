@@ -8,6 +8,7 @@ import {
   payNowGiftCardOrderAction,
   PaymentConfirmGiftCardOrderAction,
   submitTradeFeedback,
+  giftCardOrderFeedbackAction,
 } from "state/actions/p2p";
 import Echo from "laravel-echo";
 import Pusher from "pusher-js";
@@ -421,7 +422,7 @@ const Trading = () => {
                   )}
                 </>
               )}
-              {/* {details?.order?.status === TRADE_STATUS_TRANSFER_DONE && (
+              {details?.order?.status === TRADE_STATUS_TRANSFER_DONE && (
                 <>
                   {details.user_type === BUY && (
                     <>
@@ -480,8 +481,8 @@ const Trading = () => {
                           <button
                             className="btn nimmu-user-sibmit-button mt-3"
                             onClick={() => {
-                              submitTradeFeedback(
-                                details?.order?.uid,
+                              giftCardOrderFeedbackAction(
+                                details?.order?.id,
                                 feedbackType,
                                 feedback
                               );
@@ -563,7 +564,7 @@ const Trading = () => {
                     </>
                   )}
                 </>
-              )} */}
+              )}
             </>
           )}
         </div>

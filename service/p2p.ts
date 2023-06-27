@@ -303,6 +303,14 @@ export const orderFeedback = async (formData: any) => {
   const { data } = await p2pResuest.post("/order-feedback", formData);
   return data;
 };
+export const giftCardOrderFeedback = async (formData: any) => {
+  const { data } = await p2pResuest.post(
+    "/update-gift-card-order-feedback",
+    formData
+  );
+  return data;
+};
+// update-gift-card-order-feedback
 // dispute-process
 export const disputeProcess = async (formData: any) => {
   const { data } = await p2pResuest.post("/dispute-process", formData);
