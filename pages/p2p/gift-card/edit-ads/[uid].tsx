@@ -15,6 +15,8 @@ import {
 import Select from "react-select";
 import { GetServerSideProps } from "next";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
+import ImageComponent from "components/common/ImageComponent";
+import { BsGiftFill } from "react-icons/bs";
 
 const options = [
   { value: 1, label: "Bank Transfer" },
@@ -33,7 +35,7 @@ export default function Index() {
 
   const [settings, setSettings] = useState<any>({});
   const [loading, setLoading] = useState(false);
-  const [adsDetails, setAdsDetails] = useState({});
+  const [adsDetails, setAdsDetails] = useState<any>({});
   const [selectedPaymentType, setSelectedPaymentType] = useState<any>({});
   const [selectedCurrencyType, setSelectedCurrencyType] = useState<any>({});
   const [selectedStatus, setSelectedStatus] = useState<any>({});
@@ -62,6 +64,7 @@ export default function Index() {
       return;
     }
     const item = data.data;
+    setAdsDetails(item);
     // set price
     setPrice(item.price);
 
@@ -223,6 +226,41 @@ export default function Index() {
         </div>
       ) : (
         <div className="container">
+          <div className="row mb-5">
+            <div className="col-md-12">
+              <div className="row">
+                <div className="col-md-6">
+                  <div className="relative">
+                    <ImageComponent
+                      src={
+                        adsDetails?.gift_card?.banner?.banner ||
+                        "/demo_gift_banner.png"
+                      }
+                      height={300}
+                    />{" "}
+                    <div>
+                      <div className="d-flex gap-10 buy-absolute-btn">
+                        <BsGiftFill size={22} />
+                        <h4>{`${parseFloat(adsDetails?.gift_card?.amount)} ${
+                          adsDetails?.gift_card?.coin_type || ""
+                        }`}</h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md-6">
+                  <div className="mt-5 mb-4 ">
+                    <h3 className="mb-3">
+                      {t(adsDetails?.gift_card?.banner?.title)}
+                    </h3>
+                    <h5 className="font-normal">
+                      {t(adsDetails?.gift_card?.banner?.sub_title)}
+                    </h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <div className="row">
             <div className="col-md-6">
               <div className="form-group p2pSelectFilter">
