@@ -3,6 +3,8 @@ import P2PGiftCardHeader from "components/P2P/p2p-gift-card/p2p-gift-card-header
 import P2PGiftCardNavbar from "components/P2P/p2p-gift-card/p2p-gift-card-navbar/P2PGiftCardNavbar";
 import ImageComponent from "components/common/ImageComponent";
 import SectionLoading from "components/common/SectionLoading";
+import MyCardModal from "components/gift-cards/modal/MyCardModal";
+import P2PGiftCardSingleModal from "components/gift-cards/modal/P2PGiftCardSingleModal";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
@@ -15,7 +17,8 @@ const limit = 10;
 export default function Index() {
   const [loading, setLoading] = useState(false);
   const [myCards, setMyCards] = useState<any>({});
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [giftCardData, setGiftCardData] = useState({});
   useEffect(() => {
     getP2PGiftCardLists(limit, 1);
   }, []);
@@ -35,6 +38,13 @@ export default function Index() {
   const handlePageClick = (event: any) => {
     getP2PGiftCardLists(limit, event.selected + 1);
   };
+
+  const myCardHandle = (cardData: any) => {
+    setGiftCardData(cardData);
+    setIsModalOpen(true);
+  };
+
+
   return (
     <section>
       {/* second nav */}
@@ -68,14 +78,17 @@ export default function Index() {
                         />
                       </td>
                       <td>{item.banner.title}</td>
-                      <td>{parseFloat(item.amount).toFixed(8)} {item.coin_type}</td>
+                      <td>
+                        {parseFloat(item.amount).toFixed(8)} {item.coin_type}
+                      </td>
                       <td>
                         <Link href={`/p2p/gift-card/create-ads/${item.id}`}>
-                          <a className="tableButton p2p-gift-card-adds-margin-right">Create Ads</a>
+                          <a className="tableButton p2p-gift-card-adds-margin-right">
+                            Create Ads
+                          </a>
                         </Link>
-                        <Link href={`/gift-cards/my-cards`}>
-                          <a className="tableButton">Details</a>
-                        </Link>
+
+                        <span className="tableButton pointer" onClick={() => myCardHandle(item)}>Details</span>
                       </td>
                     </tr>
                   ))}
@@ -104,6 +117,12 @@ export default function Index() {
           />
         </div>
       </div>
+      {isModalOpen && (
+        <P2PGiftCardSingleModal
+          giftCardData={giftCardData}
+          setIsModalOpen={setIsModalOpen}
+        />
+      )}
     </section>
   );
 }
