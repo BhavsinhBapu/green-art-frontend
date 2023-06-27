@@ -200,7 +200,9 @@ export default function Index() {
                 </h6>
                 <CUstomSelect
                   options={options}
-                  classname={"buy-amount-select-section border rounded"}
+                  classname={
+                    "buy-amount-select-section border border-main-color rounded"
+                  }
                   handleFunction={paymentTypeHandler}
                 />
               </div>
@@ -219,7 +221,9 @@ export default function Index() {
                         : settings?.assets
                     }
                     classNamePrefix={"custom-select"}
-                    className={"buy-amount-select-section border rounded"}
+                    className={
+                      "buy-amount-select-section border border-main-color rounded"
+                    }
                     value={selectedCurrencyType}
                     onChange={handleCurrencyType}
                   />
@@ -232,7 +236,7 @@ export default function Index() {
                 <h6 className="gift-buy-input-label font-normal mb-3">
                   {t(`Price`)}
                 </h6>
-                <div className="d-flex buy-input-bg input-padding-y rounded border">
+                <div className="d-flex buy-input-bg input-padding-y rounded border border-main-color">
                   <input
                     type="number"
                     min={1}
@@ -251,7 +255,9 @@ export default function Index() {
                 </h6>
                 <CUstomSelect
                   options={status}
-                  classname={"buy-amount-select-section border rounded"}
+                  classname={
+                    "buy-amount-select-section border border-main-color rounded"
+                  }
                   defaultValue={status[0]}
                   handleFunction={(event: any) =>
                     setSelectedStatus(event.value)
@@ -287,7 +293,9 @@ export default function Index() {
                   options={settings?.country}
                   isSearchable={true}
                   isMulti={true}
-                  classname={"buy-amount-select-section border rounded"}
+                  classname={
+                    "buy-amount-select-section border border-main-color rounded"
+                  }
                   handleFunction={handleCountry}
                 />
               </div>
@@ -299,7 +307,9 @@ export default function Index() {
                 </h6>
                 <CUstomSelect
                   options={settings?.payment_time}
-                  classname={"buy-amount-select-section border rounded"}
+                  classname={
+                    "buy-amount-select-section border border-main-color rounded"
+                  }
                   handleFunction={(event: any) => setSelectedTime(event.value)}
                 />
               </div>
@@ -309,10 +319,10 @@ export default function Index() {
                 <h6 className="gift-buy-input-label font-normal mb-3">
                   {t(`Terms And Condition`)}
                 </h6>
-                <div className="d-flex buy-input-bg input-padding-y rounded border">
+                <div className="d-flex buy-input-bg input-padding-y rounded border border-main-color">
                   <textarea
                     placeholder="Enter Terms And Condition"
-                    className="px-3 w-full bg-transparent border-none text-primary" 
+                    className="px-3 w-full bg-transparent border-none text-primary"
                     rows={4}
                     value={termsData}
                     onChange={(e) => setTermsData(e.target.value)}

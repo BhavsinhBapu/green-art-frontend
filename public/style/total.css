@@ -14912,6 +14912,10 @@ body::-webkit-scrollbar {
   border-color: var(--primary-color) !important;
 }
 
+.border-main-color{
+  border-color: var(--border-color) !important;
+}
+
 .mt-40 {
   margin-top: 40px;
 }

@@ -80,7 +80,7 @@ export default function Index() {
 
     if (item.payment_currency_type === 1) {
       let selectCurrency = settings?.currency.find(
-        (data:any) => data.value === item.currency_type
+        (data: any) => data.value === item.currency_type
       );
       setSelectedCurrencyType(selectCurrency);
 
@@ -88,15 +88,15 @@ export default function Index() {
 
       let selectedPaymentMethods = JSON.parse(item.payment_method);
 
-      let paymentMethod = selectedPaymentMethods?.map((data:any) =>
-        settings.payment_method.find((val:any) => val.value === data)
+      let paymentMethod = selectedPaymentMethods?.map((data: any) =>
+        settings.payment_method.find((val: any) => val.value === data)
       );
       setSelectedPayment(paymentMethod);
     }
 
     if (item.payment_currency_type === 2) {
       let selectCurrency = settings?.assets.find(
-        (data:any) => data.value === item.currency_type
+        (data: any) => data.value === item.currency_type
       );
       setSelectedCurrencyType(selectCurrency);
     }
@@ -104,7 +104,7 @@ export default function Index() {
     // set time limit
 
     let selectedTimeData = settings?.payment_time?.find(
-      (data:any) => data.value === item.time_limit
+      (data: any) => data.value === item.time_limit
     );
     setSelectedTime(selectedTimeData);
 
@@ -116,8 +116,8 @@ export default function Index() {
 
     let selectedCountries = JSON.parse(item.country);
 
-    let selectedCountryData = selectedCountries.map((item:any) =>
-      settings.country.find((val:any) => val.value === item)
+    let selectedCountryData = selectedCountries.map((item: any) =>
+      settings.country.find((val: any) => val.value === item)
     );
 
     setSelectedCountry(selectedCountryData);
@@ -167,7 +167,7 @@ export default function Index() {
     } else if (selectedCountry.length === 0) {
       toast.error("Select Country");
       return;
-    }else if (
+    } else if (
       Object.keys(selectedPaymentType).length !== 0 &&
       selectedPaymentType.value === 1 &&
       selectedPayment.length === 0
@@ -232,7 +232,9 @@ export default function Index() {
                 <Select
                   options={options}
                   classNamePrefix={"custom-select"}
-                  className={"buy-amount-select-section border rounded"}
+                  className={
+                    "buy-amount-select-section border border-main-color rounded"
+                  }
                   onChange={paymentTypeHandler}
                   value={selectedPaymentType}
                 />
@@ -252,7 +254,9 @@ export default function Index() {
                         : settings?.assets
                     }
                     classNamePrefix={"custom-select"}
-                    className={"buy-amount-select-section border rounded"}
+                    className={
+                      "buy-amount-select-section border border-main-color rounded"
+                    }
                     value={selectedCurrencyType}
                     onChange={handleCurrencyType}
                   />
@@ -265,7 +269,7 @@ export default function Index() {
                 <h6 className="gift-buy-input-label font-normal mb-3">
                   {t(`Price`)}
                 </h6>
-                <div className="d-flex buy-input-bg input-padding-y rounded border">
+                <div className="d-flex buy-input-bg input-padding-y rounded border border-main-color">
                   <input
                     type="number"
                     min={1}
@@ -285,7 +289,9 @@ export default function Index() {
                 <Select
                   options={status}
                   classNamePrefix={"custom-select"}
-                  className={"buy-amount-select-section border rounded"}
+                  className={
+                    "buy-amount-select-section border border-main-color rounded"
+                  }
                   value={selectedStatus}
                   onChange={(event: any) => setSelectedStatus(event)}
                 />
@@ -302,7 +308,9 @@ export default function Index() {
                     options={settings?.payment_method}
                     classNamePrefix={"custom-select"}
                     isMulti={true}
-                    className={"buy-amount-select-section border rounded"}
+                    className={
+                      "buy-amount-select-section border border-main-color rounded"
+                    }
                     value={selectedPayment}
                     onChange={handlePayment}
                   />
@@ -320,7 +328,9 @@ export default function Index() {
                   isSearchable={true}
                   isMulti={true}
                   classNamePrefix={"custom-select"}
-                  className={"buy-amount-select-section border rounded"}
+                  className={
+                    "buy-amount-select-section border border-main-color rounded"
+                  }
                   onChange={handleCountry}
                   value={selectedCountry}
                 />
@@ -333,7 +343,9 @@ export default function Index() {
                 </h6>
                 <Select
                   options={settings?.payment_time}
-                  className={"buy-amount-select-section border rounded"}
+                  className={
+                    "buy-amount-select-section border border-main-color rounded"
+                  }
                   onChange={(event: any) => setSelectedTime(event)}
                   classNamePrefix={"custom-select"}
                   value={selectedTime}
@@ -345,7 +357,7 @@ export default function Index() {
                 <h6 className="gift-buy-input-label font-normal mb-3">
                   {t(`Terms And Condition`)}
                 </h6>
-                <div className="d-flex buy-input-bg input-padding-y rounded border">
+                <div className="d-flex buy-input-bg input-padding-y rounded border border-main-color">
                   <textarea
                     placeholder="Enter Terms And Condition"
                     className="px-3 w-full bg-transparent border-none text-primary"
