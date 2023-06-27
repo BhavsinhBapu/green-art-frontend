@@ -308,6 +308,13 @@ export const disputeProcess = async (formData: any) => {
   const { data } = await p2pResuest.post("/dispute-process", formData);
   return data;
 };
+// gift-card-order-dispute
+export const disputeProcessGiftCard = async (formData: any) => {
+  const { data } = await p2pResuest.post("/gift-card-order-dispute", formData);
+  return data;
+};
+
+
 // send-message
 export const sendMessageTrade = async (formData: any) => {
   const { data } = await p2pResuest.post("/send-message", formData);

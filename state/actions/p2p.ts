@@ -712,7 +712,7 @@ export const giftCardOrderCancelAction = async (
   router: any
 ) => {
   const formData = new FormData();
-  formData.append("order_uid", order_uid);
+  formData.append("gift_card_order_id", order_uid);
   formData.append("reason", reason);
   const response = await giftCardOrderCancel(formData);
   if (response.success) {

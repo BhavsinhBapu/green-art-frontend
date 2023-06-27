@@ -29,7 +29,6 @@ import {
 import Timer from "components/P2P/P2pHome/Timer";
 import SectionLoading from "components/common/SectionLoading";
 
-import TradeDispute from "components/P2P/P2pHome/TradeDispute";
 import { TradeChat } from "components/P2P/Trade/trade-chat";
 import { sendMessageGift, sendMessageTrade } from "service/p2p";
 import { useDispatch, useSelector } from "react-redux";
@@ -43,6 +42,7 @@ import BackButton from "components/P2P/BackButton";
 import GiftCardTradeCancel from "components/P2P/P2pHome/GiftCardTradeCancel";
 import P2PGiftCardNavbar from "components/P2P/p2p-gift-card/p2p-gift-card-navbar/P2PGiftCardNavbar";
 import P2PGiftCardHeader from "components/P2P/p2p-gift-card/p2p-gift-card-header/P2PGiftCardHeader";
+import TradeDisputeGift from "components/P2P/P2pHome/TradeDisputeGift";
 
 let socketCall = 0;
 
@@ -64,9 +64,11 @@ const Trading = () => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("gift_card_order_id", details?.order?.id);
-    formData.append("message", message);
-    file && formData.append("file", file);
+    message && formData.append("message", message);
+    file.name && formData.append("file", file);
+    console.log(file, "This is a file");
     setMessage("");
+    setFile(null);
     await sendMessageGift(formData);
   };
   async function listenMessages() {
@@ -187,7 +189,7 @@ const Trading = () => {
                 <h4 className="">
                   {" "}
                   {parseFloat(details?.order?.amount).toFixed(8)}{" "}
-                  {details?.order?.p_gift_card?.currency_type}
+                  {details?.order?.p_gift_card?.gift_card?.coin_type}
                 </h4>
               </div>
               <div className="">
@@ -378,9 +380,10 @@ const Trading = () => {
                           </button>
                         </a>
                       )}
-                      <TradeDispute uid={uid} />
+                      <TradeDisputeGift uid={details?.order?.id} />
                     </>
                   )}
+
                   {details.user_type === SELL && (
                     <>
                       <button
@@ -413,12 +416,12 @@ const Trading = () => {
                         </a>
                       )}
 
-                      <TradeDispute uid={uid} />
+                      <TradeDisputeGift uid={details?.order?.id} />
                     </>
                   )}
                 </>
               )}
-              {details?.order?.status === TRADE_STATUS_TRANSFER_DONE && (
+              {/* {details?.order?.status === TRADE_STATUS_TRANSFER_DONE && (
                 <>
                   {details.user_type === BUY && (
                     <>
@@ -560,7 +563,7 @@ const Trading = () => {
                     </>
                   )}
                 </>
-              )}
+              )} */}
             </>
           )}
         </div>
