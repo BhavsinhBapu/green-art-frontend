@@ -84,3 +84,8 @@ export const buyP2PGiftCardAdsApi = async (params: any) => {
   });
   return data;
 };
+
+export const getGiftCardDetailsForP2PGiftCardApi = async (giftCardId:any)=> {
+  const {data} = await request.get(`/p2p/get-gift-card-details-${giftCardId}`);
+  return data;
+}
