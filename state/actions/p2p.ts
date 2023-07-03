@@ -769,7 +769,7 @@ export const giftCardOrderFeedbackAction = async (
     return;
   }
   const formData = new FormData();
-  formData.append("order_id", order_uid);
+  formData.append("order_uid", order_uid);
   formData.append("feedback_type", feedback_type);
   formData.append("feedback", feedback);
   const response = await giftCardOrderFeedback(formData);

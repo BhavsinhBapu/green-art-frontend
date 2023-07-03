@@ -487,7 +487,7 @@ const Trading = () => {
                             className="btn nimmu-user-sibmit-button mt-3"
                             onClick={() => {
                               giftCardOrderFeedbackAction(
-                                details?.order?.id,
+                                details?.order?.uid,
                                 feedbackType,
                                 feedback
                               );
@@ -505,10 +505,10 @@ const Trading = () => {
                         <h4 className="mb-3">Trade completed</h4>
                       </div>
 
-                      {details?.order?.buyer_feedback && (
+                      {details?.order?.feedback && (
                         <label className="mt-3">
                           <b>Buyer Feedback:</b>
-                          {details?.order?.buyer_feedback}
+                          {details?.order?.feedback?.feedback}
                         </label>
                       )}
                       {details?.order?.seller_feedback === null && (
@@ -555,7 +555,7 @@ const Trading = () => {
                           <button
                             className="btn nimmu-user-sibmit-button mt-3"
                             onClick={() => {
-                              submitTradeFeedback(
+                              giftCardOrderFeedbackAction(
                                 details?.order?.uid,
                                 feedbackType,
                                 feedback
