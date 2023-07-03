@@ -434,13 +434,25 @@ const Trading = () => {
                       <div className="boxShadow p-5 text-center mt-3">
                         <h4 className="mb-3">Trade completed</h4>
                       </div>
-                      {details?.order?.seller_feedback && (
-                        <label className="mt-3">
-                          <b>Seller Feedback:</b>
-                          {details?.order?.seller_feedback}
-                        </label>
+                      {details?.order?.feedback && (
+                        <>
+                          <div>
+                            <label className="mt-3">
+                              <b>Feedback Type:</b>
+                              {details?.order?.feedback?.feedback_type === 1
+                                ? "Positive"
+                                : "Negative"}
+                            </label>
+                          </div>
+                          <div>
+                            <label className="mb-3">
+                              <b>Seller Feedback:</b>
+                              {details?.order?.feedback?.feedback}
+                            </label>
+                          </div>
+                        </>
                       )}
-                      {details?.order?.buyer_feedback === null && (
+                      {details?.order?.buyer_feedback_type !== 1 && (
                         <div className="row">
                           <div className="col-md-12 mt-3">
                             <label> Submit review about seller</label>
@@ -506,12 +518,24 @@ const Trading = () => {
                       </div>
 
                       {details?.order?.feedback && (
-                        <label className="mt-3">
-                          <b>Buyer Feedback:</b>
-                          {details?.order?.feedback?.feedback}
-                        </label>
+                        <>
+                          <div>
+                            <label className="mt-3">
+                              <b>Feedback Type:</b>
+                              {details?.order?.feedback?.feedback_type === 1
+                                ? "Positive"
+                                : "Negative"}
+                            </label>
+                          </div>
+                          <div>
+                            <label className="mb-3">
+                              <b>Buyer Feedback:</b>
+                              {details?.order?.feedback?.feedback}
+                            </label>
+                          </div>
+                        </>
                       )}
-                      {details?.order?.seller_feedback === null && (
+                      {details?.order?.seller_feedback_type !== 1 && (
                         <div className="row">
                           <div className="col-md-12 mt-3">
                             <label>Submit review about buyer</label>
