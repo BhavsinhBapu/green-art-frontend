@@ -134,3 +134,10 @@ export const STAKING_INVESTMENT_STATUS_SUCCESS = 5;
 
 export const CROSS = 1;
 export const ISOLATED = 2;
+
+export const AMOUNT_TYPE_BASE = 1;
+export const AMOUNT_TYPE_TRADE = 2;
+export const MARGIN_MODE_ISOLATED = 1;
+export const MARGIN_MODE_CROSS = 1;
+export const LIMIT_ORDER = 1;
+export const MARKET_ORDER = 2;

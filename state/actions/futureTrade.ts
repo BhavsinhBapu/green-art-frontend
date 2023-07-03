@@ -4,6 +4,7 @@ import {
   marketTradesDashboard,
   ordersHistoryDashboard,
   prePlaceOrderData,
+  preplaceOrderData,
   tradesHistoryDashboard,
 } from "service/futureTrade";
 import {
@@ -163,6 +164,10 @@ export const initialDashboardCallAction =
           response?.pairs[0]?.parent_coin_id
         );
         await localStorage.setItem(
+          "coin_pair_id",
+          response.pairs[0]?.coin_pair_id
+        );
+        await localStorage.setItem(
           "trade_coin_id",
           response?.pairs[0]?.child_coin_id
         );
@@ -197,10 +202,18 @@ export const initialDashboardCallAction =
         "trade_coin_id",
         response?.order_data?.trade_coin_id
       );
+      await localStorage.setItem(
+        "coin_pair_id",
+        response.pairs[0]?.coin_pair_id
+      );
     } else {
       await localStorage.setItem(
         "base_coin_id",
         response?.pairs[0]?.parent_coin_id
+      );
+      await localStorage.setItem(
+        "coin_pair_id",
+        response.pairs[0]?.coin_pair_id
       );
       await localStorage.setItem(
         "trade_coin_id",
@@ -287,4 +300,37 @@ export const initialDashboardCallAction =
     }
 
     setisLoading && setisLoading(false);
+  };
+// preplaceOrderData;
+export const preplaceOrderDataAction =
+  (
+    trade_type: number,
+    margin_mode: number,
+    order_type: number,
+    price: number,
+    amount_type: number,
+    amount: number,
+    take_profit: number,
+    stop_loss: number,
+    leverage_amount: number
+  ) =>
+  async (dispatch: any) => {
+    const formData = new FormData();
+    const coin_pair_id = localStorage.getItem("coin_pair_id");
+    formData.append("trade_type", String(trade_type));
+    formData.append("margin_mode", String(margin_mode));
+    formData.append("order_type", String(order_type));
+    formData.append("price", String(price));
+    formData.append("amount_type", String(amount_type));
+    formData.append("amount", String(amount));
+    formData.append("take_profit", String(take_profit));
+    formData.append("stop_loss", String(stop_loss));
+    formData.append("leverage_amount", String(leverage_amount));
+    formData.append("coin_pair_id", String(coin_pair_id));
+    const response = await preplaceOrderData(formData);
+    if (response.success) {
+      toast.success(response.message);
+    } else {
+      toast.error(response.message);
+    }
   };

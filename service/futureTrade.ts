@@ -164,3 +164,10 @@ export const cancelOrderApp = async (type: string, id: string) => {
   });
   return data;
 };
+
+//new
+
+export const preplaceOrderData = async (payload: any) => {
+  const { data } = await request.post("/preplace-order-data", payload);
+  return data;
+};

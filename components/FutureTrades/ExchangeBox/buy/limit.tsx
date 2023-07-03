@@ -11,6 +11,7 @@ const Limit = ({
   setOpenCloseLimitCoinData,
   isLoggedIn,
   currentPair,
+  openLong,
 }: any) => {
   const { t } = useTranslation("common");
   const [loading, setLoading] = React.useState(false);
@@ -126,16 +127,13 @@ const Limit = ({
                     placeholder="0"
                     className="form-control number_only input_2"
                     value={
-                      OpenCloseLimitCoinData.size !== 0 &&
-                      OpenCloseLimitCoinData.size
+                      OpenCloseLimitCoinData.amount !== 0 &&
+                      OpenCloseLimitCoinData.amount
                     }
                     onChange={(e) => {
                       setOpenCloseLimitCoinData({
                         ...OpenCloseLimitCoinData,
-                        size: e.target.value,
-                        total:
-                          parseFloat(e.target.value) *
-                          OpenCloseLimitCoinData.price,
+                        amount: e.target.value,
                       });
                     }}
                   />
@@ -260,16 +258,9 @@ const Limit = ({
                     <button
                       type="submit"
                       className="btn theme-btn-future"
-                      onClick={async (e) => {
+                      onClick={(e) => {
                         e.preventDefault();
-                        await buyLimitAppAction(
-                          OpenCloseLimitCoinData.amount,
-                          OpenCloseLimitCoinData.price,
-                          dashboard?.order_data?.trade_coin_id,
-                          dashboard?.order_data?.base_coin_id,
-                          setLoading,
-                          setOpenCloseLimitCoinData
-                        );
+                        openLong();
                         // await dispatch(getDashboardData(currentPair));
                         setOpenCloseLimitCoinData({
                           ...OpenCloseLimitCoinData,

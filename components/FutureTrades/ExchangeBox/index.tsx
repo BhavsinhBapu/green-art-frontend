@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "state/store";
 import Limit from "./buy/limit";
 import Market from "./buy/market";
@@ -8,10 +8,17 @@ import SellMarket from "./sell/market";
 import useTranslation from "next-translate/useTranslation";
 import Leverage from "../Modals/leverage";
 import Isolated from "../Modals/isolated";
-import { ISOLATED } from "helpers/core-constants";
+import {
+  AMOUNT_TYPE_BASE,
+  ISOLATED,
+  LIMIT_ORDER,
+  MARGIN_MODE_ISOLATED,
+  MARKET_ORDER,
+} from "helpers/core-constants";
+import { preplaceOrderDataAction } from "state/actions/futureTrade";
 
 const ExchangeBox = () => {
-  type tradingTabType = number;
+  type trade_type = number;
   const { t } = useTranslation("common");
   const { isLoggedIn } = useSelector((state: RootState) => state.user);
   const [leverage, setLeverage] = useState(20);
@@ -20,43 +27,69 @@ const ExchangeBox = () => {
   const { dashboard, currentPair } = useSelector(
     (state: RootState) => state.exchange
   );
-  const [tradingTab, setTradingTab] = useState<tradingTabType>(1);
+  const [trade_type, setTrade_type] = useState<trade_type>(AMOUNT_TYPE_BASE);
   const [OpenCloseLimitCoinData, setOpenCloseLimitCoinData] = useState<any>({
-    price: dashboard?.order_data?.sell_price,
-    amount: 0.0,
-    total: 0.0,
-    total_profit: 0.0,
-    total_loss: 0,
+    // dashboard?.order_data?.sell_price
+    price: 0,
+    amount: 0,
+    total: 0,
+    margin_mode: MARGIN_MODE_ISOLATED,
+    amount_type: AMOUNT_TYPE_BASE,
+    take_profit: 0,
+    leverage_amount: 0,
+    stop_loss: 0,
   });
   const [OpenCloseMarketCoinData, setOpenCloseMarketCoinData] = useState<any>({
-    price: dashboard?.order_data?.sell_price,
-    amount: 0.0,
-    total: 0.0,
-    total_profit: 0.0,
-    total_loss: 0,
+    // dashboard?.order_data?.sell_price
+    price: 0,
+    amount: 0,
+    total: 0,
+    margin_mode: MARGIN_MODE_ISOLATED,
+    amount_type: AMOUNT_TYPE_BASE,
+    take_profit: 0,
+    leverage_amount: 0,
+    stop_loss: 0,
   });
 
   const [openSelectedTab, setopenSelectedTab] = useState<number>(1);
   const [closeSelectedTab, setcloseSelectedTab] = useState<number>(1);
 
-  const handletradingTab = (tab: number) => {
-    setTradingTab(tab);
+  const handletrade_type = (tab: number) => {
+    setTrade_type(tab);
+  };
+  const dispatch = useDispatch();
+  const openLong = async () => {
+    await dispatch(
+      preplaceOrderDataAction(
+        trade_type,
+        OpenCloseLimitCoinData.margin_mode,
+        trade_type,
+        OpenCloseLimitCoinData.price,
+        OpenCloseLimitCoinData.amount_type,
+        OpenCloseLimitCoinData.amount,
+        OpenCloseLimitCoinData.take_profit,
+        OpenCloseLimitCoinData.stop_loss,
+        OpenCloseLimitCoinData.leverage_amount
+      )
+    );
   };
   const initialSetUp = () => {
     setOpenCloseLimitCoinData({
-      price:
-        tradingTab === 1
-          ? dashboard?.order_data?.sell_price
-          : dashboard?.order_data?.buy_price,
+      // price:
+      //   trade_type === 1
+      //     ? dashboard?.order_data?.sell_price
+      //     : dashboard?.order_data?.buy_price,
+      price: 0,
       amount: 0,
       total_profit: 0,
       total_loss: 0,
     });
     setOpenCloseMarketCoinData({
-      price:
-        tradingTab === 1
-          ? dashboard?.order_data?.sell_price
-          : dashboard?.order_data?.buy_price,
+      // price:
+      //   trade_type === 1
+      //     ? dashboard?.order_data?.sell_price
+      //     : dashboard?.order_data?.buy_price,
+      price: 0,
       amount: 0,
       total_profit: 0,
       total_loss: 0,
@@ -65,11 +98,11 @@ const ExchangeBox = () => {
 
   useEffect(() => {
     initialSetUp();
-  }, [currentPair, dashboard, tradingTab]);
+  }, [currentPair, dashboard, trade_type]);
 
   return (
     <div className="exchange-box order-box">
-      {/* <div className="trades-headers">
+      <div className="trades-headers">
         <ul
           id="pills-tab"
           role="tablist"
@@ -80,7 +113,7 @@ const ExchangeBox = () => {
             className="nav-item"
             onClick={() => {
               initialSetUp();
-              handletradingTab(1);
+              handletrade_type(LIMIT_ORDER);
             }}
           >
             <a
@@ -89,7 +122,7 @@ const ExchangeBox = () => {
               role="tab"
               aria-controls="pills-transfer-1"
               aria-selected="true"
-              className={`nav-link ${tradingTab === 1 ? "active" : ""}`}
+              className={`nav-link ${trade_type === 1 ? "active" : ""}`}
             >
               {t("Open")}
             </a>
@@ -99,7 +132,7 @@ const ExchangeBox = () => {
             className="nav-item"
             onClick={() => {
               initialSetUp();
-              handletradingTab(2);
+              handletrade_type(MARKET_ORDER);
             }}
           >
             <a
@@ -108,13 +141,13 @@ const ExchangeBox = () => {
               role="tab"
               aria-controls="pills-transfer-2"
               aria-selected="false"
-              className={`nav-link ${tradingTab === 2 ? "activeSell" : ""}`}
+              className={`nav-link ${trade_type === 2 ? "activeSell" : ""}`}
             >
               {t("Close")}
             </a>
           </li>
         </ul>
-      </div> */}
+      </div>
       <div
         style={{
           display: "flex",
@@ -129,7 +162,7 @@ const ExchangeBox = () => {
           id="pills-transfer-1"
           role="tabpanel"
           aria-labelledby="pills-transfer-1-tab"
-          className={`tab-pane fade show ${tradingTab === 1 && "active"} `}
+          className={`tab-pane fade show ${trade_type === 1 && "active"} `}
         >
           <ul
             id="BuyTab"
@@ -174,6 +207,7 @@ const ExchangeBox = () => {
               setOpenCloseLimitCoinData={setOpenCloseLimitCoinData}
               isLoggedIn={isLoggedIn}
               currentPair={currentPair}
+              openLong={openLong}
             />
           )}
           {openSelectedTab === 2 && (
@@ -190,7 +224,7 @@ const ExchangeBox = () => {
           id="pills-transfer-2"
           role="tabpanel"
           aria-labelledby="pills-transfer-2-tab"
-          className={`tab-pane fade show ${tradingTab === 2 && "active"} `}
+          className={`tab-pane fade show ${trade_type === 2 && "active"} `}
         >
           <ul
             id="SellTab"
