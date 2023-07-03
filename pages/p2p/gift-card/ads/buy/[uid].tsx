@@ -62,11 +62,12 @@ const Trading = () => {
   const router = useRouter();
   const { uid }: any = router.query;
   const sendMessage = async (e: any) => {
+
     e.preventDefault();
     const formData = new FormData();
     formData.append("gift_card_order_id", details?.order?.id);
     message && formData.append("message", message);
-    file.name && formData.append("file", file);
+    file?.name && formData.append("file", file);
     console.log(file, "This is a file");
     setMessage("");
     setFile(null);
