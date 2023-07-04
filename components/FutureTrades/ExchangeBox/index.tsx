@@ -10,6 +10,8 @@ import Leverage from "../Modals/leverage";
 import Isolated from "../Modals/isolated";
 import {
   AMOUNT_TYPE_BASE,
+  FUTURE_TRADE_TYPE_CLOSE,
+  FUTURE_TRADE_TYPE_OPEN,
   ISOLATED,
   LIMIT_ORDER,
   MARGIN_MODE_ISOLATED,
@@ -28,6 +30,7 @@ const ExchangeBox = () => {
     (state: RootState) => state.exchange
   );
   const [trade_type, setTrade_type] = useState<trade_type>(AMOUNT_TYPE_BASE);
+  const [preplaceData, setPrePlaceData] = useState({});
   const [OpenCloseLimitCoinData, setOpenCloseLimitCoinData] = useState<any>({
     // dashboard?.order_data?.sell_price
     price: 0,
@@ -36,7 +39,6 @@ const ExchangeBox = () => {
     margin_mode: MARGIN_MODE_ISOLATED,
     amount_type: AMOUNT_TYPE_BASE,
     take_profit: 0,
-    leverage_amount: 0,
     stop_loss: 0,
   });
   const [OpenCloseMarketCoinData, setOpenCloseMarketCoinData] = useState<any>({
@@ -47,57 +49,51 @@ const ExchangeBox = () => {
     margin_mode: MARGIN_MODE_ISOLATED,
     amount_type: AMOUNT_TYPE_BASE,
     take_profit: 0,
-    leverage_amount: 0,
     stop_loss: 0,
   });
 
-  const [openSelectedTab, setopenSelectedTab] = useState<number>(1);
+  const [orderType, setorderType] = useState<number>(LIMIT_ORDER);
   const [closeSelectedTab, setcloseSelectedTab] = useState<number>(1);
 
   const handletrade_type = (tab: number) => {
     setTrade_type(tab);
   };
   const dispatch = useDispatch();
-  const openLong = async () => {
+
+  const checkPreOrder = async () => {
     console.log(OpenCloseLimitCoinData, "OpenCloseLimitCoinData");
     await dispatch(
       preplaceOrderDataAction(
         trade_type,
         OpenCloseLimitCoinData.margin_mode,
-        trade_type,
+        orderType,
         OpenCloseLimitCoinData.price,
         OpenCloseLimitCoinData.amount_type,
         OpenCloseLimitCoinData.amount,
         OpenCloseLimitCoinData.take_profit,
         OpenCloseLimitCoinData.stop_loss,
-        OpenCloseLimitCoinData.leverage_amount
+        leverage,
+        setPrePlaceData
       )
     );
   };
-  // const initialSetUp = () => {
-  //   setOpenCloseLimitCoinData({
-  //     price:
-  //       trade_type === 1
-  //         ? dashboard?.order_data?.sell_price
-  //         : dashboard?.order_data?.buy_price,
-  //     amount: 0,
-  //     total_profit: 0,
-  //     total_loss: 0,
-  //   });
-  //   setOpenCloseMarketCoinData({
-  //     price:
-  //       trade_type === 1
-  //         ? dashboard?.order_data?.sell_price
-  //         : dashboard?.order_data?.buy_price,
-  //     amount: 0,
-  //     total_profit: 0,
-  //     total_loss: 0,
-  //   });
-  // };
-
   useEffect(() => {
-    // initialSetUp();
-  }, [currentPair, dashboard, trade_type]);
+    OpenCloseLimitCoinData.amount &&
+      OpenCloseLimitCoinData.price &&
+      checkPreOrder();
+  }, [
+    trade_type,
+    OpenCloseLimitCoinData.margin_mode,
+    orderType,
+    OpenCloseLimitCoinData.price,
+    OpenCloseLimitCoinData.amount_type,
+    OpenCloseLimitCoinData.amount,
+    OpenCloseLimitCoinData.take_profit,
+    OpenCloseLimitCoinData.stop_loss,
+    OpenCloseLimitCoinData.stop_loss,
+    leverage,
+    isolated,
+  ]);
 
   return (
     <div className="exchange-box order-box">
@@ -112,7 +108,7 @@ const ExchangeBox = () => {
             className="nav-item"
             onClick={() => {
               // initialSetUp();
-              handletrade_type(LIMIT_ORDER);
+              handletrade_type(FUTURE_TRADE_TYPE_OPEN);
             }}
           >
             <a
@@ -131,7 +127,7 @@ const ExchangeBox = () => {
             className="nav-item"
             onClick={() => {
               // initialSetUp();
-              handletrade_type(MARKET_ORDER);
+              handletrade_type(FUTURE_TRADE_TYPE_CLOSE);
             }}
           >
             <a
@@ -177,7 +173,7 @@ const ExchangeBox = () => {
                 aria-selected="true"
                 className="nav-link active"
                 onClick={() => {
-                  setopenSelectedTab(1);
+                  setorderType(LIMIT_ORDER);
                 }}
               >
                 {t("Limit")}
@@ -192,24 +188,24 @@ const ExchangeBox = () => {
                 aria-selected="false"
                 className="nav-link"
                 onClick={() => {
-                  setopenSelectedTab(2);
+                  setorderType(MARKET_ORDER);
                 }}
               >
                 {t("Market")}
               </a>
             </li>
           </ul>
-          {openSelectedTab === 1 && (
+          {orderType === 1 && (
             <Limit
               dashboard={dashboard}
               OpenCloseLimitCoinData={OpenCloseLimitCoinData}
               setOpenCloseLimitCoinData={setOpenCloseLimitCoinData}
               isLoggedIn={isLoggedIn}
               currentPair={currentPair}
-              openLong={openLong}
+              preplaceData={preplaceData}
             />
           )}
-          {openSelectedTab === 2 && (
+          {orderType === 2 && (
             <Market
               dashboard={dashboard}
               OpenCloseMarketCoinData={OpenCloseMarketCoinData}

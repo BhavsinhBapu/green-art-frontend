@@ -11,7 +11,7 @@ const Limit = ({
   setOpenCloseLimitCoinData,
   isLoggedIn,
   currentPair,
-  openLong,
+  preplaceData,
 }: any) => {
   const { t } = useTranslation("common");
   const [loading, setLoading] = React.useState(false);
@@ -100,8 +100,8 @@ const Limit = ({
                     placeholder="0"
                     className="form-control number_only input_1"
                     value={OpenCloseLimitCoinData.price}
-                    onChange={(e) => {
-                      setOpenCloseLimitCoinData({
+                    onChange={async (e) => {
+                      await setOpenCloseLimitCoinData({
                         ...OpenCloseLimitCoinData,
                         price: e.target.value,
                         total:
@@ -130,21 +130,42 @@ const Limit = ({
                       OpenCloseLimitCoinData.amount !== 0 &&
                       OpenCloseLimitCoinData.amount
                     }
-                    onChange={(e) => {
-                      setOpenCloseLimitCoinData({
+                    onChange={async (e) => {
+                      await setOpenCloseLimitCoinData({
                         ...OpenCloseLimitCoinData,
                         amount: e.target.value,
                       });
                     }}
                   />
-                  <span
-                    className="text-warning blns"
-                    style={{ fontWeight: 700 }}
-                  >
-                    <span className="trade_coin_type">
+                  <span className=" blns" style={{ fontWeight: 700 }}>
+                    <span className="text-warning mr-2">
                       {dashboard?.order_data?.total?.trade_wallet?.coin_type}
                     </span>
+                    <span className="">
+                      {dashboard?.order_data?.total?.base_wallet?.coin_type}
+                    </span>
                   </span>
+                  {/* <select
+                    name=""
+                    className="form-control border-0 swapSelect"
+                    id=""
+                  >
+                    <option
+                      selected={true}
+                      value={
+                        dashboard?.order_data?.total?.base_wallet?.coin_type
+                      }
+                    >
+                      {dashboard?.order_data?.total?.base_wallet?.coin_type}
+                    </option>
+                    <option
+                      value={
+                        dashboard?.order_data?.total?.trade_wallet?.coin_type
+                      }
+                    >
+                      {dashboard?.order_data?.total?.trade_wallet?.coin_type}
+                    </option>
+                  </select> */}
                 </div>
 
                 <div className="future-balance-container">
@@ -260,7 +281,6 @@ const Limit = ({
                       className="btn theme-btn-future"
                       onClick={(e) => {
                         e.preventDefault();
-                        openLong();
                         // await dispatch(getDashboardData(currentPair));
                         setOpenCloseLimitCoinData({
                           ...OpenCloseLimitCoinData,
@@ -277,19 +297,25 @@ const Limit = ({
                   </div>
                 )}
                 <div className="future-balance-container mt-3">
-                  <div>
-                    <label>Cost</label>
-                    <span className="text-warning ml-1">
-                      55 {dashboard?.order_data?.total?.base_wallet?.coin_type}
-                    </span>
-                  </div>
-                  <div>
-                    <label>Cost</label>
-                    <span className="text-warning ml-1">
-                      886.53{" "}
-                      {dashboard?.order_data?.total?.base_wallet?.coin_type}
-                    </span>
-                  </div>
+                  {preplaceData?.long_cost && (
+                    <div>
+                      <label>Cost</label>
+                      <span className="text-warning ml-1">
+                        {preplaceData?.long_cost}{" "}
+                        {dashboard?.order_data?.total?.base_wallet?.coin_type}
+                      </span>
+                    </div>
+                  )}
+
+                  {preplaceData?.short_cost && (
+                    <div>
+                      <label>Cost</label>
+                      <span className="text-warning ml-1">
+                        {preplaceData?.short_cost}{" "}
+                        {dashboard?.order_data?.total?.base_wallet?.coin_type}
+                      </span>
+                    </div>
+                  )}
                 </div>
                 <div className="future-balance-container">
                   <div>

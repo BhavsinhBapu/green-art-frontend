@@ -313,7 +313,8 @@ export const preplaceOrderDataAction =
     amount: number,
     take_profit: number,
     stop_loss: number,
-    leverage_amount: number
+    leverage_amount: number,
+    setPrePlaceData: any
   ) =>
   async (dispatch: any) => {
     const formData = new FormData();
@@ -330,7 +331,8 @@ export const preplaceOrderDataAction =
     formData.append("coin_pair_id", String(coin_pair_id));
     const response = await preplaceOrderData(formData);
     if (response.success) {
-      toast.success(response.message);
+      setPrePlaceData(response.data)
+      // toast.success(response.message);
     } else {
       toast.error(response.message);
     }

@@ -141,3 +141,5 @@ export const MARGIN_MODE_ISOLATED = 1;
 export const MARGIN_MODE_CROSS = 1;
 export const LIMIT_ORDER = 1;
 export const MARKET_ORDER = 2;
+export const FUTURE_TRADE_TYPE_OPEN = 1;
+export const FUTURE_TRADE_TYPE_CLOSE = 2;
