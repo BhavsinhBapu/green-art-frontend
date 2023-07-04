@@ -59,6 +59,7 @@ const ExchangeBox = () => {
   };
   const dispatch = useDispatch();
   const openLong = async () => {
+    console.log(OpenCloseLimitCoinData, "OpenCloseLimitCoinData");
     await dispatch(
       preplaceOrderDataAction(
         trade_type,
@@ -73,31 +74,29 @@ const ExchangeBox = () => {
       )
     );
   };
-  const initialSetUp = () => {
-    setOpenCloseLimitCoinData({
-      // price:
-      //   trade_type === 1
-      //     ? dashboard?.order_data?.sell_price
-      //     : dashboard?.order_data?.buy_price,
-      price: 0,
-      amount: 0,
-      total_profit: 0,
-      total_loss: 0,
-    });
-    setOpenCloseMarketCoinData({
-      // price:
-      //   trade_type === 1
-      //     ? dashboard?.order_data?.sell_price
-      //     : dashboard?.order_data?.buy_price,
-      price: 0,
-      amount: 0,
-      total_profit: 0,
-      total_loss: 0,
-    });
-  };
+  // const initialSetUp = () => {
+  //   setOpenCloseLimitCoinData({
+  //     price:
+  //       trade_type === 1
+  //         ? dashboard?.order_data?.sell_price
+  //         : dashboard?.order_data?.buy_price,
+  //     amount: 0,
+  //     total_profit: 0,
+  //     total_loss: 0,
+  //   });
+  //   setOpenCloseMarketCoinData({
+  //     price:
+  //       trade_type === 1
+  //         ? dashboard?.order_data?.sell_price
+  //         : dashboard?.order_data?.buy_price,
+  //     amount: 0,
+  //     total_profit: 0,
+  //     total_loss: 0,
+  //   });
+  // };
 
   useEffect(() => {
-    initialSetUp();
+    // initialSetUp();
   }, [currentPair, dashboard, trade_type]);
 
   return (
@@ -112,7 +111,7 @@ const ExchangeBox = () => {
             role="presentation"
             className="nav-item"
             onClick={() => {
-              initialSetUp();
+              // initialSetUp();
               handletrade_type(LIMIT_ORDER);
             }}
           >
@@ -131,7 +130,7 @@ const ExchangeBox = () => {
             role="presentation"
             className="nav-item"
             onClick={() => {
-              initialSetUp();
+              // initialSetUp();
               handletrade_type(MARKET_ORDER);
             }}
           >
