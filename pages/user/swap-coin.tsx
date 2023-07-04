@@ -195,13 +195,12 @@ const SwapCoin: NextPage = ({
                                     toSelected.coin_id
                                   ).then((data) => {
                                     setFromSelected({
-                                      ...toSelected,
+                                      ...fromSelected,
                                       coin_id: data?.from_wallet?.id,
                                       selected: data?.from_wallet?.coin_type,
                                       balamce: data?.from_wallet?.balance,
                                       amount: data?.convert_rate,
                                     });
-                                   
                                   });
                                 }}
                               >
@@ -215,10 +214,7 @@ const SwapCoin: NextPage = ({
                                     <option
                                       key={index}
                                       value={item.id}
-                                      selected={
-                                        fromSelected.coin_id ===
-                                        item.id.toString()
-                                      }
+                                      selected={fromSelected.coin_id == item.id}
                                     >
                                       {item.coin_type}
                                     </option>
@@ -299,10 +295,7 @@ const SwapCoin: NextPage = ({
                                     <option
                                       key={index}
                                       value={item.id}
-                                      selected={
-                                        toSelected.coin_id ===
-                                        item.id.toString()
-                                      }
+                                      selected={toSelected.coin_id == item.id}
                                     >
                                       {item.coin_type}
                                     </option>
