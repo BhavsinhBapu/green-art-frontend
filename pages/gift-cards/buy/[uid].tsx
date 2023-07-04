@@ -29,6 +29,8 @@ export default function Index() {
   const [buyPageData, setBuyPageData] = useState<any>(null);
   const [selectCoin, setSelectCoin] = useState<any>({});
   const [availableCoin, setAvailableCoin] = useState(0);
+  const [availableSpotWallet, setAvailableSpotWallet] = useState(0);
+  const [availableP2PWallet, setAvailableP2PWallet] = useState(0);
   const [isError, setIsError] = useState(false);
   const [amount, setAmount] = useState("");
   const [wallet, setWallet] = useState("");
@@ -41,7 +43,8 @@ export default function Index() {
     if (!data.success) {
       return;
     }
-    setAvailableCoin(data?.data?.exchange_wallet_balance);
+    setAvailableSpotWallet(data?.data?.exchange_wallet_balance);
+    setAvailableP2PWallet(data?.data?.p2p_wallet_balance);
     setSelectCoin(event);
   };
 
@@ -344,7 +347,7 @@ export default function Index() {
                       <div className="d-flex gap-20">
                         <input
                           type="checkbox"
-                          onChange={() => setWallet("spot")}
+                          onChange={() => {setWallet("spot"); setAvailableCoin(availableSpotWallet)}}
                           checked={wallet === "spot"}
                           className="checkbox-w-25"
                         />
@@ -352,7 +355,7 @@ export default function Index() {
                           <h6 className="font-normal"> {t(`Spot Wallet`)}</h6>
                           <h6 className="font-normal">
                             {" "}
-                            {t(`${availableCoin} ${selectCoin?.label || ""}`)}
+                            {t(`${availableSpotWallet} ${selectCoin?.label || ""}`)}
                           </h6>
                         </div>
                       </div>
@@ -360,14 +363,14 @@ export default function Index() {
                         <div className="d-flex gap-20 mt-3">
                           <input
                             type="checkbox"
-                            onChange={() => setWallet("p2p")}
+                            onChange={() => {setWallet("p2p"); setAvailableCoin(availableP2PWallet)}}
                             checked={wallet === "p2p"}
                             className="checkbox-w-25"
                           />
                           <div className="d-flex justify-content-between w-full">
                             <h6 className="font-normal"> {t(`P2P Wallet`)}</h6>
                             <h6 className="font-normal">
-                              {t(`${availableCoin} ${selectCoin?.label || ""}`)}
+                              {t(`${availableP2PWallet} ${selectCoin?.label || ""}`)}
                             </h6>
                           </div>
                         </div>
