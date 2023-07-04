@@ -8,7 +8,28 @@ export const appDashboardData = async (pair: string | null) => {
     return null;
   }
 };
-
+export const getWalletsFuture = async (
+  per_page: any,
+  page: any,
+  type: number
+) => {
+  const { data } = await request.get(
+    `/wallet-list?limit=${per_page}&page=${page}&type=${type}`
+  );
+  return data;
+};
+export const walletBalanceTransferFuture = async (
+  type: any,
+  coin: any,
+  amount: any
+) => {
+  const { data } = await request.post("/wallet-balance-transfer", {
+    transfer_from: type,
+    coin_type: coin,
+    amount: amount,
+  });
+  return data;
+};
 export const appDashboardDataWithoutPair = async () => {
   const { data } = await request.get(`/app-dashboard`);
   return data;

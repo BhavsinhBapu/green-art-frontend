@@ -1,6 +1,7 @@
 import {
   appDashboardData,
   appDashboardDataWithoutPair,
+  getWalletsFuture,
   marketTradesDashboard,
   ordersHistoryDashboard,
   prePlaceOrderData,
@@ -334,3 +335,7 @@ export const preplaceOrderDataAction =
       toast.error(response.message);
     }
   };
+export const getWalletsFutureAction = async (per_page: any, page: any) => {
+  const response = await getWalletsFuture(per_page, page, 2);
+  return response;
+};

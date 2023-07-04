@@ -1,40 +1,22 @@
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import type { GetServerSideProps, NextPage } from "next";
-import { toast } from "react-toastify";
 import React, { useEffect, useState } from "react";
-import { IoWalletOutline } from "react-icons/io5";
-import { TiArrowRepeat } from "react-icons/ti";
 
-import {
-  HiOutlineBanknotes,
-  HiOutlinePresentationChartLine,
-} from "react-icons/hi2";
-
-import {
-  SearchObjectArrayFuesJS,
-  WalletListApiAction,
-} from "state/actions/wallet";
+import { SearchObjectArrayFuesJS } from "state/actions/wallet";
 import Loading from "components/common/SectionLoading";
 import Link from "next/link";
 import useTranslation from "next-translate/useTranslation";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
-import { TradeList } from "components/TradeList";
-import { appDashboardDataWithoutPair } from "service/exchange";
 import Footer from "components/common/footer";
 import { getWalletsAction } from "state/actions/p2p";
-import { SiConvertio } from "react-icons/si";
 import { AiOutlineSend } from "react-icons/ai";
 import { BsWallet2 } from "react-icons/bs";
 const MyWallet: NextPage = () => {
   const { t } = useTranslation("common");
-  const { settings } = useSelector((state: RootState) => state.common);
-
   const [walletList, setWalletList] = useState<any>([]);
   const [Changeable, setChangeable] = useState<any[]>([]);
   const [processing, setProcessing] = useState<boolean>(false);
-  const [tradeList, setTradeList]: any = useState();
-
   const getWalletLists = async () => {
     const response: any = await getWalletsAction(10, 1);
     setWalletList(response?.data);
