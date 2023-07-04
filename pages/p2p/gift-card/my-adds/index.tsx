@@ -73,7 +73,7 @@ export default function Index() {
       {/* second nav */}
       <P2PGiftCardNavbar />
 
-      <P2PGiftCardHeader title={"My Gift Card Adds"} />
+      <P2PGiftCardHeader title={"My Gift Card Ads"} />
       {/* item part */}
 
       <div className="container">
