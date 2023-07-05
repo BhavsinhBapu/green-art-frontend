@@ -14803,6 +14803,10 @@ body::-webkit-scrollbar {
   font-size: 16px;
 }
 
+.text-14 {
+  font-size: 14px;
+}
+
 .font-medium {
   font-weight: 500;
 }
@@ -14912,7 +14916,7 @@ body::-webkit-scrollbar {
   border-color: var(--primary-color) !important;
 }
 
-.border-main-color{
+.border-main-color {
   border-color: var(--border-color) !important;
 }
 
@@ -15196,18 +15200,31 @@ input:checked + .gift-card-buy-slider:before {
   margin-right: 10px;
 }
 
-.p2p-gift-card-navbar-lists{
+.p2p-gift-card-navbar-lists {
   display: flex;
   gap: 28px;
 }
 
-.primary-border-color{
+.primary-border-color {
   border-color: var(--border-color) !important;
 }
-.custom-select__multi-value{
+.custom-select__multi-value {
   height: 35px !important;
   display: flex !important;
   align-items: center !important;
+}
+
+.bg-card-primary-clr {
+  background: var(--card-background-color);
+}
+
+.market-index-card {
+  height: 94px;
+  padding: 12px;
+  margin-bottom: 12px;
+  background-color: var(--card-background-color);
+  border-radius: 8px;
+  outline: none;
 }
 
 @media (max-width: 991px) {
@@ -15221,10 +15238,10 @@ input:checked + .gift-card-buy-slider:before {
   .gift-card-buy-banner-margin {
     margin-top: 20px;
   }
-  .p2p-gift-card-navbar-margin-top{
+  .p2p-gift-card-navbar-margin-top {
     margin-top: 50px;
   }
-  .p2p-gift-card-navbar-lists{
+  .p2p-gift-card-navbar-lists {
     display: block;
   }
 }
@@ -15263,5 +15280,4 @@ input:checked + .gift-card-buy-slider:before {
   .p2p-gift-card-adds-margin-right {
     margin-right: 0;
   }
-  
 }
