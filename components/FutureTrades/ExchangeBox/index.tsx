@@ -39,7 +39,7 @@ const ExchangeBox = () => {
   const [preplaceData, setPrePlaceData] = useState({});
   const [OpenCloseLimitCoinData, setOpenCloseLimitCoinData] = useState<any>({
     // dashboard?.order_data?.sell_price
-    price: 0,
+    price: dashboard?.order_data?.sell_price,
     amount: 0,
     total: 0,
     margin_mode: MARGIN_MODE_ISOLATED,
@@ -48,8 +48,7 @@ const ExchangeBox = () => {
     stop_loss: 0,
   });
   const [OpenCloseMarketCoinData, setOpenCloseMarketCoinData] = useState<any>({
-    // dashboard?.order_data?.sell_price
-    price: 0,
+    // price: dashboard?.order_data?.sell_price,
     amount: 0,
     total: 0,
     margin_mode: MARGIN_MODE_ISOLATED,
@@ -57,6 +56,15 @@ const ExchangeBox = () => {
     take_profit: 0,
     stop_loss: 0,
   });
+  useEffect(() => {
+    setOpenCloseLimitCoinData({
+      ...OpenCloseLimitCoinData,
+      price:
+        trade_type === FUTURE_TRADE_TYPE_OPEN
+          ? dashboard?.order_data?.sell_price
+          : dashboard?.order_data?.buy_price,
+    });
+  }, [dashboard?.order_data?.sell_price, trade_type]);
 
   const [orderType, setorderType] = useState<number>(LIMIT_ORDER);
   const [closeSelectedTab, setcloseSelectedTab] = useState<number>(1);
@@ -253,6 +261,11 @@ const ExchangeBox = () => {
               setOpenCloseMarketCoinData={setOpenCloseMarketCoinData}
               isLoggedIn={isLoggedIn}
               currentPair={currentPair}
+              preplaceData={preplaceData}
+              selectedCoinType={selectedCoinType}
+              setSelectedCoinType={setSelectedCoinType}
+              BuyOrder={BuyOrder}
+              SellOrder={SellOrder}
             />
           )}
         </div>

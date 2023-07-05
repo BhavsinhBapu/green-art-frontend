@@ -327,8 +327,13 @@ export const preplaceOrderDataAction =
     formData.append("price", String(price));
     formData.append("amount_type", String(amount_type));
     formData.append("amount", String(amount));
-    formData.append("take_profit", String(take_profit));
-    formData.append("stop_loss", String(stop_loss));
+    take_profit &&
+      formData.append(
+        "take_profit",
+        take_profit === 0 ? "" : String(take_profit)
+      );
+    stop_loss &&
+      formData.append("stop_loss", stop_loss === 0 ? "" : String(stop_loss));
     formData.append("leverage_amount", String(leverage_amount));
     formData.append("coin_pair_id", String(coin_pair_id));
     const response = await preplaceOrderData(formData);
@@ -361,14 +366,19 @@ export const placeBuyOrderAction =
     formData.append("price", String(price));
     formData.append("amount_type", String(amount_type));
     formData.append("amount", String(amount));
-    formData.append("take_profit", String(take_profit));
-    formData.append("stop_loss", String(stop_loss));
+    take_profit &&
+      formData.append(
+        "take_profit",
+        take_profit === 0 ? "" : String(take_profit)
+      );
+    stop_loss &&
+      formData.append("stop_loss", stop_loss === 0 ? "" : String(stop_loss));
     formData.append("leverage_amount", String(leverage_amount));
     formData.append("coin_pair_id", String(coin_pair_id));
     const response = await placeBuyOrderData(formData);
     if (response.success) {
       setPrePlaceData(response.data);
-      // toast.success(response.message);
+      toast.success(response.message);
     } else {
       toast.error(response.message);
     }
@@ -400,9 +410,10 @@ export const placeSellOrderDataAction =
     formData.append("leverage_amount", String(leverage_amount));
     formData.append("coin_pair_id", String(coin_pair_id));
     const response = await placeSellOrderData(formData);
+    console.log(response, "responseresponse");
     if (response.success) {
       setPrePlaceData(response.data);
-      // toast.success(response.message);
+      toast.success(response.message);
     } else {
       toast.error(response.message);
     }

@@ -1,27 +1,33 @@
 import { formateZert } from "common";
+import {
+  AMOUNT_TYPE_BASE,
+  AMOUNT_TYPE_TRADE,
+  BASE,
+  TRADE,
+} from "helpers/core-constants";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import {
-  initialDashboardCallAction,
-  buyMarketAppAction,
-  getDashboardData,
-} from "state/actions/exchange";
+import { buyLimitAppAction } from "state/actions/exchange";
 
 const Market = ({
   dashboard,
   OpenCloseMarketCoinData,
   setOpenCloseMarketCoinData,
   isLoggedIn,
-  currentPair,
+  selectedCoinType,
+  preplaceData,
+  setSelectedCoinType,
+  BuyOrder,
+  SellOrder,
 }: any) => {
   const { t } = useTranslation("common");
-  const [loading, setLoading] = React.useState(false);
-  const [tpSlchecked, setChecked] = React.useState(false);
-
+  const [selectedMarketValue, setSelectedMarketValue] = useState(0);
+  const [tpSlchecked, setChecked] = useState(false);
   const dispatch = useDispatch();
-  const setAmountBasedOnPercentage = (percentage: any) => {
+
+  const setSizeBasedOnPercentage = (percentage: any) => {
     const { maker_fees, taker_fees } = dashboard.fees_settings;
     const amount =
       parseFloat(dashboard?.order_data?.total?.base_wallet?.balance) /
@@ -35,7 +41,7 @@ const Market = ({
     const fees = (total * feesPercentage) / 100;
     setOpenCloseMarketCoinData({
       ...OpenCloseMarketCoinData,
-      amount: (total - fees) / parseFloat(OpenCloseMarketCoinData.price),
+      size: (total - fees) / parseFloat(OpenCloseMarketCoinData.price),
       total: total - fees,
     });
   };
@@ -50,18 +56,24 @@ const Market = ({
         <div className="row">
           <div className="col-md-12">
             <div className="cp-user-profile-info">
-              <form id="buy-form">
+              <form
+                id="buy-form"
+                style={{
+                  overflow: "hidden",
+                }}
+              >
                 <input
                   type="hidden"
                   name="_token"
                   defaultValue="g2OWJq3pDqYRQmVvmGt799aCsDmkkV4UjrWDhzcF"
                 />
-                <div className="form-group ">
+                <div className="form-group">
+                  {/* <div className="total-top">
+                    <label>{t("Total")}</label> <label>{t("Available")}</label>
+                  </div> */}
                   <div className="total-top-blance">
                     <div className="total-blance">
-                      <div className="total-blance">
-                        <label>{t("Available")}</label>
-                      </div>
+                      <label>{t("Available")}</label>
                     </div>
                     <div className="avilable-blance">
                       <span
@@ -79,36 +91,31 @@ const Market = ({
                         </span>
                       </span>
                       <span
-                        className="text-warning"
+                        className="text-warning ml-1"
                         style={{ fontWeight: 700 }}
                       >
-                        <span className="base_coin_type">
-                          {" "}
+                        <span className="trade_coin_type">
                           {dashboard?.order_data?.total?.base_wallet?.coin_type}
                         </span>
                       </span>
                     </div>
                   </div>
                 </div>
-
-                <div className="form-group mt-3 boxShadow">
-                  <label className="cstmHead">{t("Size")}</label>
+                {/* <div className="form-group mt-3 boxShadow">
+                  <label className="cstmHead">{t("Price")}</label>
                   <input
-                    name="amount"
-                    type="number"
+                    name="price"
+                    type="text"
                     placeholder="0"
-                    className="form-control number_only"
-                    value={
-                      OpenCloseMarketCoinData?.amount !== 0 &&
-                      OpenCloseMarketCoinData?.amount
-                    }
-                    onChange={(e) => {
-                      setOpenCloseMarketCoinData({
+                    className="form-control number_only input_1"
+                    value={OpenCloseMarketCoinData.price}
+                    onChange={async (e) => {
+                      await setOpenCloseMarketCoinData({
                         ...OpenCloseMarketCoinData,
-                        amount: e.target.value,
+                        price: e.target.value,
                         total:
                           parseFloat(e.target.value) *
-                          OpenCloseMarketCoinData.price,
+                          OpenCloseMarketCoinData.size,
                       });
                     }}
                   />
@@ -117,9 +124,76 @@ const Market = ({
                     style={{ fontWeight: 700 }}
                   >
                     <span className="trade_coin_type">
-                      {dashboard?.order_data?.total?.trade_wallet?.coin_type}
+                      {dashboard?.order_data?.total?.base_wallet?.coin_type}
                     </span>
                   </span>
+                </div> */}
+                <div className="form-group mt-3 boxShadow">
+                  <label className="cstmHead">{t("Size")}</label>
+                  <input
+                    name="Size"
+                    type="number"
+                    placeholder="0"
+                    className="form-control number_only input_2"
+                    value={
+                      OpenCloseMarketCoinData.amount !== 0 &&
+                      OpenCloseMarketCoinData.amount
+                    }
+                    onChange={async (e) => {
+                      await setOpenCloseMarketCoinData({
+                        ...OpenCloseMarketCoinData,
+                        amount: e.target.value,
+                      });
+                    }}
+                  />
+                  <span className=" blns" style={{ fontWeight: 700 }}>
+                    <span
+                      className={
+                        OpenCloseMarketCoinData.amount_type === AMOUNT_TYPE_TRADE
+                          ? "text-warning mr-2"
+                          : "mr-2"
+                      }
+                      onClick={() => {
+                        setOpenCloseMarketCoinData({
+                          ...OpenCloseMarketCoinData,
+                          amount_type: AMOUNT_TYPE_TRADE,
+                        });
+                      }}
+                    >
+                      {dashboard?.order_data?.total?.trade_wallet?.coin_type}
+                    </span>
+                    <span
+                      className={
+                        OpenCloseMarketCoinData.amount_type === AMOUNT_TYPE_BASE
+                          ? "text-warning mr-2"
+                          : ""
+                      }
+                      onClick={() => {
+                        setOpenCloseMarketCoinData({
+                          ...OpenCloseMarketCoinData,
+                          amount_type: AMOUNT_TYPE_BASE,
+                        });
+                      }}
+                    >
+                      {dashboard?.order_data?.total?.base_wallet?.coin_type}
+                    </span>
+                  </span>
+                </div>
+
+                <div className="future-balance-container">
+                  <div>
+                    <label>Buy</label>
+                    <span className="text-warning ml-1">
+                      55 {dashboard?.order_data?.total?.trade_wallet?.coin_type}
+                    </span>
+                  </div>
+                  <div>
+                    <label>Sell</label>
+                    <span className="text-warning ml-1">
+                      886.53{" "}
+                      {dashboard?.order_data?.total?.trade_wallet?.coin_type}
+                    </span>
+                  </div>
                 </div>
                 <div className="total-top">
                   <label>
@@ -143,17 +217,37 @@ const Market = ({
                         type="number"
                         placeholder=""
                         className="form-control number_only input_1"
-                        value=""
+                        value={OpenCloseMarketCoinData.take_profit}
+                        onChange={(e) => {
+                          setOpenCloseMarketCoinData({
+                            ...OpenCloseMarketCoinData,
+                            take_profit: e.target.value,
+                          });
+                        }}
                       />
                       {/* make a select here */}
-                      <select
+                      {/* <select
                         name=""
                         className="form-control border-0 swapSelect"
                         id=""
                       >
                         <option value="">Mark</option>
                         <option value="">Last</option>
-                      </select>
+                      </select> */}
+                      <span className=" blns" style={{ fontWeight: 700 }}>
+                        <span
+                          className={
+                            selectedCoinType === TRADE
+                              ? "text-warning mr-2"
+                              : "mr-2"
+                          }
+                          onClick={() => {
+                            setSelectedCoinType(TRADE);
+                          }}
+                        >
+                          Mark
+                        </span>
+                      </span>
                     </div>
                     <div className="form-group boxShadow">
                       <label className="cstmHead">Stop Loss</label>
@@ -162,17 +256,29 @@ const Market = ({
                         type="number"
                         placeholder=""
                         className="form-control number_only input_1"
-                        value=""
+                        value={OpenCloseMarketCoinData.stop_loss}
+                        onChange={(e) => {
+                          setOpenCloseMarketCoinData({
+                            ...OpenCloseMarketCoinData,
+                            stop_loss: e.target.value,
+                          });
+                        }}
                       />
 
-                      <select
-                        name=""
-                        className="form-control border-0 swapSelect"
-                        id=""
-                      >
-                        <option value="">Mark</option>
-                        <option value="">Last</option>
-                      </select>
+                      <span className=" blns" style={{ fontWeight: 700 }}>
+                        <span
+                          className={
+                            selectedCoinType === TRADE
+                              ? "text-warning mr-2"
+                              : "mr-2"
+                          }
+                          onClick={() => {
+                            setSelectedCoinType(TRADE);
+                          }}
+                        >
+                          Mark
+                        </span>
+                      </span>
                     </div>
                   </div>
                 )}
@@ -181,342 +287,130 @@ const Market = ({
                   <div className=" mt-3 percent-container ">
                     <span
                       className=" percent-btn col-3"
-                      onClick={() => setAmountBasedOnPercentage(0.25)}
+                      onClick={() => setSizeBasedOnPercentage(0.25)}
                     >
                       {t("25%")}
                     </span>
                     <span
                       className=" percent-btn col-3"
-                      onClick={() => setAmountBasedOnPercentage(0.5)}
+                      onClick={() => setSizeBasedOnPercentage(0.5)}
                     >
                       {t("50%")}
                     </span>
                     <span
                       className=" percent-btn col-3"
-                      onClick={() => setAmountBasedOnPercentage(0.75)}
+                      onClick={() => setSizeBasedOnPercentage(0.75)}
                     >
                       {t("75%")}
                     </span>
                     <span
                       className=" percent-btn col-3"
-                      onClick={() => setAmountBasedOnPercentage(1)}
+                      onClick={() => setSizeBasedOnPercentage(1)}
                     >
                       {t("100%")}
                     </span>
                   </div>
                 )}
+
                 {!isLoggedIn ? (
                   <div className="form-group mt-4">
                     <Link href="/signin">
                       <a className="btn theme-btn-red">{t("Login")}</a>
                     </Link>
                   </div>
-                ) : loading ? (
-                  <div className="form-group mt-4">
-                    <button type="submit" className="btn theme-btn">
-                      <span v-if="limitBuyData.placingOrder">
-                        <span
-                          className="spinner-border spinner-border-sm"
-                          role="status"
-                          aria-hidden="true"
-                        ></span>
-                        {t("Placing Order")}...
-                      </span>
-                    </button>
-                  </div>
                 ) : (
                   <div className="button-section-future">
                     <button
                       type="submit"
                       className="btn theme-btn-future"
-                      onClick={async (e) => {
+                      onClick={(e) => {
                         e.preventDefault();
-                        await buyMarketAppAction(
-                          OpenCloseMarketCoinData.amount,
-                          OpenCloseMarketCoinData?.price,
-                          dashboard?.order_data?.trade_coin_id,
-                          dashboard?.order_data?.base_coin_id,
-                          setLoading
-                        );
                         // await dispatch(getDashboardData(currentPair));
-                        setOpenCloseMarketCoinData({
-                          ...OpenCloseMarketCoinData,
-                          amount: 0,
-                          total: 0,
-                        });
+                        // setOpenCloseMarketCoinData({
+                        //   ...OpenCloseMarketCoinData,
+                        //   amount: 0,
+                        //   total: 0,
+                        // });
+                        BuyOrder();
                       }}
                     >
-                      <span>
-                        {" "}
-                        {t("Buy")}{" "}
-                        {dashboard?.order_data?.total?.trade_wallet?.coin_type}
-                      </span>
+                      <span v-else="">{t("Open long")}</span>
                     </button>
-                    <button type="submit" className="btn theme-btn-red-future">
+                    <button
+                      type="submit"
+                      className="btn theme-btn-red-future"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        SellOrder();
+                      }}
+                    >
                       <span v-else="">{t("open short")}</span>
                     </button>
                   </div>
                 )}
                 <div className="future-balance-container mt-3">
-                  <div>
-                    <label>Cost</label>
-                    <span className="text-warning ml-1">
-                      55 {dashboard?.order_data?.total?.base_wallet?.coin_type}
-                    </span>
-                  </div>
-                  <div>
-                    <label>Cost</label>
-                    <span className="text-warning ml-1">
-                      886.53{" "}
-                      {dashboard?.order_data?.total?.base_wallet?.coin_type}
-                    </span>
-                  </div>
-                </div>
+                  {preplaceData?.long_cost && (
+                    <div>
+                      <label>Cost</label>
+                      <span className="text-warning ml-1">
+                        {preplaceData?.long_cost}{" "}
+                        {dashboard?.order_data?.total?.base_wallet?.coin_type}
+                      </span>
+                    </div>
+                  )}
 
+                  {preplaceData?.short_cost && (
+                    <div>
+                      <label>Cost</label>
+                      <span className="text-warning ml-1">
+                        {preplaceData?.short_cost}{" "}
+                        {dashboard?.order_data?.total?.base_wallet?.coin_type}
+                      </span>
+                    </div>
+                  )}
+                </div>
                 <div className="future-balance-container">
-                  <div>
-                    <label>Max</label>
-                    <span className="text-warning ml-1">
-                      55 {dashboard?.order_data?.total?.base_wallet?.coin_type}
-                    </span>
-                  </div>
-                  <div>
-                    <label>Max</label>
-                    <span className="text-warning ml-1">
-                      886.53{" "}
-                      {dashboard?.order_data?.total?.base_wallet?.coin_type}
-                    </span>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        id="Market"
-        role="tabpanel"
-        aria-labelledby="Market-tab"
-        className="tab-pane fade"
-      >
-        <div className="row">
-          <div className="col-md-12">
-            <div className="cp-user-profile-info">
-              <form id="buy-form" className="mt-4">
-                <input
-                  type="hidden"
-                  name="_token"
-                  defaultValue="g2OWJq3pDqYRQmVvmGt799aCsDmkkV4UjrWDhzcF"
-                />
-                <div className="form-group mt-4">
-                  <div className="total-top">
-                    <label>{t("Total")}</label> <label>{t("Available")}</label>
-                  </div>
-                  <div className="total-top-blance">
-                    <div className="total-blance">
-                      <span
-                        className="text-warning"
-                        style={{ fontWeight: 700 }}
-                      >
-                        <span>0</span>
-                      </span>
-                      <span
-                        className="text-warning"
-                        style={{ fontWeight: 700 }}
-                      >
-                        <span className="base_coin_type">
-                          {" "}
+                  {(preplaceData?.max_size_open_long_base ||
+                    preplaceData?.max_size_open_long_trade) && (
+                    <div>
+                      <label>Max</label>
+                      {setSelectedCoinType === BASE ? (
+                        <span className="text-warning ml-1">
+                          {preplaceData?.max_size_open_long_base}{" "}
                           {dashboard?.order_data?.total?.base_wallet?.coin_type}
                         </span>
-                      </span>
+                      ) : (
+                        <span className="text-warning ml-1">
+                          {preplaceData?.max_size_open_long_trade}{" "}
+                          {
+                            dashboard?.order_data?.total?.trade_wallet
+                              ?.coin_type
+                          }
+                        </span>
+                      )}
                     </div>
-                    <div className="avilable-blance">
-                      <span
-                        className="text-warning"
-                        style={{ fontWeight: 700 }}
-                      >
-                        <span>0</span>
-                      </span>
-                      <span
-                        className="text-warning"
-                        style={{ fontWeight: 700 }}
-                      >
-                        <span className="base_coin_type">
-                          {" "}
+                  )}
+
+                  {(preplaceData?.max_size_open_short_base ||
+                    preplaceData.max_size_open_short_trade) && (
+                    <div>
+                      <label>Max</label>
+                      {setSelectedCoinType === BASE ? (
+                        <span className="text-warning ml-1">
+                          {preplaceData?.max_size_open_short_base}{" "}
                           {dashboard?.order_data?.total?.base_wallet?.coin_type}
                         </span>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div className="form-group mt-3">
-                  <label>{t("Price")}</label>
-                  <p className="form-control">Market</p>
-                  <span
-                    className="text-warning blns"
-                    style={{ fontWeight: 700 }}
-                  >
-                    <span className="base_coin_type">
-                      {" "}
-                      {dashboard?.order_data?.total?.base_wallet?.coin_type}
-                    </span>
-                  </span>
-                </div>
-                <div className="form-group mt-3">
-                  <label>Amount</label>
-                  <input
-                    name="amount"
-                    type="text"
-                    placeholder=""
-                    className="form-control number_only"
-                  />
-                  <span
-                    className="text-warning blns"
-                    style={{ fontWeight: 700 }}
-                  >
-                    <span className="trade_coin_type">
-                      {dashboard?.order_data?.total?.trade_wallet?.coin_type}
-                    </span>
-                  </span>
-                </div>
-                <div className="form-group mt-4">
-                  <a className="btn theme-btn-red"> {t("Login")}</a>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        id="Stop-limit"
-        role="tabpanel"
-        aria-labelledby="Stop-limit-tab"
-        className="tab-pane fade"
-      >
-        <div className="row">
-          <div className="col-md-12">
-            <div className="cp-user-profile-info">
-              <form id="stop-limit-form" className="mt-4">
-                <input
-                  type="hidden"
-                  name="_token"
-                  defaultValue="g2OWJq3pDqYRQmVvmGt799aCsDmkkV4UjrWDhzcF"
-                />
-                <div className="form-group mt-4">
-                  <div className="total-top">
-                    <label>{t("Total")}</label> <label>{t("Available")}</label>
-                  </div>
-                  <div className="total-top-blance">
-                    <div className="total-blance">
-                      <span
-                        className="text-warning"
-                        style={{ fontWeight: 700 }}
-                      >
-                        <span>0</span>
-                      </span>
-                      <span
-                        className="text-warning"
-                        style={{ fontWeight: 700 }}
-                      >
-                        <span className="base_coin_type">
-                          {" "}
-                          {dashboard?.order_data?.total?.base_wallet?.coin_type}
+                      ) : (
+                        <span className="text-warning ml-1">
+                          {preplaceData?.max_size_open_short_trade}{" "}
+                          {
+                            dashboard?.order_data?.total?.trade_wallet
+                              ?.coin_type
+                          }
                         </span>
-                      </span>
+                      )}
                     </div>
-                    <div className="avilable-blance">
-                      <span
-                        className="text-warning"
-                        style={{ fontWeight: 700 }}
-                      >
-                        <span>0</span>
-                      </span>
-                      <span
-                        className="text-warning"
-                        style={{ fontWeight: 700 }}
-                      >
-                        <span className="base_coin_type">
-                          {" "}
-                          {dashboard?.order_data?.total?.base_wallet?.coin_type}
-                        </span>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div className="form-group mt-3">
-                  <label>{t("Stop")}</label>
-                  <input
-                    name="stop"
-                    type="text"
-                    placeholder=""
-                    className="form-control number_only"
-                  />
-                  <span
-                    className="text-warning blns"
-                    style={{ fontWeight: 700 }}
-                  >
-                    <span className="base_coin_type">
-                      {" "}
-                      {dashboard?.order_data?.total?.base_wallet?.coin_type}
-                    </span>
-                  </span>
-                </div>
-                <div className="form-group mt-3">
-                  <label>{t("Limit")}</label>
-                  <input
-                    name="limit"
-                    type="text"
-                    placeholder=""
-                    className="form-control number_only"
-                  />
-                  <span
-                    className="text-warning blns"
-                    style={{ fontWeight: 700 }}
-                  >
-                    <span className="base_coin_type">
-                      {" "}
-                      {dashboard?.order_data?.total?.base_wallet?.coin_type}
-                    </span>
-                  </span>
-                </div>
-                <div className="form-group mt-3">
-                  <label>{t("Amount")}</label>
-                  <input
-                    name="amount"
-                    type="text"
-                    placeholder=""
-                    className="form-control number_only"
-                  />
-                  <span
-                    className="text-warning blns"
-                    style={{ fontWeight: 700 }}
-                  >
-                    <span className="trade_coin_type">
-                      {dashboard?.order_data?.total?.trade_wallet?.coin_type}
-                    </span>
-                  </span>
-                </div>
-                <div className="form-group mt-3">
-                  <label>{t("Total Amount")}</label>
-                  <input
-                    // disabled
-                    name="total_amount"
-                    type="text"
-                    placeholder=""
-                    className="form-control number_only"
-                  />
-                  <span
-                    className="text-warning blns"
-                    style={{ fontWeight: 700 }}
-                  >
-                    <span className="base_coin_type">
-                      {" "}
-                      {dashboard?.order_data?.total?.base_wallet?.coin_type}
-                    </span>
-                  </span>
-                </div>
-                <div className="form-group mt-4 d-flex justify-content-between flex-wrap">
-                  <a className="btn theme-btn-red"> {t("Login")}</a>
+                  )}
                 </div>
               </form>
             </div>
