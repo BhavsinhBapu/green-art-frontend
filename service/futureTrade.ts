@@ -192,3 +192,13 @@ export const preplaceOrderData = async (payload: any) => {
   const { data } = await request.post("/preplace-order-data", payload);
   return data;
 };
+
+export const placeBuyOrderData = async (payload: any) => {
+  const { data } = await request.post("/placed-buy-order", payload);
+  return data;
+};
+
+export const placeSellOrderData = async (payload: any) => {
+  const { data } = await request.post("/placed-sell-order", payload);
+  return data;
+};

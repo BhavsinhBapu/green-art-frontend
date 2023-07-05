@@ -10,6 +10,7 @@ import Leverage from "../Modals/leverage";
 import Isolated from "../Modals/isolated";
 import {
   AMOUNT_TYPE_BASE,
+  BASE,
   FUTURE_TRADE_TYPE_CLOSE,
   FUTURE_TRADE_TYPE_OPEN,
   ISOLATED,
@@ -17,7 +18,11 @@ import {
   MARGIN_MODE_ISOLATED,
   MARKET_ORDER,
 } from "helpers/core-constants";
-import { preplaceOrderDataAction } from "state/actions/futureTrade";
+import {
+  placeBuyOrderAction,
+  placeSellOrderDataAction,
+  preplaceOrderDataAction,
+} from "state/actions/futureTrade";
 
 const ExchangeBox = () => {
   type trade_type = number;
@@ -30,6 +35,7 @@ const ExchangeBox = () => {
     (state: RootState) => state.exchange
   );
   const [trade_type, setTrade_type] = useState<trade_type>(AMOUNT_TYPE_BASE);
+  const [selectedCoinType, setSelectedCoinType] = useState(BASE);
   const [preplaceData, setPrePlaceData] = useState({});
   const [OpenCloseLimitCoinData, setOpenCloseLimitCoinData] = useState<any>({
     // dashboard?.order_data?.sell_price
@@ -61,9 +67,40 @@ const ExchangeBox = () => {
   const dispatch = useDispatch();
 
   const checkPreOrder = async () => {
-    console.log(OpenCloseLimitCoinData, "OpenCloseLimitCoinData");
     await dispatch(
       preplaceOrderDataAction(
+        trade_type,
+        OpenCloseLimitCoinData.margin_mode,
+        orderType,
+        OpenCloseLimitCoinData.price,
+        OpenCloseLimitCoinData.amount_type,
+        OpenCloseLimitCoinData.amount,
+        OpenCloseLimitCoinData.take_profit,
+        OpenCloseLimitCoinData.stop_loss,
+        leverage,
+        setPrePlaceData
+      )
+    );
+  };
+  const BuyOrder = async () => {
+    await dispatch(
+      placeBuyOrderAction(
+        trade_type,
+        OpenCloseLimitCoinData.margin_mode,
+        orderType,
+        OpenCloseLimitCoinData.price,
+        OpenCloseLimitCoinData.amount_type,
+        OpenCloseLimitCoinData.amount,
+        OpenCloseLimitCoinData.take_profit,
+        OpenCloseLimitCoinData.stop_loss,
+        leverage,
+        setPrePlaceData
+      )
+    );
+  };
+  const SellOrder = async () => {
+    await dispatch(
+      placeSellOrderDataAction(
         trade_type,
         OpenCloseLimitCoinData.margin_mode,
         orderType,
@@ -203,6 +240,10 @@ const ExchangeBox = () => {
               isLoggedIn={isLoggedIn}
               currentPair={currentPair}
               preplaceData={preplaceData}
+              selectedCoinType={selectedCoinType}
+              setSelectedCoinType={setSelectedCoinType}
+              BuyOrder={BuyOrder}
+              SellOrder={SellOrder}
             />
           )}
           {orderType === 2 && (

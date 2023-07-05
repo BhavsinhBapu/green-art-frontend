@@ -4,6 +4,8 @@ import {
   getWalletsFuture,
   marketTradesDashboard,
   ordersHistoryDashboard,
+  placeBuyOrderData,
+  placeSellOrderData,
   prePlaceOrderData,
   preplaceOrderData,
   tradesHistoryDashboard,
@@ -331,7 +333,75 @@ export const preplaceOrderDataAction =
     formData.append("coin_pair_id", String(coin_pair_id));
     const response = await preplaceOrderData(formData);
     if (response.success) {
-      setPrePlaceData(response.data)
+      setPrePlaceData(response.data);
+      // toast.success(response.message);
+    } else {
+      toast.error(response.message);
+    }
+  };
+export const placeBuyOrderAction =
+  (
+    trade_type: number,
+    margin_mode: number,
+    order_type: number,
+    price: number,
+    amount_type: number,
+    amount: number,
+    take_profit: number,
+    stop_loss: number,
+    leverage_amount: number,
+    setPrePlaceData: any
+  ) =>
+  async (dispatch: any) => {
+    const formData = new FormData();
+    const coin_pair_id = localStorage.getItem("coin_pair_id");
+    formData.append("side", String(trade_type));
+    formData.append("margin_mode", String(margin_mode));
+    formData.append("order_type", String(order_type));
+    formData.append("price", String(price));
+    formData.append("amount_type", String(amount_type));
+    formData.append("amount", String(amount));
+    formData.append("take_profit", String(take_profit));
+    formData.append("stop_loss", String(stop_loss));
+    formData.append("leverage_amount", String(leverage_amount));
+    formData.append("coin_pair_id", String(coin_pair_id));
+    const response = await placeBuyOrderData(formData);
+    if (response.success) {
+      setPrePlaceData(response.data);
+      // toast.success(response.message);
+    } else {
+      toast.error(response.message);
+    }
+  };
+export const placeSellOrderDataAction =
+  (
+    trade_type: number,
+    margin_mode: number,
+    order_type: number,
+    price: number,
+    amount_type: number,
+    amount: number,
+    take_profit: number,
+    stop_loss: number,
+    leverage_amount: number,
+    setPrePlaceData: any
+  ) =>
+  async (dispatch: any) => {
+    const formData = new FormData();
+    const coin_pair_id = localStorage.getItem("coin_pair_id");
+    formData.append("side", String(trade_type));
+    formData.append("margin_mode", String(margin_mode));
+    formData.append("order_type", String(order_type));
+    formData.append("price", String(price));
+    formData.append("amount_type", String(amount_type));
+    formData.append("amount", String(amount));
+    formData.append("take_profit", String(take_profit));
+    formData.append("stop_loss", String(stop_loss));
+    formData.append("leverage_amount", String(leverage_amount));
+    formData.append("coin_pair_id", String(coin_pair_id));
+    const response = await placeSellOrderData(formData);
+    if (response.success) {
+      setPrePlaceData(response.data);
       // toast.success(response.message);
     } else {
       toast.error(response.message);

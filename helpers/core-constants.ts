@@ -143,3 +143,6 @@ export const LIMIT_ORDER = 1;
 export const MARKET_ORDER = 2;
 export const FUTURE_TRADE_TYPE_OPEN = 1;
 export const FUTURE_TRADE_TYPE_CLOSE = 2;
+
+export const BASE = 1;
+export const TRADE = 2;

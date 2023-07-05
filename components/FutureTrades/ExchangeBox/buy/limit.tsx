@@ -1,4 +1,5 @@
 import { formateZert } from "common";
+import { BASE, TRADE } from "helpers/core-constants";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import React, { useState } from "react";
@@ -10,8 +11,11 @@ const Limit = ({
   OpenCloseLimitCoinData,
   setOpenCloseLimitCoinData,
   isLoggedIn,
-  currentPair,
+  selectedCoinType,
   preplaceData,
+  setSelectedCoinType,
+  BuyOrder,
+  SellOrder,
 }: any) => {
   const { t } = useTranslation("common");
   const [loading, setLoading] = React.useState(false);
@@ -138,10 +142,26 @@ const Limit = ({
                     }}
                   />
                   <span className=" blns" style={{ fontWeight: 700 }}>
-                    <span className="text-warning mr-2">
+                    <span
+                      className={
+                        selectedCoinType === TRADE
+                          ? "text-warning mr-2"
+                          : "mr-2"
+                      }
+                      onClick={() => {
+                        setSelectedCoinType(TRADE);
+                      }}
+                    >
                       {dashboard?.order_data?.total?.trade_wallet?.coin_type}
                     </span>
-                    <span className="">
+                    <span
+                      className={
+                        selectedCoinType === BASE ? "text-warning mr-2" : ""
+                      }
+                      onClick={() => {
+                        setSelectedCoinType(BASE);
+                      }}
+                    >
                       {dashboard?.order_data?.total?.base_wallet?.coin_type}
                     </span>
                   </span>
@@ -282,16 +302,30 @@ const Limit = ({
                       onClick={(e) => {
                         e.preventDefault();
                         // await dispatch(getDashboardData(currentPair));
-                        setOpenCloseLimitCoinData({
-                          ...OpenCloseLimitCoinData,
-                          amount: 0,
-                          total: 0,
-                        });
+                        // setOpenCloseLimitCoinData({
+                        //   ...OpenCloseLimitCoinData,
+                        //   amount: 0,
+                        //   total: 0,
+                        // });
+                        BuyOrder();
                       }}
                     >
                       <span v-else="">{t("Open long")}</span>
                     </button>
-                    <button type="submit" className="btn theme-btn-red-future">
+                    <button
+                      type="submit"
+                      className="btn theme-btn-red-future"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        // await dispatch(getDashboardData(currentPair));
+                        // setOpenCloseLimitCoinData({
+                        //   ...OpenCloseLimitCoinData,
+                        //   amount: 0,
+                        //   total: 0,
+                        // });
+                        SellOrder();
+                      }}
+                    >
                       <span v-else="">{t("open short")}</span>
                     </button>
                   </div>
@@ -318,19 +352,47 @@ const Limit = ({
                   )}
                 </div>
                 <div className="future-balance-container">
-                  <div>
-                    <label>Max</label>
-                    <span className="text-warning ml-1">
-                      55 {dashboard?.order_data?.total?.base_wallet?.coin_type}
-                    </span>
-                  </div>
-                  <div>
-                    <label>Max</label>
-                    <span className="text-warning ml-1">
-                      886.53{" "}
-                      {dashboard?.order_data?.total?.base_wallet?.coin_type}
-                    </span>
-                  </div>
+                  {(preplaceData?.max_size_open_long_base ||
+                    preplaceData?.max_size_open_long_trade) && (
+                    <div>
+                      <label>Max</label>
+                      {setSelectedCoinType === BASE ? (
+                        <span className="text-warning ml-1">
+                          {preplaceData?.max_size_open_long_base}{" "}
+                          {dashboard?.order_data?.total?.base_wallet?.coin_type}
+                        </span>
+                      ) : (
+                        <span className="text-warning ml-1">
+                          {preplaceData?.max_size_open_long_trade}{" "}
+                          {
+                            dashboard?.order_data?.total?.trade_wallet
+                              ?.coin_type
+                          }
+                        </span>
+                      )}
+                    </div>
+                  )}
+
+                  {(preplaceData?.max_size_open_short_base ||
+                    preplaceData.max_size_open_short_trade) && (
+                    <div>
+                      <label>Max</label>
+                      {setSelectedCoinType === BASE ? (
+                        <span className="text-warning ml-1">
+                          {preplaceData?.max_size_open_short_base}{" "}
+                          {dashboard?.order_data?.total?.base_wallet?.coin_type}
+                        </span>
+                      ) : (
+                        <span className="text-warning ml-1">
+                          {preplaceData?.max_size_open_short_trade}{" "}
+                          {
+                            dashboard?.order_data?.total?.trade_wallet
+                              ?.coin_type
+                          }
+                        </span>
+                      )}
+                    </div>
+                  )}
                 </div>
               </form>
             </div>
