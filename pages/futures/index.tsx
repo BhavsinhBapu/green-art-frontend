@@ -386,173 +386,188 @@ export default function Index() {
           </div>
         </div>
         {/* top chart end*/}
-
+      </div>
+      <div className="bg-card-primary-clr">
         {/* trade section start*/}
-        <section className="market-trend-area my-5">
-          <div className="container">
-            <div className="exchange-tab-menu">
-              <ul className="nav nav-tabs" id="exchangeTab" role="tablist">
-                <li className="nav-item" role="presentation">
-                  <a
-                    className="nav-link active"
-                    id="CoreAssets-tab"
-                    data-toggle="tab"
-                    href="#CoreAssets"
-                    role="tab"
-                    aria-controls="CoreAssets"
-                    aria-selected="true"
-                  >
-                    {t("Core Assets")}
-                  </a>
-                </li>
-                <li className="nav-item" role="presentation">
-                  <a
-                    className="nav-link"
-                    id="Gainers-tab"
-                    data-toggle="tab"
-                    href="#Gainers"
-                    role="tab"
-                    aria-controls="Gainers"
-                    aria-selected="false"
-                  >
-                    {t("24H Gainers")}
-                  </a>
-                </li>
-                <li className="nav-item" role="presentation">
-                  <a
-                    className="nav-link"
-                    id="Listings-tab"
-                    data-toggle="tab"
-                    href="#Listings"
-                    role="tab"
-                    aria-controls="Listings"
-                    aria-selected="false"
-                  >
-                    {t("New Listings")}
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div className="tab-content" id="exchangeTabContent">
-              <div
-                className="tab-pane fade show active"
-                id="CoreAssets"
-                role="tabpanel"
-                aria-labelledby="CoreAssets-tab"
-              >
-                <div className="exchange-volume-table">
-                  <div className="table-responsive">
-                    <div
-                      id="DataTables_Table_0_wrapper"
-                      className="dataTables_wrapper no-footer"
+        <section className="container mt-5">
+          <div className="row">
+            <div className="col-12 px-2">
+              <div className="market-trend-area ">
+                <div className="container">
+                  <div className="exchange-tab-menu">
+                    <ul
+                      className="nav nav-tabs"
+                      id="exchangeTab"
+                      role="tablist"
                     >
-                      <table
-                        className="table table-borderless dataTable no-footer"
-                        id="DataTables_Table_0"
-                        role="grid"
-                        aria-describedby="DataTables_Table_0_info"
-                      >
-                        <thead>
-                          <tr role="row">
-                            <th
-                              scope="col"
-                              className="sorting_disabled"
-                              rowSpan={1}
-                              colSpan={1}
-                              style={{ width: "137.516px" }}
+                      <li className="nav-item" role="presentation">
+                        <a
+                          className="nav-link active"
+                          id="CoreAssets-tab"
+                          data-toggle="tab"
+                          href="#CoreAssets"
+                          role="tab"
+                          aria-controls="CoreAssets"
+                          aria-selected="true"
+                        >
+                          {t("Core Assets")}
+                        </a>
+                      </li>
+                      <li className="nav-item" role="presentation">
+                        <a
+                          className="nav-link"
+                          id="Gainers-tab"
+                          data-toggle="tab"
+                          href="#Gainers"
+                          role="tab"
+                          aria-controls="Gainers"
+                          aria-selected="false"
+                        >
+                          {t("24H Gainers")}
+                        </a>
+                      </li>
+                      <li className="nav-item" role="presentation">
+                        <a
+                          className="nav-link"
+                          id="Listings-tab"
+                          data-toggle="tab"
+                          href="#Listings"
+                          role="tab"
+                          aria-controls="Listings"
+                          aria-selected="false"
+                        >
+                          {t("New Listings")}
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="tab-content" id="exchangeTabContent">
+                    <div
+                      className="tab-pane fade show active"
+                      id="CoreAssets"
+                      role="tabpanel"
+                      aria-labelledby="CoreAssets-tab"
+                    >
+                      <div className="exchange-volume-table">
+                        <div className="table-responsive">
+                          <div
+                            id="DataTables_Table_0_wrapper"
+                            className="dataTables_wrapper no-footer"
+                          >
+                            <table
+                              className="table table-borderless dataTable no-footer"
+                              id="DataTables_Table_0"
+                              role="grid"
+                              aria-describedby="DataTables_Table_0_info"
                             >
-                              {t("Market")}
-                            </th>
-                            <th
-                              scope="col"
-                              className="sorting_disabled"
-                              rowSpan={1}
-                              colSpan={1}
-                              style={{ width: "81.2812px" }}
-                            >
-                              {t("Price")}
-                            </th>
-                            <th
-                              scope="col"
-                              className="sorting_disabled"
-                              rowSpan={1}
-                              colSpan={1}
-                              style={{ width: "193.797px" }}
-                            >
-                              {t("Change (24h)")}
-                            </th>
-                            <th
-                              scope="col"
-                              className="sorting_disabled"
-                              rowSpan={1}
-                              colSpan={1}
-                              style={{ width: "182.297px" }}
-                            >
-                              {t("Chart")}
-                            </th>
-                            <th
-                              scope="col"
-                              className="sorting_disabled"
-                              rowSpan={1}
-                              colSpan={1}
-                              style={{ width: "207.766px" }}
-                            >
-                              {t("Volume")}
-                            </th>
-                            <th
-                              scope="col"
-                              className="sorting_disabled"
-                              rowSpan={1}
-                              colSpan={1}
-                              style={{ width: "127.344px" }}
-                            >
-                              {t("Actions")}
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {[1, 2, 3, 4].map((item) => (
-                            <tr role="row" className="odd" key={item}>
-                              <td className="d-flex">
-                                <img
-                                  className="icon mr-3"
-                                  src={"/bitcoin.png"}
-                                  alt="coin"
-                                  width="25px"
-                                  height="25px"
-                                />
-                                <a className="cellMarket" href="#">
-                                  <div className="marketSymbols">
-                                    <span className="quoteSymbol">SHIB</span>
-                                    <span className="baseSymbol">/USDT</span>
-                                  </div>
-                                </a>
-                              </td>
-                              <td className="text-black">0.0000077</td>
-                              <td>
-                                <span className={`changePos text-danger`}>
-                                  0.00000000%
-                                </span>
-                              </td>
-                              <td>
-                                <img
-                                  src="/chart-image-2.png"
-                                  alt="chart-image"
-                                  className="chart-img"
-                                />
-                              </td>
-                              <td className="text-black">
-                                878256.00000000 USDT
-                              </td>
-                              <td>
-                                <a className="btnTrade btn-link mb-2">
-                                  {t("Trade")}
-                                </a>
-                              </td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
+                              <thead>
+                                <tr role="row">
+                                  <th
+                                    scope="col"
+                                    className="sorting_disabled"
+                                    rowSpan={1}
+                                    colSpan={1}
+                                    style={{ width: "137.516px" }}
+                                  >
+                                    {t("Market")}
+                                  </th>
+                                  <th
+                                    scope="col"
+                                    className="sorting_disabled"
+                                    rowSpan={1}
+                                    colSpan={1}
+                                    style={{ width: "81.2812px" }}
+                                  >
+                                    {t("Price")}
+                                  </th>
+                                  <th
+                                    scope="col"
+                                    className="sorting_disabled"
+                                    rowSpan={1}
+                                    colSpan={1}
+                                    style={{ width: "193.797px" }}
+                                  >
+                                    {t("Change (24h)")}
+                                  </th>
+                                  <th
+                                    scope="col"
+                                    className="sorting_disabled"
+                                    rowSpan={1}
+                                    colSpan={1}
+                                    style={{ width: "182.297px" }}
+                                  >
+                                    {t("Chart")}
+                                  </th>
+                                  <th
+                                    scope="col"
+                                    className="sorting_disabled"
+                                    rowSpan={1}
+                                    colSpan={1}
+                                    style={{ width: "207.766px" }}
+                                  >
+                                    {t("Volume")}
+                                  </th>
+                                  <th
+                                    scope="col"
+                                    className="sorting_disabled"
+                                    rowSpan={1}
+                                    colSpan={1}
+                                    style={{ width: "127.344px" }}
+                                  >
+                                    {t("Actions")}
+                                  </th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {[1, 2, 3, 4, 5, 6, 7].map((item) => (
+                                  <tr role="row" className="odd" key={item}>
+                                    <td className="d-flex">
+                                      <img
+                                        className="icon mr-3"
+                                        src={"/bitcoin.png"}
+                                        alt="coin"
+                                        width="25px"
+                                        height="25px"
+                                      />
+                                      <a className="cellMarket" href="#">
+                                        <div className="marketSymbols">
+                                          <span className="quoteSymbol">
+                                            SHIB
+                                          </span>
+                                          <span className="baseSymbol">
+                                            /USDT
+                                          </span>
+                                        </div>
+                                      </a>
+                                    </td>
+                                    <td className="text-black">0.0000077</td>
+                                    <td>
+                                      <span className={`changePos text-danger`}>
+                                        0.00000000%
+                                      </span>
+                                    </td>
+                                    <td>
+                                      <img
+                                        src="/chart-image-2.png"
+                                        alt="chart-image"
+                                        className="chart-img"
+                                      />
+                                    </td>
+                                    <td className="text-black">
+                                      878256.00000000 USDT
+                                    </td>
+                                    <td>
+                                      <a className="btnTrade btn-link mb-2">
+                                        {t("Trade")}
+                                      </a>
+                                    </td>
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -563,184 +578,186 @@ export default function Index() {
         {/* trade section end */}
 
         {/* market index  start*/}
-        <div className="row" style={{ paddingTop: "48px" }}>
-          <div className="col-12" style={{ marginBottom: "24px" }}>
-            <h4>Market Index</h4>
-          </div>
-          <div className="col-12">
-            <div className="row">
-              <div className="col-6">
-                <div className="market-index-card">
-                  <h4 className="text-14">DeFi</h4>
-                  <div className="row my-2">
-                    <div className="col-4">
-                      <p className="text-16">-3.48%</p>
+        <div className="container">
+          <div className="row pt-3">
+            <div className="col-12 px-2" style={{ marginBottom: "24px" }}>
+              <h4>Market Index</h4>
+            </div>
+            <div className="col-12 px-2">
+              <div className="row">
+                <div className="col-6">
+                  <div className="market-index-card">
+                    <h4 className="text-14">DeFi</h4>
+                    <div className="row my-2">
+                      <div className="col-4">
+                        <p className="text-16">-3.48%</p>
+                      </div>
+                      <div className="col-4">
+                        <p className="text-12">Up 1 down 19</p>
+                      </div>
+                      <div className="col-4">
+                        <ResponsiveContainer>
+                          <LineChart data={lineChart}>
+                            <Line
+                              type="monotone"
+                              dataKey="pv"
+                              dot={false}
+                              stroke="#f6465d"
+                              strokeWidth={2}
+                            />
+                          </LineChart>
+                        </ResponsiveContainer>
+                      </div>
                     </div>
-                    <div className="col-4">
-                      <p className="text-12">Up 1 down 19</p>
-                    </div>
-                    <div className="col-4">
-                      <ResponsiveContainer>
-                        <LineChart data={lineChart}>
-                          <Line
-                            type="monotone"
-                            dataKey="pv"
-                            dot={false}
-                            stroke="#f6465d"
-                            strokeWidth={2}
-                          />
-                        </LineChart>
-                      </ResponsiveContainer>
-                    </div>
+                    <h4 className="text-12">
+                      ANKRUSDT <span>+7.24%</span>
+                    </h4>
                   </div>
-                  <h4 className="text-12">
-                    ANKRUSDT <span>+7.24%</span>
-                  </h4>
                 </div>
-              </div>
-              <div className="col-6">
-                <div className="market-index-card">
-                  <h4 className="text-14">DeFi</h4>
-                  <div className="row my-2">
-                    <div className="col-4">
-                      <p className="text-16">-3.48%</p>
+                <div className="col-6">
+                  <div className="market-index-card">
+                    <h4 className="text-14">DeFi</h4>
+                    <div className="row my-2">
+                      <div className="col-4">
+                        <p className="text-16">-3.48%</p>
+                      </div>
+                      <div className="col-4">
+                        <p className="text-12">Up 1 down 19</p>
+                      </div>
+                      <div className="col-4">
+                        <ResponsiveContainer>
+                          <LineChart data={lineChart}>
+                            <Line
+                              type="monotone"
+                              dataKey="pv"
+                              dot={false}
+                              stroke="#f6465d"
+                              strokeWidth={2}
+                            />
+                          </LineChart>
+                        </ResponsiveContainer>
+                      </div>
                     </div>
-                    <div className="col-4">
-                      <p className="text-12">Up 1 down 19</p>
-                    </div>
-                    <div className="col-4">
-                      <ResponsiveContainer>
-                        <LineChart data={lineChart}>
-                          <Line
-                            type="monotone"
-                            dataKey="pv"
-                            dot={false}
-                            stroke="#f6465d"
-                            strokeWidth={2}
-                          />
-                        </LineChart>
-                      </ResponsiveContainer>
-                    </div>
+                    <h4 className="text-12">
+                      ANKRUSDT <span>+7.24%</span>
+                    </h4>
                   </div>
-                  <h4 className="text-12">
-                    ANKRUSDT <span>+7.24%</span>
-                  </h4>
                 </div>
-              </div>
-              <div className="col-6">
-                <div className="market-index-card">
-                  <h4 className="text-14">DeFi</h4>
-                  <div className="row my-2">
-                    <div className="col-4">
-                      <p className="text-16">-3.48%</p>
+                <div className="col-6">
+                  <div className="market-index-card">
+                    <h4 className="text-14">DeFi</h4>
+                    <div className="row my-2">
+                      <div className="col-4">
+                        <p className="text-16">-3.48%</p>
+                      </div>
+                      <div className="col-4">
+                        <p className="text-12">Up 1 down 19</p>
+                      </div>
+                      <div className="col-4">
+                        <ResponsiveContainer>
+                          <LineChart data={lineChart}>
+                            <Line
+                              type="monotone"
+                              dataKey="pv"
+                              dot={false}
+                              stroke="#f6465d"
+                              strokeWidth={2}
+                            />
+                          </LineChart>
+                        </ResponsiveContainer>
+                      </div>
                     </div>
-                    <div className="col-4">
-                      <p className="text-12">Up 1 down 19</p>
-                    </div>
-                    <div className="col-4">
-                      <ResponsiveContainer>
-                        <LineChart data={lineChart}>
-                          <Line
-                            type="monotone"
-                            dataKey="pv"
-                            dot={false}
-                            stroke="#f6465d"
-                            strokeWidth={2}
-                          />
-                        </LineChart>
-                      </ResponsiveContainer>
-                    </div>
+                    <h4 className="text-12">
+                      ANKRUSDT <span>+7.24%</span>
+                    </h4>
                   </div>
-                  <h4 className="text-12">
-                    ANKRUSDT <span>+7.24%</span>
-                  </h4>
                 </div>
-              </div>
-              <div className="col-6">
-                <div className="market-index-card">
-                  <h4 className="text-14">DeFi</h4>
-                  <div className="row my-2">
-                    <div className="col-4">
-                      <p className="text-16">-3.48%</p>
+                <div className="col-6">
+                  <div className="market-index-card">
+                    <h4 className="text-14">DeFi</h4>
+                    <div className="row my-2">
+                      <div className="col-4">
+                        <p className="text-16">-3.48%</p>
+                      </div>
+                      <div className="col-4">
+                        <p className="text-12">Up 1 down 19</p>
+                      </div>
+                      <div className="col-4">
+                        <ResponsiveContainer>
+                          <LineChart data={lineChart}>
+                            <Line
+                              type="monotone"
+                              dataKey="pv"
+                              dot={false}
+                              stroke="#f6465d"
+                              strokeWidth={2}
+                            />
+                          </LineChart>
+                        </ResponsiveContainer>
+                      </div>
                     </div>
-                    <div className="col-4">
-                      <p className="text-12">Up 1 down 19</p>
-                    </div>
-                    <div className="col-4">
-                      <ResponsiveContainer>
-                        <LineChart data={lineChart}>
-                          <Line
-                            type="monotone"
-                            dataKey="pv"
-                            dot={false}
-                            stroke="#f6465d"
-                            strokeWidth={2}
-                          />
-                        </LineChart>
-                      </ResponsiveContainer>
-                    </div>
+                    <h4 className="text-12">
+                      ANKRUSDT <span>+7.24%</span>
+                    </h4>
                   </div>
-                  <h4 className="text-12">
-                    ANKRUSDT <span>+7.24%</span>
-                  </h4>
                 </div>
-              </div>
-              <div className="col-6">
-                <div className="market-index-card">
-                  <h4 className="text-14">DeFi</h4>
-                  <div className="row my-2">
-                    <div className="col-4">
-                      <p className="text-16">-3.48%</p>
+                <div className="col-6">
+                  <div className="market-index-card">
+                    <h4 className="text-14">DeFi</h4>
+                    <div className="row my-2">
+                      <div className="col-4">
+                        <p className="text-16">-3.48%</p>
+                      </div>
+                      <div className="col-4">
+                        <p className="text-12">Up 1 down 19</p>
+                      </div>
+                      <div className="col-4">
+                        <ResponsiveContainer>
+                          <LineChart data={lineChart}>
+                            <Line
+                              type="monotone"
+                              dataKey="pv"
+                              dot={false}
+                              stroke="#f6465d"
+                              strokeWidth={2}
+                            />
+                          </LineChart>
+                        </ResponsiveContainer>
+                      </div>
                     </div>
-                    <div className="col-4">
-                      <p className="text-12">Up 1 down 19</p>
-                    </div>
-                    <div className="col-4">
-                      <ResponsiveContainer>
-                        <LineChart data={lineChart}>
-                          <Line
-                            type="monotone"
-                            dataKey="pv"
-                            dot={false}
-                            stroke="#f6465d"
-                            strokeWidth={2}
-                          />
-                        </LineChart>
-                      </ResponsiveContainer>
-                    </div>
+                    <h4 className="text-12">
+                      ANKRUSDT <span>+7.24%</span>
+                    </h4>
                   </div>
-                  <h4 className="text-12">
-                    ANKRUSDT <span>+7.24%</span>
-                  </h4>
                 </div>
-              </div>
-              <div className="col-6">
-                <div className="market-index-card">
-                  <h4 className="text-14">DeFi</h4>
-                  <div className="row my-2">
-                    <div className="col-4">
-                      <p className="text-16">-3.48%</p>
+                <div className="col-6">
+                  <div className="market-index-card">
+                    <h4 className="text-14">DeFi</h4>
+                    <div className="row my-2">
+                      <div className="col-4">
+                        <p className="text-16">-3.48%</p>
+                      </div>
+                      <div className="col-4">
+                        <p className="text-12">Up 1 down 19</p>
+                      </div>
+                      <div className="col-4">
+                        <ResponsiveContainer>
+                          <LineChart data={lineChart}>
+                            <Line
+                              type="monotone"
+                              dataKey="pv"
+                              dot={false}
+                              stroke="#f6465d"
+                              strokeWidth={2}
+                            />
+                          </LineChart>
+                        </ResponsiveContainer>
+                      </div>
                     </div>
-                    <div className="col-4">
-                      <p className="text-12">Up 1 down 19</p>
-                    </div>
-                    <div className="col-4">
-                      <ResponsiveContainer>
-                        <LineChart data={lineChart}>
-                          <Line
-                            type="monotone"
-                            dataKey="pv"
-                            dot={false}
-                            stroke="#f6465d"
-                            strokeWidth={2}
-                          />
-                        </LineChart>
-                      </ResponsiveContainer>
-                    </div>
+                    <h4 className="text-12">
+                      ANKRUSDT <span>+7.24%</span>
+                    </h4>
                   </div>
-                  <h4 className="text-12">
-                    ANKRUSDT <span>+7.24%</span>
-                  </h4>
                 </div>
               </div>
             </div>
@@ -748,7 +765,7 @@ export default function Index() {
         </div>
         {/* market index  end*/}
 
-        <section className="start-trading-area">
+        <section className="py-5">
           <div className="container">
             <div className="section-title text-center">
               <h2 className="title">{t("Start trading now")}</h2>

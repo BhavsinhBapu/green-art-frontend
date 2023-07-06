@@ -15222,7 +15222,7 @@ input:checked + .gift-card-buy-slider:before {
   height: 94px;
   padding: 12px;
   margin-bottom: 12px;
-  background-color: var(--card-background-color);
+  background-color: var(--main-background-color);
   border-radius: 8px;
   outline: none;
 }
