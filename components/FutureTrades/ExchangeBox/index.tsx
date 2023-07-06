@@ -19,6 +19,8 @@ import {
   MARKET_ORDER,
 } from "helpers/core-constants";
 import {
+  CloseBuyOrderAction,
+  CloseSellOrderAction,
   placeBuyOrderAction,
   placeSellOrderDataAction,
   preplaceOrderDataAction,
@@ -117,6 +119,34 @@ const ExchangeBox = () => {
         OpenCloseLimitCoinData.amount,
         OpenCloseLimitCoinData.take_profit,
         OpenCloseLimitCoinData.stop_loss,
+        leverage,
+        setPrePlaceData
+      )
+    );
+  };
+  const CloseBuyOrder = async () => {
+    await dispatch(
+      CloseBuyOrderAction(
+        trade_type,
+        OpenCloseLimitCoinData.margin_mode,
+        orderType,
+        OpenCloseLimitCoinData.price,
+        OpenCloseLimitCoinData.amount_type,
+        OpenCloseLimitCoinData.amount,
+        leverage,
+        setPrePlaceData
+      )
+    );
+  };
+  const CloseSellOrder = async () => {
+    await dispatch(
+      CloseSellOrderAction(
+        trade_type,
+        OpenCloseLimitCoinData.margin_mode,
+        orderType,
+        OpenCloseLimitCoinData.price,
+        OpenCloseLimitCoinData.amount_type,
+        OpenCloseLimitCoinData.amount,
         leverage,
         setPrePlaceData
       )
@@ -321,9 +351,14 @@ const ExchangeBox = () => {
             <SellLimit
               dashboard={dashboard}
               OpenCloseMarketCoinData={OpenCloseMarketCoinData}
-              setOpenCloseLimitCoinData={setOpenCloseLimitCoinData}
+              setOpenCloseMarketCoinData={setOpenCloseMarketCoinData}
               isLoggedIn={isLoggedIn}
               currentPair={currentPair}
+              preplaceData={preplaceData}
+              selectedCoinType={selectedCoinType}
+              setSelectedCoinType={setSelectedCoinType}
+              BuyOrder={CloseBuyOrder}
+              SellOrder={CloseSellOrder}
             />
           )}
           {closeSelectedTab === 2 && (
@@ -333,6 +368,11 @@ const ExchangeBox = () => {
               setOpenCloseMarketCoinData={setOpenCloseMarketCoinData}
               isLoggedIn={isLoggedIn}
               currentPair={currentPair}
+              preplaceData={preplaceData}
+              selectedCoinType={selectedCoinType}
+              setSelectedCoinType={setSelectedCoinType}
+              BuyOrder={CloseBuyOrder}
+              SellOrder={CloseSellOrder}
             />
           )}
         </div>

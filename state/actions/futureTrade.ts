@@ -10,6 +10,7 @@ import {
   orderHistoryFuture,
   ordersHistoryDashboard,
   placeBuyOrderData,
+  placeCloseOrderData,
   placeSellOrderData,
   prePlaceOrderData,
   preplaceOrderData,
@@ -428,6 +429,69 @@ export const placeSellOrderDataAction =
     } else {
       toast.error(response.message);
     }
+    };
+  export const CloseSellOrderAction =
+    (
+      trade_type: number,
+      margin_mode: number,
+      order_type: number,
+      price: number,
+      amount_type: number,
+      amount: number,
+      
+      leverage_amount: number,
+      setPrePlaceData: any
+    ) =>
+    async (dispatch: any) => {
+      const formData = new FormData();
+      const coin_pair_id = localStorage.getItem("coin_pair_id");
+      formData.append("side", String(trade_type));
+      formData.append("margin_mode", String(margin_mode));
+      formData.append("order_type", String(order_type));
+      formData.append("price", String(price));
+      formData.append("amount_type", String(amount_type));
+      formData.append("amount", String(amount));
+   
+      formData.append("leverage_amount", String(leverage_amount));
+      formData.append("coin_pair_id", String(coin_pair_id));
+      const response = await placeCloseOrderData(formData);
+      if (response.success) {
+        setPrePlaceData(response.data);
+        toast.success(response.message);
+      } else {
+        toast.error(response.message);
+      }
+    };
+export const CloseBuyOrderAction =
+  (
+    trade_type: number,
+    margin_mode: number,
+    order_type: number,
+    price: number,
+    amount_type: number,
+    amount: number,
+  
+    leverage_amount: number,
+    setPrePlaceData: any
+  ) =>
+  async (dispatch: any) => {
+    const formData = new FormData();
+    const coin_pair_id = localStorage.getItem("coin_pair_id");
+    formData.append("side", String(trade_type));
+    formData.append("margin_mode", String(margin_mode));
+    formData.append("order_type", String(order_type));
+    formData.append("price", String(price));
+    formData.append("amount_type", String(amount_type));
+    formData.append("amount", String(amount));
+    formData.append("leverage_amount", String(leverage_amount));
+    formData.append("coin_pair_id", String(coin_pair_id));
+    const response = await placeCloseOrderData(formData);
+    if (response.success) {
+      setPrePlaceData(response.data);
+      toast.success(response.message);
+    } else {
+      toast.error(response.message);
+    }
   };
 export const getWalletsFutureAction = async (per_page: any, page: any) => {
   const response = await getWalletsFuture(per_page, page, 2);
@@ -492,7 +556,7 @@ export const orderHistoryFutureAction = async (
 
 export const getTransactionHistoryAction = async (
   setListData: any,
-  coin_id: any,
+  coin_id: any
 ) => {
   const response = await getTransactionHistory(coin_id);
   if (response.success) {
@@ -501,7 +565,6 @@ export const getTransactionHistoryAction = async (
   return response;
 };
 
-;
 export const canceledBuySellOrderAction = async (uid: any) => {
   const formData = new FormData();
   formData.append("uid", uid);
