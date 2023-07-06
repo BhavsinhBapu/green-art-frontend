@@ -1,11 +1,13 @@
 import { NoItemFound } from "components/NoItemFound/NoItemFound";
 import request from "lib/request";
 import useTranslation from "next-translate/useTranslation";
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 export default function TradeSections() {
   const [tradeDatas, setTradeDatas] = useState<any>([]);
+  const router = useRouter();
   useEffect(() => {
     getTradeSectionData();
   }, []);
@@ -204,8 +206,33 @@ export default function TradeSections() {
                                     <td className="text-black text-center">
                                       {item.volume} {item.parent_coin.coin_type}
                                     </td>
-                                    <td className="text-right">
-                                      <a className="btnTrade btn-link mb-2">
+                                    <td
+                                      className="text-right"
+                                      onClick={async () => {
+                                        await localStorage.setItem(
+                                          "base_coin_id",
+                                          item?.parent_coin.id
+                                        );
+                                        await localStorage.setItem(
+                                          "trade_coin_id",
+                                          item?.child_coin.id
+                                        );
+                                        await localStorage.setItem(
+                                          "current_pair",
+                                          item?.child_coin.coin_type +
+                                            "_" +
+                                            item?.parent_coin.coin_type
+                                        );
+                                      }}
+                                    >
+                                      <a
+                                        className="btnTrade btn-link mb-2"
+                                        href={
+                                          router.locale !== "en"
+                                            ? `/${router.locale}/exchange/dashboard`
+                                            : "/exchange/dashboard"
+                                        }
+                                      >
                                         {t("Trade")}
                                       </a>
                                     </td>
