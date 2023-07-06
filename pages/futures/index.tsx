@@ -13,6 +13,7 @@ import {
   Cell,
   LineChart,
   Line,
+  Label,
 } from "recharts";
 const data = [
   {
@@ -266,6 +267,7 @@ export default function Index() {
                                 fill={COLORS[index % COLORS.length]}
                               />
                             ))}
+                            <Label value={0.94} position="center" />
                           </Pie>
                         </PieChart>
                       </ResponsiveContainer>
@@ -509,7 +511,7 @@ export default function Index() {
                                   </th>
                                   <th
                                     scope="col"
-                                    className="sorting_disabled"
+                                    className="sorting_disabled text-right"
                                     rowSpan={1}
                                     colSpan={1}
                                     style={{ width: "127.344px" }}
@@ -556,7 +558,7 @@ export default function Index() {
                                     <td className="text-black">
                                       878256.00000000 USDT
                                     </td>
-                                    <td>
+                                    <td className="text-right">
                                       <a className="btnTrade btn-link mb-2">
                                         {t("Trade")}
                                       </a>
