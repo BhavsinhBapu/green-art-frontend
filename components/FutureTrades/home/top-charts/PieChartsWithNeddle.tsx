@@ -55,7 +55,7 @@ export default function PieChartsWithNeddle() {
     >
       <div className="p-3" style={{ height: "245px" }}>
         <div>
-          <p className="text-12">Altcoin Week Index </p>
+          <p className="text-12 text-color-4">Altcoin Week Index </p>
           <div className="d-flex align-items-center">
             <h5 className="text-14">It is not Altcoin week.</h5>
           </div>

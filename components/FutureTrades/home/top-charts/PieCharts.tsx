@@ -14,7 +14,7 @@ export default function PieCharts() {
       <div className="p-3">
         <div className="d-flex justify-content-between align-items-center">
           <div>
-            <span className="text-12">
+            <span className="text-12 text-color-4">
               Long/Short Ratio{" "}
               <span
                 className="ml-1 px-1 rounded"
@@ -25,7 +25,7 @@ export default function PieCharts() {
             </span>
             <div className="d-flex align-items-center">
               <h5 className="text-14">BTCUSDT</h5>
-              <span className="text-12">Perpetual</span>
+              <span className="text-12 text-color-4">Perpetual</span>
             </div>
           </div>
         </div>
@@ -42,7 +42,7 @@ export default function PieCharts() {
                   marginRight: "6px",
                 }}
               ></span>
-              <span className="text-12">Short Account%</span>
+              <span className="text-12 text-color-4">Short Account%</span>
               <h5 className="text-16" style={{ marginLeft: "12px" }}>65.4%</h5>
             </div>
             <div>
@@ -55,13 +55,13 @@ export default function PieCharts() {
                   marginRight: "6px",
                 }}
               ></span>
-              <span className="text-12">Long Account%</span>
+              <span className="text-12 text-color-4">Long Account%</span>
               <h5 className="text-16" style={{ marginLeft: "12px" }}>
                 34.6%
               </h5>
             </div>
             <div>
-              <span className="text-12" style={{ marginLeft: "12px" }}>
+              <span className="text-12 text-color-4" style={{ marginLeft: "12px" }}>
                 Long/Short Ratio%
               </span>
               <h5 className="text-16" style={{ marginLeft: "12px" }}>

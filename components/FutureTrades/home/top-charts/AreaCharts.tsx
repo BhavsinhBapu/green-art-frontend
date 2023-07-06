@@ -49,10 +49,10 @@ export default function AreaCharts() {
       <div className="p-3">
         <div className="d-flex justify-content-between align-items-start">
           <div>
-            <span className="text-12">Open Interest</span>
+            <span className="text-12 text-color-4">Open Interest</span>
             <div className="d-flex align-items-center">
               <h5 className="text-14">BTCUSDT</h5>
-              <span className="text-12">Perpetual</span>
+              <span className="text-12 text-color-4">Perpetual</span>
             </div>
           </div>
           <div className="area-charts-button mt-1">

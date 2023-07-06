@@ -14932,6 +14932,10 @@ body::-webkit-scrollbar {
   color: var(--font-color) !important;
 }
 
+.text-color-4{
+  color: var(--text-primary-color-4);
+}
+
 .h-full {
   height: 100%;
 }

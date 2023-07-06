@@ -9,7 +9,7 @@ export default function HighestSearchedLists() {
     >
       <div className="p-3">
         <div className="d-flex justify-content-between align-items-center">
-          <div className="d-flex text-12 gap-5">
+          <div className="d-flex text-12 gap-5 text-color-4">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
