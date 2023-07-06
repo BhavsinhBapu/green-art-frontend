@@ -1,7 +1,26 @@
+import { NoItemFound } from "components/NoItemFound/NoItemFound";
+import request from "lib/request";
 import useTranslation from "next-translate/useTranslation";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 export default function TradeSections() {
+  const [tradeDatas, setTradeDatas] = useState<any>([]);
+  useEffect(() => {
+    getTradeSectionData();
+  }, []);
+
+  const getTradeSectionData = async () => {
+    const { data } = await request.get(
+      `/future-trade/get-exchange-market-details-app?limit=8&page=1`
+    );
+    if (!data.success) {
+      toast.error(data.message);
+      return;
+    }
+    setTradeDatas(data.data);
+  };
+
   const { t } = useTranslation();
   return (
     <section className="container mt-5">
@@ -59,122 +78,148 @@ export default function TradeSections() {
                   role="tabpanel"
                   aria-labelledby="CoreAssets-tab"
                 >
-                  <div className="exchange-volume-table">
-                    <div className="table-responsive">
-                      <div
-                        id="DataTables_Table_0_wrapper"
-                        className="dataTables_wrapper no-footer"
-                      >
-                        <table
-                          className="table table-borderless dataTable no-footer"
-                          id="DataTables_Table_0"
-                          role="grid"
-                          aria-describedby="DataTables_Table_0_info"
+                  {tradeDatas?.data?.length > 0 ? (
+                    <div className="exchange-volume-table">
+                      <div className="table-responsive">
+                        <div
+                          id="DataTables_Table_0_wrapper"
+                          className="dataTables_wrapper no-footer"
                         >
-                          <thead>
-                            <tr role="row">
-                              <th
-                                scope="col"
-                                className="sorting_disabled"
-                                rowSpan={1}
-                                colSpan={1}
-                                style={{ width: "137.516px" }}
-                              >
-                                {t("Market")}
-                              </th>
-                              <th
-                                scope="col"
-                                className="sorting_disabled"
-                                rowSpan={1}
-                                colSpan={1}
-                                style={{ width: "81.2812px" }}
-                              >
-                                {t("Price")}
-                              </th>
-                              <th
-                                scope="col"
-                                className="sorting_disabled"
-                                rowSpan={1}
-                                colSpan={1}
-                                style={{ width: "193.797px" }}
-                              >
-                                {t("Change (24h)")}
-                              </th>
-                              <th
-                                scope="col"
-                                className="sorting_disabled"
-                                rowSpan={1}
-                                colSpan={1}
-                                style={{ width: "182.297px" }}
-                              >
-                                {t("Chart")}
-                              </th>
-                              <th
-                                scope="col"
-                                className="sorting_disabled"
-                                rowSpan={1}
-                                colSpan={1}
-                                style={{ width: "207.766px" }}
-                              >
-                                {t("Volume")}
-                              </th>
-                              <th
-                                scope="col"
-                                className="sorting_disabled text-right"
-                                rowSpan={1}
-                                colSpan={1}
-                                style={{ width: "127.344px" }}
-                              >
-                                {t("Actions")}
-                              </th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {[1, 2, 3, 4, 5, 6, 7].map((item) => (
-                              <tr role="row" className="odd" key={item}>
-                                <td className="d-flex">
-                                  <img
-                                    className="icon mr-3"
-                                    src={"/bitcoin.png"}
-                                    alt="coin"
-                                    width="25px"
-                                    height="25px"
-                                  />
-                                  <a className="cellMarket" href="#">
-                                    <div className="marketSymbols">
-                                      <span className="quoteSymbol">SHIB</span>
-                                      <span className="baseSymbol">/USDT</span>
-                                    </div>
-                                  </a>
-                                </td>
-                                <td className="text-black">0.0000077</td>
-                                <td>
-                                  <span className={`changePos text-danger`}>
-                                    0.00000000%
-                                  </span>
-                                </td>
-                                <td>
-                                  <img
-                                    src="/chart-image-2.png"
-                                    alt="chart-image"
-                                    className="chart-img"
-                                  />
-                                </td>
-                                <td className="text-black">
-                                  878256.00000000 USDT
-                                </td>
-                                <td className="text-right">
-                                  <a className="btnTrade btn-link mb-2">
-                                    {t("Trade")}
-                                  </a>
-                                </td>
+                          <table
+                            className="table table-borderless dataTable no-footer"
+                            id="DataTables_Table_0"
+                            role="grid"
+                            aria-describedby="DataTables_Table_0_info"
+                          >
+                            <thead>
+                              <tr role="row">
+                                <th
+                                  scope="col"
+                                  className="sorting_disabled"
+                                  rowSpan={1}
+                                  colSpan={1}
+                                  style={{ width: "137.516px" }}
+                                >
+                                  {t("Market")}
+                                </th>
+                                <th
+                                  scope="col"
+                                  className="sorting_disabled text-center"
+                                  rowSpan={1}
+                                  colSpan={1}
+                                  style={{ width: "81.2812px" }}
+                                >
+                                  {t("Price")}
+                                </th>
+                                <th
+                                  scope="col"
+                                  className="sorting_disabled text-center"
+                                  rowSpan={1}
+                                  colSpan={1}
+                                  style={{ width: "193.797px" }}
+                                >
+                                  {t("Change (24h)")}
+                                </th>
+                                <th
+                                  scope="col"
+                                  className="sorting_disabled text-center"
+                                  rowSpan={1}
+                                  colSpan={1}
+                                  style={{ width: "182.297px" }}
+                                >
+                                  {t("Chart")}
+                                </th>
+                                <th
+                                  scope="col"
+                                  className="sorting_disabled text-center"
+                                  rowSpan={1}
+                                  colSpan={1}
+                                  style={{ width: "207.766px" }}
+                                >
+                                  {t("Volume")}
+                                </th>
+                                <th
+                                  scope="col"
+                                  className="sorting_disabled text-right"
+                                  rowSpan={1}
+                                  colSpan={1}
+                                  style={{ width: "127.344px" }}
+                                >
+                                  {t("Actions")}
+                                </th>
                               </tr>
-                            ))}
-                          </tbody>
-                        </table>
+                            </thead>
+                            <tbody>
+                              {tradeDatas?.data?.map(
+                                (item: any, index: any) => (
+                                  <tr role="row" className="odd" key={index}>
+                                    <td className="d-flex">
+                                      <img
+                                        className="icon mr-3"
+                                        src={"/bitcoin.png"}
+                                        alt="coin"
+                                        width="25px"
+                                        height="25px"
+                                      />
+                                      <a className="cellMarket" href="#">
+                                        <div className="marketSymbols">
+                                          <span className="quoteSymbol">
+                                            {item.child_coin.coin_type}
+                                          </span>
+                                          <span className="baseSymbol">
+                                            /{item.parent_coin.coin_type}
+                                          </span>
+                                        </div>
+                                      </a>
+                                    </td>
+                                    <td className="text-black text-center">
+                                      {item.price}
+                                    </td>
+                                    <td className="text-center">
+                                      <span
+                                        className={`changePos  ${
+                                          parseFloat(item.change) >= 0
+                                            ? "text-success"
+                                            : "text-danger"
+                                        } `}
+                                      >
+                                        {item.change}%
+                                      </span>
+                                    </td>
+                                    <td className="text-center">
+                                      {parseFloat(item.change) >= 0 ? (
+                                        <img
+                                          src="/chart-image-1.png"
+                                          alt="chart-image"
+                                          className="chart-img"
+                                        />
+                                      ) : (
+                                        <img
+                                          src="/chart-image-2.png"
+                                          alt="chart-image"
+                                          className="chart-img"
+                                        />
+                                      )}
+                                    </td>
+                                    <td className="text-black text-center">
+                                      {item.volume} {item.parent_coin.coin_type}
+                                    </td>
+                                    <td className="text-right">
+                                      <a className="btnTrade btn-link mb-2">
+                                        {t("Trade")}
+                                      </a>
+                                    </td>
+                                  </tr>
+                                )
+                              )}
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  ) : (
+                    <NoItemFound />
+                  )}
                 </div>
               </div>
             </div>
