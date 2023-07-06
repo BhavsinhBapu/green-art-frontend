@@ -33,16 +33,40 @@ export default function PieCharts() {
         <div className="row pt-3">
           <div className="col-6 pl-3 pr-1">
             <div>
+              <span
+                style={{
+                  width: "6px",
+                  height: "6px",
+                  background: "#F6465D",
+                  display: "inline-block",
+                  marginRight: "6px",
+                }}
+              ></span>
               <span className="text-12">Short Account%</span>
-              <h5 className="text-16">34.6%</h5>
+              <h5 className="text-16" style={{ marginLeft: "12px" }}>65.4%</h5>
             </div>
             <div>
+              <span
+                style={{
+                  width: "6px",
+                  height: "6px",
+                  background: "#0ECB81",
+                  display: "inline-block",
+                  marginRight: "6px",
+                }}
+              ></span>
               <span className="text-12">Long Account%</span>
-              <h5 className="text-16">34.6%</h5>
+              <h5 className="text-16" style={{ marginLeft: "12px" }}>
+                34.6%
+              </h5>
             </div>
             <div>
-              <span className="text-12">Long/Short Ratio%</span>
-              <h5 className="text-16">0.94</h5>
+              <span className="text-12" style={{ marginLeft: "12px" }}>
+                Long/Short Ratio%
+              </span>
+              <h5 className="text-16" style={{ marginLeft: "12px" }}>
+                0.94
+              </h5>
             </div>
           </div>
           <div className="col-6 px-1 d-flex align-items-center">
