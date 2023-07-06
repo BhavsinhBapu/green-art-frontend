@@ -24,7 +24,7 @@ export default function PieCharts() {
               </span>
             </span>
             <div className="d-flex align-items-center">
-              <h5 className="text-14">BTCUSDT</h5>
+              <h5 className="text-14 mr-1">BTCUSDT</h5>
               <span className="text-12 text-color-4">Perpetual</span>
             </div>
           </div>
