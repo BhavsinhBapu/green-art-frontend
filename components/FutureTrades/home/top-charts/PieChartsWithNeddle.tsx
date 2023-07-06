@@ -7,8 +7,8 @@ const dataNeddle = [
 ];
 const cx = 115;
 const cy = 105;
-const iR = 80;
-const oR = 110;
+const iR = 70;
+const oR = 100;
 const value = 80;
 
 const needle = (
