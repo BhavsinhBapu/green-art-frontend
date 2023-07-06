@@ -596,7 +596,7 @@ export default function Index() {
                         <p className="text-12">Up 1 down 19</p>
                       </div>
                       <div className="col-4">
-                        <ResponsiveContainer>
+                        <ResponsiveContainer height={20}>
                           <LineChart data={lineChart}>
                             <Line
                               type="monotone"
@@ -625,7 +625,7 @@ export default function Index() {
                         <p className="text-12">Up 1 down 19</p>
                       </div>
                       <div className="col-4">
-                        <ResponsiveContainer>
+                        <ResponsiveContainer height={20}>
                           <LineChart data={lineChart}>
                             <Line
                               type="monotone"
@@ -654,7 +654,7 @@ export default function Index() {
                         <p className="text-12">Up 1 down 19</p>
                       </div>
                       <div className="col-4">
-                        <ResponsiveContainer>
+                        <ResponsiveContainer height={20}>
                           <LineChart data={lineChart}>
                             <Line
                               type="monotone"
@@ -683,7 +683,7 @@ export default function Index() {
                         <p className="text-12">Up 1 down 19</p>
                       </div>
                       <div className="col-4">
-                        <ResponsiveContainer>
+                        <ResponsiveContainer height={20}>
                           <LineChart data={lineChart}>
                             <Line
                               type="monotone"
@@ -712,7 +712,7 @@ export default function Index() {
                         <p className="text-12">Up 1 down 19</p>
                       </div>
                       <div className="col-4">
-                        <ResponsiveContainer>
+                        <ResponsiveContainer height={20}>
                           <LineChart data={lineChart}>
                             <Line
                               type="monotone"
@@ -741,7 +741,7 @@ export default function Index() {
                         <p className="text-12">Up 1 down 19</p>
                       </div>
                       <div className="col-4">
-                        <ResponsiveContainer>
+                        <ResponsiveContainer height={20}>
                           <LineChart data={lineChart}>
                             <Line
                               type="monotone"

@@ -15219,7 +15219,7 @@ input:checked + .gift-card-buy-slider:before {
 }
 
 .market-index-card {
-  height: 94px;
+  height: 100px;
   padding: 12px;
   margin-bottom: 12px;
   background-color: var(--main-background-color);
