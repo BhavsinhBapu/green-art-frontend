@@ -1343,11 +1343,42 @@ client-area
   background: var(--background-color);
   padding: 3rem !important;
 }
-.leverage-section{
+.leverage-section {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 10px;
   background-color: var(--background-color-trade);
+  margin-top: 10px;
+}
+.position-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.position-container div input {
+  margin-left: 10px;
+  height: 50px;
+  width: 80px;
+  background-color: var(--main-background-color);
+  border: none !important;
+}
+.position-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  font-size: 15px;
+}
+.position-input {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: var(--main-background-color);
+}
+.position-button-area {
+  display: flex;
+  align-items: center;
   margin-top: 10px;
 }
