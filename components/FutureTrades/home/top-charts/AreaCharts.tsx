@@ -81,7 +81,7 @@ export default function AreaCharts() {
       <div
         style={{
           width: "100%",
-          height: 70,
+          height: 77,
           overflow: "hidden",
           borderRadius: "8px",
         }}
