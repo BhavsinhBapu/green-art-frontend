@@ -55,10 +55,9 @@ export default function PieChartsWithNeddle() {
     >
       <div className="p-3" style={{ height: "245px" }}>
         <div>
-          <p className="text-12">Open Interest</p>
+          <p className="text-12">Altcoin Week Index </p>
           <div className="d-flex align-items-center">
-            <h5 className="text-14">BTCUSDT</h5>
-            <span className="text-12">Perpetual</span>
+            <h5 className="text-14">It is not Altcoin week.</h5>
           </div>
         </div>
         <div style={{ width: "100%", height: "100px" }} className="mt-3">

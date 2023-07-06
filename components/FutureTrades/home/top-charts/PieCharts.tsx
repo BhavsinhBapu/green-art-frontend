@@ -14,13 +14,20 @@ export default function PieCharts() {
       <div className="p-3">
         <div className="d-flex justify-content-between align-items-center">
           <div>
-            <p className="text-12">Long/Short Ratio</p>
+            <span className="text-12">
+              Long/Short Ratio{" "}
+              <span
+                className="ml-1 px-1 rounded"
+                style={{ color: "#F0B90B", background: "#3C2601" }}
+              >
+                1h
+              </span>
+            </span>
             <div className="d-flex align-items-center">
               <h5 className="text-14">BTCUSDT</h5>
               <span className="text-12">Perpetual</span>
             </div>
           </div>
-          <div>Icon</div>
         </div>
 
         <div className="row pt-3">

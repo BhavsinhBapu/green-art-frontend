@@ -1,4 +1,6 @@
 import React from "react";
+import { FaBtc } from "react-icons/fa";
+import { IoLogoUsd } from "react-icons/io";
 import { AreaChart, Area, Tooltip, ResponsiveContainer } from "recharts";
 const data = [
   {
@@ -45,15 +47,23 @@ export default function AreaCharts() {
       style={{ height: "224px", borderRadius: "8px" }}
     >
       <div className="p-3">
-        <div className="d-flex justify-content-between align-items-center">
+        <div className="d-flex justify-content-between align-items-start">
           <div>
-            <p className="text-12">Open Interest</p>
+            <span className="text-12">Open Interest</span>
             <div className="d-flex align-items-center">
               <h5 className="text-14">BTCUSDT</h5>
               <span className="text-12">Perpetual</span>
             </div>
           </div>
-          <div>Icon</div>
+          <div className="area-charts-button mt-1">
+            <div>
+              <FaBtc color="#fcd535"/>
+            </div>
+            <div>|</div>
+            <div>
+              <IoLogoUsd />
+            </div>
+          </div>
         </div>
         <div className="mt-3 mb-2">
           <h4 className="text-16">353535353535 USDT</h4>
