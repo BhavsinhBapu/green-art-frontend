@@ -217,10 +217,7 @@ export const getShortLongOrderHistory = async (base: any, trade: any) => {
   return data;
 };
 export const canceledBuySellOrder = async (payload: any) => {
-  const { data } = await request.post(
-    "/canceled-long-short-order",
-    payload
-  );
+  const { data } = await request.post("/canceled-long-short-order", payload);
   return data;
 };
 
@@ -228,6 +225,19 @@ export const updateProfitLongShort = async (payload: any) => {
   const { data } = await request.post(
     "/update-profit-loss-long-short-order",
     payload
+  );
+  return data;
+};
+export const orderHistoryFuture = async (base: any, trade: any) => {
+  const { data } = await request.get(
+    `/get-long-short-order-history?base_coin_id=${base}&trade_coin_id=${trade}`
+  );
+  return data;
+};
+
+export const getTransactionHistory = async (coin_id: any) => {
+  const { data } = await request.get(
+    `/get-long-short-transaction-history?coin_pair_id=${coin_id}`
   );
   return data;
 };

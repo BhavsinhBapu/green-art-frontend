@@ -1,6 +1,13 @@
-import React from 'react'
+import { formateData } from "common";
+import {
+  FUTURE_TRADE_TRANSACTION_TYPE_COMMISSION,
+  FUTURE_TRADE_TRANSACTION_TYPE_FUNDING_FEES,
+  FUTURE_TRADE_TRANSACTION_TYPE_REALIZED_PNL,
+  FUTURE_TRADE_TRANSACTION_TYPE_TRANSFER,
+} from "helpers/core-constants";
+import React from "react";
 
-const TransactionHistory = () => {
+const TransactionHistory = ({ transactionHistory }: any) => {
   return (
     <div>
       {" "}
@@ -15,65 +22,37 @@ const TransactionHistory = () => {
             <table className="table">
               <thead>
                 <tr>
+                  <th scope="col">Time</th>
                   <th scope="col">Type</th>
-                  <th scope="col">Amount(BTC)</th>
-                  <th scope="col">Fees(USDT)</th>
-                  <th scope="col">Price(USDT)</th>
-                  <th scope="col">Processed(BTC)</th>
-                  <th scope="col">total(USDT)</th>
-                  <th scope="col">Created at</th>
+                  <th scope="col">Amount</th>
+                  <th scope="col">Asset</th>
+                  <th scope="col">Symbol</th>
                   <th scope="col" />
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td className="text-success">buy</td>
-                  <td>54.80149509</td>
-                  <td>0.00000000</td>
-                  <td>26100.6</td>
-                  <td>0.00000000</td>
-                  <td>1430351.90274605</td>
-                  <td>Jun 18th 23 7:53:24 pm</td>
-                  <td>
-                    <button className="cancel">Cancel</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="text-success">buy</td>
-                  <td>15.32190292</td>
-                  <td>0.00000000</td>
-                  <td>25540.6</td>
-                  <td>0.00000000</td>
-                  <td>391330.59371855</td>
-                  <td>Jun 18th 23 7:53:13 pm</td>
-                  <td>
-                    <button className="cancel">Cancel</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="text-danger">sell</td>
-                  <td>10.00</td>
-                  <td>0.00000000</td>
-                  <td>27000.6</td>
-                  <td>0.00000000</td>
-                  <td>270006.00</td>
-                  <td>Jun 18th 23 7:52:49 pm</td>
-                  <td>
-                    <button className="cancel">Cancel</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="text-danger">sell</td>
-                  <td>3.00</td>
-                  <td>0.00000000</td>
-                  <td>26700.6</td>
-                  <td>0.00000000</td>
-                  <td>80101.8</td>
-                  <td>Jun 18th 23 7:52:37 pm</td>
-                  <td>
-                    <button className="cancel">Cancel</button>
-                  </td>
-                </tr>
+                {transactionHistory.map((item: any) => (
+                  <tr>
+                    <td>{formateData(item.created_at)}</td>
+                    <td>
+                      {item?.type === FUTURE_TRADE_TRANSACTION_TYPE_TRANSFER
+                        ? "TRANSFERED"
+                        : item?.type ===
+                          FUTURE_TRADE_TRANSACTION_TYPE_COMMISSION
+                        ? "COMMISSION"
+                        : item?.type ===
+                          FUTURE_TRADE_TRANSACTION_TYPE_FUNDING_FEES
+                        ? "FUNDING FEES"
+                        : item?.type ===
+                          FUTURE_TRADE_TRANSACTION_TYPE_REALIZED_PNL
+                        ? "REALIZED PNL"
+                        : ""}
+                    </td>
+                    <td>{item?.amount}</td>
+                    <td>{item?.coin_type}</td>
+                    <td>{item?.symbol}</td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
@@ -387,6 +366,6 @@ const TransactionHistory = () => {
       </div>
     </div>
   );
-}
+};
 
-export default TransactionHistory
+export default TransactionHistory;

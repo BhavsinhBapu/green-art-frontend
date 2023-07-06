@@ -13,11 +13,18 @@ import TradeHistory from "./trade-history";
 import TransactionHistory from "./transaction-history";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
-import { getLongShortPositionOrderListAction, getShortLongOrderHistoryAction } from "state/actions/futureTrade";
+import {
+  getLongShortPositionOrderListAction,
+  getShortLongOrderHistoryAction,
+  getTransactionHistoryAction,
+  orderHistoryFutureAction,
+} from "state/actions/futureTrade";
 
 const MyOrderHistory = () => {
   const [selected, setSelected] = useState(POSITON);
   const [listData, setListData] = useState([]);
+  const [transactionHistory, settransactionHistory] = useState([]);
+  const [orderHistory, setorderHistory] = useState([]);
   const [openOrder, setOpenOrder] = useState([]);
   const { dashboard } = useSelector((state: RootState) => state.exchange);
   useEffect(() => {
@@ -35,10 +42,21 @@ const MyOrderHistory = () => {
         dashboard?.order_data?.base_coin_id,
         dashboard?.order_data?.trade_coin_id
       );
+      orderHistoryFutureAction(
+        setorderHistory,
+        dashboard?.order_data?.base_coin_id,
+        dashboard?.order_data?.trade_coin_id
+      );
+      getTransactionHistoryAction(
+        settransactionHistory,
+        dashboard?.order_data?.coin_pair_id
+      );
     }
   }, [
     dashboard?.order_data?.trade_coin_id,
     dashboard?.order_data?.base_coin_id,
+    dashboard?.order_data?.coin_pair_id,
+    ,
   ]);
   return (
     <div>
@@ -134,9 +152,13 @@ const MyOrderHistory = () => {
         </div>
         {selected === POSITON && <Position listData={listData} />}
         {selected === OPEN_ORDER && <OpenOrder openOrder={openOrder} />}
-        {selected === ORDER_HISTORY && <OrderHistory />}
+        {selected === ORDER_HISTORY && (
+          <OrderHistory orderHistory={orderHistory} />
+        )}
         {selected === TRADE_HISTORY && <TradeHistory />}
-        {selected === TRANSACTION_HISTORY && <TransactionHistory />}
+        {selected === TRANSACTION_HISTORY && (
+          <TransactionHistory transactionHistory={transactionHistory} />
+        )}
       </div>
     </div>
   );

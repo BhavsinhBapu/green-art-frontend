@@ -4,8 +4,10 @@ import {
   canceledBuySellOrder,
   getLongShortPositionOrderList,
   getShortLongOrderHistory,
+  getTransactionHistory,
   getWalletsFuture,
   marketTradesDashboard,
+  orderHistoryFuture,
   ordersHistoryDashboard,
   placeBuyOrderData,
   placeSellOrderData,
@@ -476,7 +478,30 @@ export const updateProfitLongShortAction = async (
   }
   return response;
 };
+export const orderHistoryFutureAction = async (
+  setListData: any,
+  base: any,
+  trade: any
+) => {
+  const response = await orderHistoryFuture(base, trade);
+  if (response.success) {
+    setListData(response?.data);
+  }
+  return response;
+};
 
+export const getTransactionHistoryAction = async (
+  setListData: any,
+  coin_id: any,
+) => {
+  const response = await getTransactionHistory(coin_id);
+  if (response.success) {
+    setListData(response?.data);
+  }
+  return response;
+};
+
+;
 export const canceledBuySellOrderAction = async (uid: any) => {
   const formData = new FormData();
   formData.append("uid", uid);
