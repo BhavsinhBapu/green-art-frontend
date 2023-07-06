@@ -1,15 +1,15 @@
 import React from "react";
-import { ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
+import { ResponsiveContainer, PieChart, Pie, Cell, Label } from "recharts";
 const RADIAN = Math.PI / 180;
 const dataNeddle = [
-  { name: "A", value: 80, color: "#f6465d" },
-  { name: "B", value: 20, color: "#0ecb81" },
+  { name: "A", value: 60, color: "#f6465d" },
+  { name: "B", value: 40, color: "#0ecb81" },
 ];
 const cx = 115;
 const cy = 105;
 const iR = 70;
 const oR = 100;
-const value = 80;
+const value = 70;
 
 const needle = (
   value: any,
@@ -78,6 +78,8 @@ export default function PieChartsWithNeddle() {
                 {dataNeddle.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={entry.color} />
                 ))}
+              <Label value="Bitcoin" position="insideStart" offset={10}/>
+              <Label value="Altcoin" position="insideEnd" offset={10} />
               </Pie>
               {needle(value, dataNeddle, cx, cy, iR, oR, "#5e6673")}
             </PieChart>
