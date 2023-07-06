@@ -16,17 +16,32 @@ import { RootState } from "state/store";
 import {
   getLongShortPositionOrderListAction,
   getShortLongOrderHistoryAction,
+  getTradeHistoryAction,
   getTransactionHistoryAction,
+  openORderFutureAction,
   orderHistoryFutureAction,
 } from "state/actions/futureTrade";
+import { listenMessagesFuture } from "state/actions/exchange";
 
 const MyOrderHistory = () => {
   const [selected, setSelected] = useState(POSITON);
   const [listData, setListData] = useState([]);
+  const [tradeHistory, settradeHistory] = useState([]);
   const [transactionHistory, settransactionHistory] = useState([]);
   const [orderHistory, setorderHistory] = useState([]);
   const [openOrder, setOpenOrder] = useState([]);
-  const { dashboard } = useSelector((state: RootState) => state.exchange);
+  const { dashboard, currentPair } = useSelector(
+    (state: RootState) => state.exchange
+  );
+
+  useEffect(() => {
+    listenMessagesFuture(
+      setListData,
+      settransactionHistory,
+      setorderHistory,
+      setOpenOrder
+    );
+  }, [currentPair]);
   useEffect(() => {
     if (
       dashboard?.order_data?.base_coin_id &&
@@ -38,18 +53,28 @@ const MyOrderHistory = () => {
         dashboard?.order_data?.trade_coin_id
       );
       getShortLongOrderHistoryAction(
-        setOpenOrder,
+        setorderHistory,
         dashboard?.order_data?.base_coin_id,
         dashboard?.order_data?.trade_coin_id
       );
-      orderHistoryFutureAction(
-        setorderHistory,
+      // orderHistoryFutureAction(
+      //   setorderHistory,
+      //   dashboard?.order_data?.base_coin_id,
+      //   dashboard?.order_data?.trade_coin_id
+      // );
+      openORderFutureAction(
+        setOpenOrder,
         dashboard?.order_data?.base_coin_id,
         dashboard?.order_data?.trade_coin_id
       );
       getTransactionHistoryAction(
         settransactionHistory,
         dashboard?.order_data?.coin_pair_id
+      );
+      getTradeHistoryAction(
+        settradeHistory,
+        dashboard?.order_data?.base_coin_id,
+        dashboard?.order_data?.trade_coin_id
       );
     }
   }, [
@@ -155,7 +180,9 @@ const MyOrderHistory = () => {
         {selected === ORDER_HISTORY && (
           <OrderHistory orderHistory={orderHistory} />
         )}
-        {selected === TRADE_HISTORY && <TradeHistory />}
+        {selected === TRADE_HISTORY && (
+          <TradeHistory tradeHistory={tradeHistory} />
+        )}
         {selected === TRANSACTION_HISTORY && (
           <TransactionHistory transactionHistory={transactionHistory} />
         )}

@@ -10,7 +10,6 @@ import {
 import React from "react";
 
 const OrderHistory = ({ orderHistory }: any) => {
-  console.log(orderHistory, "orderHistory");
   const condition = (item: any) => {
     if (item.side === 1) {
       if (item?.take_profit_price > 0) {
@@ -66,8 +65,7 @@ const OrderHistory = ({ orderHistory }: any) => {
                         : item?.trade_type ===
                           FUTURE_TRADE_TYPE_TAKE_PROFIT_CLOSE
                         ? "Take profit market"
-                        : item?.trade_type ===
-                          FUTURE_TRADE_TYPE_TAKE_PROFIT_CLOSE
+                        : item?.trade_type === FUTURE_TRADE_TYPE_STOP_LOSS_CLOSE
                         ? "stop market"
                         : "Market"}
                     </td>
@@ -90,18 +88,17 @@ const OrderHistory = ({ orderHistory }: any) => {
                       <td className="text-danger">Close Short</td>
                     ) : item?.side === TRADE_TYPE_SELL &&
                       item?.trade_type === FUTURE_TRADE_TYPE_STOP_LOSS_CLOSE ? (
-                      <td className="text-danger">Close Long</td>
+                      <td className="text-danger">Close Short</td>
                     ) : item?.side === TRADE_TYPE_BUY &&
                       item?.trade_type ===
                         FUTURE_TRADE_TYPE_TAKE_PROFIT_CLOSE ? (
-                      <td className="text-danger">Open Short</td>
+                      <td className="text-danger">Close Long</td>
                     ) : item?.side === TRADE_TYPE_BUY &&
                       item?.trade_type === FUTURE_TRADE_TYPE_STOP_LOSS_CLOSE ? (
-                      <td className="text-danger">Open Long</td>
+                      <td className="text-danger">Close Long</td>
                     ) : (
                       ""
                     )}
-
                     <td>
                       {item?.price}{" "}
                       {item?.profit_loss_calculation?.base_coin_type}
@@ -113,7 +110,6 @@ const OrderHistory = ({ orderHistory }: any) => {
                     <td> 0{item?.profit_loss_calculation?.trade_coin_type}</td>
 
                     <td>{condition(item)}</td>
-                 
                   </tr>
                 ))}
               </tbody>

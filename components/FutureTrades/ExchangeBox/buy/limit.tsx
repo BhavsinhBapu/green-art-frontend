@@ -180,7 +180,7 @@ const Limit = ({
                   </span>
                 </div>
 
-                <div className="future-balance-container">
+                {/* <div className="future-balance-container">
                   <div>
                     <label>Buy</label>
                     <span className="text-warning ml-1">
@@ -194,8 +194,8 @@ const Limit = ({
                       {dashboard?.order_data?.total?.trade_wallet?.coin_type}
                     </span>
                   </div>
-                </div>
-                <div className="total-top">
+                </div> */}
+                {/* <div className="total-top">
                   <label>
                     <input
                       type="checkbox"
@@ -207,7 +207,7 @@ const Limit = ({
                     TP/SL
                   </label>{" "}
                   <label>Advance %</label>
-                </div>
+                </div> */}
                 {tpSlchecked === true && (
                   <div>
                     <div className="form-group boxShadow">
@@ -283,7 +283,7 @@ const Limit = ({
                   </div>
                 )}
 
-                {isLoggedIn && (
+                {/* {isLoggedIn && (
                   <div className=" mt-3 percent-container ">
                     <span
                       className=" percent-btn col-3"
@@ -310,7 +310,7 @@ const Limit = ({
                       {t("100%")}
                     </span>
                   </div>
-                )}
+                )} */}
 
                 {!isLoggedIn ? (
                   <div className="form-group mt-4">
@@ -374,7 +374,7 @@ const Limit = ({
                     preplaceData?.max_size_open_long_trade) && (
                     <div>
                       <label>Max</label>
-                      {setSelectedCoinType === BASE ? (
+                      {OpenCloseLimitCoinData.amount_type === BASE ? (
                         <span className="text-warning ml-1">
                           {preplaceData?.max_size_open_long_base}{" "}
                           {dashboard?.order_data?.total?.base_wallet?.coin_type}
@@ -395,7 +395,7 @@ const Limit = ({
                     preplaceData.max_size_open_short_trade) && (
                     <div>
                       <label>Max</label>
-                      {setSelectedCoinType === BASE ? (
+                      {OpenCloseLimitCoinData.amount_type === BASE ? (
                         <span className="text-warning ml-1">
                           {preplaceData?.max_size_open_short_base}{" "}
                           {dashboard?.order_data?.total?.base_wallet?.coin_type}

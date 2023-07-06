@@ -66,8 +66,7 @@ const OpenOrder = ({ openOrder }: any) => {
                         : item?.trade_type ===
                           FUTURE_TRADE_TYPE_TAKE_PROFIT_CLOSE
                         ? "Take profit market"
-                        : item?.trade_type ===
-                          FUTURE_TRADE_TYPE_TAKE_PROFIT_CLOSE
+                        : item?.trade_type === FUTURE_TRADE_TYPE_STOP_LOSS_CLOSE
                         ? "stop market"
                         : "Market"}
                     </td>
@@ -90,14 +89,14 @@ const OpenOrder = ({ openOrder }: any) => {
                       <td className="text-danger">Close Short</td>
                     ) : item?.side === TRADE_TYPE_SELL &&
                       item?.trade_type === FUTURE_TRADE_TYPE_STOP_LOSS_CLOSE ? (
-                      <td className="text-danger">Close Long</td>
+                      <td className="text-danger">Close Short</td>
                     ) : item?.side === TRADE_TYPE_BUY &&
                       item?.trade_type ===
                         FUTURE_TRADE_TYPE_TAKE_PROFIT_CLOSE ? (
-                      <td className="text-danger">Open Short</td>
+                      <td className="text-danger">Close Long</td>
                     ) : item?.side === TRADE_TYPE_BUY &&
                       item?.trade_type === FUTURE_TRADE_TYPE_STOP_LOSS_CLOSE ? (
-                      <td className="text-danger">Open Long</td>
+                      <td className="text-danger">Close Long</td>
                     ) : (
                       ""
                     )}

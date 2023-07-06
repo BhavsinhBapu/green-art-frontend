@@ -215,6 +215,12 @@ export const getLongShortPositionOrderList = async (base: any, trade: any) => {
   );
   return data;
 };
+export const openORderFuture = async (base: any, trade: any) => {
+  const { data } = await request.get(
+    `/get-long-short-open-order-list?base_coin_id=${base}&trade_coin_id=${trade}`
+  );
+  return data;
+};
 
 export const getShortLongOrderHistory = async (base: any, trade: any) => {
   const { data } = await request.get(
@@ -244,6 +250,13 @@ export const orderHistoryFuture = async (base: any, trade: any) => {
 export const getTransactionHistory = async (coin_id: any) => {
   const { data } = await request.get(
     `/get-long-short-transaction-history?coin_pair_id=${coin_id}`
+  );
+  return data;
+};
+
+export const getLongShortTradeHistory = async (base: any, trade: any) => {
+  const { data } = await request.get(
+    `/get-long-short-trade-history?base_coin_id=${base}&trade_coin_id=${trade}`
   );
   return data;
 };

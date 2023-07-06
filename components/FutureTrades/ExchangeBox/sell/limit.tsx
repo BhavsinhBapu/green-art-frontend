@@ -202,7 +202,7 @@ const Limit = ({
                         BuyOrder();
                       }}
                     >
-                      <span v-else="">{t("Open long")}</span>
+                      <span v-else="">{t("Close Short")}</span>
                     </button>
                     <button
                       type="submit"
@@ -212,7 +212,7 @@ const Limit = ({
                         SellOrder();
                       }}
                     >
-                      <span v-else="">{t("open short")}</span>
+                      <span v-else="">{t("Close Long")}</span>
                     </button>
                   </div>
                 )}

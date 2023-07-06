@@ -88,7 +88,8 @@ const ExchangeBox = () => {
         OpenCloseLimitCoinData.take_profit,
         OpenCloseLimitCoinData.stop_loss,
         leverage,
-        setPrePlaceData
+        setPrePlaceData,
+        dashboard?.order_data?.coin_pair_id
       )
     );
   };
@@ -104,7 +105,8 @@ const ExchangeBox = () => {
         OpenCloseLimitCoinData.take_profit,
         OpenCloseLimitCoinData.stop_loss,
         leverage,
-        setPrePlaceData
+        setPrePlaceData,
+        dashboard?.order_data?.coin_pair_id
       )
     );
   };
@@ -120,35 +122,39 @@ const ExchangeBox = () => {
         OpenCloseLimitCoinData.take_profit,
         OpenCloseLimitCoinData.stop_loss,
         leverage,
-        setPrePlaceData
+        setPrePlaceData,
+        dashboard?.order_data?.coin_pair_id
       )
     );
   };
   const CloseBuyOrder = async () => {
     await dispatch(
       CloseBuyOrderAction(
-        trade_type,
-        OpenCloseLimitCoinData.margin_mode,
+        2,
+        OpenCloseMarketCoinData.margin_mode,
         orderType,
-        OpenCloseLimitCoinData.price,
-        OpenCloseLimitCoinData.amount_type,
-        OpenCloseLimitCoinData.amount,
+        OpenCloseMarketCoinData.price,
+        OpenCloseMarketCoinData.amount_type,
+        OpenCloseMarketCoinData.amount,
         leverage,
-        setPrePlaceData
+        setPrePlaceData,
+        dashboard?.order_data?.coin_pair_id
       )
     );
   };
   const CloseSellOrder = async () => {
+    console.log(OpenCloseMarketCoinData, "OpenCloseLimitCoinData");
     await dispatch(
       CloseSellOrderAction(
-        trade_type,
-        OpenCloseLimitCoinData.margin_mode,
+        1,
+        OpenCloseMarketCoinData.margin_mode,
         orderType,
-        OpenCloseLimitCoinData.price,
-        OpenCloseLimitCoinData.amount_type,
-        OpenCloseLimitCoinData.amount,
+        OpenCloseMarketCoinData.price,
+        OpenCloseMarketCoinData.amount_type,
+        OpenCloseMarketCoinData.amount,
         leverage,
-        setPrePlaceData
+        setPrePlaceData,
+        dashboard?.order_data?.coin_pair_id
       )
     );
   };
@@ -314,7 +320,7 @@ const ExchangeBox = () => {
               role="presentation"
               className="nav-item sellBox"
               onClick={() => {
-                setcloseSelectedTab(1);
+                setorderType(LIMIT_ORDER);
               }}
             >
               <a
@@ -332,7 +338,7 @@ const ExchangeBox = () => {
               role="presentation"
               className="nav-item sellBox"
               onClick={() => {
-                setcloseSelectedTab(2);
+                setorderType(MARKET_ORDER);
               }}
             >
               <a

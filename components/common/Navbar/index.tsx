@@ -152,6 +152,32 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                                 </li>
                               </Link>
                             )}
+                            {Number(settings?.enable_future_trade) === 1 && (
+                              <Link
+                                href={
+                                  router.locale !== "en"
+                                    ? `/${router.locale}/future/exchange`
+                                    : "/future/exchange"
+                                }
+                              >
+                                <li
+                                  className={
+                                    router.pathname == "/future/exchange"
+                                      ? "cp-user-active-page"
+                                      : ""
+                                  }
+                                >
+                                  <a href="" className="menu-hover">
+                                    <span className="cp-user-icon">
+                                      {" "}
+                                      <BiShapeCircle />{" "}
+                                    </span>{" "}
+                                    <span>{t("Future Trading")}</span>
+                                  </a>
+                                </li>
+                              </Link>
+                            )}
+
                             {parseInt(settings?.p2p_module) === 1 && (
                               <Link href={isLoggedIn ? "/p2p" : "/signin"}>
                                 <li

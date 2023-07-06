@@ -149,7 +149,8 @@ const Market = ({
                   <span className=" blns" style={{ fontWeight: 700 }}>
                     <span
                       className={
-                        OpenCloseMarketCoinData.amount_type === AMOUNT_TYPE_TRADE
+                        OpenCloseMarketCoinData.amount_type ===
+                        AMOUNT_TYPE_TRADE
                           ? "text-warning mr-2"
                           : "mr-2"
                       }
@@ -180,7 +181,7 @@ const Market = ({
                   </span>
                 </div>
 
-                <div className="future-balance-container">
+                {/* <div className="future-balance-container">
                   <div>
                     <label>Buy</label>
                     <span className="text-warning ml-1">
@@ -194,7 +195,7 @@ const Market = ({
                       {dashboard?.order_data?.total?.trade_wallet?.coin_type}
                     </span>
                   </div>
-                </div>
+                </div> */}
                 <div className="total-top">
                   <label>
                     <input
@@ -283,7 +284,7 @@ const Market = ({
                   </div>
                 )}
 
-                {isLoggedIn && (
+                {/* {isLoggedIn && (
                   <div className=" mt-3 percent-container ">
                     <span
                       className=" percent-btn col-3"
@@ -310,7 +311,7 @@ const Market = ({
                       {t("100%")}
                     </span>
                   </div>
-                )}
+                )} */}
 
                 {!isLoggedIn ? (
                   <div className="form-group mt-4">
@@ -374,7 +375,7 @@ const Market = ({
                     preplaceData?.max_size_open_long_trade) && (
                     <div>
                       <label>Max</label>
-                      {setSelectedCoinType === BASE ? (
+                      {OpenCloseMarketCoinData.amount_type === BASE ? (
                         <span className="text-warning ml-1">
                           {preplaceData?.max_size_open_long_base}{" "}
                           {dashboard?.order_data?.total?.base_wallet?.coin_type}
@@ -395,7 +396,7 @@ const Market = ({
                     preplaceData.max_size_open_short_trade) && (
                     <div>
                       <label>Max</label>
-                      {setSelectedCoinType === BASE ? (
+                      {OpenCloseMarketCoinData.amount_type === BASE ? (
                         <span className="text-warning ml-1">
                           {preplaceData?.max_size_open_short_base}{" "}
                           {dashboard?.order_data?.total?.base_wallet?.coin_type}

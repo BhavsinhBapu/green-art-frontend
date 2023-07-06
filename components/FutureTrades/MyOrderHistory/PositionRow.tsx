@@ -56,15 +56,7 @@ const PositionRow = ({ list }: any) => {
               value="100.00"
             />
           </div>
-          <div className="">
-            <input
-              name="price"
-              type="text"
-              placeholder="0"
-              className=""
-              value="100.00"
-            />
-          </div>
+
           <PositionEdit item={list} />
         </td>
       </tr>
