@@ -207,6 +207,11 @@ export const placeCloseOrderData = async (payload: any) => {
   return data;
 };
 
+export const closeLongShortAllOrder = async (payload: any) => {
+  const { data } = await request.post("/close-long-short-all-orders", payload);
+  return data;
+};
+
 
 
 export const getLongShortPositionOrderList = async (base: any, trade: any) => {

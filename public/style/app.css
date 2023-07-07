@@ -1382,3 +1382,6 @@ client-area
   align-items: center;
   margin-top: 10px;
 }
+.button-future-close {
+  background-color: var(--primary-color);
+}

@@ -2,6 +2,7 @@ import {
   appDashboardData,
   appDashboardDataWithoutPair,
   canceledBuySellOrder,
+  closeLongShortAllOrder,
   getLongShortPositionOrderList,
   getLongShortTradeHistory,
   getShortLongOrderHistory,
@@ -39,6 +40,7 @@ import Cookies from "js-cookie";
 import { updateChart } from "components/exchange/api/stream";
 import { unlistenAllChannels } from "./exchange";
 import { toast } from "react-toastify";
+import { MARKET_ORDER } from "helpers/core-constants";
 
 export const getDashboardData = (pair: string) => async (dispatch: any) => {
   const response = await appDashboardData(pair);
@@ -365,7 +367,7 @@ export const placeBuyOrderAction =
     stop_loss: number,
     leverage_amount: number,
     setPrePlaceData: any,
-    coin_pair_id:any
+    coin_pair_id: any
   ) =>
   async (dispatch: any) => {
     const formData = new FormData();
@@ -405,7 +407,7 @@ export const placeSellOrderDataAction =
     stop_loss: number,
     leverage_amount: number,
     setPrePlaceData: any,
-    coin_pair_id:any
+    coin_pair_id: any
   ) =>
   async (dispatch: any) => {
     const formData = new FormData();
@@ -444,9 +446,9 @@ export const CloseSellOrderAction =
     amount: number,
     leverage_amount: number,
     setPrePlaceData: any,
-    coin_pair_id:any
+    coin_pair_id: any
   ) =>
-    async (dispatch: any) => {
+  async (dispatch: any) => {
     console.log(amount, "amountamountamountamount");
     const formData = new FormData();
     formData.append("side", String(trade_type));
@@ -465,6 +467,28 @@ export const CloseSellOrderAction =
       toast.error(response.message);
     }
   };
+export const closeLongShortAllOrderAction =
+  (CloseAll: any, coin_pair_id: number) => async (dispatch: any) => {
+    const arrayPrepare :any= []
+    CloseAll?.map((item: any) => {
+      if (item.order_type === MARKET_ORDER) {
+        delete item.price;
+      }
+      arrayPrepare.push(item);
+    })
+
+    const preparedData: any = {
+      coin_pair_id: coin_pair_id,
+      data: arrayPrepare,
+    };
+    const response = await closeLongShortAllOrder(preparedData);
+    if (response.success) {
+      toast.success(response.message);
+    } else {
+      toast.error(response.message);
+    }
+  };
+
 export const CloseBuyOrderAction =
   (
     trade_type: number,
@@ -566,7 +590,6 @@ export const openORderFutureAction = async (
   }
   return response;
 };
-;
 export const getTransactionHistoryAction = async (
   setListData: any,
   coin_id: any

@@ -139,8 +139,7 @@ export const AMOUNT_TYPE_BASE = 1;
 export const AMOUNT_TYPE_TRADE = 2;
 export const MARGIN_MODE_ISOLATED = 1;
 export const MARGIN_MODE_CROSS = 1;
-export const LIMIT_ORDER = 1;
-export const MARKET_ORDER = 2;
+
 
 
 export const BASE = 1;
@@ -168,3 +167,8 @@ export const FUTURE_TRADE_TRANSACTION_TYPE_TRANSFER = 1;
 export const FUTURE_TRADE_TRANSACTION_TYPE_COMMISSION = 2;
 export const FUTURE_TRADE_TRANSACTION_TYPE_FUNDING_FEES = 3;
 export const FUTURE_TRADE_TRANSACTION_TYPE_REALIZED_PNL = 4;
+
+
+export const LIMIT_ORDER = 1;
+export const MARKET_ORDER = 2;
+

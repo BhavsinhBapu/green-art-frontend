@@ -1,13 +1,35 @@
 import React, { useEffect, useState } from "react";
 import { AiOutlineEdit } from "react-icons/ai";
 import PositionEdit from "../Modals/positionEdit";
-import { getLongShortPositionOrderListAction } from "state/actions/futureTrade";
+import {
+  closeLongShortAllOrderAction,
+  getLongShortPositionOrderListAction,
+} from "state/actions/futureTrade";
 import PositionRow from "./PositionRow";
 import { RootState } from "state/store";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-const Position = ({listData}:any) => {
- 
+const Position = ({ listData }: any) => {
+  const [CloseAll, setCloseAll] = useState<any>([]);
+  const { dashboard } = useSelector((state: RootState) => state.exchange);
+  const dispatch = useDispatch();
+
+  const makeList = () => {
+    let arr: any = [];
+    listData.map((list: any) => {
+      arr.push({
+        order_id: list?.id,
+        order_type: 1,
+        side: list?.side,
+        price: dashboard?.order_data?.total?.trade_wallet?.last_price,
+      });
+    });
+    setCloseAll(arr);
+  };
+  useEffect(() => {
+    listData.length && makeList();
+  }, [listData]);
+  console.log(listData, "CloseAll");
   return (
     <div>
       {" "}
@@ -30,12 +52,31 @@ const Position = ({listData}:any) => {
                   <th scope="col">Margin Ratio</th>
                   <th scope="col">Margin</th>
                   <th scope="col">PNL(ROE)%</th>
-                  <th scope="text-warning">Close All Positions</th>
+                  <th
+                    scope="button-future-close"
+                    onClick={() => {
+                      console.log("SSSSSSSSSSSSssss");
+                      dispatch(
+                        closeLongShortAllOrderAction(
+                          CloseAll,
+                          dashboard?.order_data?.coin_pair_id
+                        )
+                      );
+                    }}
+                  >
+                    Close All Positions
+                  </th>
                 </tr>
               </thead>
 
-              {listData?.map((list: any) => (
-                <PositionRow list={list} />
+              {listData?.map((list: any, index: any) => (
+                <PositionRow
+                  list={list}
+                  Close={CloseAll[index]}
+                  setCloseAll={setCloseAll}
+                  CloseAll={CloseAll}
+                  index={index}
+                />
               ))}
             </table>
           </div>

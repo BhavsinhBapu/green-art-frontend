@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import PositionEdit from "../Modals/positionEdit";
+import { LIMIT_ORDER, MARKET_ORDER } from "helpers/core-constants";
 
-const PositionRow = ({ list }: any) => {
-  const [selected, setSelected] = useState(1);
+const PositionRow = ({ list, Close, setCloseAll, index, CloseAll }: any) => {
 
   return (
     <tbody>
@@ -32,17 +32,29 @@ const PositionRow = ({ list }: any) => {
         </td>
         <td className="position-container">
           <span
-            className={`ml-2 ${selected === 1 && "text-warning"}`}
+            className={`ml-2 ${Close?.order_type === 1 && "text-warning"}`}
             onClick={() => {
-              setSelected(1);
+              setCloseAll({
+                ...CloseAll,
+                [index]: {
+                  ...CloseAll[index],
+                  order_type: MARKET_ORDER,
+                },
+              });
             }}
           >
             Market
           </span>
           <span
-            className={`ml-2 ${selected === 2 && "text-warning"}`}
+            className={`ml-2 ${Close?.order_type === 2 && "text-warning"}`}
             onClick={() => {
-              setSelected(2);
+              setCloseAll({
+                ...CloseAll,
+                [index]: {
+                  ...CloseAll[index],
+                  order_type: LIMIT_ORDER,
+                },
+              });
             }}
           >
             Limit
@@ -50,10 +62,19 @@ const PositionRow = ({ list }: any) => {
           <div className="">
             <input
               name="price"
-              type="text"
+              type="number"
               placeholder="0"
               className=""
-              value="100.00"
+              value={Close?.price}
+              onChange={(e) => {
+                setCloseAll({
+                  ...CloseAll,
+                  [index]: {
+                    ...CloseAll[index],
+                    price: Number(e.target.value),
+                  },
+                });
+              }}
             />
           </div>
 
