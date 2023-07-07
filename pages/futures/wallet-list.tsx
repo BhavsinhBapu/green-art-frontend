@@ -10,7 +10,7 @@ import Footer from "components/common/footer";
 import { AiOutlineSend } from "react-icons/ai";
 import { BsWallet2 } from "react-icons/bs";
 import { getWalletsFutureAction } from "state/actions/futureTrade";
-const walletList: NextPage = () => {
+const WalletList: NextPage = () => {
   const { t } = useTranslation("common");
   const [walletList, setWalletList] = useState<any>([]);
   const [Changeable, setChangeable] = useState<any[]>([]);
@@ -210,4 +210,4 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   };
 };
 
-export default walletList;
+export default WalletList;

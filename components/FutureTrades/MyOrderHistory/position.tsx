@@ -71,6 +71,7 @@ const Position = ({ listData }: any) => {
 
               {listData?.map((list: any, index: any) => (
                 <PositionRow
+                  key={index}
                   list={list}
                   Close={CloseAll[index]}
                   setCloseAll={setCloseAll}

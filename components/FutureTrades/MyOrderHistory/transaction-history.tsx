@@ -31,8 +31,8 @@ const TransactionHistory = ({ transactionHistory }: any) => {
                 </tr>
               </thead>
               <tbody>
-                {transactionHistory.map((item: any) => (
-                  <tr>
+                {transactionHistory.map((item: any, key: any) => (
+                  <tr key={key}>
                     <td>{formateData(item.created_at)}</td>
                     <td>
                       {item?.type === FUTURE_TRADE_TRANSACTION_TYPE_TRANSFER

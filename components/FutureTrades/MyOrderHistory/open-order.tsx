@@ -52,8 +52,8 @@ const OpenOrder = ({ openOrder }: any) => {
                 </tr>
               </thead>
               <tbody>
-                {openOrder.map((item: any) => (
-                  <tr>
+                {openOrder.map((item: any, index: any) => (
+                  <tr key={index}>
                     <td>{formateData(item?.created_at)}</td>
                     <td>{item?.profit_loss_calculation?.symbol}</td>
                     <td>

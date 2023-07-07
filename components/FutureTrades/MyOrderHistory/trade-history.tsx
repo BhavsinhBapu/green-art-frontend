@@ -51,8 +51,8 @@ const TradeHistory = ({ tradeHistory }: any) => {
                 </tr>
               </thead>
               <tbody>
-                {tradeHistory.map((item: any) => (
-                  <tr>
+                {tradeHistory.map((item: any, index: any) => (
+                  <tr key={index}>
                     <td>{formateData(item?.created_at)}</td>
                     <td>{item?.profit_loss_calculation?.symbol}</td>
                     <td>
