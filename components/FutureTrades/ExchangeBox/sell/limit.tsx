@@ -1,32 +1,47 @@
 import { formateZert } from "common";
+import {
+  AMOUNT_TYPE_BASE,
+  AMOUNT_TYPE_TRADE,
+  BASE,
+  TRADE,
+} from "helpers/core-constants";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import {
-  sellLimitAppAction,
-  initialDashboardCallAction,
-  getDashboardData,
-} from "state/actions/exchange";
+import { buyLimitAppAction } from "state/actions/exchange";
 
 const Limit = ({
   dashboard,
   OpenCloseMarketCoinData,
   setOpenCloseMarketCoinData,
   isLoggedIn,
-  currentPair,
+  selectedCoinType,
+  preplaceData,
+  setSelectedCoinType,
+  BuyOrder,
+  SellOrder,
 }: any) => {
   const { t } = useTranslation("common");
-  const [loading, setLoading] = React.useState(false);
+  const [selectedMarketValue, setSelectedMarketValue] = useState(0);
   const dispatch = useDispatch();
-  const setAmountBasedOnPercentage = (percentage: any) => {
-    const amountPercentage =
-      parseFloat(dashboard?.order_data?.total?.trade_wallet?.balance) *
-      percentage;
+
+  const setSizeBasedOnPercentage = (percentage: any) => {
+    const { maker_fees, taker_fees } = dashboard.fees_settings;
+    const amount =
+      parseFloat(dashboard?.order_data?.total?.base_wallet?.balance) /
+      parseFloat(OpenCloseMarketCoinData?.price);
+    const feesPercentage =
+      parseFloat(maker_fees) > parseFloat(taker_fees)
+        ? parseFloat(maker_fees)
+        : parseFloat(taker_fees);
+    const total =
+      amount * percentage * parseFloat(OpenCloseMarketCoinData?.price);
+    const fees = (total * feesPercentage) / 100;
     setOpenCloseMarketCoinData({
       ...OpenCloseMarketCoinData,
-      amount: amountPercentage,
-      total: amountPercentage * parseFloat(OpenCloseMarketCoinData.price),
+      size: (total - fees) / parseFloat(OpenCloseMarketCoinData?.price),
+      total: total - fees,
     });
   };
   return (
@@ -40,13 +55,18 @@ const Limit = ({
         <div className="row">
           <div className="col-md-12">
             <div className="cp-user-profile-info">
-              <form id="buy-form">
+              <form
+                id="buy-form"
+                style={{
+                  overflow: "hidden",
+                }}
+              >
                 <input
                   type="hidden"
                   name="_token"
                   defaultValue="g2OWJq3pDqYRQmVvmGt799aCsDmkkV4UjrWDhzcF"
                 />
-                <div className="form-group ">
+                <div className="form-group">
                   {/* <div className="total-top">
                     <label>{t("Total")}</label> <label>{t("Available")}</label>
                   </div> */}
@@ -62,22 +82,19 @@ const Limit = ({
                         <span>
                           {" "}
                           {parseFloat(
-                            dashboard?.order_data?.total?.trade_wallet?.balance
-                              ? dashboard?.order_data?.total?.trade_wallet
+                            dashboard?.order_data?.total?.base_wallet?.balance
+                              ? dashboard?.order_data?.total?.base_wallet
                                   ?.balance
                               : 0
                           ).toFixed(4)}
                         </span>
                       </span>
                       <span
-                        className="text-warning"
+                        className="text-warning ml-1"
                         style={{ fontWeight: 700 }}
                       >
-                        <span className="trade_coin_type ml-1">
-                          {
-                            dashboard?.order_data?.total?.trade_wallet
-                              ?.coin_type
-                          }
+                        <span className="trade_coin_type">
+                          {dashboard?.order_data?.total?.base_wallet?.coin_type}
                         </span>
                       </span>
                     </div>
@@ -88,16 +105,16 @@ const Limit = ({
                   <input
                     name="price"
                     type="text"
-                    placeholder=""
-                    className="form-control number_only"
-                    value={OpenCloseMarketCoinData.price}
+                    placeholder="0"
+                    className="form-control number_only input_1"
+                    value={OpenCloseMarketCoinData?.price}
                     onChange={async (e) => {
                       await setOpenCloseMarketCoinData({
                         ...OpenCloseMarketCoinData,
                         price: e.target.value,
                         total:
                           parseFloat(e.target.value) *
-                          OpenCloseMarketCoinData.amount,
+                          OpenCloseMarketCoinData?.size,
                       });
                     }}
                   />
@@ -111,133 +128,91 @@ const Limit = ({
                   </span>
                 </div>
                 <div className="form-group mt-3 boxShadow">
-                  <label className="cstmHead">{t("Amount")}</label>
+                  <label className="cstmHead">{t("Size")}</label>
                   <input
-                    name="amount"
+                    name="Size"
                     type="number"
                     placeholder="0"
-                    className="form-control number_only"
+                    className="form-control number_only input_2"
                     value={
                       OpenCloseMarketCoinData.amount !== 0 &&
                       OpenCloseMarketCoinData.amount
                     }
-                    onChange={(e) => {
-                      setOpenCloseMarketCoinData({
+                    onChange={async (e) => {
+                      await setOpenCloseMarketCoinData({
                         ...OpenCloseMarketCoinData,
                         amount: e.target.value,
-                        total:
-                          parseFloat(e.target.value) *
-                          OpenCloseMarketCoinData.price,
                       });
                     }}
                   />
-                  <span
-                    className="text-warning blns"
-                    style={{ fontWeight: 700 }}
-                  >
-                    <span className="trade_coin_type">
+                  <span className=" blns" style={{ fontWeight: 700 }}>
+                    <span
+                      className={
+                        OpenCloseMarketCoinData.amount_type ===
+                        AMOUNT_TYPE_TRADE
+                          ? "text-warning mr-2"
+                          : "mr-2"
+                      }
+                      onClick={() => {
+                        setOpenCloseMarketCoinData({
+                          ...OpenCloseMarketCoinData,
+                          amount_type: AMOUNT_TYPE_TRADE,
+                        });
+                      }}
+                    >
                       {dashboard?.order_data?.total?.trade_wallet?.coin_type}
                     </span>
-                  </span>
-                </div>
-                <div className="form-group mt-3 boxShadow">
-                  <label className="cstmHead">{t("Total Amount")}</label>
-                  <input
-                    disabled
-                    name="total_amount"
-                    type="number"
-                    placeholder=""
-                    className="form-control number_only"
-                    value={
-                      parseFloat(OpenCloseMarketCoinData.total).toFixed(8)
-                        ? parseFloat(OpenCloseMarketCoinData.total).toFixed(8)
-                        : 0
-                    }
-                  />
-                  <span
-                    className="text-warning blns"
-                    style={{ fontWeight: 700 }}
-                  >
-                    <span className="trade_coin_type">
+                    <span
+                      className={
+                        OpenCloseMarketCoinData.amount_type === AMOUNT_TYPE_BASE
+                          ? "text-warning mr-2"
+                          : ""
+                      }
+                      onClick={() => {
+                        setOpenCloseMarketCoinData({
+                          ...OpenCloseMarketCoinData,
+                          amount_type: AMOUNT_TYPE_BASE,
+                        });
+                      }}
+                    >
                       {dashboard?.order_data?.total?.base_wallet?.coin_type}
                     </span>
                   </span>
                 </div>
-                {isLoggedIn && (
-                  <div className=" mt-3 percent-container ">
-                    <span
-                      className=" percent-btn col-3"
-                      onClick={() => setAmountBasedOnPercentage(0.25)}
-                    >
-                      {t("25%")}
-                    </span>
-                    <span
-                      className=" percent-btn col-3"
-                      onClick={() => setAmountBasedOnPercentage(0.5)}
-                    >
-                      {t("50%")}
-                    </span>
-                    <span
-                      className=" percent-btn col-3"
-                      onClick={() => setAmountBasedOnPercentage(0.75)}
-                    >
-                      {t("75%")}
-                    </span>
-                    <span
-                      className=" percent-btn col-3"
-                      onClick={() => setAmountBasedOnPercentage(1)}
-                    >
-                      {t("100%")}
-                    </span>
-                  </div>
-                )}
+
                 {!isLoggedIn ? (
                   <div className="form-group mt-4">
                     <Link href="/signin">
                       <a className="btn theme-btn-red">{t("Login")}</a>
                     </Link>
                   </div>
-                ) : loading ? (
-                  <div className="form-group mt-4">
-                    <button type="submit" className="btn theme-btn-red">
-                      <span v-if="limitBuyData.placingOrder">
-                        <span
-                          className="spinner-border spinner-border-sm"
-                          role="status"
-                          aria-hidden="true"
-                        ></span>
-                        {t("Placing Order")}...
-                      </span>
-                    </button>
-                  </div>
                 ) : (
-                  <div className="form-group mt-4">
+                  <div className="button-section-future">
                     <button
                       type="submit"
-                      className="btn theme-btn-red"
-                      onClick={async (e) => {
+                      className="btn theme-btn-future"
+                      onClick={(e) => {
                         e.preventDefault();
-                        await sellLimitAppAction(
-                          OpenCloseMarketCoinData.amount,
-                          OpenCloseMarketCoinData.price,
-                          dashboard?.order_data?.trade_coin_id,
-                          dashboard?.order_data?.base_coin_id,
-                          setLoading,
-                          setOpenCloseMarketCoinData
-                        );
                         // await dispatch(getDashboardData(currentPair));
-                        setOpenCloseMarketCoinData({
-                          ...OpenCloseMarketCoinData,
-                          amount: 0,
-                          total: 0,
-                        });
+                        // setOpenCloseMarketCoinData({
+                        //   ...OpenCloseMarketCoinData,
+                        //   amount: 0,
+                        //   total: 0,
+                        // });
+                        BuyOrder();
                       }}
                     >
-                      <span v-else="">
-                        {" "}
-                        {t("Sell")}{" "}
-                        {dashboard?.order_data?.total?.trade_wallet?.coin_type}
-                      </span>
+                      <span v-else="">{t("Close Short")}</span>
+                    </button>
+                    <button
+                      type="submit"
+                      className="btn theme-btn-red-future"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        SellOrder();
+                      }}
+                    >
+                      <span v-else="">{t("Close Long")}</span>
                     </button>
                   </div>
                 )}

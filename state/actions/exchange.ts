@@ -89,6 +89,46 @@ export async function unlistenAllChannels() {
   );
 }
 
+export async function listenMessagesFuture(
+  setPosition: any,
+  settransactionHistory: any,
+  setorderHistory: any,
+  setOpenOrder: any
+) {
+  await unlistenAllChannels();
+  //@ts-ignore
+  if (!window.Echo) {
+    //@ts-ignore
+    window.Pusher = Pusher;
+    //@ts-ignore
+    window.Echo = new Echo({
+      broadcaster: "pusher",
+      key: "test",
+      wsHost: process.env.NEXT_PUBLIC_HOST_SOCKET,
+      wsPort: process.env.NEXT_PUBLIC_WSS_PORT
+        ? process.env.NEXT_PUBLIC_WSS_PORT
+        : 6010,
+      wssPort: 443,
+      forceTLS: false,
+      cluster: "mt1",
+      disableStats: true,
+      enabledTransports: ["ws", "wss"],
+    });
+  }
+
+  //@ts-ignore
+  window.Echo.channel(
+    `future-trade-${localStorage.getItem("user_id")}-${localStorage.getItem(
+      "base_coin_id"
+    )}-${localStorage.getItem("trade_coin_id")}`
+  ).listen(`.future-trade-data`, (e: any) => {
+    console.log(e, "eeeeeeeeeeeeeee");
+  e?.open_order_list&&  setOpenOrder(e.open_order_list);
+    e?.order_history_list && setorderHistory(e.order_history_list);
+    e?.position_order_list && setPosition(e.position_order_list);
+    e?.transaction_list && settransactionHistory(e.position_order_list);
+  });
+}
 export async function listenMessages(dispatch: any, user: any) {
   await unlistenAllChannels();
   //@ts-ignore
@@ -134,7 +174,7 @@ export async function listenMessages(dispatch: any, user: any) {
     )}`
   ).listen(".process", (e: any) => {
     dispatch(setAllmarketTrades(e.trades.transactions));
-  
+
     updateChart({
       price: parseFloat(e?.last_trade?.price),
       ts: e?.last_trade?.time,

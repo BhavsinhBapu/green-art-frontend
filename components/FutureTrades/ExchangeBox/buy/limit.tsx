@@ -1,5 +1,10 @@
 import { formateZert } from "common";
-import { BASE, TRADE } from "helpers/core-constants";
+import {
+  AMOUNT_TYPE_BASE,
+  AMOUNT_TYPE_TRADE,
+  BASE,
+  TRADE,
+} from "helpers/core-constants";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import React, { useState } from "react";
@@ -18,7 +23,7 @@ const Limit = ({
   SellOrder,
 }: any) => {
   const { t } = useTranslation("common");
-  const [loading, setLoading] = React.useState(false);
+  const [selectedMarketValue, setSelectedMarketValue] = useState(0);
   const [tpSlchecked, setChecked] = useState(false);
   const dispatch = useDispatch();
 
@@ -144,51 +149,38 @@ const Limit = ({
                   <span className=" blns" style={{ fontWeight: 700 }}>
                     <span
                       className={
-                        selectedCoinType === TRADE
+                        OpenCloseLimitCoinData.amount_type === AMOUNT_TYPE_TRADE
                           ? "text-warning mr-2"
                           : "mr-2"
                       }
                       onClick={() => {
-                        setSelectedCoinType(TRADE);
+                        setOpenCloseLimitCoinData({
+                          ...OpenCloseLimitCoinData,
+                          amount_type: AMOUNT_TYPE_TRADE,
+                        });
                       }}
                     >
                       {dashboard?.order_data?.total?.trade_wallet?.coin_type}
                     </span>
                     <span
                       className={
-                        selectedCoinType === BASE ? "text-warning mr-2" : ""
+                        OpenCloseLimitCoinData.amount_type === AMOUNT_TYPE_BASE
+                          ? "text-warning mr-2"
+                          : ""
                       }
                       onClick={() => {
-                        setSelectedCoinType(BASE);
+                        setOpenCloseLimitCoinData({
+                          ...OpenCloseLimitCoinData,
+                          amount_type: AMOUNT_TYPE_BASE,
+                        });
                       }}
                     >
                       {dashboard?.order_data?.total?.base_wallet?.coin_type}
                     </span>
                   </span>
-                  {/* <select
-                    name=""
-                    className="form-control border-0 swapSelect"
-                    id=""
-                  >
-                    <option
-                      selected={true}
-                      value={
-                        dashboard?.order_data?.total?.base_wallet?.coin_type
-                      }
-                    >
-                      {dashboard?.order_data?.total?.base_wallet?.coin_type}
-                    </option>
-                    <option
-                      value={
-                        dashboard?.order_data?.total?.trade_wallet?.coin_type
-                      }
-                    >
-                      {dashboard?.order_data?.total?.trade_wallet?.coin_type}
-                    </option>
-                  </select> */}
                 </div>
 
-                <div className="future-balance-container">
+                {/* <div className="future-balance-container">
                   <div>
                     <label>Buy</label>
                     <span className="text-warning ml-1">
@@ -202,8 +194,8 @@ const Limit = ({
                       {dashboard?.order_data?.total?.trade_wallet?.coin_type}
                     </span>
                   </div>
-                </div>
-                <div className="total-top">
+                </div> */}
+                {/* <div className="total-top">
                   <label>
                     <input
                       type="checkbox"
@@ -215,7 +207,7 @@ const Limit = ({
                     TP/SL
                   </label>{" "}
                   <label>Advance %</label>
-                </div>
+                </div> */}
                 {tpSlchecked === true && (
                   <div>
                     <div className="form-group boxShadow">
@@ -225,17 +217,37 @@ const Limit = ({
                         type="number"
                         placeholder=""
                         className="form-control number_only input_1"
-                        value=""
+                        value={OpenCloseLimitCoinData.take_profit}
+                        onChange={(e) => {
+                          setOpenCloseLimitCoinData({
+                            ...OpenCloseLimitCoinData,
+                            take_profit: e.target.value,
+                          });
+                        }}
                       />
                       {/* make a select here */}
-                      <select
+                      {/* <select
                         name=""
                         className="form-control border-0 swapSelect"
                         id=""
                       >
                         <option value="">Mark</option>
                         <option value="">Last</option>
-                      </select>
+                      </select> */}
+                      <span className=" blns" style={{ fontWeight: 700 }}>
+                        <span
+                          className={
+                            selectedCoinType === TRADE
+                              ? "text-warning mr-2"
+                              : "mr-2"
+                          }
+                          onClick={() => {
+                            setSelectedCoinType(TRADE);
+                          }}
+                        >
+                          Mark
+                        </span>
+                      </span>
                     </div>
                     <div className="form-group boxShadow">
                       <label className="cstmHead">Stop Loss</label>
@@ -244,22 +256,34 @@ const Limit = ({
                         type="number"
                         placeholder=""
                         className="form-control number_only input_1"
-                        value=""
+                        value={OpenCloseLimitCoinData.stop_loss}
+                        onChange={(e) => {
+                          setOpenCloseLimitCoinData({
+                            ...OpenCloseLimitCoinData,
+                            stop_loss: e.target.value,
+                          });
+                        }}
                       />
 
-                      <select
-                        name=""
-                        className="form-control border-0 swapSelect"
-                        id=""
-                      >
-                        <option value="">Mark</option>
-                        <option value="">Last</option>
-                      </select>
+                      <span className=" blns" style={{ fontWeight: 700 }}>
+                        <span
+                          className={
+                            selectedCoinType === TRADE
+                              ? "text-warning mr-2"
+                              : "mr-2"
+                          }
+                          onClick={() => {
+                            setSelectedCoinType(TRADE);
+                          }}
+                        >
+                          Mark
+                        </span>
+                      </span>
                     </div>
                   </div>
                 )}
 
-                {isLoggedIn && (
+                {/* {isLoggedIn && (
                   <div className=" mt-3 percent-container ">
                     <span
                       className=" percent-btn col-3"
@@ -286,7 +310,7 @@ const Limit = ({
                       {t("100%")}
                     </span>
                   </div>
-                )}
+                )} */}
 
                 {!isLoggedIn ? (
                   <div className="form-group mt-4">
@@ -317,12 +341,6 @@ const Limit = ({
                       className="btn theme-btn-red-future"
                       onClick={(e) => {
                         e.preventDefault();
-                        // await dispatch(getDashboardData(currentPair));
-                        // setOpenCloseLimitCoinData({
-                        //   ...OpenCloseLimitCoinData,
-                        //   amount: 0,
-                        //   total: 0,
-                        // });
                         SellOrder();
                       }}
                     >
@@ -356,7 +374,7 @@ const Limit = ({
                     preplaceData?.max_size_open_long_trade) && (
                     <div>
                       <label>Max</label>
-                      {setSelectedCoinType === BASE ? (
+                      {OpenCloseLimitCoinData.amount_type === BASE ? (
                         <span className="text-warning ml-1">
                           {preplaceData?.max_size_open_long_base}{" "}
                           {dashboard?.order_data?.total?.base_wallet?.coin_type}
@@ -377,7 +395,7 @@ const Limit = ({
                     preplaceData.max_size_open_short_trade) && (
                     <div>
                       <label>Max</label>
-                      {setSelectedCoinType === BASE ? (
+                      {OpenCloseLimitCoinData.amount_type === BASE ? (
                         <span className="text-warning ml-1">
                           {preplaceData?.max_size_open_short_base}{" "}
                           {dashboard?.order_data?.total?.base_wallet?.coin_type}

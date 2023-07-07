@@ -1,14 +1,23 @@
 import {
   appDashboardData,
   appDashboardDataWithoutPair,
+  canceledBuySellOrder,
+  getLongShortPositionOrderList,
+  getLongShortTradeHistory,
+  getShortLongOrderHistory,
+  getTransactionHistory,
   getWalletsFuture,
   marketTradesDashboard,
+  openORderFuture,
+  orderHistoryFuture,
   ordersHistoryDashboard,
   placeBuyOrderData,
+  placeCloseOrderData,
   placeSellOrderData,
   prePlaceOrderData,
   preplaceOrderData,
   tradesHistoryDashboard,
+  updateProfitLongShort,
 } from "service/futureTrade";
 import {
   setAllmarketTrades,
@@ -116,39 +125,39 @@ export async function listenMessages(dispatch: any, user: any) {
   });
 }
 
-export const prePlaceOrderDataAction = async (
-  side: number,
-  margin_mode: number,
-  order_type: number,
-  coin_pair_id: number,
-  price: number,
-  amount_type: number,
-  amount: number,
-  take_profit: number,
-  stop_loss: number,
-  leverage_amount: number
-) => {
-  const formData = new FormData();
+// export const prePlaceOrderDataAction = async (
+//   side: number,
+//   margin_mode: number,
+//   order_type: number,
+//   coin_pair_id: number,
+//   price: number,
+//   amount_type: number,
+//   amount: number,
+//   take_profit: number,
+//   stop_loss: number,
+//   leverage_amount: number
+// ) => {
+//   const formData = new FormData();
 
-  formData.append("side", side.toString());
-  formData.append("margin_mode", margin_mode.toString());
-  formData.append("order_type", order_type.toString());
-  formData.append("coin_pair_id", coin_pair_id.toString());
-  formData.append("price", price.toString());
-  formData.append("amount_type", amount_type.toString());
-  formData.append("amount", amount.toString());
-  formData.append("take_profit", take_profit.toString());
-  formData.append("stop_loss", stop_loss.toString());
-  formData.append("leverage_amount", leverage_amount.toString());
-  const response = await prePlaceOrderData(formData);
-  if (response.success) {
-    toast.success(response.message);
-  } else {
-    toast.error(response.message);
-  }
+//   formData.append("side", side.toString());
+//   formData.append("margin_mode", margin_mode.toString());
+//   formData.append("order_type", order_type.toString());
+//   formData.append("coin_pair_id", coin_pair_id.toString());
+//   formData.append("price", price.toString());
+//   formData.append("amount_type", amount_type.toString());
+//   formData.append("amount", amount.toString());
+//   take_profit && formData.append("take_profit", take_profit.toString());
+//   stop_loss && formData.append("stop_loss", stop_loss.toString());
+//   formData.append("leverage_amount", leverage_amount.toString());
+//   const response = await prePlaceOrderData(formData);
+//   if (response.success) {
+//     toast.success(response.message);
+//   } else {
+//     toast.error(response.message);
+//   }
 
-  return formData;
-};
+//   return formData;
+// };
 
 export const initialDashboardCallAction =
   (pair: string, dashboard: any, setisLoading?: any) =>
@@ -316,19 +325,24 @@ export const preplaceOrderDataAction =
     take_profit: number,
     stop_loss: number,
     leverage_amount: number,
-    setPrePlaceData: any
+    setPrePlaceData: any,
+    coin_pair_id: any
   ) =>
   async (dispatch: any) => {
     const formData = new FormData();
-    const coin_pair_id = localStorage.getItem("coin_pair_id");
     formData.append("trade_type", String(trade_type));
     formData.append("margin_mode", String(margin_mode));
     formData.append("order_type", String(order_type));
     formData.append("price", String(price));
     formData.append("amount_type", String(amount_type));
     formData.append("amount", String(amount));
-    formData.append("take_profit", String(take_profit));
-    formData.append("stop_loss", String(stop_loss));
+    take_profit &&
+      formData.append(
+        "take_profit",
+        take_profit === 0 ? "" : String(take_profit)
+      );
+    stop_loss &&
+      formData.append("stop_loss", stop_loss === 0 ? "" : String(stop_loss));
     formData.append("leverage_amount", String(leverage_amount));
     formData.append("coin_pair_id", String(coin_pair_id));
     const response = await preplaceOrderData(formData);
@@ -350,25 +364,31 @@ export const placeBuyOrderAction =
     take_profit: number,
     stop_loss: number,
     leverage_amount: number,
-    setPrePlaceData: any
+    setPrePlaceData: any,
+    coin_pair_id:any
   ) =>
   async (dispatch: any) => {
     const formData = new FormData();
-    const coin_pair_id = localStorage.getItem("coin_pair_id");
+    // const coin_pair_id = localStorage.getItem("coin_pair_id");
     formData.append("side", String(trade_type));
     formData.append("margin_mode", String(margin_mode));
     formData.append("order_type", String(order_type));
     formData.append("price", String(price));
     formData.append("amount_type", String(amount_type));
     formData.append("amount", String(amount));
-    formData.append("take_profit", String(take_profit));
-    formData.append("stop_loss", String(stop_loss));
+    take_profit &&
+      formData.append(
+        "take_profit",
+        take_profit === 0 ? "" : String(take_profit)
+      );
+    stop_loss &&
+      formData.append("stop_loss", stop_loss === 0 ? "" : String(stop_loss));
     formData.append("leverage_amount", String(leverage_amount));
     formData.append("coin_pair_id", String(coin_pair_id));
     const response = await placeBuyOrderData(formData);
     if (response.success) {
       setPrePlaceData(response.data);
-      // toast.success(response.message);
+      toast.success(response.message);
     } else {
       toast.error(response.message);
     }
@@ -384,30 +404,199 @@ export const placeSellOrderDataAction =
     take_profit: number,
     stop_loss: number,
     leverage_amount: number,
-    setPrePlaceData: any
+    setPrePlaceData: any,
+    coin_pair_id:any
   ) =>
   async (dispatch: any) => {
     const formData = new FormData();
-    const coin_pair_id = localStorage.getItem("coin_pair_id");
+    // const coin_pair_id = localStorage.getItem("coin_pair_id");
     formData.append("side", String(trade_type));
     formData.append("margin_mode", String(margin_mode));
     formData.append("order_type", String(order_type));
     formData.append("price", String(price));
     formData.append("amount_type", String(amount_type));
     formData.append("amount", String(amount));
-    formData.append("take_profit", String(take_profit));
-    formData.append("stop_loss", String(stop_loss));
+    take_profit &&
+      formData.append(
+        "take_profit",
+        take_profit === 0 ? "" : String(take_profit)
+      );
+    stop_loss &&
+      formData.append("stop_loss", stop_loss === 0 ? "" : String(stop_loss));
     formData.append("leverage_amount", String(leverage_amount));
     formData.append("coin_pair_id", String(coin_pair_id));
     const response = await placeSellOrderData(formData);
+    console.log(response, "responseresponse");
     if (response.success) {
       setPrePlaceData(response.data);
-      // toast.success(response.message);
+      toast.success(response.message);
+    } else {
+      toast.error(response.message);
+    }
+  };
+export const CloseSellOrderAction =
+  (
+    trade_type: number,
+    margin_mode: number,
+    order_type: number,
+    price: number,
+    amount_type: number,
+    amount: number,
+    leverage_amount: number,
+    setPrePlaceData: any,
+    coin_pair_id:any
+  ) =>
+    async (dispatch: any) => {
+    console.log(amount, "amountamountamountamount");
+    const formData = new FormData();
+    formData.append("side", String(trade_type));
+    formData.append("margin_mode", String(margin_mode));
+    formData.append("order_type", String(order_type));
+    formData.append("amount_type", String(amount_type));
+    formData.append("amount", String(amount));
+
+    formData.append("leverage_amount", String(leverage_amount));
+    formData.append("coin_pair_id", String(coin_pair_id));
+    const response = await placeCloseOrderData(formData);
+    if (response.success) {
+      setPrePlaceData(response.data);
+      toast.success(response.message);
+    } else {
+      toast.error(response.message);
+    }
+  };
+export const CloseBuyOrderAction =
+  (
+    trade_type: number,
+    margin_mode: number,
+    order_type: number,
+    price: number,
+    amount_type: number,
+    amount: number,
+    leverage_amount: number,
+    setPrePlaceData: any,
+    coin_pair_id: any
+  ) =>
+  async (dispatch: any) => {
+    const formData = new FormData();
+    formData.append("side", String(trade_type));
+    formData.append("margin_mode", String(margin_mode));
+    formData.append("order_type", String(order_type));
+    formData.append("price", String(price));
+    formData.append("amount_type", String(amount_type));
+    formData.append("amount", String(amount));
+    formData.append("leverage_amount", String(leverage_amount));
+    formData.append("coin_pair_id", String(coin_pair_id));
+    const response = await placeCloseOrderData(formData);
+    if (response.success) {
+      setPrePlaceData(response.data);
+      toast.success(response.message);
     } else {
       toast.error(response.message);
     }
   };
 export const getWalletsFutureAction = async (per_page: any, page: any) => {
   const response = await getWalletsFuture(per_page, page, 2);
+  return response;
+};
+
+export const getLongShortPositionOrderListAction = async (
+  setListData: any,
+  base: any,
+  trade: any
+) => {
+  const response = await getLongShortPositionOrderList(base, trade);
+  if (response.success) {
+    setListData(response?.data);
+  }
+  return response;
+};
+export const getShortLongOrderHistoryAction = async (
+  setListData: any,
+  base: any,
+  trade: any
+) => {
+  const response = await getShortLongOrderHistory(base, trade);
+  if (response.success) {
+    setListData(response?.data);
+  }
+  return response;
+};
+export const updateProfitLongShortAction = async (
+  order_uid: any,
+  take_profit: any,
+  stop_loss: any,
+  setData: any
+) => {
+  const formData = new FormData();
+  formData.append("order_uid", order_uid);
+  formData.append("take_profit", take_profit);
+  formData.append("stop_loss", stop_loss);
+  const response = await updateProfitLongShort(formData);
+  if (response.success) {
+    toast.success(response.message);
+    setData({
+      take_profit: 0,
+      stop_loss: 0,
+    });
+  } else {
+    toast.error(response.message);
+  }
+  return response;
+};
+export const orderHistoryFutureAction = async (
+  setListData: any,
+  base: any,
+  trade: any
+) => {
+  const response = await orderHistoryFuture(base, trade);
+  if (response.success) {
+    setListData(response?.data);
+  }
+  return response;
+};
+export const openORderFutureAction = async (
+  setListData: any,
+  base: any,
+  trade: any
+) => {
+  const response = await openORderFuture(base, trade);
+  if (response.success) {
+    setListData(response?.data);
+  }
+  return response;
+};
+;
+export const getTransactionHistoryAction = async (
+  setListData: any,
+  coin_id: any
+) => {
+  const response = await getTransactionHistory(coin_id);
+  if (response.success) {
+    setListData(response?.data);
+  }
+  return response;
+};
+export const getTradeHistoryAction = async (
+  setListData: any,
+  base: any,
+  trade: any
+) => {
+  const response = await getLongShortTradeHistory(base, trade);
+  if (response.success) {
+    setListData(response?.data);
+  }
+  return response;
+};
+
+export const canceledBuySellOrderAction = async (uid: any) => {
+  const formData = new FormData();
+  formData.append("uid", uid);
+  const response = await canceledBuySellOrder(formData);
+  if (response.success) {
+    toast.success(response.message);
+  } else {
+    toast.error(response.message);
+  }
   return response;
 };

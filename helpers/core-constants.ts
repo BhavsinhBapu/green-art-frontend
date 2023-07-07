@@ -141,8 +141,30 @@ export const MARGIN_MODE_ISOLATED = 1;
 export const MARGIN_MODE_CROSS = 1;
 export const LIMIT_ORDER = 1;
 export const MARKET_ORDER = 2;
-export const FUTURE_TRADE_TYPE_OPEN = 1;
-export const FUTURE_TRADE_TYPE_CLOSE = 2;
+
 
 export const BASE = 1;
 export const TRADE = 2;
+
+//future order history
+export const POSITON = 1;
+export const OPEN_ORDER = 2;
+export const ORDER_HISTORY = 3;
+export const TRADE_HISTORY = 4;
+export const TRANSACTION_HISTORY = 5;
+
+
+//trade type
+export const FUTURE_TRADE_TYPE_OPEN = 1;
+export const FUTURE_TRADE_TYPE_CLOSE = 2;
+export const FUTURE_TRADE_TYPE_TAKE_PROFIT_CLOSE = 3;
+export const FUTURE_TRADE_TYPE_STOP_LOSS_CLOSE = 4;
+
+//trade side type buy sell
+export const TRADE_TYPE_BUY = 1;
+export const TRADE_TYPE_SELL = 2;
+
+export const FUTURE_TRADE_TRANSACTION_TYPE_TRANSFER = 1;
+export const FUTURE_TRADE_TRANSACTION_TYPE_COMMISSION = 2;
+export const FUTURE_TRADE_TRANSACTION_TYPE_FUNDING_FEES = 3;
+export const FUTURE_TRADE_TRANSACTION_TYPE_REALIZED_PNL = 4;

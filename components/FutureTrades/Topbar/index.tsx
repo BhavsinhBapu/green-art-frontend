@@ -1,73 +1,140 @@
-import React from "react";
-import styles from "./styles.module.css";
-import { RootState } from "state/store";
+import { formatCurrency } from "common";
+import useTranslation from "next-translate/useTranslation";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import SelectCurrency from "components/exchange/selectCurrency";
+import { RootState } from "state/store";
+
 const TopBar = () => {
-   const { dashboard, currentPair } = useSelector(
-     (state: RootState) => state.exchange
-   );
+  const { t } = useTranslation("common");
+  const { dashboard } = useSelector((state: RootState) => state.exchange);
+  const [volume, setVolume] = React.useState(
+    parseFloat(dashboard?.order_data?.total?.trade_wallet?.volume) *
+      parseFloat(dashboard?.order_data?.total?.trade_wallet?.last_price)
+  );
+
+  useEffect(() => {
+    setVolume(
+      parseFloat(dashboard?.order_data?.total?.trade_wallet?.volume) *
+        parseFloat(dashboard?.order_data?.total?.trade_wallet?.last_price)
+    );
+  }, [
+    dashboard?.order_data?.total?.trade_wallet?.volume,
+    dashboard?.order_data?.total?.trade_wallet?.last_price,
+  ]);
   return (
-    <div className="col-xl-12 col-12">
-      <div className="cxchange-summary-wrap mt-5">
-        {currentPair && (
-          <div className="cxchange-summary-name">
-            <div className="summber-coin-type dropdown">
-              <span
-                className="coin-badge dropdown-toggle"
-                id="dropdownMenuButton"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                {currentPair.replace(/_/g, "/")}
-              </span>
-              <SelectCurrency />
-            </div>
-          </div>
-        )}
-        <div className="cxchange-summary-featured">
-          <ul className="cxchange-summary-items">
-            <li>
-              <span className="value increase">
-                77.8
-                <i className="fa-solid fa-up-long value-increaseicon ml-2" />
-              </span>
-            </li>
-            <li>
-              <span className="label">Mark</span>
-              <span className="">77.8</span>
-            </li>
-            <li>
-              <span className="label">Index</span>
-              <span className="">0.257731%</span>
-            </li>
-            <li>
-              <span className="label">Funding / Countdown</span>
-              <span className="">
-                <span className="text-info h3">77.8</span>
-                <span className="text-light ml-3 h3">77.8</span>
-              </span>
-            </li>
-            <li>
-              <span className="label">24h Change</span>
-              <span className="value">77.4</span>
-            </li>
-            <li>
-              <span className="label">24h High</span>
-              <span className="value">373.805</span>
-            </li>
-            <li>
-              <span className="label"> 24h Low </span>
-              <span className="value">29,081.992</span>
-            </li>
-            <li>
-              <span className="label"> 24h Volume(ARPA)</span>
-              <span className="value">29,081.992</span>
-            </li>
-          </ul>
-        </div>
-      </div>
+    <div className="cxchange-summary-featured">
+      <ul className="cxchange-summary-items">
+        <li>
+          <span
+            className={
+              parseFloat(
+                dashboard?.last_price_data &&
+                  dashboard?.last_price_data[0]?.price
+              ) >=
+              parseFloat(
+                dashboard?.last_price_data &&
+                  dashboard?.last_price_data[0]?.last_price
+              )
+                ? "value increase"
+                : parseFloat(
+                    dashboard?.last_price_data &&
+                      dashboard?.last_price_data[0]?.price
+                  ) <
+                  parseFloat(
+                    dashboard?.last_price_data &&
+                      dashboard?.last_price_data[0]?.last_price
+                  )
+                ? "value decrease"
+                : "value"
+            }
+          >
+            {dashboard?.last_price_data[0]?.last_price
+              ? formatCurrency(dashboard?.last_price_data[0]?.last_price)
+              : dashboard?.order_data?.total?.trade_wallet?.last_price}
+            {parseFloat(
+              dashboard?.last_price_data && dashboard?.last_price_data[0]?.price
+            ) >=
+            parseFloat(
+              dashboard?.last_price_data &&
+                dashboard?.last_price_data[0]?.last_price
+            ) ? (
+              <i className="fa-solid fa-up-long value-increaseicon ml-2"></i>
+            ) : parseFloat(
+                dashboard?.last_price_data &&
+                  dashboard?.last_price_data[0]?.price
+              ) <
+              parseFloat(
+                dashboard?.last_price_data &&
+                  dashboard?.last_price_data[0]?.last_price
+              ) ? (
+              <i className="fa-solid fa-down-long value-decreaseicon ml-2"></i>
+            ) : (
+              ""
+            )}
+          </span>
+          <span className="label">
+            {dashboard?.last_price_data[0]?.last_price
+              ? formatCurrency(dashboard?.last_price_data[0]?.last_price)
+              : dashboard?.order_data?.total?.trade_wallet?.last_price}
+            ({dashboard?.order_data?.base_coin})
+          </span>
+        </li>
+        <li>
+          <span className="label">{t("24h change")}</span>
+          <span
+            className={`value ${
+              dashboard?.order_data?.total?.trade_wallet?.price_change >= 0
+                ? "increase"
+                : "decrease"
+            }`}
+          >
+            {parseFloat(
+              dashboard?.order_data?.total?.trade_wallet?.price_change
+                ? dashboard?.order_data?.total?.trade_wallet?.price_change
+                : 0
+            )}
+            %
+          </span>
+        </li>
+        <li>
+          <span className="label">{t("24h high")}</span>
+          <span className="value">
+            {dashboard?.order_data?.total?.trade_wallet?.high
+              ? formatCurrency(dashboard?.order_data?.total?.trade_wallet?.high)
+              : 0}
+          </span>
+        </li>
+        <li>
+          <span className="label">{t("24h Low")}</span>
+          <span className="value">
+            {formatCurrency(
+              dashboard?.order_data?.total?.trade_wallet?.low
+                ? dashboard?.order_data?.total?.trade_wallet?.low
+                : 0
+            )}
+          </span>
+        </li>
+        <li>
+          <span className="label">
+            {" "}
+            {t("24h volume")}({dashboard?.order_data?.trade_coin}){" "}
+          </span>
+          <span className="value">
+            {formatCurrency(
+              dashboard?.order_data?.total?.trade_wallet?.volume
+                ? dashboard?.order_data?.total?.trade_wallet?.volume
+                : 0
+            )}
+          </span>
+        </li>
+        <li>
+          <span className="label">
+            {" "}
+            {t("24h volume")}({dashboard?.order_data?.base_coin}){" "}
+          </span>
+          <span className="value">{formatCurrency(volume ? volume : 0)}</span>
+        </li>
+      </ul>
     </div>
   );
 };
