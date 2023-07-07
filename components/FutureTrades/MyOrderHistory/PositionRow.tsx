@@ -3,7 +3,7 @@ import PositionEdit from "../Modals/positionEdit";
 import { LIMIT_ORDER, MARKET_ORDER } from "helpers/core-constants";
 
 const PositionRow = ({ list, Close, setCloseAll, index, CloseAll }: any) => {
-
+  console.log(list, "list");
   return (
     <tbody>
       {" "}
@@ -14,7 +14,7 @@ const PositionRow = ({ list, Close, setCloseAll, index, CloseAll }: any) => {
         </td>
         <td>{list?.amount_in_trade_coin}</td>
         <td>{list?.entry_price}</td>
-        <td>26100.6</td>
+        <td>{list?.profit_loss_calculation?.market_price}</td>
         <td>{list?.liquidation_price}</td>
         <td>{list?.profit_loss_calculation?.margin_ratio}</td>
         <td>
