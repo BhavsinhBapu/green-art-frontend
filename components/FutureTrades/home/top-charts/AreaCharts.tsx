@@ -40,7 +40,7 @@ const data = [
   },
 ];
 
-export default function AreaCharts() {
+export default function AreaCharts({ tradeDatas }: any) {
   return (
     <div
       className="bg-card-primary-clr"
@@ -51,11 +51,14 @@ export default function AreaCharts() {
           <div>
             <span className="text-12 text-color-4">Open Interest</span>
             <div className="d-flex align-items-center">
-              <h5 className="text-14 mr-1">BTCUSDT</h5>
+              <h5 className="text-14 mr-1">
+                {tradeDatas?.coins?.data[0]?.child_coin_name}
+                {tradeDatas?.coins?.data[0]?.parent_coin_name}
+              </h5>
               <span className="text-12 text-color-4">Perpetual</span>
             </div>
           </div>
-          <div className="area-charts-button mt-1">
+          {/* <div className="area-charts-button mt-1">
             <div>
               <FaBtc color="#fcd535"/>
             </div>
@@ -63,17 +66,25 @@ export default function AreaCharts() {
             <div>
               <IoLogoUsd />
             </div>
-          </div>
+          </div> */}
         </div>
         <div className="mt-3 mb-2">
-          <h4 className="text-16">353535353535 USDT</h4>
+          <h4 className="text-16">
+            {tradeDatas?.coins?.data[0]?.volume || 0}
+            {tradeDatas?.coins?.data[0]?.parent_coin_name}
+          </h4>
         </div>
         <div>
           <span
             className="text-16 d-inline-block mr-2 px-2 py-1"
-            style={{ background: "#35141D", color: "#F6465D" }}
+            style={{
+              background:
+                tradeDatas?.coins?.data[0]?.price_change >= 0 ? "#183e2f" : "#35141D",
+              color:
+                tradeDatas?.coins?.data[0]?.price_change >= 0 ? "#0ecb81" : "#F6465D",
+            }}
           >
-            -5.5%
+            {parseFloat(tradeDatas?.coins?.data[0]?.price_change || 0).toFixed(4)}%
           </span>
           <span className="text-14">24H Change</span>
         </div>

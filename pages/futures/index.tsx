@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 
 export default function Index() {
   const { t } = useTranslation();
-  const [tradeDatas, setTradeDatas] = useState<any>([]);
+  const [tradeDatas, setTradeDatas] = useState<any>({});
   const router = useRouter();
   useEffect(() => {
     getTradeSectionData();

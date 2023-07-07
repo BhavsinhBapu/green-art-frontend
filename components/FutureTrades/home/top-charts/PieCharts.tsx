@@ -1,11 +1,18 @@
 import React from "react";
 import { ResponsiveContainer, PieChart, Pie, Cell, Label } from "recharts";
-const data02 = [
-  { name: "Group A", value: 400 },
-  { name: "Group B", value: 300 },
-];
+
 const COLORS = ["#f6465d", "#0ecb81"];
-export default function PieCharts() {
+export default function PieCharts({ tradeDatas }: any) {
+  const data02 = [
+    {
+      name: "Group A",
+      value: tradeDatas?.getHighestVolumePair?.short_account * 100,
+    },
+    {
+      name: "Group B",
+      value: tradeDatas?.getHighestVolumePair?.long_account * 100,
+    },
+  ];
   return (
     <div
       className="bg-card-primary-clr"
@@ -20,12 +27,16 @@ export default function PieCharts() {
                 className="ml-1 px-1 rounded"
                 style={{ color: "#F0B90B", background: "#3C2601" }}
               >
-                1h
+                {tradeDatas?.getHighestVolumePair?.hour} hour
               </span>
             </span>
             <div className="d-flex align-items-center">
-              <h5 className="text-14 mr-1">BTCUSDT</h5>
-              <span className="text-12 text-color-4">Perpetual</span>
+              <h5 className="text-14 mr-1">
+                {tradeDatas?.getHighestVolumePair?.coin_pair}
+              </h5>
+              <span className="text-12 text-color-4">
+                {tradeDatas?.getHighestVolumePair?.type}
+              </span>
             </div>
           </div>
         </div>
@@ -43,7 +54,9 @@ export default function PieCharts() {
                 }}
               ></span>
               <span className="text-12 text-color-4">Short Account%</span>
-              <h5 className="text-16" style={{ marginLeft: "12px" }}>65.4%</h5>
+              <h5 className="text-16" style={{ marginLeft: "12px" }}>
+                {tradeDatas?.getHighestVolumePair?.short_account || 0}%
+              </h5>
             </div>
             <div>
               <span
@@ -57,15 +70,18 @@ export default function PieCharts() {
               ></span>
               <span className="text-12 text-color-4">Long Account%</span>
               <h5 className="text-16" style={{ marginLeft: "12px" }}>
-                34.6%
+                {tradeDatas?.getHighestVolumePair?.long_account || 0}%
               </h5>
             </div>
             <div>
-              <span className="text-12 text-color-4" style={{ marginLeft: "12px" }}>
-                Long/Short Ratio%
+              <span
+                className="text-12 text-color-4"
+                style={{ marginLeft: "12px" }}
+              >
+                Long/Short Ratio
               </span>
               <h5 className="text-16" style={{ marginLeft: "12px" }}>
-                0.94
+                {tradeDatas?.getHighestVolumePair?.ratio || 0}
               </h5>
             </div>
           </div>
@@ -86,7 +102,10 @@ export default function PieCharts() {
                         fill={COLORS[index % COLORS.length]}
                       />
                     ))}
-                    <Label value={0.94} position="center" />
+                    <Label
+                      value={tradeDatas?.getHighestVolumePair?.ratio}
+                      position="center"
+                    />
                   </Pie>
                 </PieChart>
               </ResponsiveContainer>

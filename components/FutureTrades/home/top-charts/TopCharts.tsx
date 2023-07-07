@@ -9,10 +9,10 @@ export default function TopCharts({tradeDatas}:any) {
   return (
     <div className="row">
       <div className="col-lg-3 col-md-6 px-2">
-        <AreaCharts />
+        <AreaCharts tradeDatas={tradeDatas}/>
       </div>
       <div className="col-lg-3 col-md-6 px-2">
-        <PieCharts />
+        <PieCharts tradeDatas={tradeDatas}/>
       </div>
       <div className="col-lg-3 col-md-6 px-2">
         <PieChartsWithNeddle />
