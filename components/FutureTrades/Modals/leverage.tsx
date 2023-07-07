@@ -47,6 +47,14 @@ const Leverage = ({ leverage, setLeverage }: any) => {
               <span
                 className="percent-btn col-3 mb-2"
                 onClick={() => {
+                  modifyLeverage(5);
+                }}
+              >
+                5x
+              </span>
+              <span
+                className="percent-btn col-3 mb-2"
+                onClick={() => {
                   modifyLeverage(10);
                 }}
               >
@@ -84,9 +92,32 @@ const Leverage = ({ leverage, setLeverage }: any) => {
               >
                 50x
               </span>
+              <span
+                className="percent-btn col-3 mb-2"
+                onClick={() => {
+                  modifyLeverage(60);
+                }}
+              >
+                60x
+              </span>
+              <span
+                className="percent-btn col-3 mb-2"
+                onClick={() => {
+                  modifyLeverage(80);
+                }}
+              >
+                80x
+              </span>
+              <span
+                className="percent-btn col-3 mb-2"
+                onClick={() => {
+                  modifyLeverage(100);
+                }}
+              >
+                100x
+              </span>
             </div>
             <div>
-            
               <button
                 style={{
                   width: "98%",
