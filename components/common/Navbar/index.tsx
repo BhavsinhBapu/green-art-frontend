@@ -959,7 +959,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                                     {" "}
                                     <BiShapeCircle />{" "}
                                   </span>{" "}
-                                  <span>{t("Future Marketing")}</span>
+                                  <span>{t("Future Market")}</span>
                                 </a>
                               </li>
                             </Link>
@@ -1877,7 +1877,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                                   className="px-3 py-2 text-primary-color-two"
                                   onClick={() => setActive(false)}
                                 >
-                                  <span>{t("Future Marketing")}</span>
+                                  <span>{t("Future Market")}</span>
                                 </a>
                               </li>
                             </Link>
