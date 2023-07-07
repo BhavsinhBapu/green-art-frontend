@@ -11,8 +11,7 @@ import { notification } from "service/notification";
 import { useRouter } from "next/router";
 import { checkThemeState, darkModeToggle } from "helpers/functions";
 import { IoMdGlobe } from "react-icons/io";
-
-
+import { AiOutlineClose } from "react-icons/ai";
 
 const UnAuthNav = () => {
   const { isLoggedIn, user, logo } = useSelector(
@@ -21,7 +20,7 @@ const UnAuthNav = () => {
   const router = useRouter();
   const [theme, setTheme] = useState(0);
   const { settings } = useSelector((state: RootState) => state.common);
-
+  const { navbar } = settings;
   const [active, setActive] = useState(false);
   const [notificationData, setNotification] = useState<any>([]);
   const { t } = useTranslation("common");
@@ -29,10 +28,10 @@ const UnAuthNav = () => {
     const data = await notification();
     setNotification(data.data.data);
   };
-  const dispatch=useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    checkThemeState(setTheme,dispatch);
+    checkThemeState(setTheme, dispatch);
     isLoggedIn && getNotifications();
   }, [isLoggedIn]);
   useEffect(() => {
@@ -99,6 +98,31 @@ const UnAuthNav = () => {
                           </Link>
                         </li>
                       )}
+                      {Number(settings?.enable_future_trade) === 1 && (
+                        <Link
+                          href={
+                            router.locale !== "en"
+                              ? `/${router.locale}/futures/exchange`
+                              : "/futures/exchange"
+                          }
+                        >
+                          <li
+                            className={
+                              router.pathname == "/futures/exchange"
+                                ? "cp-user-active-page"
+                                : ""
+                            }
+                          >
+                            <a href="" className="menu-hover">
+                              <span className="cp-user-icon">
+                                {" "}
+                                <BiShapeCircle />{" "}
+                              </span>{" "}
+                              <span>{t("Future Trading")}</span>
+                            </a>
+                          </li>
+                        </Link>
+                      )}
                     </ul>
                   </li>
                 </ul>
@@ -163,7 +187,7 @@ const UnAuthNav = () => {
 
                   <li
                     onClick={() => {
-                      darkModeToggle(settings, setTheme,dispatch);
+                      darkModeToggle(settings, setTheme, dispatch);
                     }}
                   >
                     <a href="#">
@@ -204,24 +228,127 @@ const UnAuthNav = () => {
             onClick={() => setActive(false)}
             className="cp-user-sidebar-menu scrollbar-inner"
           >
-            <nav>
-              <ul id="metismenu">
-                <li>
-                  <Link href="/exchange/dashboard">{t("Spot Trading")}</Link>
-                </li>
-                {parseInt(settings?.p2p_module) === 1 && (
-                  <li>
-                    <Link href="/p2p">{t("P2p Trading")}</Link>
+            <nav className="navbar navbar-expand-lg navbar-light">
+              <div className="navbar-collapse">
+                <ul className="navbar-nav mr-auto">
+                  <li className="text-right">
+                    <span onClick={() => setActive(false)}>
+                      <AiOutlineClose size={20} />
+                    </span>
                   </li>
-                )}
-
-                <li>
-                  <Link href="/signin">{t("Login")}</Link>
-                </li>
-                <li>
-                  <Link href="/signup">{t("Sign up")}</Link>
-                </li>
-              </ul>
+                  {navbar?.trade?.status && (
+                    <li
+                      className={
+                        router.pathname == "/exchange/dashboard" ||
+                        router.pathname == "/p2p" ||
+                        router.pathname == "/futures/exchange"
+                          ? "active-navbar nav-item dropdown"
+                          : "nav-item dropdown"
+                      }
+                    >
+                      <a
+                        className="nav-link text-primary-color-two dropdown-toggle"
+                        href="#"
+                        id="navbarDropdown"
+                        role="button"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                      >
+                        {navbar?.trade?.name
+                          ? navbar?.trade?.name
+                          : t("Exchange")}
+                      </a>
+                      <ul
+                        className="dropdown-menu bg-transparent border-0 py-0 my-0"
+                        aria-labelledby="navbarDropdown"
+                      >
+                        {navbar?.trade?.status && (
+                          <Link
+                            href={
+                              router.locale !== "en"
+                                ? `/${router.locale}/exchange/dashboard`
+                                : "/exchange/dashboard"
+                            }
+                          >
+                            <li
+                              className={
+                                router.pathname == "/exchange/dashboard"
+                                  ? "active-navbar"
+                                  : ""
+                              }
+                            >
+                              <a
+                                href=""
+                                className="px-3 py-2 text-primary-color-two"
+                                onClick={() => setActive(false)}
+                              >
+                                <span>{t("Spot Trading")}</span>
+                              </a>
+                            </li>
+                          </Link>
+                        )}
+                        {parseInt(settings?.p2p_module) === 1 && (
+                          <Link href={isLoggedIn ? "/p2p" : "/signin"}>
+                            <li
+                              className={
+                                router.pathname == "/p2p" ? "active-navbar" : ""
+                              }
+                            >
+                              <a
+                                href=""
+                                className="px-3 py-2 text-primary-color-two"
+                                onClick={() => setActive(false)}
+                              >
+                                <span>{t("P2P Trading")}</span>
+                              </a>
+                            </li>
+                          </Link>
+                        )}
+                        {Number(settings?.enable_future_trade) === 1 && (
+                          <Link
+                            href={
+                              router.locale !== "en"
+                                ? `/${router.locale}/futures/exchange`
+                                : "/futures/exchange"
+                            }
+                          >
+                            <li
+                              className={
+                                router.pathname == "/futures/exchange"
+                                  ? "active-navbar"
+                                  : ""
+                              }
+                            >
+                              <a
+                                href=""
+                                className="px-3 py-2 text-primary-color-two"
+                                onClick={() => setActive(false)}
+                              >
+                                <span>{t("Future Trading")}</span>
+                              </a>
+                            </li>
+                          </Link>
+                        )}
+                      </ul>
+                    </li>
+                  )}
+                  <li className="nav-item">
+                    <Link href="/signin">
+                      <a className="nav-link text-primary-color-two">
+                        {t("Login")}
+                      </a>
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link href="/signup">
+                      <a className="nav-link text-primary-color-two">
+                        {t("Sign up")}
+                      </a>
+                    </Link>
+                  </li>
+                </ul>
+              </div>
             </nav>
           </div>
         </div>

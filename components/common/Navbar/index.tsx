@@ -156,13 +156,13 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                               <Link
                                 href={
                                   router.locale !== "en"
-                                    ? `/${router.locale}/future/exchange`
-                                    : "/future/exchange"
+                                    ? `/${router.locale}/futures/exchange`
+                                    : "/futures/exchange"
                                 }
                               >
                                 <li
                                   className={
-                                    router.pathname == "/future/exchange"
+                                    router.pathname == "/futures/exchange"
                                       ? "cp-user-active-page"
                                       : ""
                                   }
@@ -942,7 +942,8 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                         <li
                           className={
                             router.pathname == "/exchange/dashboard" ||
-                            router.pathname == "/p2p"
+                            router.pathname == "/p2p" ||
+                            router.pathname == "/futures/exchange"
                               ? "active-navbar nav-item dropdown"
                               : "nav-item dropdown"
                           }
@@ -1004,6 +1005,31 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                                     onClick={() => setActive(false)}
                                   >
                                     <span>{t("P2P Trading")}</span>
+                                  </a>
+                                </li>
+                              </Link>
+                            )}
+                            {Number(settings?.enable_future_trade) === 1 && (
+                              <Link
+                                href={
+                                  router.locale !== "en"
+                                    ? `/${router.locale}/futures/exchange`
+                                    : "/futures/exchange"
+                                }
+                              >
+                                <li
+                                  className={
+                                    router.pathname == "/futures/exchange"
+                                      ? "active-navbar"
+                                      : ""
+                                  }
+                                >
+                                  <a
+                                    href=""
+                                    className="px-3 py-2 text-primary-color-two"
+                                    onClick={() => setActive(false)}
+                                  >
+                                    <span>{t("Future Trading")}</span>
                                   </a>
                                 </li>
                               </Link>
@@ -1736,7 +1762,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
           </OutsideClickHandler>
         </>
       ) : !isLoggedIn && isLoading === false ? (
-        <UnAuthNav />
+        <UnAuthNav/>
       ) : (
         ""
       )}
