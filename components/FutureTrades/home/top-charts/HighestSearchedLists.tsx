@@ -46,8 +46,8 @@ export default function HighestSearchedLists({tradeDatas}:any) {
                   y2="2"
                   gradientUnits="userSpaceOnUse"
                 >
-                  <stop stop-color="#F0B90B"></stop>
-                  <stop offset="1" stop-color="#F8D33A"></stop>
+                  <stop stopColor="#F0B90B"></stop>
+                  <stop offset="1" stopColor="#F8D33A"></stop>
                 </linearGradient>
                 <linearGradient
                   id="hot-g_svg__paint1_linear_1330_2334"
@@ -57,8 +57,8 @@ export default function HighestSearchedLists({tradeDatas}:any) {
                   y2="1"
                   gradientUnits="userSpaceOnUse"
                 >
-                  <stop stop-color="#F0B90B"></stop>
-                  <stop offset="1" stop-color="#F8D33A"></stop>
+                  <stop stopColor="#F0B90B"></stop>
+                  <stop offset="1" stopColor="#F8D33A"></stop>
                 </linearGradient>
                 <linearGradient
                   id="hot-g_svg__paint2_linear_1330_2334"
@@ -68,8 +68,8 @@ export default function HighestSearchedLists({tradeDatas}:any) {
                   y2="18.5"
                   gradientUnits="userSpaceOnUse"
                 >
-                  <stop stop-color="#F0B90B"></stop>
-                  <stop offset="1" stop-color="#F8D33A"></stop>
+                  <stop stopColor="#F0B90B"></stop>
+                  <stop offset="1" stopColor="#F8D33A"></stop>
                 </linearGradient>
               </defs>
             </svg>
