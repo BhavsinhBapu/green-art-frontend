@@ -4,7 +4,7 @@ import Link from "next/link";
 import { BsBarChartLine, BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
 import { BiShapeCircle } from "react-icons/bi";
 import { BiMoney } from "react-icons/bi";
-import { FaPeopleArrows, FaQq } from "react-icons/fa";
+import { FaPeopleArrows, FaQq, FaTradeFederation } from "react-icons/fa";
 import { BiNetworkChart } from "react-icons/bi";
 import { RiLuggageDepositLine, RiUserSettingsLine } from "react-icons/ri";
 import { IoCardSharp, IoLanguageSharp } from "react-icons/io5";
@@ -909,6 +909,86 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                           </ul>
                         </li>
                       )}
+                      {Number(settings?.enable_future_trade) === 1 && (
+                        <li
+                          className={
+                            router.pathname == "/futures/wallet-list" ||
+                            router.pathname == "/futures"
+                              ? "cp-user-active-page"
+                              : ""
+                          }
+                        >
+                          <Link
+                            href={
+                              router.locale !== "en"
+                                ? `/${router.locale}/futures`
+                                : "/futures"
+                            }
+                          >
+                            <a
+                              className="arrow-icon"
+                              href="#"
+                              aria-expanded="true"
+                              style={{ height: "48px" }}
+                            >
+                              <span className="cp-user-icon">
+                                <FaTradeFederation />
+                              </span>
+                              <span className="cp-user-name">
+                                {t("Future")}
+                              </span>
+                            </a>
+                          </Link>
+                          <ul className="dropdown-menu bg-transparent-main">
+                            <Link
+                              href={
+                                router.locale !== "en"
+                                  ? `/${router.locale}/futures`
+                                  : "/futures"
+                              }
+                            >
+                              <li
+                                className={
+                                  router.pathname == "/futures"
+                                    ? "cp-user-active-page"
+                                    : ""
+                                }
+                              >
+                                <a href="" className="menu-hover">
+                                  <span className="cp-user-icon">
+                                    {" "}
+                                    <BiShapeCircle />{" "}
+                                  </span>{" "}
+                                  <span>{t("Future Marketing")}</span>
+                                </a>
+                              </li>
+                            </Link>
+                            <Link
+                              href={
+                                router.locale !== "en"
+                                  ? `/${router.locale}/futures/wallet-list`
+                                  : "/futures/wallet-list"
+                              }
+                            >
+                              <li
+                                className={
+                                  router.pathname == "/futures/wallet-list"
+                                    ? "cp-user-active-page"
+                                    : ""
+                                }
+                              >
+                                <a href="" className="menu-hover">
+                                  <span className="cp-user-icon">
+                                    {" "}
+                                    <BiShapeCircle />{" "}
+                                  </span>{" "}
+                                  <span>{t("Future Wallet")}</span>
+                                </a>
+                              </li>
+                            </Link>
+                          </ul>
+                        </li>
+                      )}
                     </ul>
                   </nav>
                 </div>
@@ -1754,6 +1834,78 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                           </ul>
                         </li>
                       )}
+                      {Number(settings?.enable_future_trade) === 1 && (
+                        <li
+                          className={
+                            router.pathname == "/futures" ||
+                            router.pathname == "/futures/wallet-list"
+                              ? "active-navbar nav-item dropdown"
+                              : "nav-item dropdown"
+                          }
+                        >
+                          <a
+                            className="nav-link text-primary-color-two dropdown-toggle"
+                            href="#"
+                            id="navbarDropdown"
+                            role="button"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                          >
+                            {t("Future")}
+                          </a>
+                          <ul
+                            className="dropdown-menu bg-transparent border-0 py-0 my-0"
+                            aria-labelledby="navbarDropdown"
+                          >
+                            <Link
+                              href={
+                                router.locale !== "en"
+                                  ? `/${router.locale}/futures`
+                                  : "/futures"
+                              }
+                            >
+                              <li
+                                className={
+                                  router.pathname == "/futures"
+                                    ? "active-navbar"
+                                    : ""
+                                }
+                              >
+                                <a
+                                  href=""
+                                  className="px-3 py-2 text-primary-color-two"
+                                  onClick={() => setActive(false)}
+                                >
+                                  <span>{t("Future Marketing")}</span>
+                                </a>
+                              </li>
+                            </Link>
+
+                            <Link
+                              href={
+                                isLoggedIn ? "/futures/wallet-list" : "/signin"
+                              }
+                            >
+                              <li
+                                className={
+                                  router.pathname == "/futures/wallet-list"
+                                    ? "active-navbar"
+                                    : ""
+                                }
+                              >
+                                <a
+                                  href=""
+                                  className="px-3 py-2 text-primary-color-two"
+                                  onClick={() => setActive(false)}
+                                >
+                                  <span>{t("Future Wallet")}</span>
+                                </a>
+                              </li>
+                            </Link>
+                          </ul>
+                        </li>
+                      )}
                     </ul>
                   </div>
                 </nav>
@@ -1762,7 +1914,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
           </OutsideClickHandler>
         </>
       ) : !isLoggedIn && isLoading === false ? (
-        <UnAuthNav/>
+        <UnAuthNav />
       ) : (
         ""
       )}
