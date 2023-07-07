@@ -1,17 +1,36 @@
 import MarketIndex from "components/FutureTrades/home/market-index/MarketIndex";
 import TopCharts from "components/FutureTrades/home/top-charts/TopCharts";
 import TradeSections from "components/FutureTrades/home/trade-sections/TradeSections";
+import request from "lib/request";
 import useTranslation from "next-translate/useTranslation";
-import React from "react";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 export default function Index() {
   const { t } = useTranslation();
+  const [tradeDatas, setTradeDatas] = useState<any>([]);
+  const router = useRouter();
+  useEffect(() => {
+    getTradeSectionData();
+  }, []);
+
+  const getTradeSectionData = async () => {
+    const { data } = await request.get(
+      `/future-trade/get-exchange-market-details-app?limit=8&page=1&type=assets`
+    );
+    if (!data.success) {
+      toast.error(data.message);
+      return;
+    }
+    setTradeDatas(data.data);
+  };
   return (
     <section>
       <div className="container">
         <h1 className="banner-title py-4">{t("Crypto Futures Market")}</h1>
         {/* top chart start*/}
-        <TopCharts />
+        <TopCharts tradeDatas={tradeDatas}/>
         {/* top chart end*/}
       </div>
       <div className="bg-card-primary-clr">
@@ -20,7 +39,7 @@ export default function Index() {
         {/* trade section end */}
 
         {/* market index  start*/}
-        <MarketIndex />
+        <MarketIndex tradeDatas={tradeDatas}/>
         {/* market index  end*/}
 
         <section className="py-5">

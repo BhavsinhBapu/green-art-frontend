@@ -7,14 +7,16 @@ import { toast } from "react-toastify";
 
 export default function TradeSections() {
   const [tradeDatas, setTradeDatas] = useState<any>([]);
+  const [selectType, setSelectType] = useState("assets");
   const router = useRouter();
   useEffect(() => {
     getTradeSectionData();
-  }, []);
+    console.log("sjngns");
+  }, [selectType]);
 
   const getTradeSectionData = async () => {
     const { data } = await request.get(
-      `/future-trade/get-exchange-market-details-app?limit=8&page=1`
+      `/future-trade/get-exchange-market-details-app?limit=8&page=1&type=${selectType}`
     );
     if (!data.success) {
       toast.error(data.message);
@@ -41,6 +43,9 @@ export default function TradeSections() {
                       role="tab"
                       aria-controls="CoreAssets"
                       aria-selected="true"
+                      onClick={() => {
+                        setSelectType("assets");
+                      }}
                     >
                       {t("Core Assets")}
                     </a>
@@ -54,6 +59,7 @@ export default function TradeSections() {
                       role="tab"
                       aria-controls="Gainers"
                       aria-selected="false"
+                      onClick={() => setSelectType("hour")}
                     >
                       {t("24H Gainers")}
                     </a>
@@ -67,6 +73,7 @@ export default function TradeSections() {
                       role="tab"
                       aria-controls="Listings"
                       aria-selected="false"
+                      onClick={() => setSelectType("new")}
                     >
                       {t("New Listings")}
                     </a>
@@ -166,30 +173,30 @@ export default function TradeSections() {
                                       <a className="cellMarket" href="#">
                                         <div className="marketSymbols">
                                           <span className="quoteSymbol">
-                                            {item.child_coin.coin_type}
+                                            {item.child_coin_name}
                                           </span>
                                           <span className="baseSymbol">
-                                            /{item.parent_coin.coin_type}
+                                            /{item.parent_coin_name}
                                           </span>
                                         </div>
                                       </a>
                                     </td>
                                     <td className="text-black text-center">
-                                      {item.price}
+                                      {item.last_price}
                                     </td>
                                     <td className="text-center">
                                       <span
                                         className={`changePos  ${
-                                          parseFloat(item.change) >= 0
+                                          parseFloat(item.price_change) >= 0
                                             ? "text-success"
                                             : "text-danger"
                                         } `}
                                       >
-                                        {item.change}%
+                                        {item.price_change}%
                                       </span>
                                     </td>
                                     <td className="text-center">
-                                      {parseFloat(item.change) >= 0 ? (
+                                      {parseFloat(item.price_change) >= 0 ? (
                                         <img
                                           src="/chart-image-1.png"
                                           alt="chart-image"
@@ -204,24 +211,28 @@ export default function TradeSections() {
                                       )}
                                     </td>
                                     <td className="text-black text-center">
-                                      {item.volume} {item.parent_coin.coin_type}
+                                      {item.volume} {item.parent_coin_name}
                                     </td>
                                     <td
                                       className="text-right"
                                       onClick={async () => {
                                         await localStorage.setItem(
                                           "base_coin_id",
-                                          item?.parent_coin.id
+                                          item?.parent_coin_id
                                         );
                                         await localStorage.setItem(
                                           "trade_coin_id",
-                                          item?.child_coin.id
+                                          item?.child_coin_id
                                         );
                                         await localStorage.setItem(
                                           "current_pair",
-                                          item?.child_coin.coin_type +
+                                          item?.child_coin_name +
                                             "_" +
-                                            item?.parent_coin.coin_type
+                                            item?.parent_coin_name
+                                        );
+                                        await localStorage.setItem(
+                                          "coin_pair_id",
+                                          item?.coin_pair_id
                                         );
                                       }}
                                     >
@@ -229,8 +240,8 @@ export default function TradeSections() {
                                         className="btnTrade btn-link mb-2"
                                         href={
                                           router.locale !== "en"
-                                            ? `/${router.locale}/exchange/dashboard`
-                                            : "/exchange/dashboard"
+                                            ? `/${router.locale}/futures/exchange`
+                                            : "/futures/exchange"
                                         }
                                       >
                                         {t("Trade")}

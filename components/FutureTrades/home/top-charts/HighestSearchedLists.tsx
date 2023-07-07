@@ -1,7 +1,7 @@
 import React from "react";
 import HighestSearchedItem from "./HighestSearchedItem";
 
-export default function HighestSearchedLists() {
+export default function HighestSearchedLists({tradeDatas}:any) {
   return (
     <div
       className="bg-card-primary-clr"
@@ -84,8 +84,8 @@ export default function HighestSearchedLists() {
           </div>
         </div>
         <div className="my-3">
-          {[1, 2, 3, 4, 5].map((item) => (
-            <HighestSearchedItem key={item} />
+          {tradeDatas?.data?.map((item: any, index: number) => (
+            <HighestSearchedItem item={item} key={index} />
           ))}
         </div>
       </div>

@@ -5,7 +5,7 @@ import PieCharts from "./PieCharts";
 import PieChartsWithNeddle from "./PieChartsWithNeddle";
 import HighestSearchedLists from "./HighestSearchedLists";
 
-export default function TopCharts() {
+export default function TopCharts({tradeDatas}:any) {
   return (
     <div className="row">
       <div className="col-lg-3 col-md-6 px-2">
@@ -18,7 +18,7 @@ export default function TopCharts() {
         <PieChartsWithNeddle />
       </div>
       <div className="col-lg-3 col-md-6 px-2">
-        <HighestSearchedLists />
+        <HighestSearchedLists tradeDatas={tradeDatas}/>
       </div>
     </div>
   );

@@ -45,13 +45,20 @@ const lineChart = [
     amt: 2100,
   },
 ];
-export default function MarketIndexCard() {
+export default function MarketIndexCard({ item }: any) {
   return (
     <div className="market-index-card">
-      <h4 className="text-14">DeFi</h4>
+      <h4 className="text-14">Perpetual</h4>
       <div className="row my-2">
         <div className="col-4">
-          <p className="text-16">-3.48%</p>
+          <p
+            className="text-16"
+            style={{
+              color: Number(item.price_change) >= 0 ? "#0ecb81" : "#f6465d",
+            }}
+          >
+            {parseFloat(item.price_change).toFixed(4)}%
+          </p>
         </div>
         <div className="col-4">
           <p className="text-12">Up 1 down 19</p>
@@ -63,7 +70,7 @@ export default function MarketIndexCard() {
                 type="monotone"
                 dataKey="pv"
                 dot={false}
-                stroke="#f6465d"
+                stroke={Number(item.price_change) >= 0 ? "#0ecb81" : "#f6465d"}
                 strokeWidth={2}
               />
             </LineChart>
@@ -71,7 +78,7 @@ export default function MarketIndexCard() {
         </div>
       </div>
       <h4 className="text-12">
-        ANKRUSDT <span>+7.24%</span>
+        {item.child_coin_name}/{item.parent_coin_name}
       </h4>
     </div>
   );
