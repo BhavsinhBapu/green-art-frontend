@@ -84,7 +84,7 @@ export default function HighestSearchedLists({tradeDatas}:any) {
           </div>
         </div>
         <div className="my-3">
-          {tradeDatas?.data?.map((item: any, index: number) => (
+          {tradeDatas?.coins?.data?.map((item: any, index: number) => (
             <HighestSearchedItem item={item} key={index} />
           ))}
         </div>

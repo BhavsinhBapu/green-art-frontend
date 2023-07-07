@@ -87,7 +87,7 @@ export default function TradeSections() {
                   role="tabpanel"
                   aria-labelledby="CoreAssets-tab"
                 >
-                  {tradeDatas?.data?.length > 0 ? (
+                  {tradeDatas?.coins?.data?.length > 0 ? (
                     <div className="exchange-volume-table">
                       <div className="table-responsive">
                         <div
@@ -159,7 +159,7 @@ export default function TradeSections() {
                               </tr>
                             </thead>
                             <tbody>
-                              {tradeDatas?.data?.map(
+                              {tradeDatas?.coins?.data?.map(
                                 (item: any, index: any) => (
                                   <tr role="row" className="odd" key={index}>
                                     <td className="d-flex">
