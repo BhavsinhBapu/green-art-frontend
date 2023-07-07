@@ -40,7 +40,7 @@ export default function P2PGiftCardNavbar() {
                     <Link href="/p2p/gift-card/my-adds">
                       <a>
                         <AiOutlineGift />
-                        My Gift Card Adds
+                        My Gift Card Ads
                       </a>
                     </Link>
                   </li>

@@ -62,11 +62,12 @@ const Trading = () => {
   const router = useRouter();
   const { uid }: any = router.query;
   const sendMessage = async (e: any) => {
+
     e.preventDefault();
     const formData = new FormData();
     formData.append("gift_card_order_id", details?.order?.id);
     message && formData.append("message", message);
-    file.name && formData.append("file", file);
+    file?.name && formData.append("file", file);
     console.log(file, "This is a file");
     setMessage("");
     setFile(null);
@@ -434,13 +435,25 @@ const Trading = () => {
                       <div className="boxShadow p-5 text-center mt-3">
                         <h4 className="mb-3">Trade completed</h4>
                       </div>
-                      {details?.order?.seller_feedback && (
-                        <label className="mt-3">
-                          <b>Seller Feedback:</b>
-                          {details?.order?.seller_feedback}
-                        </label>
+                      {details?.order?.feedback && (
+                        <>
+                          <div>
+                            <label className="mt-3">
+                              <b>Feedback Type:</b>
+                              {details?.order?.feedback?.feedback_type === 1
+                                ? "Positive"
+                                : "Negative"}
+                            </label>
+                          </div>
+                          <div>
+                            <label className="mb-3">
+                              <b>Seller Feedback:</b>
+                              {details?.order?.feedback?.feedback}
+                            </label>
+                          </div>
+                        </>
                       )}
-                      {details?.order?.buyer_feedback === null && (
+                      {details?.order?.buyer_feedback_type !== 1 && (
                         <div className="row">
                           <div className="col-md-12 mt-3">
                             <label> Submit review about seller</label>
@@ -487,7 +500,7 @@ const Trading = () => {
                             className="btn nimmu-user-sibmit-button mt-3"
                             onClick={() => {
                               giftCardOrderFeedbackAction(
-                                details?.order?.id,
+                                details?.order?.uid,
                                 feedbackType,
                                 feedback
                               );
@@ -505,13 +518,25 @@ const Trading = () => {
                         <h4 className="mb-3">Trade completed</h4>
                       </div>
 
-                      {details?.order?.buyer_feedback && (
-                        <label className="mt-3">
-                          <b>Buyer Feedback:</b>
-                          {details?.order?.buyer_feedback}
-                        </label>
+                      {details?.order?.feedback && (
+                        <>
+                          <div>
+                            <label className="mt-3">
+                              <b>Feedback Type:</b>
+                              {details?.order?.feedback?.feedback_type === 1
+                                ? "Positive"
+                                : "Negative"}
+                            </label>
+                          </div>
+                          <div>
+                            <label className="mb-3">
+                              <b>Buyer Feedback:</b>
+                              {details?.order?.feedback?.feedback}
+                            </label>
+                          </div>
+                        </>
                       )}
-                      {details?.order?.seller_feedback === null && (
+                      {details?.order?.seller_feedback_type !== 1 && (
                         <div className="row">
                           <div className="col-md-12 mt-3">
                             <label>Submit review about buyer</label>
@@ -555,7 +580,7 @@ const Trading = () => {
                           <button
                             className="btn nimmu-user-sibmit-button mt-3"
                             onClick={() => {
-                              submitTradeFeedback(
+                              giftCardOrderFeedbackAction(
                                 details?.order?.uid,
                                 feedbackType,
                                 feedback
