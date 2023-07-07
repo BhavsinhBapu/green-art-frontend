@@ -20,27 +20,28 @@ const TradeBox = () => {
   return (
     <div>
       <div className="row">
-        <div className="col-xl-10">
+        <div className="col-xl-9">
           <div className="row">
-            <div className="col-lg-9 col-md-8 col-sm-8 exchange-area">
+            <div className="col-xl-9 col-12 exchange-area">
               {currentPair && (
                 //@ts-ignore
                 <TradingChart currentPair={currentPair} theme={theme} />
               )}
             </div>
-            <div className="col-lg-3 col-md-4 col-sm-4 exchange-area">
+            <div className="col-xl-3 col-12 exchange-area">
               <ExchangeBox />
             </div>
             <div className="col-xl-12">
               <MyOrderHistory />
+              {/* <TradesHistory marketTrades={marketTrades} /> */}
             </div>
           </div>
         </div>
-        <div className="col-lg-2 col-md-12">
+        <div className="col-xl-3 col-12">
           <div className="">
             <OrderBook />
           </div>
-          {/* <TradesHistory marketTrades={marketTrades} /> */}
+          <TradesHistory marketTrades={marketTrades} />
         </div>
       </div>
     </div>
