@@ -14,7 +14,7 @@ export default function MarketIndex({ tradeDatas }: any) {
           {Object.keys(tradeDatas).length !== 0 ? (
             <div className="row">
               {tradeDatas?.coins?.data?.map((item: any, index: any) => (
-                <div className="col-6" key={index}>
+                <div className="col-md-6 col-12" key={index}>
                   <MarketIndexCard item={item} />
                 </div>
               ))}
