@@ -8,12 +8,11 @@ import { useSelector } from "react-redux";
 import { RootState } from "state/store";
 
 const OrderBook = () => {
-   const { t } = useTranslation("common");
-   const [select, setSelect] = React.useState(3);
-   const { dashboard, OpenBookBuy, OpenBooksell, marketTrades, currentPair } =
-     useSelector((state: RootState) => state.exchange);
-   const { settings, theme } = useSelector((state: RootState) => state.common);
-
+  const { t } = useTranslation("common");
+  const [select, setSelect] = React.useState(3);
+  const { dashboard, OpenBookBuy, OpenBooksell, marketTrades, currentPair } =
+    useSelector((state: RootState) => state.exchange);
+  const { settings, theme } = useSelector((state: RootState) => state.common);
 
   return (
     <div className="trades-section">
@@ -220,7 +219,9 @@ const OrderBook = () => {
       )}
       {select === 3 && (
         <div className="tradeSection-both">
-          <AllSellOrders OpenBooksell={OpenBooksell} show={18} />
+          <div className="order-book-section-max-h">
+            <AllSellOrders OpenBooksell={OpenBooksell} show={18} />
+          </div>
           <div className="trades-table-footer">
             {dashboard?.last_price_data?.length > 0 ? (
               <div className="trades-table-row">
@@ -317,7 +318,9 @@ const OrderBook = () => {
               </div>
             )}
           </div>
-          <AllBuyOrders OpenBookBuy={OpenBookBuy} show={18} />
+          <div className="order-book-section-max-h">
+            <AllBuyOrders OpenBookBuy={OpenBookBuy} show={18} />
+          </div>
         </div>
       )}
     </div>
