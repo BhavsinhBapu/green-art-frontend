@@ -15248,6 +15248,11 @@ input:checked + .gift-card-buy-slider:before {
   border-radius: 15px;
 }
 
+.order-book-section-max-h{
+  max-height: 180px;
+    overflow-y: auto;
+}
+
 @media (max-width: 991px) {
   .text-45 {
     font-size: 36px;
