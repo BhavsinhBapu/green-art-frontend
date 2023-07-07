@@ -24,6 +24,7 @@ import {
 import { listenMessagesFuture } from "state/actions/exchange";
 
 const MyOrderHistory = () => {
+  const { isLoggedIn } = useSelector((state: RootState) => state.user);
   const [selected, setSelected] = useState(POSITON);
   const [listData, setListData] = useState([]);
   const [tradeHistory, settradeHistory] = useState([]);
@@ -45,7 +46,8 @@ const MyOrderHistory = () => {
   useEffect(() => {
     if (
       dashboard?.order_data?.base_coin_id &&
-      dashboard?.order_data?.trade_coin_id
+      dashboard?.order_data?.trade_coin_id &&
+      isLoggedIn
     ) {
       getLongShortPositionOrderListAction(
         setListData,
@@ -81,7 +83,7 @@ const MyOrderHistory = () => {
     dashboard?.order_data?.trade_coin_id,
     dashboard?.order_data?.base_coin_id,
     dashboard?.order_data?.coin_pair_id,
-    ,
+    isLoggedIn,
   ]);
   return (
     <div>
