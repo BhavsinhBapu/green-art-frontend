@@ -191,6 +191,14 @@ export const placeP2POrder = async (
 };
 // get-p2p-order-details
 //
+
+// export get-gift-card-order
+export const getGiftCardDetails = async (order_uid: string) => {
+  const { data } = await p2pResuest.get(
+    `/get-gift-card-order?order_uid=${order_uid}`
+  );
+  return data;
+};
 export const getP2pOrderDetails = async (order_uid: string) => {
   const { data } = await p2pResuest.post("/get-p2p-order-details", {
     order_uid: order_uid,
@@ -251,6 +259,10 @@ export const getAvailableBalance = async (
   );
   return data;
 };
+export const payNowGiftCardOrder = async (formData: any) => {
+  const { data } = await p2pResuest.post("/pay-now-gift-card-order", formData);
+  return data;
+};
 export const paymentP2pOrder = async (formData: any) => {
   const { data } = await p2pResuest.post("/payment-p2p-order", formData);
   return data;
@@ -259,6 +271,22 @@ export const p2pOrderCancel = async (formData: any) => {
   const { data } = await p2pResuest.post("/cancel-p2p-order", formData);
   return data;
 };
+export const giftCardOrderCancel = async (formData: any) => {
+  const { data } = await p2pResuest.post("/gift-card-order-cancel", formData);
+  return data;
+};
+// payment-confirm-gift-card-order
+
+export const PaymentConfirmGiftCardOrder = async (formData: any) => {
+  const { data } = await p2pResuest.post(
+    "/payment-confirm-gift-card-order",
+    formData
+  );
+  return data;
+};
+
+
+
 // release-p2p-order
 export const releaseP2pOrder = async (formData: any) => {
   const { data } = await p2pResuest.post("/release-p2p-order", formData);
@@ -280,9 +308,20 @@ export const disputeProcess = async (formData: any) => {
   const { data } = await p2pResuest.post("/dispute-process", formData);
   return data;
 };
+// gift-card-order-dispute
+export const disputeProcessGiftCard = async (formData: any) => {
+  const { data } = await p2pResuest.post("/gift-card-order-dispute", formData);
+  return data;
+};
+
+
 // send-message
 export const sendMessageTrade = async (formData: any) => {
   const { data } = await p2pResuest.post("/send-message", formData);
+  return data;
+};
+export const sendMessageGift = async (formData: any) => {
+  const { data } = await p2pResuest.post("/send-message-gift", formData);
   return data;
 };
 // user-center
@@ -292,5 +331,10 @@ export const userCenter = async () => {
 };
 export const userProfileID = async (id: any) => {
   const { data } = await p2pResuest.get(`/user-profile?id=${id}`);
+  return data;
+};
+
+export const getGiftCardTradeHeder = async () => {
+  const { data } = await p2pResuest.get(`/get-gift-card-trade-header`);
   return data;
 };

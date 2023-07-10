@@ -6,8 +6,11 @@ import { BsArrowRight } from "react-icons/bs";
 import MyCardModal from "../modal/MyCardModal";
 import SendCryptoCardModal from "../modal/SendCryptoCardModal";
 import { NoItemFound } from "components/NoItemFound/NoItemFound";
+import { useSelector } from "react-redux";
+import { RootState } from "state/store";
 
-export default function MyCards({ myCards }: any) {
+export default function MyCards({ myCards, hanldeMyCards }: any) {
+  const { isLoggedIn } = useSelector((state: RootState) => state.user);
   const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSendCryptoCardModalOpen, setIsSendCryptoCardModalOpen] =
@@ -29,7 +32,7 @@ export default function MyCards({ myCards }: any) {
           <h3>My Cards</h3>
         </div>
         <div>
-          <Link href={`/gift-cards/my-cards`}>
+          <Link href={isLoggedIn ? `/gift-cards/my-cards` : "/signin"}>
             <a>
               <div className="d-flex align-items-center">
                 <span className="inline-block pr-2">All({myCards.length})</span>
@@ -42,9 +45,9 @@ export default function MyCards({ myCards }: any) {
         </div>
       </div>
       {myCards.length > 0 ? (
-        <div className="row mt-3 get-touch-area">
+        <div className="row mt-3 get-touch-area py-2">
           {myCards.map((item: any, index: number) => (
-            <div className="col-lg-4 my-3 pointer" key={index}>
+            <div className="col-lg-4 col-md-4 col-12 my-3 pointer" key={index}>
               <div
                 className="single-card h-full"
                 onClick={() => myCardHandle(item)}
@@ -71,6 +74,8 @@ export default function MyCards({ myCards }: any) {
           giftCardData={giftCardData}
           setIsModalOpen={setIsModalOpen}
           sendCryptoCardModalHandler={sendCryptoCardModalHandler}
+          isHome={true}
+          modalFunc={hanldeMyCards}
         />
       )}
       {isSendCryptoCardModalOpen && (

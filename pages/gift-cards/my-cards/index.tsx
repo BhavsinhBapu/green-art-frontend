@@ -2,16 +2,15 @@ import { CUstomSelect } from "components/common/CUstomSelect";
 import ImageComponent from "components/common/ImageComponent";
 import MyCardModal from "components/gift-cards/modal/MyCardModal";
 import SendCryptoCardModal from "components/gift-cards/modal/SendCryptoCardModal";
-import request from "lib/request";
 import useTranslation from "next-translate/useTranslation";
 import React, { useEffect, useState } from "react";
-import { toast } from "react-toastify";
 import ReactPaginate from "react-paginate";
 import Footer from "components/common/footer";
 import { NoItemFound } from "components/NoItemFound/NoItemFound";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
 import SectionLoading from "components/common/SectionLoading";
+import { getMyCardPageData, getMyCards } from "state/actions/giftCards";
 
 const options = [
   { value: "all", label: "All" },
@@ -34,8 +33,8 @@ export default function Index() {
     useState(false);
 
   useEffect(() => {
-    getMyCardPageData();
-    getMyCards("all", limit, 1);
+    getMyCardPageData(setPageData);
+    getMyCards("all", limit, 1, setLoading, setMyCards);
   }, []);
 
   const myCardHandle = (cardData: any) => {
@@ -48,38 +47,18 @@ export default function Index() {
     setIsModalOpen(false);
   };
 
-  const getMyCardPageData = async () => {
-    const { data } = await request.get(`/gift-card/my-gift-card-page`);
-
-    if (!data.success) {
-      toast.error(data.message);
-
-      return;
-    }
-    setPageData(data.data);
-  };
-
-  const getMyCards = async (status: any, limit: any, page: any) => {
-    setLoading(true);
-    const { data } = await request.get(
-      `/gift-card/my-gift-card-list?status=${status}&limit=${limit}&page=${page}`
-    );
-    if (!data.success) {
-      toast.error(data.message);
-      setLoading(false);
-      return;
-    }
-    setMyCards(data.data);
-    setLoading(false);
-  };
-
   const handleStatus = (event: any) => {
-    getMyCards(event.value, limit, 1);
+    if (activeStatus === event.value) return;
+    getMyCards(event.value, limit, 1, setLoading, setMyCards);
     setActiveStatus(event.value);
   };
 
   const handlePageClick = (event: any) => {
-    getMyCards(activeStatus, limit, event.selected + 1);
+    getMyCards(activeStatus, limit, event.selected + 1, setLoading, setMyCards);
+  };
+
+  const handleModalData = () => {
+    getMyCards(activeStatus, limit, 1, setLoading, setMyCards);
   };
 
   return (
@@ -116,14 +95,14 @@ export default function Index() {
       <div className="py-80">
         <div className="container">
           <div className="row">
-            <div className="col-lg-9 col-md-9 col-6">
+            <div className="col-lg-9 col-md-9 col-12">
               <div>
                 <h3>{t(`My Cards`)}</h3>
                 <small>{t(`Send a crypto gift card for any occasion`)}</small>
               </div>
             </div>
 
-            <div className="col-lg-3 col-md-3 col-6">
+            <div className="col-lg-3 col-md-3 col-12">
               <div className="d-flex align-items-center gap-10 border px-2 rounded ">
                 <span>
                   <b>{t(`Status:`)}</b>{" "}
@@ -190,6 +169,8 @@ export default function Index() {
           giftCardData={giftCardData}
           setIsModalOpen={setIsModalOpen}
           sendCryptoCardModalHandler={sendCryptoCardModalHandler}
+          modalFunc={handleModalData}
+          isHome={false}
         />
       )}
       {isSendCryptoCardModalOpen && (
