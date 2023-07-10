@@ -6,6 +6,7 @@ import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { getExchangeMarketDetails } from "service/futureTrade";
 
 export default function Index() {
   const { t } = useTranslation();
@@ -16,9 +17,7 @@ export default function Index() {
   }, []);
 
   const getTradeSectionData = async () => {
-    const { data } = await request.get(
-      `/future-trade/get-exchange-market-details-app?limit=8&page=1&type=assets`
-    );
+    const data: any = getExchangeMarketDetails();
     if (!data.success) {
       toast.error(data.message);
       return;
@@ -30,7 +29,7 @@ export default function Index() {
       <div className="container">
         <h1 className="banner-title py-4">{t("Crypto Futures Market")}</h1>
         {/* top chart start*/}
-        <TopCharts tradeDatas={tradeDatas}/>
+        <TopCharts tradeDatas={tradeDatas} />
         {/* top chart end*/}
       </div>
       <div className="bg-card-primary-clr">
@@ -39,7 +38,7 @@ export default function Index() {
         {/* trade section end */}
 
         {/* market index  start*/}
-        <MarketIndex tradeDatas={tradeDatas}/>
+        <MarketIndex tradeDatas={tradeDatas} />
         {/* market index  end*/}
 
         <section className="py-5">

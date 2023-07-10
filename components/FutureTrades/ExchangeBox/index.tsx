@@ -66,6 +66,13 @@ const ExchangeBox = () => {
           ? dashboard?.order_data?.sell_price
           : dashboard?.order_data?.buy_price,
     });
+    setOpenCloseMarketCoinData({
+      ...OpenCloseLimitCoinData,
+      price:
+        trade_type === FUTURE_TRADE_TYPE_OPEN
+          ? dashboard?.order_data?.sell_price
+          : dashboard?.order_data?.buy_price,
+    });
   }, [dashboard?.order_data?.sell_price, trade_type]);
 
   const [orderType, setorderType] = useState<number>(LIMIT_ORDER);
@@ -231,7 +238,11 @@ const ExchangeBox = () => {
         }}
       >
         <Isolated isolated={isolated} setIsolated={setIsolated} />
-        <Leverage leverage={leverage} setLeverage={setLeverage} />
+        <Leverage
+          leverage={leverage}
+          setLeverage={setLeverage}
+          dashboard={dashboard}
+        />
       </div>
       <div id="pills-tabContent" className="tab-content">
         <div

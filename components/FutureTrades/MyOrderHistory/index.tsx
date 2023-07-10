@@ -36,13 +36,15 @@ const MyOrderHistory = () => {
   );
 
   useEffect(() => {
-    listenMessagesFuture(
-      setListData,
-      settransactionHistory,
-      setorderHistory,
-      setOpenOrder
-    );
-  }, [currentPair]);
+    if (isLoggedIn) {
+      listenMessagesFuture(
+        setListData,
+        settransactionHistory,
+        setorderHistory,
+        setOpenOrder
+      );
+    }
+  }, [currentPair, isLoggedIn]);
   useEffect(() => {
     if (
       dashboard?.order_data?.base_coin_id &&
@@ -154,7 +156,7 @@ const MyOrderHistory = () => {
                     setSelected(TRADE_HISTORY);
                   }}
                 >
-                  Trade Hisotry
+                  Trade History
                 </a>
               </li>
               <li role="presentation" className="nav-item">

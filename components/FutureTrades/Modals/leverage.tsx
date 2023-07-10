@@ -1,10 +1,26 @@
 import useTranslation from "next-translate/useTranslation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 
-const Leverage = ({ leverage, setLeverage }: any) => {
+const Leverage = ({ leverage, setLeverage, dashboard }: any) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [leverages, setLeverages] = useState<any>([]);
   const { t } = useTranslation("common");
+  // dashboard?.order_data?.max_leverage;
+  const generateLeverage = () => {
+    const leverageArray = [];
+    const limit = dashboard?.order_data?.max_leverage;
+    if (limit > 10) {
+      leverageArray.push(1, 5, 10);
+
+      let currentLeverage = 20;
+      while (currentLeverage <= limit) {
+        leverageArray.push(currentLeverage);
+        currentLeverage += 10;
+      }
+    }
+    setLeverages(leverageArray);
+  };
 
   const toggle = () => {
     setIsModalOpen(!isModalOpen);
@@ -16,6 +32,9 @@ const Leverage = ({ leverage, setLeverage }: any) => {
   const modifyLeverage = (value: number) => {
     setLeverage(value);
   };
+  useEffect(() => {
+    dashboard?.order_data?.max_leverage && generateLeverage();
+  }, [dashboard?.order_data?.max_leverage]);
 
   return (
     <>
@@ -36,86 +55,16 @@ const Leverage = ({ leverage, setLeverage }: any) => {
             <h3>Leverage</h3>
             <div className="leverage-section">{leverage}x</div>
             <div className="mt-3 percent-container mb-5 d-flex flex-wrap">
-              <span
-                className="percent-btn col-3 mb-2"
-                onClick={() => {
-                  modifyLeverage(1);
-                }}
-              >
-                1x
-              </span>
-              <span
-                className="percent-btn col-3 mb-2"
-                onClick={() => {
-                  modifyLeverage(5);
-                }}
-              >
-                5x
-              </span>
-              <span
-                className="percent-btn col-3 mb-2"
-                onClick={() => {
-                  modifyLeverage(10);
-                }}
-              >
-                10x
-              </span>
-              <span
-                className="percent-btn col-3 mb-2"
-                onClick={() => {
-                  modifyLeverage(20);
-                }}
-              >
-                20x
-              </span>
-              <span
-                className="percent-btn col-3 mb-2"
-                onClick={() => {
-                  modifyLeverage(30);
-                }}
-              >
-                30x
-              </span>
-              <span
-                className="percent-btn col-3 mb-2"
-                onClick={() => {
-                  modifyLeverage(40);
-                }}
-              >
-                40x
-              </span>
-              <span
-                className="percent-btn col-3 mb-2"
-                onClick={() => {
-                  modifyLeverage(50);
-                }}
-              >
-                50x
-              </span>
-              <span
-                className="percent-btn col-3 mb-2"
-                onClick={() => {
-                  modifyLeverage(60);
-                }}
-              >
-                60x
-              </span>
-              <span
-                className="percent-btn col-3 mb-2"
-                onClick={() => {
-                  modifyLeverage(80);
-                }}
-              >
-                80x
-              </span>
-              <span
-                className="percent-btn col-3 mb-2"
-                onClick={() => {
-                  modifyLeverage(100);
-                }}
-              >
-                100x
-              </span>
+              {leverages?.map((leverage: number) => (
+                <span
+                  className="percent-btn col-3 mb-2"
+                  onClick={() => {
+                    modifyLeverage(leverage);
+                  }}
+                >
+                  {leverage}x
+                </span>
+              ))}
             </div>
             <div>
               <button

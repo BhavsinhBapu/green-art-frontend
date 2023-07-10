@@ -55,7 +55,6 @@ const Position = ({ listData }: any) => {
                   <th
                     scope="button-future-close"
                     onClick={() => {
-                      console.log("SSSSSSSSSSSSssss");
                       dispatch(
                         closeLongShortAllOrderAction(
                           CloseAll,

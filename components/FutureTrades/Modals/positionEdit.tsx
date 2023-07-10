@@ -95,12 +95,12 @@ const PositionEdit = ({ item }: any) => {
                 </span>
               </div>
             </div>
-            <small className="mt-5">
+            {/* <small className="mt-5">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim,
               eligendi. Vel voluptas placeat in unde, nesciunt ut atque
               doloribus vitae, iure eaque modi consectetur! Libero eveniet quis
               sunt ipsam distinctio!
-            </small>
+            </small> */}
             <div className="position-button-area">
               <button
                 style={{

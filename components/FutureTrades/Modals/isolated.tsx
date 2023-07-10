@@ -2,6 +2,8 @@ import { CROSS, ISOLATED } from "helpers/core-constants";
 import useTranslation from "next-translate/useTranslation";
 import React, { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
+import { useSelector } from "react-redux";
+import { RootState } from "state/store";
 
 const Isolated = ({ isolated, setIsolated }: any) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -17,7 +19,7 @@ const Isolated = ({ isolated, setIsolated }: any) => {
   const modifyIsolated = (value: number) => {
     setIsolated(value);
   };
-
+  const { currentPair } = useSelector((state: RootState) => state.exchange);
   const crossMarginDescription =
     "In Cross Margin Mode, the trader's entire account balance is used as collateral for all open positions.The available margin for opening new positions is determined by the total account equity rather than individual positions.";
   const isolatedMarginDescription =
@@ -39,7 +41,7 @@ const Isolated = ({ isolated, setIsolated }: any) => {
       {isModalOpen && (
         <div id="demo-modal" className="gift-card-modal">
           <div className="future-modal__content p-5">
-            <h3>Leverage</h3>
+            <h3>{currentPair} Perpetual Margin Mode</h3>
             <div className="mt-3 percent-container mb-5 d-flex flex-wrap">
               <span
                 className="percent-btn col-3 pb-2"
@@ -53,7 +55,7 @@ const Isolated = ({ isolated, setIsolated }: any) => {
               >
                 Isolated
               </span>
-              <span
+              {/* <span
                 className="percent-btn col-3 pb-2"
                 style={{
                   background: isolated === CROSS ? "var(--primary-color)" : "",
@@ -63,7 +65,7 @@ const Isolated = ({ isolated, setIsolated }: any) => {
                 }}
               >
                 Cross
-              </span>
+              </span> */}
             </div>
             <div>
               {isolated === ISOLATED && (

@@ -22,12 +22,25 @@ const PositionRow = ({ list, Close, setCloseAll, index, CloseAll }: any) => {
           {list?.profit_loss_calculation?.base_coin_type}
         </td>
         <td>
-          <span className="text-success">
-            {list?.profit_loss_calculation?.pnl}{" "}
+          <span
+            className={
+              parseFloat(list?.profit_loss_calculation?.pnl) <= 0
+                ? "text-danger"
+                : "text-success"
+            }
+          >
+            {parseFloat(list?.profit_loss_calculation?.pnl).toFixed(4)}{" "}
             {list?.profit_loss_calculation?.base_coin_type}
           </span>
-          <div className="text-success">
-            {list?.profit_loss_calculation?.roe}%
+
+          <div
+            className={
+              parseFloat(list?.profit_loss_calculation?.roe) <= 0
+                ? "text-danger"
+                : "text-success"
+            }
+          >
+            {parseFloat(list?.profit_loss_calculation?.roe).toFixed(4)}%
           </div>
         </td>
         <td className="position-container">
