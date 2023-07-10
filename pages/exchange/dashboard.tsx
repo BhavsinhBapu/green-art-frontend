@@ -18,26 +18,32 @@ import useTranslation from "next-translate/useTranslation";
 import Head from "next/head";
 import { formatCurrency } from "common";
 import Navbar from "components/common/Navbar";
+import { useRouter } from "next/router";
 
 const Dashboard: NextPage = () => {
   const { t } = useTranslation("common");
+  const router = useRouter();
   const dispatch = useDispatch();
   const [isLoading, setisLoading] = useState(true);
   const { isLoggedIn, user } = useSelector((state: RootState) => state.user);
   const { dashboard, currentPair } = useSelector(
     (state: RootState) => state.exchange
   );
+  
   useEffect(() => {
-    const pair = localStorage.getItem("current_pair");
-    if (pair) {
-      dispatch(setCurrentPair(pair));
-      dispatch(initialDashboardCallAction(pair, dashboard, setisLoading));
+    // const pair = localStorage.getItem("current_pair");
+    if(!router.isReady) return;
+
+    if (router?.query?.coin_pair) {
+      const pair_name = router?.query?.coin_pair;
+      dispatch(setCurrentPair(pair_name));
+      dispatch(initialDashboardCallAction(pair_name, dashboard, setisLoading, router));
     } else {
       dispatch(
-        initialDashboardCallAction(currentPair, dashboard, setisLoading)
+        initialDashboardCallAction(currentPair, dashboard, setisLoading, router)
       );
     }
-  }, [isLoggedIn, currentPair]);
+  }, [isLoggedIn, currentPair, router?.query?.coin_pair]);
   useEffect(() => {
     if (
       dashboard?.order_data?.base_coin_id &&
