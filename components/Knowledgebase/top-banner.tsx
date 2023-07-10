@@ -8,18 +8,19 @@ export const TopBanner = ({ resorce }: any) => {
   const [suggestions, setSuggestions] = useState(true);
 
   const [lists, setLists] = useState([]);
+  
   return (
     <section
       className=""
       style={{
         backgroundImage: resorce?.cover_image
-          ? //@ts-ignore
-            resource?.cover_image
+          ? `url(${resorce?.cover_image})`
           : "url(/top_bg.jpg)",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
-      }}>
+      }}
+    >
       <div className="container">
         <div className="row">
           <div className="col-12 text-center text-white mt-5 pt-5">
@@ -57,11 +58,13 @@ export const TopBanner = ({ resorce }: any) => {
                   {suggestions && (
                     <div
                       className="search-filter ps-1 rounded"
-                      id="append-search-result">
+                      id="append-search-result"
+                    >
                       {lists.map((list: any, index: number) => (
                         <Link
                           key={index}
-                          href={"/knowledgebase/" + list.unique_code}>
+                          href={"/knowledgebase/" + list.unique_code}
+                        >
                           <a href="">{list?.title}</a>
                         </Link>
                       ))}
