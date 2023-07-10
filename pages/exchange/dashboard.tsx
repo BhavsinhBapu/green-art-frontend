@@ -35,7 +35,7 @@ const Dashboard: NextPage = () => {
     if(!router.isReady) return;
 
     if (router?.query?.coin_pair) {
-      const pair_name = router?.query?.coin_pair;
+      const pair_name = String(router?.query?.coin_pair);
       dispatch(setCurrentPair(pair_name));
       dispatch(initialDashboardCallAction(pair_name, dashboard, setisLoading, router));
     } else {
@@ -43,7 +43,7 @@ const Dashboard: NextPage = () => {
         initialDashboardCallAction(currentPair, dashboard, setisLoading, router)
       );
     }
-  }, [isLoggedIn, currentPair, router?.query?.coin_pair]);
+  }, [isLoggedIn, router?.query?.coin_pair]);
   useEffect(() => {
     if (
       dashboard?.order_data?.base_coin_id &&
