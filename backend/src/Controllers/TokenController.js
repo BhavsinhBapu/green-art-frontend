@@ -1014,7 +1014,6 @@ async function getAddressFromPK(req, res) {
       await trxToken.getTrxAddressByPk(req, res);
     } else {
       const response = await getETHAddressFromPk(req);
-      console.log('networkType', response)
       res.send({
         status: response.status,
         message: response.message,
