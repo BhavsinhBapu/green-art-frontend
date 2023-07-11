@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { getExchangeMarketDetails } from "service/futureTrade";
+import { listenMessagesFutureMarketData } from "state/actions/exchange";
 
 export default function Index() {
   const { t } = useTranslation();
@@ -15,6 +16,9 @@ export default function Index() {
   useEffect(() => {
     getTradeSectionData();
   }, []);
+  useEffect(() => {
+    listenMessagesFutureMarketData()
+  },[])
 
   const getTradeSectionData = async () => {
     const data: any = getExchangeMarketDetails();
