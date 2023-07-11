@@ -238,7 +238,7 @@ export async function listenMessages(dispatch: any, user: any) {
   });
 }
 export const initialDashboardCallAction =
-  (pair: string, dashboard: any, setisLoading?: any) =>
+  (pair: string, dashboard: any, setisLoading?: any, router : any) =>
   async (dispatch: any) => {
     // setisLoading && setisLoading(true);
     const token = Cookies.get("token");
@@ -257,10 +257,11 @@ export const initialDashboardCallAction =
           "trade_coin_id",
           response?.pairs[0]?.child_coin_id
         );
-        await localStorage.setItem(
-          "current_pair",
-          response?.pairs[0]?.coin_pair
-        );
+        // await localStorage.setItem(
+        //   "current_pair",
+        //   response?.pairs[0]?.coin_pair
+        // );
+        // router.push(`/exchange/dashboard?coin_pair=${response?.pairs[0]?.coin_pair}`)
         response?.pairs[0]?.coin_pair &&
           dispatch(setCurrentPair(response?.pairs[0]?.coin_pair));
       }
@@ -288,6 +289,7 @@ export const initialDashboardCallAction =
         "trade_coin_id",
         response?.order_data?.trade_coin_id
       );
+      // router.push(`/exchange/dashboard?coin_pair=${response?.pairs[0]?.coin_pair}`)
     } else {
       await localStorage.setItem(
         "base_coin_id",
@@ -297,13 +299,16 @@ export const initialDashboardCallAction =
         "trade_coin_id",
         response?.pairs[0]?.child_coin_id
       );
-      await localStorage.setItem("current_pair", response?.pairs[0]?.coin_pair);
+      // await localStorage.setItem("current_pair", response?.pairs[0]?.coin_pair);
+      // router.push(`/exchange/dashboard?coin_pair=${response?.pairs[0]?.coin_pair}`)
       response?.pairs[0]?.coin_pair &&
         dispatch(setCurrentPair(response?.pairs[0]?.coin_pair));
     }
 
     await dispatch(setDashboard(response));
-
+    if(!router?.query?.coin_pair){
+      router.push(`/exchange/dashboard?coin_pair=${response?.pairs[0]?.coin_pair}`)
+    }
     const BuyResponse = await openBookDashboard(
       response?.order_data?.base_coin_id
         ? response?.order_data?.base_coin_id
