@@ -1009,10 +1009,12 @@ async function getContractDetails(req, res)
 async function getAddressFromPK(req, res) {
   try {
     const networkType = req.headers.networktype;
+    
     if (parseInt(networkType) == 6) {
       await trxToken.getTrxAddressByPk(req, res);
     } else {
       const response = await getETHAddressFromPk(req);
+      console.log('networkType', response)
       res.send({
         status: response.status,
         message: response.message,
@@ -1037,7 +1039,6 @@ async function getETHAddressFromPk(req) {
     
     const response = await web3.eth.accounts.privateKeyToAccount(pk);
     if (response) {
-        Dashboard
       return {
         status: true,
         message: "Get address success",
