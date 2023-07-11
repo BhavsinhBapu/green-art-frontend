@@ -88,7 +88,7 @@ export async function unlistenAllChannels() {
     )}.order_place_${localStorage.getItem("user_id")}`
   );
 }
-export async function listenMessagesFutureMarketData() {
+export async function listenMessagesFutureMarketData(setTradeDatas: any) {
   await unlistenAllChannels();
   //@ts-ignore
   if (!window.Echo) {
@@ -114,7 +114,7 @@ export async function listenMessagesFutureMarketData() {
   window.Echo.channel(`future-trade-get-exchange-market-details-data`).listen(
     `.market-details-data`,
     (e: any) => {
-      console.log(e, "This is a pro ");
+      setTradeDatas(e);
     }
   );
 }

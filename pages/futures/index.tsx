@@ -17,7 +17,7 @@ export default function Index() {
     getTradeSectionData();
   }, []);
   useEffect(() => {
-    listenMessagesFutureMarketData()
+    listenMessagesFutureMarketData(setTradeDatas);
   },[])
 
   const getTradeSectionData = async () => {
