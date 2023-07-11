@@ -15253,6 +15253,40 @@ input:checked + .gift-card-buy-slider:before {
   overflow-y: auto;
 }
 
+.card-for-markets:hover {
+  background-color: var(--card-background-color);
+  cursor: pointer;
+  border-radius: 8px;
+}
+.card-for-markets-item {
+  border-radius: 8px;
+  padding: 2px;
+}
+.card-for-markets-item:hover {
+  background: var(--main-background-color);
+}
+
+.has-search-market-trade .form-control {
+  padding-left: 2.375rem;
+  height: 44px;
+}
+.has-search-market-trade .form-control:focus {
+  background: none;
+}
+
+.has-search-market-trade .form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: #aaa;
+  line-height: 44px;
+}
+
 @media (max-width: 991px) {
   .text-45 {
     font-size: 36px;
