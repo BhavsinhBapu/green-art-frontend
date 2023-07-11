@@ -15287,6 +15287,16 @@ input:checked + .gift-card-buy-slider:before {
   line-height: 44px;
 }
 
+.market-select-page .custom-select__control{
+  box-shadow: unset !important;
+}
+.market-select-page .custom-select__control .custom-select__value-container{
+  padding-right: 2px !important;
+}
+.market-select-page .custom-select__control .custom-select__indicator{
+  padding: 0 !important;
+}
+
 @media (max-width: 991px) {
   .text-45 {
     font-size: 36px;

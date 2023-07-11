@@ -1,15 +1,30 @@
 import TradeSections from "components/FutureTrades/home/trade-sections/TradeSections";
+import { CUstomSelect } from "components/common/CUstomSelect";
 import TradesTable from "components/markets/TradesTable";
 
 import useTranslation from "next-translate/useTranslation";
 import React from "react";
-
+const options = [
+  { value: "usd", label: "USD" },
+  { value: "btc", label: "BTC" },
+];
 export default function index() {
   const { t } = useTranslation();
+
+  const handleCoinType = (data: any) => {
+    console.log("data", data);
+  };
+
   return (
     <section>
       <div className="container">
-        <h1 className="banner-title py-4">{t("Markets Overview")}</h1>
+        <div className=" pt-4 pb-2">
+          <h1 className="banner-title">{t("Markets Overview")}</h1>
+          <div className="d-flex gap-5 align-items-center">
+            <p className="text-14">All price information is in</p>
+            <CUstomSelect options={options} handleFunction={handleCoinType} classname={'market-select-page'} defaultValue={options[0]}/>
+          </div>
+        </div>
 
         <div className="row my-2">
           <div className="col-md-3">
