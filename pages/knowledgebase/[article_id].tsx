@@ -15,10 +15,10 @@ const KnowledgebaseArticleDetails = ({ articleDetails }: any) => {
         <div className="row">
           <div className="col-md-6 col-lg-8 mt-4">
             <div className="main_img">
-              {articleDetails.article_details?.feature_image && (
+              {articleDetails.article_details?.feature_image_url && (
                 <img
                   className="rounded"
-                  src={articleDetails.article_details?.feature_image}
+                  src={articleDetails.article_details?.feature_image_url}
                   alt="img"
                 />
               )}

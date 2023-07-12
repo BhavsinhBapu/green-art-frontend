@@ -63,7 +63,8 @@ const SelectCurrencyRight = () => {
                 await unlistenAllChannels();
                 await localStorage.setItem("base_coin_id", row?.parent_coin_id);
                 await localStorage.setItem("trade_coin_id", row?.child_coin_id);
-                await localStorage.setItem("current_pair", row.coin_pair);
+                // await localStorage.setItem("current_pair", row.coin_pair);
+                router.push(`/exchange/dashboard?coin_pair=${row.coin_pair}`);
                 await dispatch(setCurrentPair(row.coin_pair));
 
                 // router.reload();

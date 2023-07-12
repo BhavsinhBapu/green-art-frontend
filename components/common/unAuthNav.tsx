@@ -139,7 +139,7 @@ const UnAuthNav = () => {
                       <a
                         style={{
                           padding: "3px 10px",
-                          background: "#fdd636",
+                          background: "var(--primary-color)",
                           borderRadius: "5px",
                           gap: "4px",
                         }}
