@@ -51,7 +51,8 @@ const TradesTable = ({ buy, show }: any) => {
             }
             trigger={["hover"]}
             key={index}
-            overlayClassName="rcTooltipOverlay">
+            overlayClassName="rcTooltipOverlay"
+          >
             <tr
               className="odd trade_tableList"
               onClick={() => changeSellPrice(item.price, item.amount)}
@@ -68,11 +69,12 @@ const TradesTable = ({ buy, show }: any) => {
                   amount: sumAmount,
                   total: sumtotal,
                 });
-              }}>
+              }}
+            >
               <>
                 <td>
                   <div className="asset">
-                    <span className="text-danger">{item.price}</span>
+                    <span className="redText">{item.price}</span>
                   </div>
                 </td>
                 <td>
@@ -95,7 +97,8 @@ const TradesTable = ({ buy, show }: any) => {
                         ? parseFloat(item?.percentage)
                         : 0
                     }%`,
-                  }}></div>
+                  }}
+                ></div>
               </>
             </tr>
           </Tooltip>

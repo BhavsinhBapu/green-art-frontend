@@ -33,7 +33,7 @@ import { GiBuyCard, GiSellCard, GiTrade } from "react-icons/gi";
 import { GoStop } from "react-icons/go";
 import { AiFillGift, AiOutlineClose } from "react-icons/ai";
 
-const Navbar = ({ settings, isLoggedIn }: any) => {
+const Navbar = ({ settings, isLoggedIn, ThemeColor, setThemeColor }: any) => {
   const { isLoading, user, logo, notificationData } = useSelector(
     (state: RootState) => state.user
   );
@@ -1914,7 +1914,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
           </OutsideClickHandler>
         </>
       ) : !isLoggedIn && isLoading === false ? (
-        <UnAuthNav />
+          <UnAuthNav setThemeColor={setThemeColor} />
       ) : (
         ""
       )}

@@ -163,7 +163,7 @@ const AllBuyOrders = ({ buy, show }: any) => {
                         >
                           <td>
                             <div className="asset">
-                              <span className="text-success">{item.price}</span>
+                              <span className="redText">{item.price}</span>
                             </div>
                           </td>
                           <td>

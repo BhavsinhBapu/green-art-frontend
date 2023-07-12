@@ -48,7 +48,7 @@ const SellBook = ({ height = 425 }) => {
               <tr className="odd trade_tableList_two">
                 <td>
                   <div className="asset">
-                    <span className="text-danger">26449.10000000</span>
+                    <span className="redTextr">26449.10000000</span>
                   </div>
                 </td>
                 <td>
@@ -147,7 +147,7 @@ const SellBook = ({ height = 425 }) => {
                   </div>
                 </td>
               </tr>
-              
+
               <tr className="odd trade_tableList_two">
                 <td>
                   <div className="asset">

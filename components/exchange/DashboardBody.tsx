@@ -23,7 +23,7 @@ const TradingChart = dynamic(
     ),
   { ssr: false }
 );
-const DashboardBody = () => {
+const DashboardBody = ({ ThemeColor }: any) => {
   const { t } = useTranslation("common");
   const [select, setSelect] = React.useState(3);
   const { dashboard, OpenBookBuy, OpenBooksell, marketTrades, currentPair } =
@@ -51,7 +51,7 @@ const DashboardBody = () => {
                   fill="none"
                   className="css-3kwgah w-25"
                 >
-                  <path d="M4 4h7v16H4V4z" fill="#0ECB81"></path>
+                  <path d="M4 4h7v16H4V4z" fill={ThemeColor.green}></path>
                   <path
                     d="M13 4h7v4h-7V4zm0 6h7v4h-7v-4zm7 6h-7v4h7v-4z"
                     fill="currentColor"
@@ -70,7 +70,7 @@ const DashboardBody = () => {
                   fill="none"
                   className="css-3kwgah  w-25"
                 >
-                  <path d="M4 4h7v16H4V4z" fill="#F6465D"></path>
+                  <path d="M4 4h7v16H4V4z" fill={ThemeColor.red}></path>
                   <path
                     d="M13 4h7v4h-7V4zm0 6h7v4h-7v-4zm7 6h-7v4h7v-4z"
                     fill="currentColor"
@@ -89,8 +89,8 @@ const DashboardBody = () => {
                   fill="none"
                   className="css-3kwgah w-25"
                 >
-                  <path d="M4 4h7v7H4V4z" fill="#F6465D"></path>
-                  <path d="M4 13h7v7H4v-7z" fill="#0ECB81"></path>
+                  <path d="M4 4h7v7H4V4z" fill={ThemeColor.green}></path>
+                  <path d="M4 13h7v7H4v-7z" fill={ThemeColor.green}></path>
                   <path
                     d="M13 4h7v4h-7V4zm0 6h7v4h-7v-4zm7 6h-7v4h7v-4z"
                     fill="currentColor"
@@ -344,7 +344,7 @@ const DashboardBody = () => {
           <div className="card cp-user-custom-card">
             {currentPair && (
               //@ts-ignore
-              <TradingChart currentPair={currentPair} theme={theme} />
+              <TradingChart currentPair={currentPair} theme={theme} ThemeColor={ ThemeColor} />
             )}
           </div>
         </div>

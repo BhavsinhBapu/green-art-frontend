@@ -4756,7 +4756,7 @@ select:-webkit-autofill:focus {
 }
 
 .value-increaseicon {
-  color: #28a745 !important;
+  color: var(--trade-green) !important;
   font-size: 15px !important;
 }
 
@@ -4789,7 +4789,9 @@ select:-webkit-autofill:focus {
 
 .progress-red {
   position: absolute;
-  background-color: rgb(255 46 46 / 9%);
+  /* background-color: rgb(255 46 46 / 9%); */
+  background-color: var(--trade-red);
+  opacity: 0.3;
   height: 100%;
   top: 0;
   right: 0;
@@ -4823,7 +4825,8 @@ select:-webkit-autofill:focus {
 
 .progress-green {
   position: absolute;
-  background-color: #32d7771a;
+  background-color: var(--trade-green);
+  opacity: 0.3;
   height: 100%;
   top: 0;
   right: 0;
@@ -15260,7 +15263,7 @@ input:checked + .gift-card-buy-slider:before {
   padding: 16px;
   border-radius: 24px;
   box-shadow: 0 16px 64px -24px rgba(31, 47, 70, 0.25);
-  background: #fcfcfd;
+  background: var(--main-background-color);
   top: calc(100% + 20px) !important;
 }
 
@@ -15277,7 +15280,7 @@ input:checked + .gift-card-buy-slider:before {
   height: 16px;
   border-radius: 50%;
 }
-.margin-right-auto{
+.margin-right-auto {
   margin-right: auto;
 }
 
@@ -15340,4 +15343,10 @@ input:checked + .gift-card-buy-slider:before {
 }
 .success-trade {
   color: var(--trade-green) !important;
+}
+.greenText{
+  color: var(--trade-green);
+}
+.redText{
+  color: var(--trade-red);
 }

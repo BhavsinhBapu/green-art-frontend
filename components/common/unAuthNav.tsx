@@ -9,11 +9,15 @@ import { RootState } from "state/store";
 import useTranslation from "next-translate/useTranslation";
 import { notification } from "service/notification";
 import { useRouter } from "next/router";
-import { checkThemeState, darkModeToggle } from "helpers/functions";
+import {
+  changeThemeSettingsDashboard,
+  checkThemeState,
+  darkModeToggle,
+} from "helpers/functions";
 import { IoMdGlobe } from "react-icons/io";
 import { AiOutlineClose, AiOutlineSetting } from "react-icons/ai";
 
-const UnAuthNav = () => {
+const UnAuthNav = ({ setThemeColor }: any) => {
   const { isLoggedIn, user, logo } = useSelector(
     (state: RootState) => state.user
   );
@@ -229,7 +233,14 @@ const UnAuthNav = () => {
                                 type="radio"
                                 name="exampleRadios"
                                 id="exampleRadios1"
-                                value="option1"
+                                onClick={() => {
+                                  changeThemeSettingsDashboard(
+                                    "#32d777",
+                                    "#d63031",
+                                    setThemeColor
+                                  );
+                                }}
+                                // value="option1"
                               />
                               <label
                                 className="form-check-label w-full"
@@ -253,6 +264,13 @@ const UnAuthNav = () => {
                                 name="exampleRadios"
                                 id="exampleRadios3"
                                 value="option1"
+                                onClick={() => {
+                                  changeThemeSettingsDashboard(
+                                    "#3498db",
+                                    "#9b59b6",
+                                    setThemeColor
+                                  );
+                                }}
                               />
                               <label
                                 className="form-check-label w-full"
