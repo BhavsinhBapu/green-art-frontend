@@ -1,15 +1,33 @@
-import TradeSections from "components/FutureTrades/home/trade-sections/TradeSections";
 import { CUstomSelect } from "components/common/CUstomSelect";
+import MarketsCards from "components/markets/MarketsCards";
 import TradesTable from "components/markets/TradesTable";
+import request from "lib/request";
 
 import useTranslation from "next-translate/useTranslation";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 const options = [
   { value: "usd", label: "USD" },
   { value: "btc", label: "BTC" },
 ];
 export default function index() {
   const { t } = useTranslation();
+  const [marketsCardData, setMarketsCardData] = useState<any>();
+
+  useEffect(() => {
+    getMarketCardDatas();
+  }, []);
+
+  const getMarketCardDatas = async () => {
+    const { data } = await request.get(
+      `/market-overview-coin-statistic-list?currency_type=`
+    );
+    if (!data.success) {
+      toast.error(data.message);
+      return;
+    }
+    setMarketsCardData(data.data);
+  };
 
   const handleCoinType = (data: any) => {
     console.log("data", data);
@@ -22,323 +40,48 @@ export default function index() {
           <h1 className="banner-title">{t("Markets Overview")}</h1>
           <div className="d-flex gap-5 align-items-center">
             <p className="text-14">All price information is in</p>
-            <CUstomSelect options={options} handleFunction={handleCoinType} classname={'market-select-page'} defaultValue={options[0]}/>
+            <CUstomSelect
+              options={options}
+              handleFunction={handleCoinType}
+              classname={"market-select-page"}
+              defaultValue={options[0]}
+            />
           </div>
         </div>
 
         <div className="row my-2">
-          <div className="col-md-3">
-            <div className="p-3 card-for-markets">
-              <div className="row">
-                <div className="col-12 mb-3">
-                  <p className="text-12">Highlight Coin</p>
-                </div>
-                <div className="col-md-12 mb-2 ">
-                  <div className="card-for-markets-item">
-                    <div className="row">
-                      <div className="col-4 d-flex align-items-center">
-                        <img
-                          className="icon mr-2"
-                          src={"/bitcoin.png"}
-                          alt="coin"
-                          width="25px"
-                          height="25px"
-                        />
-                        <p>BTC</p>
-                      </div>
-
-                      <div className="col-4">
-                        <p>$241.90</p>
-                      </div>
-                      <div className="col-4">
-                        <p>+3.07%</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-12 mb-2 ">
-                  <div className="card-for-markets-item">
-                    <div className="row">
-                      <div className="col-4 d-flex align-items-center">
-                        <img
-                          className="icon mr-2"
-                          src={"/bitcoin.png"}
-                          alt="coin"
-                          width="25px"
-                          height="25px"
-                        />
-                        <p>BTC</p>
-                      </div>
-
-                      <div className="col-4">
-                        <p>$241.90</p>
-                      </div>
-                      <div className="col-4">
-                        <p>+3.07%</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-12 mb-2 ">
-                  <div className="card-for-markets-item">
-                    <div className="row">
-                      <div className="col-4 d-flex align-items-center">
-                        <img
-                          className="icon mr-2"
-                          src={"/bitcoin.png"}
-                          alt="coin"
-                          width="25px"
-                          height="25px"
-                        />
-                        <p>BTC</p>
-                      </div>
-
-                      <div className="col-4">
-                        <p>$241.90</p>
-                      </div>
-                      <div className="col-4">
-                        <p>+3.07%</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+          {marketsCardData?.highlight_coin.length > 0 && (
+            <div className="col-md-4 col-lg-3">
+              <MarketsCards
+                title={`Highlight Coin`}
+                cardItems={marketsCardData?.highlight_coin}
+              />
             </div>
-          </div>
-          <div className="col-md-3">
-            <div className="p-3 card-for-markets">
-              <div className="row">
-                <div className="col-12 mb-3">
-                  <p className="text-12">New Listing</p>
-                </div>
-                <div className="col-md-12 mb-2 ">
-                  <div className="card-for-markets-item">
-                    <div className="row">
-                      <div className="col-4 d-flex align-items-center">
-                        <img
-                          className="icon mr-2"
-                          src={"/bitcoin.png"}
-                          alt="coin"
-                          width="25px"
-                          height="25px"
-                        />
-                        <p>BTC</p>
-                      </div>
-
-                      <div className="col-4">
-                        <p>$241.90</p>
-                      </div>
-                      <div className="col-4">
-                        <p>+3.07%</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-12 mb-2 ">
-                  <div className="card-for-markets-item">
-                    <div className="row">
-                      <div className="col-4 d-flex align-items-center">
-                        <img
-                          className="icon mr-2"
-                          src={"/bitcoin.png"}
-                          alt="coin"
-                          width="25px"
-                          height="25px"
-                        />
-                        <p>BTC</p>
-                      </div>
-
-                      <div className="col-4">
-                        <p>$241.90</p>
-                      </div>
-                      <div className="col-4">
-                        <p>+3.07%</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-12 mb-2 ">
-                  <div className="card-for-markets-item">
-                    <div className="row">
-                      <div className="col-4 d-flex align-items-center">
-                        <img
-                          className="icon mr-2"
-                          src={"/bitcoin.png"}
-                          alt="coin"
-                          width="25px"
-                          height="25px"
-                        />
-                        <p>BTC</p>
-                      </div>
-
-                      <div className="col-4">
-                        <p>$241.90</p>
-                      </div>
-                      <div className="col-4">
-                        <p>+3.07%</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+          )}
+          {marketsCardData?.new_listing.length > 0 && (
+            <div className="col-md-4 col-lg-3">
+              <MarketsCards
+                title={`New Listing`}
+                cardItems={marketsCardData?.new_listing}
+              />
             </div>
-          </div>
-          <div className="col-md-3">
-            <div className="p-3 card-for-markets">
-              <div className="row">
-                <div className="col-12 mb-3">
-                  <p className="text-12">Top Gainer Coin</p>
-                </div>
-                <div className="col-md-12 mb-2 ">
-                  <div className="card-for-markets-item">
-                    <div className="row">
-                      <div className="col-4 d-flex align-items-center">
-                        <img
-                          className="icon mr-2"
-                          src={"/bitcoin.png"}
-                          alt="coin"
-                          width="25px"
-                          height="25px"
-                        />
-                        <p>BTC</p>
-                      </div>
-
-                      <div className="col-4">
-                        <p>$241.90</p>
-                      </div>
-                      <div className="col-4">
-                        <p>+3.07%</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-12 mb-2 ">
-                  <div className="card-for-markets-item">
-                    <div className="row">
-                      <div className="col-4 d-flex align-items-center">
-                        <img
-                          className="icon mr-2"
-                          src={"/bitcoin.png"}
-                          alt="coin"
-                          width="25px"
-                          height="25px"
-                        />
-                        <p>BTC</p>
-                      </div>
-
-                      <div className="col-4">
-                        <p>$241.90</p>
-                      </div>
-                      <div className="col-4">
-                        <p>+3.07%</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-12 mb-2 ">
-                  <div className="card-for-markets-item">
-                    <div className="row">
-                      <div className="col-4 d-flex align-items-center">
-                        <img
-                          className="icon mr-2"
-                          src={"/bitcoin.png"}
-                          alt="coin"
-                          width="25px"
-                          height="25px"
-                        />
-                        <p>BTC</p>
-                      </div>
-
-                      <div className="col-4">
-                        <p>$241.90</p>
-                      </div>
-                      <div className="col-4">
-                        <p>+3.07%</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+          )}
+          {marketsCardData?.top_gainer_coin.length > 0 && (
+            <div className="col-md-4 col-lg-3">
+              <MarketsCards
+                title={`Top Gainer Coin`}
+                cardItems={marketsCardData?.top_gainer_coin}
+              />
             </div>
-          </div>
-          <div className="col-md-3">
-            <div className="p-3 card-for-markets">
-              <div className="row">
-                <div className="col-12 mb-3">
-                  <p className="text-12">Top Volume Coin</p>
-                </div>
-                <div className="col-md-12 mb-2 ">
-                  <div className="card-for-markets-item">
-                    <div className="row">
-                      <div className="col-4 d-flex align-items-center">
-                        <img
-                          className="icon mr-2"
-                          src={"/bitcoin.png"}
-                          alt="coin"
-                          width="25px"
-                          height="25px"
-                        />
-                        <p>BTC</p>
-                      </div>
-
-                      <div className="col-4">
-                        <p>$241.90</p>
-                      </div>
-                      <div className="col-4">
-                        <p>+3.07%</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-12 mb-2 ">
-                  <div className="card-for-markets-item">
-                    <div className="row">
-                      <div className="col-4 d-flex align-items-center">
-                        <img
-                          className="icon mr-2"
-                          src={"/bitcoin.png"}
-                          alt="coin"
-                          width="25px"
-                          height="25px"
-                        />
-                        <p>BTC</p>
-                      </div>
-
-                      <div className="col-4">
-                        <p>$241.90</p>
-                      </div>
-                      <div className="col-4">
-                        <p>+3.07%</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-12 mb-2 ">
-                  <div className="card-for-markets-item">
-                    <div className="row">
-                      <div className="col-4 d-flex align-items-center">
-                        <img
-                          className="icon mr-2"
-                          src={"/bitcoin.png"}
-                          alt="coin"
-                          width="25px"
-                          height="25px"
-                        />
-                        <p>BTC</p>
-                      </div>
-
-                      <div className="col-4">
-                        <p>$241.90</p>
-                      </div>
-                      <div className="col-4">
-                        <p>+3.07%</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+          )}
+          {marketsCardData?.top_volume_coin.length > 0 && (
+            <div className="col-md-4 col-lg-3">
+              <MarketsCards
+                title={`Top Volume Coin`}
+                cardItems={marketsCardData?.top_volume_coin}
+              />
             </div>
-          </div>
+          )}
         </div>
       </div>
       <div className="bg-card-primary-clr">
