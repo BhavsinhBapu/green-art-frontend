@@ -11,7 +11,7 @@ import { notification } from "service/notification";
 import { useRouter } from "next/router";
 import { checkThemeState, darkModeToggle } from "helpers/functions";
 import { IoMdGlobe } from "react-icons/io";
-import { AiOutlineClose } from "react-icons/ai";
+import { AiOutlineClose, AiOutlineSetting } from "react-icons/ai";
 
 const UnAuthNav = () => {
   const { isLoggedIn, user, logo } = useSelector(
@@ -23,6 +23,7 @@ const UnAuthNav = () => {
   const { navbar } = settings;
   const [active, setActive] = useState(false);
   const [notificationData, setNotification] = useState<any>([]);
+  const [isSettingsDropdownOpen, setIsSettingsDropdownOpen] = useState(false);
   const { t } = useTranslation("common");
   const getNotifications = async () => {
     const data = await notification();
@@ -193,14 +194,223 @@ const UnAuthNav = () => {
                     <a href="#">
                       {theme === 0 ? (
                         <>
-                          <BsFillSunFill size={20} className="mr-2" />
+                          <BsFillSunFill size={20} />
                         </>
                       ) : (
                         <>
-                          <BsFillMoonFill size={14} className="mr-2" />
+                          <BsFillMoonFill size={14} />
                         </>
                       )}
                     </a>
+                  </li>
+                  <li>
+                    <div>
+                      <span
+                        className="pointer"
+                        onClick={() =>
+                          setIsSettingsDropdownOpen((prev) => !prev)
+                        }
+                      >
+                        <AiOutlineSetting size={20} className="mr-2" />
+                      </span>
+                      {isSettingsDropdownOpen && (
+                        <div className="settings-dropdown">
+                          <div className="settings-dropdown-header">
+                            <p>Theme</p>
+                            <p>Icon</p>
+                          </div>
+                          <div className="pb-3 border-bottom text-left">
+                            <p className="mt-2 text-14 font-medium">
+                              Style Settings
+                            </p>
+                            <div className="form-check ">
+                              <input
+                                className="form-check-input"
+                                type="radio"
+                                name="exampleRadios"
+                                id="exampleRadios1"
+                                value="option1"
+                              />
+                              <label
+                                className="form-check-label w-full"
+                                htmlFor="exampleRadios1"
+                              >
+                                <span className="w-full d-inline-block">
+                                  <span className="d-flex gap-5">
+                                    <span className="margin-right-auto">
+                                      Fresh
+                                    </span>
+                                    <span className="settings-dropdown-color-box bg-success"></span>
+                                    <span className="settings-dropdown-color-box bg-danger"></span>
+                                  </span>
+                                </span>
+                              </label>
+                            </div>
+                            <div className="form-check ">
+                              <input
+                                className="form-check-input"
+                                type="radio"
+                                name="exampleRadios"
+                                id="exampleRadios3"
+                                value="option1"
+                              />
+                              <label
+                                className="form-check-label w-full"
+                                htmlFor="exampleRadios3"
+                              >
+                                <span className="w-full d-inline-block">
+                                  <span className="d-flex gap-5">
+                                    <span className="margin-right-auto text-14">
+                                      Fresh
+                                    </span>
+                                    <span className="settings-dropdown-color-box bg-success"></span>
+                                    <span className="settings-dropdown-color-box bg-danger"></span>
+                                  </span>
+                                </span>
+                              </label>
+                            </div>
+                            <div className="form-check ">
+                              <input
+                                className="form-check-input"
+                                type="radio"
+                                name="exampleRadios"
+                                id="exampleRadios2"
+                                value="option1"
+                              />
+                              <label
+                                className="form-check-label w-full"
+                                htmlFor="exampleRadios2"
+                              >
+                                <span className="w-full d-inline-block">
+                                  <span className="d-flex gap-5">
+                                    <span className="margin-right-auto">
+                                      Fresh
+                                    </span>
+                                    <span className="settings-dropdown-color-box bg-success"></span>
+                                    <span className="settings-dropdown-color-box bg-danger"></span>
+                                  </span>
+                                </span>
+                              </label>
+                            </div>
+                          </div>
+                          <div className="pb-3 border-bottom text-left">
+                            <p className="mt-2 text-14 font-medium">
+                              Color Preference
+                            </p>
+                            <div className="form-check ">
+                              <input
+                                className="form-check-input"
+                                type="radio"
+                                name="exampleRadios1"
+                                id="exampleRadios4"
+                                value="option1"
+                              />
+                              <label
+                                className="form-check-label w-full"
+                                htmlFor="exampleRadios4"
+                              >
+                                <span className="w-full d-inline-block">
+                                  <span className="d-flex">
+                                    <span className="margin-right-auto">
+                                      Green Up/Red Down
+                                    </span>
+                                    <span>
+                                      <svg
+                                        stroke="currentColor"
+                                        fill="currentColor"
+                                        stroke-width="0"
+                                        viewBox="0 0 16 16"
+                                        style={{ color: "#58bd7d" }}
+                                        height="1em"
+                                        width="1em"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                      >
+                                        <path
+                                          fill-rule="evenodd"
+                                          d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"
+                                        ></path>
+                                      </svg>
+                                    </span>
+                                    <span>
+                                      <svg
+                                        stroke="currentColor"
+                                        fill="currentColor"
+                                        stroke-width="0"
+                                        viewBox="0 0 16 16"
+                                        style={{ color: "#fa0000" }}
+                                        height="1em"
+                                        width="1em"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                      >
+                                        <path
+                                          fill-rule="evenodd"
+                                          d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"
+                                        ></path>
+                                      </svg>
+                                    </span>
+                                  </span>
+                                </span>
+                              </label>
+                            </div>
+                            <div className="form-check ">
+                              <input
+                                className="form-check-input"
+                                type="radio"
+                                name="exampleRadios1"
+                                id="exampleRadios5"
+                                value="option1"
+                              />
+                              <label
+                                className="form-check-label w-full"
+                                htmlFor="exampleRadios5"
+                              >
+                                <span className="w-full d-inline-block">
+                                  <span className="d-flex">
+                                    <span className="margin-right-auto text-14">
+                                      Green Down/Red Up
+                                    </span>
+                                    <span>
+                                      <svg
+                                        stroke="currentColor"
+                                        fill="currentColor"
+                                        stroke-width="0"
+                                        viewBox="0 0 16 16"
+                                        style={{ color: "#58bd7d" }}
+                                        height="1em"
+                                        width="1em"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                      >
+                                        <path
+                                          fill-rule="evenodd"
+                                          d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"
+                                        ></path>
+                                      </svg>
+                                    </span>
+                                    <span>
+                                      <svg
+                                        stroke="currentColor"
+                                        fill="currentColor"
+                                        stroke-width="0"
+                                        viewBox="0 0 16 16"
+                                        style={{ color: "#fa0000" }}
+                                        height="1em"
+                                        width="1em"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                      >
+                                        <path
+                                          fill-rule="evenodd"
+                                          d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"
+                                        ></path>
+                                      </svg>
+                                    </span>
+                                  </span>
+                                </span>
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
                   </li>
                 </ul>
               </nav>
