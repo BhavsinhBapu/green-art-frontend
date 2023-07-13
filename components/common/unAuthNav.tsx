@@ -221,7 +221,16 @@ const UnAuthNav = ({ setThemeColor, ThemeColor }: any) => {
                         <div className="settings-dropdown">
                           <div className="settings-dropdown-header">
                             <p>Theme</p>
-                            <p>Icon</p>
+                            <label className="gift-card-buy-switch mb-0">
+                              <input
+                                type="checkbox"
+                                onClick={() => {
+                                  darkModeToggle(settings, setTheme, dispatch);
+                                }}
+                                checked={theme === 0}
+                              />
+                              <span className="gift-card-buy-slider gift-card-buy"></span>
+                            </label>
                           </div>
                           <div className="pb-3 border-bottom text-left">
                             <p className="mt-2 text-14 font-medium">

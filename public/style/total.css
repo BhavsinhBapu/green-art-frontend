@@ -15269,7 +15269,7 @@ input:checked + .gift-card-buy-slider:before {
 
 .settings-dropdown-header {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   padding-bottom: 14px;
   border-bottom: 1px solid #e6e8ec;
