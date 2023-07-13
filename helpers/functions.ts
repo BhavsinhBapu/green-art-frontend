@@ -26,7 +26,7 @@ export const checkDashboardThemeSettings = (
   document.documentElement.style.setProperty("--trade-red", tradeRed);
 
   setThemeColor({
-    orderBookLayout: checkOrder ? Number(checkOrder) : 2,
+    orderBookLayout: checkOrder ? Number(checkOrder) : 1,
     green: tradeGreen ? tradeGreen : "#32d777",
     red: tradeRed ? tradeRed : "#d63031",
   });
