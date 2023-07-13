@@ -262,8 +262,14 @@ const UnAuthNav = ({ setThemeColor, ThemeColor }: any) => {
                                     <span className="margin-right-auto">
                                       Fresh
                                     </span>
-                                    <span className="settings-dropdown-color-box" style={{background: '#32d777'}}></span>
-                                    <span className="settings-dropdown-color-box" style={{background: '#d63031'}}></span>
+                                    <span
+                                      className="settings-dropdown-color-box"
+                                      style={{ background: "#32d777" }}
+                                    ></span>
+                                    <span
+                                      className="settings-dropdown-color-box"
+                                      style={{ background: "#d63031" }}
+                                    ></span>
                                   </span>
                                 </span>
                               </label>
@@ -294,8 +300,14 @@ const UnAuthNav = ({ setThemeColor, ThemeColor }: any) => {
                                     <span className="margin-right-auto text-14">
                                       Traditional
                                     </span>
-                                    <span className="settings-dropdown-color-box" style={{background: '#3498db'}}></span>
-                                    <span className="settings-dropdown-color-box" style={{background: '#9b59b6'}}></span>
+                                    <span
+                                      className="settings-dropdown-color-box"
+                                      style={{ background: "#3498db" }}
+                                    ></span>
+                                    <span
+                                      className="settings-dropdown-color-box"
+                                      style={{ background: "#9b59b6" }}
+                                    ></span>
                                   </span>
                                 </span>
                               </label>
@@ -326,8 +338,14 @@ const UnAuthNav = ({ setThemeColor, ThemeColor }: any) => {
                                     <span className="margin-right-auto">
                                       Fresh
                                     </span>
-                                    <span className="settings-dropdown-color-box" style={{background: '#f39c12'}}></span>
-                                    <span className="settings-dropdown-color-box " style={{background: '#d35400'}}></span>
+                                    <span
+                                      className="settings-dropdown-color-box"
+                                      style={{ background: "#f39c12" }}
+                                    ></span>
+                                    <span
+                                      className="settings-dropdown-color-box "
+                                      style={{ background: "#d35400" }}
+                                    ></span>
                                   </span>
                                 </span>
                               </label>
@@ -431,10 +449,10 @@ const UnAuthNav = ({ setThemeColor, ThemeColor }: any) => {
                                         fill="currentColor"
                                         stroke-width="0"
                                         viewBox="0 0 16 16"
-                                        style={{ color: "#58bd7d" }}
                                         height="1em"
                                         width="1em"
                                         xmlns="http://www.w3.org/2000/svg"
+                                        style={{ color: "#fa0000" }}
                                       >
                                         <path
                                           fill-rule="evenodd"
@@ -448,10 +466,10 @@ const UnAuthNav = ({ setThemeColor, ThemeColor }: any) => {
                                         fill="currentColor"
                                         stroke-width="0"
                                         viewBox="0 0 16 16"
-                                        style={{ color: "#fa0000" }}
                                         height="1em"
                                         width="1em"
                                         xmlns="http://www.w3.org/2000/svg"
+                                        style={{ color: "#58bd7d" }}
                                       >
                                         <path
                                           fill-rule="evenodd"
