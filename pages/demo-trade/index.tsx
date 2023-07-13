@@ -1,43 +1,48 @@
 import type { NextPage } from "next";
-import DashboardNavbar from "components/common/dashboardNavbar";
 import { useEffect, useState } from "react";
 
 import Loading from "components/common/loading";
-import SelectCurrency from "components/exchange/selectCurrency";
-import CurrencyLevel from "components/exchange/currencyLevel";
-import DashboardBody from "components/exchange/DashboardBody";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "state/store";
 import {
   initialDashboardCallAction,
   initialDashboardCallActionWithToken,
   listenMessages,
-} from "state/actions/exchange";
-import { setCurrentPair } from "state/reducer/exchange";
+} from "state/actions/demoExchange";
+import { setCurrentPair } from "state/reducer/demoExchange";
 import useTranslation from "next-translate/useTranslation";
 import Head from "next/head";
 import { formatCurrency } from "common";
 import Navbar from "components/common/Navbar";
+import { useRouter } from "next/router";
+import DemoSelectCurrency from "components/exchange/DemoSelectCurrency";
+import DemoCurrencyLevel from "components/exchange/DemoCurrencyLevel";
+import DemoDashboardBody from "components/exchange/DemoDashboardBody";
 
 const Dashboard: NextPage = () => {
   const { t } = useTranslation("common");
+  const router = useRouter();
   const dispatch = useDispatch();
   const [isLoading, setisLoading] = useState(true);
   const { isLoggedIn, user } = useSelector((state: RootState) => state.user);
   const { dashboard, currentPair } = useSelector(
-    (state: RootState) => state.exchange
+    (state: RootState) => state.demoExchange
   );
+  
   useEffect(() => {
-    const pair = localStorage.getItem("current_pair");
-    if (pair) {
-      dispatch(setCurrentPair(pair));
-      dispatch(initialDashboardCallAction(pair, dashboard, setisLoading));
+    // const pair = localStorage.getItem("current_pair");
+    if(!router.isReady) return;
+
+    if (router?.query?.coin_pair) {
+      const pair_name = String(router?.query?.coin_pair);
+      dispatch(setCurrentPair(pair_name));
+      dispatch(initialDashboardCallAction(pair_name, dashboard, setisLoading, router));
     } else {
       dispatch(
-        initialDashboardCallAction(currentPair, dashboard, setisLoading)
+        initialDashboardCallAction(currentPair, dashboard, setisLoading, router)
       );
     }
-  }, [isLoggedIn, currentPair]);
+  }, [isLoggedIn, router?.query?.coin_pair]);
   useEffect(() => {
     if (
       dashboard?.order_data?.base_coin_id &&
@@ -214,15 +219,15 @@ const Dashboard: NextPage = () => {
                             >
                               {currentPair.replace(/_/g, "/")}
                             </span>
-                            <SelectCurrency />
+                            <DemoSelectCurrency />
                           </div>
                         </div>
                       )}
-                      {dashboard?.last_price_data && <CurrencyLevel />}
+                      {dashboard?.last_price_data && <DemoCurrencyLevel />}
                     </div>
                   </div>
 
-                  <DashboardBody />
+                  <DemoDashboardBody />
                 </div>
               </div>
             </div>
