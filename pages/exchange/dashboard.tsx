@@ -28,6 +28,7 @@ const Dashboard: NextPage = () => {
   const [ThemeColor, setThemeColor] = useState({
     green: "#32d777",
     red: "#d63031",
+    orderBookLayout: 1,
   });
   const { isLoggedIn, user } = useSelector((state: RootState) => state.user);
   const { dashboard, currentPair } = useSelector(

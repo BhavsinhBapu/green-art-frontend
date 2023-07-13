@@ -109,36 +109,74 @@ export class TVChartContainer extends React.Component<MyProps> {
       //@ts-ignore
       window.tvWidget.applyOverrides({
         "paneProperties.background":
-          localTheme === "dark" ? "rgb(11, 14, 17)" : "#fff",
+          //@ts-ignore
+          this.props.theme === "dark" ? "rgb(11, 14, 17)" : "#fff",
         "paneProperties.backgroundType": "solid",
-        "mainSeriesProperties.candleStyle.upColor": "#32d777",
-        "mainSeriesProperties.candleStyle.downColor": "#dc3545",
+        "mainSeriesProperties.candleStyle.upColor":
+          //@ts-ignore
+          this.props.ThemeColor.green,
+        //@ts-ignore
+        "mainSeriesProperties.candleStyle.downColor":
+          //@ts-ignore
+          this.props.ThemeColor.red,
+
         "mainSeriesProperties.candleStyle.drawBorder": true,
-        "mainSeriesProperties.candleStyle.borderUpColor": "#32d777",
-        "mainSeriesProperties.candleStyle.borderDownColor": "#dc3545",
-        "mainSeriesProperties.candleStyle.wickUpColor": "#32d777",
-        "mainSeriesProperties.candleStyle.wickDownColor": "#dc3545",
-        "mainSeriesProperties.hollowCandleStyle.upColor": "#32d777",
-        "mainSeriesProperties.hollowCandleStyle.downColor": "#dc3545",
+        "mainSeriesProperties.candleStyle.borderUpColor":
+          //@ts-ignore
+          this.props.ThemeColor.green,
+        "mainSeriesProperties.candleStyle.borderDownColor":
+          //@ts-ignore
+          this.props.ThemeColor.red,
+        "mainSeriesProperties.candleStyle.wickUpColor":
+          //@ts-ignore
+          this.props.ThemeColor.green,
+        "mainSeriesProperties.candleStyle.wickDownColor":
+          //@ts-ignore
+          this.props.ThemeColor.red,
+        "mainSeriesProperties.hollowCandleStyle.upColor":
+          //@ts-ignore
+          this.props.ThemeColor.green,
+        "mainSeriesProperties.hollowCandleStyle.downColor":
+          //@ts-ignore
+          this.props.ThemeColor.red,
         "mainSeriesProperties.hollowCandleStyle.drawWick": true,
         "mainSeriesProperties.hollowCandleStyle.drawBorder": true,
-        "mainSeriesProperties.hollowCandleStyle.borderUpColor": "#32d777",
-        "mainSeriesProperties.hollowCandleStyle.borderDownColor": "#dc3545",
-        "mainSeriesProperties.hollowCandleStyle.wickUpColor": "#32d777",
-        "mainSeriesProperties.hollowCandleStyle.wickDownColor": "#dc3545",
-        "mainSeriesProperties.haStyle.upColor": "#32d777",
-        "mainSeriesProperties.haStyle.downColor": "#dc3545",
+        "mainSeriesProperties.hollowCandleStyle.borderUpColor":
+          //@ts-ignore
+          this.props.ThemeColor.green,
+        "mainSeriesProperties.hollowCandleStyle.borderDownColor":
+          //@ts-ignore
+          this.props.ThemeColor.red,
+        "mainSeriesProperties.hollowCandleStyle.wickUpColor":
+          //@ts-ignore
+          this.props.ThemeColor.green,
+        "mainSeriesProperties.hollowCandleStyle.wickDownColor":
+          //@ts-ignore
+          this.props.ThemeColor.red,
+        //@ts-ignore
+        "mainSeriesProperties.haStyle.upColor": this.props.ThemeColor.green,
+        //@ts-ignore
+        "mainSeriesProperties.haStyle.downColor": this.props.ThemeColor.red,
         "mainSeriesProperties.haStyle.drawWick": true,
         "mainSeriesProperties.haStyle.drawBorder": true,
-        "mainSeriesProperties.haStyle.borderUpColor": "#32d777",
-        "mainSeriesProperties.haStyle.borderDownColor": "#dc3545",
-        "mainSeriesProperties.haStyle.wickUpColor": "#32d777",
-        "mainSeriesProperties.haStyle.wickDownColor": "#dc3545",
-        "mainSeriesProperties.barStyle.upColor": "#32d777",
-        "mainSeriesProperties.barStyle.downColor": "#dc3545",
+        "mainSeriesProperties.haStyle.borderUpColor":
+          //@ts-ignore
+          this.props.ThemeColor.green,
+        "mainSeriesProperties.haStyle.borderDownColor":
+          //@ts-ignore
+          this.props.ThemeColor.red,
+        //@ts-ignore
+        "mainSeriesProperties.haStyle.wickUpColor": this.props.ThemeColor.green,
+        //@ts-ignore
+        "mainSeriesProperties.haStyle.wickDownColor": this.props.ThemeColor.red,
+        //@ts-ignore
+        "mainSeriesProperties.barStyle.upColor": this.props.ThemeColor.green,
+        //@ts-ignore
+        "mainSeriesProperties.barStyle.downColor": this.props.ThemeColor.red,
         "mainSeriesProperties.barStyle.barColorsOnPrevClose": false,
         "mainSeriesProperties.barStyle.dontDrawOpen": false,
-        "mainSeriesProperties.lineStyle.color": "#dc3545",
+        //@ts-ignore
+        "mainSeriesProperties.lineStyle.color": this.props.ThemeColor.red,
       });
     });
   };
@@ -192,6 +230,7 @@ export class TVChartContainer extends React.Component<MyProps> {
       studies_overrides: {
         //@ts-ignore
         "volume.volume.color.0": this.props.ThemeColor.red,
+
         //@ts-ignore
         "volume.volume.color.1": this.props.ThemeColor.green,
         "volume.volume.transparency": 0,
@@ -285,6 +324,7 @@ export class TVChartContainer extends React.Component<MyProps> {
       window.tvWidget.onChartReady(() => {
         //@ts-ignore
         window.tvWidget.applyOverrides(overwriteObj);
+
         //@ts-ignore
         window.tvWidget
           //@ts-ignore
@@ -376,6 +416,28 @@ export class TVChartContainer extends React.Component<MyProps> {
       window.tvWidget.onChartReady(() => {
         //@ts-ignore
         window.tvWidget.applyOverrides(overwriteObj);
+        //@ts-ignore
+        // window.tvWidget.applyStudiesOverrides({
+        //   //@ts-ignore
+        //   "volume.volume.color.0": this.props.ThemeColor.red,
+        //   //@ts-ignore
+        //   "volume.volume.color.1": this.props.ThemeColor.green,
+        //   "volume.volume.transparency": 0,
+        //   "volume.volume ma.color": "#3742fa",
+        //   "volume.volume ma.transparency": 0,
+        //   "volume.options.showStudyArguments": false,
+        //   "volume.options.showStudyTitles": false,
+        //   "volume.options.showStudyValues": false,
+        //   "volume.options.showLegend": false,
+        //   "volume.options.showStudyOutput": false,
+        //   "volume.options.showStudyOverlay": false,
+        //   "volume.options.showSeriesTitle": false,
+        //   "volume.options.showSeriesOHLC": false,
+        //   "volume.options.showBarChange": false,
+        //   "volume.options.showCountdown": false,
+        //   "volume.volume ma.linewidth": 2,
+        //   "volume.volume ma.visible": true,
+        // });
         //@ts-ignore
         window.tvWidget
           //@ts-ignore

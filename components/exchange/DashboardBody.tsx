@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
 import AllSellOrders from "./AllSellOrders";
@@ -16,6 +16,7 @@ import {
   EXCHANGE_LAYOUT_ONE,
   EXCHANGE_LAYOUT_TWO,
 } from "helpers/core-constants";
+import { set } from "nprogress";
 const TradingChart = dynamic(
   () =>
     import("components/exchange/TradingChart").then(
@@ -24,12 +25,19 @@ const TradingChart = dynamic(
   { ssr: false }
 );
 const DashboardBody = ({ ThemeColor }: any) => {
+  const [show, setShow] = useState(true);
   const { t } = useTranslation("common");
   const [select, setSelect] = React.useState(3);
   const { dashboard, OpenBookBuy, OpenBooksell, marketTrades, currentPair } =
     useSelector((state: RootState) => state.exchange);
   const { settings, theme } = useSelector((state: RootState) => state.common);
 
+  useEffect(() => {
+    setShow(false);
+    setInterval(() => {
+      setShow(true);
+    }, 400);
+  }, [ThemeColor.green, ThemeColor.red]);
   return (
     <>
       <div className="col-xl-3">
@@ -237,7 +245,12 @@ const DashboardBody = ({ ThemeColor }: any) => {
           )}
           {select === 3 && (
             <div className="tradeSection-both">
-              <AllSellOrders OpenBooksell={OpenBooksell} show={18} />
+              {ThemeColor.orderBookLayout === 1 ? (
+                <AllBuyOrders OpenBookBuy={OpenBookBuy} show={18} />
+              ) : (
+                <AllSellOrders OpenBooksell={OpenBooksell} show={18} />
+              )}
+
               <div className="trades-table-footer">
                 {dashboard?.last_price_data?.length > 0 ? (
                   <div className="trades-table-row">
@@ -334,7 +347,11 @@ const DashboardBody = ({ ThemeColor }: any) => {
                   </div>
                 )}
               </div>
-              <AllBuyOrders OpenBookBuy={OpenBookBuy} show={18} />
+              {ThemeColor.orderBookLayout === 1 ? (
+                <AllSellOrders OpenBooksell={OpenBooksell} show={18} />
+              ) : (
+                <AllBuyOrders OpenBookBuy={OpenBookBuy} show={18} />
+              )}
             </div>
           )}
         </div>
@@ -342,7 +359,7 @@ const DashboardBody = ({ ThemeColor }: any) => {
       <div className="col-xl-6">
         <div className="cp-user-buy-coin-content-area">
           <div className="card cp-user-custom-card">
-            {currentPair && (
+            {currentPair && show && (
               <TradingChart
                 //@ts-ignore
                 currentPair={currentPair}

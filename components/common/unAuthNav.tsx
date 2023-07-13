@@ -17,7 +17,7 @@ import {
 import { IoMdGlobe } from "react-icons/io";
 import { AiOutlineClose, AiOutlineSetting } from "react-icons/ai";
 
-const UnAuthNav = ({ setThemeColor }: any) => {
+const UnAuthNav = ({ setThemeColor, ThemeColor }: any) => {
   const { isLoggedIn, user, logo } = useSelector(
     (state: RootState) => state.user
   );
@@ -233,11 +233,13 @@ const UnAuthNav = ({ setThemeColor }: any) => {
                                 type="radio"
                                 name="exampleRadios"
                                 id="exampleRadios1"
+                                checked={ThemeColor.green === "#32d777"}
                                 onClick={() => {
                                   changeThemeSettingsDashboard(
                                     "#32d777",
                                     "#d63031",
-                                    setThemeColor
+                                    setThemeColor,
+                                    ThemeColor
                                   );
                                 }}
                                 // value="option1"
@@ -263,12 +265,14 @@ const UnAuthNav = ({ setThemeColor }: any) => {
                                 type="radio"
                                 name="exampleRadios"
                                 id="exampleRadios3"
+                                checked={ThemeColor.green === "#3498db"}
                                 value="option1"
                                 onClick={() => {
                                   changeThemeSettingsDashboard(
                                     "#3498db",
                                     "#9b59b6",
-                                    setThemeColor
+                                    setThemeColor,
+                                    ThemeColor
                                   );
                                 }}
                               />
@@ -279,7 +283,7 @@ const UnAuthNav = ({ setThemeColor }: any) => {
                                 <span className="w-full d-inline-block">
                                   <span className="d-flex gap-5">
                                     <span className="margin-right-auto text-14">
-                                      Fresh
+                                      Traditional
                                     </span>
                                     <span className="settings-dropdown-color-box bg-success"></span>
                                     <span className="settings-dropdown-color-box bg-danger"></span>
@@ -322,6 +326,14 @@ const UnAuthNav = ({ setThemeColor }: any) => {
                                 name="exampleRadios1"
                                 id="exampleRadios4"
                                 value="option1"
+                                checked={ThemeColor.orderBookLayout === 1}
+                                onChange={() => {
+                                  setThemeColor({
+                                    ...ThemeColor,
+                                    orderBookLayout: 1,
+                                  });
+                                  localStorage.setItem("chart-up-down", "1");
+                                }}
                               />
                               <label
                                 className="form-check-label w-full"
@@ -377,6 +389,14 @@ const UnAuthNav = ({ setThemeColor }: any) => {
                                 name="exampleRadios1"
                                 id="exampleRadios5"
                                 value="option1"
+                                checked={ThemeColor.orderBookLayout === 2}
+                                onChange={() => {
+                                  setThemeColor({
+                                    ...ThemeColor,
+                                    orderBookLayout: 2,
+                                  });
+                                  localStorage.setItem("chart-up-down", "2");
+                                }}
                               />
                               <label
                                 className="form-check-label w-full"

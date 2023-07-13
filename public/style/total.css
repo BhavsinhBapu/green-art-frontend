@@ -4717,11 +4717,11 @@ select:-webkit-autofill:focus {
 }
 
 .buy-text {
-  color: #ff2e2e;
+  color: var(--trade-red);
 }
 
 .sell-text {
-  color: #32d777;
+  color: var(--trade-green);
 }
 
 .trades-table .trades-table-row .trades-table-col.volume {
@@ -4736,17 +4736,17 @@ select:-webkit-autofill:focus {
 }
 
 .value-increase {
-  color: #28a745 !important;
+  color: var(--trade-green) !important;
   font-size: 25px;
 }
 
 .value-decrease {
-  color: #dc3545 !important;
+  color: var(--trade-red) !important;
   font-size: 25px;
 }
 
 .value-decreaseicon {
-  color: #dc3545 !important;
+  color: var(--trade-red) !important;
   font-size: 15px !important;
 }
 

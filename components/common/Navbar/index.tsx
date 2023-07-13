@@ -20,7 +20,10 @@ import { notification, notificationSeen } from "service/notification";
 import useTranslation from "next-translate/useTranslation";
 import OutsideClickHandler from "react-outside-click-handler";
 import UnAuthNav from "../unAuthNav";
-import { checkThemeState } from "helpers/functions";
+import {
+  checkDashboardThemeSettings,
+  checkThemeState,
+} from "helpers/functions";
 import NotificationDropdown from "./notification-dropdown";
 import { setNotificationData } from "state/reducer/user";
 import { IoMdGlobe } from "react-icons/io";
@@ -47,6 +50,9 @@ const Navbar = ({ settings, isLoggedIn, ThemeColor, setThemeColor }: any) => {
     const data = await notification();
     dispatch(setNotificationData(data.data.data));
   };
+  useEffect(() => {
+    checkDashboardThemeSettings(setThemeColor, ThemeColor);
+  }, []);
   const seen = async () => {
     let arr: any = [];
 
@@ -1914,7 +1920,7 @@ const Navbar = ({ settings, isLoggedIn, ThemeColor, setThemeColor }: any) => {
           </OutsideClickHandler>
         </>
       ) : !isLoggedIn && isLoading === false ? (
-          <UnAuthNav setThemeColor={setThemeColor} />
+        <UnAuthNav setThemeColor={setThemeColor} ThemeColor={ThemeColor} />
       ) : (
         ""
       )}

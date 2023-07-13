@@ -2,13 +2,33 @@ import { setThemeColor } from "state/reducer/common";
 export const changeThemeSettingsDashboard = (
   tradeGreen: string,
   tradeRed: string,
-  setThemeColor: any
+  setThemeColor: any,
+  ThemeColor: any
 ) => {
   document.documentElement.style.setProperty("--trade-green", tradeGreen);
   document.documentElement.style.setProperty("--trade-red", tradeRed);
+  localStorage.setItem("tradeGreen", tradeGreen);
+  localStorage.setItem("tradeRed", tradeRed);
   setThemeColor({
+    ...ThemeColor,
     green: tradeGreen,
     red: tradeRed,
+  });
+};
+export const checkDashboardThemeSettings = (
+  setThemeColor: any,
+  ThemeColor: any
+) => {
+  const tradeGreen = localStorage.getItem("tradeGreen");
+  const tradeRed = localStorage.getItem("tradeRed");
+  const checkOrder = localStorage.getItem("chart-up-down");
+  document.documentElement.style.setProperty("--trade-green", tradeGreen);
+  document.documentElement.style.setProperty("--trade-red", tradeRed);
+
+  setThemeColor({
+    orderBookLayout: checkOrder ? Number(checkOrder) : 2,
+    green: tradeGreen ? tradeGreen : "#32d777",
+    red: tradeRed ? tradeRed : "#d63031",
   });
 };
 export const checkDarkMode = (settings: any, dispatch: any) => {
