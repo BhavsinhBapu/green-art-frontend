@@ -265,7 +265,7 @@ export const getLongShortTradeHistory = async (base: any, trade: any) => {
 };
 export const getExchangeMarketDetails = async () => {
   const { data } = await request.get(
-    `/future-trade/get-exchange-market-details-app?limit=8&page=1&type=assets`
+    `/get-exchange-market-details-app?limit=8&page=1&type=assets`
   );
   return data;
 };

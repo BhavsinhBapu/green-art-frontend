@@ -55,8 +55,9 @@ const Leverage = ({ leverage, setLeverage, dashboard }: any) => {
             <h3>Leverage</h3>
             <div className="leverage-section">{leverage}x</div>
             <div className="mt-3 percent-container mb-5 d-flex flex-wrap">
-              {leverages?.map((leverage: number) => (
+              {leverages?.map((leverage: number, index: number) => (
                 <span
+                  key={index}
                   className="percent-btn col-3 mb-2"
                   onClick={() => {
                     modifyLeverage(leverage);

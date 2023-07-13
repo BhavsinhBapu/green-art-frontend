@@ -1,5 +1,6 @@
 import ImageComponent from "components/common/ImageComponent";
 import useTranslation from "next-translate/useTranslation";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 
@@ -11,6 +12,7 @@ const MarketTrends = ({
 }: any) => {
   const { t } = useTranslation("common");
   const router = useRouter();
+
   return (
     <div>
       {parseInt(landing.landing_third_section_status) === 1 && (
@@ -203,24 +205,36 @@ const MarketTrends = ({
                                     "trade_coin_id",
                                     item?.child_coin_id
                                   );
-                                  await localStorage.setItem(
-                                    "current_pair",
-                                    item?.child_coin_name +
-                                      "_" +
-                                      item?.parent_coin_name
-                                  );
+                                  console.log("item", item);
+                                  // await localStorage.setItem(
+                                  //   "current_pair",
+                                  //   item?.child_coin_name +
+                                  //     "_" +
+                                  //     item?.parent_coin_name
+                                  // );
                                 }}
                               >
-                                <a
+                                <Link
                                   href={
                                     router.locale !== "en"
-                                      ? `/${router.locale}/exchange/dashboard`
-                                      : "/exchange/dashboard"
+                                      ? `/${
+                                          router.locale
+                                        }/exchange/dashboard?coin_pair=${
+                                          item?.child_coin_name +
+                                          "_" +
+                                          item?.parent_coin_name
+                                        }`
+                                      : `/exchange/dashboard?coin_pair=${
+                                          item?.child_coin_name +
+                                          "_" +
+                                          item?.parent_coin_name
+                                        }`
                                   }
-                                  className="btnTrade btn-link"
                                 >
-                                  {t("Trade")}
-                                </a>
+                                  <a className="btnTrade btn-link mb-2">
+                                    {t("Trade")}
+                                  </a>
+                                </Link>
                               </td>
                             </tr>
                           ))}
