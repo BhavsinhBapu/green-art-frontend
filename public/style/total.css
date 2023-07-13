@@ -15281,7 +15281,12 @@ input:checked + .gift-card-buy-slider:before {
   border-radius: 50%;
 }
 .margin-right-auto {
+  margin-left: 5px;
   margin-right: auto;
+}
+
+.radio-scale{
+  scale: 1.5;
 }
 
 @media (max-width: 991px) {

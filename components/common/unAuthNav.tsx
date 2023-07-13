@@ -236,9 +236,9 @@ const UnAuthNav = ({ setThemeColor, ThemeColor }: any) => {
                             <p className="mt-2 text-14 font-medium">
                               Style Settings
                             </p>
-                            <div className="form-check ">
+                            <div className="form-check py-1">
                               <input
-                                className="form-check-input"
+                                className="form-check-input radio-scal"
                                 type="radio"
                                 name="exampleRadios"
                                 id="exampleRadios1"
@@ -262,15 +262,15 @@ const UnAuthNav = ({ setThemeColor, ThemeColor }: any) => {
                                     <span className="margin-right-auto">
                                       Fresh
                                     </span>
-                                    <span className="settings-dropdown-color-box bg-success"></span>
-                                    <span className="settings-dropdown-color-box bg-danger"></span>
+                                    <span className="settings-dropdown-color-box" style={{background: '#32d777'}}></span>
+                                    <span className="settings-dropdown-color-box" style={{background: '#d63031'}}></span>
                                   </span>
                                 </span>
                               </label>
                             </div>
-                            <div className="form-check ">
+                            <div className="form-check py-1">
                               <input
-                                className="form-check-input"
+                                className="form-check-input radio-scale"
                                 type="radio"
                                 name="exampleRadios"
                                 id="exampleRadios3"
@@ -294,19 +294,28 @@ const UnAuthNav = ({ setThemeColor, ThemeColor }: any) => {
                                     <span className="margin-right-auto text-14">
                                       Traditional
                                     </span>
-                                    <span className="settings-dropdown-color-box bg-success"></span>
-                                    <span className="settings-dropdown-color-box bg-danger"></span>
+                                    <span className="settings-dropdown-color-box" style={{background: '#3498db'}}></span>
+                                    <span className="settings-dropdown-color-box" style={{background: '#9b59b6'}}></span>
                                   </span>
                                 </span>
                               </label>
                             </div>
-                            <div className="form-check ">
+                            <div className="form-check py-1">
                               <input
-                                className="form-check-input"
+                                className="form-check-input radio-scale"
                                 type="radio"
                                 name="exampleRadios"
                                 id="exampleRadios2"
                                 value="option1"
+                                checked={ThemeColor.green === "#f39c12"}
+                                onClick={() => {
+                                  changeThemeSettingsDashboard(
+                                    "#f39c12",
+                                    "#d35400",
+                                    setThemeColor,
+                                    ThemeColor
+                                  );
+                                }}
                               />
                               <label
                                 className="form-check-label w-full"
@@ -317,8 +326,8 @@ const UnAuthNav = ({ setThemeColor, ThemeColor }: any) => {
                                     <span className="margin-right-auto">
                                       Fresh
                                     </span>
-                                    <span className="settings-dropdown-color-box bg-success"></span>
-                                    <span className="settings-dropdown-color-box bg-danger"></span>
+                                    <span className="settings-dropdown-color-box" style={{background: '#f39c12'}}></span>
+                                    <span className="settings-dropdown-color-box " style={{background: '#d35400'}}></span>
                                   </span>
                                 </span>
                               </label>
@@ -328,9 +337,9 @@ const UnAuthNav = ({ setThemeColor, ThemeColor }: any) => {
                             <p className="mt-2 text-14 font-medium">
                               Color Preference
                             </p>
-                            <div className="form-check ">
+                            <div className="form-check py-1">
                               <input
-                                className="form-check-input"
+                                className="form-check-input radio-scale"
                                 type="radio"
                                 name="exampleRadios1"
                                 id="exampleRadios4"
@@ -391,9 +400,9 @@ const UnAuthNav = ({ setThemeColor, ThemeColor }: any) => {
                                 </span>
                               </label>
                             </div>
-                            <div className="form-check ">
+                            <div className="form-check py-1">
                               <input
-                                className="form-check-input"
+                                className="form-check-input radio-scale"
                                 type="radio"
                                 name="exampleRadios1"
                                 id="exampleRadios5"
