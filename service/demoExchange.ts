@@ -2,7 +2,7 @@ import request from "lib/request";
 
 export const appDashboardData = async (pair: string | null) => {
   if (pair) {
-    const { data } = await request.get(`/app-dashboard/${pair}`);
+    const { data } = await request.get(`/demo/app-dashboard/${pair}`);
     return data;
   } else {
     return null;
@@ -10,7 +10,7 @@ export const appDashboardData = async (pair: string | null) => {
 };
 export const appDashboardDataWithoutPair = async () => {
  
-    const { data } = await request.get(`/app-dashboard`);
+    const { data } = await request.get(`/demo/app-dashboard`);
     return data;
 
 };
@@ -21,7 +21,7 @@ export const buyLimitApp = async (
   trade_coin_id: string,
   base_coin_id: string
 ) => {
-  const { data } = await request.post(`/buy-limit-app`, {
+  const { data } = await request.post(`/demo/buy-limit-app`, {
     amount,
     price,
     trade_coin_id,
@@ -36,7 +36,7 @@ export const buyMarketApp = async (
   trade_coin_id: string,
   base_coin_id: string
 ) => {
-  const { data } = await request.post(`/buy-market-app`, {
+  const { data } = await request.post(`/demo/buy-market-app`, {
     amount,
     price,
     trade_coin_id,
@@ -52,7 +52,7 @@ export const buyStopLimitApp = async (
   trade_coin_id: string,
   base_coin_id: string
 ) => {
-  const { data } = await request.post(`/buy-stop-limit-app`, {
+  const { data } = await request.post(`/demo/buy-stop-limit-app`, {
     amount,
 
     limit,
@@ -69,7 +69,7 @@ export const sellLimitApp = async (
   trade_coin_id: string,
   base_coin_id: string
 ) => {
-  const { data } = await request.post(`/sell-limit-app`, {
+  const { data } = await request.post(`/demo/sell-limit-app`, {
     amount,
     price,
     trade_coin_id,
@@ -83,7 +83,7 @@ export const sellMarketApp = async (
   trade_coin_id: string,
   base_coin_id: string
 ) => {
-  const { data } = await request.post(`/sell-market-app`, {
+  const { data } = await request.post(`/demo/sell-market-app`, {
     amount,
     price,
     trade_coin_id,
@@ -98,7 +98,7 @@ export const sellStopLimitApp = async (
   trade_coin_id: string,
   base_coin_id: string
 ) => {
-  const { data } = await request.post(`/sell-stop-limit-app`, {
+  const { data } = await request.post(`/demo/sell-stop-limit-app`, {
     amount,
     limit,
     stop,
@@ -115,7 +115,7 @@ export const ordersHistoryDashboard = async (
   order_type: string
 ) => {
   const { data } = await request.get(
-    `/get-my-all-orders-app?base_coin_id=${base_coin_id}&trade_coin_id=${trade_coin_id}&dashboard_type=${dashboard_type}&order_type=${order_type}`
+    `/demo/get-my-all-orders-app?base_coin_id=${base_coin_id}&trade_coin_id=${trade_coin_id}&dashboard_type=${dashboard_type}&order_type=${order_type}`
   );
   return data;
 };
@@ -126,7 +126,7 @@ export const tradesHistoryDashboard = async (
   dashboard_type: string
 ) => {
   const { data } = await request.get(
-    `/get-my-trades-app?base_coin_id=${base_coin_id}&trade_coin_id=${trade_coin_id}&dashboard_type=${dashboard_type}`
+    `/demo/get-my-trades-app?base_coin_id=${base_coin_id}&trade_coin_id=${trade_coin_id}&dashboard_type=${dashboard_type}`
   );
   return data;
 };
@@ -139,7 +139,7 @@ export const openBookDashboard = async (
   per_page: number
 ) => {
   const { data } = await request.get(
-    `/get-exchange-all-orders-app?per_page=${per_page}&dashboard_type=${dashboard_type}&order_type=${order_type}&base_coin_id=${base_coin_id}&trade_coin_id=${trade_coin_id}`
+    `/demo/get-exchange-all-orders-app?per_page=${per_page}&dashboard_type=${dashboard_type}&order_type=${order_type}&base_coin_id=${base_coin_id}&trade_coin_id=${trade_coin_id}`
   );
   return data;
 };
@@ -150,12 +150,12 @@ export const marketTradesDashboard = async (
   per_page: number
 ) => {
   const { data } = await request.get(
-    `/get-exchange-market-trades-app?dashboard_type=${dashboard_type}&base_coin_id=${base_coin_id}&trade_coin_id=${trade_coin_id}`
+    `/demo/get-exchange-market-trades-app?dashboard_type=${dashboard_type}&base_coin_id=${base_coin_id}&trade_coin_id=${trade_coin_id}`
   );
   return data;
 };
 export const cancelOrderApp = async (type: string, id: string) => {
-  const { data } = await request.post(`/cancel-open-order-app`, {
+  const { data } = await request.post(`/demo/cancel-open-order-app`, {
     type,
     id,
   });
