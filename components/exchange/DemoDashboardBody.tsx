@@ -1,17 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
-import AllSellOrders from "./AllSellOrders";
-import AllSellOrdersFull from "./AllSellOrdersFull";
-import ExchangeBox from "./ExchangeBox";
-import TradesHistory from "./TradesHistory";
-import AllBuyOrders from "./AllBuyOrders";
-import AllBuyOrdersFull from "./AllBuyOrdersFull";
 import dynamic from "next/dynamic";
-import OrderHistorySection from "./orderHistorySection";
 import useTranslation from "next-translate/useTranslation";
-import ExchangeBoxBottom from "./ExchangeBoxBottom";
-import SelectCurrencyRight from "./selectCurrencyRight";
 import {
   EXCHANGE_LAYOUT_ONE,
   EXCHANGE_LAYOUT_TWO,
@@ -25,9 +16,9 @@ import DemoSelectCurrencyRight from "./DemoSelectCurrencyRight";
 import DemoTradesHistory from "./DemoTradesHistory";
 import DemoExchangeBox from "./DemoExchangeBox";
 import DemoExchangeBoxBottom from "./DemoExchangeBoxBottom";
-const TradingChart = dynamic(
+const DemoTradingChart = dynamic(
   () =>
-    import("components/exchange/TradingChart").then(
+    import("components/exchange/DemoTradingChart").then(
       (mod: any) => mod.TVChartContainer
     ),
   { ssr: false }
@@ -367,7 +358,12 @@ const DemoDashboardBody = ({ ThemeColor }: any) => {
           <div className="card cp-user-custom-card">
             {currentPair && (
               //@ts-ignore
-              <TradingChart currentPair={currentPair} theme={theme}  ThemeColor={ThemeColor}/>
+              <DemoTradingChart
+                //@ts-ignore
+                currentPair={currentPair}
+                theme={theme}
+                ThemeColor={ThemeColor}
+              />
             )}
           </div>
         </div>
