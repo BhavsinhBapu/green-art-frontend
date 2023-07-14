@@ -7,7 +7,7 @@ import moment from "moment";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { AiOutlineSetting } from "react-icons/ai";
 import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
 import { HiArrowNarrowRight, HiUserCircle } from "react-icons/hi";
@@ -31,9 +31,22 @@ const NotificationDropdown = ({
   ThemeColor,
 }: any) => {
   const dispatch = useDispatch();
+  const containerRef = useRef<any>(null);
   const { t } = useTranslation("common");
   const [isSettingsDropdownOpen, setIsSettingsDropdownOpen] = useState(false);
   const router = useRouter();
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+  const handleClickOutside = (event: any) => {
+    if (containerRef.current && !containerRef.current.contains(event.target)) {
+      setIsSettingsDropdownOpen(false);
+    }
+  };
+
   return (
     <div className="">
       {isLoggedIn ? (
@@ -285,7 +298,7 @@ const NotificationDropdown = ({
                     </a>
                   </li>
                   {showSettings && (
-                    <li>
+                    <li ref={containerRef}>
                       <div>
                         <span
                           className="pointer"
@@ -466,7 +479,7 @@ const NotificationDropdown = ({
                                         <svg
                                           stroke="currentColor"
                                           fill="currentColor"
-                                          stroke-width="0"
+                                          strokeWidth="0"
                                           viewBox="0 0 16 16"
                                           style={{ color: "#58bd7d" }}
                                           height="1em"
@@ -474,7 +487,7 @@ const NotificationDropdown = ({
                                           xmlns="http://www.w3.org/2000/svg"
                                         >
                                           <path
-                                            fill-rule="evenodd"
+                                            fillRule="evenodd"
                                             d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"
                                           ></path>
                                         </svg>
@@ -483,7 +496,7 @@ const NotificationDropdown = ({
                                         <svg
                                           stroke="currentColor"
                                           fill="currentColor"
-                                          stroke-width="0"
+                                          strokeWidth="0"
                                           viewBox="0 0 16 16"
                                           style={{ color: "#fa0000" }}
                                           height="1em"
@@ -491,7 +504,7 @@ const NotificationDropdown = ({
                                           xmlns="http://www.w3.org/2000/svg"
                                         >
                                           <path
-                                            fill-rule="evenodd"
+                                            fillRule="evenodd"
                                             d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"
                                           ></path>
                                         </svg>
@@ -529,7 +542,7 @@ const NotificationDropdown = ({
                                         <svg
                                           stroke="currentColor"
                                           fill="currentColor"
-                                          stroke-width="0"
+                                          strokeWidth="0"
                                           viewBox="0 0 16 16"
                                           height="1em"
                                           width="1em"
@@ -537,7 +550,7 @@ const NotificationDropdown = ({
                                           style={{ color: "#fa0000" }}
                                         >
                                           <path
-                                            fill-rule="evenodd"
+                                            fillRule="evenodd"
                                             d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"
                                           ></path>
                                         </svg>
@@ -546,7 +559,7 @@ const NotificationDropdown = ({
                                         <svg
                                           stroke="currentColor"
                                           fill="currentColor"
-                                          stroke-width="0"
+                                          strokeWidth="0"
                                           viewBox="0 0 16 16"
                                           height="1em"
                                           width="1em"
@@ -554,7 +567,7 @@ const NotificationDropdown = ({
                                           style={{ color: "#58bd7d" }}
                                         >
                                           <path
-                                            fill-rule="evenodd"
+                                            fillRule="evenodd"
                                             d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"
                                           ></path>
                                         </svg>
