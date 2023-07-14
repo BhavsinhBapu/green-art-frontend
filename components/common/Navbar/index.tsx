@@ -57,7 +57,7 @@ const Navbar = ({
     dispatch(setNotificationData(data.data.data));
   };
   useEffect(() => {
-    checkDashboardThemeSettings(setThemeColor, ThemeColor);
+    showSettings && checkDashboardThemeSettings(setThemeColor, ThemeColor);
   }, []);
   const seen = async () => {
     let arr: any = [];
@@ -1016,7 +1016,7 @@ const Navbar = ({
                   setActive={setActive}
                   active={active}
                   showSettings={showSettings}
-                  setThemeColor={setThemeColor} 
+                  setThemeColor={setThemeColor}
                   ThemeColor={ThemeColor}
                 />
               </div>
@@ -1929,7 +1929,11 @@ const Navbar = ({
           </OutsideClickHandler>
         </>
       ) : !isLoggedIn && isLoading === false ? (
-        <UnAuthNav setThemeColor={setThemeColor} ThemeColor={ThemeColor} showSettings={showSettings}/>
+        <UnAuthNav
+          setThemeColor={setThemeColor}
+          ThemeColor={ThemeColor}
+          showSettings={showSettings}
+        />
       ) : (
         ""
       )}
