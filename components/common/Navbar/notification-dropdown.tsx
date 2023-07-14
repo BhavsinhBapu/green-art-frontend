@@ -7,7 +7,7 @@ import moment from "moment";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { AiOutlineSetting } from "react-icons/ai";
 import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
 import { HiArrowNarrowRight, HiUserCircle } from "react-icons/hi";
@@ -31,9 +31,22 @@ const NotificationDropdown = ({
   ThemeColor,
 }: any) => {
   const dispatch = useDispatch();
+  const containerRef = useRef<any>(null);
   const { t } = useTranslation("common");
   const [isSettingsDropdownOpen, setIsSettingsDropdownOpen] = useState(false);
   const router = useRouter();
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+  const handleClickOutside = (event: any) => {
+    if (containerRef.current && !containerRef.current.contains(event.target)) {
+      setIsSettingsDropdownOpen(false);
+    }
+  };
+
   return (
     <div className="">
       {isLoggedIn ? (
@@ -285,7 +298,7 @@ const NotificationDropdown = ({
                     </a>
                   </li>
                   {showSettings && (
-                    <li>
+                    <li ref={containerRef}>
                       <div>
                         <span
                           className="pointer"

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { BsFillMoonFill, BsFillSunFill, BsBarChartLine } from "react-icons/bs";
@@ -21,6 +21,7 @@ const UnAuthNav = ({ setThemeColor, ThemeColor, showSettings }: any) => {
   const { isLoggedIn, user, logo } = useSelector(
     (state: RootState) => state.user
   );
+  const containerRef = useRef<any>(null);
   const router = useRouter();
   const [theme, setTheme] = useState(0);
   const { settings } = useSelector((state: RootState) => state.common);
@@ -35,6 +36,17 @@ const UnAuthNav = ({ setThemeColor, ThemeColor, showSettings }: any) => {
   };
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+  const handleClickOutside = (event: any) => {
+    if (containerRef.current && !containerRef.current.contains(event.target)) {
+      setIsSettingsDropdownOpen(false);
+    }
+  };
   useEffect(() => {
     checkThemeState(setTheme, dispatch);
     isLoggedIn && getNotifications();
@@ -208,7 +220,7 @@ const UnAuthNav = ({ setThemeColor, ThemeColor, showSettings }: any) => {
                     </a>
                   </li>
                   {showSettings && (
-                    <li>
+                    <li ref={containerRef}>
                       <div>
                         <span
                           className="pointer"
