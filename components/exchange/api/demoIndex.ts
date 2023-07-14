@@ -1,4 +1,4 @@
-import historyProvider from "./historyProvider";
+import historyProvider from "./demoHistoryProvider";
 import stream from "./stream";
 
 const supportedResolutions = [
