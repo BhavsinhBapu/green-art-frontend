@@ -1015,6 +1015,9 @@ const Navbar = ({
                   setTheme={setTheme}
                   setActive={setActive}
                   active={active}
+                  showSettings={showSettings}
+                  setThemeColor={setThemeColor} 
+                  ThemeColor={ThemeColor}
                 />
               </div>
             </div>
@@ -1926,7 +1929,7 @@ const Navbar = ({
           </OutsideClickHandler>
         </>
       ) : !isLoggedIn && isLoading === false ? (
-        <UnAuthNav setThemeColor={setThemeColor} ThemeColor={ThemeColor} />
+        <UnAuthNav setThemeColor={setThemeColor} ThemeColor={ThemeColor} showSettings={showSettings}/>
       ) : (
         ""
       )}

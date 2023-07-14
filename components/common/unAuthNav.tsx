@@ -17,7 +17,7 @@ import {
 import { IoMdGlobe } from "react-icons/io";
 import { AiOutlineClose, AiOutlineSetting } from "react-icons/ai";
 
-const UnAuthNav = ({ setThemeColor, ThemeColor }: any) => {
+const UnAuthNav = ({ setThemeColor, ThemeColor, showSettings }: any) => {
   const { isLoggedIn, user, logo } = useSelector(
     (state: RootState) => state.user
   );
@@ -207,285 +207,291 @@ const UnAuthNav = ({ setThemeColor, ThemeColor }: any) => {
                       )}
                     </a>
                   </li>
-                  <li>
-                    <div>
-                      <span
-                        className="pointer"
-                        onClick={() =>
-                          setIsSettingsDropdownOpen((prev) => !prev)
-                        }
-                      >
-                        <AiOutlineSetting size={20} className="mr-2" />
-                      </span>
-                      {isSettingsDropdownOpen && (
-                        <div className="settings-dropdown">
-                          <div className="settings-dropdown-header">
-                            <p>Theme</p>
-                            <label className="gift-card-buy-switch mb-0">
-                              <input
-                                type="checkbox"
-                                onClick={() => {
-                                  darkModeToggle(settings, setTheme, dispatch);
-                                }}
-                                checked={theme === 0}
-                              />
-                              <span className="gift-card-buy-slider gift-card-buy"></span>
-                            </label>
+                  {showSettings && (
+                    <li>
+                      <div>
+                        <span
+                          className="pointer"
+                          onClick={() =>
+                            setIsSettingsDropdownOpen((prev) => !prev)
+                          }
+                        >
+                          <AiOutlineSetting size={20} className="mr-2" />
+                        </span>
+                        {isSettingsDropdownOpen && (
+                          <div className="settings-dropdown">
+                            <div className="settings-dropdown-header">
+                              <p>Theme</p>
+                              <label className="gift-card-buy-switch mb-0">
+                                <input
+                                  type="checkbox"
+                                  onClick={() => {
+                                    darkModeToggle(
+                                      settings,
+                                      setTheme,
+                                      dispatch
+                                    );
+                                  }}
+                                  checked={theme === 0}
+                                />
+                                <span className="gift-card-buy-slider gift-card-buy"></span>
+                              </label>
+                            </div>
+                            <div className="pb-3 border-bottom text-left">
+                              <p className="mt-2 text-14 font-medium">
+                                Style Settings
+                              </p>
+                              <div className="form-check py-1">
+                                <input
+                                  className="form-check-input radio-scale"
+                                  type="radio"
+                                  name="exampleRadios"
+                                  id="exampleRadios1"
+                                  checked={ThemeColor.green === "#32d777"}
+                                  onClick={() => {
+                                    changeThemeSettingsDashboard(
+                                      "#32d777",
+                                      "#d63031",
+                                      setThemeColor,
+                                      ThemeColor
+                                    );
+                                  }}
+                                  // value="option1"
+                                />
+                                <label
+                                  className="form-check-label w-full"
+                                  htmlFor="exampleRadios1"
+                                >
+                                  <span className="w-full d-inline-block">
+                                    <span className="d-flex gap-5">
+                                      <span className="margin-right-auto">
+                                        Fresh
+                                      </span>
+                                      <span
+                                        className="settings-dropdown-color-box"
+                                        style={{ background: "#32d777" }}
+                                      ></span>
+                                      <span
+                                        className="settings-dropdown-color-box"
+                                        style={{ background: "#d63031" }}
+                                      ></span>
+                                    </span>
+                                  </span>
+                                </label>
+                              </div>
+                              <div className="form-check py-1">
+                                <input
+                                  className="form-check-input radio-scale"
+                                  type="radio"
+                                  name="exampleRadios"
+                                  id="exampleRadios3"
+                                  checked={ThemeColor.green === "#3498db"}
+                                  value="option1"
+                                  onClick={() => {
+                                    changeThemeSettingsDashboard(
+                                      "#3498db",
+                                      "#9b59b6",
+                                      setThemeColor,
+                                      ThemeColor
+                                    );
+                                  }}
+                                />
+                                <label
+                                  className="form-check-label w-full"
+                                  htmlFor="exampleRadios3"
+                                >
+                                  <span className="w-full d-inline-block">
+                                    <span className="d-flex gap-5">
+                                      <span className="margin-right-auto text-14">
+                                        Traditional
+                                      </span>
+                                      <span
+                                        className="settings-dropdown-color-box"
+                                        style={{ background: "#3498db" }}
+                                      ></span>
+                                      <span
+                                        className="settings-dropdown-color-box"
+                                        style={{ background: "#9b59b6" }}
+                                      ></span>
+                                    </span>
+                                  </span>
+                                </label>
+                              </div>
+                              <div className="form-check py-1">
+                                <input
+                                  className="form-check-input radio-scale"
+                                  type="radio"
+                                  name="exampleRadios"
+                                  id="exampleRadios2"
+                                  value="option1"
+                                  checked={ThemeColor.green === "#f39c12"}
+                                  onClick={() => {
+                                    changeThemeSettingsDashboard(
+                                      "#f39c12",
+                                      "#d35400",
+                                      setThemeColor,
+                                      ThemeColor
+                                    );
+                                  }}
+                                />
+                                <label
+                                  className="form-check-label w-full"
+                                  htmlFor="exampleRadios2"
+                                >
+                                  <span className="w-full d-inline-block">
+                                    <span className="d-flex gap-5">
+                                      <span className="margin-right-auto">
+                                        Color Vision Deficiency
+                                      </span>
+                                      <span
+                                        className="settings-dropdown-color-box"
+                                        style={{ background: "#f39c12" }}
+                                      ></span>
+                                      <span
+                                        className="settings-dropdown-color-box "
+                                        style={{ background: "#d35400" }}
+                                      ></span>
+                                    </span>
+                                  </span>
+                                </label>
+                              </div>
+                            </div>
+                            <div className="pb-3 border-bottom text-left">
+                              <p className="mt-2 text-14 font-medium">
+                                Color Preference
+                              </p>
+                              <div className="form-check py-1">
+                                <input
+                                  className="form-check-input radio-scale"
+                                  type="radio"
+                                  name="exampleRadios1"
+                                  id="exampleRadios4"
+                                  value="option1"
+                                  checked={ThemeColor.orderBookLayout === 1}
+                                  onChange={() => {
+                                    setThemeColor({
+                                      ...ThemeColor,
+                                      orderBookLayout: 1,
+                                    });
+                                    localStorage.setItem("chart-up-down", "1");
+                                  }}
+                                />
+                                <label
+                                  className="form-check-label w-full"
+                                  htmlFor="exampleRadios4"
+                                >
+                                  <span className="w-full d-inline-block">
+                                    <span className="d-flex">
+                                      <span className="margin-right-auto">
+                                        Green Up/Red Down
+                                      </span>
+                                      <span>
+                                        <svg
+                                          stroke="currentColor"
+                                          fill="currentColor"
+                                          stroke-width="0"
+                                          viewBox="0 0 16 16"
+                                          style={{ color: "#58bd7d" }}
+                                          height="1em"
+                                          width="1em"
+                                          xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                          <path
+                                            fill-rule="evenodd"
+                                            d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"
+                                          ></path>
+                                        </svg>
+                                      </span>
+                                      <span>
+                                        <svg
+                                          stroke="currentColor"
+                                          fill="currentColor"
+                                          stroke-width="0"
+                                          viewBox="0 0 16 16"
+                                          style={{ color: "#fa0000" }}
+                                          height="1em"
+                                          width="1em"
+                                          xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                          <path
+                                            fill-rule="evenodd"
+                                            d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"
+                                          ></path>
+                                        </svg>
+                                      </span>
+                                    </span>
+                                  </span>
+                                </label>
+                              </div>
+                              <div className="form-check py-1">
+                                <input
+                                  className="form-check-input radio-scale"
+                                  type="radio"
+                                  name="exampleRadios1"
+                                  id="exampleRadios5"
+                                  value="option1"
+                                  checked={ThemeColor.orderBookLayout === 2}
+                                  onChange={() => {
+                                    setThemeColor({
+                                      ...ThemeColor,
+                                      orderBookLayout: 2,
+                                    });
+                                    localStorage.setItem("chart-up-down", "2");
+                                  }}
+                                />
+                                <label
+                                  className="form-check-label w-full"
+                                  htmlFor="exampleRadios5"
+                                >
+                                  <span className="w-full d-inline-block">
+                                    <span className="d-flex">
+                                      <span className="margin-right-auto text-14">
+                                        Green Down/Red Up
+                                      </span>
+                                      <span>
+                                        <svg
+                                          stroke="currentColor"
+                                          fill="currentColor"
+                                          stroke-width="0"
+                                          viewBox="0 0 16 16"
+                                          height="1em"
+                                          width="1em"
+                                          xmlns="http://www.w3.org/2000/svg"
+                                          style={{ color: "#fa0000" }}
+                                        >
+                                          <path
+                                            fill-rule="evenodd"
+                                            d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"
+                                          ></path>
+                                        </svg>
+                                      </span>
+                                      <span>
+                                        <svg
+                                          stroke="currentColor"
+                                          fill="currentColor"
+                                          stroke-width="0"
+                                          viewBox="0 0 16 16"
+                                          height="1em"
+                                          width="1em"
+                                          xmlns="http://www.w3.org/2000/svg"
+                                          style={{ color: "#58bd7d" }}
+                                        >
+                                          <path
+                                            fill-rule="evenodd"
+                                            d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"
+                                          ></path>
+                                        </svg>
+                                      </span>
+                                    </span>
+                                  </span>
+                                </label>
+                              </div>
+                            </div>
                           </div>
-                          <div className="pb-3 border-bottom text-left">
-                            <p className="mt-2 text-14 font-medium">
-                              Style Settings
-                            </p>
-                            <div className="form-check py-1">
-                              <input
-                                className="form-check-input radio-scal"
-                                type="radio"
-                                name="exampleRadios"
-                                id="exampleRadios1"
-                                checked={ThemeColor.green === "#32d777"}
-                                onClick={() => {
-                                  changeThemeSettingsDashboard(
-                                    "#32d777",
-                                    "#d63031",
-                                    setThemeColor,
-                                    ThemeColor
-                                  );
-                                }}
-                                // value="option1"
-                              />
-                              <label
-                                className="form-check-label w-full"
-                                htmlFor="exampleRadios1"
-                              >
-                                <span className="w-full d-inline-block">
-                                  <span className="d-flex gap-5">
-                                    <span className="margin-right-auto">
-                                      Fresh
-                                    </span>
-                                    <span
-                                      className="settings-dropdown-color-box"
-                                      style={{ background: "#32d777" }}
-                                    ></span>
-                                    <span
-                                      className="settings-dropdown-color-box"
-                                      style={{ background: "#d63031" }}
-                                    ></span>
-                                  </span>
-                                </span>
-                              </label>
-                            </div>
-                            <div className="form-check py-1">
-                              <input
-                                className="form-check-input radio-scale"
-                                type="radio"
-                                name="exampleRadios"
-                                id="exampleRadios3"
-                                checked={ThemeColor.green === "#3498db"}
-                                value="option1"
-                                onClick={() => {
-                                  changeThemeSettingsDashboard(
-                                    "#3498db",
-                                    "#9b59b6",
-                                    setThemeColor,
-                                    ThemeColor
-                                  );
-                                }}
-                              />
-                              <label
-                                className="form-check-label w-full"
-                                htmlFor="exampleRadios3"
-                              >
-                                <span className="w-full d-inline-block">
-                                  <span className="d-flex gap-5">
-                                    <span className="margin-right-auto text-14">
-                                      Traditional
-                                    </span>
-                                    <span
-                                      className="settings-dropdown-color-box"
-                                      style={{ background: "#3498db" }}
-                                    ></span>
-                                    <span
-                                      className="settings-dropdown-color-box"
-                                      style={{ background: "#9b59b6" }}
-                                    ></span>
-                                  </span>
-                                </span>
-                              </label>
-                            </div>
-                            <div className="form-check py-1">
-                              <input
-                                className="form-check-input radio-scale"
-                                type="radio"
-                                name="exampleRadios"
-                                id="exampleRadios2"
-                                value="option1"
-                                checked={ThemeColor.green === "#f39c12"}
-                                onClick={() => {
-                                  changeThemeSettingsDashboard(
-                                    "#f39c12",
-                                    "#d35400",
-                                    setThemeColor,
-                                    ThemeColor
-                                  );
-                                }}
-                              />
-                              <label
-                                className="form-check-label w-full"
-                                htmlFor="exampleRadios2"
-                              >
-                                <span className="w-full d-inline-block">
-                                  <span className="d-flex gap-5">
-                                    <span className="margin-right-auto">
-                                      Fresh
-                                    </span>
-                                    <span
-                                      className="settings-dropdown-color-box"
-                                      style={{ background: "#f39c12" }}
-                                    ></span>
-                                    <span
-                                      className="settings-dropdown-color-box "
-                                      style={{ background: "#d35400" }}
-                                    ></span>
-                                  </span>
-                                </span>
-                              </label>
-                            </div>
-                          </div>
-                          <div className="pb-3 border-bottom text-left">
-                            <p className="mt-2 text-14 font-medium">
-                              Color Preference
-                            </p>
-                            <div className="form-check py-1">
-                              <input
-                                className="form-check-input radio-scale"
-                                type="radio"
-                                name="exampleRadios1"
-                                id="exampleRadios4"
-                                value="option1"
-                                checked={ThemeColor.orderBookLayout === 1}
-                                onChange={() => {
-                                  setThemeColor({
-                                    ...ThemeColor,
-                                    orderBookLayout: 1,
-                                  });
-                                  localStorage.setItem("chart-up-down", "1");
-                                }}
-                              />
-                              <label
-                                className="form-check-label w-full"
-                                htmlFor="exampleRadios4"
-                              >
-                                <span className="w-full d-inline-block">
-                                  <span className="d-flex">
-                                    <span className="margin-right-auto">
-                                      Green Up/Red Down
-                                    </span>
-                                    <span>
-                                      <svg
-                                        stroke="currentColor"
-                                        fill="currentColor"
-                                        stroke-width="0"
-                                        viewBox="0 0 16 16"
-                                        style={{ color: "#58bd7d" }}
-                                        height="1em"
-                                        width="1em"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                      >
-                                        <path
-                                          fill-rule="evenodd"
-                                          d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"
-                                        ></path>
-                                      </svg>
-                                    </span>
-                                    <span>
-                                      <svg
-                                        stroke="currentColor"
-                                        fill="currentColor"
-                                        stroke-width="0"
-                                        viewBox="0 0 16 16"
-                                        style={{ color: "#fa0000" }}
-                                        height="1em"
-                                        width="1em"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                      >
-                                        <path
-                                          fill-rule="evenodd"
-                                          d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"
-                                        ></path>
-                                      </svg>
-                                    </span>
-                                  </span>
-                                </span>
-                              </label>
-                            </div>
-                            <div className="form-check py-1">
-                              <input
-                                className="form-check-input radio-scale"
-                                type="radio"
-                                name="exampleRadios1"
-                                id="exampleRadios5"
-                                value="option1"
-                                checked={ThemeColor.orderBookLayout === 2}
-                                onChange={() => {
-                                  setThemeColor({
-                                    ...ThemeColor,
-                                    orderBookLayout: 2,
-                                  });
-                                  localStorage.setItem("chart-up-down", "2");
-                                }}
-                              />
-                              <label
-                                className="form-check-label w-full"
-                                htmlFor="exampleRadios5"
-                              >
-                                <span className="w-full d-inline-block">
-                                  <span className="d-flex">
-                                    <span className="margin-right-auto text-14">
-                                      Green Down/Red Up
-                                    </span>
-                                    <span>
-                                      <svg
-                                        stroke="currentColor"
-                                        fill="currentColor"
-                                        stroke-width="0"
-                                        viewBox="0 0 16 16"
-                                        height="1em"
-                                        width="1em"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        style={{ color: "#fa0000" }}
-                                      >
-                                        <path
-                                          fill-rule="evenodd"
-                                          d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"
-                                        ></path>
-                                      </svg>
-                                    </span>
-                                    <span>
-                                      <svg
-                                        stroke="currentColor"
-                                        fill="currentColor"
-                                        stroke-width="0"
-                                        viewBox="0 0 16 16"
-                                        height="1em"
-                                        width="1em"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        style={{ color: "#58bd7d" }}
-                                      >
-                                        <path
-                                          fill-rule="evenodd"
-                                          d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"
-                                        ></path>
-                                      </svg>
-                                    </span>
-                                  </span>
-                                </span>
-                              </label>
-                            </div>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  </li>
+                        )}
+                      </div>
+                    </li>
+                  )}
                 </ul>
               </nav>
             </div>
