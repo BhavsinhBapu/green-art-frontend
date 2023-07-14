@@ -86,6 +86,7 @@ const Dashboard: NextPage = () => {
           isLoggedIn={isLoggedIn}
           ThemeColor={ThemeColor}
           setThemeColor={setThemeColor}
+          showSettings={true}
         />
         {isLoading && <Loading />}
         <div className="mt-5"></div>
