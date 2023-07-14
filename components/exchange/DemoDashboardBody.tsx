@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
 import AllSellOrders from "./AllSellOrders";
@@ -32,13 +32,19 @@ const TradingChart = dynamic(
     ),
   { ssr: false }
 );
-const DemoDashboardBody = () => {
+const DemoDashboardBody = ({ ThemeColor }: any) => {
   const { t } = useTranslation("common");
-  const [select, setSelect] = React.useState(3);
+  const [show, setShow] = useState(true);
+  const [select, setSelect] = useState(3);
   const { dashboard, OpenBookBuy, OpenBooksell, marketTrades, currentPair } =
     useSelector((state: RootState) => state.demoExchange);
   const { settings, theme } = useSelector((state: RootState) => state.common);
-
+  useEffect(() => {
+    setShow(false);
+    setInterval(() => {
+      setShow(true);
+    }, 400);
+  }, [ThemeColor.green, ThemeColor.red]);
   return (
     <>
       <div className="col-xl-3">
@@ -60,7 +66,7 @@ const DemoDashboardBody = () => {
                   fill="none"
                   className="css-3kwgah w-25"
                 >
-                  <path d="M4 4h7v16H4V4z" fill="#0ECB81"></path>
+                  <path d="M4 4h7v16H4V4z" fill={ThemeColor.green}></path>
                   <path
                     d="M13 4h7v4h-7V4zm0 6h7v4h-7v-4zm7 6h-7v4h7v-4z"
                     fill="currentColor"
@@ -79,7 +85,7 @@ const DemoDashboardBody = () => {
                   fill="none"
                   className="css-3kwgah  w-25"
                 >
-                  <path d="M4 4h7v16H4V4z" fill="#F6465D"></path>
+                  <path d="M4 4h7v16H4V4z" fill={ThemeColor.red}></path>
                   <path
                     d="M13 4h7v4h-7V4zm0 6h7v4h-7v-4zm7 6h-7v4h7v-4z"
                     fill="currentColor"
@@ -98,8 +104,8 @@ const DemoDashboardBody = () => {
                   fill="none"
                   className="css-3kwgah w-25"
                 >
-                  <path d="M4 4h7v7H4V4z" fill="#F6465D"></path>
-                  <path d="M4 13h7v7H4v-7z" fill="#0ECB81"></path>
+                  <path d="M4 4h7v7H4V4z" fill={ThemeColor.green}></path>
+                  <path d="M4 13h7v7H4v-7z" fill={ThemeColor.green}></path>
                   <path
                     d="M13 4h7v4h-7V4zm0 6h7v4h-7v-4zm7 6h-7v4h7v-4z"
                     fill="currentColor"
@@ -246,7 +252,11 @@ const DemoDashboardBody = () => {
           )}
           {select === 3 && (
             <div className="tradeSection-both">
-              <DemoAllSellOrders OpenBooksell={OpenBooksell} show={18} />
+              {ThemeColor.orderBookLayout === 1 ? (
+                <DemoAllBuyOrders OpenBookBuy={OpenBookBuy} show={18} />
+              ) : (
+                <DemoAllSellOrders OpenBooksell={OpenBooksell} show={18} />
+              )}
               <div className="trades-table-footer">
                 {dashboard?.last_price_data?.length > 0 ? (
                   <div className="trades-table-row">
@@ -343,7 +353,11 @@ const DemoDashboardBody = () => {
                   </div>
                 )}
               </div>
-              <DemoAllBuyOrders OpenBookBuy={OpenBookBuy} show={18} />
+              {ThemeColor.orderBookLayout === 1 ? (
+                <DemoAllSellOrders OpenBooksell={OpenBooksell} show={18} />
+              ) : (
+                <DemoAllBuyOrders OpenBookBuy={OpenBookBuy} show={18} />
+              )}
             </div>
           )}
         </div>
@@ -353,7 +367,7 @@ const DemoDashboardBody = () => {
           <div className="card cp-user-custom-card">
             {currentPair && (
               //@ts-ignore
-              <TradingChart currentPair={currentPair} theme={theme} />
+              <TradingChart currentPair={currentPair} theme={theme}  ThemeColor={ThemeColor}/>
             )}
           </div>
         </div>

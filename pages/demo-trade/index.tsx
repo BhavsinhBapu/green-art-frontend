@@ -28,15 +28,22 @@ const Dashboard: NextPage = () => {
   const { dashboard, currentPair } = useSelector(
     (state: RootState) => state.demoExchange
   );
-  
+  const [ThemeColor, setThemeColor] = useState({
+    green: "#32d777",
+    red: "#d63031",
+    orderBookLayout: 1,
+  });
+
   useEffect(() => {
     // const pair = localStorage.getItem("current_pair");
-    if(!router.isReady) return;
+    if (!router.isReady) return;
 
     if (router?.query?.coin_pair) {
       const pair_name = String(router?.query?.coin_pair);
       dispatch(setCurrentPair(pair_name));
-      dispatch(initialDashboardCallAction(pair_name, dashboard, setisLoading, router));
+      dispatch(
+        initialDashboardCallAction(pair_name, dashboard, setisLoading, router)
+      );
     } else {
       dispatch(
         initialDashboardCallAction(currentPair, dashboard, setisLoading, router)
@@ -57,10 +64,10 @@ const Dashboard: NextPage = () => {
       );
     }
   }, [dashboard?.order_data?.base_coin_id]);
- useEffect(() => {
-   listenMessages(dispatch, user);
- }, [currentPair]);
-    const { settings } = useSelector((state: RootState) => state.common);
+  useEffect(() => {
+    listenMessages(dispatch, user);
+  }, [currentPair]);
+  const { settings } = useSelector((state: RootState) => state.common);
 
   return (
     <div className="container-dashboard">
@@ -73,7 +80,13 @@ const Dashboard: NextPage = () => {
             | {currentPair ? currentPair.replace("_", "") : "----"}
           </title>
         </Head>
-        <Navbar settings={settings} isLoggedIn={isLoggedIn} />
+        <Navbar
+          settings={settings}
+          isLoggedIn={isLoggedIn}
+          ThemeColor={ThemeColor}
+          setThemeColor={setThemeColor}
+          showSettings={true}
+        />
         {isLoading && <Loading />}
         <div className="mt-5"></div>
         <div className="cp-user-sidebar-area">
@@ -227,7 +240,7 @@ const Dashboard: NextPage = () => {
                     </div>
                   </div>
 
-                  <DemoDashboardBody />
+                  <DemoDashboardBody ThemeColor={ThemeColor}/>
                 </div>
               </div>
             </div>
