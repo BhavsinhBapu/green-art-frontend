@@ -5,25 +5,68 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { toast } from "react-toastify";
+import { getMarketsTradeSectionDataApi } from "service/markets";
+import Echo from "laravel-echo";
+import Pusher from "pusher-js";
+
+async function listenMessages(setTradeItems: any, tradeItems: any) {
+  //@ts-ignore
+  window.Pusher = Pusher;
+  //@ts-ignore
+  window.Echo = new Echo({
+    broadcaster: "pusher",
+    key: "test",
+    wsHost: process.env.NEXT_PUBLIC_HOST_SOCKET,
+    wsPort: process.env.NEXT_PUBLIC_WSS_PORT
+      ? process.env.NEXT_PUBLIC_WSS_PORT
+      : 6006,
+    wssPort: 443,
+    forceTLS: false,
+    cluster: "mt1",
+    disableStats: true,
+    enabledTransports: ["ws", "wss"],
+  });
+  //@ts-ignore
+  window.Echo.channel(`market-overview-top-coin-list-data`).listen(
+    ".market-overview-top-coin-list",
+    (e: any) => {
+      // setTradeDatas(e)
+      if (e?.coin_pair_details === null) return;
+      const updatedArray = tradeItems?.map((item: any) => {
+        if (item.id === e?.coin_pair_details?.id) {
+          return e?.coin_pair_details;
+        }
+        return item;
+      });
+      setTradeItems(updatedArray);
+      console.log("ws",e )
+    }
+  );
+}
 
 export default function TradesTable() {
   const [tradeDatas, setTradeDatas] = useState<any>([]);
+  const [tradeItems, setTradeItems] = useState<any>([]);
   const [selectType, setSelectType] = useState(1);
   const [search, setSearch] = useState("");
   const router = useRouter();
+
+  useEffect(() => {
+    listenMessages(setTradeItems, tradeItems);
+  }, [tradeItems]);
+
   useEffect(() => {
     getMarketsTradeSectionData(1);
   }, [selectType, search]);
 
   const getMarketsTradeSectionData = async (page: any) => {
-    const { data } = await request.get(
-      `market-overview-top-coin-list?limit=10&type=${selectType}&search=${search}&page=${page}`
-    );
+    const data = await getMarketsTradeSectionDataApi(selectType, search, page);
     if (!data.success) {
       toast.error(data.message);
       return;
     }
     setTradeDatas(data.data);
+    setTradeItems(data.data.data);
   };
   const handlePageClick = (event: any) => {
     getMarketsTradeSectionData(event.selected + 1);
@@ -126,7 +169,7 @@ export default function TradesTable() {
                   role="tabpanel"
                   aria-labelledby="CoreAssets-tab"
                 >
-                  {tradeDatas?.data?.length > 0 ? (
+                  {tradeItems?.length > 0 ? (
                     <div className="exchange-volume-table">
                       <div className="table-responsive">
                         <div
@@ -207,40 +250,39 @@ export default function TradesTable() {
                               </tr>
                             </thead>
                             <tbody>
-                              {tradeDatas?.data?.map(
-                                (item: any, index: any) => (
-                                  <tr role="row" className="odd" key={index}>
-                                    <td className="d-flex">
-                                      <img
-                                        className="icon mr-3"
-                                        src={"/bitcoin.png"}
-                                        alt="coin"
-                                        width="25px"
-                                        height="25px"
-                                      />
-                                      <a className="cellMarket" href="#">
-                                        <div className="marketSymbols">
-                                          <span className="quoteSymbol">
-                                            {item.coin_type}
-                                          </span>
-                                        </div>
-                                      </a>
-                                    </td>
-                                    <td className="text-black text-center">
-                                      {item.price}
-                                    </td>
-                                    <td className="text-center">
-                                      <span
-                                        className={`changePos  ${
-                                          parseFloat(item.change) >= 0
-                                            ? "text-success"
-                                            : "text-danger"
-                                        } `}
-                                      >
-                                        {item.change}%
-                                      </span>
-                                    </td>
-                                    {/* <td className="text-center">
+                              {tradeItems?.map((item: any, index: any) => (
+                                <tr role="row" className="odd" key={index}>
+                                  <td className="d-flex">
+                                    <img
+                                      className="icon mr-3"
+                                      src={"/bitcoin.png"}
+                                      alt="coin"
+                                      width="25px"
+                                      height="25px"
+                                    />
+                                    <a className="cellMarket" href="#">
+                                      <div className="marketSymbols">
+                                        <span className="quoteSymbol">
+                                          {item.coin_type}
+                                        </span>
+                                      </div>
+                                    </a>
+                                  </td>
+                                  <td className="text-black text-center">
+                                    {item.price}
+                                  </td>
+                                  <td className="text-center">
+                                    <span
+                                      className={`changePos  ${
+                                        parseFloat(item.change) >= 0
+                                          ? "text-success"
+                                          : "text-danger"
+                                      } `}
+                                    >
+                                      {item.change}%
+                                    </span>
+                                  </td>
+                                  {/* <td className="text-center">
                                       {parseFloat(item.change) >= 0 ? (
                                         <img
                                           src="/chart-image-1.png"
@@ -255,13 +297,11 @@ export default function TradesTable() {
                                         />
                                       )}
                                     </td> */}
-                                    <td className="text-black text-center">
-                                      {item.volume}
-                                    </td>
-                                    <td className="text-black text-center">
-                                      0
-                                    </td>
-                                    {/* <td
+                                  <td className="text-black text-center">
+                                    {item.volume}
+                                  </td>
+                                  <td className="text-black text-center">0</td>
+                                  {/* <td
                                       className="text-right"
                                       onClick={async () => {
                                         await localStorage.setItem(
@@ -295,9 +335,8 @@ export default function TradesTable() {
                                         {t("Trade")}
                                       </a>
                                     </td> */}
-                                  </tr>
-                                )
-                              )}
+                                </tr>
+                              ))}
                             </tbody>
                           </table>
                         </div>

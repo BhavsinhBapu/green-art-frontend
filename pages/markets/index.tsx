@@ -1,15 +1,41 @@
 import { CUstomSelect } from "components/common/CUstomSelect";
 import MarketsCards from "components/markets/MarketsCards";
 import TradesTable from "components/markets/TradesTable";
-import request from "lib/request";
-
+import Echo from "laravel-echo";
+import Pusher from "pusher-js";
 import useTranslation from "next-translate/useTranslation";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { getMarketCardDatasApi } from "service/markets";
 const options = [
   { value: "usd", label: "USD" },
   { value: "btc", label: "BTC" },
 ];
+async function listenMessages(setMarketsCardData: any) {
+  //@ts-ignore
+  window.Pusher = Pusher;
+  //@ts-ignore
+  window.Echo = new Echo({
+    broadcaster: "pusher",
+    key: "test",
+    wsHost: process.env.NEXT_PUBLIC_HOST_SOCKET,
+    wsPort: process.env.NEXT_PUBLIC_WSS_PORT
+      ? process.env.NEXT_PUBLIC_WSS_PORT
+      : 6006,
+    wssPort: 443,
+    forceTLS: false,
+    cluster: "mt1",
+    disableStats: true,
+    enabledTransports: ["ws", "wss"],
+  });
+  //@ts-ignore
+  window.Echo.channel(
+    `market-overview-coin-statistic-list-data`
+  ).listen(".market-overview-coin-statistic-list", (e: any) => {
+    setMarketsCardData(e)
+  });
+}
+
 export default function index() {
   const { t } = useTranslation();
   const [marketsCardData, setMarketsCardData] = useState<any>();
@@ -18,10 +44,13 @@ export default function index() {
     getMarketCardDatas();
   }, []);
 
+  useEffect(() => {
+    listenMessages(setMarketsCardData);
+  }, [])
+  
+
   const getMarketCardDatas = async () => {
-    const { data } = await request.get(
-      `/market-overview-coin-statistic-list?currency_type=`
-    );
+    const data = await getMarketCardDatasApi();
     if (!data.success) {
       toast.error(data.message);
       return;

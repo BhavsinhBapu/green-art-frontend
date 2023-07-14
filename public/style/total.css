@@ -15298,6 +15298,7 @@ input:checked + .gift-card-buy-slider:before {
 }
 .market-select-page .custom-select__control .custom-select__indicator{
   padding: 0 !important;
+}
 .settings-dropdown {
   position: absolute;
   right: 0;
