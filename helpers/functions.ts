@@ -1,5 +1,36 @@
 import { setThemeColor } from "state/reducer/common";
+export const changeThemeSettingsDashboard = (
+  tradeGreen: string,
+  tradeRed: string,
+  setThemeColor: any,
+  ThemeColor: any
+) => {
+  document.documentElement.style.setProperty("--trade-green", tradeGreen);
+  document.documentElement.style.setProperty("--trade-red", tradeRed);
+  localStorage.setItem("tradeGreen", tradeGreen);
+  localStorage.setItem("tradeRed", tradeRed);
+  setThemeColor({
+    ...ThemeColor,
+    green: tradeGreen,
+    red: tradeRed,
+  });
+};
+export const checkDashboardThemeSettings = (
+  setThemeColor: any,
+  ThemeColor: any
+) => {
+  const tradeGreen = localStorage.getItem("tradeGreen");
+  const tradeRed = localStorage.getItem("tradeRed");
+  const checkOrder = localStorage.getItem("chart-up-down");
+  document.documentElement.style.setProperty("--trade-green", tradeGreen);
+  document.documentElement.style.setProperty("--trade-red", tradeRed);
 
+  setThemeColor({
+    orderBookLayout: checkOrder ? Number(checkOrder) : 1,
+    green: tradeGreen ? tradeGreen : "#32d777",
+    red: tradeRed ? tradeRed : "#d63031",
+  });
+};
 export const checkDarkMode = (settings: any, dispatch: any) => {
   const theme = localStorage.getItem("theme");
   if (theme === "light") {
@@ -77,7 +108,7 @@ export const darkModeToggle = (settings: any, setTheme: any, dispatch: any) => {
   }
 };
 
-export const darkModeToggleDashboard = (dispatch:any) => {
+export const darkModeToggleDashboard = (dispatch: any) => {
   const theme = localStorage.getItem("theme");
   if (theme === "dark") {
     document.documentElement.setAttribute("data-theme", "light");
@@ -89,7 +120,7 @@ export const darkModeToggleDashboard = (dispatch:any) => {
     localStorage.setItem("theme", "dark");
   }
 };
-export const checkThemeState = (setTheme: any, dispatch:any) => {
+export const checkThemeState = (setTheme: any, dispatch: any) => {
   const theme = localStorage.getItem("theme");
   if (theme === "light") {
     setTheme(1);

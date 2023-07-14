@@ -83,12 +83,14 @@ const OrderHistory = ({
                 <tbody>
                   {buyOrderHistoryState?.map((item: any, index: number) => (
                     <tr key={index}>
-                      <td
-                        className={
-                          item?.type === "sell" ? "text-danger" : "text-success"
-                        }
-                      >
-                        {item?.type}
+                      <td>
+                        <span
+                          className={
+                            item?.type === "sell" ? "redText" : "greenText"
+                          }
+                        >
+                          {item?.type}
+                        </span>
                       </td>
                       <td>
                         {dashboard.order_data.exchange_coin_pair &&
@@ -136,12 +138,14 @@ const OrderHistory = ({
                 <tbody>
                   {sellOrderHistoryState?.map((item: any, index: number) => (
                     <tr key={index}>
-                      <td
-                        className={
-                          item?.type === "sell" ? "text-danger" : "text-success"
-                        }
-                      >
-                        {item?.type}
+                      <td>
+                        <span
+                          className={
+                            item?.type === "sell" ? "redText" : "greenText"
+                          }
+                        >
+                          {item?.type}
+                        </span>
                       </td>
                       <td>
                         {dashboard.order_data.exchange_coin_pair &&

@@ -20,7 +20,10 @@ import { notification, notificationSeen } from "service/notification";
 import useTranslation from "next-translate/useTranslation";
 import OutsideClickHandler from "react-outside-click-handler";
 import UnAuthNav from "../unAuthNav";
-import { checkThemeState } from "helpers/functions";
+import {
+  checkDashboardThemeSettings,
+  checkThemeState,
+} from "helpers/functions";
 import NotificationDropdown from "./notification-dropdown";
 import { setNotificationData } from "state/reducer/user";
 import { IoMdGlobe } from "react-icons/io";
@@ -33,7 +36,13 @@ import { GiBuyCard, GiSellCard, GiTrade } from "react-icons/gi";
 import { GoStop } from "react-icons/go";
 import { AiFillGift, AiOutlineClose } from "react-icons/ai";
 
-const Navbar = ({ settings, isLoggedIn }: any) => {
+const Navbar = ({
+  settings,
+  isLoggedIn,
+  ThemeColor,
+  setThemeColor,
+  showSettings = false,
+}: any) => {
   const { isLoading, user, logo, notificationData } = useSelector(
     (state: RootState) => state.user
   );
@@ -47,6 +56,9 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
     const data = await notification();
     dispatch(setNotificationData(data.data.data));
   };
+  useEffect(() => {
+    checkDashboardThemeSettings(setThemeColor, ThemeColor);
+  }, []);
   const seen = async () => {
     let arr: any = [];
 
@@ -1003,6 +1015,9 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
                   setTheme={setTheme}
                   setActive={setActive}
                   active={active}
+                  showSettings={showSettings}
+                  setThemeColor={setThemeColor} 
+                  ThemeColor={ThemeColor}
                 />
               </div>
             </div>
@@ -1914,7 +1929,7 @@ const Navbar = ({ settings, isLoggedIn }: any) => {
           </OutsideClickHandler>
         </>
       ) : !isLoggedIn && isLoading === false ? (
-        <UnAuthNav />
+        <UnAuthNav setThemeColor={setThemeColor} ThemeColor={ThemeColor} showSettings={showSettings}/>
       ) : (
         ""
       )}
