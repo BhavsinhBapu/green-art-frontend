@@ -53,12 +53,12 @@ const OpenOrders = ({ openOrders, openOrderHistory }: any) => {
           <tbody>
             {openOrderHistory?.map((order: any, index: number) => (
               <tr key={index}>
-                <td
-                  className={
-                    order.type === "sell" ? "text-danger" : "text-success"
-                  }
-                >
-                  {order.type}
+                <td>
+                  <span
+                    className={order.type === "sell" ? "redText" : "greenText"}
+                  >
+                    {order.type}
+                  </span>
                 </td>
 
                 <td>{order.amount}</td>

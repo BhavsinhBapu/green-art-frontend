@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
 import AllSellOrders from "./AllSellOrders";
@@ -16,6 +16,7 @@ import {
   EXCHANGE_LAYOUT_ONE,
   EXCHANGE_LAYOUT_TWO,
 } from "helpers/core-constants";
+import { set } from "nprogress";
 const TradingChart = dynamic(
   () =>
     import("components/exchange/TradingChart").then(
@@ -23,13 +24,20 @@ const TradingChart = dynamic(
     ),
   { ssr: false }
 );
-const DashboardBody = () => {
+const DashboardBody = ({ ThemeColor }: any) => {
+  const [show, setShow] = useState(true);
   const { t } = useTranslation("common");
   const [select, setSelect] = React.useState(3);
   const { dashboard, OpenBookBuy, OpenBooksell, marketTrades, currentPair } =
     useSelector((state: RootState) => state.exchange);
   const { settings, theme } = useSelector((state: RootState) => state.common);
 
+  useEffect(() => {
+    setShow(false);
+    setInterval(() => {
+      setShow(true);
+    }, 400);
+  }, [ThemeColor.green, ThemeColor.red]);
   return (
     <>
       <div className="col-xl-3">
@@ -51,7 +59,7 @@ const DashboardBody = () => {
                   fill="none"
                   className="css-3kwgah w-25"
                 >
-                  <path d="M4 4h7v16H4V4z" fill="#0ECB81"></path>
+                  <path d="M4 4h7v16H4V4z" fill={ThemeColor.green}></path>
                   <path
                     d="M13 4h7v4h-7V4zm0 6h7v4h-7v-4zm7 6h-7v4h7v-4z"
                     fill="currentColor"
@@ -70,7 +78,7 @@ const DashboardBody = () => {
                   fill="none"
                   className="css-3kwgah  w-25"
                 >
-                  <path d="M4 4h7v16H4V4z" fill="#F6465D"></path>
+                  <path d="M4 4h7v16H4V4z" fill={ThemeColor.red}></path>
                   <path
                     d="M13 4h7v4h-7V4zm0 6h7v4h-7v-4zm7 6h-7v4h7v-4z"
                     fill="currentColor"
@@ -89,8 +97,8 @@ const DashboardBody = () => {
                   fill="none"
                   className="css-3kwgah w-25"
                 >
-                  <path d="M4 4h7v7H4V4z" fill="#F6465D"></path>
-                  <path d="M4 13h7v7H4v-7z" fill="#0ECB81"></path>
+                  <path d="M4 4h7v7H4V4z" fill={ThemeColor.green}></path>
+                  <path d="M4 13h7v7H4v-7z" fill={ThemeColor.green}></path>
                   <path
                     d="M13 4h7v4h-7V4zm0 6h7v4h-7v-4zm7 6h-7v4h7v-4z"
                     fill="currentColor"
@@ -237,7 +245,12 @@ const DashboardBody = () => {
           )}
           {select === 3 && (
             <div className="tradeSection-both">
-              <AllSellOrders OpenBooksell={OpenBooksell} show={18} />
+              {ThemeColor.orderBookLayout === 1 ? (
+                <AllBuyOrders OpenBookBuy={OpenBookBuy} show={18} />
+              ) : (
+                <AllSellOrders OpenBooksell={OpenBooksell} show={18} />
+              )}
+
               <div className="trades-table-footer">
                 {dashboard?.last_price_data?.length > 0 ? (
                   <div className="trades-table-row">
@@ -334,7 +347,11 @@ const DashboardBody = () => {
                   </div>
                 )}
               </div>
-              <AllBuyOrders OpenBookBuy={OpenBookBuy} show={18} />
+              {ThemeColor.orderBookLayout === 1 ? (
+                <AllSellOrders OpenBooksell={OpenBooksell} show={18} />
+              ) : (
+                <AllBuyOrders OpenBookBuy={OpenBookBuy} show={18} />
+              )}
             </div>
           )}
         </div>
@@ -342,9 +359,13 @@ const DashboardBody = () => {
       <div className="col-xl-6">
         <div className="cp-user-buy-coin-content-area">
           <div className="card cp-user-custom-card">
-            {currentPair && (
-              //@ts-ignore
-              <TradingChart currentPair={currentPair} theme={theme} />
+            {currentPair && show && (
+              <TradingChart
+                //@ts-ignore
+                currentPair={currentPair}
+                theme={theme}
+                ThemeColor={ThemeColor}
+              />
             )}
           </div>
         </div>

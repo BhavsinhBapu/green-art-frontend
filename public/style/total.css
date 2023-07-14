@@ -4316,7 +4316,7 @@ table.table {
   .cxchange-summary-items
   li
   .value.decrease {
-  color: #ff2e2e !important;
+  color: var(--trade-red) !important;
 }
 
 .cxchange-summary-wrap
@@ -4324,7 +4324,7 @@ table.table {
   .cxchange-summary-items
   li
   .value.increase {
-  color: #32d777 !important;
+  color: var(--trade-green) !important;
 }
 
 .cxchange-summary-wrap .cxchange-summary-volume {
@@ -4717,11 +4717,11 @@ select:-webkit-autofill:focus {
 }
 
 .buy-text {
-  color: #ff2e2e;
+  color: var(--trade-red);
 }
 
 .sell-text {
-  color: #32d777;
+  color: var(--trade-green);
 }
 
 .trades-table .trades-table-row .trades-table-col.volume {
@@ -4736,17 +4736,17 @@ select:-webkit-autofill:focus {
 }
 
 .value-increase {
-  color: #28a745 !important;
+  color: var(--trade-green) !important;
   font-size: 25px;
 }
 
 .value-decrease {
-  color: #dc3545 !important;
+  color: var(--trade-red) !important;
   font-size: 25px;
 }
 
 .value-decreaseicon {
-  color: #dc3545 !important;
+  color: var(--trade-red) !important;
   font-size: 15px !important;
 }
 
@@ -4756,7 +4756,7 @@ select:-webkit-autofill:focus {
 }
 
 .value-increaseicon {
-  color: #28a745 !important;
+  color: var(--trade-green) !important;
   font-size: 15px !important;
 }
 
@@ -4789,7 +4789,9 @@ select:-webkit-autofill:focus {
 
 .progress-red {
   position: absolute;
-  background-color: rgb(255 46 46 / 9%);
+  /* background-color: rgb(255 46 46 / 9%); */
+  background-color: var(--trade-red);
+  opacity: 0.3;
   height: 100%;
   top: 0;
   right: 0;
@@ -4823,7 +4825,8 @@ select:-webkit-autofill:focus {
 
 .progress-green {
   position: absolute;
-  background-color: #32d7771a;
+  background-color: var(--trade-green);
+  opacity: 0.3;
   height: 100%;
   top: 0;
   right: 0;
@@ -4892,13 +4895,13 @@ select:-webkit-autofill:focus {
 }
 
 .order-box .trades-headers .nav-pills .nav-link.active {
-  color: #32d777;
-  border-bottom: 2px solid #32d777;
+  color: var(--trade-green);
+  border-bottom: 2px solid var(--trade-green);
 }
 
 .order-box .trades-headers .nav-pills .nav-link.activeSell {
-  color: #d63031;
-  border-bottom: 2px solid #d63031;
+  color: var(--trade-red);
+  border-bottom: 2px solid var(--trade-red);
 }
 
 .exchange-box {
@@ -4944,7 +4947,7 @@ select:-webkit-autofill:focus {
 .exchange-box .theme-btn {
   width: 100%;
   border-radius: 0;
-  background: #32d777;
+  background: var(--trade-green);
   color: #fff !important;
   font-size: 20px;
   font-weight: 600;
@@ -4954,7 +4957,7 @@ select:-webkit-autofill:focus {
 .exchange-box .theme-btn-red {
   width: 100%;
   border-radius: 0;
-  background: #d63031;
+  background: var(--trade-red);
   color: #fff !important;
   font-size: 20px;
   font-weight: 600;
@@ -4980,12 +4983,12 @@ select:-webkit-autofill:focus {
 }
 
 .inner-tabs-menu .nav-item .nav-link.active {
-  color: #32d777 !important;
+  color: var(--trade-green) !important;
   background-color: transparent !important;
 }
 
 .inner-tabs-menu .sellBox .nav-link.active {
-  color: #d63031 !important;
+  color: var(--trade-red) !important;
   background-color: transparent !important;
 }
 
@@ -15295,6 +15298,37 @@ input:checked + .gift-card-buy-slider:before {
 }
 .market-select-page .custom-select__control .custom-select__indicator{
   padding: 0 !important;
+.settings-dropdown {
+  position: absolute;
+  right: 0;
+  width: 400px;
+  padding: 16px;
+  border-radius: 24px;
+  box-shadow: 0 16px 64px -24px rgba(31, 47, 70, 0.25);
+  background: var(--main-background-color);
+  top: calc(100% + 20px) !important;
+}
+
+.settings-dropdown-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #e6e8ec;
+}
+
+.settings-dropdown-color-box {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+}
+.margin-right-auto {
+  margin-left: 5px;
+  margin-right: auto;
+}
+
+.radio-scale{
+  scale: 1.5;
 }
 
 @media (max-width: 991px) {
@@ -15350,4 +15384,16 @@ input:checked + .gift-card-buy-slider:before {
   .p2p-gift-card-adds-margin-right {
     margin-right: 0;
   }
+}
+.danger-trade {
+  color: var(--trade-red) !important;
+}
+.success-trade {
+  color: var(--trade-green) !important;
+}
+.greenText{
+  color: var(--trade-green);
+}
+.redText{
+  color: var(--trade-red);
 }

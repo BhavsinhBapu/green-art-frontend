@@ -62,9 +62,9 @@ const TradesTable = ({ marketTrades }: any) => {
                 <span
                   className={
                     item.type === "green"
-                      ? "text-success"
+                      ? "greenText"
                       : item.type === "red"
-                      ? "text-danger"
+                      ? "redText"
                       : ""
                   }
                 >

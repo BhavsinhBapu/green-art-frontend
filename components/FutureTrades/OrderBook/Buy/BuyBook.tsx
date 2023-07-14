@@ -36,7 +36,7 @@ const BuyBook = ({ height = 425 }) => {
               <tr className="odd trade_tableList_two">
                 <td>
                   <div className="asset">
-                    <span className="text-success">26449.10000000</span>
+                    <span className="greenText">26449.10000000</span>
                   </div>
                 </td>
                 <td>
