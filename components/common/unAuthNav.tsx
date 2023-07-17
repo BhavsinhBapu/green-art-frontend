@@ -24,6 +24,7 @@ import {
 } from "react-icons/ai";
 import {
   EXCHANGE_LAYOUT_ONE,
+  EXCHANGE_LAYOUT_THREE,
   EXCHANGE_LAYOUT_TWO,
 } from "helpers/core-constants";
 
@@ -536,7 +537,7 @@ const UnAuthNav = ({
                                   className="form-check-input radio-scale"
                                   type="radio"
                                   name="layout1"
-                                  id="exampleRadios4"
+                                  id="exampleRadiosLayout1"
                                   value="option1"
                                   checked={layout === EXCHANGE_LAYOUT_ONE}
                                   onChange={() => {
@@ -548,47 +549,16 @@ const UnAuthNav = ({
                                 />
                                 <label
                                   className="form-check-label w-full"
-                                  htmlFor="exampleRadios4"
+                                  htmlFor="exampleRadiosLayout1"
                                 >
                                   <span className="w-full d-inline-block">
                                     <span className="d-flex">
                                       <span className="margin-right-auto">
                                         Layout one
                                       </span>
-                                      <span>
-                                        <svg
-                                          stroke="currentColor"
-                                          fill="currentColor"
-                                          strokeWidth="0"
-                                          viewBox="0 0 16 16"
-                                          style={{ color: "#58bd7d" }}
-                                          height="1em"
-                                          width="1em"
-                                          xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                          <path
-                                            fillRule="evenodd"
-                                            d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"
-                                          ></path>
-                                        </svg>
-                                      </span>
-                                      <span>
-                                        <svg
-                                          stroke="currentColor"
-                                          fill="currentColor"
-                                          strokeWidth="0"
-                                          viewBox="0 0 16 16"
-                                          style={{ color: "#fa0000" }}
-                                          height="1em"
-                                          width="1em"
-                                          xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                          <path
-                                            fillRule="evenodd"
-                                            d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"
-                                          ></path>
-                                        </svg>
-                                      </span>
+                                      <div>
+                                        <img src="/layout_one.png" width={50} />
+                                      </div>
                                     </span>
                                   </span>
                                 </label>
@@ -598,7 +568,7 @@ const UnAuthNav = ({
                                   className="form-check-input radio-scale"
                                   type="radio"
                                   name="layout1"
-                                  id="exampleRadios5"
+                                  id="exampleRadiosLayout2"
                                   value="option1"
                                   checked={layout === EXCHANGE_LAYOUT_TWO}
                                   onChange={() => {
@@ -610,47 +580,50 @@ const UnAuthNav = ({
                                 />
                                 <label
                                   className="form-check-label w-full"
-                                  htmlFor="exampleRadios5"
+                                  htmlFor="exampleRadiosLayout2"
                                 >
                                   <span className="w-full d-inline-block">
                                     <span className="d-flex">
                                       <span className="margin-right-auto text-14">
                                         Layout two
                                       </span>
-                                      <span>
-                                        <svg
-                                          stroke="currentColor"
-                                          fill="currentColor"
-                                          strokeWidth="0"
-                                          viewBox="0 0 16 16"
-                                          height="1em"
-                                          width="1em"
-                                          xmlns="http://www.w3.org/2000/svg"
-                                          style={{ color: "#fa0000" }}
-                                        >
-                                          <path
-                                            fillRule="evenodd"
-                                            d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"
-                                          ></path>
-                                        </svg>
+                                      <div>
+                                        <img src="/layout_two.png" width={50} />
+                                      </div>
+                                    </span>
+                                  </span>
+                                </label>
+                              </div>
+                              <div className="form-check py-1">
+                                <input
+                                  className="form-check-input radio-scale"
+                                  type="radio"
+                                  name="layout1"
+                                  id="exampleRadiosLayout3"
+                                  value="option1"
+                                  checked={layout === EXCHANGE_LAYOUT_THREE}
+                                  onChange={() => {
+                                    changeLayout(
+                                      EXCHANGE_LAYOUT_THREE,
+                                      setLayout
+                                    );
+                                  }}
+                                />
+                                <label
+                                  className="form-check-label w-full"
+                                  htmlFor="exampleRadiosLayout3"
+                                >
+                                  <span className="w-full d-inline-block">
+                                    <span className="d-flex">
+                                      <span className="margin-right-auto text-14">
+                                        Layout three
                                       </span>
-                                      <span>
-                                        <svg
-                                          stroke="currentColor"
-                                          fill="currentColor"
-                                          strokeWidth="0"
-                                          viewBox="0 0 16 16"
-                                          height="1em"
-                                          width="1em"
-                                          xmlns="http://www.w3.org/2000/svg"
-                                          style={{ color: "#58bd7d" }}
-                                        >
-                                          <path
-                                            fillRule="evenodd"
-                                            d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"
-                                          ></path>
-                                        </svg>
-                                      </span>
+                                      <div>
+                                        <img
+                                          src="/layout_three.png"
+                                          width={50}
+                                        />
+                                      </div>
                                     </span>
                                   </span>
                                 </label>

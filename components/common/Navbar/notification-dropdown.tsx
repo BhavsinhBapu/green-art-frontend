@@ -1,5 +1,11 @@
 import {
+  EXCHANGE_LAYOUT_ONE,
+  EXCHANGE_LAYOUT_THREE,
+  EXCHANGE_LAYOUT_TWO,
+} from "helpers/core-constants";
+import {
   darkModeToggle,
+  changeLayout,
   darkModeToggleDashboard,
   changeThemeSettingsDashboard,
 } from "helpers/functions";
@@ -29,6 +35,8 @@ const NotificationDropdown = ({
   showSettings,
   setThemeColor,
   ThemeColor,
+  layout,
+  setLayout,
 }: any) => {
   const dispatch = useDispatch();
   const containerRef = useRef<any>(null);
@@ -572,6 +580,105 @@ const NotificationDropdown = ({
                                           ></path>
                                         </svg>
                                       </span>
+                                    </span>
+                                  </span>
+                                </label>
+                              </div>
+                            </div>
+                            <div className="pb-3 border-bottom text-left">
+                              <p className="mt-2 text-14 font-medium">Layout</p>
+                              <div className="form-check py-1">
+                                <input
+                                  className="form-check-input radio-scale"
+                                  type="radio"
+                                  name="layout1"
+                                  id="exampleRadiosLayout1"
+                                  value="option1"
+                                  checked={layout === EXCHANGE_LAYOUT_ONE}
+                                  onChange={() => {
+                                    changeLayout(
+                                      EXCHANGE_LAYOUT_ONE,
+                                      setLayout
+                                    );
+                                  }}
+                                />
+                                <label
+                                  className="form-check-label w-full"
+                                  htmlFor="exampleRadiosLayout1"
+                                >
+                                  <span className="w-full d-inline-block">
+                                    <span className="d-flex">
+                                      <span className="margin-right-auto">
+                                        Layout one
+                                      </span>
+                                      <div>
+                                        <img src="/layout_one.png" width={50} />
+                                      </div>
+                                    </span>
+                                  </span>
+                                </label>
+                              </div>
+                              <div className="form-check py-1">
+                                <input
+                                  className="form-check-input radio-scale"
+                                  type="radio"
+                                  name="layout1"
+                                  id="exampleRadiosLayout2"
+                                  value="option1"
+                                  checked={layout === EXCHANGE_LAYOUT_TWO}
+                                  onChange={() => {
+                                    changeLayout(
+                                      EXCHANGE_LAYOUT_TWO,
+                                      setLayout
+                                    );
+                                  }}
+                                />
+                                <label
+                                  className="form-check-label w-full"
+                                  htmlFor="exampleRadiosLayout2"
+                                >
+                                  <span className="w-full d-inline-block">
+                                    <span className="d-flex">
+                                      <span className="margin-right-auto text-14">
+                                        Layout two
+                                      </span>
+                                      <div>
+                                        <img src="/layout_two.png" width={50} />
+                                      </div>
+                                    </span>
+                                  </span>
+                                </label>
+                              </div>
+                              <div className="form-check py-1">
+                                <input
+                                  className="form-check-input radio-scale"
+                                  type="radio"
+                                  name="layout1"
+                                  id="exampleRadiosLayout3"
+                                  value="option1"
+                                  checked={layout === EXCHANGE_LAYOUT_THREE}
+                                  onChange={() => {
+                                    changeLayout(
+                                      EXCHANGE_LAYOUT_THREE,
+                                      setLayout
+                                    );
+                                  }}
+                                />
+                                <label
+                                  className="form-check-label w-full"
+                                  htmlFor="exampleRadiosLayout3"
+                                >
+                                  <span className="w-full d-inline-block">
+                                    <span className="d-flex">
+                                      <span className="margin-right-auto text-14">
+                                        Layout three
+                                      </span>
+                                      <div>
+                                        <img
+                                          src="/layout_three.png"
+                                          width={50}
+                                        />
+                                      </div>
                                     </span>
                                   </span>
                                 </label>

@@ -1037,6 +1037,8 @@ const Navbar = ({
                   showSettings={showSettings}
                   setThemeColor={setThemeColor}
                   ThemeColor={ThemeColor}
+                  layout={layout}
+                  setLayout={setLayout}
                 />
               </div>
             </div>
