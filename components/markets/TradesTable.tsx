@@ -252,7 +252,7 @@ export default function TradesTable() {
                             <tbody>
                               {tradeItems?.map((item: any, index: any) => (
                                 <tr role="row" className="odd" key={index}>
-                                  <td className="d-flex">
+                                  <td className="d-flex mb-2">
                                     <img
                                       className="icon mr-3"
                                       src={"/bitcoin.png"}
