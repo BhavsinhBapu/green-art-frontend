@@ -364,7 +364,7 @@ export default function TradesTable({ selectedCurrency }: any) {
                               nextLabel=">"
                               onPageChange={handlePageClick}
                               pageRangeDisplayed={5}
-                              pageCount={Math.ceil(tradeDatas.total / 10)}
+                              pageCount={Math.ceil(tradeDatas.total / 15)}
                               previousLabel="<"
                               renderOnZeroPageCount={null}
                               className={`d-flex align-items-center justify-content-center`}

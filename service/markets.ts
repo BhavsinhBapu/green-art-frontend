@@ -14,7 +14,7 @@ export const getMarketsTradeSectionDataApi = async (
   page: any
 ) => {
   const { data } = await request.get(
-    `/market-overview-top-coin-list?currency_type=${currency_type}&limit=10&type=${selectType}&search=${search}&page=${page}`
+    `/market-overview-top-coin-list?currency_type=${currency_type}&limit=15&type=${selectType}&search=${search}&page=${page}`
   );
   return data;
 };
