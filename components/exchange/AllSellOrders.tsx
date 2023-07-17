@@ -4,11 +4,11 @@ import { useSelector } from "react-redux";
 import { RootState } from "state/store";
 
 import BuyTable from "./BuyTable";
-const AllSellOrders = ({ OpenBooksell, show }: any) => {
+const AllSellOrders = ({ OpenBooksell, show, customClass }: any) => {
   const { t } = useTranslation("common");
   const { dashboard } = useSelector((state: RootState) => state.exchange);
   return (
-    <div className="buy-order">
+    <div className={`buy-order ${customClass}`}>
       <div className="trades-table">
         <div className="trades-table-header">
           <div className="trades-table-row" />

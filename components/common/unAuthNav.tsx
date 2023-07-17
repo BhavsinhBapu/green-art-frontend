@@ -10,6 +10,7 @@ import useTranslation from "next-translate/useTranslation";
 import { notification } from "service/notification";
 import { useRouter } from "next/router";
 import {
+  changeLayout,
   changeThemeSettingsDashboard,
   checkThemeState,
   darkModeToggle,
@@ -21,8 +22,18 @@ import {
   AiOutlineLineChart,
   AiOutlineSetting,
 } from "react-icons/ai";
+import {
+  EXCHANGE_LAYOUT_ONE,
+  EXCHANGE_LAYOUT_TWO,
+} from "helpers/core-constants";
 
-const UnAuthNav = ({ setThemeColor, ThemeColor, showSettings }: any) => {
+const UnAuthNav = ({
+  setThemeColor,
+  ThemeColor,
+  showSettings,
+  layout,
+  setLayout,
+}: any) => {
   const { isLoggedIn, user, logo } = useSelector(
     (state: RootState) => state.user
   );
@@ -478,6 +489,133 @@ const UnAuthNav = ({ setThemeColor, ThemeColor, showSettings }: any) => {
                                     <span className="d-flex">
                                       <span className="margin-right-auto text-14">
                                         Green Down/Red Up
+                                      </span>
+                                      <span>
+                                        <svg
+                                          stroke="currentColor"
+                                          fill="currentColor"
+                                          strokeWidth="0"
+                                          viewBox="0 0 16 16"
+                                          height="1em"
+                                          width="1em"
+                                          xmlns="http://www.w3.org/2000/svg"
+                                          style={{ color: "#fa0000" }}
+                                        >
+                                          <path
+                                            fillRule="evenodd"
+                                            d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"
+                                          ></path>
+                                        </svg>
+                                      </span>
+                                      <span>
+                                        <svg
+                                          stroke="currentColor"
+                                          fill="currentColor"
+                                          strokeWidth="0"
+                                          viewBox="0 0 16 16"
+                                          height="1em"
+                                          width="1em"
+                                          xmlns="http://www.w3.org/2000/svg"
+                                          style={{ color: "#58bd7d" }}
+                                        >
+                                          <path
+                                            fillRule="evenodd"
+                                            d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"
+                                          ></path>
+                                        </svg>
+                                      </span>
+                                    </span>
+                                  </span>
+                                </label>
+                              </div>
+                            </div>
+                            <div className="pb-3 border-bottom text-left">
+                              <p className="mt-2 text-14 font-medium">Layout</p>
+                              <div className="form-check py-1">
+                                <input
+                                  className="form-check-input radio-scale"
+                                  type="radio"
+                                  name="layout1"
+                                  id="exampleRadios4"
+                                  value="option1"
+                                  checked={layout === EXCHANGE_LAYOUT_ONE}
+                                  onChange={() => {
+                                    changeLayout(
+                                      EXCHANGE_LAYOUT_ONE,
+                                      setLayout
+                                    );
+                                  }}
+                                />
+                                <label
+                                  className="form-check-label w-full"
+                                  htmlFor="exampleRadios4"
+                                >
+                                  <span className="w-full d-inline-block">
+                                    <span className="d-flex">
+                                      <span className="margin-right-auto">
+                                        Layout one
+                                      </span>
+                                      <span>
+                                        <svg
+                                          stroke="currentColor"
+                                          fill="currentColor"
+                                          strokeWidth="0"
+                                          viewBox="0 0 16 16"
+                                          style={{ color: "#58bd7d" }}
+                                          height="1em"
+                                          width="1em"
+                                          xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                          <path
+                                            fillRule="evenodd"
+                                            d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"
+                                          ></path>
+                                        </svg>
+                                      </span>
+                                      <span>
+                                        <svg
+                                          stroke="currentColor"
+                                          fill="currentColor"
+                                          strokeWidth="0"
+                                          viewBox="0 0 16 16"
+                                          style={{ color: "#fa0000" }}
+                                          height="1em"
+                                          width="1em"
+                                          xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                          <path
+                                            fillRule="evenodd"
+                                            d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"
+                                          ></path>
+                                        </svg>
+                                      </span>
+                                    </span>
+                                  </span>
+                                </label>
+                              </div>
+                              <div className="form-check py-1">
+                                <input
+                                  className="form-check-input radio-scale"
+                                  type="radio"
+                                  name="layout1"
+                                  id="exampleRadios5"
+                                  value="option1"
+                                  checked={layout === EXCHANGE_LAYOUT_TWO}
+                                  onChange={() => {
+                                    changeLayout(
+                                      EXCHANGE_LAYOUT_TWO,
+                                      setLayout
+                                    );
+                                  }}
+                                />
+                                <label
+                                  className="form-check-label w-full"
+                                  htmlFor="exampleRadios5"
+                                >
+                                  <span className="w-full d-inline-block">
+                                    <span className="d-flex">
+                                      <span className="margin-right-auto text-14">
+                                        Layout two
                                       </span>
                                       <span>
                                         <svg

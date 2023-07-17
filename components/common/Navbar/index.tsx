@@ -42,6 +42,8 @@ const Navbar = ({
   ThemeColor,
   setThemeColor,
   showSettings = false,
+  layout,
+  setLayout,
 }: any) => {
   const { isLoading, user, logo, notificationData } = useSelector(
     (state: RootState) => state.user
@@ -57,7 +59,8 @@ const Navbar = ({
     dispatch(setNotificationData(data.data.data));
   };
   useEffect(() => {
-    showSettings && checkDashboardThemeSettings(setThemeColor, ThemeColor);
+    showSettings &&
+      checkDashboardThemeSettings(setThemeColor, ThemeColor, setLayout);
   }, []);
   const seen = async () => {
     let arr: any = [];
@@ -1963,6 +1966,8 @@ const Navbar = ({
           setThemeColor={setThemeColor}
           ThemeColor={ThemeColor}
           showSettings={showSettings}
+          layout={layout}
+          setLayout={setLayout}
         />
       ) : (
         ""

@@ -3,14 +3,14 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
 import SellTable from "./SellTable";
-const TradesHistory = ({ marketTrades }: any) => {
+const TradesHistory = ({ marketTrades, customClass }: any) => {
   const { t } = useTranslation("common");
   const { dashboard } = useSelector(
     (state: RootState) => state.exchange
   );
 
   return (
-    <div className="trades-section1 mt-4">
+    <div className={`trades-section1 ${customClass}`}>
       <div className="trades-headers mb-3">
         <h3>{t("Market Trades")}</h3>
       </div>
