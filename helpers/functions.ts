@@ -15,21 +15,90 @@ export const changeThemeSettingsDashboard = (
     red: tradeRed,
   });
 };
+export const swapGreenToRedAndRedToGeen = (
+  setThemeColor: any,
+  ThemeColor: any,
+  redGreenUpDown: number
+) => {
+  const tradeGreen = localStorage.getItem("tradeGreen");
+  const tradeRed = localStorage.getItem("tradeRed");
+  if (redGreenUpDown === 2) {
+    localStorage.setItem("chart-up-down", "2");
+    setThemeColor({
+      green: tradeRed ? tradeRed : "#d63031",
+      red: tradeGreen ? tradeGreen : "#32d777",
+      redGreenUpDown: redGreenUpDown,
+    });
+    document.documentElement.style.setProperty(
+      "--trade-green",
+      tradeRed ? tradeRed : "#d63031"
+    );
+    document.documentElement.style.setProperty(
+      "--trade-red",
+      tradeGreen ? tradeGreen : "#32d777"
+    );
+  } else {
+    localStorage.setItem("chart-up-down", "1");
+    setThemeColor({
+      green: tradeGreen ? tradeGreen : "#32d777",
+      red: tradeRed ? tradeRed : "#d63031",
+      redGreenUpDown: redGreenUpDown,
+    });
+    document.documentElement.style.setProperty(
+      "--trade-green",
+      tradeGreen ? tradeGreen : "#32d777"
+    );
+    document.documentElement.style.setProperty(
+      "--trade-red",
+      tradeRed ? tradeRed : "#d63031"
+    );
+  }
+};
 export const checkDashboardThemeSettings = (
   setThemeColor: any,
   ThemeColor: any
 ) => {
   const tradeGreen = localStorage.getItem("tradeGreen");
   const tradeRed = localStorage.getItem("tradeRed");
-  const checkOrder = localStorage.getItem("chart-up-down");
-  document.documentElement.style.setProperty("--trade-green", tradeGreen);
-  document.documentElement.style.setProperty("--trade-red", tradeRed);
+  const checkRedGreen = localStorage.getItem("chart-up-down");
+  if (checkRedGreen === null) {
+    localStorage.setItem("chart-up-down", "1");
+  }
 
-  setThemeColor({
-    orderBookLayout: checkOrder ? Number(checkOrder) : 1,
-    green: tradeGreen ? tradeGreen : "#32d777",
-    red: tradeRed ? tradeRed : "#d63031",
-  });
+  if (Number(checkRedGreen) === 2) {
+    console.log("Two calling");
+    document.documentElement.style.setProperty(
+      "--trade-green",
+      tradeRed ? tradeRed : "#d63031"
+    );
+    document.documentElement.style.setProperty(
+      "--trade-red",
+      tradeGreen ? tradeGreen : "#32d777"
+    );
+
+    setThemeColor({
+      redGreenUpDown: checkRedGreen ? Number(checkRedGreen) : 2,
+      red: tradeGreen ? tradeGreen : "#32d777",
+      green: tradeRed ? tradeRed : "#d63031",
+    });
+  } else {
+    console.log("one calling");
+
+    document.documentElement.style.setProperty(
+      "--trade-green",
+      tradeGreen ? tradeGreen : "#32d777"
+    );
+    document.documentElement.style.setProperty(
+      "--trade-red",
+      tradeRed ? tradeRed : "#d63031"
+    );
+
+    setThemeColor({
+      redGreenUpDown: checkRedGreen ? Number(checkRedGreen) : 1,
+      green: tradeGreen ? tradeGreen : "#32d777",
+      red: tradeRed ? tradeRed : "#d63031",
+    });
+  }
 };
 export const checkDarkMode = (settings: any, dispatch: any) => {
   const theme = localStorage.getItem("theme");
