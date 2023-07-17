@@ -26,7 +26,7 @@ export default function MarketsCardItem({ item }: any) {
           >
             {item?.change >= 0
               ? "+" + parseFloat(item?.change).toFixed(2)
-              : "-" + parseFloat(item?.change).toFixed(2)}
+              : parseFloat(item?.change).toFixed(2)}
           </p>
         </div>
       </div>

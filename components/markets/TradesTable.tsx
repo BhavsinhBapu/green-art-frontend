@@ -259,7 +259,7 @@ export default function TradesTable({ selectedCurrency }: any) {
                                   <td className="d-flex mb-2">
                                     <img
                                       className="icon mr-3"
-                                      src={"/bitcoin.png"}
+                                      src={item?.coin_icon || "/bitcoin.png"}
                                       alt="coin"
                                       width="25px"
                                       height="25px"
