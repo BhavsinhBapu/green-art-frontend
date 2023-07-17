@@ -30,6 +30,7 @@ const Dashboard: NextPage = () => {
     green: "#32d777",
     red: "#d63031",
     redGreenUpDown: 1,
+    chooseColor: 1,
   });
   const [layout, setLayout] = useState(EXCHANGE_LAYOUT_ONE);
   const { isLoggedIn, user } = useSelector((state: RootState) => state.user);

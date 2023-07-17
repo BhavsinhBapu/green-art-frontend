@@ -8,6 +8,7 @@ import {
   changeLayout,
   darkModeToggleDashboard,
   changeThemeSettingsDashboard,
+  swapGreenToRedAndRedToGeen,
 } from "helpers/functions";
 import moment from "moment";
 import useTranslation from "next-translate/useTranslation";
@@ -345,13 +346,14 @@ const NotificationDropdown = ({
                                   type="radio"
                                   name="exampleRadios"
                                   id="exampleRadios1"
-                                  checked={ThemeColor.green === "#32d777"}
+                                  checked={ThemeColor.chooseColor === 1}
                                   onClick={() => {
                                     changeThemeSettingsDashboard(
                                       "#32d777",
                                       "#d63031",
                                       setThemeColor,
-                                      ThemeColor
+                                      ThemeColor,
+                                      1
                                     );
                                   }}
                                   // value="option1"
@@ -383,14 +385,15 @@ const NotificationDropdown = ({
                                   type="radio"
                                   name="exampleRadios"
                                   id="exampleRadios3"
-                                  checked={ThemeColor.green === "#3498db"}
+                                  checked={ThemeColor.chooseColor === 2}
                                   value="option1"
                                   onClick={() => {
                                     changeThemeSettingsDashboard(
                                       "#3498db",
                                       "#9b59b6",
                                       setThemeColor,
-                                      ThemeColor
+                                      ThemeColor,
+                                      2
                                     );
                                   }}
                                 />
@@ -422,13 +425,14 @@ const NotificationDropdown = ({
                                   name="exampleRadios"
                                   id="exampleRadios2"
                                   value="option1"
-                                  checked={ThemeColor.green === "#f39c12"}
+                                  checked={ThemeColor.chooseColor === 3}
                                   onClick={() => {
                                     changeThemeSettingsDashboard(
                                       "#f39c12",
                                       "#d35400",
                                       setThemeColor,
-                                      ThemeColor
+                                      ThemeColor,
+                                      3
                                     );
                                   }}
                                 />
@@ -467,11 +471,11 @@ const NotificationDropdown = ({
                                   value="option1"
                                   checked={ThemeColor.redGreenUpDown === 1}
                                   onChange={() => {
-                                    setThemeColor({
-                                      ...ThemeColor,
-                                      redGreenUpDown: 1,
-                                    });
-                                    localStorage.setItem("chart-up-down", "1");
+                                    swapGreenToRedAndRedToGeen(
+                                      setThemeColor,
+                                      ThemeColor,
+                                      1
+                                    );
                                   }}
                                 />
                                 <label
@@ -530,11 +534,11 @@ const NotificationDropdown = ({
                                   value="option1"
                                   checked={ThemeColor.redGreenUpDown === 2}
                                   onChange={() => {
-                                    setThemeColor({
-                                      ...ThemeColor,
-                                      redGreenUpDown: 2,
-                                    });
-                                    localStorage.setItem("chart-up-down", "2");
+                                    swapGreenToRedAndRedToGeen(
+                                      setThemeColor,
+                                      ThemeColor,
+                                      2
+                                    );
                                   }}
                                 />
                                 <label
