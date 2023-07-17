@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import { getMarketsTradeSectionDataApi } from "service/markets";
 import Echo from "laravel-echo";
 import Pusher from "pusher-js";
+import SectionLoading from "components/common/SectionLoading";
 
 async function listenMessages(setTradeItems: any, tradeItems: any) {
   //@ts-ignore
@@ -48,6 +49,7 @@ export default function TradesTable({ selectedCurrency }: any) {
   const [tradeItems, setTradeItems] = useState<any>([]);
   const [selectType, setSelectType] = useState(1);
   const [search, setSearch] = useState("");
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -59,6 +61,7 @@ export default function TradesTable({ selectedCurrency }: any) {
   }, [selectType, search, selectedCurrency]);
 
   const getMarketsTradeSectionData = async (page: any) => {
+    setLoading(true);
     const data = await getMarketsTradeSectionDataApi(
       selectedCurrency.value,
       selectType,
@@ -67,10 +70,13 @@ export default function TradesTable({ selectedCurrency }: any) {
     );
     if (!data.success) {
       toast.error(data.message);
+      setLoading(false);
+
       return;
     }
     setTradeDatas(data.data);
     setTradeItems(data.data.data);
+    setLoading(false);
   };
   const handlePageClick = (event: any) => {
     getMarketsTradeSectionData(event.selected + 1);
@@ -173,49 +179,53 @@ export default function TradesTable({ selectedCurrency }: any) {
                   role="tabpanel"
                   aria-labelledby="CoreAssets-tab"
                 >
-                  {tradeItems?.length > 0 ? (
-                    <div className="exchange-volume-table">
-                      <div className="table-responsive">
-                        <div
-                          id="DataTables_Table_0_wrapper"
-                          className="dataTables_wrapper no-footer"
-                        >
-                          <table
-                            className="table table-borderless dataTable no-footer"
-                            id="DataTables_Table_0"
-                            role="grid"
-                            aria-describedby="DataTables_Table_0_info"
-                          >
-                            <thead>
-                              <tr role="row">
-                                <th
-                                  scope="col"
-                                  className="sorting_disabled"
-                                  rowSpan={1}
-                                  colSpan={1}
-                                  style={{ width: "137.516px" }}
-                                >
-                                  {t("Market")}
-                                </th>
-                                <th
-                                  scope="col"
-                                  className="sorting_disabled text-center"
-                                  rowSpan={1}
-                                  colSpan={1}
-                                  style={{ width: "81.2812px" }}
-                                >
-                                  {t("Price")}
-                                </th>
-                                <th
-                                  scope="col"
-                                  className="sorting_disabled text-center"
-                                  rowSpan={1}
-                                  colSpan={1}
-                                  style={{ width: "193.797px" }}
-                                >
-                                  {t("Change (24h)")}
-                                </th>
-                                {/* <th
+                  {loading ? (
+                    <SectionLoading />
+                  ) : (
+                    <>
+                      {tradeItems?.length > 0 ? (
+                        <div className="exchange-volume-table">
+                          <div className="table-responsive">
+                            <div
+                              id="DataTables_Table_0_wrapper"
+                              className="dataTables_wrapper no-footer"
+                            >
+                              <table
+                                className="table table-borderless dataTable no-footer"
+                                id="DataTables_Table_0"
+                                role="grid"
+                                aria-describedby="DataTables_Table_0_info"
+                              >
+                                <thead>
+                                  <tr role="row">
+                                    <th
+                                      scope="col"
+                                      className="sorting_disabled"
+                                      rowSpan={1}
+                                      colSpan={1}
+                                      style={{ width: "137.516px" }}
+                                    >
+                                      {t("Market")}
+                                    </th>
+                                    <th
+                                      scope="col"
+                                      className="sorting_disabled text-center"
+                                      rowSpan={1}
+                                      colSpan={1}
+                                      style={{ width: "81.2812px" }}
+                                    >
+                                      {t("Price")}
+                                    </th>
+                                    <th
+                                      scope="col"
+                                      className="sorting_disabled text-center"
+                                      rowSpan={1}
+                                      colSpan={1}
+                                      style={{ width: "193.797px" }}
+                                    >
+                                      {t("Change (24h)")}
+                                    </th>
+                                    {/* <th
                                   scope="col"
                                   className="sorting_disabled text-center"
                                   rowSpan={1}
@@ -224,25 +234,25 @@ export default function TradesTable({ selectedCurrency }: any) {
                                 >
                                   {t("Chart")}
                                 </th> */}
-                                <th
-                                  scope="col"
-                                  className="sorting_disabled text-center"
-                                  rowSpan={1}
-                                  colSpan={1}
-                                  style={{ width: "207.766px" }}
-                                >
-                                  {t("Volume")}
-                                </th>
-                                <th
-                                  scope="col"
-                                  className="sorting_disabled text-center"
-                                  rowSpan={1}
-                                  colSpan={1}
-                                  style={{ width: "207.766px" }}
-                                >
-                                  {t("Market Cap")}
-                                </th>
-                                {/* <th
+                                    <th
+                                      scope="col"
+                                      className="sorting_disabled text-center"
+                                      rowSpan={1}
+                                      colSpan={1}
+                                      style={{ width: "207.766px" }}
+                                    >
+                                      {t("Volume")}
+                                    </th>
+                                    <th
+                                      scope="col"
+                                      className="sorting_disabled text-center"
+                                      rowSpan={1}
+                                      colSpan={1}
+                                      style={{ width: "207.766px" }}
+                                    >
+                                      {t("Market Cap")}
+                                    </th>
+                                    {/* <th
                                   scope="col"
                                   className="sorting_disabled text-right"
                                   rowSpan={1}
@@ -251,42 +261,44 @@ export default function TradesTable({ selectedCurrency }: any) {
                                 >
                                   {t("Actions")}
                                 </th> */}
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {tradeItems?.map((item: any, index: any) => (
-                                <tr role="row" className="odd" key={index}>
-                                  <td className="d-flex mb-2">
-                                    <img
-                                      className="icon mr-3"
-                                      src={item?.coin_icon || "/bitcoin.png"}
-                                      alt="coin"
-                                      width="25px"
-                                      height="25px"
-                                    />
-                                    <a className="cellMarket" href="#">
-                                      <div className="marketSymbols">
-                                        <span className="quoteSymbol">
-                                          {item.coin_type}
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  {tradeItems?.map((item: any, index: any) => (
+                                    <tr role="row" className="odd" key={index}>
+                                      <td className="d-flex mb-2">
+                                        <img
+                                          className="icon mr-3"
+                                          src={
+                                            item?.coin_icon || "/bitcoin.png"
+                                          }
+                                          alt="coin"
+                                          width="25px"
+                                          height="25px"
+                                        />
+                                        <a className="cellMarket" href="#">
+                                          <div className="marketSymbols">
+                                            <span className="quoteSymbol">
+                                              {item.coin_type}
+                                            </span>
+                                          </div>
+                                        </a>
+                                      </td>
+                                      <td className="text-black text-center">
+                                        {item.price}
+                                      </td>
+                                      <td className="text-center">
+                                        <span
+                                          className={`changePos  ${
+                                            parseFloat(item.change) >= 0
+                                              ? "text-success"
+                                              : "text-danger"
+                                          } `}
+                                        >
+                                          {item.change}%
                                         </span>
-                                      </div>
-                                    </a>
-                                  </td>
-                                  <td className="text-black text-center">
-                                    {item.price}
-                                  </td>
-                                  <td className="text-center">
-                                    <span
-                                      className={`changePos  ${
-                                        parseFloat(item.change) >= 0
-                                          ? "text-success"
-                                          : "text-danger"
-                                      } `}
-                                    >
-                                      {item.change}%
-                                    </span>
-                                  </td>
-                                  {/* <td className="text-center">
+                                      </td>
+                                      {/* <td className="text-center">
                                       {parseFloat(item.change) >= 0 ? (
                                         <img
                                           src="/chart-image-1.png"
@@ -301,11 +313,13 @@ export default function TradesTable({ selectedCurrency }: any) {
                                         />
                                       )}
                                     </td> */}
-                                  <td className="text-black text-center">
-                                    {item.volume}
-                                  </td>
-                                  <td className="text-black text-center">0</td>
-                                  {/* <td
+                                      <td className="text-black text-center">
+                                        {item.volume}
+                                      </td>
+                                      <td className="text-black text-center">
+                                        0
+                                      </td>
+                                      {/* <td
                                       className="text-right"
                                       onClick={async () => {
                                         await localStorage.setItem(
@@ -339,30 +353,32 @@ export default function TradesTable({ selectedCurrency }: any) {
                                         {t("Trade")}
                                       </a>
                                     </td> */}
-                                </tr>
-                              ))}
-                            </tbody>
-                          </table>
+                                    </tr>
+                                  ))}
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                          <div className="row justify-content-end mt-1">
+                            <ReactPaginate
+                              nextLabel=">"
+                              onPageChange={handlePageClick}
+                              pageRangeDisplayed={5}
+                              pageCount={Math.ceil(tradeDatas.total / 10)}
+                              previousLabel="<"
+                              renderOnZeroPageCount={null}
+                              className={`d-flex align-items-center justify-content-center`}
+                              pageLinkClassName={`paginate-number`}
+                              activeLinkClassName={`active-paginate-cls`}
+                              previousLinkClassName={`text-primary-color text-25 mr-2`}
+                              nextLinkClassName={`text-primary-color text-25 ml-2`}
+                            />
+                          </div>
                         </div>
-                      </div>
-                      <div className="row justify-content-end mt-1">
-                        <ReactPaginate
-                          nextLabel=">"
-                          onPageChange={handlePageClick}
-                          pageRangeDisplayed={5}
-                          pageCount={Math.ceil(tradeDatas.total / 10)}
-                          previousLabel="<"
-                          renderOnZeroPageCount={null}
-                          className={`d-flex align-items-center justify-content-center`}
-                          pageLinkClassName={`paginate-number`}
-                          activeLinkClassName={`active-paginate-cls`}
-                          previousLinkClassName={`text-primary-color text-25 mr-2`}
-                          nextLinkClassName={`text-primary-color text-25 ml-2`}
-                        />
-                      </div>
-                    </div>
-                  ) : (
-                    <NoItemFound />
+                      ) : (
+                        <NoItemFound />
+                      )}
+                    </>
                   )}
                 </div>
               </div>
