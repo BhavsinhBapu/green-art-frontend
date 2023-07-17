@@ -10,7 +10,7 @@ import Echo from "laravel-echo";
 import Pusher from "pusher-js";
 import SectionLoading from "components/common/SectionLoading";
 
-async function listenMessages(setTradeItems: any, tradeItems: any) {
+async function listenMessages(setUpdatedTradeData: any) {
   //@ts-ignore
   window.Pusher = Pusher;
   //@ts-ignore
@@ -32,14 +32,7 @@ async function listenMessages(setTradeItems: any, tradeItems: any) {
     ".market-overview-top-coin-list",
     (e: any) => {
       if (e?.coin_pair_details === null) return;
-      const updatedArray = tradeItems?.map((item: any) => {
-        if (item.id === e?.coin_pair_details?.id) {
-          return e?.coin_pair_details;
-        }
-        return item;
-      });
-      if (updatedArray.length <= 0) return;
-      setTradeItems(updatedArray);
+      setUpdatedTradeData(e?.coin_pair_details);
     }
   );
 }
@@ -48,13 +41,31 @@ export default function TradesTable({ selectedCurrency }: any) {
   const [tradeDatas, setTradeDatas] = useState<any>([]);
   const [tradeItems, setTradeItems] = useState<any>([]);
   const [selectType, setSelectType] = useState(1);
+  const [updatedTradeData, setUpdatedTradeData] = useState<any>({});
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
+  // use
   const router = useRouter();
 
   useEffect(() => {
-    listenMessages(setTradeItems, tradeItems);
-  }, [tradeItems]);
+    listenMessages(setUpdatedTradeData);
+  }, []);
+
+  useEffect(() => {
+    updateTradeDataHandler();
+  }, [updatedTradeData]);
+
+  const updateTradeDataHandler = () => {
+    if (Object.keys(updatedTradeData).length === 0) return;
+    const updatedArray = tradeItems?.map((item: any) => {
+      if (item.id === updatedTradeData?.id) {
+        return updatedTradeData;
+      }
+      return item;
+    });
+    if (updatedArray.length <= 0) return;
+    setTradeItems(updatedArray);
+  };
 
   useEffect(() => {
     getMarketsTradeSectionData(1);
