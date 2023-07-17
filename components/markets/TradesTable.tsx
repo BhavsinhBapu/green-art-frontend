@@ -39,12 +39,11 @@ async function listenMessages(setTradeItems: any, tradeItems: any) {
         return item;
       });
       setTradeItems(updatedArray);
-      console.log("ws",e )
     }
   );
 }
 
-export default function TradesTable() {
+export default function TradesTable({ selectedCurrency }: any) {
   const [tradeDatas, setTradeDatas] = useState<any>([]);
   const [tradeItems, setTradeItems] = useState<any>([]);
   const [selectType, setSelectType] = useState(1);
@@ -57,10 +56,15 @@ export default function TradesTable() {
 
   useEffect(() => {
     getMarketsTradeSectionData(1);
-  }, [selectType, search]);
+  }, [selectType, search, selectedCurrency]);
 
   const getMarketsTradeSectionData = async (page: any) => {
-    const data = await getMarketsTradeSectionDataApi(selectType, search, page);
+    const data = await getMarketsTradeSectionDataApi(
+      selectedCurrency.value,
+      selectType,
+      search,
+      page
+    );
     if (!data.success) {
       toast.error(data.message);
       return;

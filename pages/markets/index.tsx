@@ -6,11 +6,8 @@ import Pusher from "pusher-js";
 import useTranslation from "next-translate/useTranslation";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { getMarketCardDatasApi } from "service/markets";
-const options = [
-  { value: "usd", label: "USD" },
-  { value: "btc", label: "BTC" },
-];
+import { getCurrenyApi, getMarketCardDatasApi } from "service/markets";
+
 async function listenMessages(setMarketsCardData: any) {
   //@ts-ignore
   window.Pusher = Pusher;
@@ -29,28 +26,51 @@ async function listenMessages(setMarketsCardData: any) {
     enabledTransports: ["ws", "wss"],
   });
   //@ts-ignore
-  window.Echo.channel(
-    `market-overview-coin-statistic-list-data`
-  ).listen(".market-overview-coin-statistic-list", (e: any) => {
-    setMarketsCardData(e)
-  });
+  window.Echo.channel(`market-overview-coin-statistic-list-data`).listen(
+    ".market-overview-coin-statistic-list",
+    (e: any) => {
+      setMarketsCardData(e);
+    }
+  );
 }
 
 export default function index() {
   const { t } = useTranslation();
   const [marketsCardData, setMarketsCardData] = useState<any>();
+  const [allCurrency, setAllCurrency] = useState([
+    {
+      label: "USD",
+      value: "USD",
+    },
+  ]);
+
+  const [selectedCurrency, setSelectedCurrency] = useState({
+    label: "USD",
+    value: "USD",
+  });
 
   useEffect(() => {
-    getMarketCardDatas();
+    getCurreny();
   }, []);
 
   useEffect(() => {
-    listenMessages(setMarketsCardData);
-  }, [])
-  
+    getMarketCardDatas(selectedCurrency.value);
+  }, [selectedCurrency]);
 
-  const getMarketCardDatas = async () => {
-    const data = await getMarketCardDatasApi();
+  useEffect(() => {
+    listenMessages(setMarketsCardData);
+  }, []);
+
+  const getCurreny = async () => {
+    const data = await getCurrenyApi();
+    if (!data.success) {
+      toast.error(data.message);
+    }
+    console.log("data", data);
+    setAllCurrency(data.data);
+  };
+  const getMarketCardDatas = async (currency_type: any) => {
+    const data = await getMarketCardDatasApi(currency_type);
     if (!data.success) {
       toast.error(data.message);
       return;
@@ -59,21 +79,21 @@ export default function index() {
   };
 
   const handleCoinType = (data: any) => {
-    console.log("data", data);
+    setSelectedCurrency(data);
   };
 
   return (
     <section>
       <div className="container">
-        <div className=" pt-4 pb-2">
+        <div className=" pt-4 pb-2 p2p-gift-card-navbar-margin-top">
           <h1 className="banner-title">{t("Markets Overview")}</h1>
           <div className="d-flex gap-5 align-items-center">
             <p className="text-14">All price information is in</p>
             <CUstomSelect
-              options={options}
+              options={allCurrency}
               handleFunction={handleCoinType}
               classname={"market-select-page"}
-              defaultValue={options[0]}
+              defaultValue={allCurrency[0]}
             />
           </div>
         </div>
@@ -115,7 +135,7 @@ export default function index() {
       </div>
       <div className="bg-card-primary-clr">
         {/* trade section start*/}
-        <TradesTable />
+        <TradesTable selectedCurrency={selectedCurrency} />
         {/* trade section end */}
       </div>
     </section>
