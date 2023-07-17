@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { BsFillMoonFill, BsFillSunFill, BsBarChartLine } from "react-icons/bs";
 import { FaPeopleArrows } from "react-icons/fa";
-import { BiShapeCircle } from "react-icons/bi";
+import { BiLineChart, BiShapeCircle } from "react-icons/bi";
 import OutsideClickHandler from "react-outside-click-handler";
 import { RootState } from "state/store";
 import useTranslation from "next-translate/useTranslation";
@@ -15,7 +15,11 @@ import {
   darkModeToggle,
 } from "helpers/functions";
 import { IoMdGlobe } from "react-icons/io";
-import { AiOutlineClose, AiOutlineSetting } from "react-icons/ai";
+import {
+  AiOutlineClose,
+  AiOutlineLineChart,
+  AiOutlineSetting,
+} from "react-icons/ai";
 
 const UnAuthNav = ({ setThemeColor, ThemeColor, showSettings }: any) => {
   const { isLoggedIn, user, logo } = useSelector(
@@ -141,6 +145,20 @@ const UnAuthNav = ({ setThemeColor, ThemeColor, showSettings }: any) => {
                         </Link>
                       )}
                     </ul>
+                  </li>
+                  <li
+                    className={
+                      router.pathname == "/markets" ? "cp-user-active-page" : ""
+                    }
+                  >
+                    <Link href="/markets">
+                      <a>
+                        <span className="cp-user-icon">
+                          <BiLineChart />
+                        </span>
+                        <span>{t("Markets")}</span>
+                      </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -635,6 +653,19 @@ const UnAuthNav = ({ setThemeColor, ThemeColor, showSettings }: any) => {
                       </ul>
                     </li>
                   )}
+                  <li
+                    className={
+                      router.pathname == "/markets"
+                        ? "active-navbar nav-item"
+                        : "nav-item"
+                    }
+                  >
+                    <Link href="/markets">
+                      <a className="nav-link text-primary-color-two">
+                        <span>{t("Markets")}</span>
+                      </a>
+                    </Link>
+                  </li>
                   <li className="nav-item">
                     <Link href="/signin">
                       <a className="nav-link text-primary-color-two">
