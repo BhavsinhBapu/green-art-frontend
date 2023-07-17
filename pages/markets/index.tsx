@@ -34,7 +34,7 @@ async function listenMessages(setMarketsCardData: any) {
   );
 }
 
-export default function index() {
+export default function Index() {
   const { t } = useTranslation();
   const [marketsCardData, setMarketsCardData] = useState<any>();
   const [allCurrency, setAllCurrency] = useState([
