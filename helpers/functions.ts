@@ -15,6 +15,10 @@ export const changeThemeSettingsDashboard = (
     red: tradeRed,
   });
 };
+export const changeLayout = (layoutNumber: number, setLayout: any) => {
+  localStorage.setItem("layout-trade", layoutNumber.toString());
+  setLayout(layoutNumber);
+};
 export const swapGreenToRedAndRedToGeen = (
   setThemeColor: any,
   ThemeColor: any,
@@ -56,11 +60,15 @@ export const swapGreenToRedAndRedToGeen = (
 };
 export const checkDashboardThemeSettings = (
   setThemeColor: any,
-  ThemeColor: any
+  ThemeColor: any,
+  setLayout: any
 ) => {
   const tradeGreen = localStorage.getItem("tradeGreen");
   const tradeRed = localStorage.getItem("tradeRed");
+  const layoutTrade = localStorage.getItem("layout-trade");
+
   const checkRedGreen = localStorage.getItem("chart-up-down");
+  setLayout(layoutTrade ? Number(layoutTrade) : 1);
   if (checkRedGreen === null) {
     localStorage.setItem("chart-up-down", "1");
   }

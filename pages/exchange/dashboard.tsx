@@ -89,6 +89,8 @@ const Dashboard: NextPage = () => {
           ThemeColor={ThemeColor}
           setThemeColor={setThemeColor}
           showSettings={true}
+          layout={layout}
+          setLayout={setLayout}
         />
 
         {isLoading && <Loading />}

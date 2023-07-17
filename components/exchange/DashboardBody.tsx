@@ -4,6 +4,7 @@ import { RootState } from "state/store";
 
 import {
   EXCHANGE_LAYOUT_ONE,
+  EXCHANGE_LAYOUT_THREE,
   EXCHANGE_LAYOUT_TWO,
 } from "helpers/core-constants";
 import LayoutOne from "./layouts/layout-one";
@@ -18,9 +19,11 @@ const DashboardBody = ({ ThemeColor, layout }: any) => {
       {/* {parseInt(settings?.exchange_layout_view) === EXCHANGE_LAYOUT_ONE && (
         <LayoutOne ThemeColor={ThemeColor} />
       )} */}
-      {/* {layout === EXCHANGE_LAYOUT_ONE && <LayoutOne ThemeColor={ThemeColor} />}
-      {layout === EXCHANGE_LAYOUT_TWO && <LayoutTwo ThemeColor={ThemeColor} />} */}
-      <LayoutThree ThemeColor={ThemeColor} />
+      {layout === EXCHANGE_LAYOUT_ONE && <LayoutOne ThemeColor={ThemeColor} />}
+      {layout === EXCHANGE_LAYOUT_TWO && <LayoutTwo ThemeColor={ThemeColor} />}
+      {layout === EXCHANGE_LAYOUT_THREE && (
+        <LayoutThree ThemeColor={ThemeColor} />
+      )}
     </>
   );
 };
