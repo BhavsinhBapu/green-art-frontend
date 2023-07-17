@@ -19,6 +19,7 @@ import Head from "next/head";
 import { formatCurrency } from "common";
 import Navbar from "components/common/Navbar";
 import { useRouter } from "next/router";
+import { EXCHANGE_LAYOUT_ONE } from "helpers/core-constants";
 
 const Dashboard: NextPage = () => {
   const { t } = useTranslation("common");
@@ -30,6 +31,7 @@ const Dashboard: NextPage = () => {
     red: "#d63031",
     redGreenUpDown: 1,
   });
+  const [layout, setLayout] = useState(EXCHANGE_LAYOUT_ONE);
   const { isLoggedIn, user } = useSelector((state: RootState) => state.user);
   const { dashboard, currentPair } = useSelector(
     (state: RootState) => state.exchange
@@ -69,7 +71,7 @@ const Dashboard: NextPage = () => {
     listenMessages(dispatch, user);
   }, [currentPair]);
   const { settings } = useSelector((state: RootState) => state.common);
-  
+
   return (
     <div className="container-dashboard">
       <div className="background-col">
@@ -242,7 +244,7 @@ const Dashboard: NextPage = () => {
                     </div>
                   </div>
 
-                  <DashboardBody ThemeColor={ThemeColor} />
+                  <DashboardBody ThemeColor={ThemeColor} layout={layout} />
                 </div>
               </div>
             </div>
