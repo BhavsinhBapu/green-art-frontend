@@ -30,7 +30,6 @@ async function listenMessages(setTradeItems: any, tradeItems: any) {
   window.Echo.channel(`market-overview-top-coin-list-data`).listen(
     ".market-overview-top-coin-list",
     (e: any) => {
-      // setTradeDatas(e)
       if (e?.coin_pair_details === null) return;
       const updatedArray = tradeItems?.map((item: any) => {
         if (item.id === e?.coin_pair_details?.id) {
@@ -38,6 +37,7 @@ async function listenMessages(setTradeItems: any, tradeItems: any) {
         }
         return item;
       });
+      if (updatedArray.length <= 0) return;
       setTradeItems(updatedArray);
     }
   );
