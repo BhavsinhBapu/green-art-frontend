@@ -328,7 +328,9 @@ export default function TradesTable({ selectedCurrency }: any) {
                                         {item.volume}
                                       </td>
                                       <td className="text-black text-center">
-                                        0
+                                        {item.total_balance
+                                          ? item.total_balance.toFixed(2)
+                                          : ""}
                                       </td>
                                       {/* <td
                                       className="text-right"
