@@ -34,6 +34,7 @@ const DashboardBody = ({ ThemeColor }: any) => {
 
   useEffect(() => {
     setShow(false);
+    console.log(ThemeColor, "ThemeColor");
     setInterval(() => {
       setShow(true);
     }, 400);
@@ -245,11 +246,7 @@ const DashboardBody = ({ ThemeColor }: any) => {
           )}
           {select === 3 && (
             <div className="tradeSection-both">
-              {ThemeColor.orderBookLayout === 1 ? (
-                <AllBuyOrders OpenBookBuy={OpenBookBuy} show={18} />
-              ) : (
-                <AllSellOrders OpenBooksell={OpenBooksell} show={18} />
-              )}
+              <AllBuyOrders OpenBookBuy={OpenBookBuy} show={18} />
 
               <div className="trades-table-footer">
                 {dashboard?.last_price_data?.length > 0 ? (
@@ -347,11 +344,8 @@ const DashboardBody = ({ ThemeColor }: any) => {
                   </div>
                 )}
               </div>
-              {ThemeColor.orderBookLayout === 1 ? (
-                <AllSellOrders OpenBooksell={OpenBooksell} show={18} />
-              ) : (
-                <AllBuyOrders OpenBookBuy={OpenBookBuy} show={18} />
-              )}
+
+              <AllSellOrders OpenBooksell={OpenBooksell} show={18} />
             </div>
           )}
         </div>

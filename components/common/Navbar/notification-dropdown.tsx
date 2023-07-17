@@ -457,11 +457,11 @@ const NotificationDropdown = ({
                                   name="exampleRadios1"
                                   id="exampleRadios4"
                                   value="option1"
-                                  checked={ThemeColor.orderBookLayout === 1}
+                                  checked={ThemeColor.redGreenUpDown === 1}
                                   onChange={() => {
                                     setThemeColor({
                                       ...ThemeColor,
-                                      orderBookLayout: 1,
+                                      redGreenUpDown: 1,
                                     });
                                     localStorage.setItem("chart-up-down", "1");
                                   }}
@@ -520,11 +520,11 @@ const NotificationDropdown = ({
                                   name="exampleRadios1"
                                   id="exampleRadios5"
                                   value="option1"
-                                  checked={ThemeColor.orderBookLayout === 2}
+                                  checked={ThemeColor.redGreenUpDown === 2}
                                   onChange={() => {
                                     setThemeColor({
                                       ...ThemeColor,
-                                      orderBookLayout: 2,
+                                      redGreenUpDown: 2,
                                     });
                                     localStorage.setItem("chart-up-down", "2");
                                   }}

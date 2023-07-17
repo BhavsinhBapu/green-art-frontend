@@ -13,6 +13,7 @@ import {
   changeThemeSettingsDashboard,
   checkThemeState,
   darkModeToggle,
+  swapGreenToRedAndRedToGeen,
 } from "helpers/functions";
 import { IoMdGlobe } from "react-icons/io";
 import {
@@ -397,13 +398,13 @@ const UnAuthNav = ({ setThemeColor, ThemeColor, showSettings }: any) => {
                                   name="exampleRadios1"
                                   id="exampleRadios4"
                                   value="option1"
-                                  checked={ThemeColor.orderBookLayout === 1}
+                                  checked={ThemeColor.redGreenUpDown === 1}
                                   onChange={() => {
-                                    setThemeColor({
-                                      ...ThemeColor,
-                                      orderBookLayout: 1,
-                                    });
-                                    localStorage.setItem("chart-up-down", "1");
+                                    swapGreenToRedAndRedToGeen(
+                                      setThemeColor,
+                                      ThemeColor,
+                                      1
+                                    );
                                   }}
                                 />
                                 <label
@@ -460,13 +461,13 @@ const UnAuthNav = ({ setThemeColor, ThemeColor, showSettings }: any) => {
                                   name="exampleRadios1"
                                   id="exampleRadios5"
                                   value="option1"
-                                  checked={ThemeColor.orderBookLayout === 2}
+                                  checked={ThemeColor.redGreenUpDown === 2}
                                   onChange={() => {
-                                    setThemeColor({
-                                      ...ThemeColor,
-                                      orderBookLayout: 2,
-                                    });
-                                    localStorage.setItem("chart-up-down", "2");
+                                    swapGreenToRedAndRedToGeen(
+                                      setThemeColor,
+                                      ThemeColor,
+                                      2
+                                    );
                                   }}
                                 />
                                 <label

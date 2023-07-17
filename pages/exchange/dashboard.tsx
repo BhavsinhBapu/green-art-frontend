@@ -28,7 +28,7 @@ const Dashboard: NextPage = () => {
   const [ThemeColor, setThemeColor] = useState({
     green: "#32d777",
     red: "#d63031",
-    orderBookLayout: 1,
+    redGreenUpDown: 1,
   });
   const { isLoggedIn, user } = useSelector((state: RootState) => state.user);
   const { dashboard, currentPair } = useSelector(
@@ -69,7 +69,7 @@ const Dashboard: NextPage = () => {
     listenMessages(dispatch, user);
   }, [currentPair]);
   const { settings } = useSelector((state: RootState) => state.common);
-
+  
   return (
     <div className="container-dashboard">
       <div className="background-col">
@@ -88,6 +88,7 @@ const Dashboard: NextPage = () => {
           setThemeColor={setThemeColor}
           showSettings={true}
         />
+
         {isLoading && <Loading />}
         <div className="mt-5"></div>
         <div className="cp-user-sidebar-area">
