@@ -35,6 +35,7 @@ import { MdOutlineSwapHorizontalCircle, MdTransform } from "react-icons/md";
 import { GiBuyCard, GiSellCard, GiTrade } from "react-icons/gi";
 import { GoStop } from "react-icons/go";
 import { AiFillGift, AiOutlineClose } from "react-icons/ai";
+import DemoNotificationDropdown from "./DemoNotificationDropdown";
 
 const DemoTradeNavbar = ({
   settings,
@@ -162,7 +163,7 @@ const DemoTradeNavbar = ({
                   </nav>
                 </div>
 
-                <NotificationDropdown
+                <DemoNotificationDropdown
                   isLoggedIn={isLoggedIn}
                   notificationData={notificationData}
                   seen={seen}

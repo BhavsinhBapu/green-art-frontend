@@ -15352,6 +15352,9 @@ input:checked + .gift-card-buy-slider:before {
   height: 450px;
   overflow-y: auto;
 }
+.back-to-live:hover {
+  color: var(--font-color);
+}
 
 @media (max-width: 991px) {
   .text-45 {
