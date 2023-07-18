@@ -117,7 +117,9 @@ const Index = ({ children }: any) => {
       path === "/g2f-verify" ||
       path === "/" ||
       path === "/verify-email" ||
-      path === "user/notification" 
+      path === "user/notification" ||
+      path === "/demo-trade"||
+      path === "/demo-trade/user/my-wallet"
     ) {
       setNavbarVisible(false);
     } else {
