@@ -23,9 +23,11 @@ import { TradeList } from "components/TradeList";
 import { appDashboardDataWithoutPair } from "service/exchange";
 import Footer from "components/common/footer";
 import DemoTradeNavbar from "components/common/Navbar/DemoTradeNavbar";
+import FaucetModal from "components/demo-trade/FaucetModal";
 const MyWallet: NextPage = () => {
   const { t } = useTranslation("common");
   const { settings } = useSelector((state: RootState) => state.common);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { isLoggedIn } = useSelector((state: RootState) => state.user);
   const [walletList, setWalletList] = useState<any>([]);
   const [Changeable, setChangeable] = useState<any[]>([]);
@@ -76,7 +78,7 @@ const MyWallet: NextPage = () => {
   return (
     <>
       <DemoTradeNavbar settings={settings} isLoggedIn={isLoggedIn} />
-      <div className="page-wrap" style={{marginTop: '90px'}}>
+      <div className="page-wrap" style={{ marginTop: "90px" }}>
         <div className="page-main-content container-fluid">
           <div className="section-top-wrap mb-25">
             <div className="overview-area">
@@ -234,7 +236,10 @@ const MyWallet: NextPage = () => {
                                   </div>
                                 </td>
                                 <td>
-                                  <span className="text-primary-color">
+                                  <span
+                                    className="text-primary-color"
+                                    onClick={() => setIsModalOpen(true)}
+                                  >
                                     {t("Faucet")}
                                   </span>
                                 </td>
@@ -289,6 +294,7 @@ const MyWallet: NextPage = () => {
           </div>
         </div>
       </div>
+      {isModalOpen && <FaucetModal setIsModalOpen={setIsModalOpen} />}
       <Footer />
     </>
   );

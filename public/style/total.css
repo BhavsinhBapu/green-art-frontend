@@ -15159,6 +15159,14 @@ input:checked + .gift-card-buy-slider:before {
   background: var(--background-color);
   padding: 3rem !important;
 }
+.faucet-modal__content {
+  border-radius: 4px;
+  position: relative;
+  width: 50%;
+  max-width: 90%;
+  background: var(--background-color);
+  padding: 3rem !important;
+}
 
 .gift-card-modal__footer {
   text-align: right;
@@ -15359,6 +15367,7 @@ input:checked + .gift-card-buy-slider:before {
   .p2p-gift-card-navbar-lists {
     display: block;
   }
+
 }
 
 @media (max-width: 450px) {
@@ -15381,6 +15390,15 @@ input:checked + .gift-card-buy-slider:before {
     max-width: 90%;
     background: var(--background-color);
     padding: 1rem !important;
+  }
+
+  .faucet-modal__content {
+    border-radius: 4px;
+    position: relative;
+    width: 100%;
+    max-width: 90%;
+    background: var(--background-color);
+    padding: 3rem !important;
   }
   .my-card-modal-margin {
     margin-top: 2rem;
