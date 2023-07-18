@@ -15233,6 +15233,9 @@ input:checked + .gift-card-buy-slider:before {
   background: var(--card-background-color);
 }
 
+.bg-main-clr {
+  background: var(--main-background-color);
+}
 .market-index-card {
   height: 100px;
   padding: 12px;
@@ -15367,7 +15370,6 @@ input:checked + .gift-card-buy-slider:before {
   .p2p-gift-card-navbar-lists {
     display: block;
   }
-
 }
 
 @media (max-width: 450px) {

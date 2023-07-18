@@ -30,6 +30,7 @@ const MyWallet: NextPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { isLoggedIn } = useSelector((state: RootState) => state.user);
   const [walletList, setWalletList] = useState<any>([]);
+  const [selectedItemForFaucet, setSelectedItemForFaucet] = useState<any>({})
   const [Changeable, setChangeable] = useState<any[]>([]);
   const [processing, setProcessing] = useState<boolean>(false);
   const [allData, setAllData] = useState<any>();
@@ -74,6 +75,12 @@ const MyWallet: NextPage = () => {
       setWalletList(null);
     };
   }, []);
+
+
+  const faucetHandler = (item: any) => {
+    setSelectedItemForFaucet(item);
+    setIsModalOpen(true);
+  }
 
   return (
     <>
@@ -238,7 +245,7 @@ const MyWallet: NextPage = () => {
                                 <td>
                                   <span
                                     className="text-primary-color"
-                                    onClick={() => setIsModalOpen(true)}
+                                    onClick={() => faucetHandler(item)}
                                   >
                                     {t("Faucet")}
                                   </span>
@@ -294,7 +301,7 @@ const MyWallet: NextPage = () => {
           </div>
         </div>
       </div>
-      {isModalOpen && <FaucetModal setIsModalOpen={setIsModalOpen} />}
+      {isModalOpen && <FaucetModal setIsModalOpen={setIsModalOpen} selectedItemForFaucet={selectedItemForFaucet}/>}
       <Footer />
     </>
   );
