@@ -18,12 +18,14 @@ import { useRouter } from "next/router";
 import DemoSelectCurrency from "components/exchange/DemoSelectCurrency";
 import DemoCurrencyLevel from "components/exchange/DemoCurrencyLevel";
 import DemoDashboardBody from "components/exchange/DemoDashboardBody";
+import { EXCHANGE_LAYOUT_ONE } from "helpers/core-constants";
 
 const Dashboard: NextPage = () => {
   const { t } = useTranslation("common");
   const router = useRouter();
   const dispatch = useDispatch();
   const [isLoading, setisLoading] = useState(true);
+  const [layout, setLayout] = useState(EXCHANGE_LAYOUT_ONE);
   const { isLoggedIn, user } = useSelector((state: RootState) => state.user);
   const { dashboard, currentPair } = useSelector(
     (state: RootState) => state.demoExchange
@@ -86,6 +88,8 @@ const Dashboard: NextPage = () => {
           ThemeColor={ThemeColor}
           setThemeColor={setThemeColor}
           showSettings={true}
+          layout={layout}
+          setLayout={setLayout}
         />
         {isLoading && <Loading />}
         <div className="mt-5"></div>
@@ -240,7 +244,7 @@ const Dashboard: NextPage = () => {
                     </div>
                   </div>
 
-                  <DemoDashboardBody ThemeColor={ThemeColor}/>
+                  <DemoDashboardBody ThemeColor={ThemeColor} layout={layout}/>
                 </div>
               </div>
             </div>
