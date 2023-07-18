@@ -35,15 +35,6 @@ const MyWallet: NextPage = () => {
   const [Changeable, setChangeable] = useState<any[]>([]);
   const [processing, setProcessing] = useState<boolean>(false);
   const [allData, setAllData] = useState<any>();
-  const [tradeList, setTradeList]: any = useState();
-  const [coinList, setCoinList]: any = useState([]);
-  const handleActive = (index: any) => {
-    if (index === tradeList) {
-      setTradeList(index);
-    } else {
-      setTradeList(index);
-    }
-  };
 
   const getWalletLists = async (url: string) => {
     const response: any = await WalletListApiAction(url, setProcessing);
@@ -64,13 +55,8 @@ const MyWallet: NextPage = () => {
     setChangeable(response?.wallets?.data);
   };
 
-  const coinListApi = async () => {
-    const coinList = await appDashboardDataWithoutPair();
-    setCoinList(coinList);
-  };
 
   useEffect(() => {
-    coinListApi();
     getWalletLists("/demo/wallet-list?page=1&per_page=15");
     return () => {
       setWalletList(null);
