@@ -16,12 +16,10 @@ export default function Index() {
   useEffect(() => {
     getTradeSectionData();
   }, []);
-  useEffect(() => {
-    listenMessagesFutureMarketData(setTradeDatas);
-  },[])
 
   const getTradeSectionData = async () => {
-    const data: any = getExchangeMarketDetails();
+    const data: any = await getExchangeMarketDetails();
+    console.log(data, "datadatadatadatadata");
     if (!data.success) {
       toast.error(data.message);
       return;
@@ -33,7 +31,7 @@ export default function Index() {
       <div className="container">
         <h1 className="banner-title py-4">{t("Crypto Futures Market")}</h1>
         {/* top chart start*/}
-        <TopCharts tradeDatas={tradeDatas} />
+        {tradeDatas?.coins?.length > 0 && <TopCharts tradeDatas={tradeDatas} />}
         {/* top chart end*/}
       </div>
       <div className="bg-card-primary-clr">

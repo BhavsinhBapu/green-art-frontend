@@ -114,7 +114,8 @@ export async function listenMessagesFutureMarketData(setTradeDatas: any) {
   window.Echo.channel(`future-trade-get-exchange-market-details-data`).listen(
     `.market-details-data`,
     (e: any) => {
-      setTradeDatas(e);
+      // setTradeDatas(e);
+      console.log(e,"eeeeeeeeeeeeeeeeeeeeee");
     }
   );
 }

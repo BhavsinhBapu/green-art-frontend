@@ -13,7 +13,7 @@ const TradingChart = dynamic(
     ),
   { ssr: false }
 );
-const TradeBox = () => {
+const TradeBox = ({ ThemeColor }:any) => {
   const { dashboard, OpenBookBuy, OpenBooksell, marketTrades, currentPair } =
     useSelector((state: RootState) => state.exchange);
   const { settings, theme } = useSelector((state: RootState) => state.common);
@@ -24,8 +24,12 @@ const TradeBox = () => {
           <div className="row">
             <div className="col-xl-9 col-12 exchange-area">
               {currentPair && (
-                //@ts-ignore
-                <TradingChart currentPair={currentPair} theme={theme} />
+                <TradingChart
+                  //@ts-ignore
+                  currentPair={currentPair}
+                  theme={theme}
+                  ThemeColor={ThemeColor}
+                />
               )}
             </div>
             <div className="col-xl-3 col-12 exchange-area">
