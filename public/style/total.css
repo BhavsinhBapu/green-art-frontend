@@ -5130,7 +5130,7 @@ select:-webkit-autofill:focus {
   font-size: 16px;
   font-weight: 400;
   text-transform: capitalize;
-  color: var(--text-primary-color);
+  color: var(--font-color);
 }
 
 .orders-area .nav-tabs .nav-item .nav-link.active {
@@ -5365,7 +5365,7 @@ select:-webkit-autofill:focus {
   margin-bottom: 5px;
   font-size: 24px;
   font-weight: 700;
-  color: var(--text-primary-color) !important;
+  color: var(--font-color) !important;
 }
 
 .overview-area .overview-left .total-blance {
@@ -5845,7 +5845,7 @@ select:-webkit-autofill:focus {
   margin-bottom: 8px;
   font-size: 16px;
   font-weight: 400;
-  color: var(--text-primary-color) !important;
+  color: var(--font-color) !important;
 }
 
 .profle-are-top .user-level {
@@ -15433,4 +15433,8 @@ input:checked + .gift-card-buy-slider:before {
 }
 .redText {
   color: var(--trade-red);
+}
+.trades-section div h6{
+  color: var(--font-color) !important;
+
 }

@@ -71,6 +71,7 @@ Tags: admin, best react admin template, das
   --loading-color: #4b4b4b;
   --box-shadow-color: rgb(0 0 0 / 5%) 0px 0px 0px 2px;
   --hover-bg-color: #fafafa;
+  --percentage: 0%;
 }
 
 :root[data-theme="dark"] {
@@ -101,6 +102,7 @@ Tags: admin, best react admin template, das
   --loading-color: #4b4b4b;
   --box-shadow-color: rgba(247, 247, 247, 0.05);
   --hover-bg-color: #383839;
+  --percentage: 100%;
 }
 
 html,
@@ -1157,6 +1159,7 @@ client-area
 .avable-items .item-lsit .single-item .item-link .icon {
   width: 25px;
   margin-bottom: 15px;
+  -webkit-filter: invert(var(--percentage));
 }
 
 .avable-items .item-lsit .single-item .item-link {
