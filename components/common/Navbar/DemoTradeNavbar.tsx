@@ -109,64 +109,26 @@ const DemoTradeNavbar = ({
 
                   <nav className="main-menu">
                     <ul>
-                      <li
-                        className={
-                          router.pathname == "/demo-trade"
-                            ? "cp-user-active-page"
-                            : ""
-                        }
+                      <Link
+                        href={isLoggedIn === true ? "/demo-trade" : "/signin"}
                       >
-                        <Link
-                          href={
-                            router.locale !== "en"
-                              ? `/${router.locale}/demo-trade`
-                              : "/demo-trade"
+                        <li
+                          className={
+                            router.pathname == "/demo-trade"
+                              ? "cp-user-active-page"
+                              : ""
                           }
                         >
-                          <a
-                            className="arrow-icon"
-                            href="#"
-                            aria-expanded="true"
-                            style={{ height: "48px" }}
-                          >
+                          <a href="#">
                             <span className="cp-user-icon">
-                              <BsBarChartLine />
+                              <BiWalletAlt />
                             </span>
                             <span className="cp-user-name">
-                              {navbar?.trade?.name
-                                ? navbar?.trade?.name
-                                : t("Exchange")}
+                              {t("Exchange")}
                             </span>
                           </a>
-                        </Link>
-                        <ul className="dropdown-menu bg-transparent-main">
-                          {navbar?.trade?.status && (
-                            <Link
-                              href={
-                                router.locale !== "en"
-                                  ? `/${router.locale}/demo-trade`
-                                  : "/demo-trade"
-                              }
-                            >
-                              <li
-                                className={
-                                  router.pathname == "/demo-trade"
-                                    ? "cp-user-active-page"
-                                    : ""
-                                }
-                              >
-                                <a href="" className="menu-hover">
-                                  <span className="cp-user-icon">
-                                    {" "}
-                                    <BiShapeCircle />{" "}
-                                  </span>{" "}
-                                  <span>{t("Spot Trading")}</span>
-                                </a>
-                              </li>
-                            </Link>
-                          )}
-                        </ul>
-                      </li>
+                        </li>
+                      </Link>
 
                       <Link
                         href={
@@ -231,56 +193,25 @@ const DemoTradeNavbar = ({
                         </span>
                       </li>
 
-                      <li
-                        className={
-                          router.pathname == "/demo-trade"
-                            ? "active-navbar nav-item dropdown"
-                            : "nav-item dropdown"
-                        }
+                      <Link
+                        href={isLoggedIn === true ? "/demo-trade" : "/signin"}
                       >
-                        <a
-                          className="nav-link text-primary-color-two dropdown-toggle"
-                          href="#"
-                          id="navbarDropdown"
-                          role="button"
-                          data-toggle="dropdown"
-                          aria-haspopup="true"
-                          aria-expanded="false"
+                        <li
+                          className={
+                            router.pathname == "/demo-trade"
+                              ? "active-navbar nav-item"
+                              : "nav-item"
+                          }
                         >
-                          {navbar?.trade?.name
-                            ? navbar?.trade?.name
-                            : t("Exchange")}
-                        </a>
-                        <ul
-                          className="dropdown-menu bg-transparent border-0 py-0 my-0"
-                          aria-labelledby="navbarDropdown"
-                        >
-                          <Link
-                            href={
-                              router.locale !== "en"
-                                ? `/${router.locale}/demo-trade`
-                                : "/demo-trade"
-                            }
+                          <a
+                            href="#"
+                            className="nav-link text-primary-color-two"
+                            onClick={() => setActive(false)}
                           >
-                            <li
-                              className={
-                                router.pathname == "/demo-trade"
-                                  ? "active-navbar"
-                                  : ""
-                              }
-                            >
-                              <a
-                                href=""
-                                className="px-3 py-2 text-primary-color-two"
-                                onClick={() => setActive(false)}
-                              >
-                                <span>{t("Spot Trading")}</span>
-                              </a>
-                            </li>
-                          </Link>
-                        </ul>
-                      </li>
-
+                            {t("Exchange")}
+                          </a>
+                        </li>
+                      </Link>
                       <Link
                         href={
                           isLoggedIn === true
@@ -300,9 +231,7 @@ const DemoTradeNavbar = ({
                             className="nav-link text-primary-color-two"
                             onClick={() => setActive(false)}
                           >
-                            {navbar?.wallet?.name
-                              ? navbar?.wallet?.name
-                              : t("Wallet")}
+                            {t("Wallet")}
                           </a>
                         </li>
                       </Link>
