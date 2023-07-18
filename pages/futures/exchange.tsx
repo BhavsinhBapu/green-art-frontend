@@ -15,7 +15,12 @@ import { RootState } from "state/store";
 
 const Exchange = () => {
   const [isLoading, setisLoading] = useState(true);
-
+  const [ThemeColor, setThemeColor] = useState({
+    green: "#32d777",
+    red: "#d63031",
+    redGreenUpDown: 1,
+    chooseColor: 1,
+  });
   const { isLoggedIn, user } = useSelector((state: RootState) => state.user);
   const { dashboard, currentPair } = useSelector(
     (state: RootState) => state.exchange
@@ -58,10 +63,10 @@ const Exchange = () => {
                   </div>
                 </div>
               )}
-              {dashboard?.last_price_data && <TopBar  />}
+              {dashboard?.last_price_data && <TopBar />}
             </div>
           </div>
-          <TradeBox />
+          <TradeBox ThemeColor={ThemeColor} />
         </div>
       </div>
     </div>

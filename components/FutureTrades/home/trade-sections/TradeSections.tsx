@@ -4,6 +4,8 @@ import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { getExchangeMarketDetails } from "service/futureTrade";
+import { listenMessagesFutureMarketData } from "state/actions/exchange";
 
 export default function TradeSections() {
   const [tradeDatas, setTradeDatas] = useState<any>([]);
@@ -13,11 +15,11 @@ export default function TradeSections() {
     getTradeSectionData();
     console.log("sjngns");
   }, [selectType]);
-
+  useEffect(() => {
+    listenMessagesFutureMarketData(setTradeDatas);
+  }, []);
   const getTradeSectionData = async () => {
-    const { data } = await request.get(
-      `/future-trade/get-exchange-market-details-app?limit=8&page=1&type=${selectType}`
-    );
+   const data: any = await getExchangeMarketDetails();
     if (!data.success) {
       toast.error(data.message);
       return;
@@ -87,7 +89,7 @@ export default function TradeSections() {
                   role="tabpanel"
                   aria-labelledby="CoreAssets-tab"
                 >
-                  {tradeDatas?.coins?.data?.length > 0 ? (
+                  {tradeDatas?.coins?.length > 0 ? (
                     <div className="exchange-volume-table">
                       <div className="table-responsive">
                         <div
@@ -159,7 +161,7 @@ export default function TradeSections() {
                               </tr>
                             </thead>
                             <tbody>
-                              {tradeDatas?.coins?.data?.map(
+                              {tradeDatas?.coins?.map(
                                 (item: any, index: any) => (
                                   <tr role="row" className="odd" key={index}>
                                     <td className="d-flex">
