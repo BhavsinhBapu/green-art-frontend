@@ -1020,6 +1020,24 @@ const Navbar = ({
                           </ul>
                         </li>
                       )}
+                      {Number(settings?.enable_demo_trade) === 1 && (
+                        <li
+                          className={
+                            router.pathname == "/demo-trade"
+                              ? "cp-user-active-page"
+                              : ""
+                          }
+                        >
+                          <Link href="/demo-trade">
+                            <a>
+                              <span className="cp-user-icon">
+                                <BiShapeCircle />
+                              </span>
+                              <span>{t("Demo Trade")}</span>
+                            </a>
+                          </Link>
+                        </li>
+                      )}
                     </ul>
                   </nav>
                 </div>
@@ -1954,6 +1972,21 @@ const Navbar = ({
                               </li>
                             </Link>
                           </ul>
+                        </li>
+                      )}
+                      {Number(settings?.enable_demo_trade) === 1 && (
+                        <li
+                          className={
+                            router.pathname == "/demo-trade"
+                              ? "active-navbar nav-item"
+                              : "nav-item"
+                          }
+                        >
+                          <Link href="/demo-trade">
+                            <a className="nav-link text-primary-color-two">
+                              <span>{t("Demo Trade")}</span>
+                            </a>
+                          </Link>
                         </li>
                       )}
                     </ul>
