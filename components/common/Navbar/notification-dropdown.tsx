@@ -17,6 +17,7 @@ import { useRouter } from "next/router";
 import React, { useState, useEffect, useRef } from "react";
 import { AiOutlineSetting } from "react-icons/ai";
 import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
+import { FaQq } from "react-icons/fa";
 import { HiArrowNarrowRight, HiUserCircle } from "react-icons/hi";
 import { IoMdGlobe } from "react-icons/io";
 import { RiNotificationBadgeLine } from "react-icons/ri";
@@ -124,6 +125,14 @@ const NotificationDropdown = ({
                         <a href="-wallet">
                           <i className="fa fa-credit-card"></i>
                           {t("My Wallet")}
+                        </a>
+                      </button>
+                    </Link>
+                    <Link href={isLoggedIn ? "/user/faq" : "/signin"}>
+                      <button className="dropdown-item" type="button">
+                        <a href="-wallet">
+                        <i className="fa fa-credit-card"></i>
+                          {t("FAQ")}
                         </a>
                       </button>
                     </Link>

@@ -731,7 +731,7 @@ const Navbar = ({
                           )}
                         </ul>
                       </li>
-                      {navbar?.myProfile?.status && (
+                      {/* {navbar?.myProfile?.status && (
                         <Link href={isLoggedIn ? "/user/profile" : "/signin"}>
                           <li
                             className={
@@ -752,7 +752,7 @@ const Navbar = ({
                             </a>
                           </li>
                         </Link>
-                      )}
+                      )} */}
                       <Link href={isLoggedIn ? "/user/referral" : "/signin"}>
                         <li
                           className={
@@ -777,7 +777,7 @@ const Navbar = ({
                           )}
                         </li>
                       </Link>
-                      <li
+                      {/* <li
                         className={
                           router.pathname == "/user/settings"
                             ? "cp-user-active-page"
@@ -856,7 +856,7 @@ const Navbar = ({
                             </Link>
                           )}
                         </ul>
-                      </li>
+                      </li> */}
                       {Number(settings?.enable_gift_card) === 1 && (
                         <li
                           className={
@@ -1686,7 +1686,7 @@ const Navbar = ({
                         </ul>
                       </li>
 
-                      {navbar?.myProfile?.status && (
+                      {/* {navbar?.myProfile?.status && (
                         <Link href={isLoggedIn ? "/user/profile" : "/signin"}>
                           <li
                             className={
@@ -1708,7 +1708,7 @@ const Navbar = ({
                             </a>
                           </li>
                         </Link>
-                      )}
+                      )} */}
 
                       <Link href={isLoggedIn ? "/user/referral" : "/signin"}>
                         <li
@@ -1736,7 +1736,7 @@ const Navbar = ({
                         </li>
                       </Link>
 
-                      <li
+                      {/* <li
                         className={
                           router.pathname == "/user/settings"
                             ? "active-navbar nav-item dropdown"
@@ -1815,7 +1815,7 @@ const Navbar = ({
                             </Link>
                           )}
                         </ul>
-                      </li>
+                      </li> */}
                       {Number(settings?.enable_gift_card) === 1 && (
                         <li
                           className={
