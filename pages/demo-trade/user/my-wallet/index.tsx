@@ -25,6 +25,8 @@ import Footer from "components/common/footer";
 import DemoTradeNavbar from "components/common/Navbar/DemoTradeNavbar";
 import FaucetModal from "components/demo-trade/FaucetModal";
 import request from "lib/request";
+import { useIsDemotradeFeatureEnable } from "hooks/useIsDemotradeFeatureEnable";
+import SectionLoading from "components/common/SectionLoading";
 const MyWallet: NextPage = () => {
   const { t } = useTranslation("common");
   const { settings } = useSelector((state: RootState) => state.common);
@@ -35,7 +37,7 @@ const MyWallet: NextPage = () => {
   const [Changeable, setChangeable] = useState<any[]>([]);
   const [processing, setProcessing] = useState<boolean>(false);
   const [allData, setAllData] = useState<any>();
-
+  const isDemotradeEnable = useIsDemotradeFeatureEnable();
   const getWalletLists = async (url: string) => {
     const response: any = await WalletListApiAction(url, setProcessing);
     setWalletList(response?.wallets);
@@ -55,13 +57,13 @@ const MyWallet: NextPage = () => {
     setChangeable(response?.wallets?.data);
   };
 
-
   useEffect(() => {
+    if (!isDemotradeEnable) return;
     getWalletLists("/demo/wallet-list?page=1&per_page=15");
     return () => {
       setWalletList(null);
     };
-  }, []);
+  }, [isDemotradeEnable]);
 
   const faucetHandler = (item: any) => {
     setSelectedItemForFaucet(item);
@@ -82,7 +84,9 @@ const MyWallet: NextPage = () => {
     getWalletLists("/demo/wallet-list?page=1&per_page=15");
     setIsModalOpen(false);
   };
-
+  if (!isDemotradeEnable) {
+    return <SectionLoading />;
+  }
   return (
     <>
       <DemoTradeNavbar settings={settings} isLoggedIn={isLoggedIn} />

@@ -21,6 +21,8 @@ import DemoDashboardBody from "components/exchange/DemoDashboardBody";
 import { EXCHANGE_LAYOUT_ONE } from "helpers/core-constants";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import DemoTradeNavbar from "components/common/Navbar/DemoTradeNavbar";
+import { useIsDemotradeFeatureEnable } from "hooks/useIsDemotradeFeatureEnable";
+import SectionLoading from "components/common/SectionLoading";
 
 const Dashboard: NextPage = () => {
   const { t } = useTranslation("common");
@@ -29,6 +31,9 @@ const Dashboard: NextPage = () => {
   const [isLoading, setisLoading] = useState(true);
   const [layout, setLayout] = useState(EXCHANGE_LAYOUT_ONE);
   const { isLoggedIn, user } = useSelector((state: RootState) => state.user);
+  const { settings } = useSelector((state: RootState) => state.common);
+
+  const isDemotradeEnable = useIsDemotradeFeatureEnable();
   const { dashboard, currentPair } = useSelector(
     (state: RootState) => state.demoExchange
   );
@@ -39,6 +44,9 @@ const Dashboard: NextPage = () => {
   });
 
   useEffect(() => {
+    if (!isDemotradeEnable) {
+      return;
+    }
     // const pair = localStorage.getItem("current_pair");
     if (!router.isReady) return;
 
@@ -53,8 +61,11 @@ const Dashboard: NextPage = () => {
         initialDashboardCallAction(currentPair, dashboard, setisLoading, router)
       );
     }
-  }, [isLoggedIn, router?.query?.coin_pair]);
+  }, [isLoggedIn, router?.query?.coin_pair, isDemotradeEnable]);
   useEffect(() => {
+    if (!isDemotradeEnable) {
+      return;
+    }
     if (
       dashboard?.order_data?.base_coin_id &&
       dashboard?.order_data?.trade_coin_id
@@ -67,12 +78,16 @@ const Dashboard: NextPage = () => {
         )
       );
     }
-  }, [dashboard?.order_data?.base_coin_id]);
+  }, [dashboard?.order_data?.base_coin_id, isDemotradeEnable]);
   useEffect(() => {
+    if (!isDemotradeEnable) {
+      return;
+    }
     listenMessages(dispatch, user);
-  }, [currentPair]);
-  const { settings } = useSelector((state: RootState) => state.common);
-
+  }, [currentPair, isDemotradeEnable]);
+  if (!isDemotradeEnable) {
+    return <SectionLoading />;
+  }
   return (
     <>
       <div className="container-dashboard">
