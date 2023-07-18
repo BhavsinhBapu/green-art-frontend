@@ -24,13 +24,14 @@ import { appDashboardDataWithoutPair } from "service/exchange";
 import Footer from "components/common/footer";
 import DemoTradeNavbar from "components/common/Navbar/DemoTradeNavbar";
 import FaucetModal from "components/demo-trade/FaucetModal";
+import request from "lib/request";
 const MyWallet: NextPage = () => {
   const { t } = useTranslation("common");
   const { settings } = useSelector((state: RootState) => state.common);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { isLoggedIn } = useSelector((state: RootState) => state.user);
   const [walletList, setWalletList] = useState<any>([]);
-  const [selectedItemForFaucet, setSelectedItemForFaucet] = useState<any>({})
+  const [selectedItemForFaucet, setSelectedItemForFaucet] = useState<any>({});
   const [Changeable, setChangeable] = useState<any[]>([]);
   const [processing, setProcessing] = useState<boolean>(false);
   const [allData, setAllData] = useState<any>();
@@ -76,11 +77,25 @@ const MyWallet: NextPage = () => {
     };
   }, []);
 
-
   const faucetHandler = (item: any) => {
     setSelectedItemForFaucet(item);
     setIsModalOpen(true);
-  }
+  };
+
+  const addFaucetHandler = async (coin_type: any) => {
+    const { data } = await request.post(`/demo/get-wallet-balance`, {
+      coin_type: coin_type,
+    });
+
+    if (!data.success) {
+      toast.error(data.message);
+      setIsModalOpen(false);
+      return;
+    }
+    toast.success(data.message);
+    getWalletLists("/demo/wallet-list?page=1&per_page=15");
+    setIsModalOpen(false);
+  };
 
   return (
     <>
@@ -301,7 +316,13 @@ const MyWallet: NextPage = () => {
           </div>
         </div>
       </div>
-      {isModalOpen && <FaucetModal setIsModalOpen={setIsModalOpen} selectedItemForFaucet={selectedItemForFaucet}/>}
+      {isModalOpen && (
+        <FaucetModal
+          setIsModalOpen={setIsModalOpen}
+          selectedItemForFaucet={selectedItemForFaucet}
+          addFaucetHandler={addFaucetHandler}
+        />
+      )}
       <Footer />
     </>
   );

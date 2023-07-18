@@ -4,6 +4,7 @@ import React from "react";
 export default function FaucetModal({
   setIsModalOpen,
   selectedItemForFaucet,
+  addFaucetHandler
 }: any) {
   const { t } = useTranslation();
   return (
@@ -32,7 +33,7 @@ export default function FaucetModal({
           </p>
         </div>
         <div className="text-center mt-3">
-          <button type="button" className="btn bg-primary-color capitalize">
+          <button type="button" className="btn bg-primary-color capitalize" onClick={()=> addFaucetHandler(selectedItemForFaucet?.coin_type)}>
             {t("Add Assests")}
           </button>
         </div>
