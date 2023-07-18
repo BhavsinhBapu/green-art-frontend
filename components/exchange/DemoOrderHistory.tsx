@@ -24,7 +24,7 @@ const DemoOrderHistory = ({
       aria-labelledby="Trade-history-tab"
     >
       <div className="buy-sell-tabs">
-        <ul className="nav nav-tabs" id="buySellTab" role="tablist">
+        <ul className="nav nav-tabs px-0 pb-4" id="buySellTab" role="tablist">
           <li className="nav-item" role="presentation">
             <a
               className="nav-link active"

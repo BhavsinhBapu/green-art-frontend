@@ -1029,7 +1029,7 @@ const Navbar = ({
                           }
                         >
                           <Link href="/demo-trade">
-                            <a>
+                            <a target="_blank">
                               <span className="cp-user-icon">
                                 <BiShapeCircle />
                               </span>
