@@ -82,7 +82,7 @@ const Home: NextPage = ({
 
             {/* Trade. Anywhere. area end here  */}
             {/* Get in touch. area start here  */}
-            <GetInTouch landing={landing} featureListdata={featureListdata} />
+            {/* <GetInTouch landing={landing} featureListdata={featureListdata} /> */}
 
             {/* Get in touch. area end here  */}
             {/* Start trading area start here  */}

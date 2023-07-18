@@ -25,7 +25,7 @@ const ProfileSidebar = () => {
           <Link href="/user/profile">
             <li className={router.pathname == "/user/profile" ? "active" : ""}>
               <CgProfile />
-              <a href="/user/profile">{t("Profile")}</a>
+              <a href="/user/profile">{t("My Profile")}</a>
             </li>
           </Link>
           <Link href="/user/edit-profile">
