@@ -22,10 +22,11 @@ import { RootState } from "state/store";
 import { TradeList } from "components/TradeList";
 import { appDashboardDataWithoutPair } from "service/exchange";
 import Footer from "components/common/footer";
+import DemoTradeNavbar from "components/common/Navbar/DemoTradeNavbar";
 const MyWallet: NextPage = () => {
   const { t } = useTranslation("common");
   const { settings } = useSelector((state: RootState) => state.common);
-
+  const { isLoggedIn } = useSelector((state: RootState) => state.user);
   const [walletList, setWalletList] = useState<any>([]);
   const [Changeable, setChangeable] = useState<any[]>([]);
   const [processing, setProcessing] = useState<boolean>(false);
@@ -74,7 +75,8 @@ const MyWallet: NextPage = () => {
 
   return (
     <>
-      <div className="page-wrap">
+      <DemoTradeNavbar settings={settings} isLoggedIn={isLoggedIn} />
+      <div className="page-wrap" style={{marginTop: '90px'}}>
         <div className="page-main-content container-fluid">
           <div className="section-top-wrap mb-25">
             <div className="overview-area">
