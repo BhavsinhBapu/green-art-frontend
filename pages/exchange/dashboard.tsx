@@ -19,6 +19,7 @@ import Head from "next/head";
 import { formatCurrency } from "common";
 import Navbar from "components/common/Navbar";
 import { useRouter } from "next/router";
+import { EXCHANGE_LAYOUT_ONE } from "helpers/core-constants";
 
 const Dashboard: NextPage = () => {
   const { t } = useTranslation("common");
@@ -28,8 +29,10 @@ const Dashboard: NextPage = () => {
   const [ThemeColor, setThemeColor] = useState({
     green: "#32d777",
     red: "#d63031",
-    orderBookLayout: 1,
+    redGreenUpDown: 1,
+    chooseColor: 1,
   });
+  const [layout, setLayout] = useState(EXCHANGE_LAYOUT_ONE);
   const { isLoggedIn, user } = useSelector((state: RootState) => state.user);
   const { dashboard, currentPair } = useSelector(
     (state: RootState) => state.exchange
@@ -87,7 +90,10 @@ const Dashboard: NextPage = () => {
           ThemeColor={ThemeColor}
           setThemeColor={setThemeColor}
           showSettings={true}
+          layout={layout}
+          setLayout={setLayout}
         />
+
         {isLoading && <Loading />}
         <div className="mt-5"></div>
         <div className="cp-user-sidebar-area">
@@ -241,7 +247,7 @@ const Dashboard: NextPage = () => {
                     </div>
                   </div>
 
-                  <DashboardBody ThemeColor={ThemeColor} />
+                  <DashboardBody ThemeColor={ThemeColor} layout={layout} />
                 </div>
               </div>
             </div>

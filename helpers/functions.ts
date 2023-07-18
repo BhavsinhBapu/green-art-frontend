@@ -3,34 +3,124 @@ export const changeThemeSettingsDashboard = (
   tradeGreen: string,
   tradeRed: string,
   setThemeColor: any,
-  ThemeColor: any
+  ThemeColor: any,
+  chooseColor: number
 ) => {
-  document.documentElement.style.setProperty("--trade-green", tradeGreen);
-  document.documentElement.style.setProperty("--trade-red", tradeRed);
+  const checkRedGreen = localStorage.getItem("chart-up-down");
+  if (checkRedGreen === "1") {
+    document.documentElement.style.setProperty("--trade-green", tradeGreen);
+    document.documentElement.style.setProperty("--trade-red", tradeRed);
+  } else {
+    document.documentElement.style.setProperty("--trade-green", tradeRed);
+    document.documentElement.style.setProperty("--trade-red", tradeGreen);
+  }
   localStorage.setItem("tradeGreen", tradeGreen);
   localStorage.setItem("tradeRed", tradeRed);
-  setThemeColor({
-    ...ThemeColor,
+  localStorage.setItem("chooseColor", chooseColor.toString());
+  setThemeColor((prevThemeColor: any) => ({
+    ...prevThemeColor,
     green: tradeGreen,
     red: tradeRed,
-  });
+    chooseColor: chooseColor,
+  }));
 };
-export const checkDashboardThemeSettings = (
+
+export const changeLayout = (layoutNumber: number, setLayout: any) => {
+  localStorage.setItem("layout-trade", layoutNumber.toString());
+  setLayout(layoutNumber);
+};
+export const swapGreenToRedAndRedToGeen = (
   setThemeColor: any,
-  ThemeColor: any
+  ThemeColor: any,
+  redGreenUpDown: number
 ) => {
   const tradeGreen = localStorage.getItem("tradeGreen");
   const tradeRed = localStorage.getItem("tradeRed");
-  const checkOrder = localStorage.getItem("chart-up-down");
-  document.documentElement.style.setProperty("--trade-green", tradeGreen);
-  document.documentElement.style.setProperty("--trade-red", tradeRed);
-
-  setThemeColor({
-    orderBookLayout: checkOrder ? Number(checkOrder) : 1,
-    green: tradeGreen ? tradeGreen : "#32d777",
-    red: tradeRed ? tradeRed : "#d63031",
-  });
+  if (redGreenUpDown === 2) {
+    localStorage.setItem("chart-up-down", "2");
+    setThemeColor((prevThemeColor: any) => ({
+      ...prevThemeColor,
+      green: tradeRed ? tradeRed : "#d63031",
+      red: tradeGreen ? tradeGreen : "#32d777",
+      redGreenUpDown: redGreenUpDown,
+    }));
+    document.documentElement.style.setProperty(
+      "--trade-green",
+      tradeRed ? tradeRed : "#d63031"
+    );
+    document.documentElement.style.setProperty(
+      "--trade-red",
+      tradeGreen ? tradeGreen : "#32d777"
+    );
+  } else {
+    localStorage.setItem("chart-up-down", "1");
+    setThemeColor((prevThemeColor: any) => ({
+      ...prevThemeColor,
+      green: tradeGreen ? tradeGreen : "#32d777",
+      red: tradeRed ? tradeRed : "#d63031",
+      redGreenUpDown: redGreenUpDown,
+    }));
+    document.documentElement.style.setProperty(
+      "--trade-green",
+      tradeGreen ? tradeGreen : "#32d777"
+    );
+    document.documentElement.style.setProperty(
+      "--trade-red",
+      tradeRed ? tradeRed : "#d63031"
+    );
+  }
 };
+export const checkDashboardThemeSettings = (
+  setThemeColor: any,
+  ThemeColor: any,
+  setLayout: any
+) => {
+  const tradeGreen = localStorage.getItem("tradeGreen");
+  const tradeRed = localStorage.getItem("tradeRed");
+  const layoutTrade = localStorage.getItem("layout-trade");
+  const getColorNumber = localStorage.getItem("chooseColor");
+
+  const checkRedGreen = localStorage.getItem("chart-up-down");
+  setLayout(layoutTrade ? Number(layoutTrade) : 1);
+  if (checkRedGreen === null) {
+    localStorage.setItem("chart-up-down", "1");
+  }
+
+  if (Number(checkRedGreen) === 2) {
+    document.documentElement.style.setProperty(
+      "--trade-green",
+      tradeRed ? tradeRed : "#d63031"
+    );
+    document.documentElement.style.setProperty(
+      "--trade-red",
+      tradeGreen ? tradeGreen : "#32d777"
+    );
+
+    setThemeColor({
+      redGreenUpDown: checkRedGreen ? Number(checkRedGreen) : 2,
+      red: tradeGreen ? tradeGreen : "#32d777",
+      green: tradeRed ? tradeRed : "#d63031",
+      chooseColor: getColorNumber ? Number(getColorNumber) : 1,
+    });
+  } else {
+    document.documentElement.style.setProperty(
+      "--trade-green",
+      tradeGreen ? tradeGreen : "#32d777"
+    );
+    document.documentElement.style.setProperty(
+      "--trade-red",
+      tradeRed ? tradeRed : "#d63031"
+    );
+
+    setThemeColor({
+      redGreenUpDown: checkRedGreen ? Number(checkRedGreen) : 1,
+      green: tradeGreen ? tradeGreen : "#32d777",
+      red: tradeRed ? tradeRed : "#d63031",
+      chooseColor: getColorNumber ? Number(getColorNumber) : 1,
+    });
+  }
+};
+
 export const checkDarkMode = (settings: any, dispatch: any) => {
   const theme = localStorage.getItem("theme");
   if (theme === "light") {

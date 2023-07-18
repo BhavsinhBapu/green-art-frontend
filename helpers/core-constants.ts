@@ -32,6 +32,7 @@ export const KYC_VOTERS_CARD_VERIFICATION = 6;
 
 export const EXCHANGE_LAYOUT_ONE = 1;
 export const EXCHANGE_LAYOUT_TWO = 2;
+export const EXCHANGE_LAYOUT_THREE = 3;
 
 export const MY_WALLET_DEPOSIT_TYPE = "deposit";
 export const MY_WALLET_WITHDRAW_TYPE = "withdraw";
@@ -140,8 +141,6 @@ export const AMOUNT_TYPE_TRADE = 2;
 export const MARGIN_MODE_ISOLATED = 1;
 export const MARGIN_MODE_CROSS = 1;
 
-
-
 export const BASE = 1;
 export const TRADE = 2;
 
@@ -151,7 +150,6 @@ export const OPEN_ORDER = 2;
 export const ORDER_HISTORY = 3;
 export const TRADE_HISTORY = 4;
 export const TRANSACTION_HISTORY = 5;
-
 
 //trade type
 export const FUTURE_TRADE_TYPE_OPEN = 1;
@@ -168,7 +166,5 @@ export const FUTURE_TRADE_TRANSACTION_TYPE_COMMISSION = 2;
 export const FUTURE_TRADE_TRANSACTION_TYPE_FUNDING_FEES = 3;
 export const FUTURE_TRADE_TRANSACTION_TYPE_REALIZED_PNL = 4;
 
-
 export const LIMIT_ORDER = 1;
 export const MARKET_ORDER = 2;
-

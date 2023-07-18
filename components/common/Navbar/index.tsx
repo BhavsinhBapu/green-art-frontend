@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { BsBarChartLine, BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
-import { BiShapeCircle } from "react-icons/bi";
+import { BiLineChart, BiShapeCircle } from "react-icons/bi";
 import { BiMoney } from "react-icons/bi";
 import { FaPeopleArrows, FaQq, FaTradeFederation } from "react-icons/fa";
 import { BiNetworkChart } from "react-icons/bi";
@@ -42,6 +42,8 @@ const Navbar = ({
   ThemeColor,
   setThemeColor,
   showSettings = false,
+  layout,
+  setLayout,
 }: any) => {
   const { isLoading, user, logo, notificationData } = useSelector(
     (state: RootState) => state.user
@@ -57,7 +59,8 @@ const Navbar = ({
     dispatch(setNotificationData(data.data.data));
   };
   useEffect(() => {
-    showSettings && checkDashboardThemeSettings(setThemeColor, ThemeColor);
+    showSettings &&
+      checkDashboardThemeSettings(setThemeColor, ThemeColor, setLayout);
   }, []);
   const seen = async () => {
     let arr: any = [];
@@ -211,6 +214,22 @@ const Navbar = ({
                           </ul>
                         </li>
                       )}
+                      <li
+                        className={
+                          router.pathname == "/markets"
+                            ? "cp-user-active-page"
+                            : ""
+                        }
+                      >
+                        <Link href="/markets">
+                          <a>
+                            <span className="cp-user-icon">
+                              <BiLineChart />
+                            </span>
+                            <span>{t("Markets")}</span>
+                          </a>
+                        </Link>
+                      </li>
                       {navbar?.wallet?.status && (
                         <Link
                           href={
@@ -1018,6 +1037,8 @@ const Navbar = ({
                   showSettings={showSettings}
                   setThemeColor={setThemeColor}
                   ThemeColor={ThemeColor}
+                  layout={layout}
+                  setLayout={setLayout}
                 />
               </div>
             </div>
@@ -1132,6 +1153,20 @@ const Navbar = ({
                           </ul>
                         </li>
                       )}
+
+                      <li
+                        className={
+                          router.pathname == "/markets"
+                            ? "active-navbar nav-item"
+                            : "nav-item"
+                        }
+                      >
+                        <Link href="/markets">
+                          <a className="nav-link text-primary-color-two">
+                            <span>{t("Markets")}</span>
+                          </a>
+                        </Link>
+                      </li>
 
                       {navbar?.wallet?.status && (
                         <Link
@@ -1933,6 +1968,8 @@ const Navbar = ({
           setThemeColor={setThemeColor}
           ThemeColor={ThemeColor}
           showSettings={showSettings}
+          layout={layout}
+          setLayout={setLayout}
         />
       ) : (
         ""

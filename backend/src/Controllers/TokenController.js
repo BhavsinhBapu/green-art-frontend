@@ -215,7 +215,21 @@ async function calculateEstimateGasFees(req,type)
             if (Number(usedGasLimit) > 0) {
                 gasFees = Number(usedGasLimit) * Number(gasPrice);
             } else {
-                const estimatedGasRes = await contract.methods.transfer(receiverAddress, amount).estimateGas({ from: fromAddress });
+                console.log('before estimate')
+                var estimateGasStatus = false
+                var estimateGasMessage = ''
+                const estimatedGasRes = await contract.methods.transfer(receiverAddress, amount)
+                                                                .estimateGas({ from: fromAddress }).catch(e=>{
+                                                                    estimateGasStatus = true
+                                                                    estimateGasMessage = e.message
+                                                                });
+                if(estimateGasStatus)
+                {
+                    return data = {
+                        status: false,
+                        message: estimateGasMessage
+                    }
+                }
                 console.log('estimateGas');
                 console.log(estimatedGasRes);
                 usedGasLimit = parseInt(estimatedGasRes/2) + estimatedGasRes;
@@ -229,6 +243,8 @@ async function calculateEstimateGasFees(req,type)
             
             console.log(finalGasFees);
             data = {
+                status: true,
+                message: 'Calculate gas fees successfully!',
                 amount : amount,
                 tx: 'ok',
                 gasLimit: usedGasLimit,
@@ -264,6 +280,8 @@ async function calculateEstimateGasFees(req,type)
             console.log(finalGasFees);
 
             data = {
+                status: true,
+                message: 'Calculate gas fees successfully!',
                     amount : amount,
                     tx: 'ok',
                     gasLimit: usedGasLimit,
@@ -275,6 +293,10 @@ async function calculateEstimateGasFees(req,type)
     } catch(e) {
         console.log('error');
         console.log(e);
+        data = {
+            status: false,
+            message: e.message
+        }
     }
     
     return data;
@@ -293,7 +315,7 @@ async function checkEstimateGasFees(req, res)
             
             const data = await calculateEstimateGasFees(req, 1);
             console.log('data',data);
-            if (data) {
+            if (data.status) {
                 console.log("data found", data);
                 res.json({
                     status: true,
@@ -327,8 +349,9 @@ async function checkEstimateGasFees(req, res)
 
  async function sendToken(req, res)
  {
-     console.log("send token process started");
+    console.log("send token process started");
     try {
+        
         const network = req.headers.chainlinks;
         let contractJsons = contractJson();
         const networkType = req.headers.networktype;
@@ -348,6 +371,7 @@ async function checkEstimateGasFees(req, res)
                 let checkValidAddress = new Web3().utils.isAddress(receiverAddress);
                 
                 if (checkValidAddress){
+                    
                     const web3 = new Web3(network);
                     let gasPrice =  await web3.eth.getGasPrice();
                     gasPrice = Web3.utils.fromWei(gasPrice.toString(), 'ether');
@@ -358,46 +382,58 @@ async function checkEstimateGasFees(req, res)
                     amount = customToWei(amount, decimalValue);
                     console.log("sendable amount =", amount);
                     const dataGas = await calculateEstimateGasFees(req,1);
-                    let usedGasLimit = dataGas.gasLimit;
-                    console.log("used gaslimit", usedGasLimit);
+                    if(dataGas.status)
+                    {
+                        console.log('dataGas',dataGas);
+                        let usedGasLimit = dataGas.gasLimit;
+                        console.log("used gaslimit", usedGasLimit);
                     
-                    try {
-                        const tx = {
-                          from: fromAddress,
-                          to: contractAddress,
-                          // gas: Web3.utils.toHex(usedGasLimit),
-                          gas: usedGasLimit,
-                          data: contract.methods
-                            .transfer(receiverAddress, amount)
-                            .encodeABI(),
-                        };
-                        const signedTx =
-                          await web3.eth.accounts.signTransaction(
-                            tx,
-                            privateKey
+                        try {
+                            const tx = {
+                            from: fromAddress,
+                            to: contractAddress,
+                            // gas: Web3.utils.toHex(usedGasLimit),
+                            gas: usedGasLimit,
+                            data: contract.methods
+                                .transfer(receiverAddress, amount)
+                                .encodeABI(),
+                            };
+                            const signedTx =
+                            await web3.eth.accounts.signTransaction(
+                                tx,
+                                privateKey
+                                );
+                            const receipt = await web3.eth.sendSignedTransaction(
+                            signedTx.rawTransaction
                             );
-                        const receipt = await web3.eth.sendSignedTransaction(
-                          signedTx.rawTransaction
-                        );
-                        console.log(receipt);
-                        res.json({
-                          status: true,
-                          message: "Token sent successfully",
-                          data: {
-                            hash: receipt.transactionHash,
-                            used_gas: receipt.gasUsed * gasPrice,
-                            tx: receipt,
-                          },
-                        });
-                    } catch (err) {
-                        console.log(err);
-                        console.log(err.message);
-                        res.json({
-                          status: false,
-                          message: err.message,
-                          data: {},
-                        });
+                            console.log(receipt);
+                            res.json({
+                            status: true,
+                            message: "Token sent successfully",
+                            data: {
+                                hash: receipt.transactionHash,
+                                used_gas: receipt.gasUsed * gasPrice,
+                                tx: receipt,
+                                used_gas_fees:dataGas.estimateGasFees,
+                                used_gas_limit:dataGas.gasLimit,
+                            },
+                            });
+                        } catch (err) {
+                            console.log(err);
+                            console.log(err.message);
+                            res.json({
+                            status: false,
+                            message: err.message,
+                            data: {
+                                used_gas_fees:dataGas.estimateGasFees,
+                                used_gas_limit:dataGas.gasLimit,
+                            },
+                            });
+                        }
+                    }else{
+                        res.json(dataGas);
                     }
+                    
                 } else {
                     res.json({
                         status: false,
@@ -973,6 +1009,7 @@ async function getContractDetails(req, res)
 async function getAddressFromPK(req, res) {
   try {
     const networkType = req.headers.networktype;
+    
     if (parseInt(networkType) == 6) {
       await trxToken.getTrxAddressByPk(req, res);
     } else {
@@ -1001,7 +1038,6 @@ async function getETHAddressFromPk(req) {
     
     const response = await web3.eth.accounts.privateKeyToAccount(pk);
     if (response) {
-      
       return {
         status: true,
         message: "Get address success",
@@ -1026,6 +1062,21 @@ async function getETHAddressFromPk(req) {
   }
 }
 
+async function testBitgo(req, res){
+
+    try{
+        res.send('s');
+
+    }catch (err) {
+        console.log(err);
+        return {
+          status: false,
+          message: String(err),
+          data: {},
+        };
+    }
+}
+
 module.exports = {
   getData,
   generateAddress,
@@ -1037,5 +1088,6 @@ module.exports = {
   getDataByTransactionHash,
   getLatestEvents,
   getContractDetails,
-  getAddressFromPK
+  getAddressFromPK,
+  testBitgo
 };

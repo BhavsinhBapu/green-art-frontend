@@ -15256,6 +15256,49 @@ input:checked + .gift-card-buy-slider:before {
   overflow-y: auto;
 }
 
+.card-for-markets:hover {
+  background-color: var(--card-background-color);
+  cursor: pointer;
+  border-radius: 8px;
+}
+.card-for-markets-item {
+  border-radius: 8px;
+  padding: 2px;
+}
+.card-for-markets-item:hover {
+  background: var(--main-background-color);
+}
+
+.has-search-market-trade .form-control {
+  padding-left: 2.375rem;
+  height: 44px;
+}
+.has-search-market-trade .form-control:focus {
+  background: none;
+}
+
+.has-search-market-trade .form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: #aaa;
+  line-height: 44px;
+}
+
+.market-select-page .custom-select__control {
+  box-shadow: unset !important;
+}
+.market-select-page .custom-select__control .custom-select__value-container {
+  padding-right: 2px !important;
+}
+.market-select-page .custom-select__control .custom-select__indicator {
+  padding: 0 !important;
+}
 .settings-dropdown {
   position: absolute;
   right: 0;
@@ -15285,8 +15328,18 @@ input:checked + .gift-card-buy-slider:before {
   margin-right: auto;
 }
 
-.radio-scale{
+.radio-scale {
   scale: 1.5;
+}
+
+.trade-order-dash-h {
+  height: 150px;
+  overflow-y: auto;
+}
+
+.spot-trade-table {
+  height: 450px;
+  overflow-y: auto;
 }
 
 @media (max-width: 991px) {
@@ -15349,9 +15402,9 @@ input:checked + .gift-card-buy-slider:before {
 .success-trade {
   color: var(--trade-green) !important;
 }
-.greenText{
+.greenText {
   color: var(--trade-green);
 }
-.redText{
+.redText {
   color: var(--trade-red);
 }
