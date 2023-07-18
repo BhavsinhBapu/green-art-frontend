@@ -62,11 +62,11 @@ const DemoNotificationDropdown = ({
         <div className="cp-user-top-bar-right">
           <div>
             <ul>
-              <li>
+              <li className="back-to-live">
                 <Link
                   href={isLoggedIn === true ? "/exchange/dashboard" : "/signin"}
                 >
-                  <a className="back-to-live">{t("Back To Live")}</a>
+                  <a>{t("Back To Live")}</a>
                 </Link>
               </li>
 

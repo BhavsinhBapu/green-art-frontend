@@ -236,6 +236,23 @@ const DemoTradeNavbar = ({
                           </a>
                         </li>
                       </Link>
+                      <Link
+                        href={
+                          isLoggedIn === true
+                            ? "/exchange/dashboard"
+                            : "/signin"
+                        }
+                      >
+                        <li className={"nav-item"}>
+                          <a
+                            href="#"
+                            className="nav-link text-primary-color-two"
+                            onClick={() => setActive(false)}
+                          >
+                            {t("Back To Live")}
+                          </a>
+                        </li>
+                      </Link>
                     </ul>
                   </div>
                 </nav>

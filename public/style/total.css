@@ -15352,7 +15352,7 @@ input:checked + .gift-card-buy-slider:before {
   height: 450px;
   overflow-y: auto;
 }
-.back-to-live:hover {
+.back-to-live a:hover {
   color: var(--font-color);
 }
 
@@ -15417,6 +15417,9 @@ input:checked + .gift-card-buy-slider:before {
   }
   .p2p-gift-card-adds-margin-right {
     margin-right: 0;
+  }
+  .back-to-live {
+    display: none;
   }
 }
 .danger-trade {
