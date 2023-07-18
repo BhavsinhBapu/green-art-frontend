@@ -243,11 +243,8 @@ const DemoDashboardBody = ({ ThemeColor }: any) => {
           )}
           {select === 3 && (
             <div className="tradeSection-both">
-              {ThemeColor.orderBookLayout === 1 ? (
-                <DemoAllBuyOrders OpenBookBuy={OpenBookBuy} show={18} />
-              ) : (
-                <DemoAllSellOrders OpenBooksell={OpenBooksell} show={18} />
-              )}
+              <DemoAllSellOrders OpenBooksell={OpenBooksell} show={18} />
+
               <div className="trades-table-footer">
                 {dashboard?.last_price_data?.length > 0 ? (
                   <div className="trades-table-row">
@@ -344,11 +341,7 @@ const DemoDashboardBody = ({ ThemeColor }: any) => {
                   </div>
                 )}
               </div>
-              {ThemeColor.orderBookLayout === 1 ? (
-                <DemoAllSellOrders OpenBooksell={OpenBooksell} show={18} />
-              ) : (
-                <DemoAllBuyOrders OpenBookBuy={OpenBookBuy} show={18} />
-              )}
+              <DemoAllBuyOrders OpenBookBuy={OpenBookBuy} show={18} />
             </div>
           )}
         </div>
