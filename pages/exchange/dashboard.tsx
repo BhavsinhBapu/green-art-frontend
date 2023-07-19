@@ -165,7 +165,7 @@ const Dashboard: NextPage = () => {
           </div>
         </div>
         <div className="cp-user-main-wrapper-dashboard">
-          <div className="container-fluid">
+          <div className="custom-container">
             <div
               role="alert"
               id="web_socket_notification"
@@ -225,8 +225,11 @@ const Dashboard: NextPage = () => {
             <div className="cp-user-custom-card exchange-area">
               <div id="dashboard">
                 <div className="row">
-                  <div className="col-xl-12 col-12">
-                    <div className="cxchange-summary-wrap mt-5">
+                  <div className="col-xl-12 col-12 mt-4" style={{ border: "1px solid rgb(126 126 126 / 20%)" }}>
+                    <div
+                      className="cxchange-summary-wrap mt-3"
+                      
+                    >
                       <div className="row">
                         <div className="col-md-2">
                           {currentPair && (
@@ -252,8 +255,9 @@ const Dashboard: NextPage = () => {
                       </div>
                     </div>
                   </div>
-
-                  <DashboardBody ThemeColor={ThemeColor} layout={layout} />
+                  <div className="col-xl-12 col-12">
+                    <DashboardBody ThemeColor={ThemeColor} layout={layout} />
+                  </div>
                 </div>
               </div>
             </div>

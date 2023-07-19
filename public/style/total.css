@@ -4246,9 +4246,9 @@ table.table {
   background: var(--main-background-color);
   border-radius: 4px;
   box-sizing: border-box;
-  margin-bottom: 25px;
-  margin-top: 21px;
-  border-bottom: 1px solid rgb(126 126 126 / 20%);
+  /* margin-bottom: 25px; */
+  /* margin-top: 21px; */
+  /* border-bottom: 1px solid rgb(126 126 126 / 20%); */
 }
 
 .cxchange-summary-wrap .cxchange-summary-name {
@@ -10410,7 +10410,16 @@ input:-webkit-autofill:active {
   color: var(--primary-color);
 }
 
+.custom-container {
+  width: 100%;
+  max-width: 1521px;
+  margin: 0 auto;
+}
+
 @media (max-width: 1350px) {
+  .custom-container {
+    max-width: 100%;
+  }
   .user-form {
     padding: 50px 30px;
     min-height: 600px;
