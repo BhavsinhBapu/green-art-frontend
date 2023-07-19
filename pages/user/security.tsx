@@ -38,7 +38,7 @@ const Security: NextPage = () => {
 
         <div className="page-main-content">
           <div className="container-fluid">
-            <div className="section-top-wrap mb-25">
+            <div className="section-top-wrap mb-25 inner-section-margin-top">
               <div className="profle-are-top">
                 <h2 className="section-top-title mb-0">
                   {t("Profile Security Status")}
