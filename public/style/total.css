@@ -7040,8 +7040,29 @@ table.dataTable tbody tr.dataTable-white td {
     top: 67px;
   }
   .page-left-sidebar {
-    margin-left: -300px;
+    /* margin-left: -300px; */
+    width: 100%;
     transition: all 0.3s;
+    min-height: 1vh !important;
+  }
+
+  .page-left-sidebar .left-menu {
+    display: flex;
+    font-size: 12px;
+    overflow-x: auto;
+    scrollbar-width: thin; /* for Firefox */
+    -ms-overflow-style: none;
+  }
+  .page-left-sidebar .left-menu::-webkit-scrollbar {
+    display: none;
+  }
+  .page-left-sidebar .sidebar-top .left-menu li {
+    font-size: 12px;
+    margin: 0;
+  }
+  .page-left-sidebar .sidebar-top .left-menu li a {
+    font-size: 12px;
+    text-wrap: nowrap;
   }
   /* .page-left-sidebar.sidebar-show{
         margin-left: 0;
@@ -7057,6 +7078,10 @@ table.dataTable tbody tr.dataTable-white td {
   } */
   .section-top-wrap {
     padding: 25px 15px;
+  }
+
+  .inner-section-margin-top {
+    margin-top: 75px;
   }
 }
 
@@ -7196,6 +7221,10 @@ table.dataTable tbody tr.dataTable-white td {
   .security-list .single-security .security-info .security-content p {
     font-size: 14px;
     line-height: 24px;
+  }
+
+  .inner-section-margin-top {
+    margin-top: 120px;
   }
 }
 
@@ -15434,7 +15463,6 @@ input:checked + .gift-card-buy-slider:before {
 .redText {
   color: var(--trade-red);
 }
-.trades-section div h6{
+.trades-section div h6 {
   color: var(--font-color) !important;
-
 }
