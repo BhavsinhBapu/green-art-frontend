@@ -26,6 +26,7 @@ const DemoSelectCurrencyRight = () => {
         backgroundColor: "var(--main-background-color)",
         color: "var(--font-color)",
         borderColor: "var(--border-color)",
+        padding: "0 10px"
       },
     },
     cells: {
@@ -36,6 +37,7 @@ const DemoSelectCurrencyRight = () => {
         borderColor: "var(--border-color)",
         fontSize: "11px",
         cursor: "pointer",
+        padding: "0 10px"
       },
     },
   };
@@ -241,7 +243,7 @@ const DemoSelectCurrencyRight = () => {
           >
             {t("Processing")}...
           </div>
-          <div className="dataTables_scroll">
+          <div className="dataTables_scroll pt-0">
             <div
               className="dataTables_scrollHead"
               style={{

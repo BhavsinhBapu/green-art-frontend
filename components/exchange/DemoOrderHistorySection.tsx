@@ -104,7 +104,7 @@ const DemoOrderHistorySection = ({ bottom }: any) => {
           </ul>
         </div>
       </div>
-      <div className="tab-content" id="ordersTabContent" style={{padding: '20px'}}>
+      <div className="tab-content" id="ordersTabContent" style={{padding: '0 20px'}}>
         <DemoOpenOrders
           openOrders={activeTab.openOrders}
           openOrderHistory={openOrderHistory}

@@ -11,7 +11,7 @@ const DemoTradesHistory = ({ marketTrades }: any) => {
 
   return (
     <div className="trades-section1 mt-4">
-      <div className="trades-headers mb-3">
+      <div className="trades-headers">
         <h3>{t("Market Trades")}</h3>
       </div>
       <div className="primary-table">
@@ -30,7 +30,7 @@ const DemoTradesHistory = ({ marketTrades }: any) => {
           >
             {t("Processing")}...
           </div>
-          <div className="dataTables_scroll">
+          <div className="dataTables_scroll pt-0">
             <div
               className="dataTables_scrollHead"
               style={{
