@@ -95,7 +95,7 @@ const ExchangeBoxBottom = () => {
   ]);
 
   return (
-    <div className="exchange-box order-box mt-4">
+    <div className="exchange-box order-box">
       <div id="pills-tabContent" className="tab-content">
         <div
           id="pills-transfer-1"

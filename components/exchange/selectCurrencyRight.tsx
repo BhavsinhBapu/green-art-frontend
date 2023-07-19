@@ -18,24 +18,44 @@ const SelectCurrencyRight = () => {
       style: {
         backgroundColor: "var(--main-background-color)",
         color: "var(--font-color)",
-        borderColor: "var(--border-color)",
+        // borderColor: "var(--border-color)",
+        "&:not(:last-of-type)": {
+          border: "unset",
+        },
+        minHeight: "20px",
+      },
+    },
+    headRow: {
+      style: {
+        minHeight: "20px",
+        border: "unset",
       },
     },
     headCells: {
       style: {
         backgroundColor: "var(--main-background-color)",
         color: "var(--font-color)",
-        borderColor: "var(--border-color)",
+        // borderColor: "var(--border-color)",
+        padding: "4px",
+        // justifyContent: "flex-end",
+        // "&:first-child": {
+        //   justifyContent: "flex-start",
+        // },
       },
     },
     cells: {
       style: {
-        width: "100%",
         backgroundColor: "var(--main-background-color)",
         color: "var(--font-color)",
-        borderColor: "var(--border-color)",
+        // borderColor: "var(--border-color)",
         fontSize: "11px",
         cursor: "pointer",
+        padding: "4px",
+        // justifyContent: "flex-end",
+        // "&:first-child": {
+        //   justifyContent: "flex-start",
+        // },
+        
       },
     },
   };
@@ -91,7 +111,7 @@ const SelectCurrencyRight = () => {
                 {row?.coin_pair_name.split("/")[0]}
               </span>
               <span
-                className="coin-name"
+                className="coin-name text-end"
                 onClick={async () => {
                   await unlistenAllChannels();
 
@@ -135,7 +155,7 @@ const SelectCurrencyRight = () => {
             overlayClassName="rcTooltipOverlay"
           >
             <span
-              className="text-center w-40"
+              
               onClick={async () => {
                 await unlistenAllChannels();
                 await localStorage.setItem("base_coin_id", row?.parent_coin_id);
@@ -145,6 +165,7 @@ const SelectCurrencyRight = () => {
 
                 // router.reload();
               }}
+              style={{ fontSize: "11px" }}
             >
               {parseFloat(row.last_price)}
             </span>
@@ -176,6 +197,7 @@ const SelectCurrencyRight = () => {
                   ? "text-success"
                   : "text-danger"
               }
+              style={{ fontSize: "11px" }}
               onClick={async () => {
                 await unlistenAllChannels();
                 await localStorage.setItem("base_coin_id", row?.parent_coin_id);
@@ -201,7 +223,7 @@ const SelectCurrencyRight = () => {
   }, [dashboard?.pairs]);
   return (
     <div
-      className="cp-user-buy-coin-content-area mb-4 "
+      className="cp-user-buy-coin-content-area"
       aria-labelledby="dropdownMenuButton"
     >
       <div className="cp-user-wallet-table dashboard-coin_pairs table-responsive">
@@ -257,7 +279,7 @@ const SelectCurrencyRight = () => {
               ></div>
             </div>
             <div
-              className="dataTables_scrollBody"
+              className="dataTables_scrollBody spot-search-table"
               style={{
                 position: "relative",
                 overflow: "auto",
