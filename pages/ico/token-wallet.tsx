@@ -51,7 +51,7 @@ const MyWallet: NextPage = () => {
         <LaunchpadSidebar />
         <div className="page-main-content">
           <div className="container-fluid">
-            <div className="section-top-wrap mb-25">
+            <div className="section-top-wrap mb-25 inner-section-margin-top">
               <div className="overview-area">
                 <div className="overview-left">
                   <h2 className="section-top-title">{t("Token Wallet")}</h2>
