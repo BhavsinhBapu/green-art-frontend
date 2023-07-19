@@ -22,7 +22,7 @@ const CurrencyLevel = () => {
     dashboard?.order_data?.total?.trade_wallet?.last_price,
   ]);
   return (
-    <div className="cxchange-summary-featured">
+    <div className="cxchange-summary-featured ml-4">
       <ul className="cxchange-summary-items">
         <li>
           <span

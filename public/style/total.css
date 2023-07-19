@@ -4255,13 +4255,15 @@ table.table {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 15px;
-  width: 444px;
+  /* padding: 15px; */
+  padding: 10px;
+  /* width: 444px; */
   box-sizing: border-box;
 }
 
 .cxchange-summary-wrap .cxchange-summary-name {
-  font-size: 15px;
+  /* font-size: 15px; */
+  font-size: 10px;
   font-weight: 700;
   margin-bottom: 10px;
   color: var(--text-primary-color-4) !important;
@@ -4288,7 +4290,7 @@ table.table {
   flex-direction: column;
   justify-content: center;
   box-sizing: border-box;
-  margin-right: 50px;
+  /* margin-right: 50px; */
 }
 
 .cxchange-summary-wrap
@@ -6977,7 +6979,7 @@ table.dataTable tbody tr.dataTable-white td {
     height: 72px;
   }
   .cxchange-summary-wrap .cxchange-summary-name {
-    width: 200px;
+    /* width: 200px; */
   }
   .cp-user-profile-info .profile-edit-btn,
   .input-group-prepend-phone-verify .btn,

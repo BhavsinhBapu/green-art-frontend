@@ -227,23 +227,29 @@ const Dashboard: NextPage = () => {
                 <div className="row">
                   <div className="col-xl-12 col-12">
                     <div className="cxchange-summary-wrap mt-5">
-                      {currentPair && (
-                        <div className="cxchange-summary-name">
-                          <div className="summber-coin-type dropdown">
-                            <span
-                              className="coin-badge dropdown-toggle"
-                              id="dropdownMenuButton"
-                              data-toggle="dropdown"
-                              aria-haspopup="true"
-                              aria-expanded="false"
-                            >
-                              {currentPair.replace(/_/g, "/")}
-                            </span>
-                            <SelectCurrency />
-                          </div>
+                      <div className="row">
+                        <div className="col-md-2">
+                          {currentPair && (
+                            <div className="cxchange-summary-name">
+                              <div className="summber-coin-type dropdown">
+                                <span
+                                  className="coin-badge dropdown-toggle"
+                                  id="dropdownMenuButton"
+                                  data-toggle="dropdown"
+                                  aria-haspopup="true"
+                                  aria-expanded="false"
+                                >
+                                  {currentPair.replace(/_/g, "/")}
+                                </span>
+                                <SelectCurrency />
+                              </div>
+                            </div>
+                          )}
                         </div>
-                      )}
-                      {dashboard?.last_price_data && <CurrencyLevel />}
+                        <div className="col-md-10">
+                          {dashboard?.last_price_data && <CurrencyLevel />}
+                        </div>
+                      </div>
                     </div>
                   </div>
 
