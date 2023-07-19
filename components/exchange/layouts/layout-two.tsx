@@ -241,7 +241,7 @@ const LayoutTwo = ({ ThemeColor }: any) => {
           )}
           {select === 3 && (
             <div className="tradeSection-both">
-              <AllBuyOrders OpenBookBuy={OpenBookBuy} show={18} />
+              <AllSellOrders OpenBooksell={OpenBooksell} show={18} />
 
               <div className="trades-table-footer">
                 {dashboard?.last_price_data?.length > 0 ? (
@@ -339,8 +339,7 @@ const LayoutTwo = ({ ThemeColor }: any) => {
                   </div>
                 )}
               </div>
-
-              <AllSellOrders OpenBooksell={OpenBooksell} show={18} />
+              <AllBuyOrders OpenBookBuy={OpenBookBuy} show={18} />
             </div>
           )}
         </div>

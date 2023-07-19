@@ -259,7 +259,11 @@ const LayoutTwo = ({ ThemeColor }: any) => {
               )}
               {select === 3 && (
                 <div className="tradeSection-both">
-                  <AllBuyOrders OpenBookBuy={OpenBookBuy} show={18} customClass={'trade-order-dash-h'}/>
+                  <AllSellOrders
+                    OpenBooksell={OpenBooksell}
+                    show={18}
+                    customClass={"trade-order-dash-h"}
+                  />
 
                   <div className="trades-table-footer">
                     {dashboard?.last_price_data?.length > 0 ? (
@@ -357,14 +361,20 @@ const LayoutTwo = ({ ThemeColor }: any) => {
                       </div>
                     )}
                   </div>
-
-                  <AllSellOrders OpenBooksell={OpenBooksell} show={18} customClass={'trade-order-dash-h'}/>
+                  <AllBuyOrders
+                    OpenBookBuy={OpenBookBuy}
+                    show={18}
+                    customClass={"trade-order-dash-h"}
+                  />
                 </div>
               )}
             </div>
           </div>
           <div className="col-xl-6 px-1">
-            <TradesHistory marketTrades={marketTrades} customClass={'spot-trade-table'}/>
+            <TradesHistory
+              marketTrades={marketTrades}
+              customClass={"spot-trade-table"}
+            />
           </div>
         </div>
         <div className="row">
