@@ -7062,7 +7062,7 @@ table.dataTable tbody tr.dataTable-white td {
   }
   .page-left-sidebar .sidebar-top .left-menu li a {
     font-size: 12px;
-    text-wrap: nowrap;
+    white-space: nowrap;
   }
   /* .page-left-sidebar.sidebar-show{
         margin-left: 0;
