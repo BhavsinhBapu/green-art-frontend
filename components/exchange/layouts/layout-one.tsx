@@ -46,7 +46,7 @@ const LayoutOne = ({ ThemeColor }: any) => {
           <div>
             <h6 className="text-white">{t("Order Book")}</h6>
           </div>
-          <div className="trades-headers mb-3">
+          <div className="trades-headers">
             <div className="orderBookIcons">
               <h3
                 onClick={() => {

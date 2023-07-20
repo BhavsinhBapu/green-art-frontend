@@ -227,10 +227,10 @@ const Dashboard: NextPage = () => {
                 <div className="row">
                   <div className="col-xl-12 col-12 mt-4" style={{ border: "1px solid rgb(126 126 126 / 20%)" }}>
                     <div
-                      className="cxchange-summary-wrap mt-3"
+                      className="cxchange-summary-wrap mt-3 w-full"
                       
                     >
-                      <div className="row">
+                      <div className="row w-full">
                         <div className="col-md-2">
                           {currentPair && (
                             <div className="cxchange-summary-name">
