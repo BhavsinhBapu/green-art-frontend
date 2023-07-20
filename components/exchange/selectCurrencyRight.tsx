@@ -55,7 +55,6 @@ const SelectCurrencyRight = () => {
         // "&:first-child": {
         //   justifyContent: "flex-start",
         // },
-        
       },
     },
   };
@@ -155,7 +154,6 @@ const SelectCurrencyRight = () => {
             overlayClassName="rcTooltipOverlay"
           >
             <span
-              
               onClick={async () => {
                 await unlistenAllChannels();
                 await localStorage.setItem("base_coin_id", row?.parent_coin_id);
@@ -232,7 +230,7 @@ const SelectCurrencyRight = () => {
           className="dataTables_wrapper no-footer"
         >
           <div id="exchangeCoinPair_filter" className="dataTables_filter">
-            <label>
+            <div className="currency-search-box">
               <input
                 type="search"
                 className=""
@@ -250,7 +248,10 @@ const SelectCurrencyRight = () => {
                   setPairs(filteredPairs);
                 }}
               />
-            </label>
+              <svg className="" width="24" height="24" viewBox="0 0 16 16">
+                <path d="M6.667 1.334c2.945 0 5.333 2.388 5.333 5.333a5.31 5.31 0 0 1-1.12 3.27l3.592 3.592c.26.26.26.682 0 .943s-.682.26-.943 0l-3.591-3.592a5.31 5.31 0 0 1-3.27 1.12c-2.946 0-5.333-2.388-5.333-5.333s2.388-5.333 5.333-5.333zm0 1.333a4 4 0 1 0 0 8 4 4 0 1 0 0-8z"></path>
+              </svg>
+            </div>
           </div>
           <div
             id="exchangeCoinPair_processing"

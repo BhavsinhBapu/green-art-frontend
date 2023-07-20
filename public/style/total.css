@@ -7586,7 +7586,7 @@ p {
 .btn:not(.note-btn):active {
   box-shadow: none !important;
   outline: none !important;
-  /* background-color: var(--primary-color); */
+  background-color: var(--primary-color);
 }
 
 .body-bg {
@@ -15425,9 +15425,20 @@ input:checked + .gift-card-buy-slider:before {
   width: 320px;
 }
 
-/* .trade-dashboard-side-margin {
-  width: 320px;
-} */
+.currency-search-box {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 5px;
+}
+.currency-search-box input {
+  border: unset !important;
+}
+.currency-search-box svg {
+  fill: var(--border-color);
+  margin-right: 10px;
+}
+
 @media (max-width: 1520px) {
   .trade-dashboard-side-margin {
     margin-left: 0 !important;
@@ -15438,7 +15449,6 @@ input:checked + .gift-card-buy-slider:before {
   .trade-dashboard-side-width {
     width: 100%;
   }
-  
 }
 
 @media (max-width: 991px) {
