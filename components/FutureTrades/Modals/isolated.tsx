@@ -55,7 +55,7 @@ const Isolated = ({ isolated, setIsolated }: any) => {
               >
                 Isolated
               </span>
-              {/* <span
+              <span
                 className="percent-btn col-3 pb-2"
                 style={{
                   background: isolated === CROSS ? "var(--primary-color)" : "",
@@ -65,7 +65,7 @@ const Isolated = ({ isolated, setIsolated }: any) => {
                 }}
               >
                 Cross
-              </span> */}
+              </span>
             </div>
             <div>
               {isolated === ISOLATED && (

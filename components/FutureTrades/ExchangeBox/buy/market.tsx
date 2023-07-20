@@ -326,7 +326,7 @@ const Market = ({
                       className="btn theme-btn-future"
                       onClick={(e) => {
                         e.preventDefault();
-                        BuyOrder();
+                        BuyOrder(OpenCloseMarketCoinData);
                       }}
                     >
                       <span v-else="">{t("Open long")}</span>
@@ -336,7 +336,7 @@ const Market = ({
                       className="btn theme-btn-red-future"
                       onClick={(e) => {
                         e.preventDefault();
-                        SellOrder();
+                        SellOrder(OpenCloseMarketCoinData);
                       }}
                     >
                       <span v-else="">{t("open short")}</span>

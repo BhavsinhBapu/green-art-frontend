@@ -333,7 +333,7 @@ const StopLimit = ({
                         //   amount: 0,
                         //   total: 0,
                         // });
-                        BuyOrder();
+                        BuyOrder(OpenCloseStopLimitCoinData);
                       }}
                     >
                       <span v-else="">{t("Open long")}</span>
@@ -343,7 +343,7 @@ const StopLimit = ({
                       className="btn theme-btn-red-future"
                       onClick={(e) => {
                         e.preventDefault();
-                        SellOrder();
+                        SellOrder(OpenCloseStopLimitCoinData);
                       }}
                     >
                       <span v-else="">{t("open short")}</span>
