@@ -130,7 +130,8 @@ const ExchangeBox = () => {
           data.stop_loss,
           leverage,
           setPrePlaceData,
-          dashboard?.order_data?.coin_pair_id
+          dashboard?.order_data?.coin_pair_id,
+          data.stop_price
         )
       );
     }
@@ -223,6 +224,9 @@ const ExchangeBox = () => {
     leverage,
     isolated,
   ]);
+  useEffect(() => {
+    setorderType(1);
+  }, [trade_type]);
 
   return (
     <div className="exchange-box order-box">

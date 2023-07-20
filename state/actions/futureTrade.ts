@@ -328,7 +328,8 @@ export const preplaceOrderDataAction =
     stop_loss: number,
     leverage_amount: number,
     setPrePlaceData: any,
-    coin_pair_id: any
+    coin_pair_id: any,
+    stop_price: any
   ) =>
   async (dispatch: any) => {
     const formData = new FormData();
@@ -339,6 +340,7 @@ export const preplaceOrderDataAction =
       formData.append("price", String(price));
     formData.append("amount_type", String(amount_type));
     formData.append("amount", String(amount));
+    stop_price && formData.append("stop_price", String(stop_price));
     take_profit &&
       formData.append(
         "take_profit",
