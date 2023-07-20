@@ -56,9 +56,9 @@ const TradesTable = ({ marketTrades }: any) => {
         </tr>
       ) : (
         trades?.map((item: any, index: number) => (
-          <tr className="odd dataTable-white" key={index}>
+          <tr className="odd dataTable-white" key={index} style={{lineHeight: '1.3'}}>
             <td>
-              <div className={"asset"}>
+              <div className={"asset"} style={{padding: '4px'}}>
                 <span
                   className={
                     item.type === "green"
@@ -73,12 +73,12 @@ const TradesTable = ({ marketTrades }: any) => {
               </div>
             </td>
             <td>
-              <div className="asset">
+              <div className="asset" style={{padding: '4px'}}>
                 <span className="">{item?.amount}</span>
               </div>
             </td>
             <td>
-              <div className="asset">
+              <div className="asset" style={{padding: '4px'}}>
                 <span className="">{item?.time}</span>
               </div>
             </td>
