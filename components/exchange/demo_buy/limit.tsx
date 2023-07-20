@@ -34,7 +34,7 @@ const Limit = ({
     });
   };
   return (
-    <div id="BuyTabContent" className="tab-content">
+    <div id="BuyTabContent" className="tab-content p-0">
       <div
         id="imit"
         role="tabpanel"
