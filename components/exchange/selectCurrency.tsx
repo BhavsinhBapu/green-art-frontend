@@ -38,6 +38,10 @@ const SelectCurrency = () => {
         color: "var(--font-color)",
         // borderColor: "var(--border-color)",
         padding: "4px",
+        justifyContent: "flex-end",
+        "&:first-child": {
+          justifyContent: "flex-start",
+        },
       },
     },
     cells: {
@@ -49,6 +53,10 @@ const SelectCurrency = () => {
         // borderColor: "var(--border-color)",
         fontSize: "11px",
         cursor: "pointer",
+        justifyContent: "flex-end",
+        "&:first-child": {
+          justifyContent: "flex-start",
+        },
       },
     },
   };
@@ -236,7 +244,7 @@ const SelectCurrency = () => {
               ></div>
             </div>
             <div
-              className="dataTables_scrollBody"
+              className="dataTables_scrollBody always-show-sort-arrow"
               style={{
                 position: "relative",
                 overflow: "auto",

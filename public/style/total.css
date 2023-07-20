@@ -15444,6 +15444,10 @@ input:checked + .gift-card-buy-slider:before {
   min-height: 150px;
 }
 
+.always-show-sort-arrow .rdt_TableCol_Sortable span{
+  opacity: .7;
+}
+
 @media (max-width: 1520px) {
   .trade-dashboard-side-margin {
     margin-left: 0 !important;

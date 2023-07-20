@@ -37,10 +37,10 @@ const DemoSelectCurrencyRight = () => {
         color: "var(--font-color)",
         // borderColor: "var(--border-color)",
         padding: "4px",
-        // justifyContent: "flex-end",
-        // "&:first-child": {
-        //   justifyContent: "flex-start",
-        // },
+        justifyContent: "flex-end",
+        "&:first-child": {
+          justifyContent: "flex-start",
+        },
       },
     },
     cells: {
@@ -51,10 +51,10 @@ const DemoSelectCurrencyRight = () => {
         fontSize: "11px",
         cursor: "pointer",
         padding: "4px",
-        // justifyContent: "flex-end",
-        // "&:first-child": {
-        //   justifyContent: "flex-start",
-        // },
+        justifyContent: "flex-end",
+        "&:first-child": {
+          justifyContent: "flex-start",
+        },
       },
     },
   };
@@ -284,7 +284,7 @@ const DemoSelectCurrencyRight = () => {
               ></div>
             </div>
             <div
-              className="dataTables_scrollBody spot-search-table"
+              className="dataTables_scrollBody spot-search-table always-show-sort-arrow"
               style={{
                 position: "relative",
                 overflow: "auto",
