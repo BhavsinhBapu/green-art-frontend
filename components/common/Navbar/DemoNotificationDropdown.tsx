@@ -78,7 +78,7 @@ const DemoNotificationDropdown = ({
                 <div className="btn-group profile-dropdown">
                   <button
                     type="button"
-                    className="btn dropdown-toggle"
+                    className="btn dropdown-toggle bg-transparent"
                     data-toggle="dropdown"
                     aria-haspopup="true"
                     aria-expanded="false"
