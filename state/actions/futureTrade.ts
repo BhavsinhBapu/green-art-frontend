@@ -468,7 +468,10 @@ export const CloseSellOrderAction =
     formData.append("margin_mode", String(margin_mode));
     formData.append("order_type", String(order_type));
     formData.append("amount_type", String(amount_type));
-    formData.append("amount", String(amount));
+    formData.append("leverage_amount", String(leverage_amount));
+    if (order_type !== MARKET_ORDER && order_type !== STOP_MARKET_ORDER) {
+      formData.append("price", String(price));
+    }
     formData.append("amount", String(amount));
     stop_price && formData.append("stop_price", String(stop_price));
     formData.append("coin_pair_id", String(coin_pair_id));

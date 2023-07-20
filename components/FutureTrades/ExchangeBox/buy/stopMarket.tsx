@@ -364,7 +364,10 @@ const BuyStopMarketLimit = ({
                         //   amount: 0,
                         //   total: 0,
                         // });
-                        BuyOrder(OpenCloseStopMarketCoinData);
+                        BuyOrder(
+                          OpenCloseStopMarketCoinData,
+                          setOpenCloseStopMarketCoinData
+                        );
                       }}
                     >
                       <span v-else="">{t("Open long")}</span>
@@ -374,7 +377,10 @@ const BuyStopMarketLimit = ({
                       className="btn theme-btn-red-future"
                       onClick={(e) => {
                         e.preventDefault();
-                        SellOrder(OpenCloseStopMarketCoinData);
+                        SellOrder(
+                          OpenCloseStopMarketCoinData,
+                          setOpenCloseStopMarketCoinData
+                        );
                       }}
                     >
                       <span v-else="">{t("open short")}</span>

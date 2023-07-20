@@ -331,7 +331,10 @@ const Limit = ({
                         //   amount: 0,
                         //   total: 0,
                         // });
-                        BuyOrder(OpenCloseLimitCoinData);
+                        BuyOrder(
+                          OpenCloseLimitCoinData,
+                          setOpenCloseLimitCoinData
+                        );
                       }}
                     >
                       <span v-else="">{t("Open long")}</span>
@@ -341,7 +344,10 @@ const Limit = ({
                       className="btn theme-btn-red-future"
                       onClick={(e) => {
                         e.preventDefault();
-                        SellOrder(OpenCloseLimitCoinData);
+                        SellOrder(
+                          OpenCloseLimitCoinData,
+                          setOpenCloseLimitCoinData
+                        );
                       }}
                     >
                       <span v-else="">{t("open short")}</span>

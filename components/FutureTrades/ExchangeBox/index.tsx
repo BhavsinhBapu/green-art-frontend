@@ -136,7 +136,7 @@ const ExchangeBox = () => {
       );
     }
   };
-  const BuyOrder = async (data: any) => {
+  const BuyOrder = async (data: any, setData: any) => {
     await dispatch(
       placeBuyOrderAction(
         trade_type,
@@ -153,8 +153,19 @@ const ExchangeBox = () => {
         data.stop_price
       )
     );
+    setData({
+      ...data,
+      amount: 0,
+      total: 0,
+      take_profit: 0,
+      stop_loss: 0,
+      stop_price: 0,
+      price: dashboard?.order_data?.buy_price,
+      amount_type: AMOUNT_TYPE_BASE,
+      margin_mode: MARGIN_MODE_ISOLATED,
+    });
   };
-  const SellOrder = async (data: any) => {
+  const SellOrder = async (data: any, setData: any) => {
     await dispatch(
       placeSellOrderDataAction(
         trade_type,
@@ -171,8 +182,19 @@ const ExchangeBox = () => {
         data.stop_price
       )
     );
+    setData({
+      ...data,
+      amount: 0,
+      total: 0,
+      take_profit: 0,
+      stop_loss: 0,
+      stop_price: 0,
+      price: dashboard?.order_data?.buy_price,
+      amount_type: AMOUNT_TYPE_BASE,
+      margin_mode: MARGIN_MODE_ISOLATED,
+    });
   };
-  const CloseBuyOrder = async (data: any) => {
+  const CloseBuyOrder = async (data: any, setData: any) => {
     await dispatch(
       CloseBuyOrderAction(
         2,
@@ -187,8 +209,19 @@ const ExchangeBox = () => {
         data.stop_price
       )
     );
+    setData({
+      ...data,
+      amount: 0,
+      total: 0,
+      take_profit: 0,
+      stop_loss: 0,
+      stop_price: 0,
+      price: dashboard?.order_data?.buy_price,
+      amount_type: AMOUNT_TYPE_BASE,
+      margin_mode: MARGIN_MODE_ISOLATED,
+    });
   };
-  const CloseSellOrder = async (data: any) => {
+  const CloseSellOrder = async (data: any, setData: any) => {
     await dispatch(
       CloseSellOrderAction(
         1,
@@ -203,6 +236,17 @@ const ExchangeBox = () => {
         data.stop_price
       )
     );
+    setData({
+      ...data,
+      amount: 0,
+      total: 0,
+      take_profit: 0,
+      stop_loss: 0,
+      stop_price: 0,
+      price: dashboard?.order_data?.buy_price,
+      amount_type: AMOUNT_TYPE_BASE,
+      margin_mode: MARGIN_MODE_ISOLATED,
+    });
   };
   useEffect(() => {
     if (orderType === 1) {
