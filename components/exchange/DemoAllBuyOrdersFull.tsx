@@ -97,21 +97,21 @@ const DemoAllBuyOrdersFull = ({ buy, show }: any) => {
                       className="table-col price sorting_disabled"
                       rowSpan={1}
                       colSpan={1}
-                      style={{ width: "170.656px" }}
+                      // style={{ width: "170.656px" }}
                       aria-label="Price"
                     ></th>
                     <th
                       className="table-col amount sorting_disabled"
                       rowSpan={1}
                       colSpan={1}
-                      style={{ width: "120.75px" }}
+                      // style={{ width: "120.75px" }}
                       aria-label="Amount"
                     ></th>
                     <th
                       className="table-col time text-right sorting_desc"
                       rowSpan={1}
                       colSpan={1}
-                      style={{ width: "79.8438px" }}
+                      // style={{ width: "79.8438px" }}
                       aria-label="Time"
                     ></th>
                   </tr>
@@ -142,7 +142,7 @@ const DemoAllBuyOrdersFull = ({ buy, show }: any) => {
                         overlayClassName="rcTooltipOverlay"
                       >
                         <tr
-                          className="odd"
+                          className="odd d-table-row"
                           onClick={() => {
                             changeBuyPrice(item.price, item.amount);
                           }}

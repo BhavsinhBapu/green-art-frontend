@@ -24,7 +24,7 @@ const DemoOpenOrders = ({ openOrders, openOrderHistory }: any) => {
       role="tabpanel"
       aria-labelledby="Open-orders-tab"
     >
-      <div className="table-responsive">
+      <div className="table-responsive order-history-table-min-h">
         <table className="table">
           <thead>
             <tr>

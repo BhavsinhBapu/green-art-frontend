@@ -57,7 +57,7 @@ const DemoAllSellOrdersFull = ({ OpenBooksell }: any) => {
                         className="table-col price sorting_disabled"
                         rowSpan={1}
                         colSpan={1}
-                        style={{ width: "170.656px" }}
+                        // style={{ width: "170.656px" }}
                         aria-label="Price"
                       >
                         {t("Price")}({dashboard?.order_data?.base_coin})
@@ -66,7 +66,7 @@ const DemoAllSellOrdersFull = ({ OpenBooksell }: any) => {
                         className="table-col amount sorting_disabled"
                         rowSpan={1}
                         colSpan={1}
-                        style={{ width: "120.75px" }}
+                        // style={{ width: "120.75px" }}
                         aria-label="Amount"
                       >
                         {t("Amount")}({dashboard?.order_data?.trade_coin})
@@ -75,7 +75,7 @@ const DemoAllSellOrdersFull = ({ OpenBooksell }: any) => {
                         className="table-col time text-right sorting_desc"
                         rowSpan={1}
                         colSpan={1}
-                        style={{ width: "79.8438px" }}
+                        // style={{ width: "79.8438px" }}
                         aria-label="Time"
                       >
                         {t("Total")}

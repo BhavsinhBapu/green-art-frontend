@@ -31,8 +31,8 @@ const DemoOrderHistorySection = ({ bottom }: any) => {
     return () => {};
   }, [currentPair, dashboard]);
   return (
-    <div className={`orders-area`}>
-      <div className="orders-area-top">
+    <div className={`orders-area`} style={{padding: '10px'}}>
+      <div className="orders-area-top p-0 mb-2">
         <div className="top-left">
           <ul id="ordersTab" role="tablist" className="nav nav-tabs">
             <li
@@ -104,7 +104,7 @@ const DemoOrderHistorySection = ({ bottom }: any) => {
           </ul>
         </div>
       </div>
-      <div className="tab-content" id="ordersTabContent" style={{padding: '0 20px'}}>
+      <div className="tab-content p-0" id="ordersTabContent">
         <DemoOpenOrders
           openOrders={activeTab.openOrders}
           openOrderHistory={openOrderHistory}
