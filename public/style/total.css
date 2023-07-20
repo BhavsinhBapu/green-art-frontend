@@ -2134,9 +2134,9 @@ a#submit {
   cursor: pointer;
 }
 
-.cp-user-profile-info .form-group {
+/* .cp-user-profile-info .form-group {
   margin-bottom: 30px;
-}
+} */
 
 .cp-user-profile-info .form-control {
   background: transparent;
