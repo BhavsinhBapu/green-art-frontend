@@ -35,8 +35,8 @@ const LayoutTwo = ({ ThemeColor }: any) => {
     }, 400);
   }, [ThemeColor.green, ThemeColor.red]);
   return (
-    <div className="row" >
-      <div className="col-xl-8 px-0">
+    <div className="row trade-dashboard-side-margin">
+      <div className="col-xl-7 px-0">
         <div className="cp-user-buy-coin-content-area">
           <div className="card cp-user-custom-card">
             {currentPair && show && (
@@ -52,9 +52,9 @@ const LayoutTwo = ({ ThemeColor }: any) => {
 
         <OrderHistorySection />
       </div>
-      <div className="col-xl-4 px-0">
+      <div className="col-xl-5 px-0">
         <div className="row mx-0">
-          <div className="col-xl-6 px-0">
+          <div className="col-sm-6 px-0">
             <div className="trades-section">
               <div>
                 <h6 className="text-white">{t("Order Book")}</h6>
@@ -370,7 +370,7 @@ const LayoutTwo = ({ ThemeColor }: any) => {
               )}
             </div>
           </div>
-          <div className="col-xl-6 px-0">
+          <div className="col-sm-6 px-0">
             <TradesHistory
               marketTrades={marketTrades}
               customClass={"spot-trade-table"}
