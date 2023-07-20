@@ -101,30 +101,34 @@ const SellStopMarketLimit = ({
                     </div>
                   </div>
                 </div>
-                <div className="form-group mt-3 boxShadow">
-                  <label className="cstmHead">{t("Price")}</label>
+                <div className="form-group boxShadow mt-2">
+                  <label className="cstmHead">Stop price</label>
                   <input
                     name="price"
-                    type="text"
-                    placeholder="0"
+                    type="number"
+                    placeholder=""
                     className="form-control number_only input_1"
-                    value={OpenCloseStopMarketCoinData.price}
-                    onChange={async (e) => {
-                      await setOpenCloseStopMarketCoinData({
+                    value={OpenCloseStopMarketCoinData.stop_price}
+                    onChange={(e) => {
+                      setOpenCloseStopMarketCoinData({
                         ...OpenCloseStopMarketCoinData,
-                        price: e.target.value,
-                        total:
-                          parseFloat(e.target.value) *
-                          OpenCloseStopMarketCoinData.size,
+                        stop_price: e.target.value,
                       });
                     }}
                   />
-                  <span
-                    className="text-warning blns"
-                    style={{ fontWeight: 700 }}
-                  >
-                    <span className="trade_coin_type">
-                      {dashboard?.order_data?.total?.base_wallet?.coin_type}
+
+                  <span className=" blns" style={{ fontWeight: 700 }}>
+                    <span
+                      className={
+                        selectedCoinType === TRADE
+                          ? "text-warning mr-2"
+                          : "mr-2"
+                      }
+                      onClick={() => {
+                        setSelectedCoinType(TRADE);
+                      }}
+                    >
+                      Mark
                     </span>
                   </span>
                 </div>
@@ -149,7 +153,8 @@ const SellStopMarketLimit = ({
                   <span className=" blns" style={{ fontWeight: 700 }}>
                     <span
                       className={
-                        OpenCloseStopMarketCoinData.amount_type === AMOUNT_TYPE_TRADE
+                        OpenCloseStopMarketCoinData.amount_type ===
+                        AMOUNT_TYPE_TRADE
                           ? "text-warning mr-2"
                           : "mr-2"
                       }
@@ -164,7 +169,8 @@ const SellStopMarketLimit = ({
                     </span>
                     <span
                       className={
-                        OpenCloseStopMarketCoinData.amount_type === AMOUNT_TYPE_BASE
+                        OpenCloseStopMarketCoinData.amount_type ===
+                        AMOUNT_TYPE_BASE
                           ? "text-warning mr-2"
                           : ""
                       }

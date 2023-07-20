@@ -88,6 +88,7 @@ const ExchangeBox = () => {
       take_profit: 0,
       stop_loss: 0,
     });
+
   useEffect(() => {
     setOpenCloseLimitCoinData({
       ...OpenCloseLimitCoinData,
@@ -106,11 +107,13 @@ const ExchangeBox = () => {
   }, [dashboard?.order_data?.sell_price, trade_type]);
 
   const [orderType, setorderType] = useState<number>(LIMIT_ORDER);
-  const [closeSelectedTab, setcloseSelectedTab] = useState<number>(1);
-
   const handletrade_type = (tab: number) => {
     setTrade_type(tab);
   };
+  // useEffect(() => {
+  //   console.log("Changing");
+  //   setorderType(LIMIT_ORDER);
+  // }, [trade_type]);
   const dispatch = useDispatch();
 
   const checkPreOrder = async (data: any) => {

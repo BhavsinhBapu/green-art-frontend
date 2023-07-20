@@ -100,8 +100,39 @@ const BuyStopMarketLimit = ({
                       </span>
                     </div>
                   </div>
+                  <div className="form-group boxShadow mt-2">
+                    <label className="cstmHead">Stop price</label>
+                    <input
+                      name="price"
+                      type="number"
+                      placeholder=""
+                      className="form-control number_only input_1"
+                      value={OpenCloseStopMarketCoinData.stop_price}
+                      onChange={(e) => {
+                        setOpenCloseStopMarketCoinData({
+                          ...OpenCloseStopMarketCoinData,
+                          stop_price: e.target.value,
+                        });
+                      }}
+                    />
+
+                    <span className=" blns" style={{ fontWeight: 700 }}>
+                      <span
+                        className={
+                          selectedCoinType === TRADE
+                            ? "text-warning mr-2"
+                            : "mr-2"
+                        }
+                        onClick={() => {
+                          setSelectedCoinType(TRADE);
+                        }}
+                      >
+                        Mark
+                      </span>
+                    </span>
+                  </div>
                 </div>
-                <div className="form-group mt-3 boxShadow">
+                {/* <div className="form-group mt-3 boxShadow">
                   <label className="cstmHead">{t("Price")}</label>
                   <input
                     name="price"
@@ -127,7 +158,7 @@ const BuyStopMarketLimit = ({
                       {dashboard?.order_data?.total?.base_wallet?.coin_type}
                     </span>
                   </span>
-                </div>
+                </div> */}
                 <div className="form-group mt-3 boxShadow">
                   <label className="cstmHead">{t("Size")}</label>
                   <input
