@@ -90,25 +90,6 @@ const ExchangeBox = () => {
     });
 
   useEffect(() => {
-    console.log("ISPL");
-    setOpenCloseLimitCoinData({
-      ...OpenCloseLimitCoinData,
-      margin_mode: isolated,
-    });
-    setOpenCloseMarketCoinData({
-      ...OpenCloseMarketCoinData,
-      margin_mode: isolated,
-    });
-    setOpenCloseStopLimitCoinData({
-      ...OpenCloseMarketCoinData,
-      margin_mode: isolated,
-    });
-    setOpenCloseStopMarketCoinData({
-      ...OpenCloseStopLimitCoinData,
-      margin_mode: isolated,
-    });
-  }, [isolated]);
-  useEffect(() => {
     setOpenCloseLimitCoinData({
       ...OpenCloseLimitCoinData,
       price:
@@ -301,15 +282,11 @@ const ExchangeBox = () => {
           justifyContent: "space-around",
         }}
       >
-        <Isolated
-          isolated={isolated}
-          setIsolated={setIsolated}
-        />
+        <Isolated isolated={isolated} setIsolated={setIsolated} />
         <Leverage
           leverage={leverage}
           setLeverage={setLeverage}
           dashboard={dashboard}
-        
         />
       </div>
       <div id="pills-tabContent" className="tab-content">

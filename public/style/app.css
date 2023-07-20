@@ -1390,5 +1390,6 @@ client-area
   margin-top: 10px;
 }
 .button-future-close {
-  background-color: var(--primary-color);
+  color: var(--primary-color) !important;
+  cursor: pointer;
 }

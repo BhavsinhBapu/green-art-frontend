@@ -52,7 +52,7 @@ const Position = ({ listData }: any) => {
                   <th scope="col">Margin</th>
                   <th scope="col">PNL(ROE)%</th>
                   <th
-                    scope="button-future-close"
+                    className="button-future-close"
                     onClick={() => {
                       dispatch(
                         closeLongShortAllOrderAction(

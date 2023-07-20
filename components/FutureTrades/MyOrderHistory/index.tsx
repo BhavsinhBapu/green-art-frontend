@@ -105,7 +105,7 @@ const MyOrderHistory = () => {
                     setSelected(POSITON);
                   }}
                 >
-                  Position
+                  Position({listData.length})
                 </a>
               </li>
               <li role="presentation" className="nav-item">
