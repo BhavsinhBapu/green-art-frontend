@@ -2,12 +2,7 @@ import useTranslation from "next-translate/useTranslation";
 import React, { useEffect, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 
-const Leverage = ({
-  leverage,
-  setLeverage,
-  dashboard,
-  setmargin_mode,
-}: any) => {
+const Leverage = ({ leverage, setLeverage, dashboard }: any) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [leverages, setLeverages] = useState<any>([]);
   const { t } = useTranslation("common");
@@ -52,7 +47,6 @@ const Leverage = ({
   };
   const modifyLeverage = (value: number) => {
     setLeverage(value);
-    setmargin_mode(2);
   };
   useEffect(() => {
     dashboard?.order_data?.max_leverage && generateLeverage();

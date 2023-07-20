@@ -37,8 +37,7 @@ const ExchangeBox = () => {
   const { t } = useTranslation("common");
   const { isLoggedIn } = useSelector((state: RootState) => state.user);
   const [leverage, setLeverage] = useState(20);
-  const [isolated, setIsolated] = useState();
-  const [margin_mode, setmargin_mode] = useState(MARGIN_MODE_ISOLATED);
+  const [isolated, setIsolated] = useState(ISOLATED);
 
   const { dashboard, currentPair } = useSelector(
     (state: RootState) => state.exchange
@@ -141,7 +140,7 @@ const ExchangeBox = () => {
       await dispatch(
         preplaceOrderDataAction(
           trade_type,
-          margin_mode,
+          isolated,
           orderType,
           data.price,
           data.amount_type,
@@ -157,11 +156,10 @@ const ExchangeBox = () => {
     }
   };
   const BuyOrder = async (data: any) => {
-    console.log(margin_mode, "margin_mode");
     await dispatch(
       placeBuyOrderAction(
         trade_type,
-        margin_mode,
+        isolated,
         orderType,
         data.price,
         data.amount_type,
@@ -179,7 +177,7 @@ const ExchangeBox = () => {
     await dispatch(
       placeSellOrderDataAction(
         trade_type,
-        margin_mode,
+        isolated,
         orderType,
         data.price,
         data.amount_type,
@@ -197,7 +195,7 @@ const ExchangeBox = () => {
     await dispatch(
       CloseBuyOrderAction(
         2,
-        margin_mode,
+        isolated,
         orderType,
         data.price,
         data.amount_type,
@@ -213,7 +211,7 @@ const ExchangeBox = () => {
     await dispatch(
       CloseSellOrderAction(
         1,
-        margin_mode,
+        isolated,
         orderType,
         data.price,
         data.amount_type,
@@ -293,7 +291,6 @@ const ExchangeBox = () => {
               className={`nav-link ${trade_type === 2 ? "activeSell" : ""}`}
             >
               {t("Close")}
-              {margin_mode}
             </a>
           </li>
         </ul>
@@ -307,13 +304,12 @@ const ExchangeBox = () => {
         <Isolated
           isolated={isolated}
           setIsolated={setIsolated}
-          setmargin_mode={setmargin_mode}
         />
         <Leverage
           leverage={leverage}
           setLeverage={setLeverage}
           dashboard={dashboard}
-          setmargin_mode={setmargin_mode}
+        
         />
       </div>
       <div id="pills-tabContent" className="tab-content">
