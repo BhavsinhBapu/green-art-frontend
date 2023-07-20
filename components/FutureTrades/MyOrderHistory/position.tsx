@@ -29,7 +29,6 @@ const Position = ({ listData }: any) => {
   useEffect(() => {
     listData.length && makeList();
   }, [listData]);
-  console.log(listData, "CloseAll");
   return (
     <div>
       {" "}

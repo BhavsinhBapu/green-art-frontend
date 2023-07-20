@@ -14,9 +14,9 @@ const TradingChart = dynamic(
   { ssr: false }
 );
 const TradeBox = ({ ThemeColor }:any) => {
-  const { dashboard, OpenBookBuy, OpenBooksell, marketTrades, currentPair } =
+  const { marketTrades, currentPair } =
     useSelector((state: RootState) => state.exchange);
-  const { settings, theme } = useSelector((state: RootState) => state.common);
+  const {  theme } = useSelector((state: RootState) => state.common);
   return (
     <div>
       <div className="row">

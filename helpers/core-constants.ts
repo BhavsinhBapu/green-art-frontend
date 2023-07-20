@@ -168,3 +168,5 @@ export const FUTURE_TRADE_TRANSACTION_TYPE_REALIZED_PNL = 4;
 
 export const LIMIT_ORDER = 1;
 export const MARKET_ORDER = 2;
+export const STOP_LIMIT_ORDER = 3;
+export const STOP_MARKET_ORDER = 4;

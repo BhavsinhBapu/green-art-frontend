@@ -1,8 +1,8 @@
 import MyOrderHistory from "components/FutureTrades/MyOrderHistory";
+import SelectCurrency from "components/FutureTrades/SelectCurrencies";
 import TopBar from "components/FutureTrades/Topbar";
 import TradeBox from "components/FutureTrades/TradeBox";
 import CurrencyLevel from "components/exchange/currencyLevel";
-import SelectCurrency from "components/exchange/selectCurrency";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { listenMessagesFuture } from "state/actions/exchange";
