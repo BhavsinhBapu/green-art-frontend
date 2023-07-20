@@ -17,7 +17,7 @@ const TradeOrder = ({ tradeOrder, tradeOrderHistory }: any) => {
       aria-labelledby="Funds-tab"
     >
       {isLoggedIn && (
-        <div className="table-responsive">
+        <div className="table-responsive order-history-table-min-h">
           <table className="table">
             <thead>
               <tr>

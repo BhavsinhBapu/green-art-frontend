@@ -60,7 +60,7 @@ const OrderHistory = ({
               role="tabpanel"
               aria-labelledby="buy-tab"
             >
-              <div className="table-responsive">
+              <div className="table-responsive order-history-table-min-h">
                 <table className="table">
                   <thead>
                     <tr>

@@ -25,7 +25,7 @@ const OpenOrders = ({ openOrders, openOrderHistory }: any) => {
       aria-labelledby="Open-orders-tab"
     >
       {isLoggedIn && (
-        <div className="table-responsive">
+        <div className="table-responsive order-history-table-min-h">
           <table className="table">
             <thead>
               <tr>
