@@ -11825,6 +11825,7 @@ table.dataTable thead tr th {
 .orders-area .table thead th {
   font-size: 12px;
   color: rgb(132, 142, 156);
+  padding: 0 10px;
 }
 
 .orders-area .table tbody td {
