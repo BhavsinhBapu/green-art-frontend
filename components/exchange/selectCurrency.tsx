@@ -19,22 +19,34 @@ const SelectCurrency = () => {
       style: {
         backgroundColor: "var(--main-background-color)",
         color: "var(--font-color)",
-        borderColor: "var(--border-color)",
+        // borderColor: "var(--border-color)",
+        "&:not(:last-of-type)": {
+          border: "unset",
+        },
+        minHeight: "20px",
+      },
+    },
+    headRow: {
+      style: {
+        minHeight: "20px",
+        border: "unset",
       },
     },
     headCells: {
       style: {
         backgroundColor: "var(--main-background-color)",
         color: "var(--font-color)",
-        borderColor: "var(--border-color)",
+        // borderColor: "var(--border-color)",
+        padding: "4px",
       },
     },
     cells: {
       style: {
         width: "100%",
         backgroundColor: "var(--main-background-color)",
+        padding: "4px",
         color: "var(--font-color)",
-        borderColor: "var(--border-color)",
+        // borderColor: "var(--border-color)",
         fontSize: "11px",
         cursor: "pointer",
       },
@@ -96,7 +108,7 @@ const SelectCurrency = () => {
             overlayClassName="rcTooltipOverlay"
           >
             <span
-              className="text-center w-40 text-white"
+              className="text-center w-40"
               onClick={async () => {
                 await unlistenAllChannels();
                 await localStorage.setItem("base_coin_id", row?.parent_coin_id);
@@ -164,7 +176,7 @@ const SelectCurrency = () => {
   }, [dashboard?.pairs]);
   return (
     <div
-      className="cp-user-buy-coin-content-area dropdown-menu"
+      className="cp-user-buy-coin-content-area dropdown-menu p-0"
       aria-labelledby="dropdownMenuButton"
     >
       <div className="cp-user-wallet-table dashboard-coin_pairs table-responsive">
