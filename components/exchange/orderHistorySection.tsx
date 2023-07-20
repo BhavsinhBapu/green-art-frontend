@@ -31,8 +31,8 @@ const OrderHistorySection = ({ bottom }: any) => {
     return () => {};
   }, [currentPair, dashboard]);
   return (
-    <div className={`orders-area mt-4 ${bottom === true && "ml-3 mr-3"}`}>
-      <div className="orders-area-top">
+    <div className={`orders-area`} style={{padding: '10px'}}>
+      <div className="orders-area-top p-0 mb-2">
         <div className="top-left">
           <ul id="ordersTab" role="tablist" className="nav nav-tabs">
             <li

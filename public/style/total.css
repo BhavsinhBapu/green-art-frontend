@@ -5090,7 +5090,7 @@ select:-webkit-autofill:focus {
 }
 
 .orders-area .tab-content {
-  height: 330px;
+  max-height: 330px;
   overflow-y: scroll;
 }
 
@@ -10995,7 +10995,8 @@ input[type="number"] {
   height: 100%;
   justify-content: center;
   color: var(--text-primary-color);
-  margin-top: 50px;
+  /* margin-top: 50px; */
+  min-height: 150px;
 }
 
 .colorTheme {
@@ -11888,7 +11889,8 @@ input[type="number"] {
   height: 100%;
   justify-content: center;
   color: var(--text-primary-color);
-  margin-top: 50px;
+  /* margin-top: 50px; */
+  min-height: 150px;
 }
 
 .colorTheme {
