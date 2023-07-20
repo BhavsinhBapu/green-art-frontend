@@ -5,12 +5,13 @@ import { AiOutlineClose } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
 
-const Isolated = ({ isolated, setIsolated }: any) => {
+const Isolated = ({ isolated, setIsolated, setmargin_mode }: any) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { t } = useTranslation("common");
 
   const toggle = () => {
     setIsModalOpen(!isModalOpen);
+    setmargin_mode(1);
   };
 
   const closeModal = () => {

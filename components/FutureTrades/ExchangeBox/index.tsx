@@ -37,7 +37,8 @@ const ExchangeBox = () => {
   const { t } = useTranslation("common");
   const { isLoggedIn } = useSelector((state: RootState) => state.user);
   const [leverage, setLeverage] = useState(20);
-  const [isolated, setIsolated] = useState(ISOLATED);
+  const [isolated, setIsolated] = useState();
+  const [margin_mode, setmargin_mode] = useState(MARGIN_MODE_ISOLATED);
 
   const { dashboard, currentPair } = useSelector(
     (state: RootState) => state.exchange
@@ -90,6 +91,25 @@ const ExchangeBox = () => {
     });
 
   useEffect(() => {
+    console.log("ISPL");
+    setOpenCloseLimitCoinData({
+      ...OpenCloseLimitCoinData,
+      margin_mode: isolated,
+    });
+    setOpenCloseMarketCoinData({
+      ...OpenCloseMarketCoinData,
+      margin_mode: isolated,
+    });
+    setOpenCloseStopLimitCoinData({
+      ...OpenCloseMarketCoinData,
+      margin_mode: isolated,
+    });
+    setOpenCloseStopMarketCoinData({
+      ...OpenCloseStopLimitCoinData,
+      margin_mode: isolated,
+    });
+  }, [isolated]);
+  useEffect(() => {
     setOpenCloseLimitCoinData({
       ...OpenCloseLimitCoinData,
       price:
@@ -121,7 +141,7 @@ const ExchangeBox = () => {
       await dispatch(
         preplaceOrderDataAction(
           trade_type,
-          data.margin_mode,
+          margin_mode,
           orderType,
           data.price,
           data.amount_type,
@@ -137,10 +157,11 @@ const ExchangeBox = () => {
     }
   };
   const BuyOrder = async (data: any) => {
+    console.log(margin_mode, "margin_mode");
     await dispatch(
       placeBuyOrderAction(
         trade_type,
-        data.margin_mode,
+        margin_mode,
         orderType,
         data.price,
         data.amount_type,
@@ -158,7 +179,7 @@ const ExchangeBox = () => {
     await dispatch(
       placeSellOrderDataAction(
         trade_type,
-        data.margin_mode,
+        margin_mode,
         orderType,
         data.price,
         data.amount_type,
@@ -176,7 +197,7 @@ const ExchangeBox = () => {
     await dispatch(
       CloseBuyOrderAction(
         2,
-        data.margin_mode,
+        margin_mode,
         orderType,
         data.price,
         data.amount_type,
@@ -192,7 +213,7 @@ const ExchangeBox = () => {
     await dispatch(
       CloseSellOrderAction(
         1,
-        data.margin_mode,
+        margin_mode,
         orderType,
         data.price,
         data.amount_type,
@@ -272,6 +293,7 @@ const ExchangeBox = () => {
               className={`nav-link ${trade_type === 2 ? "activeSell" : ""}`}
             >
               {t("Close")}
+              {margin_mode}
             </a>
           </li>
         </ul>
@@ -282,11 +304,16 @@ const ExchangeBox = () => {
           justifyContent: "space-around",
         }}
       >
-        <Isolated isolated={isolated} setIsolated={setIsolated} />
+        <Isolated
+          isolated={isolated}
+          setIsolated={setIsolated}
+          setmargin_mode={setmargin_mode}
+        />
         <Leverage
           leverage={leverage}
           setLeverage={setLeverage}
           dashboard={dashboard}
+          setmargin_mode={setmargin_mode}
         />
       </div>
       <div id="pills-tabContent" className="tab-content">
