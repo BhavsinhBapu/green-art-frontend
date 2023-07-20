@@ -15396,6 +15396,17 @@ input:checked + .gift-card-buy-slider:before {
   display: none;
 }
 
+.buy-sell-order-max-h {
+  height: 308px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  -ms-overflow-style: none;
+}
+
+.buy-sell-order-max-h::-webkit-scrollbar {
+  display: none;
+}
+
 .spot-trade-table {
   height: 450px;
   overflow-y: auto;

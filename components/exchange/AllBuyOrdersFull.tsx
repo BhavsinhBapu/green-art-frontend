@@ -9,7 +9,7 @@ import {
   setSellPrice,
 } from "state/reducer/exchange";
 import useTranslation from "next-translate/useTranslation";
-const AllBuyOrders = ({ buy, show }: any) => {
+const AllBuyOrders = ({ buy, show, customClss }: any) => {
   const { t } = useTranslation("common");
   const [OpenBookBuy, setopenBookBuy] = useState<any>([]);
   const dispatch = useDispatch();
@@ -28,7 +28,7 @@ const AllBuyOrders = ({ buy, show }: any) => {
     setopenBookBuy(Array);
   }, [buy]);
   return (
-    <div className="sell-order">
+    <div className={`sell-order ${customClss}`}>
       <div className="trades-table">
         <div className="trades-table-body" />
         <div
