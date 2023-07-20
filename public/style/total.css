@@ -15388,12 +15388,25 @@ input:checked + .gift-card-buy-slider:before {
 .trade-order-dash-h {
   height: 150px;
   overflow-y: auto;
+  scrollbar-width: thin;
+  -ms-overflow-style: none;
+}
+
+.trade-order-dash-h::-webkit-scrollbar {
+  display: none;
 }
 
 .spot-trade-table {
   height: 450px;
   overflow-y: auto;
+  scrollbar-width: thin;
+  -ms-overflow-style: none;
 }
+
+.spot-trade-table::-webkit-scrollbar {
+  display: none;
+}
+
 .back-to-live a:hover {
   color: var(--font-color);
 }
