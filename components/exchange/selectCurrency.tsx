@@ -150,6 +150,7 @@ const SelectCurrency = () => {
                   ? "text-success"
                   : "text-danger"
               }
+              style={{ fontSize: "11px" }}
               onClick={async () => {
                 await unlistenAllChannels();
                 await localStorage.setItem("base_coin_id", row?.parent_coin_id);
