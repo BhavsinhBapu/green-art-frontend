@@ -40,8 +40,8 @@ const LayoutOne = ({ ThemeColor }: any) => {
     }, 400);
   }, [ThemeColor.green, ThemeColor.red]);
   return (
-    <div className="row">
-      <div className="col-xl px-0" style={{ width: "320px" }}>
+    <div className="row trade-dashboard-side-margin">
+      <div className="col-xl px-0 trade-dashboard-side-width">
         <div className="trades-section">
           <div>
             <h6 className="text-white">{t("Order Book")}</h6>
@@ -365,7 +365,7 @@ const LayoutOne = ({ ThemeColor }: any) => {
 
         <ExchangeBoxBottom />
       </div>
-      <div className="col-xl px-0" style={{ width: "320px" }}>
+      <div className="col-xl px-0 trade-dashboard-side-width">
         <SelectCurrencyRight />
 
         <TradesHistory marketTrades={marketTrades} />
