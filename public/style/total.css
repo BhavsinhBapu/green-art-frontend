@@ -3036,7 +3036,7 @@ div.dataTables_wrapper div.dataTables_filter {
   text-align: center !important;
 }
 .dataTables_scroll {
-  padding: 0 16px;
+  padding: 0 10px;
 }
 .dataTables_wrapper .dataTables_length,
 .dataTables_wrapper .dataTables_filter,
@@ -3980,7 +3980,7 @@ table.dataTable tbody tr.selected td {
 }
 
 .exchange-area .dataTables_filter {
-  padding: 16px;
+  padding: 10px;
   padding-bottom: 0;
 }
 
