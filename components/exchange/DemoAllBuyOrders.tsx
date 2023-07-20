@@ -79,7 +79,7 @@ const DemoAllBuyOrders = ({ OpenBookBuy, show }: any) => {
               </div>
             </div>
             <div
-              className="dataTables_scrollBody"
+              className="dataTables_scrollBody mt-2"
               style={{
                 position: "relative",
                 overflow: "auto",
