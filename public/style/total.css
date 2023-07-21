@@ -4555,6 +4555,14 @@ select:-webkit-autofill:focus {
   pointer-events: none;
   border: none;
   box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.05);
+  max-height: 90vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  -ms-overflow-style: none;
+}
+
+.main-menu ul li ul::-webkit-scrollbar {
+  display: none;
 }
 
 .main-menu ul li:hover ul {
@@ -15444,8 +15452,8 @@ input:checked + .gift-card-buy-slider:before {
   min-height: 150px;
 }
 
-.always-show-sort-arrow .rdt_TableCol_Sortable span{
-  opacity: .7;
+.always-show-sort-arrow .rdt_TableCol_Sortable span {
+  opacity: 0.7;
 }
 
 @media (max-width: 1520px) {
