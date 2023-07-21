@@ -12,18 +12,23 @@ import { canceledBuySellOrderAction } from "state/actions/futureTrade";
 import TpslModal from "../Modals/TPSL-modal";
 
 const OpenOrder = ({ openOrder }: any) => {
+  console.log(openOrder, "openOrder");
   const conditon = (item: any) => {
     if (item.side === 1) {
       if (item?.take_profit_price > 0) {
         return "Mark price >= " + item?.take_profit_price;
-      } else {
+      } else if (item?.stop_loss_price > 0) {
         return "Mark price <= " + item?.stop_loss_price;
+      } else if (item?.stop_price > 0) {
+        return "Mark price >= " + item?.stop_price;
       }
     } else {
       if (item?.take_profit_price > 0) {
         return "Mark price <= " + item?.take_profit_price;
-      } else {
+      } else if(item?.stop_loss_price > 0) {
         return "Mark price >= " + item?.stop_loss_price;
+      } else if (item?.stop_price > 0) {
+         return "Mark price <= " + item?.stop_price;
       }
     }
   };
@@ -113,7 +118,12 @@ const OpenOrder = ({ openOrder }: any) => {
                     <td> 0{item?.profit_loss_calculation?.trade_coin_type}</td>
 
                     <td>{conditon(item)}</td>
-                    <TpslModal />
+                    <td>
+                      {(item?.take_profit_price > 0 ||
+                        item?.stop_loss_price > 0) && (
+                        <TpslModal uid={item?.uid} />
+                      )}
+                    </td>
                     <td>
                       <button
                         className="cancel"

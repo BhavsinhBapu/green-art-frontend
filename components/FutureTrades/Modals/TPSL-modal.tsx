@@ -1,16 +1,27 @@
 import { CROSS, ISOLATED } from "helpers/core-constants";
 import useTranslation from "next-translate/useTranslation";
-import React, { useState } from "react";
-import {CiMoneyCheck1 } from "react-icons/ci";
-import { updateProfitLongShortAction } from "state/actions/futureTrade";
+import React, { useEffect, useState } from "react";
+import { CiMoneyCheck1 } from "react-icons/ci";
+import { getTpslFuture } from "service/futureTrade";
 
-const TpslModal = ({ item }: any) => {
+const TpslModal = ({ uid }: any) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const [details, setDetails] = useState({});
+  const [loading, setLoading] = useState(false);
   const { t } = useTranslation("common");
   const toggle = () => {
     setIsModalOpen(!isModalOpen);
   };
+  const getTPSLDetails = async () => {
+    setLoading(true);
+    const { data } = await getTpslFuture(uid);
+    setDetails(data);
+    console.log(data, "datadatadatadata");
+    setLoading(false);
+  };
+  useEffect(() => {
+    isModalOpen && getTPSLDetails();
+  }, [isModalOpen]);
 
   const closeModal = () => {
     setIsModalOpen(false);
