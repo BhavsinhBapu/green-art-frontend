@@ -39,6 +39,7 @@ const NotificationDropdown = ({
   ThemeColor,
   layout,
   setLayout,
+  setLanguageActive
 }: any) => {
   const dispatch = useDispatch();
   const containerRef = useRef<any>(null);
@@ -710,6 +711,7 @@ const NotificationDropdown = ({
             className="cp-user-sidebar-toggler-s2"
             onClick={() => {
               setActive(true);
+              setLanguageActive(false);
             }}
           >
             <img src="/menu.svg" className="img-fluid" alt="" />
