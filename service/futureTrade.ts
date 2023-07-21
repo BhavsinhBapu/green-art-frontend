@@ -263,9 +263,9 @@ export const getLongShortTradeHistory = async (base: any, trade: any) => {
   );
   return data;
 };
-export const getExchangeMarketDetails = async () => {
+export const getExchangeMarketDetails = async (selectType : any) => {
   const { data } = await request.get(
-    `/get-exchange-market-details-app?limit=8&page=1&type=assets`
+    `/get-exchange-market-details-app?limit=8&page=1&type=${selectType}`
   );
   return data;
 };

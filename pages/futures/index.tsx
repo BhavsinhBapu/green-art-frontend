@@ -18,8 +18,7 @@ export default function Index() {
   }, []);
 
   const getTradeSectionData = async () => {
-    const data: any = await getExchangeMarketDetails();
-    console.log(data, "datadatadatadatadata");
+    const data: any = await getExchangeMarketDetails("assets");
     if (!data.success) {
       toast.error(data.message);
       return;
