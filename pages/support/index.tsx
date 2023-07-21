@@ -41,7 +41,7 @@ const Support = () => {
 
   const getProjectList = async () => {
     const { data } = await knowledgebaseSupportProjectList();
-    setProjectList(data);
+    setProjectList(data?.project_list);
   };
   const searchDashboardData = async (query: any) => {
     setloading(true);

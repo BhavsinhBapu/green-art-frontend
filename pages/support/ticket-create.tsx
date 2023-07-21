@@ -17,6 +17,7 @@ import { customPage, landingPage } from "service/landing-page";
 
 const TicketCreate = () => {
   const [projectList, setProjectList] = useState([]);
+  const [categoryList, setCategoryList] = useState([]);
   const [options, setOptions] = useState<any>({
     project: "",
     title: "",
@@ -27,15 +28,33 @@ const TicketCreate = () => {
   const router = useRouter();
   const getProjectList = async () => {
     const { data } = await knowledgebaseSupportProjectList();
-    setProjectList(data);
+    setProjectList(data?.project_list);
+    setCategoryList(data?.category);
   };
   const createTicket = async () => {
+    if (!options?.category) {
+      toast.error("Please Select Category");
+      return;
+    }
+    if (!options?.project) {
+      toast.error("Please Select Project");
+      return;
+    }
+    if (!options?.title) {
+      toast.error("Please Add Title");
+      return;
+    }
+    if (!options?.description) {
+      toast.error("Please Add Description");
+      return;
+    }
     const formData = new FormData();
     // if (!options.title || options.project || options.description) {
     //   toast.error("Please fill all the fields!");
     //   return;
     // }
     formData.append("title", options.title);
+    formData.append("category_id", options.category);
     formData.append("project_id", options.project);
     formData.append("description", options.description);
     formData.append("file[1]", file);
@@ -67,7 +86,28 @@ const TicketCreate = () => {
                       <h4 className="fw_600">Create New Ticket</h4>
                       <input type="hidden" />
                       <div className="p_color pt-4">
-                        <label>Choose Project:</label>
+                        <label>Choose Category:</label>
+                        <select
+                          id="inputState"
+                          className="w-100 px-2 py-2 rounded search-field ticketFilterBg"
+                          onChange={(e: any) => {
+                            setOptions({
+                              ...options,
+                              category: e.target.value,
+                            });
+                          }}
+                        >
+                          <option selected value={""}>
+                            Choose...
+                          </option>
+                          {categoryList.map((category: any, index: any) => (
+                            <option key={index} value={category.id}>
+                              {category.name}
+                            </option>
+                          ))}
+                        </select>
+
+                        <label className="pt-4">Choose Project:</label>
                         <select
                           id="inputState"
                           className="w-100 px-2 py-2 rounded search-field ticketFilterBg"
@@ -76,7 +116,8 @@ const TicketCreate = () => {
                               ...options,
                               project: e.target.value,
                             });
-                          }}>
+                          }}
+                        >
                           <option selected>Choose...</option>
                           {projectList.map((project: any, index: any) => (
                             <option key={index} value={project.id}>
@@ -108,7 +149,8 @@ const TicketCreate = () => {
                               ...options,
                               description: e.target.value,
                             });
-                          }}></textarea>
+                          }}
+                        ></textarea>
 
                         <label className="pt-4">
                           Purchase Code (optional) :
@@ -144,7 +186,8 @@ const TicketCreate = () => {
 
                         <button
                           className="btn btn-warning fw-bolder text-white mt-4 px-4 py-2 rounded"
-                          onClick={createTicket}>
+                          onClick={createTicket}
+                        >
                           Submit
                         </button>
                       </div>
