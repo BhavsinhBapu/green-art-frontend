@@ -27,6 +27,7 @@ const MyWallet: NextPage = () => {
   const { settings } = useSelector((state: RootState) => state.common);
 
   const [walletList, setWalletList] = useState<any>([]);
+  const [selectedPerPage, setSelectedPerPage] = useState("15");
   const [Changeable, setChangeable] = useState<any[]>([]);
   const [processing, setProcessing] = useState<boolean>(false);
   const [allData, setAllData] = useState<any>();
@@ -52,7 +53,7 @@ const MyWallet: NextPage = () => {
     if (link.label === walletList.current_page.toString()) return;
     const splitLink = link.url.split("api");
     const response: any = await WalletListApiAction(
-      splitLink[1] + "&per_page=15",
+      splitLink[1] + "&per_page=" + selectedPerPage,
       setProcessing
     );
     setWalletList(response?.wallets);
@@ -66,7 +67,7 @@ const MyWallet: NextPage = () => {
 
   useEffect(() => {
     coinListApi();
-    getWalletLists("/wallet-list?page=1&per_page=15");
+    getWalletLists(`/wallet-list?page=1&per_page=${selectedPerPage}`);
     return () => {
       setWalletList(null);
     };
@@ -113,6 +114,7 @@ const MyWallet: NextPage = () => {
                               aria-controls="assetBalances"
                               className=""
                               onChange={async (e) => {
+                                setSelectedPerPage(e.target.value);
                                 await getWalletLists(
                                   "/wallet-list?page=1&per_page=" +
                                     e.target.value

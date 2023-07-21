@@ -19,7 +19,7 @@ export default function TradeSections() {
     listenMessagesFutureMarketData(setTradeDatas);
   }, []);
   const getTradeSectionData = async () => {
-   const data: any = await getExchangeMarketDetails();
+   const data: any = await getExchangeMarketDetails(selectType);
     if (!data.success) {
       toast.error(data.message);
       return;
