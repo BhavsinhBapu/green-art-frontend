@@ -11,6 +11,7 @@ import Isolated from "../Modals/isolated";
 import {
   AMOUNT_TYPE_BASE,
   BASE,
+  CROSS,
   FUTURE_TRADE_TYPE_CLOSE,
   FUTURE_TRADE_TYPE_OPEN,
   ISOLATED,
@@ -37,7 +38,7 @@ const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
   const { t } = useTranslation("common");
   const { isLoggedIn } = useSelector((state: RootState) => state.user);
   const [leverage, setLeverage] = useState(20);
-  const [isolated, setIsolated] = useState(ISOLATED);
+  const [marginMode, setmarginMode] = useState(disableCross ? ISOLATED : CROSS);
 
   const { dashboard, currentPair } = useSelector(
     (state: RootState) => state.exchange
@@ -121,7 +122,7 @@ const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
       await dispatch(
         preplaceOrderDataAction(
           trade_type,
-          isolated,
+          marginMode,
           orderType,
           data.price,
           data.amount_type,
@@ -140,7 +141,7 @@ const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
     await dispatch(
       placeBuyOrderAction(
         trade_type,
-        isolated,
+        marginMode,
         orderType,
         data.price,
         data.amount_type,
@@ -169,7 +170,7 @@ const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
     await dispatch(
       placeSellOrderDataAction(
         trade_type,
-        isolated,
+        marginMode,
         orderType,
         data.price,
         data.amount_type,
@@ -198,7 +199,7 @@ const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
     await dispatch(
       CloseBuyOrderAction(
         2,
-        isolated,
+        marginMode,
         orderType,
         data.price,
         data.amount_type,
@@ -225,7 +226,7 @@ const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
     await dispatch(
       CloseSellOrderAction(
         1,
-        isolated,
+        marginMode,
         orderType,
         data.price,
         data.amount_type,
@@ -266,7 +267,7 @@ const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
     OpenCloseStopMarketCoinData,
     orderType,
     leverage,
-    isolated,
+    marginMode,
   ]);
   useEffect(() => {
     setorderType(1);
@@ -327,8 +328,8 @@ const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
         }}
       >
         <Isolated
-          isolated={isolated}
-          setIsolated={setIsolated}
+          isolated={marginMode}
+          setIsolated={setmarginMode}
           disableCross={disableCross}
           disableIsolated={disableIsolated}
         />

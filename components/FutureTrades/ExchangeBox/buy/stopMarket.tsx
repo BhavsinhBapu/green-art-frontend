@@ -228,7 +228,7 @@ const BuyStopMarketLimit = ({
                     </span>
                   </div>
                 </div> */}
-                {/* <div className="total-top">
+                <div className="total-top">
                   <label>
                     <input
                       type="checkbox"
@@ -240,7 +240,7 @@ const BuyStopMarketLimit = ({
                     TP/SL
                   </label>{" "}
                   <label>Advance %</label>
-                </div> */}
+                </div>
                 {tpSlchecked === true && (
                   <div>
                     <div className="form-group boxShadow">

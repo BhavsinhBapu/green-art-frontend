@@ -133,8 +133,8 @@ export const STAKING_INVESTMENT_STATUS_UNPAID = 3;
 export const STAKING_INVESTMENT_STATUS_PAID = 4;
 export const STAKING_INVESTMENT_STATUS_SUCCESS = 5;
 
-export const CROSS = 1;
-export const ISOLATED = 2;
+export const CROSS = 2;
+export const ISOLATED = 1;
 
 export const AMOUNT_TYPE_BASE = 1;
 export const AMOUNT_TYPE_TRADE = 2;

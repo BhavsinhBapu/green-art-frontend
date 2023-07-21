@@ -12,7 +12,6 @@ import { canceledBuySellOrderAction } from "state/actions/futureTrade";
 import TpslModal from "../Modals/TPSL-modal";
 
 const OpenOrder = ({ openOrder }: any) => {
-  console.log(openOrder, "openOrder");
   const conditon = (item: any) => {
     if (item.side === 1) {
       if (item?.take_profit_price > 0) {
@@ -25,13 +24,39 @@ const OpenOrder = ({ openOrder }: any) => {
     } else {
       if (item?.take_profit_price > 0) {
         return "Mark price <= " + item?.take_profit_price;
-      } else if(item?.stop_loss_price > 0) {
+      } else if (item?.stop_loss_price > 0) {
         return "Mark price >= " + item?.stop_loss_price;
       } else if (item?.stop_price > 0) {
-         return "Mark price <= " + item?.stop_price;
+        return "Mark price <= " + item?.stop_price;
       }
     }
   };
+
+  function getOrderTypeLabel(item: any) {
+    if (item.order_type === 3) {
+      return "Stop Limit";
+    } else if (item.order_type === 4) {
+      return "Stop Market";
+    } else {
+      if (
+        item?.trade_type === FUTURE_TRADE_TYPE_OPEN &&
+        item?.is_market === 0
+      ) {
+        return "Limit";
+      } else if (
+        item?.trade_type === FUTURE_TRADE_TYPE_CLOSE &&
+        item?.is_market === 0
+      ) {
+        return "Limit";
+      } else if (item?.trade_type === FUTURE_TRADE_TYPE_TAKE_PROFIT_CLOSE) {
+        return "Take profit market";
+      } else if (item?.trade_type === FUTURE_TRADE_TYPE_STOP_LOSS_CLOSE) {
+        return "Stop market";
+      } else {
+        return "Market";
+      }
+    }
+  }
   return (
     <div>
       <div className="tab-content p-3" id="ordersTabContent">
@@ -62,20 +87,7 @@ const OpenOrder = ({ openOrder }: any) => {
                   <tr key={index}>
                     <td>{formateData(item?.created_at)}</td>
                     <td>{item?.profit_loss_calculation?.symbol}</td>
-                    <td>
-                      {item?.trade_type === FUTURE_TRADE_TYPE_OPEN &&
-                      item?.is_market === 0
-                        ? "Limit"
-                        : item?.trade_type === FUTURE_TRADE_TYPE_CLOSE &&
-                          item?.is_market === 0
-                        ? "Limit"
-                        : item?.trade_type ===
-                          FUTURE_TRADE_TYPE_TAKE_PROFIT_CLOSE
-                        ? "Take profit market"
-                        : item?.trade_type === FUTURE_TRADE_TYPE_STOP_LOSS_CLOSE
-                        ? "stop market"
-                        : "Market"}
-                    </td>
+                    <td>{getOrderTypeLabel(item)}</td>
 
                     {item?.side === TRADE_TYPE_BUY &&
                     item?.trade_type === FUTURE_TRADE_TYPE_OPEN ? (
