@@ -224,7 +224,10 @@ export const openORderFuture = async (base: any, trade: any) => {
   );
   return data;
 };
-
+export const getTpslFuture = async (uid: string) => {
+  const { data } = await request.get(`/get-tp-sl-details-${uid}`);
+  return data;
+};
 export const getShortLongOrderHistory = async (base: any, trade: any) => {
   const { data } = await request.get(
     `/get-long-short-order-history?base_coin_id=${base}&trade_coin_id=${trade}`
@@ -263,9 +266,9 @@ export const getLongShortTradeHistory = async (base: any, trade: any) => {
   );
   return data;
 };
-export const getExchangeMarketDetails = async () => {
+export const getExchangeMarketDetails = async (selectType : any) => {
   const { data } = await request.get(
-    `/get-exchange-market-details-app?limit=8&page=1&type=assets`
+    `/get-exchange-market-details-app?limit=8&page=1&type=${selectType}`
   );
   return data;
 };

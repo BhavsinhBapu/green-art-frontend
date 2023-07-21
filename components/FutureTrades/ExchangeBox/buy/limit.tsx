@@ -195,7 +195,7 @@ const Limit = ({
                     </span>
                   </div>
                 </div> */}
-                {/* <div className="total-top">
+                <div className="total-top">
                   <label>
                     <input
                       type="checkbox"
@@ -207,7 +207,7 @@ const Limit = ({
                     TP/SL
                   </label>{" "}
                   <label>Advance %</label>
-                </div> */}
+                </div>
                 {tpSlchecked === true && (
                   <div>
                     <div className="form-group boxShadow">
@@ -331,7 +331,10 @@ const Limit = ({
                         //   amount: 0,
                         //   total: 0,
                         // });
-                        BuyOrder();
+                        BuyOrder(
+                          OpenCloseLimitCoinData,
+                          setOpenCloseLimitCoinData
+                        );
                       }}
                     >
                       <span v-else="">{t("Open long")}</span>
@@ -341,7 +344,10 @@ const Limit = ({
                       className="btn theme-btn-red-future"
                       onClick={(e) => {
                         e.preventDefault();
-                        SellOrder();
+                        SellOrder(
+                          OpenCloseLimitCoinData,
+                          setOpenCloseLimitCoinData
+                        );
                       }}
                     >
                       <span v-else="">{t("open short")}</span>

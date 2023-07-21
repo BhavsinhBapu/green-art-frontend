@@ -11,10 +11,10 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { buyLimitAppAction } from "state/actions/exchange";
 
-const Market = ({
+const BuyStopMarketLimit = ({
   dashboard,
-  OpenCloseMarketCoinData,
-  setOpenCloseMarketCoinData,
+  OpenCloseStopMarketCoinData,
+  setOpenCloseStopMarketCoinData,
   isLoggedIn,
   selectedCoinType,
   preplaceData,
@@ -31,17 +31,17 @@ const Market = ({
     const { maker_fees, taker_fees } = dashboard.fees_settings;
     const amount =
       parseFloat(dashboard?.order_data?.total?.base_wallet?.balance) /
-      parseFloat(OpenCloseMarketCoinData.price);
+      parseFloat(OpenCloseStopMarketCoinData.price);
     const feesPercentage =
       parseFloat(maker_fees) > parseFloat(taker_fees)
         ? parseFloat(maker_fees)
         : parseFloat(taker_fees);
     const total =
-      amount * percentage * parseFloat(OpenCloseMarketCoinData.price);
+      amount * percentage * parseFloat(OpenCloseStopMarketCoinData.price);
     const fees = (total * feesPercentage) / 100;
-    setOpenCloseMarketCoinData({
-      ...OpenCloseMarketCoinData,
-      size: (total - fees) / parseFloat(OpenCloseMarketCoinData.price),
+    setOpenCloseStopMarketCoinData({
+      ...OpenCloseStopMarketCoinData,
+      size: (total - fees) / parseFloat(OpenCloseStopMarketCoinData.price),
       total: total - fees,
     });
   };
@@ -100,6 +100,37 @@ const Market = ({
                       </span>
                     </div>
                   </div>
+                  <div className="form-group boxShadow mt-2">
+                    <label className="cstmHead">Stop price</label>
+                    <input
+                      name="price"
+                      type="number"
+                      placeholder=""
+                      className="form-control number_only input_1"
+                      value={OpenCloseStopMarketCoinData.stop_price}
+                      onChange={(e) => {
+                        setOpenCloseStopMarketCoinData({
+                          ...OpenCloseStopMarketCoinData,
+                          stop_price: e.target.value,
+                        });
+                      }}
+                    />
+
+                    <span className=" blns" style={{ fontWeight: 700 }}>
+                      <span
+                        className={
+                          selectedCoinType === TRADE
+                            ? "text-warning mr-2"
+                            : "mr-2"
+                        }
+                        onClick={() => {
+                          setSelectedCoinType(TRADE);
+                        }}
+                      >
+                        Mark
+                      </span>
+                    </span>
+                  </div>
                 </div>
                 {/* <div className="form-group mt-3 boxShadow">
                   <label className="cstmHead">{t("Price")}</label>
@@ -108,14 +139,14 @@ const Market = ({
                     type="text"
                     placeholder="0"
                     className="form-control number_only input_1"
-                    value={OpenCloseMarketCoinData.price}
+                    value={OpenCloseStopMarketCoinData.price}
                     onChange={async (e) => {
-                      await setOpenCloseMarketCoinData({
-                        ...OpenCloseMarketCoinData,
+                      await setOpenCloseStopMarketCoinData({
+                        ...OpenCloseStopMarketCoinData,
                         price: e.target.value,
                         total:
                           parseFloat(e.target.value) *
-                          OpenCloseMarketCoinData.size,
+                          OpenCloseStopMarketCoinData.size,
                       });
                     }}
                   />
@@ -136,12 +167,12 @@ const Market = ({
                     placeholder="0"
                     className="form-control number_only input_2"
                     value={
-                      OpenCloseMarketCoinData.amount !== 0 &&
-                      OpenCloseMarketCoinData.amount
+                      OpenCloseStopMarketCoinData.amount !== 0 &&
+                      OpenCloseStopMarketCoinData.amount
                     }
                     onChange={async (e) => {
-                      await setOpenCloseMarketCoinData({
-                        ...OpenCloseMarketCoinData,
+                      await setOpenCloseStopMarketCoinData({
+                        ...OpenCloseStopMarketCoinData,
                         amount: e.target.value,
                       });
                     }}
@@ -149,14 +180,14 @@ const Market = ({
                   <span className=" blns" style={{ fontWeight: 700 }}>
                     <span
                       className={
-                        OpenCloseMarketCoinData.amount_type ===
+                        OpenCloseStopMarketCoinData.amount_type ===
                         AMOUNT_TYPE_TRADE
                           ? "text-warning mr-2"
                           : "mr-2"
                       }
                       onClick={() => {
-                        setOpenCloseMarketCoinData({
-                          ...OpenCloseMarketCoinData,
+                        setOpenCloseStopMarketCoinData({
+                          ...OpenCloseStopMarketCoinData,
                           amount_type: AMOUNT_TYPE_TRADE,
                         });
                       }}
@@ -165,13 +196,14 @@ const Market = ({
                     </span>
                     <span
                       className={
-                        OpenCloseMarketCoinData.amount_type === AMOUNT_TYPE_BASE
+                        OpenCloseStopMarketCoinData.amount_type ===
+                        AMOUNT_TYPE_BASE
                           ? "text-warning mr-2"
                           : ""
                       }
                       onClick={() => {
-                        setOpenCloseMarketCoinData({
-                          ...OpenCloseMarketCoinData,
+                        setOpenCloseStopMarketCoinData({
+                          ...OpenCloseStopMarketCoinData,
                           amount_type: AMOUNT_TYPE_BASE,
                         });
                       }}
@@ -218,10 +250,10 @@ const Market = ({
                         type="number"
                         placeholder=""
                         className="form-control number_only input_1"
-                        value={OpenCloseMarketCoinData.take_profit}
+                        value={OpenCloseStopMarketCoinData.take_profit}
                         onChange={(e) => {
-                          setOpenCloseMarketCoinData({
-                            ...OpenCloseMarketCoinData,
+                          setOpenCloseStopMarketCoinData({
+                            ...OpenCloseStopMarketCoinData,
                             take_profit: e.target.value,
                           });
                         }}
@@ -257,10 +289,10 @@ const Market = ({
                         type="number"
                         placeholder=""
                         className="form-control number_only input_1"
-                        value={OpenCloseMarketCoinData.stop_loss}
+                        value={OpenCloseStopMarketCoinData.stop_loss}
                         onChange={(e) => {
-                          setOpenCloseMarketCoinData({
-                            ...OpenCloseMarketCoinData,
+                          setOpenCloseStopMarketCoinData({
+                            ...OpenCloseStopMarketCoinData,
                             stop_loss: e.target.value,
                           });
                         }}
@@ -326,9 +358,15 @@ const Market = ({
                       className="btn theme-btn-future"
                       onClick={(e) => {
                         e.preventDefault();
+                        // await dispatch(getDashboardData(currentPair));
+                        // setOpenCloseStopMarketCoinData({
+                        //   ...OpenCloseStopMarketCoinData,
+                        //   amount: 0,
+                        //   total: 0,
+                        // });
                         BuyOrder(
-                          OpenCloseMarketCoinData,
-                          setOpenCloseMarketCoinData
+                          OpenCloseStopMarketCoinData,
+                          setOpenCloseStopMarketCoinData
                         );
                       }}
                     >
@@ -340,8 +378,8 @@ const Market = ({
                       onClick={(e) => {
                         e.preventDefault();
                         SellOrder(
-                          OpenCloseMarketCoinData,
-                          setOpenCloseMarketCoinData
+                          OpenCloseStopMarketCoinData,
+                          setOpenCloseStopMarketCoinData
                         );
                       }}
                     >
@@ -375,7 +413,7 @@ const Market = ({
                     preplaceData?.max_size_open_long_trade) && (
                     <div>
                       <label>Max</label>
-                      {OpenCloseMarketCoinData.amount_type === BASE ? (
+                      {OpenCloseStopMarketCoinData.amount_type === BASE ? (
                         <span className="text-warning ml-1">
                           {parseFloat(preplaceData?.max_size_open_long_base)}{" "}
                           {dashboard?.order_data?.total?.base_wallet?.coin_type}
@@ -396,7 +434,7 @@ const Market = ({
                     preplaceData.max_size_open_short_trade) && (
                     <div>
                       <label>Max</label>
-                      {OpenCloseMarketCoinData.amount_type === BASE ? (
+                      {OpenCloseStopMarketCoinData.amount_type === BASE ? (
                         <span className="text-warning ml-1">
                           {parseFloat(preplaceData?.max_size_open_short_base)}{" "}
                           {dashboard?.order_data?.total?.base_wallet?.coin_type}
@@ -422,4 +460,4 @@ const Market = ({
   );
 };
 
-export default Market;
+export default BuyStopMarketLimit;

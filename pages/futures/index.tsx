@@ -3,6 +3,7 @@ import TopCharts from "components/FutureTrades/home/top-charts/TopCharts";
 import TradeSections from "components/FutureTrades/home/trade-sections/TradeSections";
 import request from "lib/request";
 import useTranslation from "next-translate/useTranslation";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
@@ -18,8 +19,7 @@ export default function Index() {
   }, []);
 
   const getTradeSectionData = async () => {
-    const data: any = await getExchangeMarketDetails();
-    console.log(data, "datadatadatadatadata");
+    const data: any = await getExchangeMarketDetails("assets");
     if (!data.success) {
       toast.error(data.message);
       return;
@@ -49,10 +49,17 @@ export default function Index() {
               <h2 className="title">{t("Start trading now")}</h2>
             </div>
             <div className="trading-button text-center">
-              <a className="primary-btn mr-0 mr-sm-5">{t("Sign Up")}</a>
-              <a>
-                <a className="primary-btn">{t("Trade Now")}</a>
-              </a>
+              <Link
+                href={
+                  router.locale !== "en"
+                    ? `/${router.locale}/exchange/dashboard`
+                    : "/exchange/dashboard"
+                }
+              >
+                <a>
+                  <a className="primary-btn">{t("Trade Now")}</a>
+                </a>
+              </Link>
             </div>
           </div>
         </section>

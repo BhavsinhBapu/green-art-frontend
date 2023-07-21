@@ -5,7 +5,12 @@ import { AiOutlineClose } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
 
-const Isolated = ({ isolated, setIsolated }: any) => {
+const Isolated = ({
+  isolated,
+  setIsolated,
+  disableCross,
+  disableIsolated,
+}: any) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { t } = useTranslation("common");
 
@@ -50,22 +55,28 @@ const Isolated = ({ isolated, setIsolated }: any) => {
                     isolated === ISOLATED ? "var(--primary-color)" : "",
                 }}
                 onClick={() => {
+                  if (disableIsolated) {
+                    return;
+                  }
                   modifyIsolated(ISOLATED);
                 }}
               >
                 Isolated
               </span>
-              {/* <span
+              <span
                 className="percent-btn col-3 pb-2"
                 style={{
                   background: isolated === CROSS ? "var(--primary-color)" : "",
                 }}
                 onClick={() => {
+                  if (disableCross) {
+                    return;
+                  }
                   modifyIsolated(CROSS);
                 }}
               >
                 Cross
-              </span> */}
+              </span>
             </div>
             <div>
               {isolated === ISOLATED && (

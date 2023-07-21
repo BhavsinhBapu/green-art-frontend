@@ -60,7 +60,7 @@ const PositionEdit = ({ item }: any) => {
                 <label className="">Take Profit</label>
                 <input
                   name="take_profit"
-                  type="text"
+                  type="number"
                   placeholder="0"
                   className=""
                   value={data?.take_profit}
@@ -79,7 +79,7 @@ const PositionEdit = ({ item }: any) => {
                 <label className="">Stop loss</label>
                 <input
                   name="price"
-                  type="text"
+                  type="number"
                   placeholder="0"
                   className=""
                   value={data?.stop_loss}
@@ -118,13 +118,14 @@ const PositionEdit = ({ item }: any) => {
                   margin: 2,
                 }}
                 className="primary-btn"
-                onClick={() => {
-                  updateProfitLongShortAction(
+                onClick={async () => {
+                  await updateProfitLongShortAction(
                     item?.uid,
                     data.take_profit,
                     data.stop_loss,
                     setData
                   );
+                  await setIsModalOpen(false);
                 }}
               >
                 Confirm

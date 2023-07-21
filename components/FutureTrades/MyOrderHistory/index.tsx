@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Position from "./position";
 import {
+  CROSS,
+  ISOLATED,
   OPEN_ORDER,
   ORDER_HISTORY,
   POSITON,
@@ -23,7 +25,7 @@ import {
 } from "state/actions/futureTrade";
 import { listenMessagesFuture } from "state/actions/exchange";
 
-const MyOrderHistory = () => {
+const MyOrderHistory = ({ setdisableCross, setdisableIsolated }: any) => {
   const { isLoggedIn } = useSelector((state: RootState) => state.user);
   const [selected, setSelected] = useState(POSITON);
   const [listData, setListData] = useState([]);
@@ -34,7 +36,28 @@ const MyOrderHistory = () => {
   const { dashboard, currentPair } = useSelector(
     (state: RootState) => state.exchange
   );
-
+  useEffect(() => {
+    let disableCross = false;
+    let disableIsolated = false;
+    listData.map((item: any) => {
+      if (item.margin_mode === ISOLATED) {
+        disableCross = true;
+      }
+      if (item.margin_mode === CROSS) {
+        disableIsolated = true;
+      }
+    });
+    openOrder.map((item: any) => {
+      if (item.margin_mode === ISOLATED) {
+        disableCross = true;
+      }
+      if (item.margin_mode === CROSS) {
+        disableIsolated = true;
+      }
+    });
+    setdisableCross(disableCross);
+    setdisableIsolated(disableIsolated);
+  }, [listData, openOrder]);
   useEffect(() => {
     if (isLoggedIn) {
       listenMessagesFuture(
@@ -105,7 +128,7 @@ const MyOrderHistory = () => {
                     setSelected(POSITON);
                   }}
                 >
-                  Position
+                  Position({listData.length})
                 </a>
               </li>
               <li role="presentation" className="nav-item">

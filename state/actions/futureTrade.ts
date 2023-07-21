@@ -40,7 +40,7 @@ import Cookies from "js-cookie";
 import { updateChart } from "components/exchange/api/stream";
 import { unlistenAllChannels } from "./exchange";
 import { toast } from "react-toastify";
-import { MARKET_ORDER } from "helpers/core-constants";
+import { MARKET_ORDER, STOP_MARKET_ORDER } from "helpers/core-constants";
 
 export const getDashboardData = (pair: string) => async (dispatch: any) => {
   const response = await appDashboardData(pair);
@@ -328,16 +328,20 @@ export const preplaceOrderDataAction =
     stop_loss: number,
     leverage_amount: number,
     setPrePlaceData: any,
-    coin_pair_id: any
+    coin_pair_id: any,
+    stop_price: any
   ) =>
   async (dispatch: any) => {
     const formData = new FormData();
     formData.append("trade_type", String(trade_type));
     formData.append("margin_mode", String(margin_mode));
     formData.append("order_type", String(order_type));
-    formData.append("price", String(price));
+    if (order_type !== MARKET_ORDER && order_type !== STOP_MARKET_ORDER) {
+      formData.append("price", String(price));
+    }
     formData.append("amount_type", String(amount_type));
     formData.append("amount", String(amount));
+    stop_price && formData.append("stop_price", String(stop_price));
     take_profit &&
       formData.append(
         "take_profit",
@@ -367,7 +371,8 @@ export const placeBuyOrderAction =
     stop_loss: number,
     leverage_amount: number,
     setPrePlaceData: any,
-    coin_pair_id: any
+    coin_pair_id: any,
+    stop_price: any
   ) =>
   async (dispatch: any) => {
     const formData = new FormData();
@@ -375,9 +380,13 @@ export const placeBuyOrderAction =
     formData.append("side", String(trade_type));
     formData.append("margin_mode", String(margin_mode));
     formData.append("order_type", String(order_type));
-    formData.append("price", String(price));
+    if (order_type !== MARKET_ORDER && order_type !== STOP_MARKET_ORDER) {
+      formData.append("price", String(price));
+    }
     formData.append("amount_type", String(amount_type));
     formData.append("amount", String(amount));
+    stop_price && formData.append("stop_price", String(stop_price));
+
     take_profit &&
       formData.append(
         "take_profit",
@@ -407,7 +416,8 @@ export const placeSellOrderDataAction =
     stop_loss: number,
     leverage_amount: number,
     setPrePlaceData: any,
-    coin_pair_id: any
+    coin_pair_id: any,
+    stop_price: any
   ) =>
   async (dispatch: any) => {
     const formData = new FormData();
@@ -415,7 +425,10 @@ export const placeSellOrderDataAction =
     formData.append("side", String(trade_type));
     formData.append("margin_mode", String(margin_mode));
     formData.append("order_type", String(order_type));
-    formData.append("price", String(price));
+    stop_price && formData.append("stop_price", String(stop_price));
+    if (order_type !== MARKET_ORDER && order_type !== STOP_MARKET_ORDER) {
+      formData.append("price", String(price));
+    }
     formData.append("amount_type", String(amount_type));
     formData.append("amount", String(amount));
     take_profit &&
@@ -446,18 +459,21 @@ export const CloseSellOrderAction =
     amount: number,
     leverage_amount: number,
     setPrePlaceData: any,
-    coin_pair_id: any
+    coin_pair_id: any,
+    stop_price: any
   ) =>
   async (dispatch: any) => {
-    console.log(amount, "amountamountamountamount");
     const formData = new FormData();
     formData.append("side", String(trade_type));
     formData.append("margin_mode", String(margin_mode));
     formData.append("order_type", String(order_type));
     formData.append("amount_type", String(amount_type));
-    formData.append("amount", String(amount));
-
     formData.append("leverage_amount", String(leverage_amount));
+    if (order_type !== MARKET_ORDER && order_type !== STOP_MARKET_ORDER) {
+      formData.append("price", String(price));
+    }
+    formData.append("amount", String(amount));
+    stop_price && formData.append("stop_price", String(stop_price));
     formData.append("coin_pair_id", String(coin_pair_id));
     const response = await placeCloseOrderData(formData);
     if (response.success) {
@@ -469,13 +485,13 @@ export const CloseSellOrderAction =
   };
 export const closeLongShortAllOrderAction =
   (CloseAll: any, coin_pair_id: number) => async (dispatch: any) => {
-    const arrayPrepare :any= []
+    const arrayPrepare: any = [];
     CloseAll?.map((item: any) => {
       if (item.order_type === MARKET_ORDER) {
         delete item.price;
       }
       arrayPrepare.push(item);
-    })
+    });
 
     const preparedData: any = {
       coin_pair_id: coin_pair_id,
@@ -499,14 +515,20 @@ export const CloseBuyOrderAction =
     amount: number,
     leverage_amount: number,
     setPrePlaceData: any,
-    coin_pair_id: any
+    coin_pair_id: any,
+    stop_price: any
   ) =>
   async (dispatch: any) => {
+    console.log(order_type, "order_type");
     const formData = new FormData();
     formData.append("side", String(trade_type));
     formData.append("margin_mode", String(margin_mode));
     formData.append("order_type", String(order_type));
-    formData.append("price", String(price));
+    stop_price && formData.append("stop_price", String(stop_price));
+
+    if (order_type !== MARKET_ORDER && order_type !== STOP_MARKET_ORDER) {
+      formData.append("price", String(price));
+    }
     formData.append("amount_type", String(amount_type));
     formData.append("amount", String(amount));
     formData.append("leverage_amount", String(leverage_amount));

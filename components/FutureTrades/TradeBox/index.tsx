@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import OrderBook from "../OrderBook";
 import ExchangeBox from "../ExchangeBox";
 import dynamic from "next/dynamic";
@@ -13,10 +13,13 @@ const TradingChart = dynamic(
     ),
   { ssr: false }
 );
-const TradeBox = ({ ThemeColor }:any) => {
-  const { dashboard, OpenBookBuy, OpenBooksell, marketTrades, currentPair } =
-    useSelector((state: RootState) => state.exchange);
-  const { settings, theme } = useSelector((state: RootState) => state.common);
+const TradeBox = ({ ThemeColor }: any) => {
+  const { marketTrades, currentPair } = useSelector(
+    (state: RootState) => state.exchange
+  );
+  const [disableCross, setdisableCross] = useState(false);
+  const [disableIsolated, setdisableIsolated] = useState(false);
+  const { theme } = useSelector((state: RootState) => state.common);
   return (
     <div>
       <div className="row">
@@ -33,10 +36,13 @@ const TradeBox = ({ ThemeColor }:any) => {
               )}
             </div>
             <div className="col-xl-3 col-12 exchange-area">
-              <ExchangeBox />
+              <ExchangeBox disableCross={disableCross} disableIsolated={disableIsolated} />
             </div>
             <div className="col-xl-12">
-              <MyOrderHistory />
+              <MyOrderHistory
+                setdisableCross={setdisableCross}
+                setdisableIsolated={setdisableIsolated}
+              />
               {/* <TradesHistory marketTrades={marketTrades} /> */}
             </div>
           </div>

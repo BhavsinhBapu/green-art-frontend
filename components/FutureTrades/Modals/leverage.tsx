@@ -10,18 +10,34 @@ const Leverage = ({ leverage, setLeverage, dashboard }: any) => {
   const generateLeverage = () => {
     const leverageArray = [];
     const limit = dashboard?.order_data?.max_leverage;
-    if (limit > 10) {
-      leverageArray.push(1, 5, 10);
-
-      let currentLeverage = 20;
-      while (currentLeverage <= limit) {
-        leverageArray.push(currentLeverage);
-        currentLeverage += 10;
-      }
+    if (dashboard?.order_data?.max_leverage == 0) {
+      setLeverage(0);
+      return;
     }
-    setLeverages(leverageArray);
-  };
+    if (typeof limit !== "undefined") {
+      if (limit >= 10) {
+        leverageArray.push(1, 5, 10);
 
+        let currentLeverage = 20;
+        while (currentLeverage <= limit) {
+          leverageArray.push(currentLeverage);
+          currentLeverage += 10;
+        }
+      } else if (limit < 5) {
+        leverageArray.push(1);
+      } else if (limit <= 5) {
+        leverageArray.push(1, 5);
+      }
+    } else {
+      // Handle the case when limit is undefined or not accessible
+      leverageArray.push(1);
+    }
+
+    setLeverages(leverageArray);
+    if (leverageArray.length) {
+      setLeverage(leverageArray[0]);
+    }
+  };
   const toggle = () => {
     setIsModalOpen(!isModalOpen);
   };

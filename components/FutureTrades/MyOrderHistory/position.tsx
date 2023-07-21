@@ -1,10 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { AiOutlineEdit } from "react-icons/ai";
-import PositionEdit from "../Modals/positionEdit";
-import {
-  closeLongShortAllOrderAction,
-  getLongShortPositionOrderListAction,
-} from "state/actions/futureTrade";
+import { closeLongShortAllOrderAction } from "state/actions/futureTrade";
 import PositionRow from "./PositionRow";
 import { RootState } from "state/store";
 import { useDispatch, useSelector } from "react-redux";
@@ -29,7 +24,6 @@ const Position = ({ listData }: any) => {
   useEffect(() => {
     listData.length && makeList();
   }, [listData]);
-  console.log(listData, "CloseAll");
   return (
     <div>
       {" "}
@@ -53,7 +47,7 @@ const Position = ({ listData }: any) => {
                   <th scope="col">Margin</th>
                   <th scope="col">PNL(ROE)%</th>
                   <th
-                    scope="button-future-close"
+                    className="button-future-close"
                     onClick={() => {
                       dispatch(
                         closeLongShortAllOrderAction(
