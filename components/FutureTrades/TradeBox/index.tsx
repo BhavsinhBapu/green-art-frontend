@@ -21,38 +21,39 @@ const TradeBox = ({ ThemeColor }: any) => {
   const [disableIsolated, setdisableIsolated] = useState(false);
   const { theme } = useSelector((state: RootState) => state.common);
   return (
-    <div>
-      <div className="row">
-        <div className="col-xl-9">
-          <div className="row">
-            <div className="col-xl-9 col-12 exchange-area">
-              {currentPair && (
-                <TradingChart
-                  //@ts-ignore
-                  currentPair={currentPair}
-                  theme={theme}
-                  ThemeColor={ThemeColor}
-                />
-              )}
-            </div>
-            <div className="col-xl-3 col-12 exchange-area">
-              <ExchangeBox disableCross={disableCross} disableIsolated={disableIsolated} />
-            </div>
-            <div className="col-xl-12">
-              <MyOrderHistory
-                setdisableCross={setdisableCross}
-                setdisableIsolated={setdisableIsolated}
+    <div className="row trade-dashboard-side-margin">
+      <div className="col-xl-9">
+        <div className="row">
+          <div className="col-xl-8 px-0 exchange-area">
+            {currentPair && (
+              <TradingChart
+                //@ts-ignore
+                currentPair={currentPair}
+                theme={theme}
+                ThemeColor={ThemeColor}
               />
-              {/* <TradesHistory marketTrades={marketTrades} /> */}
-            </div>
+            )}
+          </div>
+          <div className="col-xl-4 px-0 exchange-area">
+            <ExchangeBox
+              disableCross={disableCross}
+              disableIsolated={disableIsolated}
+            />
+          </div>
+          <div className="col-xl-12 px-0">
+            <MyOrderHistory
+              setdisableCross={setdisableCross}
+              setdisableIsolated={setdisableIsolated}
+            />
+            {/* <TradesHistory marketTrades={marketTrades} /> */}
           </div>
         </div>
-        <div className="col-xl-3 col-12">
-          <div className="">
-            <OrderBook />
-          </div>
-          <TradesHistory marketTrades={marketTrades} />
+      </div>
+      <div className="col-xl-3  px-0">
+        <div className="">
+          <OrderBook />
         </div>
+        <TradesHistory marketTrades={marketTrades} />
       </div>
     </div>
   );
