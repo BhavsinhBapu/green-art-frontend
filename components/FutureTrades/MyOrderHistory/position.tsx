@@ -1,10 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { AiOutlineEdit } from "react-icons/ai";
-import PositionEdit from "../Modals/positionEdit";
-import {
-  closeLongShortAllOrderAction,
-  getLongShortPositionOrderListAction,
-} from "state/actions/futureTrade";
+import { closeLongShortAllOrderAction } from "state/actions/futureTrade";
 import PositionRow from "./PositionRow";
 import { RootState } from "state/store";
 import { useDispatch, useSelector } from "react-redux";

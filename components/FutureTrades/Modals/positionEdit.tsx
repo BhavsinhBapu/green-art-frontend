@@ -118,13 +118,14 @@ const PositionEdit = ({ item }: any) => {
                   margin: 2,
                 }}
                 className="primary-btn"
-                onClick={() => {
-                  updateProfitLongShortAction(
+                onClick={async () => {
+                  await updateProfitLongShortAction(
                     item?.uid,
                     data.take_profit,
                     data.stop_loss,
                     setData
                   );
+                  await setIsModalOpen(false);
                 }}
               >
                 Confirm

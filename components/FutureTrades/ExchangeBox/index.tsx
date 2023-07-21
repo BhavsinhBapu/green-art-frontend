@@ -32,7 +32,7 @@ import SellStopLimit from "./sell/stopLimit";
 import SellStopMarketLimit from "./sell/stopMarket";
 import BuyStopMarketLimit from "./buy/stopMarket";
 
-const ExchangeBox = () => {
+const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
   type trade_type = number;
   const { t } = useTranslation("common");
   const { isLoggedIn } = useSelector((state: RootState) => state.user);
@@ -326,7 +326,12 @@ const ExchangeBox = () => {
           justifyContent: "space-around",
         }}
       >
-        <Isolated isolated={isolated} setIsolated={setIsolated} />
+        <Isolated
+          isolated={isolated}
+          setIsolated={setIsolated}
+          disableCross={disableCross}
+          disableIsolated={disableIsolated}
+        />
         <Leverage
           leverage={leverage}
           setLeverage={setLeverage}

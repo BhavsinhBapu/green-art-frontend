@@ -9,6 +9,7 @@ import {
 } from "helpers/core-constants";
 import React from "react";
 import { canceledBuySellOrderAction } from "state/actions/futureTrade";
+import TpslModal from "../Modals/TPSL-modal";
 
 const OpenOrder = ({ openOrder }: any) => {
   const conditon = (item: any) => {
@@ -46,8 +47,8 @@ const OpenOrder = ({ openOrder }: any) => {
                   <th scope="col">Price</th>
                   <th scope="col">Amount</th>
                   <th scope="col">Filled</th>
-
                   <th scope="col">Trigger Conditions</th>
+                  <th scope="col">TP/SL</th>
                   <th scope="col">Cancel</th>
                 </tr>
               </thead>
@@ -112,6 +113,7 @@ const OpenOrder = ({ openOrder }: any) => {
                     <td> 0{item?.profit_loss_calculation?.trade_coin_type}</td>
 
                     <td>{conditon(item)}</td>
+                    <TpslModal />
                     <td>
                       <button
                         className="cancel"
