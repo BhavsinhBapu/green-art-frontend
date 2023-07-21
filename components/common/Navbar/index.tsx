@@ -1099,7 +1099,14 @@ const Navbar = ({
                             {navbar?.trade?.name ? (
                               navbar?.trade?.name
                             ) : (
-                              <span>{t("Exchange")}</span>
+                              <div className="d-flex align-items-center gap-5">
+                                <span>
+                                  <BsBarChartLine />
+                                </span>
+                                <span className="line-h-19">
+                                  {t("Exchange")}
+                                </span>
+                              </div>
                             )}
                             <FiChevronDown size={20} />
                           </a>
@@ -1189,7 +1196,12 @@ const Navbar = ({
                       >
                         <Link href="/markets">
                           <a className="nav-link text-primary-color-two">
-                            <span>{t("Markets")}</span>
+                            <div className="d-flex align-items-center gap-5">
+                              <span>
+                                <BiLineChart />
+                              </span>
+                              <span className="line-h-19">{t("Markets")}</span>
+                            </div>
                           </a>
                         </Link>
                       </li>
@@ -1214,9 +1226,16 @@ const Navbar = ({
                               className="nav-link text-primary-color-two"
                               onClick={() => setActive(false)}
                             >
-                              {navbar?.wallet?.name
-                                ? navbar?.wallet?.name
-                                : t("Wallet")}
+                              <div className="d-flex align-items-center gap-5">
+                                <span>
+                                  <BiWalletAlt />
+                                </span>
+                                <span className="line-h-19">
+                                  {navbar?.wallet?.name
+                                    ? navbar?.wallet?.name
+                                    : t("Wallet")}
+                                </span>
+                              </div>
                             </a>
                           </li>
                         </Link>
@@ -1237,9 +1256,16 @@ const Navbar = ({
                                 className="nav-link text-primary-color-two"
                                 onClick={() => setActive(false)}
                               >
-                                {navbar?.ico?.name
-                                  ? navbar?.ico?.name
-                                  : t("ICO")}
+                                <div className="d-flex align-items-center gap-5">
+                                  <span>
+                                    <RiCalendarEventLine />
+                                  </span>
+                                  <span className="line-h-19">
+                                    {navbar?.ico?.name
+                                      ? navbar?.ico?.name
+                                      : t("ICO")}
+                                  </span>
+                                </div>
                               </a>
                             </li>
                           </Link>
@@ -1265,11 +1291,16 @@ const Navbar = ({
                               aria-haspopup="true"
                               aria-expanded="false"
                             >
-                              {navbar?.fiat?.name ? (
-                                navbar?.fiat?.name
-                              ) : (
-                                <span>{t("Fiat")}</span>
-                              )}
+                              <div className="d-flex align-items-center gap-5">
+                                <span>
+                                  <FiSettings />
+                                </span>
+                                {navbar?.fiat?.name ? (
+                                  navbar?.fiat?.name
+                                ) : (
+                                  <span className="line-h-19">{t("Fiat")}</span>
+                                )}
+                              </div>
 
                               <FiChevronDown size={20} />
                             </a>
@@ -1368,11 +1399,16 @@ const Navbar = ({
                             aria-haspopup="true"
                             aria-expanded="false"
                           >
-                            {navbar?.reports?.name ? (
-                              navbar?.reports?.name
-                            ) : (
-                              <span>{t("Reports")}</span>
-                            )}
+                            <div className="d-flex align-items-center gap-5">
+                              <span>
+                                <HiOutlineDocumentReport />
+                              </span>
+                              <span className="line-h-19">
+                                {navbar?.reports?.name
+                                  ? navbar?.reports?.name
+                                  : t("Reports")}
+                              </span>
+                            </div>
 
                             <FiChevronDown size={20} />
                           </a>
@@ -1741,11 +1777,16 @@ const Navbar = ({
                                 className="nav-link text-primary-color-two"
                                 onClick={() => setActive(false)}
                               >
-                                <span>
-                                  {navbar?.myReferral?.name
-                                    ? navbar.myReferral?.name
-                                    : t("My Referral")}
-                                </span>
+                                <div className="d-flex align-items-center gap-5">
+                                  <span>
+                                    <BiNetworkChart />
+                                  </span>
+                                  <span className="line-h-19">
+                                    {navbar?.myReferral?.name
+                                      ? navbar.myReferral?.name
+                                      : t("My Referral")}
+                                  </span>
+                                </div>
                               </a>
                             </Link>
                           )}
@@ -1851,11 +1892,16 @@ const Navbar = ({
                             aria-haspopup="true"
                             aria-expanded="false"
                           >
-                            <span>
-                              {navbar?.giftCards?.name
-                                ? navbar?.giftCards?.name
-                                : t("Gift Cards")}
-                            </span>
+                            <div className="d-flex align-items-center gap-5">
+                              <span>
+                                <AiFillGift />
+                              </span>
+                              <span className="line-h-19">
+                                {navbar?.giftCards?.name
+                                  ? navbar?.giftCards?.name
+                                  : t("Gift Cards")}
+                              </span>
+                            </div>
                             <FiChevronDown size={20} />
                           </a>
 
@@ -1937,7 +1983,12 @@ const Navbar = ({
                             aria-haspopup="true"
                             aria-expanded="false"
                           >
-                            <span>{t("Future")}</span>
+                            <div className="d-flex align-items-center gap-5">
+                              <span>
+                                <FaTradeFederation />
+                              </span>
+                              <span className="line-h-19">{t("Future")}</span>
+                            </div>
                             <FiChevronDown size={20} />
                           </a>
                           <ul
@@ -2002,16 +2053,28 @@ const Navbar = ({
                         >
                           <Link href="/demo-trade">
                             <a className="nav-link text-primary-color-two">
-                              <span>{t("Demo Trade")}</span>
+                              <div className="d-flex align-items-center gap-5">
+                                <span>
+                                  <BiShapeCircle />
+                                </span>
+                                <span className="line-h-19">
+                                  {t("Demo Trade")}
+                                </span>
+                              </div>
                             </a>
                           </Link>
                         </li>
                       )}
                       <li>
-                        <div className="d-flex gap-10 align-items-center justify-content-between py-2">
-                          <p className="text-16 text-primary-color-two">
-                            Theme
-                          </p>
+                        <div className="d-flex gap-10 align-items-center justify-content-between py-3">
+                          <div className="d-flex align-items-center gap-5">
+                            <span>
+                              <FiSettings size={16}/>
+                            </span>
+                            <p className="text-16 text-primary-color-two line-h-19">
+                              Theme
+                            </p>
+                          </div>
                           <label className="gift-card-buy-switch mb-0">
                             <input
                               type="checkbox"
@@ -2025,7 +2088,7 @@ const Navbar = ({
                         </div>
                       </li>
                       <li className={"nav-item"}>
-                        <div className="d-flex gap-5 align-items-center py-2">
+                        <div className="d-flex gap-5 align-items-center py-3">
                           <span
                             className=""
                             onClick={() => {
@@ -2037,7 +2100,7 @@ const Navbar = ({
                           </span>
                           <span
                             className="text-primary-color-two text-16"
-                            style={{lineHeight: '19px'}}
+                            style={{ lineHeight: "19px" }}
                             onClick={() => {
                               setLanguageActive(true);
                               setActive(false);

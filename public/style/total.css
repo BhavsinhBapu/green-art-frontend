@@ -15456,6 +15456,10 @@ input:checked + .gift-card-buy-slider:before {
   opacity: 0.7;
 }
 
+.line-h-19{
+  line-height: 19px;
+}
+
 @media (max-width: 1520px) {
   .trade-dashboard-side-margin {
     margin-left: 0 !important;
