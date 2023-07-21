@@ -23,6 +23,7 @@ import UnAuthNav from "../unAuthNav";
 import {
   checkDashboardThemeSettings,
   checkThemeState,
+  darkModeToggle,
 } from "helpers/functions";
 import NotificationDropdown from "./notification-dropdown";
 import { setNotificationData } from "state/reducer/user";
@@ -34,7 +35,7 @@ import {
 import { MdOutlineSwapHorizontalCircle, MdTransform } from "react-icons/md";
 import { GiBuyCard, GiSellCard, GiTrade } from "react-icons/gi";
 import { GoStop } from "react-icons/go";
-import { AiFillGift, AiOutlineClose } from "react-icons/ai";
+import { AiFillGift, AiOutlineClose, AiOutlineDeliveredProcedure } from "react-icons/ai";
 import DemoNotificationDropdown from "./DemoNotificationDropdown";
 
 const DemoTradeNavbar = ({
@@ -54,6 +55,7 @@ const DemoTradeNavbar = ({
   const { navbar } = settings;
   const { t } = useTranslation("common");
   const [active, setActive] = useState(false);
+  const [languageActive, setLanguageActive] = useState(false);
   const router = useRouter();
   const getNotifications = async () => {
     const data = await notification();
@@ -178,6 +180,7 @@ const DemoTradeNavbar = ({
                   ThemeColor={ThemeColor}
                   layout={layout}
                   setLayout={setLayout}
+                  setLanguageActive={setLanguageActive}
                 />
               </div>
             </div>
@@ -209,7 +212,12 @@ const DemoTradeNavbar = ({
                             className="nav-link text-primary-color-two"
                             onClick={() => setActive(false)}
                           >
-                            {t("Exchange")}
+                            <div className="d-flex align-items-center gap-5">
+                              <span>
+                                <BsBarChartLine />
+                              </span>
+                              <span className="line-h-19">{t("Exchange")}</span>
+                            </div>
                           </a>
                         </li>
                       </Link>
@@ -232,7 +240,12 @@ const DemoTradeNavbar = ({
                             className="nav-link text-primary-color-two"
                             onClick={() => setActive(false)}
                           >
-                            {t("Wallet")}
+                            <div className="d-flex align-items-center gap-5">
+                              <span>
+                                <BiWalletAlt />
+                              </span>
+                              <span className="line-h-19">{t("Wallet")}</span>
+                            </div>
                           </a>
                         </li>
                       </Link>
@@ -249,16 +262,109 @@ const DemoTradeNavbar = ({
                             className="nav-link text-primary-color-two"
                             onClick={() => setActive(false)}
                           >
-                            {t("Back To Live")}
+                            <div className="d-flex align-items-center gap-5">
+                              <span>
+                                <AiOutlineDeliveredProcedure />
+                              </span>
+                              <span className="line-h-19"> {t("Back To Live")}</span>
+                            </div>
+                           
                           </a>
                         </li>
                       </Link>
+                      <li>
+                        <div className="d-flex gap-10 align-items-center justify-content-between py-3">
+                          <div className="d-flex align-items-center gap-5">
+                            <span>
+                              <FiSettings size={16} />
+                            </span>
+                            <p className="text-16 text-primary-color-two line-h-19">
+                              Theme
+                            </p>
+                          </div>
+                          <label className="gift-card-buy-switch mb-0">
+                            <input
+                              type="checkbox"
+                              onClick={() => {
+                                darkModeToggle(settings, setTheme, dispatch);
+                              }}
+                              checked={theme === 0}
+                            />
+                            <span className="gift-card-buy-slider gift-card-buy"></span>
+                          </label>
+                        </div>
+                      </li>
+                      <li className={"nav-item"}>
+                        <div className="d-flex gap-5 align-items-center py-3">
+                          <span
+                            className=""
+                            onClick={() => {
+                              setLanguageActive(true);
+                              setActive(false);
+                            }}
+                          >
+                            <IoMdGlobe size={20} />
+                          </span>
+                          <span
+                            className="text-primary-color-two text-16"
+                            style={{ lineHeight: "19px" }}
+                            onClick={() => {
+                              setLanguageActive(true);
+                              setActive(false);
+                            }}
+                          >
+                            {
+                              settings?.LanguageList?.find(
+                                (item: any) => item.key === router.locale
+                              ).name
+                            }
+                          </span>
+                        </div>
+                      </li>
                     </ul>
                   </div>
                 </nav>
               </div>
             </div>
           </OutsideClickHandler>
+          {languageActive && (
+            <div
+              className={`cp-user-sidebar w-full ${
+                languageActive ? "active" : ""
+              }`}
+            >
+              <div className="cp-user-sidebar-menu cp-user-sidebar-menu-mobile scrollbar-inner">
+                <nav className="navbar navbar-expand-lg navbar-light">
+                  <div className="navbar-collapse">
+                    <ul className="navbar-nav mr-auto">
+                      <li className="text-right">
+                        <span onClick={() => setLanguageActive(false)}>
+                          <AiOutlineClose size={20} />
+                        </span>
+                      </li>
+                      {settings?.LanguageList?.map((item: any, index: any) => (
+                        <li
+                          className={
+                            item.key === router.locale
+                              ? "active-navbar nav-item"
+                              : "nav-item"
+                          }
+                          key={index}
+                          onClick={() => setLanguageActive(false)}
+                        >
+                          <Link href={router.asPath} locale={item.key}>
+                            <a className="nav-link text-primary-color-two">
+                              {item.name}
+                            </a>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </nav>
+              </div>
+            </div>
+          )}
         </>
       )}
     </>
