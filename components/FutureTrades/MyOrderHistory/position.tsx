@@ -27,18 +27,18 @@ const Position = ({ listData }: any) => {
   return (
     <div>
       {" "}
-      <div className="tab-content p-3" id="ordersTabContent">
+      <div className="tab-content" style={{padding: '0 10px'}} id="ordersTabContent">
         <div
           className="tab-pane fade show active"
           id="Open-orders"
           role="tabpanel"
           aria-labelledby="Open-orders-tab"
         >
-          <div className="table-responsive">
+          <div className="table-responsive order-history-table-min-h">
             <table className="table">
               <thead>
                 <tr>
-                  <th scope="col">Symbol</th>
+                  <th scope="col" className="pl-0">Symbol</th>
                   <th scope="col">Size</th>
                   <th scope="col">Entry Price</th>
                   <th scope="col">Mark Price</th>

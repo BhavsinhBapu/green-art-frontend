@@ -9,11 +9,13 @@ const NotLoggedin = () => {
       <Link href="/signin">
         <span className="colorTheme mr-2">{t("Login")} </span>
       </Link>
-      {t("or")}{" "}
+      <span className="text-primary">{t("or")} </span>
+
       <Link href="/signup">
         <span className="colorTheme ml-2 mr-2"> {t("Sign up")}</span>
       </Link>
-      {t("to trade")}
+      <span className="text-primary">{t("to trade")}</span>
+      
     </div>
   );
 };

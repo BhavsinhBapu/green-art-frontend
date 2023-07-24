@@ -18,8 +18,10 @@ import {
 } from "helpers/functions";
 import { IoMdGlobe } from "react-icons/io";
 import {
+  AiOutlineAppstore,
   AiOutlineClose,
   AiOutlineLineChart,
+  AiOutlineLogin,
   AiOutlineSetting,
 } from "react-icons/ai";
 import {
@@ -27,6 +29,7 @@ import {
   EXCHANGE_LAYOUT_THREE,
   EXCHANGE_LAYOUT_TWO,
 } from "helpers/core-constants";
+import { FiChevronDown, FiSettings } from "react-icons/fi";
 
 const UnAuthNav = ({
   setThemeColor,
@@ -45,6 +48,7 @@ const UnAuthNav = ({
   const { navbar } = settings;
   const [active, setActive] = useState(false);
   const [notificationData, setNotification] = useState<any>([]);
+  const [languageActive, setLanguageActive] = useState(false);
   const [isSettingsDropdownOpen, setIsSettingsDropdownOpen] = useState(false);
   const { t } = useTranslation("common");
   const getNotifications = async () => {
@@ -647,6 +651,7 @@ const UnAuthNav = ({
                   className="cp-user-sidebar-toggler-s2"
                   onClick={() => {
                     setActive(active ? false : true);
+                    setLanguageActive(false);
                   }}
                 >
                   <img src="/menu.svg" className="img-fluid" alt="" />
@@ -657,12 +662,10 @@ const UnAuthNav = ({
         </div>
       </div>
 
+     
       <OutsideClickHandler onOutsideClick={() => setActive(false)}>
-        <div className={`cp-user-sidebar ${active ? "active" : ""}`}>
-          <div
-            onClick={() => setActive(false)}
-            className="cp-user-sidebar-menu scrollbar-inner"
-          >
+        <div className={`cp-user-sidebar w-full ${active ? "active" : ""}`}>
+          <div className="cp-user-sidebar-menu cp-user-sidebar-menu-mobile scrollbar-inner">
             <nav className="navbar navbar-expand-lg navbar-light">
               <div className="navbar-collapse">
                 <ul className="navbar-nav mr-auto">
@@ -682,7 +685,7 @@ const UnAuthNav = ({
                       }
                     >
                       <a
-                        className="nav-link text-primary-color-two dropdown-toggle"
+                        className="nav-link text-primary-color-two d-flex align-items-center justify-content-between"
                         href="#"
                         id="navbarDropdown"
                         role="button"
@@ -690,9 +693,17 @@ const UnAuthNav = ({
                         aria-haspopup="true"
                         aria-expanded="false"
                       >
-                        {navbar?.trade?.name
-                          ? navbar?.trade?.name
-                          : t("Exchange")}
+                        {navbar?.trade?.name ? (
+                          navbar?.trade?.name
+                        ) : (
+                          <div className="d-flex align-items-center gap-5">
+                            <span>
+                              <BsBarChartLine />
+                            </span>
+                            <span className="line-h-19">{t("Exchange")}</span>
+                          </div>
+                        )}
+                        <FiChevronDown size={20} />
                       </a>
                       <ul
                         className="dropdown-menu bg-transparent border-0 py-0 my-0"
@@ -768,6 +779,7 @@ const UnAuthNav = ({
                       </ul>
                     </li>
                   )}
+
                   <li
                     className={
                       router.pathname == "/markets"
@@ -777,23 +789,89 @@ const UnAuthNav = ({
                   >
                     <Link href="/markets">
                       <a className="nav-link text-primary-color-two">
-                        <span>{t("Markets")}</span>
+                        <div className="d-flex align-items-center gap-5">
+                          <span>
+                            <BiLineChart />
+                          </span>
+                          <span className="line-h-19">{t("Markets")}</span>
+                        </div>
                       </a>
                     </Link>
                   </li>
                   <li className="nav-item">
                     <Link href="/signin">
                       <a className="nav-link text-primary-color-two">
-                        {t("Login")}
+                      <div className="d-flex align-items-center gap-5">
+                          <span>
+                            <AiOutlineLogin />
+                          </span>
+                          <span className="line-h-19">{t("Login")}</span>
+                        </div>
+                        
                       </a>
                     </Link>
                   </li>
                   <li className="nav-item">
                     <Link href="/signup">
                       <a className="nav-link text-primary-color-two">
-                        {t("Sign up")}
+                        <div className="d-flex align-items-center gap-5">
+                          <span>
+                            <AiOutlineAppstore />
+                          </span>
+                          <span className="line-h-19">{t("Sign up")}</span>
+                        </div>
                       </a>
                     </Link>
+                  </li>
+
+                  <li>
+                    <div className="d-flex gap-10 align-items-center justify-content-between py-3">
+                      <div className="d-flex align-items-center gap-5">
+                        <span>
+                          <FiSettings size={16} />
+                        </span>
+                        <p className="text-16 text-primary-color-two line-h-19">
+                          Theme
+                        </p>
+                      </div>
+                      <label className="gift-card-buy-switch mb-0">
+                        <input
+                          type="checkbox"
+                          onClick={() => {
+                            darkModeToggle(settings, setTheme, dispatch);
+                          }}
+                          checked={theme === 0}
+                        />
+                        <span className="gift-card-buy-slider gift-card-buy"></span>
+                      </label>
+                    </div>
+                  </li>
+                  <li className={"nav-item"}>
+                    <div className="d-flex gap-5 align-items-center py-3">
+                      <span
+                        className=""
+                        onClick={() => {
+                          setLanguageActive(true);
+                          setActive(false);
+                        }}
+                      >
+                        <IoMdGlobe size={20} />
+                      </span>
+                      <span
+                        className="text-primary-color-two text-16"
+                        style={{ lineHeight: "19px" }}
+                        onClick={() => {
+                          setLanguageActive(true);
+                          setActive(false);
+                        }}
+                      >
+                        {
+                          settings?.LanguageList?.find(
+                            (item: any) => item.key === router.locale
+                          ).name
+                        }
+                      </span>
+                    </div>
                   </li>
                 </ul>
               </div>
@@ -801,6 +879,42 @@ const UnAuthNav = ({
           </div>
         </div>
       </OutsideClickHandler>
+      {languageActive && (
+        <div
+          className={`cp-user-sidebar w-full ${languageActive ? "active" : ""}`}
+        >
+          <div className="cp-user-sidebar-menu cp-user-sidebar-menu-mobile scrollbar-inner">
+            <nav className="navbar navbar-expand-lg navbar-light">
+              <div className="navbar-collapse">
+                <ul className="navbar-nav mr-auto">
+                  <li className="text-right">
+                    <span onClick={() => setLanguageActive(false)}>
+                      <AiOutlineClose size={20} />
+                    </span>
+                  </li>
+                  {settings?.LanguageList?.map((item: any, index: any) => (
+                    <li
+                      className={
+                        item.key === router.locale
+                          ? "active-navbar nav-item"
+                          : "nav-item"
+                      }
+                      key={index}
+                      onClick={() => setLanguageActive(false)}
+                    >
+                      <Link href={router.asPath} locale={item.key}>
+                        <a className="nav-link text-primary-color-two">
+                          {item.name}
+                        </a>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </nav>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

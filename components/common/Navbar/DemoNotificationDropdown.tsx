@@ -38,6 +38,7 @@ const DemoNotificationDropdown = ({
   ThemeColor,
   layout,
   setLayout,
+  setLanguageActive,
 }: any) => {
   const dispatch = useDispatch();
   const containerRef = useRef<any>(null);
@@ -78,7 +79,7 @@ const DemoNotificationDropdown = ({
                 <div className="btn-group profile-dropdown">
                   <button
                     type="button"
-                    className="btn dropdown-toggle"
+                    className="btn dropdown-toggle bg-transparent"
                     data-toggle="dropdown"
                     aria-haspopup="true"
                     aria-expanded="false"
@@ -709,6 +710,7 @@ const DemoNotificationDropdown = ({
             className="cp-user-sidebar-toggler-s2"
             onClick={() => {
               setActive(true);
+              setLanguageActive(false);
             }}
           >
             <img src="/menu.svg" className="img-fluid" alt="" />

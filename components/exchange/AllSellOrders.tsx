@@ -16,11 +16,13 @@ const AllSellOrders = ({ OpenBooksell, show, customClass }: any) => {
         <div className="trades-table-body" />
         <div
           id="exchangeAllBuyOrders_wrapper"
-          className="dataTables_wrapper no-footer">
+          className="dataTables_wrapper no-footer"
+        >
           <div
             id="exchangeAllBuyOrders_processing"
             className="dataTables_processing"
-            style={{ display: "none" }}>
+            style={{ display: "none" }}
+          >
             {t("Processing")}...
           </div>
           <div className="">
@@ -31,7 +33,8 @@ const AllSellOrders = ({ OpenBooksell, show, customClass }: any) => {
                 position: "relative",
                 border: "0px",
                 width: "100%",
-              }}>
+              }}
+            >
               <div
                 className="dataTables_scrollBody"
                 style={{
@@ -39,42 +42,56 @@ const AllSellOrders = ({ OpenBooksell, show, customClass }: any) => {
                   overflow: "auto",
                   height: "244px",
                   width: "100%",
-                }}>
-                <table
-                  id="exchangeAllSellOrders"
-                  className="table dataTable no-footer"
-                  role="grid"
-                  style={{ width: "100%" }}>
-                  <thead>
-                    <tr role="row" className="trade_tableList">
-                      <th
-                        className="table-col price sorting_disabled"
-                        rowSpan={1}
-                        colSpan={1}
-                        style={{ width: "170.656px" }}
-                        aria-label="Price">
-                        {t("Price")}({dashboard?.order_data?.base_coin})
-                      </th>
-                      <th
-                        className="table-col amount sorting_disabled"
-                        rowSpan={1}
-                        colSpan={1}
-                        style={{ width: "120.75px" }}
-                        aria-label="Amount">
-                        {t("Amount")}({dashboard?.order_data?.trade_coin})
-                      </th>
-                      <th
-                        className="table-col time sorting_desc"
-                        rowSpan={1}
-                        colSpan={1}
-                        style={{ width: "79.8438px" }}
-                        aria-label="Time">
-                        {t("Total")}
-                      </th>
-                    </tr>
-                  </thead>
-                  <BuyTable buy={OpenBooksell} show={show} />
-                </table>
+                }}
+              >
+                {OpenBooksell.length > 0 ? (
+                  <table
+                    id="exchangeAllSellOrders"
+                    className="table dataTable no-footer"
+                    role="grid"
+                    style={{ width: "100%" }}
+                  >
+                    <thead>
+                      <tr role="row" className="trade_tableList">
+                        <th
+                          className="table-col price sorting_disabled"
+                          rowSpan={1}
+                          colSpan={1}
+                          // style={{ width: "170.656px" }}
+                          style={{padding: '3px'}}
+                          aria-label="Price"
+                        >
+                          {t("Price")}({dashboard?.order_data?.base_coin})
+                        </th>
+                        <th
+                          className="table-col amount sorting_disabled"
+                          rowSpan={1}
+                          colSpan={1}
+                          style={{padding: '3px'}}
+                          // style={{ width: "120.75px" }}
+                          aria-label="Amount"
+                        >
+                          {t("Amount")}({dashboard?.order_data?.trade_coin})
+                        </th>
+                        <th
+                          className="table-col time sorting_desc"
+                          rowSpan={1}
+                          colSpan={1}
+                          style={{padding: '3px'}}
+                          // style={{ width: "79.8438px" }}
+                          aria-label="Time"
+                        >
+                          {t("Total")}
+                        </th>
+                      </tr>
+                    </thead>
+                    <BuyTable buy={OpenBooksell} show={show} />
+                  </table>
+                ) : (
+                  <div className="text-center mt-5">
+                    <p>{t("No data available in table")} </p>
+                  </div>
+                )}
               </div>
             </div>
           </div>

@@ -54,7 +54,7 @@ const TradesTable = ({ buy, show }: any) => {
             overlayClassName="rcTooltipOverlay"
           >
             <tr
-              className="odd trade_tableList"
+              className="odd trade_tableList d-table-row"
               onClick={() => changeSellPrice(item.price, item.amount)}
               onMouseEnter={() => {
                 const selectedIndex = index;

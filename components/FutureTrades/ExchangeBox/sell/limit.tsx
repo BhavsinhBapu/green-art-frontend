@@ -45,7 +45,7 @@ const Limit = ({
     });
   };
   return (
-    <div id="BuyTabContent" className="tab-content">
+    <div id="BuyTabContent" className="tab-content p-0">
       <div
         id="imit"
         role="tabpanel"
@@ -187,7 +187,7 @@ const Limit = ({
                     </Link>
                   </div>
                 ) : (
-                  <div className="button-section-future">
+                  <div className="button-section-future gap-10">
                     <button
                       type="submit"
                       className="btn theme-btn-future"

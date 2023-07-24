@@ -15,7 +15,7 @@ const OrderBook = () => {
   const { settings, theme } = useSelector((state: RootState) => state.common);
 
   return (
-    <div className="trades-section">
+    <div className="trades-section mb-0">
       <div>
         <h6 className="text-white">{t("Order Book")}</h6>
       </div>
@@ -83,7 +83,7 @@ const OrderBook = () => {
       </div>
       {select === 1 && (
         <>
-          <AllSellOrdersFull OpenBooksell={OpenBooksell} />
+          <AllSellOrdersFull OpenBooksell={OpenBooksell} customClss={'buy-sell-order-max-h'}/>
           <div className="trades-table-footer">
             <div className="trades-table-row">
               <span
@@ -214,7 +214,7 @@ const OrderBook = () => {
               </span>
             </div>
           </div>
-          <AllBuyOrdersFull buy={OpenBookBuy} show={38} />
+          <AllBuyOrdersFull buy={OpenBookBuy} show={38} customClss={'buy-sell-order-max-h'}/>
         </>
       )}
       {select === 3 && (

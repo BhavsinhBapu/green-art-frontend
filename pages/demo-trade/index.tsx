@@ -181,7 +181,7 @@ const Dashboard: NextPage = () => {
             </div>
           </div>
           <div className="cp-user-main-wrapper-dashboard">
-            <div className="container-fluid">
+            <div className="custom-container">
               <div
                 role="alert"
                 id="web_socket_notification"
@@ -241,32 +241,44 @@ const Dashboard: NextPage = () => {
               <div className="cp-user-custom-card exchange-area">
                 <div id="dashboard">
                   <div className="row">
-                    <div className="col-xl-12 col-12">
-                      <div className="cxchange-summary-wrap mt-5">
-                        {currentPair && (
-                          <div className="cxchange-summary-name">
-                            <div className="summber-coin-type dropdown">
-                              <span
-                                className="coin-badge dropdown-toggle"
-                                id="dropdownMenuButton"
-                                data-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false"
-                              >
-                                {currentPair.replace(/_/g, "/")}
-                              </span>
-                              <DemoSelectCurrency />
-                            </div>
+                    <div
+                      className="col-xl-12 col-12 mt-4"
+                      style={{ border: "1px solid rgb(126 126 126 / 20%)" }}
+                    >
+                      <div className="cxchange-summary-wrap mt-3">
+                        <div className="row w-full">
+                          <div className="col-md-2">
+                            {currentPair && (
+                              <div className="cxchange-summary-name">
+                                <div className="summber-coin-type dropdown">
+                                  <span
+                                    className="coin-badge dropdown-toggle"
+                                    id="dropdownMenuButton"
+                                    data-toggle="dropdown"
+                                    aria-haspopup="true"
+                                    aria-expanded="false"
+                                  >
+                                    {currentPair.replace(/_/g, "/")}
+                                  </span>
+                                  <DemoSelectCurrency />
+                                </div>
+                              </div>
+                            )}
                           </div>
-                        )}
-                        {dashboard?.last_price_data && <DemoCurrencyLevel />}
+                          <div className="col-md-10">
+                            {dashboard?.last_price_data && (
+                              <DemoCurrencyLevel />
+                            )}
+                          </div>
+                        </div>
                       </div>
                     </div>
-
-                    <DemoDashboardBody
-                      ThemeColor={ThemeColor}
-                      layout={layout}
-                    />
+                    <div className="col-xl-12 col-12">
+                      <DemoDashboardBody
+                        ThemeColor={ThemeColor}
+                        layout={layout}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>

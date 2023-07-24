@@ -8,7 +8,7 @@ import { FaPeopleArrows, FaQq, FaTradeFederation } from "react-icons/fa";
 import { BiNetworkChart } from "react-icons/bi";
 import { RiLuggageDepositLine, RiUserSettingsLine } from "react-icons/ri";
 import { IoCardSharp, IoLanguageSharp } from "react-icons/io5";
-import { FiSettings } from "react-icons/fi";
+import { FiChevronDown, FiSettings } from "react-icons/fi";
 import { CgProfile } from "react-icons/cg";
 import { HiOutlineDocumentReport } from "react-icons/hi";
 
@@ -23,6 +23,7 @@ import UnAuthNav from "../unAuthNav";
 import {
   checkDashboardThemeSettings,
   checkThemeState,
+  darkModeToggle,
 } from "helpers/functions";
 import NotificationDropdown from "./notification-dropdown";
 import { setNotificationData } from "state/reducer/user";
@@ -49,6 +50,7 @@ const Navbar = ({
     (state: RootState) => state.user
   );
   const [theme, setTheme] = useState(0);
+  const [languageActive, setLanguageActive] = useState(false);
   const dispatch = useDispatch();
   const { navbar } = settings;
   const { t } = useTranslation("common");
@@ -83,6 +85,8 @@ const Navbar = ({
       document.body.classList.remove("rtl-style");
     }
   }, [router.locale]);
+
+  console.log("router", router);
 
   return (
     <>
@@ -1051,6 +1055,7 @@ const Navbar = ({
                   settings={settings}
                   setTheme={setTheme}
                   setActive={setActive}
+                  setLanguageActive={setLanguageActive}
                   active={active}
                   showSettings={showSettings}
                   setThemeColor={setThemeColor}
@@ -1083,7 +1088,7 @@ const Navbar = ({
                           }
                         >
                           <a
-                            className="nav-link text-primary-color-two dropdown-toggle"
+                            className="nav-link text-primary-color-two d-flex align-items-center justify-content-between"
                             href="#"
                             id="navbarDropdown"
                             role="button"
@@ -1091,9 +1096,19 @@ const Navbar = ({
                             aria-haspopup="true"
                             aria-expanded="false"
                           >
-                            {navbar?.trade?.name
-                              ? navbar?.trade?.name
-                              : t("Exchange")}
+                            {navbar?.trade?.name ? (
+                              navbar?.trade?.name
+                            ) : (
+                              <div className="d-flex align-items-center gap-5">
+                                <span>
+                                  <BsBarChartLine />
+                                </span>
+                                <span className="line-h-19">
+                                  {t("Exchange")}
+                                </span>
+                              </div>
+                            )}
+                            <FiChevronDown size={20} />
                           </a>
                           <ul
                             className="dropdown-menu bg-transparent border-0 py-0 my-0"
@@ -1181,7 +1196,12 @@ const Navbar = ({
                       >
                         <Link href="/markets">
                           <a className="nav-link text-primary-color-two">
-                            <span>{t("Markets")}</span>
+                            <div className="d-flex align-items-center gap-5">
+                              <span>
+                                <BiLineChart />
+                              </span>
+                              <span className="line-h-19">{t("Markets")}</span>
+                            </div>
                           </a>
                         </Link>
                       </li>
@@ -1206,9 +1226,16 @@ const Navbar = ({
                               className="nav-link text-primary-color-two"
                               onClick={() => setActive(false)}
                             >
-                              {navbar?.wallet?.name
-                                ? navbar?.wallet?.name
-                                : t("Wallet")}
+                              <div className="d-flex align-items-center gap-5">
+                                <span>
+                                  <BiWalletAlt />
+                                </span>
+                                <span className="line-h-19">
+                                  {navbar?.wallet?.name
+                                    ? navbar?.wallet?.name
+                                    : t("Wallet")}
+                                </span>
+                              </div>
                             </a>
                           </li>
                         </Link>
@@ -1229,9 +1256,16 @@ const Navbar = ({
                                 className="nav-link text-primary-color-two"
                                 onClick={() => setActive(false)}
                               >
-                                {navbar?.ico?.name
-                                  ? navbar?.ico?.name
-                                  : t("ICO")}
+                                <div className="d-flex align-items-center gap-5">
+                                  <span>
+                                    <RiCalendarEventLine />
+                                  </span>
+                                  <span className="line-h-19">
+                                    {navbar?.ico?.name
+                                      ? navbar?.ico?.name
+                                      : t("ICO")}
+                                  </span>
+                                </div>
                               </a>
                             </li>
                           </Link>
@@ -1249,7 +1283,7 @@ const Navbar = ({
                             }
                           >
                             <a
-                              className="nav-link text-primary-color-two dropdown-toggle"
+                              className="nav-link text-primary-color-two d-flex align-items-center justify-content-between"
                               href="#"
                               id="navbarDropdown"
                               role="button"
@@ -1257,9 +1291,18 @@ const Navbar = ({
                               aria-haspopup="true"
                               aria-expanded="false"
                             >
-                              {navbar?.fiat?.name
-                                ? navbar?.fiat?.name
-                                : t("Fiat")}
+                              <div className="d-flex align-items-center gap-5">
+                                <span>
+                                  <FiSettings />
+                                </span>
+                                {navbar?.fiat?.name ? (
+                                  navbar?.fiat?.name
+                                ) : (
+                                  <span className="line-h-19">{t("Fiat")}</span>
+                                )}
+                              </div>
+
+                              <FiChevronDown size={20} />
                             </a>
                             <ul
                               className="dropdown-menu bg-transparent border-0 py-0 my-0"
@@ -1348,7 +1391,7 @@ const Navbar = ({
                       >
                         {navbar?.reports?.status && (
                           <a
-                            className="nav-link text-primary-color-two dropdown-toggle"
+                            className="nav-link text-primary-color-two d-flex align-items-center justify-content-between"
                             href="#"
                             id="navbarDropdown"
                             role="button"
@@ -1356,9 +1399,18 @@ const Navbar = ({
                             aria-haspopup="true"
                             aria-expanded="false"
                           >
-                            {navbar?.reports?.name
-                              ? navbar?.reports?.name
-                              : t("Reports")}
+                            <div className="d-flex align-items-center gap-5">
+                              <span>
+                                <HiOutlineDocumentReport />
+                              </span>
+                              <span className="line-h-19">
+                                {navbar?.reports?.name
+                                  ? navbar?.reports?.name
+                                  : t("Reports")}
+                              </span>
+                            </div>
+
+                            <FiChevronDown size={20} />
                           </a>
                         )}
                         <ul
@@ -1725,11 +1777,16 @@ const Navbar = ({
                                 className="nav-link text-primary-color-two"
                                 onClick={() => setActive(false)}
                               >
-                                <span>
-                                  {navbar?.myReferral?.name
-                                    ? navbar.myReferral?.name
-                                    : t("My Referral")}
-                                </span>
+                                <div className="d-flex align-items-center gap-5">
+                                  <span>
+                                    <BiNetworkChart />
+                                  </span>
+                                  <span className="line-h-19">
+                                    {navbar?.myReferral?.name
+                                      ? navbar.myReferral?.name
+                                      : t("My Referral")}
+                                  </span>
+                                </div>
                               </a>
                             </Link>
                           )}
@@ -1827,7 +1884,7 @@ const Navbar = ({
                           }
                         >
                           <a
-                            className="nav-link text-primary-color-two dropdown-toggle"
+                            className="nav-link text-primary-color-two d-flex align-items-center justify-content-between"
                             href="#"
                             id="navbarDropdown"
                             role="button"
@@ -1835,11 +1892,17 @@ const Navbar = ({
                             aria-haspopup="true"
                             aria-expanded="false"
                           >
-                            <span>
-                              {navbar?.giftCards?.name
-                                ? navbar?.giftCards?.name
-                                : t("Gift Cards")}
-                            </span>
+                            <div className="d-flex align-items-center gap-5">
+                              <span>
+                                <AiFillGift />
+                              </span>
+                              <span className="line-h-19">
+                                {navbar?.giftCards?.name
+                                  ? navbar?.giftCards?.name
+                                  : t("Gift Cards")}
+                              </span>
+                            </div>
+                            <FiChevronDown size={20} />
                           </a>
 
                           <ul
@@ -1912,7 +1975,7 @@ const Navbar = ({
                           }
                         >
                           <a
-                            className="nav-link text-primary-color-two dropdown-toggle"
+                            className="nav-link text-primary-color-two d-flex align-items-center justify-content-between"
                             href="#"
                             id="navbarDropdown"
                             role="button"
@@ -1920,7 +1983,13 @@ const Navbar = ({
                             aria-haspopup="true"
                             aria-expanded="false"
                           >
-                            {t("Future")}
+                            <div className="d-flex align-items-center gap-5">
+                              <span>
+                                <FaTradeFederation />
+                              </span>
+                              <span className="line-h-19">{t("Future")}</span>
+                            </div>
+                            <FiChevronDown size={20} />
                           </a>
                           <ul
                             className="dropdown-menu bg-transparent border-0 py-0 my-0"
@@ -1984,17 +2053,111 @@ const Navbar = ({
                         >
                           <Link href="/demo-trade">
                             <a className="nav-link text-primary-color-two">
-                              <span>{t("Demo Trade")}</span>
+                              <div className="d-flex align-items-center gap-5">
+                                <span>
+                                  <BiShapeCircle />
+                                </span>
+                                <span className="line-h-19">
+                                  {t("Demo Trade")}
+                                </span>
+                              </div>
                             </a>
                           </Link>
                         </li>
                       )}
+                      <li>
+                        <div className="d-flex gap-10 align-items-center justify-content-between py-3">
+                          <div className="d-flex align-items-center gap-5">
+                            <span>
+                              <FiSettings size={16}/>
+                            </span>
+                            <p className="text-16 text-primary-color-two line-h-19">
+                              Theme
+                            </p>
+                          </div>
+                          <label className="gift-card-buy-switch mb-0">
+                            <input
+                              type="checkbox"
+                              onClick={() => {
+                                darkModeToggle(settings, setTheme, dispatch);
+                              }}
+                              checked={theme === 0}
+                            />
+                            <span className="gift-card-buy-slider gift-card-buy"></span>
+                          </label>
+                        </div>
+                      </li>
+                      <li className={"nav-item"}>
+                        <div className="d-flex gap-5 align-items-center py-3">
+                          <span
+                            className=""
+                            onClick={() => {
+                              setLanguageActive(true);
+                              setActive(false);
+                            }}
+                          >
+                            <IoMdGlobe size={20} />
+                          </span>
+                          <span
+                            className="text-primary-color-two text-16"
+                            style={{ lineHeight: "19px" }}
+                            onClick={() => {
+                              setLanguageActive(true);
+                              setActive(false);
+                            }}
+                          >
+                            {
+                              settings?.LanguageList?.find(
+                                (item: any) => item.key === router.locale
+                              ).name
+                            }
+                          </span>
+                        </div>
+                      </li>
                     </ul>
                   </div>
                 </nav>
               </div>
             </div>
           </OutsideClickHandler>
+          {languageActive && (
+            <div
+              className={`cp-user-sidebar w-full ${
+                languageActive ? "active" : ""
+              }`}
+            >
+              <div className="cp-user-sidebar-menu cp-user-sidebar-menu-mobile scrollbar-inner">
+                <nav className="navbar navbar-expand-lg navbar-light">
+                  <div className="navbar-collapse">
+                    <ul className="navbar-nav mr-auto">
+                      <li className="text-right">
+                        <span onClick={() => setLanguageActive(false)}>
+                          <AiOutlineClose size={20} />
+                        </span>
+                      </li>
+                      {settings?.LanguageList?.map((item: any, index: any) => (
+                        <li
+                          className={
+                            item.key === router.locale
+                              ? "active-navbar nav-item"
+                              : "nav-item"
+                          }
+                          key={index}
+                          onClick={() => setLanguageActive(false)}
+                        >
+                          <Link href={router.asPath} locale={item.key}>
+                            <a className="nav-link text-primary-color-two">
+                              {item.name}
+                            </a>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </nav>
+              </div>
+            </div>
+          )}
         </>
       ) : !isLoggedIn && isLoading === false ? (
         <UnAuthNav

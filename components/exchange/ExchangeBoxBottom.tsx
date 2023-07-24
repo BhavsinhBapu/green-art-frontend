@@ -95,7 +95,7 @@ const ExchangeBoxBottom = () => {
   ]);
 
   return (
-    <div className="exchange-box order-box mt-4">
+    <div className="exchange-box order-box" style={{border: 'unset'}}>
       <div id="pills-tabContent" className="tab-content">
         <div
           id="pills-transfer-1"
@@ -105,7 +105,7 @@ const ExchangeBoxBottom = () => {
           <ul
             id="BuyTab"
             role="tablist"
-            className="nav nav-tabs inner-tabs-menu"
+            className="nav nav-tabs inner-tabs-menu pt-0"
           >
             <li role="presentation" className="nav-item">
               <a

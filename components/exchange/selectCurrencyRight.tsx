@@ -18,24 +18,43 @@ const SelectCurrencyRight = () => {
       style: {
         backgroundColor: "var(--main-background-color)",
         color: "var(--font-color)",
-        borderColor: "var(--border-color)",
+        // borderColor: "var(--border-color)",
+        "&:not(:last-of-type)": {
+          border: "unset",
+        },
+        minHeight: "20px",
+      },
+    },
+    headRow: {
+      style: {
+        minHeight: "20px",
+        border: "unset",
       },
     },
     headCells: {
       style: {
         backgroundColor: "var(--main-background-color)",
         color: "var(--font-color)",
-        borderColor: "var(--border-color)",
+        // borderColor: "var(--border-color)",
+        padding: "4px",
+        justifyContent: "flex-end",
+        "&:first-child": {
+          justifyContent: "flex-start",
+        },
       },
     },
     cells: {
       style: {
-        width: "100%",
         backgroundColor: "var(--main-background-color)",
         color: "var(--font-color)",
-        borderColor: "var(--border-color)",
+        // borderColor: "var(--border-color)",
         fontSize: "11px",
         cursor: "pointer",
+        padding: "4px",
+        justifyContent: "flex-end",
+        "&:first-child": {
+          justifyContent: "flex-start",
+        },
       },
     },
   };
@@ -91,7 +110,7 @@ const SelectCurrencyRight = () => {
                 {row?.coin_pair_name.split("/")[0]}
               </span>
               <span
-                className="coin-name"
+                className="coin-name text-end"
                 onClick={async () => {
                   await unlistenAllChannels();
 
@@ -135,7 +154,6 @@ const SelectCurrencyRight = () => {
             overlayClassName="rcTooltipOverlay"
           >
             <span
-              className="text-center w-40"
               onClick={async () => {
                 await unlistenAllChannels();
                 await localStorage.setItem("base_coin_id", row?.parent_coin_id);
@@ -145,6 +163,7 @@ const SelectCurrencyRight = () => {
 
                 // router.reload();
               }}
+              style={{ fontSize: "11px" }}
             >
               {parseFloat(row.last_price)}
             </span>
@@ -176,6 +195,7 @@ const SelectCurrencyRight = () => {
                   ? "text-success"
                   : "text-danger"
               }
+              style={{ fontSize: "11px" }}
               onClick={async () => {
                 await unlistenAllChannels();
                 await localStorage.setItem("base_coin_id", row?.parent_coin_id);
@@ -201,7 +221,7 @@ const SelectCurrencyRight = () => {
   }, [dashboard?.pairs]);
   return (
     <div
-      className="cp-user-buy-coin-content-area mb-4 "
+      className="cp-user-buy-coin-content-area"
       aria-labelledby="dropdownMenuButton"
     >
       <div className="cp-user-wallet-table dashboard-coin_pairs table-responsive">
@@ -210,7 +230,7 @@ const SelectCurrencyRight = () => {
           className="dataTables_wrapper no-footer"
         >
           <div id="exchangeCoinPair_filter" className="dataTables_filter">
-            <label>
+            <div className="currency-search-box">
               <input
                 type="search"
                 className=""
@@ -228,7 +248,10 @@ const SelectCurrencyRight = () => {
                   setPairs(filteredPairs);
                 }}
               />
-            </label>
+              <svg className="" width="24" height="24" viewBox="0 0 16 16">
+                <path d="M6.667 1.334c2.945 0 5.333 2.388 5.333 5.333a5.31 5.31 0 0 1-1.12 3.27l3.592 3.592c.26.26.26.682 0 .943s-.682.26-.943 0l-3.591-3.592a5.31 5.31 0 0 1-3.27 1.12c-2.946 0-5.333-2.388-5.333-5.333s2.388-5.333 5.333-5.333zm0 1.333a4 4 0 1 0 0 8 4 4 0 1 0 0-8z"></path>
+              </svg>
+            </div>
           </div>
           <div
             id="exchangeCoinPair_processing"
@@ -257,7 +280,7 @@ const SelectCurrencyRight = () => {
               ></div>
             </div>
             <div
-              className="dataTables_scrollBody"
+              className="dataTables_scrollBody spot-search-table always-show-sort-arrow"
               style={{
                 position: "relative",
                 overflow: "auto",

@@ -24,7 +24,7 @@ const DemoOrderHistory = ({
       aria-labelledby="Trade-history-tab"
     >
       <div className="buy-sell-tabs">
-        <ul className="nav nav-tabs px-0 pb-4" id="buySellTab" role="tablist">
+        <ul className="nav nav-tabs px-0 pb-2" id="buySellTab" role="tablist">
           <li className="nav-item" role="presentation">
             <a
               className="nav-link active"
@@ -59,11 +59,11 @@ const DemoOrderHistory = ({
             role="tabpanel"
             aria-labelledby="buy-tab"
           >
-            <div className="table-responsive">
+            <div className="table-responsive order-history-table-min-h">
               <table className="table">
                 <thead>
                   <tr>
-                    <th scope="col">{t("Type")}</th>
+                    <th scope="col" className="pl-0">{t("Type")}</th>
                     <th scope="col">{t("Pair")}</th>
                     <th scope="col">
                       {t("Price")}({dashboard?.order_data?.base_coin})
@@ -85,7 +85,7 @@ const DemoOrderHistory = ({
                     <tr key={index}>
                       <td
                         className={
-                          item?.type === "sell" ? "text-danger" : "text-success"
+                          item?.type === "sell" ? "text-danger pl-0" : "text-success pl-0"
                         }
                       >
                         {item?.type}
@@ -112,11 +112,11 @@ const DemoOrderHistory = ({
             role="tabpanel"
             aria-labelledby="sell-tab"
           >
-            <div className="table-responsive">
+            <div className="table-responsive order-history-table-min-h">
               <table className="table">
                 <thead>
                   <tr>
-                    <th scope="col">{t("Type")}</th>
+                    <th scope="col" className="pl-0">{t("Type")}</th>
                     <th scope="col">{t("Pair")}</th>
                     <th scope="col">
                       {t("Price")}({dashboard?.order_data?.base_coin})
@@ -138,7 +138,7 @@ const DemoOrderHistory = ({
                     <tr key={index}>
                       <td
                         className={
-                          item?.type === "sell" ? "text-danger" : "text-success"
+                          item?.type === "sell" ? "text-danger pl-0" : "text-success pl-0"
                         }
                       >
                         {item?.type}

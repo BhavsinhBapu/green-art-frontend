@@ -35,8 +35,8 @@ const LayoutTwo = ({ ThemeColor }: any) => {
     }, 400);
   }, [ThemeColor.green, ThemeColor.red]);
   return (
-    <>
-      <div className="col-xl-8">
+    <div className="row trade-dashboard-side-margin">
+      <div className="col-xl-7 px-0">
         <div className="cp-user-buy-coin-content-area">
           <div className="card cp-user-custom-card">
             {currentPair && show && (
@@ -52,14 +52,14 @@ const LayoutTwo = ({ ThemeColor }: any) => {
 
         <OrderHistorySection />
       </div>
-      <div className="col-xl-4">
-        <div className="row">
-          <div className="col-xl-6 px-1">
+      <div className="col-xl-5 px-0">
+        <div className="row mx-0">
+          <div className="col-sm-6 px-0">
             <div className="trades-section">
               <div>
                 <h6 className="text-white">{t("Order Book")}</h6>
               </div>
-              <div className="trades-headers mb-3">
+              <div className="trades-headers">
                 <div className="orderBookIcons">
                   <h3
                     onClick={() => {
@@ -123,7 +123,7 @@ const LayoutTwo = ({ ThemeColor }: any) => {
               </div>
               {select === 1 && (
                 <>
-                  <AllSellOrdersFull OpenBooksell={OpenBooksell} />
+                  <AllSellOrdersFull OpenBooksell={OpenBooksell} customClss={'buy-sell-order-max-h'}/>
                   <div className="trades-table-footer">
                     <div className="trades-table-row">
                       <span
@@ -254,7 +254,7 @@ const LayoutTwo = ({ ThemeColor }: any) => {
                       </span>
                     </div>
                   </div>
-                  <AllBuyOrdersFull buy={OpenBookBuy} show={38} />
+                  <AllBuyOrdersFull buy={OpenBookBuy} show={38} customClss={'buy-sell-order-max-h'}/>
                 </>
               )}
               {select === 3 && (
@@ -370,20 +370,20 @@ const LayoutTwo = ({ ThemeColor }: any) => {
               )}
             </div>
           </div>
-          <div className="col-xl-6 px-1">
+          <div className="col-sm-6 px-0">
             <TradesHistory
               marketTrades={marketTrades}
               customClass={"spot-trade-table"}
             />
           </div>
         </div>
-        <div className="row">
-          <div className="col-xl-12 px-1">
+        <div className="row mx-0">
+          <div className="col-xl-12 px-0">
             <ExchangeBox />
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

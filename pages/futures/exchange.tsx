@@ -45,28 +45,45 @@ const Exchange = () => {
     <div className="exchange-area">
       <div className="background-col">
         <div className="cp-user-main-wrapper-dashboard">
-          <div id="dashboard">
-            <div className="cxchange-summary-wrap mt-5">
-              {currentPair && (
-                <div className="cxchange-summary-name">
-                  <div className="summber-coin-type dropdown">
-                    <span
-                      className="coin-badge dropdown-toggle"
-                      id="dropdownMenuButton"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                    >
-                      {currentPair.replace(/_/g, "/")}
-                    </span>
-                    <SelectCurrency />
+          <div className="custom-container">
+            <div id="dashboard">
+              <div className="row">
+                <div
+                  className="col-xl-12 col-12"
+                  style={{ border: "1px solid rgb(126 126 126 / 20%)" }}
+                >
+                  <div className="cxchange-summary-wrap w-full">
+                    <div className="row w-full mt-3">
+                      <div className="col-md-2">
+                        {currentPair && (
+                          <div className="cxchange-summary-name">
+                            <div className="summber-coin-type dropdown">
+                              <span
+                                className="coin-badge dropdown-toggle"
+                                id="dropdownMenuButton"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                              >
+                                {currentPair.replace(/_/g, "/")}
+                              </span>
+                              <SelectCurrency />
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                      <div className="col-md-10">
+                        {dashboard?.last_price_data && <TopBar />}
+                      </div>
+                    </div>
                   </div>
                 </div>
-              )}
-              {dashboard?.last_price_data && <TopBar />}
+                <div className="col-xl-12 col-12">
+                  <TradeBox ThemeColor={ThemeColor} />
+                </div>
+              </div>
             </div>
           </div>
-          <TradeBox ThemeColor={ThemeColor} />
         </div>
       </div>
     </div>

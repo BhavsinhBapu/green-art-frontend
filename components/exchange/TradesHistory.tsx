@@ -5,20 +5,18 @@ import { RootState } from "state/store";
 import SellTable from "./SellTable";
 const TradesHistory = ({ marketTrades, customClass }: any) => {
   const { t } = useTranslation("common");
-  const { dashboard } = useSelector(
-    (state: RootState) => state.exchange
-  );
+  const { dashboard } = useSelector((state: RootState) => state.exchange);
 
   return (
     <div className={`trades-section1 ${customClass}`}>
-      <div className="trades-headers mb-3">
+      <div className="trades-headers mb-2">
         <h3>{t("Market Trades")}</h3>
       </div>
       <div className="primary-table">
-        <div className="table-header">
+        {/* <div className="table-header">
           <div className="table-row" />
         </div>
-        <div className="table-body" />
+        <div className="table-body" /> */}
         <div
           id="marketTradeTable_wrapper"
           className="dataTables_wrapper no-footer"
@@ -30,7 +28,7 @@ const TradesHistory = ({ marketTrades, customClass }: any) => {
           >
             {t("Processing")}...
           </div>
-          <div className="dataTables_scroll">
+          <div className="dataTables_scroll px-0">
             <div
               className="dataTables_scrollHead"
               style={{
@@ -48,47 +46,53 @@ const TradesHistory = ({ marketTrades, customClass }: any) => {
                   paddingRight: "0px",
                 }}
               >
-                <table
-                  className="table dataTable  no-footer"
-                  role="grid"
-                  style={{
-                    marginLeft: "0px",
-                    width: "431.25px",
-                  }}
-                >
-                  <thead>
-                    <tr role="row">
-                      <th
-                        className="table-col price sorting_disabled"
-                        rowSpan={1}
-                        colSpan={1}
-                        style={{ width: "170.656px" }}
-                        aria-label="Price"
-                      >
-                        {t("Price")}({dashboard?.order_data?.base_coin})
-                      </th>
-                      <th
-                        className="table-col amount sorting_disabled"
-                        rowSpan={1}
-                        colSpan={1}
-                        style={{ width: "120.75px" }}
-                        aria-label="Amount"
-                      >
-                        {t("Amount")}({dashboard?.order_data?.trade_coin})
-                      </th>
-                      <th
-                        className="table-col time text-right sorting_desc"
-                        rowSpan={1}
-                        colSpan={1}
-                        style={{ width: "79.8438px" }}
-                        aria-label="Time"
-                      >
-                        {t("Time")}
-                      </th>
-                    </tr>
-                  </thead>
-                  <SellTable marketTrades={marketTrades} />
-                </table>
+                {marketTrades.length > 0 ? (
+                  <table
+                    className="table dataTable  no-footer"
+                    role="grid"
+                    style={{
+                      marginLeft: "0px",
+                      width: "431.25px",
+                    }}
+                  >
+                    <thead>
+                      <tr role="row">
+                        <th
+                          className="table-col price sorting_disabled"
+                          rowSpan={1}
+                          colSpan={1}
+                          style={{ width: "170.656px", padding: "4px" }}
+                          aria-label="Price"
+                        >
+                          {t("Price")}({dashboard?.order_data?.base_coin})
+                        </th>
+                        <th
+                          className="table-col amount sorting_disabled"
+                          rowSpan={1}
+                          colSpan={1}
+                          style={{ width: "120.75px", padding: "4px" }}
+                          aria-label="Amount"
+                        >
+                          {t("Amount")}({dashboard?.order_data?.trade_coin})
+                        </th>
+                        <th
+                          className="table-col time text-right sorting_desc"
+                          rowSpan={1}
+                          colSpan={1}
+                          style={{ width: "79.8438px", padding: "4px" }}
+                          aria-label="Time"
+                        >
+                          {t("Time")}
+                        </th>
+                      </tr>
+                    </thead>
+                    <SellTable marketTrades={marketTrades} />
+                  </table>
+                ) : (
+                  <div className="text-center mt-5">
+                    <p>{t("No data available in table")} </p>
+                  </div>
+                )}
               </div>
             </div>
             <div
