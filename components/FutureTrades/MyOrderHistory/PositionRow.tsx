@@ -4,21 +4,21 @@ import { LIMIT_ORDER, MARKET_ORDER } from "helpers/core-constants";
 
 const PositionRow = ({ list, Close, setCloseAll, index, CloseAll }: any) => {
   return (
-    <tr className="position-row p-5">
-      <td>
-        <h6 className="">{list?.profit_loss_calculation?.symbol}</h6>
-        <span>Perpatual</span>
+    <tr className="position-row">
+      <td className="pl-1">
+        <h6 className="text-12">{list?.profit_loss_calculation?.symbol}</h6>
+        <span className="text-12">Perpatual</span>
       </td>
-      <td>{list?.amount_in_trade_coin}</td>
-      <td>{list?.entry_price}</td>
-      <td>{list?.profit_loss_calculation?.market_price}</td>
-      <td>{list?.liquidation_price}</td>
-      <td>{list?.profit_loss_calculation?.margin_ratio}</td>
-      <td>
+      <td className="px-1 text-12">{list?.amount_in_trade_coin}</td>
+      <td className="px-1 text-12">{list?.entry_price}</td>
+      <td className="px-1 text-12">{list?.profit_loss_calculation?.market_price}</td>
+      <td className="px-1 text-12">{list?.liquidation_price}</td>
+      <td className="px-1 text-12">{list?.profit_loss_calculation?.margin_ratio}</td>
+      <td className="px-1 text-12">
         {list?.margin}
         {list?.profit_loss_calculation?.base_coin_type}
       </td>
-      <td>
+      <td className="px-1 text-12">
         <span
           className={
             parseFloat(list?.profit_loss_calculation?.pnl) <= 0
@@ -40,9 +40,9 @@ const PositionRow = ({ list, Close, setCloseAll, index, CloseAll }: any) => {
           {parseFloat(list?.profit_loss_calculation?.roe).toFixed(4)}%
         </div>
       </td>
-      <td className="position-container">
+      <td className="position-container pr-1">
         <span
-          className={`ml-2 ${
+          className={`ml-2 text-12 ${
             Close?.order_type === MARKET_ORDER && "text-warning"
           }`}
           onClick={() => {
@@ -58,7 +58,7 @@ const PositionRow = ({ list, Close, setCloseAll, index, CloseAll }: any) => {
           Market
         </span>
         <span
-          className={`ml-2 ${
+          className={`ml-2 text-12 ${
             Close?.order_type === LIMIT_ORDER && "text-warning"
           }`}
           onClick={() => {
@@ -78,7 +78,7 @@ const PositionRow = ({ list, Close, setCloseAll, index, CloseAll }: any) => {
             name="price"
             type="number"
             placeholder="0"
-            className=""
+            className="text-12"
             value={Close?.price}
             onChange={(e) => {
               setCloseAll({
