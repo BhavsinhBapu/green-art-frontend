@@ -11,7 +11,7 @@ const TransactionHistory = ({ transactionHistory }: any) => {
   return (
     <div>
       {" "}
-      <div className="tab-content px-2" id="ordersTabContent">
+      <div className="tab-content" style={{padding: '0 10px'}} id="ordersTabContent">
         <div
           className="tab-pane fade show active"
           id="Open-orders"
@@ -22,7 +22,7 @@ const TransactionHistory = ({ transactionHistory }: any) => {
             <table className="table">
               <thead>
                 <tr>
-                  <th scope="col">Time</th>
+                  <th scope="col" className="pl-0">Time</th>
                   <th scope="col">Type</th>
                   <th scope="col">Amount</th>
                   <th scope="col">Asset</th>
@@ -33,7 +33,7 @@ const TransactionHistory = ({ transactionHistory }: any) => {
               <tbody>
                 {transactionHistory.map((item: any, key: any) => (
                   <tr key={key}>
-                    <td>{formateData(item.created_at)}</td>
+                    <td className="pl-0">{formateData(item.created_at)}</td>
                     <td>
                       {item?.type === FUTURE_TRADE_TRANSACTION_TYPE_TRANSFER
                         ? "TRANSFERED"

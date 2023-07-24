@@ -27,7 +27,7 @@ const Position = ({ listData }: any) => {
   return (
     <div>
       {" "}
-      <div className="tab-content px-2" id="ordersTabContent">
+      <div className="tab-content" style={{padding: '0 10px'}} id="ordersTabContent">
         <div
           className="tab-pane fade show active"
           id="Open-orders"
@@ -38,7 +38,7 @@ const Position = ({ listData }: any) => {
             <table className="table">
               <thead>
                 <tr>
-                  <th scope="col">Symbol</th>
+                  <th scope="col" className="pl-0">Symbol</th>
                   <th scope="col">Size</th>
                   <th scope="col">Entry Price</th>
                   <th scope="col">Mark Price</th>

@@ -29,7 +29,7 @@ const TradeHistory = ({ tradeHistory }: any) => {
   return (
     <div>
       {" "}
-      <div className="tab-content px-2" id="ordersTabContent">
+      <div className="tab-content" style={{padding: '0 10px'}} id="ordersTabContent">
         <div
           className="tab-pane fade show active"
           id="Open-orders"
@@ -40,7 +40,7 @@ const TradeHistory = ({ tradeHistory }: any) => {
             <table className="table">
               <thead>
                 <tr>
-                  <th scope="col">Time</th>
+                  <th scope="col" className="pl-0">Time</th>
                   <th scope="col">Symbol</th>
                   <th scope="col">Fee</th>
                   <th scope="col">Side</th>
@@ -53,7 +53,7 @@ const TradeHistory = ({ tradeHistory }: any) => {
               <tbody>
                 {tradeHistory.map((item: any, index: any) => (
                   <tr key={index}>
-                    <td>{formateData(item?.created_at)}</td>
+                    <td className="pl-0">{formateData(item?.created_at)}</td>
                     <td>{item?.profit_loss_calculation?.symbol}</td>
                     <td>
                       {item?.trade_type === FUTURE_TRADE_TYPE_OPEN &&

@@ -5,7 +5,7 @@ import { LIMIT_ORDER, MARKET_ORDER } from "helpers/core-constants";
 const PositionRow = ({ list, Close, setCloseAll, index, CloseAll }: any) => {
   return (
     <tr className="position-row">
-      <td className="pl-1">
+      <td className="pl-0">
         <h6 className="text-12">{list?.profit_loss_calculation?.symbol}</h6>
         <span className="text-12">Perpatual</span>
       </td>
