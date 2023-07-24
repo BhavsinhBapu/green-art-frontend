@@ -349,9 +349,9 @@ const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
           <ul
             id="BuyTab"
             role="tablist"
-            className="nav nav-tabs inner-tabs-menu"
+            className="nav nav-tabs inner-tabs-menu gap-10"
           >
-            <li role="presentation" className="nav-item">
+            <li role="presentation" className="nav-item mr-0">
               <a
                 id="Limit-tab"
                 data-toggle="tab"
@@ -366,7 +366,7 @@ const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
                 {t("Limit")}
               </a>
             </li>
-            <li role="presentation" className="nav-item">
+            <li role="presentation" className="nav-item mr-0">
               <a
                 id="Market-tab"
                 data-toggle="tab"
@@ -381,7 +381,7 @@ const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
                 {t("Market")}
               </a>
             </li>
-            <li role="presentation" className="nav-item">
+            <li role="presentation" className="nav-item mr-0">
               <a
                 id="Market-tab"
                 data-toggle="tab"
@@ -396,7 +396,7 @@ const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
                 {t("Stop Limit")}
               </a>
             </li>
-            <li role="presentation" className="nav-item">
+            <li role="presentation" className="nav-item mr-0">
               <a
                 id="Market-tab"
                 data-toggle="tab"
@@ -478,11 +478,11 @@ const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
           <ul
             id="SellTab"
             role="tablist"
-            className="nav nav-tabs inner-tabs-menu"
+            className="nav nav-tabs inner-tabs-menu gap-10"
           >
             <li
               role="presentation"
-              className="nav-item sellBox"
+              className="nav-item sellBox mr-0"
               onClick={() => {
                 setorderType(LIMIT_ORDER);
               }}
@@ -500,7 +500,7 @@ const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
             </li>
             <li
               role="presentation"
-              className="nav-item sellBox"
+              className="nav-item sellBox mr-0"
               onClick={() => {
                 setorderType(MARKET_ORDER);
               }}
@@ -516,7 +516,7 @@ const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
                 {t("Market")}
               </a>
             </li>
-            <li role="presentation" className="nav-item sellBox">
+            <li role="presentation" className="nav-item sellBox mr-0">
               <a
                 id="Market-tab"
                 data-toggle="tab"
@@ -531,7 +531,7 @@ const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
                 {t("Stop Limit")}
               </a>
             </li>
-            <li role="presentation" className="nav-item sellBox">
+            <li role="presentation" className="nav-item sellBox mr-0">
               <a
                 id="Market-tab"
                 data-toggle="tab"

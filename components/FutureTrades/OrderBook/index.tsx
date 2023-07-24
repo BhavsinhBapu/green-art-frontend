@@ -15,7 +15,7 @@ const OrderBook = () => {
   const { settings, theme } = useSelector((state: RootState) => state.common);
 
   return (
-    <div className="trades-section">
+    <div className="trades-section mb-0">
       <div>
         <h6 className="text-white">{t("Order Book")}</h6>
       </div>

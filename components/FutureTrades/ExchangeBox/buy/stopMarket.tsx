@@ -352,7 +352,7 @@ const BuyStopMarketLimit = ({
                     </Link>
                   </div>
                 ) : (
-                  <div className="button-section-future">
+                  <div className="button-section-future gap-10">
                     <button
                       type="submit"
                       className="btn theme-btn-future"
