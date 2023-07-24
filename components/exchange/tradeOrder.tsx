@@ -21,7 +21,7 @@ const TradeOrder = ({ tradeOrder, tradeOrderHistory }: any) => {
           <table className="table">
             <thead>
               <tr>
-                <th scope="col">{t("Transaction id")}</th>
+                <th scope="col" className="pl-0">{t("Transaction id")}</th>
                 <th scope="col">
                   {" "}
                   {t("Fees")}({dashboard?.order_data?.base_coin})
@@ -42,7 +42,7 @@ const TradeOrder = ({ tradeOrder, tradeOrderHistory }: any) => {
             <tbody>
               {tradeOrderHistory?.map((order: any, index: number) => (
                 <tr key={index}>
-                  <td>{order.transaction_id}</td>
+                  <td className="pl-0">{order.transaction_id}</td>
                   <td>{parseFloat(order.fees).toFixed(8)}</td>
                   <td>{order.amount}</td>
                   <td>{order.price}</td>
