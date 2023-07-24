@@ -2,6 +2,7 @@ import ImageComponent from "components/common/ImageComponent";
 import React from "react";
 
 const GetInTouch = ({ landing, featureListdata }: any) => {
+  console.log("featureListdata", featureListdata);
   return (
     <div>
       {parseInt(landing.landing_sixth_section_status) === 1 && (
@@ -16,9 +17,18 @@ const GetInTouch = ({ landing, featureListdata }: any) => {
                 <div className="col-lg-4 col-md-6 mt-4" key={index}>
                   <a
                     href={`${
-                      feature?.feature_url !== "" ? feature?.feature_url : "#"
+                      feature?.feature_url !== "" &&
+                      feature?.feature_url != null
+                        ? feature?.feature_url
+                        : "#"
                     }`}
-                    target="_blank"
+                    target={`${
+                      feature?.feature_url !== "" &&
+                      feature?.feature_url != null
+                        ? "_blank"
+                        : "_self"
+                    }`}
+                    rel="noreferrer"
                     className="single-card"
                   >
                     <img
