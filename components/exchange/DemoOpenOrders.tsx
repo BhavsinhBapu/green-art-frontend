@@ -28,7 +28,7 @@ const DemoOpenOrders = ({ openOrders, openOrderHistory }: any) => {
         <table className="table">
           <thead>
             <tr>
-              <th scope="col">{t("Type")}</th>
+              <th scope="col" className="pl-0">{t("Type")}</th>
 
               <th scope="col">
                 {t("Amount")}({dashboard?.order_data?.trade_coin})
@@ -55,7 +55,7 @@ const DemoOpenOrders = ({ openOrders, openOrderHistory }: any) => {
               <tr key={index}>
                 <td
                   className={
-                    order.type === "sell" ? "text-danger" : "text-success"
+                    order.type === "sell" ? "text-danger pl-0" : "text-success pl-0"
                   }
                 >
                   {order.type}
