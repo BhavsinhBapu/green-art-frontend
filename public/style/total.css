@@ -15316,6 +15316,12 @@ input:checked + .gift-card-buy-slider:before {
 .order-book-section-max-h {
   max-height: 180px;
   overflow-y: auto;
+  scrollbar-width: thin;
+  -ms-overflow-style: none;
+}
+
+.order-book-section-max-h::-webkit-scrollbar {
+  display: none;
 }
 
 .card-for-markets:hover {
@@ -15456,7 +15462,7 @@ input:checked + .gift-card-buy-slider:before {
   opacity: 0.7;
 }
 
-.line-h-19{
+.line-h-19 {
   line-height: 19px;
 }
 
