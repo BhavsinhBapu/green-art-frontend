@@ -49,7 +49,7 @@ const Exchange = () => {
             <div id="dashboard">
               <div className="row">
                 <div
-                  className="col-xl-12 col-12 mt-4"
+                  className="col-xl-12 col-12"
                   style={{ border: "1px solid rgb(126 126 126 / 20%)" }}
                 >
                   <div className="cxchange-summary-wrap w-full">
