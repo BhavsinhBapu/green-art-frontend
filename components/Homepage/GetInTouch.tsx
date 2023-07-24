@@ -14,7 +14,13 @@ const GetInTouch = ({ landing, featureListdata }: any) => {
             <div className="row">
               {featureListdata?.map((feature: any, index: any) => (
                 <div className="col-lg-4 col-md-6 mt-4" key={index}>
-                  <a href="#" className="single-card">
+                  <a
+                    href={`${
+                      feature?.feature_url !== "" ? feature?.feature_url : "#"
+                    }`}
+                    target="_blank"
+                    className="single-card"
+                  >
                     <img
                       className="card-icon"
                       src={feature.feature_icon}
