@@ -83,7 +83,7 @@ const OrderBook = () => {
       </div>
       {select === 1 && (
         <>
-          <AllSellOrdersFull OpenBooksell={OpenBooksell} />
+          <AllSellOrdersFull OpenBooksell={OpenBooksell} customClss={'buy-sell-order-max-h'}/>
           <div className="trades-table-footer">
             <div className="trades-table-row">
               <span
@@ -214,7 +214,7 @@ const OrderBook = () => {
               </span>
             </div>
           </div>
-          <AllBuyOrdersFull buy={OpenBookBuy} show={38} />
+          <AllBuyOrdersFull buy={OpenBookBuy} show={38} customClss={'buy-sell-order-max-h'}/>
         </>
       )}
       {select === 3 && (
