@@ -17,7 +17,6 @@ import {
 
 export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
   const { t } = useTranslation("common");
-  console.log(responseData, "responseData");
   const { settings } = useSelector((state: RootState) => state.common);
   const [selectedNetwork, setSelectedNetwork] = React.useState(
     responseData?.data && responseData?.data[0]

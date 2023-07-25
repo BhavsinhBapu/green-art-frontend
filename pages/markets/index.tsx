@@ -66,7 +66,6 @@ export default function Index() {
     if (!data.success) {
       toast.error(data.message);
     }
-    console.log("data", data);
     setAllCurrency(data.data);
   };
   const getMarketCardDatas = async (currency_type: any) => {

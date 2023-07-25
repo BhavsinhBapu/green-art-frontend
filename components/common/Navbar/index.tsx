@@ -86,7 +86,6 @@ const Navbar = ({
     }
   }, [router.locale]);
 
-  console.log("router", router);
 
   return (
     <>

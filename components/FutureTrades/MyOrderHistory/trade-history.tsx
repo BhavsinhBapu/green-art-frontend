@@ -10,7 +10,6 @@ import {
 import React from "react";
 
 const TradeHistory = ({ tradeHistory }: any) => {
-  console.log(tradeHistory, "tradeHistory");
   const condition = (item: any) => {
     if (item.side === 1) {
       if (item?.take_profit_price > 0) {

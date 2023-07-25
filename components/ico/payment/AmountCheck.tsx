@@ -3,7 +3,6 @@ import React from "react";
 
 const AmountCheck = ({ phaseData, data }: any) => {
   const { t } = useTranslation("common");
-  console.log(data, "datadata");
   return (
     <div>
       <div className="mt-3">

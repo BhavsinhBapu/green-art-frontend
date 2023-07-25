@@ -21,7 +21,6 @@ const options = [
 const limit = 15;
 
 export default function Index({ data }: any) {
-  console.log(data, "datadatadatadatadatadatadata");
   const router = useRouter();
   const [allGiftCardAds, setAllGiftCardAds] = useState<any>({});
   const [settings, setSettings] = useState<any>({});

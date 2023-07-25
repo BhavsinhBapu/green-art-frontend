@@ -13,7 +13,6 @@ const TpslModal = ({ uid }: any) => {
   const toggle = () => {
     setIsModalOpen(!isModalOpen);
   };
-  console.log(details, "detailsdetailsdetails");
   const getTPSLDetails = async () => {
     setLoading(true);
     const { data } = await getTpslFuture(uid);

@@ -13,7 +13,6 @@ export default function TradeSections() {
   const router = useRouter();
   useEffect(() => {
     getTradeSectionData();
-    console.log("sjngns");
   }, [selectType]);
   useEffect(() => {
     listenMessagesFutureMarketData(setTradeDatas);

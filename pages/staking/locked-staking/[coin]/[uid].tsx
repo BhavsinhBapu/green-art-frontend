@@ -45,7 +45,6 @@ const LockedStaking = () => {
     if (response.success) {
       setTotalBonus(response?.data?.total_bonus);
     }
-    console.log(response, "responseresponse");
   };
   useEffect(() => {
     setTimeout(() => {

@@ -58,7 +58,6 @@ const Index = () => {
       setPageLoading
     );
   }, []);
-  console.log(launchpadListDetails.data, "initialData");
   return (
     <div>
       <div className="page-main-content">

@@ -29,7 +29,6 @@ const LayoutTwo = ({ ThemeColor }: any) => {
 
   useEffect(() => {
     setShow(false);
-    console.log(ThemeColor, "ThemeColor");
     setInterval(() => {
       setShow(true);
     }, 400);

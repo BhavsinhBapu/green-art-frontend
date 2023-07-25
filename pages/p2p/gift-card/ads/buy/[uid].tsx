@@ -68,7 +68,6 @@ const Trading = () => {
     formData.append("gift_card_order_id", details?.order?.id);
     message && formData.append("message", message);
     file?.name && formData.append("file", file);
-    console.log(file, "This is a file");
     setMessage("");
     setFile(null);
     await sendMessageGift(formData);
@@ -117,7 +116,6 @@ const Trading = () => {
   const getDetails = () => {
     getGiftCardDetailsAction(uid.toString(), setStep, setLoading, dispatch);
   };
-  console.log(details);
   const handleFileChange = (event: any) => {
     const fileObj = event.target.files && event.target.files[0];
     if (!fileObj) {

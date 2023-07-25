@@ -28,12 +28,9 @@ const PersonaComponent = ({ personaDetails, setPersonaVerified }: any) => {
         client.open();
       },
       //@ts-ignore
-      onStart: (inquiryId) => {
-        console.log(`Started inquiry ${inquiryId}`);
-      },
+      onStart: (inquiryId) => {},
       //@ts-ignore
       onComplete: (inquiryId) => {
-        console.log(inquiryId, "inquiryIdinquiryId");
         ThirdPartyKycVerifiedAction(
           String(inquiryId.inquiryId),
           setPersonaVerified
@@ -43,7 +40,6 @@ const PersonaComponent = ({ personaDetails, setPersonaVerified }: any) => {
       onEvent: (name, meta) => {
         switch (name) {
           case "start":
-            console.log(`Received event: start`);
             break;
           default:
             console.log(
@@ -68,7 +64,8 @@ const PersonaComponent = ({ personaDetails, setPersonaVerified }: any) => {
             <h2>{t("Verify your identity")}</h2>
             <button
               onClick={createClient}
-              className="btn nimmu-user-sibmit-button mt-5 w-25 mx-auto mb-5">
+              className="btn nimmu-user-sibmit-button mt-5 w-25 mx-auto mb-5"
+            >
               Start
             </button>
           </div>

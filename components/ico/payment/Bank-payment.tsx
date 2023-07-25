@@ -34,7 +34,6 @@ const BankPayment = ({ pageInfo, initialData, phaseData }: any) => {
     //@ts-ignore
     inputRef.current.click();
   };
-  console.log(pageInfo, "pageInfopageInfopageInfo");
   return (
     <div className="boxShadow mt-3">
       <form
@@ -90,7 +89,6 @@ const BankPayment = ({ pageInfo, initialData, phaseData }: any) => {
                 (bank: any) => parseInt(bank.id) === parseInt(e.target.value)
               );
               setSelectedBank(findBank);
-              console.log(findBank, "findBank");
             }}
           >
             <option value="">{t("Select Bank")}</option>

@@ -6,7 +6,6 @@ import { WalletWithdrawProcessApiAction } from "state/actions/wallet";
 
 const MyModalsPayment = ({ modalData }: any) => {
   const { t } = useTranslation("common");
-  console.log(modalData, "modalDatamodalData");
   return (
     <div
       className="modal fade"

@@ -76,7 +76,6 @@ const TransactionHistory: NextPage = () => {
       setHistory([]);
     };
   }, []);
-  console.log(history, "historyhistoryhistory");
   return (
     <>
       <div className="page-wrap rightMargin">

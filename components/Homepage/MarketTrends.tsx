@@ -205,7 +205,6 @@ const MarketTrends = ({
                                     "trade_coin_id",
                                     item?.child_coin_id
                                   );
-                                  console.log("item", item);
                                   // await localStorage.setItem(
                                   //   "current_pair",
                                   //   item?.child_coin_name +

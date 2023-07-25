@@ -39,7 +39,6 @@ export const AddPostTwo = ({
     setSelectedPaymentTime(e);
   };
   useEffect(() => {
-    console.log(data, "datadatadatadata");
     let payment_method: any = [];
     let payment_time: any = [];
     data?.data?.payment_method?.map((asset: any) => {
@@ -58,8 +57,6 @@ export const AddPostTwo = ({
     });
     setPaymentOption(payment_method);
     setPaymentTime(payment_time);
-    console.log(payment_time, "payment_time");
-    console.log(payment_method, "payment_method");
   }, [data.data.payment_method, data.data.payment_time]);
 
   return (

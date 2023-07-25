@@ -30,7 +30,6 @@ const ReferralEarningTrade: NextPage = () => {
   const [processing, setProcessing] = useState<boolean>(false);
   const [history, setHistory] = useState<any>([]);
   const [stillHistory, setStillHistory] = useState<any>([]);
-  console.log(stillHistory, "stillHistory");
 
   const LinkTopaginationString = (page: any) => {
     const url = page.url.split("?")[1];

@@ -7,7 +7,6 @@ const OfferRow = ({ offers, item, isLoggedIn }: any) => {
   useEffect(() => {
     setSelectedData(offers?.offer_list[item][0]);
   }, []);
-  console.log(selectedData, "selectedData");
   return (
     <tr className="tableRow">
       <td>
@@ -36,7 +35,6 @@ const OfferRow = ({ offers, item, isLoggedIn }: any) => {
               key={index}
               onClick={() => {
                 setSelectedDays(index);
-                console.log(offer, "offeroffer");
                 setSelectedData(offer);
               }}
             >

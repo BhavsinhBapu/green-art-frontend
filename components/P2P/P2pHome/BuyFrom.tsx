@@ -54,7 +54,6 @@ export const BuyFrom = ({
     );
     setPaymethods(PaymentMethods);
   }, [details]);
-  console.log(details, "details");
   return (
     <div className="col-12 p-5 boxShadow mt-5 mb-5">
       <div className="mt-3 mb-3">

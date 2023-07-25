@@ -32,7 +32,6 @@ export const OrderTable = ({ actionFunction, filter = false }: any) => {
   };
   const getFilterData = async () => {
     const response = await myP2pOrderListData();
-    console.log(response.data.coins, "RESPONSE");
     setfilterData(response.data);
   };
   useEffect(() => {

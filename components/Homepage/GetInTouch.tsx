@@ -2,7 +2,6 @@ import ImageComponent from "components/common/ImageComponent";
 import React from "react";
 
 const GetInTouch = ({ landing, featureListdata }: any) => {
-  console.log("featureListdata", featureListdata);
   return (
     <div>
       {parseInt(landing.landing_sixth_section_status) === 1 && (
