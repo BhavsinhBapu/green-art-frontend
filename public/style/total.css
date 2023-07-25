@@ -3036,7 +3036,7 @@ div.dataTables_wrapper div.dataTables_filter {
   text-align: center !important;
 }
 .dataTables_scroll {
-  padding: 0 10px;
+  padding: 15px 10px;
 }
 .dataTables_wrapper .dataTables_length,
 .dataTables_wrapper .dataTables_filter,
@@ -11805,7 +11805,7 @@ table.dataTable thead tr th {
   input {
   width: 100%;
   border: none;
-  background-color: var(--background-color-hover);
+  background-color: var(--main-background-color);
   margin-left: 0;
   color: rgba(183, 189, 198, 1);
   padding: 5px 15px;
