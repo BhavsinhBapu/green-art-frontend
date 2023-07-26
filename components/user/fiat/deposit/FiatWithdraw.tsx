@@ -16,41 +16,57 @@ import {
   getFiatWithdrawalRateAction,
 } from "state/actions/fiat-deposit-withawal";
 import SectionLoading from "components/common/SectionLoading";
+import {
+  getFiatWithdrawDataApi,
+  submitFiatWithdrawDataApi,
+} from "service/fiat-wallet";
+import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 
-const FiatWithdraw = () => {
+const FiatWithdraw = ({ currency_type }: any) => {
   const { t } = useTranslation("common");
+  const router = useRouter();
   const [loading, setLoading]: any = useState<any>(false);
-  const [initialData, setInitialData]: any = useState<any>([]);
-  const [rateCred, setRateCred]: any = useState<any>({
-    wallet_id: "",
-    currency: "",
-    amount: "",
-    type: "fiat",
-    bank_id: "",
-  });
-  const [converted_value, setConverted_value] = useState(0);
-  const [fees, setFees] = useState(0);
-  const [netAmount, setNetAmount] = useState(0);
-  const [currency, setcurrency] = useState("");
-  const getRate = async () => {
-    if (rateCred.wallet_id && rateCred.currency && rateCred.amount) {
-      const response = await getFiatWithdrawalRateAction({
-        wallet_id: rateCred.wallet_id,
-        currency: rateCred.currency,
-        amount: rateCred.amount,
-      });
-      setConverted_value(response.data.convert_amount);
-      setFees(response.data.fees);
-      setNetAmount(response.data.net_amount);
-      setcurrency(response.data.currency);
-    }
-  };
+  const [banks, setBanks] = useState<any>([]);
+  const [amount, setAmount] = useState<any>();
+  const [selectedBankId, setSelectedBankId] = useState<any>();
+
   useEffect(() => {
-    getRate();
-  }, [rateCred]);
-  useEffect(() => {
-    apiFiatWithdrawalAction(setInitialData, setLoading);
+    getFiatWithdrawData();
   }, []);
+  const getFiatWithdrawData = async () => {
+    setLoading(true);
+    const data = await getFiatWithdrawDataApi();
+    if (!data.success) {
+      toast.error(data.message);
+      router.push(`/user/my-wallet`);
+      setLoading(false);
+
+      return;
+    }
+    setBanks(data.data.my_bank);
+    setLoading(false);
+  };
+
+  const fiatSubmitFormHandler = async (event: any) => {
+    event.preventDefault();
+    setLoading(true);
+
+    const data = await submitFiatWithdrawDataApi(
+      currency_type,
+      amount,
+      selectedBankId
+    );
+
+    if (!data.success) {
+      toast.error(data.message);
+      setLoading(false);
+      return;
+    }
+    setLoading(false);
+    toast.success(data.message);
+    router.push(`/user/wallet-history?type=withdrawal`);
+  };
   return (
     <>
       <div className="page-wrap">
@@ -70,39 +86,19 @@ const FiatWithdraw = () => {
                       {loading ? (
                         <SectionLoading />
                       ) : (
-                        <form
-                          className="row"
-                          onSubmit={(e) => {
-                            e.preventDefault();
-                            fiatWithdrawProcessAction(rateCred, setLoading);
-                          }}
-                        >
+                        <form className="row" onSubmit={fiatSubmitFormHandler}>
                           <div className="col-md-6 form-input-div">
                             <label className="ico-label-box" htmlFor="">
                               {t("Select Wallet")}
                             </label>
-                            <select
-                              name="wallet"
-                              className={`ico-input-box `}
+                            <input
+                              type="text"
                               required
-                              onChange={(e: any) => {
-                                setRateCred({
-                                  ...rateCred,
-                                  wallet_id: e.target.value,
-                                });
-                              }}
-                            >
-                              <option value="">
-                                {t("Select Your Wallet")}
-                              </option>
-                              {initialData?.my_wallet?.map(
-                                (item: any, index: number) => (
-                                  <option value={item.encryptId} key={index}>
-                                    {item.coin_type}
-                                  </option>
-                                )
-                              )}
-                            </select>
+                              name="amount"
+                              className={`ico-input-box`}
+                              readOnly
+                              value={currency_type}
+                            />
                           </div>
 
                           <div className="col-md-6 form-input-div">
@@ -112,15 +108,10 @@ const FiatWithdraw = () => {
                             <input
                               type="text"
                               required
-                              onChange={(e) => {
-                                setRateCred({
-                                  ...rateCred,
-                                  amount: e.target.value,
-                                });
-                                // getFiatWithdrawalRateAction(rateCred);
-                              }}
                               name="amount"
                               className={`ico-input-box`}
+                              value={amount}
+                              onChange={(e) => setAmount(e.target.value)}
                             />
                           </div>
 
@@ -132,21 +123,16 @@ const FiatWithdraw = () => {
                               name="bank_list"
                               className={`ico-input-box `}
                               required
-                              onChange={(e) => {
-                                setRateCred({
-                                  ...rateCred,
-                                  bank_id: e.target.value,
-                                });
-                              }}
+                              onChange={(e) =>
+                                setSelectedBankId(e.target.value)
+                              }
                             >
                               <option value="">{t("Select Bank List")}</option>
-                              {initialData?.my_bank?.map(
-                                (item: any, index: number) => (
-                                  <option value={item.id} key={index}>
-                                    {item.bank_name}
-                                  </option>
-                                )
-                              )}
+                              {banks?.map((item: any, index: number) => (
+                                <option value={item.id} key={index}>
+                                  {item.bank_name}
+                                </option>
+                              ))}
                             </select>
                           </div>
                           <div className="col-md-12 form-input-div">

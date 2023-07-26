@@ -25,7 +25,7 @@ export default function Index() {
 
   if (fiatType === "") return <SectionLoading />;
   else if (fiatType === "deposit") return <FiatDeposit />;
-  else if (fiatType === "withdraw") return <FiatWithdraw />;
+  else if (fiatType === "withdraw") return <FiatWithdraw currency_type={router?.query?.currency}/>;
   else return <NoItemFound />;
 }
 
