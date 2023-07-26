@@ -73,6 +73,18 @@ const MyWallet: NextPage = () => {
     };
   }, []);
 
+  const setDepositCryptoOrFiatUrl = (item: any) => {
+    if (item.currency_type == 1) {
+      return `/user/my-wallet/deposit?type=deposit&coin_id=${item.id}`;
+    }
+    return `/user/fiat/deposit?type=deposit&coin_id=${item.id}&currency=${item.coin_type}`;
+  };
+  const setWithdrawCryptoOrFiatUrl = (item: any) => {
+    if (item.currency_type == 1) {
+      return `/user/my-wallet/withdraw?type=withdraw&coin_id=${item.id}`;
+    }
+    return `/user/fiat/withdraw?type=withdraw&coin_id=${item.id}&currency=${item.coin_type}`;
+  };
   return (
     <>
       <div className="page-wrap">
@@ -238,13 +250,7 @@ const MyWallet: NextPage = () => {
                                     <ul>
                                       {item.is_deposit === 1 && (
                                         <Link
-                                          href={`/user/${
-                                            item.currency_type == 1
-                                              ? "my-wallet"
-                                              : "fiat"
-                                          }/deposit?type=deposit&coin_id=${
-                                            item.id
-                                          }`}
+                                          href={setDepositCryptoOrFiatUrl(item)}
                                         >
                                           <li
                                             className="toolTip relative"
@@ -256,13 +262,9 @@ const MyWallet: NextPage = () => {
                                       )}
                                       {item.is_withdrawal === 1 && (
                                         <Link
-                                          href={`/user/${
-                                            item.currency_type == 1
-                                              ? "my-wallet"
-                                              : "fiat"
-                                          }/withdraw?type=withdraw&coin_id=${
-                                            item.id
-                                          }`}
+                                          href={setWithdrawCryptoOrFiatUrl(
+                                            item
+                                          )}
                                         >
                                           <li
                                             className="toolTip relative"
