@@ -238,7 +238,13 @@ const MyWallet: NextPage = () => {
                                     <ul>
                                       {item.is_deposit === 1 && (
                                         <Link
-                                          href={`/user/my-wallet/deposit?type=deposit&coin_id=${item.id}`}
+                                          href={`/user/${
+                                            item.currency_type == 1
+                                              ? "my-wallet"
+                                              : "fiat"
+                                          }/deposit?type=deposit&coin_id=${
+                                            item.id
+                                          }`}
                                         >
                                           <li
                                             className="toolTip relative"
@@ -250,7 +256,13 @@ const MyWallet: NextPage = () => {
                                       )}
                                       {item.is_withdrawal === 1 && (
                                         <Link
-                                          href={`/user/my-wallet/withdraw?type=withdraw&coin_id=${item.id}`}
+                                          href={`/user/${
+                                            item.currency_type == 1
+                                              ? "my-wallet"
+                                              : "fiat"
+                                          }/withdraw?type=withdraw&coin_id=${
+                                            item.id
+                                          }`}
                                         >
                                           <li
                                             className="toolTip relative"
