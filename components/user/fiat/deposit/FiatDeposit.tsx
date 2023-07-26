@@ -35,6 +35,7 @@ import { useRouter } from "next/router";
 import SelectFiatDepositMethod from "components/deposit/SelectFiatDepositMethod";
 import FiatPaypalSection from "components/deposit/FiatPaypalSection";
 import FiatStripeDeposit from "components/deposit/FiatStripeDeposit";
+import FiatPaystack from "components/deposit/FiatPaystack";
 
 const FiatDeposit = ({ currency_type }: any) => {
   const router = useRouter();
@@ -134,6 +135,13 @@ const FiatDeposit = ({ currency_type }: any) => {
                               <FiatPaypalSection
                                 method_id={selectedMethods.method_id}
                                 banks={banks}
+                                currency_type={currency_type}
+                              />
+                            )}
+
+                            {parseInt(selectedMethods.method) === PAYSTACK && (
+                              <FiatPaystack
+                                method_id={selectedMethods.method_id}
                                 currency_type={currency_type}
                               />
                             )}
