@@ -17,3 +17,13 @@ export const submitFiatWithdrawDataApi = async (
   });
   return data;
 };
+
+export const getFiatDepositDataApi = async () => {
+  const { data } = await request.get(`wallet-currency-deposit`);
+  return data;
+};
+
+export const submitFiatWalletDepositApi = async (credential: any) => {
+  const { data } = await request.post("/wallet-currency-deposit", credential);
+  return data;
+};

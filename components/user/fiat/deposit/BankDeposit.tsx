@@ -15,7 +15,8 @@ import { RootState } from "state/store";
 // import DepositGoogleAuth from "./deposit-g2fa";
 import BankDetails from "components/deposit/bankDetails";
 import DepositGoogleAuth from "components/deposit/deposit-g2fa";
-const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
+import { submitFiatWalletDepositApi } from "service/fiat-wallet";
+const BankDeposit = ({ currency_type, method_id, banks }: any) => {
   const { t } = useTranslation("common");
   const inputRef = useRef(null);
   const { settings } = useSelector((state: RootState) => state.common);
@@ -42,81 +43,64 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
     event;
     setDoc(event.target.files[0]);
   };
-  const [calculatedValue, setCalculatedValue] = useState<any>({
-    calculated_amount: 0,
-    rate: 0,
-  });
 
   const [errorMessage, setErrorMessage] = React.useState({
     status: false,
     message: "",
   });
-  const CheckG2faEnabled = async () => {
-    const { data } = await UserSettingsApi();
-    const { user } = data;
-    if (
-      user.google2fa !== 1 &&
-      parseInt(settings.currency_deposit_2fa_status) === 1
-    ) {
-      setErrorMessage({
-        status: true,
-        message: t("Google 2FA is not enabled, Please enable Google 2FA fist"),
-      });
-    }
-  };
+  // const CheckG2faEnabled = async () => {
+  //   const { data } = await UserSettingsApi();
+  //   const { user } = data;
+  //   if (
+  //     user.google2fa !== 1 &&
+  //     parseInt(settings.currency_deposit_2fa_status) === 1
+  //   ) {
+  //     setErrorMessage({
+  //       status: true,
+  //       message: t("Google 2FA is not enabled, Please enable Google 2FA fist"),
+  //     });
+  //   }
+  // };
   const [credential, setCredential] = useState<any>({
-    wallet_id: null,
     payment_method_id: method_id ? parseInt(method_id) : null,
     amount: 0,
-    currency: null,
+    currency: currency_type,
     bank_id: null,
-    code: "",
   });
   const router = useRouter();
   const [bankInfo, setBankInfo] = useState({});
   const [doc, setDoc] = useState(null);
-  const getCurrencyRate = async () => {
-    if (
-      credential.wallet_id &&
-      credential.payment_method_id &&
-      credential.amount
-    ) {
-      const response = await getCurrencyDepositRate(credential);
-      setCalculatedValue(response.data);
-    }
-  };
-  const convertCurrency = async (credential: any) => {
-    if (
-      credential.wallet_id &&
-      credential.payment_method_id &&
-      credential.amount &&
-      credential.currency &&
-      credential.bank_id &&
-      doc
-    ) {
-      const formData: any = new FormData();
-      formData.append("wallet_id", credential.wallet_id);
-      formData.append("payment_method_id", credential.payment_method_id);
-      formData.append("amount", credential.amount);
-      formData.append("currency", credential.currency);
-      formData.append("bank_id", credential.bank_id);
-      formData.append("bank_receipt", doc);
 
-      const res = await currencyDepositProcess(formData);
-      if (res.success) {
-        toast.success(res.message);
-        router.push("/user/currency-deposit-history");
-      } else {
-        toast.error(res.message);
-      }
-    } else {
+  const submitFiatWalletDeposit = async (credential: any) => {
+    if (
+      !credential.payment_method_id ||
+      !credential.amount ||
+      !credential.currency ||
+      !credential.bank_id ||
+      !doc
+    ) {
       toast.error(t("Please provide all information's"));
+      return;
+    }
+
+    const formData: any = new FormData();
+    formData.append("payment_method_id", credential.payment_method_id);
+    formData.append("amount", credential.amount);
+    formData.append("currency", credential.currency);
+    formData.append("bank_id", credential.bank_id);
+    formData.append("bank_receipt", doc);
+
+    const res = await submitFiatWalletDepositApi(formData);
+    if (res.success) {
+      toast.success(res.message);
+      router.push("/user/wallet-history?type=deposit");
+    } else {
+      toast.error(res.message);
     }
   };
-  useEffect(() => {
-    getCurrencyRate();
-    CheckG2faEnabled();
-  }, [credential]);
+  // useEffect(() => {
+  //   CheckG2faEnabled();
+  // }, [credential]);
   return (
     <div>
       <div className="cp-user-title mt-5 mb-4">
@@ -131,7 +115,6 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
                   <div className="swap-wrap">
                     <div className="swap-wrap-top">
                       <label>{t("Enter amount")}</label>
-                      <span className="available">{t("Select currency")}</span>
                     </div>
                     <div className="swap-input-wrap">
                       <div className="form-amount">
@@ -149,25 +132,12 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
                         />
                       </div>
                       <div className="cp-select-area">
-                        <select
-                          className="form-control border-0 ticketFilterBg"
-                          id="currency-one"
-                          onChange={(e) => {
-                            setCredential({
-                              ...credential,
-                              currency: e.target.value,
-                            });
-                          }}
-                        >
-                          <option value="" selected disabled hidden>
-                            {t("Select one")}
-                          </option>
-                          {currencyList.map((currency: any, index: any) => (
-                            <option value={currency.code} key={index}>
-                              {currency.name}
-                            </option>
-                          ))}
-                        </select>
+                        <input
+                          type="text"
+                          className="form-control border-0"
+                          value={currency_type}
+                          readOnly
+                        />
                       </div>
                     </div>
                   </div>
@@ -176,61 +146,7 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
             </div>
           </div>
         </div>
-        {/* <div className="col-lg-12">
-          <div className="">
-            <div className="swap-area">
-              <div className="swap-area-top">
-                <div className="form-group">
-                  <div className="swap-wrap mt-3">
-                    <div className="swap-wrap-top">
-                      <label>{t("Converted amount")}</label>
-                      <span className="available">{t("Select wallet")}</span>
-                    </div>
-                    <div className="swap-input-wrap">
-                      <div className="form-amount">
-                        <input
-                          type="number"
-                          className="form-control border-0"
-                          id="amount-one"
-                          disabled
-                          value={calculatedValue.calculated_amount}
-                          placeholder={t("Please enter 10 -2400000")}
-                          onChange={(e) => {
-                            setCredential({
-                              ...credential,
-                              amount: e.target.value,
-                            });
-                          }}
-                        />
-                      </div>
-                      <div className="cp-select-area">
-                        <select
-                          className="form-control border-0 ticketFilterBg"
-                          id="currency-one"
-                          onChange={(e) => {
-                            setCredential({
-                              ...credential,
-                              wallet_id: e.target.value,
-                            });
-                          }}
-                        >
-                          <option value="" selected disabled hidden>
-                            {t("Select one")}
-                          </option>
-                          {walletlist.map((wallet: any, index: any) => (
-                            <option value={wallet.id} key={index}>
-                              {wallet.coin_type}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> */}
+
         <div className="col-lg-12 my-3">
           <div className="">
             <span className="file-lable">{t("Select Bank")}</span>
@@ -291,15 +207,15 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
               />
             </div>
           </div>
-          <DepositGoogleAuth
-            convertCurrency={convertCurrency}
+          {/* <DepositGoogleAuth
+            submitFiatWalletDeposit={submitFiatWalletDeposit}
             credential={credential}
             setCredential={setCredential}
-          />
+          /> */}
           {errorMessage.status && (
             <div className="alert alert-danger">{errorMessage.message}</div>
           )}
-          {parseInt(settings.currency_deposit_2fa_status) === 1 ? (
+          {/* {parseInt(settings.currency_deposit_2fa_status) === 1 ? (
             <button
               className="primary-btn-outline w-100 mt-5"
               type="button"
@@ -315,12 +231,22 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
               type="button"
               disabled={errorMessage.status === true}
               onClick={() => {
-                convertCurrency(credential);
+                submitFiatWalletDeposit(credential);
               }}
             >
               {t("Deposit")}
             </button>
-          )}
+          )} */}
+          <button
+            className="primary-btn-outline w-100 mt-5"
+            type="button"
+            disabled={errorMessage.status === true}
+            onClick={() => {
+              submitFiatWalletDeposit(credential);
+            }}
+          >
+            {t("Deposit")}
+          </button>
         </div>
       </div>
     </div>

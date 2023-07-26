@@ -29,52 +29,50 @@ import Footer from "components/common/footer";
 import FiatSidebar from "layout/fiat-sidebar";
 import Paystack from "components/deposit/paystack";
 import BankDeposit from "components/user/fiat/deposit/BankDeposit";
+import { getFiatDepositDataApi } from "service/fiat-wallet";
+import { toast } from "react-toastify";
+import { useRouter } from "next/router";
+import SelectFiatDepositMethod from "components/deposit/SelectFiatDepositMethod";
 
-const FiatDeposit = () => {
+const FiatDeposit = ({ currency_type }: any) => {
+  const router = useRouter();
   const { t } = useTranslation("common");
   const [loading, setLoading] = useState(false);
   const { settings } = useSelector((state: RootState) => state.common);
-  const [faqs, setFaqs] = useState([]);
-  const [fullScreen, setFullScreen] = useState(false);
-  const [selectedMethod, setSelectedMethod] = useState<any>({
+  const [methods, setMethods] = useState<any>();
+  const [banks, setBanks] = useState<any>([]);
+
+  const [selectedMethods, setSelectedMethods] = useState<any>({
     method: null,
     method_id: null,
   });
 
-  const [depositInfo, setDepositInfo] = useState<any>();
-  const getDepositInfo = async () => {
+  useEffect(() => {
+    getFiatDepositData();
+  }, []);
+  const getFiatDepositData = async () => {
     setLoading(true);
-    const response = await currencyDeposit();
-    const responseFaq = await getFaqList();
-    let tempFaq: any = [];
-    responseFaq.data.data.map((faq: any) => {
-      if (faq.faq_type_id === FAQ_TYPE_DEPOSIT) {
-        tempFaq.push(faq);
-      }
-    });
-    setFaqs(tempFaq);
 
-    if (parseInt(settings.currency_deposit_faq_status) === 1) {
-      setFullScreen(true);
-    } else if (tempFaq.length === 0) {
-      setFullScreen(true);
+    const data = await getFiatDepositDataApi();
+
+    if (!data.success) {
+      toast.error(data.message);
+      router.push(`/user/my-wallet`);
+      setLoading(false);
+
+      return;
     }
-    setDepositInfo(response.data);
-    setSelectedMethod({
+    setBanks(data.data.banks);
+    setMethods(data.data.payment_methods);
+    setSelectedMethods({
       method:
-        response?.data?.payment_methods[0] &&
-        response?.data?.payment_methods[0].payment_method,
+        data?.data?.payment_methods[0] &&
+        data?.data?.payment_methods[0].payment_method,
       method_id:
-        response?.data?.payment_methods[0] &&
-        response?.data?.payment_methods[0].id,
+        data?.data?.payment_methods[0] && data?.data?.payment_methods[0].id,
     });
     setLoading(false);
   };
-  useEffect(() => {
-    if (Object.keys(settings).length > 0) {
-      getDepositInfo();
-    }
-  }, [settings]);
   return (
     <>
       <div className="page-wrap">
@@ -92,77 +90,64 @@ const FiatDeposit = () => {
                 <div className=" bank-section">
                   <div className="">
                     <div className="deposit-conatiner">
-                      {selectedMethod.method && (
-                        <div className="cp-user-title">
-                          <h4>{t("Select method")}</h4>
-                        </div>
-                      )}
+                      <div className="cp-user-title">
+                        <h4>{t("Select method")}</h4>
+                      </div>
 
-                      <SelectDeposit
-                        setSelectedMethod={setSelectedMethod}
-                        depositInfo={depositInfo}
-                        selectedMethod={selectedMethod}
+                      <SelectFiatDepositMethod
+                        setSelectedMethods={setSelectedMethods}
+                        methods={methods}
+                        selectedMethods={selectedMethods}
                       />
                       <div className="row">
                         {loading ? (
                           <SectionLoading />
                         ) : (
-                          <div
-                            className={`${
-                              fullScreen === false
-                                ? "col-lg-8 col-sm-12"
-                                : "col-lg-12 col-sm-12"
-                            }`}
-                          >
-                            {!loading && !selectedMethod.method ? (
+                          <div className={`col-lg-12 col-sm-12`}>
+                            {!loading && !selectedMethods.method ? (
                               <div className="cp-user-title text-center  p-5">
                                 <h4>{t("No Avaiable payment method")}</h4>
                               </div>
                             ) : (
                               ""
                             )}
-                            {parseInt(selectedMethod.method) ===
-                            WALLET_DEPOSIT ? (
-                              <WalletDeposit
-                                walletlist={depositInfo.wallet_list}
-                                method_id={selectedMethod.method_id}
+                            {parseInt(selectedMethods.method) ===
+                              BANK_DEPOSIT && (
+                              <BankDeposit
+                                method_id={selectedMethods.method_id}
+                                banks={banks}
+                                currency_type={currency_type}
                               />
-                            ) : parseInt(selectedMethod.method) ===
+                            )}
+
+                            {/* {parseInt(selectedMethods.method) ===
                               BANK_DEPOSIT ? (
                               <BankDeposit
-                                currencyList={depositInfo.currency_list}
-                                walletlist={depositInfo.wallet_list}
-                                method_id={selectedMethod.method_id}
-                                banks={depositInfo.banks}
+                                method_id={selectedMethods.method_id}
+                                banks={banks}
                               />
-                            ) : parseInt(selectedMethod.method) === STRIPE ? (
+                            ) : parseInt(selectedMethods.method) === STRIPE ? (
                               <StripeDeposit
                                 currencyList={depositInfo.currency_list}
                                 walletlist={depositInfo.wallet_list}
-                                method_id={selectedMethod.method_id}
+                                method_id={selectedMethods.method_id}
                                 banks={depositInfo.banks}
                               />
-                            ) : parseInt(selectedMethod.method) === PAYSTACK ? (
+                            ) : parseInt(selectedMethods.method) === PAYSTACK ? (
                               <Paystack
                                 walletlist={depositInfo.wallet_list}
-                                method_id={selectedMethod.method_id}
+                                method_id={selectedMethods.method_id}
                               />
-                            ) : parseInt(selectedMethod.method) === PAYPAL ? (
-                              // <PaypalButtons />
+                            ) : parseInt(selectedMethods.method) === PAYPAL ? (
                               <PaypalSection
                                 currencyList={depositInfo.currency_list}
                                 walletlist={depositInfo.wallet_list}
-                                method_id={selectedMethod.method_id}
+                                method_id={selectedMethods.method_id}
                                 banks={depositInfo.banks}
                               />
                             ) : (
                               ""
-                            )}
-                          </div>
-                        )}
-                        {fullScreen === false && loading === false && (
-                          <div className="col-lg-4 col-sm-12 mt-4">
-                            <DepositFaq faqs={faqs} />
+                            )} */}
                           </div>
                         )}
                       </div>
