@@ -33,6 +33,8 @@ import { getFiatDepositDataApi } from "service/fiat-wallet";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 import SelectFiatDepositMethod from "components/deposit/SelectFiatDepositMethod";
+import FiatPaypalSection from "components/deposit/FiatPaypalSection";
+import FiatStripeDeposit from "components/deposit/FiatStripeDeposit";
 
 const FiatDeposit = ({ currency_type }: any) => {
   const router = useRouter();
@@ -114,6 +116,22 @@ const FiatDeposit = ({ currency_type }: any) => {
                             {parseInt(selectedMethods.method) ===
                               BANK_DEPOSIT && (
                               <BankDeposit
+                                method_id={selectedMethods.method_id}
+                                banks={banks}
+                                currency_type={currency_type}
+                              />
+                            )}
+
+                            {parseInt(selectedMethods.method) === STRIPE && (
+                              <FiatStripeDeposit
+                                method_id={selectedMethods.method_id}
+                                banks={banks}
+                                currency_type={currency_type}
+                              />
+                            )}
+
+                            {parseInt(selectedMethods.method) === PAYPAL && (
+                              <FiatPaypalSection
                                 method_id={selectedMethods.method_id}
                                 banks={banks}
                                 currency_type={currency_type}
