@@ -21,6 +21,10 @@ const DepositHistory: NextPage = () => {
   const { t } = useTranslation("common");
   const [search, setSearch] = useState<any>("");
   const [processing, setProcessing] = useState<boolean>(false);
+  const [selectedType, setSelectedType] = useState({
+    id: 1,
+    name: "Crypto",
+  });
   const [history, setHistory] = useState<any>([]);
   const [stillHistory, setStillHistory] = useState<any>([]);
   const LinkTopaginationString = (page: any) => {
@@ -47,6 +51,16 @@ const DepositHistory: NextPage = () => {
       );
     }
   };
+  const walletTypes = [
+    {
+      id: 1,
+      name: "Crypto",
+    },
+    {
+      id: 2,
+      name: "Fiat",
+    },
+  ];
   const columns = [
     {
       Header: t("Created At"),
@@ -102,65 +116,90 @@ const DepositHistory: NextPage = () => {
               </div>
             </div>
 
-            <div className="asset-balances-area">
-              {processing ? (
-                <SectionLoading />
-              ) : (
-                <div className="asset-balances-left">
-                  <div className="section-wrapper">
-                    <div className="tableScroll">
-                      <div className="cp-user-wallet-table table-responsive tableScroll">
-                        <CustomDataTable columns={columns} data={history} />
-                      </div>
-                      {history?.length > 0 && (
-                        <div
-                          className="pagination-wrapper"
-                          id="assetBalances_paginate"
-                        >
-                          <span>
-                            {stillHistory?.histories?.links.map(
-                              (link: any, index: number) =>
-                                link.label === "&laquo; Previous" ? (
-                                  <a
-                                    className="paginate-button"
-                                    onClick={() => {
-                                      if (link.url)
-                                        LinkTopaginationString(link);
-                                    }}
-                                    key={index}
-                                  >
-                                    <i className="fa fa-angle-left"></i>
-                                  </a>
-                                ) : link.label === "Next &raquo;" ? (
-                                  <a
-                                    className="paginate-button"
-                                    onClick={() => LinkTopaginationString(link)}
-                                    key={index}
-                                  >
-                                    <i className="fa fa-angle-right"></i>
-                                  </a>
-                                ) : (
-                                  <a
-                                    className={`paginate_button paginate-number ${
-                                      link.active === true && "text-warning"
-                                    }`}
-                                    aria-controls="assetBalances"
-                                    data-dt-idx="1"
-                                    onClick={() => LinkTopaginationString(link)}
-                                    key={index}
-                                  >
-                                    {link.label}
-                                  </a>
-                                )
-                            )}
-                          </span>
+            <div>
+              <div className="select-method mb-4">
+                {walletTypes?.map((wallet_type: any, index: number) => (
+                  <div
+                    className={
+                      selectedType.id === wallet_type.id
+                        ? "select-method-item-active mr-0 mr-md-3 mt-0"
+                        : "select-method-item mr-0 mr-md-3 mt-0"
+                    }
+                    key={index}
+                    onClick={() => {
+                      setSelectedType(wallet_type);
+                    }}
+                  >
+                    {wallet_type.name}
+                  </div>
+                ))}
+              </div>
+            </div>
+            {selectedType.id == 1 && (
+              <div className="asset-balances-area">
+                {processing ? (
+                  <SectionLoading />
+                ) : (
+                  <div className="asset-balances-left">
+                    <div className="section-wrapper">
+                      <div className="tableScroll">
+                        <div className="cp-user-wallet-table table-responsive tableScroll">
+                          <CustomDataTable columns={columns} data={history} />
                         </div>
-                      )}
+                        {history?.length > 0 && (
+                          <div
+                            className="pagination-wrapper"
+                            id="assetBalances_paginate"
+                          >
+                            <span>
+                              {stillHistory?.histories?.links.map(
+                                (link: any, index: number) =>
+                                  link.label === "&laquo; Previous" ? (
+                                    <a
+                                      className="paginate-button"
+                                      onClick={() => {
+                                        if (link.url)
+                                          LinkTopaginationString(link);
+                                      }}
+                                      key={index}
+                                    >
+                                      <i className="fa fa-angle-left"></i>
+                                    </a>
+                                  ) : link.label === "Next &raquo;" ? (
+                                    <a
+                                      className="paginate-button"
+                                      onClick={() =>
+                                        LinkTopaginationString(link)
+                                      }
+                                      key={index}
+                                    >
+                                      <i className="fa fa-angle-right"></i>
+                                    </a>
+                                  ) : (
+                                    <a
+                                      className={`paginate_button paginate-number ${
+                                        link.active === true && "text-warning"
+                                      }`}
+                                      aria-controls="assetBalances"
+                                      data-dt-idx="1"
+                                      onClick={() =>
+                                        LinkTopaginationString(link)
+                                      }
+                                      key={index}
+                                    >
+                                      {link.label}
+                                    </a>
+                                  )
+                              )}
+                            </span>
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
-                </div>
-              )}
-            </div>
+                )}
+              </div>
+            )}
           </div>
         </div>
       </div>
