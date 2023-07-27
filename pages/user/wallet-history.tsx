@@ -22,6 +22,7 @@ const DepositHistory: NextPage = () => {
   const { t } = useTranslation("common");
   const [search, setSearch] = useState<any>("");
   const [processing, setProcessing] = useState<boolean>(false);
+  const [selectedLimit, setSelectedLimit] = useState<any>("10");
   const [selectedType, setSelectedType] = useState({
     id: 1,
     name: "Crypto",
@@ -40,11 +41,17 @@ const DepositHistory: NextPage = () => {
       setStillHistory
     );
   };
+
+  const LinkTopaginationStringForFiat = (page: any) => {
+    const url = page.url.split("?")[1];
+    const number = url.split("=")[1];
+    getFiatHistory(parseInt(number));
+  };
   const getReport = async () => {
     if (type === "deposit" || type === "withdrawal") {
       WithdrawAndDepositHistoryAction(
         type === "withdrawal" ? "withdraw" : "deposit",
-        10,
+        selectedLimit,
         1,
         setHistory,
         setProcessing,
@@ -52,12 +59,12 @@ const DepositHistory: NextPage = () => {
       );
     }
   };
-  const getFiatHistory = async () => {
+  const getFiatHistory = async (page: any) => {
     setProcessing(true);
     const data = await getFiatHistoryApi(
       type === "withdrawal" ? "withdraw" : "deposit",
-      10,
-      1
+      selectedLimit,
+      page
     );
     if (!data.success) {
       toast.error(data.message);
@@ -171,12 +178,12 @@ const DepositHistory: NextPage = () => {
       getReport();
     }
     if (selectedType.id == 2) {
-      getFiatHistory();
+      getFiatHistory(1);
     }
     return () => {
       setHistory([]);
     };
-  }, [type, selectedType]);
+  }, [type, selectedType, selectedLimit]);
   return (
     <>
       <div className="page-wrap rightMargin">
@@ -207,6 +214,7 @@ const DepositHistory: NextPage = () => {
                     key={index}
                     onClick={() => {
                       setSelectedType(wallet_type);
+                      setSelectedLimit("10");
                     }}
                   >
                     {wallet_type.name}
@@ -223,7 +231,12 @@ const DepositHistory: NextPage = () => {
                     <div className="section-wrapper">
                       <div className="tableScroll">
                         <div className="cp-user-wallet-table table-responsive tableScroll">
-                          <CustomDataTable columns={columns} data={history} />
+                          <CustomDataTable
+                            columns={columns}
+                            data={history}
+                            selectedLimit={selectedLimit}
+                            setSelectedLimit={setSelectedLimit}
+                          />
                         </div>
                         {history?.length > 0 && (
                           <div
@@ -296,6 +309,8 @@ const DepositHistory: NextPage = () => {
                                 : fiatColsForDeposit
                             }
                             data={history}
+                            setSelectedLimit={setSelectedLimit}
+                            selectedLimit={selectedLimit}
                           />
                         </div>
                         {history?.length > 0 && (
@@ -304,14 +319,14 @@ const DepositHistory: NextPage = () => {
                             id="assetBalances_paginate"
                           >
                             <span>
-                              {stillHistory?.histories?.links.map(
+                              {stillHistory?.links.map(
                                 (link: any, index: number) =>
                                   link.label === "&laquo; Previous" ? (
                                     <a
                                       className="paginate-button"
                                       onClick={() => {
                                         if (link.url)
-                                          LinkTopaginationString(link);
+                                          LinkTopaginationStringForFiat(link);
                                       }}
                                       key={index}
                                     >
@@ -321,7 +336,7 @@ const DepositHistory: NextPage = () => {
                                     <a
                                       className="paginate-button"
                                       onClick={() =>
-                                        LinkTopaginationString(link)
+                                        LinkTopaginationStringForFiat(link)
                                       }
                                       key={index}
                                     >
@@ -335,7 +350,7 @@ const DepositHistory: NextPage = () => {
                                       aria-controls="assetBalances"
                                       data-dt-idx="1"
                                       onClick={() =>
-                                        LinkTopaginationString(link)
+                                        LinkTopaginationStringForFiat(link)
                                       }
                                       key={index}
                                     >

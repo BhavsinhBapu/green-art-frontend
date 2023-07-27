@@ -6,6 +6,8 @@ const CustomDataTable = ({
   columns,
   data,
   Links,
+  setSelectedLimit,
+  selectedLimit,
   paginateFunction,
   paginate = true,
 }: any) => {
@@ -44,7 +46,8 @@ const CustomDataTable = ({
                 aria-controls="assetBalances"
                 className=""
                 placeholder="10"
-                onChange={(e) => {}}
+                onChange={(e) => {setSelectedLimit(e.target.value)}}
+                value={selectedLimit}
               >
                 <option value="10">10</option>
                 <option value="25">25</option>
