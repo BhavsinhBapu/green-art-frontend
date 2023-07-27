@@ -100,7 +100,7 @@ export default function FiatTableForDeposit({
                       });
                     }}
                   >
-                    Recipt
+                    Receipt
                   </span>
                 ): "N/A"}
               </td>

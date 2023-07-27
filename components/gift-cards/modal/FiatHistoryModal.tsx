@@ -15,7 +15,7 @@ export default function FiatHistoryModal({ setIsModalOpen, modalItem }: any) {
           <div className="col-lg-12">
             {modalItem.isBankRecipt ? (
               <div className="w-full text-center">
-                <img src={modalItem.img_link} alt="Bank Recipt" />
+                <img style={{maxWidth: '600px', width: '100%'}} src={modalItem.img_link} alt="Bank Recipt" />
               </div>
             ) : (
               <p>{modalItem.note}</p>

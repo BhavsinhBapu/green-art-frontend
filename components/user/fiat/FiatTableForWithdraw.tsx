@@ -84,18 +84,18 @@ export default function FiatTableForWithdraw({
               <td className="p-2 border-bottom text-14">{item.amount}</td>
               <td className="p-2 border-bottom text-14">{item.fees}</td>
               <td className="p-2 border-bottom text-14 cursor-pointer">
-                {item.bank_recipt ? (
+                {item.receipt ? (
                   <span
                     onClick={() => {
                       setIsModalOpen(true);
                       setModalItem({
                         isBankRecipt: true,
                         title: "Bank Recipt",
-                        img_link: item.bank_recipt,
+                        img_link: item.receipt,
                       });
                     }}
                   >
-                    Recipt
+                    Receipt
                   </span>
                 ) : (
                   "N/A"
