@@ -24,11 +24,12 @@ const BuyOrderHistory: NextPage = () => {
   const [processing, setProcessing] = useState<boolean>(false);
   const [history, setHistory] = useState<any>([]);
   const [stillHistory, setStillHistory] = useState<any>([]);
+  const [selectedLimit, setSelectedLimit] = useState<any>("10");
   const LinkTopaginationString = (page: any) => {
     const url = page.url.split("?")[1];
     const number = url.split("=")[1];
     AllStopLimitOrdersHistoryAction(
-      10,
+      selectedLimit,
       parseInt(number),
       setHistory,
       setProcessing,
@@ -39,7 +40,7 @@ const BuyOrderHistory: NextPage = () => {
   };
   const getReport = async () => {
     AllStopLimitOrdersHistoryAction(
-      10,
+      selectedLimit,
       1,
       setHistory,
       setProcessing,
@@ -80,7 +81,7 @@ const BuyOrderHistory: NextPage = () => {
     return () => {
       setHistory([]);
     };
-  }, []);
+  }, [selectedLimit]);
   return (
     <>
       <div className="page-wrap rightMargin">
@@ -110,6 +111,8 @@ const BuyOrderHistory: NextPage = () => {
                         data={history}
                         stillHistory={stillHistory}
                         paginateFunction={LinkTopaginationString}
+                        setSelectedLimit={setSelectedLimit}
+                        selectedLimit={selectedLimit}
                       />
                     </div>
                   </div>
