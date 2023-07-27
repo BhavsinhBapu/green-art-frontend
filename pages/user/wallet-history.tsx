@@ -174,6 +174,8 @@ const DepositHistory: NextPage = () => {
     },
   ];
   React.useEffect(() => {
+    setHistory([]);
+    setStillHistory([]);
     if (selectedType.id == 1) {
       getReport();
     }
@@ -319,7 +321,7 @@ const DepositHistory: NextPage = () => {
                             id="assetBalances_paginate"
                           >
                             <span>
-                              {stillHistory?.links.map(
+                              {stillHistory?.links?.map(
                                 (link: any, index: number) =>
                                   link.label === "&laquo; Previous" ? (
                                     <a
