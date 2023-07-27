@@ -31,7 +31,7 @@ export default function FiatTableForWithdraw({
               </select>
             </label>
           </div>
-          <div id="table_filter" className="dataTables_filter">
+          {/* <div id="table_filter" className="dataTables_filter">
             <label>
               {"Search"}
               <input
@@ -41,7 +41,7 @@ export default function FiatTableForWithdraw({
                 placeholder="Search..."
               />
             </label>
-          </div>
+          </div> */}
         </div>
       </div>
       <table className="table table-hover">

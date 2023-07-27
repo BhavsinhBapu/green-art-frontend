@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import moment from "moment";
 import useTranslation from "next-translate/useTranslation";
+import FiatHistoryModal from "components/gift-cards/modal/FiatHistoryModal";
 export default function FiatTableForDeposit({
   data,
   setSelectedLimit,
   selectedLimit,
 }: any) {
   const { t } = useTranslation();
+  const [isModalOpen, setIsModalOpen] = useState<any>(false);
+  const [modalItem, setModalItem] = useState<any>({});
   return (
     <div>
       <div id="assetBalances_wrapper" className="dataTables_wrapper no-footer">
@@ -31,7 +34,7 @@ export default function FiatTableForDeposit({
               </select>
             </label>
           </div>
-          <div id="table_filter" className="dataTables_filter">
+          {/* <div id="table_filter" className="dataTables_filter">
             <label>
               {"Search"}
               <input
@@ -41,7 +44,7 @@ export default function FiatTableForDeposit({
                 placeholder="Search..."
               />
             </label>
-          </div>
+          </div> */}
         </div>
       </div>
       <table className="table table-hover">
@@ -86,18 +89,52 @@ export default function FiatTableForDeposit({
               <td className="p-2 border-bottom text-14">{item.coin_type}</td>
               <td className="p-2 border-bottom text-14">{item.amount}</td>
               <td className="p-2 border-bottom text-14 cursor-pointer">
-                {item.bank_recipt && "Recipt"}
+                {item.bank_recipt && (
+                  <span
+                    onClick={() => {
+                      setIsModalOpen(true);
+                      setModalItem({
+                        isBankRecipt: true,
+                        title: "Bank Recipt",
+                        img_link: item.bank_recipt,
+                      });
+                    }}
+                  >
+                    Recipt
+                  </span>
+                )}
               </td>
               <td className="p-2 border-bottom text-14 text-primary-color">
                 {item.status}
               </td>
-              <td className="p-2 border-bottom text-14">
-                {item.note ? "Note" : "N/A"}
+              <td className="p-2 border-bottom text-14 cursor-pointer">
+                {item.note ? (
+                  <span
+                    onClick={() => {
+                      setIsModalOpen(true);
+                      setModalItem({
+                        isBankRecipt: false,
+                        title: "Note",
+                        note: item.note,
+                      });
+                    }}
+                  >
+                    Note
+                  </span>
+                ) : (
+                  "N/A"
+                )}
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+      {isModalOpen && (
+        <FiatHistoryModal
+          setIsModalOpen={setIsModalOpen}
+          modalItem={modalItem}
+        />
+      )}
     </div>
   );
 }
