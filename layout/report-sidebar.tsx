@@ -102,7 +102,7 @@ const ReportSidebar = () => {
               >
                 <SiFiat />
                 <a href="getAllTransactionHistory">
-                  {t("Fiat deposit History")}
+                  {t("Fiat To Crypto deposit History")}
                 </a>
               </li>
             </Link>
@@ -118,7 +118,7 @@ const ReportSidebar = () => {
               >
                 <SiFiat />
                 <a href="getAllTransactionHistory">
-                  {t("Fiat withdrawal History")}
+                  {t("Crypto To Fiat withdrawal History")}
                 </a>
               </li>
             </Link>

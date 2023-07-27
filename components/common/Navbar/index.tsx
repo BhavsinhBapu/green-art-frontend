@@ -86,7 +86,6 @@ const Navbar = ({
     }
   }, [router.locale]);
 
-
   return (
     <>
       {isLoggedIn ? (
@@ -620,12 +619,43 @@ const Navbar = ({
                                       {navbar?.reports?.fiatDepositHistory?.name
                                         ? navbar?.reports?.fiatDepositHistory
                                             ?.name
-                                        : t("Fiat Deposit History")}
+                                        : t("Fiat To Crypto Deposit History")}
                                     </span>
                                   </a>
                                 </li>
                               </Link>
                             )}
+                          {navbar?.reports?.fiatWithdrawalHistory?.status && (
+                            <Link
+                              href={
+                                isLoggedIn
+                                  ? "/user/currency-withdraw-history"
+                                  : "/signin"
+                              }
+                            >
+                              <li
+                                className={
+                                  router.asPath ==
+                                  "/user/currency-withdraw-history"
+                                    ? "cp-user-active-page"
+                                    : ""
+                                }
+                              >
+                                <a href="" className="menu-hover">
+                                  <span className="cp-user-icon">
+                                    <BiMoney />
+                                  </span>
+                                  <span>
+                                    {navbar?.reports?.fiatWithdrawalHistory
+                                      ?.name
+                                      ? navbar?.reports?.fiatWithdrawalHistory
+                                          ?.name
+                                      : t("Crypto To Fiat Withdrawal History")}
+                                  </span>
+                                </a>
+                              </li>
+                            </Link>
+                          )}
                           <Link
                             href={
                               isLoggedIn
@@ -701,37 +731,6 @@ const Navbar = ({
                               </a>
                             </li>
                           </Link>
-                          {navbar?.reports?.fiatWithdrawalHistory?.status && (
-                            <Link
-                              href={
-                                isLoggedIn
-                                  ? "/user/currency-withdraw-history"
-                                  : "/signin"
-                              }
-                            >
-                              <li
-                                className={
-                                  router.asPath ==
-                                  "/user/currency-withdraw-history"
-                                    ? "cp-user-active-page"
-                                    : ""
-                                }
-                              >
-                                <a href="" className="menu-hover">
-                                  <span className="cp-user-icon">
-                                    <BiMoney />
-                                  </span>
-                                  <span>
-                                    {navbar?.reports?.fiatWithdrawalHistory
-                                      ?.name
-                                      ? navbar?.reports?.fiatWithdrawalHistory
-                                          ?.name
-                                      : t("Fiat Withdrawal History")}
-                                  </span>
-                                </a>
-                              </li>
-                            </Link>
-                          )}
                         </ul>
                       </li>
                       {/* {navbar?.myProfile?.status && (
@@ -1618,12 +1617,44 @@ const Navbar = ({
                                       {navbar?.reports?.fiatDepositHistory?.name
                                         ? navbar?.reports?.fiatDepositHistory
                                             ?.name
-                                        : t("Fiat Deposit History")}
+                                        : t("Fiat To Crypto Deposit History")}
                                     </span>
                                   </a>
                                 </li>
                               </Link>
                             )}
+                          {navbar?.reports?.fiatWithdrawalHistory?.status && (
+                            <Link
+                              href={
+                                isLoggedIn
+                                  ? "/user/currency-withdraw-history"
+                                  : "/signin"
+                              }
+                            >
+                              <li
+                                className={
+                                  router.asPath ==
+                                  "/user/currency-withdraw-history"
+                                    ? "active-navbar"
+                                    : ""
+                                }
+                              >
+                                <a
+                                  href=""
+                                  className="px-3 py-2 text-primary-color-two"
+                                  onClick={() => setActive(false)}
+                                >
+                                  <span>
+                                    {navbar?.reports?.fiatWithdrawalHistory
+                                      ?.name
+                                      ? navbar?.reports?.fiatWithdrawalHistory
+                                          ?.name
+                                      : t("Crypto To Fiat Withdrawal History")}
+                                  </span>
+                                </a>
+                              </li>
+                            </Link>
+                          )}
                           <Link
                             href={
                               isLoggedIn
@@ -1702,38 +1733,6 @@ const Navbar = ({
                               </a>
                             </li>
                           </Link>
-                          {navbar?.reports?.fiatWithdrawalHistory?.status && (
-                            <Link
-                              href={
-                                isLoggedIn
-                                  ? "/user/currency-withdraw-history"
-                                  : "/signin"
-                              }
-                            >
-                              <li
-                                className={
-                                  router.asPath ==
-                                  "/user/currency-withdraw-history"
-                                    ? "active-navbar"
-                                    : ""
-                                }
-                              >
-                                <a
-                                  href=""
-                                  className="px-3 py-2 text-primary-color-two"
-                                  onClick={() => setActive(false)}
-                                >
-                                  <span>
-                                    {navbar?.reports?.fiatWithdrawalHistory
-                                      ?.name
-                                      ? navbar?.reports?.fiatWithdrawalHistory
-                                          ?.name
-                                      : t("Fiat Withdrawal History")}
-                                  </span>
-                                </a>
-                              </li>
-                            </Link>
-                          )}
                         </ul>
                       </li>
 
@@ -2068,7 +2067,7 @@ const Navbar = ({
                         <div className="d-flex gap-10 align-items-center justify-content-between py-3">
                           <div className="d-flex align-items-center gap-5">
                             <span>
-                              <FiSettings size={16}/>
+                              <FiSettings size={16} />
                             </span>
                             <p className="text-16 text-primary-color-two line-h-19">
                               Theme

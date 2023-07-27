@@ -127,7 +127,7 @@ const CurrencyWithdrawHistory = () => {
               <div className="overview-area">
                 <div className="overview-left">
                   <h2 className="section-top-title">
-                    {t("Fiat Withdraw History")}
+                    {t("Crypto To Fiat Withdraw History")}
                   </h2>
                 </div>
               </div>
