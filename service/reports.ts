@@ -94,3 +94,10 @@ export const currencyWithdrawHistory = async (
   );
   return data;
 };
+
+export const getFiatHistoryApi = async (type: any, limit: any, page: any) => {
+  const { data } = await request.get(
+    `/wallet-currency-${type}-history?limit=${limit}&page=${page}`
+  );
+  return data;
+};

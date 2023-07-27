@@ -15,6 +15,7 @@ import { toast } from "react-toastify";
 import { BiCopy } from "react-icons/bi";
 import SectionLoading from "components/common/SectionLoading";
 import CustomDataTable from "components/Datatable";
+import { getFiatHistoryApi } from "service/reports";
 const DepositHistory: NextPage = () => {
   const router = useRouter();
   const { type } = router.query;
@@ -51,6 +52,23 @@ const DepositHistory: NextPage = () => {
       );
     }
   };
+  const getFiatHistory = async () => {
+    setProcessing(true);
+    const data = await getFiatHistoryApi(
+      type === "withdrawal" ? "withdraw" : "deposit",
+      10,
+      1
+    );
+    if (!data.success) {
+      toast.error(data.message);
+      setProcessing(false);
+      return;
+    }
+    setHistory(data?.data?.data);
+    setStillHistory(data.data);
+    setProcessing(false);
+  };
+
   const walletTypes = [
     {
       id: 1,
@@ -92,12 +110,47 @@ const DepositHistory: NextPage = () => {
       accessor: "status",
     },
   ];
+  const fiatColumns = [
+    {
+      Header: t("Created At"),
+      accessor: "created_at",
+    },
+    {
+      Header: t("Payment Method"),
+      accessor: "payment_type",
+    },
+    {
+      Header: t("Payment Title"),
+      accessor: "payment_title",
+    },
+    {
+      Header: t("Coin"),
+      accessor: "coin_type",
+    },
+    {
+      Header: t("Amount"),
+      accessor: "amount",
+    },
+    {
+      Header: t("Bank Recept"),
+      accessor: "bank_recipt",
+    },
+    {
+      Header: t("Status"),
+      accessor: "status",
+    },
+  ];
   React.useEffect(() => {
-    getReport();
+    if (selectedType.id == 1) {
+      getReport();
+    }
+    if (selectedType.id == 2) {
+      getFiatHistory();
+    }
     return () => {
       setHistory([]);
     };
-  }, [type]);
+  }, [type, selectedType]);
   return (
     <>
       <div className="page-wrap rightMargin">
@@ -145,6 +198,75 @@ const DepositHistory: NextPage = () => {
                       <div className="tableScroll">
                         <div className="cp-user-wallet-table table-responsive tableScroll">
                           <CustomDataTable columns={columns} data={history} />
+                        </div>
+                        {history?.length > 0 && (
+                          <div
+                            className="pagination-wrapper"
+                            id="assetBalances_paginate"
+                          >
+                            <span>
+                              {stillHistory?.histories?.links.map(
+                                (link: any, index: number) =>
+                                  link.label === "&laquo; Previous" ? (
+                                    <a
+                                      className="paginate-button"
+                                      onClick={() => {
+                                        if (link.url)
+                                          LinkTopaginationString(link);
+                                      }}
+                                      key={index}
+                                    >
+                                      <i className="fa fa-angle-left"></i>
+                                    </a>
+                                  ) : link.label === "Next &raquo;" ? (
+                                    <a
+                                      className="paginate-button"
+                                      onClick={() =>
+                                        LinkTopaginationString(link)
+                                      }
+                                      key={index}
+                                    >
+                                      <i className="fa fa-angle-right"></i>
+                                    </a>
+                                  ) : (
+                                    <a
+                                      className={`paginate_button paginate-number ${
+                                        link.active === true && "text-warning"
+                                      }`}
+                                      aria-controls="assetBalances"
+                                      data-dt-idx="1"
+                                      onClick={() =>
+                                        LinkTopaginationString(link)
+                                      }
+                                      key={index}
+                                    >
+                                      {link.label}
+                                    </a>
+                                  )
+                              )}
+                            </span>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {selectedType.id == 2 && (
+              <div className="asset-balances-area">
+                {processing ? (
+                  <SectionLoading />
+                ) : (
+                  <div className="asset-balances-left">
+                    <div className="section-wrapper">
+                      <div className="tableScroll">
+                        <div className="cp-user-wallet-table table-responsive tableScroll">
+                          <CustomDataTable
+                            columns={fiatColumns}
+                            data={history}
+                          />
                         </div>
                         {history?.length > 0 && (
                           <div
