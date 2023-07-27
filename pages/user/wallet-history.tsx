@@ -16,6 +16,8 @@ import { BiCopy } from "react-icons/bi";
 import SectionLoading from "components/common/SectionLoading";
 import CustomDataTable from "components/Datatable";
 import { getFiatHistoryApi } from "service/reports";
+import FiatTableForDeposit from "components/user/fiat/FiatTableForDeposit";
+import FiatTableForWithdraw from "components/user/fiat/FiatTableForWithdraw";
 const DepositHistory: NextPage = () => {
   const router = useRouter();
   const { type } = router.query;
@@ -28,6 +30,7 @@ const DepositHistory: NextPage = () => {
     name: "Crypto",
   });
   const [history, setHistory] = useState<any>([]);
+  // const [fiatHistory, setFiatHistory] = useState<any>([])
   const [stillHistory, setStillHistory] = useState<any>([]);
   const LinkTopaginationString = (page: any) => {
     const url = page.url.split("?")[1];
@@ -145,6 +148,10 @@ const DepositHistory: NextPage = () => {
     {
       Header: t("Status"),
       accessor: "status",
+    },
+    {
+      Header: t("Note"),
+      accessor: "note",
     },
   ];
   const fiatColsForWithdraw = [
@@ -304,7 +311,7 @@ const DepositHistory: NextPage = () => {
                     <div className="section-wrapper">
                       <div className="tableScroll">
                         <div className="cp-user-wallet-table table-responsive tableScroll">
-                          <CustomDataTable
+                          {/* <CustomDataTable
                             columns={
                               type === "withdrawal"
                                 ? fiatColsForWithdraw
@@ -313,7 +320,20 @@ const DepositHistory: NextPage = () => {
                             data={history}
                             setSelectedLimit={setSelectedLimit}
                             selectedLimit={selectedLimit}
-                          />
+                          /> */}
+                          {type === "withdrawal" ? (
+                            <FiatTableForWithdraw
+                              data={history}
+                              selectedLimit={selectedLimit}
+                              setSelectedLimit={setSelectedLimit}
+                            />
+                          ) : (
+                            <FiatTableForDeposit
+                              data={history}
+                              selectedLimit={selectedLimit}
+                              setSelectedLimit={setSelectedLimit}
+                            />
+                          )}
                         </div>
                         {history?.length > 0 && (
                           <div

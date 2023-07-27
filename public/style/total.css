@@ -14842,7 +14842,7 @@ body::-webkit-scrollbar {
   text-transform: capitalize;
 }
 .font-bold {
-  font-weight: 700;
+  font-weight: 700 !important;
 }
 
 .gift-font-color {
@@ -14858,7 +14858,7 @@ body::-webkit-scrollbar {
 }
 
 .text-14 {
-  font-size: 14px;
+  font-size: 14px !important;
 }
 
 .font-medium {
@@ -15562,4 +15562,8 @@ input:checked + .gift-card-buy-slider:before {
 
 .spot-search-table .bnAwAJ {
   min-width: unset !important;
+}
+
+.cursor-pointer {
+  cursor: pointer !important;
 }
