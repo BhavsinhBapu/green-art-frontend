@@ -78,7 +78,7 @@ export default function FiatTableForDeposit({
         </thead>
         <tbody>
           {data?.map((item: any, index: any) => (
-            <tr>
+            <tr key={index}>
               <td className="p-2 border-bottom text-14">
                 {moment(item.created_at).format("DD MMM YYYY")}
               </td>
