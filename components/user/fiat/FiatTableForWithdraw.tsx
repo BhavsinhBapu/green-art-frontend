@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import moment from "moment";
 import useTranslation from "next-translate/useTranslation";
+import FiatHistoryModal from "components/gift-cards/modal/FiatHistoryModal";
 export default function FiatTableForWithdraw({
   data,
   setSelectedLimit,
   selectedLimit,
 }: any) {
   const { t } = useTranslation();
+  const [isModalOpen, setIsModalOpen] = useState<any>(false);
+  const [modalItem, setModalItem] = useState<any>({});
   return (
     <div>
       <div id="assetBalances_wrapper" className="dataTables_wrapper no-footer">
@@ -63,6 +66,9 @@ export default function FiatTableForWithdraw({
               Fees
             </th>
             <th scope="col" className="p-2 border-bottom font-bold">
+              Bank Recept
+            </th>
+            <th scope="col" className="p-2 border-bottom font-bold">
               Status
             </th>
           </tr>
@@ -77,6 +83,24 @@ export default function FiatTableForWithdraw({
               <td className="p-2 border-bottom text-14">{item.coin_type}</td>
               <td className="p-2 border-bottom text-14">{item.amount}</td>
               <td className="p-2 border-bottom text-14">{item.fees}</td>
+              <td className="p-2 border-bottom text-14 cursor-pointer">
+                {item.bank_recipt ? (
+                  <span
+                    onClick={() => {
+                      setIsModalOpen(true);
+                      setModalItem({
+                        isBankRecipt: true,
+                        title: "Bank Recipt",
+                        img_link: item.bank_recipt,
+                      });
+                    }}
+                  >
+                    Recipt
+                  </span>
+                ) : (
+                  "N/A"
+                )}
+              </td>
               <td className="p-2 border-bottom text-14 text-primary-color">
                 {item.status}
               </td>
@@ -84,6 +108,12 @@ export default function FiatTableForWithdraw({
           ))}
         </tbody>
       </table>
+      {isModalOpen && (
+        <FiatHistoryModal
+          setIsModalOpen={setIsModalOpen}
+          modalItem={modalItem}
+        />
+      )}
     </div>
   );
 }

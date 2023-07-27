@@ -89,7 +89,7 @@ export default function FiatTableForDeposit({
               <td className="p-2 border-bottom text-14">{item.coin_type}</td>
               <td className="p-2 border-bottom text-14">{item.amount}</td>
               <td className="p-2 border-bottom text-14 cursor-pointer">
-                {item.bank_recipt && (
+                {item.bank_recipt ? (
                   <span
                     onClick={() => {
                       setIsModalOpen(true);
@@ -102,7 +102,7 @@ export default function FiatTableForDeposit({
                   >
                     Recipt
                   </span>
-                )}
+                ): "N/A"}
               </td>
               <td className="p-2 border-bottom text-14 text-primary-color">
                 {item.status}
