@@ -340,7 +340,7 @@ const Navbar = ({
                                       <span>
                                         {navbar?.fiat?.deposit.name
                                           ? navbar?.fiat?.deposit.name
-                                          : t("Deposit")}
+                                          : t("Fiat To Crypto Deposit")}
                                       </span>
                                     </a>
                                   </li>
@@ -366,7 +366,7 @@ const Navbar = ({
                                       <span>
                                         {navbar?.fiat?.withdrawal.name
                                           ? navbar?.fiat?.withdrawal.name
-                                          : t("Withdrawal")}
+                                          : t("Crypto To Fiat Withdrawal")}
                                       </span>
                                     </a>
                                   </li>
@@ -1328,7 +1328,7 @@ const Navbar = ({
                                       <span>
                                         {navbar?.fiat?.deposit.name
                                           ? navbar?.fiat?.deposit.name
-                                          : t("Deposit")}
+                                          : t("Fiat To Crypto Deposit")}
                                       </span>
                                     </a>
                                   </li>
@@ -1355,7 +1355,7 @@ const Navbar = ({
                                       <span>
                                         {navbar?.fiat?.withdrawal.name
                                           ? navbar?.fiat?.withdrawal.name
-                                          : t("Withdrawal")}
+                                          : t("Crypto To Fiat Withdrawal")}
                                       </span>
                                     </a>
                                   </li>

@@ -5563,6 +5563,7 @@ select:-webkit-autofill:focus {
   color: var(--primary-color);
   margin-bottom: 10px;
   margin-top: 10px;
+  gap: 5px;
 }
 
 .page-left-sidebar .sidebar-top .left-menu li:last-child {
@@ -5582,12 +5583,11 @@ select:-webkit-autofill:focus {
 }
 
 .page-left-sidebar .sidebar-top .left-menu li a {
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 400;
   text-transform: capitalize;
   color: var(--text-primary-color-2) !important;
   transition: all 0.3s;
-  margin-left: 15px !important;
 }
 
 .page-left-sidebar .sidebar-top .left-menu li:hover {

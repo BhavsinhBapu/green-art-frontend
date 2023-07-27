@@ -15,7 +15,7 @@ const FiatSidebar = () => {
           <Link href="/fiat-deposit">
             <li className={router.pathname == "/fiat-deposit" ? "active" : ""}>
               <RiLuggageDepositFill />
-              <a href="/fiat-deposit">{t("Fiat Deposit")}</a>
+              <a href="/fiat-deposit">{t("Fiat To Crypto Deposit")}</a>
             </li>
           </Link>
           <Link href="/fiat-withdrawal">
@@ -23,7 +23,7 @@ const FiatSidebar = () => {
               className={router.pathname == "/fiat-withdrawal" ? "active" : ""}
             >
               <HiOutlineCash />
-              <a href="/fiat-withdrawal">{t("Fiat Withdrawal")}</a>
+              <a href="/fiat-withdrawal">{t("Crypto To Fiat Withdrawal")}</a>
             </li>
           </Link>
         </ul>

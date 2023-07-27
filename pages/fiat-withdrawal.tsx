@@ -59,7 +59,7 @@ const FiatWithdrawal = () => {
           <div className="container-fluid">
             <div className="section-top-wrap mb-25">
               <div className="profle-are-top">
-                <h2 className="section-top-title">{t("Fiat Withdrawal")}</h2>
+                <h2 className="section-top-title">{t("Crypto To Fiat Withdrawal")}</h2>
               </div>
             </div>
 

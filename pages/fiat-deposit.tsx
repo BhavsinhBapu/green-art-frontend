@@ -83,7 +83,7 @@ const Deposit = () => {
             <div className="deposit-page">
               <div className="section-top-wrap mb-25">
                 <div className="profle-are-top">
-                  <h2 className="section-top-title">{t("Fiat Deposit")}</h2>
+                  <h2 className="section-top-title">{t("Fiat To Crypto Deposit")}</h2>
                 </div>
               </div>
 
