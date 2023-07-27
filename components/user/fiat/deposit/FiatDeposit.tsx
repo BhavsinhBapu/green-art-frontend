@@ -81,7 +81,7 @@ const FiatDeposit = ({ currency_type }: any) => {
       <div className="page-wrap">
         {/* <FiatSidebar /> */}
         <div className="page-main-content">
-          <div className="container-fluid">
+          <div className="container">
             <div className="deposit-page">
               <div className="section-top-wrap mb-25">
                 <div className="profle-are-top">
