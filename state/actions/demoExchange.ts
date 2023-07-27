@@ -265,7 +265,7 @@ export const initialDashboardCallAction =
         if (pair) {
           response = await appDashboardData(pair);
           if (response?.pair_status === false) {
-            response = await appDashboardData(response.pairs[0].coin_pair);
+            // response = await appDashboardData(response.pairs[0].coin_pair);
             await localStorage.setItem(
               "base_coin_id",
               response?.pairs[0]?.parent_coin_id
@@ -281,6 +281,9 @@ export const initialDashboardCallAction =
             // router.push(`/exchange/dashboard?coin_pair=${response?.pairs[0]?.coin_pair}`)
             response?.pairs[0]?.coin_pair &&
               dispatch(setCurrentPair(response?.pairs[0]?.coin_pair));
+            router.push(
+              `/demo-trade?coin_pair=${response?.order_data?.exchange_pair}`
+            );
           }
           if (!response?.pairs) {
             setisLoading && setisLoading(false);
