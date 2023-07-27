@@ -110,7 +110,7 @@ const DepositHistory: NextPage = () => {
       accessor: "status",
     },
   ];
-  const fiatColumns = [
+  const fiatColsForDeposit = [
     {
       Header: t("Created At"),
       accessor: "created_at",
@@ -134,6 +134,32 @@ const DepositHistory: NextPage = () => {
     {
       Header: t("Bank Recept"),
       accessor: "bank_recipt",
+    },
+    {
+      Header: t("Status"),
+      accessor: "status",
+    },
+  ];
+  const fiatColsForWithdraw = [
+    {
+      Header: t("Created At"),
+      accessor: "created_at",
+    },
+    {
+      Header: t("Bank"),
+      accessor: "bank_title",
+    },
+    {
+      Header: t("Currency"),
+      accessor: "coin_type",
+    },
+    {
+      Header: t("Amount"),
+      accessor: "amount",
+    },
+    {
+      Header: t("Fees"),
+      accessor: "fees",
     },
     {
       Header: t("Status"),
@@ -264,7 +290,11 @@ const DepositHistory: NextPage = () => {
                       <div className="tableScroll">
                         <div className="cp-user-wallet-table table-responsive tableScroll">
                           <CustomDataTable
-                            columns={fiatColumns}
+                            columns={
+                              type === "withdrawal"
+                                ? fiatColsForWithdraw
+                                : fiatColsForDeposit
+                            }
                             data={history}
                           />
                         </div>
