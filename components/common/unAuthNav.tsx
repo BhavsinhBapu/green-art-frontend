@@ -113,7 +113,14 @@ const UnAuthNav = ({
 
                     <ul className="lang-list dropdown-menu-main">
                       <li>
-                        <Link href="/exchange/dashboard">
+                        <a
+                          // href="/exchange/dashboard"
+                          href={
+                            router.locale !== "en"
+                              ? `/${router.locale}/exchange/dashboard`
+                              : "/exchange/dashboard"
+                          }
+                        >
                           <a className="py-1 menu-hover">
                             <span className="cp-user-icon">
                               {" "}
@@ -121,7 +128,7 @@ const UnAuthNav = ({
                             </span>{" "}
                             <span>{t("Spot Trading")}</span>{" "}
                           </a>
-                        </Link>
+                        </a>
                       </li>
                       {parseInt(settings?.p2p_module) === 1 && (
                         <li>
@@ -662,7 +669,6 @@ const UnAuthNav = ({
         </div>
       </div>
 
-     
       <OutsideClickHandler onOutsideClick={() => setActive(false)}>
         <div className={`cp-user-sidebar w-full ${active ? "active" : ""}`}>
           <div className="cp-user-sidebar-menu cp-user-sidebar-menu-mobile scrollbar-inner">
@@ -710,7 +716,7 @@ const UnAuthNav = ({
                         aria-labelledby="navbarDropdown"
                       >
                         {navbar?.trade?.status && (
-                          <Link
+                          <a
                             href={
                               router.locale !== "en"
                                 ? `/${router.locale}/exchange/dashboard`
@@ -725,14 +731,18 @@ const UnAuthNav = ({
                               }
                             >
                               <a
-                                href=""
+                                href={
+                                  router.locale !== "en"
+                                    ? `/${router.locale}/exchange/dashboard`
+                                    : "/exchange/dashboard"
+                                }
                                 className="px-3 py-2 text-primary-color-two"
                                 onClick={() => setActive(false)}
                               >
                                 <span>{t("Spot Trading")}</span>
                               </a>
                             </li>
-                          </Link>
+                          </a>
                         )}
                         {parseInt(settings?.p2p_module) === 1 && (
                           <Link href={isLoggedIn ? "/p2p" : "/signin"}>
@@ -801,13 +811,12 @@ const UnAuthNav = ({
                   <li className="nav-item">
                     <Link href="/signin">
                       <a className="nav-link text-primary-color-two">
-                      <div className="d-flex align-items-center gap-5">
+                        <div className="d-flex align-items-center gap-5">
                           <span>
                             <AiOutlineLogin />
                           </span>
                           <span className="line-h-19">{t("Login")}</span>
                         </div>
-                        
                       </a>
                     </Link>
                   </li>

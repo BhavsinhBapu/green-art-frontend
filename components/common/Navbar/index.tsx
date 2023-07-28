@@ -145,7 +145,7 @@ const Navbar = ({
                           </Link>
                           <ul className="dropdown-menu bg-transparent-main">
                             {navbar?.trade?.status && (
-                              <Link
+                              <a
                                 href={
                                   router.locale !== "en"
                                     ? `/${router.locale}/exchange/dashboard`
@@ -159,15 +159,22 @@ const Navbar = ({
                                       : ""
                                   }
                                 >
-                                  <a href="" className="menu-hover">
+                                  <a
+                                    href={
+                                      router.locale !== "en"
+                                        ? `/${router.locale}/exchange/dashboard`
+                                        : "/exchange/dashboard"
+                                    }
+                                    className="menu-hover"
+                                  >
                                     <span className="cp-user-icon">
                                       {" "}
                                       <BiShapeCircle />{" "}
                                     </span>{" "}
-                                    <span>{t("Spot Trading")}</span>
+                                    <span>{t("Spot Tradinge")}</span>
                                   </a>
                                 </li>
-                              </Link>
+                              </a>
                             )}
                             {Number(settings?.enable_future_trade) === 1 && (
                               <Link
@@ -1113,7 +1120,7 @@ const Navbar = ({
                             aria-labelledby="navbarDropdown"
                           >
                             {navbar?.trade?.status && (
-                              <Link
+                              <a
                                 href={
                                   router.locale !== "en"
                                     ? `/${router.locale}/exchange/dashboard`
@@ -1128,14 +1135,18 @@ const Navbar = ({
                                   }
                                 >
                                   <a
-                                    href=""
+                                    href={
+                                      router.locale !== "en"
+                                        ? `/${router.locale}/exchange/dashboard`
+                                        : "/exchange/dashboard"
+                                    }
                                     className="px-3 py-2 text-primary-color-two"
                                     onClick={() => setActive(false)}
                                   >
                                     <span>{t("Spot Trading")}</span>
                                   </a>
                                 </li>
-                              </Link>
+                              </a>
                             )}
                             {parseInt(settings?.p2p_module) === 1 && (
                               <Link href={isLoggedIn ? "/p2p" : "/signin"}>

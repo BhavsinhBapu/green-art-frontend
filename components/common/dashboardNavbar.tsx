@@ -107,12 +107,13 @@ const DashboardNavbar = () => {
                       </Link>
                       <ul className="">
                         {navbar?.trade?.status && (
-                          <Link
+                          <a
                             href={
                               router.locale !== "en"
                                 ? `/${router.locale}/exchange/dashboard`
                                 : "/exchange/dashboard"
                             }
+                         
                           >
                             <li
                               className={
@@ -123,7 +124,7 @@ const DashboardNavbar = () => {
                             >
                               <a href="">{t("Spot Trading")}</a>
                             </li>
-                          </Link>
+                          </a>
                         )}
                         {parseInt(settings?.p2p_module) === 1 && (
                           <Link href={isLoggedIn ? "/p2p" : "/signin"}>
