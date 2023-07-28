@@ -21,7 +21,7 @@ type MyProps = {
 const pair = localStorage.getItem("current_pair")?.replace("_", "/");
 export class TVChartContainer extends React.Component<MyProps> {
   static defaultProps = {
-    symbol: `:${pair}`,
+    symbol: `:${pair ? pair : ""}`,
     interval: "15",
     containerId: "tv_chart_container",
     libraryPath: "/static/charting_library/",
