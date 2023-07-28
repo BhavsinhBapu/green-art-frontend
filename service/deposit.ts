@@ -15,11 +15,13 @@ export const VerificationPaystackPayment = async (reference: any) => {
   });
   return data;
 };
-export const GetPaystackPaymentUrl = async (email: any, amount: any,wallet_id:any) => {
+export const GetPaystackPaymentUrl = async (email: any, amount: any,wallet_id:any, crypto_type: any, currency: any) => {
   const { data } = await request.post("/get-paystack-payment-url", {
     email: email,
     amount: amount,
     wallet_id: wallet_id,
+    crypto_type: crypto_type,
+    currency: currency
   });
   return data;
 };

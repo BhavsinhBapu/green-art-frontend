@@ -38,7 +38,7 @@ const Paystack = ({ walletlist }: any) => {
   const [amount, setAmount] = useState("");
   const onSubmit = async (e: any) => {
     // e.preventDefault();
-    const response = await GetPaystackPaymentUrl(email, amount, walletID);
+    const response = await GetPaystackPaymentUrl(email, amount, walletID, 1, '');
     if (response.success) {
       toast.success(response.message);
       window.open(response.data.authorization_url, "_blank");

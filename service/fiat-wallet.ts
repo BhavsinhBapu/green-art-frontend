@@ -27,3 +27,11 @@ export const submitFiatWalletDepositApi = async (credential: any) => {
   const { data } = await request.post("/wallet-currency-deposit", credential);
   return data;
 };
+
+export const GetFiatPaystackPaymentUrl = async (email: any, amount: any) => {
+  const { data } = await request.post("/deposit-currency-paystack-url", {
+    email: email,
+    amount: amount,
+  });
+  return data;
+};

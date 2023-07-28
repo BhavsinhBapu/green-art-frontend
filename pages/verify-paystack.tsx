@@ -7,6 +7,7 @@ import {
   VerificationPaystackPayment,
   currencyDepositProcess,
 } from "service/deposit";
+import { submitFiatWalletDepositApi } from "service/fiat-wallet";
 import { TokenBuyIcoPaystackAction } from "state/actions/launchpad";
 
 const VerifyPaystack = () => {
@@ -23,43 +24,67 @@ const VerifyPaystack = () => {
     payment_method,
     transaction_id,
     api_type,
+    crypto_type,
+    coin_type
   } = router.query;
-//localhost:3001/verify-paystack?buy_history_id=6&walletAddress=0x0d892bcb4f3B8b9Cacf3BF8ef45e74E0e38cae37&trxref=41thncdwci&reference=41thncdwci
-http: useEffect(() => {
-  if (api_type == "ico") {
-    TokenBuyIcoPaystackAction({
-      walletAddress: walletAddress,
-      buy_history_id: buy_history_id,
-      reference: reference,
-      transaction_id: trxref,
-    });
-  } else {
-    reference &&
-      trxref &&
-      wallet_id &&
-      amount &&
-      VerificationPaystackPayment(reference).then((response: any) => {
-        if (response.success) {
-          //   toast.success(response.message);
-          currencyDepositProcess({
-            transaction_id: trxref,
-            payment_method_id: "pay_stack",
-            wallet_id: wallet_id,
-            amount: amount,
-          }).then((currencyResponse: any) => {
-            if (currencyResponse.success) {
-              toast.success(currencyResponse.message);
-            } else {
-              toast.error(currencyResponse.message);
-            }
-          });
-        } else {
-          toast.error(response.message);
-        }
-        router.push("/fiat-deposit");
+  //localhost:3001/verify-paystack?buy_history_id=6&walletAddress=0x0d892bcb4f3B8b9Cacf3BF8ef45e74E0e38cae37&trxref=41thncdwci&reference=41thncdwci
+  http: useEffect(() => {
+    if (api_type == "ico") {
+      TokenBuyIcoPaystackAction({
+        walletAddress: walletAddress,
+        buy_history_id: buy_history_id,
+        reference: reference,
+        transaction_id: trxref,
       });
-  }
-}, [reference]);
+    } else if (crypto_type == "2") {
+      reference &&
+        trxref &&
+        VerificationPaystackPayment(reference).then((response: any) => {
+          if (response.success) {
+            submitFiatWalletDepositApi({
+              transaction_id: trxref,
+              payment_method_id: 9,
+              amount: amount,
+              currency: coin_type
+            }).then((currencyResponse: any) => {
+              if (currencyResponse.success) {
+                toast.success(currencyResponse.message);
+              } else {
+                toast.error(currencyResponse.message);
+              }
+            });
+          } else {
+            toast.error(response.message);
+          }
+          router.push("/user/wallet-history?type=deposit");
+        });
+    } else {
+      reference &&
+        trxref &&
+        wallet_id &&
+        amount &&
+        VerificationPaystackPayment(reference).then((response: any) => {
+          if (response.success) {
+            //   toast.success(response.message);
+            currencyDepositProcess({
+              transaction_id: trxref,
+              payment_method_id: "pay_stack",
+              wallet_id: wallet_id,
+              amount: amount,
+            }).then((currencyResponse: any) => {
+              if (currencyResponse.success) {
+                toast.success(currencyResponse.message);
+              } else {
+                toast.error(currencyResponse.message);
+              }
+            });
+          } else {
+            toast.error(response.message);
+          }
+          router.push("/fiat-deposit");
+        });
+    }
+  }, [reference]);
   return <div>{loading && <SectionLoading />}</div>;
 };
 

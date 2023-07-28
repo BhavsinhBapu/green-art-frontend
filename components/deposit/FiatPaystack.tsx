@@ -6,7 +6,10 @@ import { GetPaystackPaymentUrl } from "service/deposit";
 import { UserSettingsApi } from "service/settings";
 import { RootState } from "state/store";
 import DepositGoogleAuth from "./deposit-g2fa";
-import { submitFiatWalletDepositApi } from "service/fiat-wallet";
+import {
+  GetFiatPaystackPaymentUrl,
+  submitFiatWalletDepositApi,
+} from "service/fiat-wallet";
 import { useRouter } from "next/router";
 
 const FiatPaystack = ({ currency_type, method_id }: any) => {
@@ -53,20 +56,26 @@ const FiatPaystack = ({ currency_type, method_id }: any) => {
   const submitFiatWalletDeposit = async (e: any) => {
     e.preventDefault();
     if (
-      !credential.payment_method_id ||
+      // !credential.payment_method_id ||
       !credential.amount ||
       !credential.email
     ) {
       toast.error(t("Please provide all information's"));
       return;
     }
-
-    const res = await submitFiatWalletDepositApi(credential);
-    if (res.success) {
-      toast.success(res.message);
-      router.push("/user/wallet-history?type=deposit");
+    const response = await GetPaystackPaymentUrl(
+      credential.email,
+      credential.amount,
+      "",
+      2,
+      currency_type
+    );
+    // const res = await submitFiatWalletDepositApi(credential);
+    if (response.success) {
+      toast.success(response.message);
+      window.open(response.data.authorization_url, "_blank");
     } else {
-      toast.error(res.message);
+      toast.error(response.message);
     }
   };
   return (
