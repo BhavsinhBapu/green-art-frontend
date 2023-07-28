@@ -67,7 +67,8 @@ const DepositHistory: NextPage = () => {
     const data = await getFiatHistoryApi(
       type === "withdrawal" ? "withdraw" : "deposit",
       selectedLimit,
-      page
+      page,
+      search
     );
     if (!data.success) {
       toast.error(data.message);
@@ -120,66 +121,6 @@ const DepositHistory: NextPage = () => {
       accessor: "status",
     },
   ];
-  const fiatColsForDeposit = [
-    {
-      Header: t("Created At"),
-      accessor: "created_at",
-    },
-    {
-      Header: t("Payment Method"),
-      accessor: "payment_type",
-    },
-    {
-      Header: t("Payment Title"),
-      accessor: "payment_title",
-    },
-    {
-      Header: t("Coin"),
-      accessor: "coin_type",
-    },
-    {
-      Header: t("Amount"),
-      accessor: "amount",
-    },
-    {
-      Header: t("Bank Recept"),
-      accessor: "bank_recipt",
-    },
-    {
-      Header: t("Status"),
-      accessor: "status",
-    },
-    {
-      Header: t("Note"),
-      accessor: "note",
-    },
-  ];
-  const fiatColsForWithdraw = [
-    {
-      Header: t("Created At"),
-      accessor: "created_at",
-    },
-    {
-      Header: t("Bank"),
-      accessor: "bank_title",
-    },
-    {
-      Header: t("Currency"),
-      accessor: "coin_type",
-    },
-    {
-      Header: t("Amount"),
-      accessor: "amount",
-    },
-    {
-      Header: t("Fees"),
-      accessor: "fees",
-    },
-    {
-      Header: t("Status"),
-      accessor: "status",
-    },
-  ];
   React.useEffect(() => {
     setHistory([]);
     setStillHistory([]);
@@ -192,7 +133,7 @@ const DepositHistory: NextPage = () => {
     return () => {
       setHistory([]);
     };
-  }, [type, selectedType, selectedLimit]);
+  }, [type, selectedType, selectedLimit, search]);
   return (
     <>
       <div className="page-wrap rightMargin">
@@ -304,89 +245,125 @@ const DepositHistory: NextPage = () => {
 
             {selectedType.id == 2 && (
               <div className="asset-balances-area">
-                {processing ? (
-                  <SectionLoading />
-                ) : (
-                  <div className="asset-balances-left">
-                    <div className="section-wrapper">
-                      <div className="tableScroll">
-                        <div className="cp-user-wallet-table table-responsive tableScroll">
-                          {/* <CustomDataTable
-                            columns={
-                              type === "withdrawal"
-                                ? fiatColsForWithdraw
-                                : fiatColsForDeposit
-                            }
-                            data={history}
-                            setSelectedLimit={setSelectedLimit}
-                            selectedLimit={selectedLimit}
-                          /> */}
-                          {type === "withdrawal" ? (
-                            <FiatTableForWithdraw
-                              data={history}
-                              selectedLimit={selectedLimit}
-                              setSelectedLimit={setSelectedLimit}
-                            />
-                          ) : (
-                            <FiatTableForDeposit
-                              data={history}
-                              selectedLimit={selectedLimit}
-                              setSelectedLimit={setSelectedLimit}
-                            />
-                          )}
-                        </div>
-                        {history?.length > 0 && (
-                          <div
-                            className="pagination-wrapper"
-                            id="assetBalances_paginate"
-                          >
-                            <span>
-                              {stillHistory?.links?.map(
-                                (link: any, index: number) =>
-                                  link.label === "&laquo; Previous" ? (
-                                    <a
-                                      className="paginate-button"
-                                      onClick={() => {
-                                        if (link.url)
-                                          LinkTopaginationStringForFiat(link);
-                                      }}
-                                      key={index}
-                                    >
-                                      <i className="fa fa-angle-left"></i>
-                                    </a>
-                                  ) : link.label === "Next &raquo;" ? (
-                                    <a
-                                      className="paginate-button"
-                                      onClick={() =>
-                                        LinkTopaginationStringForFiat(link)
-                                      }
-                                      key={index}
-                                    >
-                                      <i className="fa fa-angle-right"></i>
-                                    </a>
-                                  ) : (
-                                    <a
-                                      className={`paginate_button paginate-number ${
-                                        link.active === true && "text-warning"
-                                      }`}
-                                      aria-controls="assetBalances"
-                                      data-dt-idx="1"
-                                      onClick={() =>
-                                        LinkTopaginationStringForFiat(link)
-                                      }
-                                      key={index}
-                                    >
-                                      {link.label}
-                                    </a>
-                                  )
-                              )}
-                            </span>
+                <div className="asset-balances-left">
+                  <div className="section-wrapper">
+                    <div className="tableScroll">
+                      <div className="cp-user-wallet-table table-responsive tableScroll">
+                        <div
+                          id="assetBalances_wrapper"
+                          className="dataTables_wrapper no-footer"
+                        >
+                          <div className="dataTables_head">
+                            <div
+                              className="dataTables_length"
+                              id="assetBalances_length"
+                            >
+                              <label className="">
+                                {t("Show")}
+                                <select
+                                  name="assetBalances_length"
+                                  aria-controls="assetBalances"
+                                  className=""
+                                  placeholder="10"
+                                  onChange={(e) => {
+                                    setSelectedLimit(e.target.value);
+                                  }}
+                                  value={selectedLimit}
+                                >
+                                  <option value="10">10</option>
+                                  <option value="25">25</option>
+                                  <option value="50">50</option>
+                                  <option value="100">100</option>
+                                </select>
+                              </label>
+                            </div>
+                            <div className="dataTables_filter">
+                              <label>
+                                {"Search"}
+                                <input
+                                  type="search"
+                                  className=""
+                                  placeholder="Search..."
+                                  value={search}
+                                  onChange={(e) => setSearch(e.target.value)}
+                                />
+                              </label>
+                            </div>
                           </div>
+                        </div>
+                        {processing ? (
+                          <SectionLoading />
+                        ) : (
+                          <>
+                            {type === "withdrawal" ? (
+                              <FiatTableForWithdraw
+                                data={history}
+                                selectedLimit={selectedLimit}
+                                setSelectedLimit={setSelectedLimit}
+                                setSearch={setSearch}
+                                search={search}
+                              />
+                            ) : (
+                              <FiatTableForDeposit
+                                data={history}
+                                selectedLimit={selectedLimit}
+                                setSelectedLimit={setSelectedLimit}
+                              />
+                            )}
+                          </>
                         )}
                       </div>
+                      {history?.length > 0 && (
+                        <div
+                          className="pagination-wrapper"
+                          id="assetBalances_paginate"
+                        >
+                          <span>
+                            {stillHistory?.links?.map(
+                              (link: any, index: number) =>
+                                link.label === "&laquo; Previous" ? (
+                                  <a
+                                    className="paginate-button"
+                                    onClick={() => {
+                                      if (link.url)
+                                        LinkTopaginationStringForFiat(link);
+                                    }}
+                                    key={index}
+                                  >
+                                    <i className="fa fa-angle-left"></i>
+                                  </a>
+                                ) : link.label === "Next &raquo;" ? (
+                                  <a
+                                    className="paginate-button"
+                                    onClick={() =>
+                                      LinkTopaginationStringForFiat(link)
+                                    }
+                                    key={index}
+                                  >
+                                    <i className="fa fa-angle-right"></i>
+                                  </a>
+                                ) : (
+                                  <a
+                                    className={`paginate_button paginate-number ${
+                                      link.active === true && "text-warning"
+                                    }`}
+                                    aria-controls="assetBalances"
+                                    data-dt-idx="1"
+                                    onClick={() =>
+                                      LinkTopaginationStringForFiat(link)
+                                    }
+                                    key={index}
+                                  >
+                                    {link.label}
+                                  </a>
+                                )
+                            )}
+                          </span>
+                        </div>
+                      )}
                     </div>
                   </div>
-                )}
+                </div>
               </div>
             )}
           </div>

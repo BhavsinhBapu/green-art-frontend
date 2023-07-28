@@ -3,50 +3,13 @@ import moment from "moment";
 import useTranslation from "next-translate/useTranslation";
 import FiatHistoryModal from "components/gift-cards/modal/FiatHistoryModal";
 export default function FiatTableForDeposit({
-  data,
-  setSelectedLimit,
-  selectedLimit,
+  data
 }: any) {
   const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState<any>(false);
   const [modalItem, setModalItem] = useState<any>({});
   return (
     <div>
-      <div id="assetBalances_wrapper" className="dataTables_wrapper no-footer">
-        <div className="dataTables_head">
-          <div className="dataTables_length" id="assetBalances_length">
-            <label className="">
-              {t("Show")}
-              <select
-                name="assetBalances_length"
-                aria-controls="assetBalances"
-                className=""
-                placeholder="10"
-                onChange={(e) => {
-                  setSelectedLimit(e.target.value);
-                }}
-                value={selectedLimit}
-              >
-                <option value="10">10</option>
-                <option value="25">25</option>
-                <option value="50">50</option>
-                <option value="100">100</option>
-              </select>
-            </label>
-          </div>
-          {/* <div id="table_filter" className="dataTables_filter">
-            <label>
-              {"Search"}
-              <input
-                type="search"
-                className="data_table_input"
-                aria-controls="table"
-                placeholder="Search..."
-              />
-            </label>
-          </div> */}
-        </div>
-      </div>
       <table className="table table-hover">
         <thead>
           <tr>
