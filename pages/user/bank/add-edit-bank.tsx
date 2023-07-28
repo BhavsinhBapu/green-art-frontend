@@ -15,6 +15,7 @@ import {
   deleteBankAction,
 } from "state/actions/fiat-deposit-withawal";
 import { getBankList, getBankListSSr } from "service/deposit";
+import { FaTrash } from "react-icons/fa";
 
 const AddBank = ({ id, data }: any) => {
   const { t } = useTranslation("common");
@@ -81,7 +82,7 @@ const AddBank = ({ id, data }: any) => {
                               t("Field is required")
                             ),
                             iban: Yup.string().required(t("Field is required")),
-                            note: Yup.string().required(t("Field is required")),
+                            // note: Yup.string().required(t("Field is required")),
                           })}
                           onSubmit={(values) => {
                             addEditBankDetailsAction(values, setLoading);
@@ -212,14 +213,16 @@ const AddBank = ({ id, data }: any) => {
                                 {id && (
                                   <button
                                     type="button"
-                                    className="primary-btn ml-3"
+                                    className="primary-btn delete-bank-btn ml-3"
                                     onClick={() =>
                                       deleteBankAction(setdeleteloading, id)
                                     }
                                   >
+                                    <FaTrash size={16} className="mr-2" />
+
                                     {deleteloading
                                       ? t("Submitting..")
-                                      : t(`${"Delete"} Bank`)}
+                                      : t("Delete Bank")}
                                   </button>
                                 )}
                               </div>
