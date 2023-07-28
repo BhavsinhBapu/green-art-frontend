@@ -23,6 +23,7 @@ const FiatPaystack = ({ currency_type, method_id }: any) => {
   });
   const [walletID, setwalletID] = useState<any>();
   const { settings } = useSelector((state: RootState) => state.common);
+  const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = React.useState({
     status: false,
     message: "",
@@ -63,6 +64,7 @@ const FiatPaystack = ({ currency_type, method_id }: any) => {
       toast.error(t("Please provide all information's"));
       return;
     }
+    setLoading(true);
     const response = await GetPaystackPaymentUrl(
       credential.email,
       credential.amount,
@@ -73,9 +75,11 @@ const FiatPaystack = ({ currency_type, method_id }: any) => {
     // const res = await submitFiatWalletDepositApi(credential);
     if (response.success) {
       toast.success(response.message);
+      setLoading(false);
       window.open(response.data.authorization_url, "_blank");
     } else {
       toast.error(response.message);
+      setLoading(false);
     }
   };
   return (
@@ -191,13 +195,19 @@ const FiatPaystack = ({ currency_type, method_id }: any) => {
             </button>
           )} */}
           <div className="col-lg-12">
-            <button
-              className="primary-btn-outline w-100"
-              type="submit"
-              disabled={errorMessage.status === true}
-            >
-              {t("Deposit")}
-            </button>
+            {loading ? (
+              <button className="primary-btn-outline w-100" disabled>
+                {t("Processing")}
+              </button>
+            ) : (
+              <button
+                className="primary-btn-outline w-100"
+                type="submit"
+                disabled={errorMessage.status === true}
+              >
+                {t("Deposit")}
+              </button>
+            )}
           </div>
           {/* {email && amount && walletID && (
             <button className="primary-btn-outline w-100 mt-5" type="submit">
