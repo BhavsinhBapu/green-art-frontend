@@ -262,10 +262,10 @@ export const initialDashboardCallAction =
               "trade_coin_id",
               response?.pairs[0]?.child_coin_id
             );
-            // await localStorage.setItem(
-            //   "current_pair",
-            //   response?.pairs[0]?.coin_pair
-            // );
+            await localStorage.setItem(
+              "current_pair",
+              response?.pairs[0]?.coin_pair
+            );
             response?.pairs[0]?.coin_pair &&
               dispatch(setCurrentPair(response?.pairs[0]?.coin_pair));
             router.push(
@@ -306,7 +306,7 @@ export const initialDashboardCallAction =
             "trade_coin_id",
             response?.pairs[0]?.child_coin_id
           );
-          // await localStorage.setItem("current_pair", response?.pairs[0]?.coin_pair);
+          await localStorage.setItem("current_pair", response?.pairs[0]?.coin_pair);
           // router.push(`/exchange/dashboard?coin_pair=${response?.pairs[0]?.coin_pair}`)
           response?.pairs[0]?.coin_pair &&
             dispatch(setCurrentPair(response?.pairs[0]?.coin_pair));
