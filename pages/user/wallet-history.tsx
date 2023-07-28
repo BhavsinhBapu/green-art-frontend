@@ -1,5 +1,5 @@
 import type { GetServerSideProps, NextPage } from "next";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReportSidebar from "layout/report-sidebar";
 import DataTable from "react-data-table-component";
 import {
@@ -48,7 +48,7 @@ const DepositHistory: NextPage = () => {
   const LinkTopaginationStringForFiat = (page: any) => {
     const url = page.url.split("?")[1];
     const number = url.split("=")[1];
-    getFiatHistory(parseInt(number));
+    getFiatHistory(parseInt(number),search);
   };
   const getReport = async () => {
     if (type === "deposit" || type === "withdrawal") {
@@ -62,13 +62,13 @@ const DepositHistory: NextPage = () => {
       );
     }
   };
-  const getFiatHistory = async (page: any) => {
+  const getFiatHistory = async (page: any,searchField:string) => {
     setProcessing(true);
     const data = await getFiatHistoryApi(
       type === "withdrawal" ? "withdraw" : "deposit",
       selectedLimit,
       page,
-      search
+      searchField
     );
     if (!data.success) {
       toast.error(data.message);
@@ -121,19 +121,32 @@ const DepositHistory: NextPage = () => {
       accessor: "status",
     },
   ];
-  React.useEffect(() => {
+  useEffect(() => {
+    setHistory([]);
+    setStillHistory([]);
+    setSearch("");
+    if (selectedType.id == 1) {
+      getReport();
+    }
+    if (selectedType.id == 2) {
+      getFiatHistory(1,"");
+    }
+    return () => {
+      setHistory([]);
+    };
+  }, [type, selectedType, selectedLimit]);
+
+  useEffect(() => {
     setHistory([]);
     setStillHistory([]);
     if (selectedType.id == 1) {
       getReport();
     }
     if (selectedType.id == 2) {
-      getFiatHistory(1);
+      getFiatHistory(1,search);
     }
-    return () => {
-      setHistory([]);
-    };
-  }, [type, selectedType, selectedLimit, search]);
+  }, [search]);
+
   return (
     <>
       <div className="page-wrap rightMargin">
@@ -146,7 +159,7 @@ const DepositHistory: NextPage = () => {
                   <h2 className="section-top-title">
                     {type === "deposit"
                       ? t("Deposit History")
-                      : t("Withdrawal History")}
+                      : t("Withdrawal History")}{search}
                   </h2>
                 </div>
               </div>
@@ -298,16 +311,10 @@ const DepositHistory: NextPage = () => {
                             {type === "withdrawal" ? (
                               <FiatTableForWithdraw
                                 data={history}
-                                selectedLimit={selectedLimit}
-                                setSelectedLimit={setSelectedLimit}
-                                setSearch={setSearch}
-                                search={search}
                               />
                             ) : (
                               <FiatTableForDeposit
                                 data={history}
-                                selectedLimit={selectedLimit}
-                                setSelectedLimit={setSelectedLimit}
                               />
                             )}
                           </>
