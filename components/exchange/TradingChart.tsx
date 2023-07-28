@@ -18,10 +18,10 @@ function getLanguageFromURL() {
 type MyProps = {
   coinpair: any;
 };
-const pair = localStorage.getItem("current_pair")?.replace("_", "/");
+// const pair = localStorage.getItem("current_pair")?.replace("_", "/");
 export class TVChartContainer extends React.Component<MyProps> {
   static defaultProps = {
-    symbol: `:${pair ? pair : "BTC/USDT"}`,
+    symbol: `:`,
     interval: "15",
     containerId: "tv_chart_container",
     libraryPath: "/static/charting_library/",
@@ -186,7 +186,7 @@ export class TVChartContainer extends React.Component<MyProps> {
       width: 1400,
 
       //@ts-ignore
-      symbol: this.props.symbol ? this.props.symbol : "",
+      symbol: `:${this?.props?.currentPair}`,
       style: 1,
       //@ts-ignore
       theme: this.props.theme === "dark" ? "dark" : "light",
