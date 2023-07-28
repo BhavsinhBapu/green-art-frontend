@@ -253,7 +253,7 @@ export const initialDashboardCallAction =
         if (pair) {
           response = await appDashboardData(pair);
           if (response?.pair_status === false) {
-            // response = await appDashboardData(response.pairs[0].coin_pair);
+            response = await appDashboardData(response.pairs[0].coin_pair);
             await localStorage.setItem(
               "base_coin_id",
               response?.pairs[0]?.parent_coin_id
