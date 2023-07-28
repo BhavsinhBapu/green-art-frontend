@@ -74,18 +74,14 @@ const Dashboard: NextPage = () => {
     const timeoutId = setTimeout(() => {
       dashboard?.order_data?.base_coin_id &&
         dashboard?.order_data?.trade_coin_id &&
-        listenMessages(
-          dispatch,
-          user,
-          dashboard?.order_data?.base_coin_id,
-          dashboard?.order_data?.trade_coin_id
-        );
+        listenMessages(dispatch, user);
     }, delay);
 
     return () => clearTimeout(timeoutId);
   }, [
     dashboard?.order_data?.base_coin_id,
     dashboard?.order_data?.trade_coin_id,
+    currentPair,
   ]);
   const { settings } = useSelector((state: RootState) => state.common);
 
