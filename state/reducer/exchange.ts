@@ -90,7 +90,7 @@ export const exchangeSlice = createSlice({
             price_change: action.payload?.total.trade_wallet.price_change,
           },
           base_wallet: {
-            ...state.dashboard.order_data.total.base_wallet,
+            ...state.dashboard.order_data?.total.base_wallet,
             coin_type: action.payload?.total.base_wallet.coin_type,
             full_name: action.payload?.total.base_wallet.full_name,
           },
