@@ -21,7 +21,7 @@ type MyProps = {
 const pair = localStorage.getItem("current_pair")?.replace("_", "/");
 export class TVChartContainer extends React.Component<MyProps> {
   static defaultProps = {
-    symbol: `:${pair}`,
+    symbol: `:${pair ? pair : "BTC/USDT"}`,
     interval: "15",
     containerId: "tv_chart_container",
     libraryPath: "/static/charting_library/",
@@ -186,7 +186,7 @@ export class TVChartContainer extends React.Component<MyProps> {
       width: 1400,
 
       //@ts-ignore
-      symbol: this.props.symbol,
+      symbol: this.props.symbol ? this.props.symbol : "",
       style: 1,
       //@ts-ignore
       theme: this.props.theme === "dark" ? "dark" : "light",
@@ -453,7 +453,12 @@ export class TVChartContainer extends React.Component<MyProps> {
       //@ts-ignore
       const newSymbol = `:${this.props.currentPair.replace("_", "/")}`;
       //@ts-ignore
-      window.tvWidget.setSymbol(newSymbol, this.props.interval, () => {});
+      window.tvWidget.setSymbol(
+        newSymbol ? newSymbol : "",
+        //@ts-ignore
+        this.props.interval,
+        () => {}
+      );
     }
   }
   componentWillUnmount() {
