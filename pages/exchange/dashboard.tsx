@@ -69,8 +69,24 @@ const Dashboard: NextPage = () => {
     }
   }, [dashboard?.order_data?.base_coin_id]);
   useEffect(() => {
-    listenMessages(dispatch, user);
-  }, [currentPair]);
+    const delay = 3000; // 3 seconds in milliseconds
+
+    const timeoutId = setTimeout(() => {
+      dashboard?.order_data?.base_coin_id &&
+        dashboard?.order_data?.trade_coin_id &&
+        listenMessages(
+          dispatch,
+          user,
+          dashboard?.order_data?.base_coin_id,
+          dashboard?.order_data?.trade_coin_id
+        );
+    }, delay);
+
+    return () => clearTimeout(timeoutId);
+  }, [
+    dashboard?.order_data?.base_coin_id,
+    dashboard?.order_data?.trade_coin_id,
+  ]);
   const { settings } = useSelector((state: RootState) => state.common);
 
   return (
@@ -225,11 +241,11 @@ const Dashboard: NextPage = () => {
             <div className="cp-user-custom-card exchange-area">
               <div id="dashboard">
                 <div className="row">
-                  <div className="col-xl-12 col-12 mt-4" style={{ border: "1px solid rgb(126 126 126 / 20%)" }}>
-                    <div
-                      className="cxchange-summary-wrap mt-3 w-full"
-                      
-                    >
+                  <div
+                    className="col-xl-12 col-12 mt-4"
+                    style={{ border: "1px solid rgb(126 126 126 / 20%)" }}
+                  >
+                    <div className="cxchange-summary-wrap mt-3 w-full">
                       <div className="row w-full">
                         <div className="col-md-2">
                           {currentPair && (

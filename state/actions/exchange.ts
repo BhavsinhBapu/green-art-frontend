@@ -40,6 +40,7 @@ export const getDashboardData = (pair: string) => async (dispatch: any) => {
   const response = await appDashboardData(pair);
   dispatch(setDashboard(response));
 };
+
 export async function unlistenAllChannels() {
   //@ts-ignore
   if (!window.Echo) {
@@ -60,7 +61,6 @@ export async function unlistenAllChannels() {
       enabledTransports: ["ws", "wss"],
     });
   }
-  console.log("unlisten calling");
   //@ts-ignore
   window.Echo.leaveChannel(); // Leave the currently subscribed channel
   //@ts-ignore
@@ -157,7 +157,12 @@ export async function listenMessagesFuture(
     e?.transaction_list && settransactionHistory(e.position_order_list);
   });
 }
-export async function listenMessages(dispatch: any, user: any) {
+export async function listenMessages(
+  dispatch: any,
+  user: any,
+  base_coin_id: number,
+  trade_coin_id: number
+) {
   await unlistenAllChannels();
   //@ts-ignore
   if (!window.Echo) {
@@ -181,61 +186,57 @@ export async function listenMessages(dispatch: any, user: any) {
 
   //@ts-ignore
   // dashboard-base_coin_id-trade_coin_id
-  window.Echo.channel(
-    `dashboard-${localStorage.getItem("base_coin_id")}-${localStorage.getItem(
-      "trade_coin_id"
-    )}`
-  ).listen(".order_place", (e: any) => {
-    if (e.orders.order_type === "buy")
-      dispatch(setOpenBookBuy(e.orders.orders));
-    if (e.orders.order_type === "sell")
-      dispatch(setOpenBooksell(e.orders.orders));
-    if (e.orders.order_type === "buy_sell") {
-      dispatch(setOpenBookBuy(e.orders.buy_orders));
-      dispatch(setOpenBooksell(e.orders.sell_orders));
+  window.Echo.channel(`dashboard-${base_coin_id}-${trade_coin_id}`).listen(
+    ".order_place",
+    (e: any) => {
+      if (e.orders.order_type === "buy")
+        dispatch(setOpenBookBuy(e.orders.orders));
+      if (e.orders.order_type === "sell")
+        dispatch(setOpenBooksell(e.orders.orders));
+      if (e.orders.order_type === "buy_sell") {
+        dispatch(setOpenBookBuy(e.orders.buy_orders));
+        dispatch(setOpenBooksell(e.orders.sell_orders));
+      }
     }
-  });
+  );
   //@ts-ignore
-  window.Echo.channel(
-    `trade-info-${localStorage.getItem("base_coin_id")}-${localStorage.getItem(
-      "trade_coin_id"
-    )}`
-  ).listen(".process", (e: any) => {
-    dispatch(setAllmarketTrades(e.trades.transactions));
+  window.Echo.channel(`trade-info-${base_coin_id}-${trade_coin_id}`).listen(
+    ".process",
+    (e: any) => {
+      dispatch(setAllmarketTrades(e.trades.transactions));
 
-    updateChart({
-      price: parseFloat(e?.last_trade?.price),
-      ts: e?.last_trade?.time,
-      base_coin_id: e?.order_data?.base_coin_id,
-      trade_coin_id: e?.order_data?.trade_coin_id,
-      total: parseFloat(e?.last_trade?.total),
-    });
-    dispatch(setPairs(e.pairs));
-    e.last_price_data && dispatch(setLastPriceData(e.last_price_data));
-    e.order_data && dispatch(setOrderData(e.order_data));
-  });
+      updateChart({
+        price: parseFloat(e?.last_trade?.price),
+        ts: e?.last_trade?.time,
+        base_coin_id: e?.order_data?.base_coin_id,
+        trade_coin_id: e?.order_data?.trade_coin_id,
+        total: parseFloat(e?.last_trade?.total),
+      });
+      dispatch(setPairs(e.pairs));
+      e.last_price_data && dispatch(setLastPriceData(e.last_price_data));
+      e.order_data && dispatch(setOrderData(e.order_data));
+    }
+  );
   //@ts-ignore
-  window.Echo.channel(
-    `dashboard-${localStorage.getItem("base_coin_id")}-${localStorage.getItem(
-      "trade_coin_id"
-    )}`
-  ).listen(`.process-${localStorage.getItem("user_id")}`, (e: any) => {
-    dispatch(setOpenOrderHistory(e.open_orders.orders));
-    dispatch(setSellOrderHistory(e.open_orders.sell_orders));
-    dispatch(setBuyOrderHistory(e.open_orders.buy_orders));
-    e?.order_data?.total && dispatch(setTotalData(e?.order_data?.total));
-  });
+  window.Echo.channel(`dashboard-${base_coin_id}-${trade_coin_id}`).listen(
+    `.process-${localStorage.getItem("user_id")}`,
+    (e: any) => {
+      dispatch(setOpenOrderHistory(e.open_orders.orders));
+      dispatch(setSellOrderHistory(e.open_orders.sell_orders));
+      dispatch(setBuyOrderHistory(e.open_orders.buy_orders));
+      e?.order_data?.total && dispatch(setTotalData(e?.order_data?.total));
+    }
+  );
   //@ts-ignore
-  window.Echo.channel(
-    `dashboard-${localStorage.getItem("base_coin_id")}-${localStorage.getItem(
-      "trade_coin_id"
-    )}`
-  ).listen(`.order_place_${localStorage.getItem("user_id")}`, (e: any) => {
-    dispatch(setOpenOrderHistory(e.open_orders.orders));
-    dispatch(setSellOrderHistory(e.open_orders.sell_orders));
-    dispatch(setBuyOrderHistory(e.open_orders.buy_orders));
-    e?.order_data?.total && dispatch(setTotalData(e?.order_data?.total));
-  });
+  window.Echo.channel(`dashboard-${base_coin_id}-${trade_coin_id}`).listen(
+    `.order_place_${localStorage.getItem("user_id")}`,
+    (e: any) => {
+      dispatch(setOpenOrderHistory(e.open_orders.orders));
+      dispatch(setSellOrderHistory(e.open_orders.sell_orders));
+      dispatch(setBuyOrderHistory(e.open_orders.buy_orders));
+      e?.order_data?.total && dispatch(setTotalData(e?.order_data?.total));
+    }
+  );
 }
 export const initialDashboardCallAction =
   //@ts-ignore
@@ -270,7 +271,6 @@ export const initialDashboardCallAction =
             router.push(
               `/exchange/dashboard?coin_pair=${response?.order_data?.exchange_pair}`
             );
-            
           }
           if (!response?.pairs) {
             setisLoading && setisLoading(false);
