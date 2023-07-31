@@ -145,7 +145,7 @@ const Navbar = ({
                           </Link>
                           <ul className="dropdown-menu bg-transparent-main">
                             {navbar?.trade?.status && (
-                              <a
+                              <Link
                                 href={
                                   router.locale !== "en"
                                     ? `/${router.locale}/exchange/dashboard`
@@ -159,22 +159,15 @@ const Navbar = ({
                                       : ""
                                   }
                                 >
-                                  <a
-                                    href={
-                                      router.locale !== "en"
-                                        ? `/${router.locale}/exchange/dashboard`
-                                        : "/exchange/dashboard"
-                                    }
-                                    className="menu-hover"
-                                  >
+                                  <a href="" className="menu-hover">
                                     <span className="cp-user-icon">
                                       {" "}
                                       <BiShapeCircle />{" "}
                                     </span>{" "}
-                                    <span>{t("Spot Tradinge")}</span>
+                                    <span>{t("Spot Trading")}</span>
                                   </a>
                                 </li>
-                              </a>
+                              </Link>
                             )}
                             {Number(settings?.enable_future_trade) === 1 && (
                               <Link
@@ -626,43 +619,12 @@ const Navbar = ({
                                       {navbar?.reports?.fiatDepositHistory?.name
                                         ? navbar?.reports?.fiatDepositHistory
                                             ?.name
-                                        : t("Fiat To Crypto Deposit History")}
+                                        : t("Fiat Deposit History")}
                                     </span>
                                   </a>
                                 </li>
                               </Link>
                             )}
-                          {navbar?.reports?.fiatWithdrawalHistory?.status && (
-                            <Link
-                              href={
-                                isLoggedIn
-                                  ? "/user/currency-withdraw-history"
-                                  : "/signin"
-                              }
-                            >
-                              <li
-                                className={
-                                  router.asPath ==
-                                  "/user/currency-withdraw-history"
-                                    ? "cp-user-active-page"
-                                    : ""
-                                }
-                              >
-                                <a href="" className="menu-hover">
-                                  <span className="cp-user-icon">
-                                    <BiMoney />
-                                  </span>
-                                  <span>
-                                    {navbar?.reports?.fiatWithdrawalHistory
-                                      ?.name
-                                      ? navbar?.reports?.fiatWithdrawalHistory
-                                          ?.name
-                                      : t("Crypto To Fiat Withdrawal History")}
-                                  </span>
-                                </a>
-                              </li>
-                            </Link>
-                          )}
                           <Link
                             href={
                               isLoggedIn
@@ -738,6 +700,37 @@ const Navbar = ({
                               </a>
                             </li>
                           </Link>
+                          {navbar?.reports?.fiatWithdrawalHistory?.status && (
+                            <Link
+                              href={
+                                isLoggedIn
+                                  ? "/user/currency-withdraw-history"
+                                  : "/signin"
+                              }
+                            >
+                              <li
+                                className={
+                                  router.asPath ==
+                                  "/user/currency-withdraw-history"
+                                    ? "cp-user-active-page"
+                                    : ""
+                                }
+                              >
+                                <a href="" className="menu-hover">
+                                  <span className="cp-user-icon">
+                                    <BiMoney />
+                                  </span>
+                                  <span>
+                                    {navbar?.reports?.fiatWithdrawalHistory
+                                      ?.name
+                                      ? navbar?.reports?.fiatWithdrawalHistory
+                                          ?.name
+                                      : t("Fiat Withdrawal History")}
+                                  </span>
+                                </a>
+                              </li>
+                            </Link>
+                          )}
                         </ul>
                       </li>
                       {/* {navbar?.myProfile?.status && (
@@ -1120,7 +1113,7 @@ const Navbar = ({
                             aria-labelledby="navbarDropdown"
                           >
                             {navbar?.trade?.status && (
-                              <a
+                              <Link
                                 href={
                                   router.locale !== "en"
                                     ? `/${router.locale}/exchange/dashboard`
@@ -1135,18 +1128,14 @@ const Navbar = ({
                                   }
                                 >
                                   <a
-                                    href={
-                                      router.locale !== "en"
-                                        ? `/${router.locale}/exchange/dashboard`
-                                        : "/exchange/dashboard"
-                                    }
+                                    href=""
                                     className="px-3 py-2 text-primary-color-two"
                                     onClick={() => setActive(false)}
                                   >
                                     <span>{t("Spot Trading")}</span>
                                   </a>
                                 </li>
-                              </a>
+                              </Link>
                             )}
                             {parseInt(settings?.p2p_module) === 1 && (
                               <Link href={isLoggedIn ? "/p2p" : "/signin"}>
@@ -1628,44 +1617,12 @@ const Navbar = ({
                                       {navbar?.reports?.fiatDepositHistory?.name
                                         ? navbar?.reports?.fiatDepositHistory
                                             ?.name
-                                        : t("Fiat To Crypto Deposit History")}
+                                        : t("Fiat Deposit History")}
                                     </span>
                                   </a>
                                 </li>
                               </Link>
                             )}
-                          {navbar?.reports?.fiatWithdrawalHistory?.status && (
-                            <Link
-                              href={
-                                isLoggedIn
-                                  ? "/user/currency-withdraw-history"
-                                  : "/signin"
-                              }
-                            >
-                              <li
-                                className={
-                                  router.asPath ==
-                                  "/user/currency-withdraw-history"
-                                    ? "active-navbar"
-                                    : ""
-                                }
-                              >
-                                <a
-                                  href=""
-                                  className="px-3 py-2 text-primary-color-two"
-                                  onClick={() => setActive(false)}
-                                >
-                                  <span>
-                                    {navbar?.reports?.fiatWithdrawalHistory
-                                      ?.name
-                                      ? navbar?.reports?.fiatWithdrawalHistory
-                                          ?.name
-                                      : t("Crypto To Fiat Withdrawal History")}
-                                  </span>
-                                </a>
-                              </li>
-                            </Link>
-                          )}
                           <Link
                             href={
                               isLoggedIn
@@ -1744,6 +1701,38 @@ const Navbar = ({
                               </a>
                             </li>
                           </Link>
+                          {navbar?.reports?.fiatWithdrawalHistory?.status && (
+                            <Link
+                              href={
+                                isLoggedIn
+                                  ? "/user/currency-withdraw-history"
+                                  : "/signin"
+                              }
+                            >
+                              <li
+                                className={
+                                  router.asPath ==
+                                  "/user/currency-withdraw-history"
+                                    ? "active-navbar"
+                                    : ""
+                                }
+                              >
+                                <a
+                                  href=""
+                                  className="px-3 py-2 text-primary-color-two"
+                                  onClick={() => setActive(false)}
+                                >
+                                  <span>
+                                    {navbar?.reports?.fiatWithdrawalHistory
+                                      ?.name
+                                      ? navbar?.reports?.fiatWithdrawalHistory
+                                          ?.name
+                                      : t("Fiat Withdrawal History")}
+                                  </span>
+                                </a>
+                              </li>
+                            </Link>
+                          )}
                         </ul>
                       </li>
 

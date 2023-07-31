@@ -27,8 +27,8 @@ const initialState: ExchangeState = {
   marketTrades: [],
 };
 
-export const exchangeSlice = createSlice({
-  name: "exchange",
+export const futureExchangeSlice = createSlice({
+  name: "futureExchange",
   initialState,
   reducers: {
     setSellPrice: (state: any, action: any) => {
@@ -47,7 +47,6 @@ export const exchangeSlice = createSlice({
       state.total_volume = action.payload;
     },
     setDashboard: (state: any, action: PayloadAction<ExchangeState>) => {
-      console.log("Callingggggggggggggggggggg")
       state.dashboard = action.payload;
     },
     setCurrentPair: (state: any, action: PayloadAction<string>) => {
@@ -141,6 +140,6 @@ export const {
   setPublicTradesDashboard,
   setAllmarketTrades,
   setPairs,
-} = exchangeSlice.actions;
+} = futureExchangeSlice.actions;
 
-export default exchangeSlice.reducer;
+export default futureExchangeSlice.reducer;

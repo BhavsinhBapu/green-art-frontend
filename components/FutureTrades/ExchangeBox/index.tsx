@@ -41,7 +41,7 @@ const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
   const [marginMode, setmarginMode] = useState(disableCross ? ISOLATED : CROSS);
 
   const { dashboard, currentPair } = useSelector(
-    (state: RootState) => state.exchange
+    (state: RootState) => state.futureExchange
   );
   const [trade_type, setTrade_type] = useState<trade_type>(AMOUNT_TYPE_BASE);
   const [selectedCoinType, setSelectedCoinType] = useState(BASE);

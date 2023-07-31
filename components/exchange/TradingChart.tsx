@@ -18,7 +18,7 @@ function getLanguageFromURL() {
 type MyProps = {
   coinpair: any;
 };
-// const pair = localStorage.getItem("current_pair")?.replace("_", "/");
+// const pazir = localStorage.getItem("current_pair")?.replace("_", "/");
 export class TVChartContainer extends React.Component<MyProps> {
   static defaultProps = {
     symbol: `:`,

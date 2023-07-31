@@ -34,7 +34,7 @@ import {
   setSellOrderHistory,
   setTotalData,
   setTradeOrderHistory,
-} from "state/reducer/exchange";
+} from "state/reducer/futureExchange";
 import { openBookDashboard } from "service/exchange";
 import Cookies from "js-cookie";
 import { updateChart } from "components/exchange/api/stream";

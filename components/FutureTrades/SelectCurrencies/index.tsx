@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Tooltip from "rc-tooltip";
 import "rc-tooltip/assets/bootstrap.css";
 import { RootState } from "state/store";
-import { setCurrentPair } from "state/reducer/exchange";
+import { setCurrentPair } from "state/reducer/futureExchange";
 import { useRouter } from "next/router";
 import useTranslation from "next-translate/useTranslation";
 import DataTable from "react-data-table-component";
@@ -13,7 +13,7 @@ const SelectCurrency = () => {
   const router = useRouter();
   const [pairs, setPairs] = React.useState([]);
   const { t } = useTranslation("common");
-  const { dashboard } = useSelector((state: RootState) => state.exchange);
+  const { dashboard } = useSelector((state: RootState) => state.futureExchange);
   const customStyles = {
     rows: {
       style: {
@@ -180,7 +180,7 @@ const SelectCurrency = () => {
   }, [dashboard?.pairs]);
   return (
     <div
-      className="cp-user-buy-coin-content-area dropdown-menu p-0" 
+      className="cp-user-buy-coin-content-area dropdown-menu p-0"
       aria-labelledby="dropdownMenuButton"
     >
       <div className="cp-user-wallet-table dashboard-coin_pairs table-responsive">

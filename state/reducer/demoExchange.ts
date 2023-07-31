@@ -28,7 +28,7 @@ const initialState: ExchangeState = {
 };
 
 export const demoExchangeSlice = createSlice({
-  name: "exchange",
+  name: "demoExchange",
   initialState,
   reducers: {
     setSellPrice: (state: any, action: any) => {

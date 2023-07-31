@@ -1,16 +1,13 @@
-import MyOrderHistory from "components/FutureTrades/MyOrderHistory";
 import SelectCurrency from "components/FutureTrades/SelectCurrencies";
 import TopBar from "components/FutureTrades/Topbar";
 import TradeBox from "components/FutureTrades/TradeBox";
-import CurrencyLevel from "components/exchange/currencyLevel";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { listenMessagesFuture } from "state/actions/exchange";
 import {
   initialDashboardCallAction,
   listenMessages,
 } from "state/actions/futureTrade";
-import { setCurrentPair } from "state/reducer/exchange";
+import { setCurrentPair } from "state/reducer/futureExchange";
 import { RootState } from "state/store";
 
 const Exchange = () => {
@@ -23,7 +20,7 @@ const Exchange = () => {
   });
   const { isLoggedIn, user } = useSelector((state: RootState) => state.user);
   const { dashboard, currentPair } = useSelector(
-    (state: RootState) => state.exchange
+    (state: RootState) => state.futureExchange
   );
   const dispatch = useDispatch();
 

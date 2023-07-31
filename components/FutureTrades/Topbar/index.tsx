@@ -6,7 +6,7 @@ import { RootState } from "state/store";
 
 const TopBar = () => {
   const { t } = useTranslation("common");
-  const { dashboard } = useSelector((state: RootState) => state.exchange);
+  const { dashboard } = useSelector((state: RootState) => state.futureExchange);
   const [volume, setVolume] = React.useState(
     parseFloat(dashboard?.order_data?.total?.trade_wallet?.volume) *
       parseFloat(dashboard?.order_data?.total?.trade_wallet?.last_price)

@@ -34,7 +34,7 @@ const MyOrderHistory = ({ setdisableCross, setdisableIsolated }: any) => {
   const [orderHistory, setorderHistory] = useState([]);
   const [openOrder, setOpenOrder] = useState([]);
   const { dashboard, currentPair } = useSelector(
-    (state: RootState) => state.exchange
+    (state: RootState) => state.futureExchange
   );
   useEffect(() => {
     let disableCross = false;

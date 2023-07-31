@@ -24,7 +24,9 @@ const Isolated = ({
   const modifyIsolated = (value: number) => {
     setIsolated(value);
   };
-  const { currentPair } = useSelector((state: RootState) => state.exchange);
+  const { currentPair } = useSelector(
+    (state: RootState) => state.futureExchange
+  );
   const crossMarginDescription =
     "In Cross Margin Mode, the trader's entire account balance is used as collateral for all open positions.The available margin for opening new positions is determined by the total account equity rather than individual positions.";
   const isolatedMarginDescription =

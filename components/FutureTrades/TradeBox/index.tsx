@@ -15,7 +15,7 @@ const TradingChart = dynamic(
 );
 const TradeBox = ({ ThemeColor }: any) => {
   const { marketTrades, currentPair } = useSelector(
-    (state: RootState) => state.exchange
+    (state: RootState) => state.futureExchange
   );
   const [disableCross, setdisableCross] = useState(false);
   const [disableIsolated, setdisableIsolated] = useState(false);

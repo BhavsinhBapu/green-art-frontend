@@ -11,7 +11,7 @@ const OrderBook = () => {
   const { t } = useTranslation("common");
   const [select, setSelect] = React.useState(3);
   const { dashboard, OpenBookBuy, OpenBooksell, marketTrades, currentPair } =
-    useSelector((state: RootState) => state.exchange);
+    useSelector((state: RootState) => state.futureExchange);
   const { settings, theme } = useSelector((state: RootState) => state.common);
 
   return (
