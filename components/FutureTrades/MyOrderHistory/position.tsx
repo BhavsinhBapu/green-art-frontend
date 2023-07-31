@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const Position = ({ listData }: any) => {
   const [CloseAll, setCloseAll] = useState<any>([]);
-  const { dashboard } = useSelector((state: RootState) => state.exchange);
+  const { dashboard } = useSelector((state: RootState) => state.futureExchange);
   const dispatch = useDispatch();
 
   const makeList = () => {
