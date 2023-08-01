@@ -15466,6 +15466,112 @@ input:checked + .gift-card-buy-slider:before {
   line-height: 19px;
 }
 
+.pt-80 {
+  padding-top: 80px;
+}
+
+.pb-80 {
+  padding-bottom: 80px;
+}
+
+.mb-65 {
+  margin-bottom: 65px;
+}
+
+.community-home-header {
+  margin-bottom: 64px;
+}
+.community-home-title-section {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+.community-home-title {
+  font-size: 32px;
+}
+
+.community-home-btn {
+  display: flex;
+  gap: 5px;
+}
+.community-home-subtitle {
+  font-size: 16px;
+  font-weight: 400;
+  margin-top: 16px;
+}
+
+.community-home-card {
+  height: fit-content;
+  background-color: var(--main-background-color);
+  border-radius: 16px;
+}
+
+.community-card-title-section {
+  padding: 16px 32px 32px;
+}
+
+.community-card-img {
+  object-fit: cover;
+  width: 312px;
+  height: 242px;
+}
+
+.community-card-title {
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 30px;
+  color: var(--title-color);
+}
+
+.community-card-btn {
+  min-width: 200px;
+  margin-top: 24px;
+  font-size: 16px;
+  text-align: center;
+  background-color: var(--primary-color);
+  padding: 10px 0;
+  border: unset;
+  border-radius: 4px;
+  color: var(--font-color);
+}
+
+.community-item {
+  display: flex;
+  padding-bottom: 32px;
+}
+
+.community-svg {
+  color: rgb(234, 236, 239);
+  font-size: 36px;
+  fill: rgb(234, 236, 239);
+  width: 1em;
+  height: 1em;
+}
+
+.community-user-img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+.community-item-des p {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--title-color);
+  margin-top: 8px;
+  overflow-wrap: break-word;
+  white-space: normal;
+  text-overflow: ellipsis;
+}
+
+.community-item-time {
+  margin-top: 8px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--font-color);
+}
+
 @media (max-width: 1520px) {
   .trade-dashboard-side-margin {
     margin-left: 0 !important;

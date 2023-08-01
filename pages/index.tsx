@@ -16,6 +16,7 @@ import DistributionSection from "components/Homepage/DistributionSection";
 import BottomDetails from "components/Homepage/BottomDetails";
 import GetInTouch from "components/Homepage/GetInTouch";
 import StartTradingNow from "components/Homepage/StartTradingNow";
+import CommunityHome from "components/community/CommunityHome";
 const Home: NextPage = ({
   landing,
   bannerListdata,
@@ -76,6 +77,9 @@ const Home: NextPage = ({
               hourly_coin_pairs={hourly_coin_pairs}
               latest_coin_pairs={latest_coin_pairs}
             />
+            {/* community section start*/}
+            <CommunityHome />
+            {/* community section end*/}
             <DistributionSection landing={landing} />
 
             <BottomDetails landing={landing} />
