@@ -20,7 +20,7 @@ isn't over yet.`;
 
 export default function CommunityHome() {
   return (
-    <section className="bg-card-primary-clr pt-80 pb-80 community-home">
+    <section className="bg-card-primary-clr pt-60 pb-60 community-home">
       <div className="container">
         <div className="community-home-header">
           <div className="community-home-title-section">

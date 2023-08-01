@@ -15474,6 +15474,14 @@ input:checked + .gift-card-buy-slider:before {
   padding-bottom: 80px;
 }
 
+.pt-60 {
+  padding-top: 60px;
+}
+
+.pb-60 {
+  padding-bottom: 60px;
+}
+
 .mb-65 {
   margin-bottom: 65px;
 }
