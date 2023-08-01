@@ -15499,8 +15499,12 @@ input:checked + .gift-card-buy-slider:before {
 }
 
 .community-home-btn {
+  cursor: pointer;
   display: flex;
   gap: 5px;
+}
+.community-home-btn:hover {
+  color: var(--primary-color);
 }
 .community-home-subtitle {
   font-size: 16px;
