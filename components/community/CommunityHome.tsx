@@ -40,7 +40,7 @@ export default function CommunityHome() {
         </div>
 
         <div className="community-home-body row">
-          <div className="col-md-8">
+          <div className="col-lg-8">
             <div className="row">
               {[1, 2, 3, 4, 5, 6].map((item) => (
                 <div className="col-md-6" key={item}>
@@ -77,7 +77,7 @@ export default function CommunityHome() {
               ))}
             </div>
           </div>
-          <div className="col-md-4">
+          <div className="col-lg-4">
             <div className="community-home-card">
               <div className="text-center">
                 <img
