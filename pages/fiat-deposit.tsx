@@ -10,6 +10,7 @@ import {
   PAYSTACK,
   PAYDUNYA,
   PERFECT_MONEY,
+  MOBILE_MONEY,
 } from "helpers/core-constants";
 import useTranslation from "next-translate/useTranslation";
 import React, { useEffect, useState } from "react";
@@ -32,6 +33,7 @@ import FiatSidebar from "layout/fiat-sidebar";
 import Paystack from "components/deposit/paystack";
 import Paydunya from "components/deposit/paydunya";
 import PerfectMoney from "components/deposit/perfectMoney";
+import MobileMoney from "components/deposit/mobile-money";
 
 const Deposit = () => {
   const { t } = useTranslation("common");
@@ -151,6 +153,14 @@ const Deposit = () => {
                               <Paystack
                                 walletlist={depositInfo.wallet_list}
                                 method_id={selectedMethod.method_id}
+                              />
+                            ) : parseInt(selectedMethod.method) ===
+                              MOBILE_MONEY ? (
+                              <MobileMoney
+                                currencyList={depositInfo.currency_list}
+                                walletlist={depositInfo.wallet_list}
+                                method_id={selectedMethod.method_id}
+                                mobiles={depositInfo.mobile_money_list}
                               />
                             ) : parseInt(selectedMethod.method) === PAYDUNYA ? (
                               <Paydunya

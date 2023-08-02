@@ -13,6 +13,7 @@ export const CRYPTO_DEPOSIT = 8;
 export const PAYSTACK = 9;
 export const PAYDUNYA = 13;
 export const PERFECT_MONEY = 12;
+export const MOBILE_MONEY = 14;
 
 // FAQ Type List
 export const FAQ_TYPE_MAIN = 1;

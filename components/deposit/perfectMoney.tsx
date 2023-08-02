@@ -108,7 +108,7 @@ const PerfectMoney = ({ currencyList, walletlist, method_id, banks }: any) => {
   return (
     <div>
       <div className="cp-user-title mt-5 mb-4">
-        <h4>{t("Bank Deposit")}</h4>
+        <h4>{t("Perfect Money")}</h4>
       </div>
       <div className="row">
         <div className="col-lg-8">
@@ -359,7 +359,10 @@ const PerfectMoney = ({ currencyList, walletlist, method_id, banks }: any) => {
         <div className="col-lg-4">
           <div className="bg-main-clr p-3">
             {infoList.map((item, index) => (
-              <div className="py-1 d-flex gap-10 align-items-center" key={index}>
+              <div
+                className="py-1 d-flex gap-10 align-items-center"
+                key={index}
+              >
                 <span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

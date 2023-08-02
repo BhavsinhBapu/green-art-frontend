@@ -15,10 +15,12 @@ import { useSelector } from "react-redux";
 import { RootState } from "state/store";
 import DepositGoogleAuth from "./deposit-g2fa";
 import { AiOutlineCloudUpload } from "react-icons/ai";
-const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
+import ProviderDetails from "./providerDetails";
+const MobileMoney = ({ currencyList, walletlist, method_id, mobiles }: any) => {
   const { t } = useTranslation("common");
   const inputRef = useRef(null);
   const { settings } = useSelector((state: RootState) => state.common);
+  console.log(mobiles, "mobilesmobilesmobiles");
   const handleClick = () => {
     // 👇️ open file input box on click of other element
     //@ts-ignore
@@ -26,11 +28,10 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
   };
   const prepareCopyData = (data: any) => {
     const copyData = `Account Holder Name:${data.account_holder_name},
-     Bank Name:${data.bank_name}, 
+     Mobile Number:${data.mobile_number}, 
      Bank Address:${data.bank_address}, 
-     Country:${data.country}, 
-     Swift Code:${data.swift_code}, 
-     Account Number:${data.iban}`;
+     Service Provider Name:${data.service_provider_name}, 
+     `;
     copyTextById(copyData);
   };
 
@@ -69,11 +70,11 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
     payment_method_id: method_id ? parseInt(method_id) : null,
     amount: 0,
     currency: null,
-    bank_id: null,
+    mobile_money_id: null,
     code: "",
   });
   const router = useRouter();
-  const [bankInfo, setBankInfo] = useState({});
+  const [providerInfo, setMobileInfo] = useState({});
   const [doc, setDoc] = useState(null);
   const getCurrencyRate = async () => {
     if (
@@ -91,7 +92,7 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
       credential.payment_method_id &&
       credential.amount &&
       credential.currency &&
-      credential.bank_id &&
+      credential.mobile_money_id &&
       doc
     ) {
       const formData: any = new FormData();
@@ -99,8 +100,9 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
       formData.append("payment_method_id", credential.payment_method_id);
       formData.append("amount", credential.amount);
       formData.append("currency", credential.currency);
-      formData.append("bank_id", credential.bank_id);
-      formData.append("bank_receipt", doc);
+      formData.append("mobile_money_id", credential.mobile_money_id);
+      formData.append("mobile_money_receipt", doc);
+      formData.append("code", credential.code);
 
       const res = await currencyDepositProcess(formData);
       if (res.success) {
@@ -120,7 +122,7 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
   return (
     <div>
       <div className="cp-user-title mt-5 mb-4">
-        <h4>{t("Bank Deposit")}</h4>
+        <h4>{t("Mobile Money")}</h4>
       </div>
       <div className="row">
         <div className="col-lg-12">
@@ -241,35 +243,37 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
             onChange={(e: any) => {
               setCredential({
                 ...credential,
-                bank_id: parseInt(e.target.value),
+                mobile_money_id: parseInt(e.target.value),
               });
-              setBankInfo(
-                banks.find((bank: any) => bank.id === parseInt(e.target.value))
+              setMobileInfo(
+                mobiles.find(
+                  (bank: any) => bank.id === parseInt(e.target.value)
+                )
               );
             }}
           >
-            <option>{t("Select bank")}</option>
-            {banks?.map((bank: any, index: any) => (
+            <option>{t("Select Provider")}</option>
+            {mobiles?.map((bank: any, index: any) => (
               <option key={index} value={bank.id}>
-                {bank.bank_name}
+                {bank.service_provider_name}
               </option>
             ))}
           </select>
         </div>
-        {credential.bank_id && (
+        {credential.mobile_money_id && (
           <div className="col-lg-12 mb-3">
             <div className="split-title">
               <span className="file-lable">{t("Bank details")}</span>
               <span
                 className="file-lable copy-btn"
                 onClick={() => {
-                  prepareCopyData(bankInfo);
+                  prepareCopyData(providerInfo);
                 }}
               >
                 {t("Copy")}
               </span>
             </div>
-            <BankDetails bankInfo={bankInfo} />
+            <ProviderDetails providerInfo={providerInfo} />
           </div>
         )}
         <div className="col-lg-12 my-3">
@@ -341,4 +345,4 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
   );
 };
 
-export default BankDeposit;
+export default MobileMoney;
