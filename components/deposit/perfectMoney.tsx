@@ -78,7 +78,7 @@ const PerfectMoney = ({ currencyList, walletlist, method_id, banks }: any) => {
       formData.append("account_id", credential.account_id);
       formData.append("account_password", credential.account_password);
       formData.append("payer_id", credential.payer_id);
-     credential.code && formData.append("code", credential.code);
+      credential.code && formData.append("code", credential.code);
 
       const res = await currencyDepositProcess(formData);
       if (res.success) {
@@ -101,242 +101,253 @@ const PerfectMoney = ({ currencyList, walletlist, method_id, banks }: any) => {
         <h4>{t("Bank Deposit")}</h4>
       </div>
       <div className="row">
-        <div className="col-lg-12">
-          <div className="">
-            <div className="swap-area">
-              <div className="swap-area-top">
-                <div className="form-group">
-                  <div className="swap-wrap">
-                    <div className="swap-wrap-top">
-                      <label>{t("Enter amount")}</label>
-                      <span className="available">{t("Select currency")}</span>
-                    </div>
-                    <div className="swap-input-wrap">
-                      <div className="form-amount">
-                        <input
-                          type="number"
-                          className="form-control border-0"
-                          id="amount-one"
-                          placeholder={t("Please enter 1 -2400000")}
-                          onChange={(e) => {
-                            setCredential({
-                              ...credential,
-                              amount: e.target.value,
-                            });
-                          }}
-                        />
-                      </div>
-                      <div className="cp-select-area">
-                        <select
-                          className="form-control border-0 ticketFilterBg"
-                          id="currency-one"
-                          onChange={(e) => {
-                            setCredential({
-                              ...credential,
-                              currency: e.target.value,
-                            });
-                          }}
-                        >
-                          <option value="" selected disabled hidden>
-                            {t("Select one")}
-                          </option>
-                          {currencyList.map((currency: any, index: any) => (
-                            <option value={currency.code} key={index}>
-                              {currency.name}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-lg-12">
-          <div className="">
-            <div className="swap-area">
-              <div className="swap-area-top">
-                <div className="form-group">
-                  <div className="swap-wrap mt-3">
-                    <div className="swap-wrap-top">
-                      <label>{t("Converted amount")}</label>
-                      <span className="available">{t("Select wallet")}</span>
-                    </div>
-                    <div className="swap-input-wrap">
-                      <div className="form-amount">
-                        <input
-                          type="number"
-                          className="form-control border-0"
-                          id="amount-one"
-                          disabled
-                          value={calculatedValue.calculated_amount}
-                          placeholder={t("Please enter 10 -2400000")}
-                          onChange={(e) => {
-                            setCredential({
-                              ...credential,
-                              amount: e.target.value,
-                            });
-                          }}
-                        />
-                      </div>
-                      <div className="cp-select-area">
-                        <select
-                          className="form-control border-0 ticketFilterBg"
-                          id="currency-one"
-                          onChange={(e) => {
-                            setCredential({
-                              ...credential,
-                              wallet_id: e.target.value,
-                            });
-                          }}
-                        >
-                          <option value="" selected disabled hidden>
-                            {t("Select one")}
-                          </option>
-                          {walletlist.map((wallet: any, index: any) => (
-                            <option value={wallet.id} key={index}>
-                              {wallet.coin_type}
-                            </option>
-                          ))}
-                        </select>
+        <div className="col-md-8">
+          <div className="row">
+            <div className="col-lg-12">
+              <div className="">
+                <div className="swap-area">
+                  <div className="swap-area-top">
+                    <div className="form-group">
+                      <div className="swap-wrap">
+                        <div className="swap-wrap-top">
+                          <label>{t("Enter amount")}</label>
+                          <span className="available">
+                            {t("Select currency")}
+                          </span>
+                        </div>
+                        <div className="swap-input-wrap">
+                          <div className="form-amount">
+                            <input
+                              type="number"
+                              className="form-control border-0"
+                              id="amount-one"
+                              placeholder={t("Please enter 1 -2400000")}
+                              onChange={(e) => {
+                                setCredential({
+                                  ...credential,
+                                  amount: e.target.value,
+                                });
+                              }}
+                            />
+                          </div>
+                          <div className="cp-select-area">
+                            <select
+                              className="form-control border-0 ticketFilterBg"
+                              id="currency-one"
+                              onChange={(e) => {
+                                setCredential({
+                                  ...credential,
+                                  currency: e.target.value,
+                                });
+                              }}
+                            >
+                              <option value="" selected disabled hidden>
+                                {t("Select one")}
+                              </option>
+                              {currencyList.map((currency: any, index: any) => (
+                                <option value={currency.code} key={index}>
+                                  {currency.name}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div className="col-lg-12">
-          <div className="">
-            <div className="swap-area">
-              <div className="swap-area-top">
-                <div className="form-group">
-                  <div className="swap-wrap mt-3">
-                    <div className="swap-wrap-top">
-                      <label>{t("Account Id")}</label>
-                    </div>
-                    <div className="swap-input-wrap">
-                      <div className="form-amount">
-                        <input
-                          type="text"
-                          className="form-control border-0"
-                          id="amount-one"
-                          value={credential.account_id}
-                          placeholder={t("Please enter 10 -2400000")}
-                          onChange={(e) => {
-                            setCredential({
-                              ...credential,
-                              account_id: e.target.value,
-                            });
-                          }}
-                        />
+            <div className="col-lg-12">
+              <div className="">
+                <div className="swap-area">
+                  <div className="swap-area-top">
+                    <div className="form-group">
+                      <div className="swap-wrap mt-3">
+                        <div className="swap-wrap-top">
+                          <label>{t("Converted amount")}</label>
+                          <span className="available">
+                            {t("Select wallet")}
+                          </span>
+                        </div>
+                        <div className="swap-input-wrap">
+                          <div className="form-amount">
+                            <input
+                              type="number"
+                              className="form-control border-0"
+                              id="amount-one"
+                              disabled
+                              value={calculatedValue.calculated_amount}
+                              placeholder={t("Please enter 10 -2400000")}
+                              onChange={(e) => {
+                                setCredential({
+                                  ...credential,
+                                  amount: e.target.value,
+                                });
+                              }}
+                            />
+                          </div>
+                          <div className="cp-select-area">
+                            <select
+                              className="form-control border-0 ticketFilterBg"
+                              id="currency-one"
+                              onChange={(e) => {
+                                setCredential({
+                                  ...credential,
+                                  wallet_id: e.target.value,
+                                });
+                              }}
+                            >
+                              <option value="" selected disabled hidden>
+                                {t("Select one")}
+                              </option>
+                              {walletlist.map((wallet: any, index: any) => (
+                                <option value={wallet.id} key={index}>
+                                  {wallet.coin_type}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div className="col-lg-12">
-          <div className="">
-            <div className="swap-area">
-              <div className="swap-area-top">
-                <div className="form-group">
-                  <div className="swap-wrap mt-3">
-                    <div className="swap-wrap-top">
-                      <label>{t("Account Password")}</label>
-                    </div>
-                    <div className="swap-input-wrap">
-                      <div className="form-amount">
-                        <input
-                          type="text"
-                          className="form-control border-0"
-                          id="amount-one"
-                          value={credential.account_password}
-                          placeholder={t("Account Password")}
-                          onChange={(e) => {
-                            setCredential({
-                              ...credential,
-                              account_password: e.target.value,
-                            });
-                          }}
-                        />
+            <div className="col-lg-12">
+              <div className="">
+                <div className="swap-area">
+                  <div className="swap-area-top">
+                    <div className="form-group">
+                      <div className="swap-wrap mt-3">
+                        <div className="swap-wrap-top">
+                          <label>{t("Account Id")}</label>
+                        </div>
+                        <div className="swap-input-wrap">
+                          <div className="form-amount">
+                            <input
+                              type="text"
+                              className="form-control border-0"
+                              id="amount-one"
+                              value={credential.account_id}
+                              placeholder={t("Please enter 10 -2400000")}
+                              onChange={(e) => {
+                                setCredential({
+                                  ...credential,
+                                  account_id: e.target.value,
+                                });
+                              }}
+                            />
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div className="col-lg-12">
-          <div className="">
-            <div className="swap-area">
-              <div className="swap-area-top">
-                <div className="form-group">
-                  <div className="swap-wrap mt-3">
-                    <div className="swap-wrap-top">
-                      <label>{t("Payer Id")}</label>
-                    </div>
-                    <div className="swap-input-wrap">
-                      <div className="form-amount">
-                        <input
-                          type="text"
-                          className="form-control border-0"
-                          id="amount-one"
-                          value={credential.payer_id}
-                          placeholder={t("Payer Id")}
-                          onChange={(e) => {
-                            setCredential({
-                              ...credential,
-                              payer_id: e.target.value,
-                            });
-                          }}
-                        />
+            <div className="col-lg-12">
+              <div className="">
+                <div className="swap-area">
+                  <div className="swap-area-top">
+                    <div className="form-group">
+                      <div className="swap-wrap mt-3">
+                        <div className="swap-wrap-top">
+                          <label>{t("Account Password")}</label>
+                        </div>
+                        <div className="swap-input-wrap">
+                          <div className="form-amount">
+                            <input
+                              type="text"
+                              className="form-control border-0"
+                              id="amount-one"
+                              value={credential.account_password}
+                              placeholder={t("Account Password")}
+                              onChange={(e) => {
+                                setCredential({
+                                  ...credential,
+                                  account_password: e.target.value,
+                                });
+                              }}
+                            />
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
+            <div className="col-lg-12">
+              <div className="">
+                <div className="swap-area">
+                  <div className="swap-area-top">
+                    <div className="form-group">
+                      <div className="swap-wrap mt-3">
+                        <div className="swap-wrap-top">
+                          <label>{t("Payer Id")}</label>
+                        </div>
+                        <div className="swap-input-wrap">
+                          <div className="form-amount">
+                            <input
+                              type="text"
+                              className="form-control border-0"
+                              id="amount-one"
+                              value={credential.payer_id}
+                              placeholder={t("Payer Id")}
+                              onChange={(e) => {
+                                setCredential({
+                                  ...credential,
+                                  payer_id: e.target.value,
+                                });
+                              }}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-        <div className="col-lg-12 my-3">
-          <DepositGoogleAuth
-            convertCurrency={convertCurrency}
-            credential={credential}
-            setCredential={setCredential}
-          />
-          {errorMessage.status && (
-            <div className="alert alert-danger">{errorMessage.message}</div>
-          )}
-          {parseInt(settings.currency_deposit_2fa_status) === 1 ? (
-            <button
-              className="primary-btn-outline w-100 mt-5"
-              type="button"
-              data-target="#exampleModal"
-              disabled={errorMessage.status === true}
-              data-toggle="modal"
-            >
-              {t("Deposit")}
-            </button>
-          ) : (
-            <button
-              className="primary-btn-outline w-100 mt-5"
-              type="button"
-              disabled={errorMessage.status === true}
-              onClick={() => {
-                convertCurrency(credential);
-              }}
-            >
-              {t("Deposit")}
-            </button>
-          )}
+            <div className="col-lg-12 my-3">
+              <DepositGoogleAuth
+                convertCurrency={convertCurrency}
+                credential={credential}
+                setCredential={setCredential}
+              />
+              {errorMessage.status && (
+                <div className="alert alert-danger">{errorMessage.message}</div>
+              )}
+              {parseInt(settings.currency_deposit_2fa_status) === 1 ? (
+                <button
+                  className="primary-btn-outline w-100 mt-5"
+                  type="button"
+                  data-target="#exampleModal"
+                  disabled={errorMessage.status === true}
+                  data-toggle="modal"
+                >
+                  {t("Deposit")}
+                </button>
+              ) : (
+                <button
+                  className="primary-btn-outline w-100 mt-5"
+                  type="button"
+                  disabled={errorMessage.status === true}
+                  onClick={() => {
+                    convertCurrency(credential);
+                  }}
+                >
+                  {t("Deposit")}
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+        <div className="col-md-4">
+          <p>hejbkjejkbnk</p>
         </div>
       </div>
     </div>
