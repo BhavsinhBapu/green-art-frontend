@@ -263,7 +263,7 @@ const MobileMoney = ({ currencyList, walletlist, method_id, mobiles }: any) => {
         {credential.mobile_money_id && (
           <div className="col-lg-12 mb-3">
             <div className="split-title">
-              <span className="file-lable">{t("Bank details")}</span>
+              <span className="file-lable">{t("Mobile Payment details")}</span>
               <span
                 className="file-lable copy-btn"
                 onClick={() => {
