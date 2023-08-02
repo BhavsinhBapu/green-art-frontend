@@ -18,13 +18,10 @@ const SelectDeposit = ({
           onClick={() => {
             setSelectedMethod({
               method: payment.payment_method,
-              method_id: depositInfo?.payment_methods.find(
-                (info: any) =>
-                  parseInt(info.payment_method) ===
-                  parseInt(payment.payment_method)
-              ).id,
+              method_id: payment?.id,
             });
-          }}>
+          }}
+        >
           {payment.title}
         </div>
       ))}

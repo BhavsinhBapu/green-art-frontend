@@ -8,6 +8,8 @@ import {
   STRIPE,
   WALLET_DEPOSIT,
   PAYSTACK,
+  PAYDUNYA,
+  PERFECT_MONEY,
 } from "helpers/core-constants";
 import useTranslation from "next-translate/useTranslation";
 import React, { useEffect, useState } from "react";
@@ -28,6 +30,8 @@ import { parseCookies } from "nookies";
 import Footer from "components/common/footer";
 import FiatSidebar from "layout/fiat-sidebar";
 import Paystack from "components/deposit/paystack";
+import Paydunya from "components/deposit/paydunya";
+import PerfectMoney from "components/deposit/perfectMoney";
 
 const Deposit = () => {
   const { t } = useTranslation("common");
@@ -83,7 +87,9 @@ const Deposit = () => {
             <div className="deposit-page">
               <div className="section-top-wrap mb-25">
                 <div className="profle-are-top">
-                  <h2 className="section-top-title">{t("Fiat To Crypto Deposit")}</h2>
+                  <h2 className="section-top-title">
+                    {t("Fiat To Crypto Deposit")}
+                  </h2>
                 </div>
               </div>
 
@@ -145,6 +151,19 @@ const Deposit = () => {
                               <Paystack
                                 walletlist={depositInfo.wallet_list}
                                 method_id={selectedMethod.method_id}
+                              />
+                            ) : parseInt(selectedMethod.method) === PAYDUNYA ? (
+                              <Paydunya
+                                walletlist={depositInfo.wallet_list}
+                                method_id={selectedMethod.method_id}
+                              />
+                            ) : parseInt(selectedMethod.method) ===
+                              PERFECT_MONEY ? (
+                              <PerfectMoney
+                                currencyList={depositInfo.currency_list}
+                                walletlist={depositInfo.wallet_list}
+                                method_id={selectedMethod.method_id}
+                                banks={depositInfo.banks}
                               />
                             ) : parseInt(selectedMethod.method) === PAYPAL ? (
                               // <PaypalButtons />
