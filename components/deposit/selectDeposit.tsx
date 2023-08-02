@@ -9,7 +9,7 @@ const SelectDeposit = ({
     
     <div className="row mt-3">
       {depositInfo?.payment_methods.map((payment: any, index: number) => (
-        <div className="col-lg-2">
+        <div className="col-lg-2 px-0">
           <div
             className={
               selectedMethod.method === payment.payment_method
