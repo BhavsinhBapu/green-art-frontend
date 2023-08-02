@@ -100,40 +100,41 @@ const Paydunya = ({ walletlist }: any) => {
               ))}
             </select>
           </div>
-
-          <DepositGoogleAuth
-            convertCurrency={onSubmit}
-            credential={credential}
-            setCredential={setCredential}
-          />
-          {errorMessage.status && (
-            <div className="alert alert-danger col-lg-12">
-              {errorMessage.message}
-            </div>
-          )}
-          {parseInt(settings.currency_deposit_2fa_status) === 1 &&
-          amount &&
-          walletID ? (
-            <button
-              className="primary-btn-outline w-100"
-              type="button"
-              data-target="#exampleModal"
-              disabled={errorMessage.status === true}
-              data-toggle="modal"
-            >
-              {t("Deposit")}
-            </button>
-          ) : (
-            <button
-              className="primary-btn-outline w-100"
-              type="button"
-              data-target="#exampleModal"
-              disabled={errorMessage.status === true}
-              data-toggle="modal"
-            >
-              {t("Deposit")}
-            </button>
-          )}
+          <div className="col-lg-12">
+            <DepositGoogleAuth
+              convertCurrency={onSubmit}
+              credential={credential}
+              setCredential={setCredential}
+            />
+            {errorMessage.status && (
+              <div className="alert alert-danger col-lg-12">
+                {errorMessage.message}
+              </div>
+            )}
+            {parseInt(settings.currency_deposit_2fa_status) === 1 &&
+            amount &&
+            walletID ? (
+              <button
+                className="primary-btn-outline w-100 mt-5"
+                type="button"
+                data-target="#exampleModal"
+                disabled={errorMessage.status === true}
+                data-toggle="modal"
+              >
+                {t("Deposit")}
+              </button>
+            ) : (
+              <button
+                className="primary-btn-outline w-100 mt-5"
+                type="button"
+                data-target="#exampleModal"
+                disabled={errorMessage.status === true}
+                data-toggle="modal"
+              >
+                {t("Deposit")}
+              </button>
+            )}
+          </div>
         </form>
       </div>
     </div>

@@ -14,6 +14,16 @@ import { UserSettingsApi } from "service/settings";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
 import DepositGoogleAuth from "./deposit-g2fa";
+
+const infoList = [
+  "Login to your Perfect Money account.",
+  "Click the Settings Tab.",
+  'Click the "Change Security Settings" link under the Security section.',
+  'On the page that appears, click the "Enable" button on the API section.',
+  'And then click the "Edit" button below this API section.',
+  "A form will appear with a field for IP.",
+  'Enter this IP 123.45.67.89 in that field and click the "Save" button.',
+];
 const PerfectMoney = ({ currencyList, walletlist, method_id, banks }: any) => {
   const { t } = useTranslation("common");
   const { settings } = useSelector((state: RootState) => state.common);
@@ -101,7 +111,7 @@ const PerfectMoney = ({ currencyList, walletlist, method_id, banks }: any) => {
         <h4>{t("Bank Deposit")}</h4>
       </div>
       <div className="row">
-        <div className="col-md-8">
+        <div className="col-lg-8">
           <div className="row">
             <div className="col-lg-12">
               <div className="">
@@ -346,8 +356,27 @@ const PerfectMoney = ({ currencyList, walletlist, method_id, banks }: any) => {
             </div>
           </div>
         </div>
-        <div className="col-md-4">
-          <p>hejbkjejkbnk</p>
+        <div className="col-lg-4">
+          <div className="bg-main-clr p-3">
+            {infoList.map((item, index) => (
+              <div className="py-1 d-flex gap-10 align-items-center" key={index}>
+                <span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    className="perfect-money-svg"
+                  >
+                    <path
+                      d="M12.24 8L8 12.24l4.24 4.24 4.24-4.24L12.24 8zm-1.41 4.24l1.41-1.41 1.41 1.41-1.41 1.41-1.41-1.41z"
+                      fill="currentColor"
+                    ></path>
+                  </svg>
+                </span>
+                <span>{item}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
