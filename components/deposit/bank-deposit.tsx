@@ -14,6 +14,7 @@ import { UserSettingsApi } from "service/settings";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
 import DepositGoogleAuth from "./deposit-g2fa";
+import { AiOutlineCloudUpload } from "react-icons/ai";
 const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
   const { t } = useTranslation("common");
   const inputRef = useRef(null);
@@ -156,7 +157,8 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
                               ...credential,
                               currency: e.target.value,
                             });
-                          }}>
+                          }}
+                        >
                           <option value="" selected disabled hidden>
                             {t("Select one")}
                           </option>
@@ -210,7 +212,8 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
                               ...credential,
                               wallet_id: e.target.value,
                             });
-                          }}>
+                          }}
+                        >
                           <option value="" selected disabled hidden>
                             {t("Select one")}
                           </option>
@@ -243,7 +246,8 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
               setBankInfo(
                 banks.find((bank: any) => bank.id === parseInt(e.target.value))
               );
-            }}>
+            }}
+          >
             <option>{t("Select bank")}</option>
             {banks?.map((bank: any, index: any) => (
               <option key={index} value={bank.id}>
@@ -260,7 +264,8 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
                 className="file-lable copy-btn"
                 onClick={() => {
                   prepareCopyData(bankInfo);
-                }}>
+                }}
+              >
                 {t("Copy")}
               </span>
             </div>
@@ -272,11 +277,24 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
             <div className="">
               <span className="file-lable">{t("Select document")}</span>
             </div>
-            <div className="file-upload-wrapper">
+            <div>
               {/* @ts-ignore */}
-              <label htmlFor="upload-photo" onClick={handleClick}>
+              <label
+                className="text-center file-upload-wrapper w-full"
+                htmlFor="upload-photo"
+                onClick={handleClick}
+              >
                 {/* @ts-ignore */}
-                {doc ? doc.name : t("Browse")}
+                {doc ? (
+                  doc.name
+                ) : (
+                  <div>
+                    <div>
+                      <AiOutlineCloudUpload size={30}/>
+                    </div>
+                    <p>{t("Browse")}</p>
+                  </div>
+                )}
               </label>
               <input
                 style={{ display: "none" }}
@@ -300,7 +318,8 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
               type="button"
               data-target="#exampleModal"
               disabled={errorMessage.status === true}
-              data-toggle="modal">
+              data-toggle="modal"
+            >
               {t("Deposit")}
             </button>
           ) : (
@@ -310,7 +329,8 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
               disabled={errorMessage.status === true}
               onClick={() => {
                 convertCurrency(credential);
-              }}>
+              }}
+            >
               {t("Deposit")}
             </button>
           )}

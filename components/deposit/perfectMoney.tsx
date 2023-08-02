@@ -173,7 +173,7 @@ const PerfectMoney = ({ currencyList, walletlist, method_id, banks }: any) => {
                 <div className="swap-area">
                   <div className="swap-area-top">
                     <div className="form-group">
-                      <div className="swap-wrap mt-3">
+                      <div className="swap-wrap">
                         <div className="swap-wrap-top">
                           <label>{t("Converted amount")}</label>
                           <span className="available">
@@ -225,7 +225,7 @@ const PerfectMoney = ({ currencyList, walletlist, method_id, banks }: any) => {
                 </div>
               </div>
             </div>
-            <div className="col-lg-12">
+            <div className="col-lg-6">
               <div className="">
                 <div className="swap-area">
                   <div className="swap-area-top">
@@ -257,7 +257,7 @@ const PerfectMoney = ({ currencyList, walletlist, method_id, banks }: any) => {
                 </div>
               </div>
             </div>
-            <div className="col-lg-12">
+            <div className="col-lg-6">
               <div className="">
                 <div className="swap-area">
                   <div className="swap-area-top">
