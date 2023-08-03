@@ -8,7 +8,8 @@ import {
   STRIPE,
   WALLET_DEPOSIT,
   PAYSTACK,
-  PERFECT_MONEY
+  PERFECT_MONEY,
+  MOBILE_MONEY,
 } from "helpers/core-constants";
 import useTranslation from "next-translate/useTranslation";
 import React, { useEffect, useState } from "react";
@@ -38,6 +39,7 @@ import FiatPaypalSection from "components/deposit/FiatPaypalSection";
 import FiatStripeDeposit from "components/deposit/FiatStripeDeposit";
 import FiatPaystack from "components/deposit/FiatPaystack";
 import FiatPerfectMoney from "components/deposit/FiatPerfectMoney";
+import FiatMobileMoney from "components/deposit/FiatMobileMoney";
 
 const FiatDeposit = ({ currency_type }: any) => {
   const router = useRouter();
@@ -46,6 +48,7 @@ const FiatDeposit = ({ currency_type }: any) => {
   const { settings } = useSelector((state: RootState) => state.common);
   const [methods, setMethods] = useState<any>();
   const [banks, setBanks] = useState<any>([]);
+  const [mobileBanks, setMobileBanks] = useState<any>([]);
 
   const [selectedMethods, setSelectedMethods] = useState<any>({
     method: null,
@@ -68,6 +71,7 @@ const FiatDeposit = ({ currency_type }: any) => {
       return;
     }
     setBanks(data.data.banks);
+    setMobileBanks(data.data.mobile_money_list);
     setMethods(data.data.payment_methods);
     setSelectedMethods({
       method:
@@ -148,10 +152,20 @@ const FiatDeposit = ({ currency_type }: any) => {
                               />
                             )}
 
-                            {parseInt(selectedMethods.method) === PERFECT_MONEY && (
+                            {parseInt(selectedMethods.method) ===
+                              PERFECT_MONEY && (
                               <FiatPerfectMoney
                                 method_id={selectedMethods.method_id}
                                 currency_type={currency_type}
+                              />
+                            )}
+
+                            {parseInt(selectedMethods.method) ===
+                              MOBILE_MONEY && (
+                              <FiatMobileMoney
+                                method_id={selectedMethods.method_id}
+                                currency_type={currency_type}
+                                mobiles={mobileBanks}
                               />
                             )}
                           </div>
