@@ -22,7 +22,6 @@ const infoList = [
   'On the page that appears, click the "Enable" button on the API section.',
   'And then click the "Edit" button below this API section.',
   "A form will appear with a field for IP.",
-  'Enter this IP 123.45.67.89 in that field and click the "Save" button.',
 ];
 const PerfectMoney = ({ currencyList, walletlist, method_id, banks }: any) => {
   const { t } = useTranslation("common");
@@ -379,6 +378,23 @@ const PerfectMoney = ({ currencyList, walletlist, method_id, banks }: any) => {
                 <span>{item}</span>
               </div>
             ))}
+            <div className="py-1 d-flex gap-10 align-items-center">
+              <span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  className="perfect-money-svg"
+                >
+                  <path
+                    d="M12.24 8L8 12.24l4.24 4.24 4.24-4.24L12.24 8zm-1.41 4.24l1.41-1.41 1.41 1.41-1.41 1.41-1.41-1.41z"
+                    fill="currentColor"
+                  ></path>
+                </svg>
+              </span>
+              <span>{`Enter this IP ${settings?.perfect_money_server_ip} in that field and click the "Save" button.`}</span>
+            </div>
+            <div></div>
           </div>
         </div>
       </div>
