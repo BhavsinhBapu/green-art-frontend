@@ -8,6 +8,7 @@ import {
   STRIPE,
   WALLET_DEPOSIT,
   PAYSTACK,
+  PERFECT_MONEY
 } from "helpers/core-constants";
 import useTranslation from "next-translate/useTranslation";
 import React, { useEffect, useState } from "react";
@@ -36,6 +37,7 @@ import SelectFiatDepositMethod from "components/deposit/SelectFiatDepositMethod"
 import FiatPaypalSection from "components/deposit/FiatPaypalSection";
 import FiatStripeDeposit from "components/deposit/FiatStripeDeposit";
 import FiatPaystack from "components/deposit/FiatPaystack";
+import FiatPerfectMoney from "components/deposit/FiatPerfectMoney";
 
 const FiatDeposit = ({ currency_type }: any) => {
   const router = useRouter();
@@ -146,34 +148,12 @@ const FiatDeposit = ({ currency_type }: any) => {
                               />
                             )}
 
-                            {/* {parseInt(selectedMethods.method) ===
-                              BANK_DEPOSIT ? (
-                              <BankDeposit
+                            {parseInt(selectedMethods.method) === PERFECT_MONEY && (
+                              <FiatPerfectMoney
                                 method_id={selectedMethods.method_id}
-                                banks={banks}
+                                currency_type={currency_type}
                               />
-                            ) : parseInt(selectedMethods.method) === STRIPE ? (
-                              <StripeDeposit
-                                currencyList={depositInfo.currency_list}
-                                walletlist={depositInfo.wallet_list}
-                                method_id={selectedMethods.method_id}
-                                banks={depositInfo.banks}
-                              />
-                            ) : parseInt(selectedMethods.method) === PAYSTACK ? (
-                              <Paystack
-                                walletlist={depositInfo.wallet_list}
-                                method_id={selectedMethods.method_id}
-                              />
-                            ) : parseInt(selectedMethods.method) === PAYPAL ? (
-                              <PaypalSection
-                                currencyList={depositInfo.currency_list}
-                                walletlist={depositInfo.wallet_list}
-                                method_id={selectedMethods.method_id}
-                                banks={depositInfo.banks}
-                              />
-                            ) : (
-                              ""
-                            )} */}
+                            )}
                           </div>
                         )}
                       </div>
