@@ -145,7 +145,7 @@ const FiatDeposit = ({ currency_type }: any) => {
                               />
                             )}
 
-                            {parseInt(selectedMethods.method) === PAYSTACK && (
+                            {/* {parseInt(selectedMethods.method) === PAYSTACK && (
                               <FiatPaystack
                                 method_id={selectedMethods.method_id}
                                 currency_type={currency_type}
@@ -167,7 +167,7 @@ const FiatDeposit = ({ currency_type }: any) => {
                                 currency_type={currency_type}
                                 mobiles={mobileBanks}
                               />
-                            )}
+                            )} */}
                           </div>
                         )}
                       </div>
