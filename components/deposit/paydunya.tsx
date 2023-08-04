@@ -60,7 +60,7 @@ const Paydunya = ({ walletlist }: any) => {
                     <div className="swap-wrap">
                       <div className="swap-wrap-top">
                         <label>{t("Enter amount")}</label>
-                        <span className="available">{t("Currency(XOF)")}</span>
+                        <span className="available">{t("Currency(USD)")}</span>
                       </div>
                       <div className="swap-input-wrap">
                         <div className="form-amount">
