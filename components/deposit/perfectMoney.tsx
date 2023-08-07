@@ -14,6 +14,7 @@ import { UserSettingsApi } from "service/settings";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
 import DepositGoogleAuth from "./deposit-g2fa";
+import request from "lib/request";
 
 const infoList = [
   "Login to your Perfect Money account.",
@@ -89,13 +90,30 @@ const PerfectMoney = ({ currencyList, walletlist, method_id, banks }: any) => {
       formData.append("payer_id", credential.payer_id);
       credential.code && formData.append("code", credential.code);
 
-      const res = await currencyDepositProcess(formData);
-      if (res.success) {
-        toast.success(res.message);
-        router.push("/user/currency-deposit-history");
-      } else {
-        toast.error(res.message);
-      }
+      const response = await request.post(
+        `https://perfectmoney.com/api/step1.asp`,
+        {
+          PAYEE_ACCOUNT: "U21673351",
+          PAYEE_NAME: "Israfil Shop",
+          PAYMENT_AMOUNT: "10",
+          PAYMENT_UNITS: "USD",
+          STATUS_URL: "https://google.com",
+          PAYMENT_URL: "https://google.com",
+          PAYMENT_URL_METHOD: "Link",
+          NOPAYMENT_URL: "https://google.com",
+          NOPAYMENT_URL_METHOD: "Link",
+        }
+      );
+
+      console.log('data', response);
+
+      // const res = await currencyDepositProcess(formData);
+      // if (res.success) {
+      //   toast.success(res.message);
+      //   router.push("/user/currency-deposit-history");
+      // } else {
+      //   toast.error(res.message);
+      // }
     } else {
       toast.error(t("Please provide all information's"));
     }
