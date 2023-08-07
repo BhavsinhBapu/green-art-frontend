@@ -6,24 +6,23 @@ const SelectDeposit = ({
   selectedMethod,
 }: any) => {
   return (
-    <div className="row mt-3">
+    <div className="d-flex mt-3">
       {depositInfo?.payment_methods.map((payment: any, index: number) => (
-        <div className="col-lg-2 px-0" key={index}>
-          <div
-            className={
-              selectedMethod.method === payment.payment_method
-                ? "select-deposit-method-item-active"
-                : "select-deposit-method-item"
-            }
-            onClick={() => {
-              setSelectedMethod({
-                method: payment.payment_method,
-                method_id: payment?.id,
-              });
-            }}
-          >
-            {payment.title}
-          </div>
+        <div
+          key={index}
+          className={
+            selectedMethod.method === payment.payment_method
+              ? "select-deposit-method-item-active"
+              : "select-deposit-method-item"
+          }
+          onClick={() => {
+            setSelectedMethod({
+              method: payment.payment_method,
+              method_id: payment?.id,
+            });
+          }}
+        >
+          {payment.title}
         </div>
       ))}
     </div>

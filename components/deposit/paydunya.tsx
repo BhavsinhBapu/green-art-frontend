@@ -2,7 +2,10 @@ import useTranslation from "next-translate/useTranslation";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { GetPayDunyaPaymentUrl } from "service/deposit";
+import {
+  GetPayDunyaPaymentUrl,
+  convertAmountForPaydunya,
+} from "service/deposit";
 import { UserSettingsApi } from "service/settings";
 import { RootState } from "state/store";
 import DepositGoogleAuth from "./deposit-g2fa";
@@ -11,6 +14,10 @@ const Paydunya = ({ walletlist }: any) => {
   const { t } = useTranslation("common");
   const [credential, setCredential] = useState<any>({
     code: "",
+  });
+  const [calculatedValue, setCalculatedValue] = useState({
+    xof: 0,
+    wallet_coin: 0,
   });
   const [walletID, setwalletID] = useState<any>();
   const { settings } = useSelector((state: RootState) => state.common);
@@ -44,6 +51,26 @@ const Paydunya = ({ walletlist }: any) => {
     } else {
       toast.error(response.message);
     }
+  };
+  const convertAmountHandle = async (e: any) => {
+    if (!amount) {
+      toast.error(`Please Add Amount`);
+      return;
+    }
+    let coinType = walletlist.find(
+      (item: any) => item.id == e.target.value
+    ).coin_type;
+    const response = await convertAmountForPaydunya(amount, coinType);
+    if (!response.success) {
+      toast.error(response.message);
+      return;
+    }
+    setCalculatedValue((prev) => ({
+      ...prev,
+      xof: response.data.converted_amount_xof,
+      wallet_coin: response.data.converted_amount_coin,
+    }));
+    setwalletID(e.target.value);
   };
   return (
     <div>
@@ -82,7 +109,7 @@ const Paydunya = ({ walletlist }: any) => {
               </div>
             </div>
           </div>
-          <div className="col-lg-12">
+          {/* <div className="col-lg-12">
             <select
               className="form-control "
               id="currency-one"
@@ -94,12 +121,89 @@ const Paydunya = ({ walletlist }: any) => {
                 Select one
               </option>
               {walletlist?.map((wallet: any, index: any) => (
-                <option value={wallet.id} key={index}>
+                <option value={wallet.id} key={index} id={wallet.coin_type}>
                   {wallet.coin_type}
                 </option>
               ))}
             </select>
+          </div> */}
+          <div className="col-lg-12">
+            <div className="">
+              <div className="swap-area">
+                <div className="swap-area-top">
+                  <div className="form-group">
+                    <div className="swap-wrap mt-3">
+                      <div className="swap-wrap-top">
+                        <label>{t("Converted amount")}</label>
+                        <span className="available">{t("Select wallet")}</span>
+                      </div>
+                      <div className="swap-input-wrap">
+                        <div className="form-amount">
+                          <input
+                            type="number"
+                            className="form-control border-0"
+                            id="amount-one"
+                            disabled
+                            value={calculatedValue?.wallet_coin}
+                            readOnly
+                          />
+                        </div>
+                        <div className="cp-select-area">
+                          <select
+                            className="form-control border-0 ticketFilterBg"
+                            id="currency-one"
+                            onChange={convertAmountHandle}
+                          >
+                            <option value="" selected disabled hidden>
+                              {t("Select one")}
+                            </option>
+                            {walletlist.map((wallet: any, index: any) => (
+                              <option value={wallet.id} key={index}>
+                                {wallet.coin_type}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+          {calculatedValue?.xof > 0 && (
+            <div className="col-lg-12">
+              <div className="">
+                <div className="swap-area">
+                  <div className="swap-area-top">
+                    <div className="form-group">
+                      <div className="swap-wrap mt-3">
+                        <div className="swap-wrap-top">
+                          <label>{t("Converted amount")}</label>
+                          <span className="available">
+                            {t("Currency(XOF)")}
+                          </span>
+                        </div>
+                        <div className="swap-input-wrap">
+                          <div className="form-amount">
+                            <input
+                              type="number"
+                              className="form-control border-0"
+                              id="amount-one"
+                              disabled
+                              value={calculatedValue?.xof}
+                              readOnly
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
           <div className="col-lg-12">
             <DepositGoogleAuth
               convertCurrency={onSubmit}

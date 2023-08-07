@@ -83,3 +83,11 @@ export const getBankListSSr = async (id: any, ctxCookie: any) => {
   });
   return data;
 };
+
+export const convertAmountForPaydunya = async (amount: any, request_coin_type: any) => {
+  const { data } = await request.post("/paydunya-payment-currency-rate", {
+    amount: amount,
+    request_coin_type: request_coin_type,
+  });
+  return data;
+};
