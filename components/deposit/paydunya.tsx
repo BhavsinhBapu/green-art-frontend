@@ -179,7 +179,7 @@ const Paydunya = ({ walletlist }: any) => {
                     <div className="form-group">
                       <div className="swap-wrap mt-3">
                         <div className="swap-wrap-top">
-                          <label>{t("Converted amount")}</label>
+                          <label>{t("Payment amount for Paydunya")}</label>
                           <span className="available">
                             {t("Currency(XOF)")}
                           </span>
