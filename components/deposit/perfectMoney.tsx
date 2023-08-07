@@ -72,51 +72,47 @@ const PerfectMoney = ({ currencyList, walletlist, method_id, banks }: any) => {
     }
   };
   const convertCurrency = async (credential: any) => {
-    if (
-      credential.wallet_id &&
-      credential.payment_method_id &&
-      credential.amount &&
-      credential.currency &&
-      credential.account_id &&
-      credential.account_password
-    ) {
-      const formData: any = new FormData();
-      formData.append("wallet_id", credential.wallet_id);
-      formData.append("payment_method_id", credential.payment_method_id);
-      formData.append("amount", credential.amount);
-      formData.append("currency", credential.currency);
-      formData.append("account_id", credential.account_id);
-      formData.append("account_password", credential.account_password);
-      formData.append("payer_id", credential.payer_id);
-      credential.code && formData.append("code", credential.code);
+    let selectedCurrencyType = currencyList.find(
+      (item: any) => item.code == credential.currency
+    );
+    console.log(
+      "selectedCurrencyType",
+      selectedCurrencyType,
+      currencyList,
+      credential.currency
+    );
+    // return
+    const form = document.createElement("form");
+    form.setAttribute("method", "post");
+    form.setAttribute("action", "https://perfectmoney.com/api/step1.asp");
 
-      const response = await request.post(
-        `https://perfectmoney.com/api/step1.asp`,
-        {
-          PAYEE_ACCOUNT: "U21673351",
-          PAYEE_NAME: "Israfil Shop",
-          PAYMENT_AMOUNT: "10",
-          PAYMENT_UNITS: "USD",
-          STATUS_URL: "https://google.com",
-          PAYMENT_URL: "https://google.com",
-          PAYMENT_URL_METHOD: "Link",
-          NOPAYMENT_URL: "https://google.com",
-          NOPAYMENT_URL_METHOD: "Link",
-        }
-      );
+    const formData = [
+      {
+        name: "PAYEE_ACCOUNT",
+        value: `${selectedCurrencyType?.perfect_money_account}`,
+      },
+      { name: "PAYEE_NAME", value: `${settings.app_title}` },
+      { name: "PAYMENT_AMOUNT", value: 10 },
+      { name: "PAYMENT_UNITS", value: `${selectedCurrencyType?.code}` },
+      { name: "STATUS_URL", value: "https://google.com" },
+      { name: "PAYMENT_URL", value: "https://youtube.com" },
+      { name: "PAYMENT_URL_METHOD", value: "Link" },
+      { name: "NOPAYMENT_URL", value: "https://facebook.com" },
+      { name: "NOPAYMENT_URL_METHOD", value: "Link" },
+      { name: "SUGGESTED_MEMO", value: "" },
+      { name: "BAGGAGE_FIELDS", value: "" },
+    ];
 
-      console.log('data', response);
+    formData.forEach((field: any) => {
+      const input = document.createElement("input");
+      input.setAttribute("type", "hidden");
+      input.setAttribute("name", field.name);
+      input.setAttribute("value", field.value);
+      form.appendChild(input);
+    });
 
-      // const res = await currencyDepositProcess(formData);
-      // if (res.success) {
-      //   toast.success(res.message);
-      //   router.push("/user/currency-deposit-history");
-      // } else {
-      //   toast.error(res.message);
-      // }
-    } else {
-      toast.error(t("Please provide all information's"));
-    }
+    document.body.appendChild(form);
+    form.submit();
   };
   useEffect(() => {
     getCurrencyRate();
@@ -171,11 +167,16 @@ const PerfectMoney = ({ currencyList, walletlist, method_id, banks }: any) => {
                               <option value="" selected disabled hidden>
                                 {t("Select one")}
                               </option>
-                              {currencyList.map((currency: any, index: any) => (
-                                <option value={currency.code} key={index}>
-                                  {currency.name}
-                                </option>
-                              ))}
+                              {currencyList
+                                .filter(
+                                  (item: any) =>
+                                    item.perfect_money_account !== null
+                                )
+                                .map((currency: any, index: any) => (
+                                  <option value={currency.code} key={index}>
+                                    {currency.name}
+                                  </option>
+                                ))}
                             </select>
                           </div>
                         </div>
@@ -242,7 +243,7 @@ const PerfectMoney = ({ currencyList, walletlist, method_id, banks }: any) => {
                 </div>
               </div>
             </div>
-            <div className="col-lg-6">
+            {/* <div className="col-lg-6">
               <div className="">
                 <div className="swap-area">
                   <div className="swap-area-top">
@@ -337,7 +338,7 @@ const PerfectMoney = ({ currencyList, walletlist, method_id, banks }: any) => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             <div className="col-lg-12 my-3">
               <DepositGoogleAuth
