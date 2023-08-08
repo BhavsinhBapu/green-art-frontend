@@ -1,20 +1,7 @@
-import FiatSidebar from "layout/fiat-sidebar";
-import {
-  pageAvailabilityCheck,
-  SSRAuthCheck,
-} from "middlewares/ssr-authentication-check";
-import { GetServerSideProps } from "next";
-import { parseCookies } from "nookies";
 import React, { useEffect, useState } from "react";
-import { customPage, landingPage } from "service/landing-page";
-import { GetUserInfoByTokenServer } from "service/user";
 import useTranslation from "next-translate/useTranslation";
 import Footer from "components/common/footer";
-import {
-  apiFiatWithdrawalAction,
-  fiatWithdrawProcessAction,
-  getFiatWithdrawalRateAction,
-} from "state/actions/fiat-deposit-withawal";
+
 import SectionLoading from "components/common/SectionLoading";
 import {
   getFiatWithdrawDataApi,
@@ -22,6 +9,8 @@ import {
 } from "service/fiat-wallet";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
+import SelectWithdrawl from "components/deposit/SelectWithdrawl";
+import { BANK_DEPOSIT } from "helpers/core-constants";
 
 const FiatWithdraw = ({ currency_type }: any) => {
   const { t } = useTranslation("common");
@@ -30,7 +19,12 @@ const FiatWithdraw = ({ currency_type }: any) => {
   const [banks, setBanks] = useState<any>([]);
   const [amount, setAmount] = useState<any>();
   const [selectedBankId, setSelectedBankId] = useState<any>();
-
+  const [initialData, setInitialData]: any = useState<any>([]);
+  const [payment_info, setPaymentInfo]: any = useState<any>();
+  const [selectedMethod, setSelectedMethod] = useState<any>({
+    method: null,
+    method_id: null,
+  });
   useEffect(() => {
     getFiatWithdrawData();
   }, []);
@@ -45,17 +39,20 @@ const FiatWithdraw = ({ currency_type }: any) => {
       return;
     }
     setBanks(data.data.my_bank);
+    setInitialData(data?.data);
     setLoading(false);
   };
 
   const fiatSubmitFormHandler = async (event: any) => {
     event.preventDefault();
     setLoading(true);
-
     const data = await submitFiatWithdrawDataApi(
       currency_type,
       amount,
-      selectedBankId
+      selectedBankId,
+      payment_info,
+      selectedMethod.method_id,
+      selectedMethod.method
     );
 
     if (!data.success) {
@@ -74,10 +71,16 @@ const FiatWithdraw = ({ currency_type }: any) => {
           <div className="container">
             <div className="section-top-wrap mb-25">
               <div className="profle-are-top">
-                <h2 className="section-top-title">{t("Fiat Withdrawal")}</h2>
+                <h2 className="section-top-title">
+                  {t("Fiat Withdrawal")}
+                </h2>
               </div>
             </div>
-
+            <SelectWithdrawl
+              setSelectedMethod={setSelectedMethod}
+              depositInfo={initialData?.payment_method_list}
+              selectedMethod={selectedMethod}
+            />
             <div className="asset-balances-area">
               <div className=" bank-section">
                 <div className="">
@@ -114,27 +117,45 @@ const FiatWithdraw = ({ currency_type }: any) => {
                               onChange={(e) => setAmount(e.target.value)}
                             />
                           </div>
-
-                          <div className="col-md-6 form-input-div">
-                            <label className="ico-label-box" htmlFor="">
-                              {t("Select Bank")}
-                            </label>
-                            <select
-                              name="bank_list"
-                              className={`ico-input-box `}
-                              required
-                              onChange={(e) =>
-                                setSelectedBankId(e.target.value)
-                              }
-                            >
-                              <option value="">{t("Select Bank List")}</option>
-                              {banks?.map((item: any, index: number) => (
-                                <option value={item.id} key={index}>
-                                  {item.bank_name}
+                          {parseInt(selectedMethod.method) === BANK_DEPOSIT ? (
+                            <div className="col-md-6 form-input-div">
+                              <label className="ico-label-box" htmlFor="">
+                                {t("Select Bank")}
+                              </label>
+                              <select
+                                name="bank_list"
+                                className={`ico-input-box `}
+                                required
+                                onChange={(e) =>
+                                  setSelectedBankId(e.target.value)
+                                }
+                              >
+                                <option value="">
+                                  {t("Select Bank List")}
                                 </option>
-                              ))}
-                            </select>
-                          </div>
+                                {banks?.map((item: any, index: number) => (
+                                  <option value={item.id} key={index}>
+                                    {item.bank_name}
+                                  </option>
+                                ))}
+                              </select>
+                            </div>
+                          ) : (
+                            <>
+                              <div className="col-md-12 form-input-div">
+                                <label className="ico-label-box" htmlFor="">
+                                  {t("Payment Info")}
+                                </label>
+                                <textarea
+                                  className={`ico-input-box `}
+                                  value={payment_info}
+                                  onChange={(e) => {
+                                    setPaymentInfo(e.target.value);
+                                  }}
+                                ></textarea>
+                              </div>
+                            </>
+                          )}
                           <div className="col-md-12 form-input-div">
                             <button type="submit" className="primary-btn">
                               {loading ? t("Loading..") : t("Submit Withdrawl")}
