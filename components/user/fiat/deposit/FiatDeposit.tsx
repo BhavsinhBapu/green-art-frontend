@@ -51,6 +51,7 @@ const FiatDeposit = ({ currency_type, wallet_id }: any) => {
   const [methods, setMethods] = useState<any>();
   const [banks, setBanks] = useState<any>([]);
   const [mobileBanks, setMobileBanks] = useState<any>([]);
+  const [currencyLists, setCurrencyLists] = useState([])
 
   const [selectedMethods, setSelectedMethods] = useState<any>({
     method: null,
@@ -73,6 +74,7 @@ const FiatDeposit = ({ currency_type, wallet_id }: any) => {
       return;
     }
     setBanks(data.data.banks);
+    setCurrencyLists(data.data.currency_list);
     setMobileBanks(data.data.mobile_money_list);
     setMethods(data.data.payment_methods);
     setSelectedMethods({
@@ -151,6 +153,7 @@ const FiatDeposit = ({ currency_type, wallet_id }: any) => {
                               <FiatPaystack
                                 method_id={selectedMethods.method_id}
                                 currency_type={currency_type}
+                                
                               />
                             )}
 
@@ -167,6 +170,7 @@ const FiatDeposit = ({ currency_type, wallet_id }: any) => {
                               <FiatPerfectMoney
                                 method_id={selectedMethods.method_id}
                                 currency_type={currency_type}
+                                currencyLists={currencyLists}
                               />
                             )}
 

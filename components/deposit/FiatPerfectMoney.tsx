@@ -25,9 +25,9 @@ const infoList = [
   "A form will appear with a field for IP.",
   'Enter this IP 123.45.67.89 in that field and click the "Save" button.',
 ];
-const FiatPerfectMoney = ({ method_id, currency_type }: any) => {
+const FiatPerfectMoney = ({ method_id, currency_type, currencyLists }: any) => {
   const { t } = useTranslation("common");
-
+  const { settings } = useSelector((state: RootState) => state.common);
   const [errorMessage, setErrorMessage] = React.useState({
     status: false,
     message: "",
@@ -43,32 +43,55 @@ const FiatPerfectMoney = ({ method_id, currency_type }: any) => {
   });
   const router = useRouter();
   const convertCurrency = async (credential: any) => {
-    if (
-      credential.payment_method_id &&
-      credential.amount &&
-      credential.currency &&
-      credential.account_id &&
-      credential.account_password &&
-      credential.payer_id
-    ) {
-      const formData: any = new FormData();
-      formData.append("payment_method_id", credential.payment_method_id);
-      formData.append("amount", credential.amount);
-      formData.append("currency", credential.currency);
-      formData.append("account_id", credential.account_id);
-      formData.append("account_password", credential.account_password);
-      formData.append("payer_id", credential.payer_id);
+    let selectedCurrencyType = currencyLists?.find(
+      (item: any) => item.code == currency_type
+    );
+    
+    localStorage.setItem(
+      "perfect_money_payment_method_id_for_fiat_wallet",
+      credential?.payment_method_id
+    );
+    // return
+    const form = document.createElement("form");
+    form.setAttribute("method", "post");
+    form.setAttribute("action", "https://perfectmoney.com/api/step1.asp");
 
-      const res = await submitFiatWalletDepositApi(formData);
-      if (res.success) {
-        toast.success(res.message);
-        router.push("/user/wallet-history?type=deposit");
-      } else {
-        toast.error(res.message);
-      }
-    } else {
-      toast.error(t("Please provide all information's"));
-    }
+    const formData = [
+      {
+        name: "PAYEE_ACCOUNT",
+        value: `${selectedCurrencyType?.perfect_money_account}`,
+      },
+      { name: "PAYEE_NAME", value: `${settings.app_title}` },
+      { name: "PAYMENT_AMOUNT", value: credential?.amount },
+      { name: "PAYMENT_UNITS", value: `${selectedCurrencyType?.code}` },
+      {
+        name: "STATUS_URL",
+        value: `${process.env.NEXT_PUBLIC_HOSTED_CLIENT_URL}/user/fiat/deposit?type=deposit`,
+      },
+      {
+        name: "PAYMENT_URL",
+        value: `${process.env.NEXT_PUBLIC_HOSTED_CLIENT_URL}/user/fiat/deposit?type=deposit`,
+      },
+      { name: "PAYMENT_URL_METHOD", value: "GET" },
+      {
+        name: "NOPAYMENT_URL",
+        value: `${process.env.NEXT_PUBLIC_HOSTED_CLIENT_URL}/user/fiat/deposit?type=deposit`,
+      },
+      { name: "NOPAYMENT_URL_METHOD", value: "GET" },
+      { name: "SUGGESTED_MEMO", value: "" },
+      { name: "BAGGAGE_FIELDS", value: "" },
+    ];
+
+    formData.forEach((field: any) => {
+      const input = document.createElement("input");
+      input.setAttribute("type", "hidden");
+      input.setAttribute("name", field.name);
+      input.setAttribute("value", field.value);
+      form.appendChild(input);
+    });
+
+    document.body.appendChild(form);
+    form.submit();
   };
   return (
     <div>
@@ -120,7 +143,7 @@ const FiatPerfectMoney = ({ method_id, currency_type }: any) => {
                 </div>
               </div>
             </div>
-            <div className="col-lg-6">
+            {/* <div className="col-lg-6">
               <div className="">
                 <div className="swap-area">
                   <div className="swap-area-top">
@@ -215,11 +238,11 @@ const FiatPerfectMoney = ({ method_id, currency_type }: any) => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             <div className="col-lg-12 my-3">
               <button
-                className="primary-btn-outline w-100 mt-5"
+                className="primary-btn-outline w-100"
                 type="button"
                 disabled={errorMessage.status === true}
                 onClick={() => {

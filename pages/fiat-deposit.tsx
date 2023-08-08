@@ -87,7 +87,8 @@ const Deposit = () => {
     if (!router.isReady) return;
     if (
       !router?.query?.PAYMENT_AMOUNT ||
-      (!router?.query?.PAYMENT_BATCH_NUM && !router?.query?.PAYMENT_UNITS)
+      !router?.query?.PAYMENT_BATCH_NUM ||
+      !router?.query?.PAYMENT_UNITS
     )
       return;
 
