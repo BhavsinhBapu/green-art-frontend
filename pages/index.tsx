@@ -108,14 +108,6 @@ const Home: NextPage = ({
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const { data: CommonLanding } = await CommonLandingCustomSettings(ctx.locale);
   const cookies = parseCookies(ctx);
-  if (!CommonLanding.success) {
-    return {
-      redirect: {
-        destination: "/404",
-        permanent: false,
-      },
-    };
-  }
   return {
     props: {
       customPageData: CommonLanding?.custom_page_settings

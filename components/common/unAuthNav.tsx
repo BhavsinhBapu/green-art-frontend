@@ -877,7 +877,7 @@ const UnAuthNav = ({
                         {
                           settings?.LanguageList?.find(
                             (item: any) => item.key === router.locale
-                          ).name
+                          )?.name
                         }
                       </span>
                     </div>
