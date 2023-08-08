@@ -27,18 +27,24 @@ const FiatWithdrawal = () => {
     amount: "",
     type: "fiat",
     bank_id: "",
+    payment_method_id: "",
+    payment_method_type: "",
   });
   const [converted_value, setConverted_value] = useState(0);
   const [fees, setFees] = useState(0);
   const [netAmount, setNetAmount] = useState(0);
   const [currency, setcurrency] = useState("");
+  const [selectedPaymentMethod, setPaymentMethod] = useState<any>();
   const getRate = async () => {
     if (rateCred.wallet_id && rateCred.currency && rateCred.amount) {
       const response = await getFiatWithdrawalRateAction({
         wallet_id: rateCred.wallet_id,
         currency: rateCred.currency,
         amount: rateCred.amount,
+        payment_method_id: selectedPaymentMethod?.id,
+        payment_method_type: selectedPaymentMethod?.payment_method,
       });
+
       setConverted_value(response.data.convert_amount);
       setFees(response.data.fees);
       setNetAmount(response.data.net_amount);
@@ -49,7 +55,14 @@ const FiatWithdrawal = () => {
     getRate();
   }, [rateCred]);
   useEffect(() => {
-    apiFiatWithdrawalAction(setInitialData, setLoading);
+    setRateCred({
+      ...rateCred,
+      payment_method_id: selectedPaymentMethod?.id,
+      payment_method_type: selectedPaymentMethod?.payment_method,
+    });
+  }, [selectedPaymentMethod]);
+  useEffect(() => {
+    apiFiatWithdrawalAction(setInitialData, setLoading, setPaymentMethod);
   }, []);
   return (
     <>
@@ -59,7 +72,9 @@ const FiatWithdrawal = () => {
           <div className="container-fluid">
             <div className="section-top-wrap mb-25">
               <div className="profle-are-top">
-                <h2 className="section-top-title">{t("Crypto To Fiat Withdrawal")}</h2>
+                <h2 className="section-top-title">
+                  {t("Crypto To Fiat Withdrawal")}
+                </h2>
               </div>
             </div>
 
