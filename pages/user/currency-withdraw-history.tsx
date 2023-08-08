@@ -9,10 +9,12 @@ import useTranslation from "next-translate/useTranslation";
 import React, { useState } from "react";
 import DataTable from "react-data-table-component";
 import { customPage, landingPage } from "service/landing-page";
+import { AiFillEye } from "react-icons/ai";
 import {
   CurrencyWithdrawHistoryAction,
   handleSearchItemsCurrency,
 } from "state/actions/reports";
+import WithdrawlHistoryModal from "components/gift-cards/modal/WithdrawlHistoryModal";
 
 const CurrencyWithdrawHistory = () => {
   type searchType = string;
@@ -23,6 +25,8 @@ const CurrencyWithdrawHistory = () => {
   });
   const { t } = useTranslation("common");
   const [processing, setProcessing] = useState<boolean>(false);
+  const [paymentItem, setPaymentItem] = useState()
+  const [modalOpen, setModalOpen] = useState(false);
   const [history, setHistory] = useState<any>([]);
   const [stillHistory, setStillHistory] = useState<any>([]);
   const LinkTopaginationString = (page: any) => {
@@ -48,6 +52,10 @@ const CurrencyWithdrawHistory = () => {
       sortingInfo.column_name,
       sortingInfo.order_by
     );
+  };
+
+  const closeModalHandle = () => {
+    setModalOpen(false);
   };
 
   const columns = [
@@ -108,6 +116,18 @@ const CurrencyWithdrawHistory = () => {
       selector: (row: any) =>
         moment(row.created_at).format("YYYY-MM-DD HH:mm:ss"),
       sortable: true,
+    },
+    {
+      name: t("Action"),
+      sortable: false,
+      cell: (row: any) => (
+        <div
+          className="text-center cursor-pointer"
+          onClick={() => {setModalOpen(true); setPaymentItem(row)}}
+        >
+          <AiFillEye size={25} />
+        </div>
+      ),
     },
   ];
   React.useEffect(() => {
@@ -250,6 +270,7 @@ const CurrencyWithdrawHistory = () => {
         </div>
       </div>
       <Footer />
+      {modalOpen && <WithdrawlHistoryModal close={closeModalHandle} item={paymentItem}/>}
     </>
   );
 };

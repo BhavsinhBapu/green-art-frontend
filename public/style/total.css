@@ -15495,6 +15495,11 @@ input:checked + .gift-card-buy-slider:before {
   border-bottom: 2px solid var(--primary-color);
 }
 
+.fiat-withdrawal-history-modal-box {
+  border: 1px solid var(--border-color);
+  padding: 30px;
+}
+
 @media (max-width: 1520px) {
   .trade-dashboard-side-margin {
     margin-left: 0 !important;
