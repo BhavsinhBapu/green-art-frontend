@@ -77,7 +77,7 @@ const CurrencyDepositHistory = () => {
       sortable: true,
       cell: (row: any) => (
         <div className="blance-text">
-          <span className="blance market incree">{row?.transaction_id}</span>
+          <span className="blance market incree">{row?.transaction_id?? 'N/A'}</span>
         </div>
       ),
     },
