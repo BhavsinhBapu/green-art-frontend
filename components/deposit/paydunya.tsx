@@ -10,7 +10,7 @@ import { UserSettingsApi } from "service/settings";
 import { RootState } from "state/store";
 import DepositGoogleAuth from "./deposit-g2fa";
 
-const Paydunya = ({ walletlist }: any) => {
+const Paydunya = ({ walletlist, method_id }: any) => {
   const { t } = useTranslation("common");
   const [credential, setCredential] = useState<any>({
     code: "",
@@ -44,7 +44,7 @@ const Paydunya = ({ walletlist }: any) => {
   const [amount, setAmount] = useState("");
   const onSubmit = async (e: any) => {
     e.preventDefault();
-    const response = await GetPayDunyaPaymentUrl(amount, walletID, "USD");
+    const response = await GetPayDunyaPaymentUrl(amount, walletID, "USD", 1, method_id);
     if (response.success) {
       toast.success(response.message);
       window.open(response?.data?.payment_url, "_blank");

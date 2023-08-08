@@ -10,6 +10,7 @@ import {
   PAYSTACK,
   PERFECT_MONEY,
   MOBILE_MONEY,
+  PAYDUNYA,
 } from "helpers/core-constants";
 import useTranslation from "next-translate/useTranslation";
 import React, { useEffect, useState } from "react";
@@ -40,8 +41,9 @@ import FiatStripeDeposit from "components/deposit/FiatStripeDeposit";
 import FiatPaystack from "components/deposit/FiatPaystack";
 import FiatPerfectMoney from "components/deposit/FiatPerfectMoney";
 import FiatMobileMoney from "components/deposit/FiatMobileMoney";
+import FiatPaydunya from "components/deposit/FiatPaydunya";
 
-const FiatDeposit = ({ currency_type }: any) => {
+const FiatDeposit = ({ currency_type, wallet_id }: any) => {
   const router = useRouter();
   const { t } = useTranslation("common");
   const [loading, setLoading] = useState(false);
@@ -149,6 +151,14 @@ const FiatDeposit = ({ currency_type }: any) => {
                               <FiatPaystack
                                 method_id={selectedMethods.method_id}
                                 currency_type={currency_type}
+                              />
+                            )}
+
+                            {parseInt(selectedMethods.method) === PAYDUNYA && (
+                              <FiatPaydunya
+                                currency_type={currency_type}
+                                method_id={selectedMethods.method_id}
+                                wallet_id={wallet_id}
                               />
                             )}
 
