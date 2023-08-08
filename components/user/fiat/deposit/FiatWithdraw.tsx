@@ -37,7 +37,6 @@ const FiatWithdraw = ({ currency_type }: any) => {
   const getFiatWithdrawData = async () => {
     setLoading(true);
     const data = await getFiatWithdrawDataApi();
-    console.log(data.data.payment_method_list, "datadatadatadata");
     const paymentMethod4 = data.data.payment_method_list.find(
       (method: any) => method.payment_method === 4
     );
