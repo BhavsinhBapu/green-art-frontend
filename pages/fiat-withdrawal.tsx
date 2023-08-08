@@ -41,6 +41,7 @@ const FiatWithdrawal = () => {
         wallet_id: rateCred.wallet_id,
         currency: rateCred.currency,
         amount: rateCred.amount,
+        bank_id: rateCred.bank_id,
         payment_method_id: selectedPaymentMethod?.id,
         payment_method_type: selectedPaymentMethod?.payment_method,
       });

@@ -30,13 +30,20 @@ const FiatWithdraw = ({ currency_type }: any) => {
   const [banks, setBanks] = useState<any>([]);
   const [amount, setAmount] = useState<any>();
   const [selectedBankId, setSelectedBankId] = useState<any>();
-
+  const [selectedPaymentMethod, setPaymentMethod] = useState<any>();
   useEffect(() => {
     getFiatWithdrawData();
   }, []);
   const getFiatWithdrawData = async () => {
     setLoading(true);
     const data = await getFiatWithdrawDataApi();
+    console.log(data.data.payment_method_list, "datadatadatadata");
+    const paymentMethod4 = data.data.payment_method_list.find(
+      (method: any) => method.payment_method === 4
+    );
+    if (paymentMethod4) {
+      setPaymentMethod(paymentMethod4);
+    }
     if (!data.success) {
       toast.error(data.message);
       router.push(`/user/my-wallet`);
@@ -55,7 +62,9 @@ const FiatWithdraw = ({ currency_type }: any) => {
     const data = await submitFiatWithdrawDataApi(
       currency_type,
       amount,
-      selectedBankId
+      selectedBankId,
+      selectedPaymentMethod?.id,
+      selectedPaymentMethod?.payment_method
     );
 
     if (!data.success) {
