@@ -14,36 +14,47 @@ const Paystack = ({ walletlist }: any) => {
     code: "",
   });
   const [walletID, setwalletID] = useState<any>();
+  const [loading, setLoading] = useState(false);
   const { settings } = useSelector((state: RootState) => state.common);
   const [errorMessage, setErrorMessage] = React.useState({
     status: false,
     message: "",
   });
-  const CheckG2faEnabled = async () => {
-    const { data } = await UserSettingsApi();
-    const { user } = data;
-    if (
-      user.google2fa !== 1 &&
-      parseInt(settings.currency_deposit_2fa_status) === 1
-    ) {
-      setErrorMessage({
-        status: true,
-        message: t("Google 2FA is not enabled, Please enable Google 2FA fist"),
-      });
-    }
-  };
-  useEffect(() => {
-    CheckG2faEnabled();
-  }, []);
+  // const CheckG2faEnabled = async () => {
+  //   const { data } = await UserSettingsApi();
+  //   const { user } = data;
+  //   if (
+  //     user.google2fa !== 1 &&
+  //     parseInt(settings.currency_deposit_2fa_status) === 1
+  //   ) {
+  //     setErrorMessage({
+  //       status: true,
+  //       message: t("Google 2FA is not enabled, Please enable Google 2FA fist"),
+  //     });
+  //   }
+  // };
+  // useEffect(() => {
+  //   CheckG2faEnabled();
+  // }, []);
   const [amount, setAmount] = useState("");
   const onSubmit = async (e: any) => {
-    // e.preventDefault();
-    const response = await GetPaystackPaymentUrl(email, amount, walletID, 1, '');
+    e.preventDefault();
+    setLoading(true);
+    const response = await GetPaystackPaymentUrl(
+      email,
+      amount,
+      walletID,
+      1,
+      ""
+    );
     if (response.success) {
       toast.success(response.message);
+      setLoading(false);
+
       window.open(response.data.authorization_url, "_blank");
     } else {
       toast.error(response.message);
+      setLoading(false);
     }
   };
   return (
@@ -133,12 +144,12 @@ const Paystack = ({ walletlist }: any) => {
               </div>
             </div>
           </div>
-          <DepositGoogleAuth
+          {/* <DepositGoogleAuth
             convertCurrency={onSubmit}
             credential={credential}
             setCredential={setCredential}
-          />
-          {errorMessage.status && (
+          /> */}
+          {/* {errorMessage.status && (
             <div className="alert alert-danger col-lg-12">
               {errorMessage.message}
             </div>
@@ -166,12 +177,18 @@ const Paystack = ({ walletlist }: any) => {
             >
               {t("Deposit")}
             </button>
-          )}
-          {/* {email && amount && walletID && (
-            <button className="primary-btn-outline w-100 mt-5" type="submit">
-              {t("Deposit")}
-            </button>
           )} */}
+          <div className="col-lg-12">
+            {email && amount && walletID && (
+              <button
+                disabled={loading}
+                className="primary-btn-outline w-100 mt-5"
+                type="submit"
+              >
+                {t(loading ? "Processing" : "Deposit")}
+              </button>
+            )}
+          </div>
         </form>
       </div>
     </div>
