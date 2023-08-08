@@ -37,19 +37,19 @@ const PerfectMoney = ({ currencyList, walletlist, method_id, banks }: any) => {
     status: false,
     message: "",
   });
-  const CheckG2faEnabled = async () => {
-    const { data } = await UserSettingsApi();
-    const { user } = data;
-    if (
-      user.google2fa !== 1 &&
-      parseInt(settings.currency_deposit_2fa_status) === 1
-    ) {
-      setErrorMessage({
-        status: true,
-        message: t("Google 2FA is not enabled, Please enable Google 2FA fist"),
-      });
-    }
-  };
+  // const CheckG2faEnabled = async () => {
+  //   const { data } = await UserSettingsApi();
+  //   const { user } = data;
+  //   if (
+  //     user.google2fa !== 1 &&
+  //     parseInt(settings.currency_deposit_2fa_status) === 1
+  //   ) {
+  //     setErrorMessage({
+  //       status: true,
+  //       message: t("Google 2FA is not enabled, Please enable Google 2FA fist"),
+  //     });
+  //   }
+  // };
   const [credential, setCredential] = useState<any>({
     wallet_id: null,
     payment_method_id: method_id ? parseInt(method_id) : null,
@@ -130,7 +130,7 @@ const PerfectMoney = ({ currencyList, walletlist, method_id, banks }: any) => {
   };
   useEffect(() => {
     getCurrencyRate();
-    CheckG2faEnabled();
+    // CheckG2faEnabled();
   }, [credential]);
   return (
     <div>
@@ -355,15 +355,15 @@ const PerfectMoney = ({ currencyList, walletlist, method_id, banks }: any) => {
             </div> */}
 
             <div className="col-lg-12 my-3">
-              <DepositGoogleAuth
+              {/* <DepositGoogleAuth
                 convertCurrency={convertCurrency}
                 credential={credential}
                 setCredential={setCredential}
-              />
+              /> */}
               {errorMessage.status && (
                 <div className="alert alert-danger">{errorMessage.message}</div>
               )}
-              {parseInt(settings.currency_deposit_2fa_status) === 1 ? (
+              {/* {parseInt(settings.currency_deposit_2fa_status) === 1 ? (
                 <button
                   className="primary-btn-outline w-100 mt-5"
                   type="button"
@@ -384,7 +384,17 @@ const PerfectMoney = ({ currencyList, walletlist, method_id, banks }: any) => {
                 >
                   {t("Deposit")}
                 </button>
-              )}
+              )} */}
+              <button
+                className="primary-btn-outline w-100 mt-5"
+                type="button"
+                disabled={errorMessage.status === true}
+                onClick={() => {
+                  convertCurrency(credential);
+                }}
+              >
+                {t("Deposit")}
+              </button>
             </div>
           </div>
         </div>
