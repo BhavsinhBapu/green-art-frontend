@@ -101,6 +101,7 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
       formData.append("currency", credential.currency);
       formData.append("bank_id", credential.bank_id);
       formData.append("bank_receipt", doc);
+      formData.append("code", credential.code);
 
       const res = await currencyDepositProcess(formData);
       if (res.success) {
