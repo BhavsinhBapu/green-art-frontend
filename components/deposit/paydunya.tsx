@@ -44,7 +44,7 @@ const Paydunya = ({ walletlist }: any) => {
   const [amount, setAmount] = useState("");
   const onSubmit = async (e: any) => {
     // e.preventDefault();
-    const response = await GetPayDunyaPaymentUrl(amount, walletID);
+    const response = await GetPayDunyaPaymentUrl(amount, walletID, "USD");
     if (response.success) {
       toast.success(response.message);
       window.open(response?.data?.payment_url, "_blank");
@@ -52,13 +52,12 @@ const Paydunya = ({ walletlist }: any) => {
       toast.error(response.message);
     }
   };
-  const convertAmountHandle = async (e: any) => {
-    if (!amount) {
-      toast.error(`Please Add Amount`);
+  const convertAmountHandle = async () => {
+    if (!amount || !walletID) {
       return;
     }
     let coinType = walletlist.find(
-      (item: any) => item.id == e.target.value
+      (item: any) => item.id == walletID
     ).coin_type;
     const response = await convertAmountForPaydunya(amount, coinType);
     if (!response.success) {
@@ -70,8 +69,19 @@ const Paydunya = ({ walletlist }: any) => {
       xof: response.data.converted_amount_xof,
       wallet_coin: response.data.converted_amount_coin,
     }));
+  };
+  const walletHandler = (e: any) => {
+    if (!amount) {
+      toast.error(`Please Add Amount`);
+      return;
+    }
     setwalletID(e.target.value);
   };
+
+  useEffect(() => {
+    convertAmountHandle();
+  }, [amount, walletID]);
+
   return (
     <div>
       <div className="cp-user-title mt-5 mb-4">
@@ -152,7 +162,7 @@ const Paydunya = ({ walletlist }: any) => {
                           <select
                             className="form-control border-0 ticketFilterBg"
                             id="currency-one"
-                            onChange={convertAmountHandle}
+                            onChange={walletHandler}
                           >
                             <option value="" selected disabled hidden>
                               {t("Select one")}

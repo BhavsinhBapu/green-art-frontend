@@ -37,10 +37,11 @@ export const GetPaystackPaymentUrl = async (
   });
   return data;
 };
-export const GetPayDunyaPaymentUrl = async (amount: any, wallet_id: any) => {
+export const GetPayDunyaPaymentUrl = async (amount: any, wallet_id: any, currency: any) => {
   const { data } = await request.post("/get-paydunya-payment-url", {
     amount: amount,
     wallet_id: wallet_id,
+    currency:currency
   });
   return data;
 };
