@@ -61,7 +61,7 @@ export const fiatWithdrawProcessAction = async (
 export const apiFiatWithdrawalAction = async (
   setInitialData: any,
   setLoading: any,
-  setPaymentMethod: any
+  setPaymentMethod?: any
 ) => {
   setLoading(true);
   const response = await apiFiatWithdrawal();
