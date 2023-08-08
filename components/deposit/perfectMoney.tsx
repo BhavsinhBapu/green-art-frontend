@@ -81,6 +81,11 @@ const PerfectMoney = ({ currencyList, walletlist, method_id, banks }: any) => {
       currencyList,
       credential.currency
     );
+    localStorage.setItem("perfect_money_wallet_id", credential?.wallet_id);
+    localStorage.setItem(
+      "perfect_money_payment_method_id",
+      credential?.payment_method_id
+    );
     // return
     const form = document.createElement("form");
     form.setAttribute("method", "post");
@@ -94,10 +99,19 @@ const PerfectMoney = ({ currencyList, walletlist, method_id, banks }: any) => {
       { name: "PAYEE_NAME", value: `${settings.app_title}` },
       { name: "PAYMENT_AMOUNT", value: credential?.amount },
       { name: "PAYMENT_UNITS", value: `${selectedCurrencyType?.code}` },
-      { name: "STATUS_URL", value: `${process.env.NEXT_PUBLIC_HOSTED_CLIENT_URL}/fiat-deposit?status=pending` },
-      { name: "PAYMENT_URL", value: `${process.env.NEXT_PUBLIC_HOSTED_CLIENT_URL}/fiat-deposit?status=success` },
+      {
+        name: "STATUS_URL",
+        value: `${process.env.NEXT_PUBLIC_HOSTED_CLIENT_URL}/fiat-deposit?status=pending`,
+      },
+      {
+        name: "PAYMENT_URL",
+        value: `${process.env.NEXT_PUBLIC_HOSTED_CLIENT_URL}/fiat-deposit?status=success`,
+      },
       { name: "PAYMENT_URL_METHOD", value: "GET" },
-      { name: "NOPAYMENT_URL", value: `${process.env.NEXT_PUBLIC_HOSTED_CLIENT_URL}/fiat-deposit?status=cancel` },
+      {
+        name: "NOPAYMENT_URL",
+        value: `${process.env.NEXT_PUBLIC_HOSTED_CLIENT_URL}/fiat-deposit?status=cancel`,
+      },
       { name: "NOPAYMENT_URL_METHOD", value: "GET" },
       { name: "SUGGESTED_MEMO", value: "" },
       { name: "BAGGAGE_FIELDS", value: "" },
