@@ -7,7 +7,7 @@ import { UserSettingsApi } from "service/settings";
 import { RootState } from "state/store";
 import DepositGoogleAuth from "./deposit-g2fa";
 
-const Paystack = ({ walletlist }: any) => {
+const Paystack = ({ walletlist, method_id }: any) => {
   const { t } = useTranslation("common");
   const [email, setEmail] = useState("");
   const [credential, setCredential] = useState<any>({
@@ -45,7 +45,8 @@ const Paystack = ({ walletlist }: any) => {
       amount,
       walletID,
       1,
-      ""
+      "",
+      method_id
     );
     if (response.success) {
       toast.success(response.message);

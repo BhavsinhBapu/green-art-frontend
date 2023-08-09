@@ -26,7 +26,8 @@ export const GetPaystackPaymentUrl = async (
   amount: any,
   wallet_id: any,
   crypto_type: any,
-  currency: any
+  currency: any,
+  payment_method_id: any
 ) => {
   const { data } = await request.post("/get-paystack-payment-url", {
     email: email,
@@ -34,6 +35,7 @@ export const GetPaystackPaymentUrl = async (
     wallet_id: wallet_id,
     crypto_type: crypto_type,
     currency: currency,
+    payment_method_id: payment_method_id
   });
   return data;
 };

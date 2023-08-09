@@ -153,7 +153,7 @@ const FiatDeposit = ({ currency_type, wallet_id }: any) => {
                               <FiatPaystack
                                 method_id={selectedMethods.method_id}
                                 currency_type={currency_type}
-                                
+                                wallet_id={wallet_id}
                               />
                             )}
 
