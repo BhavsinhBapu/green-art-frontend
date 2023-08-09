@@ -1,6 +1,7 @@
 import SelectCurrency from "components/FutureTrades/SelectCurrencies";
 import TopBar from "components/FutureTrades/Topbar";
 import TradeBox from "components/FutureTrades/TradeBox";
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -12,6 +13,7 @@ import { RootState } from "state/store";
 
 const Exchange = () => {
   const [isLoading, setisLoading] = useState(true);
+  const router = useRouter();
   const [ThemeColor, setThemeColor] = useState({
     green: "#32d777",
     red: "#d63031",
@@ -28,10 +30,12 @@ const Exchange = () => {
     const pair = localStorage.getItem("current_pair");
     if (pair) {
       dispatch(setCurrentPair(pair));
-      dispatch(initialDashboardCallAction(pair, dashboard, setisLoading));
+      dispatch(
+        initialDashboardCallAction(pair, dashboard, setisLoading, router)
+      );
     } else {
       dispatch(
-        initialDashboardCallAction(currentPair, dashboard, setisLoading)
+        initialDashboardCallAction(currentPair, dashboard, setisLoading, router)
       );
     }
   }, [isLoggedIn, currentPair]);
