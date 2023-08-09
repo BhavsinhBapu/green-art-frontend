@@ -2,7 +2,7 @@ import useTranslation from "next-translate/useTranslation";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { GetPaystackPaymentUrl } from "service/deposit";
+import { GetPaystackPaymentUrl, globalConvertAmount } from "service/deposit";
 import { UserSettingsApi } from "service/settings";
 import { RootState } from "state/store";
 import DepositGoogleAuth from "./deposit-g2fa";
@@ -13,6 +13,7 @@ const Paystack = ({ walletlist, method_id }: any) => {
   const [credential, setCredential] = useState<any>({
     code: "",
   });
+  const [calculatedValue, setCalculatedValue] = useState<any>(0);
   const [walletID, setwalletID] = useState<any>();
   const [loading, setLoading] = useState(false);
   const { settings } = useSelector((state: RootState) => state.common);
@@ -58,6 +59,29 @@ const Paystack = ({ walletlist, method_id }: any) => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    convertAmount();
+  }, [walletID, amount]);
+
+  const convertAmount = async () => {
+    if (!amount || !walletID) return;
+    const newWallet = walletlist.find((item: any) => item.id == walletID);
+
+    const response = await globalConvertAmount(
+      "USD",
+      newWallet?.coin_type,
+      amount
+    );
+
+    if (!response.success) {
+      toast.error(response.message);
+      return;
+    }
+
+    setCalculatedValue(response.data.converted_amount);
+  };
+
   return (
     <div>
       <div className="cp-user-title mt-5 mb-4">
@@ -95,7 +119,7 @@ const Paystack = ({ walletlist, method_id }: any) => {
               </div>
             </div>
           </div>
-          <div className="col-lg-12">
+          {/* <div className="col-lg-12">
             <select
               className="form-control "
               id="currency-one"
@@ -112,6 +136,59 @@ const Paystack = ({ walletlist, method_id }: any) => {
                 </option>
               ))}
             </select>
+          </div> */}
+          <div className="col-lg-12">
+            <div className="">
+              <div className="swap-area">
+                <div className="swap-area-top">
+                  <div className="form-group">
+                    <div className="swap-wrap mt-3">
+                      <div className="swap-wrap-top">
+                        <label>{t("Converted amount")}</label>
+                        <span className="available">{t("Select wallet")}</span>
+                      </div>
+                      <div className="swap-input-wrap">
+                        <div className="form-amount">
+                          <input
+                            type="number"
+                            className="form-control border-0"
+                            id="amount-one"
+                            disabled
+                            value={calculatedValue}
+                            placeholder={t("Please enter 10 -2400000")}
+                            onChange={(e) => {
+                              setCredential({
+                                ...credential,
+                                amount: e.target.value,
+                              });
+                            }}
+                          />
+                        </div>
+                        <div className="cp-select-area">
+                          <select
+                            className="form-control border-0 ticketFilterBg"
+                            id="currency-one"
+                            value={walletID}
+                            onChange={(e) => {
+                              setwalletID(e.target.value);
+                            }}
+                          >
+                            <option value="" selected disabled hidden>
+                              {t("Select one")}
+                            </option>
+                            {walletlist?.map((wallet: any, index: any) => (
+                              <option value={wallet.id} key={index}>
+                                {wallet.coin_type}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div className="col-lg-12">
             <div className="">

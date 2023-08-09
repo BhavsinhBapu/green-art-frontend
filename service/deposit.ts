@@ -35,7 +35,7 @@ export const GetPaystackPaymentUrl = async (
     wallet_id: wallet_id,
     crypto_type: crypto_type,
     currency: currency,
-    payment_method_id: payment_method_id
+    payment_method_id: payment_method_id,
   });
   return data;
 };
@@ -102,6 +102,19 @@ export const convertAmountForPaydunya = async (
   const { data } = await request.post("/paydunya-payment-currency-rate", {
     amount: amount,
     request_coin_type: request_coin_type,
+  });
+  return data;
+};
+
+export const globalConvertAmount = async (
+  from_coin_type: any,
+  to_coin_type: any,
+  amount: any
+) => {
+  const { data } = await request.post(`get-convert-currency-amount`, {
+    from_coin_type: from_coin_type,
+    to_coin_type: to_coin_type,
+    amount: amount,
   });
   return data;
 };
