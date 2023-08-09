@@ -16,11 +16,17 @@ import {
   getFiatWithdrawalRateAction,
 } from "state/actions/fiat-deposit-withawal";
 import SectionLoading from "components/common/SectionLoading";
+import SelectWithdrawl from "components/deposit/SelectWithdrawl";
+import { BANK_DEPOSIT } from "helpers/core-constants";
 
 const FiatWithdrawal = () => {
   const { t } = useTranslation("common");
   const [loading, setLoading]: any = useState<any>(false);
   const [initialData, setInitialData]: any = useState<any>([]);
+  const [selectedMethod, setSelectedMethod] = useState<any>({
+    method: null,
+    method_id: null,
+  });
   const [rateCred, setRateCred]: any = useState<any>({
     wallet_id: "",
     currency: "",
@@ -29,6 +35,7 @@ const FiatWithdrawal = () => {
     bank_id: "",
     payment_method_id: "",
     payment_method_type: "",
+    payment_info: "",
   });
   const [converted_value, setConverted_value] = useState(0);
   const [fees, setFees] = useState(0);
@@ -41,9 +48,6 @@ const FiatWithdrawal = () => {
         wallet_id: rateCred.wallet_id,
         currency: rateCred.currency,
         amount: rateCred.amount,
-        bank_id: rateCred.bank_id,
-        payment_method_id: selectedPaymentMethod?.id,
-        payment_method_type: selectedPaymentMethod?.payment_method,
       });
 
       setConverted_value(response.data.convert_amount);
@@ -54,17 +58,28 @@ const FiatWithdrawal = () => {
   };
   useEffect(() => {
     getRate();
-  }, [rateCred]);
-  useEffect(() => {
-    setRateCred({
-      ...rateCred,
-      payment_method_id: selectedPaymentMethod?.id,
-      payment_method_type: selectedPaymentMethod?.payment_method,
-    });
-  }, [selectedPaymentMethod]);
+  }, [rateCred?.amount, rateCred?.wallet_id, rateCred?.currency]);
+
   useEffect(() => {
     apiFiatWithdrawalAction(setInitialData, setLoading, setPaymentMethod);
   }, []);
+
+  useEffect(() => {
+    setRateCred({
+      wallet_id: "",
+      currency: "",
+      amount: "",
+      type: "fiat",
+      bank_id: "",
+      payment_method_id: selectedMethod?.method_id,
+      payment_method_type: selectedMethod?.method,
+      payment_info: "",
+    });
+    setConverted_value(0);
+    setNetAmount(0);
+    setFees(0);
+    setcurrency("");
+  }, [selectedMethod]);
   return (
     <>
       <div className="page-wrap">
@@ -78,7 +93,11 @@ const FiatWithdrawal = () => {
                 </h2>
               </div>
             </div>
-
+            <SelectWithdrawl
+              setSelectedMethod={setSelectedMethod}
+              depositInfo={initialData?.payment_method_list}
+              selectedMethod={selectedMethod}
+            />
             <div className="asset-balances-area">
               <div className=" bank-section">
                 <div className="">
@@ -102,6 +121,7 @@ const FiatWithdrawal = () => {
                               name="wallet"
                               className={`ico-input-box `}
                               required
+                              value={rateCred?.wallet_id}
                               onChange={(e: any) => {
                                 setRateCred({
                                   ...rateCred,
@@ -129,6 +149,7 @@ const FiatWithdrawal = () => {
                               name="coin_list"
                               required
                               className={`ico-input-box `}
+                              value={rateCred?.currency}
                               onChange={(e: any) => {
                                 setRateCred({
                                   ...rateCred,
@@ -154,6 +175,7 @@ const FiatWithdrawal = () => {
                             <input
                               type="text"
                               required
+                              value={rateCred?.amount}
                               onChange={(e) => {
                                 setRateCred({
                                   ...rateCred,
@@ -191,7 +213,54 @@ const FiatWithdrawal = () => {
                             </div>
                           </div>
 
-                          <div className="col-md-6 form-input-div">
+                          {parseInt(selectedMethod.method) === BANK_DEPOSIT ? (
+                            <div className="col-md-6 form-input-div">
+                              <label className="ico-label-box" htmlFor="">
+                                {t("Select Bank")}
+                              </label>
+                              <select
+                                name="bank_list"
+                                className={`ico-input-box `}
+                                required
+                                value={rateCred?.bank_id}
+                                onChange={(e) => {
+                                  setRateCred({
+                                    ...rateCred,
+                                    bank_id: e.target.value,
+                                  });
+                                }}
+                              >
+                                <option value="">
+                                  {t("Select Bank List")}
+                                </option>
+                                {initialData?.my_bank?.map(
+                                  (item: any, index: number) => (
+                                    <option value={item.id} key={index}>
+                                      {item.bank_name}
+                                    </option>
+                                  )
+                                )}
+                              </select>
+                            </div>
+                          ) : (
+                            <div className="col-md-12 form-input-div">
+                              <label className="ico-label-box" htmlFor="">
+                                {t("Payment Info")}
+                              </label>
+                              <textarea
+                                className={`ico-input-box `}
+                                value={rateCred?.payment_info}
+                                onChange={(e) => {
+                                  setRateCred({
+                                    ...rateCred,
+                                    payment_info: e.target.value,
+                                  });
+                                }}
+                              ></textarea>
+                            </div>
+                          )}
+
+                          {/* <div className="col-md-6 form-input-div">
                             <label className="ico-label-box" htmlFor="">
                               {t("Select Bank")}
                             </label>
@@ -215,7 +284,7 @@ const FiatWithdrawal = () => {
                                 )
                               )}
                             </select>
-                          </div>
+                          </div> */}
                           <div className="col-md-12 form-input-div">
                             <button type="submit" className="primary-btn">
                               {loading ? t("Loading..") : t("Submit Withdrawl")}
