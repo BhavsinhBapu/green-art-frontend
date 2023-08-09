@@ -10,7 +10,8 @@ export const submitFiatWithdrawDataApi = async (
   amount: any,
   bank_id: any,
   payment_method_id: any,
-  payment_method_type: any
+  payment_method_type: any,
+  payment_info: any
 ) => {
   const { data } = await request.post(`wallet-currency-withdraw`, {
     currency,
@@ -18,6 +19,7 @@ export const submitFiatWithdrawDataApi = async (
     bank_id,
     payment_method_id,
     payment_method_type,
+    payment_info
   });
   return data;
 };

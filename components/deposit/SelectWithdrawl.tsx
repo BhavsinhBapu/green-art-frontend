@@ -5,7 +5,6 @@ export default function SelectWithdrawl({
   depositInfo,
   selectedMethod,
 }: any) {
-  console.log("depositInfo", depositInfo);
   useEffect(() => {
     if (!depositInfo || depositInfo?.length === 0) return;
     setSelectedMethod({
