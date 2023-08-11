@@ -230,7 +230,7 @@ const MarketTrends = ({
                                         }`
                                   }
                                 >
-                                  <a className="btnTrade btn-link mb-2">
+                                  <a className="btnTrade btn-link mb-2" style={{marginBottom: '5px'}}>
                                     {t("Trade")}
                                   </a>
                                 </Link>
