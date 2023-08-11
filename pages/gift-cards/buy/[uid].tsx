@@ -347,7 +347,10 @@ export default function Index() {
                       <div className="d-flex gap-20">
                         <input
                           type="checkbox"
-                          onChange={() => {setWallet("spot"); setAvailableCoin(availableSpotWallet)}}
+                          onChange={() => {
+                            setWallet("spot");
+                            setAvailableCoin(availableSpotWallet);
+                          }}
                           checked={wallet === "spot"}
                           className="checkbox-w-25"
                         />
@@ -355,7 +358,11 @@ export default function Index() {
                           <h6 className="font-normal"> {t(`Spot Wallet`)}</h6>
                           <h6 className="font-normal">
                             {" "}
-                            {t(`${availableSpotWallet} ${selectCoin?.label || ""}`)}
+                            {t(
+                              `${availableSpotWallet} ${
+                                selectCoin?.label || ""
+                              }`
+                            )}
                           </h6>
                         </div>
                       </div>
@@ -363,14 +370,21 @@ export default function Index() {
                         <div className="d-flex gap-20 mt-3">
                           <input
                             type="checkbox"
-                            onChange={() => {setWallet("p2p"); setAvailableCoin(availableP2PWallet)}}
+                            onChange={() => {
+                              setWallet("p2p");
+                              setAvailableCoin(availableP2PWallet);
+                            }}
                             checked={wallet === "p2p"}
                             className="checkbox-w-25"
                           />
                           <div className="d-flex justify-content-between w-full">
                             <h6 className="font-normal"> {t(`P2P Wallet`)}</h6>
                             <h6 className="font-normal">
-                              {t(`${availableP2PWallet} ${selectCoin?.label || ""}`)}
+                              {t(
+                                `${availableP2PWallet} ${
+                                  selectCoin?.label || ""
+                                }`
+                              )}
                             </h6>
                           </div>
                         </div>
@@ -436,9 +450,13 @@ export default function Index() {
 
                     <div>
                       <small>
-                        {t(`Lorem Ipsum is simply dummy text of the printing and
-                        typesetting industry. Lorem Ipsum has been the
-                        industry's`)}
+                        {isSingle
+                          ? t(
+                              `If you chose to lock the gift cards, it will not be redeemable nor addable by others until you unlock it`
+                            )
+                          : t(
+                              `If you chose to bulk lock the gift cards, they will not be redeemable nor addable by others until you unlock them`
+                            )}
                       </small>
                     </div>
                   </div>
