@@ -166,7 +166,7 @@ export default function TradeSections() {
                                     <td className="d-flex">
                                       <img
                                         className="icon mr-3"
-                                        src={"/bitcoin.png"}
+                                        src={item?.coin_icon ?? "/bitcoin.png"}
                                         alt="coin"
                                         width="25px"
                                         height="25px"
