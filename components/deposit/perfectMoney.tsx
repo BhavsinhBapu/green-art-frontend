@@ -138,7 +138,7 @@ const PerfectMoney = ({ currencyList, walletlist, method_id, banks }: any) => {
         <h4>{t("Perfect Money")}</h4>
       </div>
       <div className="row">
-        <div className="col-lg-8">
+        <div className="col-lg-12">
           <div className="row">
             <div className="col-lg-12">
               <div className="">
@@ -398,7 +398,7 @@ const PerfectMoney = ({ currencyList, walletlist, method_id, banks }: any) => {
             </div>
           </div>
         </div>
-        <div className="col-lg-4">
+        {/* <div className="col-lg-4">
           <div className="bg-main-clr p-3">
             {infoList.map((item, index) => (
               <div
@@ -439,7 +439,7 @@ const PerfectMoney = ({ currencyList, walletlist, method_id, banks }: any) => {
             </div>
             <div></div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

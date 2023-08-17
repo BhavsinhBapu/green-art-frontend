@@ -99,7 +99,7 @@ const FiatPerfectMoney = ({ method_id, currency_type, currencyLists }: any) => {
         <h4>{t("Perfect Money")}</h4>
       </div>
       <div className="row">
-        <div className="col-lg-8">
+        <div className="col-lg-12">
           <div className="row">
             <div className="col-lg-12">
               <div className="">
@@ -254,7 +254,7 @@ const FiatPerfectMoney = ({ method_id, currency_type, currencyLists }: any) => {
             </div>
           </div>
         </div>
-        <div className="col-lg-4">
+        {/* <div className="col-lg-4">
           <div className="bg-main-clr p-3">
             {infoList.map((item, index) => (
               <div
@@ -278,7 +278,7 @@ const FiatPerfectMoney = ({ method_id, currency_type, currencyLists }: any) => {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
