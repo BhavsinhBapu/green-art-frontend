@@ -92,16 +92,16 @@ const MyWallet: NextPage = () => {
                       >
                         <thead>
                           <tr>
-                            <th scope="col">{t("Asset")}</th>
-                            <th scope="col">{t("Symbol")}</th>
-                            <th scope="col">{t("Available Balance")}</th>
-                            <th scope="col">{t("Action")}</th>
+                            <th scope="col" className="p-2">{t("Asset")}</th>
+                            <th scope="col" className="p-2">{t("Symbol")}</th>
+                            <th scope="col" className="p-2">{t("Available Balance")}</th>
+                            <th scope="col" className="p-2">{t("Action")}</th>
                           </tr>
                         </thead>
                         <tbody>
                           {Changeable?.map((item: any, index: number) => (
                             <tr id="" key={index}>
-                              <td>
+                              <td className="p-2 border-bottom border-main-color">
                                 <div className="asset">
                                   <img
                                     className="asset-icon"
@@ -113,20 +113,20 @@ const MyWallet: NextPage = () => {
                                   </span>
                                 </div>
                               </td>
-                              <td>
+                              <td className="p-2 border-bottom border-main-color">
                                 <span className="symbol">
                                   {item?.coin_type}
                                 </span>
                               </td>
 
-                              <td>
+                              <td className="p-2 border-bottom border-main-color">
                                 <div className="blance-text">
                                   <span className="blance">
                                     {parseFloat(item?.balance).toFixed(8)}
                                   </span>
                                 </div>
                               </td>
-                              <td>
+                              <td className="p-2 border-bottom border-main-color">
                                 <div className="active-link">
                                   <ul>
                                     <div className="active-link">
