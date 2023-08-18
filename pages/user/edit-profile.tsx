@@ -13,12 +13,17 @@ import { UpdateUserInfoByTokenAction } from "state/actions/user";
 import useTranslation from "next-translate/useTranslation";
 import { customPage, landingPage } from "service/landing-page";
 import Footer from "components/common/footer";
+import { toast } from "react-toastify";
 const Edit: NextPage = () => {
   const { user } = useSelector((state: RootState) => state.user);
   const { t } = useTranslation("common");
   const dispatch = useDispatch();
   const uploadFile = (e: any) => {
     const file = e.target.files[0];
+    if (file.size > 2 * 1024 * 1024) {
+      toast.error(t("File size must be less than 2MB"));
+      return;
+    }
     const formdata = new FormData();
     formdata.append("photo", file);
     formdata.append("first_name", user.first_name);

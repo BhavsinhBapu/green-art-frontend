@@ -109,11 +109,13 @@ const PersonalVerification: NextPage = () => {
                                         KYC_VOTERS_CARD_VERIFICATION &&
                                         setType("voter");
                                     }
-                                  }}>
+                                  }}
+                                >
                                   <div
                                     className="id-card"
                                     data-toggle="modal"
-                                    data-target=".cp-user-idverifymodal">
+                                    data-target=".cp-user-idverifymodal"
+                                  >
                                     <ImageComponent
                                       src={item.image}
                                       className="p-5"
@@ -155,7 +157,8 @@ const PersonalVerification: NextPage = () => {
                                           ? "success"
                                           : ""
                                         : ""
-                                    }`}>
+                                    }`}
+                                  >
                                     <span className="text-warning">
                                       {item.type == KYC_PASSPORT_VERIFICATION &&
                                         kycDetails?.passport?.status}

@@ -40,6 +40,10 @@ const BankDeposit = ({ currency_type, method_id, banks }: any) => {
     if (!fileObj) {
       return;
     }
+    if (fileObj.size > 2 * 1024 * 1024) {
+      toast.error(t("File size must be less than 2MB"));
+      return;
+    }
     event;
     setDoc(event.target.files[0]);
   };
