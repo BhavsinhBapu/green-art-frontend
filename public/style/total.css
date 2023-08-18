@@ -15503,6 +15503,10 @@ input:checked + .gift-card-buy-slider:before {
   padding: 30px;
 }
 
+.p2p-wallet-form {
+  height: 88vh;
+}
+
 @media (max-width: 1520px) {
   .trade-dashboard-side-margin {
     margin-left: 0 !important;
@@ -15527,6 +15531,9 @@ input:checked + .gift-card-buy-slider:before {
 @media (max-width: 991px) {
   .text-45 {
     font-size: 36px;
+  }
+  .p2p-wallet-form {
+    height: auto;
   }
   .gift-card-buy-btn {
     padding: 5px 0;

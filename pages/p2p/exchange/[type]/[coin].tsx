@@ -23,9 +23,9 @@ const Exchange = () => {
     }
   };
   return (
-    <div className="container-fluid my-3" style={{ height: "88vh" }}>
+    <div className="container-fluid my-3 p2p-wallet-form">
       <div className="row h-full">
-        <div className="col-md-6 h-full">
+        <div className="col-lg-6 h-full">
           <div className="h-full">
             {/* <img src={settings.login_background || "https://plus.unsplash.com/premium_photo-1675070805822-77b5257f4351?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=627&q=80"} alt=""/> */}
             <img
@@ -37,10 +37,10 @@ const Exchange = () => {
             />
           </div>
         </div>
-        <div className="col-md-6 text-center">
+        <div className="col-lg-6 text-center">
           <div className="row h-full" >
-            <div className="offset-md-1"></div>
-            <div className="col-md-10 h-full"><div className="d-flex align-items-center h-full">
+            <div className="offset-lg-1"></div>
+            <div className="col-lg-10 h-full"><div className="d-flex align-items-center h-full">
             <div className="boxShadow p-5 w-full border-0">
               {/* @ts-ignore */}
               <h1 className="font-medium">{parseInt(type) === SEND ? "Send" : "Recieve"} Balance</h1>
