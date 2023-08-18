@@ -3,7 +3,6 @@ import useTranslation from "next-translate/useTranslation";
 import React from "react";
 
 export default function WithdrawlHistoryModal({ close, item }: any) {
-  console.log("item", item);
   const { t } = useTranslation();
   return (
     <div id="demo-modal" className="gift-card-modal">

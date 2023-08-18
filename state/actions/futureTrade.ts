@@ -162,7 +162,7 @@ export async function listenMessages(dispatch: any, user: any) {
 // };
 
 export const initialDashboardCallAction =
-  (pair: string, dashboard: any, setisLoading?: any) =>
+  (pair: string, dashboard: any, setisLoading?: any, router?: any) =>
   async (dispatch: any) => {
     // setisLoading && setisLoading(true);
     const token = Cookies.get("token");
@@ -171,6 +171,11 @@ export const initialDashboardCallAction =
 
     if (pair) {
       response = await appDashboardData(pair);
+      if (!response?.success) {
+        toast.error(response.message);
+        router.push("/");
+        return;
+      }
       if (response?.pair_status === false) {
         response = await appDashboardData(response.pairs[0].coin_pair);
         await localStorage.setItem(
@@ -201,6 +206,13 @@ export const initialDashboardCallAction =
       }
     } else {
       response = await appDashboardDataWithoutPair();
+      if (!response?.success) {
+        toast.error(response.message);
+        router.push('/');
+        return
+      }
+      console.log("appDashboardData", response);
+
       if (!response?.pairs) {
         setisLoading && setisLoading(false);
         return;

@@ -170,37 +170,40 @@ const MyWallet: NextPage = () => {
                         >
                           <thead>
                             <tr>
-                              <th scope="col">{t("Asset")}</th>
-                              <th scope="col">{t("Symbol")}</th>
-                              <th scope="col">{t("On Order")}</th>
-                              <th scope="col">{t("Available Balance")}</th>
-                              <th scope="col">{t("Total Balance")}</th>
-                              <th scope="col">{t("Action")}</th>
+                              <th scope="col" className="p-2">{t("Asset")}</th>
+                              {/* <th scope="col">{t("Symbol")}</th> */}
+                              <th scope="col" className="p-2">{t("On Order")}</th>
+                              <th scope="col" className="p-2">{t("Available Balance")}</th>
+                              <th scope="col" className="p-2">{t("Total Balance")}</th>
+                              <th scope="col" className="p-2">{t("Action")}</th>
                             </tr>
                           </thead>
                           <tbody>
                             {Changeable?.map((item: any, index: number) => (
                               <tr id="" key={index}>
-                                <td>
+                                <td className="p-2 border-bottom border-main-color">
                                   <div className="asset">
                                     <img
                                       className="asset-icon"
                                       src={item.coin_icon || "/bitcoin.png"}
                                       alt=""
                                     />
-                                    <span className="asset-name">
-                                      {item?.name}
-                                    </span>
+                                    <div>
+                                      <p className="symbol">
+                                        {item?.coin_type}
+                                      </p>
+                                      <p className="asset-name">{item?.name}</p>
+                                    </div>
                                   </div>
                                 </td>
-                                <td>
+                                {/* <td>
                                   <span className="symbol">
                                     {item?.coin_type}
                                   </span>
-                                </td>
-                                <td>
+                                </td> */}
+                                <td className="p-2 border-bottom border-main-color">
                                   <div className="blance-text">
-                                    <span className="blance market incree">
+                                    <span className="blance market incree border-0 p-0">
                                       {item?.on_order}
                                     </span>
                                     <span className="usd">
@@ -212,7 +215,7 @@ const MyWallet: NextPage = () => {
                                     </span>
                                   </div>
                                 </td>
-                                <td>
+                                <td className="p-2 border-bottom border-main-color">
                                   <div className="blance-text">
                                     <span className="blance">
                                       {parseFloat(item?.balance).toFixed(8)}
@@ -226,7 +229,7 @@ const MyWallet: NextPage = () => {
                                     </span>
                                   </div>
                                 </td>
-                                <td>
+                                <td className="p-2 border-bottom border-main-color">
                                   <div className="blance-text">
                                     <span className="blance">
                                       {/* @ts-ignore */}
@@ -245,7 +248,7 @@ const MyWallet: NextPage = () => {
                                     </span>
                                   </div>
                                 </td>
-                                <td>
+                                <td className="p-2 border-bottom border-main-color">
                                   <div className="active-link">
                                     <ul>
                                       {item.is_deposit === 1 && (

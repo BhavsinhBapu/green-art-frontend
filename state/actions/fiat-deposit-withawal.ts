@@ -60,13 +60,21 @@ export const fiatWithdrawProcessAction = async (
 
 export const apiFiatWithdrawalAction = async (
   setInitialData: any,
-  setLoading: any
+  setLoading: any,
+  setPaymentMethod?: any
 ) => {
   setLoading(true);
   const response = await apiFiatWithdrawal();
   setLoading(false);
 
   setInitialData(response.data);
+  const paymentMethod4 = response.data.payment_method_list.find(
+    (method: any) => method.payment_method === 4
+  );
+
+  if (paymentMethod4) {
+    setPaymentMethod(paymentMethod4)
+  }
 };
 export const getFiatWithdrawalRateAction = async (payload: any) => {
   const response = await getFiatWithdrawalRate(payload);

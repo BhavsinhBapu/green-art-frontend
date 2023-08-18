@@ -28,6 +28,8 @@ const CurrencyWithdrawHistory = () => {
   const [paymentItem, setPaymentItem] = useState()
   const [modalOpen, setModalOpen] = useState(false);
   const [history, setHistory] = useState<any>([]);
+  const [paymentItem, setPaymentItem] = useState();
+  const [modalOpen, setModalOpen] = useState(false);
   const [stillHistory, setStillHistory] = useState<any>([]);
   const LinkTopaginationString = (page: any) => {
     const url = page.url.split("?")[1];
@@ -123,7 +125,10 @@ const CurrencyWithdrawHistory = () => {
       cell: (row: any) => (
         <div
           className="text-center cursor-pointer"
-          onClick={() => {setModalOpen(true); setPaymentItem(row)}}
+          onClick={() => {
+            setModalOpen(true);
+            setPaymentItem(row);
+          }}
         >
           <AiFillEye size={25} />
         </div>
@@ -136,6 +141,10 @@ const CurrencyWithdrawHistory = () => {
       setHistory([]);
     };
   }, []);
+
+  const closeModalHandle = () => {
+    setModalOpen(false);
+  };
   return (
     <>
       <div className="page-wrap rightMargin">

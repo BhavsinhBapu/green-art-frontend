@@ -50,3 +50,7 @@ export const socialMediaList = () => {
 export const bannerDetailsBySlug = (slug: any) => {
   return request.get(`/banner-list/${slug}`);
 };
+
+export const announcementDetailsBySlug = (slug: any) => {
+  return request.get(`/announcement-list/${slug}`);
+};

@@ -17,11 +17,12 @@ const FiatWithdraw = ({ currency_type }: any) => {
   const router = useRouter();
   const [loading, setLoading]: any = useState<any>(false);
   const [banks, setBanks] = useState<any>([]);
+  const [paymentMethods, setPaymentMethods] = useState<any>([]);
   const [amount, setAmount] = useState<any>();
   const [selectedBankId, setSelectedBankId] = useState<any>();
-  const [initialData, setInitialData]: any = useState<any>([]);
-  const [payment_info, setPaymentInfo]: any = useState<any>();
-  const [selectedMethod, setSelectedMethod] = useState<any>({
+  // const [selectedPaymentMethod, setPaymentMethod] = useState<any>();
+  const [paymentInfo, setPaymentInfo] = useState<any>("");
+  const [selectPaymentMethod, setSelectPaymentMethod] = useState<any>({
     method: null,
     method_id: null,
   });
@@ -31,6 +32,7 @@ const FiatWithdraw = ({ currency_type }: any) => {
   const getFiatWithdrawData = async () => {
     setLoading(true);
     const data = await getFiatWithdrawDataApi();
+
     if (!data.success) {
       toast.error(data.message);
       router.push(`/user/my-wallet`);
@@ -38,8 +40,18 @@ const FiatWithdraw = ({ currency_type }: any) => {
 
       return;
     }
+    const paymentMethod4 = data.data.payment_method_list.find(
+      (method: any) => method.payment_method == 4
+    );
+    // if (paymentMethod4) {
+    //   setPaymentMethod(paymentMethod4);
+    // }
+    setSelectPaymentMethod({
+      method: data.data.payment_method_list[0]?.payment_method ?? null,
+      method_id: data.data.payment_method_list[0]?.id ?? null,
+    });
     setBanks(data.data.my_bank);
-    setInitialData(data?.data);
+    setPaymentMethods(data.data.payment_method_list);
     setLoading(false);
   };
 
@@ -50,9 +62,9 @@ const FiatWithdraw = ({ currency_type }: any) => {
       currency_type,
       amount,
       selectedBankId,
-      payment_info,
-      selectedMethod.method_id,
-      selectedMethod.method
+      selectPaymentMethod?.method_id,
+      selectPaymentMethod?.method,
+      paymentInfo
     );
 
     if (!data.success) {
@@ -77,9 +89,9 @@ const FiatWithdraw = ({ currency_type }: any) => {
               </div>
             </div>
             <SelectWithdrawl
-              setSelectedMethod={setSelectedMethod}
-              depositInfo={initialData?.payment_method_list}
-              selectedMethod={selectedMethod}
+              setSelectedMethod={setSelectPaymentMethod}
+              depositInfo={paymentMethods}
+              selectedMethod={selectPaymentMethod}
             />
             <div className="asset-balances-area">
               <div className=" bank-section">
@@ -117,7 +129,8 @@ const FiatWithdraw = ({ currency_type }: any) => {
                               onChange={(e) => setAmount(e.target.value)}
                             />
                           </div>
-                          {parseInt(selectedMethod.method) === BANK_DEPOSIT ? (
+                          {parseInt(selectPaymentMethod?.method) ===
+                          BANK_DEPOSIT ? (
                             <div className="col-md-6 form-input-div">
                               <label className="ico-label-box" htmlFor="">
                                 {t("Select Bank")}
@@ -141,21 +154,20 @@ const FiatWithdraw = ({ currency_type }: any) => {
                               </select>
                             </div>
                           ) : (
-                            <>
-                              <div className="col-md-12 form-input-div">
-                                <label className="ico-label-box" htmlFor="">
-                                  {t("Payment Info")}
-                                </label>
-                                <textarea
-                                  className={`ico-input-box `}
-                                  value={payment_info}
-                                  onChange={(e) => {
-                                    setPaymentInfo(e.target.value);
-                                  }}
-                                ></textarea>
-                              </div>
-                            </>
+                            <div className="col-md-12 form-input-div">
+                              <label className="ico-label-box" htmlFor="">
+                                {t("Payment Info")}
+                              </label>
+                              <textarea
+                                className={`ico-input-box `}
+                                value={paymentInfo}
+                                onChange={(e) => {
+                                  setPaymentInfo(e.target.value);
+                                }}
+                              ></textarea>
+                            </div>
                           )}
+
                           <div className="col-md-12 form-input-div">
                             <button type="submit" className="primary-btn">
                               {loading ? t("Loading..") : t("Submit Withdrawl")}

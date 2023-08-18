@@ -67,10 +67,12 @@ const SliderSection = ({
           <div className="about-info">
             {announcementListdata?.map((item: any, index: number) => (
               <div className="single-info" key={index}>
-                <p>
-                  <TfiAnnouncement />
-                  {item.title}
-                </p>
+                <Link href={`/announcement/${item.slug}`}>
+                  <a>
+                    <TfiAnnouncement />
+                    {item.title}
+                  </a>
+                </Link>
               </div>
             ))}
           </div>

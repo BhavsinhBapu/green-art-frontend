@@ -48,19 +48,23 @@ const SwapCoin: NextPage = ({
     from_wallet: null,
     to_wallet: null,
   });
-  const swapSelected = async () => {
-    tempfromSelected = await { ...fromSelected };
-    temptoSelected = await { ...toSelected };
-    let midvar;
-    await setFromSelected(temptoSelected);
-    await setToSelected(tempfromSelected);
-    setRate({
-      ...rate,
-      convert_rate: 0,
-    });
-    midvar = temptoSelected;
-    temptoSelected = tempfromSelected;
-    tempfromSelected = midvar;
+  const swapSelected = () => {
+    // Swap 'fromSelected' and 'toSelected' directly without using temporary variables
+    setFromSelected((prevFromSelected: any) => ({
+      ...prevFromSelected,
+      amount: toSelected.amount,
+      selected: toSelected.selected,
+      coin_id: toSelected.coin_id,
+      balamce: toSelected.balamce,
+    }));
+
+    setToSelected((prevToSelected: any) => ({
+      ...prevToSelected,
+      amount: fromSelected.amount,
+      selected: fromSelected.selected,
+      coin_id: fromSelected.coin_id,
+      balamce: fromSelected.balamce,
+    }));
   };
   const convertCoin = async (amount: any, from_id: any, to_id: any) => {
     setLoading(true);
@@ -96,6 +100,7 @@ const SwapCoin: NextPage = ({
       to_wallet: to_wallet,
     });
   }, []);
+  
   return (
     <>
       <div className="page-wrap">
@@ -194,11 +199,11 @@ const SwapCoin: NextPage = ({
                                     e.target.value,
                                     toSelected.coin_id
                                   ).then((data) => {
-                                    setFromSelected({
-                                      ...fromSelected,
-                                      coin_id: data?.from_wallet?.id,
-                                      selected: data?.from_wallet?.coin_type,
-                                      balamce: data?.from_wallet?.balance,
+                                    setToSelected({
+                                      ...toSelected,
+                                      coin_id: data?.to_wallet?.id,
+                                      selected: data?.to_wallet?.coin_type,
+                                      balamce: data?.to_wallet?.balance,
                                       amount: data?.convert_rate,
                                     });
                                   });
