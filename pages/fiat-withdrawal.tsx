@@ -122,7 +122,6 @@ const FiatWithdrawal = () => {
                               className={`ico-input-box `}
                               value={rateCred?.wallet_id}
                               required
-                              value={rateCred?.wallet_id}
                               onChange={(e: any) => {
                                 setRateCred({
                                   ...rateCred,
@@ -151,7 +150,6 @@ const FiatWithdrawal = () => {
                               value={rateCred?.currency}
                               required
                               className={`ico-input-box `}
-                              value={rateCred?.currency}
                               onChange={(e: any) => {
                                 setRateCred({
                                   ...rateCred,

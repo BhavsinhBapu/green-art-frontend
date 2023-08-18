@@ -25,8 +25,6 @@ const CurrencyWithdrawHistory = () => {
   });
   const { t } = useTranslation("common");
   const [processing, setProcessing] = useState<boolean>(false);
-  const [paymentItem, setPaymentItem] = useState()
-  const [modalOpen, setModalOpen] = useState(false);
   const [history, setHistory] = useState<any>([]);
   const [paymentItem, setPaymentItem] = useState();
   const [modalOpen, setModalOpen] = useState(false);
@@ -56,9 +54,7 @@ const CurrencyWithdrawHistory = () => {
     );
   };
 
-  const closeModalHandle = () => {
-    setModalOpen(false);
-  };
+
 
   const columns = [
     {
