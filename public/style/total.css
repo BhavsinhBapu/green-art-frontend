@@ -15478,6 +15478,10 @@ input:checked + .gift-card-buy-slider:before {
   /* border-radius: 4px; */
 }
 
+.object-fit-cover-img {
+  object-fit: cover;
+}
+
 .select-deposit-method-item-active {
   /* display: flex;
   align-items: center;
