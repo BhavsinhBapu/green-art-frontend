@@ -38,32 +38,44 @@ const Exchange = () => {
           </div>
         </div>
         <div className="col-lg-6 text-center">
-          <div className="row h-full" >
+          <div className="row h-full">
             <div className="offset-lg-1"></div>
-            <div className="col-lg-10 h-full"><div className="d-flex align-items-center h-full">
-            <div className="boxShadow p-5 w-full border-0">
-              {/* @ts-ignore */}
-              <h1 className="font-medium">{parseInt(type) === SEND ? "Send" : "Recieve"} Balance</h1>
-              <p>
-                Please Sign In To Your Account Please Sign In To Your Account
-              </p>
-              <div className="P2psearchBox position-relative mt-3">
-                <input
-                  type="number"
-                  placeholder="Enter amount EUR"
-                  value={amount}
-                  onChange={(e) => {
-                    setAmount(parseFloat(e.target.value));
-                  }}
-                />
-              </div>{" "}
-              <button className="primary-btn w-100 mt-3 py-2" onClick={getBalance}>
-                exchange
-              </button>
+            <div className="col-lg-10 h-full">
+              <div className="d-flex align-items-center h-full">
+                <div className="boxShadow p-5 w-full border-0">
+                  <h1 className="font-medium">
+                    {/* @ts-ignore */}
+                    {parseInt(type) === SEND ? "Send" : "Recieve"} Balance
+                  </h1>
+                  {/* @ts-ignore */}
+                  {parseInt(type) === SEND ? (
+                    <p>Retrieve {coin} from P2P wallet to spot wallet</p>
+                  ) : (
+                    <p>
+                      Receive {coin} from spot wallet to P2P wallet and start P2P
+                      trading
+                    </p>
+                  )}
+                  <div className="P2psearchBox position-relative mt-3">
+                    <input
+                      type="number"
+                      placeholder="Enter amount EUR"
+                      value={amount}
+                      onChange={(e) => {
+                        setAmount(parseFloat(e.target.value));
+                      }}
+                    />
+                  </div>{" "}
+                  <button
+                    className="primary-btn w-100 mt-3 py-2"
+                    onClick={getBalance}
+                  >
+                    exchange
+                  </button>
+                </div>
+              </div>
             </div>
-          </div></div>
           </div>
-          
         </div>
       </div>
     </div>
