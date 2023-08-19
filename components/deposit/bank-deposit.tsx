@@ -128,7 +128,7 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
         <h4>{t("Bank Deposit")}</h4>
       </div>
       <div className="row">
-        <div className="col-md-7">
+        <div className="col-md-12">
           <div className="row">
             <div className="col-lg-12">
               <div className="">
