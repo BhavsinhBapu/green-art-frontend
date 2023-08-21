@@ -52,21 +52,35 @@ export const FeedbackTable = ({ details }: any) => {
                       {details?.feedback_list?.map(
                         (list: any) =>
                           list.feedback && (
-                            <div className="single-feedback col-sm-12 col-md-6">
-                              <h3>{list?.feedback}</h3>
-                              {parseInt(list.feedback_type) === 1 ? (
-                                <p>
-                                  <span className="feedback-status positive">
-                                    Positive
-                                  </span>
-                                </p>
-                              ) : (
-                                <p>
-                                  <span className="feedback-status negetive">
-                                    Negetive
-                                  </span>
-                                </p>
-                              )}
+                            <div className=" col-sm-12 col-md-6 mt-3">
+                              <div className="single-feedback">
+                                <div className="d-flex gap-10 align-items-center justify-content-between mb-3">
+                                  <div className="d-flex gap-10 align-items-center">
+                                    <img
+                                      src={list?.user_img}
+                                      width={30}
+                                      height={30}
+                                      className="rounded-circle"
+                                      alt=""
+                                    />
+                                    <p>{list?.user_name}</p>
+                                  </div>
+                                  {parseInt(list.feedback_type) === 1 ? (
+                                    <p>
+                                      <span className="feedback-status positive">
+                                        Positive
+                                      </span>
+                                    </p>
+                                  ) : (
+                                    <p>
+                                      <span className="feedback-status negetive">
+                                        Negetive
+                                      </span>
+                                    </p>
+                                  )}
+                                </div>
+                                <p >{list?.feedback}</p>
+                              </div>
                             </div>
                           )
                       )}
