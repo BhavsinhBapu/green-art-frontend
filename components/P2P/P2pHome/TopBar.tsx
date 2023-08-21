@@ -3,17 +3,23 @@ import { HiOutlineHome, HiUsers } from "react-icons/hi";
 import Link from "next/link";
 import { AiOutlineGift, AiOutlineWallet } from "react-icons/ai";
 import { GrHomeRounded } from "react-icons/gr";
+import { useRouter } from "next/router";
 export const P2pTopBar = () => {
+  const router = useRouter();
   return (
     <div className="py-3">
       <div className="container">
         <div className="row">
           <div className="col-12">
             <ul className="d-flex justify-content-between topBarList">
-              <div className="d-flex " style={{gap:'28px'}}>
+              <div className="d-flex " style={{ gap: "28px" }}>
                 <li>
                   <Link href="/p2p">
-                    <a>
+                    <a
+                      className={`${
+                        router.pathname == "/p2p" && "text-primary-color"
+                      } `}
+                    >
                       <HiOutlineHome />
                       Home
                     </a>
@@ -21,7 +27,12 @@ export const P2pTopBar = () => {
                 </li>
                 <li>
                   <Link href="/p2p/my-order">
-                    <a>
+                    <a
+                      className={`${
+                        router.pathname == "/p2p/my-order" &&
+                        "text-primary-color"
+                      } `}
+                    >
                       <RiPagesLine />
                       Orders
                     </a>
@@ -29,7 +40,12 @@ export const P2pTopBar = () => {
                 </li>
                 <li>
                   <Link href="/p2p/p2p-profile">
-                    <a>
+                    <a
+                      className={`${
+                        router.pathname == "/p2p/p2p-profile" &&
+                        "text-primary-color"
+                      } `}
+                    >
                       <HiUsers />
                       P2P User Center
                     </a>
@@ -37,7 +53,12 @@ export const P2pTopBar = () => {
                 </li>
                 <li>
                   <Link href="/p2p/p2p-wallet">
-                    <a>
+                    <a
+                      className={`${
+                        router.pathname == "/p2p/p2p-wallet" &&
+                        "text-primary-color"
+                      } `}
+                    >
                       <AiOutlineWallet />
                       P2P Wallet
                     </a>
@@ -45,14 +66,19 @@ export const P2pTopBar = () => {
                 </li>
                 <li>
                   <Link href="/p2p/gift-card">
-                    <a>
+                    <a
+                      className={`${
+                        router.pathname == "/p2p/gift-card" &&
+                        "text-primary-color"
+                      } `}
+                    >
                       <AiOutlineGift />
                       Gift Card
                     </a>
                   </Link>
                 </li>
               </div>
-              <li style={{position:'relative'}}>
+              <li style={{ position: "relative" }}>
                 <a
                   href=""
                   className="dropdown-toggle"
