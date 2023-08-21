@@ -18,6 +18,7 @@ import {
 import SectionLoading from "components/common/SectionLoading";
 import SelectWithdrawl from "components/deposit/SelectWithdrawl";
 import { BANK_DEPOSIT } from "helpers/core-constants";
+import { NoItemFound } from "components/NoItemFound/NoItemFound";
 
 const FiatWithdrawal = () => {
   const { t } = useTranslation("common");
@@ -105,7 +106,7 @@ const FiatWithdrawal = () => {
                     <div className="ico-create-form col-12">
                       {loading ? (
                         <SectionLoading />
-                      ) : (
+                      ) : initialData?.payment_method_list?.length > 0 ? (
                         <form
                           className="row"
                           onSubmit={(e) => {
@@ -259,53 +260,6 @@ const FiatWithdrawal = () => {
                             </div>
                           )}
 
-                          {parseInt(selectedMethod.method) === BANK_DEPOSIT ? (
-                            <div className="col-md-6 form-input-div">
-                              <label className="ico-label-box" htmlFor="">
-                                {t("Select Bank")}
-                              </label>
-                              <select
-                                name="bank_list"
-                                className={`ico-input-box `}
-                                required
-                                value={rateCred?.bank_id}
-                                onChange={(e) => {
-                                  setRateCred({
-                                    ...rateCred,
-                                    bank_id: e.target.value,
-                                  });
-                                }}
-                              >
-                                <option value="">
-                                  {t("Select Bank List")}
-                                </option>
-                                {initialData?.my_bank?.map(
-                                  (item: any, index: number) => (
-                                    <option value={item.id} key={index}>
-                                      {item.bank_name}
-                                    </option>
-                                  )
-                                )}
-                              </select>
-                            </div>
-                          ) : (
-                            <div className="col-md-12 form-input-div">
-                              <label className="ico-label-box" htmlFor="">
-                                {t("Payment Info")}
-                              </label>
-                              <textarea
-                                className={`ico-input-box `}
-                                value={rateCred?.payment_info}
-                                onChange={(e) => {
-                                  setRateCred({
-                                    ...rateCred,
-                                    payment_info: e.target.value,
-                                  });
-                                }}
-                              ></textarea>
-                            </div>
-                          )}
-
                           {/* <div className="col-md-6 form-input-div">
                             <label className="ico-label-box" htmlFor="">
                               {t("Select Bank")}
@@ -337,6 +291,8 @@ const FiatWithdrawal = () => {
                             </button>
                           </div>
                         </form>
+                      ) : (
+                        <NoItemFound message={`No Payment Method Found`}/>
                       )}
                     </div>
                   </div>
