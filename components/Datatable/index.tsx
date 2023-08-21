@@ -1,5 +1,6 @@
 import useTranslation from "next-translate/useTranslation";
 import React, { useMemo } from "react";
+import { AiOutlineSearch } from "react-icons/ai";
 import { useTable, useSortBy, useGlobalFilter } from "react-table";
 
 const CustomDataTable = ({
@@ -44,9 +45,11 @@ const CustomDataTable = ({
               <select
                 name="assetBalances_length"
                 aria-controls="assetBalances"
-                className=""
+                className="h-auto text-14"
                 placeholder="10"
-                onChange={(e) => {setSelectedLimit(e.target.value)}}
+                onChange={(e) => {
+                  setSelectedLimit(e.target.value);
+                }}
                 value={selectedLimit}
               >
                 <option value="10">10</option>
@@ -56,9 +59,9 @@ const CustomDataTable = ({
               </select>
             </label>
           </div>
-          <div id="table_filter" className="dataTables_filter">
+          <div id="table_filter" className="dataTables_filter_class">
             <label>
-              {"Search"}
+              <AiOutlineSearch />
               <input
                 type="search"
                 className="data_table_input"
@@ -71,7 +74,7 @@ const CustomDataTable = ({
           </div>
         </div>
       </div>
-      <table {...getTableProps()} className="table table-striped">
+      <table {...getTableProps()} className="table">
         <thead>
           {headerGroups.map((headerGroup, index) => (
             <tr {...headerGroup.getHeaderGroupProps()} key={index}>
@@ -81,11 +84,12 @@ const CustomDataTable = ({
                   {...column.getHeaderProps(column.getSortByToggleProps())} // Add sorting props to the column header
                   style={{
                     borderBottom: "1px solid #7d7d7d33",
-                    background: "var(--background-color)",
-                    padding: "8px",
+                    background: "var(--main-background-color)",
+                    padding: "12px 8px",
                     textAlign: "left", // Update this line
                     cursor: "pointer",
                   }}
+                  className="dataTables_header_class"
                 >
                   {column.render("Header")}
                   <span>
@@ -116,7 +120,7 @@ const CustomDataTable = ({
                     {...cell.getCellProps()}
                     style={{
                       borderBottom: "1px solid #7d7d7d33",
-                      padding: "8px",
+                      padding: "12px 8px",
                       textAlign: "start",
                       whiteSpace: "nowrap",
                       overflow: "hidden",

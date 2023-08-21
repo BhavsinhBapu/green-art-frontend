@@ -18,6 +18,7 @@ import CustomDataTable from "components/Datatable";
 import { getFiatHistoryApi } from "service/reports";
 import FiatTableForDeposit from "components/user/fiat/FiatTableForDeposit";
 import FiatTableForWithdraw from "components/user/fiat/FiatTableForWithdraw";
+import { AiOutlineSearch } from "react-icons/ai";
 const DepositHistory: NextPage = () => {
   const router = useRouter();
   const { type } = router.query;
@@ -48,7 +49,7 @@ const DepositHistory: NextPage = () => {
   const LinkTopaginationStringForFiat = (page: any) => {
     const url = page.url.split("?")[1];
     const number = url.split("=")[1];
-    getFiatHistory(parseInt(number),search);
+    getFiatHistory(parseInt(number), search);
   };
   const getReport = async () => {
     if (type === "deposit" || type === "withdrawal") {
@@ -62,7 +63,7 @@ const DepositHistory: NextPage = () => {
       );
     }
   };
-  const getFiatHistory = async (page: any,searchField:string) => {
+  const getFiatHistory = async (page: any, searchField: string) => {
     setProcessing(true);
     const data = await getFiatHistoryApi(
       type === "withdrawal" ? "withdraw" : "deposit",
@@ -119,6 +120,13 @@ const DepositHistory: NextPage = () => {
     {
       Header: t("Status"),
       accessor: "status",
+
+      Cell: ({ cell: { value } }: any) =>
+        value == 1 ? (
+          <span className="badge badge-pill text-12 badge-success">Active</span>
+        ) : (
+          <span className="badge badge-pill text-12 badge-danger">InActive</span>
+        ),
     },
   ];
   useEffect(() => {
@@ -129,7 +137,7 @@ const DepositHistory: NextPage = () => {
       getReport();
     }
     if (selectedType.id == 2) {
-      getFiatHistory(1,"");
+      getFiatHistory(1, "");
     }
     return () => {
       setHistory([]);
@@ -143,7 +151,7 @@ const DepositHistory: NextPage = () => {
       getReport();
     }
     if (selectedType.id == 2) {
-      getFiatHistory(1,search);
+      getFiatHistory(1, search);
     }
   }, [search]);
 
@@ -159,7 +167,8 @@ const DepositHistory: NextPage = () => {
                   <h2 className="section-top-title">
                     {type === "deposit"
                       ? t("Deposit History")
-                      : t("Withdrawal History")}{search}
+                      : t("Withdrawal History")}
+                    {search}
                   </h2>
                 </div>
               </div>
@@ -193,7 +202,7 @@ const DepositHistory: NextPage = () => {
                   <div className="asset-balances-left">
                     <div className="section-wrapper">
                       <div className="tableScroll">
-                        <div className="cp-user-wallet-table table-responsive tableScroll">
+                        <div className=" table-responsive tableScroll">
                           <CustomDataTable
                             columns={columns}
                             data={history}
@@ -290,9 +299,9 @@ const DepositHistory: NextPage = () => {
                                 </select>
                               </label>
                             </div>
-                            <div className="dataTables_filter">
+                            <div className="">
                               <label>
-                                {"Search"}
+                                <AiOutlineSearch />
                                 <input
                                   type="search"
                                   className=""
@@ -309,13 +318,9 @@ const DepositHistory: NextPage = () => {
                         ) : (
                           <>
                             {type === "withdrawal" ? (
-                              <FiatTableForWithdraw
-                                data={history}
-                              />
+                              <FiatTableForWithdraw data={history} />
                             ) : (
-                              <FiatTableForDeposit
-                                data={history}
-                              />
+                              <FiatTableForDeposit data={history} />
                             )}
                           </>
                         )}

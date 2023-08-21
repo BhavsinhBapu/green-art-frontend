@@ -15540,6 +15540,19 @@ input:checked + .gift-card-buy-slider:before {
   border: 1px solid var(--border-color);
   padding: 30px;
 }
+.dataTables_filter_class label {
+  padding: 5px 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 7px;
+}
+.dataTables_filter_class input {
+  border: none !important;
+  padding-left: 10px;
+}
+.dataTables_header_class {
+  font-size: 14px;
+  text-align: left !important;
+}
 
 @media (max-width: 1520px) {
   .trade-dashboard-side-margin {
