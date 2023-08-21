@@ -79,7 +79,7 @@ export const FeedbackTable = ({ details }: any) => {
                                     </p>
                                   )}
                                 </div>
-                                <p >{list?.feedback}</p>
+                                <p>{list?.feedback}</p>
                               </div>
                             </div>
                           )
@@ -93,16 +93,30 @@ export const FeedbackTable = ({ details }: any) => {
                       <NoItemFound msg="No review found" />
                     )}
                     <div className="p-4 row">
-                      {details?.positive_feedback_list?.map(
+                      {details?.feedback_list?.map(
                         (list: any) =>
                           list.feedback && (
-                            <div className="single-feedback col-sm-12 col-md-6">
-                              <h3>{list?.feedback}</h3>
-                              <p>
-                                <span className="feedback-status positive">
-                                  Positive
-                                </span>
-                              </p>
+                            <div className=" col-sm-12 col-md-6 mt-3">
+                              <div className="single-feedback">
+                                <div className="d-flex gap-10 align-items-center justify-content-between mb-3">
+                                  <div className="d-flex gap-10 align-items-center">
+                                    <img
+                                      src={list?.user_img}
+                                      width={30}
+                                      height={30}
+                                      className="rounded-circle"
+                                      alt=""
+                                    />
+                                    <p>{list?.user_name}</p>
+                                  </div>
+                                  <p>
+                                    <span className="feedback-status positive">
+                                      Positive
+                                    </span>
+                                  </p>
+                                </div>
+                                <p>{list?.feedback}</p>
+                              </div>
                             </div>
                           )
                       )}
@@ -115,16 +129,31 @@ export const FeedbackTable = ({ details }: any) => {
                       <NoItemFound msg="No review found" />
                     )}
                     <div className="p-4 row">
-                      {details?.negative_feedback_list?.map(
+                      {details?.feedback_list?.map(
                         (list: any) =>
                           list.feedback && (
-                            <div className="single-feedback col-sm-12 col-md-6">
-                              <h3>{list?.feedback}</h3>
-                              <p>
-                                <span className="feedback-status negetive">
-                                  active
-                                </span>
-                              </p>
+                            <div className=" col-sm-12 col-md-6 mt-3">
+                              <div className="single-feedback">
+                                <div className="d-flex gap-10 align-items-center justify-content-between mb-3">
+                                  <div className="d-flex gap-10 align-items-center">
+                                    <img
+                                      src={list?.user_img}
+                                      width={30}
+                                      height={30}
+                                      className="rounded-circle"
+                                      alt=""
+                                    />
+                                    <p>{list?.user_name}</p>
+                                  </div>
+
+                                  <p>
+                                    <span className="feedback-status negetive">
+                                      Negetive
+                                    </span>
+                                  </p>
+                                </div>
+                                <p>{list?.feedback}</p>
+                              </div>
                             </div>
                           )
                       )}
