@@ -336,36 +336,6 @@ const BankDeposit = ({ currencyList, walletlist, method_id, banks }: any) => {
               )}
             </div>
           </div>
-          <DepositGoogleAuth
-            convertCurrency={convertCurrency}
-            credential={credential}
-            setCredential={setCredential}
-          />
-          {errorMessage.status && (
-            <div className="alert alert-danger">{errorMessage.message}</div>
-          )}
-          {parseInt(settings.currency_deposit_2fa_status) === 1 ? (
-            <button
-              className="primary-btn-outline w-100 mt-5"
-              type="button"
-              data-target="#exampleModal"
-              disabled={errorMessage.status === true}
-              data-toggle="modal"
-            >
-              {t("Deposit")}
-            </button>
-          ) : (
-            <button
-              className="primary-btn-outline w-100 mt-5"
-              type="button"
-              disabled={errorMessage.status === true}
-              onClick={() => {
-                convertCurrency(credential);
-              }}
-            >
-              {t("Deposit")}
-            </button>
-          )}
         </div>
       </div>
     </div>
