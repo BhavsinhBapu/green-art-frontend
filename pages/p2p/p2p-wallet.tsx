@@ -20,9 +20,11 @@ const MyWallet: NextPage = () => {
   const [Changeable, setChangeable] = useState<any[]>([]);
   const [processing, setProcessing] = useState<boolean>(false);
   const getWalletLists = async () => {
+    setProcessing(true);
     const response: any = await getWalletsAction(10, 1);
     setWalletList(response?.data);
     setChangeable(response?.data?.data);
+    setProcessing(false);
   };
 
   const LinkTopaginationString = async (page: any) => {
