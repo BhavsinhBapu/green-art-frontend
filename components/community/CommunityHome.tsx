@@ -48,6 +48,7 @@ export default function CommunityHome() {
     const response = await getBlogHomePageDataApi();
     if (!response.success) {
       toast.error(response.message);
+      return
     }
     setBlogList(response.data);
     setLoading(false);
