@@ -54,3 +54,8 @@ export const bannerDetailsBySlug = (slug: any) => {
 export const announcementDetailsBySlug = (slug: any) => {
   return request.get(`/announcement-list/${slug}`);
 };
+
+export const getBlogHomePageDataApi = async () => {
+  const { data } = await request.get(`latest-blog-list`);
+  return data;
+};

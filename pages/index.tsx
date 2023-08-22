@@ -78,7 +78,8 @@ const Home: NextPage = ({
               latest_coin_pairs={latest_coin_pairs}
             />
             {/* community section start*/}
-            <CommunityHome />
+            {common?.blog_news_module == "1" && <CommunityHome />}
+
             {/* community section end*/}
             <DistributionSection landing={landing} />
 
