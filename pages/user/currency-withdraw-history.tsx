@@ -9,10 +9,12 @@ import useTranslation from "next-translate/useTranslation";
 import React, { useState } from "react";
 import DataTable from "react-data-table-component";
 import { customPage, landingPage } from "service/landing-page";
+import { AiFillEye } from "react-icons/ai";
 import {
   CurrencyWithdrawHistoryAction,
   handleSearchItemsCurrency,
 } from "state/actions/reports";
+import WithdrawlHistoryModal from "components/gift-cards/modal/WithdrawlHistoryModal";
 
 const CurrencyWithdrawHistory = () => {
   type searchType = string;
@@ -24,6 +26,8 @@ const CurrencyWithdrawHistory = () => {
   const { t } = useTranslation("common");
   const [processing, setProcessing] = useState<boolean>(false);
   const [history, setHistory] = useState<any>([]);
+  const [paymentItem, setPaymentItem] = useState();
+  const [modalOpen, setModalOpen] = useState(false);
   const [stillHistory, setStillHistory] = useState<any>([]);
   const LinkTopaginationString = (page: any) => {
     const url = page.url.split("?")[1];
@@ -49,6 +53,8 @@ const CurrencyWithdrawHistory = () => {
       sortingInfo.order_by
     );
   };
+
+
 
   const columns = [
     {
@@ -109,6 +115,21 @@ const CurrencyWithdrawHistory = () => {
         moment(row.created_at).format("YYYY-MM-DD HH:mm:ss"),
       sortable: true,
     },
+    {
+      name: t("Action"),
+      sortable: false,
+      cell: (row: any) => (
+        <div
+          className="text-center cursor-pointer"
+          onClick={() => {
+            setModalOpen(true);
+            setPaymentItem(row);
+          }}
+        >
+          <AiFillEye size={25} />
+        </div>
+      ),
+    },
   ];
   React.useEffect(() => {
     getReport();
@@ -116,6 +137,10 @@ const CurrencyWithdrawHistory = () => {
       setHistory([]);
     };
   }, []);
+
+  const closeModalHandle = () => {
+    setModalOpen(false);
+  };
   return (
     <>
       <div className="page-wrap rightMargin">
@@ -250,6 +275,7 @@ const CurrencyWithdrawHistory = () => {
         </div>
       </div>
       <Footer />
+      {modalOpen && <WithdrawlHistoryModal close={closeModalHandle} item={paymentItem}/>}
     </>
   );
 };

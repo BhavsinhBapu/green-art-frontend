@@ -8,6 +8,9 @@ import {
   STRIPE,
   WALLET_DEPOSIT,
   PAYSTACK,
+  PERFECT_MONEY,
+  MOBILE_MONEY,
+  PAYDUNYA,
 } from "helpers/core-constants";
 import useTranslation from "next-translate/useTranslation";
 import React, { useEffect, useState } from "react";
@@ -36,14 +39,19 @@ import SelectFiatDepositMethod from "components/deposit/SelectFiatDepositMethod"
 import FiatPaypalSection from "components/deposit/FiatPaypalSection";
 import FiatStripeDeposit from "components/deposit/FiatStripeDeposit";
 import FiatPaystack from "components/deposit/FiatPaystack";
+import FiatPerfectMoney from "components/deposit/FiatPerfectMoney";
+import FiatMobileMoney from "components/deposit/FiatMobileMoney";
+import FiatPaydunya from "components/deposit/FiatPaydunya";
 
-const FiatDeposit = ({ currency_type }: any) => {
+const FiatDeposit = ({ currency_type, wallet_id }: any) => {
   const router = useRouter();
   const { t } = useTranslation("common");
   const [loading, setLoading] = useState(false);
   const { settings } = useSelector((state: RootState) => state.common);
   const [methods, setMethods] = useState<any>();
   const [banks, setBanks] = useState<any>([]);
+  const [mobileBanks, setMobileBanks] = useState<any>([]);
+  const [currencyLists, setCurrencyLists] = useState([])
 
   const [selectedMethods, setSelectedMethods] = useState<any>({
     method: null,
@@ -66,6 +74,8 @@ const FiatDeposit = ({ currency_type }: any) => {
       return;
     }
     setBanks(data.data.banks);
+    setCurrencyLists(data.data.currency_list);
+    setMobileBanks(data.data.mobile_money_list);
     setMethods(data.data.payment_methods);
     setSelectedMethods({
       method:
@@ -143,37 +153,35 @@ const FiatDeposit = ({ currency_type }: any) => {
                               <FiatPaystack
                                 method_id={selectedMethods.method_id}
                                 currency_type={currency_type}
+                                wallet_id={wallet_id}
                               />
                             )}
 
-                            {/* {parseInt(selectedMethods.method) ===
-                              BANK_DEPOSIT ? (
-                              <BankDeposit
+                            {parseInt(selectedMethods.method) === PAYDUNYA && (
+                              <FiatPaydunya
+                                currency_type={currency_type}
                                 method_id={selectedMethods.method_id}
-                                banks={banks}
+                                wallet_id={wallet_id}
                               />
-                            ) : parseInt(selectedMethods.method) === STRIPE ? (
-                              <StripeDeposit
-                                currencyList={depositInfo.currency_list}
-                                walletlist={depositInfo.wallet_list}
+                            )}
+
+                            {parseInt(selectedMethods.method) ===
+                              PERFECT_MONEY && (
+                              <FiatPerfectMoney
                                 method_id={selectedMethods.method_id}
-                                banks={depositInfo.banks}
+                                currency_type={currency_type}
+                                currencyLists={currencyLists}
                               />
-                            ) : parseInt(selectedMethods.method) === PAYSTACK ? (
-                              <Paystack
-                                walletlist={depositInfo.wallet_list}
+                            )}
+
+                            {parseInt(selectedMethods.method) ===
+                              MOBILE_MONEY && (
+                              <FiatMobileMoney
                                 method_id={selectedMethods.method_id}
+                                currency_type={currency_type}
+                                mobiles={mobileBanks}
                               />
-                            ) : parseInt(selectedMethods.method) === PAYPAL ? (
-                              <PaypalSection
-                                currencyList={depositInfo.currency_list}
-                                walletlist={depositInfo.wallet_list}
-                                method_id={selectedMethods.method_id}
-                                banks={depositInfo.banks}
-                              />
-                            ) : (
-                              ""
-                            )} */}
+                            )}
                           </div>
                         )}
                       </div>

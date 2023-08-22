@@ -146,27 +146,31 @@ const MarketTrends = ({
                         <tbody>
                           {asset_coin_pairs?.map((item: any, index: number) => (
                             <tr role="row" className="odd" key={index}>
-                              <td className="d-flex">
-                                <img
-                                  className="icon mr-3"
-                                  src={item?.coin_icon || "/bitcoin.png"}
-                                  alt="coin"
-                                  width="25px"
-                                  height="25px"
-                                />
-                                <a className="cellMarket" href="#">
-                                  <div className="marketSymbols">
-                                    <span className="quoteSymbol">
-                                      {item?.child_coin_name}
-                                    </span>
-                                    <span className="baseSymbol">
-                                      /{item?.parent_coin_name}
-                                    </span>
-                                  </div>
-                                </a>
+                              <td className="p-2">
+                                <div className="d-flex flex-wrap">
+                                  <img
+                                    className="icon mr-3"
+                                    src={item?.coin_icon || "/bitcoin.png"}
+                                    alt="coin"
+                                    width="25px"
+                                    height="25px"
+                                  />
+                                  <a className="cellMarket" href="#">
+                                    <div className="marketSymbols">
+                                      <span className="quoteSymbol">
+                                        {item?.child_coin_name}
+                                      </span>
+                                      <span className="baseSymbol">
+                                        /{item?.parent_coin_name}
+                                      </span>
+                                    </div>
+                                  </a>
+                                </div>
                               </td>
-                              <td className="text-black">{item.last_price}</td>
-                              <td>
+                              <td className="text-black p-2">
+                                {item.last_price}
+                              </td>
+                              <td className="p-2">
                                 <span
                                   className={`changePos  ${
                                     parseFloat(item.price_change) >= 0
@@ -177,7 +181,7 @@ const MarketTrends = ({
                                   {item.price_change}%
                                 </span>
                               </td>
-                              <td>
+                              <td className="p-2">
                                 {item.price_change >= 0 ? (
                                   <img
                                     src="/chart-image-1.png"
@@ -192,10 +196,11 @@ const MarketTrends = ({
                                   />
                                 )}
                               </td>
-                              <td className="text-black">
+                              <td className="text-black p-2">
                                 {item.volume} {item.parent_coin_name}
                               </td>
                               <td
+                                className="p-2"
                                 onClick={async () => {
                                   await localStorage.setItem(
                                     "base_coin_id",
@@ -230,7 +235,7 @@ const MarketTrends = ({
                                         }`
                                   }
                                 >
-                                  <a className="btnTrade btn-link mb-2">
+                                  <a className="btnTrade btn-link">
                                     {t("Trade")}
                                   </a>
                                 </Link>
@@ -323,29 +328,31 @@ const MarketTrends = ({
                           {hourly_coin_pairs?.map(
                             (item: any, index: number) => (
                               <tr role="row" className="odd" key={index}>
-                                <td className="d-flex">
-                                  <img
-                                    className="icon mr-3"
-                                    src={item?.coin_icon || "/bitcoin.png"}
-                                    alt="coin"
-                                    width="25px"
-                                    height="25px"
-                                  />
-                                  <a className="cellMarket" href="#">
-                                    <div className="marketSymbols">
-                                      <span className="quoteSymbol">
-                                        {item?.child_coin_name}
-                                      </span>
-                                      <span className="baseSymbol">
-                                        /{item?.parent_coin_name}
-                                      </span>
-                                    </div>
-                                  </a>
+                                <td className="p-2">
+                                  <div className="d-flex flex-wrap">
+                                    <img
+                                      className="icon mr-3"
+                                      src={item?.coin_icon || "/bitcoin.png"}
+                                      alt="coin"
+                                      width="25px"
+                                      height="25px"
+                                    />
+                                    <a className="cellMarket" href="#">
+                                      <div className="marketSymbols">
+                                        <span className="quoteSymbol">
+                                          {item?.child_coin_name}
+                                        </span>
+                                        <span className="baseSymbol">
+                                          /{item?.parent_coin_name}
+                                        </span>
+                                      </div>
+                                    </a>
+                                  </div>
                                 </td>
-                                <td className="text-black">
+                                <td className="text-black p-2">
                                   {item.last_price}
                                 </td>
-                                <td>
+                                <td className="p-2">
                                   <span
                                     className={`changePos  ${
                                       parseFloat(item.price_change) >= 0
@@ -356,7 +363,7 @@ const MarketTrends = ({
                                     {item.price_change}%
                                   </span>
                                 </td>
-                                <td>
+                                <td className="p-2">
                                   {item.price_change >= 0 ? (
                                     <img
                                       src="/chart-image-1.png"
@@ -371,7 +378,7 @@ const MarketTrends = ({
                                     />
                                   )}
                                 </td>
-                                <td className="text-black">
+                                <td className="text-black p-2">
                                   {item.volume} {item.parent_coin_name}
                                 </td>
                                 <td
@@ -391,6 +398,7 @@ const MarketTrends = ({
                                         item?.parent_coin_name
                                     );
                                   }}
+                                  className="p-2"
                                 >
                                   <a
                                     href="/exchange/dashboard"
@@ -488,29 +496,31 @@ const MarketTrends = ({
                           {latest_coin_pairs?.map(
                             (item: any, index: number) => (
                               <tr role="row" className="odd" key={index}>
-                                <td className="d-flex">
-                                  <img
-                                    className="icon mr-3"
-                                    src={item?.coin_icon || "/bitcoin.png"}
-                                    alt="coin"
-                                    width="25px"
-                                    height="25px"
-                                  />
-                                  <a className="cellMarket" href="#">
-                                    <div className="marketSymbols">
-                                      <span className="quoteSymbol">
-                                        {item?.child_coin_name}
-                                      </span>
-                                      <span className="baseSymbol">
-                                        /{item?.parent_coin_name}
-                                      </span>
-                                    </div>
-                                  </a>
+                                <td className="p-2">
+                                  <div className="d-flex flex-wrap">
+                                    <img
+                                      className="icon mr-3"
+                                      src={item?.coin_icon || "/bitcoin.png"}
+                                      alt="coin"
+                                      width="25px"
+                                      height="25px"
+                                    />
+                                    <a className="cellMarket" href="#">
+                                      <div className="marketSymbols">
+                                        <span className="quoteSymbol">
+                                          {item?.child_coin_name}
+                                        </span>
+                                        <span className="baseSymbol">
+                                          /{item?.parent_coin_name}
+                                        </span>
+                                      </div>
+                                    </a>
+                                  </div>
                                 </td>
-                                <td className="text-black">
+                                <td className="text-black p-2">
                                   {item.last_price}
                                 </td>
-                                <td>
+                                <td className="p-2">
                                   <span
                                     className={`changePos  ${
                                       parseFloat(item.price_change) >= 0
@@ -521,7 +531,7 @@ const MarketTrends = ({
                                     {item.price_change}%
                                   </span>
                                 </td>
-                                <td>
+                                <td className="p-2">
                                   {item.price_change >= 0 ? (
                                     <img
                                       src="/chart-image-1.png"
@@ -536,7 +546,7 @@ const MarketTrends = ({
                                     />
                                   )}
                                 </td>
-                                <td className="text-black">
+                                <td className="text-black p-2">
                                   {item.volume} {item.parent_coin_name}
                                 </td>
                                 <td
@@ -556,6 +566,7 @@ const MarketTrends = ({
                                         item?.parent_coin_name
                                     );
                                   }}
+                                  className="p-2"
                                 >
                                   <a
                                     href="/exchange/dashboard"

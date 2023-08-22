@@ -8,18 +8,20 @@ import {
   getCurrencyDepositRate,
 } from "service/deposit";
 import { toast } from "react-toastify";
+import BankDetails from "./bankDetails";
 import { useRouter } from "next/router";
 import { UserSettingsApi } from "service/settings";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
-// import DepositGoogleAuth from "./deposit-g2fa";
-import BankDetails from "components/deposit/bankDetails";
-import DepositGoogleAuth from "components/deposit/deposit-g2fa";
+import DepositGoogleAuth from "./deposit-g2fa";
+import { AiOutlineCloudUpload } from "react-icons/ai";
+import ProviderDetails from "./providerDetails";
 import { submitFiatWalletDepositApi } from "service/fiat-wallet";
-const BankDeposit = ({ currency_type, method_id, banks }: any) => {
+const FiatMobileMoney = ({ method_id, mobiles, currency_type }: any) => {
   const { t } = useTranslation("common");
   const inputRef = useRef(null);
   const { settings } = useSelector((state: RootState) => state.common);
+  console.log(mobiles, "mobilesmobilesmobiles");
   const handleClick = () => {
     // 👇️ open file input box on click of other element
     //@ts-ignore
@@ -27,11 +29,10 @@ const BankDeposit = ({ currency_type, method_id, banks }: any) => {
   };
   const prepareCopyData = (data: any) => {
     const copyData = `Account Holder Name:${data.account_holder_name},
-     Bank Name:${data.bank_name}, 
+     Mobile Number:${data.mobile_number}, 
      Bank Address:${data.bank_address}, 
-     Country:${data.country}, 
-     Swift Code:${data.swift_code}, 
-     Account Number:${data.iban}`;
+     Service Provider Name:${data.service_provider_name}, 
+     `;
     copyTextById(copyData);
   };
 
@@ -40,11 +41,11 @@ const BankDeposit = ({ currency_type, method_id, banks }: any) => {
     if (!fileObj) {
       return;
     }
+    event;
     if (fileObj.size > 2 * 1024 * 1024) {
       toast.error(t("File size must be less than 2MB"));
       return;
     }
-    event;
     setDoc(event.target.files[0]);
   };
 
@@ -52,63 +53,48 @@ const BankDeposit = ({ currency_type, method_id, banks }: any) => {
     status: false,
     message: "",
   });
-  // const CheckG2faEnabled = async () => {
-  //   const { data } = await UserSettingsApi();
-  //   const { user } = data;
-  //   if (
-  //     user.google2fa !== 1 &&
-  //     parseInt(settings.currency_deposit_2fa_status) === 1
-  //   ) {
-  //     setErrorMessage({
-  //       status: true,
-  //       message: t("Google 2FA is not enabled, Please enable Google 2FA fist"),
-  //     });
-  //   }
-  // };
+
   const [credential, setCredential] = useState<any>({
     payment_method_id: method_id ? parseInt(method_id) : null,
     amount: 0,
     currency: currency_type,
-    bank_id: null,
+    mobile_money_id: null,
   });
   const router = useRouter();
-  const [bankInfo, setBankInfo] = useState({});
+  const [providerInfo, setMobileInfo] = useState({});
   const [doc, setDoc] = useState(null);
 
-  const submitFiatWalletDeposit = async (credential: any) => {
+  const convertCurrency = async (credential: any) => {
     if (
-      !credential.payment_method_id ||
-      !credential.amount ||
-      !credential.currency ||
-      !credential.bank_id ||
-      !doc
+      credential.payment_method_id &&
+      credential.amount &&
+      credential.currency &&
+      credential.mobile_money_id &&
+      doc
     ) {
-      toast.error(t("Please provide all information's"));
-      return;
-    }
+      const formData: any = new FormData();
+      formData.append("payment_method_id", credential.payment_method_id);
+      formData.append("amount", credential.amount);
+      formData.append("currency", currency_type);
+      formData.append("mobile_money_id", credential.mobile_money_id);
+      formData.append("mobile_money_receipt", doc);
 
-    const formData: any = new FormData();
-    formData.append("payment_method_id", credential.payment_method_id);
-    formData.append("amount", credential.amount);
-    formData.append("currency", credential.currency);
-    formData.append("bank_id", credential.bank_id);
-    formData.append("bank_receipt", doc);
-
-    const res = await submitFiatWalletDepositApi(formData);
-    if (res.success) {
-      toast.success(res.message);
-      router.push("/user/wallet-history?type=deposit");
+      const res = await submitFiatWalletDepositApi(formData);
+      if (res.success) {
+        toast.success(res.message);
+        router.push("/user/wallet-history?type=deposit");
+      } else {
+        toast.error(res.message);
+      }
     } else {
-      toast.error(res.message);
+      toast.error(t("Please provide all information's"));
     }
   };
-  // useEffect(() => {
-  //   CheckG2faEnabled();
-  // }, [credential]);
+
   return (
     <div>
       <div className="cp-user-title mt-5 mb-4">
-        <h4>{t("Bank Deposit")}</h4>
+        <h4>{t("Mobile Money")}</h4>
       </div>
       <div className="row">
         <div className="col-lg-12">
@@ -119,6 +105,7 @@ const BankDeposit = ({ currency_type, method_id, banks }: any) => {
                   <div className="swap-wrap">
                     <div className="swap-wrap-top">
                       <label>{t("Enter amount")}</label>
+                      <span className="available">{t("Select currency")}</span>
                     </div>
                     <div className="swap-input-wrap">
                       <div className="form-amount">
@@ -150,7 +137,6 @@ const BankDeposit = ({ currency_type, method_id, banks }: any) => {
             </div>
           </div>
         </div>
-
         <div className="col-lg-12 my-3">
           <div className="">
             <span className="file-lable">{t("Select Bank")}</span>
@@ -161,35 +147,37 @@ const BankDeposit = ({ currency_type, method_id, banks }: any) => {
             onChange={(e: any) => {
               setCredential({
                 ...credential,
-                bank_id: parseInt(e.target.value),
+                mobile_money_id: parseInt(e.target.value),
               });
-              setBankInfo(
-                banks.find((bank: any) => bank.id === parseInt(e.target.value))
+              setMobileInfo(
+                mobiles.find(
+                  (bank: any) => bank.id === parseInt(e.target.value)
+                )
               );
             }}
           >
-            <option>{t("Select bank")}</option>
-            {banks?.map((bank: any, index: any) => (
+            <option>{t("Select Provider")}</option>
+            {mobiles?.map((bank: any, index: any) => (
               <option key={index} value={bank.id}>
-                {bank.bank_name}
+                {bank.service_provider_name}
               </option>
             ))}
           </select>
         </div>
-        {credential.bank_id && (
+        {credential.mobile_money_id && (
           <div className="col-lg-12 mb-3">
             <div className="split-title">
-              <span className="file-lable">{t("Bank details")}</span>
+              <span className="file-lable">{t("Mobile Payment details")}</span>
               <span
                 className="file-lable copy-btn"
                 onClick={() => {
-                  prepareCopyData(bankInfo);
+                  prepareCopyData(providerInfo);
                 }}
               >
                 {t("Copy")}
               </span>
             </div>
-            <BankDetails bankInfo={bankInfo} />
+            <ProviderDetails providerInfo={providerInfo} />
           </div>
         )}
         <div className="col-lg-12 my-3">
@@ -197,11 +185,25 @@ const BankDeposit = ({ currency_type, method_id, banks }: any) => {
             <div className="">
               <span className="file-lable">{t("Select document")}</span>
             </div>
-            <div className="file-upload-wrapper">
+            <div>
               {/* @ts-ignore */}
-              <label htmlFor="upload-photo" onClick={handleClick}>
+              <label
+                className="text-center file-upload-wrapper w-full"
+                htmlFor="upload-photo"
+                onClick={handleClick}
+              >
                 {/* @ts-ignore */}
-                {doc ? doc.name : t("Browse")}
+                {doc ? (
+                  // @ts-ignore
+                  doc.name
+                ) : (
+                  <div>
+                    <div>
+                      <AiOutlineCloudUpload size={30} />
+                    </div>
+                    <p>{t("Browse")}</p>
+                  </div>
+                )}
               </label>
               <input
                 style={{ display: "none" }}
@@ -211,42 +213,15 @@ const BankDeposit = ({ currency_type, method_id, banks }: any) => {
               />
             </div>
           </div>
-          {/* <DepositGoogleAuth
-            submitFiatWalletDeposit={submitFiatWalletDeposit}
-            credential={credential}
-            setCredential={setCredential}
-          /> */}
           {errorMessage.status && (
             <div className="alert alert-danger">{errorMessage.message}</div>
           )}
-          {/* {parseInt(settings.currency_deposit_2fa_status) === 1 ? (
-            <button
-              className="primary-btn-outline w-100 mt-5"
-              type="button"
-              data-target="#exampleModal"
-              disabled={errorMessage.status === true}
-              data-toggle="modal"
-            >
-              {t("Deposit")}
-            </button>
-          ) : (
-            <button
-              className="primary-btn-outline w-100 mt-5"
-              type="button"
-              disabled={errorMessage.status === true}
-              onClick={() => {
-                submitFiatWalletDeposit(credential);
-              }}
-            >
-              {t("Deposit")}
-            </button>
-          )} */}
           <button
             className="primary-btn-outline w-100 mt-5"
             type="button"
             disabled={errorMessage.status === true}
             onClick={() => {
-              submitFiatWalletDeposit(credential);
+              convertCurrency(credential);
             }}
           >
             {t("Deposit")}
@@ -257,4 +232,4 @@ const BankDeposit = ({ currency_type, method_id, banks }: any) => {
   );
 };
 
-export default BankDeposit;
+export default FiatMobileMoney;

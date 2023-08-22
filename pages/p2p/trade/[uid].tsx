@@ -40,6 +40,7 @@ import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import BackButton from "../../../components/P2P/BackButton";
 import { NoItemFound } from "components/NoItemFound/NoItemFound";
 import { P2pTopBar } from "components/P2P/P2pHome/TopBar";
+import { toast } from "react-toastify";
 
 let socketCall = 0;
 
@@ -113,6 +114,10 @@ const Trading = () => {
   const handleFileChange = (event: any) => {
     const fileObj = event.target.files && event.target.files[0];
     if (!fileObj) {
+      return;
+    }
+    if (fileObj.size > 2 * 1024 * 1024) {
+    toast.error(t("File size must be less than 2MB"));
       return;
     }
     event;

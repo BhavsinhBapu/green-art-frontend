@@ -8,10 +8,13 @@ import {
   STRIPE,
   WALLET_DEPOSIT,
   PAYSTACK,
+  PAYDUNYA,
+  PERFECT_MONEY,
+  MOBILE_MONEY,
 } from "helpers/core-constants";
 import useTranslation from "next-translate/useTranslation";
 import React, { useEffect, useState } from "react";
-import { currencyDeposit } from "service/deposit";
+import { currencyDeposit, currencyDepositProcess } from "service/deposit";
 import SelectDeposit from "components/deposit/selectDeposit";
 import DepositFaq from "components/deposit/DepositFaq";
 import PaypalSection from "components/deposit/PaypalSection";
@@ -28,9 +31,15 @@ import { parseCookies } from "nookies";
 import Footer from "components/common/footer";
 import FiatSidebar from "layout/fiat-sidebar";
 import Paystack from "components/deposit/paystack";
+import Paydunya from "components/deposit/paydunya";
+import PerfectMoney from "components/deposit/perfectMoney";
+import MobileMoney from "components/deposit/mobile-money";
+import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 
 const Deposit = () => {
   const { t } = useTranslation("common");
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const { settings } = useSelector((state: RootState) => state.common);
   const [faqs, setFaqs] = useState([]);
@@ -74,6 +83,43 @@ const Deposit = () => {
       getDepositInfo();
     }
   }, [settings]);
+  useEffect(() => {
+    if (!router.isReady) return;
+    if (
+      !router?.query?.PAYMENT_AMOUNT ||
+      !router?.query?.PAYMENT_BATCH_NUM ||
+      !router?.query?.PAYMENT_UNITS
+    )
+      return;
+
+    convertCurrency();
+  }, [router.isReady]);
+
+  const convertCurrency = async () => {
+    const wallet_id = localStorage.getItem("perfect_money_wallet_id");
+    const payment_method_id = localStorage.getItem(
+      "perfect_money_payment_method_id"
+    );
+    const amount = router?.query?.PAYMENT_AMOUNT;
+    const currency = router?.query?.PAYMENT_UNITS;
+    const payment_batch = router?.query?.PAYMENT_BATCH_NUM;
+
+    const formData: any = new FormData();
+
+    formData.append("wallet_id", wallet_id);
+    formData.append("payment_method_id", payment_method_id);
+    formData.append("amount", amount);
+    formData.append("currency", currency);
+    formData.append("payment_batch", payment_batch);
+    const res = await currencyDepositProcess(formData);
+    if (res.success) {
+      toast.success(res.message);
+      router.push("/user/currency-deposit-history");
+    } else {
+      toast.error(res.message);
+    }
+  };
+
   return (
     <>
       <div className="page-wrap">
@@ -83,7 +129,9 @@ const Deposit = () => {
             <div className="deposit-page">
               <div className="section-top-wrap mb-25">
                 <div className="profle-are-top">
-                  <h2 className="section-top-title">{t("Fiat To Crypto Deposit")}</h2>
+                  <h2 className="section-top-title">
+                    {t("Fiat To Crypto Deposit")}
+                  </h2>
                 </div>
               </div>
 
@@ -145,6 +193,27 @@ const Deposit = () => {
                               <Paystack
                                 walletlist={depositInfo.wallet_list}
                                 method_id={selectedMethod.method_id}
+                              />
+                            ) : parseInt(selectedMethod.method) ===
+                              MOBILE_MONEY ? (
+                              <MobileMoney
+                                currencyList={depositInfo.currency_list}
+                                walletlist={depositInfo.wallet_list}
+                                method_id={selectedMethod.method_id}
+                                mobiles={depositInfo.mobile_money_list}
+                              />
+                            ) : parseInt(selectedMethod.method) === PAYDUNYA ? (
+                              <Paydunya
+                                walletlist={depositInfo.wallet_list}
+                                method_id={selectedMethod.method_id}
+                              />
+                            ) : parseInt(selectedMethod.method) ===
+                              PERFECT_MONEY ? (
+                              <PerfectMoney
+                                currencyList={depositInfo.currency_list}
+                                walletlist={depositInfo.wallet_list}
+                                method_id={selectedMethod.method_id}
+                                banks={depositInfo.banks}
                               />
                             ) : parseInt(selectedMethod.method) === PAYPAL ? (
                               // <PaypalButtons />

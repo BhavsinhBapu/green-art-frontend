@@ -23,9 +23,10 @@ const VerifyPaystack = () => {
     walletAddress,
     payment_method,
     transaction_id,
+    payment_method_id,
     api_type,
     crypto_type,
-    coin_type
+    coin_type,
   } = router.query;
   //localhost:3001/verify-paystack?buy_history_id=6&walletAddress=0x0d892bcb4f3B8b9Cacf3BF8ef45e74E0e38cae37&trxref=41thncdwci&reference=41thncdwci
   http: useEffect(() => {
@@ -43,9 +44,10 @@ const VerifyPaystack = () => {
           if (response.success) {
             submitFiatWalletDepositApi({
               transaction_id: trxref,
-              payment_method_id: 9,
+              payment_method_id: payment_method_id,
+              wallet_id: wallet_id,
               amount: amount,
-              currency: coin_type
+              currency: coin_type,
             }).then((currencyResponse: any) => {
               if (currencyResponse.success) {
                 toast.success(currencyResponse.message);

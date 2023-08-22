@@ -12,7 +12,7 @@ import {
 } from "service/fiat-wallet";
 import { useRouter } from "next/router";
 
-const FiatPaystack = ({ currency_type, method_id }: any) => {
+const FiatPaystack = ({ currency_type, method_id,wallet_id }: any) => {
   const { t } = useTranslation("common");
   const router = useRouter();
   const [credential, setCredential] = useState<any>({
@@ -68,9 +68,10 @@ const FiatPaystack = ({ currency_type, method_id }: any) => {
     const response = await GetPaystackPaymentUrl(
       credential.email,
       credential.amount,
-      "",
+      wallet_id,
       2,
-      currency_type
+      currency_type,
+      method_id
     );
     // const res = await submitFiatWalletDepositApi(credential);
     if (response.success) {

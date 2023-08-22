@@ -112,21 +112,20 @@ const Home: NextPage = ({
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const { data: CommonLanding } = await CommonLandingCustomSettings(ctx.locale);
   const cookies = parseCookies(ctx);
-
   return {
     props: {
-      customPageData: CommonLanding.custom_page_settings
-        ? CommonLanding.custom_page_settings
+      customPageData: CommonLanding?.custom_page_settings
+        ? CommonLanding?.custom_page_settings
         : null,
-      socialData: CommonLanding.landing_settings.media_list
-        ? CommonLanding.landing_settings.media_list
+      socialData: CommonLanding?.landing_settings?.media_list
+        ? CommonLanding?.landing_settings?.media_list
         : null,
       copyright_text: CommonLanding?.landing_settings?.copyright_text
         ? CommonLanding?.landing_settings?.copyright_text
         : null,
-      landing: CommonLanding.landing_settings,
-      bannerListdata: CommonLanding.landing_settings.banner_list
-        ? CommonLanding.landing_settings.banner_list
+      landing: CommonLanding?.landing_settings,
+      bannerListdata: CommonLanding?.landing_settings?.banner_list
+        ? CommonLanding?.landing_settings.banner_list
         : null,
       announcementListdata: CommonLanding?.landing_settings?.announcement_list
         ? CommonLanding?.landing_settings?.announcement_list
@@ -143,7 +142,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
       latest_coin_pairs: CommonLanding?.landing_settings?.latest_coin_pairs
         ? CommonLanding?.landing_settings?.latest_coin_pairs
         : null,
-      loggedin: cookies.token ? true : false,
+      loggedin: cookies?.token ? true : false,
       landing_banner_image: CommonLanding?.landing_settings
         ?.landing_banner_image
         ? CommonLanding?.landing_settings?.landing_banner_image

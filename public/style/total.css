@@ -15465,6 +15465,94 @@ input:checked + .gift-card-buy-slider:before {
 .line-h-19 {
   line-height: 19px;
 }
+.select-deposit-method-item {
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+  flex-grow: 1;
+  text-align: center;
+  padding: 10px;
+  border-bottom: 1px solid var(--border-color) !important;
+  font-size: 18px;
+  cursor: pointer;
+  /* border-radius: 4px; */
+}
+
+.object-fit-cover-img {
+  object-fit: cover;
+}
+
+.select-deposit-method-item-active {
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+  flex-grow: 1;
+  text-align: center;
+  padding: 10px;
+  font-size: 18px;
+  color: var(--text-primary-color);
+  cursor: pointer;
+  color: var(--primary-color);
+  cursor: pointer;
+  /* border-radius: 4px; */
+  border-bottom: 2px solid var(--primary-color);
+}
+
+.fiat-withdrawal-history-modal-box {
+  border: 1px solid var(--border-color);
+  padding: 30px;
+}
+
+.p2p-wallet-form {
+  height: 88vh;
+}
+
+.select-deposit-method-item {
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+  flex-grow: 1;
+  text-align: center;
+  padding: 10px;
+  border-bottom: 1px solid var(--border-color) !important;
+  font-size: 18px;
+  cursor: pointer;
+  /* border-radius: 4px; */
+}
+
+.select-deposit-method-item-active {
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+  flex-grow: 1;
+  text-align: center;
+  padding: 10px;
+  font-size: 18px;
+  color: var(--text-primary-color);
+  cursor: pointer;
+  color: var(--primary-color);
+  cursor: pointer;
+  /* border-radius: 4px; */
+  border-bottom: 2px solid var(--primary-color);
+}
+
+.fiat-withdrawal-history-modal-box {
+  border: 1px solid var(--border-color);
+  padding: 30px;
+}
+.dataTables_filter_class label {
+  padding: 5px 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 7px;
+}
+.dataTables_filter_class input {
+  border: none !important;
+  padding-left: 10px;
+}
+.dataTables_header_class {
+  font-size: 14px;
+  text-align: left !important;
+}
 
 .pt-80 {
   padding-top: 80px;
@@ -15594,11 +15682,23 @@ input:checked + .gift-card-buy-slider:before {
   .trade-dashboard-side-width {
     width: 100%;
   }
+  .select-deposit-method-item {
+    flex-grow: 0;
+    padding: 10px 20px;
+  }
+
+  .select-deposit-method-item-active {
+    flex-grow: 0;
+    padding: 10px 20px;
+  }
 }
 
 @media (max-width: 991px) {
   .text-45 {
     font-size: 36px;
+  }
+  .p2p-wallet-form {
+    height: auto;
   }
   .gift-card-buy-btn {
     padding: 5px 0;
@@ -15687,4 +15787,12 @@ input:checked + .gift-card-buy-slider:before {
 
 .cursor-pointer {
   cursor: pointer !important;
+}
+
+.perfect-money-svg {
+  color: rgb(234, 236, 239);
+  font-size: 36px;
+  fill: rgb(234, 236, 239);
+  width: 1em;
+  height: 1em;
 }

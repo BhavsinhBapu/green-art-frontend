@@ -15,13 +15,43 @@ export const VerificationPaystackPayment = async (reference: any) => {
   });
   return data;
 };
-export const GetPaystackPaymentUrl = async (email: any, amount: any,wallet_id:any, crypto_type: any, currency: any) => {
+export const VerificationPayDunya = async (token: any) => {
+  const { data } = await request.post("/verification-paydunya-payment", {
+    payment_token: token,
+  });
+  return data;
+};
+export const GetPaystackPaymentUrl = async (
+  email: any,
+  amount: any,
+  wallet_id: any,
+  crypto_type: any,
+  currency: any,
+  payment_method_id: any
+) => {
   const { data } = await request.post("/get-paystack-payment-url", {
     email: email,
     amount: amount,
     wallet_id: wallet_id,
     crypto_type: crypto_type,
-    currency: currency
+    currency: currency,
+    payment_method_id: payment_method_id,
+  });
+  return data;
+};
+export const GetPayDunyaPaymentUrl = async (
+  amount: any,
+  wallet_id: any,
+  currency: any,
+  crypto_type: any,
+  payment_method_id: any
+) => {
+  const { data } = await request.post("/get-paydunya-payment-url", {
+    amount: amount,
+    wallet_id: wallet_id,
+    currency: currency,
+    payment_method_id: payment_method_id,
+    crypto_type: crypto_type,
   });
   return data;
 };
@@ -61,6 +91,30 @@ export const getBankListSSr = async (id: any, ctxCookie: any) => {
     headers: {
       Authorization: `Bearer ${ctxCookie}`,
     },
+  });
+  return data;
+};
+
+export const convertAmountForPaydunya = async (
+  amount: any,
+  request_coin_type: any
+) => {
+  const { data } = await request.post("/paydunya-payment-currency-rate", {
+    amount: amount,
+    request_coin_type: request_coin_type,
+  });
+  return data;
+};
+
+export const globalConvertAmount = async (
+  from_coin_type: any,
+  to_coin_type: any,
+  amount: any
+) => {
+  const { data } = await request.post(`get-convert-currency-amount`, {
+    from_coin_type: from_coin_type,
+    to_coin_type: to_coin_type,
+    amount: amount,
   });
   return data;
 };

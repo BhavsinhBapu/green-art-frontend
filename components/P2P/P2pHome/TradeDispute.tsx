@@ -18,6 +18,10 @@ const TradeDispute = ({ uid }: any) => {
       return;
     }
     event;
+    if (fileObj.size > 2 * 1024 * 1024) {
+      toast.error(t("File size must be less than 2MB"));
+      return;
+    }
     setDoc(event.target.files[0]);
   };
   const handleClick = () => {

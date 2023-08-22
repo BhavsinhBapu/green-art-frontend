@@ -12,15 +12,19 @@ import Footer from "components/common/footer";
 import { getWalletsAction } from "state/actions/p2p";
 import { AiOutlineSend } from "react-icons/ai";
 import { BsWallet2 } from "react-icons/bs";
+import { P2pTopBar } from "components/P2P/P2pHome/TopBar";
+import SectionLoading from "components/common/SectionLoading";
 const MyWallet: NextPage = () => {
   const { t } = useTranslation("common");
   const [walletList, setWalletList] = useState<any>([]);
   const [Changeable, setChangeable] = useState<any[]>([]);
   const [processing, setProcessing] = useState<boolean>(false);
   const getWalletLists = async () => {
+    setProcessing(true);
     const response: any = await getWalletsAction(10, 1);
     setWalletList(response?.data);
     setChangeable(response?.data?.data);
+    setProcessing(false);
   };
 
   const LinkTopaginationString = async (page: any) => {
@@ -51,12 +55,13 @@ const MyWallet: NextPage = () => {
           </div>
         </div>
       </div>
-      <div className="page-wrap">
+      {<P2pTopBar />}
+      <div className="page-wrap bg-card-primary-clr">
         <div className="page-main-content">
-          <div className="container-fluid">
+          <div className="container">
             <div className="asset-balances-area cstm-loader-area">
               <div className="asset-balances-left">
-                <div className="section-wrapper">
+                <div className="section-wrapper px-0 py-2">
                   <div
                     id="assetBalances_wrapper"
                     className="dataTables_wrapper no-footer"
@@ -83,7 +88,7 @@ const MyWallet: NextPage = () => {
                     </div>
                   </div>
                   {processing ? (
-                    <Loading />
+                    <SectionLoading />
                   ) : (
                     <div className="table-responsive walletTableScroll">
                       <table
@@ -92,16 +97,24 @@ const MyWallet: NextPage = () => {
                       >
                         <thead>
                           <tr>
-                            <th scope="col">{t("Asset")}</th>
-                            <th scope="col">{t("Symbol")}</th>
-                            <th scope="col">{t("Available Balance")}</th>
-                            <th scope="col">{t("Action")}</th>
+                            <th scope="col" className="p-2">
+                              {t("Asset")}
+                            </th>
+                            <th scope="col" className="p-2">
+                              {t("Symbol")}
+                            </th>
+                            <th scope="col" className="p-2">
+                              {t("Available Balance")}
+                            </th>
+                            <th scope="col" className="p-2">
+                              {t("Action")}
+                            </th>
                           </tr>
                         </thead>
                         <tbody>
                           {Changeable?.map((item: any, index: number) => (
                             <tr id="" key={index}>
-                              <td>
+                              <td className="p-2 border-bottom border-main-color">
                                 <div className="asset">
                                   <img
                                     className="asset-icon"
@@ -113,20 +126,20 @@ const MyWallet: NextPage = () => {
                                   </span>
                                 </div>
                               </td>
-                              <td>
+                              <td className="p-2 border-bottom border-main-color">
                                 <span className="symbol">
                                   {item?.coin_type}
                                 </span>
                               </td>
 
-                              <td>
+                              <td className="p-2 border-bottom border-main-color">
                                 <div className="blance-text">
                                   <span className="blance">
                                     {parseFloat(item?.balance).toFixed(8)}
                                   </span>
                                 </div>
                               </td>
-                              <td>
+                              <td className="p-2 border-bottom border-main-color">
                                 <div className="active-link">
                                   <ul>
                                     <div className="active-link">

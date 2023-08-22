@@ -44,6 +44,7 @@ import GiftCardTradeCancel from "components/P2P/P2pHome/GiftCardTradeCancel";
 import P2PGiftCardNavbar from "components/P2P/p2p-gift-card/p2p-gift-card-navbar/P2PGiftCardNavbar";
 import P2PGiftCardHeader from "components/P2P/p2p-gift-card/p2p-gift-card-header/P2PGiftCardHeader";
 import TradeDisputeGift from "components/P2P/P2pHome/TradeDisputeGift";
+import { toast } from "react-toastify";
 
 let socketCall = 0;
 
@@ -62,7 +63,6 @@ const Trading = () => {
   const router = useRouter();
   const { uid }: any = router.query;
   const sendMessage = async (e: any) => {
-
     e.preventDefault();
     const formData = new FormData();
     formData.append("gift_card_order_id", details?.order?.id);
@@ -122,6 +122,10 @@ const Trading = () => {
       return;
     }
     event;
+    if (fileObj.size > 2 * 1024 * 1024) {
+      toast.error(t("File size must be less than 2MB"));
+      return;
+    }
     setDoc(event.target.files[0]);
   };
   const handleClick = () => {

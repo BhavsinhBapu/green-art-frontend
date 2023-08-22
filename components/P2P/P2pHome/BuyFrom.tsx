@@ -72,7 +72,9 @@ export const BuyFrom = ({
                 {details?.ads?.user?.first_name} {details?.ads?.user?.last_name}
               </h5>
               <p className="px-3">{details?.orders} orders</p>
-              <p>{details?.completion}% {t("completion")}</p>
+              <p>
+                {details?.completion}% {t("completion")}
+              </p>
             </div>
             <div className="row pt-4">
               <div className="col-lg-6">
@@ -84,7 +86,9 @@ export const BuyFrom = ({
                 </div>
                 <div className="d-flex align-items-center">
                   <p>(t{"Payment Time Limit"})</p>
-                  <h6 className="pl-3">{details?.payment_time} {t("Minutes")}</h6>
+                  <h6 className="pl-3">
+                    {details?.ads?.payment_times} {t("Minutes")}
+                  </h6>
                 </div>
               </div>
 
