@@ -106,7 +106,7 @@ export default function CommunityHome() {
                             src={item?.thumbnail ?? "/user.jpeg"}
                             alt=""
                           />
-                          <span>userdemo</span>
+                          <span>{item?.category}</span>
                         </div>
                         <Link href={`blog/${item?.slug}`}>
                           <div className="community-item-des cursor-pointer" >
