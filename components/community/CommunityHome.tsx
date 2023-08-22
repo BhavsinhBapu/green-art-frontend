@@ -1,6 +1,7 @@
 import { formateDateMunite } from "common";
 import { NoItemFound } from "components/NoItemFound/NoItemFound";
 import SectionLoading from "components/common/SectionLoading";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { BsChevronRight } from "react-icons/bs";
 import { useSelector } from "react-redux";
@@ -62,12 +63,14 @@ export default function CommunityHome() {
             <h3 className="community-home-title">
               {blog_section_heading ?? "Trending on TradexPro Feed"}
             </h3>
-            <span className="community-home-btn">
-              <span>View More</span>
-              <span>
-                <BsChevronRight size={12} />
+            <Link href={`/blog`}>
+              <span className="community-home-btn">
+                <span>View More</span>
+                <span>
+                  <BsChevronRight size={12} />
+                </span>
               </span>
-            </span>
+            </Link>
           </div>
 
           <h4 className="community-home-subtitle">
@@ -105,9 +108,11 @@ export default function CommunityHome() {
                           />
                           <span>userdemo</span>
                         </div>
-                        <div className="community-item-des">
-                          <p>{item?.body?.substring(0, 80)}...</p>
-                        </div>
+                        <Link href={`blog/${item?.slug}`}>
+                          <div className="community-item-des cursor-pointer" >
+                            <p>{item?.body?.substring(0, 80)}...</p>
+                          </div>
+                        </Link>
                         <p className="community-item-time">
                           {formateDateMunite(item?.publish_at)}
                         </p>
@@ -134,7 +139,9 @@ export default function CommunityHome() {
                   {blog_section_banner_description ??
                     "World's largest crypto community"}
                 </h3>
-                <button className="community-card-btn">Explore now</button>
+                <Link href={`/blog`}>
+                  <button className="community-card-btn">Explore now</button>
+                </Link>
               </div>
             </div>
           </div>
