@@ -44,6 +44,7 @@ const SliderSection = ({
       },
     ],
   };
+  console.log("landing", landing);
   return (
     <div>
       <section className="about-area">
@@ -76,14 +77,16 @@ const SliderSection = ({
               </div>
             ))}
           </div>
-          <img
-            src={
-              landing?.landing_advertisement_image
-                ? landing?.landing_advertisement_image
-                : "/tradex-cover.png"
-            }
-            className="cover-img"
-          />
+          <Link href={`${landing?.landing_advertisement_url ?? "#"}`}>
+            <img
+              src={
+                landing?.landing_advertisement_image
+                  ? landing?.landing_advertisement_image
+                  : "/tradex-cover.png"
+              }
+              className="cover-img cursor-pointer"
+            />
+          </Link>
         </div>
       </section>
     </div>
