@@ -30,7 +30,7 @@ const BlogDetails = ({ BlogNewsSettings }: any) => {
   };
   useEffect(() => {
     id && getDetails(id);
-  }, []);
+  }, [id]);
 
   return (
     <>
