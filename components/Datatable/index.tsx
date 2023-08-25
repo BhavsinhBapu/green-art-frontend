@@ -11,6 +11,9 @@ const CustomDataTable = ({
   selectedLimit,
   paginateFunction,
   paginate = true,
+  search,
+  setSearch,
+  dataNotFoundText,
 }: any) => {
   const dataColumns = useMemo(() => columns, [columns]);
   const tableData = useMemo(() => data, [data]);
@@ -67,8 +70,8 @@ const CustomDataTable = ({
                 className="data_table_input"
                 aria-controls="table"
                 placeholder="Search..."
-                value={globalFilter || ""}
-                onChange={(e) => setGlobalFilter(e.target.value)}
+                value={search || ""}
+                onChange={(e) => setSearch(e.target.value)}
               />
             </label>
           </div>
@@ -109,33 +112,42 @@ const CustomDataTable = ({
           ))}
         </thead>
         <tbody {...getTableBodyProps()}>
-          {rows.map((row, index) => {
-            prepareRow(row);
-            return (
-              <tr {...row.getRowProps()} key={index}>
-                {row.cells.map((cell, key) => (
-                  <td
-                    //@ts-ignore
-                    key={key}
-                    {...cell.getCellProps()}
-                    style={{
-                      borderBottom: "1px solid #7d7d7d33",
-                      padding: "12px 8px",
-                      textAlign: "start",
-                      whiteSpace: "nowrap",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                      maxWidth: "20px",
-                    }}
-                  >
-                    {cell.render("Cell")}
-                  </td>
-                ))}
-              </tr>
-            );
-          })}
+          {rows.length > 0 && (
+            <>
+              {rows.map((row, index) => {
+                prepareRow(row);
+                return (
+                  <tr {...row.getRowProps()} key={index}>
+                    {row.cells.map((cell, key) => (
+                      <td
+                        //@ts-ignore
+                        key={key}
+                        {...cell.getCellProps()}
+                        style={{
+                          borderBottom: "1px solid #7d7d7d33",
+                          padding: "12px 8px",
+                          textAlign: "start",
+                          whiteSpace: "nowrap",
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                          maxWidth: "20px",
+                        }}
+                      >
+                        {cell.render("Cell")}
+                      </td>
+                    ))}
+                  </tr>
+                );
+              })}
+            </>
+          )}
         </tbody>
       </table>
+      {rows.length == 0 && (
+        <div className="p-3 text-center">
+          <p>{`${dataNotFoundText ?? "No Item Found"} `}</p>
+        </div>
+      )}
       {paginate === true && (
         <div className="pagination-wrapper" id="assetBalances_paginate">
           <span>
