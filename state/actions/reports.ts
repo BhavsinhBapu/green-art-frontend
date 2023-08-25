@@ -343,10 +343,11 @@ export const CoinConvertHistoryAction = async (
   page: number,
   setReport: React.Dispatch<SetStateAction<object>>,
   setProcessing: React.Dispatch<SetStateAction<boolean>>,
-  setStillHistory: React.Dispatch<SetStateAction<boolean>>
+  setStillHistory: React.Dispatch<SetStateAction<boolean>>,
+  search: any
 ) => {
   setProcessing(true);
-  const response = await CoinConvertHistoryApi(per_page, page);
+  const response = await CoinConvertHistoryApi(per_page, page, search);
   setReport(response.data.list.data);
   setStillHistory(response.data);
   setProcessing(false);
