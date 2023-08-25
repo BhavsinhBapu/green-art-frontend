@@ -26,7 +26,7 @@ const SwapHistory: NextPage = () => {
     const url = page.url.split("?")[1];
     const number = url.split("=")[1];
     CoinConvertHistoryAction(
-      10,
+      selectedLimit,
       parseInt(number),
       setHistory,
       setProcessing,
@@ -35,7 +35,7 @@ const SwapHistory: NextPage = () => {
     );
   };
   const getReport = async () => {
-    CoinConvertHistoryAction(10, 1, setHistory, setProcessing, setStillHistory, search);
+    CoinConvertHistoryAction(selectedLimit, 1, setHistory, setProcessing, setStillHistory, search);
   };
   const columns = [
     {
