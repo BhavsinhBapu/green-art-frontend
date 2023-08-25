@@ -194,14 +194,16 @@ export const AllBuyOrdersHistoryAction = async (
   setProcessing: React.Dispatch<SetStateAction<boolean>>,
   setStillHistory: React.Dispatch<SetStateAction<boolean>>,
   column_name: string,
-  order_by: string
+  order_by: string,
+  search:any
 ) => {
   setProcessing(true);
   const response = await AllBuyOrdersHistoryApi(
     per_page,
     page,
     column_name,
-    order_by
+    order_by,
+    search
   );
   setReport(response.data.items.data);
   setStillHistory(response.data);
