@@ -13,6 +13,7 @@ import moment from "moment";
 import { formatCurrency } from "common";
 import { customPage, landingPage } from "service/landing-page";
 import Footer from "components/common/footer";
+import CustomDataTable from "components/Datatable";
 const SellOrderHistory: NextPage = () => {
   type searchType = string;
   const [search, setSearch] = useState<searchType>("");
@@ -23,88 +24,88 @@ const SellOrderHistory: NextPage = () => {
   const { t } = useTranslation("common");
   const [processing, setProcessing] = useState<boolean>(false);
   const [history, setHistory] = useState<any>([]);
+  const [selectedLimit, setSelectedLimit] = React.useState<any>("10");
+
   const [stillHistory, setStillHistory] = useState<any>([]);
   const LinkTopaginationString = (page: any) => {
     const url = page.url.split("?")[1];
     const number = url.split("=")[1];
     AllSellOrdersHistoryAction(
-      10,
+      selectedLimit,
       parseInt(number),
       setHistory,
       setProcessing,
       setStillHistory,
       sortingInfo.column_name,
-      sortingInfo.order_by
+      sortingInfo.order_by,
+      search
     );
   };
   const getReport = async () => {
     AllSellOrdersHistoryAction(
-      10,
+      selectedLimit,
       1,
       setHistory,
       setProcessing,
       setStillHistory,
       sortingInfo.column_name,
-      sortingInfo.order_by
+      sortingInfo.order_by,
+      search
     );
   };
 
   const columns = [
     {
-      name: t("Base Coin"),
-      selector: (row: any) => row?.base_coin,
-      sortable: true,
+      Header: t("Base Coin"),
+      accessor: "base_coin",
     },
     {
-      name: t("Trade Coin"),
-      selector: (row: any) => row?.trade_coin,
-      sortable: true,
+      Header: t("Trade Coin"),
+      accessor: "trade_coin",
     },
     {
-      name: t("Amount"),
-      selector: (row: any) => row?.amount,
-      sortable: true,
-      cell: (row: any) => (
+      Header: t("Amount"),
+      accessor: "amount",
+      Cell: ({ cell }: any) => (
         <div className="blance-text">
           <span className="blance market incree">
-            {parseFloat(row?.amount).toFixed(8)}
+            {parseFloat(cell?.value).toFixed(8)}
           </span>
         </div>
       ),
     },
     {
-      name: t("Processed"),
-      selector: (row: any) => row?.processed,
-      sortable: true,
-      cell: (row: any) => (
+      Header: t("Processed"),
+      accessor: "processed",
+
+      Cell: ({ cell }: any) => (
         <div className="blance-text">
           <span className="blance market incree">
-            {parseFloat(row?.processed).toFixed(8)}
+            {parseFloat(cell?.value).toFixed(8)}
           </span>
         </div>
       ),
     },
     {
-      name: t("Price"),
-      selector: (row: any) => row?.price,
-      sortable: true,
-      cell: (row: any) => (
+      Header: t("Price"),
+
+      accessor: "price",
+      Cell: ({ cell }: any) => (
         <div className="blance-text">
           <span className="blance market incree">
-            {formatCurrency(row?.price)}
+            {formatCurrency(cell?.value)}
           </span>
         </div>
       ),
     },
     {
-      name: t("Status"),
-      selector: (row: any) => row?.status,
-      sortable: true,
-      cell: (row: any) => (
+      Header: t("Status"),
+      accessor: "status",
+      Cell: ({ cell }: any) => (
         <div>
-          {row.status === 0 ? (
+          {cell.value === 0 ? (
             <span className="text-warning">{t("Pending")}</span>
-          ) : row.status === 1 ? (
+          ) : cell.value === 1 ? (
             <span className="text-success"> {t("Success")}</span>
           ) : (
             <span className="text-danger">{t("Failed")}</span>
@@ -113,10 +114,12 @@ const SellOrderHistory: NextPage = () => {
       ),
     },
     {
-      name: t("Date"),
-      selector: (row: any) =>
-        moment(row.created_at).format("YYYY-MM-DD HH:mm:ss"),
-      sortable: true,
+      Header: t("Date"),
+
+      accessor: "created_at",
+      Cell: ({ cell }: any) => (
+        <div>{moment(cell.value).format("YYYY-MM-DD HH:mm:ss")}</div>
+      ),
     },
   ];
   React.useEffect(() => {
@@ -124,7 +127,7 @@ const SellOrderHistory: NextPage = () => {
     return () => {
       setHistory([]);
     };
-  }, []);
+  }, [selectedLimit, search]);
   return (
     <>
       <div className="page-wrap rightMargin">
@@ -143,118 +146,65 @@ const SellOrderHistory: NextPage = () => {
             </div>
 
             <div className="asset-balances-area">
-              {processing ? (
-                <TableLoading />
-              ) : (
-                <div className="asset-balances-left">
-                  <div className="section-wrapper">
-                    <div className="tableScroll">
-                      <div
-                        id="assetBalances_wrapper"
-                        className="dataTables_wrapper no-footer"
-                      >
-                        <div className="dataTables_head">
-                          <div
-                            className="dataTables_length"
-                            id="assetBalances_length"
-                          >
-                            <label className="">
-                              {t("Show")}
-                              <select
-                                name="assetBalances_length"
-                                aria-controls="assetBalances"
-                                className=""
-                                onChange={(e) => {
-                                  AllSellOrdersHistoryAction(
-                                    parseInt(e.target.value),
-                                    1,
-                                    setHistory,
-                                    setProcessing,
-                                    setStillHistory,
-                                    sortingInfo.column_name,
-                                    sortingInfo.order_by
-                                  );
-                                }}
-                              >
-                                <option value="10">10</option>
-                                <option value="25">25</option>
-                                <option value="50">50</option>
-                                <option value="100">100</option>
-                              </select>
-                            </label>
-                          </div>
-                          <div id="table_filter" className="dataTables_filter">
-                            <label>
-                              {t("Search")}:
-                              <input
-                                type="search"
-                                className="data_table_input"
-                                placeholder=""
-                                aria-controls="table"
-                                value={search}
-                                onChange={(e) => {
-                                  handleSearchItems(
-                                    e,
-                                    setSearch,
-                                    stillHistory,
-                                    setHistory
-                                  );
-                                }}
-                              />
-                            </label>
-                          </div>
-                        </div>
-                      </div>
+              <div className="asset-balances-left">
+                <div className="section-wrapper">
+                  <div className="tableScroll">
+                    <CustomDataTable
+                      columns={columns}
+                      data={history}
+                      selectedLimit={selectedLimit}
+                      setSelectedLimit={setSelectedLimit}
+                      search={search}
+                      setSearch={setSearch}
+                      processing={processing}
+                    />
 
-                      <DataTable columns={columns} data={history} />
-                      {history?.length > 0 && (
-                        <div
-                          className="pagination-wrapper"
-                          id="assetBalances_paginate"
-                        >
-                          <span>
-                            {stillHistory?.items?.links.map(
-                              (link: any, index: number) =>
-                                link.label === "&laquo; Previous" ? (
-                                  <a
-                                    className="paginate-button"
-                                    onClick={() => {
-                                      if (link.url)
-                                        LinkTopaginationString(link);
-                                    }}
-                                    key={index}
-                                  >
-                                    <i className="fa fa-angle-left"></i>
-                                  </a>
-                                ) : link.label === "Next &raquo;" ? (
-                                  <a
-                                    className="paginate-button"
-                                    onClick={() => LinkTopaginationString(link)}
-                                    key={index}
-                                  >
-                                    <i className="fa fa-angle-right"></i>
-                                  </a>
-                                ) : (
-                                  <a
-                                    className={`paginate_button paginate-number ${
-                                      link.active === true && "text-warning"
-                                    }`}
-                                    aria-controls="assetBalances"
-                                    data-dt-idx="1"
-                                    onClick={() => LinkTopaginationString(link)}
-                                    key={index}
-                                  >
-                                    {link.label}
-                                  </a>
-                                )
-                            )}
-                          </span>
-                        </div>
-                      )}
-                    </div>
+                    {history?.length > 0 && (
+                      <div
+                        className="pagination-wrapper"
+                        id="assetBalances_paginate"
+                      >
+                        <span>
+                          {stillHistory?.items?.links.map(
+                            (link: any, index: number) =>
+                              link.label === "&laquo; Previous" ? (
+                                <a
+                                  className="paginate-button"
+                                  onClick={() => {
+                                    if (link.url) LinkTopaginationString(link);
+                                  }}
+                                  key={index}
+                                >
+                                  <i className="fa fa-angle-left"></i>
+                                </a>
+                              ) : link.label === "Next &raquo;" ? (
+                                <a
+                                  className="paginate-button"
+                                  onClick={() => LinkTopaginationString(link)}
+                                  key={index}
+                                >
+                                  <i className="fa fa-angle-right"></i>
+                                </a>
+                              ) : (
+                                <a
+                                  className={`paginate_button paginate-number ${
+                                    link.active === true && "text-warning"
+                                  }`}
+                                  aria-controls="assetBalances"
+                                  data-dt-idx="1"
+                                  onClick={() => LinkTopaginationString(link)}
+                                  key={index}
+                                >
+                                  {link.label}
+                                </a>
+                              )
+                          )}
+                        </span>
+                      </div>
+                    )}
                   </div>
                 </div>
-              )}
+              </div>
             </div>
           </div>
         </div>
