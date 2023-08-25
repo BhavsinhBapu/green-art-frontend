@@ -191,7 +191,9 @@ const UnAuthNav = ({
               <nav className="main-menu">
                 <ul>
                   <li>
-                    <Link href="/signin">{t("Login")}</Link>
+                    <Link href={`/signin?redirect=${router.asPath}`}>
+                      {t("Login")}
+                    </Link>
                   </li>
                   <li>
                     <Link href="/signup">
