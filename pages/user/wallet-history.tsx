@@ -125,7 +125,9 @@ const DepositHistory: NextPage = () => {
         value == 1 ? (
           <span className="badge badge-pill text-12 badge-success">Active</span>
         ) : (
-          <span className="badge badge-pill text-12 badge-danger">InActive</span>
+          <span className="badge badge-pill text-12 badge-danger">
+            InActive
+          </span>
         ),
     },
   ];
@@ -196,72 +198,67 @@ const DepositHistory: NextPage = () => {
             </div>
             {selectedType.id == 1 && (
               <div className="asset-balances-area">
-                {processing ? (
-                  <SectionLoading />
-                ) : (
-                  <div className="asset-balances-left">
-                    <div className="section-wrapper">
-                      <div className="tableScroll">
-                        <div className=" table-responsive tableScroll">
-                          <CustomDataTable
-                            columns={columns}
-                            data={history}
-                            selectedLimit={selectedLimit}
-                            setSelectedLimit={setSelectedLimit}
-                          />
-                        </div>
-                        {history?.length > 0 && (
-                          <div
-                            className="pagination-wrapper"
-                            id="assetBalances_paginate"
-                          >
-                            <span>
-                              {stillHistory?.histories?.links.map(
-                                (link: any, index: number) =>
-                                  link.label === "&laquo; Previous" ? (
-                                    <a
-                                      className="paginate-button"
-                                      onClick={() => {
-                                        if (link.url)
-                                          LinkTopaginationString(link);
-                                      }}
-                                      key={index}
-                                    >
-                                      <i className="fa fa-angle-left"></i>
-                                    </a>
-                                  ) : link.label === "Next &raquo;" ? (
-                                    <a
-                                      className="paginate-button"
-                                      onClick={() =>
-                                        LinkTopaginationString(link)
-                                      }
-                                      key={index}
-                                    >
-                                      <i className="fa fa-angle-right"></i>
-                                    </a>
-                                  ) : (
-                                    <a
-                                      className={`paginate_button paginate-number ${
-                                        link.active === true && "text-warning"
-                                      }`}
-                                      aria-controls="assetBalances"
-                                      data-dt-idx="1"
-                                      onClick={() =>
-                                        LinkTopaginationString(link)
-                                      }
-                                      key={index}
-                                    >
-                                      {link.label}
-                                    </a>
-                                  )
-                              )}
-                            </span>
-                          </div>
-                        )}
+                <div className="asset-balances-left">
+                  <div className="section-wrapper">
+                    <div className="tableScroll">
+                      <div className=" table-responsive tableScroll">
+                        <CustomDataTable
+                          columns={columns}
+                          data={history}
+                          selectedLimit={selectedLimit}
+                          setSelectedLimit={setSelectedLimit}
+                          search={search}
+                          setSearch={setSearch}
+                          processing={processing}
+                        />
                       </div>
+                      {history?.length > 0 && (
+                        <div
+                          className="pagination-wrapper"
+                          id="assetBalances_paginate"
+                        >
+                          <span>
+                            {stillHistory?.histories?.links.map(
+                              (link: any, index: number) =>
+                                link.label === "&laquo; Previous" ? (
+                                  <a
+                                    className="paginate-button"
+                                    onClick={() => {
+                                      if (link.url)
+                                        LinkTopaginationString(link);
+                                    }}
+                                    key={index}
+                                  >
+                                    <i className="fa fa-angle-left"></i>
+                                  </a>
+                                ) : link.label === "Next &raquo;" ? (
+                                  <a
+                                    className="paginate-button"
+                                    onClick={() => LinkTopaginationString(link)}
+                                    key={index}
+                                  >
+                                    <i className="fa fa-angle-right"></i>
+                                  </a>
+                                ) : (
+                                  <a
+                                    className={`paginate_button paginate-number ${
+                                      link.active === true && "text-warning"
+                                    }`}
+                                    aria-controls="assetBalances"
+                                    data-dt-idx="1"
+                                    onClick={() => LinkTopaginationString(link)}
+                                    key={index}
+                                  >
+                                    {link.label}
+                                  </a>
+                                )
+                            )}
+                          </span>
+                        </div>
+                      )}
                     </div>
                   </div>
-                )}
+                </div>
               </div>
             )}
 
