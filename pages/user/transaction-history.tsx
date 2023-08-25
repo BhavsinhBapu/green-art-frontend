@@ -29,7 +29,8 @@ const TransactionHistory: NextPage = () => {
       parseInt(number),
       setHistory,
       setProcessing,
-      setStillHistory
+      setStillHistory,
+      search
     );
   };
   const getReport = async () => {
@@ -38,7 +39,8 @@ const TransactionHistory: NextPage = () => {
       1,
       setHistory,
       setProcessing,
-      setStillHistory
+      setStillHistory,
+      search
     );
   };
   const columns = [
@@ -76,7 +78,7 @@ const TransactionHistory: NextPage = () => {
     return () => {
       setHistory([]);
     };
-  }, [selectedLimit]);
+  }, [selectedLimit, search]);
   return (
     <>
       <div className="page-wrap rightMargin">
@@ -95,24 +97,23 @@ const TransactionHistory: NextPage = () => {
             </div>
 
             <div className="asset-balances-area">
-              {processing ? (
-                <TableLoading />
-              ) : (
-                <div className="asset-balances-left">
-                  <div className="section-wrapper">
-                    <div className="tableScroll">
-                      <CustomDataTable
-                        columns={columns}
-                        data={history}
-                        stillHistory={stillHistory}
-                        paginateFunction={LinkTopaginationString}
-                        setSelectedLimit={setSelectedLimit}
-                        selectedLimit={selectedLimit}
-                      />
-                    </div>
+              <div className="asset-balances-left">
+                <div className="section-wrapper">
+                  <div className="tableScroll">
+                    <CustomDataTable
+                      columns={columns}
+                      data={history}
+                      stillHistory={stillHistory}
+                      paginateFunction={LinkTopaginationString}
+                      setSelectedLimit={setSelectedLimit}
+                      selectedLimit={selectedLimit}
+                      search={search}
+                      setSearch={setSearch}
+                      processing={processing}
+                    />
                   </div>
                 </div>
-              )}
+              </div>
             </div>
           </div>
         </div>

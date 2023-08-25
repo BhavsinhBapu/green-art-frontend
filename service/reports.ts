@@ -59,10 +59,11 @@ export const AllSellOrdersHistoryApi = async (
 };
 export const AllTransactionHistoryApi = async (
   per_page: number,
-  page: number
+  page: number,
+  search: any
 ) => {
   const { data } = await request.get(
-    `/all-transaction-history-app?per_page=${per_page}&page=${page}`
+    `/all-transaction-history-app?per_page=${per_page}&page=${page}&search=${search}`
   );
   return data;
 };
