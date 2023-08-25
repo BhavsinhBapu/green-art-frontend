@@ -1,3 +1,4 @@
+import SectionLoading from "components/common/SectionLoading";
 import useTranslation from "next-translate/useTranslation";
 import React, { useMemo } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
@@ -11,6 +12,10 @@ const CustomDataTable = ({
   selectedLimit,
   paginateFunction,
   paginate = true,
+  search,
+  setSearch,
+  dataNotFoundText,
+  processing,
 }: any) => {
   const dataColumns = useMemo(() => columns, [columns]);
   const tableData = useMemo(() => data, [data]);
@@ -67,75 +72,91 @@ const CustomDataTable = ({
                 className="data_table_input"
                 aria-controls="table"
                 placeholder="Search..."
-                value={globalFilter || ""}
-                onChange={(e) => setGlobalFilter(e.target.value)}
+                value={search || ""}
+                onChange={(e) => setSearch(e.target.value)}
               />
             </label>
           </div>
         </div>
       </div>
-      <table {...getTableProps()} className="table">
-        <thead>
-          {headerGroups.map((headerGroup, index) => (
-            <tr {...headerGroup.getHeaderGroupProps()} key={index}>
-              {headerGroup.headers.map((column: any, key: number) => (
-                <th
-                  key={key}
-                  {...column.getHeaderProps(column.getSortByToggleProps())} // Add sorting props to the column header
-                  style={{
-                    borderBottom: "1px solid #7d7d7d33",
-                    background: "var(--main-background-color)",
-                    padding: "12px 8px",
-                    textAlign: "left", // Update this line
-                    cursor: "pointer",
-                  }}
-                  className="dataTables_header_class"
-                >
-                  {column.render("Header")}
-                  <span>
-                    {column.isSorted ? (
-                      column.isSortedDesc ? (
-                        <i className="fa fa-caret-down" />
-                      ) : (
-                        <i className="fa fa-caret-up" />
-                      )
-                    ) : (
-                      ""
-                    )}
-                  </span>
-                </th>
+      {processing ? (
+        <SectionLoading />
+      ) : (
+        <>
+          <table {...getTableProps()} className="table">
+            <thead>
+              {headerGroups.map((headerGroup, index) => (
+                <tr {...headerGroup.getHeaderGroupProps()} key={index}>
+                  {headerGroup.headers.map((column: any, key: number) => (
+                    <th
+                      key={key}
+                      {...column.getHeaderProps(column.getSortByToggleProps())} // Add sorting props to the column header
+                      style={{
+                        borderBottom: "1px solid #7d7d7d33",
+                        background: "var(--main-background-color)",
+                        padding: "12px 8px",
+                        textAlign: "left", // Update this line
+                        cursor: "pointer",
+                      }}
+                      className="dataTables_header_class"
+                    >
+                      {column.render("Header")}
+                      <span>
+                        {column.isSorted ? (
+                          column.isSortedDesc ? (
+                            <i className="fa fa-caret-down" />
+                          ) : (
+                            <i className="fa fa-caret-up" />
+                          )
+                        ) : (
+                          ""
+                        )}
+                      </span>
+                    </th>
+                  ))}
+                </tr>
               ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody {...getTableBodyProps()}>
-          {rows.map((row, index) => {
-            prepareRow(row);
-            return (
-              <tr {...row.getRowProps()} key={index}>
-                {row.cells.map((cell, key) => (
-                  <td
-                    //@ts-ignore
-                    key={key}
-                    {...cell.getCellProps()}
-                    style={{
-                      borderBottom: "1px solid #7d7d7d33",
-                      padding: "12px 8px",
-                      textAlign: "start",
-                      whiteSpace: "nowrap",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                      maxWidth: "20px",
-                    }}
-                  >
-                    {cell.render("Cell")}
-                  </td>
-                ))}
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+            </thead>
+            <tbody {...getTableBodyProps()}>
+              {rows.length > 0 && (
+                <>
+                  {rows.map((row, index) => {
+                    prepareRow(row);
+                    return (
+                      <tr {...row.getRowProps()} key={index}>
+                        {row.cells.map((cell, key) => (
+                          <td
+                            //@ts-ignore
+                            key={key}
+                            {...cell.getCellProps()}
+                            style={{
+                              borderBottom: "1px solid #7d7d7d33",
+                              padding: "12px 8px",
+                              textAlign: "start",
+                              whiteSpace: "nowrap",
+                              overflow: "hidden",
+                              textOverflow: "ellipsis",
+                              maxWidth: "20px",
+                            }}
+                          >
+                            {cell.render("Cell")}
+                          </td>
+                        ))}
+                      </tr>
+                    );
+                  })}
+                </>
+              )}
+            </tbody>
+          </table>
+          {rows.length == 0 && (
+            <div className="p-3 text-center">
+              <p>{`${dataNotFoundText ?? "No Item Found"} `}</p>
+            </div>
+          )}
+        </>
+      )}
+
       {paginate === true && (
         <div className="pagination-wrapper" id="assetBalances_paginate">
           <span>

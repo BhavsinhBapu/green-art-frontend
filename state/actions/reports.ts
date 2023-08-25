@@ -215,14 +215,16 @@ export const AllStopLimitOrdersHistoryAction = async (
   setProcessing: React.Dispatch<SetStateAction<boolean>>,
   setStillHistory: React.Dispatch<SetStateAction<boolean>>,
   column_name: string,
-  order_by: string
+  order_by: string,
+  search:any
 ) => {
   setProcessing(true);
   const response = await AllStopLimitOrdersHistoryApi(
     per_page,
     page,
     column_name,
-    order_by
+    order_by,
+    search
   );
   setReport(response.data.items.data);
   setStillHistory(response.data);
@@ -325,10 +327,11 @@ export const AllTransactionHistoryAction = async (
   page: number,
   setReport: React.Dispatch<SetStateAction<object>>,
   setProcessing: React.Dispatch<SetStateAction<boolean>>,
-  setStillHistory: React.Dispatch<SetStateAction<boolean>>
+  setStillHistory: React.Dispatch<SetStateAction<boolean>>,
+  search: any
 ) => {
   setProcessing(true);
-  const response = await AllTransactionHistoryApi(per_page, page);
+  const response = await AllTransactionHistoryApi(per_page, page, search);
   setReport(response.data.items.data);
   setStillHistory(response.data);
   setProcessing(false);

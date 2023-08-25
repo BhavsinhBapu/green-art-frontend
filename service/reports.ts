@@ -38,10 +38,11 @@ export const AllStopLimitOrdersHistoryApi = async (
   per_page: number,
   page: number,
   column_name: string,
-  order_by: string
+  order_by: string,
+  search: any
 ) => {
   const { data } = await request.get(
-    `/get-all-stop-limit-orders-app?per_page=${per_page}&page=${page}&column_name=${column_name}&order_by=${order_by}`
+    `/get-all-stop-limit-orders-app?per_page=${per_page}&page=${page}&column_name=${column_name}&order_by=${order_by}&search=${search}`
   );
   return data;
 };
@@ -58,10 +59,11 @@ export const AllSellOrdersHistoryApi = async (
 };
 export const AllTransactionHistoryApi = async (
   per_page: number,
-  page: number
+  page: number,
+  search: any
 ) => {
   const { data } = await request.get(
-    `/all-transaction-history-app?per_page=${per_page}&page=${page}`
+    `/all-transaction-history-app?per_page=${per_page}&page=${page}&search=${search}`
   );
   return data;
 };
