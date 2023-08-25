@@ -296,12 +296,12 @@ const DepositHistory: NextPage = () => {
                                 </select>
                               </label>
                             </div>
-                            <div className="">
+                            <div className="dataTables_filter_class">
                               <label>
                                 <AiOutlineSearch />
                                 <input
                                   type="search"
-                                  className=""
+                                  className="data_table_input"
                                   placeholder="Search..."
                                   value={search}
                                   onChange={(e) => setSearch(e.target.value)}
