@@ -25,6 +25,7 @@ const BuyOrderHistory: NextPage = () => {
   const [history, setHistory] = useState<any>([]);
   const [stillHistory, setStillHistory] = useState<any>([]);
   const [selectedLimit, setSelectedLimit] = useState<any>("10");
+  const [search, setSearch] = useState('')
   const LinkTopaginationString = (page: any) => {
     const url = page.url.split("?")[1];
     const number = url.split("=")[1];
@@ -35,7 +36,8 @@ const BuyOrderHistory: NextPage = () => {
       setProcessing,
       setStillHistory,
       sortingInfo.column_name,
-      sortingInfo.order_by
+      sortingInfo.order_by,
+      search
     );
   };
   const getReport = async () => {
@@ -46,7 +48,8 @@ const BuyOrderHistory: NextPage = () => {
       setProcessing,
       setStillHistory,
       sortingInfo.column_name,
-      sortingInfo.order_by
+      sortingInfo.order_by,
+      search
     );
   };
   const columns = [
@@ -81,7 +84,7 @@ const BuyOrderHistory: NextPage = () => {
     return () => {
       setHistory([]);
     };
-  }, [selectedLimit]);
+  }, [selectedLimit, search]);
   return (
     <>
       <div className="page-wrap rightMargin">
@@ -100,9 +103,7 @@ const BuyOrderHistory: NextPage = () => {
             </div>
 
             <div className="asset-balances-area">
-              {processing ? (
-                <SectionLoading />
-              ) : (
+             
                 <div className="asset-balances-left">
                   <div className="section-wrapper ">
                     <div className="tableScroll">
@@ -113,11 +114,13 @@ const BuyOrderHistory: NextPage = () => {
                         paginateFunction={LinkTopaginationString}
                         setSelectedLimit={setSelectedLimit}
                         selectedLimit={selectedLimit}
+                        setSearch={setSearch}
+                        search={search}
+                        processing={processing}
                       />
                     </div>
                   </div>
                 </div>
-              )}
             </div>
           </div>
         </div>
