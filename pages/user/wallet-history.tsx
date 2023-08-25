@@ -42,7 +42,8 @@ const DepositHistory: NextPage = () => {
       parseInt(number),
       setHistory,
       setProcessing,
-      setStillHistory
+      setStillHistory,
+      search
     );
   };
 
@@ -59,7 +60,8 @@ const DepositHistory: NextPage = () => {
         1,
         setHistory,
         setProcessing,
-        setStillHistory
+        setStillHistory,
+        search
       );
     }
   };

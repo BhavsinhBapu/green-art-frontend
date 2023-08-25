@@ -18,10 +18,11 @@ export const WithdrawAndDepositHistoryAction = async (
   page: number,
   setReport: React.Dispatch<SetStateAction<object>>,
   setProcessing: React.Dispatch<SetStateAction<boolean>>,
-  setStillHistory: React.Dispatch<SetStateAction<boolean>>
+  setStillHistory: React.Dispatch<SetStateAction<boolean>>,
+  search: any
 ) => {
   setProcessing(true);
-  const response = await WithdrawAndDepositHistoryApi(type, per_page, page);
+  const response = await WithdrawAndDepositHistoryApi(type, per_page, page, search);
   setReport(response?.data?.histories?.data);
   setStillHistory(response.data);
   setProcessing(false);
