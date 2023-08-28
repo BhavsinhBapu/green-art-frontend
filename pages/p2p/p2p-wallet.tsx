@@ -14,14 +14,72 @@ import { AiOutlineSend } from "react-icons/ai";
 import { BsWallet2 } from "react-icons/bs";
 import { P2pTopBar } from "components/P2P/P2pHome/TopBar";
 import SectionLoading from "components/common/SectionLoading";
+import CustomDataTable from "components/Datatable";
 const MyWallet: NextPage = () => {
   const { t } = useTranslation("common");
+  const [search, setSearch] = useState<any>("");
   const [walletList, setWalletList] = useState<any>([]);
   const [Changeable, setChangeable] = useState<any[]>([]);
   const [processing, setProcessing] = useState<boolean>(false);
+  const [selectedLimit, setSelectedLimit] = useState<any>("10");
+
+  const columns = [
+    {
+      Header: t("Asset"),
+
+      Cell: ({ row }: any) => (
+        <div className="asset d-flex align-items-center gap-10">
+          <div>
+            <img
+              className="asset-icon"
+              src={row.original.coin_icon || "/bitcoin.png"}
+              alt=""
+            />
+          </div>
+          <div>
+            <p className="asset-name font-bold">{row.original?.coin_type}</p>
+            <p className="asset-name">{row.original?.name}</p>
+          </div>
+        </div>
+      ),
+    },
+    {
+      Header: t("Available Balance"),
+      accessor: "balance",
+      Cell: ({ cell }: any) => (
+        <div className="blance-text">
+          <span className="blance">{parseFloat(cell?.value).toFixed(8)}</span>
+        </div>
+      ),
+    },
+    {
+      Header: t("Action"),
+      Cell: ({ row }: any) => (
+        <div className="active-link">
+          <ul>
+            <div className="active-link">
+              <ul>
+                <Link href={`/p2p/exchange/1/${row.original?.coin_type}`}>
+                  <li className="cursor-pointer">
+                    <AiOutlineSend />
+                  </li>
+                </Link>
+                <Link href={`/p2p/exchange/2/${row.original?.coin_type}`}>
+                  <li className="cursor-pointer">
+                    <BsWallet2 />
+                  </li>
+                </Link>
+              </ul>
+            </div>
+          </ul>
+        </div>
+      ),
+    },
+  ];
+
   const getWalletLists = async () => {
     setProcessing(true);
-    const response: any = await getWalletsAction(10, 1);
+    const response: any = await getWalletsAction(selectedLimit, 1, search);
     setWalletList(response?.data);
     setChangeable(response?.data?.data);
     setProcessing(false);
@@ -30,7 +88,7 @@ const MyWallet: NextPage = () => {
   const LinkTopaginationString = async (page: any) => {
     const url = page.url.split("?")[1];
     const number = url.split("=")[1];
-    const response: any = await getWalletsAction(10, number);
+    const response: any = await getWalletsAction(selectedLimit, number, search);
     setWalletList(response?.data);
     setChangeable(response?.data?.data);
   };
@@ -40,7 +98,7 @@ const MyWallet: NextPage = () => {
     return () => {
       setWalletList(null);
     };
-  }, []);
+  }, [selectedLimit, search]);
 
   return (
     <>
@@ -62,113 +120,16 @@ const MyWallet: NextPage = () => {
             <div className="asset-balances-area cstm-loader-area">
               <div className="asset-balances-left">
                 <div className="section-wrapper px-0 py-2">
-                  <div
-                    id="assetBalances_wrapper"
-                    className="dataTables_wrapper no-footer"
-                  >
-                    <div className="dataTables_head">
-                      <div id="table_filter" className="dataTables_filter">
-                        <label>
-                          {t("Search")}:
-                          <input
-                            type="search"
-                            className="data_table_input"
-                            placeholder=""
-                            aria-controls="table"
-                            onChange={(e) =>
-                              SearchObjectArrayFuesJS(
-                                walletList,
-                                setChangeable,
-                                e.target.value
-                              )
-                            }
-                          />
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                  {processing ? (
-                    <SectionLoading />
-                  ) : (
-                    <div className="table-responsive walletTableScroll">
-                      <table
-                        id="assetBalances"
-                        className="table table-borderless secendary-table asset-balances-table"
-                      >
-                        <thead>
-                          <tr>
-                            <th scope="col" className="p-2">
-                              {t("Asset")}
-                            </th>
-                            <th scope="col" className="p-2">
-                              {t("Symbol")}
-                            </th>
-                            <th scope="col" className="p-2">
-                              {t("Available Balance")}
-                            </th>
-                            <th scope="col" className="p-2">
-                              {t("Action")}
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {Changeable?.map((item: any, index: number) => (
-                            <tr id="" key={index}>
-                              <td className="p-2 border-bottom border-main-color">
-                                <div className="asset">
-                                  <img
-                                    className="asset-icon"
-                                    src={item.coin_icon || "/bitcoin.png"}
-                                    alt=""
-                                  />
-                                  <span className="asset-name">
-                                    {item?.name}
-                                  </span>
-                                </div>
-                              </td>
-                              <td className="p-2 border-bottom border-main-color">
-                                <span className="symbol">
-                                  {item?.coin_type}
-                                </span>
-                              </td>
-
-                              <td className="p-2 border-bottom border-main-color">
-                                <div className="blance-text">
-                                  <span className="blance">
-                                    {parseFloat(item?.balance).toFixed(8)}
-                                  </span>
-                                </div>
-                              </td>
-                              <td className="p-2 border-bottom border-main-color">
-                                <div className="active-link">
-                                  <ul>
-                                    <div className="active-link">
-                                      <ul>
-                                        <Link
-                                          href={`/p2p/exchange/1/${item?.coin_type}`}
-                                        >
-                                          <li>
-                                            <AiOutlineSend />
-                                          </li>
-                                        </Link>
-                                        <Link
-                                          href={`/p2p/exchange/2/${item?.coin_type}`}
-                                        >
-                                          <li>
-                                            <BsWallet2 />
-                                          </li>
-                                        </Link>
-                                      </ul>
-                                    </div>
-                                  </ul>
-                                </div>
-                              </td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
-                  )}
+                  <CustomDataTable
+                    columns={columns}
+                    data={Changeable}
+                    selectedLimit={selectedLimit}
+                    setSelectedLimit={setSelectedLimit}
+                    search={search}
+                    setSearch={setSearch}
+                    processing={processing}
+                    verticalAlignData={`middle`}
+                  />
                   <div
                     className="pagination-wrapper"
                     id="assetBalances_paginate"

@@ -285,17 +285,15 @@ export const PaymentConfirmGiftCardOrder = async (formData: any) => {
   return data;
 };
 
-
-
 // release-p2p-order
 export const releaseP2pOrder = async (formData: any) => {
   const { data } = await p2pResuest.post("/release-p2p-order", formData);
   return data;
 };
 // wallets
-export const getWallets = async (per_page: any, page: any) => {
+export const getWallets = async (per_page: any, page: any, search: any) => {
   const { data } = await p2pResuest.get(
-    `/wallets?per_page=${per_page}&page=${page}`
+    `/wallets?per_page=${per_page}&page=${page}&search=${search}`
   );
   return data;
 };
@@ -321,7 +319,6 @@ export const disputeProcessGiftCard = async (formData: any) => {
   const { data } = await p2pResuest.post("/gift-card-order-dispute", formData);
   return data;
 };
-
 
 // send-message
 export const sendMessageTrade = async (formData: any) => {

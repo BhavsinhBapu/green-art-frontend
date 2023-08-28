@@ -810,8 +810,8 @@ export const releaseP2pOrderAction = async (trade_id: any, dispatch: any) => {
   }
 };
 // getWallets;
-export const getWalletsAction = async (per_page: any, page: any) => {
-  const response = await getWallets(per_page, page);
+export const getWalletsAction = async (per_page: any, page: any, search:any) => {
+  const response = await getWallets(per_page, page, search);
   return response;
 };
 // userCenter;
