@@ -16,6 +16,7 @@ const CustomDataTable = ({
   setSearch,
   dataNotFoundText,
   processing,
+  verticalAlignData = 'top'
 }: any) => {
   const dataColumns = useMemo(() => columns, [columns]);
   const tableData = useMemo(() => data, [data]);
@@ -134,9 +135,9 @@ const CustomDataTable = ({
                               padding: "12px 8px",
                               textAlign: "start",
                               whiteSpace: "nowrap",
-                              overflow: "hidden",
                               textOverflow: "ellipsis",
                               maxWidth: "200px",
+                              verticalAlign: verticalAlignData
                             }}
                           >
                             {cell.render("Cell")}

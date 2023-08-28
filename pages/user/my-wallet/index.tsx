@@ -22,10 +22,11 @@ import { RootState } from "state/store";
 import { TradeList } from "components/TradeList";
 import { appDashboardDataWithoutPair } from "service/exchange";
 import Footer from "components/common/footer";
+import CustomDataTable from "components/Datatable";
 const MyWallet: NextPage = () => {
   const { t } = useTranslation("common");
   const { settings } = useSelector((state: RootState) => state.common);
-
+  const [search, setSearch] = useState<any>("");
   const [walletList, setWalletList] = useState<any>([]);
   const [selectedPerPage, setSelectedPerPage] = useState("15");
   const [Changeable, setChangeable] = useState<any[]>([]);
@@ -33,6 +34,139 @@ const MyWallet: NextPage = () => {
   const [allData, setAllData] = useState<any>();
   const [tradeList, setTradeList]: any = useState();
   const [coinList, setCoinList]: any = useState([]);
+  const [selectedLimit, setSelectedLimit] = useState<any>("10");
+
+  const columns = [
+    {
+      Header: t("Asset"),
+
+      Cell: ({ row }: any) => (
+        <div className="asset d-flex align-items-center gap-10">
+          <div>
+            <img
+              className="asset-icon"
+              src={row.original.coin_icon || "/bitcoin.png"}
+              alt=""
+            />
+          </div>
+          <div>
+            <p className="asset-name">{row.original?.coin_type}</p>
+            <p className="asset-name">{row.original?.name}</p>
+          </div>
+        </div>
+      ),
+    },
+
+    {
+      Header: t("On Order"),
+      Cell: ({ row }: any) => (
+        <div className="blance-text">
+          <span
+            className="blance market incree border-0 p-0"
+            style={{ color: "#10c75c" }}
+          >
+            {row?.original?.on_order}
+          </span>
+          <span className="usd">
+            ({settings?.currency_symbol}
+            {parseFloat(row?.original?.on_order_usd).toFixed(8)})
+          </span>
+        </div>
+      ),
+    },
+    {
+      Header: t("Available Balance"),
+      Cell: ({ row }: any) => (
+        <div className="blance-text">
+          <span className="blance">
+            {parseFloat(row?.original?.balance).toFixed(8)}
+          </span>
+          <span className="usd">
+            ({settings?.currency_symbol}
+            {parseFloat(row?.original?.available_balance_usd).toFixed(8)})
+          </span>
+        </div>
+      ),
+    },
+    {
+      Header: t("Total Balance"),
+      Cell: ({ row }: any) => (
+        <div className="blance-text">
+          <span className="blance">
+            {/* @ts-ignore */}
+            {parseFloat(
+              // @ts-ignore
+              Number(row?.original?.balance) + Number(row?.original?.on_order)
+            ).toFixed(8)}
+          </span>
+          <span className="usd">
+            ({settings?.currency_symbol}
+            {parseFloat(row?.original?.total_balance_usd).toFixed(8)})
+          </span>
+        </div>
+      ),
+    },
+    {
+      Header: t("Action"),
+      Cell: ({ row }: any) => (
+        <div className="active-link">
+          <ul>
+            {row?.original.is_deposit === 1 && (
+              <Link href={setDepositCryptoOrFiatUrl(row?.original)}>
+                <li className="toolTip relative cursor-pointer" title="Deposit">
+                  <HiOutlineBanknotes size={25} />
+                </li>
+              </Link>
+            )}
+            {row?.original.is_withdrawal === 1 && (
+              <Link href={setWithdrawCryptoOrFiatUrl(row?.original)}>
+                <li
+                  className="toolTip relative cursor-pointer"
+                  title="Withdraw"
+                >
+                  <IoWalletOutline size={25} />
+                </li>
+              </Link>
+            )}
+
+            <li
+              className="toolTip trade-li cursor-pointer"
+              title="Trade"
+              onClick={() =>
+                handleActive(tradeList ? null : row?.original?.id + 1)
+              }
+            >
+              <HiOutlinePresentationChartLine size={25} />
+              {tradeList === row?.original?.id + 1 && (
+                <div className="trade-select">
+                  <TradeList coinList={coinList.pairs} />
+                </div>
+              )}
+            </li>
+            {parseInt(settings?.swap_status) === 1 &&
+              (Changeable.length >= 2 ? (
+                <Link href={`/user/swap-coin?coin_id=${row?.original.id}`}>
+                  <li className="toolTip relative cursor-pointer" title="swap">
+                    <TiArrowRepeat size={25} />
+                  </li>
+                </Link>
+              ) : (
+                <li
+                  className="toolTip relative cursor-pointer"
+                  title="swap"
+                  onClick={() => {
+                    toast.error("Two coins are required to swap");
+                  }}
+                >
+                  <TiArrowRepeat size={25} />
+                </li>
+              ))}
+          </ul>
+        </div>
+      ),
+    },
+  ];
+
   const handleActive = (index: any) => {
     if (index === tradeList) {
       setTradeList(index);
@@ -53,7 +187,7 @@ const MyWallet: NextPage = () => {
     if (link.label === walletList.current_page.toString()) return;
     const splitLink = link.url.split("api");
     const response: any = await WalletListApiAction(
-      splitLink[1] + "&per_page=" + selectedPerPage,
+      splitLink[1] + "&per_page=" + selectedLimit + "&search=" + search,
       setProcessing
     );
     setWalletList(response?.wallets);
@@ -67,11 +201,13 @@ const MyWallet: NextPage = () => {
 
   useEffect(() => {
     coinListApi();
-    getWalletLists(`/wallet-list?page=1&per_page=${selectedPerPage}`);
+    getWalletLists(
+      `/wallet-list?page=1&per_page=${selectedLimit}&search=${search}`
+    );
     return () => {
       setWalletList(null);
     };
-  }, []);
+  }, [search, selectedLimit]);
 
   const setDepositCryptoOrFiatUrl = (item: any) => {
     if (item.currency_type == 1) {
@@ -110,228 +246,16 @@ const MyWallet: NextPage = () => {
               <div className="asset-balances-left">
                 <div className="section-wrapper ">
                   <div className="">
-                    <div
-                      id="assetBalances_wrapper"
-                      className="dataTables_wrapper no-footer"
-                    >
-                      <div className="dataTables_head">
-                        <div
-                          className="dataTables_length"
-                          id="assetBalances_length"
-                        >
-                          <label className="">
-                            {t("Show")}
-                            <select
-                              name="assetBalances_length"
-                              aria-controls="assetBalances"
-                              className=""
-                              onChange={async (e) => {
-                                setSelectedPerPage(e.target.value);
-                                await getWalletLists(
-                                  "/wallet-list?page=1&per_page=" +
-                                    e.target.value
-                                );
-                              }}
-                            >
-                              <option value="15">15</option>
-                              <option value="25">25</option>
-                              <option value="50">50</option>
-                              <option value="100">100</option>
-                            </select>
-                          </label>
-                        </div>
-                        <div id="table_filter" className="dataTables_filter">
-                          <label>
-                            {t("Search")}:
-                            <input
-                              type="search"
-                              className="data_table_input"
-                              placeholder=""
-                              aria-controls="table"
-                              onChange={(e) =>
-                                SearchObjectArrayFuesJS(
-                                  walletList,
-                                  setChangeable,
-                                  e.target.value
-                                )
-                              }
-                            />
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                    {processing ? (
-                      <Loading />
-                    ) : (
-                      <div className="table-responsive walletTableScroll">
-                        <table
-                          id="assetBalances"
-                          className="table table-borderless secendary-table asset-balances-table"
-                        >
-                          <thead>
-                            <tr>
-                              <th scope="col" className="p-2">{t("Asset")}</th>
-                              {/* <th scope="col">{t("Symbol")}</th> */}
-                              <th scope="col" className="p-2">{t("On Order")}</th>
-                              <th scope="col" className="p-2">{t("Available Balance")}</th>
-                              <th scope="col" className="p-2">{t("Total Balance")}</th>
-                              <th scope="col" className="p-2">{t("Action")}</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {Changeable?.map((item: any, index: number) => (
-                              <tr id="" key={index}>
-                                <td className="p-2 border-bottom border-main-color">
-                                  <div className="asset">
-                                    <img
-                                      className="asset-icon"
-                                      src={item.coin_icon || "/bitcoin.png"}
-                                      alt=""
-                                    />
-                                    <div>
-                                      <p className="symbol">
-                                        {item?.coin_type}
-                                      </p>
-                                      <p className="asset-name">{item?.name}</p>
-                                    </div>
-                                  </div>
-                                </td>
-                                {/* <td>
-                                  <span className="symbol">
-                                    {item?.coin_type}
-                                  </span>
-                                </td> */}
-                                <td className="p-2 border-bottom border-main-color">
-                                  <div className="blance-text">
-                                    <span className="blance market incree border-0 p-0">
-                                      {item?.on_order}
-                                    </span>
-                                    <span className="usd">
-                                      ({settings?.currency_symbol}
-                                      {parseFloat(item?.on_order_usd).toFixed(
-                                        8
-                                      )}
-                                      )
-                                    </span>
-                                  </div>
-                                </td>
-                                <td className="p-2 border-bottom border-main-color">
-                                  <div className="blance-text">
-                                    <span className="blance">
-                                      {parseFloat(item?.balance).toFixed(8)}
-                                    </span>
-                                    <span className="usd">
-                                      ({settings?.currency_symbol}
-                                      {parseFloat(
-                                        item?.available_balance_usd
-                                      ).toFixed(8)}
-                                      )
-                                    </span>
-                                  </div>
-                                </td>
-                                <td className="p-2 border-bottom border-main-color">
-                                  <div className="blance-text">
-                                    <span className="blance">
-                                      {/* @ts-ignore */}
-                                      {parseFloat(
-                                        // @ts-ignore
-                                        Number(item?.balance) +
-                                          Number(item?.on_order)
-                                      ).toFixed(8)}
-                                    </span>
-                                    <span className="usd">
-                                      ({settings?.currency_symbol}
-                                      {parseFloat(
-                                        item?.total_balance_usd
-                                      ).toFixed(8)}
-                                      )
-                                    </span>
-                                  </div>
-                                </td>
-                                <td className="p-2 border-bottom border-main-color">
-                                  <div className="active-link">
-                                    <ul>
-                                      {item.is_deposit === 1 && (
-                                        <Link
-                                          href={setDepositCryptoOrFiatUrl(item)}
-                                        >
-                                          <li
-                                            className="toolTip relative"
-                                            title="Deposit"
-                                          >
-                                            <HiOutlineBanknotes size={25} />
-                                          </li>
-                                        </Link>
-                                      )}
-                                      {item.is_withdrawal === 1 && (
-                                        <Link
-                                          href={setWithdrawCryptoOrFiatUrl(
-                                            item
-                                          )}
-                                        >
-                                          <li
-                                            className="toolTip relative"
-                                            title="Withdraw"
-                                          >
-                                            <IoWalletOutline size={25} />
-                                          </li>
-                                        </Link>
-                                      )}
-
-                                      <li
-                                        className="toolTip trade-li"
-                                        title="Trade"
-                                        onClick={() =>
-                                          handleActive(
-                                            tradeList ? null : index + 1
-                                          )
-                                        }
-                                      >
-                                        <HiOutlinePresentationChartLine
-                                          size={25}
-                                        />
-                                        {tradeList === index + 1 && (
-                                          <div className="trade-select">
-                                            <TradeList
-                                              coinList={coinList.pairs}
-                                            />
-                                          </div>
-                                        )}
-                                      </li>
-                                      {parseInt(settings?.swap_status) === 1 &&
-                                        (Changeable.length >= 2 ? (
-                                          <Link
-                                            href={`/user/swap-coin?coin_id=${item.id}`}
-                                          >
-                                            <li
-                                              className="toolTip relative"
-                                              title="swap"
-                                            >
-                                              <TiArrowRepeat size={25} />
-                                            </li>
-                                          </Link>
-                                        ) : (
-                                          <li
-                                            className="toolTip relative"
-                                            title="swap"
-                                            onClick={() => {
-                                              toast.error(
-                                                "Two coins are required to swap"
-                                              );
-                                            }}
-                                          >
-                                            <TiArrowRepeat size={25} />
-                                          </li>
-                                        ))}
-                                    </ul>
-                                  </div>
-                                </td>
-                              </tr>
-                            ))}
-                          </tbody>
-                        </table>
-                      </div>
-                    )}
+                    <CustomDataTable
+                      columns={columns}
+                      data={Changeable}
+                      selectedLimit={selectedLimit}
+                      setSelectedLimit={setSelectedLimit}
+                      search={search}
+                      setSearch={setSearch}
+                      processing={processing}
+                      verticalAlignData={`middle`}
+                    />
                     <div
                       className="pagination-wrapper"
                       id="assetBalances_paginate"

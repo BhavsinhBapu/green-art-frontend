@@ -128,6 +128,7 @@ const WalletList: NextPage = () => {
                     search={search}
                     setSearch={setSearch}
                     processing={processing}
+                    verticalAlignData={`middle`}
                   />
                   <div
                     className="pagination-wrapper"
