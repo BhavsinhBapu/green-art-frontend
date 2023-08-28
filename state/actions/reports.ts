@@ -243,7 +243,8 @@ export const ReferralHistoryAction = async (
   setStillHistory: React.Dispatch<SetStateAction<boolean>>,
   column_name: string,
   order_by: string,
-  type: any
+  type: any,
+  search: any
 ) => {
   if (!type) {
     return;
@@ -254,7 +255,8 @@ export const ReferralHistoryAction = async (
     page,
     column_name,
     order_by,
-    type
+    type,
+    search
   ); 
   setReport(response?.data?.data?.data);
   setStillHistory(response.data.data);

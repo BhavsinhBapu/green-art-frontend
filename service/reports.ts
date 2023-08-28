@@ -29,10 +29,11 @@ export const ReferralHistoryApi = (
   page: any,
   column_name: string,
   order_by: string,
-  type: any
+  type: any,
+  search: any
 ) => {
   return request.get(
-    `/referral-history?page=${page}&limit=${per_page}&type=${type}`
+    `/referral-history?page=${page}&limit=${per_page}&type=${type}&search=${search}`
   );
 };
 
