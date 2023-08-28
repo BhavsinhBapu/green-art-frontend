@@ -17,7 +17,7 @@ export const AllBuyOrdersHistoryApi = async (
   page: number,
   column_name: string,
   order_by: string,
-  search:any
+  search: any
 ) => {
   const { data } = await request.get(
     `/all-buy-orders-history-app?per_page=${per_page}&page=${page}&column_name=${column_name}&order_by=${order_by}&search=${search}`
@@ -70,7 +70,11 @@ export const AllTransactionHistoryApi = async (
   );
   return data;
 };
-export const CoinConvertHistoryApi = async (per_page: number, page: number, search: any) => {
+export const CoinConvertHistoryApi = async (
+  per_page: number,
+  page: number,
+  search: any
+) => {
   const { data } = await request.get(
     `/coin-convert-history-app?per_page=${per_page}&page=${page}&search=${search}`
   );
@@ -81,7 +85,7 @@ export const currencyDepositHistory = async (
   page: number,
   column_name: string,
   order_by: string,
-  search:any
+  search: any
 ) => {
   const { data } = await request.get(
     `/currency-deposit-history?per_page=${per_page}&page=${page}&column_name=${column_name}&order_by=${order_by}&search=${search}`
@@ -93,15 +97,21 @@ export const currencyWithdrawHistory = async (
   per_page: number,
   page: number,
   column_name: string,
-  order_by: string
+  order_by: string,
+  search: any
 ) => {
   const { data } = await request.get(
-    `/fiat-withdrawal-history?per_page=${per_page}&page=${page}&column_name=${column_name}&order_by=${order_by}`
+    `/fiat-withdrawal-history?per_page=${per_page}&page=${page}&column_name=${column_name}&order_by=${order_by}&search=${search}`
   );
   return data;
 };
 
-export const getFiatHistoryApi = async (type: any, limit: any, page: any, search:any) => {
+export const getFiatHistoryApi = async (
+  type: any,
+  limit: any,
+  page: any,
+  search: any
+) => {
   const { data } = await request.get(
     `/wallet-currency-${type}-history?search=${search}&limit=${limit}&page=${page}`
   );
