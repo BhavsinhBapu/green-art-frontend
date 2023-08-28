@@ -20,12 +20,14 @@ import {
   STATUS_PENDING,
 } from "helpers/core-constants";
 import SectionLoading from "components/common/SectionLoading";
+import CustomDataTable from "components/Datatable";
 
 const TokenBuyHistory = () => {
   const [history, setHistory] = useState<any>([]);
   const { t } = useTranslation("common");
   const [search, setSearch] = useState<any>("");
   const [processing, setProcessing] = useState<boolean>(false);
+  const [selectedLimit, setSelectedLimit] = useState<any>("10");
   const [sortingInfo, setSortingInfo] = useState<any>({
     column_name: "created_at",
     order_by: "desc",
@@ -33,42 +35,36 @@ const TokenBuyHistory = () => {
   const [stillHistory, setStillHistory] = useState<any>([]);
   const columns = [
     {
-      name: t("Token Name"),
-      selector: (row: any) => row?.token_name,
-      sortable: true,
+      Header: t("Token Name"),
+      accessor: "token_name",
     },
 
     {
-      name: t("Amount"),
-      selector: (row: any) => row?.amount,
-      sortable: true,
-      cell: (row: any) => (
+      Header: t("Amount"),
+      Cell: ({ row }: any) => (
         <div>
-          {row?.amount} {row?.token_name}
+          {row?.original?.amount} {row?.original?.token_name}
         </div>
       ),
     },
     {
-      name: t("Amount Paid"),
-      selector: (row: any) => row?.amount,
-      sortable: true,
-      cell: (row: any) => (
+      Header: t("Amount Paid"),
+      Cell: ({ row }: any) => (
         <div>
-          {row?.pay_amount} {row?.pay_currency}
+          {row?.original?.pay_amount} {row?.original?.pay_currency}
         </div>
       ),
     },
     {
-      name: t("Approved Status"),
-      selector: (row: any) => row?.status,
-      sortable: true,
-      cell: (row: any) => (
+      Header: t("Approved Status"),
+      accessor: "status",
+      Cell: ({ cell }: any) => (
         <div>
-          {row.status === STATUS_PENDING ? (
+          {cell.value === STATUS_PENDING ? (
             <span className="text-warning">{t("Pending")}</span>
-          ) : row.status === STATUS_ACCEPTED ? (
+          ) : cell.value === STATUS_ACCEPTED ? (
             <span className="text-success"> {t("Accepted")}</span>
-          ) : row.status === STATUS_MODIFICATION ? (
+          ) : cell.value === STATUS_MODIFICATION ? (
             <span className="text-warning"> {t("Modification request")}</span>
           ) : (
             <span className="text-danger">{t("Rejected")}</span>
@@ -77,46 +73,45 @@ const TokenBuyHistory = () => {
       ),
     },
     {
-      name: t("Transaction Id"),
-      selector: (row: any) => row?.trx_id,
-      sortable: true,
+      Header: t("Transaction Id"),
+      accessor: "trx_id",
     },
     {
-      name: t("Payment Method"),
-      selector: (row: any) => row?.payment_method,
-      sortable: true,
+      Header: t("Payment Method"),
+      accessor: "payment_method",
     },
     {
-      name: t("Date"),
-      selector: (row: any) =>
-        moment(row.created_at).format("YYYY-MM-DD HH:mm:ss"),
-      sortable: true,
+      Header: t("Date"),
+      accessor: "created_at",
+      Cell: ({ cell }: any) => moment(cell.value).format("YYYY-MM-DD HH:mm:ss"),
     },
   ];
   const LinkTopaginationString = (page: any) => {
     const url = page.url.split("?")[1];
     const number = url.split("=")[1];
     getTokenBuyHistoryAction(
-      10,
+      selectedLimit,
       parseInt(number),
       setHistory,
       setProcessing,
       setStillHistory,
       sortingInfo.column_name,
-      sortingInfo.order_by
+      sortingInfo.order_by,
+      search
     );
   };
   useEffect(() => {
     getTokenBuyHistoryAction(
-      10,
+      selectedLimit,
       1,
       setHistory,
       setProcessing,
       setStillHistory,
       sortingInfo.column_name,
-      sortingInfo.order_by
+      sortingInfo.order_by,
+      search
     );
-  }, []);
+  }, [selectedLimit, search]);
   return (
     <>
       <div className="page-wrap">
@@ -132,84 +127,55 @@ const TokenBuyHistory = () => {
               <div className="asset-balances-left">
                 <div className="section-wrapper">
                   <div className="tableScroll">
-                    <div
-                      id="assetBalances_wrapper"
-                      className="dataTables_wrapper no-footer"
-                    >
-                      <div className="dataTables_head">
-                        <div id="table_filter" className="dataTables_filter">
-                          <label>
-                            {t("Search:")}
-                            <input
-                              type="search"
-                              className="data_table_input"
-                              aria-controls="table"
-                              value={search}
-                              onChange={(e) => {
-                                handleSwapHistorySearch(
-                                  e,
-                                  setSearch,
-                                  stillHistory,
-                                  setHistory
-                                );
-                              }}
-                            />
-                          </label>
-                        </div>
+                    <CustomDataTable
+                      columns={columns}
+                      data={history}
+                      selectedLimit={selectedLimit}
+                      setSelectedLimit={setSelectedLimit}
+                      search={search}
+                      setSearch={setSearch}
+                      processing={processing}
+                    />
+                    {history.length > 0 && (
+                      <div
+                        className="pagination-wrapper"
+                        id="assetBalances_paginate"
+                      >
+                        <span>
+                          {stillHistory?.links?.map(
+                            (link: any, index: number) =>
+                              link.label === "&laquo; Previous" ? (
+                                <a
+                                  className="paginate-button"
+                                  onClick={() => {
+                                    if (link.url) LinkTopaginationString(link);
+                                  }}
+                                  key={index}
+                                >
+                                  <i className="fa fa-angle-left"></i>
+                                </a>
+                              ) : link.label === "Next &raquo;" ? (
+                                <a
+                                  className="paginate-button"
+                                  onClick={() => LinkTopaginationString(link)}
+                                  key={index}
+                                >
+                                  <i className="fa fa-angle-right"></i>
+                                </a>
+                              ) : (
+                                <a
+                                  className="paginate_button paginate-number"
+                                  aria-controls="assetBalances"
+                                  data-dt-idx="1"
+                                  onClick={() => LinkTopaginationString(link)}
+                                  key={index}
+                                >
+                                  {link.label}
+                                </a>
+                              )
+                          )}
+                        </span>
                       </div>
-                    </div>
-                    {processing ? (
-                      <SectionLoading />
-                    ) : (
-                      <>
-                        <DataTable columns={columns} data={history} />
-                        {history.length > 0 && (
-                          <div
-                            className="pagination-wrapper"
-                            id="assetBalances_paginate"
-                          >
-                            <span>
-                              {stillHistory?.links?.map(
-                                (link: any, index: number) =>
-                                  link.label === "&laquo; Previous" ? (
-                                    <a
-                                      className="paginate-button"
-                                      onClick={() => {
-                                        if (link.url)
-                                          LinkTopaginationString(link);
-                                      }}
-                                      key={index}
-                                    >
-                                      <i className="fa fa-angle-left"></i>
-                                    </a>
-                                  ) : link.label === "Next &raquo;" ? (
-                                    <a
-                                      className="paginate-button"
-                                      onClick={() =>
-                                        LinkTopaginationString(link)
-                                      }
-                                      key={index}
-                                    >
-                                      <i className="fa fa-angle-right"></i>
-                                    </a>
-                                  ) : (
-                                    <a
-                                      className="paginate_button paginate-number"
-                                      aria-controls="assetBalances"
-                                      data-dt-idx="1"
-                                      onClick={() =>
-                                        LinkTopaginationString(link)
-                                      }
-                                      key={index}
-                                    >
-                                      {link.label}
-                                    </a>
-                                  )
-                              )}
-                            </span>
-                          </div>
-                        )}
-                      </>
                     )}
                   </div>
                 </div>

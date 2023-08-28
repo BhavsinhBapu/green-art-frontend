@@ -353,14 +353,16 @@ export const getTokenBuyHistoryAction = async (
   setProcessing: any,
   setStillHistory: any,
   column_name: string,
-  order_by: string
+  order_by: string,
+  search: any
 ) => {
   setProcessing(true)
   const response = await getTokenBuyHistory(
     per_page,
     page,
     column_name,
-    order_by
+    order_by,
+    search
   );
   checkDisable(response);
   if (response.success === true) {

@@ -48,10 +48,11 @@ export const getTokenBuyHistory = async (
   per_page: any,
   page: any,
   column_name: any,
-  order_by: any
+  order_by: any,
+  search: any
 ) => {
   const { data } = await launchpadRequest.get(
-    `/token-buy-history?per_page=${per_page}&page=${page}&column_name=${column_name}&order_by=${order_by}`
+    `/token-buy-history?per_page=${per_page}&page=${page}&column_name=${column_name}&order_by=${order_by}&search=${search}`
   );
   return data;
 };
@@ -206,7 +207,10 @@ export const TokenBuyIco = async (payload: any) => {
 };
 export const VerificationPaystackPayment = async (payload: any) => {
   // const { data } = await launchpadRequest.post(`/token-buy-ico`, payload);
-  const { data } = await launchpadRequest.post(`/verification-paystack-payment`, payload);
+  const { data } = await launchpadRequest.post(
+    `/verification-paystack-payment`,
+    payload
+  );
   return data;
 };
 export const GetPaystackPaymentUrlIco = async (payload: any) => {
