@@ -80,10 +80,11 @@ export const currencyDepositHistory = async (
   per_page: number,
   page: number,
   column_name: string,
-  order_by: string
+  order_by: string,
+  search:any
 ) => {
   const { data } = await request.get(
-    `/currency-deposit-history?per_page=${per_page}&page=${page}&column_name=${column_name}&order_by=${order_by}`
+    `/currency-deposit-history?per_page=${per_page}&page=${page}&column_name=${column_name}&order_by=${order_by}&search=${search}`
   );
   return data;
 };

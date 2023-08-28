@@ -136,7 +136,7 @@ const CustomDataTable = ({
                               whiteSpace: "nowrap",
                               overflow: "hidden",
                               textOverflow: "ellipsis",
-                              maxWidth: "20px",
+                              maxWidth: "200px",
                             }}
                           >
                             {cell.render("Cell")}

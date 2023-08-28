@@ -10,6 +10,7 @@ import {
   handleSearchItemsCurrency,
 } from "state/actions/reports";
 import SectionLoading from "components/common/SectionLoading";
+import CustomDataTable from "components/Datatable";
 
 const CurrencyDepositHistory = () => {
   type searchType = string;
@@ -20,100 +21,99 @@ const CurrencyDepositHistory = () => {
   });
   const { t } = useTranslation("common");
   const [processing, setProcessing] = useState<boolean>(false);
+  const [selectedLimit, setSelectedLimit] = useState<any>("10");
   const [history, setHistory] = useState<any>([]);
   const [stillHistory, setStillHistory] = useState<any>([]);
   const LinkTopaginationString = (page: any) => {
     const url = page.url.split("?")[1];
     const number = url.split("=")[1];
     CurrencyDepositHistoryAction(
-      10,
+      selectedLimit,
       parseInt(number),
       setHistory,
       setProcessing,
       setStillHistory,
       sortingInfo.column_name,
-      sortingInfo.order_by
+      sortingInfo.order_by,
+      search
     );
   };
   const getReport = async () => {
     CurrencyDepositHistoryAction(
-      10,
+      selectedLimit,
       1,
       setHistory,
       setProcessing,
       setStillHistory,
       sortingInfo.column_name,
-      sortingInfo.order_by
+      sortingInfo.order_by,
+      search
     );
   };
 
   const columns = [
     {
-      name: t("Currency Amount"),
-      cell: (row: any) => (
+      Header: t("Currency Amount"),
+
+      Cell: ({ row }: any) => (
         <div className="blance-text">
           <span className="blance market incree">
-            {parseFloat(row?.currency_amount).toFixed(2)} {row?.currency}
-          </span>
-        </div>
-      ),
-      sortable: true,
-    },
-    {
-      name: t("Coin Amount"),
-      // selector: (row: any) => row?.coin_amount,
-      cell: (row: any) => (
-        <div className="blance-text">
-          <span className="blance market incree">
-            {row?.coin_amount} {row?.coin_type}
-          </span>
-        </div>
-      ),
-      sortable: true,
-    },
-    {
-      name: t("Transaction id"),
-      selector: (row: any) => row?.transaction_id,
-      sortable: true,
-      cell: (row: any) => (
-        <div className="blance-text">
-          <span className="blance market incree">{row?.transaction_id?? 'N/A'}</span>
-        </div>
-      ),
-    },
-    {
-      name: t("Rate"),
-      // selector: (row: any) => row?.rate,
-      sortable: true,
-      cell: (row: any) => (
-        <div className="blance-text">
-          <span className="blance market incree">
-            {row?.rate} {row?.coin_type}
+            {parseFloat(row?.original?.currency_amount).toFixed(2)}{" "}
+            {row?.original?.currency}
           </span>
         </div>
       ),
     },
     {
-      name: t("Status"),
-      selector: (row: any) => row?.status,
-      sortable: true,
-      cell: (row: any) => (
+      Header: t("Coin Amount"),
+
+      Cell: ({ row }: any) => (
+        <div className="blance-text">
+          <span className="blance market incree">
+            {row?.original?.coin_amount} {row?.original?.coin_type}
+          </span>
+        </div>
+      ),
+    },
+    {
+      Header: t("Transaction id"),
+      accessor: "transaction_id",
+      Cell: ({ cell }: any) => (
+        <div className="blance-text">
+          <span className="blance market incree">{cell?.value ?? "N/A"}</span>
+        </div>
+      ),
+    },
+    {
+      Header: t("Rate"),
+
+      Cell: ({ row }: any) => (
+        <div className="blance-text">
+          <span className="blance market incree">
+            {row?.original?.rate} {row?.original?.coin_type}
+          </span>
+        </div>
+      ),
+    },
+    {
+      Header: t("Status"),
+      accessor: "status",
+      Cell: ({ cell }: any) => (
         <div>
-          {row.status === 0 ? (
-            <span className="text-warning">{t("Pending")}</span>
-          ) : row.status === 1 ? (
-            <span className="text-success"> {t("Success")}</span>
+          {cell.value === 0 ? (
+            <span className="text-warning text-12">{t("Pending")}</span>
+          ) : cell.value === 1 ? (
+            <span className="text-success text-12"> {t("Success")}</span>
           ) : (
-            <span className="text-danger">{t("Failed")}</span>
+            <span className="text-danger text-12">{t("Failed")}</span>
           )}
         </div>
       ),
     },
     {
-      name: t("Date"),
-      selector: (row: any) =>
-        moment(row.created_at).format("YYYY-MM-DD HH:mm:ss"),
-      sortable: true,
+      Header: t("Date"),
+      accessor: "created_at",
+      Cell: ({ cell }: any) => moment(cell.value).format("YYYY-MM-DD HH:mm:ss"),
     },
   ];
   React.useEffect(() => {
@@ -121,7 +121,7 @@ const CurrencyDepositHistory = () => {
     return () => {
       setHistory([]);
     };
-  }, []);
+  }, [selectedLimit, search]);
   return (
     <>
       <div className="page-wrap rightMargin">
@@ -139,118 +139,64 @@ const CurrencyDepositHistory = () => {
               </div>
             </div>
             <div className="asset-balances-area">
-              {processing ? (
-                <SectionLoading />
-              ) : (
-                <div className="asset-balances-left">
-                  <div className="section-wrapper">
-                    <div className="tableScroll">
+              <div className="asset-balances-left">
+                <div className="section-wrapper">
+                  <div className="tableScroll">
+                    <CustomDataTable
+                      columns={columns}
+                      data={history}
+                      selectedLimit={selectedLimit}
+                      setSelectedLimit={setSelectedLimit}
+                      search={search}
+                      setSearch={setSearch}
+                      processing={processing}
+                    />
+                    {history?.length > 0 && (
                       <div
-                        id="assetBalances_wrapper"
-                        className="dataTables_wrapper no-footer"
+                        className="pagination-wrapper"
+                        id="assetBalances_paginate"
                       >
-                        <div className="dataTables_head">
-                          <div
-                            className="dataTables_length"
-                            id="assetBalances_length"
-                          >
-                            <label className="">
-                              {t("Show")}
-                              <select
-                                name="assetBalances_length"
-                                aria-controls="assetBalances"
-                                className=""
-                                onChange={(e) => {
-                                  CurrencyDepositHistoryAction(
-                                    parseInt(e.target.value),
-                                    1,
-                                    setHistory,
-                                    setProcessing,
-                                    setStillHistory,
-                                    sortingInfo.column_name,
-                                    sortingInfo.order_by
-                                  );
-                                }}
-                              >
-                                <option value="10">10</option>
-                                <option value="25">25</option>
-                                <option value="50">50</option>
-                                <option value="100">100</option>
-                              </select>
-                            </label>
-                          </div>
-                          <div id="table_filter" className="dataTables_filter">
-                            <label>
-                              {t("Search")}:
-                              <input
-                                type="search"
-                                className="data_table_input"
-                                placeholder=""
-                                aria-controls="table"
-                                value={search}
-                                onChange={(e) => {
-                                  handleSearchItemsCurrency(
-                                    e,
-                                    setSearch,
-                                    stillHistory,
-                                    setHistory
-                                  );
-                                }}
-                              />
-                            </label>
-                          </div>
-                        </div>
+                        <span>
+                          {stillHistory?.links?.map(
+                            (link: any, index: number) =>
+                              link.label === "&laquo; Previous" ? (
+                                <a
+                                  className="paginate-button"
+                                  onClick={() => {
+                                    if (link.url) LinkTopaginationString(link);
+                                  }}
+                                  key={index}
+                                >
+                                  <i className="fa fa-angle-left"></i>
+                                </a>
+                              ) : link.label === "Next &raquo;" ? (
+                                <a
+                                  className="paginate-button"
+                                  onClick={() => LinkTopaginationString(link)}
+                                  key={index}
+                                >
+                                  <i className="fa fa-angle-right"></i>
+                                </a>
+                              ) : (
+                                <a
+                                  className={`paginate_button paginate-number ${
+                                    link.active === true && "text-warning"
+                                  }`}
+                                  aria-controls="assetBalances"
+                                  data-dt-idx="1"
+                                  onClick={() => LinkTopaginationString(link)}
+                                  key={index}
+                                >
+                                  {link.label}
+                                </a>
+                              )
+                          )}
+                        </span>
                       </div>
-
-                      <DataTable columns={columns} data={history} />
-                      {history?.length > 0 && (
-                        <div
-                          className="pagination-wrapper"
-                          id="assetBalances_paginate"
-                        >
-                          <span>
-                            {stillHistory?.links?.map(
-                              (link: any, index: number) =>
-                                link.label === "&laquo; Previous" ? (
-                                  <a
-                                    className="paginate-button"
-                                    onClick={() => {
-                                      if (link.url)
-                                        LinkTopaginationString(link);
-                                    }}
-                                    key={index}
-                                  >
-                                    <i className="fa fa-angle-left"></i>
-                                  </a>
-                                ) : link.label === "Next &raquo;" ? (
-                                  <a
-                                    className="paginate-button"
-                                    onClick={() => LinkTopaginationString(link)}
-                                    key={index}
-                                  >
-                                    <i className="fa fa-angle-right"></i>
-                                  </a>
-                                ) : (
-                                  <a
-                                    className={`paginate_button paginate-number ${
-                                      link.active === true && "text-warning"
-                                    }`}
-                                    aria-controls="assetBalances"
-                                    data-dt-idx="1"
-                                    onClick={() => LinkTopaginationString(link)}
-                                    key={index}
-                                  >
-                                    {link.label}
-                                  </a>
-                                )
-                            )}
-                          </span>
-                        </div>
-                      )}
-                    </div>
+                    )}
                   </div>
                 </div>
-              )}
+              </div>
             </div>
           </div>
         </div>
