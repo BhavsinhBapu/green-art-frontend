@@ -298,9 +298,10 @@ export const GetTokenListAction = async (
   setProcessing: any,
   setStillHistory: any,
   column_name: string,
-  order_by: string
+  order_by: string,
+  search: any
 ) => {
-  const response = await GetTokenList(per_page, page, column_name, order_by);
+  const response = await GetTokenList(per_page, page, column_name, order_by, search);
   checkDisable(response);
   if (response.success === true) {
     setReport(response.data.data);

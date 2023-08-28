@@ -20,11 +20,13 @@ import {
   STATUS_PENDING,
 } from "helpers/core-constants";
 import { BsFillChatFill } from "react-icons/bs";
+import CustomDataTable from "components/Datatable";
 const Profile: NextPage = ({}: any) => {
   const [history, setHistory] = useState<any>([]);
   const { t } = useTranslation("common");
   const [search, setSearch] = useState<any>("");
   const [processing, setProcessing] = useState<boolean>(false);
+  const [selectedLimit, setSelectedLimit] = useState<any>("10");
   const [sortingInfo, setSortingInfo] = useState<any>({
     column_name: "created_at",
     order_by: "desc",
@@ -32,27 +34,24 @@ const Profile: NextPage = ({}: any) => {
   const [stillHistory, setStillHistory] = useState<any>([]);
   const columns = [
     {
-      name: t("Base Coin"),
-      selector: (row: any) => row?.base_coin,
-      sortable: true,
+      Header: t("Base Coin"),
+      accessor: "base_coin",
     },
     {
-      name: t("Token Name"),
-      selector: (row: any) => row?.token_name,
-      sortable: true,
+      Header: t("Token Name"),
+      accessor: "token_name",
     },
 
     {
-      name: t("Approved Status"),
-      selector: (row: any) => row?.approved_status,
-      sortable: true,
-      cell: (row: any) => (
+      Header: t("Approved Status"),
+      accessor: "approved_status",
+      Cell: ({ cell }: any) => (
         <div>
-          {row.approved_status === STATUS_PENDING ? (
+          {cell.value === STATUS_PENDING ? (
             <span className="text-warning">{t("Pending")}</span>
-          ) : row.approved_status === STATUS_ACCEPTED ? (
+          ) : cell.value === STATUS_ACCEPTED ? (
             <span className="text-success"> {t("Accepted")}</span>
-          ) : row.approved_status === STATUS_MODIFICATION ? (
+          ) : cell.value === STATUS_MODIFICATION ? (
             <span className="text-warning"> {t("Modification request")}</span>
           ) : (
             <span className="text-danger">{t("Rejected")}</span>
@@ -61,24 +60,20 @@ const Profile: NextPage = ({}: any) => {
       ),
     },
     {
-      name: t("Date"),
-      selector: (row: any) =>
-        moment(row.created_at).format("YYYY-MM-DD HH:mm:ss"),
-      sortable: true,
+      Header: t("Date"),
+      accessor: "created_at",
+      Cell: ({ cell }: any) => moment(cell.value).format("YYYY-MM-DD HH:mm:ss"),
     },
     {
-      name: t("Wallet Address"),
-      selector: (row: any) => row?.wallet_address,
-      sortable: true,
+      Header: t("Wallet Address"),
+      accessor: "wallet_address",
     },
     {
-      name: t("Actions"),
-      selector: (row: any) => row?.status,
-      sortable: true,
-      cell: (row: any) => (
+      Header: t("Actions"),
+      Cell: ({ row }: any) => (
         <div className="blance-text flex flex-row">
-          {row.approved_status === 1 ? (
-            <Link href={`/ico/create-edit-phase/${row?.id}`}>
+          {row?.original?.approved_status === 1 ? (
+            <Link href={`/ico/create-edit-phase/${row?.original?.id}`}>
               <li className="toolTip" title="Create Phase">
                 <MdCreateNewFolder size={20} />
               </li>
@@ -96,17 +91,17 @@ const Profile: NextPage = ({}: any) => {
               <MdCreateNewFolder size={20} />
             </li>
           )}
-          <Link href={`/chat/${row?.id}`}>
+          <Link href={`/chat/${row?.original?.id}`}>
             <li className="toolTip ml-2" title="Chat">
               <BsFillChatFill size={20} />
             </li>
           </Link>
-          <Link href={`/ico/create-edit-token/${row?.id}?edit=true`}>
+          <Link href={`/ico/create-edit-token/${row?.original?.id}?edit=true`}>
             <li className="toolTip ml-2" title="Edit token">
               <IoCreateOutline size={20} />
             </li>
           </Link>
-          <Link href={`/ico/token-phase-list/${row?.id}`}>
+          <Link href={`/ico/token-phase-list/${row?.original?.id}`}>
             <li className="toolTip ml-2" title="Phase List">
               <AiOutlineOrderedList size={20} />
             </li>
@@ -119,26 +114,28 @@ const Profile: NextPage = ({}: any) => {
     const url = page.url.split("?")[1];
     const number = url.split("=")[1];
     GetTokenListAction(
-      10,
+      selectedLimit,
       parseInt(number),
       setHistory,
       setProcessing,
       setStillHistory,
       sortingInfo.column_name,
-      sortingInfo.order_by
+      sortingInfo.order_by,
+      search
     );
   };
   useEffect(() => {
     GetTokenListAction(
-      10,
+      selectedLimit,
       1,
       setHistory,
       setProcessing,
       setStillHistory,
       sortingInfo.column_name,
-      sortingInfo.order_by
+      sortingInfo.order_by,
+      search
     );
-  }, []);
+  }, [selectedLimit, search]);
   return (
     <>
       <div className="page-wrap">
@@ -154,33 +151,15 @@ const Profile: NextPage = ({}: any) => {
               <div className="asset-balances-left">
                 <div className="section-wrapper">
                   <div className="tableScroll">
-                    <div
-                      id="assetBalances_wrapper"
-                      className="dataTables_wrapper no-footer"
-                    >
-                      <div className="dataTables_head">
-                        <div id="table_filter" className="dataTables_filter">
-                          <label>
-                            {t("Search:")}
-                            <input
-                              type="search"
-                              className="data_table_input"
-                              aria-controls="table"
-                              value={search}
-                              onChange={(e) => {
-                                handleSwapHistorySearch(
-                                  e,
-                                  setSearch,
-                                  stillHistory,
-                                  setHistory
-                                );
-                              }}
-                            />
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                    <DataTable columns={columns} data={history} />
+                    <CustomDataTable
+                      columns={columns}
+                      data={history}
+                      selectedLimit={selectedLimit}
+                      setSelectedLimit={setSelectedLimit}
+                      search={search}
+                      setSearch={setSearch}
+                      processing={processing}
+                    />
                     <div
                       className="pagination-wrapper"
                       id="assetBalances_paginate"

@@ -140,10 +140,11 @@ export const GetTokenList = async (
   per_page: number,
   page: number,
   column_name: string,
-  order_by: string
+  order_by: string,
+  search: any
 ) => {
   const { data } = await launchpadRequest.get(
-    `/ico-list-user?per_page=${per_page}&page=${page}&column_name=${column_name}&order_by=${order_by}`
+    `/ico-list-user?per_page=${per_page}&page=${page}&column_name=${column_name}&order_by=${order_by}&search=${search}`
   );
   return data;
 };
