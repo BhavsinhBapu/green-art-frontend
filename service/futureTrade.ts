@@ -11,10 +11,11 @@ export const appDashboardData = async (pair: string | null) => {
 export const getWalletsFuture = async (
   per_page: any,
   page: any,
-  type: number
+  type: number,
+  search: any
 ) => {
   const { data } = await request.get(
-    `/wallet-list?limit=${per_page}&page=${page}&type=${type}`
+    `/wallet-list?limit=${per_page}&page=${page}&type=${type}&search=${search}`
   );
   return data;
 };

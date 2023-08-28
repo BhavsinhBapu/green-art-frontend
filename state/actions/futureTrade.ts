@@ -553,8 +553,8 @@ export const CloseBuyOrderAction =
       toast.error(response.message);
     }
   };
-export const getWalletsFutureAction = async (per_page: any, page: any) => {
-  const response = await getWalletsFuture(per_page, page, 2);
+export const getWalletsFutureAction = async (per_page: any, page: any, search:any) => {
+  const response = await getWalletsFuture(per_page, page, 2, search);
   return response;
 };
 
