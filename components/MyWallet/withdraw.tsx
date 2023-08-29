@@ -88,7 +88,7 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
   return (
     <div className="my-wallet-new px-0">
       <h5>{t("Total Balance")}</h5>
-      <div className="coin-list-item">
+      <div className="coin-list-item mt-3">
         <div className="coint-flex">
           <img
             className="icon"
@@ -118,7 +118,8 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
                   <h5>{t("Select Network")}</h5>
                   <select
                     name="currency"
-                    className="form-control coin-list-item"
+                    className="form-control coin-list-item mt-3"
+                    style={{height: '44px'}}
                     onChange={(e) => {
                       const findObje = responseData?.data?.find(
                         (x: any) => x.id === parseInt(e.target.value)
@@ -140,7 +141,7 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
         <div className="wallet-addres">
           <h5>{t("Address")}</h5>
           <div className="">
-            <div className="input-group input-address-bar">
+            <div className="input-group input-address-bar mt-3">
               <input
                 type="text"
                 className="form-control border-0 h-50"
@@ -177,7 +178,7 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
           <h5>{t("Amount")}</h5>
           <div className="">
             <div className="">
-              <div className="input-group input-address-bar">
+              <div className="input-group input-address-bar mt-3">
                 <input
                   type="text"
                   className="form-control border-0 h-50"
@@ -256,6 +257,7 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
           <button
             className="primary-btn-outline w-100 mt-4"
             type="button"
+            style={{height: '44px'}}
             disabled={errorMessage.status === true}
             onClick={handleSubmit}
           >
