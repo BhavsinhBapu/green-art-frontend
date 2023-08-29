@@ -93,7 +93,7 @@ const Wallethistory = ({ type }: any) => {
   }, [type, selectedLimit, search]);
   return (
     <>
-      <div className="page-wrap rightMargin mt-5">
+      <div className="page-wrap mt-2">
         <div className="page-main-content">
           <div className="container-fluid px-0">
             <div className="asset-balances-area">

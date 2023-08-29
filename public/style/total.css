@@ -12368,7 +12368,7 @@ input[type="number"] {
 }
 
 .wallet-back {
-  margin-bottom: 30px;
+  margin-bottom: 15px;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -12636,7 +12636,7 @@ input[type="number"] {
 .single-wallet {
   margin: 0 auto;
   background: var(--main-background-color);
-  padding: 50px 20px 50px 20px;
+  padding: 50px 20px 0 20px;
 }
 
 .my-wallet-new {
@@ -12654,7 +12654,7 @@ input[type="number"] {
   background: var(--main-background-color);
   padding: 20px 20px;
   background: var(--main-background-color) !important;
-  padding: 15px;
+  padding: 6px 15px;
   border-radius: 5px;
   border: 1px solid var(--border-color);
 }
@@ -12696,7 +12696,7 @@ input[type="number"] {
 }
 
 .wallet-addres {
-  margin-top: 40px;
+  margin-top: 15px;
 }
 
 .waring-wallet-text {
@@ -12957,7 +12957,7 @@ input[type="number"] {
 .single-wallet {
   margin: 0 auto;
   background: var(--main-background-color);
-  padding: 50px 20px 50px 20px;
+  padding: 50px 20px 0 20px;
 }
 
 .timeLineLists p {

@@ -25,6 +25,8 @@ import { RootState } from "state/store";
 import { useSelector } from "react-redux";
 import Wallethistory from "components/wallet/wallet-history";
 import { MyWalletProcessSidebar } from "service/wallet";
+import Link from "next/link";
+import { IoIosArrowBack } from "react-icons/io";
 
 const DeposiAndWithdraw = ({ withdrawFaq, depositFaq }: any) => {
   const router = useRouter();
@@ -130,86 +132,114 @@ const DeposiAndWithdraw = ({ withdrawFaq, depositFaq }: any) => {
       <div className="page-wrap my-wallet-page">
         <div className="container">
           <div className={`row`}>
-            {router.query.id === MY_WALLET_DEPOSIT_TYPE && (
-              <DipositComponent
-                responseData={responseData}
-                router={router}
-                setDependecy={setDependecy}
-                fullPage={fullPage}
-              />
-            )}
-
-            {router.query.id === MY_WALLET_WITHDRAW_TYPE && (
-              <WithdrawComponent
-                responseData={responseData}
-                router={router}
-                fullPage={fullPage}
-              />
-            )}
-
-            {/* {fullPage ? "true" : "false"} */}
-
-            {fullPage === false && (
-              <div className="col-md-5 mt-4 mt-md-0">
-                {parseInt(settings.withdrawal_faq_status) === 1 &&
-                  router.query.id === MY_WALLET_WITHDRAW_TYPE &&
-                  faqs?.length > 0 && (
-                    <div className={`box-one single-box visible mb-25`}>
-                      <div className="section-wrapper rounded">
-                        <FAQ faqs={faqs} type={router.query.id} />
+            <div className="col-md-12">
+              <div className="single-wallet boxShadow rounded">
+                <div className="box-two single-box visible">
+                  <div className="">
+                    <Link href="/user/my-wallet">
+                      <div className="wallet-back">
+                        <IoIosArrowBack className="wallet-backIcon" size={25} />
+                        <a href="">{t("My Wallet")}</a>
                       </div>
-                    </div>
-                  )}
-                {parseInt(settings.coin_deposit_faq_status) === 1 &&
-                  router.query.id === MY_WALLET_DEPOSIT_TYPE &&
-                  faqs?.length > 0 && (
-                    <div className={`box-one single-box visible mb-25`}>
-                      <div className="section-wrapper rounded">
-                        <FAQ faqs={faqs} type={router.query.id} />
-                      </div>
-                    </div>
-                  )}
+                    </Link>
 
-                {getProcessData?.data?.progress_status_list?.length > 0 && (
-                  <div className="mt-3">
-                    <h4>
-                      {router.query.id === "deposit"
-                        ? "Deposit" + " Step's"
-                        : "Withdrawal" + " Step's"}
-                    </h4>
+                    <div className="row">
+                      <div
+                        className={
+                          fullPage ? "col-md-8 no-sidebar" : `col-md-8`
+                        }
+                      >
+                        {router.query.id === MY_WALLET_DEPOSIT_TYPE && (
+                          <DipositComponent
+                            responseData={responseData}
+                            router={router}
+                            setDependecy={setDependecy}
+                            fullPage={fullPage}
+                          />
+                        )}
 
-                    <div className="flexItem">
-                      <div>
-                        {getProcessData?.data?.progress_status_list?.map(
-                          (item: any, index: number) => (
-                            <div
-                              key={`progress${index}`}
-                              className={"timeLineLists"}
-                            >
-                              <div
-                                className={`${
-                                  getProcessData?.data?.progress_status_list
-                                    ?.length ==
-                                  index + 1
-                                    ? "timeLineIcon removeBeforeCSS"
-                                    : "timeLineIcon"
-                                }`}
-                              >
-                                <i className="fa-sharp fa-solid fa-circle-check active"></i>
-                              </div>
-                              <div className="progressContent">
-                                <h5>{item.title}</h5>
-                                <span>{item.description}</span>
-                              </div>
-                            </div>
-                          )
+                        {router.query.id === MY_WALLET_WITHDRAW_TYPE && (
+                          <WithdrawComponent
+                            responseData={responseData}
+                            router={router}
+                            fullPage={fullPage}
+                          />
                         )}
                       </div>
+
+                      {/* {fullPage ? "true" : "false"} */}
+
+                      {fullPage === false && (
+                        <div className="col-md-4 mt-0">
+                          {parseInt(settings.withdrawal_faq_status) === 1 &&
+                            router.query.id === MY_WALLET_WITHDRAW_TYPE &&
+                            faqs?.length > 0 && (
+                              <div
+                                className={`box-one single-box visible mb-25`}
+                              >
+                                <div className="my-wallet-new rounded px-0">
+                                  <FAQ faqs={faqs} type={router.query.id} />
+                                </div>
+                              </div>
+                            )}
+                          {parseInt(settings.coin_deposit_faq_status) === 1 &&
+                            router.query.id === MY_WALLET_DEPOSIT_TYPE &&
+                            faqs?.length > 0 && (
+                              <div
+                                className={`box-one single-box visible mb-25`}
+                              >
+                                <div className="my-wallet-new rounded px-0">
+                                  <FAQ faqs={faqs} type={router.query.id} />
+                                </div>
+                              </div>
+                            )}
+
+                          {getProcessData?.data?.progress_status_list?.length >
+                            0 && (
+                            <div className="mt-3">
+                              <h4>
+                                {router.query.id === "deposit"
+                                  ? "Deposit" + " Step's"
+                                  : "Withdrawal" + " Step's"}
+                              </h4>
+
+                              <div className="flexItem">
+                                <div>
+                                  {getProcessData?.data?.progress_status_list?.map(
+                                    (item: any, index: number) => (
+                                      <div
+                                        key={`progress${index}`}
+                                        className={"timeLineLists"}
+                                      >
+                                        <div
+                                          className={`${
+                                            getProcessData?.data
+                                              ?.progress_status_list?.length ==
+                                            index + 1
+                                              ? "timeLineIcon removeBeforeCSS"
+                                              : "timeLineIcon"
+                                          }`}
+                                        >
+                                          <i className="fa-sharp fa-solid fa-circle-check active"></i>
+                                        </div>
+                                        <div className="progressContent">
+                                          <h5>{item.title}</h5>
+                                          <span>{item.description}</span>
+                                        </div>
+                                      </div>
+                                    )
+                                  )}
+                                </div>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      )}
                     </div>
                   </div>
-                )}
+                </div>
               </div>
-            )}
+            </div>
           </div>
           {router.query.id && (
             <Wallethistory
