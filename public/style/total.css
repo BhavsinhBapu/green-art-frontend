@@ -4224,9 +4224,9 @@ table.dataTable tbody tr.selected td {
   scrollbar-width: none;
 }
 
-.dataTables_wrapper.no-footer .dataTables_scrollBody::-webkit-scrollbar {
+/* .dataTables_wrapper.no-footer .dataTables_scrollBody::-webkit-scrollbar {
   display: none;
-}
+} */
 
 /* custome code start here  */
 
@@ -4490,9 +4490,9 @@ div.dataTables_wrapper div.dataTables_length label {
   scrollbar-width: none;
 }
 
-.order-box .tab-pane::-webkit-scrollbar {
+/* .order-box .tab-pane::-webkit-scrollbar {
   display: none;
-}
+} */
 
 #myOrderBookTable_wrapper {
   width: 100%;
@@ -5102,9 +5102,9 @@ select:-webkit-autofill:focus {
   overflow-y: scroll;
 }
 
-.orders-area .tab-content::-webkit-scrollbar {
+/* .orders-area .tab-content::-webkit-scrollbar {
   display: none;
-}
+} */
 
 .orders-area .tab-content {
   -ms-overflow-style: none;
@@ -10978,9 +10978,9 @@ table.dataTable thead tr th {
   scrollbar-width: none;
 }
 
-#marketTradeTable_wrapper .dataTables_scroll::-webkit-scrollbar {
+/* #marketTradeTable_wrapper .dataTables_scroll::-webkit-scrollbar {
   display: none;
-}
+} */
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -11873,9 +11873,9 @@ table.dataTable thead tr th {
   scrollbar-width: none;
 }
 
-#marketTradeTable_wrapper .dataTables_scroll::-webkit-scrollbar {
+/* #marketTradeTable_wrapper .dataTables_scroll::-webkit-scrollbar {
   display: none;
-}
+} */
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -14749,9 +14749,9 @@ input {
 .form-group .number_only {
   border: 0 !important;
 }
-body::-webkit-scrollbar {
+/* body::-webkit-scrollbar {
   display: none;
-}
+} */
 .p2p_top_bg {
   background-color: var(--footer-background-color);
 }
@@ -15320,9 +15320,9 @@ input:checked + .gift-card-buy-slider:before {
   -ms-overflow-style: none;
 }
 
-.order-book-section-max-h::-webkit-scrollbar {
+/* .order-book-section-max-h::-webkit-scrollbar {
   display: none;
-}
+} */
 
 .card-for-markets:hover {
   background-color: var(--card-background-color);
