@@ -11441,6 +11441,7 @@ input[type="number"] {
   position: absolute;
   z-index: 1;
   font-size: 12px;
+  min-width: 75px;
 }
 
 .preloder-area {
@@ -12352,6 +12353,7 @@ input[type="number"] {
   position: absolute;
   z-index: 1;
   font-size: 12px;
+  min-width: 75px;
 }
 
 /* .asset-balances-right.visible.mb-3.mywallet-deposit {
