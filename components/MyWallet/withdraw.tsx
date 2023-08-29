@@ -1,5 +1,5 @@
 import useTranslation from "next-translate/useTranslation";
-import React from "react";
+import React, { useEffect } from "react";
 import { FaHome } from "react-icons/fa";
 import { ImListNumbered } from "react-icons/im";
 import { copyTextById, formateZert } from "common";
@@ -14,6 +14,7 @@ import {
   WITHDRAW_FESS_FIXED,
   WITHDRAW_FESS_PERCENT,
 } from "helpers/core-constants";
+import { getFeeAmountApi } from "service/wallet";
 
 export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
   const { t } = useTranslation("common");
@@ -29,6 +30,8 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
     note: "withdrawal",
     network_type: selectedNetwork?.network_type ?? "",
   });
+
+  const [feesData, setFeesData] = React.useState<any>({});
   const [errorMessage, setErrorMessage] = React.useState({
     status: false,
     message: "",
@@ -85,6 +88,21 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
     return "";
   };
 
+  useEffect(() => {
+    if (withdrawalCredentials?.address && withdrawalCredentials?.amount) {
+      getFeeAmount();
+    }
+  }, [withdrawalCredentials]);
+
+  const getFeeAmount = async () => {
+    const response = await getFeeAmountApi(withdrawalCredentials);
+    if (!response.success) {
+      return;
+    }
+    setFeesData(response.data);
+    console.log("response", response);
+  };
+
   return (
     <div className="my-wallet-new px-0">
       <h5>{t("Total Balance")}</h5>
@@ -119,7 +137,7 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
                   <select
                     name="currency"
                     className="form-control coin-list-item mt-3"
-                    style={{height: '44px'}}
+                    style={{ height: "44px" }}
                     onChange={(e) => {
                       const findObje = responseData?.data?.find(
                         (x: any) => x.id === parseInt(e.target.value)
@@ -184,7 +202,7 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
                   className="form-control border-0 h-50"
                   id="amountWithdrawal"
                   name="amount"
-                  placeholder={t("AMOUNT TO WITHDRAW")}
+                  placeholder={t("AMOUNT To Withdraw")}
                   value={withdrawalCredentials.amount}
                   onChange={(e) => {
                     setWithdrawalCredentials({
@@ -197,6 +215,15 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
                   <ImListNumbered />
                 </span>
               </div>
+              {Object.keys(feesData).length > 0 && (
+                <div>
+                  <small>
+                    {t(
+                      `You will be charged ${feesData?.fees} ${feesData?.coin_type} as Withdrawal Fee for this withdrawal.`
+                    )}
+                  </small>
+                </div>
+              )}
               {responseData?.wallet?.withdrawal_fees_type ==
                 WITHDRAW_FESS_PERCENT && (
                 <small>
@@ -257,7 +284,7 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
           <button
             className="primary-btn-outline w-100 mt-4"
             type="button"
-            style={{height: '44px'}}
+            style={{ height: "44px" }}
             disabled={errorMessage.status === true}
             onClick={handleSubmit}
           >

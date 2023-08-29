@@ -33,3 +33,8 @@ export const GetWalletAddress = async (credential: any) => {
   });
   return data;
 };
+
+export const getFeeAmountApi = async (credential: any) => {
+  const { data } = await request.post("/pre-withdrawal-process", credential);
+  return data;
+};
