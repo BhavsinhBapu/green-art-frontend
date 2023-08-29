@@ -72,6 +72,19 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
     });
   }, [selectedNetwork?.network_type]);
 
+  const checkNetworkFunc = (networkId: any) => {
+    if (networkId == 4) {
+      return `(ERC20 Token)`;
+    }
+    if (networkId == 5) {
+      return `(BEP20 Token)`;
+    }
+    if (networkId == 6) {
+      return `(TRC20 Token)`;
+    }
+    return "";
+  };
+
   return (
     <div className={fullPage ? "col-md-7 no-sidebar" : `col-md-7 `}>
       <div className="single-wallet boxShadow rounded">
@@ -159,6 +172,17 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
                         <FaHome />
                       </span>
                     </div>
+                    <div className="mt-1 text-danger">
+                      <small>
+                        {t(
+                          `Only enter a ${
+                            responseData?.wallet?.coin_type ?? ""
+                          } ${checkNetworkFunc(
+                            responseData?.wallet?.network
+                          )} address in this field. Otherwise the asset you withdraw, may be lost.`
+                        )}
+                      </small>
+                    </div>
                   </div>
                 </div>
 
@@ -241,7 +265,8 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
                         status: false,
                         message: "",
                       });
-                    }}>
+                    }}
+                  >
                     {t("Withdraw")}
                   </button>
                 ) : (
@@ -249,7 +274,8 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
                     className="primary-btn-outline w-100 mt-4"
                     type="button"
                     disabled={errorMessage.status === true}
-                    onClick={handleSubmit}>
+                    onClick={handleSubmit}
+                  >
                     {t("Withdraw")}
                   </button>
                 )}

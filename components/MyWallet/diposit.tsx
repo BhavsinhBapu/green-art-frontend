@@ -25,6 +25,18 @@ export const DipositComponent = ({
       setInitialHit(true);
     }
   }, [responseData?.data[0]]);
+  const checkNetworkFunc = (networkId: any) => {
+    if (networkId == 4) {
+      return `(ERC20 Token)`;
+    }
+    if (networkId == 5) {
+      return `(BEP20 Token)`;
+    }
+    if (networkId == 6) {
+      return `(TRC20 Token)`;
+    }
+    return "";
+  };
   return (
     <div className={fullPage ? "col-md-7  no-sidebar" : `col-md-7`}>
       <div className="single-wallet boxShadow rounded">
@@ -95,7 +107,11 @@ export const DipositComponent = ({
                 <div className="coin-list-item">
                   <p className="waring-wallet-text">
                     {t(
-                      `Only send ${responseData?.deposit?.coin_type} to this address. Sending any others asset to this adress may result in the loss of your deposit!`
+                      `Only send ${
+                        responseData?.deposit?.coin_type ?? ""
+                      } ${checkNetworkFunc(
+                        responseData?.deposit?.network
+                      )} to this address. Sending any others asset to this adress may result in the loss of your deposit!`
                     )}
                   </p>
                 </div>
