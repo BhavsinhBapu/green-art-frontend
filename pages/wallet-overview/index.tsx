@@ -279,16 +279,4 @@ const Profile: NextPage = ({ user, profileActivity }: any) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
-  await SSRAuthCheck(ctx, "/user/profile");
-  const cookies = parseCookies(ctx);
-  const response = await GetUserInfoByTokenServer(cookies.token);
-
-  return {
-    props: {
-      user: response.user,
-      profileActivity: response.activityLog,
-    },
-  };
-};
 export default Profile;
