@@ -15686,11 +15686,26 @@ input:checked + .gift-card-buy-slider:before {
   border-radius: 5px;
   font-weight: 500;
 }
+
 .wallet-overview-btn-active {
   padding: 10px 12px;
   background: var(--primary-color) !important;
   border-radius: 5px;
   font-weight: 500;
+}
+
+.wallet-assets-btn {
+  padding: 6px 25px;
+  background: var(--card-background-color);
+  border-radius: 5px;
+  font-weight: 700;
+}
+
+.wallet-assets-btn-active {
+  padding: 6px 25px;
+  background: var(--main-background-color);
+  border-radius: 5px;
+  font-weight: 700;
 }
 
 @media (max-width: 1520px) {
