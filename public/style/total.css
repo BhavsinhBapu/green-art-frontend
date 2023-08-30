@@ -15673,6 +15673,25 @@ input:checked + .gift-card-buy-slider:before {
   line-height: 20px;
   color: var(--font-color);
 }
+.wallet-overview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.wallet-overview-btn {
+  padding: 10px 12px;
+  background: var(--card-background-color);
+  border-radius: 5px;
+  font-weight: 500;
+}
+.wallet-overview-btn-active {
+  padding: 10px 12px;
+  background: var(--primary-color) !important;
+  border-radius: 5px;
+  font-weight: 500;
+}
 
 @media (max-width: 1520px) {
   .trade-dashboard-side-margin {
