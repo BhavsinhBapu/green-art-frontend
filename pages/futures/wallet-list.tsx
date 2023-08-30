@@ -12,6 +12,7 @@ import { BsWallet2 } from "react-icons/bs";
 import { getWalletsFutureAction } from "state/actions/futureTrade";
 import CustomDataTable from "components/Datatable";
 import moment from "moment";
+import WalletOverviewSidebar from "layout/WalletOverviewSidebar";
 const WalletList: NextPage = () => {
   const { t } = useTranslation("common");
   const [walletList, setWalletList] = useState<any>([]);
@@ -80,7 +81,11 @@ const WalletList: NextPage = () => {
   ];
   const getWalletLists = async () => {
     setProcessing(true);
-    const response: any = await getWalletsFutureAction(selectedLimit, 1, search);
+    const response: any = await getWalletsFutureAction(
+      selectedLimit,
+      1,
+      search
+    );
     setWalletList(response?.data);
     setChangeable(response?.data?.data);
     setProcessing(false);
@@ -90,7 +95,11 @@ const WalletList: NextPage = () => {
     const url = page.url.split("?")[1];
     const number = url.split("=")[1];
     setProcessing(true);
-    const response: any = await getWalletsFutureAction(selectedLimit, number, search);
+    const response: any = await getWalletsFutureAction(
+      selectedLimit,
+      number,
+      search
+    );
     setWalletList(response?.data);
     setChangeable(response?.data?.data);
     setProcessing(false);
@@ -105,7 +114,7 @@ const WalletList: NextPage = () => {
   return (
     <div>
       {" "}
-      <div className="page-wrap">
+      {/* <div className="page-wrap">
         <div className="page-main-content container-fluid">
           <div className="section-top-wrap mb-25">
             <div className="overview-area">
@@ -115,60 +124,83 @@ const WalletList: NextPage = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
       <div className="page-wrap">
-        <div className="page-main-content">
+        <WalletOverviewSidebar />
+        <div className="page-main-content pt-0">
           <div className="container-fluid">
-            <div className="asset-balances-area cstm-loader-area">
-              <div className="asset-balances-left">
-                <div className="section-wrapper">
-                  <CustomDataTable
-                    columns={columns}
-                    data={Changeable}
-                    selectedLimit={selectedLimit}
-                    setSelectedLimit={setSelectedLimit}
-                    search={search}
-                    setSearch={setSearch}
-                    processing={processing}
-                    verticalAlignData={`middle`}
-                  />
-                  <div
-                    className="pagination-wrapper"
-                    id="assetBalances_paginate"
-                  >
-                    <span>
-                      {walletList?.links?.map((link: any, index: number) =>
-                        link.label === "&laquo; Previous" ? (
-                          <a
-                            className="paginate-button"
-                            onClick={() => LinkTopaginationString(link)}
-                            key={index}
-                          >
-                            <i className="fa fa-angle-left"></i>
-                          </a>
-                        ) : link.label === "Next &raquo;" ? (
-                          <a
-                            className="paginate-button"
-                            onClick={() => LinkTopaginationString(link)}
-                            key={index}
-                          >
-                            <i className="fa fa-angle-right"></i>
-                          </a>
-                        ) : (
-                          <a
-                            className={`paginate_button paginate-number ${
-                              link.active === true && "text-warning"
-                            }`}
-                            aria-controls="assetBalances"
-                            data-dt-idx="1"
-                            onClick={() => LinkTopaginationString(link)}
-                            key={index}
-                          >
-                            {link.label}
-                          </a>
-                        )
-                      )}
-                    </span>
+            <div className="my-5 wallet-overview-header inner-section-margin-top">
+              <div className="profle-are-top">
+                <h2>Future Wallet</h2>
+              </div>
+              <div>
+                <Link href={`/`}>
+                  <a className="wallet-overview-btn wallet-overview-btn-active ">
+                    Deposit
+                  </a>
+                </Link>
+                <Link href={`/`}>
+                  <a className="wallet-overview-btn mx-3">Withdraw</a>
+                </Link>
+                <Link href={`/`}>
+                  <a className="wallet-overview-btn">Transaction History</a>
+                </Link>
+              </div>
+            </div>
+            <div className="row bg-card-primary-clr">
+              <div className="col-md-12">
+                <div className="asset-balances-area cstm-loader-area">
+                  <div className="asset-balances-left">
+                    <div className="section-wrapper px-0">
+                      <CustomDataTable
+                        columns={columns}
+                        data={Changeable}
+                        selectedLimit={selectedLimit}
+                        setSelectedLimit={setSelectedLimit}
+                        search={search}
+                        setSearch={setSearch}
+                        processing={processing}
+                        verticalAlignData={`middle`}
+                      />
+                      <div
+                        className="pagination-wrapper"
+                        id="assetBalances_paginate"
+                      >
+                        <span>
+                          {walletList?.links?.map((link: any, index: number) =>
+                            link.label === "&laquo; Previous" ? (
+                              <a
+                                className="paginate-button"
+                                onClick={() => LinkTopaginationString(link)}
+                                key={index}
+                              >
+                                <i className="fa fa-angle-left"></i>
+                              </a>
+                            ) : link.label === "Next &raquo;" ? (
+                              <a
+                                className="paginate-button"
+                                onClick={() => LinkTopaginationString(link)}
+                                key={index}
+                              >
+                                <i className="fa fa-angle-right"></i>
+                              </a>
+                            ) : (
+                              <a
+                                className={`paginate_button paginate-number ${
+                                  link.active === true && "text-warning"
+                                }`}
+                                aria-controls="assetBalances"
+                                data-dt-idx="1"
+                                onClick={() => LinkTopaginationString(link)}
+                                key={index}
+                              >
+                                {link.label}
+                              </a>
+                            )
+                          )}
+                        </span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

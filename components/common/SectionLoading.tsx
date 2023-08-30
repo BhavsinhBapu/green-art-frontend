@@ -8,10 +8,10 @@ const SectionLoading = () => {
   const { logo } = useSelector((state: RootState) => state.user);
   return (
     <>
-      {/* <div className="loadingContainer container">
+      <div className="loadingContainer container">
       <span className="loader"></span>
-    </div> */}
-      <div className="preloder-area">
+    </div>
+      {/* <div className="preloder-area">
         {logo ? (
           <span>
             <img
@@ -24,7 +24,7 @@ const SectionLoading = () => {
         ) : (
           <span className="loader"></span>
         )}
-      </div>
+      </div> */}
     </>
   );
 };

@@ -23,6 +23,7 @@ import { TradeList } from "components/TradeList";
 import { appDashboardDataWithoutPair } from "service/exchange";
 import Footer from "components/common/footer";
 import CustomDataTable from "components/Datatable";
+import WalletOverviewSidebar from "layout/WalletOverviewSidebar";
 const MyWallet: NextPage = () => {
   const { t } = useTranslation("common");
   const { settings } = useSelector((state: RootState) => state.common);
@@ -225,7 +226,7 @@ const MyWallet: NextPage = () => {
   };
   return (
     <>
-      <div className="page-wrap">
+      {/* <div className="page-wrap">
         <div className="page-main-content container-fluid">
           <div className="section-top-wrap mb-25 inner-section-margin-top">
             <div className="overview-area">
@@ -240,61 +241,113 @@ const MyWallet: NextPage = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
       <div className="page-wrap">
-        <div className="page-main-content">
-          <div className="">
-            <div className="asset-balances-area cstm-loader-area">
-              <div className="asset-balances-left">
-                <div className="section-wrapper ">
-                  <div className="">
-                    <CustomDataTable
-                      columns={columns}
-                      data={Changeable}
-                      selectedLimit={selectedLimit}
-                      setSelectedLimit={setSelectedLimit}
-                      search={search}
-                      setSearch={setSearch}
-                      processing={processing}
-                      verticalAlignData={`middle`}
-                    />
-                    <div
-                      className="pagination-wrapper"
-                      id="assetBalances_paginate"
-                    >
-                      <span>
-                        {walletList?.links?.map((link: any, index: number) =>
-                          link.label === "&laquo; Previous" ? (
-                            <a
-                              className="paginate-button"
-                              onClick={() => LinkTopaginationString(link)}
-                              key={index}
-                            >
-                              <i className="fa fa-angle-left"></i>
-                            </a>
-                          ) : link.label === "Next &raquo;" ? (
-                            <a
-                              className="paginate-button"
-                              onClick={() => LinkTopaginationString(link)}
-                              key={index}
-                            >
-                              <i className="fa fa-angle-right"></i>
-                            </a>
-                          ) : (
-                            <a
-                              className={`paginate_button paginate-number ${
-                                link.active === true && "text-warning"
-                              }`}
-                              aria-controls="assetBalances"
-                              data-dt-idx="1"
-                              onClick={() => LinkTopaginationString(link)}
-                              key={index}
-                            >
-                              {link.label}
-                            </a>
-                          )
-                        )}
-                      </span>
+        <WalletOverviewSidebar />
+        <div className="page-main-content pt-0">
+          <div className="container-fluid">
+            <div className="my-5 wallet-overview-header inner-section-margin-top">
+              <div className="profle-are-top">
+                <h2>Spot Wallet</h2>
+              </div>
+              <div>
+                <Link href={`/`}>
+                  <a className="wallet-overview-btn wallet-overview-btn-active ">
+                    Deposit
+                  </a>
+                </Link>
+                <Link href={`/`}>
+                  <a className="wallet-overview-btn mx-3">Withdraw</a>
+                </Link>
+                <Link href={`/`}>
+                  <a className="wallet-overview-btn">Transaction History</a>
+                </Link>
+              </div>
+            </div>
+            <div className="row bg-card-primary-clr">
+              <div className="col-md-12">
+                <div className="">
+                  <div
+                    className="py-5"
+                    style={{ borderBottom: "1px solid var(--border-color)" }}
+                  >
+                    <div>
+                      <h6>Total Balance</h6>
+                      <div className="pt-3">
+                        <div
+                          
+                        >
+                          <h3>
+                            {allData?.total
+                              ? parseFloat(allData?.total).toFixed(8)
+                              : 0}
+                            {""} {settings?.currency}
+                          </h3>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="asset-balances-area cstm-loader-area">
+                    <div className="asset-balances-left">
+                      <div className="section-wrapper px-0">
+                        <div className="">
+                          <CustomDataTable
+                            columns={columns}
+                            data={Changeable}
+                            selectedLimit={selectedLimit}
+                            setSelectedLimit={setSelectedLimit}
+                            search={search}
+                            setSearch={setSearch}
+                            processing={processing}
+                            verticalAlignData={`middle`}
+                          />
+                          <div
+                            className="pagination-wrapper"
+                            id="assetBalances_paginate"
+                          >
+                            <span>
+                              {walletList?.links?.map(
+                                (link: any, index: number) =>
+                                  link.label === "&laquo; Previous" ? (
+                                    <a
+                                      className="paginate-button"
+                                      onClick={() =>
+                                        LinkTopaginationString(link)
+                                      }
+                                      key={index}
+                                    >
+                                      <i className="fa fa-angle-left"></i>
+                                    </a>
+                                  ) : link.label === "Next &raquo;" ? (
+                                    <a
+                                      className="paginate-button"
+                                      onClick={() =>
+                                        LinkTopaginationString(link)
+                                      }
+                                      key={index}
+                                    >
+                                      <i className="fa fa-angle-right"></i>
+                                    </a>
+                                  ) : (
+                                    <a
+                                      className={`paginate_button paginate-number ${
+                                        link.active === true && "text-warning"
+                                      }`}
+                                      aria-controls="assetBalances"
+                                      data-dt-idx="1"
+                                      onClick={() =>
+                                        LinkTopaginationString(link)
+                                      }
+                                      key={index}
+                                    >
+                                      {link.label}
+                                    </a>
+                                  )
+                              )}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>

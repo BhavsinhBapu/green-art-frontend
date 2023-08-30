@@ -19,36 +19,38 @@ const WalletOverviewSidebar = () => {
       <div className="sidebar-top">
         <ul className="left-menu">
           <Link href="/wallet-overview">
-            <li className={router.pathname == "/wallet-overview" ? "active" : ""}>
+            <li
+              className={router.pathname == "/wallet-overview" ? "active" : ""}
+            >
               <MdDashboardCustomize />
-              <a href="/wallet-overview">{t("Overview")}</a>
+              <a>{t("Overview")}</a>
             </li>
           </Link>
-          <Link href="/user/edit-profile">
+          <Link href="/user/my-wallet">
+            <li
+              className={router.pathname == "/user/my-wallet" ? "active" : ""}
+            >
+              <BiShapeCircle />
+              <a>{t("Spot")}</a>
+            </li>
+          </Link>
+          <Link href="/futures/wallet-list">
             <li
               className={
-                router.pathname == "/user/edit-profile" ? "active" : ""
+                router.pathname == "/futures/wallet-list" ? "active" : ""
               }
             >
               <BiShapeCircle />
-              <a href="/user/edit-profile">{t("Spot")}</a>
-            </li>
-          </Link>
-          <Link href="/user/phone-verification">
-            <li
-              className={
-                router.pathname == "/user/phone-verification" ? "active" : ""
-              }
-            >
-              <BiShapeCircle />
-              <a href="/user/phone-verification">{t("Futures")}</a>
+              <a>{t("Futures")}</a>
             </li>
           </Link>
           {parseInt(settings.knowledgebase_support_module) === 1 && (
-            <Link href="/support">
-              <li className={router.pathname == "/support" ? "active" : ""}>
+            <Link href="/p2p/p2p-wallet">
+              <li
+                className={router.pathname == "/p2p/p2p-wallet" ? "active" : ""}
+              >
                 <FaPeopleArrows />
-                <a href="/support">{t("P2P")}</a>
+                <a>{t("P2P")}</a>
               </li>
             </Link>
           )}

@@ -12,8 +12,20 @@ import moment from "moment";
 import ImageComponent from "components/common/ImageComponent";
 import WalletOverviewSidebar from "layout/WalletOverviewSidebar";
 import Link from "next/link";
+import { useEffect } from "react";
+import { getWalletOverviewDataApi } from "service/wallet-overview";
 const Profile: NextPage = ({ user, profileActivity }: any) => {
   const { t } = useTranslation("common");
+
+  // useEffect(() => {
+  //   getWalletOverviewData();
+  // }, [])
+
+  const getWalletOverviewData =async () => {
+    // const response = await getWalletOverviewDataApi('');
+    // console.log('response', response);
+  }
+  
 
   return (
     <>
@@ -50,14 +62,39 @@ const Profile: NextPage = ({ user, profileActivity }: any) => {
                 >
                   <div>
                     <h6>Estimated Balance</h6>
-                    <div className="pt-3">
+                    <div className="pt-3 d-flex align-items-center gap-10">
                       <div
                         style={{
                           borderBottom: "2px dotted var(--border-color)",
                           display: "inline-block",
                         }}
                       >
-                        <h3>0.00000000BNB</h3>
+                        <h3>0.00000000 BNB</h3>
+                      </div>
+                      <div className="dropdown">
+                        <button
+                          className="dropdown-toggle wallet-overview-dropdown-btn"
+                          type="button"
+                          id="dropdownMenuButton"
+                          data-toggle="dropdown"
+                          aria-haspopup="true"
+                          aria-expanded="false"
+                        ></button>
+                        <div
+                          className="dropdown-menu shadow bg-main-clr"
+                          style={{minWidth: '4rem'}}
+                          aria-labelledby="dropdownMenuButton"
+                        >
+                          <a className="dropdown-item px-1" href="#">
+                            USD
+                          </a>
+                          <a className="dropdown-item px-1" href="#">
+                            BTC
+                          </a>
+                          <a className="dropdown-item px-1" href="#">
+                            SDTRC
+                          </a>
+                        </div>
                       </div>
                     </div>
                     <p>$8.45</p>
@@ -87,7 +124,7 @@ const Profile: NextPage = ({ user, profileActivity }: any) => {
                       <tbody>
                         <tr>
                           <td className="p-2 align-middle">
-                            <Link href="/user/edit-profile">
+                            <Link href="/futures/wallet-list">
                               <a className="d-flex align-items-center gap-10">
                                 <BiShapeCircle size={18} />
                                 <span>{t("Futures")}</span>
@@ -103,7 +140,7 @@ const Profile: NextPage = ({ user, profileActivity }: any) => {
                         </tr>
                         <tr>
                           <td className="p-2 align-middle">
-                            <Link href="/user/edit-profile">
+                            <Link href="/user/my-wallet">
                               <a className="d-flex align-items-center gap-10">
                                 <BiShapeCircle size={18} />
                                 <span>{t("Spot")}</span>
@@ -119,7 +156,7 @@ const Profile: NextPage = ({ user, profileActivity }: any) => {
                         </tr>
                         <tr>
                           <td className="p-2 align-middle">
-                            <Link href="/user/edit-profile">
+                            <Link href="/p2p/p2p-wallet">
                               <a className="d-flex align-items-center gap-10">
                                 <FaPeopleArrows size={18} />
                                 <span>{t("P2P")}</span>

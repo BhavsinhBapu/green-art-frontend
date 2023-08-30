@@ -15708,6 +15708,13 @@ input:checked + .gift-card-buy-slider:before {
   font-weight: 700;
 }
 
+.wallet-overview-dropdown-btn {
+  min-width: 22px;
+  background: var(--main-background-color) !important;
+  border: none !important;
+  color: var(--font-color);
+}
+
 @media (max-width: 1520px) {
   .trade-dashboard-side-margin {
     margin-left: 0 !important;
