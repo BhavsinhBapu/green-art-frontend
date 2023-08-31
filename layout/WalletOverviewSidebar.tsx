@@ -34,17 +34,20 @@ const WalletOverviewSidebar = () => {
               <a>{t("Spot")}</a>
             </li>
           </Link>
-          <Link href="/futures/wallet-list">
-            <li
-              className={
-                router.pathname == "/futures/wallet-list" ? "active" : ""
-              }
-            >
-              <BiShapeCircle />
-              <a>{t("Futures")}</a>
-            </li>
-          </Link>
-          {parseInt(settings.knowledgebase_support_module) === 1 && (
+          {Number(settings?.enable_future_trade) === 1 && (
+            <Link href="/futures/wallet-list">
+              <li
+                className={
+                  router.pathname == "/futures/wallet-list" ? "active" : ""
+                }
+              >
+                <BiShapeCircle />
+                <a>{t("Futures")}</a>
+              </li>
+            </Link>
+          )}
+
+          {parseInt(settings.p2p_module) === 1 && (
             <Link href="/p2p/p2p-wallet">
               <li
                 className={router.pathname == "/p2p/p2p-wallet" ? "active" : ""}

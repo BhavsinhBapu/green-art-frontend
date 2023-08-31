@@ -16,8 +16,11 @@ import { useEffect, useState } from "react";
 import { getWalletOverviewDataApi } from "service/wallet-overview";
 import SectionLoading from "components/common/SectionLoading";
 import WalletOverviewHeader from "components/wallet-overview/WalletOverviewHeader";
+import { RootState } from "state/store";
+import { useSelector } from "react-redux";
 const Profile: NextPage = ({ user, profileActivity }: any) => {
   const { t } = useTranslation("common");
+  const { settings } = useSelector((state: RootState) => state.common);
 
   const [walletOverviewData, setWalletOverviewData] = useState<any>({});
   const [loading, setLoading] = useState(false);
@@ -153,60 +156,67 @@ const Profile: NextPage = ({ user, profileActivity }: any) => {
                                 </div>
                               </td>
                             </tr>
-                            <tr>
-                              <td className="p-2 align-middle">
-                                <Link href="/user/my-wallet">
-                                  <a className="d-flex align-items-center gap-10">
-                                    <BiShapeCircle size={18} />
-                                    <span>{t("Spot")}</span>
-                                  </a>
-                                </Link>
-                              </td>
-                              <td className="p-2 text-right align-middle">
-                                <div>
-                                  <span className="d-block">
-                                    {`${
-                                      walletOverviewData?.spot_wallet
-                                        ? parseFloat(
-                                            walletOverviewData?.spot_wallet
-                                          ).toFixed(8)
-                                        : "0.0000000"
-                                    } `}{" "}
-                                    {`${
-                                      walletOverviewData?.selected_coin ?? "NA"
-                                    }`}
-                                  </span>
-                                  <small>$5.54</small>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td className="p-2 align-middle">
-                                <Link href="/p2p/p2p-wallet">
-                                  <a className="d-flex align-items-center gap-10">
-                                    <FaPeopleArrows size={18} />
-                                    <span>{t("P2P")}</span>
-                                  </a>
-                                </Link>
-                              </td>
-                              <td className="p-2 text-right align-middle">
-                                <div>
-                                  <span className="d-block">
-                                    {`${
-                                      walletOverviewData?.p2p_wallet
-                                        ? parseFloat(
-                                            walletOverviewData?.p2p_wallet
-                                          ).toFixed(8)
-                                        : "0.0000000"
-                                    } `}{" "}
-                                    {`${
-                                      walletOverviewData?.selected_coin ?? "NA"
-                                    }`}
-                                  </span>
-                                  <small>$5.54</small>
-                                </div>
-                              </td>
-                            </tr>
+                            {Number(settings?.enable_future_trade) === 1 && (
+                              <tr>
+                                <td className="p-2 align-middle">
+                                  <Link href="/user/my-wallet">
+                                    <a className="d-flex align-items-center gap-10">
+                                      <BiShapeCircle size={18} />
+                                      <span>{t("Spot")}</span>
+                                    </a>
+                                  </Link>
+                                </td>
+                                <td className="p-2 text-right align-middle">
+                                  <div>
+                                    <span className="d-block">
+                                      {`${
+                                        walletOverviewData?.spot_wallet
+                                          ? parseFloat(
+                                              walletOverviewData?.spot_wallet
+                                            ).toFixed(8)
+                                          : "0.0000000"
+                                      } `}{" "}
+                                      {`${
+                                        walletOverviewData?.selected_coin ??
+                                        "NA"
+                                      }`}
+                                    </span>
+                                    <small>$5.54</small>
+                                  </div>
+                                </td>
+                              </tr>
+                            )}
+
+                            {parseInt(settings?.p2p_module) === 1 && (
+                              <tr>
+                                <td className="p-2 align-middle">
+                                  <Link href="/p2p/p2p-wallet">
+                                    <a className="d-flex align-items-center gap-10">
+                                      <FaPeopleArrows size={18} />
+                                      <span>{t("P2P")}</span>
+                                    </a>
+                                  </Link>
+                                </td>
+                                <td className="p-2 text-right align-middle">
+                                  <div>
+                                    <span className="d-block">
+                                      {`${
+                                        walletOverviewData?.p2p_wallet
+                                          ? parseFloat(
+                                              walletOverviewData?.p2p_wallet
+                                            ).toFixed(8)
+                                          : "0.0000000"
+                                      } `}{" "}
+                                      {`${
+                                        walletOverviewData?.selected_coin ??
+                                        "NA"
+                                      }`}
+                                    </span>
+                                    <small>$5.54</small>
+                                  </div>
+                                </td>
+                              </tr>
+                            )}
                           </tbody>
                         </table>
                       </div>
