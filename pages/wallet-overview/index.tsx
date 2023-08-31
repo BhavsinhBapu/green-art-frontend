@@ -12,20 +12,30 @@ import moment from "moment";
 import ImageComponent from "components/common/ImageComponent";
 import WalletOverviewSidebar from "layout/WalletOverviewSidebar";
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getWalletOverviewDataApi } from "service/wallet-overview";
+import SectionLoading from "components/common/SectionLoading";
 const Profile: NextPage = ({ user, profileActivity }: any) => {
   const { t } = useTranslation("common");
 
-  // useEffect(() => {
-  //   getWalletOverviewData();
-  // }, [])
+  const [walletOverviewData, setWalletOverviewData] = useState<any>({});
+  const [loading, setLoading] = useState(false);
 
-  const getWalletOverviewData =async () => {
-    // const response = await getWalletOverviewDataApi('');
-    // console.log('response', response);
-  }
-  
+  useEffect(() => {
+    getWalletOverviewData();
+  }, []);
+
+  const getWalletOverviewData = async () => {
+    setLoading(true);
+    const response = await getWalletOverviewDataApi("");
+    if (!response.success) {
+      setLoading(false);
+      return;
+    }
+    console.log("response", response);
+    setWalletOverviewData(response.data);
+    setLoading(false);
+  };
 
   return (
     <>
@@ -39,9 +49,7 @@ const Profile: NextPage = ({ user, profileActivity }: any) => {
               </div>
               <div>
                 <Link href={`/`}>
-                  <a className="wallet-overview-btn">
-                    Deposit
-                  </a>
+                  <a className="wallet-overview-btn">Deposit</a>
                 </Link>
                 <Link href={`/`}>
                   <a className="wallet-overview-btn mx-3">Withdraw</a>
@@ -51,61 +59,69 @@ const Profile: NextPage = ({ user, profileActivity }: any) => {
                 </Link>
               </div>
             </div>
-            <div
-              className="row py-3"
-              style={{ background: "var(--card-background-color)" }}
-            >
-              <div className="col-md-7">
+            {loading ? (
+              <SectionLoading />
+            ) : (
+              Object.keys(walletOverviewData).length > 0 && (
                 <div
-                  className="py-3"
-                  style={{ borderBottom: "1px solid var(--border-color)" }}
+                  className="row py-3"
+                  style={{ background: "var(--card-background-color)" }}
                 >
-                  <div>
-                    <h6>Estimated Balance</h6>
-                    <div className="pt-3 d-flex align-items-center gap-10">
-                      <div
-                        style={{
-                          borderBottom: "2px dotted var(--border-color)",
-                          display: "inline-block",
-                        }}
-                      >
-                        <h3>0.00000000 BNB</h3>
-                      </div>
-                      <div className="dropdown">
-                        <button
-                          className="dropdown-toggle wallet-overview-dropdown-btn"
-                          type="button"
-                          id="dropdownMenuButton"
-                          data-toggle="dropdown"
-                          aria-haspopup="true"
-                          aria-expanded="false"
-                        ></button>
-                        <div
-                          className="dropdown-menu shadow bg-main-clr"
-                          style={{minWidth: '4rem'}}
-                          aria-labelledby="dropdownMenuButton"
-                        >
-                          <a className="dropdown-item px-1" href="#">
-                            USD
-                          </a>
-                          <a className="dropdown-item px-1" href="#">
-                            BTC
-                          </a>
-                          <a className="dropdown-item px-1" href="#">
-                            SDTRC
-                          </a>
+                  <div className="col-md-7">
+                    <div
+                      className="py-3"
+                      style={{ borderBottom: "1px solid var(--border-color)" }}
+                    >
+                      <div>
+                        <h6>Estimated Balance</h6>
+                        <div className="pt-3 d-flex align-items-center gap-10">
+                          <div
+                            style={{
+                              borderBottom: "2px dotted var(--border-color)",
+                              display: "inline-block",
+                            }}
+                          >
+                            <h3>
+                              {`${walletOverviewData?.total ?? "0.00000000"} ${
+                                walletOverviewData?.selected_coin ?? "NA"
+                              } `}{" "}
+                            </h3>
+                          </div>
+                          <div className="dropdown">
+                            <button
+                              className="dropdown-toggle wallet-overview-dropdown-btn"
+                              type="button"
+                              id="dropdownMenuButton"
+                              data-toggle="dropdown"
+                              aria-haspopup="true"
+                              aria-expanded="false"
+                            ></button>
+                            <div
+                              className="dropdown-menu shadow bg-main-clr"
+                              style={{ minWidth: "4rem" }}
+                              aria-labelledby="dropdownMenuButton"
+                            >
+                              <a className="dropdown-item px-1" href="#">
+                                USD
+                              </a>
+                              <a className="dropdown-item px-1" href="#">
+                                BTC
+                              </a>
+                              <a className="dropdown-item px-1" href="#">
+                                SDTRC
+                              </a>
+                            </div>
+                          </div>
                         </div>
+                        <p>$8.45</p>
                       </div>
                     </div>
-                    <p>$8.45</p>
-                  </div>
-                </div>
 
-                <div>
-                  <div className="py-3">
-                    <h6>My Asstes</h6>
-                  </div>
-                  {/* <div className="my-3 d-flex align-items-center gap-10">
+                    <div>
+                      <div className="py-3">
+                        <h6>My Asstes</h6>
+                      </div>
+                      {/* <div className="my-3 d-flex align-items-center gap-10">
                     <div className="wallet-assets-btn wallet-assets-btn-active ">
                       Wallet View
                     </div>
@@ -113,201 +129,241 @@ const Profile: NextPage = ({ user, profileActivity }: any) => {
                     <div className="wallet-assets-btn">Coin View</div>
                   </div> */}
 
-                  <div className="my-3">
-                    <table className="table table-hover">
-                      <thead>
-                        <tr>
-                          <th className="p-2 border-0">Wallet</th>
-                          <th className="p-2 border-0 text-right">Amount</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td className="p-2 align-middle">
-                            <Link href="/futures/wallet-list">
-                              <a className="d-flex align-items-center gap-10">
-                                <BiShapeCircle size={18} />
-                                <span>{t("Futures")}</span>
-                              </a>
-                            </Link>
-                          </td>
-                          <td className="p-2 text-right align-middle">
-                            <div>
-                              <span className="d-block">0.0000000 BNB</span>
-                              <small>$5.54</small>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="p-2 align-middle">
-                            <Link href="/user/my-wallet">
-                              <a className="d-flex align-items-center gap-10">
-                                <BiShapeCircle size={18} />
-                                <span>{t("Spot")}</span>
-                              </a>
-                            </Link>
-                          </td>
-                          <td className="p-2 text-right align-middle">
-                            <div>
-                              <span className="d-block">0.0000000 BNB</span>
-                              <small>$5.54</small>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="p-2 align-middle">
-                            <Link href="/p2p/p2p-wallet">
-                              <a className="d-flex align-items-center gap-10">
-                                <FaPeopleArrows size={18} />
-                                <span>{t("P2P")}</span>
-                              </a>
-                            </Link>
-                          </td>
-                          <td className="p-2 text-right align-middle">
-                            <div>
-                              <span className="d-block">0.0000000 BNB</span>
-                              <small>$5.54</small>
-                            </div>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+                      <div className="my-3">
+                        <table className="table table-hover">
+                          <thead>
+                            <tr>
+                              <th className="p-2 border-0">Wallet</th>
+                              <th className="p-2 border-0 text-right">
+                                Amount
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td className="p-2 align-middle">
+                                <Link href="/futures/wallet-list">
+                                  <a className="d-flex align-items-center gap-10">
+                                    <BiShapeCircle size={18} />
+                                    <span>{t("Futures")}</span>
+                                  </a>
+                                </Link>
+                              </td>
+                              <td className="p-2 text-right align-middle">
+                                <div>
+                                  <span className="d-block">
+                                    {`${
+                                      walletOverviewData?.future_wallet
+                                        ? parseFloat(
+                                            walletOverviewData?.spot_wallet
+                                          ).toFixed(8)
+                                        : "0.0000000"
+                                    } `}{" "}
+                                    {`${
+                                      walletOverviewData?.selected_coin ?? "NA"
+                                    }`}
+                                  </span>
+                                  <small>$5.54</small>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td className="p-2 align-middle">
+                                <Link href="/user/my-wallet">
+                                  <a className="d-flex align-items-center gap-10">
+                                    <BiShapeCircle size={18} />
+                                    <span>{t("Spot")}</span>
+                                  </a>
+                                </Link>
+                              </td>
+                              <td className="p-2 text-right align-middle">
+                                <div>
+                                  <span className="d-block">
+                                    {`${
+                                      walletOverviewData?.spot_wallet
+                                        ? parseFloat(
+                                            walletOverviewData?.spot_wallet
+                                          ).toFixed(8)
+                                        : "0.0000000"
+                                    } `}{" "}
+                                    {`${
+                                      walletOverviewData?.selected_coin ?? "NA"
+                                    }`}
+                                  </span>
+                                  <small>$5.54</small>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td className="p-2 align-middle">
+                                <Link href="/p2p/p2p-wallet">
+                                  <a className="d-flex align-items-center gap-10">
+                                    <FaPeopleArrows size={18} />
+                                    <span>{t("P2P")}</span>
+                                  </a>
+                                </Link>
+                              </td>
+                              <td className="p-2 text-right align-middle">
+                                <div>
+                                  <span className="d-block">
+                                    {`${
+                                      walletOverviewData?.p2p_wallet
+                                        ? parseFloat(
+                                            walletOverviewData?.p2p_wallet
+                                          ).toFixed(8)
+                                        : "0.0000000"
+                                    } `}{" "}
+                                    {`${
+                                      walletOverviewData?.selected_coin ?? "NA"
+                                    }`}
+                                  </span>
+                                  <small>$5.54</small>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
 
-              <div className="offset-md-1 col-md-4">
-                <div className="py-3">
-                  <div style={{ overflow: "hidden", borderRadius: "10px" }}>
-                    <img
-                      className="w-full"
-                      height={150}
-                      src="https://admin.tradexpro.xyz/uploaded_file/uploads/6470b727aa3f51685108519.png"
-                      alt=""
-                    />
+                  <div className="offset-md-1 col-md-4">
+                    <div className="py-3">
+                      <div style={{ overflow: "hidden", borderRadius: "10px" }}>
+                        <img
+                          className="w-full"
+                          height={150}
+                          src={`${
+                            walletOverviewData?.banner ??
+                            "https://admin.tradexpro.xyz/uploaded_file/uploads/6470b727aa3f51685108519.png"
+                          } `}
+                          alt=""
+                        />
+                      </div>
+                    </div>
+                    <div className="py-3">
+                      <div className="mt-3 mb-3 px-2 d-flex justify-content-between align-items-center gap-10">
+                        <h6>Recent Transactions</h6>
+                        <Link href="/user/edit-profile">
+                          <a className="text-12 bg-main-clr py-1 px-3 rounded">
+                            <span>{t("View All")}</span>
+                          </a>
+                        </Link>
+                      </div>
+                      <div>
+                        <table className="table">
+                          <thead></thead>
+                          <tbody>
+                            <tr>
+                              <td className="p-2 align-middle">
+                                <div className="d-flex gap-10 align-items-center">
+                                  <div
+                                    className="d-flex justify-content-center align-items-center bg-main-clr rounded"
+                                    style={{ width: "36px", height: "36px" }}
+                                  >
+                                    <AiOutlineUpload size={16} />
+                                  </div>
+                                  <div>
+                                    <span className="d-block">Withdraw</span>
+                                    <small>2023-12-05 12:12:12</small>
+                                  </div>
+                                </div>
+                              </td>
+                              <td className="p-2 text-right align-middle">
+                                <div>
+                                  <span className="d-block">+4 USD</span>
+                                  <small>
+                                    <span
+                                      style={{
+                                        display: "inline-block",
+                                        width: "5px",
+                                        height: "5px",
+                                        background: "green",
+                                        borderRadius: "50%",
+                                        marginBottom: "1px",
+                                      }}
+                                    ></span>{" "}
+                                    Completed
+                                  </small>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td className="p-2 align-middle">
+                                <div className="d-flex gap-10 align-items-center">
+                                  <div
+                                    className="d-flex justify-content-center align-items-center bg-main-clr rounded"
+                                    style={{ width: "36px", height: "36px" }}
+                                  >
+                                    <AiOutlineUpload size={16} />
+                                  </div>
+                                  <div>
+                                    <span className="d-block">Withdraw</span>
+                                    <small>2023-12-05 12:12:12</small>
+                                  </div>
+                                </div>
+                              </td>
+                              <td className="p-2 text-right align-middle">
+                                <div>
+                                  <span className="d-block">+4 USD</span>
+                                  <small>
+                                    <span
+                                      style={{
+                                        display: "inline-block",
+                                        width: "5px",
+                                        height: "5px",
+                                        background: "green",
+                                        borderRadius: "50%",
+                                        marginBottom: "1px",
+                                      }}
+                                    ></span>{" "}
+                                    Completed
+                                  </small>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td className="p-2 align-middle">
+                                <div className="d-flex gap-10 align-items-center">
+                                  <div
+                                    className="d-flex justify-content-center align-items-center bg-main-clr rounded"
+                                    style={{ width: "36px", height: "36px" }}
+                                  >
+                                    <AiOutlineUpload size={16} />
+                                  </div>
+                                  <div>
+                                    <span className="d-block">Withdraw</span>
+                                    <small>2023-12-05 12:12:12</small>
+                                  </div>
+                                </div>
+                              </td>
+                              <td className="p-2 text-right align-middle">
+                                <div>
+                                  <span className="d-block">+4 USD</span>
+                                  <small>
+                                    <span
+                                      style={{
+                                        display: "inline-block",
+                                        width: "5px",
+                                        height: "5px",
+                                        background: "green",
+                                        borderRadius: "50%",
+                                        marginBottom: "1px",
+                                      }}
+                                    ></span>{" "}
+                                    Completed
+                                  </small>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div className="py-3">
-                  <div className="mt-3 mb-3 px-2 d-flex justify-content-between align-items-center gap-10">
-                    <h6>Recent Transactions</h6>
-                    <Link href="/user/edit-profile">
-                      <a className="text-12 bg-main-clr py-1 px-3 rounded">
-                        <span>{t("View All")}</span>
-                      </a>
-                    </Link>
-                  </div>
-                  <div>
-                    <table className="table">
-                      <thead></thead>
-                      <tbody>
-                        <tr>
-                          <td className="p-2 align-middle">
-                            <div className="d-flex gap-10 align-items-center">
-                              <div
-                                className="d-flex justify-content-center align-items-center bg-main-clr rounded"
-                                style={{ width: "36px", height: "36px" }}
-                              >
-                                <AiOutlineUpload size={16} />
-                              </div>
-                              <div>
-                                <span className="d-block">Withdraw</span>
-                                <small>2023-12-05 12:12:12</small>
-                              </div>
-                            </div>
-                          </td>
-                          <td className="p-2 text-right align-middle">
-                            <div>
-                              <span className="d-block">+4 USD</span>
-                              <small>
-                                <span
-                                  style={{
-                                    display: "inline-block",
-                                    width: "5px",
-                                    height: "5px",
-                                    background: "green",
-                                    borderRadius: "50%",
-                                    marginBottom: "1px",
-                                  }}
-                                ></span>{" "}
-                                Completed
-                              </small>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="p-2 align-middle">
-                            <div className="d-flex gap-10 align-items-center">
-                              <div
-                                className="d-flex justify-content-center align-items-center bg-main-clr rounded"
-                                style={{ width: "36px", height: "36px" }}
-                              >
-                                <AiOutlineUpload size={16} />
-                              </div>
-                              <div>
-                                <span className="d-block">Withdraw</span>
-                                <small>2023-12-05 12:12:12</small>
-                              </div>
-                            </div>
-                          </td>
-                          <td className="p-2 text-right align-middle">
-                            <div>
-                              <span className="d-block">+4 USD</span>
-                              <small>
-                                <span
-                                  style={{
-                                    display: "inline-block",
-                                    width: "5px",
-                                    height: "5px",
-                                    background: "green",
-                                    borderRadius: "50%",
-                                    marginBottom: "1px",
-                                  }}
-                                ></span>{" "}
-                                Completed
-                              </small>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="p-2 align-middle">
-                            <div className="d-flex gap-10 align-items-center">
-                              <div
-                                className="d-flex justify-content-center align-items-center bg-main-clr rounded"
-                                style={{ width: "36px", height: "36px" }}
-                              >
-                                <AiOutlineUpload size={16} />
-                              </div>
-                              <div>
-                                <span className="d-block">Withdraw</span>
-                                <small>2023-12-05 12:12:12</small>
-                              </div>
-                            </div>
-                          </td>
-                          <td className="p-2 text-right align-middle">
-                            <div>
-                              <span className="d-block">+4 USD</span>
-                              <small>
-                                <span
-                                  style={{
-                                    display: "inline-block",
-                                    width: "5px",
-                                    height: "5px",
-                                    background: "green",
-                                    borderRadius: "50%",
-                                    marginBottom: "1px",
-                                  }}
-                                ></span>{" "}
-                                Completed
-                              </small>
-                            </div>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
+              )
+            )}
           </div>
         </div>
       </div>
