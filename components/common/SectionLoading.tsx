@@ -16,7 +16,7 @@ const SectionLoading = () => {
 
   return (
     <>
-      {enableLogoAnimate ? (
+      {enableLogoAnimate == 2 ? (
         <div className="loading-image-container">
           {logo ? (
             <span className="loading-image">

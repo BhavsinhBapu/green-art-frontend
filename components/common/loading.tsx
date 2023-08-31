@@ -14,7 +14,7 @@ const Loading = () => {
 
   return (
     <>
-      {enableLogoAnimate ? (
+      {enableLogoAnimate == 2 ? (
         <div className="preloder-area">
           {logo ? (
             <span className="loading-image">
