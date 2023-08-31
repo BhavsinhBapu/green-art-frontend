@@ -70,7 +70,7 @@ const CustomDataTable = ({
               <AiOutlineSearch />
               <input
                 type="search"
-                className="data_table_input"
+                className="data_table_input bg-transparent"
                 aria-controls="table"
                 placeholder="Search..."
                 value={search || ""}
