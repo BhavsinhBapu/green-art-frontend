@@ -143,49 +143,13 @@ const Profile: NextPage = ({ user, profileActivity }: any) => {
                             </tr>
                           </thead>
                           <tbody>
-                            <tr>
-                              <td className="p-2 align-middle">
-                                <Link href="/futures/wallet-list">
-                                  <a className="d-flex align-items-center gap-10">
-                                    <BiShapeCircle size={18} />
-                                    <span>{t("Futures")}</span>
-                                  </a>
-                                </Link>
-                              </td>
-                              <td className="p-2 text-right align-middle">
-                                <div>
-                                  <span className="d-block">
-                                    {`${
-                                      walletOverviewData?.future_wallet
-                                        ? parseFloat(
-                                            walletOverviewData?.spot_wallet
-                                          ).toFixed(8)
-                                        : "0.0000000"
-                                    } `}{" "}
-                                    {`${
-                                      walletOverviewData?.selected_coin ?? "NA"
-                                    }`}
-                                  </span>
-                                  <small>
-                                    $
-                                    {`${
-                                      walletOverviewData?.future_wallet_usd
-                                        ? parseFloat(
-                                            walletOverviewData?.future_wallet_usd
-                                          ).toFixed(2)
-                                        : "0.00"
-                                    }`}
-                                  </small>
-                                </div>
-                              </td>
-                            </tr>
                             {Number(settings?.enable_future_trade) === 1 && (
                               <tr>
                                 <td className="p-2 align-middle">
-                                  <Link href="/user/my-wallet">
+                                  <Link href="/futures/wallet-list">
                                     <a className="d-flex align-items-center gap-10">
                                       <BiShapeCircle size={18} />
-                                      <span>{t("Spot")}</span>
+                                      <span>{t("Futures")}</span>
                                     </a>
                                   </Link>
                                 </td>
@@ -193,7 +157,7 @@ const Profile: NextPage = ({ user, profileActivity }: any) => {
                                   <div>
                                     <span className="d-block">
                                       {`${
-                                        walletOverviewData?.spot_wallet
+                                        walletOverviewData?.future_wallet
                                           ? parseFloat(
                                               walletOverviewData?.spot_wallet
                                             ).toFixed(8)
@@ -207,9 +171,9 @@ const Profile: NextPage = ({ user, profileActivity }: any) => {
                                     <small>
                                       $
                                       {`${
-                                        walletOverviewData?.spot_wallet_usd
+                                        walletOverviewData?.future_wallet_usd
                                           ? parseFloat(
-                                              walletOverviewData?.spot_wallet_usd
+                                              walletOverviewData?.future_wallet_usd
                                             ).toFixed(2)
                                           : "0.00"
                                       }`}
@@ -218,6 +182,42 @@ const Profile: NextPage = ({ user, profileActivity }: any) => {
                                 </td>
                               </tr>
                             )}
+                            <tr>
+                              <td className="p-2 align-middle">
+                                <Link href="/user/my-wallet">
+                                  <a className="d-flex align-items-center gap-10">
+                                    <BiShapeCircle size={18} />
+                                    <span>{t("Spot")}</span>
+                                  </a>
+                                </Link>
+                              </td>
+                              <td className="p-2 text-right align-middle">
+                                <div>
+                                  <span className="d-block">
+                                    {`${
+                                      walletOverviewData?.spot_wallet
+                                        ? parseFloat(
+                                            walletOverviewData?.spot_wallet
+                                          ).toFixed(8)
+                                        : "0.0000000"
+                                    } `}{" "}
+                                    {`${
+                                      walletOverviewData?.selected_coin ?? "NA"
+                                    }`}
+                                  </span>
+                                  <small>
+                                    $
+                                    {`${
+                                      walletOverviewData?.spot_wallet_usd
+                                        ? parseFloat(
+                                            walletOverviewData?.spot_wallet_usd
+                                          ).toFixed(2)
+                                        : "0.00"
+                                    }`}
+                                  </small>
+                                </div>
+                              </td>
+                            </tr>
 
                             {parseInt(settings?.p2p_module) === 1 && (
                               <tr>
