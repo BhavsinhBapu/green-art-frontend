@@ -943,6 +943,31 @@ const Navbar = ({
                         </li>
                       )}
                       {Number(settings?.enable_future_trade) === 1 && (
+                        <Link href={isLoggedIn ? "/futures" : "/signin"}>
+                          <li
+                            className={
+                              router.pathname == "/futures"
+                                ? "cp-user-active-page"
+                                : ""
+                            }
+                          >
+                            <Link href="/futures">
+                              <a>
+                                <span className="cp-user-icon">
+                                  <FaTradeFederation />
+                                </span>
+                                <span className="cp-user-name">
+                                  {navbar?.myReferral?.name
+                                    ? navbar.myReferral?.name
+                                    : t("Future")}
+                                </span>
+                              </a>
+                            </Link>
+                          </li>
+                        </Link>
+                      )}
+
+                      {/* {Number(settings?.enable_future_trade) === 1 && (
                         <li
                           className={
                             router.pathname == "/futures/wallet-list" ||
@@ -1021,7 +1046,7 @@ const Navbar = ({
                             </Link>
                           </ul>
                         </li>
-                      )}
+                      )} */}
                       {Number(settings?.enable_demo_trade) === 1 && (
                         <li
                           className={
