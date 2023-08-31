@@ -235,12 +235,12 @@ const Navbar = ({
                       {navbar?.wallet?.status && (
                         <Link
                           href={
-                            isLoggedIn === true ? "/user/my-wallet" : "/signin"
+                            isLoggedIn === true ? "/wallet-overview" : "/signin"
                           }
                         >
                           <li
                             className={
-                              router.pathname == "/user/my-wallet"
+                              router.pathname == "/wallet-overview"
                                 ? "cp-user-active-page"
                                 : router.pathname == "/user/swap-coin"
                                 ? "cp-user-active-page"
@@ -1207,12 +1207,12 @@ const Navbar = ({
                       {navbar?.wallet?.status && (
                         <Link
                           href={
-                            isLoggedIn === true ? "/user/my-wallet" : "/signin"
+                            isLoggedIn === true ? "/wallet-overview" : "/signin"
                           }
                         >
                           <li
                             className={
-                              router.pathname == "/user/my-wallet"
+                              router.pathname == "/wallet-overview"
                                 ? "active-navbar nav-item"
                                 : router.pathname == "/user/swap-coin"
                                 ? "active-navbar nav-item"
