@@ -22,16 +22,18 @@ const Profile: NextPage = ({ user, profileActivity }: any) => {
   const { t } = useTranslation("common");
   const { settings } = useSelector((state: RootState) => state.common);
 
+  const [coinType, setCoinType] = useState("");
+
   const [walletOverviewData, setWalletOverviewData] = useState<any>({});
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     getWalletOverviewData();
-  }, []);
+  }, [coinType]);
 
   const getWalletOverviewData = async () => {
     setLoading(true);
-    const response = await getWalletOverviewDataApi("");
+    const response = await getWalletOverviewDataApi(coinType);
     if (!response.success) {
       setLoading(false);
       return;
@@ -96,6 +98,7 @@ const Profile: NextPage = ({ user, profileActivity }: any) => {
                                     <div
                                       className="dropdown-item px-1 cursor-pointer"
                                       key={index}
+                                      onClick={() => setCoinType(item)}
                                     >
                                       {item}
                                     </div>
