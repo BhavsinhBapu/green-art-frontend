@@ -15681,6 +15681,11 @@ input:checked + .gift-card-buy-slider:before {
   margin-top: 3rem;
   margin-bottom: 3rem;
 }
+.wallet-overview-btn-all {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
 .wallet-overview-btn {
   padding: 10px 12px;
@@ -15760,6 +15765,22 @@ input:checked + .gift-card-buy-slider:before {
   }
   .community-home-title {
     font-size: 24px;
+  }
+}
+@media (max-width: 740px) {
+  .wallet-overview-header {
+    flex-direction: column;
+    align-items: start;
+  }
+
+  .wallet-overview-btn-all {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+  .wallet-overview-btn{
+    width: 100%;
   }
 }
 
