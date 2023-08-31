@@ -24,6 +24,7 @@ import { appDashboardDataWithoutPair } from "service/exchange";
 import Footer from "components/common/footer";
 import CustomDataTable from "components/Datatable";
 import WalletOverviewSidebar from "layout/WalletOverviewSidebar";
+import WalletOverviewHeader from "components/wallet-overview/WalletOverviewHeader";
 const MyWallet: NextPage = () => {
   const { t } = useTranslation("common");
   const { settings } = useSelector((state: RootState) => state.common);
@@ -246,24 +247,7 @@ const MyWallet: NextPage = () => {
         <WalletOverviewSidebar />
         <div className="page-main-content pt-0">
           <div className="container-fluid">
-            <div className="my-5 wallet-overview-header inner-section-margin-top">
-              <div className="profle-are-top">
-                <h2>Spot Wallet</h2>
-              </div>
-              <div>
-                <Link href={`/`}>
-                  <a className="wallet-overview-btn wallet-overview-btn-active ">
-                    Deposit
-                  </a>
-                </Link>
-                <Link href={`/`}>
-                  <a className="wallet-overview-btn mx-3">Withdraw</a>
-                </Link>
-                <Link href={`/`}>
-                  <a className="wallet-overview-btn">Transaction History</a>
-                </Link>
-              </div>
-            </div>
+            <WalletOverviewHeader title={`Spot Wallet`} />
             <div className="row bg-card-primary-clr">
               <div className="col-md-12">
                 <div className="">
@@ -274,9 +258,7 @@ const MyWallet: NextPage = () => {
                     <div>
                       <h6>Total Balance</h6>
                       <div className="pt-3">
-                        <div
-                          
-                        >
+                        <div>
                           <h3>
                             {allData?.total
                               ? parseFloat(allData?.total).toFixed(8)

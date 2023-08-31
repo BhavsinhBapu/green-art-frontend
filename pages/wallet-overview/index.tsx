@@ -15,6 +15,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { getWalletOverviewDataApi } from "service/wallet-overview";
 import SectionLoading from "components/common/SectionLoading";
+import WalletOverviewHeader from "components/wallet-overview/WalletOverviewHeader";
 const Profile: NextPage = ({ user, profileActivity }: any) => {
   const { t } = useTranslation("common");
 
@@ -43,22 +44,7 @@ const Profile: NextPage = ({ user, profileActivity }: any) => {
         <WalletOverviewSidebar />
         <div className="page-main-content pt-0">
           <div className="container-fluid">
-            <div className="my-5 wallet-overview-header inner-section-margin-top">
-              <div className="profle-are-top">
-                <h2>Wallet Overview</h2>
-              </div>
-              <div>
-                <Link href={`/`}>
-                  <a className="wallet-overview-btn">Deposit</a>
-                </Link>
-                <Link href={`/`}>
-                  <a className="wallet-overview-btn mx-3">Withdraw</a>
-                </Link>
-                <Link href={`/`}>
-                  <a className="wallet-overview-btn">Transaction History</a>
-                </Link>
-              </div>
-            </div>
+            <WalletOverviewHeader title={`Wallet Overview`} />
             {loading ? (
               <SectionLoading />
             ) : (

@@ -13,6 +13,7 @@ import { getWalletsFutureAction } from "state/actions/futureTrade";
 import CustomDataTable from "components/Datatable";
 import moment from "moment";
 import WalletOverviewSidebar from "layout/WalletOverviewSidebar";
+import WalletOverviewHeader from "components/wallet-overview/WalletOverviewHeader";
 const WalletList: NextPage = () => {
   const { t } = useTranslation("common");
   const [walletList, setWalletList] = useState<any>([]);
@@ -129,24 +130,7 @@ const WalletList: NextPage = () => {
         <WalletOverviewSidebar />
         <div className="page-main-content pt-0">
           <div className="container-fluid">
-            <div className="my-5 wallet-overview-header inner-section-margin-top">
-              <div className="profle-are-top">
-                <h2>Future Wallet</h2>
-              </div>
-              <div>
-                <Link href={`/`}>
-                  <a className="wallet-overview-btn wallet-overview-btn-active ">
-                    Deposit
-                  </a>
-                </Link>
-                <Link href={`/`}>
-                  <a className="wallet-overview-btn mx-3">Withdraw</a>
-                </Link>
-                <Link href={`/`}>
-                  <a className="wallet-overview-btn">Transaction History</a>
-                </Link>
-              </div>
-            </div>
+            <WalletOverviewHeader title={`Future Wallet`} />
             <div className="row bg-card-primary-clr">
               <div className="col-md-12">
                 <div className="asset-balances-area cstm-loader-area">
