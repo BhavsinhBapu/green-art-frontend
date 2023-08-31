@@ -7091,7 +7091,7 @@ table.dataTable tbody tr.dataTable-white td {
   }
 
   .inner-section-margin-top {
-    margin-top: 75px;
+    margin-top: 75px !important;
   }
 }
 
@@ -7234,7 +7234,7 @@ table.dataTable tbody tr.dataTable-white td {
   }
 
   .inner-section-margin-top {
-    margin-top: 120px;
+    margin-top: 120px !important;
   }
 }
 
@@ -15678,6 +15678,8 @@ input:checked + .gift-card-buy-slider:before {
   justify-content: space-between;
   align-items: center;
   gap: 10px;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
 }
 
 .wallet-overview-btn {

@@ -3,7 +3,7 @@ import React from "react";
 
 export default function WalletOverviewHeader({ title }: any) {
   return (
-    <div className="my-5 wallet-overview-header inner-section-margin-top">
+    <div className="wallet-overview-header inner-section-margin-top">
       <div className="profle-are-top">
         <h2>{title}</h2>
       </div>
