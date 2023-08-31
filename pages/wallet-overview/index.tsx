@@ -39,7 +39,7 @@ const Profile: NextPage = ({ user, profileActivity }: any) => {
               </div>
               <div>
                 <Link href={`/`}>
-                  <a className="wallet-overview-btn wallet-overview-btn-active ">
+                  <a className="wallet-overview-btn">
                     Deposit
                   </a>
                 </Link>
@@ -105,13 +105,13 @@ const Profile: NextPage = ({ user, profileActivity }: any) => {
                   <div className="py-3">
                     <h6>My Asstes</h6>
                   </div>
-                  <div className="my-3 d-flex align-items-center gap-10">
+                  {/* <div className="my-3 d-flex align-items-center gap-10">
                     <div className="wallet-assets-btn wallet-assets-btn-active ">
                       Wallet View
                     </div>
 
                     <div className="wallet-assets-btn">Coin View</div>
-                  </div>
+                  </div> */}
 
                   <div className="my-3">
                     <table className="table table-hover">
@@ -187,8 +187,8 @@ const Profile: NextPage = ({ user, profileActivity }: any) => {
                     />
                   </div>
                 </div>
-                <div className="py-5">
-                  <div className="mt-5 mb-3 px-2 d-flex justify-content-between align-items-center gap-10">
+                <div className="py-3">
+                  <div className="mt-3 mb-3 px-2 d-flex justify-content-between align-items-center gap-10">
                     <h6>Recent Transactions</h6>
                     <Link href="/user/edit-profile">
                       <a className="text-12 bg-main-clr py-1 px-3 rounded">
