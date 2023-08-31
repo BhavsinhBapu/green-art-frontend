@@ -80,6 +80,8 @@ const Index = ({ children }: any) => {
       const { data: CommonLanding } = await CommonLandingCustomSettings("en");
 
       dispatch(setLogo(CommonLanding?.common_settings.logo));
+      localStorage.setItem("animateLogo", CommonLanding?.common_settings.logo);
+      localStorage.setItem("animateEnable", CommonLanding?.common_settings.loading_animation);
       dispatch(setSettings(CommonLanding?.common_settings));
       dispatch(setCustomPageData(CommonLanding.custom_page_settings));
       dispatch(
@@ -118,7 +120,7 @@ const Index = ({ children }: any) => {
       path === "/" ||
       path === "/verify-email" ||
       path === "user/notification" ||
-      path === "/demo-trade"||
+      path === "/demo-trade" ||
       path === "/demo-trade/user/my-wallet"
     ) {
       setNavbarVisible(false);
