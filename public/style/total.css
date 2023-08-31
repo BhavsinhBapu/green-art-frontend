@@ -15870,6 +15870,7 @@ input:checked + .gift-card-buy-slider:before {
   padding-top: 150px;
   padding-bottom: 150px;
   border-radius: 30px;
+  width: 100%;
 }
 
 .loading-image {
