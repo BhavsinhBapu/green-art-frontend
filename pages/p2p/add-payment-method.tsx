@@ -9,6 +9,9 @@ import {
 } from "helpers/core-constants";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
+import useTranslation from "next-translate/useTranslation";
+import Link from "next/link";
+import { IoArrowBack } from "react-icons/io5";
 import { useCreatePaymentMethods } from "state/actions/p2p";
 
 const AddPaymentMethod = () => {
@@ -25,11 +28,18 @@ const AddPaymentMethod = () => {
     uid,
     editData,
   } = useCreatePaymentMethods();
+  const { t } = useTranslation();
   return (
     <>
       <div className="container paymentMethodBox rounded shadow-sm my-5">
         <div className="row">
           <div className="col-md-6 mx-auto ">
+            <Link href={`/p2p/p2p-profile`}>
+              <div className="mb-3 text-left d-flex align-items-center gap-5 cursor-pointer">
+                <IoArrowBack />
+                {t("Back")}
+              </div>
+            </Link>
             <div className="paymentBox d-flex align-items-center border-0">
               <div></div>
               <h2>{uid ? "Edit" : "Add"} payment method</h2>
