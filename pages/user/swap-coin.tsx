@@ -100,7 +100,7 @@ const SwapCoin: NextPage = ({
       to_wallet: to_wallet,
     });
   }, []);
-  
+
   return (
     <>
       <div className="page-wrap">
@@ -160,6 +160,26 @@ const SwapCoin: NextPage = ({
                                 value={fromSelected ? fromSelected.amount : ""}
                                 placeholder={t("Please enter 10 -2400000")}
                                 onChange={(e) => {
+                                  if (!e.target.value) {
+                                    setFromSelected({
+                                      ...fromSelected,
+                                      amount: 0,
+                                    });
+                                    convertCoin(
+                                      0,
+                                      fromSelected.coin_id,
+                                      toSelected.coin_id
+                                    ).then((data) => {
+                                      setToSelected({
+                                        ...toSelected,
+                                        coin_id: data?.to_wallet?.id,
+                                        selected: data?.to_wallet?.coin_type,
+                                        balamce: data?.to_wallet?.balance,
+                                        amount: data?.convert_rate,
+                                      });
+                                    });
+                                    return;
+                                  }
                                   setFromSelected({
                                     ...fromSelected,
                                     amount: e.target.value,
@@ -328,8 +348,7 @@ const SwapCoin: NextPage = ({
                             <span>{t("You will get")}</span>
 
                             <span className="spend">
-                              {parseFloat(rate.convert_rate)}
-                              {rate.to_wallet}
+                              {parseFloat(rate.convert_rate)} {rate.to_wallet}
                             </span>
                           </li>
                         </ul>
