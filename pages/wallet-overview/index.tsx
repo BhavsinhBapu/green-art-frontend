@@ -267,10 +267,7 @@ const WalletOverview: NextPage = () => {
                         <img
                           className="w-full"
                           height={150}
-                          src={`${
-                            walletOverviewData?.banner ??
-                            "https://admin.tradexpro.xyz/uploaded_file/uploads/6470b727aa3f51685108519.png"
-                          } `}
+                          src={`${walletOverviewData?.banner} `}
                           alt=""
                         />
                       </div>
