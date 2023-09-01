@@ -143,10 +143,10 @@ const WalletOverview: NextPage = () => {
                             <tr>
                               <td className="p-2 align-middle">
                                 <Link href="/user/my-wallet">
-                                  <a className="d-flex align-items-center gap-10">
+                                  <div className="d-flex align-items-center gap-10 cursor-pointer">
                                     <BiShapeCircle size={18} />
                                     <span>{t("Spot")}</span>
-                                  </a>
+                                  </div>
                                 </Link>
                               </td>
                               <td className="p-2 text-right align-middle">
@@ -181,10 +181,10 @@ const WalletOverview: NextPage = () => {
                               <tr>
                                 <td className="p-2 align-middle">
                                   <Link href="/futures/wallet-list">
-                                    <a className="d-flex align-items-center gap-10">
+                                    <div className="d-flex align-items-center gap-10 cursor-pointer">
                                       <BiShapeCircle size={18} />
                                       <span>{t("Futures")}</span>
-                                    </a>
+                                    </div>
                                   </Link>
                                 </td>
                                 <td className="p-2 text-right align-middle">
@@ -220,10 +220,10 @@ const WalletOverview: NextPage = () => {
                               <tr>
                                 <td className="p-2 align-middle">
                                   <Link href="/p2p/p2p-wallet">
-                                    <a className="d-flex align-items-center gap-10">
+                                    <div className="d-flex align-items-center gap-10 cursor-pointer">
                                       <FaPeopleArrows size={18} />
                                       <span>{t("P2P")}</span>
-                                    </a>
+                                    </div>
                                   </Link>
                                 </td>
                                 <td className="p-2 text-right align-middle">
@@ -276,9 +276,9 @@ const WalletOverview: NextPage = () => {
                       <div className="mt-3 mb-3 px-2 d-flex justify-content-between align-items-center gap-10">
                         <h6>Recent Transactions</h6>
                         <Link href="/user/transaction-history">
-                          <a className="text-12 bg-main-clr py-1 px-3 rounded">
+                          <div className="text-12 bg-main-clr py-1 px-3 rounded cursor-pointer">
                             <span>{t("View All")}</span>
-                          </a>
+                          </div>
                         </Link>
                       </div>
                       <div>
