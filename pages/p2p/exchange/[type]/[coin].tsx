@@ -1,8 +1,11 @@
 import { SEND } from "helpers/core-constants";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
+import useTranslation from "next-translate/useTranslation";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
+import { IoArrowBack } from "react-icons/io5";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { walletBalanceTransfer } from "service/p2p";
@@ -10,6 +13,7 @@ import { RootState } from "state/store";
 
 const Exchange = () => {
   const router = useRouter();
+  const { t } = useTranslation();
   const [amount, setAmount] = useState(0);
   const { type, coin } = router.query;
   const { settings } = useSelector((state: RootState) => state.common);
@@ -52,8 +56,8 @@ const Exchange = () => {
                     <p>Retrieve {coin} from P2P wallet to spot wallet</p>
                   ) : (
                     <p>
-                      Receive {coin} from spot wallet to P2P wallet and start P2P
-                      trading
+                      Receive {coin} from spot wallet to P2P wallet and start
+                      P2P trading
                     </p>
                   )}
                   <div className="P2psearchBox position-relative mt-3">
@@ -72,6 +76,12 @@ const Exchange = () => {
                   >
                     exchange
                   </button>
+                  <Link href={`/p2p/p2p-wallet`}>
+                    <div className="mt-3 text-left d-flex align-items-center gap-5 cursor-pointer">
+                      <IoArrowBack />
+                      {t("Back")}
+                    </div>
+                  </Link>
                 </div>
               </div>
             </div>
