@@ -14,6 +14,7 @@ import useTranslation from "next-translate/useTranslation";
 import SmallLoading from "components/common/smallLoading";
 import Footer from "components/common/footer";
 import { AiOutlineSwap, AiFillWallet } from "react-icons/ai";
+import { toast } from "react-toastify";
 const SwapCoin: NextPage = ({
   walletLists,
   wallet_rate,
@@ -160,6 +161,9 @@ const SwapCoin: NextPage = ({
                                 value={fromSelected ? fromSelected.amount : ""}
                                 placeholder={t("Please enter 10 -2400000")}
                                 onChange={(e) => {
+                                  if (Number(e.target.value) < 0) {
+                                    return;
+                                  }
                                   if (!e.target.value) {
                                     setFromSelected({
                                       ...fromSelected,
