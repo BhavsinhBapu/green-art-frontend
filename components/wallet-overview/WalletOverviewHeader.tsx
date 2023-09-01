@@ -9,13 +9,13 @@ export default function WalletOverviewHeader({ title }: any) {
       </div>
       <div className="wallet-overview-btn-all">
         <Link href={`/user/wallet-history?type=deposit`}>
-          <a className="wallet-overview-btn">Deposit History</a>
+          <a className="wallet-overview-btn text-primary">Deposit History</a>
         </Link>
         <Link href={`/user/wallet-history?type=withdrawal`}>
-          <a className="wallet-overview-btn">Withdrawal History</a>
+          <a className="wallet-overview-btn text-primary">Withdrawal History</a>
         </Link>
         <Link href={`/user/transaction-history`}>
-          <a className="wallet-overview-btn">Transaction History</a>
+          <a className="wallet-overview-btn text-primary">Transaction History</a>
         </Link>
       </div>
     </div>

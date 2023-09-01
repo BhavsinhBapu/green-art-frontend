@@ -96,7 +96,7 @@ const Profile: NextPage = ({ user, profileActivity }: any) => {
                                 walletOverviewData?.coins.map(
                                   (item: any, index: any) => (
                                     <div
-                                      className="dropdown-item px-1 cursor-pointer"
+                                      className="dropdown-item px-1 cursor-pointer text-primary wallet-dropdown-item"
                                       key={index}
                                       onClick={() => setCoinType(item)}
                                     >
@@ -133,7 +133,7 @@ const Profile: NextPage = ({ user, profileActivity }: any) => {
                   </div> */}
 
                       <div className="my-3">
-                        <table className="table table-hover">
+                        <table className="table table-hover wallet-overview-table">
                           <thead>
                             <tr>
                               <th className="p-2 border-0">Wallet</th>
@@ -143,6 +143,43 @@ const Profile: NextPage = ({ user, profileActivity }: any) => {
                             </tr>
                           </thead>
                           <tbody>
+                            <tr>
+                              <td className="p-2 align-middle">
+                                <Link href="/user/my-wallet">
+                                  <a className="d-flex align-items-center gap-10">
+                                    <BiShapeCircle size={18} />
+                                    <span>{t("Spot")}</span>
+                                  </a>
+                                </Link>
+                              </td>
+                              <td className="p-2 text-right align-middle">
+                                <div>
+                                  <span className="d-block">
+                                    {`${
+                                      walletOverviewData?.spot_wallet
+                                        ? parseFloat(
+                                            walletOverviewData?.spot_wallet
+                                          ).toFixed(8)
+                                        : "0.0000000"
+                                    } `}{" "}
+                                    {`${
+                                      walletOverviewData?.selected_coin ?? "NA"
+                                    }`}
+                                  </span>
+                                  <small>
+                                    $
+                                    {`${
+                                      walletOverviewData?.spot_wallet_usd
+                                        ? parseFloat(
+                                            walletOverviewData?.spot_wallet_usd
+                                          ).toFixed(2)
+                                        : "0.00"
+                                    }`}
+                                  </small>
+                                </div>
+                              </td>
+                            </tr>
+
                             {Number(settings?.enable_future_trade) === 1 && (
                               <tr>
                                 <td className="p-2 align-middle">
@@ -182,43 +219,6 @@ const Profile: NextPage = ({ user, profileActivity }: any) => {
                                 </td>
                               </tr>
                             )}
-                            <tr>
-                              <td className="p-2 align-middle">
-                                <Link href="/user/my-wallet">
-                                  <a className="d-flex align-items-center gap-10">
-                                    <BiShapeCircle size={18} />
-                                    <span>{t("Spot")}</span>
-                                  </a>
-                                </Link>
-                              </td>
-                              <td className="p-2 text-right align-middle">
-                                <div>
-                                  <span className="d-block">
-                                    {`${
-                                      walletOverviewData?.spot_wallet
-                                        ? parseFloat(
-                                            walletOverviewData?.spot_wallet
-                                          ).toFixed(8)
-                                        : "0.0000000"
-                                    } `}{" "}
-                                    {`${
-                                      walletOverviewData?.selected_coin ?? "NA"
-                                    }`}
-                                  </span>
-                                  <small>
-                                    $
-                                    {`${
-                                      walletOverviewData?.spot_wallet_usd
-                                        ? parseFloat(
-                                            walletOverviewData?.spot_wallet_usd
-                                          ).toFixed(2)
-                                        : "0.00"
-                                    }`}
-                                  </small>
-                                </div>
-                              </td>
-                            </tr>
-
                             {parseInt(settings?.p2p_module) === 1 && (
                               <tr>
                                 <td className="p-2 align-middle">

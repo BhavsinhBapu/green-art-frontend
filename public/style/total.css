@@ -15693,6 +15693,12 @@ input:checked + .gift-card-buy-slider:before {
   border-radius: 5px;
   font-weight: 500;
 }
+.wallet-overview-btn-all a:hover {
+  color: var(--primary-color) !important;
+}
+.wallet-overview-btn-all a:focus {
+  color: var(--font-color) !important;
+}
 
 .wallet-overview-btn-active {
   padding: 10px 12px;
@@ -15720,6 +15726,13 @@ input:checked + .gift-card-buy-slider:before {
   background: var(--main-background-color) !important;
   border: none !important;
   color: var(--font-color);
+}
+.wallet-overview-table tr:hover,
+.wallet-overview-table a:hover {
+  color: var(--font-color) !important;
+}
+.wallet-dropdown-item:hover {
+  background: var(--card-background-color) !important;
 }
 
 @media (max-width: 1520px) {
