@@ -62,12 +62,12 @@ const MyWallet: NextPage = () => {
             <div className="active-link">
               <ul>
                 <Link href={`/p2p/exchange/1/${row.original?.coin_type}`}>
-                  <li className="cursor-pointer">
+                  <li className="toolTip relative cursor-pointer" title="Send">
                     <AiOutlineSend />
                   </li>
                 </Link>
                 <Link href={`/p2p/exchange/2/${row.original?.coin_type}`}>
-                  <li className="cursor-pointer">
+                  <li className="toolTip relative cursor-pointer" title="Recieve">
                     <BsWallet2 />
                   </li>
                 </Link>
