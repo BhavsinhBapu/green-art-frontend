@@ -31,11 +31,20 @@ const MyWallet: NextPage = () => {
 
       Cell: ({ row }: any) => (
         <div className="asset d-flex align-items-center gap-10">
-          <div>
+          <div
+            style={{
+              width: "35px",
+              height: "35px",
+              borderRadius: "50%",
+              overflow: "hidden",
+            }}
+          >
             <img
               className="asset-icon"
               src={row.original.coin_icon || "/bitcoin.png"}
               alt=""
+              width={35}
+              height={35}
             />
           </div>
           <div>
@@ -67,7 +76,10 @@ const MyWallet: NextPage = () => {
                   </li>
                 </Link>
                 <Link href={`/p2p/exchange/2/${row.original?.coin_type}`}>
-                  <li className="toolTip relative cursor-pointer" title="Recieve">
+                  <li
+                    className="toolTip relative cursor-pointer"
+                    title="Recieve"
+                  >
                     <BsWallet2 />
                   </li>
                 </Link>
