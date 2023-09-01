@@ -1,15 +1,11 @@
 import type { GetServerSideProps, NextPage } from "next";
-import ProfileComp from "components/profile/profile";
-import { parseCookies } from "nookies";
-import { BiSupport, BiShapeCircle } from "react-icons/bi";
-import { GetUserInfoByTokenServer } from "service/user";
+import { BiShapeCircle } from "react-icons/bi";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import useTranslation from "next-translate/useTranslation";
 import Footer from "components/common/footer";
 import { FaPeopleArrows } from "react-icons/fa";
 import { AiOutlineUpload, AiOutlineDownload } from "react-icons/ai";
 import moment from "moment";
-import ImageComponent from "components/common/ImageComponent";
 import WalletOverviewSidebar from "layout/WalletOverviewSidebar";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -18,7 +14,7 @@ import SectionLoading from "components/common/SectionLoading";
 import WalletOverviewHeader from "components/wallet-overview/WalletOverviewHeader";
 import { RootState } from "state/store";
 import { useSelector } from "react-redux";
-const Profile: NextPage = ({ user, profileActivity }: any) => {
+const WalletOverview: NextPage = () => {
   const { t } = useTranslation("common");
   const { settings } = useSelector((state: RootState) => state.common);
 
@@ -411,5 +407,12 @@ const Profile: NextPage = ({ user, profileActivity }: any) => {
     </>
   );
 };
+export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
+  await SSRAuthCheck(ctx, "/wallet-overview");
 
-export default Profile;
+  return {
+    props: {},
+  };
+};
+
+export default WalletOverview;
