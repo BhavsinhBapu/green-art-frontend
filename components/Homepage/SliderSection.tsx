@@ -3,6 +3,8 @@ import Link from "next/link";
 import React from "react";
 import Slider from "react-slick";
 import { TfiAnnouncement } from "react-icons/tfi";
+import { useSelector } from "react-redux";
+import { RootState } from "state/store";
 const SliderSection = ({
   bannerListdata,
   landing,
@@ -44,7 +46,7 @@ const SliderSection = ({
       },
     ],
   };
-  console.log("landing", landing);
+
   return (
     <div>
       <section className="about-area">
@@ -77,16 +79,18 @@ const SliderSection = ({
               </div>
             ))}
           </div>
-          <Link href={`${landing?.landing_advertisement_url ?? "#"}`}>
-            <img
-              src={
-                landing?.landing_advertisement_image
-                  ? landing?.landing_advertisement_image
-                  : "/tradex-cover.png"
-              }
-              className="cover-img cursor-pointer"
-            />
-          </Link>
+          {Number(landing?.landing_advertisement_section_status) === 1 && (
+            <Link href={`${landing?.landing_advertisement_url ?? "#"}`}>
+              <img
+                src={
+                  landing?.landing_advertisement_image
+                    ? landing?.landing_advertisement_image
+                    : "/tradex-cover.png"
+                }
+                className="cover-img cursor-pointer"
+              />
+            </Link>
+          )}
         </div>
       </section>
     </div>
