@@ -105,7 +105,7 @@ const WalletOverview: NextPage = () => {
                           )}
                         </div>
                         <p>
-                          {settings?.currency_symbol}
+                          {/* {settings?.currency_symbol} */}$
                           {`${
                             walletOverviewData?.total_usd
                               ? parseFloat(
@@ -164,7 +164,7 @@ const WalletOverview: NextPage = () => {
                                     }`}
                                   </span>
                                   <small>
-                                    {settings?.currency_symbol}
+                                    {/* {settings?.currency_symbol} */}$
                                     {`${
                                       walletOverviewData?.spot_wallet_usd
                                         ? parseFloat(
@@ -203,7 +203,7 @@ const WalletOverview: NextPage = () => {
                                       }`}
                                     </span>
                                     <small>
-                                      {settings?.currency_symbol}
+                                      {/* {settings?.currency_symbol} */}$
                                       {`${
                                         walletOverviewData?.future_wallet_usd
                                           ? parseFloat(
@@ -242,7 +242,7 @@ const WalletOverview: NextPage = () => {
                                       }`}
                                     </span>
                                     <small>
-                                      {settings?.currency_symbol}
+                                      {/* {settings?.currency_symbol} */}$
                                       {`${
                                         walletOverviewData?.p2p_wallet_usd
                                           ? parseFloat(
