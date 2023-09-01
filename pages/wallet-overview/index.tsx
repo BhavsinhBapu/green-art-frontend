@@ -78,22 +78,22 @@ const Profile: NextPage = ({ user, profileActivity }: any) => {
                               } `}{" "}
                             </h3>
                           </div>
-                          <div className="dropdown">
-                            <button
-                              className="dropdown-toggle wallet-overview-dropdown-btn"
-                              type="button"
-                              id="dropdownMenuButton"
-                              data-toggle="dropdown"
-                              aria-haspopup="true"
-                              aria-expanded="false"
-                            ></button>
-                            <div
-                              className="dropdown-menu shadow bg-main-clr"
-                              style={{ minWidth: "4rem" }}
-                              aria-labelledby="dropdownMenuButton"
-                            >
-                              {walletOverviewData?.coins?.length > 0 &&
-                                walletOverviewData?.coins.map(
+                          {walletOverviewData?.coins?.length > 0 && (
+                            <div className="dropdown">
+                              <button
+                                className="dropdown-toggle wallet-overview-dropdown-btn"
+                                type="button"
+                                id="dropdownMenuButton"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                              ></button>
+                              <div
+                                className="dropdown-menu shadow bg-main-clr"
+                                style={{ minWidth: "4rem" }}
+                                aria-labelledby="dropdownMenuButton"
+                              >
+                                {walletOverviewData?.coins.map(
                                   (item: any, index: any) => (
                                     <div
                                       className="dropdown-item px-1 cursor-pointer text-primary wallet-dropdown-item"
@@ -104,8 +104,9 @@ const Profile: NextPage = ({ user, profileActivity }: any) => {
                                     </div>
                                   )
                                 )}
+                              </div>
                             </div>
-                          </div>
+                          )}
                         </div>
                         <p>
                           $
