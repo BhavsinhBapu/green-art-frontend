@@ -108,24 +108,17 @@ export const BuyFrom = ({
                   ))} */}
                 </div>
               </div>
-              <div className="col-12">
-                <div className="pt-5">
-                  <h5>{t("Terms and Conditions")}</h5>
-                  <div className="d-flex align-items-center p2pTerms pt-3">
-                    <TfiHandPointRight />
-                    <p>
-                      {t("Include popular icons in your React projects easily")}
-                    </p>
-                  </div>
-                  <div className="d-flex align-items-center p2pTerms pt-3">
-                    <TfiHandPointRight />
-                    <p>
-                      Include popular icons in your React projects easily with
-                      react-icons.
-                    </p>
+              {details?.ads?.terms && (
+                <div className="col-12">
+                  <div className="pt-5">
+                    <h5>{t("Terms and Conditions")}</h5>
+                    <div className="d-flex align-items-center p2pTerms pt-3">
+                      <TfiHandPointRight />
+                      <p>{details?.ads?.terms}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
           <form
