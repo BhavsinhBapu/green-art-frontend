@@ -93,7 +93,7 @@ const WalletDeposit = ({ walletlist, method_id }: any) => {
         <h4>{t("Wallet list")}</h4>
       </div>
       <div className="row">
-        <div className="col-lg-8">
+        <div className="col-lg-12">
           <div className="row">
             <div className="col-lg-12">
               <div className="">
@@ -238,7 +238,7 @@ const WalletDeposit = ({ walletlist, method_id }: any) => {
             </div>
           </div>
         </div>
-        <div className="col-lg-4">
+        {/* <div className="col-lg-4">
           <div className="bg-main-clr p-3">
             {infoList.map((item, index) => (
               <div
@@ -262,7 +262,7 @@ const WalletDeposit = ({ walletlist, method_id }: any) => {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
