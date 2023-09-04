@@ -164,6 +164,17 @@ export const BuyFrom = ({
                   value={rate?.amount_price}
                   placeholder="233.0555 - 24.24240"
                   onChange={(e) => {
+                    if (Number(e.target.value) < 0) {
+                      return;
+                    }
+                    if (!e.target.value) {
+                      setRate({
+                        ...rate,
+                        amount_price: 0,
+                      });
+                      getRate(null, 0);
+                      return;
+                    }
                     setRate({
                       ...rate,
                       amount_price: parseFloat(e.target.value),
@@ -194,6 +205,14 @@ export const BuyFrom = ({
                   placeholder="0.00"
                   value={rate?.amount}
                   onChange={(e) => {
+                    if (Number(e.target.value) < 0) {
+                      return;
+                    }
+                    if (!e.target.value) {
+                      setRate({ ...rate, amount: 0 });
+                      getRate(0, null);
+                      return;
+                    }
                     setRate({ ...rate, amount: parseFloat(e.target.value) });
                     getRate(parseFloat(e.target.value), null);
                     setlastChanged(AMOUNT);
