@@ -44,7 +44,14 @@ const MyWallet: NextPage = () => {
 
       Cell: ({ row }: any) => (
         <div className="asset d-flex align-items-center gap-10">
-          <div>
+          <div
+            style={{
+              width: "35px",
+              height: "35px",
+              borderRadius: "50%",
+              overflow: "hidden",
+            }}
+          >
             <img
               className="asset-icon"
               src={row.original.coin_icon || "/bitcoin.png"}
@@ -272,61 +279,63 @@ const MyWallet: NextPage = () => {
                   <div className="asset-balances-area cstm-loader-area">
                     <div className="asset-balances-left">
                       <div className="section-wrapper px-0">
-                        <div className="">
-                          <CustomDataTable
-                            columns={columns}
-                            data={Changeable}
-                            selectedLimit={selectedLimit}
-                            setSelectedLimit={setSelectedLimit}
-                            search={search}
-                            setSearch={setSearch}
-                            processing={processing}
-                            verticalAlignData={`middle`}
-                          />
-                          <div
-                            className="pagination-wrapper"
-                            id="assetBalances_paginate"
-                          >
-                            <span>
-                              {walletList?.links?.map(
-                                (link: any, index: number) =>
-                                  link.label === "&laquo; Previous" ? (
-                                    <a
-                                      className="paginate-button"
-                                      onClick={() =>
-                                        LinkTopaginationString(link)
-                                      }
-                                      key={index}
-                                    >
-                                      <i className="fa fa-angle-left"></i>
-                                    </a>
-                                  ) : link.label === "Next &raquo;" ? (
-                                    <a
-                                      className="paginate-button"
-                                      onClick={() =>
-                                        LinkTopaginationString(link)
-                                      }
-                                      key={index}
-                                    >
-                                      <i className="fa fa-angle-right"></i>
-                                    </a>
-                                  ) : (
-                                    <a
-                                      className={`paginate_button paginate-number ${
-                                        link.active === true && "text-warning"
-                                      }`}
-                                      aria-controls="assetBalances"
-                                      data-dt-idx="1"
-                                      onClick={() =>
-                                        LinkTopaginationString(link)
-                                      }
-                                      key={index}
-                                    >
-                                      {link.label}
-                                    </a>
-                                  )
-                              )}
-                            </span>
+                        <div className="tableScroll pr-0">
+                          <div className=" table-responsive">
+                            <CustomDataTable
+                              columns={columns}
+                              data={Changeable}
+                              selectedLimit={selectedLimit}
+                              setSelectedLimit={setSelectedLimit}
+                              search={search}
+                              setSearch={setSearch}
+                              processing={processing}
+                              verticalAlignData={`middle`}
+                            />
+                            <div
+                              className="pagination-wrapper"
+                              id="assetBalances_paginate"
+                            >
+                              <span>
+                                {walletList?.links?.map(
+                                  (link: any, index: number) =>
+                                    link.label === "&laquo; Previous" ? (
+                                      <a
+                                        className="paginate-button"
+                                        onClick={() =>
+                                          LinkTopaginationString(link)
+                                        }
+                                        key={index}
+                                      >
+                                        <i className="fa fa-angle-left"></i>
+                                      </a>
+                                    ) : link.label === "Next &raquo;" ? (
+                                      <a
+                                        className="paginate-button"
+                                        onClick={() =>
+                                          LinkTopaginationString(link)
+                                        }
+                                        key={index}
+                                      >
+                                        <i className="fa fa-angle-right"></i>
+                                      </a>
+                                    ) : (
+                                      <a
+                                        className={`paginate_button paginate-number ${
+                                          link.active === true && "text-warning"
+                                        }`}
+                                        aria-controls="assetBalances"
+                                        data-dt-idx="1"
+                                        onClick={() =>
+                                          LinkTopaginationString(link)
+                                        }
+                                        key={index}
+                                      >
+                                        {link.label}
+                                      </a>
+                                    )
+                                )}
+                              </span>
+                            </div>
                           </div>
                         </div>
                       </div>

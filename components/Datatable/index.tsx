@@ -134,7 +134,7 @@ const CustomDataTable = ({
                               borderBottom: "1px solid #7d7d7d33",
                               padding: "12px 8px",
                               textAlign: "start",
-                              // whiteSpace: "nowrap",
+                              whiteSpace: "nowrap",
                               textOverflow: "ellipsis",
                               maxWidth: "200px",
                               verticalAlign: verticalAlignData,
