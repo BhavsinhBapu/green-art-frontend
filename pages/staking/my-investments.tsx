@@ -7,7 +7,7 @@ import useTranslation from "next-translate/useTranslation";
 import React from "react";
 import { myOrderAction } from "state/actions/staking";
 
-const myOrder = () => {
+const MyOrder = () => {
   const { t } = useTranslation("common");
 
   return (
@@ -34,4 +34,4 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
     props: {},
   };
 };
-export default myOrder;
+export default MyOrder;
