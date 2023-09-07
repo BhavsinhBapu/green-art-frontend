@@ -73,7 +73,7 @@ const BlogDetails = ({ BlogNewsSettings }: any) => {
                 blogDetails?.data?.details?.post_id
               }
             />
-            <h4 className="mt-5">More blog from here</h4>
+            <h4 className="mt-5">{t(`More blog from here`)}</h4>
 
             {blogDetails?.data?.related?.data?.map(
               (item: any, index: number) => (

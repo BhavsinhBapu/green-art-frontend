@@ -1,3 +1,4 @@
+import useTranslation from "next-translate/useTranslation";
 import React, { useEffect, useState } from "react";
 
 const CommentSection = ({
@@ -6,6 +7,8 @@ const CommentSection = ({
   PostCommentAction,
   comment_allow,
 }: any) => {
+  const { t } = useTranslation("common");
+
   const [postComment, setPostComment] = useState({
     name: "",
     email: "",
@@ -35,7 +38,7 @@ const CommentSection = ({
     <div className="row">
       <div className="col-12">
         {commentList?.length > 0 && (
-          <h2 className="pb-2 titleText">Comments</h2>
+          <h2 className="pb-2 titleText">{t(`Comments`)}</h2>
         )}
         {commentList?.length > 0 &&
           commentList?.map((comment: any, index: number) => (
@@ -54,7 +57,7 @@ const CommentSection = ({
         <div className="col-12 my-5">
           <div className="row">
             <div className="col-12 d-flex align-items-center commentTitle">
-              <h2 className="pb-3 titleText">Leave a Comment</h2>
+              <h2 className="pb-3 titleText">{t(`Leave a Comment`)}</h2>
               <div className="commentBar shadow-sm d-none d-sm-block"></div>
             </div>
           </div>
@@ -63,7 +66,7 @@ const CommentSection = ({
               <div className="row">
                 <div className="col-md-6">
                   <div className="form-group">
-                    <label>Name:</label>
+                    <label>{t(`Name:`)}</label>
                     <input
                       type="text"
                       className="form_input"
@@ -81,7 +84,7 @@ const CommentSection = ({
                 </div>
                 <div className="col-md-6">
                   <div className="form-group">
-                    <label>Email:</label>
+                    <label>{t(`Email:`)}</label>
                     <input
                       type="email"
                       className="form_input"
@@ -99,7 +102,7 @@ const CommentSection = ({
                 </div>
                 <div className="col-md-6">
                   <div className="form-group">
-                    <label>Website:</label>
+                    <label>{t(`Website:`)}</label>
                     <input
                       type="text"
                       className="form_input"
@@ -117,7 +120,7 @@ const CommentSection = ({
                 </div>
                 <div className="col-md-6">
                   <div className="form-group">
-                    <label>Message:</label>
+                    <label>{t(`Message:`)}</label>
                     <textarea
                       className="form-control"
                       id="message"
