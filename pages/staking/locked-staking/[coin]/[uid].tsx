@@ -5,6 +5,7 @@ import Footer from "components/common/footer";
 import { STAKING_TERMS_TYPE_STRICT } from "helpers/core-constants";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
+import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { TotalInvestmentBonus } from "service/staking";
@@ -28,6 +29,8 @@ const LockedStaking = () => {
     setisChecked(event.target.checked);
   };
   const [selectedDayUid, setSelectedDayUid] = useState(uid);
+  const { t } = useTranslation("common");
+
 
   const handleAutoRenewChange = (event: any) => {
     if (event.target.checked) {
@@ -61,7 +64,7 @@ const LockedStaking = () => {
             <div className="mt-3 mb-3">
               <BackButton />
             </div>
-            <h1 className="ny-3">Staking</h1>
+            <h1 className="ny-3">{t(`Staking`)}</h1>
             <hr />
             <div className="rounded">
               <div className="row">
@@ -73,7 +76,7 @@ const LockedStaking = () => {
                   <div className="row pt-6 mt-3">
                     <div className="col-lg-12">
                       <div className="est-price">
-                        <p>Type</p>
+                        <p>{t(`Type`)}</p>
                         <h6 className="pl-3 text-warning">
                           {details?.terms_type === STAKING_TERMS_TYPE_STRICT
                             ? "Locked"
@@ -81,7 +84,7 @@ const LockedStaking = () => {
                         </h6>
                       </div>
                       <div className="est-price">
-                        <p>Duration</p>
+                        <p>{t(`Duration`)}</p>
                         <td>
                           <div className="d-flex align-items-center">
                             {offerList?.map((offer: any, index: any) => (
@@ -98,48 +101,48 @@ const LockedStaking = () => {
                                   );
                                 }}
                               >
-                                {offer?.period} Days
+                                {offer?.period} {t(`Days`)}
                               </div>
                             ))}
                           </div>
                         </td>
                       </div>
                       <div className="est-price">
-                        <p>Stake Date</p>
+                        <p>{t(`Stake Date`)}</p>
                         <h6 className="pl-3">
                           {formateData(details?.stake_date)}
                         </h6>
                       </div>
                       <div className="est-price">
-                        <p>Value Date</p>
+                        <p>{t(`Value Date`)}</p>
                         <h6 className="pl-3">
                           {formateData(details?.value_date)}
                         </h6>
                       </div>
                       <div className="est-price">
-                        <p>Interest Period</p>
+                        <p>{t(`Interest Period`)}</p>
                         <h6 className="pl-3">
-                          {details?.interest_period} Days
+                          {details?.interest_period} {t(`Days`)}
                         </h6>
                       </div>
                       <div className="est-price">
-                        <p>Interest End Date</p>
+                        <p>{t(`Interest End Date`)}</p>
                         <h6 className="pl-3">{details?.interest_end_date}</h6>
                       </div>
                       {details?.terms_type !== STAKING_TERMS_TYPE_STRICT && (
                         <div className="est-price">
-                          <p>Minimum Maturity Period</p>
+                          <p>{t(`Minimum Maturity Period`)}</p>
                           <h6 className="pl-3">
-                            {details?.minimum_maturity_period} Day
+                            {details?.minimum_maturity_period} {t(`Day`)}
                           </h6>
                         </div>
                       )}
                       <div className="est-price">
-                        <p>Minimum Amount</p>
+                        <p>{t(`Minimum Amount`)}</p>
                         <h6 className="pl-3">{details?.minimum_investment}</h6>
                       </div>
                       <div className="est-price">
-                        <p>Available Amount</p>
+                        <p>{t(`Available Amount`)}</p>
                         <h6 className="pl-3">
                           {!parseFloat(details?.total_investment_amount)
                             ? parseFloat(details?.maximum_investment) - 0
@@ -149,18 +152,18 @@ const LockedStaking = () => {
                       </div>
                       {details?.terms_type !== STAKING_TERMS_TYPE_STRICT && (
                         <div className="est-price">
-                          <p>Minimum Maturity Period</p>
+                          <p>{t(`Minimum Maturity Period`)}</p>
                           <h6 className="pl-3">
-                            {details?.minimum_maturity_period} Day
+                            {details?.minimum_maturity_period} {t(`Day`)}
                           </h6>
                         </div>
                       )}
                       <div className="est-price">
-                        <p>Estimated Intereste</p>
+                        <p>{t(`Estimated Intereste`)}</p>
                         <h6 className="pl-3">{totalBonus}</h6>
                       </div>
                       <div className=" mt-5">
-                        <h4>Enable Auto Staking</h4>
+                        <h4>{t(`Enable Auto Staking`)}</h4>
                         <label className="switch">
                           <input
                             type="checkbox"
@@ -172,12 +175,11 @@ const LockedStaking = () => {
                         </label>
                         <br />
                         <small>
-                          Auto Staking is a feature that lets you earn staking
-                          rewards automatically without any manual effort.
+                          {t(`Auto Staking is a feature that lets you earn staking rewards automatically without any manual effort.`)}
                         </small>
                       </div>
                       <div className="est-price mt-5">
-                        <h4>Est. APR</h4>
+                        <h4>{t(`Est. APR`)}</h4>
                         <h4 className="text-success">
                           {details?.offer_percentage}%
                         </h4>
@@ -187,7 +189,7 @@ const LockedStaking = () => {
                 </div>
                 <form className="col-md-6">
                   <div>
-                    <label>Lock Amount</label>
+                    <label>{t(`Lock Amount`)}</label>
                     <div className="P2psearchBox position-relative">
                       <input
                         type="number"
@@ -210,32 +212,32 @@ const LockedStaking = () => {
 
                   <div className="">
                     <div className="pt-5">
-                      <h5 className="mb-4">Terms and Conditions</h5>
+                      <h5 className="mb-4">{t(`Terms and Conditions`)}</h5>
                       {parseFloat(details?.user_minimum_holding_amount) > 0 && (
                         <div className="">
                           <b>
-                            - You must have atlest{" "}
+                            - {t(`You must have atlest`)}{" "}
                             {parseFloat(details?.user_minimum_holding_amount)}{" "}
-                            {details?.coin_type} in your account
+                            {details?.coin_type} {t(`in your account`)}
                           </b>
                         </div>
                       )}
                       {parseFloat(details?.registration_before) > 0 && (
                         <div className="">
                           <b>
-                            - You must have registered before{" "}
-                            {parseFloat(details?.registration_before)} days
+                            - {t(`You must have registered before`)}{" "}
+                            {parseFloat(details?.registration_before)} {t(`days`)}
                           </b>
                         </div>
                       )}
                       {parseFloat(details?.phone_verification) > 0 && (
                         <div className="">
-                          <b>- You must have verified phone number </b>
+                          <b>- {t(`You must have verified phone number`)} </b>
                         </div>
                       )}
                       {parseFloat(details?.kyc_verification) > 0 && (
                         <div className="">
-                          <b>- You must have completed your KYC Verification</b>
+                          <b>- {t(`You must have completed your KYC Verification`)}</b>
                         </div>
                       )}
 
@@ -257,7 +259,7 @@ const LockedStaking = () => {
                         onChange={handleCheckboxChange}
                       />
                       <label className="form-check-label" htmlFor="agreeCheck">
-                        I agree to the terms and conditions
+                        {t(`I agree to the terms and conditions`)}
                       </label>
                     </div>
                   </div>

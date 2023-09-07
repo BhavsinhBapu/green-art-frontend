@@ -11,11 +11,14 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { investmentCanceled } from "service/staking";
 import MyModalsPayment from "./modal";
+import useTranslation from "next-translate/useTranslation";
 
 export const InvesmentOrderTable = ({
   actionFunction,
   filter = false,
 }: any) => {
+  const { t } = useTranslation("common");
+
   const [selectedStatus, setSelectedStatus] = useState("all");
   const [modalData, setModalData] = useState({});
   const [selectedCoin, setSelectedCoins] = useState("all");
@@ -76,13 +79,13 @@ export const InvesmentOrderTable = ({
               <table className="table mt-4">
                 <thead>
                   <tr>
-                    <th scope="col">Coin Type</th>
-                    <th scope="col">Daily Earning</th>
-                    <th scope="col">Investment Amount</th>
-                    <th scope="col">Auto Renew</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Estimated Interest</th>
-                    <th scope="col">Time Period</th>
+                    <th scope="col">{t(`Coin Type`)}</th>
+                    <th scope="col">{t(`Daily Earning`)}</th>
+                    <th scope="col">{t(`Investment Amount`)}</th>
+                    <th scope="col">{t(`Auto Renew`)}</th>
+                    <th scope="col">{t(`Status`)}</th>
+                    <th scope="col">{t(`Estimated Interest`)}</th>
+                    <th scope="col">{t(`Time Period`)}</th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
@@ -131,7 +134,7 @@ export const InvesmentOrderTable = ({
                         <td>
                           {item.total_bonus} {item?.coin_type}
                         </td>
-                        <td>{item.period} Days</td>
+                        <td>{item.period} {t(`Days`)}</td>
                         {parseInt(item?.status) ===
                         STAKING_INVESTMENT_STATUS_RUNNING ? (
                           <td
@@ -140,14 +143,14 @@ export const InvesmentOrderTable = ({
                             }}
                             className="primary-text"
                           >
-                            Cancel
+                            {t(`Cancel`)}
                           </td>
                         ) : parseInt(item?.status) ===
                           STAKING_INVESTMENT_STATUS_CANCELED ? (
-                          <td className="text-danger">Cancelled</td>
+                          <td className="text-danger">{t(`Cancelled`)}</td>
                         ) : parseInt(item?.status) ===
                           STAKING_INVESTMENT_STATUS_PAID ? (
-                          <td className="text-success">Paid</td>
+                          <td className="text-success">{t(`Paid`)}</td>
                         ) : (
                           ""
                         )}
@@ -158,7 +161,7 @@ export const InvesmentOrderTable = ({
                             setModalData(item);
                           }}
                         >
-                          Details
+                          {t(`Details`)}
                         </td>
                       </tr>
                     ))

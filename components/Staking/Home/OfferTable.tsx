@@ -3,8 +3,11 @@ import { getOfferListAction } from "state/actions/staking";
 import OfferRow from "./OfferRow";
 import SectionLoading from "components/common/SectionLoading";
 import { NoItemFound } from "components/NoItemFound/NoItemFound";
+import useTranslation from "next-translate/useTranslation";
 
 const OfferTable = ({ isLoggedIn }: any) => {
+  const { t } = useTranslation("common");
+
   const [offers, setOffers] = useState<any>([]);
   const [loading, setloading] = useState<any>(false);
   useEffect(() => {
@@ -23,10 +26,10 @@ const OfferTable = ({ isLoggedIn }: any) => {
                   <table className="table">
                     <thead>
                       <tr>
-                        <th scope="col">Token</th>
-                        <th scope="col">Minimum Amount</th>
-                        <th scope="col">Est. APR</th>
-                        <th scope="col">Duration Days</th>
+                        <th scope="col">{t(`Token`)}</th>
+                        <th scope="col">{t(`Minimum Amount`)}</th>
+                        <th scope="col">{t(`Est. APR`)}</th>
+                        <th scope="col">{t(`Duration Days`)}</th>
                         <th scope="col"></th>
                       </tr>
                     </thead>

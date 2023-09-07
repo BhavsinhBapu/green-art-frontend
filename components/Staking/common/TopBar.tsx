@@ -2,7 +2,10 @@ import { RiPagesLine } from "react-icons/ri";
 import { HiOutlineHome, HiUsers } from "react-icons/hi";
 import Link from "next/link";
 import { MdPayment } from "react-icons/md";
+import useTranslation from "next-translate/useTranslation";
 export const StakingTopBar = () => {
+  const { t } = useTranslation("common");
+
   return (
     <div className="p2p_top_bg py-3">
       <div className="container">
@@ -13,7 +16,7 @@ export const StakingTopBar = () => {
                 <Link href="/staking">
                   <a>
                     <HiOutlineHome />
-                    Home
+                    {t(`Home`)}
                   </a>
                 </Link>
               </li>
@@ -21,7 +24,7 @@ export const StakingTopBar = () => {
                 <Link href="/staking/earnings">
                   <a>
                     <RiPagesLine />
-                    Reports
+                    {t(`Reports`)}
                   </a>
                 </Link>
               </li>
@@ -29,7 +32,7 @@ export const StakingTopBar = () => {
                 <Link href="/staking/my-investments">
                   <a>
                     <HiUsers />
-                    My Invesments
+                    {t(`My Invesments`)}
                   </a>
                 </Link>
               </li>
@@ -37,7 +40,7 @@ export const StakingTopBar = () => {
                 <Link href="/staking/payment-list">
                   <a>
                     <MdPayment />
-                    My Earnings
+                    {t(`My Earnings`)}
                   </a>
                 </Link>
               </li>

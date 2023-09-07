@@ -1,7 +1,10 @@
+import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 const OfferRow = ({ offers, item, isLoggedIn }: any) => {
+  const { t } = useTranslation("common");
+
   const [selectedDays, setSelectedDays] = useState(0);
   const [selectedData, setSelectedData] = useState<any>();
   useEffect(() => {
@@ -38,7 +41,7 @@ const OfferRow = ({ offers, item, isLoggedIn }: any) => {
                 setSelectedData(offer);
               }}
             >
-              {offer?.period} Days
+              {offer?.period} {t(`Days`)}
             </div>
           ))}
         </div>
@@ -46,7 +49,7 @@ const OfferRow = ({ offers, item, isLoggedIn }: any) => {
       <td>
         {isLoggedIn && (
           <Link href={`/staking/locked-staking/${item}/${selectedData?.uid}`}>
-            <button className="tableButton">Stake now</button>
+            <button className="tableButton">{t(`Stake now`)}</button>
           </Link>
         )}
       </td>
