@@ -7,8 +7,11 @@ import { articleDetails } from "service/knowledgebase";
 import { customPage, landingPage } from "service/landing-page";
 import { getNewsDetails } from "service/news";
 import Link from "next/link";
+import useTranslation from "next-translate/useTranslation";
 
 const KnowledgebaseArticleDetails = ({ articleDetails }: any) => {
+  const { t } = useTranslation("common");
+
   return (
     <>
       <div className="container mb-5">
@@ -63,7 +66,7 @@ const KnowledgebaseArticleDetails = ({ articleDetails }: any) => {
                     <Link href={"/knowledgebase/" + article.unique_code}>
                       <div className="details-button">
                         <a href="#">
-                          View more
+                          {t(`View more`)}
                           <i
                             className="ml-2 fa fa-long-arrow-right"
                             aria-hidden="true"

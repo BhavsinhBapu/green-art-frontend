@@ -1,7 +1,10 @@
 import { formateData } from "common";
+import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 
 export const ArticalCard = ({ article }: any) => {
+  const { t } = useTranslation("common");
+
   return (
     <div className="col-md-6 col-lg-4 mt-5">
       <div className="article_card p-4">
@@ -24,7 +27,7 @@ export const ArticalCard = ({ article }: any) => {
       <Link href={"/knowledgebase/" + article.unique_code}>
         <div className="details-button">
           <a href="#">
-            View more
+            {t(`View more`)}
             <i className="ml-2 fa fa-long-arrow-right" aria-hidden="true"></i>
           </a>
         </div>

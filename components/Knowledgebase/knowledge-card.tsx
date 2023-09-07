@@ -1,6 +1,9 @@
+import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 
 export const KnowledgeCard = (subCategory: any) => {
+  const { t } = useTranslation("common");
+
   return (
     <div className="col-md-6 col-lg-4 mt-5 pt-4 pt-lg-0">
       <div className="sub_title h-100">
@@ -37,7 +40,7 @@ export const KnowledgeCard = (subCategory: any) => {
       >
         <div className="details-button">
           <a href="">
-            Show more
+            {t(`Show more`)}
             <i className="ml-2 mt-1 fa fa-angle-right" aria-hidden="true"></i>
           </a>
         </div>
