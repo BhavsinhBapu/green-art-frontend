@@ -1,4 +1,5 @@
 import { CUstomSelect } from "components/common/CUstomSelect";
+import useTranslation from "next-translate/useTranslation";
 import { useEffect, useState } from "react";
 import { HiRefresh } from "react-icons/hi";
 
@@ -6,6 +7,8 @@ export const P2pFilter = ({ filters, setFilters, settings }: any) => {
   const [currency, setCurrency] = useState([]);
   const [country, setCountry] = useState([]);
   const [payment, setPayment] = useState([]);
+
+  const { t } = useTranslation("common");
 
   const handleCurrency = (e: any) => {
     setFilters({ ...filters, currency: e.value });
@@ -58,7 +61,7 @@ export const P2pFilter = ({ filters, setFilters, settings }: any) => {
     <div className="container mt-4">
       <div className="row">
         <div className="col-md-3">
-          <label>Amount</label>
+          <label>{t(`Amount`)}</label>
           <div className="P2psearchBox position-relative">
             <input
               type="text"
@@ -75,19 +78,19 @@ export const P2pFilter = ({ filters, setFilters, settings }: any) => {
         </div>
         <div className="col-md-3">
           <div className="form-group p2pSelectFilter">
-            <label> Fiat</label>
+            <label> {t(`Fiat`)}</label>
             <CUstomSelect options={currency} handleFunction={handleCurrency} />
           </div>
         </div>
         <div className="col-md-3">
           <div className="form-group p2pSelectFilter">
-            <label> Payment</label>
+            <label> {t(`Payment`)}</label>
             <CUstomSelect options={payment} handleFunction={handlePayment} />
           </div>
         </div>
         <div className="col-md-3">
           <div className="form-group p2pSelectFilter">
-            <label>Available Region(s)</label>
+            <label>{t(`Available Region(s)`)}</label>
             <CUstomSelect options={country} handleFunction={handleCountry} />
           </div>
         </div>

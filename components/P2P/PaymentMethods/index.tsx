@@ -1,4 +1,8 @@
+import useTranslation from "next-translate/useTranslation";
+
 export const PaymentMethodTable = () => {
+  const { t } = useTranslation("common");
+
   return (
     <div className="container">
       <div className="row">
@@ -7,13 +11,13 @@ export const PaymentMethodTable = () => {
             <table className="table mt-4">
               <thead>
                 <tr>
-                  <th scope="col">Type/Coin</th>
-                  <th scope="col">Fiat amount</th>
-                  <th scope="col">Price</th>
-                  <th scope="col">Crypto amount</th>
-                  <th scope="col">Counterparty</th>
-                  <th scope="col">Status</th>
-                  <th scope="col">Operation</th>
+                  <th scope="col">{t(`Type/Coin`)}</th>
+                  <th scope="col">{t(`Fiat amount`)}</th>
+                  <th scope="col">{t(`Price`)}</th>
+                  <th scope="col">{t(`Crypto amount`)}</th>
+                  <th scope="col">{t(`Counterparty`)}</th>
+                  <th scope="col">{t(`Status`)}</th>
+                  <th scope="col">{t(`Operation`)}</th>
                 </tr>
               </thead>
               <tbody>
@@ -24,22 +28,22 @@ export const PaymentMethodTable = () => {
                         src="https://api-tradex.nftarttoken.xyz/images/avatars/yellow-hat.png"
                         alt=""
                       />
-                      <h6 className="ml-2">Chirik34</h6>
+                      <h6 className="ml-2">{t(`Chirik34`)}</h6>
                     </div>
                   </td>
                   <td>
-                    <h6 className="mx-2">12,233.34 EUR</h6>
+                    <h6 className="mx-2">{t(`12,233.34 EUR`)}</h6>
                   </td>
-                  <td>113.60 BDT</td>
-                  <td>157.89 USDT</td>
+                  <td>{t(`113.60 BDT`)}</td>
+                  <td>{t(`157.89 USDT`)}</td>
                   <td>
-                    <a href="">riralam</a>
-                  </td>
-                  <td>
-                    <h6>Cancelled</h6>
+                    <a href="">{t(`riralam`)}</a>
                   </td>
                   <td>
-                    <p className="text-warning">Contact</p>
+                    <h6>{t(`Cancelled`)}</h6>
+                  </td>
+                  <td>
+                    <p className="text-warning">{t(`Contact`)}</p>
                   </td>
                 </tr>
               </tbody>

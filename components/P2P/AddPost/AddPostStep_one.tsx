@@ -1,5 +1,6 @@
 import { CUstomSelect } from "components/common/CUstomSelect";
 import { FIXED_PRICE, FLOAT_PRICE } from "helpers/core-constants";
+import useTranslation from "next-translate/useTranslation";
 import { useEffect, useState } from "react";
 import { BsPlusLg, BsQuestionSquareFill } from "react-icons/bs";
 import { FaMinus } from "react-icons/fa";
@@ -17,6 +18,8 @@ export const AddPostOne = ({
   setPricePoint,
   uid,
 }: any) => {
+  const { t } = useTranslation("common");
+
   const [AssetOptions, setAssetOptions] = useState([]);
   const [CurrencyOptions, setCurrencyOptions] = useState([]);
 
@@ -51,7 +54,7 @@ export const AddPostOne = ({
       <div className="buySellAddBox px-5 py-5 rounded">
         <div className="row">
           <div className="col-md-3 col-lg-3 col-12">
-            <label> Asset:</label>
+            <label> {t(`Asset:`)}</label>
             <CUstomSelect
               options={AssetOptions}
               isSearchable={true}
@@ -61,7 +64,7 @@ export const AddPostOne = ({
             />
           </div>
           <div className="col-md-3 col-lg-3 col-12">
-            <label> With Fiat:</label>
+            <label> {t(`With Fiat:`)}</label>
             <CUstomSelect
               options={CurrencyOptions}
               isSearchable={true}
@@ -71,13 +74,13 @@ export const AddPostOne = ({
             />
           </div>
           <div className="col-md-3 col-lg-3 col-12 adFromPrice">
-            <label> Your Price</label>
+            <label> {t(`Your Price`)}</label>
             <h5 className="custom-border-box">
-            {selectedCurrency?.value} {parseFloat(pricePoint.highest_price)}
+              {selectedCurrency?.value} {parseFloat(pricePoint.highest_price)}
             </h5>
           </div>
           <div className="col-md-3 col-lg-3 col-12 adFromPrice">
-            <label>Lowest Order Price</label>
+            <label>{t(`Lowest Order Price`)}</label>
             <h5 className="custom-border-box">
               {selectedCurrency?.value} {parseFloat(pricePoint.lowest_price)}
             </h5>
@@ -86,7 +89,7 @@ export const AddPostOne = ({
           <div className="col-12 mt-5">
             <div className="row">
               <div className="col-md-6 col-lg-6 col-12">
-                <label>Price Type</label>
+                <label>{t(`Price Type`)}</label>
                 <div className="d-flex" style={{ gap: "20px" }}>
                   <div className="adFromCheckBox">
                     <input
@@ -95,7 +98,7 @@ export const AddPostOne = ({
                       checked={priceType === FIXED_PRICE}
                       onChange={() => setPriceType(FIXED_PRICE)}
                     />
-                    <p>Fixed</p>
+                    <p>{t(`Fixed`)}</p>
                   </div>
                   <div className="adFromCheckBox">
                     <input
@@ -104,7 +107,7 @@ export const AddPostOne = ({
                       checked={priceType === FLOAT_PRICE}
                       onChange={() => setPriceType(FLOAT_PRICE)}
                     />
-                    <p>Floating</p>
+                    <p>{t(`Floating`)}</p>
                   </div>
                 </div>
               </div>
@@ -162,7 +165,7 @@ export const AddPostOne = ({
               onClick={() => setAddStep("stepTwo")}
               className="addTabButton buySellBoxActive py-2"
             >
-              Next
+              {t(`Next`)}
             </button>
           )}
       </div>

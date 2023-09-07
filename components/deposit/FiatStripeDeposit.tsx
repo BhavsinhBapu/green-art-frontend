@@ -163,7 +163,7 @@ const FiatStripeDeposit = ({ method_id, currency_type }: any) => {
                 submitFiatWalletDeposit(credential);
               }}
             >
-              Deposit
+              {t(`Deposit`)}
             </button>
           )}
         </div>
