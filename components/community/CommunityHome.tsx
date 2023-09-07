@@ -1,6 +1,7 @@
 import { formateDateMunite } from "common";
 import { NoItemFound } from "components/NoItemFound/NoItemFound";
 import SectionLoading from "components/common/SectionLoading";
+import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { BsChevronRight } from "react-icons/bs";
@@ -28,6 +29,7 @@ isn't over yet.`;
 
 export default function CommunityHome() {
   const { settings } = useSelector((state: RootState) => state.common);
+  const { t } = useTranslation();
 
   const [blogList, setBlogList] = useState<any>([]);
   const [loading, setLoading] = useState(false);
@@ -48,7 +50,7 @@ export default function CommunityHome() {
     const response = await getBlogHomePageDataApi();
     if (!response.success) {
       toast.error(response.message);
-      return
+      return;
     }
     setBlogList(response.data);
     setLoading(false);
@@ -66,7 +68,7 @@ export default function CommunityHome() {
             </h3>
             <Link href={`/blog`}>
               <span className="community-home-btn">
-                <span>View More</span>
+                <span>{t(`View More`)}</span>
                 <span>
                   <BsChevronRight size={12} />
                 </span>
@@ -110,7 +112,7 @@ export default function CommunityHome() {
                           <span>{item?.category}</span>
                         </div>
                         <Link href={`blog/${item?.slug}`}>
-                          <div className="community-item-des cursor-pointer" >
+                          <div className="community-item-des cursor-pointer">
                             <p>{item?.body?.substring(0, 80)}...</p>
                           </div>
                         </Link>
@@ -141,7 +143,9 @@ export default function CommunityHome() {
                     "World's largest crypto community"}
                 </h3>
                 <Link href={`/blog`}>
-                  <button className="community-card-btn">Explore now</button>
+                  <button className="community-card-btn">
+                    {t(`Explore now`)}
+                  </button>
                 </Link>
               </div>
             </div>
