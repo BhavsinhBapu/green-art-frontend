@@ -29,13 +29,15 @@ export default function MyCards({ myCards, hanldeMyCards }: any) {
     <div className="container pb-80">
       <div className="d-flex justify-content-between">
         <div>
-          <h3>My Cards</h3>
+          <h3>{t(`My Cards`)}</h3>
         </div>
         <div>
           <Link href={isLoggedIn ? `/gift-cards/my-cards` : "/signin"}>
             <a>
               <div className="d-flex align-items-center">
-                <span className="inline-block pr-2">All({myCards.length})</span>
+                <span className="inline-block pr-2">
+                  {t(`All`)}({myCards.length})
+                </span>
                 <span className="gift-card-arrow">
                   <BsArrowRight />
                 </span>

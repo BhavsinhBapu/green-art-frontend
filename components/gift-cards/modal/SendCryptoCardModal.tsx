@@ -50,13 +50,13 @@ export default function SendCryptoCardModal({
   return (
     <div id="demo-modal" className="gift-card-modal">
       <div className="gift-card-modal__content p-5 send-crypto-w">
-        <h2>Send Crpto Gift Card</h2>
+        <h2>{t(`Send Crpto Gift Card`)}</h2>
 
         <div className="row my-5">
           <div className="col-12">
             <div className="mb-3">
               <label htmlFor="exampleFormControlInput1" className="form-label">
-                Select Type
+                {t(`Select Type`)}
               </label>
               <CUstomSelect
                 options={options}
@@ -91,7 +91,7 @@ export default function SendCryptoCardModal({
                 )}
               </div>
               <div className="form-group">
-                <label htmlFor="exampleFormControlTextarea1">Massage</label>
+                <label htmlFor="exampleFormControlTextarea1">{t(`Massage`)}</label>
                 <textarea
                   className="form-control"
                   id="exampleFormControlTextarea1"
