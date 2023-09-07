@@ -90,7 +90,7 @@ const LaunchPad = ({ viewMore, data, core, image, link }: any) => {
       {viewMore && (
         <div className="viewMoreLink">
           <Link href={"/ico/view-all/lists?type=" + core}>
-            <a>View more</a>
+            <a>{t(`View more`)}</a>
           </Link>
         </div>
       )}
