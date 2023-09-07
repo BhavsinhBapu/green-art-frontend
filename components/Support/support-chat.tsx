@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
 import { BsFillFileEarmarkImageFill } from "react-icons/bs";
+import useTranslation from "next-translate/useTranslation";
 
 export const SupportChat = ({
   sendMessage,
@@ -11,6 +12,7 @@ export const SupportChat = ({
   col,
 }: any): JSX.Element => {
   // const messagesEndRef = useRef(null);
+  const { t } = useTranslation("common");
 
   const { user } = useSelector((state: RootState) => state.user);
   const scrollToBottom = () => {
@@ -74,7 +76,7 @@ export const SupportChat = ({
                           rel="noreferrer"
                           className="send_image"
                         >
-                          Download file
+                          {t(`Download file`)}
                         </a>
                       )
                     )}
@@ -120,7 +122,7 @@ export const SupportChat = ({
                           rel="noreferrer"
                           className="send_image"
                         >
-                          Download file
+                          {t(`Download file`)}
                         </a>
                       )
                     )}
@@ -166,7 +168,7 @@ export const SupportChat = ({
               </div>
             </div>
             <button className="rounded chat_btn" type="submit">
-              send
+              {t(`send`)}
             </button>
           </form>
         </div>

@@ -4,15 +4,19 @@ import {
   TICKET_STATUS_OPEN,
   TICKET_STATUS_PENDING,
 } from "helpers/core-constants";
+import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 
 export const TicketBox = ({ ticket }: any) => {
+  const { t } = useTranslation("common");
+
   return (
     <Link href={"/support/" + ticket?.unique_code}>
       <div
         className={`col-12 my-2  ${
           ticket.is_seen_by_user === 1 ? "ticket-card" : "ticket-card-unseen"
-        }`}>
+        }`}
+      >
         <div className="card p-3 ">
           <a href="">
             <div className="row">
@@ -24,19 +28,19 @@ export const TicketBox = ({ ticket }: any) => {
                     <b>
                       {ticket?.status === TICKET_STATUS_PENDING ? (
                         <span className=" ml-2 badge bg-warning text-white">
-                          Pending
+                          {t(`Pending`)}
                         </span>
                       ) : ticket?.status === TICKET_STATUS_OPEN ? (
                         <span className=" ml-2 badge bg-info text-white">
-                          Open
+                          {t(`Open`)}
                         </span>
                       ) : ticket?.status === TICKET_STATUS_CLOSE ? (
                         <span className=" ml-2 badge bg-danger text-white">
-                          Close
+                          {t(`Close`)}
                         </span>
                       ) : (
                         <span className=" ml-2 badge bg-danger text-white">
-                          Close forever
+                          {t(`Close forever`)}
                         </span>
                       )}
                     </b>
@@ -50,26 +54,27 @@ export const TicketBox = ({ ticket }: any) => {
                       0,
                       300
                     ),
-                  }}></p>
+                  }}
+                ></p>
                 <small className="p_color">
                   {formateDateMunite(ticket?.updated_at)}
                 </small>
               </div>
               <div className="col-md-3  p_color">
                 <p>
-                  <b>Assign To:</b>
+                  <b>{t(`Assign To:`)}</b>
                   {ticket?.agent_name ? (
                     <small>{ticket?.agent_name}</small>
                   ) : (
-                    <small>Not Assign</small>
+                    <small>{t(`Not Assign`)}</small>
                   )}
                 </p>
                 <p>
-                  <b className="mr-1">Ticket Created At: </b>
+                  <b className="mr-1">{t(`Ticket Created At:`)} </b>
                   <small>{formateData(ticket?.created_at)}</small>
                 </p>
                 <p>
-                  <b className="mr-1">Project Name: </b>
+                  <b className="mr-1">{t(`Project Name: `)}</b>
                   <small>{ticket?.project?.name}</small>
                 </p>
               </div>

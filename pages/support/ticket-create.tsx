@@ -5,6 +5,7 @@ import {
   pageAvailabilityCheck,
 } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
+import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
@@ -16,6 +17,8 @@ import {
 import { customPage, landingPage } from "service/landing-page";
 
 const TicketCreate = () => {
+  const { t } = useTranslation("common");
+
   const [projectList, setProjectList] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
   const [options, setOptions] = useState<any>({
@@ -83,10 +86,10 @@ const TicketCreate = () => {
                 <div className="row">
                   <div className="col-md-8 mx-auto">
                     <div className="ticket_create_box p-4 rounded">
-                      <h4 className="fw_600">Create New Ticket</h4>
+                      <h4 className="fw_600">{t(`Create New Ticket`)}</h4>
                       <input type="hidden" />
                       <div className="p_color pt-4">
-                        <label>Choose Category:</label>
+                        <label>{t(`Choose Category:`)}</label>
                         <select
                           id="inputState"
                           className="w-100 px-2 py-2 rounded search-field ticketFilterBg"
@@ -98,7 +101,7 @@ const TicketCreate = () => {
                           }}
                         >
                           <option selected value={""}>
-                            Choose...
+                            {t(`Choose...`)}
                           </option>
                           {categoryList.map((category: any, index: any) => (
                             <option key={index} value={category.id}>
@@ -107,7 +110,7 @@ const TicketCreate = () => {
                           ))}
                         </select>
 
-                        <label className="pt-4">Choose Project:</label>
+                        <label className="pt-4">{t(`Choose Project:`)}</label>
                         <select
                           id="inputState"
                           className="w-100 px-2 py-2 rounded search-field ticketFilterBg"
@@ -118,7 +121,7 @@ const TicketCreate = () => {
                             });
                           }}
                         >
-                          <option selected>Choose...</option>
+                          <option selected>{t(`Choose...`)}</option>
                           {projectList.map((project: any, index: any) => (
                             <option key={index} value={project.id}>
                               {project.name}
@@ -126,7 +129,7 @@ const TicketCreate = () => {
                           ))}
                         </select>
 
-                        <label className="pt-4">Title :</label>
+                        <label className="pt-4">{t(`Title :`)}</label>
                         <input
                           className="w-100 px-2 py-2 rounded search-field"
                           type="text"
@@ -139,7 +142,7 @@ const TicketCreate = () => {
                           }}
                         />
 
-                        <label className="pt-4">Description</label>
+                        <label className="pt-4">{t(`Description`)}</label>
                         <textarea
                           id="description"
                           name="description"
@@ -153,7 +156,7 @@ const TicketCreate = () => {
                         ></textarea>
 
                         <label className="pt-4">
-                          Purchase Code (optional) :
+                          {t(`Purchase Code (optional) :`)}
                         </label>
                         <input
                           className="w-100 px-2 py-2 rounded search-field"
@@ -166,7 +169,7 @@ const TicketCreate = () => {
                             });
                           }}
                         />
-                        <label className="pt-4">Attach File:</label>
+                        <label className="pt-4">{t(`Attach File:`)}</label>
                         <div className="input-group">
                           <div className="custom-file">
                             <input
@@ -179,7 +182,7 @@ const TicketCreate = () => {
                               }}
                             />
                             <label className="custom-file-label custom_file_uploder">
-                              Choose file
+                              {t(`Choose file`)}
                             </label>
                           </div>
                         </div>
@@ -188,7 +191,7 @@ const TicketCreate = () => {
                           className="btn btn-warning fw-bolder text-white mt-4 px-4 py-2 rounded"
                           onClick={createTicket}
                         >
-                          Submit
+                          {t(`Submit`)}
                         </button>
                       </div>
                     </div>

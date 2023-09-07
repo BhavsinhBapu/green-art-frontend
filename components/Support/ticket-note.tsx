@@ -1,3 +1,4 @@
+import useTranslation from "next-translate/useTranslation";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import {
@@ -7,6 +8,7 @@ import {
 
 export const TicketNote = ({ ticketDetails, notes, setNotes }: any) => {
   const [note, setNote] = useState("");
+  const { t } = useTranslation("common");
 
   const saveNote = async () => {
     if (!note) {
@@ -39,7 +41,7 @@ export const TicketNote = ({ ticketDetails, notes, setNotes }: any) => {
           type="button"
           onClick={saveNote}
         >
-          Save
+          {t(`Save`)}
         </button>
       </div>
 
@@ -57,7 +59,7 @@ export const TicketNote = ({ ticketDetails, notes, setNotes }: any) => {
                   deleteNote(note?.unique_code);
                 }}
               >
-                <small>Delete</small>
+                <small>{t(`Delete`)}</small>
               </p>
             </div>
           </div>
