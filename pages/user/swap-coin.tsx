@@ -147,7 +147,7 @@ const SwapCoin: NextPage = ({
                           <div className="swap-wrap-top">
                             <label>{t("From")}</label>
                             <span className="available">
-                              Available :{" "}
+                              {t(`Available`)} :{" "}
                               {parseFloat(fromSelected.balamce).toFixed(8)}{" "}
                               {fromSelected.selected}
                             </span>
