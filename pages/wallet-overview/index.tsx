@@ -60,7 +60,7 @@ const WalletOverview: NextPage = () => {
                       style={{ borderBottom: "1px solid var(--border-color)" }}
                     >
                       <div>
-                        <h6>Estimated Balance</h6>
+                        <h6>{t(`Estimated Balance`)}</h6>
                         <div className="pt-3 d-flex align-items-center gap-10">
                           <div
                             style={{
@@ -119,7 +119,7 @@ const WalletOverview: NextPage = () => {
 
                     <div>
                       <div className="py-3">
-                        <h6>My Asstes</h6>
+                        <h6>{t(`My Asstes`)}</h6>
                       </div>
                       {/* <div className="my-3 d-flex align-items-center gap-10">
                     <div className="wallet-assets-btn wallet-assets-btn-active ">
@@ -133,9 +133,9 @@ const WalletOverview: NextPage = () => {
                         <table className="table table-hover wallet-overview-table">
                           <thead>
                             <tr>
-                              <th className="p-2 border-0">Wallet</th>
+                              <th className="p-2 border-0">{t(`Wallet`)}</th>
                               <th className="p-2 border-0 text-right">
-                                Amount
+                                {t(`Amount`)}
                               </th>
                             </tr>
                           </thead>
@@ -274,7 +274,7 @@ const WalletOverview: NextPage = () => {
                     </div>
                     <div className="py-3">
                       <div className="mt-3 mb-3 px-2 d-flex justify-content-between align-items-center gap-10">
-                        <h6>Recent Transactions</h6>
+                        <h6>{t(`Recent Transactions`)}</h6>
                         <Link href="/user/transaction-history">
                           <div className="text-12 bg-main-clr py-1 px-3 rounded cursor-pointer">
                             <span>{t("View All")}</span>
@@ -303,7 +303,7 @@ const WalletOverview: NextPage = () => {
                                         </div>
                                         <div>
                                           <span className="d-block">
-                                            Withdraw
+                                            {t(`Withdraw`)}
                                           </span>
                                           <small>
                                             {moment(item.created_at).format(
@@ -330,7 +330,7 @@ const WalletOverview: NextPage = () => {
                                               marginBottom: "1px",
                                             }}
                                           ></span>{" "}
-                                          Completed
+                                          {t(`Completed`)}
                                         </small>
                                       </div>
                                     </td>
@@ -355,7 +355,7 @@ const WalletOverview: NextPage = () => {
                                         </div>
                                         <div>
                                           <span className="d-block">
-                                            Deposit
+                                            {t(`Deposit`)}
                                           </span>
                                           <small>
                                             {moment(item.created_at).format(
@@ -382,7 +382,7 @@ const WalletOverview: NextPage = () => {
                                               marginBottom: "1px",
                                             }}
                                           ></span>{" "}
-                                          Completed
+                                          {t(`Completed`)}
                                         </small>
                                       </div>
                                     </td>
