@@ -87,7 +87,7 @@ export default function Index() {
         <div className=" pt-4 pb-2 p2p-gift-card-navbar-margin-top">
           <h1 className="banner-title">{t("Markets Overview")}</h1>
           <div className="d-flex gap-5 align-items-center">
-            <p className="text-14">All price information is in</p>
+            <p className="text-14">{t(`All price information is in`)}</p>
             <CUstomSelect
               options={allCurrency}
               handleFunction={handleCoinType}
