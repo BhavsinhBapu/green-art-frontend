@@ -263,7 +263,7 @@ const MyWallet: NextPage = () => {
                     style={{ borderBottom: "1px solid var(--border-color)" }}
                   >
                     <div>
-                      <h6>Total Balance</h6>
+                      <h6>{t("Total Balance")}</h6>
                       <div className="pt-3">
                         <div>
                           <h3>

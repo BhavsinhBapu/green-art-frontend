@@ -15,22 +15,22 @@ const Launchpool = ({ viewMore }: any) => {
           </div>
           <div className="mt-3 title-pool">
             <img alt="GAL" src="/gal.svg" className="pool-icon " />
-            <h2 className=" ml-2">GAL</h2>
+            <h2 className=" ml-2">{t("GAL")}</h2>
           </div>
           <p className="mt-3 desc-pool">
-            Project Galaxy, A Web3 Credential Data Network.
+            {t(`Project Galaxy, A Web3 Credential Data Network.`)}
           </p>
           <div className="pool-row">
-            <p className="pool-title">Total Rewards:</p>
-            <p className="pool-value">3,000,000.00</p>
+            <p className="pool-title">{t(`Total Rewards:`)}</p>
+            <p className="pool-value">{t(`3,000,000.00`)}</p>
           </div>
           <div className="pool-row">
-            <p className="pool-title">Farming Period:</p>
-            <p className="pool-value">30 day/s</p>
+            <p className="pool-title">{`Farming Period:`}</p>
+            <p className="pool-value">{t(`30 days`)}</p>
           </div>
           <div className="pool-row">
-            <p className="pool-title">Session end date:</p>
-            <p className="pool-value">2022-05-29</p>
+            <p className="pool-title">{t(`Session end date:`)}</p>
+            <p className="pool-value">{t(`2022-05-29`)}</p>
           </div>
         </div>
         <div className="co-12 col-sm-12 col-md-6 col-lg-3 mt-3 ">
@@ -46,7 +46,7 @@ const Launchpool = ({ viewMore }: any) => {
       {viewMore && (
         <div className="viewMoreLink">
           <Link href="/launchpad/view-all/lp">
-            <a>View more</a>
+            <a>{t(`View more`)}</a>
           </Link>
         </div>
       )}

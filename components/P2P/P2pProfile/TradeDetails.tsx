@@ -1,9 +1,13 @@
+import useTranslation from "next-translate/useTranslation";
+
 export const TradeDetails = ({ details }: any) => {
+  const { t } = useTranslation("common");
+
   return (
     <div className="container">
       <div className="row">
         <div className="col-lg-3 col-md-4 col-6 mt-4">
-          <p>30d Trades</p>
+          <p>{t("30d Trades")}</p>
           <div className="d-flex align-items-center">
             <h6 className="mr-1">
               {" "}
@@ -15,39 +19,43 @@ export const TradeDetails = ({ details }: any) => {
           </div>
         </div>
         <div className="col-lg-3 col-md-4 col-6 mt-4">
-          <p>First order at</p>
+          <p>{t("First order at")}</p>
           <div className="d-flex align-items-center">
-            <h6 className="mr-1"> {details?.first_order_at} </h6> days ago
+            <h6 className="mr-1"> {details?.first_order_at} </h6>{" "}
+            {t("days ago")}
           </div>
         </div>
         <div className="col-lg-3 col-md-4 col-6 mt-4">
-          <p>Negative reviews</p>
+          <p>{t("Negative reviews")}</p>
           <div className="d-flex align-items-center">
             <h6 className="mr-1"> {details?.negative} </h6>
           </div>
         </div>
         <div className="col-lg-3 col-md-4 col-6 mt-4">
-          <p>Positive reviews</p>
+          <p>{t("Positive reviews")}</p>
           <div className="d-flex align-items-center">
             <h6 className="mr-1"> {details?.positive} </h6>
           </div>
         </div>
         <div className="col-lg-3 col-md-4 col-6 mt-4">
-          <p>Positive reviews percentage</p>
+          <p>{t("Positive reviews percentage")}</p>
           <div className="d-flex align-items-center">
             <h6 className="mr-1"> {details?.positive_feedback}%</h6>
           </div>
         </div>
         <div className="col-lg-3 col-md-4 col-6 mt-4">
-          <p>Total trades</p>
+          <p>{t("Total trades")}</p>
           <div className="d-flex align-items-center">
             <h6 className="mr-1"> {details?.total_trade} </h6>
           </div>
         </div>
         <div className="col-lg-3 col-md-4 col-6 mt-4">
-          <p>Registered at</p>
+          <p>{t("Registered at")}</p>
           <div className="d-flex align-items-center">
-            <h6 className="mr-1"> {details?.user_register_at} days ago</h6>
+            <h6 className="mr-1">
+              {" "}
+              {details?.user_register_at} {t("days ago")}
+            </h6>
           </div>
         </div>
       </div>

@@ -3,11 +3,13 @@ import { NoItemFound } from "components/NoItemFound/NoItemFound";
 import { StakingTopBar } from "components/Staking/common/TopBar";
 import SectionLoading from "components/common/SectionLoading";
 import Footer from "components/common/footer";
+import useTranslation from "next-translate/useTranslation";
 import { useEffect, useState } from "react";
 import { GetPaymentListAction } from "state/actions/staking";
 
 const PaymentList = ({}: any) => {
   const [processing, setProcessing] = useState<boolean>(false);
+  const { t } = useTranslation();
   const [history, setHistory] = useState<any>([]);
   const [stillHistory, setStillHistory] = useState<any>([]);
   const LinkTopaginationString = (page: any) => {
@@ -34,7 +36,7 @@ const PaymentList = ({}: any) => {
             <div className="section-top-wrap mb-25">
               <div className="overview-area">
                 <div className="overview-left">
-                  <h2 className="section-top-title">My Earnings</h2>
+                  <h2 className="section-top-title">{t("My Earnings")}</h2>
                 </div>
               </div>
             </div>
@@ -50,11 +52,11 @@ const PaymentList = ({}: any) => {
                     <table className="table mt-4">
                       <thead>
                         <tr>
-                          <th scope="col">Coin Type</th>
-                          <th scope="col">Payment Date</th>
-                          <th scope="col">Total Amount</th>
-                          <th scope="col">Total Interest</th>
-                          <th scope="col">Total Invested</th>
+                          <th scope="col">{t("Coin Type")}</th>
+                          <th scope="col">{t("Payment Date")}</th>
+                          <th scope="col">{t("Total Amount")}</th>
+                          <th scope="col">{t("Total Interest")}</th>
+                          <th scope="col">{t("Total Invested")}</th>
                         </tr>
                       </thead>
                       <tbody>

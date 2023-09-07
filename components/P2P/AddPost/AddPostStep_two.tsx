@@ -1,4 +1,5 @@
 import { CUstomSelect } from "components/common/CUstomSelect";
+import useTranslation from "next-translate/useTranslation";
 import { useEffect, useState } from "react";
 import { BsQuestionSquareFill } from "react-icons/bs";
 
@@ -23,6 +24,8 @@ export const AddPostTwo = ({
     minimum_price: 0,
     maximum_price: 0,
   });
+  const { t } = useTranslation("common");
+
   useEffect(() => {
     const value = data?.data?.assets.find(
       (item: any) => (item.coin_type = selectedAsset?.value)
@@ -66,7 +69,7 @@ export const AddPostTwo = ({
           <div className="col-12 mt-4">
             <div className="row">
               <div className="col-md-6 col-lg-6 col-12">
-                <label className="d-block">Payment Method</label>
+                <label className="d-block">{t("Payment Method")}</label>
 
                 <div className="col-12 p-0">
                   <CUstomSelect
@@ -78,10 +81,10 @@ export const AddPostTwo = ({
                     defaultValue={selectedPayment}
                   />
                 </div>
-                <small>Select up to 5 payment methods</small>
+                <small>{t("Select up to 5 payment methods")}</small>
               </div>
               <div className="col-md-6 col-lg-6 col-12">
-                <label>Payment Time Limit</label>
+                <label>{t("Payment Time Limit")}</label>
                 <div className="col-12 p-0">
                   <CUstomSelect
                     options={PaymentTime}
@@ -93,7 +96,7 @@ export const AddPostTwo = ({
                 </div>
               </div>
               <div className="col-md-6 col-lg-6 col-12">
-                <label> Order Limit:</label>
+                <label> {t("Order Limit:")}</label>
                 <div className="P2psearchBox position-relative">
                   <input
                     type="number"
@@ -140,7 +143,7 @@ export const AddPostTwo = ({
             </div>
           </div>
           <div className="col-md-6 col-lg-6 col-12 mt-1">
-            <label> Total Amount:</label>
+            <label> {t("Total Amount:")}</label>
             <div className="P2psearchBox position-relative">
               <input
                 type="number"
@@ -159,25 +162,24 @@ export const AddPostTwo = ({
             </div>
             <div className="adFromPriceInecDecButton mt-3">
               <button className=" py-2" onClick={getAvailableBalanceAction}>
-                Get all balance
+                {t("Get all balance")}
               </button>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="addPostNextButton mt-3" style={{justifyContent: 'end'}}>
-        
+      <div className="addPostNextButton mt-3" style={{ justifyContent: "end" }}>
         <div>
           <button onClick={() => setAddStep("stepOne")} className=" py-2">
-            Previous
+            {t("Previous")}
           </button>
           {selectedPayment.length > 0 && (
             <button
               onClick={() => setAddStep("stepThree")}
               className=" py-2 buySellBoxActive ml-2"
             >
-              Next
+              {t("Next")}
             </button>
           )}
         </div>

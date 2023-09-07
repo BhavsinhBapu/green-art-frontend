@@ -34,7 +34,7 @@ const MyModalsPayment = ({ modalData }: any) => {
             <div className="row pt-6 mt-3">
               <div className="col-lg-12">
                 <div className="est-price">
-                  <p>Type</p>
+                  <p>{t("Type")}</p>
                   <h6 className="pl-3 text-warning">
                     {modalData?.terms_type === STAKING_TERMS_TYPE_STRICT
                       ? "Locked"
@@ -42,48 +42,48 @@ const MyModalsPayment = ({ modalData }: any) => {
                   </h6>
                 </div>
                 <div className="est-price">
-                  <p>Stake Date</p>
+                  <p>{t("Stake Date")}</p>
                   <h6 className="pl-3">{formateData(modalData?.created_at)}</h6>
                 </div>
                 <div className="est-price">
-                  <p>Daily Interest</p>
+                  <p>{t("Daily Interest")}</p>
                   <h6 className="pl-3">{modalData?.earn_daily_bonus}</h6>
                 </div>
                 <div className="est-price">
-                  <p>End Date</p>
+                  <p>{t("End Date")}</p>
                   <h6 className="pl-3">{formateData(modalData?.end_date)}</h6>
                 </div>
                 <div className="est-price">
-                  <p>Minimum Maturity Period</p>
+                  <p>{t("Minimum Maturity Period")}</p>
                   <h6 className="pl-3">{modalData?.minimum_maturity_period}</h6>
                 </div>
                 <div className="est-price">
-                  <p>Offer Percentage</p>
+                  <p>{t("Offer Percentage")}</p>
                   <h6 className="pl-3">{modalData?.offer_percentage}%</h6>
                 </div>
                 <div className="est-price">
-                  <p>Remain interest day</p>
+                  <p>{t("Remain interest day")}</p>
                   <h6 className="pl-3">
-                    {modalData?.remain_interest_day} Days
+                    {modalData?.remain_interest_day} {t("Days")}
                   </h6>
                 </div>
                 {modalData?.terms_type !== STAKING_TERMS_TYPE_STRICT && (
                   <div className="est-price">
-                    <p>Minimum Maturity Period</p>
+                    <p>{t("Minimum Maturity Period")}</p>
                     <h6 className="pl-3">
-                      {modalData?.minimum_maturity_period} Day
+                      {modalData?.minimum_maturity_period} {t("Day")}
                     </h6>
                   </div>
                 )}
                 <div className="est-price">
-                  <p>Invested Amount</p>
+                  <p>{t("Invested Amount")}</p>
                   <h6 className="pl-3">
                     {parseFloat(modalData?.investment_amount)}{" "}
                     {modalData?.coin_type}
                   </h6>
                 </div>
                 <div className="est-price">
-                  <p>Total Bonus</p>
+                  <p>{t("Total Bonus")}</p>
                   <h6 className="pl-3">
                     {parseFloat(modalData?.total_bonus)} {modalData?.coin_type}
                   </h6>
@@ -91,14 +91,14 @@ const MyModalsPayment = ({ modalData }: any) => {
 
                 {modalData?.terms_type !== STAKING_TERMS_TYPE_STRICT && (
                   <div className="est-price">
-                    <p>Minimum Maturity Period</p>
+                    <p>{t("Minimum Maturity Period")}</p>
                     <h6 className="pl-3">
-                      {modalData?.minimum_maturity_period} Day
+                      {modalData?.minimum_maturity_period} {t("Day")}
                     </h6>
                   </div>
                 )}
                 <div className="est-price mt-5">
-                  <h4>Est. APR</h4>
+                  <h4>{t("Est. APR")}</h4>
                   <h4 className="text-success">
                     {modalData?.offer_percentage}%
                   </h4>

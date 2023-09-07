@@ -1,8 +1,11 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import useTranslation from "next-translate/useTranslation";
 
 export const SingleLaunchPool = () => {
+  const { t } = useTranslation("common");
+
   return (
     <>
       <div className="container singleLaunch">
@@ -20,41 +23,43 @@ export const SingleLaunchPool = () => {
             </div>
             <div className="">
               <div className="singleLaunchPadTitle">
-                <h2>STEPN</h2>
+                <h2>{t("STEPN")}</h2>
                 <div className="singleLaunchPadStatus">
                   <i className="fa-sharp fa-solid fa-circle-check"></i>
-                  <p> FINISHED</p>
+                  <p> {t("FINISHED")}</p>
                 </div>
               </div>
 
               <div className="singleLaunchPadLinkList">
-                <p>STEPN - A Move-to-Earn Health and Fitness Application</p>
+                <p>
+                  {t("STEPN - A Move-to-Earn Health and Fitness Application")}
+                </p>
                 <div className="linkLists">
                   <Link href="/">
                     <div>
                       <i className="fa-sharp fa-solid fa-link"></i>
-                      <p>Website</p>
+                      <p>{t("Website")}</p>
                     </div>
                   </Link>
 
                   <Link href="/">
                     <div>
                       <i className="fa-solid fa-receipt"></i>
-                      <p>Whitepaper</p>
+                      <p>{t("Whitepaper")}</p>
                     </div>
                   </Link>
 
                   <Link href="/">
                     <div>
                       <i className="fa-sharp fa-solid fa-lightbulb"></i>
-                      <p>GMT Research Report</p>
+                      <p>{t("GMT Research Report")}</p>
                     </div>
                   </Link>
 
                   <Link href="/">
                     <div>
                       <i className="fa-sharp fa-solid fa-book"></i>
-                      <p>View detailed rules</p>
+                      <p>{t("View detailed rules")}</p>
                     </div>
                   </Link>
                 </div>
@@ -62,8 +67,8 @@ export const SingleLaunchPool = () => {
             </div>
           </div>
           <div className="endtimeSingleLaunch">
-            <p>End Time :</p>
-            <p>2022-03-09</p>
+            <p>{t("End Time :")}</p>
+            <p>{t("2022-03-09")}</p>
           </div>
         </div>
 
@@ -79,7 +84,7 @@ export const SingleLaunchPool = () => {
                 aria-controls="pills-home"
                 aria-selected="true"
               >
-                BNB Pool
+                {t("BNB Pool")}
               </a>
             </li>
             <li className="tabs-item">
@@ -92,7 +97,7 @@ export const SingleLaunchPool = () => {
                 aria-controls="pills-profile"
                 aria-selected="false"
               >
-                CAKE Pool
+                {t("CAKE Pool")}
               </a>
             </li>
             <li className="tabs-item">
@@ -105,7 +110,7 @@ export const SingleLaunchPool = () => {
                 aria-controls="pills-contact"
                 aria-selected="false"
               >
-                BUSD Pool
+                {t("BUSD Pool")}
               </a>
             </li>
           </ul>
@@ -118,28 +123,28 @@ export const SingleLaunchPool = () => {
             >
               <div className="launchCoinDetails launchPoolTab row mt-5">
                 <div className="col-md-3 mb-5">
-                  <p>Total BNB Pool Rewards</p>
-                  <span>2,100,000.0000 GAL</span>
+                  <p>{t("Total BNB Pool Rewards")}</p>
+                  <span>{t("2,100,000.0000 GAL")}</span>
                 </div>
                 <div className="col-md-3">
-                  <p>Staking Token</p>
-                  <span>BNB</span>
+                  <p>{t("Staking Token")}</p>
+                  <span>{t("BNB")}</span>
                 </div>
                 <div className="col-md-3">
-                  <p>Farming Period</p>
-                  <span>30 Days</span>
+                  <p>{t("Farming Period")}</p>
+                  <span>{t("30 Days")}</span>
                 </div>
                 <div className="col-md-3">
-                  <p>Today’s GAL Pool Rewards</p>
-                  <span>45,652.1700 GAL</span>
+                  <p>{t(`Today’s GAL Pool Rewards`)}</p>
+                  <span>{t(`45,652.1700 GAL`)}</span>
                 </div>
                 <div className="col-md-3">
-                  <p>Total BNB Staked</p>
-                  <span>6,924,524.7741 BNB</span>
+                  <p>{t("Total BNB Staked")}</p>
+                  <span>{t("6,924,524.7741 BNB")}</span>
                 </div>
                 <div className="col-md-3">
-                  <p>BNB Annual Percentage Yield</p>
-                  <span>4.50 %</span>
+                  <p>{t("BNB Annual Percentage Yield")}</p>
+                  <span>{t("4.50 %")}</span>
                 </div>
               </div>
 
@@ -154,19 +159,20 @@ export const SingleLaunchPool = () => {
                         width={35}
                         height={30}
                       />
-                      <h2>My Funds</h2>
+                      <h2>{t("My Funds")}</h2>
                     </div>
                   </div>
 
                   <div className="mt-5">
-                    <h6 className="mb-3">BUSD Staked</h6>
+                    <h6 className="mb-3">{t("BUSD Staked")}</h6>
                     <div className="myFundTitle">
                       <p>---</p>
-                      <h2>BUSD</h2>
+                      <h2>{t("BUSD")}</h2>
                     </div>
                     <p>
-                      Your staked BUSD has been automatically transferred back
-                      to your spot account
+                      {t(
+                        "Your staked BUSD has been automatically transferred back to your spot account"
+                      )}
                     </p>
                   </div>
                 </div>
@@ -181,17 +187,19 @@ export const SingleLaunchPool = () => {
                         width={35}
                         height={30}
                       />
-                      <h2>My Rewards</h2>
+                      <h2>{t("My Rewards")}</h2>
                     </div>
                   </div>
 
                   <div className="mt-5">
-                    <h6 className="mb-3">Total Rewards Received</h6>
+                    <h6 className="mb-3">{t("Total Rewards Received")}</h6>
                     <div className="myFundTitle">
                       <p>---</p>
-                      <h2>GAL</h2>
+                      <h2>{t("GAL")}</h2>
                     </div>
-                    <p>Your rewards have been sent to your spot account</p>
+                    <p>
+                      {t("Your rewards have been sent to your spot account")}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -204,27 +212,27 @@ export const SingleLaunchPool = () => {
             >
               <div className="launchCoinDetails launchPoolTab row mt-5">
                 <div className="col-md-3 mb-5">
-                  <p>Total BNB Pool Rewards</p>
-                  <span>2,100,000.0000 GAL</span>
+                  <p>{t("Total BNB Pool Rewards")}</p>
+                  <span>{t("2,100,000.0000 GAL")}</span>
                 </div>
                 <div className="col-md-3">
-                  <p>Staking Token</p>
-                  <span>BNB</span>
+                  <p>{t("Staking Token")}</p>
+                  <span>{t("BNB")}</span>
                 </div>
                 <div className="col-md-3">
-                  <p>Farming Period</p>
-                  <span>30 Days</span>
+                  <p>{t("Farming Period")}</p>
+                  <span>{t("30 Days")}</span>
                 </div>
                 <div className="col-md-3">
-                  <p>Today’s GAL Pool Rewards</p>
-                  <span>45,652.1700 GAL</span>
+                  <p>{t(`Today’s GAL Pool Rewards`)}</p>
+                  <span>{t(`45,652.1700 GAL`)}</span>
                 </div>
                 <div className="col-md-3">
-                  <p>Total BNB Staked</p>
-                  <span>6,924,524.7741 BNB</span>
+                  <p>{t(`Total BNB Staked`)}</p>
+                  <span>{t(`6,924,524.7741 BNB`)}</span>
                 </div>
                 <div className="col-md-3">
-                  <p>BNB Annual Percentage Yield</p>
+                  <p>{t(`BNB Annual Percentage Yield`)}</p>
                   <span>4.50 %</span>
                 </div>
               </div>
@@ -240,19 +248,20 @@ export const SingleLaunchPool = () => {
                         width={35}
                         height={30}
                       />
-                      <h2>My Funds</h2>
+                      <h2>{t("My Funds")}</h2>
                     </div>
                   </div>
 
                   <div className="mt-5">
-                    <h6 className="mb-3">BUSD Staked</h6>
+                    <h6 className="mb-3">{t("BUSD Staked")}</h6>
                     <div className="myFundTitle">
                       <p>---</p>
-                      <h2>BUSD</h2>
+                      <h2>{t("BUSD")}</h2>
                     </div>
                     <p>
-                      Your staked BUSD has been automatically transferred back
-                      to your spot account
+                      {t(
+                        "Your staked BUSD has been automatically transferred back to your spot account"
+                      )}
                     </p>
                   </div>
                 </div>
@@ -267,17 +276,19 @@ export const SingleLaunchPool = () => {
                         width={35}
                         height={30}
                       />
-                      <h2>My Rewards</h2>
+                      <h2>{t("My Rewards")}</h2>
                     </div>
                   </div>
 
                   <div className="mt-5">
-                    <h6 className="mb-3">Total Rewards Received</h6>
+                    <h6 className="mb-3">{t("Total Rewards Received")}</h6>
                     <div className="myFundTitle">
                       <p>---</p>
-                      <h2>GAL</h2>
+                      <h2>{t("GAL")}</h2>
                     </div>
-                    <p>Your rewards have been sent to your spot account</p>
+                    <p>
+                      {t("Your rewards have been sent to your spot account")}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -290,27 +301,27 @@ export const SingleLaunchPool = () => {
             >
               <div className="launchCoinDetails launchPoolTab row mt-5">
                 <div className="col-md-3 mb-5">
-                  <p>Total BNB Pool Rewards</p>
-                  <span>2,100,000.0000 GAL</span>
+                  <p>{t("Total BNB Pool Rewards")}</p>
+                  <span>{t("2,100,000.0000 GAL")}</span>
                 </div>
                 <div className="col-md-3">
-                  <p>Staking Token</p>
-                  <span>BNB</span>
+                  <p>{t("Staking Token")}</p>
+                  <span>{t("BNB")}</span>
                 </div>
                 <div className="col-md-3">
-                  <p>Farming Period</p>
-                  <span>30 Days</span>
+                  <p>{t("Farming Period")}</p>
+                  <span>{t("30 Days")}</span>
                 </div>
                 <div className="col-md-3">
-                  <p>Today’s GAL Pool Rewards</p>
-                  <span>45,652.1700 GAL</span>
+                  <p>{t("Today’s GAL Pool Rewards")}</p>
+                  <span>{t("45,652.1700 GAL")}</span>
                 </div>
                 <div className="col-md-3">
-                  <p>Total BNB Staked</p>
-                  <span>6,924,524.7741 BNB</span>
+                  <p>{t("Total BNB Staked")}</p>
+                  <span>{t("6,924,524.7741 BNB")}</span>
                 </div>
                 <div className="col-md-3">
-                  <p>BNB Annual Percentage Yield</p>
+                  <p>{t("BNB Annual Percentage Yield")}</p>
                   <span>4.50 %</span>
                 </div>
               </div>
@@ -326,19 +337,20 @@ export const SingleLaunchPool = () => {
                         width={35}
                         height={30}
                       />
-                      <h2>My Funds</h2>
+                      <h2>{t("My Funds")}</h2>
                     </div>
                   </div>
 
                   <div className="mt-5">
-                    <h6 className="mb-3">BUSD Staked</h6>
+                    <h6 className="mb-3">{t("BUSD Staked")}</h6>
                     <div className="myFundTitle">
                       <p>---</p>
-                      <h2>BUSD</h2>
+                      <h2>{t("BUSD")}</h2>
                     </div>
                     <p>
-                      Your staked BUSD has been automatically transferred back
-                      to your spot account
+                      {t(
+                        "Your staked BUSD has been automatically transferred back to your spot account"
+                      )}
                     </p>
                   </div>
                 </div>
@@ -353,17 +365,19 @@ export const SingleLaunchPool = () => {
                         width={35}
                         height={30}
                       />
-                      <h2>My Rewards</h2>
+                      <h2>{t("My Rewards")}</h2>
                     </div>
                   </div>
 
                   <div className="mt-5">
-                    <h6 className="mb-3">Total Rewards Received</h6>
+                    <h6 className="mb-3">{t("Total Rewards Received")}</h6>
                     <div className="myFundTitle">
                       <p>---</p>
-                      <h2>GAL</h2>
+                      <h2>{t("GAL")}</h2>
                     </div>
-                    <p>Your rewards have been sent to your spot account</p>
+                    <p>
+                      {t("Your rewards have been sent to your spot account")}
+                    </p>
                   </div>
                 </div>
               </div>
