@@ -1,10 +1,12 @@
 import { SEND } from "helpers/core-constants";
+import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { walletBalanceTransferFuture } from "service/futureTrade";
 const WalletTransfer = () => {
   const router = useRouter();
+  const { t } = useTranslation();
   const [amount, setAmount] = useState(0);
   const { type, coin } = router.query;
   const getBalance = async () => {
@@ -32,7 +34,7 @@ const WalletTransfer = () => {
           />
         </div>{" "}
         <button className="primary-btn w-100 mt-3" onClick={getBalance}>
-          exchange
+          {t(`exchange`)}
         </button>
       </div>
     </div>
