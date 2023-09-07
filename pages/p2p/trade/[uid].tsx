@@ -164,13 +164,13 @@ const Trading = () => {
             )}
           </div>
           <div className="mb-3">
-            <span className="mr-1">Order number</span>:{" "}
+            <span className="mr-1">{t(`Order number`)}</span>:{" "}
             <span className="badge badge-warning ">
               {details?.order?.order_id}
             </span>
           </div>
           <div className="mb-3">
-            <span className="mr-1">Time Created</span>:{" "}
+            <span className="mr-1">{t(`Time Created`)}</span>:{" "}
             <span className="badge badge-warning ">
               {formateData(details?.order?.created_at)}
             </span>
@@ -180,10 +180,10 @@ const Trading = () => {
             <TradeSteps step={step} order={details?.order} />
           )}
           <div className="">
-            <h4 className="mb-3">Confirm order info </h4>
+            <h4 className="mb-3">{t(`Confirm order info`)} </h4>
             <div className="order-info ">
               <div className="">
-                <p>Amount</p>
+                <p>{t(`Amount`)}</p>
                 <h4 className="">
                   {" "}
                   {parseFloat(details?.order?.amount).toFixed(8)}{" "}
@@ -191,7 +191,7 @@ const Trading = () => {
                 </h4>
               </div>
               <div className="">
-                <p>Price</p>
+                <p>{t(`Price`)}</p>
                 <h4 className="">
                   {" "}
                   {parseFloat(details?.order?.price).toFixed(8)}{" "}
@@ -202,19 +202,19 @@ const Trading = () => {
           </div>
           {parseInt(details?.order?.is_reported) !== 0 && (
             <div className="boxShadow p-5 text-center mt-3">
-              <h4 className="mb-3">Seller created dispute against order</h4>
+              <h4 className="mb-3">{t(`Seller created dispute against order`)}</h4>
             </div>
           )}
           {parseInt(details?.order?.status) === TRADE_STATUS_CANCELED && (
             <div className="boxShadow p-5 text-center mt-3">
-              <h4 className="mb-3">Trade canceled</h4>
+              <h4 className="mb-3">{t(`Trade canceled`)}</h4>
             </div>
           )}
           {parseInt(details?.order?.status) ===
             TRADE_STATUS_CANCELED_TIME_EXPIRED &&
             parseInt(details?.order?.is_reported) === 0 && (
               <div className="boxShadow p-5 text-center mt-3">
-                <h4 className="mb-3">Trade time expired</h4>
+                <h4 className="mb-3">{t(`Trade time expired`)}</h4>
               </div>
             )}
           {parseInt(details?.order?.status) ===
@@ -222,7 +222,7 @@ const Trading = () => {
             parseInt(details?.order?.is_reported) === 0 && (
               <div className="boxShadow p-5 text-center mt-3">
                 <h4 className="mb-3">
-                  Trade payment hasbeen refunded by admin
+                  {t(`Trade payment hasbeen refunded by admin`)}
                 </h4>
               </div>
             )}
@@ -230,7 +230,7 @@ const Trading = () => {
             TRADE_STATUS_RELEASED_BY_ADMIN &&
             parseInt(details?.order?.is_reported) === 0 && (
               <div className="boxShadow p-5 text-center mt-3">
-                <h4 className="mb-3">Trade hasbeen released by admin</h4>
+                <h4 className="mb-3">{t(`Trade hasbeen released by admin`)}</h4>
               </div>
             )}
           {parseInt(details?.order?.is_reported) === 0 && (
@@ -240,12 +240,12 @@ const Trading = () => {
                   {details.user_type === BUY && (
                     <>
                       <div className="mt-4 badge badge-warning p-2">
-                        Transfer the fund to the seller account provided below
+                        {t(`Transfer the fund to the seller account provided below`)}
                       </div>
                       <div>
                         {details?.payment_methods?.username && (
                           <div className="mb-3 mt-3">
-                            <span className="mr-1">Account Name</span>:{" "}
+                            <span className="mr-1">{t(`Account Name`)}</span>:{" "}
                             <span className="badge badge-warning ">
                               {details?.payment_methods?.username}
                             </span>
@@ -254,7 +254,7 @@ const Trading = () => {
                         {details?.payment_methods?.admin_pamynt_method
                           ?.name && (
                           <div className="mb-3 mt-3">
-                            <span className="mr-1">Payment Method Name</span>:{" "}
+                            <span className="mr-1">{t(`Payment Method Name`)}</span>:{" "}
                             <span className="badge badge-warning ">
                               {
                                 details?.payment_methods?.admin_pamynt_method
@@ -265,7 +265,7 @@ const Trading = () => {
                         )}
                         {details?.payment_methods?.bank_name && (
                           <div className="mb-3">
-                            <span className="mr-1">Bank Name</span>:{" "}
+                            <span className="mr-1">{t(`Bank Name`)}</span>:{" "}
                             <span className="badge badge-warning ">
                               {details?.payment_methods?.bank_name}
                             </span>
@@ -273,7 +273,7 @@ const Trading = () => {
                         )}
                         {details?.payment_methods?.bank_account_number && (
                           <div className="mb-3">
-                            <span className="mr-1">Bank Account Number</span>
+                            <span className="mr-1">{t(`Bank Account Number`)}</span>
                             <span className="badge badge-warning ">
                               {details?.payment_methods?.bank_account_number}
                             </span>
@@ -281,7 +281,7 @@ const Trading = () => {
                         )}
                         {details?.payment_methods?.card_number && (
                           <div className="mb-3">
-                            <span className="mr-1">Card Number</span>
+                            <span className="mr-1">{t(`Card Number`)}</span>
                             <span className="badge badge-warning ">
                               {details?.payment_methods?.card_number}
                             </span>
@@ -289,7 +289,7 @@ const Trading = () => {
                         )}
                         {details?.payment_methods?.mobile_account_number && (
                           <div className="mb-3">
-                            <span className="mr-1">Mobile Number</span>
+                            <span className="mr-1">{t(`Mobile Number`)}</span>
                             <span className="badge badge-warning ">
                               {details?.payment_methods?.mobile_account_number}
                             </span>
@@ -335,7 +335,7 @@ const Trading = () => {
                           );
                         }}
                       >
-                        Pay and notify seller
+                        {t(`Pay and notify seller`)}
                       </button>
                       <a
                         data-toggle="modal"
@@ -343,7 +343,7 @@ const Trading = () => {
                         onClick={() => {}}
                       >
                         <button className="btn nimmu-user-sibmit-button mt-3">
-                          Cancel
+                          {t(`Cancel`)}
                         </button>
                       </a>
                       <TradeCancel uid={uid} />
@@ -351,7 +351,7 @@ const Trading = () => {
                   )}
                   {details.user_type === SELL && (
                     <div className="boxShadow p-5 text-center mt-3">
-                      <h4 className="mb-3">Waiting for payment</h4>
+                      <h4 className="mb-3">{t(`Waiting for payment`)}</h4>
                     </div>
                   )}
                 </>
@@ -361,7 +361,7 @@ const Trading = () => {
                   {details.user_type === BUY && (
                     <>
                       <div className="boxShadow p-5 text-center mt-3">
-                        <h4 className="mb-3">Waiting for releasing order</h4>
+                        <h4 className="mb-3">{t(`Waiting for releasing order`)}</h4>
                       </div>
                       {parseInt(details?.order?.is_reported) === 0 && (
                         <a
@@ -374,7 +374,7 @@ const Trading = () => {
                             className="btn nimmu-user-sibmit-button mt-3"
                             onClick={() => {}}
                           >
-                            Dispute
+                            {t(`Dispute`)}
                           </button>
                         </a>
                       )}
@@ -390,7 +390,7 @@ const Trading = () => {
                           releaseP2pOrderAction(uid, dispatch);
                         }}
                       >
-                        Release
+                        {t(`Release`)}
                       </button>
                       {parseInt(details?.order?.is_reported) === 0 && (
                         <a
@@ -405,7 +405,7 @@ const Trading = () => {
                             className="btn nimmu-user-sibmit-button mt-3"
                             onClick={() => {}}
                           >
-                            Dispute
+                            {t(`Dispute`)}
                           </button>
                         </a>
                       )}
@@ -420,18 +420,18 @@ const Trading = () => {
                   {details.user_type === BUY && (
                     <>
                       <div className="boxShadow p-5 text-center mt-3">
-                        <h4 className="mb-3">Trade completed</h4>
+                        <h4 className="mb-3">{t(`Trade completed`)}</h4>
                       </div>
                       {details?.order?.seller_feedback && (
                         <label className="mt-3">
-                          <b>Seller Feedback:</b>
+                          <b>{t(`Seller Feedback:`)}</b>
                           {details?.order?.seller_feedback}
                         </label>
                       )}
                       {details?.order?.buyer_feedback === null && (
                         <div className="row">
                           <div className="col-md-12 mt-3">
-                            <label> Submit review about seller</label>
+                            <label> {t(`Submit review about seller`)}</label>
                             <div className="P2psearchBox position-relative">
                               <textarea
                                 value={feedback}
@@ -443,7 +443,7 @@ const Trading = () => {
                               ></textarea>
                             </div>
                             <>
-                              <label>Review type</label>
+                              <label>{t(`Review type`)}</label>
 
                               <div className="select-method">
                                 <div
@@ -455,7 +455,7 @@ const Trading = () => {
                                     setfeedbackType(POSITIVE);
                                   }}
                                 >
-                                  Positive
+                                  {t(`Positive`)}
                                 </div>
                                 <div
                                   className={`${
@@ -466,7 +466,7 @@ const Trading = () => {
                                     setfeedbackType(NEGATIVE);
                                   }}
                                 >
-                                  Negative
+                                  {t(`Negative`)}
                                 </div>
                               </div>
                             </>
@@ -481,7 +481,7 @@ const Trading = () => {
                               );
                             }}
                           >
-                            Submit review
+                           {t(`Submit review`)}
                           </button>
                         </div>
                       )}
@@ -490,19 +490,19 @@ const Trading = () => {
                   {details.user_type === SELL && (
                     <>
                       <div className="boxShadow p-5 text-center mt-3">
-                        <h4 className="mb-3">Trade completed</h4>
+                        <h4 className="mb-3">{t(`Trade completed`)}</h4>
                       </div>
 
                       {details?.order?.buyer_feedback && (
                         <label className="mt-3">
-                          <b>Buyer Feedback:</b>
+                          <b>{t(`Buyer Feedback:`)}</b>
                           {details?.order?.buyer_feedback}
                         </label>
                       )}
                       {details?.order?.seller_feedback === null && (
                         <div className="row">
                           <div className="col-md-12 mt-3">
-                            <label>Submit review about buyer</label>
+                            <label>{t(`Submit review about buyer`)}</label>
                             <div className="P2psearchBox position-relative">
                               <textarea
                                 value={feedback}
@@ -513,7 +513,7 @@ const Trading = () => {
                                 placeholder=""
                               ></textarea>
                             </div>
-                            <label>Review type</label>
+                            <label>{t(`Review type`)}</label>
 
                             <div className="select-method">
                               <div
@@ -525,7 +525,7 @@ const Trading = () => {
                                   setfeedbackType(POSITIVE);
                                 }}
                               >
-                                Positive
+                                {t(`Positive`)}
                               </div>
                               <div
                                 className={`${
@@ -536,7 +536,7 @@ const Trading = () => {
                                   setfeedbackType(NEGATIVE);
                                 }}
                               >
-                                Negative
+                                {t(`Negative`)}
                               </div>
                             </div>
                           </div>
@@ -550,7 +550,7 @@ const Trading = () => {
                               );
                             }}
                           >
-                            Submit review
+                            {t(`Submit review`)}
                           </button>
                         </div>
                       )}

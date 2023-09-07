@@ -42,11 +42,13 @@ const AddPaymentMethod = () => {
             </Link>
             <div className="paymentBox d-flex align-items-center border-0">
               <div></div>
-              <h2>{uid ? "Edit" : "Add"} payment method</h2>
+              <h2>
+                {uid ? "Edit" : "Add"} {t(`payment method`)}
+              </h2>
             </div>
             {!uid && (
               <div className="mt-3">
-                <label>Select payment method</label>
+                <label>{t(`Select payment method`)}</label>
                 <div className="P2psearchBox position-relative">
                   <CUstomSelect
                     options={paymentMethods}
@@ -58,7 +60,7 @@ const AddPaymentMethod = () => {
               </div>
             )}
             <div className="mt-4">
-              <label>Account name</label>
+              <label>{t(`Account name`)}</label>
               <div className="P2psearchBox position-relative">
                 <input
                   type="text"
@@ -77,7 +79,7 @@ const AddPaymentMethod = () => {
             {selectedMethods?.payment_type === PAYMENT_METHOD_BANK && (
               <>
                 <div className="mt-4">
-                  <label>Bank Name</label>
+                  <label>{t(`Bank Name`)}</label>
                   <div className="P2psearchBox position-relative">
                     <input
                       type="text"
@@ -93,7 +95,7 @@ const AddPaymentMethod = () => {
                   </div>
                 </div>
                 <div className="mt-4">
-                  <label>Bank Account number</label>
+                  <label>{t(`Bank Account number`)}</label>
                   <div className="P2psearchBox position-relative">
                     <input
                       type="text"
@@ -109,7 +111,7 @@ const AddPaymentMethod = () => {
                   </div>
                 </div>
                 <div className="my-4">
-                  <label>Account opening branch</label>
+                  <label>{t(`Account opening branch`)}</label>
                   <div className="P2psearchBox position-relative">
                     <input
                       type="text"
@@ -125,7 +127,7 @@ const AddPaymentMethod = () => {
                   </div>
                 </div>
                 <div className="my-4">
-                  <label>Transaction Referance</label>
+                  <label>{t(`Transaction Referance`)}</label>
                   <div className="P2psearchBox position-relative">
                     <input
                       type="text"
@@ -145,7 +147,7 @@ const AddPaymentMethod = () => {
             {selectedMethods?.payment_type === PAYMENT_METHOD_CARD && (
               <>
                 <div className="my-4">
-                  <label>Card number</label>
+                  <label>{t(`Card number`)}</label>
                   <div className="P2psearchBox position-relative">
                     <input
                       type="text"
@@ -161,7 +163,7 @@ const AddPaymentMethod = () => {
                   </div>
                 </div>
                 <div className="my-4">
-                  <label>Card Type</label>
+                  <label>{t(`Card Type`)}</label>
                   <div className="P2psearchBox position-relative">
                     <CUstomSelect
                       options={[
@@ -196,7 +198,7 @@ const AddPaymentMethod = () => {
             {selectedMethods?.payment_type === PAYMENT_METHOD_MOBILE && (
               <>
                 <div className="my-4">
-                  <label>Mobile number</label>
+                  <label>{t(`Mobile number`)}</label>
                   <div className="P2psearchBox position-relative">
                     <input
                       type="text"
@@ -219,7 +221,7 @@ const AddPaymentMethod = () => {
                 className="tableButton ml-3 px-3 px-sm-5"
                 onClick={uid ? editData : submitData}
               >
-                Confirm
+                {t(`Confirm`)}
               </button>
             </div>
           </div>

@@ -127,7 +127,7 @@ export default function Index() {
                         </div>
                       </div>
                       <div className="d-flex align-items-center">
-                        <p>Price</p>
+                        <p>{t(`Price`)}</p>
                         <h6 className="pl-3 text-warning">
                           {parseFloat(adsDetails?.price)}{" "}
                           {adsDetails?.currency_type}
@@ -163,7 +163,7 @@ export default function Index() {
               {Number(adsDetails?.payment_currency_type === 1) ? (
                 <div className="col-md-6 col-12 mt-4">
                   <div>
-                    <label className="pt-3">Select payment method</label>
+                    <label className="pt-3">{t(`Select payment method`)}</label>
 
                     <CUstomSelect
                       options={adsDetails?.payment_methods}
@@ -179,7 +179,7 @@ export default function Index() {
                     className="primary-btn-outline"
                     onClick={buyGiftCardHandler}
                   >
-                    Buy
+                    {t(`Buy`)}
                   </button>
                 </div>
               </div>

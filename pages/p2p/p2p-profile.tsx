@@ -9,8 +9,11 @@ import { GetServerSideProps } from "next";
 import { useEffect, useState } from "react";
 import { userCenterAction } from "state/actions/p2p";
 import SectionLoading from "components/common/SectionLoading";
+import useTranslation from "next-translate/useTranslation";
 
 const P2pProfile = () => {
+  const { t } = useTranslation("common");
+
   const [loading, setLoading] = useState(false);
   const [details, setDetails] = useState<any>();
   useEffect(() => {
@@ -25,7 +28,7 @@ const P2pProfile = () => {
           <div className="section-top-wrap mb-25">
             <div className="overview-area">
               <div className="overview-left">
-                <h2 className="section-top-title">User center</h2>
+                <h2 className="section-top-title">{t(`User center`)}</h2>
               </div>
             </div>
           </div>

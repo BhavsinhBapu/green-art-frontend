@@ -6,6 +6,7 @@ import ImageComponent from "components/common/ImageComponent";
 import SectionLoading from "components/common/SectionLoading";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
+import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
@@ -33,6 +34,7 @@ export default function Index() {
   useEffect(() => {
     getP2PGiftCardLists(limit, 1, selectStatus.value);
   }, [selectStatus]);
+  const { t } = useTranslation("common");
 
   const getP2PGiftCardLists = async (limit: any, page: any, status: any) => {
     setLoading(true);
@@ -60,7 +62,7 @@ export default function Index() {
       <div className="container">
         <div className="col-md-3">
           <div className="form-group p2pSelectFilter">
-            <label> Payment Type</label>
+            <label> {t(`Payment Type`)}</label>
             <CUstomSelect
               options={options}
               handleFunction={setSelectStatus}
@@ -76,11 +78,11 @@ export default function Index() {
               <table className="table">
                 <thead>
                   <tr>
-                    <th scope="col">Order Id</th>
-                    <th scope="col">Amount</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Operation</th>
+                    <th scope="col">{t(`Order Id`)}</th>
+                    <th scope="col">{t(`Amount`)}</th>
+                    <th scope="col">{t(`Price`)}</th>
+                    <th scope="col">{t(`Status`)}</th>
+                    <th scope="col">{t(`Operation`)}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -97,7 +99,7 @@ export default function Index() {
                       <td>{item.status_name}</td>
                       <td>
                         <Link href={`/p2p/gift-card/ads/buy/${item.uid}`}>
-                          <a className="tableButton">Details</a>
+                          <a className="tableButton">{t(`Details`)}</a>
                         </Link>
                       </td>
                     </tr>

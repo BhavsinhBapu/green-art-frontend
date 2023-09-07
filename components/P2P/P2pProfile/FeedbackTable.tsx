@@ -1,8 +1,11 @@
 import { NoItemFound } from "components/NoItemFound/NoItemFound";
+import useTranslation from "next-translate/useTranslation";
 import { useState } from "react";
 import { GoPlus } from "react-icons/go";
 
 export const FeedbackTable = ({ details }: any) => {
+  const { t } = useTranslation("common");
+
   const [active, setActive] = useState(0);
   return (
     <div className="container">
@@ -19,7 +22,7 @@ export const FeedbackTable = ({ details }: any) => {
                         setActive(0);
                       }}
                     >
-                      All
+                      {t(`All`)}
                     </a>
                   </li>
                   <li>
@@ -29,7 +32,7 @@ export const FeedbackTable = ({ details }: any) => {
                         setActive(1);
                       }}
                     >
-                      Positive
+                      {t(`Positive`)}
                     </a>
                   </li>
                   <li>
@@ -39,7 +42,7 @@ export const FeedbackTable = ({ details }: any) => {
                         setActive(2);
                       }}
                     >
-                      Negative
+                      {t(`Negative`)}
                     </a>
                   </li>
                 </ul>
@@ -68,13 +71,13 @@ export const FeedbackTable = ({ details }: any) => {
                                   {parseInt(list.feedback_type) === 1 ? (
                                     <p>
                                       <span className="feedback-status positive">
-                                        Positive
+                                        {t(`Positive`)}
                                       </span>
                                     </p>
                                   ) : (
                                     <p>
                                       <span className="feedback-status negetive">
-                                        Negetive
+                                        {t(`Negetive`)}
                                       </span>
                                     </p>
                                   )}
@@ -111,7 +114,7 @@ export const FeedbackTable = ({ details }: any) => {
                                   </div>
                                   <p>
                                     <span className="feedback-status positive">
-                                      Positive
+                                      {t(`Positive`)}
                                     </span>
                                   </p>
                                 </div>
@@ -148,7 +151,7 @@ export const FeedbackTable = ({ details }: any) => {
 
                                   <p>
                                     <span className="feedback-status negetive">
-                                      Negetive
+                                      {t(`Negetive`)}
                                     </span>
                                   </p>
                                 </div>

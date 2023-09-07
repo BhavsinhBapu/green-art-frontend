@@ -79,7 +79,7 @@ export const BuyFrom = ({
             <div className="row pt-4">
               <div className="col-lg-6">
                 <div className="d-flex align-items-center">
-                  <p>Price</p>
+                  <p>{t(`Price`)}</p>
                   <h6 className="pl-3 text-warning">
                     {parseFloat(details?.price)} {details?.ads?.currency}
                   </h6>
@@ -177,7 +177,7 @@ export const BuyFrom = ({
                   }}
                 />
                 <p className="limitBalance my-2">
-                  Min price {details?.ads?.minimum_trade_size}{" "}
+                  {t(`Min price`)} {details?.ads?.minimum_trade_size}{" "}
                   {details?.ads?.currency}- Max price{" "}
                   {details?.ads?.maximum_trade_size} {details?.ads?.currency}
                 </p>
@@ -223,10 +223,10 @@ export const BuyFrom = ({
                   type="button"
                   onClick={getAvailableBalanceAction}
                 >
-                  Get all balance
+                  {t(`Get all balance`)}
                 </button>
               </div>
-              <label className="pt-3">Select payment method</label>
+              <label className="pt-3">{t(`Select payment method`)}</label>
 
               <CUstomSelect
                 options={paymentMethods}

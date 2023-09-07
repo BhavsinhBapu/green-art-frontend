@@ -6,6 +6,7 @@ import { AddPostTwo } from "components/P2P/AddPost/AddPostStep_two";
 import { P2pTopBar } from "components/P2P/P2pHome/TopBar";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
+import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useAddPostInitial } from "state/actions/p2p";
@@ -48,6 +49,8 @@ const AddPost = () => {
     getAvailableBalanceAction,
   } = useAddPostInitial();
   const router = useRouter();
+  const { t } = useTranslation("common");
+
 
   useEffect(() => {
     if (data?.data?.is_payment_method_available === false) {
@@ -81,7 +84,7 @@ const AddPost = () => {
                     }`}
                     onClick={() => setAdsType(1)}
                   >
-                    I Want to Buy
+                    {t(`I Want to Buy`)}
                   </button>
                 </div>
               )}
@@ -93,7 +96,7 @@ const AddPost = () => {
                     }`}
                     onClick={() => setAdsType(2)}
                   >
-                    I Want to Sell
+                    {t(`I Want to Sell`)}
                   </button>
                 </div>
               )}

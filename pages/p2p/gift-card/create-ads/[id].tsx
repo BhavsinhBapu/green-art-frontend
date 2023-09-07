@@ -336,10 +336,10 @@ export default function Index() {
               className="tableButton bg-card-primary-color mr-5"
               onClick={() => router.push(`/p2p/gift-card/lists`)}
             >
-              Cancel
+              {t(`Cancel`)}
             </button>
             <button className="tableButton" onClick={createAdsHandler}>
-              Create
+              {t(`Create`)}
             </button>
           </div>
         </div>

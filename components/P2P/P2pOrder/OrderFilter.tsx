@@ -12,6 +12,7 @@ import {
   TRADE_STATUS_RELEASED_BY_ADMIN,
   TRADE_STATUS_TRANSFER_DONE,
 } from "helpers/core-constants";
+import useTranslation from "next-translate/useTranslation";
 import { useEffect, useState } from "react";
 import { FiDownload } from "react-icons/fi";
 import { TbFileTime } from "react-icons/tb";
@@ -23,6 +24,8 @@ export const OrderFilter = ({
   setFromData,
   setToData,
 }: any) => {
+  const { t } = useTranslation("common");
+
   const [coins, setCoins] = useState([]);
   const options = [
     { value: TRADE_STATUS_CANCELED_TIME_EXPIRED, label: "Expired" },
@@ -49,7 +52,7 @@ export const OrderFilter = ({
     <div className="container">
       <div className="row align-items-center">
         <div className="col-lg-2 col-md-3 col-6 mt-4">
-          <label>Coins:</label>
+          <label>{t(`Coins:`)}</label>
           <CUstomSelect
             options={coins}
             isSearchable={false}
@@ -60,7 +63,7 @@ export const OrderFilter = ({
           />
         </div>
         <div className="col-lg-2 col-md-3 col-6 mt-4">
-          <label>Order Type:</label>
+          <label>{t(`Order Type:`)}</label>
           <CUstomSelect
             options={options}
             isSearchable={false}
@@ -82,7 +85,7 @@ export const OrderFilter = ({
           />
         </div> */}
         <div className="col-lg-2 col-md-3 col-6 mt-4">
-          <label>From:</label>
+          <label>{t(`From:`)}</label>
           <input
             className="dateFilterInput"
             type="date"
@@ -93,7 +96,7 @@ export const OrderFilter = ({
           />
         </div>
         <div className="col-lg-2 col-md-3 col-6 mt-4">
-          <label>To:</label>
+          <label>{t(`To:`)}</label>
           <input
             className="dateFilterInput"
             type="date"

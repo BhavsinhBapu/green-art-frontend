@@ -7,6 +7,7 @@ import SectionLoading from "components/common/SectionLoading";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import moment from "moment";
 import { GetServerSideProps } from "next";
+import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
@@ -32,6 +33,7 @@ export default function Index() {
   const [myCards, setMyCards] = useState<any>({});
   const [selectStatus, setSelectStatus] = useState(options[0]);
   const router = useRouter();
+  const { t } = useTranslation("common");
 
   useEffect(() => {
     getMyGiftCardAdsLists(limit, 1, selectStatus.value);
@@ -79,7 +81,7 @@ export default function Index() {
       <div className="container">
         <div className="col-md-3">
           <div className="form-group p2pSelectFilter">
-            <label> Payment Type</label>
+            <label> {t(`Payment Type`)}</label>
             <CUstomSelect
               options={options}
               handleFunction={setSelectStatus}
@@ -95,11 +97,11 @@ export default function Index() {
               <table className="table">
                 <thead>
                   <tr>
-                    <th scope="col">Price</th>
-                    <th scope="col">Amount</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Created At</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">{t(`Price`)}</th>
+                    <th scope="col">{t(`Amount`)}</th>
+                    <th scope="col">{t(`Status`)}</th>
+                    <th scope="col">{t(`Created At`)}</th>
+                    <th scope="col">{t(`Action`)}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -122,13 +124,13 @@ export default function Index() {
                               className="tableButton p2p-gift-card-adds-margin-bottom p2p-gift-card-adds-margin-right"
                               onClick={() => handleAdsEdit(item.uid)}
                             >
-                              Edit
+                              {t(`Edit`)}
                             </button>
                             <button
                               className="tableButton bg-card-primary-color"
                               onClick={() => handleAdsDelete(item.id)}
                             >
-                              Delete
+                              {t(`Delete`)}
                             </button>
                           </>
                         )}

@@ -5,8 +5,11 @@ import { useEffect, useState } from "react";
 import { OrderFilter } from "./OrderFilter";
 import { myP2pOrderListData } from "service/p2p";
 import { TRADE_STATUS_CANCELED, TRADE_STATUS_CANCELED_TIME_EXPIRED, TRADE_STATUS_ESCROW, TRADE_STATUS_PAYMENT_DONE, TRADE_STATUS_REFUNDED_BY_ADMIN } from "helpers/core-constants";
+import useTranslation from "next-translate/useTranslation";
 
 export const OrderTable = ({ actionFunction, filter = false }: any) => {
+  const { t } = useTranslation("common");
+
   const [fromDate, setFromData] = useState();
   const [toDate, setToData] = useState();
   const [selectedStatus, setSelectedStatus] = useState("all");
@@ -80,12 +83,12 @@ export const OrderTable = ({ actionFunction, filter = false }: any) => {
             <table className="table mt-4">
               <thead>
                 <tr>
-                  <th scope="col">Order Id</th>
-                  <th scope="col">Amount</th>
-                  <th scope="col">Price</th>
-                  <th scope="col">Seller fees</th>
-                  <th scope="col">Status</th>
-                  <th scope="col">Operation</th>
+                  <th scope="col">{t(`Order Id`)}</th>
+                  <th scope="col">{t(`Amount`)}</th>
+                  <th scope="col">{t(`Price`)}</th>
+                  <th scope="col">{t(`Seller fees`)}</th>
+                  <th scope="col">{t(`Status`)}</th>
+                  <th scope="col">{t(`Operation`)}</th>
                 </tr>
               </thead>
               <tbody>
@@ -128,7 +131,7 @@ export const OrderTable = ({ actionFunction, filter = false }: any) => {
 
                     <td>
                       <Link href={`/p2p/trade/${item.uid}`}>
-                        <p className="text-warning">Details</p>
+                        <p className="text-warning">{t(`Details`)}</p>
                       </Link>
                     </td>
                   </tr>

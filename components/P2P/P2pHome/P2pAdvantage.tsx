@@ -1,3 +1,4 @@
+import useTranslation from "next-translate/useTranslation";
 import {
   FcSettings,
   FcApproval,
@@ -6,12 +7,13 @@ import {
 } from "react-icons/fc";
 
 export const P2pAdvantage = ({ data }: any) => {
+  const { t } = useTranslation("common");
  
   return (
     <div className="container mt-5 pt-5">
       <div className="row align-items-center">
         <div className="col-md-6">
-          <h3 className="pb-2">Advantage of P2P Exchange</h3>
+          <h3 className="pb-2">{t(`Advantage of P2P Exchange`)}</h3>
           {data?.p2p_advantage_1_heading && (
             <div className="advantageList d-flex align-items-center pt-5">
               <img src={data?.p2p_advantage_1_icon} height={50} width={50} />

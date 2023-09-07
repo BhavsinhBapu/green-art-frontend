@@ -1,9 +1,13 @@
+import useTranslation from "next-translate/useTranslation";
+
 export const P2pPaymentMethod = ({ data }: any) => {
+  const { t } = useTranslation("common");
+
   return (
     <div className="container mt-5 pt-5">
       <div className="row align-items-center payment_box p-3 mx-2 mx-sm-0">
         <div className="col-md-4">
-          <h2>Top Payment Methods</h2>
+          <h2>{t(`Top Payment Methods`)}</h2>
         </div>
         <div className="col-md-8 pb-4">
           <div className="row">

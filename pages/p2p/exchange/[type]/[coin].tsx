@@ -49,15 +49,14 @@ const Exchange = () => {
                 <div className="boxShadow p-5 w-full border-0">
                   <h1 className="font-medium">
                     {/* @ts-ignore */}
-                    {parseInt(type) === SEND ? "Send" : "Recieve"} Balance
+                    {parseInt(type) === SEND ? "Send" : "Recieve"} {t(`Balance`)}
                   </h1>
                   {/* @ts-ignore */}
                   {parseInt(type) === SEND ? (
-                    <p>Retrieve {coin} from P2P wallet to spot wallet</p>
+                    <p>{t(`Retrieve`)} {coin} {t(`from P2P wallet to spot wallet`)}</p>
                   ) : (
                     <p>
-                      Receive {coin} from spot wallet to P2P wallet and start
-                      P2P trading
+                      {t(`Receive`)} {coin} {t(`from spot wallet to P2P wallet and start P2P trading`)}
                     </p>
                   )}
                   <div className="P2psearchBox position-relative mt-3">
@@ -74,7 +73,7 @@ const Exchange = () => {
                     className="primary-btn w-100 mt-3 py-2"
                     onClick={getBalance}
                   >
-                    exchange
+                    {t(`exchange`)}
                   </button>
                   <Link href={`/p2p/p2p-wallet`}>
                     <div className="mt-3 text-left d-flex align-items-center gap-5 cursor-pointer">

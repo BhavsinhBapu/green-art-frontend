@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
 import { BsFillFileEarmarkImageFill, BsX } from "react-icons/bs";
+import useTranslation from "next-translate/useTranslation";
 
 export const TradeChat = ({
   sendMessage,
@@ -12,6 +13,7 @@ export const TradeChat = ({
   col,
 }: any) => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const { t } = useTranslation("common");
 
   const { user } = useSelector((state: RootState) => state.user);
   const scrollToBottom = () => {
@@ -165,7 +167,7 @@ export const TradeChat = ({
               </div>
             </div>
             <button className="rounded chat_btn" type="submit">
-              send
+              {t(`send`)}
             </button>
           </form>
         </div>

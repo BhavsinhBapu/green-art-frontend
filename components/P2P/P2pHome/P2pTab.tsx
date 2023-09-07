@@ -1,8 +1,11 @@
 import { BUY, SELL } from "helpers/core-constants";
+import useTranslation from "next-translate/useTranslation";
 import { useState } from "react";
 
 export const P2pTab = ({ filters, setFilters, settings }: any) => {
   const [coins, setCoins] = useState(["USDT", "BTC", "BUSD", "BNB", "ETH"]);
+  const { t } = useTranslation("common");
+
   return (
     <div className="p2pTabList_bg shadow-sm">
       <div className="container">
@@ -19,7 +22,7 @@ export const P2pTab = ({ filters, setFilters, settings }: any) => {
                       setFilters({ ...filters, type: BUY });
                     }}
                   >
-                    Buy
+                    {t(`Buy`)}
                   </button>
                   <button
                     className={`${
@@ -29,7 +32,7 @@ export const P2pTab = ({ filters, setFilters, settings }: any) => {
                       setFilters({ ...filters, type: SELL });
                     }}
                   >
-                    Sell
+                    {t(`Sell`)}
                   </button>
                 </div>
               </li>

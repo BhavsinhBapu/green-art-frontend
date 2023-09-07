@@ -13,6 +13,7 @@ import {
   getAllGiftCardAdsApi,
   getCreateAdsSettingsDataApi,
 } from "service/p2pGiftCards";
+import useTranslation from "next-translate/useTranslation";
 
 const options = [
   { value: 1, label: "Bank Transfer" },
@@ -31,6 +32,8 @@ export default function Index({ data }: any) {
   const [selectedPayment, setSelectedPayment] = useState<any>({});
   const [selectedCountry, setSelectedCountry] = useState<any>({});
   const [price, setPrice] = useState("");
+  const { t } = useTranslation("common");
+
 
   useEffect(() => {
     getCreateAdsSettingsData();
@@ -125,7 +128,7 @@ export default function Index({ data }: any) {
       <div className="container mt-4">
         <div className="row">
           <div className="col-md-2">
-            <label>Price</label>
+            <label>{t(`Price`)}</label>
             <div className="P2psearchBox position-relative">
               <input
                 type="number"
@@ -137,7 +140,7 @@ export default function Index({ data }: any) {
           </div>
           <div className="col-md-2">
             <div className="form-group p2pSelectFilter">
-              <label> Payment Type</label>
+              <label> {t(`Payment Type`)}</label>
               <Select
                 classNamePrefix={"custom-select"}
                 options={options}
@@ -148,7 +151,7 @@ export default function Index({ data }: any) {
           </div>
           <div className="col-md-2">
             <div className="form-group p2pSelectFilter">
-              <label> Currency Type</label>
+              <label> {t(`Currency Type`)}</label>
               <Select
                 classNamePrefix={"custom-select"}
                 options={
@@ -163,7 +166,7 @@ export default function Index({ data }: any) {
           </div>
           <div className="col-md-2">
             <div className="form-group p2pSelectFilter">
-              <label>Payment Method</label>
+              <label>{t(`Payment Method`)}</label>
               <Select
                 classNamePrefix={"custom-select"}
                 options={settings?.payment_method}
@@ -174,7 +177,7 @@ export default function Index({ data }: any) {
           </div>
           <div className="col-md-2">
             <div className="form-group p2pSelectFilter">
-              <label>Available Region(s)</label>
+              <label>{t(`Available Region(s)`)}</label>
               <Select
                 classNamePrefix={"custom-select"}
                 options={settings?.country}
@@ -186,7 +189,7 @@ export default function Index({ data }: any) {
           <div className="col-md-2">
             <div className="d-flex h-full align-items-end pb-3">
               <button className="tableButton" onClick={resetHandler}>
-                Reset
+                {t(`Reset`)}
               </button>
             </div>
           </div>
@@ -202,11 +205,11 @@ export default function Index({ data }: any) {
               <table className="table">
                 <thead>
                   <tr>
-                    <th scope="col">Advertisers</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Value of gift card</th>
-                    <th scope="col">Payment</th>
-                    <th scope="col">Trade</th>
+                    <th scope="col">{t(`Advertisers`)}</th>
+                    <th scope="col">{t(`Price`)}</th>
+                    <th scope="col">{t(`Value of gift card`)}</th>
+                    <th scope="col">{t(`Payment`)}</th>
+                    <th scope="col">{t(`Trade`)}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -240,7 +243,7 @@ export default function Index({ data }: any) {
                           ))
                         ) : (
                           <span className="mr-1 bg-card-primary-color px-2 py-1 rounded text-white">
-                            Crypto
+                            {t(`Crypto`)}
                           </span>
                         )}
                       </td>
@@ -250,7 +253,7 @@ export default function Index({ data }: any) {
                           className="tableButton p2p-gift-card-adds-margin-bottom"
                           onClick={() => handleBuyFunc(item.uid)}
                         >
-                          Buy Gift Card
+                          {t(`Buy Gift Card`)}
                         </button>
                       </td>
                     </tr>

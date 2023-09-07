@@ -1,3 +1,4 @@
+import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import React, { useState } from "react";
 import { GoPlus } from "react-icons/go";
@@ -7,6 +8,8 @@ import {
 } from "state/actions/p2p";
 
 export const PaymentTable = () => {
+  const { t } = useTranslation("common");
+
   const [sortingInfo, setSortingInfo] = useState<any>({
     column_name: "created_at",
     order_by: "desc",
@@ -41,7 +44,7 @@ export const PaymentTable = () => {
           <ul className="d-flex p2pTabList py-3 tableRow">
             <li>
               <a className="p2pOrderTabListActive" href="">
-                P2P Payment Methods
+                {t(`P2P Payment Methods`)}
               </a>
             </li>
           </ul>
@@ -50,12 +53,12 @@ export const PaymentTable = () => {
           <div className="paymentMethodBox p-4 mt-3 rounded shadow-sm">
             <div className="row d-flex align-items-center justify-content-between">
               <div className="col-md-7">
-                <h5>P2P Payment Methods</h5>
+                <h5>{t(`P2P Payment Methods`)}</h5>
               </div>
               <div className="col-md-5 text-right">
                 <Link href={"/p2p/add-payment-method"}>
                   <button className="orderFilterNoButton border-0 text-warning shadow-sm rounded px-3 ml-0 ml-md-4 mt-4 mt-md-0 ">
-                    <GoPlus className="mr-2" /> Add a payment method
+                    <GoPlus className="mr-2" /> {t(`Add a payment method`)}
                   </button>
                 </Link>
               </div>
@@ -77,7 +80,7 @@ export const PaymentTable = () => {
                           }
                           className="paymentBox border-0"
                         >
-                          <b>Edit</b>
+                          <b>{t(`Edit`)}</b>
                         </Link>
                         <a
                           onClick={() => {
@@ -92,7 +95,7 @@ export const PaymentTable = () => {
                           }}
                           className="paymentBox border-0 ml-4"
                         >
-                          <b>Delete</b>
+                          <b>{t(`Delete`)}</b>
                         </a>
                       </div>
                     </div>

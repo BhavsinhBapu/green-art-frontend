@@ -6,6 +6,7 @@ import { BUY } from "helpers/core-constants";
 import { RootState } from "state/store";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
+import useTranslation from "next-translate/useTranslation";
 
 export const P2pDataTable = ({
   history,
@@ -15,6 +16,8 @@ export const P2pDataTable = ({
   payment = true,
   edit = false,
 }: any) => {
+  const { t } = useTranslation("common");
+
   const router = useRouter();
   return (
     <div className="container mt-4">
@@ -26,12 +29,12 @@ export const P2pDataTable = ({
             <table className="table">
               <thead>
                 <tr>
-                  <th scope="col">Advertisers</th>
-                  <th scope="col">Price</th>
-                  <th scope="col">Limit/Available</th>
-                  {payment === true && <th scope="col">Payment</th>}
-                  {action === true && <th scope="col">Trade</th>}
-                  {edit === true && <th scope="col">Edit</th>}
+                  <th scope="col">{t(`Advertisers`)}</th>
+                  <th scope="col">{t(`Price`)}</th>
+                  <th scope="col">{t(`Limit/Available`)}</th>
+                  {payment === true && <th scope="col">{t(`Payment`)}</th>}
+                  {action === true && <th scope="col">{t(`Trade`)}</th>}
+                  {edit === true && <th scope="col">{t(`Edit`)}</th>}
                 </tr>
               </thead>
               <tbody>
@@ -53,13 +56,13 @@ export const P2pDataTable = ({
                     </td>
                     <td>
                       <div className="d-flex align-items-center">
-                        <small className="mr-2">Available</small>
+                        <small className="mr-2">{t(`Available`)}</small>
                         <h6 className="limitBalance">
                           {item?.available} {item?.coin_type}
                         </h6>
                       </div>
                       <div className="d-flex align-items-center">
-                        <small className="mr-2">Limit</small>
+                        <small className="mr-2">{t(`Limit`)}</small>
                         <h6 className="limitBalance">
                           {item?.minimum_trade_size} {item?.currency}-
                           {item?.maximum_trade_size} {item?.currency}
@@ -110,7 +113,7 @@ export const P2pDataTable = ({
                             }}
                             className="tableButton"
                           >
-                            Edit
+                            {t(`Edit`)}
                           </button>
                           // </Link>
                         )}

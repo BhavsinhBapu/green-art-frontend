@@ -4,7 +4,10 @@ import Link from "next/link";
 import { AiOutlineGift, AiOutlineWallet } from "react-icons/ai";
 import { GrHomeRounded } from "react-icons/gr";
 import { useRouter } from "next/router";
+import useTranslation from "next-translate/useTranslation";
 export const P2pTopBar = () => {
+  const { t } = useTranslation("common");
+
   const router = useRouter();
   return (
     <div className="py-3">
@@ -21,7 +24,7 @@ export const P2pTopBar = () => {
                       } `}
                     >
                       <HiOutlineHome />
-                      Home
+                      {t(`Home`)}
                     </a>
                   </Link>
                 </li>
@@ -34,7 +37,7 @@ export const P2pTopBar = () => {
                       } `}
                     >
                       <RiPagesLine />
-                      Orders
+                      {t(`Orders`)}
                     </a>
                   </Link>
                 </li>
@@ -47,7 +50,7 @@ export const P2pTopBar = () => {
                       } `}
                     >
                       <HiUsers />
-                      P2P User Center
+                      {t(`P2P User Center`)}
                     </a>
                   </Link>
                 </li>
@@ -60,7 +63,7 @@ export const P2pTopBar = () => {
                       } `}
                     >
                       <AiOutlineWallet />
-                      P2P Wallet
+                      {t(`P2P Wallet`)}
                     </a>
                   </Link>
                 </li>
@@ -73,7 +76,7 @@ export const P2pTopBar = () => {
                       } `}
                     >
                       <AiOutlineGift />
-                      Gift Card
+                      {t(`Gift Card`)}
                     </a>
                   </Link>
                 </li>
@@ -85,17 +88,21 @@ export const P2pTopBar = () => {
                   data-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  More
+                  {t(`More`)}
                 </a>
                 <div className="dropdown-menu secendary-dropdown-bg">
                   <Link href="/p2p/add-post">
-                    <a className="dropdown-item menu-hover">Ad Create</a>
+                    <a className="dropdown-item menu-hover">{t(`Ad Create`)}</a>
                   </Link>
                   <Link href="/p2p/my-buy-ads">
-                    <a className="dropdown-item menu-hover">My Buy Ads</a>
+                    <a className="dropdown-item menu-hover">
+                      {t(`My Buy Ads`)}
+                    </a>
                   </Link>
                   <Link href="/p2p/my-sell-ads">
-                    <a className="dropdown-item menu-hover">My Sell Ads</a>
+                    <a className="dropdown-item menu-hover">
+                      {t(`My Sell Ads`)}
+                    </a>
                   </Link>
                 </div>
               </li>

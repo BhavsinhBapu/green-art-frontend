@@ -1,9 +1,12 @@
+import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import React from "react";
 import { AiOutlineGift } from "react-icons/ai";
 import { HiOutlineHome } from "react-icons/hi";
 import { RiPagesLine } from "react-icons/ri";
 export default function P2PGiftCardNavbar() {
+  const { t } = useTranslation("common");
+
   return (
     <div>
       <div className="py-3 border-bottom primary-border-color p2p-gift-card-navbar-margin-top">
@@ -16,7 +19,7 @@ export default function P2PGiftCardNavbar() {
                     <Link href="/p2p/gift-card">
                       <a>
                         <HiOutlineHome />
-                        Home
+                        {t(`Home`)}
                       </a>
                     </Link>
                   </li>
@@ -24,7 +27,7 @@ export default function P2PGiftCardNavbar() {
                     <Link href="/p2p/gift-card/ads/orders">
                       <a>
                         <RiPagesLine />
-                        Orders
+                        {t(`Orders`)}
                       </a>
                     </Link>
                   </li>
@@ -32,7 +35,7 @@ export default function P2PGiftCardNavbar() {
                     <Link href="/p2p/gift-card/lists">
                       <a>
                         <AiOutlineGift />
-                        Gift Card Lists
+                        {t(`Gift Card Lists`)}
                       </a>
                     </Link>
                   </li>
@@ -40,7 +43,7 @@ export default function P2PGiftCardNavbar() {
                     <Link href="/p2p/gift-card/my-adds">
                       <a>
                         <AiOutlineGift />
-                        My Gift Card Ads
+                        {t(`My Gift Card Ads`)}
                       </a>
                     </Link>
                   </li>

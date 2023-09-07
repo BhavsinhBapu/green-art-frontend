@@ -6,6 +6,7 @@ import { P2pTopBar } from "components/P2P/P2pHome/TopBar";
 import { BUY } from "helpers/core-constants";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
+import useTranslation from "next-translate/useTranslation";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { myP2pOrderAction, userAdsFilterChangeAction } from "state/actions/p2p";
@@ -14,6 +15,8 @@ import { RootState } from "state/store";
 const P2pOrder = () => {
   const [settings, setSettings] = useState<any>([]);
   const { isLoggedIn } = useSelector((state: RootState) => state.user);
+  const { t } = useTranslation("common");
+
   const [filters, setFilters] = useState({
     type: BUY,
     amount: 0,
@@ -70,7 +73,7 @@ const P2pOrder = () => {
         <div className="section-top-wrap mb-25">
           <div className="overview-area">
             <div className="overview-left">
-              <h2 className="section-top-title">My Buy Order History</h2>
+              <h2 className="section-top-title">{t(`My Buy Order History`)}</h2>
             </div>
           </div>
         </div>

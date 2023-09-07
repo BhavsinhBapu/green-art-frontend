@@ -3,11 +3,13 @@ import { P2pTopBar } from "components/P2P/P2pHome/TopBar";
 import { OrderTable } from "components/P2P/P2pOrder/OrderTable";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
+import useTranslation from "next-translate/useTranslation";
 import { useState } from "react";
 import { myP2pDisputeAction, myP2pOrderAction } from "state/actions/p2p";
 
 const P2pOrder = () => {
   const [selectedMenu, setselectedMenu] = useState<any>(1);
+  const { t } = useTranslation("common");
 
   return (
     <>
@@ -15,7 +17,7 @@ const P2pOrder = () => {
         <div className="section-top-wrap mb-25">
           <div className="overview-area">
             <div className="overview-left">
-              <h2 className="section-top-title">My Orders</h2>
+              <h2 className="section-top-title">{t(`My Orders`)}</h2>
             </div>
           </div>
         </div>
@@ -34,7 +36,7 @@ const P2pOrder = () => {
                       selectedMenu === 1 && "p2pOrderTabListActive"
                     }`}
                   >
-                    All Orders
+                    {t(`All Orders`)}
                   </a>
                 </li>
                 <li
@@ -47,7 +49,7 @@ const P2pOrder = () => {
                       selectedMenu === 2 && "p2pOrderTabListActive"
                     }`}
                   >
-                    Disputed Orders
+                    {t(`Disputed Orders`)}
                   </a>
                 </li>
               </ul>

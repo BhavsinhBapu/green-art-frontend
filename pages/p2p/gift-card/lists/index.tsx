@@ -7,6 +7,7 @@ import MyCardModal from "components/gift-cards/modal/MyCardModal";
 import P2PGiftCardSingleModal from "components/gift-cards/modal/P2PGiftCardSingleModal";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
+import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
@@ -19,6 +20,8 @@ export default function Index() {
   const [myCards, setMyCards] = useState<any>({});
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [giftCardData, setGiftCardData] = useState({});
+  const { t } = useTranslation("common");
+
   useEffect(() => {
     getP2PGiftCardLists(limit, 1);
   }, []);
@@ -62,10 +65,10 @@ export default function Index() {
               <table className="table">
                 <thead>
                   <tr>
-                    <th scope="col">Image</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Amount</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">{t(`Image`)}</th>
+                    <th scope="col">{t(`Name`)}</th>
+                    <th scope="col">{t(`Amount`)}</th>
+                    <th scope="col">{t(`Action`)}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -84,11 +87,11 @@ export default function Index() {
                       <td>
                         <Link href={`/p2p/gift-card/create-ads/${item.id}`}>
                           <a className="tableButton p2p-gift-card-adds-margin-right">
-                            Create Ads
+                            {t(`Create Ads`)}
                           </a>
                         </Link>
 
-                        <span className="tableButton pointer" onClick={() => myCardHandle(item)}>Details</span>
+                        <span className="tableButton pointer" onClick={() => myCardHandle(item)}>{t(`Details`)}</span>
                       </td>
                     </tr>
                   ))}
