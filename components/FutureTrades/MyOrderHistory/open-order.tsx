@@ -10,8 +10,10 @@ import {
 import React from "react";
 import { canceledBuySellOrderAction } from "state/actions/futureTrade";
 import TpslModal from "../Modals/TPSL-modal";
+import useTranslation from "next-translate/useTranslation";
 
 const OpenOrder = ({ openOrder }: any) => {
+  const {t} = useTranslation();
   const conditon = (item: any) => {
     if (item.side === 1) {
       if (item?.take_profit_price > 0) {
@@ -70,16 +72,16 @@ const OpenOrder = ({ openOrder }: any) => {
             <table className="table">
               <thead>
                 <tr>
-                  <th scope="col" className="pl-0">Time</th>
-                  <th scope="col">Symbol</th>
-                  <th scope="col">Type</th>
-                  <th scope="col">Side</th>
-                  <th scope="col">Price</th>
-                  <th scope="col">Amount</th>
-                  <th scope="col">Filled</th>
-                  <th scope="col">Trigger Conditions</th>
-                  <th scope="col">TP/SL</th>
-                  <th scope="col">Cancel</th>
+                  <th scope="col" className="pl-0">{t(`Time`)}</th>
+                  <th scope="col">{t(`Symbol`)}</th>
+                  <th scope="col">{t(`Type`)}</th>
+                  <th scope="col">{t(`Side`)}</th>
+                  <th scope="col">{t(`Price`)}</th>
+                  <th scope="col">{t(`Amount`)}</th>
+                  <th scope="col">{t(`Filled`)}</th>
+                  <th scope="col">{t(`Trigger Conditions`)}</th>
+                  <th scope="col">{t(`TP/SL`)}</th>
+                  <th scope="col">{t(`Cancel`)}</th>
                 </tr>
               </thead>
               <tbody>
@@ -91,30 +93,30 @@ const OpenOrder = ({ openOrder }: any) => {
 
                     {item?.side === TRADE_TYPE_BUY &&
                     item?.trade_type === FUTURE_TRADE_TYPE_OPEN ? (
-                      <td className="text-success">Open Long</td>
+                      <td className="text-success">{t(`Open Long`)}</td>
                     ) : item?.side === TRADE_TYPE_SELL &&
                       item?.trade_type === FUTURE_TRADE_TYPE_OPEN ? (
-                      <td className="text-success">Open short</td>
+                      <td className="text-success">{t(`Open short`)}</td>
                     ) : item?.side === TRADE_TYPE_BUY &&
                       item?.trade_type === FUTURE_TRADE_TYPE_CLOSE ? (
-                      <td className="text-danger">Close Long</td>
+                      <td className="text-danger">{t(`Close Long`)}</td>
                     ) : item?.side === TRADE_TYPE_SELL &&
                       item?.trade_type === FUTURE_TRADE_TYPE_CLOSE ? (
-                      <td className="text-success">Close Short</td>
+                      <td className="text-success">{t(`Close Short`)}</td>
                     ) : item?.side === TRADE_TYPE_SELL &&
                       item?.trade_type ===
                         FUTURE_TRADE_TYPE_TAKE_PROFIT_CLOSE ? (
-                      <td className="text-success">Close Short</td>
+                      <td className="text-success">{t(`Close Short`)}</td>
                     ) : item?.side === TRADE_TYPE_SELL &&
                       item?.trade_type === FUTURE_TRADE_TYPE_STOP_LOSS_CLOSE ? (
-                      <td className="text-success">Close Short</td>
+                      <td className="text-success">{t(`Close Short`)}</td>
                     ) : item?.side === TRADE_TYPE_BUY &&
                       item?.trade_type ===
                         FUTURE_TRADE_TYPE_TAKE_PROFIT_CLOSE ? (
-                      <td className="text-danger">Close Long</td>
+                      <td className="text-danger">{t(`Close Long`)}</td>
                     ) : item?.side === TRADE_TYPE_BUY &&
                       item?.trade_type === FUTURE_TRADE_TYPE_STOP_LOSS_CLOSE ? (
-                      <td className="text-danger">Close Long</td>
+                      <td className="text-danger">{t(`Close Long`)}</td>
                     ) : (
                       ""
                     )}

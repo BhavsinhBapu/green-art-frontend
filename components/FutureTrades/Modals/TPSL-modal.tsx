@@ -45,27 +45,27 @@ const TpslModal = ({ uid }: any) => {
             <SectionLoading />
           ) : (
             <div className="future-modal__content p-5">
-              <h6 className="text-center">Take Profit and Stop Loss</h6>
+              <h6 className="text-center">{t(`Take Profit and Stop Loss`)}</h6>
               <div className="mb-3">
                 <div className="position-content">
-                  <span>Side</span>
+                  <span>{t(`Side`)}</span>
                   <span>
                     {details?.side === 1 ? (
-                      <span className="text-success">Buy</span>
+                      <span className="text-success">{t(`Buy`)}</span>
                     ) : (
-                      <span className="text-danger">Sell</span>
+                      <span className="text-danger">{t(`Sell`)}</span>
                     )}
                   </span>
                 </div>
                 <div className="position-content">
-                  <span>Amount</span>
+                  <span>{t(`Amount`)}</span>
                   <span>
                     {details?.amount_in_trade_coin}
                     {details?.trade_coin_type}
                   </span>
                 </div>
                 <div className="position-content">
-                  <span>Stop Price</span>
+                  <span>{t(`Stop Price`)}</span>
                   <span>
                     {Number(details?.stop_price) > 0
                       ? Number(details?.stop_price)
@@ -73,40 +73,42 @@ const TpslModal = ({ uid }: any) => {
                   </span>
                 </div>
                 <div className="position-content">
-                  <span>Trigger</span>
-                  <span>Mark Price</span>
+                  <span>{t(`Trigger`)}</span>
+                  <span>{t(`Mark Price`)}</span>
                 </div>
                 <div className="position-content">
-                  <span>Reduce Only</span>
-                  <span>False</span>
+                  <span>{t(`Reduce Only`)}</span>
+                  <span>{t(`False`)}</span>
                 </div>
               </div>
               {details?.children?.length > 0 && (
                 <div className="row mt-2">
                   <div className="col-6">
                     <h6 className="text-center mb-2">
-                      If order B is filled fully. order C will be canceled.
+                      {t(
+                        `If order B is filled fully. order C will be canceled.`
+                      )}
                     </h6>
                     <div className="mb-3">
                       <div className="position-content">
-                        <span>Side</span>
+                        <span>{t(`Side`)}</span>
                         <span>
                           {details?.children[0]?.side === 1 ? (
-                            <span className="text-danger">Sell</span>
+                            <span className="text-danger">{t(`Sell`)}</span>
                           ) : (
-                            <span className="text-success">Buy</span>
+                            <span className="text-success">{t(`Buy`)}</span>
                           )}
                         </span>
                       </div>
                       <div className="position-content">
-                        <span>Amount</span>
+                        <span>{t(`Amount`)}</span>
                         <span>
                           {details?.children[0]?.amount_in_trade_coin}
                           {details?.children[0]?.trade_coin_type}
                         </span>
                       </div>
                       <div className="position-content">
-                        <span>Stop Price</span>
+                        <span>{t(`Stop Price`)}</span>
                         <span>
                           {Number(details?.children[0]?.take_profit_price) > 0
                             ? Number(details?.children[0]?.take_profit_price)
@@ -114,40 +116,42 @@ const TpslModal = ({ uid }: any) => {
                         </span>
                       </div>
                       <div className="position-content">
-                        <span>Trigger</span>
-                        <span>Mark Price</span>
+                        <span>{t(`Trigger`)}</span>
+                        <span>{t(`Mark Price`)}</span>
                       </div>
                       <div className="position-content">
-                        <span>Reduce Only</span>
-                        <span>true</span>
+                        <span>{t(`Reduce Only`)}</span>
+                        <span>{t(`true`)}</span>
                       </div>
                     </div>
                   </div>
                   {details?.children?.length > 1 && (
                     <div className="col-6">
                       <h6 className="text-center mb-2">
-                        If order C is filled fully, order B will be cancelled
+                        {t(
+                          `If order C is filled fully, order B will be cancelled`
+                        )}
                       </h6>
                       <div className="mb-3">
                         <div className="position-content">
-                          <span>Side</span>
+                          <span>{t(`Side`)}</span>
                           <span>
                             {details?.children[1]?.side === 1 ? (
-                              <span className="text-danger">Sell</span>
+                              <span className="text-danger">{t(`Sell`)}</span>
                             ) : (
-                              <span className="text-success">Buy</span>
+                              <span className="text-success">{t(`Buy`)}</span>
                             )}
                           </span>
                         </div>
                         <div className="position-content">
-                          <span>Amount</span>
+                          <span>{t(`Amount`)}</span>
                           <span>
                             {details?.children[1]?.amount_in_trade_coin}
                             {details?.children[1]?.trade_coin_type}
                           </span>
                         </div>
                         <div className="position-content">
-                          <span>Stop Price</span>
+                          <span>{t(`Stop Price`)}</span>
                           <span>
                             {Number(details?.children[1]?.take_profit_price) > 0
                               ? Number(details?.children[1]?.take_profit_price)
@@ -155,12 +159,12 @@ const TpslModal = ({ uid }: any) => {
                           </span>
                         </div>
                         <div className="position-content">
-                          <span>Trigger</span>
-                          <span>Mark Price</span>
+                          <span>{t(`Trigger`)}</span>
+                          <span>{t(`Mark Price`)}</span>
                         </div>
                         <div className="position-content">
-                          <span>Reduce Only</span>
-                          <span>true</span>
+                          <span>{t(`Reduce Only`)}</span>
+                          <span>{t(`true`)}</span>
                         </div>
                       </div>
                       <div></div>
@@ -178,7 +182,7 @@ const TpslModal = ({ uid }: any) => {
                   className="primary-btn"
                   onClick={closeModal}
                 >
-                  Close
+                  {t(`Close`)}
                 </button>
               </div>
             </div>

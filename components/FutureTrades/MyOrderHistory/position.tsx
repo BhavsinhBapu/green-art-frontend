@@ -3,8 +3,10 @@ import { closeLongShortAllOrderAction } from "state/actions/futureTrade";
 import PositionRow from "./PositionRow";
 import { RootState } from "state/store";
 import { useDispatch, useSelector } from "react-redux";
+import useTranslation from "next-translate/useTranslation";
 
 const Position = ({ listData }: any) => {
+  const {t} = useTranslation();
   const [CloseAll, setCloseAll] = useState<any>([]);
   const { dashboard } = useSelector((state: RootState) => state.futureExchange);
   const dispatch = useDispatch();
@@ -38,14 +40,14 @@ const Position = ({ listData }: any) => {
             <table className="table">
               <thead>
                 <tr>
-                  <th scope="col" className="pl-0">Symbol</th>
-                  <th scope="col">Size</th>
-                  <th scope="col">Entry Price</th>
-                  <th scope="col">Mark Price</th>
-                  <th scope="col">Liq Price</th>
-                  <th scope="col">Margin Ratio</th>
-                  <th scope="col">Margin</th>
-                  <th scope="col">PNL(ROE)%</th>
+                  <th scope="col" className="pl-0">{t(`Symbol`)}</th>
+                  <th scope="col">{t(`Size`)}</th>
+                  <th scope="col">{t(`Entry Price`)}</th>
+                  <th scope="col">{t(`Mark Price`)}</th>
+                  <th scope="col">{t(`Liq Price`)}</th>
+                  <th scope="col">{t(`Margin Ratio`)}</th>
+                  <th scope="col">{t(`Margin`)}</th>
+                  <th scope="col">{t(`PNL(ROE)%`)}</th>
                   <th
                     className="button-future-close"
                     onClick={() => {
@@ -57,7 +59,7 @@ const Position = ({ listData }: any) => {
                       );
                     }}
                   >
-                    Close All Positions
+                    {t(`Close All Positions`)}
                   </th>
                 </tr>
               </thead>

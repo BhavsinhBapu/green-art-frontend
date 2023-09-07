@@ -7,9 +7,11 @@ import {
   TRADE_TYPE_BUY,
   TRADE_TYPE_SELL,
 } from "helpers/core-constants";
+import useTranslation from "next-translate/useTranslation";
 import React from "react";
 
 const OrderHistory = ({ orderHistory }: any) => {
+  const { t } = useTranslation();
   const condition = (item: any) => {
     if (item.side === 1) {
       if (item?.take_profit_price > 0) {
@@ -28,7 +30,11 @@ const OrderHistory = ({ orderHistory }: any) => {
   return (
     <div>
       {" "}
-      <div className="tab-content" style={{padding: '0 10px'}} id="ordersTabContent">
+      <div
+        className="tab-content"
+        style={{ padding: "0 10px" }}
+        id="ordersTabContent"
+      >
         <div
           className="tab-pane fade show active"
           id="Open-orders"
@@ -39,15 +45,17 @@ const OrderHistory = ({ orderHistory }: any) => {
             <table className="table">
               <thead>
                 <tr>
-                  <th scope="col" className="pl-0">Time</th>
-                  <th scope="col">Symbol</th>
-                  <th scope="col">Type</th>
-                  <th scope="col">Side</th>
-                  <th scope="col">Price</th>
-                  <th scope="col">Amount</th>
-                  <th scope="col">Filled</th>
+                  <th scope="col" className="pl-0">
+                    {t(`Time`)}
+                  </th>
+                  <th scope="col">{t(`Symbol`)}</th>
+                  <th scope="col">{t(`Type`)}</th>
+                  <th scope="col">{t(`Side`)}</th>
+                  <th scope="col">{t(`Price`)}</th>
+                  <th scope="col">{t(`Amount`)}</th>
+                  <th scope="col">{t(`Filled`)}</th>
 
-                  <th scope="col">Trigger Conditions</th>
+                  <th scope="col">{t(`Trigger Conditions`)}</th>
                 </tr>
               </thead>
               <tbody>
@@ -72,30 +80,30 @@ const OrderHistory = ({ orderHistory }: any) => {
 
                     {item?.side === TRADE_TYPE_BUY &&
                     item?.trade_type === FUTURE_TRADE_TYPE_OPEN ? (
-                      <td className="text-success">Open Long</td>
+                      <td className="text-success">{t(`Open Long`)}</td>
                     ) : item?.side === TRADE_TYPE_SELL &&
                       item?.trade_type === FUTURE_TRADE_TYPE_OPEN ? (
-                      <td className="text-success">Open short</td>
+                      <td className="text-success">{t(`Open short`)}</td>
                     ) : item?.side === TRADE_TYPE_BUY &&
                       item?.trade_type === FUTURE_TRADE_TYPE_CLOSE ? (
-                      <td className="text-danger">Close Long</td>
+                      <td className="text-danger">{t(`Close Long`)}</td>
                     ) : item?.side === TRADE_TYPE_SELL &&
                       item?.trade_type === FUTURE_TRADE_TYPE_CLOSE ? (
-                      <td className="text-success">Close Short</td>
+                      <td className="text-success">{t(`Close Short`)}</td>
                     ) : item?.side === TRADE_TYPE_SELL &&
                       item?.trade_type ===
                         FUTURE_TRADE_TYPE_TAKE_PROFIT_CLOSE ? (
-                      <td className="text-success">Close Short</td>
+                      <td className="text-success">{t(`Close Short`)}</td>
                     ) : item?.side === TRADE_TYPE_SELL &&
                       item?.trade_type === FUTURE_TRADE_TYPE_STOP_LOSS_CLOSE ? (
-                      <td className="text-success">Close Short</td>
+                      <td className="text-success">{t(`Close Short`)}</td>
                     ) : item?.side === TRADE_TYPE_BUY &&
                       item?.trade_type ===
                         FUTURE_TRADE_TYPE_TAKE_PROFIT_CLOSE ? (
-                      <td className="text-danger">Close Long</td>
+                      <td className="text-danger">{t(`Close Long`)}</td>
                     ) : item?.side === TRADE_TYPE_BUY &&
                       item?.trade_type === FUTURE_TRADE_TYPE_STOP_LOSS_CLOSE ? (
-                      <td className="text-danger">Close Long</td>
+                      <td className="text-danger">{`Close Long`}</td>
                     ) : (
                       ""
                     )}

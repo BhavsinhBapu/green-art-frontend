@@ -34,21 +34,21 @@ const PositionEdit = ({ item }: any) => {
       {isModalOpen && (
         <div id="demo-modal" className="gift-card-modal">
           <div className="future-modal__content p-5">
-            <h3>TP/SL for entire positon</h3>
+            <h3>{t(`TP/SL for entire positon`)}</h3>
             <div className="mb-3">
               <div className="position-content">
-                <span>Symbol</span>
+                <span>{t(`Symbol`)}</span>
                 <span>{item?.profit_loss_calculation?.symbol}</span>
               </div>
               <div className="position-content">
-                <span>Entry Price</span>
+                <span>{t(`Entry Price`)}</span>
                 <span>
                   {item?.entry_price}
                   {item?.profit_loss_calculation?.base_coin_type}
                 </span>
               </div>
               <div className="position-content">
-                <span>Mark Price</span>
+                <span>{t(`Mark Price`)}</span>
                 <span>
                   {item?.profit_loss_calculation?.market_price}
                   {item?.profit_loss_calculation?.base_coin_type}
@@ -57,7 +57,7 @@ const PositionEdit = ({ item }: any) => {
             </div>
             <div>
               <div className="mt-3 boxShadow position-input">
-                <label className="">Take Profit</label>
+                <label className="">{t(`Take Profit`)}</label>
                 <input
                   name="take_profit"
                   type="number"
@@ -72,11 +72,11 @@ const PositionEdit = ({ item }: any) => {
                   }}
                 />
                 <span className="text-warning blns">
-                  <span className="trade_coin_type">MARK</span>
+                  <span className="trade_coin_type">{t(`MARK`)}</span>
                 </span>
               </div>
               <div className="mt-3 boxShadow position-input">
-                <label className="">Stop loss</label>
+                <label className="">{t(`Stop loss`)}</label>
                 <input
                   name="price"
                   type="number"
@@ -91,7 +91,7 @@ const PositionEdit = ({ item }: any) => {
                   }}
                 />
                 <span className="text-warning blns">
-                  <span className="trade_coin_type">MARK</span>
+                  <span className="trade_coin_type">{t(`MARK`)}</span>
                 </span>
               </div>
             </div>
@@ -110,7 +110,7 @@ const PositionEdit = ({ item }: any) => {
                 className="primary-btn"
                 onClick={closeModal}
               >
-                Close
+                {t(`Close`)}
               </button>
               <button
                 style={{
@@ -128,7 +128,7 @@ const PositionEdit = ({ item }: any) => {
                   await setIsModalOpen(false);
                 }}
               >
-                Confirm
+                {t(`Confirm`)}
               </button>
             </div>
           </div>

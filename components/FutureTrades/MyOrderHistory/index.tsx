@@ -24,8 +24,10 @@ import {
   orderHistoryFutureAction,
 } from "state/actions/futureTrade";
 import { listenMessagesFuture } from "state/actions/exchange";
+import useTranslation from "next-translate/useTranslation";
 
 const MyOrderHistory = ({ setdisableCross, setdisableIsolated }: any) => {
+  const { t } = useTranslation();
   const { isLoggedIn } = useSelector((state: RootState) => state.user);
   const [selected, setSelected] = useState(POSITON);
   const [listData, setListData] = useState([]);
@@ -113,7 +115,7 @@ const MyOrderHistory = ({ setdisableCross, setdisableIsolated }: any) => {
   return (
     <div>
       <div className="orders-area mb-0">
-        <div className="orders-area-top" style={{padding: '10px'}}>
+        <div className="orders-area-top" style={{ padding: "10px" }}>
           <div className="top-left">
             <ul id="ordersTab" role="tablist" className="nav nav-tabs">
               <li role="presentation" className="nav-item">
@@ -128,7 +130,7 @@ const MyOrderHistory = ({ setdisableCross, setdisableIsolated }: any) => {
                     setSelected(POSITON);
                   }}
                 >
-                  Position({listData.length})
+                  {t(`Position`)}({listData.length})
                 </a>
               </li>
               <li role="presentation" className="nav-item">
@@ -145,7 +147,7 @@ const MyOrderHistory = ({ setdisableCross, setdisableIsolated }: any) => {
                     setSelected(OPEN_ORDER);
                   }}
                 >
-                  Open order
+                  {t(`Open order`)}
                 </a>
               </li>
               <li role="presentation" className="nav-item">
@@ -162,7 +164,7 @@ const MyOrderHistory = ({ setdisableCross, setdisableIsolated }: any) => {
                     setSelected(ORDER_HISTORY);
                   }}
                 >
-                  Order history
+                  {t(`Order history`)}
                 </a>
               </li>
               <li role="presentation" className="nav-item">
@@ -179,7 +181,7 @@ const MyOrderHistory = ({ setdisableCross, setdisableIsolated }: any) => {
                     setSelected(TRADE_HISTORY);
                   }}
                 >
-                  Trade History
+                  {t(`Trade History`)}
                 </a>
               </li>
               <li role="presentation" className="nav-item">
@@ -196,7 +198,7 @@ const MyOrderHistory = ({ setdisableCross, setdisableIsolated }: any) => {
                     setSelected(TRANSACTION_HISTORY);
                   }}
                 >
-                  Transaction History
+                  {t(`Transaction History`)}
                 </a>
               </li>
             </ul>

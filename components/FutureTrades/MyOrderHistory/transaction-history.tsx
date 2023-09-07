@@ -5,9 +5,11 @@ import {
   FUTURE_TRADE_TRANSACTION_TYPE_REALIZED_PNL,
   FUTURE_TRADE_TRANSACTION_TYPE_TRANSFER,
 } from "helpers/core-constants";
+import useTranslation from "next-translate/useTranslation";
 import React from "react";
 
 const TransactionHistory = ({ transactionHistory }: any) => {
+  const {t} = useTranslation();
   return (
     <div>
       {" "}
@@ -22,11 +24,11 @@ const TransactionHistory = ({ transactionHistory }: any) => {
             <table className="table">
               <thead>
                 <tr>
-                  <th scope="col" className="pl-0">Time</th>
-                  <th scope="col">Type</th>
-                  <th scope="col">Amount</th>
-                  <th scope="col">Asset</th>
-                  <th scope="col">Symbol</th>
+                  <th scope="col" className="pl-0">{t(`Time`)}</th>
+                  <th scope="col">{t(`Type`)}</th>
+                  <th scope="col">{t(`Amount`)}</th>
+                  <th scope="col">{t(`Asset`)}</th>
+                  <th scope="col">{t(`Symbol`)}</th>
                   <th scope="col" />
                 </tr>
               </thead>
@@ -75,7 +77,7 @@ const TransactionHistory = ({ transactionHistory }: any) => {
                   aria-controls="buy"
                   aria-selected="true"
                 >
-                  buy
+                  {t(`buy`)}
                 </a>
               </li>
               <li className="nav-item" role="presentation">
@@ -88,7 +90,7 @@ const TransactionHistory = ({ transactionHistory }: any) => {
                   aria-controls="sell"
                   aria-selected="false"
                 >
-                  sell
+                  {t(`sell`)}
                 </a>
               </li>
             </ul>
@@ -103,13 +105,13 @@ const TransactionHistory = ({ transactionHistory }: any) => {
                   <table className="table">
                     <thead>
                       <tr>
-                        <th scope="col">Type</th>
-                        <th scope="col">Pair</th>
-                        <th scope="col">Price(USDT)</th>
-                        <th scope="col">Amount(BTC)</th>
-                        <th scope="col">Fees(USDT)</th>
-                        <th scope="col">total(USDT)</th>
-                        <th scope="col">Created At</th>
+                        <th scope="col">{t(`Type`)}</th>
+                        <th scope="col">{t(`Pair`)}</th>
+                        <th scope="col">{t(`Price(USDT)`)}</th>
+                        <th scope="col">{t(`Amount(BTC)`)}</th>
+                        <th scope="col">{t(`Fees(USDT)`)}</th>
+                        <th scope="col">{t(`total(USDT)`)}</th>
+                        <th scope="col">{t(`Created At`)}</th>
                       </tr>
                     </thead>
                     <tbody>

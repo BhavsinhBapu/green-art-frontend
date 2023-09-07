@@ -1,19 +1,25 @@
 import React, { useState } from "react";
 import PositionEdit from "../Modals/positionEdit";
 import { LIMIT_ORDER, MARKET_ORDER } from "helpers/core-constants";
+import useTranslation from "next-translate/useTranslation";
 
 const PositionRow = ({ list, Close, setCloseAll, index, CloseAll }: any) => {
+  const { t } = useTranslation();
   return (
     <tr className="position-row">
       <td className="pl-0">
         <h6 className="text-12">{list?.profit_loss_calculation?.symbol}</h6>
-        <span className="text-12">Perpatual</span>
+        <span className="text-12">{t(`Perpatual`)}</span>
       </td>
       <td className="px-1 text-12">{list?.amount_in_trade_coin}</td>
       <td className="px-1 text-12">{list?.entry_price}</td>
-      <td className="px-1 text-12">{list?.profit_loss_calculation?.market_price}</td>
+      <td className="px-1 text-12">
+        {list?.profit_loss_calculation?.market_price}
+      </td>
       <td className="px-1 text-12">{list?.liquidation_price}</td>
-      <td className="px-1 text-12">{list?.profit_loss_calculation?.margin_ratio}</td>
+      <td className="px-1 text-12">
+        {list?.profit_loss_calculation?.margin_ratio}
+      </td>
       <td className="px-1 text-12">
         {list?.margin}
         {list?.profit_loss_calculation?.base_coin_type}
@@ -55,7 +61,7 @@ const PositionRow = ({ list, Close, setCloseAll, index, CloseAll }: any) => {
             });
           }}
         >
-          Market
+          {t(`Market`)}
         </span>
         <span
           className={`ml-2 text-12 ${
@@ -71,7 +77,7 @@ const PositionRow = ({ list, Close, setCloseAll, index, CloseAll }: any) => {
             });
           }}
         >
-          Limit
+          {t(`Limit`)}
         </span>
         <div className="">
           <input
