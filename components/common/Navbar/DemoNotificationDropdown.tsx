@@ -329,7 +329,7 @@ const DemoNotificationDropdown = ({
                         {isSettingsDropdownOpen && (
                           <div className="settings-dropdown">
                             <div className="settings-dropdown-header">
-                              <p>Theme</p>
+                              <p>{t(`Theme`)}</p>
                               <label className="gift-card-buy-switch mb-0">
                                 <input
                                   type="checkbox"
@@ -347,7 +347,7 @@ const DemoNotificationDropdown = ({
                             </div>
                             <div className="pb-3 border-bottom text-left">
                               <p className="mt-2 text-14 font-medium">
-                                Style Settings
+                                {t(`Style Settings`)}
                               </p>
                               <div className="form-check py-1">
                                 <input
@@ -374,7 +374,7 @@ const DemoNotificationDropdown = ({
                                   <span className="w-full d-inline-block">
                                     <span className="d-flex gap-5">
                                       <span className="margin-right-auto">
-                                        Fresh
+                                        {t(`Fresh`)}
                                       </span>
                                       <span
                                         className="settings-dropdown-color-box"
@@ -413,7 +413,7 @@ const DemoNotificationDropdown = ({
                                   <span className="w-full d-inline-block">
                                     <span className="d-flex gap-5">
                                       <span className="margin-right-auto text-14">
-                                        Traditional
+                                        {t(`Traditional`)}
                                       </span>
                                       <span
                                         className="settings-dropdown-color-box"
@@ -452,7 +452,7 @@ const DemoNotificationDropdown = ({
                                   <span className="w-full d-inline-block">
                                     <span className="d-flex gap-5">
                                       <span className="margin-right-auto">
-                                        Color Vision Deficiency
+                                        {t(`Color Vision Deficiency`)}
                                       </span>
                                       <span
                                         className="settings-dropdown-color-box"
@@ -469,7 +469,7 @@ const DemoNotificationDropdown = ({
                             </div>
                             <div className="pb-3 border-bottom text-left">
                               <p className="mt-2 text-14 font-medium">
-                                Color Preference
+                                {t(`Color Preference`)}
                               </p>
                               <div className="form-check py-1">
                                 <input
@@ -494,7 +494,7 @@ const DemoNotificationDropdown = ({
                                   <span className="w-full d-inline-block">
                                     <span className="d-flex">
                                       <span className="margin-right-auto">
-                                        Green Up/Red Down
+                                        {t(`Green Up/Red Down`)}
                                       </span>
                                       <span>
                                         <svg
@@ -557,7 +557,7 @@ const DemoNotificationDropdown = ({
                                   <span className="w-full d-inline-block">
                                     <span className="d-flex">
                                       <span className="margin-right-auto text-14">
-                                        Green Down/Red Up
+                                        {t(`Green Down/Red Up`)}
                                       </span>
                                       <span>
                                         <svg
@@ -599,7 +599,7 @@ const DemoNotificationDropdown = ({
                               </div>
                             </div>
                             <div className="pb-3 border-bottom text-left">
-                              <p className="mt-2 text-14 font-medium">Layout</p>
+                              <p className="mt-2 text-14 font-medium">{t(`Layout`)}</p>
                               <div className="form-check py-1">
                                 <input
                                   className="form-check-input radio-scale"
@@ -622,7 +622,7 @@ const DemoNotificationDropdown = ({
                                   <span className="w-full d-inline-block">
                                     <span className="d-flex">
                                       <span className="margin-right-auto">
-                                        Layout one
+                                        {t(`Layout one`)}
                                       </span>
                                       <div>
                                         <img src="/layout_one.png" width={50} />
@@ -653,7 +653,7 @@ const DemoNotificationDropdown = ({
                                   <span className="w-full d-inline-block">
                                     <span className="d-flex">
                                       <span className="margin-right-auto text-14">
-                                        Layout two
+                                        {t(`Layout two`)}
                                       </span>
                                       <div>
                                         <img src="/layout_two.png" width={50} />
@@ -684,7 +684,7 @@ const DemoNotificationDropdown = ({
                                   <span className="w-full d-inline-block">
                                     <span className="d-flex">
                                       <span className="margin-right-auto text-14">
-                                        Layout three
+                                        {t(`Layout three`)}
                                       </span>
                                       <div>
                                         <img

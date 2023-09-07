@@ -279,7 +279,7 @@ const DemoTradeNavbar = ({
                               <FiSettings size={16} />
                             </span>
                             <p className="text-16 text-primary-color-two line-h-19">
-                              Theme
+                              {t(`Theme`)}
                             </p>
                           </div>
                           <label className="gift-card-buy-switch mb-0">
