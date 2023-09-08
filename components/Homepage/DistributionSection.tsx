@@ -40,6 +40,7 @@ const DistributionSection = ({ landing }: any) => {
                             <a
                               href={landing?.apple_store_link}
                               target="_blank"
+                              rel="noreferrer" 
                               className="item-link"
                             >
                               <img
@@ -58,6 +59,7 @@ const DistributionSection = ({ landing }: any) => {
                               href={landing?.google_store_link}
                               target="_blank"
                               className="item-link"
+                              rel="noreferrer" 
                             >
                               <img
                                 className="icon"
@@ -74,6 +76,7 @@ const DistributionSection = ({ landing }: any) => {
                             <a
                               href={landing?.macos_store_link}
                               target="_blank"
+                              rel="noreferrer" 
                               className="item-link"
                             >
                               <img
@@ -92,6 +95,7 @@ const DistributionSection = ({ landing }: any) => {
                               href={landing?.windows_store_link}
                               target="_blank"
                               className="item-link"
+                              rel="noreferrer" 
                             >
                               <img
                                 className="icon"
@@ -109,6 +113,7 @@ const DistributionSection = ({ landing }: any) => {
                               href={landing?.linux_store_link}
                               target="_blank"
                               className="item-link"
+                              rel="noreferrer" 
                             >
                               <img
                                 className="icon"
@@ -126,6 +131,7 @@ const DistributionSection = ({ landing }: any) => {
                               href={landing?.api_link}
                               target="_blank"
                               className="item-link"
+                              rel="noreferrer" 
                             >
                               <img className="icon" src="/api.png" alt="api" />
                               <span>{t("API")}</span>
