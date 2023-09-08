@@ -69,14 +69,17 @@ const WalletList: NextPage = () => {
                 <Link
                   href={`/futures/transfer-wallet/2/${row?.original?.coin_type}`}
                 >
-                  <li className="cursor-pointer">
+                  <li className="toolTip relative cursor-pointer" title="Send">
                     <AiOutlineSend />
                   </li>
                 </Link>
                 <Link
                   href={`/futures/transfer-wallet/1/${row?.original?.coin_type}`}
                 >
-                  <li className="cursor-pointer">
+                  <li
+                    className="toolTip relative cursor-pointer"
+                    title="Recieve"
+                  >
                     <BsWallet2 />
                   </li>
                 </Link>

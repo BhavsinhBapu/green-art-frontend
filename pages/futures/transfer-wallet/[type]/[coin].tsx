@@ -22,7 +22,7 @@ const WalletTransfer = () => {
     <div className="container">
       <div className="boxShadow p-5 mt-5">
         {/* @ts-ignore */}
-        <h1>{parseInt(type) === SEND ? "Send" : "Recieve"} Balance</h1>
+        <h1>{parseInt(type) === 2 ? "Send" : "Recieve"} Balance</h1>
         <div className="P2psearchBox position-relative mt-3">
           <input
             type="number"
