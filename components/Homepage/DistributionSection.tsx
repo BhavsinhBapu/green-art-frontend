@@ -4,6 +4,7 @@ import React from "react";
 
 const DistributionSection = ({ landing }: any) => {
   const { t } = useTranslation("common");
+  console.log("landing", landing);
   return (
     <div>
       {" "}
@@ -38,6 +39,7 @@ const DistributionSection = ({ landing }: any) => {
                           <li className="single-item">
                             <a
                               href={landing?.apple_store_link}
+                              target="_blank"
                               className="item-link"
                             >
                               <img
@@ -52,7 +54,11 @@ const DistributionSection = ({ landing }: any) => {
 
                         {landing?.google_store_link && (
                           <li className="single-item">
-                            <a href="#" className="item-link">
+                            <a
+                              href={landing?.google_store_link}
+                              target="_blank"
+                              className="item-link"
+                            >
                               <img
                                 className="icon"
                                 src="/google-play.png"
@@ -67,6 +73,7 @@ const DistributionSection = ({ landing }: any) => {
                           <li className="single-item">
                             <a
                               href={landing?.macos_store_link}
+                              target="_blank"
                               className="item-link"
                             >
                               <img
@@ -83,6 +90,7 @@ const DistributionSection = ({ landing }: any) => {
                           <li className="single-item">
                             <a
                               href={landing?.windows_store_link}
+                              target="_blank"
                               className="item-link"
                             >
                               <img
@@ -95,10 +103,11 @@ const DistributionSection = ({ landing }: any) => {
                           </li>
                         )}
 
-                        {landing?.windows_store_link && (
+                        {landing?.linux_store_link && (
                           <li className="single-item">
                             <a
-                              href={landing?.windows_store_link}
+                              href={landing?.linux_store_link}
+                              target="_blank"
                               className="item-link"
                             >
                               <img
@@ -113,7 +122,11 @@ const DistributionSection = ({ landing }: any) => {
 
                         {landing?.api_link && (
                           <li className="single-item">
-                            <a href={landing?.api_link} className="item-link">
+                            <a
+                              href={landing?.api_link}
+                              target="_blank"
+                              className="item-link"
+                            >
                               <img className="icon" src="/api.png" alt="api" />
                               <span>{t("API")}</span>
                             </a>
