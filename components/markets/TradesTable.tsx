@@ -290,7 +290,15 @@ export default function TradesTable({ selectedCurrency }: any) {
                                         <a className="cellMarket" href="#">
                                           <div className="marketSymbols">
                                             <span className="quoteSymbol">
-                                              {item.coin_type}
+                                              {selectType == 2 ||
+                                              selectType == 3 ? (
+                                                <>
+                                                  {item.coin_type}/
+                                                  {item.base_coin_type}
+                                                </>
+                                              ) : (
+                                                <>{item.coin_type}</>
+                                              )}
                                             </span>
                                           </div>
                                         </a>
@@ -329,7 +337,9 @@ export default function TradesTable({ selectedCurrency }: any) {
                                       </td>
                                       <td className="text-black text-center">
                                         {item.total_balance
-                                          ? parseFloat(item.total_balance).toFixed(2)
+                                          ? parseFloat(
+                                              item.total_balance
+                                            ).toFixed(2)
                                           : 0}
                                       </td>
                                       {/* <td
