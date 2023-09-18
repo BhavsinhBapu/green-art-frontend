@@ -37,7 +37,7 @@ const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
   type trade_type = number;
   const { t } = useTranslation("common");
   const { isLoggedIn } = useSelector((state: RootState) => state.user);
-  const [leverage, setLeverage] = useState(20);
+  const [leverage, setLeverage] = useState(0);
   const [marginMode, setmarginMode] = useState(disableCross ? ISOLATED : CROSS);
 
   const { dashboard, currentPair } = useSelector(
