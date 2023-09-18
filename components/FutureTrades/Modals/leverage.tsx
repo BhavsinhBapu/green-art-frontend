@@ -54,7 +54,7 @@ const Leverage = ({ leverage, setLeverage, dashboard }: any) => {
     setLeverage(value);
   };
   useEffect(() => {
-    dashboard?.order_data?.max_leverage && generateLeverage();
+    generateLeverage();
   }, [dashboard?.order_data?.max_leverage]);
 
   return (
