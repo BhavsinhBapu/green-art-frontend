@@ -47,7 +47,11 @@ const DeposiAndWithdraw = ({ withdrawFaq, depositFaq }: any) => {
         setResponseData({
           ...response,
           deposit: response.wallet,
-          address: response.address ? response.address : null,
+          address: response.data.address,
+          network: [
+            { id: '', name: "Select Coin", base_type: '' },
+            ...response.data.networks,
+          ],
         });
       } else if (response.success === false) {
         router.push("/user/my-wallet");
@@ -133,7 +137,7 @@ const DeposiAndWithdraw = ({ withdrawFaq, depositFaq }: any) => {
         <div className="container">
           <div className={`row`}>
             <div className="col-md-12">
-              <div className="single-wallet boxShadow shadow-sm rounded">
+              <div className="single-wallet boxShadow shadow-sm rounded pb-5">
                 <div className="box-two single-box visible">
                   <div className="">
                     <Link href="/user/my-wallet">

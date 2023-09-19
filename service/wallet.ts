@@ -9,7 +9,7 @@ export const GetCoinListApi = async () => {
   return data;
 };
 export const WalletDepositApi = async (id: number) => {
-  const { data } = await request.get(`/wallet-deposit-${id}`);
+  const { data } = await request.get(`/wallet-details-app?coin_id=${id}`);
   return data;
 };
 export const WalletWithdrawApi = async (id: number) => {
@@ -36,5 +36,10 @@ export const GetWalletAddress = async (credential: any) => {
 
 export const getFeeAmountApi = async (credential: any) => {
   const { data } = await request.post("/pre-withdrawal-process", credential);
+  return data;
+};
+
+export const networkHandlerApi = async (walletId: any, networkId: any) => {
+  const { data } = await request.get(`wallet-deposit-${walletId}-${networkId}`);
   return data;
 };

@@ -222,7 +222,7 @@ const MyWallet: NextPage = () => {
 
   const setDepositCryptoOrFiatUrl = (item: any) => {
     if (item.currency_type == 1) {
-      return `/user/my-wallet/deposit?type=deposit&coin_id=${item.id}`;
+      return `/user/my-wallet/deposit?type=deposit&coin_id=${item.coin_id}`;
     }
     return `/user/fiat/deposit?type=deposit&coin_id=${item.id}&currency=${item.coin_type}`;
   };
