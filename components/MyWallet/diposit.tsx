@@ -6,7 +6,8 @@ import Qr from "components/common/qr";
 import { IoIosArrowBack } from "react-icons/io";
 import Link from "next/link";
 import QRCode from "react-qr-code";
-import { networkHandlerApi } from "service/wallet";
+import { getEvmNetworkAddressApi } from "service/wallet";
+import { toast } from "react-toastify";
 
 export const DipositComponent = ({
   responseData,
@@ -14,48 +15,65 @@ export const DipositComponent = ({
   setDependecy,
   fullPage,
 }: any) => {
-  console.log("responseData", responseData);
   const { t } = useTranslation("common");
-  const [selectedNetwork, setSelectedNetwork] = useState<any>();
+  const [selectedNetwork, setSelectedNetwork] = useState<any>({});
   const [initialHit, setInitialHit] = useState(false);
+  const [evmAddress, setEvmAddress] = useState<any>();
   const selectAddressCopy: any = React.useRef(null);
-  // useEffect(() => {
-  //   if (
-  //     responseData?.network &&
-  //     responseData?.network[0] &&
-  //     initialHit === false
-  //   ) {
-  //     setSelectedNetwork(responseData?.network[0]);
-  //     setInitialHit(true);
-  //   }
-  // }, [responseData?.network[0]]);
-  // const checkNetworkFunc = (networkId: any) => {
-  //   if (networkId == 4) {
-  //     return `(ERC20 Token)`;
-  //   }
-  //   if (networkId == 5) {
-  //     return `(BEP20 Token)`;
-  //   }
-  //   if (networkId == 6) {
-  //     return `(TRC20 Token)`;
-  //   }
-  //   return "";
-  // };
-  const networkHandler = async (networkId: any) => {
-    console.log("network", networkId);
+  useEffect(() => {
+    if (
+      parseInt(responseData?.data?.base_type) === 1 &&
+      responseData?.wallet.coin_type == "USDT" &&
+      initialHit === false
+    ) {
+      setSelectedNetwork(responseData?.data?.coin_payment_networks[0]);
+      setInitialHit(true);
+    }
+  }, [responseData?.data[0]]);
+  const checkNetworkFunc = (networkId: any) => {
+    if (networkId == 4) {
+      return `(ERC20 Token)`;
+    }
+    if (networkId == 5) {
+      return `(BEP20 Token)`;
+    }
+    if (networkId == 6) {
+      return `(TRC20 Token)`;
+    }
+    return "";
+  };
+
+  const evmNetworkHandle = async (networkId: any) => {
     const findObje = responseData?.network?.find(
       (x: any) => x.id === parseInt(networkId)
     );
     setDependecy(Math.random() * 100);
     setSelectedNetwork(findObje);
-    if (Number(networkId) === 8) {
+
+    if (!networkId) {
       return;
     }
-    const response = await networkHandlerApi(
-      responseData?.wallet?.id,
-      networkId
+
+    const isAddressExist = responseData?.addressLists.find(
+      (item: any) => item.network_id == networkId
     );
-    console.log("response", response);
+
+    if (isAddressExist?.network_id) {
+      setEvmAddress(isAddressExist.address);
+      return;
+    }
+
+    const response = await getEvmNetworkAddressApi({
+      coin_type: responseData?.deposit?.coin_type,
+      network: Number(networkId),
+    });
+
+    if (!response.success) {
+      toast.error(response.message);
+      return;
+    }
+    toast.success(response.message);
+    setEvmAddress(response.data);
   };
   return (
     <>
@@ -81,42 +99,133 @@ export const DipositComponent = ({
               : "Loading.."}
           </p>
         </div>
+        {/* wallet dropdown for network base type 8 */}
+        <div className="wallet-addres">
+          {parseInt(responseData?.data?.base_type) === 8 && (
+            <div className="total-balance">
+              <h5>{t("Select Network")}</h5>
+              <div className="cp-select-area">
+                <select
+                  name="currency"
+                  className="form-control coin-list-item  mt-3"
+                  style={{ height: "44px" }}
+                  onChange={(e) => {
+                    evmNetworkHandle(e.target.value);
+                  }}
+                >
+                  {responseData?.network?.map((item: any, index: number) => (
+                    <option value={item.id} key={index}>
+                      {item?.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+          )}
+        </div>
+        {/* wallet dropdown for base type 1 And Coin type usdt */}
 
         <div className="wallet-addres">
-          <div className="total-balance">
-            <h5>{t("Select Network")}</h5>
-            <div className="cp-select-area">
-              <select
-                name="currency"
-                className="form-control coin-list-item  mt-3"
-                style={{ height: "44px" }}
-                onChange={(e) => {
-                  networkHandler(e.target.value);
-                }}
-              >
-                {responseData?.network?.map((item: any, index: number) => (
-                  <option value={item.id} key={index}>
-                    {item?.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
+          {responseData?.wallet.coin_type == "USDT" &&
+            parseInt(responseData?.data?.base_type) === 1 && (
+              <div className="total-balance">
+                <h5>{t("Select Network")}</h5>
+                <div className="cp-select-area">
+                  <select
+                    name="currency"
+                    className="form-control coin-list-item  mt-3"
+                    style={{ height: "44px" }}
+                    onChange={(e) => {
+                      const findObje =
+                        responseData?.data?.coin_payment_networks.find(
+                          (x: any) => x.id === parseInt(e.target.value)
+                        );
+                      setDependecy(Math.random() * 100);
+                      setSelectedNetwork(findObje);
+                    }}
+                  >
+                    {responseData?.data?.coin_payment_networks.map(
+                      (item: any, index: number) => (
+                        <option value={item.id} key={index}>
+                          {item?.network_name}
+                        </option>
+                      )
+                    )}
+                  </select>
+                </div>
+              </div>
+            )}
         </div>
-        {selectedNetwork?.id && (
+        {/* wallet dropdown for base type 1 And Coin type usdt end*/}
+
+        {/* base coin type 8  */}
+
+        {parseInt(responseData?.data?.base_type) === 8 && selectedNetwork?.id && (
+          <>
+            <div className="wallet-addres">
+              <h5>{t("Address")}</h5>
+            </div>
+
+            <div className="wallet-addres-generate">
+              <div className="coin-list-item">
+                <div className="wallet-bar-code">
+                  {evmAddress && (
+                    <>
+                      <div className="qr-background">
+                        <QRCode
+                          className="qrCodeBg rounded"
+                          value={evmAddress}
+                          size={150}
+                        />
+                      </div>
+                      <div className="copy-box">
+                        <div className="input-url input-copy mt-4">
+                          <input
+                            onClick={() => {
+                              copyTextById(evmAddress);
+                              selectAddressCopy?.current.select();
+                            }}
+                            ref={selectAddressCopy}
+                            className="address-box address-copy-box border-0 pl-3"
+                            type="text"
+                            value={evmAddress}
+                          />
+
+                          <span
+                            className="btn copy-url-btn bg-transparent"
+                            onClick={() => {
+                              copyTextById(evmAddress);
+                              selectAddressCopy?.current?.select();
+                            }}
+                          >
+                            <i className="fa fa-clone"></i>
+                          </span>
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </div>
+            </div>
+          </>
+        )}
+
+        {/* base coin type not 8  */}
+
+        {parseInt(responseData?.data?.base_type) !== 8 && (
           <>
             <div className="wallet-addres">
               <h5>{t("Address")}</h5>
               <div className="coin-list-item  mt-3">
-                {/* <p className="waring-wallet-text">
-              {t(
-                `Only send ${
-                  responseData?.deposit?.coin_type ?? ""
-                } ${checkNetworkFunc(
-                  responseData?.deposit?.network
-                )} to this address. Sending any others asset to this adress may result in the loss of your deposit!`
-              )}
-            </p> */}
+                <p className="waring-wallet-text">
+                  {t(
+                    `Only send ${
+                      responseData?.deposit?.coin_type ?? ""
+                    } ${checkNetworkFunc(
+                      responseData?.deposit?.network
+                    )} to this address. Sending any others asset to this adress may result in the loss of your deposit!`
+                  )}
+                </p>
               </div>
             </div>
 
@@ -220,9 +329,9 @@ export const DipositComponent = ({
                   </div>
                 </div>
               </div>
-              {/* {!selectedNetwork?.address &&
-                responseData?.wallet.coin_type == "USDT" &&
-                parseInt(responseData?.wallet.network) === 1 && (
+              {!selectedNetwork?.address &&
+                responseData?.wallet?.coin_type == "USDT" &&
+                parseInt(responseData?.data?.base_type) === 1 && (
                   <button
                     className=" primary-btn-outline btn-withdraw text-white w-100 mt-4"
                     onClick={() => {
@@ -238,7 +347,7 @@ export const DipositComponent = ({
                   >
                     {t("Get address")}
                   </button>
-                )} */}
+                )}
             </div>
           </>
         )}

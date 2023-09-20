@@ -1,4 +1,5 @@
 import request from "lib/request";
+import evmRequest from "lib/requestForEvm";
 
 export const WalletListApi = async (url: string) => {
   const { data } = await request.get(url);
@@ -9,7 +10,7 @@ export const GetCoinListApi = async () => {
   return data;
 };
 export const WalletDepositApi = async (id: number) => {
-  const { data } = await request.get(`/wallet-details-app?coin_id=${id}`);
+  const { data } = await request.get(`wallet-deposit-${id}`);
   return data;
 };
 export const WalletWithdrawApi = async (id: number) => {
@@ -41,5 +42,10 @@ export const getFeeAmountApi = async (credential: any) => {
 
 export const networkHandlerApi = async (walletId: any, networkId: any) => {
   const { data } = await request.get(`wallet-deposit-${walletId}-${networkId}`);
+  return data;
+};
+
+export const getEvmNetworkAddressApi = async (credential: any) => {
+  const { data } = await evmRequest.post("/evm/create-wallet", credential);
   return data;
 };

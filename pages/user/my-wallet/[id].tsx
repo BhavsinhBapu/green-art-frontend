@@ -44,14 +44,22 @@ const DeposiAndWithdraw = ({ withdrawFaq, depositFaq }: any) => {
         Number(router.query.coin_id)
       );
       if (response.success === true) {
+        if (response?.data?.base_type == 8) {
+          setResponseData({
+            ...response,
+            deposit: response.wallet,
+            addressLists: response.data.address,
+            network: [
+              { id: "", name: "Select Coin", base_type: "" },
+              ...response.data.networks,
+            ],
+          });
+          return;
+        }
         setResponseData({
           ...response,
           deposit: response.wallet,
-          address: response.data.address,
-          network: [
-            { id: '', name: "Select Coin", base_type: '' },
-            ...response.data.networks,
-          ],
+          addressLists: response.data.address,
         });
       } else if (response.success === false) {
         router.push("/user/my-wallet");

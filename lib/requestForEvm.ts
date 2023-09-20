@@ -2,7 +2,7 @@ import axios from "axios";
 import Cookie from "js-cookie";
 
 const evmRequest = axios.create({
-  baseURL: process.env.NEXT_EVM_APP_HOST + "/",
+  baseURL: process.env.NEXT_PUBLIC_EVM_APP_HOST + "/",
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",
@@ -14,7 +14,7 @@ evmRequest.interceptors.request.use((config: any) => {
   const lang = global.window && window.location.href.split("/")[3];
 
   if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
+    config.headers.token = `${token}`;
   }
   config.headers.lang = lang ? lang : "en";
   config.headers.api_secret = process.env.NEXT_PUBLIC_EVM_APP_SECRET;
