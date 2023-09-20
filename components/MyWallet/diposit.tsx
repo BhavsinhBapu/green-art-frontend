@@ -29,7 +29,7 @@ export const DipositComponent = ({
       setSelectedNetwork(responseData?.data?.coin_payment_networks[0]);
       setInitialHit(true);
     }
-  }, [responseData?.data[0]]);
+  }, [responseData?.wallet.coin_type]);
   const checkNetworkFunc = (networkId: any) => {
     if (networkId == 4) {
       return `(ERC20 Token)`;

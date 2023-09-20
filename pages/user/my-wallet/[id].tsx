@@ -70,6 +70,18 @@ const DeposiAndWithdraw = ({ withdrawFaq, depositFaq }: any) => {
       );
 
       if (response.success === true) {
+        if (response?.data?.base_type == 8) {
+          setResponseData({
+            ...response,
+            withdraw: response.wallet,
+            address: response.data.address,
+            network: [
+              { id: "", name: "Select Coin", base_type: "" },
+              ...response.data.networks,
+            ],
+          });
+          return;
+        }
         setResponseData({
           ...response,
           withdraw: response.wallet,
