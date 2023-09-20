@@ -51,6 +51,7 @@ export const DipositComponent = ({
     setSelectedNetwork(findObje);
 
     if (!networkId) {
+      setEvmAddress("");
       return;
     }
 
