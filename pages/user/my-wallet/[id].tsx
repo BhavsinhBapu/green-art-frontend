@@ -44,7 +44,7 @@ const DeposiAndWithdraw = ({ withdrawFaq, depositFaq }: any) => {
         Number(router.query.coin_id)
       );
       if (response.success === true) {
-        if (response?.data?.base_type == 8) {
+        if (response?.data?.base_type == 8 || response?.data?.base_type == 6) {
           setResponseData({
             ...response,
             deposit: response.wallet,

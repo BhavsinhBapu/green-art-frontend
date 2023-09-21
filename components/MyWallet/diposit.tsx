@@ -102,7 +102,8 @@ export const DipositComponent = ({
         </div>
         {/* wallet dropdown for network base type 8 */}
         <div className="wallet-addres">
-          {parseInt(responseData?.data?.base_type) === 8 && (
+          {(parseInt(responseData?.data?.base_type) === 8 ||
+            parseInt(responseData?.data?.base_type) === 6) && (
             <div className="total-balance">
               <h5>{t("Select Network")}</h5>
               <div className="cp-select-area">
@@ -161,59 +162,62 @@ export const DipositComponent = ({
 
         {/* base coin type 8  */}
 
-        {parseInt(responseData?.data?.base_type) === 8 && selectedNetwork?.id && (
-          <>
-            <div className="wallet-addres">
-              <h5>{t("Address")}</h5>
-            </div>
+        {(parseInt(responseData?.data?.base_type) === 8 ||
+          parseInt(responseData?.data?.base_type) === 6) &&
+          selectedNetwork?.id && (
+            <>
+              <div className="wallet-addres">
+                <h5>{t("Address")}</h5>
+              </div>
 
-            <div className="wallet-addres-generate">
-              <div className="coin-list-item">
-                <div className="wallet-bar-code">
-                  {evmAddress && (
-                    <>
-                      <div className="qr-background">
-                        <QRCode
-                          className="qrCodeBg rounded"
-                          value={evmAddress}
-                          size={150}
-                        />
-                      </div>
-                      <div className="copy-box">
-                        <div className="input-url input-copy mt-4">
-                          <input
-                            onClick={() => {
-                              copyTextById(evmAddress);
-                              selectAddressCopy?.current.select();
-                            }}
-                            ref={selectAddressCopy}
-                            className="address-box address-copy-box border-0 pl-3"
-                            type="text"
+              <div className="wallet-addres-generate">
+                <div className="coin-list-item">
+                  <div className="wallet-bar-code">
+                    {evmAddress && (
+                      <>
+                        <div className="qr-background">
+                          <QRCode
+                            className="qrCodeBg rounded"
                             value={evmAddress}
+                            size={150}
                           />
-
-                          <span
-                            className="btn copy-url-btn bg-transparent"
-                            onClick={() => {
-                              copyTextById(evmAddress);
-                              selectAddressCopy?.current?.select();
-                            }}
-                          >
-                            <i className="fa fa-clone"></i>
-                          </span>
                         </div>
-                      </div>
-                    </>
-                  )}
+                        <div className="copy-box">
+                          <div className="input-url input-copy mt-4">
+                            <input
+                              onClick={() => {
+                                copyTextById(evmAddress);
+                                selectAddressCopy?.current.select();
+                              }}
+                              ref={selectAddressCopy}
+                              className="address-box address-copy-box border-0 pl-3"
+                              type="text"
+                              value={evmAddress}
+                            />
+
+                            <span
+                              className="btn copy-url-btn bg-transparent"
+                              onClick={() => {
+                                copyTextById(evmAddress);
+                                selectAddressCopy?.current?.select();
+                              }}
+                            >
+                              <i className="fa fa-clone"></i>
+                            </span>
+                          </div>
+                        </div>
+                      </>
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
-          </>
-        )}
+            </>
+          )}
 
         {/* base coin type not 8  */}
 
-        {parseInt(responseData?.data?.base_type) !== 8 && (
+        {(parseInt(responseData?.data?.base_type) !== 8 ||
+          parseInt(responseData?.data?.base_type) !== 6) && (
           <>
             <div className="wallet-addres">
               <h5>{t("Address")}</h5>
