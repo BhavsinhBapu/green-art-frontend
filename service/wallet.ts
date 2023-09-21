@@ -27,6 +27,13 @@ export const WalletWithdrawProcessApi = async (credential: any) => {
   const { data } = await request.post("/wallet-withdrawal-process", credential);
   return data;
 };
+export const WalletWithdrawProcessApiForEvm = async (credential: any) => {
+  const { data } = await evmRequest.post(
+    "/evm/wallet-withdrawal-process",
+    credential
+  );
+  return data;
+};
 export const GetWalletAddress = async (credential: any) => {
   const { data } = await request.post("/get-wallet-network-address", {
     wallet_id: credential.wallet_id,
