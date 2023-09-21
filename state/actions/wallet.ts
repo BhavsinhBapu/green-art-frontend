@@ -5,6 +5,7 @@ import {
   WalletWithdrawApi,
   WalletWithdrawProcessApi,
   GetWalletAddress,
+  WalletWithdrawProcessApiForEvm,
 } from "service/wallet";
 import { toast } from "react-toastify";
 
@@ -46,7 +47,12 @@ export const WalletWithdrawProcessApiAction = async (
   setProcessing: React.Dispatch<React.SetStateAction<any>>
 ) => {
   setProcessing(true);
-  const response = await WalletWithdrawProcessApi(credential);
+  let response = null;
+  if (credential.base_type == 8 || credential.base_type == 6) {
+    response = await WalletWithdrawProcessApiForEvm(credential);
+  } else {
+    response = await WalletWithdrawProcessApi(credential);
+  }
   if (response.success === true) {
     toast.success(response.message);
   } else {
