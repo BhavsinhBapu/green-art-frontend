@@ -210,43 +210,43 @@ export const WithdrawComponent = ({
         )}
 
         {/* for base type not 8  */}
-        {(parseInt(responseData?.data?.base_type) !== 8 ||
-          parseInt(responseData?.data?.base_type) !== 6) && (
-          <div className="wallet-addres">
-            <div className="">
-              {responseData?.wallet.coin_type == "USDT" &&
-                parseInt(responseData?.data?.base_type) === 1 && (
-                  <div className="total-balance ">
-                    <h5>{t("Select Network")}</h5>
-                    <select
-                      name="currency"
-                      className="form-control coin-list-item mt-3"
-                      style={{ height: "44px" }}
-                      onChange={(e) => {
-                        const findObje =
-                          responseData?.data?.coin_payment_networks.find(
-                            (x: any) => x.id === parseInt(e.target.value)
-                          );
-                        setSelectedNetwork(findObje);
-                        setWithdrawalCredentials((prev) => ({
-                          ...prev,
-                          network_id: findObje?.id,
-                        }));
-                      }}
-                    >
-                      {responseData?.data?.coin_payment_networks.map(
-                        (item: any, index: number) => (
-                          <option value={item.id} key={index}>
-                            {item?.network_name}
-                          </option>
-                        )
-                      )}
-                    </select>
-                  </div>
-                )}
+        {parseInt(responseData?.data?.base_type) !== 8 &&
+          parseInt(responseData?.data?.base_type) !== 6 && (
+            <div className="wallet-addres">
+              <div className="">
+                {responseData?.wallet.coin_type == "USDT" &&
+                  parseInt(responseData?.data?.base_type) === 1 && (
+                    <div className="total-balance ">
+                      <h5>{t("Select Network")}</h5>
+                      <select
+                        name="currency"
+                        className="form-control coin-list-item mt-3"
+                        style={{ height: "44px" }}
+                        onChange={(e) => {
+                          const findObje =
+                            responseData?.data?.coin_payment_networks.find(
+                              (x: any) => x.id === parseInt(e.target.value)
+                            );
+                          setSelectedNetwork(findObje);
+                          setWithdrawalCredentials((prev) => ({
+                            ...prev,
+                            network_id: findObje?.id,
+                          }));
+                        }}
+                      >
+                        {responseData?.data?.coin_payment_networks.map(
+                          (item: any, index: number) => (
+                            <option value={item.id} key={index}>
+                              {item?.network_name}
+                            </option>
+                          )
+                        )}
+                      </select>
+                    </div>
+                  )}
+              </div>
             </div>
-          </div>
-        )}
+          )}
 
         <div className="wallet-addres">
           <h5>{t("Address")}</h5>

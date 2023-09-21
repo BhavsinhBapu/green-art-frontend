@@ -216,7 +216,7 @@ export const DipositComponent = ({
 
         {/* base coin type not 8  */}
 
-        {(parseInt(responseData?.data?.base_type) !== 8 ||
+        {(parseInt(responseData?.data?.base_type) !== 8 &&
           parseInt(responseData?.data?.base_type) !== 6) && (
           <>
             <div className="wallet-addres">
