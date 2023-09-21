@@ -16,20 +16,25 @@ import {
 } from "helpers/core-constants";
 import { getFeeAmountApi } from "service/wallet";
 
-export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
-  console.log("responseData", responseData);
+export const WithdrawComponent = ({
+  responseData,
+  baseType,
+  fullPage,
+}: any) => {
+  console.log("responseData", baseType);
   const { t } = useTranslation("common");
   const { settings } = useSelector((state: RootState) => state.common);
 
   const [selectedNetwork, setSelectedNetwork] = useState<any>({});
 
-  const [withdrawalCredentials, setWithdrawalCredentials] = React.useState({
+  const [withdrawalCredentials, setWithdrawalCredentials] = useState({
     wallet_id: responseData?.wallet?.id,
     code: "",
     address: "",
     amount: "",
     note: "withdrawal",
     network_type: selectedNetwork?.network_type ?? "",
+    network_id: "",
   });
 
   const [feesData, setFeesData] = React.useState<any>({});
@@ -40,7 +45,13 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
   const [processing, setProcessing] = React.useState(false);
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    WalletWithdrawProcessApiAction(withdrawalCredentials, setProcessing);
+    let newData = {
+      ...withdrawalCredentials,
+      base_type: baseType,
+      wallet_id: responseData?.wallet?.id,
+      network_id: selectedNetwork?.id,
+    };
+    WalletWithdrawProcessApiAction(newData, setProcessing);
   };
   const CheckG2faEnabled = async () => {
     const { data } = await UserSettingsApi();
@@ -55,14 +66,6 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
       });
     }
   };
-  useEffect(() => {
-    if (
-      parseInt(responseData?.data?.base_type) === 1 &&
-      responseData?.wallet.coin_type == "USDT"
-    ) {
-      setSelectedNetwork(responseData?.data?.coin_payment_networks[0]);
-    }
-  }, [responseData?.wallet.coin_type]);
 
   React.useEffect(() => {
     setWithdrawalCredentials({
@@ -92,6 +95,23 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
     }
   }, [selectedNetwork?.network_type]);
 
+  useEffect(() => {
+    if (
+      parseInt(responseData?.data?.base_type) === 1 &&
+      responseData?.wallet.coin_type == "USDT"
+    ) {
+      setSelectedNetwork(responseData?.data?.coin_payment_networks[0]);
+      console.log(
+        "responseData?.data?.coin_payment_networks[0]?.id",
+        responseData?.data?.coin_payment_networks[0]?.id
+      );
+      setWithdrawalCredentials({
+        ...withdrawalCredentials,
+        network_id: responseData?.data?.coin_payment_networks[0]?.id,
+      });
+    }
+  }, [responseData?.wallet.coin_type]);
+
   const checkNetworkFunc = (networkId: any) => {
     if (networkId == 4) {
       return `(ERC20 Token)`;
@@ -119,6 +139,8 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
     setFeesData(response.data);
     console.log("response", response);
   };
+
+  console.log("withdrawalCredentials", withdrawalCredentials);
 
   return (
     <div className="my-wallet-new px-0">
@@ -160,6 +182,10 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
                       (x: any) => x.id === parseInt(e.target.value)
                     );
                     setSelectedNetwork(findObje);
+                    setWithdrawalCredentials({
+                      ...withdrawalCredentials,
+                      network_id: findObje?.id,
+                    });
                   }}
                 >
                   {responseData?.network.map((item: any, index: number) => (
@@ -191,6 +217,10 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
                             (x: any) => x.id === parseInt(e.target.value)
                           );
                         setSelectedNetwork(findObje);
+                        setWithdrawalCredentials({
+                          ...withdrawalCredentials,
+                          network_id: findObje?.id,
+                        });
                       }}
                     >
                       {responseData?.data?.coin_payment_networks.map(
@@ -249,7 +279,7 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
             <div className="">
               <div className="input-group input-address-bar mt-3">
                 <input
-                  type="text"
+                  type="number"
                   className="form-control border-0 h-50"
                   id="amountWithdrawal"
                   name="amount"
