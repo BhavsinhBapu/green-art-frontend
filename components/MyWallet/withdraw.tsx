@@ -96,7 +96,10 @@ export const WithdrawComponent = ({
       }));
       return;
     }
-    if (parseInt(responseData?.data?.base_type) === 1) {
+    if (
+      parseInt(responseData?.data?.base_type) === 8 ||
+      parseInt(responseData?.data?.base_type) === 6
+    ) {
       setWithdrawalCredentials((prev) => ({
         ...prev,
         network_type: "",
@@ -110,10 +113,7 @@ export const WithdrawComponent = ({
       responseData?.wallet.coin_type == "USDT"
     ) {
       setSelectedNetwork(responseData?.data?.coin_payment_networks[0]);
-      console.log(
-        "responseData?.data?.coin_payment_networks[0]?.id",
-        responseData?.data?.coin_payment_networks[0]?.id
-      );
+
       setWithdrawalCredentials((prev) => ({
         ...prev,
         network_id: responseData?.data?.coin_payment_networks[0]?.id,
@@ -177,7 +177,8 @@ export const WithdrawComponent = ({
 
       <form action="">
         {/* for base type 8  */}
-        {parseInt(responseData?.data?.base_type) === 8 && (
+        {(parseInt(responseData?.data?.base_type) === 8 ||
+          parseInt(responseData?.data?.base_type) === 6) && (
           <div className="wallet-addres">
             <div className="">
               <div className="total-balance ">
@@ -209,7 +210,8 @@ export const WithdrawComponent = ({
         )}
 
         {/* for base type not 8  */}
-        {parseInt(responseData?.data?.base_type) !== 8 && (
+        {(parseInt(responseData?.data?.base_type) !== 8 ||
+          parseInt(responseData?.data?.base_type) !== 6) && (
           <div className="wallet-addres">
             <div className="">
               {responseData?.wallet.coin_type == "USDT" &&
