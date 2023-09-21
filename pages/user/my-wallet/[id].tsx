@@ -70,7 +70,7 @@ const DeposiAndWithdraw = ({ withdrawFaq, depositFaq }: any) => {
       );
 
       if (response.success === true) {
-        if (response?.data?.base_type == 8) {
+        if (response?.data?.base_type == 8 || response?.data?.base_type == 6) {
           setResponseData({
             ...response,
             withdraw: response.wallet,
@@ -79,7 +79,6 @@ const DeposiAndWithdraw = ({ withdrawFaq, depositFaq }: any) => {
               { id: "", name: "Select Coin", base_type: "" },
               ...response.data.networks,
             ],
-            base_type: response?.data?.base_type
           });
           return;
         }
@@ -87,7 +86,6 @@ const DeposiAndWithdraw = ({ withdrawFaq, depositFaq }: any) => {
           ...response,
           withdraw: response.wallet,
           address: response.address,
-          base_type: response?.data?.base_type
         });
       } else if (response.success === false) {
         router.push("/user/my-wallet");
@@ -189,7 +187,6 @@ const DeposiAndWithdraw = ({ withdrawFaq, depositFaq }: any) => {
                             responseData={responseData}
                             router={router}
                             fullPage={fullPage}
-                            baseType={responseData?.base_type}
                           />
                         )}
                       </div>
