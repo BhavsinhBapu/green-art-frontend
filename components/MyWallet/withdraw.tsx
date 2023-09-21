@@ -45,13 +45,22 @@ export const WithdrawComponent = ({
   const [processing, setProcessing] = React.useState(false);
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    let newData = {
+    let credentials = {
       ...withdrawalCredentials,
-      base_type: baseType,
       wallet_id: responseData?.wallet?.id,
+      base_type: responseData?.data?.base_type,
       network_id: selectedNetwork?.id,
     };
-    WalletWithdrawProcessApiAction(newData, setProcessing);
+    if (
+      responseData?.data?.base_type == 8 ||
+      responseData?.data?.base_type == 6
+    ) {
+      credentials = {
+        ...credentials,
+        base_type: selectedNetwork.base_type,
+      };
+    }
+    WalletWithdrawProcessApiAction(credentials, setProcessing);
   };
   const CheckG2faEnabled = async () => {
     const { data } = await UserSettingsApi();
@@ -68,10 +77,10 @@ export const WithdrawComponent = ({
   };
 
   React.useEffect(() => {
-    setWithdrawalCredentials({
-      ...withdrawalCredentials,
+    setWithdrawalCredentials((prev) => ({
+      ...prev,
       wallet_id: responseData?.wallet?.id,
-    });
+    }));
 
     CheckG2faEnabled();
   }, [responseData?.wallet?.id]);
@@ -81,17 +90,17 @@ export const WithdrawComponent = ({
       parseInt(responseData?.data?.base_type) === 1 &&
       responseData?.wallet.coin_type == "USDT"
     ) {
-      setWithdrawalCredentials({
-        ...withdrawalCredentials,
+      setWithdrawalCredentials((prev) => ({
+        ...prev,
         network_type: selectedNetwork?.network_type,
-      });
+      }));
       return;
     }
     if (parseInt(responseData?.data?.base_type) === 1) {
-      setWithdrawalCredentials({
-        ...withdrawalCredentials,
+      setWithdrawalCredentials((prev) => ({
+        ...prev,
         network_type: "",
-      });
+      }));
     }
   }, [selectedNetwork?.network_type]);
 
@@ -105,10 +114,10 @@ export const WithdrawComponent = ({
         "responseData?.data?.coin_payment_networks[0]?.id",
         responseData?.data?.coin_payment_networks[0]?.id
       );
-      setWithdrawalCredentials({
-        ...withdrawalCredentials,
+      setWithdrawalCredentials((prev) => ({
+        ...prev,
         network_id: responseData?.data?.coin_payment_networks[0]?.id,
-      });
+      }));
     }
   }, [responseData?.wallet.coin_type]);
 
@@ -182,10 +191,10 @@ export const WithdrawComponent = ({
                       (x: any) => x.id === parseInt(e.target.value)
                     );
                     setSelectedNetwork(findObje);
-                    setWithdrawalCredentials({
-                      ...withdrawalCredentials,
+                    setWithdrawalCredentials((prev) => ({
+                      ...prev,
                       network_id: findObje?.id,
-                    });
+                    }));
                   }}
                 >
                   {responseData?.network.map((item: any, index: number) => (
@@ -217,10 +226,10 @@ export const WithdrawComponent = ({
                             (x: any) => x.id === parseInt(e.target.value)
                           );
                         setSelectedNetwork(findObje);
-                        setWithdrawalCredentials({
-                          ...withdrawalCredentials,
+                        setWithdrawalCredentials((prev) => ({
+                          ...prev,
                           network_id: findObje?.id,
-                        });
+                        }));
                       }}
                     >
                       {responseData?.data?.coin_payment_networks.map(
@@ -249,10 +258,10 @@ export const WithdrawComponent = ({
                 placeholder={t("Address")}
                 value={withdrawalCredentials.address}
                 onChange={(e) => {
-                  setWithdrawalCredentials({
-                    ...withdrawalCredentials,
+                  setWithdrawalCredentials((prev) => ({
+                    ...prev,
                     address: e.target.value,
-                  });
+                  }));
                 }}
               />
               <span className="input-address-bar-btn">
@@ -286,10 +295,10 @@ export const WithdrawComponent = ({
                   placeholder={t("AMOUNT To Withdraw")}
                   value={withdrawalCredentials.amount}
                   onChange={(e) => {
-                    setWithdrawalCredentials({
-                      ...withdrawalCredentials,
+                    setWithdrawalCredentials((prev) => ({
+                      ...prev,
                       amount: e.target.value,
-                    });
+                    }));
                   }}
                 />
                 <span className="input-address-bar-btn">
