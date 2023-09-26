@@ -57,7 +57,7 @@ export const WithdrawComponent = ({
     ) {
       credentials = {
         ...credentials,
-        base_type: selectedNetwork.base_type,
+        base_type: selectedNetwork?.base_type,
       };
     }
     WalletWithdrawProcessApiAction(credentials, setProcessing);
@@ -377,10 +377,10 @@ export const WithdrawComponent = ({
             className="primary-btn-outline w-100 mt-4"
             type="button"
             style={{ height: "44px" }}
-            disabled={errorMessage.status === true}
+            disabled={processing}
             onClick={handleSubmit}
           >
-            {t("Withdraw")}
+            {processing ? t("Processing..") : t("Withdraw")}
           </button>
         )}
       </form>
