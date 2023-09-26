@@ -50,7 +50,7 @@ const DeposiAndWithdraw = ({ withdrawFaq, depositFaq }: any) => {
             deposit: response.wallet,
             addressLists: response.data.address,
             network: [
-              { id: "", name: "Select Coin", base_type: "" },
+              { id: "", name: "Select Network", base_type: "" },
               ...response.data.networks,
             ],
           });
@@ -76,7 +76,7 @@ const DeposiAndWithdraw = ({ withdrawFaq, depositFaq }: any) => {
             withdraw: response.wallet,
             address: response.data.address,
             network: [
-              { id: "", name: "Select Coin", base_type: "" },
+              { id: "", name: "Select Network", base_type: "" },
               ...response.data.networks,
             ],
           });
