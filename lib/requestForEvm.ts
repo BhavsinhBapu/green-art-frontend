@@ -17,7 +17,7 @@ evmRequest.interceptors.request.use((config: any) => {
     config.headers.token = `${token}`;
   }
   config.headers.lang = lang ? lang : "en";
-  config.headers.api_secret = process.env.NEXT_PUBLIC_EVM_APP_SECRET;
+  config.headers.evmapisecret = process.env.NEXT_PUBLIC_EVM_APP_SECRET;
   return config;
 });
 evmRequest.interceptors.response.use((response: any) => {
