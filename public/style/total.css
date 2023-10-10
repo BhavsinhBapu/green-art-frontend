@@ -15756,6 +15756,17 @@ input:checked + .gift-card-buy-slider:before {
   }
 }
 
+.p2p-top-bar-root-cls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.p2p-top-bar-item-cls {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
 @media (max-width: 991px) {
   .text-45 {
     font-size: 36px;
@@ -15780,7 +15791,7 @@ input:checked + .gift-card-buy-slider:before {
     font-size: 24px;
   }
 }
-@media (max-width: 740px) {
+@media (max-width: 770px) {
   .wallet-overview-header {
     flex-direction: column;
     align-items: start;
@@ -15794,6 +15805,16 @@ input:checked + .gift-card-buy-slider:before {
   }
   .wallet-overview-btn {
     width: 100%;
+  }
+  .p2p-top-bar-root-cls {
+    flex-direction: column;
+    gap: 20px;
+    align-items: start;
+  }
+  .p2p-top-bar-item-cls {
+    flex-direction: column;
+    gap: 10px;
+    align-items: start;
   }
 }
 

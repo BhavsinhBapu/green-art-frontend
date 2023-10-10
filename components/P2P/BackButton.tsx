@@ -10,6 +10,7 @@ const BackButton = () => {
         onClick={() => {
           router.back();
         }}
+        className="cursor-pointer"
       >
         <BiArrowBack />
         Back

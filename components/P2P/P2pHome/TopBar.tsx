@@ -14,8 +14,8 @@ export const P2pTopBar = () => {
       <div className="container">
         <div className="row">
           <div className="col-12">
-            <ul className="d-flex justify-content-between topBarList">
-              <div className="d-flex " style={{ gap: "28px" }}>
+            <ul className="topBarList p2p-top-bar-root-cls">
+              <div className="p2p-top-bar-item-cls">
                 <li>
                   <Link href="/p2p">
                     <a

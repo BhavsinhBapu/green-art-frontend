@@ -48,7 +48,7 @@ function customToWei(amount,decimal)
     const tokenDecimals = new BigNumber(10).pow(decimal);
     const tokenToSend = new BigNumber(amount).times(tokenDecimals);
 
-    return tokenToSend.c[0].toString();
+    return tokenToSend.toString();
   } else {
     const amountData = Web3.utils
       .toBN(amount)

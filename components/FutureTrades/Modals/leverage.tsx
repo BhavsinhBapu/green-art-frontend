@@ -1,6 +1,7 @@
 import useTranslation from "next-translate/useTranslation";
 import React, { useEffect, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
+import { toast } from "react-toastify";
 
 const Leverage = ({ leverage, setLeverage, dashboard }: any) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -39,6 +40,10 @@ const Leverage = ({ leverage, setLeverage, dashboard }: any) => {
     }
   };
   const toggle = () => {
+    if (leverage <= 0) {
+      toast.error(`No Leverage is available for this Coin Pair.`);
+      return;
+    }
     setIsModalOpen(!isModalOpen);
   };
 
@@ -49,7 +54,7 @@ const Leverage = ({ leverage, setLeverage, dashboard }: any) => {
     setLeverage(value);
   };
   useEffect(() => {
-    dashboard?.order_data?.max_leverage && generateLeverage();
+    generateLeverage();
   }, [dashboard?.order_data?.max_leverage]);
 
   return (
