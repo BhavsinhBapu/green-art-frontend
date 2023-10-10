@@ -27,10 +27,10 @@ const NidModal = ({ type, kycDetails }: any) => {
   }
   const storeSelectedFile = (e: any, setState: any, side: number) => {
    const file = e.target.files[0];
-   if (file.size > 2 * 1024 * 1024) {
-     toast.error(t("File size must be less than 2MB"));
-     return;
-   }
+  //  if (file.size > 2 * 1024 * 1024) {
+  //    toast.error(t("File size must be less than 2MB"));
+  //    return;
+  //  }
     var reader = new FileReader();
     reader.onloadend = function (e) {
       setState(reader.result);
