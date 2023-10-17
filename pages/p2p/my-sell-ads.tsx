@@ -16,7 +16,7 @@ import { RootState } from "state/store";
 
 const P2pOrder = () => {
   const { t } = useTranslation("common");
-
+  const adsType = 2;
   const [settings, setSettings] = useState<any>([]);
   const { isLoggedIn } = useSelector((state: RootState) => state.user);
   const [filters, setFilters] = useState({
@@ -75,7 +75,9 @@ const P2pOrder = () => {
         <div className="section-top-wrap mb-25">
           <div className="overview-area">
             <div className="overview-left">
-              <h2 className="section-top-title">{t(`My Sell Order History`)}</h2>
+              <h2 className="section-top-title">
+                {t(`My Sell Order History`)}
+              </h2>
             </div>
           </div>
         </div>
@@ -96,6 +98,9 @@ const P2pOrder = () => {
               action={false}
               payment={false}
               edit={true}
+              adsType={adsType}
+              statusChange={true}
+              deleteBtn={true}
             />
           )}
 
