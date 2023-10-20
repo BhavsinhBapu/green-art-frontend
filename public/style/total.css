@@ -15735,6 +15735,10 @@ input:checked + .gift-card-buy-slider:before {
   background: var(--card-background-color) !important;
 }
 
+.table-responsive {
+  overflow: hidden;
+}
+
 @media (max-width: 1520px) {
   .trade-dashboard-side-margin {
     margin-left: 0 !important;
