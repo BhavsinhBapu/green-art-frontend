@@ -10,9 +10,9 @@ export const P2pTab = ({ filters, setFilters, settings }: any) => {
     <div className="p2pTabList_bg shadow-sm">
       <div className="container">
         <div className="row">
-          <div className="col-12">
+          <div className="col-12 ">
             <ul
-              className="d-flex p2pTabList"
+              className="d-flex p2pTabList p2p-custom-scrollbar"
               style={{ flexFlow: "row", overflowX: "scroll" }}
             >
               <li>

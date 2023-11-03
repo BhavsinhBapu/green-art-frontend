@@ -15925,3 +15925,11 @@ input:checked + .gift-card-buy-slider:before {
     transform: scale(1, 1);
   }
 }
+
+.p2p-custom-scrollbar::-webkit-scrollbar {
+  height: 3px;
+}
+
+.p2p-custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--color-pallet-1);
+}
