@@ -11,7 +11,7 @@ export const P2pTab = ({ filters, setFilters, settings }: any) => {
       <div className="container">
         <div className="row">
           <div className="col-12 ">
-            <div className="p2pTabList d-flex" style={{ flexFlow: "row", overflowX: "scroll" }}>
+            <div className="p2pTabList d-flex" style={{ flexFlow: "row"}}>
               <div className="buySellBox rounded d-flex">
                 <button
                   className={`${
