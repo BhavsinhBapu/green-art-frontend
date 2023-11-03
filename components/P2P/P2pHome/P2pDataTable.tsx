@@ -113,7 +113,8 @@ export const P2pDataTable = ({
                       <div className="d-flex align-items-center">
                         <small className="mr-2">{t(`Available`)}</small>
                         <h6 className="limitBalance">
-                          {item?.available} {item?.coin_type}
+                          {parseFloat(item?.available).toFixed(8)}{" "}
+                          {item?.coin_type}
                         </h6>
                       </div>
                       <div className="d-flex align-items-center">

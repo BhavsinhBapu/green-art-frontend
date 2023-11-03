@@ -11,9 +11,12 @@ export const P2pTab = ({ filters, setFilters, settings }: any) => {
       <div className="container">
         <div className="row">
           <div className="col-12">
-            <ul className="d-flex p2pTabList">
+            <ul
+              className="d-flex p2pTabList"
+              style={{ flexFlow: "row", overflow: "visible" }}
+            >
               <li>
-                <div className="buySellBox rounded">
+                <div className="buySellBox rounded d-flex">
                   <button
                     className={`${
                       parseInt(filters.type) === BUY && "buySellBoxActive"
