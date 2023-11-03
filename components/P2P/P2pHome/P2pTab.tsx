@@ -13,7 +13,7 @@ export const P2pTab = ({ filters, setFilters, settings }: any) => {
           <div className="col-12">
             <ul
               className="d-flex p2pTabList"
-              style={{ flexFlow: "row", overflow: "visible" }}
+              style={{ flexFlow: "row", overflowX: "scroll" }}
             >
               <li>
                 <div className="buySellBox rounded d-flex">
