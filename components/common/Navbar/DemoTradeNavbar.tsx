@@ -123,9 +123,9 @@ const DemoTradeNavbar = ({
                           }
                         >
                           <a href="#">
-                            <span className="cp-user-icon">
+                            {/* <span className="cp-user-icon">
                               <BiWalletAlt />
-                            </span>
+                            </span> */}
                             <span className="cp-user-name">
                               {t("Exchange")}
                             </span>
@@ -150,9 +150,9 @@ const DemoTradeNavbar = ({
                           }
                         >
                           <a href="">
-                            <span className="cp-user-icon">
+                            {/* <span className="cp-user-icon">
                               <BiWalletAlt />
-                            </span>
+                            </span> */}
                             <span className="cp-user-name">
                               {navbar?.wallet?.name
                                 ? navbar?.wallet?.name
