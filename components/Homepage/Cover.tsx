@@ -4,16 +4,25 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
+import { useSelector } from "react-redux";
 import Slider from "react-slick";
+import { RootState } from "state/store";
 
 const Cover = ({ landing, loggedin, landing_banner_image }: any) => {
   const router = useRouter();
   const { t } = useTranslation("common");
 
+  const { theme } = useSelector((state: RootState) => state.common);
+
   return (
     <div>
       {parseInt(landing?.landing_first_section_status) === 1 && (
-        <section className="hero-banner-area">
+        <section
+          className="hero-banner-area"
+          style={{
+            background: `linear-gradient(var(--primary-color) 0%, rgba(255, 255, 255, 0) 100%)`,
+          }}
+        >
           <div className="container">
             <div className="row">
               <div className="col-md-6 conver-col1">
@@ -47,7 +56,6 @@ const Cover = ({ landing, loggedin, landing_banner_image }: any) => {
                     "/undraw_crypto_flowers_re_dyqo.svg.svg"
                   }
                   height={300}
-                  
                 />
               </div>
             </div>

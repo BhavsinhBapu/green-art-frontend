@@ -343,3 +343,13 @@ export const getGiftCardTradeHeder = async () => {
   const { data } = await p2pResuest.get(`/get-gift-card-trade-header`);
   return data;
 };
+
+export const handleP2PStatusChangeApi = async (value: any) => {
+  const { data } = await p2pResuest.post("/ads-status-change", value);
+  return data;
+};
+
+export const handleP2PDeleteApi = async (value: any) => {
+  const { data } = await p2pResuest.post("/ads-delete", value);
+  return data;
+};

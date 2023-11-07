@@ -35,7 +35,7 @@ import {
 import { MdOutlineSwapHorizontalCircle, MdTransform } from "react-icons/md";
 import { GiBuyCard, GiSellCard, GiTrade } from "react-icons/gi";
 import { GoStop } from "react-icons/go";
-import { AiFillGift, AiOutlineClose } from "react-icons/ai";
+import { AiFillCaretDown, AiFillGift, AiOutlineClose } from "react-icons/ai";
 
 const Navbar = ({
   settings,
@@ -92,7 +92,7 @@ const Navbar = ({
         <>
           <div className="cp-user-top-bar position-fixed">
             <div className="container-fluid">
-              <div className="d-flex align-items-center justify-content-between">
+              <div className="d-flex align-items-center justify-content-between main-navbar">
                 <div
                   className="d-flex align-items-center"
                   style={{ gap: "20px" }}
@@ -131,16 +131,19 @@ const Navbar = ({
                               className="arrow-icon"
                               href="#"
                               aria-expanded="true"
-                              style={{ height: "48px" }}
+                              style={{ height: "48px", gap: "2px" }}
                             >
-                              <span className="cp-user-icon">
+                              {/* <span className="cp-user-icon">
                                 <BsBarChartLine />
-                              </span>
+                              </span> */}
                               <span className="cp-user-name">
                                 {navbar?.trade?.name
                                   ? navbar?.trade?.name
                                   : t("Exchange")}
                               </span>
+                              <div>
+                                <AiFillCaretDown size={12} />
+                              </div>
                             </a>
                           </Link>
                           <ul className="dropdown-menu bg-transparent-main">
@@ -225,9 +228,9 @@ const Navbar = ({
                       >
                         <Link href="/markets">
                           <a>
-                            <span className="cp-user-icon">
+                            {/* <span className="cp-user-icon">
                               <BiLineChart />
-                            </span>
+                            </span> */}
                             <span>{t("Markets")}</span>
                           </a>
                         </Link>
@@ -248,9 +251,9 @@ const Navbar = ({
                             }
                           >
                             <a href="">
-                              <span className="cp-user-icon">
+                              {/* <span className="cp-user-icon">
                                 <BiWalletAlt />
-                              </span>
+                              </span> */}
                               <span className="cp-user-name">
                                 {navbar?.wallet?.name
                                   ? navbar?.wallet?.name
@@ -271,9 +274,9 @@ const Navbar = ({
                               }
                             >
                               <a href="">
-                                <span className="cp-user-icon">
+                                {/* <span className="cp-user-icon">
                                   <RiCalendarEventLine />
-                                </span>
+                                </span> */}
                                 <span className="cp-user-name">
                                   {navbar?.ico?.name
                                     ? navbar?.ico?.name
@@ -306,16 +309,19 @@ const Navbar = ({
                                 className="arrow-icon"
                                 href="#"
                                 aria-expanded="true"
-                                style={{ height: "48px" }}
+                                style={{ height: "48px", gap: "2px" }}
                               >
-                                <span className="cp-user-icon">
+                                {/* <span className="cp-user-icon">
                                   <FiSettings />
-                                </span>
+                                </span> */}
                                 <span className="cp-user-name">
                                   {navbar?.fiat?.name
                                     ? navbar?.fiat?.name
                                     : t("Fiat")}
                                 </span>
+                                <div>
+                                  <AiFillCaretDown size={12} />
+                                </div>
                               </a>
                             </Link>
                             <ul className="dropdown-menu bg-transparent-main">
@@ -393,7 +399,7 @@ const Navbar = ({
                           router.asPath ==
                             "/user/referral-earning-trade/" +
                               REFERRAL_TYPE_TRADE
-                            ? "cp-user-active-page"
+                            ? "cp-user-active-page dropdown"
                             : ""
                         }
                       >
@@ -409,21 +415,31 @@ const Navbar = ({
                               className="arrow-icon"
                               href="#"
                               aria-expanded="true"
-                              style={{ height: "48px" }}
+                              style={{ height: "48px", gap: "2px" }}
                             >
-                              <span className="cp-user-icon">
+                              {/* <span className="cp-user-icon">
                                 <HiOutlineDocumentReport />
-                              </span>
+                              </span> */}
                               <span className="cp-user-name">
                                 {navbar?.reports?.name
                                   ? navbar?.reports?.name
                                   : t("Reports")}
                               </span>
+                              <div>
+                                <AiFillCaretDown size={12} />
+                              </div>
                             </a>
                           </Link>
                         )}
 
-                        <ul className="dropdown-menu bg-transparent-main">
+                        <ul
+                          className="dropdown-menu bg-transparent-main"
+                          style={{
+                            display: "grid",
+                            gridTemplateColumns: "repeat(2, 1fr)",
+                            width: "650px",
+                          }}
+                        >
                           {navbar?.reports?.depositHistory?.status && (
                             <Link
                               href={
@@ -766,9 +782,9 @@ const Navbar = ({
                           {navbar?.myReferral?.status && (
                             <Link href="/user/referral">
                               <a>
-                                <span className="cp-user-icon">
+                                {/* <span className="cp-user-icon">
                                   <BiNetworkChart />
-                                </span>
+                                </span> */}
                                 <span className="cp-user-name">
                                   {navbar?.myReferral?.name
                                     ? navbar.myReferral?.name
@@ -874,16 +890,19 @@ const Navbar = ({
                               className="arrow-icon"
                               href="#"
                               aria-expanded="true"
-                              style={{ height: "48px" }}
+                              style={{ height: "48px", gap: "2px" }}
                             >
-                              <span className="cp-user-icon">
+                              {/* <span className="cp-user-icon">
                                 <AiFillGift />
-                              </span>
+                              </span> */}
                               <span className="cp-user-name">
                                 {navbar?.giftCards?.name
                                   ? navbar?.giftCards?.name
                                   : t("Gift Cards")}
                               </span>
+                              <div>
+                                <AiFillCaretDown size={12} />
+                              </div>
                             </a>
                           </Link>
 
@@ -953,9 +972,9 @@ const Navbar = ({
                           >
                             <Link href="/futures">
                               <a>
-                                <span className="cp-user-icon">
+                                {/* <span className="cp-user-icon">
                                   <FaTradeFederation />
-                                </span>
+                                </span> */}
                                 <span className="cp-user-name">
                                   {navbar?.myReferral?.name
                                     ? navbar.myReferral?.name
@@ -1057,9 +1076,9 @@ const Navbar = ({
                         >
                           <Link href="/demo-trade">
                             <a target="_blank">
-                              <span className="cp-user-icon">
+                              {/* <span className="cp-user-icon">
                                 <BiShapeCircle />
-                              </span>
+                              </span> */}
                               <span>{t("Demo Trade")}</span>
                             </a>
                           </Link>

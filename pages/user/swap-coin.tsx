@@ -155,7 +155,7 @@ const SwapCoin: NextPage = ({
                           <div className="swap-input-wrap">
                             <div className="form-amount">
                               <input
-                                type="text"
+                                type="number"
                                 className="form-control border-0"
                                 id="amount-one"
                                 value={fromSelected ? fromSelected.amount : ""}

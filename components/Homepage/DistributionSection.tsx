@@ -12,9 +12,9 @@ const DistributionSection = ({ landing }: any) => {
         parseInt(landing.download_link_display_type) === 1 && (
           <section className="trade-anywhere-area sectiob-bg">
             <div className="container">
-              <div className="section-title">
+              {/* <div className="section-title">
                 <h2 className="title">{landing?.trade_anywhere_title}</h2>
-              </div>
+              </div> */}
               <div className="row align-items-center">
                 <div className="col-lg-6">
                   <div className="trade-anywhere-left text-center">
@@ -32,6 +32,9 @@ const DistributionSection = ({ landing }: any) => {
                   </div>
                 </div>
                 <div className="col-lg-6">
+                  <div className="section-title">
+                    <h2 className="title">{landing?.trade_anywhere_title}</h2>
+                  </div>
                   <div className="trade-anywhere-right">
                     <div className="avable-items">
                       <ul className="item-lsit">
@@ -40,7 +43,7 @@ const DistributionSection = ({ landing }: any) => {
                             <a
                               href={landing?.apple_store_link}
                               target="_blank"
-                              rel="noreferrer" 
+                              rel="noreferrer"
                               className="item-link"
                             >
                               <img
@@ -59,7 +62,7 @@ const DistributionSection = ({ landing }: any) => {
                               href={landing?.google_store_link}
                               target="_blank"
                               className="item-link"
-                              rel="noreferrer" 
+                              rel="noreferrer"
                             >
                               <img
                                 className="icon"
@@ -76,7 +79,7 @@ const DistributionSection = ({ landing }: any) => {
                             <a
                               href={landing?.macos_store_link}
                               target="_blank"
-                              rel="noreferrer" 
+                              rel="noreferrer"
                               className="item-link"
                             >
                               <img
@@ -95,7 +98,7 @@ const DistributionSection = ({ landing }: any) => {
                               href={landing?.windows_store_link}
                               target="_blank"
                               className="item-link"
-                              rel="noreferrer" 
+                              rel="noreferrer"
                             >
                               <img
                                 className="icon"
@@ -113,7 +116,7 @@ const DistributionSection = ({ landing }: any) => {
                               href={landing?.linux_store_link}
                               target="_blank"
                               className="item-link"
-                              rel="noreferrer" 
+                              rel="noreferrer"
                             >
                               <img
                                 className="icon"
@@ -131,7 +134,7 @@ const DistributionSection = ({ landing }: any) => {
                               href={landing?.api_link}
                               target="_blank"
                               className="item-link"
-                              rel="noreferrer" 
+                              rel="noreferrer"
                             >
                               <img className="icon" src="/api.png" alt="api" />
                               <span>{t("API")}</span>

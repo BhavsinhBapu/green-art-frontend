@@ -214,7 +214,7 @@ export default function TradesTable({ selectedCurrency }: any) {
                                       className="sorting_disabled"
                                       rowSpan={1}
                                       colSpan={1}
-                                      style={{ width: "137.516px" }}
+                                      // style={{ width: "137.516px" }}
                                     >
                                       {t("Market")}
                                     </th>
@@ -277,36 +277,38 @@ export default function TradesTable({ selectedCurrency }: any) {
                                 <tbody>
                                   {tradeItems?.map((item: any, index: any) => (
                                     <tr role="row" className="odd" key={index}>
-                                      <td className="d-flex mb-2">
-                                        <img
-                                          className="icon mr-3"
-                                          src={
-                                            item?.coin_icon || "/bitcoin.png"
-                                          }
-                                          alt="coin"
-                                          width="25px"
-                                          height="25px"
-                                        />
-                                        <a className="cellMarket" href="#">
-                                          <div className="marketSymbols">
-                                            <span className="quoteSymbol">
-                                              {selectType == 2 ||
-                                              selectType == 3 ? (
-                                                <>
-                                                  {item.coin_type}/
-                                                  {item.base_coin_type}
-                                                </>
-                                              ) : (
-                                                <>{item.coin_type}</>
-                                              )}
-                                            </span>
-                                          </div>
-                                        </a>
+                                      <td className="mb-2 p-2" style={{minWidth:'100px'}}>
+                                        <div className="d-flex w-full">
+                                          <img
+                                            className="icon mr-3"
+                                            src={
+                                              item?.coin_icon || "/bitcoin.png"
+                                            }
+                                            alt="coin"
+                                            width="25px"
+                                            height="25px"
+                                          />
+                                          <a className="cellMarket" href="#">
+                                            <div className="marketSymbols">
+                                              <span className="quoteSymbol">
+                                                {selectType == 2 ||
+                                                selectType == 3 ? (
+                                                  <>
+                                                    {item.coin_type}/
+                                                    {item.base_coin_type}
+                                                  </>
+                                                ) : (
+                                                  <>{item.coin_type}</>
+                                                )}
+                                              </span>
+                                            </div>
+                                          </a>
+                                        </div>
                                       </td>
-                                      <td className="text-black text-center">
+                                      <td className="text-black text-center p-2">
                                         {item.price}
                                       </td>
-                                      <td className="text-center">
+                                      <td className="text-center p-2">
                                         <span
                                           className={`changePos  ${
                                             parseFloat(item.change) >= 0
@@ -332,10 +334,10 @@ export default function TradesTable({ selectedCurrency }: any) {
                                         />
                                       )}
                                     </td> */}
-                                      <td className="text-black text-center">
+                                      <td className="text-black text-center p-2">
                                         {item.volume}
                                       </td>
-                                      <td className="text-black text-center">
+                                      <td className="text-black text-center p-2">
                                         {item.total_balance
                                           ? parseFloat(
                                               item.total_balance

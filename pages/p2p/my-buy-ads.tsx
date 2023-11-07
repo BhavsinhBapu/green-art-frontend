@@ -13,6 +13,7 @@ import { myP2pOrderAction, userAdsFilterChangeAction } from "state/actions/p2p";
 import { RootState } from "state/store";
 
 const P2pOrder = () => {
+  const adsType = 1;
   const [settings, setSettings] = useState<any>([]);
   const { isLoggedIn } = useSelector((state: RootState) => state.user);
   const { t } = useTranslation("common");
@@ -95,6 +96,9 @@ const P2pOrder = () => {
               action={false}
               payment={false}
               edit={true}
+              adsType={adsType}
+              statusChange={true}
+              deleteBtn={true}
             />
           )}
 

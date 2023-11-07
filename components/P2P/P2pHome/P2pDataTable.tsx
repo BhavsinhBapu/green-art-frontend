@@ -7,23 +7,72 @@ import { RootState } from "state/store";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import useTranslation from "next-translate/useTranslation";
+import { handleP2PDeleteApi, handleP2PStatusChangeApi } from "service/p2p";
+import { toast } from "react-toastify";
 
 export const P2pDataTable = ({
   history,
   filters,
   isLoggedIn,
+  statusChange = false,
+  deleteBtn = false,
   action = true,
   payment = true,
   edit = false,
+  adsType,
 }: any) => {
   const { t } = useTranslation("common");
 
   const router = useRouter();
+
+  const [historyData, setHistoryData] = useState(history || []);
+
+  const handleStatusChange = async (item: any) => {
+    if (!statusChange) return;
+    const response = await handleP2PStatusChangeApi({
+      type: adsType,
+      id: item.uid,
+    });
+    if (!response.success) {
+      toast.error(response.message);
+      return;
+    }
+    let newData = historyData.map((item: any) => {
+      if (item.uid == response.data.id) {
+        return {
+          ...item,
+          status: response.data.status ? 1 : 0,
+        };
+      }
+      return item;
+    });
+
+    setHistoryData(newData);
+    toast.success(response.message);
+  };
+
+  const handleAdsDelete = async (ads_id: any) => {
+    if (!deleteBtn) return;
+    const confirm = window.confirm("Are you sure you want to proceed?");
+    if (!confirm) return;
+    const response = await handleP2PDeleteApi({
+      ads_type: adsType,
+      uid: ads_id,
+    });
+    if (!response.success) {
+      toast.error(response.message);
+      return;
+    }
+    let newData = historyData.filter((item: any) => item.uid != ads_id);
+
+    setHistoryData(newData);
+    toast.success(response.message);
+  };
   return (
     <div className="container mt-4">
       <div className="row">
         <div className="table-responsive">
-          {history?.length <= 0 || !history ? (
+          {historyData?.length <= 0 || !historyData ? (
             <NoItemFound />
           ) : (
             <table className="table">
@@ -32,13 +81,19 @@ export const P2pDataTable = ({
                   <th scope="col">{t(`Advertisers`)}</th>
                   <th scope="col">{t(`Price`)}</th>
                   <th scope="col">{t(`Limit/Available`)}</th>
+                  {statusChange && (
+                    <th scope="col" className="text-center">
+                      {t(`Status`)}
+                    </th>
+                  )}
+
                   {payment === true && <th scope="col">{t(`Payment`)}</th>}
                   {action === true && <th scope="col">{t(`Trade`)}</th>}
-                  {edit === true && <th scope="col">{t(`Edit`)}</th>}
+                  {edit === true && <th scope="col">{t(`Action`)}</th>}
                 </tr>
               </thead>
               <tbody>
-                {history?.map((item: any, index: any) => (
+                {historyData?.map((item: any, index: any) => (
                   <tr className="tableRow" key={index}>
                     <td>
                       <Link href={"/p2p/profile/" + item?.user_id}>
@@ -58,7 +113,8 @@ export const P2pDataTable = ({
                       <div className="d-flex align-items-center">
                         <small className="mr-2">{t(`Available`)}</small>
                         <h6 className="limitBalance">
-                          {item?.available} {item?.coin_type}
+                          {parseFloat(item?.available).toFixed(8)}{" "}
+                          {item?.coin_type}
                         </h6>
                       </div>
                       <div className="d-flex align-items-center">
@@ -69,6 +125,22 @@ export const P2pDataTable = ({
                         </h6>
                       </div>
                     </td>
+                    {statusChange && (
+                      <td
+                        style={{ verticalAlign: "middle" }}
+                        className="text-center"
+                      >
+                        <label className="gift-card-buy-switch mb-0">
+                          <input
+                            type="checkbox"
+                            checked={item?.status == 1 ? true : false}
+                            onChange={(e) => handleStatusChange(item)}
+                          />
+                          <span className="gift-card-buy-slider gift-card-buy"></span>
+                        </label>
+                      </td>
+                    )}
+
                     {payment && (
                       <td>
                         {item?.payment_method_list?.map(
@@ -98,23 +170,36 @@ export const P2pDataTable = ({
                         )}
                       </td>
                     )}
-                    {edit === true && (
+                    {(edit === true || deleteBtn === true) && (
                       <td>
                         {isLoggedIn === true && (
                           // <Link
                           //   href={`/p2p/add-post?uid=${item.uid}&&ads_type=${filters.type}`}
                           // >
-                          <button
-                            onClick={async () => {
-                              await router.push(
-                                `/p2p/add-post?uid=${item.uid}&&ads_type=${filters.type}`
-                              );
-                              await router.reload();
-                            }}
-                            className="tableButton"
-                          >
-                            {t(`Edit`)}
-                          </button>
+                          <>
+                            {edit && (
+                              <button
+                                onClick={async () => {
+                                  await router.push(
+                                    `/p2p/add-post?uid=${item.uid}&&ads_type=${filters.type}`
+                                  );
+                                  await router.reload();
+                                }}
+                                className="tableButton"
+                              >
+                                {t(`Edit`)}
+                              </button>
+                            )}
+
+                            {deleteBtn && (
+                              <button
+                                onClick={() => handleAdsDelete(item.uid)}
+                                className="tableButton bg-secondary ml-2"
+                              >
+                                {t(`Delete`)}
+                              </button>
+                            )}
+                          </>
                           // </Link>
                         )}
                       </td>

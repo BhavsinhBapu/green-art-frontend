@@ -5,7 +5,7 @@ const GetInTouch = ({ landing, featureListdata }: any) => {
   return (
     <div>
       {parseInt(landing.landing_sixth_section_status) === 1 && (
-        <section className="get-touch-area">
+        <section className="get-touch-area" style={{padding: '60px 0'}}>
           <div className="container">
             <div className="section-title mb-3">
               <h2 className="title">{landing?.landing_feature_title}</h2>
