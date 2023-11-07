@@ -2,15 +2,25 @@ import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "state/store";
 
 const StartTradingNow = ({ landing, loggedin }: any) => {
   const router = useRouter();
   const { t } = useTranslation("common");
+  const { theme } = useSelector((state: RootState) => state.common);
+
   return (
     <div>
       {" "}
       {parseInt(landing?.landing_seventh_section_status) === 1 && (
-        <section className="start-trading-area">
+        <section
+          className="start-trading-area"
+          style={{
+            background: `linear-gradient(var(--primary-color) 0%, rgba(255, 255, 255, 0) 100%)`,
+            padding: "60px 0",
+          }}
+        >
           <div className="container">
             <div className="section-title text-center">
               <h2 className="title">{t("Start trading now")}</h2>

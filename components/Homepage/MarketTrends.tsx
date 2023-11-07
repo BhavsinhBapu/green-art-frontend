@@ -14,7 +14,7 @@ const MarketTrends = ({
   const router = useRouter();
 
   return (
-    <div>
+    <div className="bg-card-primary-clr">
       {parseInt(landing.landing_third_section_status) === 1 && (
         <section className="market-trend-area">
           <div className="container">
@@ -134,7 +134,7 @@ const MarketTrends = ({
                             </th>
                             <th
                               scope="col"
-                              className="sorting_disabled"
+                              className="sorting_disabled text-right"
                               rowSpan={1}
                               colSpan={1}
                               style={{ width: "127.344px" }}
@@ -200,7 +200,7 @@ const MarketTrends = ({
                                 {item.volume} {item.parent_coin_name}
                               </td>
                               <td
-                                className="p-2"
+                                className="p-2 text-right"
                                 onClick={async () => {
                                   await localStorage.setItem(
                                     "base_coin_id",
@@ -588,6 +588,20 @@ const MarketTrends = ({
           </div>
         </section>
       )}
+      <div className="container ">
+        {Number(landing?.landing_advertisement_section_status) === 1 && (
+          <Link href={`${landing?.landing_advertisement_url ?? "#"}`}>
+            <img
+              src={
+                landing?.landing_advertisement_image
+                  ? landing?.landing_advertisement_image
+                  : "/tradex-cover.png"
+              }
+              className="cover-img cursor-pointer mt-0"
+            />
+          </Link>
+        )}
+      </div>
     </div>
   );
 };
