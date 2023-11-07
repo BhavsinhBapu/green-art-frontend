@@ -30,6 +30,7 @@ import {
   EXCHANGE_LAYOUT_TWO,
 } from "helpers/core-constants";
 import { FiChevronDown, FiSettings } from "react-icons/fi";
+import { AiFillCaretDown } from "react-icons/ai";
 
 const UnAuthNav = ({
   setThemeColor,
@@ -103,12 +104,15 @@ const UnAuthNav = ({
                       className="flex"
                       href="#"
                       aria-expanded="true"
-                      style={{ height: "48px" }}
+                      style={{ height: "48px", gap: "2px" }}
                     >
-                      <span className="cp-user-icon">
+                      {/* <span className="cp-user-icon">
                         <BsBarChartLine />
-                      </span>
+                      </span> */}
                       <span>{t("Exchange")}</span>
+                      <div>
+                        <AiFillCaretDown size={12} />
+                      </div>
                     </a>
 
                     <ul className="lang-list dropdown-menu-main">
@@ -177,9 +181,9 @@ const UnAuthNav = ({
                   >
                     <Link href="/markets">
                       <a>
-                        <span className="cp-user-icon">
+                        {/* <span className="cp-user-icon">
                           <BiLineChart />
-                        </span>
+                        </span> */}
                         <span>{t("Markets")}</span>
                       </a>
                     </Link>
@@ -222,7 +226,7 @@ const UnAuthNav = ({
                     </Link>
                   </li>
 
-                  <li
+                  {/* <li
                     style={{ height: "48px" }}
                     className="d-flex align-items-center"
                   >
@@ -235,6 +239,40 @@ const UnAuthNav = ({
                     <ul
                       className="lang-list dropdown-menu-main"
                       style={{ right: "0", left: "auto" }}
+                    >
+                      {settings?.LanguageList?.map((item: any, index: any) => (
+                        <li key={index}>
+                          <Link href={router.asPath} locale={item.key}>
+                            <a className="py-1 menu-hover">{item.name}</a>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </li> */}
+                  <li className="hm-notify">
+                    <a
+                      className="arrow-icon"
+                      href="#"
+                      aria-expanded="true"
+                      style={{ height: "48px" }}
+                    >
+                      <span className="">
+                        <IoMdGlobe size={25} />
+                      </span>
+                      {/* <span className="cp-user-name">
+                        {router.locale?.toLocaleUpperCase()}
+                      </span> */}
+                    </a>
+                    <ul
+                      className="dropdown-menu-main"
+                      style={{
+                        right: "0",
+                        left: "auto",
+                        display: "grid",
+                        gridTemplateColumns: "repeat(2, 1fr)",
+                        width: "370px",
+
+                      }}
                     >
                       {settings?.LanguageList?.map((item: any, index: any) => (
                         <li key={index}>

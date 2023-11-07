@@ -39,7 +39,7 @@ const NotificationDropdown = ({
   ThemeColor,
   layout,
   setLayout,
-  setLanguageActive
+  setLanguageActive,
 }: any) => {
   const dispatch = useDispatch();
   const containerRef = useRef<any>(null);
@@ -132,7 +132,7 @@ const NotificationDropdown = ({
                     <Link href={isLoggedIn ? "/user/faq" : "/signin"}>
                       <button className="dropdown-item" type="button">
                         <a href="-wallet">
-                        <i className="fa fa-credit-card"></i>
+                          <i className="fa fa-credit-card"></i>
                           {t("FAQ")}
                         </a>
                       </button>
@@ -288,7 +288,13 @@ const NotificationDropdown = ({
                     </a>
                     <ul
                       className="dropdown-menu-main"
-                      style={{ right: "0", left: "auto" }}
+                      style={{
+                        right: "0",
+                        left: "auto",
+                        display: "grid",
+                        gridTemplateColumns: "repeat(2, 1fr)",
+                        width: "370px",
+                      }}
                     >
                       {settings?.LanguageList?.map((item: any, index: any) => (
                         <li key={index}>

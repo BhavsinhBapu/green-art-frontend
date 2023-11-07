@@ -772,12 +772,12 @@ span.cp-user-icon {
   background: transparent;
   padding: 8px;
   border-radius: 4px;
-  height: 30px;
-  width: 30px;
+  height: 35px;
+  width: 35px;
   overflow: hidden;
-  display: inline-block;
+  display: block;
   line-height: 14px;
-  vertical-align: middle;
+  /* vertical-align: middle; */
 }
 
 .cp-user-sidebar-hide {
@@ -4546,7 +4546,7 @@ select:-webkit-autofill:focus {
   display: block;
   position: absolute;
   width: 300px;
-  background: var(--main-background-color);
+  background: var(--card-background-color);
   left: 0;
   top: 100%;
   text-align: left;
@@ -4559,6 +4559,7 @@ select:-webkit-autofill:focus {
   overflow-y: auto;
   scrollbar-width: thin;
   -ms-overflow-style: none;
+  border-radius: 20px;
 }
 
 .main-menu ul li ul::-webkit-scrollbar {
@@ -4569,11 +4570,14 @@ select:-webkit-autofill:focus {
   opacity: 1;
   visibility: visible;
   pointer-events: all;
+  padding: 10px 0;
 }
 
 .main-menu ul li ul li {
   display: block;
-  border-bottom: 1px solid var(--border-color);
+  padding: 10px;
+  border-radius: 8px;
+  /* border-bottom: 1px solid var(--border-color); */
 }
 
 .main-menu ul li ul li:last-child {
@@ -4593,13 +4597,14 @@ select:-webkit-autofill:focus {
 
 .main-menu ul li ul li a {
   display: block;
-  padding: 8px 5px;
+  /* padding: 12px; */
   color: var(--font-color) !important;
   transition: all 0.3s;
 }
 
-.main-menu ul li ul li a:hover {
+.main-menu ul li ul li:hover {
   color: var(--primary-color) !important;
+  background: var(--hover-bg-color) !important;
 }
 
 .main-menu ul li a {
@@ -4607,8 +4612,9 @@ select:-webkit-autofill:focus {
   align-items: center;
   background: transparent;
   font-size: 14px;
-  font-weight: 400;
-  color: var(--text-primary-color-3) !important;
+  font-weight: 600;
+  gap: 10px;
+  color: var(--font-color) !important;
 }
 
 .main-menu ul li:hover a {
@@ -4619,6 +4625,10 @@ select:-webkit-autofill:focus {
   display: flex;
   align-items: center;
   justify-content: center;
+  background: #f2f2f2;
+  border-radius: 100%;
+  color: var(--primary-color);
+  font-size: 18px;
 }
 
 .main-menu ul li a .cp-user-icon img {
@@ -15933,3 +15943,4 @@ input:checked + .gift-card-buy-slider:before {
 .p2p-custom-scrollbar::-webkit-scrollbar-thumb {
   background: var(--color-pallet-1);
 }
+
