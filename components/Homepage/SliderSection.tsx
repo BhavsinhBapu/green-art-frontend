@@ -11,44 +11,44 @@ const SliderSection = ({
   announcementListdata,
 }: any) => {
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 2000,
     className: "center",
     // vertical: true,
-    // slidesToShow: bannerListdata.length < 4 ? 1 : 4,
-    slidesToShow: 1,
+    slidesToShow: bannerListdata.length < 4 ? 1 : 4,
+    // slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: true,
+    autoplay: false,
     autoplaySpeed: 1000,
-    arrows: false,
+    // arrows: false,
 
-    // responsive: [
-    //   {
-    //     breakpoint: 1024,
-    //     settings: {
-    //       slidesToShow: 3,
-    //       slidesToScroll: 3,
-    //       infinite: true,
-    //       dots: true,
-    //     },
-    //   },
-    //   {
-    //     breakpoint: 600,
-    //     settings: {
-    //       slidesToShow: 2,
-    //       slidesToScroll: 2,
-    //       initialSlide: 2,
-    //     },
-    //   },
-    //   {
-    //     breakpoint: 360,
-    //     settings: {
-    //       slidesToShow: 1,
-    //       slidesToScroll: 1,
-    //     },
-    //   },
-    // ],
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 360,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
   const notifiactionSettings = {
     dots: false,
@@ -120,14 +120,14 @@ const SliderSection = ({
                       <img
                         src={item.image}
                         alt="about-image-phone"
-                        // className="slider-image-class"
-                        style={{
-                          height: "275px",
-                          width: "100%",
-                          borderRadius: "10px",
-                          objectFit: "cover",
-                          objectPosition: "center",
-                        }}
+                        className="slider-image-class"
+                        // style={{
+                        //   height: "275px",
+                        //   width: "100%",
+                        //   borderRadius: "10px",
+                        //   objectFit: "cover",
+                        //   objectPosition: "center",
+                        // }}
                       />
                     </div>
                   </Link>
