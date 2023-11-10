@@ -290,6 +290,7 @@ const MyWallet: NextPage = () => {
                               setSearch={setSearch}
                               processing={processing}
                               verticalAlignData={`middle`}
+                              isOverflow={true}
                             />
                             <div
                               className="pagination-wrapper"
