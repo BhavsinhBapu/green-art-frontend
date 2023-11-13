@@ -40,10 +40,13 @@ import {
   KYC_TYPE_MANUAL,
   KYC_TYPE_PERSONA,
 } from "helpers/core-constants";
-import evmRequest from "lib/requestForEvm";
 
 export const VerifyEmailAction =
-  (credentials: any, setProcessing: any) => async (dispatch: any) => {
+  (
+    credentials: any,
+    setProcessing: any
+  ) =>
+  async (dispatch: any) => {
     setProcessing(true);
     const response: any = await verifyEmailApi(credentials);
     let responseMessage = response.message;
@@ -89,9 +92,6 @@ export const SigninAction =
         request.defaults.headers.common[
           "Authorization"
         ] = `Bearer ${response.access_token}`;
-        evmRequest.defaults.headers.common[
-          "Authorization"
-        ] = `Bearer ${response.evm_access_token}`;
       }
       if (response.g2f_enabled === "1") {
         Cookies.set("user-id", response.user.id);
@@ -102,14 +102,9 @@ export const SigninAction =
 
       if (response.access_token) {
         Cookies.set("token", response.access_token);
-        Cookies.set("evm_access_token", response.evm_access_token);
-
         request.defaults.headers.common[
           "Authorization"
         ] = `Bearer ${response.access_token}`;
-        evmRequest.defaults.headers.common[
-          "Authorization"
-        ] = `Bearer ${response.evm_access_token}`;
       }
 
       localStorage.setItem("user_id", response.user.id);

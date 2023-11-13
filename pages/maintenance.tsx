@@ -2,8 +2,10 @@ import React from "react";
 import { GetServerSideProps } from "next";
 import { commomSettings } from "service/landing-page";
 import useTranslation from "next-translate/useTranslation";
+import { redirect } from "next/dist/server/api-utils";
+
 interface MaintenanceProps {
-  data: any;
+  data: any; // Adjust the type according to your data structure
 }
 
 const Maintenance: React.FC<MaintenanceProps> = ({ data }) => {
@@ -32,7 +34,7 @@ const Maintenance: React.FC<MaintenanceProps> = ({ data }) => {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    color: "var(--text-primary-color)!important",
+    color: "var(--text-primary-color)",
     justifyItems: "center",
     zIndex: 999999,
     height: "100vh",
@@ -44,13 +46,13 @@ const Maintenance: React.FC<MaintenanceProps> = ({ data }) => {
 
   const maintenanceContentH2Style: React.CSSProperties = {
     fontSize: "52px",
-    color: "var(--text-primary-color)!important",
+    color: "var(--text-primary-color)",
     marginBottom: "15px",
   };
 
   const maintenanceContentPStyle: React.CSSProperties = {
     fontSize: "20px",
-    color: "var(--text-primary-color)!important",
+    color: "var(--text-primary-color)",
   };
 
   return (
@@ -94,14 +96,14 @@ const Maintenance: React.FC<MaintenanceProps> = ({ data }) => {
 
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const { data } = await commomSettings();
-  // if (parseInt(data?.maintenance_mode_status) === 0) {
-  //   return {
-  //     redirect: {
-  //       destination: "/",
-  //       permanent: false,
-  //     },
-  //   };
-  // }
+  if (parseInt(data?.maintenance_mode_status) === 0) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
   return {
     props: { data },
   };

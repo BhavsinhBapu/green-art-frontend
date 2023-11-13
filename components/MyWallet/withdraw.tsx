@@ -1,5 +1,5 @@
 import useTranslation from "next-translate/useTranslation";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { FaHome } from "react-icons/fa";
 import { ImListNumbered } from "react-icons/im";
 import { copyTextById, formateZert } from "common";
@@ -16,25 +16,19 @@ import {
 } from "helpers/core-constants";
 import { getFeeAmountApi } from "service/wallet";
 
-export const WithdrawComponent = ({
-  responseData,
-  baseType,
-  fullPage,
-}: any) => {
-  console.log("responseData", baseType);
+export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
   const { t } = useTranslation("common");
   const { settings } = useSelector((state: RootState) => state.common);
-
-  const [selectedNetwork, setSelectedNetwork] = useState<any>({});
-
-  const [withdrawalCredentials, setWithdrawalCredentials] = useState({
+  const [selectedNetwork, setSelectedNetwork] = React.useState(
+    responseData?.data && responseData?.data[0]
+  );
+  const [withdrawalCredentials, setWithdrawalCredentials] = React.useState({
     wallet_id: responseData?.wallet?.id,
     code: "",
     address: "",
     amount: "",
     note: "withdrawal",
     network_type: selectedNetwork?.network_type ?? "",
-    network_id: "",
   });
 
   const [feesData, setFeesData] = React.useState<any>({});
@@ -45,22 +39,7 @@ export const WithdrawComponent = ({
   const [processing, setProcessing] = React.useState(false);
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    let credentials = {
-      ...withdrawalCredentials,
-      wallet_id: responseData?.wallet?.id,
-      base_type: responseData?.data?.base_type,
-      network_id: selectedNetwork?.id,
-    };
-    if (
-      responseData?.data?.base_type == 8 ||
-      responseData?.data?.base_type == 6
-    ) {
-      credentials = {
-        ...credentials,
-        base_type: selectedNetwork?.base_type,
-      };
-    }
-    WalletWithdrawProcessApiAction(credentials, setProcessing);
+    WalletWithdrawProcessApiAction(withdrawalCredentials, setProcessing);
   };
   const CheckG2faEnabled = async () => {
     const { data } = await UserSettingsApi();
@@ -75,51 +54,26 @@ export const WithdrawComponent = ({
       });
     }
   };
-
   React.useEffect(() => {
-    setWithdrawalCredentials((prev) => ({
-      ...prev,
+    if (responseData?.data && responseData?.data[0]) {
+      setSelectedNetwork(responseData?.data[0]);
+    }
+  }, [responseData?.data[0]]);
+  React.useEffect(() => {
+    setWithdrawalCredentials({
+      ...withdrawalCredentials,
       wallet_id: responseData?.wallet?.id,
-    }));
+    });
 
     CheckG2faEnabled();
   }, [responseData?.wallet?.id]);
 
   React.useEffect(() => {
-    if (
-      parseInt(responseData?.data?.base_type) === 1 &&
-      responseData?.wallet.coin_type == "USDT"
-    ) {
-      setWithdrawalCredentials((prev) => ({
-        ...prev,
-        network_type: selectedNetwork?.network_type,
-      }));
-      return;
-    }
-    if (
-      parseInt(responseData?.data?.base_type) === 8 ||
-      parseInt(responseData?.data?.base_type) === 6
-    ) {
-      setWithdrawalCredentials((prev) => ({
-        ...prev,
-        network_type: "",
-      }));
-    }
+    setWithdrawalCredentials({
+      ...withdrawalCredentials,
+      network_type: selectedNetwork?.network_type,
+    });
   }, [selectedNetwork?.network_type]);
-
-  useEffect(() => {
-    if (
-      parseInt(responseData?.data?.base_type) === 1 &&
-      responseData?.wallet.coin_type == "USDT"
-    ) {
-      setSelectedNetwork(responseData?.data?.coin_payment_networks[0]);
-
-      setWithdrawalCredentials((prev) => ({
-        ...prev,
-        network_id: responseData?.data?.coin_payment_networks[0]?.id,
-      }));
-    }
-  }, [responseData?.wallet.coin_type]);
 
   const checkNetworkFunc = (networkId: any) => {
     if (networkId == 4) {
@@ -149,8 +103,6 @@ export const WithdrawComponent = ({
     console.log("response", response);
   };
 
-  console.log("withdrawalCredentials", withdrawalCredentials);
-
   return (
     <div className="my-wallet-new px-0">
       <h5>{t("Total Balance")}</h5>
@@ -176,77 +128,33 @@ export const WithdrawComponent = ({
       </div>
 
       <form action="">
-        {/* for base type 8  */}
-        {(parseInt(responseData?.data?.base_type) === 8 ||
-          parseInt(responseData?.data?.base_type) === 6) && (
-          <div className="wallet-addres">
-            <div className="">
-              <div className="total-balance ">
-                <h5>{t("Select Network")}</h5>
-                <select
-                  name="currency"
-                  className="form-control coin-list-item mt-3"
-                  style={{ height: "44px" }}
-                  onChange={(e) => {
-                    const findObje = responseData?.network.find(
-                      (x: any) => x.id === parseInt(e.target.value)
-                    );
-                    setSelectedNetwork(findObje);
-                    setWithdrawalCredentials((prev) => ({
-                      ...prev,
-                      network_id: findObje?.id,
-                    }));
-                  }}
-                >
-                  {responseData?.network.map((item: any, index: number) => (
-                    <option value={item.id} key={index}>
-                      {item?.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
+        <div className="wallet-addres">
+          <div className="">
+            {responseData?.wallet.coin_type == "USDT" &&
+              parseInt(responseData?.wallet.network) === 1 && (
+                <div className="total-balance ">
+                  <h5>{t("Select Network")}</h5>
+                  <select
+                    name="currency"
+                    className="form-control coin-list-item mt-3"
+                    style={{ height: "44px" }}
+                    onChange={(e) => {
+                      const findObje = responseData?.data?.find(
+                        (x: any) => x.id === parseInt(e.target.value)
+                      );
+                      setSelectedNetwork(findObje);
+                    }}
+                  >
+                    {responseData?.data?.map((item: any, index: number) => (
+                      <option value={item.id} key={index}>
+                        {item?.network_name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              )}
           </div>
-        )}
-
-        {/* for base type not 8  */}
-        {parseInt(responseData?.data?.base_type) !== 8 &&
-          parseInt(responseData?.data?.base_type) !== 6 && (
-            <div className="wallet-addres">
-              <div className="">
-                {responseData?.wallet.coin_type == "USDT" &&
-                  parseInt(responseData?.data?.base_type) === 1 && (
-                    <div className="total-balance ">
-                      <h5>{t("Select Network")}</h5>
-                      <select
-                        name="currency"
-                        className="form-control coin-list-item mt-3"
-                        style={{ height: "44px" }}
-                        onChange={(e) => {
-                          const findObje =
-                            responseData?.data?.coin_payment_networks.find(
-                              (x: any) => x.id === parseInt(e.target.value)
-                            );
-                          setSelectedNetwork(findObje);
-                          setWithdrawalCredentials((prev) => ({
-                            ...prev,
-                            network_id: findObje?.id,
-                          }));
-                        }}
-                      >
-                        {responseData?.data?.coin_payment_networks.map(
-                          (item: any, index: number) => (
-                            <option value={item.id} key={index}>
-                              {item?.network_name}
-                            </option>
-                          )
-                        )}
-                      </select>
-                    </div>
-                  )}
-              </div>
-            </div>
-          )}
+        </div>
 
         <div className="wallet-addres">
           <h5>{t("Address")}</h5>
@@ -260,10 +168,10 @@ export const WithdrawComponent = ({
                 placeholder={t("Address")}
                 value={withdrawalCredentials.address}
                 onChange={(e) => {
-                  setWithdrawalCredentials((prev) => ({
-                    ...prev,
+                  setWithdrawalCredentials({
+                    ...withdrawalCredentials,
                     address: e.target.value,
-                  }));
+                  });
                 }}
               />
               <span className="input-address-bar-btn">
@@ -276,7 +184,7 @@ export const WithdrawComponent = ({
                   `Only enter a ${
                     responseData?.wallet?.coin_type ?? ""
                   } ${checkNetworkFunc(
-                    responseData?.data?.base_type
+                    responseData?.wallet?.network
                   )} address in this field. Otherwise the asset you withdraw, may be lost.`
                 )}
               </small>
@@ -290,17 +198,17 @@ export const WithdrawComponent = ({
             <div className="">
               <div className="input-group input-address-bar mt-3">
                 <input
-                  type="number"
+                  type="text"
                   className="form-control border-0 h-50"
                   id="amountWithdrawal"
                   name="amount"
                   placeholder={t("AMOUNT To Withdraw")}
                   value={withdrawalCredentials.amount}
                   onChange={(e) => {
-                    setWithdrawalCredentials((prev) => ({
-                      ...prev,
+                    setWithdrawalCredentials({
+                      ...withdrawalCredentials,
                       amount: e.target.value,
-                    }));
+                    });
                   }}
                 />
                 <span className="input-address-bar-btn">
@@ -377,10 +285,10 @@ export const WithdrawComponent = ({
             className="primary-btn-outline w-100 mt-4"
             type="button"
             style={{ height: "44px" }}
-            disabled={processing}
+            disabled={errorMessage.status === true}
             onClick={handleSubmit}
           >
-            {processing ? t("Processing..") : t("Withdraw")}
+            {t("Withdraw")}
           </button>
         )}
       </form>

@@ -44,22 +44,10 @@ const DeposiAndWithdraw = ({ withdrawFaq, depositFaq }: any) => {
         Number(router.query.coin_id)
       );
       if (response.success === true) {
-        if (response?.data?.base_type == 8 || response?.data?.base_type == 6) {
-          setResponseData({
-            ...response,
-            deposit: response.wallet,
-            addressLists: response.data.address,
-            network: [
-              { id: "", name: "Select Network", base_type: "" },
-              ...response.data.networks,
-            ],
-          });
-          return;
-        }
         setResponseData({
           ...response,
           deposit: response.wallet,
-          addressLists: response.data.address,
+          address: response.address ? response.address : null,
         });
       } else if (response.success === false) {
         router.push("/user/my-wallet");
@@ -70,18 +58,6 @@ const DeposiAndWithdraw = ({ withdrawFaq, depositFaq }: any) => {
       );
 
       if (response.success === true) {
-        if (response?.data?.base_type == 8 || response?.data?.base_type == 6) {
-          setResponseData({
-            ...response,
-            withdraw: response.wallet,
-            address: response.data.address,
-            network: [
-              { id: "", name: "Select Network", base_type: "" },
-              ...response.data.networks,
-            ],
-          });
-          return;
-        }
         setResponseData({
           ...response,
           withdraw: response.wallet,
@@ -157,7 +133,7 @@ const DeposiAndWithdraw = ({ withdrawFaq, depositFaq }: any) => {
         <div className="container">
           <div className={`row`}>
             <div className="col-md-12">
-              <div className="single-wallet boxShadow shadow-sm rounded pb-5">
+              <div className="single-wallet boxShadow shadow-sm rounded">
                 <div className="box-two single-box visible">
                   <div className="">
                     <Link href="/user/my-wallet">
