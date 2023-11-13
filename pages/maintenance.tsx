@@ -94,14 +94,14 @@ const Maintenance: React.FC<MaintenanceProps> = ({ data }) => {
 
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const { data } = await commomSettings();
-  // if (parseInt(data?.maintenance_mode_status) === 0) {
-  //   return {
-  //     redirect: {
-  //       destination: "/",
-  //       permanent: false,
-  //     },
-  //   };
-  // }
+  if (parseInt(data?.maintenance_mode_status) === 0) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
   return {
     props: { data },
   };
