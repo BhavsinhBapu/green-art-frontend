@@ -1,3 +1,4 @@
+import Link from "next/link";
 import router from "next/router";
 import React from "react";
 
@@ -15,16 +16,22 @@ export const TradeList = ({ coinList }: any) => {
             );
           }}
           key={`coinList${index}`}
-          className="coinList">
+          className="coinList"
+        >
           <img src={item.icon} alt="" />
-          <a
+          <Link
             href={
               router.locale !== "en"
-                ? `/${router.locale}/exchange/dashboard`
-                : "/exchange/dashboard"
-            }>
+                ? `/${router.locale}/exchange/dashboard?coin_pair=${
+                    item?.child_coin_name + "_" + item?.parent_coin_name
+                  }`
+                : `/exchange/dashboard?coin_pair=${
+                    item?.child_coin_name + "_" + item?.parent_coin_name
+                  }`
+            }
+          >
             {item.coin_pair_name}
-          </a>
+          </Link>
         </div>
       ))}
     </div>

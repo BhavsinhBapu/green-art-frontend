@@ -17,6 +17,7 @@ const CustomDataTable = ({
   dataNotFoundText,
   processing,
   verticalAlignData = "top",
+  isOverflow = false,
 }: any) => {
   const dataColumns = useMemo(() => columns, [columns]);
   const tableData = useMemo(() => data, [data]);
@@ -137,10 +138,10 @@ const CustomDataTable = ({
                               whiteSpace: "nowrap",
                               textOverflow: "ellipsis",
                               maxWidth: "200px",
-                              overflow: "hidden",
                               verticalAlign: verticalAlignData,
                               wordBreak: "break-word",
                             }}
+                            className={`${isOverflow ? "" : "overflow-hidden"}`}
                           >
                             {cell.render("Cell")}
                           </td>
