@@ -34,7 +34,7 @@ const BlogDetails = ({ BlogNewsSettings }: any) => {
 
   return (
     <>
-      <div className="container">
+      <div className="container overall-margin-top-cls">
         <Link href="/blog">
           <a>
             <h3 className="pb-3 newsDetailsTitle d-flex align-items-center">

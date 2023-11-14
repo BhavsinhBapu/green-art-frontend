@@ -31,7 +31,7 @@ const Index = ({}: any) => {
   }, []);
   return (
     <>
-      <div className="">
+      <div className="overall-margin-top-cls">
         <div className="container ">
           <div className="row align-items-center">
             <div className="col-md-7">

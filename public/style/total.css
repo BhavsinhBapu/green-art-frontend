@@ -15749,6 +15749,10 @@ input:checked + .gift-card-buy-slider:before {
   overflow: hidden;
 }
 
+.overall-margin-top-cls {
+  margin-top: 3rem;
+}
+
 @media (max-width: 1520px) {
   .trade-dashboard-side-margin {
     margin-left: 0 !important;
@@ -15829,6 +15833,9 @@ input:checked + .gift-card-buy-slider:before {
     flex-direction: column;
     gap: 10px;
     align-items: start;
+  }
+  .overall-margin-top-cls {
+    margin-top: 5rem;
   }
 }
 
@@ -15943,4 +15950,3 @@ input:checked + .gift-card-buy-slider:before {
 .p2p-custom-scrollbar::-webkit-scrollbar-thumb {
   background: var(--color-pallet-1);
 }
-
