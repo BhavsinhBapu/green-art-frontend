@@ -1,8 +1,10 @@
+import { formateData } from "common";
 import moment from "moment";
 import Link from "next/link";
 import React from "react";
 
 const BlogCard = ({ blog }: any) => {
+  console.log("BlogCard", blog);
   return (
     <>
       <Link href={"/blog/" + blog?.post_id}>
@@ -16,7 +18,7 @@ const BlogCard = ({ blog }: any) => {
             <div className="newsCardText pt-4">
               <h3 className="titleText">{blog?.title}</h3>
               <small>
-                {moment(blog?.createdAt).subtract(1, "days").calendar()}
+                {moment(blog?.createdAt).format("MMM Do YY")}
               </small>
             </div>
           </div>
