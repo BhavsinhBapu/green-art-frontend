@@ -1,7 +1,6 @@
-import { formateData, formateDateMunite } from "common";
+import { formateDateMunite } from "common";
 import { NoItemFound } from "components/NoItemFound/NoItemFound";
 import SectionLoading from "components/common/SectionLoading";
-import moment from "moment";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
@@ -118,7 +117,7 @@ export default function CommunityHome() {
                           </div>
                         </Link>
                         <p className="community-item-time">
-                          {moment(item?.publish_at).format("MMM Do YY")}
+                          {formateDateMunite(item?.publish_at)}
                         </p>
                       </div>
                     </div>

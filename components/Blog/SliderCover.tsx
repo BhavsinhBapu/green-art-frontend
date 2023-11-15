@@ -1,3 +1,4 @@
+import { formateDateMunite } from "common";
 import moment from "moment";
 import Link from "next/link";
 import React from "react";
@@ -30,7 +31,7 @@ const SliderCover = ({ featuredblogs }: any) => {
                     {featuredblog?.title}
                   </h1>
                   <small>
-                    {moment(featuredblog?.createdAt).format("MMM Do YY")}
+                    {formateDateMunite(featuredblog?.created_at)}
                   </small>
                 </div>
               </div>
