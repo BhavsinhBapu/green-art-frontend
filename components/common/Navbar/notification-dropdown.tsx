@@ -100,7 +100,10 @@ const NotificationDropdown = ({
                       />
                     </p>
                     <div className="user-name">
-                      <p className="nav-userName">
+                      <p
+                        className="nav-userName"
+                        style={{ color: "var(--text-primary-color-4)", fontWeight: "bold" }}
+                      >
                         {user?.first_name!} {user?.last_name!}
                       </p>
                     </div>
