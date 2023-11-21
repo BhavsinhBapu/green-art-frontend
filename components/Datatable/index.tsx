@@ -43,7 +43,7 @@ const CustomDataTable = ({
   const { globalFilter }: any = state;
 
   return (
-    <div>
+    <div style={{overflowX: 'auto'}}>
       <div id="assetBalances_wrapper" className="dataTables_wrapper no-footer">
         <div className="dataTables_head">
           <div className="dataTables_length" id="assetBalances_length">

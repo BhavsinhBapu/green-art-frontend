@@ -78,6 +78,7 @@ const MarketTrends = ({
                     <div
                       id="DataTables_Table_0_wrapper"
                       className="dataTables_wrapper no-footer"
+                      style={{overflowX: 'auto'}}
                     >
                       <table
                         className="table table-borderless dataTable no-footer"
