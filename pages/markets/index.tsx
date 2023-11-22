@@ -86,7 +86,7 @@ export default function Index() {
       <div className="container">
         <div className=" pt-4 pb-2 p2p-gift-card-navbar-margin-top">
           <h1 className="banner-title">{t("Markets Overview")}</h1>
-          <div className="d-flex gap-5 align-items-center">
+          {/* <div className="d-flex gap-5 align-items-center">
             <p className="text-14">{t(`All price information is in`)}</p>
             <CUstomSelect
               options={allCurrency}
@@ -94,7 +94,7 @@ export default function Index() {
               classname={"market-select-page"}
               defaultValue={allCurrency[0]}
             />
-          </div>
+          </div> */}
         </div>
 
         <div className="row my-2">
