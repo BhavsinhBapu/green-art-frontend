@@ -306,7 +306,7 @@ export default function TradesTable({ selectedCurrency }: any) {
                                         </div>
                                       </td>
                                       <td className="text-black text-center p-2">
-                                        {item.price}
+                                        ${item.price}
                                       </td>
                                       <td className="text-center p-2">
                                         <span
