@@ -20,7 +20,6 @@ const MobileMoney = ({ currencyList, walletlist, method_id, mobiles }: any) => {
   const { t } = useTranslation("common");
   const inputRef = useRef(null);
   const { settings } = useSelector((state: RootState) => state.common);
-  console.log(mobiles, "mobilesmobilesmobiles");
   const handleClick = () => {
     // 👇️ open file input box on click of other element
     //@ts-ignore

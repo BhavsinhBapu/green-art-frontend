@@ -100,7 +100,6 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
       return;
     }
     setFeesData(response.data);
-    console.log("response", response);
   };
 
   return (

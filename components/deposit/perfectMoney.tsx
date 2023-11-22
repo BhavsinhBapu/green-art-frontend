@@ -75,12 +75,7 @@ const PerfectMoney = ({ currencyList, walletlist, method_id, banks }: any) => {
     let selectedCurrencyType = currencyList.find(
       (item: any) => item.code == credential.currency
     );
-    console.log(
-      "selectedCurrencyType",
-      selectedCurrencyType,
-      currencyList,
-      credential.currency
-    );
+   
     localStorage.setItem("perfect_money_wallet_id", credential?.wallet_id);
     localStorage.setItem(
       "perfect_money_payment_method_id",

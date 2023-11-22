@@ -4,7 +4,6 @@ import React from "react";
 
 const DistributionSection = ({ landing }: any) => {
   const { t } = useTranslation("common");
-  console.log("landing", landing);
   return (
     <div>
       {" "}
