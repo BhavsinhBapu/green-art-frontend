@@ -20,7 +20,7 @@ import { unlistenAllChannels } from "state/actions/exchange";
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
   useEffect(() => {
-    rootThemeCheck();
+    // rootThemeCheck();
     Router.events.on("routeChangeStart", () => NProgress.start());
     Router.events.on("routeChangeComplete", () => NProgress.done());
     Router.events.on("routeChangeError", () => NProgress.done());

@@ -220,8 +220,14 @@ export const checkThemeState = (setTheme: any, dispatch: any) => {
     // dispatch(setTheme("light"));
   }
 };
-export const rootThemeCheck = () => {
+export const rootThemeCheck = (default_theme_mode: string) => {
+  console.log(default_theme_mode, "default_theme_mode");
   const theme = localStorage.getItem("theme");
+  if (!theme) {
+    localStorage.setItem("theme", default_theme_mode);
+    document.documentElement.setAttribute("data-theme", default_theme_mode);
+    return;
+  }
   if (theme === "light") {
     localStorage.setItem("theme", "light");
     document.documentElement.setAttribute("data-theme", "light");

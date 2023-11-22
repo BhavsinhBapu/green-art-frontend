@@ -76,12 +76,18 @@ const Index = ({ children }: any) => {
   const getCommonSettings = async () => {
     try {
       dispatch(setLoading(true));
-      rootThemeCheck();
-      const { data: CommonLanding } = await CommonLandingCustomSettings("en");
 
+      const { data: CommonLanding } = await CommonLandingCustomSettings("en");
+      {
+        CommonLanding?.common_settings.default_theme_mode &&
+          rootThemeCheck(CommonLanding?.common_settings.default_theme_mode);
+      }
       dispatch(setLogo(CommonLanding?.common_settings.logo));
       localStorage.setItem("animateLogo", CommonLanding?.common_settings.logo);
-      localStorage.setItem("animateEnable", CommonLanding?.common_settings.loading_animation);
+      localStorage.setItem(
+        "animateEnable",
+        CommonLanding?.common_settings.loading_animation
+      );
       dispatch(setSettings(CommonLanding?.common_settings));
       dispatch(setCustomPageData(CommonLanding.custom_page_settings));
       dispatch(
