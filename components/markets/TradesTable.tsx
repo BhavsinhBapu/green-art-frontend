@@ -200,6 +200,7 @@ export default function TradesTable({ selectedCurrency }: any) {
                             <div
                               id="DataTables_Table_0_wrapper"
                               className="dataTables_wrapper no-footer"
+                              style={{ overflowX: "auto" }}
                             >
                               <table
                                 className="table table-borderless dataTable no-footer"
@@ -277,7 +278,10 @@ export default function TradesTable({ selectedCurrency }: any) {
                                 <tbody>
                                   {tradeItems?.map((item: any, index: any) => (
                                     <tr role="row" className="odd" key={index}>
-                                      <td className="mb-2 p-2" style={{minWidth:'100px'}}>
+                                      <td
+                                        className="mb-2 p-2"
+                                        style={{ minWidth: "100px" }}
+                                      >
                                         <div className="d-flex w-full">
                                           <img
                                             className="icon mr-3"
@@ -397,6 +401,7 @@ export default function TradesTable({ selectedCurrency }: any) {
                               activeLinkClassName={`active-paginate-cls`}
                               previousLinkClassName={`text-primary-color text-25 mr-2`}
                               nextLinkClassName={`text-primary-color text-25 ml-2`}
+                              forcePage={tradeDatas.current_page - 1}
                             />
                           </div>
                         </div>
