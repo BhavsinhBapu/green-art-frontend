@@ -31,12 +31,14 @@ const Persona = dynamic(
 );
 const PersonalVerification: NextPage = () => {
   const { t } = useTranslation("common");
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [personaVerified, setPersonaVerified] = useState(false);
   const [type, setType] = useState<string>("");
   const [verificationType, setVerificationType] = useState<number>();
   const [kycDetails, setKycDetails] = useState<any>();
   const [kycActiveList, setKycActiveList] = useState<any>([]);
+  const [isUploadSuccess, setIsUploadSuccess] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -51,6 +53,20 @@ const PersonalVerification: NextPage = () => {
     );
   }, []);
 
+  useEffect(() => {
+    if (!isUploadSuccess) return;
+    console.log('Upload')
+    dispatch(
+      getKycDetailsAction(
+        setKycDetails,
+        setKycActiveList,
+        setLoading,
+        setVerificationType,
+        setPersonaVerified
+      )
+    );
+  }, [isUploadSuccess]);
+
   return (
     <>
       <div className="page-wrap">
@@ -64,8 +80,14 @@ const PersonalVerification: NextPage = () => {
                 </h2>
               </div>
             </div>
-            {verificationType === KYC_TYPE_MANUAL && (
-              <NidModal type={type} kycDetails={kycDetails} />
+            {verificationType === KYC_TYPE_MANUAL && isModalOpen && (
+              <NidModal
+                type={type}
+                kycDetails={kycDetails}
+                setIsModalOpen={setIsModalOpen}
+                isModalOpen={isModalOpen}
+                setIsUploadSuccess={setIsUploadSuccess}
+              />
             )}
 
             <div className="profile-area">
@@ -109,11 +131,12 @@ const PersonalVerification: NextPage = () => {
                                         KYC_VOTERS_CARD_VERIFICATION &&
                                         setType("voter");
                                     }
+                                    setIsModalOpen(true);
                                   }}
                                 >
                                   <div
                                     className="id-card"
-                                    data-toggle="modal"
+                                    // data-toggle="modal"
                                     data-target=".cp-user-idverifymodal"
                                   >
                                     <ImageComponent

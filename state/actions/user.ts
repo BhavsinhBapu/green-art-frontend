@@ -42,11 +42,7 @@ import {
 } from "helpers/core-constants";
 
 export const VerifyEmailAction =
-  (
-    credentials: any,
-    setProcessing: any
-  ) =>
-  async (dispatch: any) => {
+  (credentials: any, setProcessing: any) => async (dispatch: any) => {
     setProcessing(true);
     const response: any = await verifyEmailApi(credentials);
     let responseMessage = response.message;
@@ -446,9 +442,12 @@ export const ChangePasswordAction =
 
 export const UploadNidImageAction = async (
   image: any,
-  setProcessing: Dispatch<SetStateAction<boolean>>
+  setProcessing: Dispatch<SetStateAction<boolean>>,
+  setIsModalOpen: any,
+  setIsUploadSuccess: any
 ) => {
   setProcessing(true);
+  setIsUploadSuccess(false);
   const response = await UploadNid(image);
   if (response.success === true) {
     toast.success(response.message, {
@@ -461,6 +460,7 @@ export const UploadNidImageAction = async (
       progress: undefined,
       className: "dark-toast",
     });
+    setIsUploadSuccess(true);
   } else {
     toast.error(response.message, {
       position: "top-right",
@@ -473,13 +473,17 @@ export const UploadNidImageAction = async (
     });
   }
   setProcessing(false);
+  setIsModalOpen(false);
 };
 
 export const UploadPassportImageAction = async (
   image: any,
-  setProcessing: Dispatch<SetStateAction<boolean>>
+  setProcessing: Dispatch<SetStateAction<boolean>>,
+  setIsModalOpen: any,
+  setIsUploadSuccess: any
 ) => {
   setProcessing(true);
+  setIsUploadSuccess(false);
   const response = await UploadPassport(image);
 
   if (response.success === true) {
@@ -493,6 +497,7 @@ export const UploadPassportImageAction = async (
       progress: undefined,
       className: "dark-toast",
     });
+    setIsUploadSuccess(true);
   } else {
     toast.error(response.message, {
       position: "top-right",
@@ -505,13 +510,17 @@ export const UploadPassportImageAction = async (
     });
   }
   setProcessing(false);
+  setIsModalOpen(false);
 };
 
 export const UploadVoterImageAction = async (
   image: any,
-  setProcessing: Dispatch<SetStateAction<boolean>>
+  setProcessing: Dispatch<SetStateAction<boolean>>,
+  setIsModalOpen: any,
+  setIsUploadSuccess: any
 ) => {
   setProcessing(true);
+  setIsUploadSuccess(false);
   const response = await UploadVoter(image);
 
   if (response.success === true) {
@@ -525,6 +534,7 @@ export const UploadVoterImageAction = async (
       progress: undefined,
       className: "dark-toast",
     });
+    setIsUploadSuccess(true);
   } else {
     toast.error(response.message, {
       position: "top-right",
@@ -537,12 +547,16 @@ export const UploadVoterImageAction = async (
     });
   }
   setProcessing(false);
+  setIsModalOpen(false);
 };
 export const UploadDrivingLicenceImageAction = async (
   image: any,
-  setProcessing: Dispatch<SetStateAction<boolean>>
+  setProcessing: Dispatch<SetStateAction<boolean>>,
+  setIsModalOpen: any,
+  setIsUploadSuccess: any
 ) => {
   setProcessing(true);
+  setIsUploadSuccess(false);
   const response = await UploadDrivingLicence(image);
   if (response.success === true) {
     toast.success(response.message, {
@@ -555,6 +569,7 @@ export const UploadDrivingLicenceImageAction = async (
       progress: undefined,
       className: "dark-toast",
     });
+    setIsUploadSuccess(true);
   } else {
     toast.error(response.message, {
       position: "top-right",
@@ -567,6 +582,7 @@ export const UploadDrivingLicenceImageAction = async (
     });
   }
   setProcessing(false);
+  setIsModalOpen(false);
 };
 export const getKycDetailsAction =
   (
