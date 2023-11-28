@@ -19,9 +19,9 @@ const Cover = ({ landing, loggedin, landing_banner_image }: any) => {
       {parseInt(landing?.landing_first_section_status) === 1 && (
         <section
           className="hero-banner-area"
-          style={{
-            background: `linear-gradient(var(--primary-color) 0%, rgba(255, 255, 255, 0) 100%)`,
-          }}
+          // style={{
+          //   background: `linear-gradient(var(--primary-color) 0%, rgba(255, 255, 255, 0) 100%)`,
+          // }}
         >
           <div className="container">
             <div className="row">
@@ -49,13 +49,13 @@ const Cover = ({ landing, loggedin, landing_banner_image }: any) => {
                   </a>
                 )}
               </div>
-              <div className="col-md-6 ">
+              <div className="col-md-6">
                 <ImageComponent
                   src={
                     landing_banner_image ||
                     "/undraw_crypto_flowers_re_dyqo.svg.svg"
                   }
-                  height={300}
+                  height={440}
                 />
               </div>
             </div>
