@@ -55,7 +55,6 @@ const PersonalVerification: NextPage = () => {
 
   useEffect(() => {
     if (!isUploadSuccess) return;
-    console.log('Upload')
     dispatch(
       getKycDetailsAction(
         setKycDetails,
