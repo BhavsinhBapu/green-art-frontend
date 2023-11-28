@@ -53,7 +53,7 @@ const Exchange = () => {
                   className="col-xl-12 col-12"
                   style={{ border: "1px solid rgb(126 126 126 / 20%)" }}
                 >
-                  <div className="cxchange-summary-wrap w-full">
+                  <div className="cxchange-summary-wrap future-exchange-top w-full">
                     <div className="row w-full mt-3">
                       <div className="col-md-2">
                         {currentPair && (

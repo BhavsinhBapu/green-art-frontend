@@ -7219,6 +7219,9 @@ table.dataTable tbody tr.dataTable-white td {
   .cxchange-summary-wrap {
     align-items: flex-start;
   }
+  .future-exchange-top {
+    margin-top: 20px;
+  }
   .cp-user-body-bg table.dataTable thead tr th {
     font-size: 14px;
   }
