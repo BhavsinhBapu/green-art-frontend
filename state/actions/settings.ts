@@ -14,10 +14,10 @@ import { setLoading } from "state/reducer/user";
 export const UserSettingsAction =
   (setSettings: React.Dispatch<SetStateAction<object>>) =>
   async (dispatch: any) => {
-    dispatch(setLoading(true));
+    // dispatch(setLoading(true));
     const settings = await UserSettingsApi();
     setSettings(settings.data);
-    dispatch(setLoading(false));
+    // dispatch(setLoading(false));
   };
 
 export const UpdateCurrencyAction = (code: any) => async (dispatch: any) => {

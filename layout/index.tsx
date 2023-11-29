@@ -150,9 +150,10 @@ const Index = ({ children }: any) => {
       dispatch(GetUserInfoByTokenAction());
     }
   }, [isLoggedIn, settings.cookie_status]);
+  if (isLoading) return <Loading />;
+
   return navbarVisible ? (
     <div>
-      {isLoading && <Loading />}
       <Head>
         <title>{metaData?.app_title || process.env.NEXT_PUBLIC_APP_NAME}</title>
         <link
