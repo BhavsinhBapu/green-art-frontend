@@ -31,10 +31,11 @@ import {
   setOrderData,
 } from "state/reducer/exchange";
 import { toast } from "react-toastify";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 import Cookies from "js-cookie";
 import { setLoading } from "state/reducer/user";
 import { updateChart } from "components/exchange/api/stream";
+import { useDispatch } from "react-redux";
 
 export const getDashboardData = (pair: string) => async (dispatch: any) => {
   const response = await appDashboardData(pair);
@@ -716,4 +717,19 @@ export const cancelOrderAppAction = async (type: string, id: string) => {
       className: "dark-toast",
     });
   }
+};
+export const useRandomPercentages = (data: any, action: any) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      const newData = data.map((item: any) => ({
+        ...item,
+        percentage: Math.random() * 100,
+      }));
+      dispatch(action(newData));
+    }, 1000);
+
+    return () => clearTimeout(timeoutId);
+  }, [data, action, dispatch]);
 };
