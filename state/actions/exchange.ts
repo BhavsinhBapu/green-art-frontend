@@ -728,13 +728,17 @@ export const useRandomPercentages = (data: any, action: any) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const timeoutId = setTimeout(() => {
+    const getRandomDelay = () => Math.random() * 3000; // Random delay up to 2 seconds
+
+    const updatePercentages = () => {
       const newData = data.map((item: any) => ({
         ...item,
         percentage: Math.random() * 100,
       }));
       dispatch(action(newData));
-    }, 1000);
+    };
+
+    const timeoutId = setTimeout(updatePercentages, getRandomDelay());
 
     return () => clearTimeout(timeoutId);
   }, [data, action, dispatch]);
