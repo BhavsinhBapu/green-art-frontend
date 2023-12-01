@@ -13,17 +13,13 @@ import LayoutThree from "./layouts/layout-three";
 import { setOpenBookBuy, setOpenBooksell } from "state/reducer/exchange";
 import { useRandomPercentages } from "state/actions/exchange";
 
-
-
 const DashboardBody = ({ ThemeColor, layout }: any) => {
   const { settings } = useSelector((state: RootState) => state.common);
-  const { OpenBookBuy, OpenBooksell, marketTrades, currentPair } = useSelector(
-    (state: RootState) => state.exchange
-  );
+  const { OpenBookBuy, OpenBooksell, marketTrades, currentPair, dashboard } =
+    useSelector((state: RootState) => state.exchange);
 
-  // Custom hooks for OpenBookBuy and OpenBooksell
-  useRandomPercentages(OpenBookBuy, setOpenBookBuy);
-  useRandomPercentages(OpenBooksell, setOpenBooksell);
+  useRandomPercentages(OpenBookBuy, setOpenBookBuy, dashboard, settings);
+  useRandomPercentages(OpenBooksell, setOpenBooksell, dashboard, settings);
 
   return (
     <>

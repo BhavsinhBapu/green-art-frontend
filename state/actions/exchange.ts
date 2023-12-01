@@ -724,22 +724,30 @@ export const cancelOrderAppAction = async (type: string, id: string) => {
     });
   }
 };
-export const useRandomPercentages = (data: any, action: any) => {
+export const useRandomPercentages = (
+  data: any,
+  action: any,
+  dashboard: any,
+  settings: any
+) => {
   const dispatch = useDispatch();
-
+  const status = dashboard?.order_data?.bot_trading;
   useEffect(() => {
-    const getRandomDelay = () => Math.random() * 4000; // Random delay up to 2 seconds
+    if (status === 1 && parseInt(settings.enable_bot_trade) === 1) {
+      const getRandomDelay = () => Math.random() * 4000;
+      const updatePercentages = () => {
+        const newData = data.map((item: any) => ({
+          ...item,
+          percentage: Math.random() * 100,
+        }));
+        dispatch(action(newData));
+      };
 
-    const updatePercentages = () => {
-      const newData = data.map((item: any) => ({
-        ...item,
-        percentage: Math.random() * 100,
-      }));
-      dispatch(action(newData));
-    };
+      const timeoutId = setTimeout(updatePercentages, getRandomDelay());
 
-    const timeoutId = setTimeout(updatePercentages, getRandomDelay());
+      return () => clearTimeout(timeoutId);
+    }
 
-    return () => clearTimeout(timeoutId);
-  }, [data, action, dispatch]);
+    // If status is not 1, do nothing
+  }, [data, action, dispatch, status]);
 };
