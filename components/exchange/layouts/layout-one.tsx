@@ -277,7 +277,7 @@ const LayoutOne = ({ ThemeColor }: any) => {
                         dashboard?.last_price_data
                           ? dashboard?.last_price_data[0]?.price
                           : 0
-                      )}
+                      ).toFixed(2)}
                       {parseFloat(
                         dashboard?.last_price_data &&
                           dashboard?.last_price_data[0]?.price
