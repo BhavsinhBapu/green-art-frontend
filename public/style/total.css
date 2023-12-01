@@ -4815,6 +4815,7 @@ select:-webkit-autofill:focus {
   height: 100%;
   top: 0;
   right: 0;
+  transition-duration:250ms;
 }
 
 .buy-order table.dataTable tbody tr td {
@@ -4850,6 +4851,7 @@ select:-webkit-autofill:focus {
   height: 100%;
   top: 0;
   right: 0;
+  transition-duration:250ms;
 }
 
 .dataTables_wrapper.no-footer .dataTables_scrollBody {

@@ -13,7 +13,7 @@ export const ENABLED_FEATURES = [
 
 export const DISABLED_FEATURES = [
   // "header_symbol_search",
-  // "header_widget",
+  "header_widget",
   "symbol_info",
   "header_compare",
   // "header_chart_type",
@@ -36,7 +36,6 @@ export const DISABLED_FEATURES = [
   // "header_interval_dialog_button",
 ];
 
-
 export const INTERVAL = {
   MINUTES_5: "5",
   MINUTES_15: "15",
@@ -44,11 +43,6 @@ export const INTERVAL = {
   HOURS_2: "120",
   HOURS_4: "240",
   DAY: "D",
-  HOUR: "60",
-  HOURS_3: "180",
-  HOURS_6: "360",
-  HOURS_12: "720",
-  WEEK: "W",
 };
 export const TIME_FRAMES = [
   { text: "5m", resolution: INTERVAL.MINUTES_5 },

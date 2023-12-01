@@ -187,11 +187,16 @@ export async function listenMessages(dispatch: any, user: any) {
       "trade_coin_id"
     )}`
   ).listen(".order_place", (e: any) => {
-    if (e.orders.order_type === "buy")
+    if (e.orders.order_type === "buy") {
+      console.log("buy", e.orders);
       dispatch(setOpenBookBuy(e.orders.orders));
-    if (e.orders.order_type === "sell")
+    }
+    if (e.orders.order_type === "sell") {
+      console.log(" sell", e.orders);
       dispatch(setOpenBooksell(e.orders.orders));
+    }
     if (e.orders.order_type === "buy_sell") {
+      console.log("Calling buy sell", e.orders);
       dispatch(setOpenBookBuy(e.orders.buy_orders));
       dispatch(setOpenBooksell(e.orders.sell_orders));
     }
@@ -203,7 +208,7 @@ export async function listenMessages(dispatch: any, user: any) {
     )}`
   ).listen(".process", (e: any) => {
     dispatch(setAllmarketTrades(e.trades.transactions));
-
+    console.log(e, "eeeeeeeeeee");
     updateChart({
       price: parseFloat(e?.last_trade?.price),
       ts: e?.last_trade?.time,
@@ -240,6 +245,7 @@ export async function listenMessages(dispatch: any, user: any) {
 }
 export const initialDashboardCallAction =
   //@ts-ignore
+
 
     (pair: string, dashboard: any, setisLoading?: any, router: any) =>
     async (dispatch: any) => {
