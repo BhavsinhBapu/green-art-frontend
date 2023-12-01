@@ -17,7 +17,7 @@ const StartTradingNow = ({ landing, loggedin }: any) => {
         <section
           className="start-trading-area"
           style={{
-            background: `linear-gradient(var(--primary-color) 0%, rgba(255, 255, 255, 0) 100%)`,
+            // background: `linear-gradient(var(--primary-color) 0%, rgba(255, 255, 255, 0) 100%)`,
             padding: "60px 0",
           }}
         >

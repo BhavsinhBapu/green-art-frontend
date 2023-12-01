@@ -4815,7 +4815,7 @@ select:-webkit-autofill:focus {
   height: 100%;
   top: 0;
   right: 0;
-  transition-duration:200ms;
+  transition-duration: 200ms;
 }
 
 .buy-order table.dataTable tbody tr td {
@@ -4851,7 +4851,7 @@ select:-webkit-autofill:focus {
   height: 100%;
   top: 0;
   right: 0;
-  transition-duration:200ms;
+  transition-duration: 200ms;
 }
 
 .dataTables_wrapper.no-footer .dataTables_scrollBody {
@@ -15625,6 +15625,10 @@ input:checked + .gift-card-buy-slider:before {
 
 .community-card-title-section {
   padding: 16px 32px 32px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .community-card-img {
@@ -15634,7 +15638,7 @@ input:checked + .gift-card-buy-slider:before {
 }
 
 .community-card-title {
-  font-size: 22px;
+  font-size: 19px;
   font-weight: 600;
   line-height: 30px;
   color: var(--title-color);
