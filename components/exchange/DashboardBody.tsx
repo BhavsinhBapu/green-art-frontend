@@ -22,8 +22,8 @@ const DashboardBody = ({ ThemeColor, layout }: any) => {
   );
 
   // Custom hooks for OpenBookBuy and OpenBooksell
-  // useRandomPercentages(OpenBookBuy, setOpenBookBuy);
-  // useRandomPercentages(OpenBooksell, setOpenBooksell);
+  useRandomPercentages(OpenBookBuy, setOpenBookBuy);
+  useRandomPercentages(OpenBooksell, setOpenBooksell);
 
   return (
     <>
