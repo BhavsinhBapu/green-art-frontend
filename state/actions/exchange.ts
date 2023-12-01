@@ -728,7 +728,7 @@ export const useRandomPercentages = (data: any, action: any) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const getRandomDelay = () => Math.random() * 3000; // Random delay up to 2 seconds
+    const getRandomDelay = () => Math.random() * 4000; // Random delay up to 2 seconds
 
     const updatePercentages = () => {
       const newData = data.map((item: any) => ({
