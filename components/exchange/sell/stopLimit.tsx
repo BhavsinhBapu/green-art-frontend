@@ -114,6 +114,13 @@ const StopLimit = ({
                       buySellStopLimitCoinData?.stop
                     }
                     onChange={(e) => {
+                      if (parseFloat(e.target.value) < 0) {
+                        setBuySellStopLimitCoinData({
+                          ...buySellStopLimitCoinData,
+                          stop: 0,
+                        });
+                        return;
+                      }
                       setBuySellStopLimitCoinData({
                         ...buySellStopLimitCoinData,
                         stop: e.target.value,
@@ -141,6 +148,13 @@ const StopLimit = ({
                       buySellStopLimitCoinData?.limit
                     }
                     onChange={(e) => {
+                      if (parseFloat(e.target.value) < 0) {
+                        setBuySellStopLimitCoinData({
+                          ...buySellStopLimitCoinData,
+                          limit: 0,
+                        });
+                        return;
+                      }
                       setBuySellStopLimitCoinData({
                         ...buySellStopLimitCoinData,
                         limit: e.target.value,
@@ -169,6 +183,14 @@ const StopLimit = ({
                       buySellStopLimitCoinData?.amount
                     }
                     onChange={async (e) => {
+                      if (parseFloat(e.target.value) < 0) {
+                        setBuySellStopLimitCoinData({
+                          ...buySellStopLimitCoinData,
+                          amount: 0,
+                          total: 0,
+                        });
+                        return;
+                      }
                       setBuySellStopLimitCoinData({
                         ...buySellStopLimitCoinData,
                         amount: e.target.value,
