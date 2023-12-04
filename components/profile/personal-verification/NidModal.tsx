@@ -8,7 +8,13 @@ import {
   UploadVoterImageAction,
 } from "state/actions/user";
 
-const NidModal = ({ type, kycDetails, setIsModalOpen, isModalOpen, setIsUploadSuccess }: any) => {
+const NidModal = ({
+  type,
+  kycDetails,
+  setIsModalOpen,
+  isModalOpen,
+  setIsUploadSuccess,
+}: any) => {
   const [previousType, setPreviousType] = useState<string>("");
   const [frontSide, setFrontSide] = useState(null);
   const [showFront, setShowFront] = useState("");
@@ -59,13 +65,33 @@ const NidModal = ({ type, kycDetails, setIsModalOpen, isModalOpen, setIsUploadSu
     formData.append("file_three", backSide);
     formData.append("file_selfie", selfeSide);
     if (type === "nid") {
-      UploadNidImageAction(formData, setProcessing, setIsModalOpen, setIsUploadSuccess);
+      UploadNidImageAction(
+        formData,
+        setProcessing,
+        setIsModalOpen,
+        setIsUploadSuccess
+      );
     } else if (type === "driving") {
-      UploadDrivingLicenceImageAction(formData, setProcessing, setIsModalOpen, setIsUploadSuccess);
+      UploadDrivingLicenceImageAction(
+        formData,
+        setProcessing,
+        setIsModalOpen,
+        setIsUploadSuccess
+      );
     } else if (type === "passport") {
-      UploadPassportImageAction(formData, setProcessing, setIsModalOpen, setIsUploadSuccess);
+      UploadPassportImageAction(
+        formData,
+        setProcessing,
+        setIsModalOpen,
+        setIsUploadSuccess
+      );
     } else if (type === "voter") {
-      UploadVoterImageAction(formData, setProcessing, setIsModalOpen, setIsUploadSuccess);
+      UploadVoterImageAction(
+        formData,
+        setProcessing,
+        setIsModalOpen,
+        setIsUploadSuccess
+      );
     }
   };
   const loadCard = () => {
@@ -93,7 +119,7 @@ const NidModal = ({ type, kycDetails, setIsModalOpen, isModalOpen, setIsUploadSu
         role="dialog"
         aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true"
-        style={{ display: isModalOpen ? "block" : "none" }}
+        style={{ display: isModalOpen ? "block" : "none", paddingTop: "0px" }}
       >
         <div
           className="modal-dialog modal-dialog-centered modal-lg"
@@ -112,159 +138,161 @@ const NidModal = ({ type, kycDetails, setIsModalOpen, isModalOpen, setIsUploadSu
               </button>
               <form id="nidUpload" className="Upload">
                 <div className="container">
-                  <div className="row">
-                    <div className="col-12">
-                      <div className="card-list">
-                        <div
-                          className="alert alert-danger d-none error_msg"
-                          id="error_msg"
-                          role="alert"
-                        ></div>
-                        <div
-                          className="alert alert-success d-none succ_msg"
-                          role="alert"
-                        ></div>
+                  <div style={{ maxHeight: "60vh", overflowY: "auto" }}>
+                    <div className="row">
+                      <div className="col-12">
+                        <div className="card-list">
+                          <div
+                            className="alert alert-danger d-none error_msg"
+                            id="error_msg"
+                            role="alert"
+                          ></div>
+                          <div
+                            className="alert alert-success d-none succ_msg"
+                            role="alert"
+                          ></div>
+                        </div>
                       </div>
-                    </div>
-                    <div className="col-lg-6 mb-lg-0 mb-4">
-                      <div className="idcard">
-                        <h3 className="title" onClick={() => {}}>
-                          {t("Front Side")}
-                        </h3>
-                        <div className="container cstm-img-picker">
-                          <label className="container cstm-img-picker">
-                            {frontSide && (
-                              //@ts-ignore
-                              <img
-                                src={showFront}
-                                className="img-fluid"
-                                alt=""
-                              />
-                            )}
-
-                            {existingKyc?.front_image ? (
-                              <img
-                                src={existingKyc?.front_image}
-                                className="img-fluid"
-                                alt=""
-                              />
-                            ) : (
-                              <>
-                                <input
-                                  type="file"
-                                  name="front_side"
-                                  onChange={(e: any) => {
-                                    storeSelectedFile(e, setFrontSide, 1);
-                                  }}
+                      <div className="col-lg-6 mb-lg-0 mb-4">
+                        <div className="idcard">
+                          <h3 className="title" onClick={() => {}}>
+                            {t("Front Side")}
+                          </h3>
+                          <div className="container cstm-img-picker">
+                            <label className="container cstm-img-picker">
+                              {frontSide && (
+                                //@ts-ignore
+                                <img
+                                  src={showFront}
+                                  className="img-fluid"
+                                  alt=""
                                 />
-                                <span className="upload-img-btn">
-                                  {t("Upload Image")}
-                                </span>
-                              </>
-                            )}
-                          </label>
+                              )}
+
+                              {existingKyc?.front_image ? (
+                                <img
+                                  src={existingKyc?.front_image}
+                                  className="img-fluid"
+                                  alt=""
+                                />
+                              ) : (
+                                <>
+                                  <input
+                                    type="file"
+                                    name="front_side"
+                                    onChange={(e: any) => {
+                                      storeSelectedFile(e, setFrontSide, 1);
+                                    }}
+                                  />
+                                  <span className="upload-img-btn">
+                                    {t("Upload Image")}
+                                  </span>
+                                </>
+                              )}
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-lg-6 mb-lg-0 mb-4">
+                        <div className="idcard">
+                          <h3 className="title">{t("Back Side")}</h3>
+                          <div className="container cstm-img-picker">
+                            <label className="container cstm-img-picker">
+                              {backSide && (
+                                //@ts-ignore
+                                <img
+                                  src={showBack}
+                                  className="img-fluid"
+                                  alt=""
+                                />
+                              )}
+
+                              {existingKyc?.back_image ? (
+                                <img
+                                  src={existingKyc?.back_image}
+                                  className="img-fluid"
+                                  alt=""
+                                />
+                              ) : (
+                                <>
+                                  <input
+                                    type="file"
+                                    name="front_side"
+                                    onChange={(e) => {
+                                      storeSelectedFile(e, setBackSide, 2);
+                                    }}
+                                  />
+                                  <span className="upload-img-btn">
+                                    {t("Upload Image")}
+                                  </span>
+                                </>
+                              )}
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="col-lg-6 mb-lg-0 mb-4 mt-5">
+                        <div className="idcard">
+                          <h3 className="title">{t("Selfie Image")}</h3>
+                          <div className="container cstm-img-picker">
+                            <label className="container cstm-img-picker">
+                              {showSelfe && (
+                                //@ts-ignore
+                                <img
+                                  src={showSelfe}
+                                  className="img-fluid"
+                                  alt=""
+                                />
+                              )}
+                              {existingKyc?.selfie ? (
+                                <img
+                                  src={existingKyc?.selfie}
+                                  className="img-fluid"
+                                  alt=""
+                                />
+                              ) : (
+                                <>
+                                  <input
+                                    type="file"
+                                    name="file_selfie"
+                                    onChange={(e) => {
+                                      storeSelectedFile(e, setSelfeSide, 3);
+                                    }}
+                                  />
+                                  <span className="upload-img-btn">
+                                    {t("Upload Image")}
+                                  </span>
+                                </>
+                              )}
+                            </label>
+                          </div>
                         </div>
                       </div>
                     </div>
-                    <div className="col-lg-6 mb-lg-0 mb-4">
-                      <div className="idcard">
-                        <h3 className="title">{t("Back Side")}</h3>
-                        <div className="container cstm-img-picker">
-                          <label className="container cstm-img-picker">
-                            {backSide && (
-                              //@ts-ignore
-                              <img
-                                src={showBack}
-                                className="img-fluid"
-                                alt=""
-                              />
-                            )}
-
-                            {existingKyc?.back_image ? (
-                              <img
-                                src={existingKyc?.back_image}
-                                className="img-fluid"
-                                alt=""
-                              />
-                            ) : (
-                              <>
-                                <input
-                                  type="file"
-                                  name="front_side"
-                                  onChange={(e) => {
-                                    storeSelectedFile(e, setBackSide, 2);
-                                  }}
-                                />
-                                <span className="upload-img-btn">
-                                  {t("Upload Image")}
-                                </span>
-                              </>
-                            )}
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="col-lg-6 mb-lg-0 mb-4 mt-5">
-                      <div className="idcard">
-                        <h3 className="title">{t("Selfie Image")}</h3>
-                        <div className="container cstm-img-picker">
-                          <label className="container cstm-img-picker">
-                            {showSelfe && (
-                              //@ts-ignore
-                              <img
-                                src={showSelfe}
-                                className="img-fluid"
-                                alt=""
-                              />
-                            )}
-                            {existingKyc?.selfie ? (
-                              <img
-                                src={existingKyc?.selfie}
-                                className="img-fluid"
-                                alt=""
-                              />
-                            ) : (
-                              <>
-                                <input
-                                  type="file"
-                                  name="file_selfie"
-                                  onChange={(e) => {
-                                    storeSelectedFile(e, setSelfeSide, 3);
-                                  }}
-                                />
-                                <span className="upload-img-btn">
-                                  {t("Upload Image")}
-                                </span>
-                              </>
-                            )}
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                    {!existingKyc?.file_selfie && !existingKyc?.file_selfie && (
-                      <button
-                        type="submit"
-                        className="btn nimmu-user-sibmit-button mt-5"
-                        onClick={(e) => {
-                          uploadImage(e);
-                        }}
-                      >
-                        {processing ? (
-                          <>
-                            <span
-                              className="spinner-border spinner-border-md"
-                              role="status"
-                              aria-hidden="true"
-                            ></span>
-                            <span>{t("Please wait")}</span>
-                          </>
-                        ) : (
-                          t("Upload")
-                        )}
-                      </button>
-                    )}
                   </div>
+                  {!existingKyc?.file_selfie && !existingKyc?.file_selfie && (
+                    <button
+                      type="submit"
+                      className="btn nimmu-user-sibmit-button mt-5"
+                      onClick={(e) => {
+                        uploadImage(e);
+                      }}
+                    >
+                      {processing ? (
+                        <>
+                          <span
+                            className="spinner-border spinner-border-md"
+                            role="status"
+                            aria-hidden="true"
+                          ></span>
+                          <span>{t("Please wait")}</span>
+                        </>
+                      ) : (
+                        t("Upload")
+                      )}
+                    </button>
+                  )}
                 </div>
               </form>
             </div>
