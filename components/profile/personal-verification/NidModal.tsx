@@ -138,7 +138,7 @@ const NidModal = ({
               </button>
               <form id="nidUpload" className="Upload">
                 <div className="container">
-                  <div style={{ maxHeight: "60vh", overflowY: "auto" }}>
+                  <div style={{ maxHeight: "60vh", overflowY: "scroll" }}>
                     <div className="row">
                       <div className="col-12">
                         <div className="card-list">
