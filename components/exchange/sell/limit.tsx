@@ -115,6 +115,14 @@ const Limit = ({
                     className="form-control number_only"
                     value={buySellLimitCoinData.price}
                     onChange={async (e) => {
+                      if (parseFloat(e.target.value) < 0) {
+                        setBuySellLimitCoinData({
+                          ...buySellLimitCoinData,
+                          price: 0,
+                          total: 0,
+                        });
+                        return;
+                      }
                       await setBuySellLimitCoinData({
                         ...buySellLimitCoinData,
                         price: e.target.value,
@@ -145,6 +153,14 @@ const Limit = ({
                       buySellLimitCoinData.amount
                     }
                     onChange={(e) => {
+                      if (parseFloat(e.target.value) < 0) {
+                        setBuySellLimitCoinData({
+                          ...buySellLimitCoinData,
+                          amount: 0,
+                          total: 0,
+                        });
+                        return;
+                      }
                       setBuySellLimitCoinData({
                         ...buySellLimitCoinData,
                         amount: e.target.value,
