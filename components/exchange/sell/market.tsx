@@ -126,6 +126,7 @@ const Market = ({
                 <div className="form-group mt-3 boxShadow">
                   <label className="cstmHead">{t("Amount")}</label>
                   <input
+                    min={0}
                     name="amount"
                     type="number"
                     placeholder="0"
@@ -135,6 +136,14 @@ const Market = ({
                       buySellMarketCoinData?.amount
                     }
                     onChange={async (e) => {
+                      if (parseFloat(e.target.value) < 0) {
+                        setBuySellMarketCoinData({
+                          ...buySellMarketCoinData,
+                          amount: 0,
+                          total: 0,
+                        });
+                        return;
+                      }
                       setBuySellMarketCoinData({
                         ...buySellMarketCoinData,
                         amount: e.target.value,
@@ -150,6 +159,30 @@ const Market = ({
                   >
                     <span className="trade_coin_type">
                       {dashboard?.order_data?.total?.trade_wallet?.coin_type}
+                    </span>
+                  </span>
+                </div>
+                <div className="form-group mt-3 boxShadow">
+                  <label className="cstmHead">{t("Total Amount")}</label>
+
+                  <input
+                    disabled
+                    name="total_amount"
+                    type="text"
+                    placeholder=""
+                    className="form-control number_only input_3"
+                    value={
+                      Number(parseFloat(buySellMarketCoinData.total).toFixed(8))
+                        ? parseFloat(buySellMarketCoinData.total).toFixed(8)
+                        : 0
+                    }
+                  />
+                  <span
+                    className="text-warning blns"
+                    style={{ fontWeight: 700 }}
+                  >
+                    <span className="trade_coin_type">
+                      {dashboard?.order_data?.total?.base_wallet?.coin_type}
                     </span>
                   </span>
                 </div>
