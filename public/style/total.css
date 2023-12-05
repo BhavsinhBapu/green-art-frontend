@@ -4625,7 +4625,7 @@ select:-webkit-autofill:focus {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f2f2f2;
+  /* background: #f2f2f2; */
   border-radius: 100%;
   color: var(--primary-color);
   font-size: 18px;
