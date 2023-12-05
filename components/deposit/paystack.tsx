@@ -13,7 +13,13 @@ const Paystack = ({ walletlist, method_id }: any) => {
   const [credential, setCredential] = useState<any>({
     code: "",
   });
-  const [calculatedValue, setCalculatedValue] = useState<any>(0);
+  const [calculatedValue, setCalculatedValue] = useState<any>({
+    calculated_amount: 0,
+    rate: 0,
+    fees: 0,
+    net_amount: 0,
+    coin_type: "",
+  });
   const [walletID, setwalletID] = useState<any>();
   const [loading, setLoading] = useState(false);
   const { settings } = useSelector((state: RootState) => state.common);
@@ -79,7 +85,7 @@ const Paystack = ({ walletlist, method_id }: any) => {
       return;
     }
 
-    setCalculatedValue(response.data.converted_amount);
+    setCalculatedValue(response.data);
   };
 
   return (
@@ -154,7 +160,7 @@ const Paystack = ({ walletlist, method_id }: any) => {
                             className="form-control border-0"
                             id="amount-one"
                             disabled
-                            value={calculatedValue}
+                            value={calculatedValue.calculated_amount}
                             placeholder={t("Please enter 10 -2400000")}
                             onChange={(e) => {
                               setCredential({
@@ -183,6 +189,17 @@ const Paystack = ({ walletlist, method_id }: any) => {
                             ))}
                           </select>
                         </div>
+                      </div>
+                      <div>
+                        <span>
+                          {t("Fees:")}
+                          {calculatedValue.fees}
+                        </span>
+                        <span className="float-right">
+                          {t("Net Amount:")}
+                          {calculatedValue.net_amount}
+                          {calculatedValue?.coin_type}
+                        </span>
                       </div>
                     </div>
                   </div>

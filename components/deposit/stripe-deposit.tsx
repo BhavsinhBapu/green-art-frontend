@@ -22,6 +22,9 @@ const StripeDeposit = ({ currencyList, walletlist, method_id }: any) => {
   const [calculatedValue, setCalculatedValue] = useState<any>({
     calculated_amount: 0,
     rate: 0,
+    fees: 0,
+    net_amount: 0,
+    coin_type: "",
   });
   //@ts-ignore
   const stripe = loadStripe(process.env.NEXT_PUBLIC_PUBLISH_KEY);
@@ -104,7 +107,7 @@ const StripeDeposit = ({ currencyList, walletlist, method_id }: any) => {
                         <div className="form-amount">
                           <input
                             type="number"
-                            className="form-control"
+                            className="form-control border-0"
                             id="amount-one"
                             placeholder={t("Please enter 1-2400000")}
                             onChange={(e) => {
@@ -138,7 +141,7 @@ const StripeDeposit = ({ currencyList, walletlist, method_id }: any) => {
                         <div className="form-amount">
                           <input
                             type="number"
-                            className="form-control"
+                            className="form-control border-0"
                             id="amount-one"
                             disabled
                             value={calculatedValue.calculated_amount}
@@ -153,7 +156,7 @@ const StripeDeposit = ({ currencyList, walletlist, method_id }: any) => {
                         </div>
                         <div className="cp-select-area">
                           <select
-                            className="form-control "
+                            className="form-control border-0"
                             id="currency-one"
                             onChange={(e) => {
                               setCredential({
@@ -172,6 +175,17 @@ const StripeDeposit = ({ currencyList, walletlist, method_id }: any) => {
                             ))}
                           </select>
                         </div>
+                      </div>
+                      <div>
+                        <span>
+                          {t("Fees:")}
+                          {calculatedValue.fees}
+                        </span>
+                        <span className="float-right">
+                          {t("Net Amount:")}
+                          {calculatedValue.net_amount}
+                          {calculatedValue?.coin_type}
+                        </span>
                       </div>
                     </div>
                   </div>

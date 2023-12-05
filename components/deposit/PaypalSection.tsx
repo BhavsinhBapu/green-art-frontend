@@ -12,6 +12,9 @@ const PaypalSection = ({ walletlist, method_id }: any) => {
   const [calculatedValue, setCalculatedValue] = useState<any>({
     calculated_amount: 0,
     rate: 0,
+    fees: 0,
+    net_amount: 0,
+    coin_type: "",
   });
   //@ts-ignore
   const router = useRouter();
@@ -121,6 +124,17 @@ const PaypalSection = ({ walletlist, method_id }: any) => {
                           ))}
                         </select>
                       </div>
+                    </div>
+                    <div>
+                      <span>
+                        {t("Fees:")}
+                        {calculatedValue.fees}
+                      </span>
+                      <span className="float-right">
+                        {t("Net Amount:")}
+                        {calculatedValue.net_amount}
+                        {calculatedValue?.coin_type}
+                      </span>
                     </div>
                   </div>
                 </div>
