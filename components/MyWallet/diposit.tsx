@@ -37,6 +37,7 @@ export const DipositComponent = ({
     }
     return "";
   };
+
   return (
     <>
       <div className="my-wallet-new px-0">
@@ -61,6 +62,14 @@ export const DipositComponent = ({
               : "Loading.."}
           </p>
         </div>
+        {responseData?.memo && (
+          <>
+            <h5 className="mt-3">{t("Memo")}</h5>
+            <div className="coin-list-item mt-3">
+              <p className="coin-price">{responseData?.memo}</p>
+            </div>
+          </>
+        )}
 
         <div className="wallet-addres">
           {responseData?.wallet.coin_type == "USDT" &&
@@ -71,7 +80,7 @@ export const DipositComponent = ({
                   <select
                     name="currency"
                     className="form-control coin-list-item  mt-3"
-                    style={{height: '44px'}}
+                    style={{ height: "44px" }}
                     onChange={(e) => {
                       const findObje = responseData?.data?.find(
                         (x: any) => x.id === parseInt(e.target.value)
