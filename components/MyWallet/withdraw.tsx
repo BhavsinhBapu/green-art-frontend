@@ -28,6 +28,7 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
     address: "",
     amount: "",
     note: "withdrawal",
+    memo: "",
     network_type: selectedNetwork?.network_type ?? "",
   });
 
@@ -247,6 +248,40 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
                   </span>
                 </small>
               )}
+            </div>
+          </div>
+        </div>
+        <div className="wallet-addres">
+          <h5>{t("Memo")} ({t("optional")})</h5>
+          <div className="">
+            <div className="">
+              <div className="input-group input-address-bar mt-3">
+                <input
+                  type="text"
+                  className="form-control border-0 h-50"
+                  id="memo"
+                  name="memo"
+                  placeholder={t("Memo if needed")}
+                  value={withdrawalCredentials.memo}
+                  onChange={(e) => {
+                    setWithdrawalCredentials({
+                      ...withdrawalCredentials,
+                      memo: e.target.value,
+                    });
+                  }}
+                />
+                
+              </div>
+              
+                <div>
+                  <small>
+                    {t(
+                      `Add your memo if needed but please ensure it that's correct, otherwise you lost coin.`
+                    )}
+                  </small>
+                </div>
+              
+              
             </div>
           </div>
         </div>
