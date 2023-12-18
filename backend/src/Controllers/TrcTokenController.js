@@ -217,6 +217,7 @@ async function tornWebTransactionListByContractAddress(req, res){
         const contractAddress = req.body.contract_address;  //'TRwptGFfX3fuffAMbWDDLJZAZFmP6bGfqL'
         const adminAccount = req.body.admin_address;
         var lastTimeStamp = req.body.last_timestamp;
+        var lastBlock = req.body.last_block_number;
         const limit = 200;
 
         const tronWeb = tronWebCall(req,res);
@@ -228,7 +229,7 @@ async function tornWebTransactionListByContractAddress(req, res){
         
         const tronGrid = new TronGrid(tronWeb);
 
-        if(lastTimeStamp == 0)
+        if(lastBlock == 0)
         {
             var latestTransaction = await tronGrid.contract.getEvents(contractAddress, {
                 only_confirmed: true,
@@ -236,45 +237,44 @@ async function tornWebTransactionListByContractAddress(req, res){
                 limit: limit,
                 order_by: "timestamp,desc",
             });
-    
-            console.log('current timestamp before set', lastTimeStamp);
 
+            lastBlock = latestTransaction.data[0].block_number;
             lastTimeStamp = latestTransaction.data[0].block_timestamp;
 
-            console.log('current timestamp after set', lastTimeStamp);
+            console.log('current block set', lastBlock);
         }
         
-
-        var result = await tronGrid.contract.getEvents(contractAddress, {
+        var result = await tronGrid.block.getEvents(lastBlock, { //contract contractAddress
             only_confirmed: true,
-            event_name: "Transfer",
+            // event_name: "Transfer",
             limit: limit,
-            order_by: "timestamp,asc",
-            min_block_timestamp:lastTimeStamp
+            // order_by: "timestamp,asc",
+            // min_block_timestamp:lastTimeStamp
         });
-
+        console.log("result", result);
         let transactionData = [];
         if (result.data.length > 0) {
             result.data.map(tx => {
 
-                tx.from_address = tronWeb.address.fromHex(tx.result.from); // this makes it easy for me to check the address at the other end
-                tx.to_address = tronWeb.address.fromHex(tx.result.to); // this makes it easy for me to check the address at the other end
-                tx.amount = (tx.result.value / getDecimal);
-                tx.event = tx.event_name;
-                tx.tx_hash = tx.transaction_id;
-                transactionData.push(tx);
+                if(tx.event_name == "Transfer"){
+                    tx.from_address = tronWeb.address.fromHex(tx.result.from); // this makes it easy for me to check the address at the other end
+                    tx.to_address = tronWeb.address.fromHex(tx.result.to); // this makes it easy for me to check the address at the other end
+                    tx.amount = (tx.result.value / getDecimal);
+                    tx.event = tx.event_name;
+                    tx.tx_hash = tx.transaction_id;
+                    transactionData.push(tx);
+                }
                 
             });
         }
-
+        console.log("result", transactionData);
         // res.send({result})
+        // const nextLink = result.meta?.links?.next;
 
-        const nextLink = result.meta.links?.next;
-
-        if(result.meta.links)
-        {
-            transactionData = await hitNextLink(contractAddress,tronGrid,tronWeb,nextLink,transactionData,getDecimal,limit,lastTimeStamp);
-        }
+        // if(nextLink)
+        // {
+        //     transactionData = await hitNextLink(contractAddress,tronGrid,tronWeb,nextLink,transactionData,getDecimal,limit,lastTimeStamp);
+        // }
         console.log('transactionData.length',transactionData.length)
 
         // res.send({transactionData});
