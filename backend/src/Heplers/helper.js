@@ -46,7 +46,12 @@ function customToWei(amount,decimal)
   const isDecimal = !Number.isInteger(amount);
   if (isDecimal) {
     const tokenDecimals = new BigNumber(10).pow(decimal);
-    const tokenToSend = new BigNumber(amount).times(tokenDecimals);
+    // const tokenToSend = new BigNumber(amount).times(tokenDecimals);
+
+    const tokenAmount = amount * tokenDecimals;
+    const tokenAmountLocalAmount = (tokenAmount.toLocaleString()).replaceAll(",","");
+    const tokenAmountLength = tokenAmountLocalAmount.length;
+    const tokenToSend = (tokenAmount).toPrecision(tokenAmountLength);
 
     return tokenToSend.toString();
   } else {
