@@ -15824,6 +15824,12 @@ input:checked + .gift-card-buy-slider:before {
     align-items: start;
   }
 
+  .staking-topbar-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
   .wallet-overview-btn-all {
     display: flex;
     flex-direction: column;

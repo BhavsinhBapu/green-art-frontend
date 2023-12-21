@@ -11,7 +11,7 @@ export const StakingTopBar = () => {
       <div className="container">
         <div className="row">
           <div className="col-12">
-            <ul className="d-flex justify-content-center justify-content-md-end topBarList">
+            <ul className="d-flex justify-content-center justify-content-md-end topBarList staking-topbar-list">
               <li>
                 <Link href="/staking">
                   <a>

@@ -16,8 +16,8 @@ const OfferTable = ({ isLoggedIn }: any) => {
   return (
     <div>
       <div className="container mt-4">
-        <div className="row">
-          <div className="table-responsive">
+        <div className="row" >
+          <div className="table-responsive" style={{overflowX: 'auto'}}>
             {loading ? (
               <SectionLoading />
             ) : (
@@ -26,11 +26,11 @@ const OfferTable = ({ isLoggedIn }: any) => {
                   <table className="table">
                     <thead>
                       <tr>
-                        <th scope="col">{t(`Token`)}</th>
-                        <th scope="col">{t(`Minimum Amount`)}</th>
-                        <th scope="col">{t(`Est. APR`)}</th>
-                        <th scope="col">{t(`Duration Days`)}</th>
-                        <th scope="col"></th>
+                        <th scope="col" style={{padding: '0 10px'}}>{t(`Token`)}</th>
+                        <th scope="col" style={{padding: '0 10px'}}>{t(`Minimum Amount`)}</th>
+                        <th scope="col" style={{padding: '0 10px'}}>{t(`Est. APR`)}</th>
+                        <th scope="col" style={{padding: '0 10px'}}>{t(`Duration Days`)}</th>
+                        <th scope="col" style={{padding: '0 10px'}}></th>
                       </tr>
                     </thead>
                     <tbody>

@@ -12,23 +12,23 @@ const OfferRow = ({ offers, item, isLoggedIn }: any) => {
   }, []);
   return (
     <tr className="tableRow">
-      <td>
+      <td style={{whiteSpace: 'nowrap'}}>
         <div className="tableImg d-flex align-items-center">
-          <img src={selectedData?.coin_icon} alt="" />
+          <img src={selectedData?.coin_icon} alt="" style={{minWidth: '25px', minHeight: '25px'}}/>
           <h5>{item}</h5>
         </div>
       </td>
 
-      <td>
+      <td style={{whiteSpace: 'nowrap'}}>
         <h6 className="">
           {selectedData?.minimum_investment} {item}
         </h6>
       </td>
-      <td>
+      <td style={{whiteSpace: 'nowrap'}}>
         <h6 className="">{selectedData?.offer_percentage}%</h6>
       </td>
 
-      <td>
+      <td style={{whiteSpace: 'nowrap'}}>
         <div className="d-flex align-items-center">
           {offers?.offer_list[item]?.map((offer: any, index: any) => (
             <div
@@ -46,7 +46,7 @@ const OfferRow = ({ offers, item, isLoggedIn }: any) => {
           ))}
         </div>
       </td>
-      <td>
+      <td style={{whiteSpace: 'nowrap'}}>
         {isLoggedIn && (
           <Link href={`/staking/locked-staking/${item}/${selectedData?.uid}`}>
             <button className="tableButton">{t(`Stake now`)}</button>
