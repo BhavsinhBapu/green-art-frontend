@@ -38,7 +38,9 @@ function customDecimal(input)
 
 function customFromWei(amount,decimal)
 {
-    return (amount/powerOfTen(decimal)).toString()
+  let convertAmount = (amount/powerOfTen(decimal));
+  let convertAmountLocalAmount = (convertAmount.toLocaleString()).replaceAll(",","");
+  return convertAmountLocalAmount;
 }
 function customToWei(amount,decimal)
 {
