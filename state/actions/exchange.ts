@@ -732,14 +732,21 @@ export const useRandomPercentages = (
 ) => {
   const dispatch = useDispatch();
   const status = dashboard?.order_data?.bot_trading;
+
   useEffect(() => {
-    if (status === 1 && parseInt(settings.enable_bot_trade) === 1) {
+    if (parseInt(settings.enable_bot_trade) === 1) {
       const getRandomDelay = () => Math.random() * 4000;
+      const shuffleArray = (array: any[]) => {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+      };
+
       const updatePercentages = () => {
-        const newData = data.map((item: any) => ({
-          ...item,
-          percentage: Math.random() * 100,
-        }));
+        const newData = [...data];
+        shuffleArray(newData);
+
         dispatch(action(newData));
       };
 
