@@ -4,6 +4,8 @@ import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { RootState } from "state/store";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
+import { FaCheckCircle } from "react-icons/fa";
+
 import {
   SendPhoneVerificationSmsAction,
   VerifyPhoneAction,
@@ -18,6 +20,7 @@ const PhoneVerification: NextPage = () => {
   const { t } = useTranslation("common");
   const { user } = useSelector((state: RootState) => state.user);
   const [ShowOtpSection, setShowOtpSection] = useState(false);
+  const [isChangeNumber, setIsChangeNumber] = useState(false);
   const [processing, setProcessing] = useState(false);
   const [verifyProcess, setVerifyProcess] = useState(false);
   const [otp, setOtp] = useState<number>(0);
@@ -26,6 +29,7 @@ const PhoneVerification: NextPage = () => {
   };
   const verifyCode = () => {
     VerifyPhoneAction(otp, setVerifyProcess, setShowOtpSection);
+    setIsChangeNumber(false);
   };
   return (
     <>
@@ -44,84 +48,115 @@ const PhoneVerification: NextPage = () => {
               <div className="section-wrapper">
                 <div className="row">
                   <div className="col-lg-6 col-md-8 d-flex align-items-center">
-                    <div className="user-profile-form" style={{width: '100%'}}>
-                      <div className="form-group">
-                        <label htmlFor="number">{t("Phone number")}</label>
-                        {user?.phone ? (
-                          <div className="code-list">
-                            <input
-                              type="text"
-                              value={user?.phone}
-                              className="form-control"
-                              disabled
-                            />
-                            <button
-                              className="btn profile-edit-btn phn-verify-btn"
-                              onClick={sendCode}
-                            >
-                              {processing ? (
-                                <>
-                                  <span
-                                    className="spinner-border spinner-border-sm mr-2"
-                                    role="status"
-                                    aria-hidden="true"
-                                  ></span>
-                                  <span>{t("Please wait")}</span>
-                                </>
-                              ) : ShowOtpSection ? (
-                                t("Resend SMS")
-                              ) : (
-                                t("Send SMS")
-                              )}
-                            </button>
-                            <p>{t("Did not receive code?")}</p>
-                          </div>
-                        ) : (
-                          <div className="code-list">
-                            <p>
-                              {t("Please add your mobile number first from ")}
-                              <Link href="/user/edit-profile">
-                                {t("edit profile")}
-                              </Link>
-                            </p>
+                    {user?.phone_verified == 1 && !isChangeNumber ? (
+                      <div className="w-full">
+                        <div
+                          className="border px-3 w-full d-flex flex-column justify-content-center align-items-center"
+                          style={{
+                            minHeight: "200px",
+                            borderRadius: "10px",
+                            gap: "10px",
+                          }}
+                        >
+                          <FaCheckCircle color="green" size={60} />
+                          <h3 className="text-center">
+                            {t("Your Phone number has been verified.")}
+                          </h3>
+                          <p style={{ cursor: "pointer" }}>
+                            <span
+                              style={{
+                                textDecoration: "underline",
+                                color: "blue",
+                              }}
+                              onClick={() => setIsChangeNumber(true)}
+                            >{`Click here `}</span>
+                            {t("to change the Phone number.")}
+                          </p>
+                        </div>
+                      </div>
+                    ) : (
+                      <div
+                        className="user-profile-form"
+                        style={{ width: "100%" }}
+                      >
+                        <div className="form-group">
+                          <label htmlFor="number">{t("Phone number")}</label>
+                          {user?.phone ? (
+                            <div className="code-list">
+                              <input
+                                type="text"
+                                value={user?.phone}
+                                className="form-control"
+                                disabled
+                              />
+                              <button
+                                className="btn profile-edit-btn phn-verify-btn"
+                                onClick={sendCode}
+                              >
+                                {processing ? (
+                                  <>
+                                    <span
+                                      className="spinner-border spinner-border-sm mr-2"
+                                      role="status"
+                                      aria-hidden="true"
+                                    ></span>
+                                    <span>{t("Please wait")}</span>
+                                  </>
+                                ) : ShowOtpSection ? (
+                                  t("Resend SMS")
+                                ) : (
+                                  t("Send SMS")
+                                )}
+                              </button>
+                              <p>{t("Did not receive code?")}</p>
+                            </div>
+                          ) : (
+                            <div className="code-list">
+                              <p>
+                                {t("Please add your mobile number first from ")}
+                                <Link href="/user/edit-profile">
+                                  {t("edit profile")}
+                                </Link>
+                              </p>
+                            </div>
+                          )}
+                        </div>
+
+                        {ShowOtpSection && (
+                          <div className="form-group">
+                            <label htmlFor="number">{t("Verify Code")}</label>
+                            <div className="code-list">
+                              <input
+                                type="text"
+                                className="form-control"
+                                id=""
+                                onChange={(event) => {
+                                  setOtp(parseInt(event.target.value));
+                                }}
+                              />
+                              <button
+                                type="submit"
+                                className="btn profile-edit-btn phn-verify-btn"
+                                onClick={verifyCode}
+                              >
+                                {verifyProcess ? (
+                                  <>
+                                    <span
+                                      className="spinner-border spinner-border-sm mr-2"
+                                      role="status"
+                                      aria-hidden="true"
+                                    ></span>
+                                    <span>{t("Please wait")}</span>
+                                  </>
+                                ) : (
+                                  t("Verify")
+                                )}
+                              </button>
+                            </div>
                           </div>
                         )}
                       </div>
-
-                      {ShowOtpSection && (
-                        <div className="form-group">
-                          <label htmlFor="number">{t("Verify Code")}</label>
-                          <div className="code-list">
-                            <input
-                              type="text"
-                              className="form-control"
-                              id=""
-                              onChange={(event) => {
-                                setOtp(parseInt(event.target.value));
-                              }}
-                            />
-                            <button
-                              type="submit"
-                              className="btn profile-edit-btn phn-verify-btn"
-                              onClick={verifyCode}
-                            >
-                              {verifyProcess ? (
-                                <>
-                                  <span
-                                    className="spinner-border spinner-border-sm mr-2"
-                                    role="status"
-                                    aria-hidden="true"
-                                  ></span>
-                                  <span>{t("Please wait")}</span>
-                                </>
-                              ) : (
-                                t("Verify")
-                              )}
-                            </button>
-                          </div>
-                        </div>
-                      )}
-                    </div>
+                    )}
                   </div>
                   <div className="col-lg-6 col-md-4">
                     <div className="reset-password-right text-center">
