@@ -105,6 +105,13 @@ async function gasLimit(network)
     return blockGasUsed;
 }
 
+export const COIN_PAYMENT = 1;
+export const BITCOIN_API = 2;
+export const BITGO_API = 3;
+export const ERC20_TOKEN = 4;
+export const BEP20_TOKEN = 5;
+export const TRC20_TOKEN = 6;
+
 module.exports = {
     tronWebCall,
     contract_decimals,
