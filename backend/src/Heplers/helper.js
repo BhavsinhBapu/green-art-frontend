@@ -105,12 +105,12 @@ async function gasLimit(network)
     return blockGasUsed;
 }
 
-export const COIN_PAYMENT = 1;
-export const BITCOIN_API = 2;
-export const BITGO_API = 3;
-export const ERC20_TOKEN = 4;
-export const BEP20_TOKEN = 5;
-export const TRC20_TOKEN = 6;
+const COIN_PAYMENT = 1;
+const BITCOIN_API = 2;
+const BITGO_API = 3;
+const ERC20_TOKEN = 4;
+const BEP20_TOKEN = 5;
+const TRC20_TOKEN = 6;
 
 module.exports = {
     tronWebCall,
@@ -120,5 +120,11 @@ module.exports = {
     customToWei,
     powerOfTen,
     checkTx,
-    gasLimit
+    gasLimit,
+    COIN_PAYMENT,
+    BITCOIN_API,
+    BITGO_API,
+    ERC20_TOKEN,
+    BEP20_TOKEN,
+    TRC20_TOKEN
 }

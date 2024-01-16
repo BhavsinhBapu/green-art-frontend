@@ -2,7 +2,7 @@ const { publicDecrypt } = require("crypto");
 const { response } = require("express");
 const Web3 = require("web3");
 const {contractJson} = require("../../src/ContractAbiJson");
-const { contract_decimals,customFromWei,customToWei, gasLimit } = require("../Heplers/helper");
+const { contract_decimals,customFromWei,customToWei, gasLimit, TRC20_TOKEN } = require("../Heplers/helper");
 const trc20Token = require("./TrcTokenController");
 const trxToken = require("./TrxController");
 const abi = require('web3-eth-abi');
@@ -820,6 +820,7 @@ async function getLatestEvents(req, res)
             let contractJsons = contractJson();
             // let prevBlock = 1000;
             const contractAddress = req.body.contract_address;
+            console.log('contractAddress', contractAddress);
             // const numberOfBlock = req.body.number_of_previous_block;
             const lastBlockNumber = req.body.last_block_number;
             let fromBlockNumber = 0;
@@ -828,12 +829,14 @@ async function getLatestEvents(req, res)
             decimalValue = await getContractDecimal(contract);
             
             const latestBlockNumber = await web3.eth.getBlockNumber();
+            
             console.log('latestBlockNumber => ',latestBlockNumber);
             if(lastBlockNumber && latestBlockNumber > 0) {
                 fromBlockNumber = lastBlockNumber;
             } else {
                 fromBlockNumber = latestBlockNumber;
             }
+            console.log('fromBlockNumber => ',fromBlockNumber);
             if (fromBlockNumber <= latestBlockNumber) {
                 const result = await getBlockDetails(contract,fromBlockNumber,latestBlockNumber);
             
@@ -868,6 +871,13 @@ async function getLatestEvents(req, res)
                         data: {}
                     });
                 }
+            } else {
+                console.log('Block number not greater than current block')
+                res.json({
+                    status: false,
+                    message: 'Block number not greater than current block',
+                    data: {}
+                });
             }
         }
       } else {
