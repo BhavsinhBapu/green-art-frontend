@@ -23,10 +23,10 @@ const BlogDetails = ({ BlogNewsSettings }: any) => {
   const dispatch = useDispatch();
   const [blogDetails, setblogDetails] = useState<any>();
   const getDetails = async (id: any) => {
-    dispatch(setLoading(true));
+    // dispatch(setLoading(true));
     const BlogDetails = await getBlogDetails(id);
     setblogDetails(BlogDetails);
-    dispatch(setLoading(false));
+    // dispatch(setLoading(false));
   };
   useEffect(() => {
     id && getDetails(id);
