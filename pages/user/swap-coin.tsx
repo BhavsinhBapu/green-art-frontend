@@ -223,11 +223,11 @@ const SwapCoin: NextPage = ({
                                     e.target.value,
                                     toSelected.coin_id
                                   ).then((data) => {
-                                    setToSelected({
-                                      ...toSelected,
-                                      coin_id: data?.to_wallet?.id,
-                                      selected: data?.to_wallet?.coin_type,
-                                      balamce: data?.to_wallet?.balance,
+                                    setFromSelected({
+                                      ...fromSelected,
+                                      coin_id: data?.from_wallet?.id,
+                                      selected: data?.from_wallet?.coin_type,
+                                      balamce: data?.from_wallet?.balance,
                                       amount: data?.convert_rate,
                                     });
                                   });
