@@ -446,6 +446,18 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
       },
     };
   }
+
+  if (walletLists?.length <= 1) {
+    const query = new URLSearchParams({
+      errorMessage: "Two coins are required to swap",
+    });
+    return {
+      redirect: {
+        destination: `/user/my-wallet?${query.toString()}`,
+        permanent: false,
+      },
+    };
+  }
   let data;
   if (ctx.query.coin_id) {
     data = await getRateSsr(

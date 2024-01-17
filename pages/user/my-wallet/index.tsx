@@ -25,8 +25,10 @@ import Footer from "components/common/footer";
 import CustomDataTable from "components/Datatable";
 import WalletOverviewSidebar from "layout/WalletOverviewSidebar";
 import WalletOverviewHeader from "components/wallet-overview/WalletOverviewHeader";
+import { useRouter } from "next/router";
 const MyWallet: NextPage = () => {
   const { t } = useTranslation("common");
+  const router = useRouter();
   const { settings } = useSelector((state: RootState) => state.common);
   const [search, setSearch] = useState<any>("");
   const [walletList, setWalletList] = useState<any>([]);
@@ -37,7 +39,21 @@ const MyWallet: NextPage = () => {
   const [tradeList, setTradeList]: any = useState();
   const [coinList, setCoinList]: any = useState([]);
   const [selectedLimit, setSelectedLimit] = useState<any>("10");
-
+  useEffect(() => {
+    if (router.query.errorMessage) {
+      toast.error(router.query.errorMessage);
+      const { pathname, query } = router;
+      delete query.errorMessage;
+      router.replace(
+        {
+          pathname,
+          query,
+        },
+        undefined,
+        { shallow: true }
+      );
+    }
+  }, [router.query.errorMessage]);
   const columns = [
     {
       Header: t("Asset"),
@@ -154,7 +170,7 @@ const MyWallet: NextPage = () => {
                 </div>
               )}
             </li>
-            {parseInt(settings?.swap_status) === 1 &&
+            {/* {parseInt(settings?.swap_status) === 1 &&
               (Changeable.length >= 2 ? (
                 <Link href={`/user/swap-coin?coin_id=${row?.original.id}`}>
                   <li className="toolTip relative cursor-pointer" title="swap">
@@ -171,7 +187,12 @@ const MyWallet: NextPage = () => {
                 >
                   <TiArrowRepeat size={25} />
                 </li>
-              ))}
+              ))} */}
+            <Link href={`/user/swap-coin?coin_id=${row?.original.id}`}>
+              <li className="toolTip relative cursor-pointer" title="swap">
+                <TiArrowRepeat size={25} />
+              </li>
+            </Link>
           </ul>
         </div>
       ),
