@@ -2,7 +2,7 @@ const { publicDecrypt } = require("crypto");
 const { response } = require("express");
 const Web3 = require("web3");
 const {contractJson} = require("../../src/ContractAbiJson");
-const { contract_decimals,customFromWei,customToWei, gasLimit } = require("../Heplers/helper");
+const { contract_decimals,customFromWei,customToWei, gasLimit, TRC20_TOKEN } = require("../Heplers/helper");
 const trc20Token = require("./TrcTokenController");
 const trxToken = require("./TrxController");
 const abi = require('web3-eth-abi');
@@ -813,66 +813,72 @@ async function getLatestEvents(req, res)
       const networkType = req.headers.networktype;
       let decimalValue = 18;
       if (network) {
-        if (parseInt(networkType) == 6) {
+        if (parseInt(networkType) == TRC20_TOKEN) {
             await trc20Token.getTrc20LatestEvent(req,res);
         } else {
             
             let contractJsons = contractJson();
-            let prevBlock = 1000;
+            // let prevBlock = 1000;
             const contractAddress = req.body.contract_address;
-            const numberOfBlock = req.body.number_of_previous_block;
+            console.log('contractAddress', contractAddress);
+            // const numberOfBlock = req.body.number_of_previous_block;
             const lastBlockNumber = req.body.last_block_number;
-
+            let fromBlockNumber = 0;
             const web3 = new Web3(new Web3.providers.HttpProvider(network));
             const contract = new web3.eth.Contract(contractJsons, contractAddress);
             decimalValue = await getContractDecimal(contract);
             
             const latestBlockNumber = await web3.eth.getBlockNumber();
-            if (numberOfBlock) {
-                prevBlock = numberOfBlock;
-            }
-            let fromBlockNumber = latestBlockNumber - prevBlock;
-
-            if (lastBlockNumber > 0) {
-                if ((latestBlockNumber - lastBlockNumber) > 5000) {
-                    fromBlockNumber = latestBlockNumber - prevBlock;
-                } else {
-                    fromBlockNumber = lastBlockNumber;
-                }
-            } 
-            const result = await getBlockDetails(contract,fromBlockNumber,latestBlockNumber);
             
-          if (result.status === true) {
-              let resultData = [];
-              result.data.forEach(function (res) {
-                  let innerData = {
-                      event: res.event,
-                      signature: res.signature,
-                      contract_address: res.address,
-                      tx_hash: res.transactionHash,
-                      block_hash: res.blockHash,
-                      from_address: res.returnValues.from,
-                      to_address: res.returnValues.to,
-                      amount: customFromWei(res.returnValues.value,decimalValue),
-                      block_number: res.blockNumber,
-                      block_timestamp: 0
-                  };
-                  resultData.push(innerData)
-              });
-              res.json({
-                  status: true,
-                  message: result.message,
-                  data: {
-                      result: resultData,
-                  }
-              });
-          } else {
-              res.json({
-                  status: false,
-                  message: result.message,
-                  data: {}
-              });
-          }
+            console.log('latestBlockNumber => ',latestBlockNumber);
+            if(lastBlockNumber && latestBlockNumber > 0) {
+                fromBlockNumber = lastBlockNumber;
+            } else {
+                fromBlockNumber = latestBlockNumber;
+            }
+            console.log('fromBlockNumber => ',fromBlockNumber);
+            if (fromBlockNumber <= latestBlockNumber) {
+                const result = await getBlockDetails(contract,fromBlockNumber,latestBlockNumber);
+            
+                if (result.status === true) {
+                    let resultData = [];
+                    result.data.forEach(function (res) {
+                        let innerData = {
+                            event: res.event,
+                            signature: res.signature,
+                            contract_address: res.address,
+                            tx_hash: res.transactionHash,
+                            block_hash: res.blockHash,
+                            from_address: res.returnValues.from,
+                            to_address: res.returnValues.to,
+                            amount: customFromWei(res.returnValues.value,decimalValue),
+                            block_number: res.blockNumber,
+                            block_timestamp: 0
+                        };
+                        resultData.push(innerData)
+                    });
+                    res.json({
+                        status: true,
+                        message: result.message,
+                        data: {
+                            result: resultData,
+                        }
+                    });
+                } else {
+                    res.json({
+                        status: false,
+                        message: result.message,
+                        data: {}
+                    });
+                }
+            } else {
+                console.log('Block number not greater than current block')
+                res.json({
+                    status: false,
+                    message: 'Block number not greater than current block',
+                    data: {}
+                });
+            }
         }
       } else {
           res.json({
