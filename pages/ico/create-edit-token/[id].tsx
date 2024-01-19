@@ -13,6 +13,8 @@ import Footer from "components/common/footer";
 const TokenCreate = ({ id, edit, data }: any) => {
   const { t } = useTranslation("common");
 
+  
+
   const [image, setImage]: any = useState<any>();
   const [loading, setLoading]: any = useState<any>(false);
   const [warning, setWarning] = useState(false);
@@ -33,22 +35,28 @@ const TokenCreate = ({ id, edit, data }: any) => {
           <div className="ico-create-form col-12">
             <Formik
               initialValues={{
-                id: edit ? data.id : "",
-                form_id: edit ? data.form_id : id,
-                base_coin: edit ? data.base_coin : "",
-                token_name: edit ? data?.token_name : "",
-                network: edit ? data?.network : "",
-                wallet_address: edit ? data?.wallet_address : "",
-                contract_address: edit ? data?.contract_address : "",
-                wallet_private_key: edit ? data?.wallet_private_key : "",
-                chain_id: edit ? data?.chain_id : "",
+                id: edit ? data?.ico_phase_token?.id : "",
+                form_id: edit ? data?.ico_phase_token?.form_id : id,
+                // base_coin: edit ? data?.ico_phase_token?.base_coin : "",
+                token_name: edit ? data?.ico_phase_token?.token_name : "",
+                network_id: edit ? data?.ico_phase_token?.network_id : "",
+                wallet_address: edit
+                  ? data?.ico_phase_token?.wallet_address
+                  : "",
+                contract_address: edit
+                  ? data?.ico_phase_token?.contract_address
+                  : "",
+                wallet_private_key: edit
+                  ? data?.ico_phase_token?.wallet_private_key
+                  : "",
+                chain_id: edit ? data?.ico_phase_token?.chain_id : "",
                 image: "",
-                chain_link: edit ? data?.chain_link : "",
-                decimal: edit ? data?.decimal : "",
-                gas_limit: edit ? data?.gas_limit : 430000,
-                details_rule: edit ? data?.details_rule : "",
-                website_link: edit ? data?.website_link : "",
-                token_symbol: edit ? data?.coin_type : "",
+                chain_link: edit ? data?.ico_phase_token?.chain_link : "",
+                decimal: edit ? data?.ico_phase_token?.decimal : "",
+                gas_limit: edit ? data?.ico_phase_token?.gas_limit : 430000,
+                details_rule: edit ? data?.ico_phase_token?.details_rule : "",
+                website_link: edit ? data?.ico_phase_token?.website_link : "",
+                token_symbol: edit ? data?.ico_phase_token?.coin_type : "",
               }}
               validationSchema={Yup.object({
                 // form_id: Yup.number().required(
@@ -80,31 +88,29 @@ const TokenCreate = ({ id, edit, data }: any) => {
                   {" "}
                   <div className="col-md-6 form-input-div">
                     <label className="ico-label-box" htmlFor="">
-                      {t("Token Type")}
+                      {t("Network")}
                     </label>
                     <Field
                       as="select"
-                      name="network"
+                      name="network_id"
                       className={`ico-input-box ${
-                        touched.network && errors.network ? "is-invalid" : ""
+                        touched.network_id && errors.network_id
+                          ? "is-invalid"
+                          : ""
                       }`}
                       onChange={(e: any) => {
-                        setFieldValue("network", e.target.value);
-                        //    <option value="BNB">{t("BNB")}</option>
-                        // <option value="ETH">{t("ETH")}</option>
-                        if (e.target.value == 4) {
-                          setFieldValue("base_coin", "ETH");
-                        } else {
-                          setFieldValue("base_coin", "BNB");
-                        }
+                        setFieldValue("network_id", e.target.value);
                       }}
                     >
                       <option value="">{t("Select Your Network")}</option>
-                      <option value="4">{t("ERC20 Token Api")}</option>
-                      <option value="5">{t("BEP20 Token Api")}</option>
+                      {data?.networks?.map((network: any) => (
+                        <option value={network?.id} key={network?.id}>
+                          {network?.name}
+                        </option>
+                      ))}
                     </Field>
                   </div>
-                  <div className="col-md-6 form-input-div">
+                  {/* <div className="col-md-6 form-input-div">
                     <label className="ico-label-box" htmlFor="">
                       {t(" Base Coin")}
                     </label>
@@ -122,10 +128,10 @@ const TokenCreate = ({ id, edit, data }: any) => {
                       <option value="BNB">{t("BNB")}</option>
                       <option value="ETH">{t("ETH")}</option>
                     </Field>
-                  </div>
+                  </div> */}
                   <div className="col-md-6 form-input-div">
                     <label className="ico-label-box" htmlFor="">
-                      {t("Network")}
+                      {t("Chain Link")}
                     </label>
                     <Field
                       type="text"
@@ -356,7 +362,7 @@ const TokenCreate = ({ id, edit, data }: any) => {
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };
