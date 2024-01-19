@@ -15762,6 +15762,11 @@ input:checked + .gift-card-buy-slider:before {
   margin-top: 3rem;
 }
 
+.tarde-coin-pair-header {
+  display: flex;
+  gap: 10px;
+}
+
 @media (max-width: 1520px) {
   .trade-dashboard-side-margin {
     margin-left: 0 !important;
@@ -15819,6 +15824,10 @@ input:checked + .gift-card-buy-slider:before {
   }
 }
 @media (max-width: 770px) {
+  .tarde-coin-pair-header {
+    flex-direction: column;
+    gap: 0;
+  }
   .wallet-overview-header {
     flex-direction: column;
     align-items: start;
