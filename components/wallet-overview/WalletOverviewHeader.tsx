@@ -1,13 +1,21 @@
+import WalletOverViewMenuTab from "layout/WalletOverViewMenuTab";
 import Link from "next/link";
 import React from "react";
 
-export default function WalletOverviewHeader({ title }: any) {
+export default function WalletOverviewHeader({ title, imageUrl }: any) {
   return (
-    <div className="wallet-overview-header inner-section-margin-top">
-      <div className="profle-are-top">
-        <h2>{title}</h2>
+    <div
+      className="my-0 wallet-overview-header-main"
+      style={{
+        // backgroundImage: `url(${imageUrl})`,
+        backgroundImage: `url(https://images.unsplash.com/photo-1564359179886-afa7f541e3b8?q=80&w=2076&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)`
+      }}
+    >
+      <div className="profle-are-top container-fluid">
+        <h2 className="wallet-overview-header-title">{title}</h2>
       </div>
-      <div className="wallet-overview-btn-all">
+      <WalletOverViewMenuTab />
+      {/* <div className="wallet-overview-btn-all">
         <Link href={`/user/wallet-history?type=deposit`}>
           <a className="wallet-overview-btn text-primary">Deposit History</a>
         </Link>
@@ -17,7 +25,7 @@ export default function WalletOverviewHeader({ title }: any) {
         <Link href={`/user/transaction-history`}>
           <a className="wallet-overview-btn text-primary">Transaction History</a>
         </Link>
-      </div>
+      </div> */}
     </div>
   );
 }
