@@ -276,7 +276,7 @@ const MyWallet: NextPage = () => {
         <div className="page-main-content pt-0">
           <div className="">
             <WalletOverviewHeader title={`Spot Wallet`} />
-            <div className="row bg-card-primary-clr container-4xl">
+            <div className="row  container-4xl">
               <div
                 className="col-md-12 "
                 style={{
