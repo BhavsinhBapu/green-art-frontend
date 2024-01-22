@@ -278,7 +278,7 @@ const MyWallet: NextPage = () => {
             <WalletOverviewHeader title={`Spot Wallet`} />
             <div className="row  container-4xl">
               <div
-                className="col-md-12 "
+                className="col-md-12 px-0"
                 style={{
                   marginTop: "-60px",
                   marginBottom: "30px",
