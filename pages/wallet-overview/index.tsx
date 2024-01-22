@@ -63,7 +63,7 @@ const WalletOverview: NextPage = () => {
                         marginBottom: "30px",
                       }}
                     >
-                      <div className="row">
+                      <div className="row" style={{rowGap: '20px'}}>
                         <div className=" col-md-6">
                           <div
                             className="shadow p-5"
@@ -215,7 +215,7 @@ const WalletOverview: NextPage = () => {
                           </div>
                         </div>
                         {Number(settings?.enable_future_trade) === 1 && (
-                          <div className="col-md-6 mt-3">
+                          <div className="col-md-6">
                             <div
                               className="shadow p-5"
                               style={{
@@ -282,7 +282,7 @@ const WalletOverview: NextPage = () => {
                           </div>
                         )}
                         {parseInt(settings?.p2p_module) === 1 && (
-                          <div className="col-md-6 mt-3">
+                          <div className="col-md-6">
                             <div
                               className="shadow p-5"
                               style={{
