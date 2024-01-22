@@ -49,7 +49,7 @@ const WalletOverview: NextPage = () => {
               title={`Wallet Overview`}
               imageUrl={walletOverviewData?.banner}
             />
-            <div className="container-fluid">
+            <div className="container-4xl">
               {" "}
               {loading ? (
                 <SectionLoading />

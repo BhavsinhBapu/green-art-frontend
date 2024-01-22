@@ -16014,3 +16014,18 @@ input:checked + .gift-card-buy-slider:before {
 .p2p-custom-scrollbar::-webkit-scrollbar-thumb {
   background: var(--color-pallet-1);
 }
+
+.container-4xl {
+  width: 100%;
+  max-width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 1200px) {
+  .container-4xl {
+    max-width: 1560px;
+  }
+}
