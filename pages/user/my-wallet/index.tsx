@@ -272,9 +272,9 @@ const MyWallet: NextPage = () => {
         </div>
       </div> */}
       <div className="page-wrap">
-        <WalletOverviewSidebar />
+        {/* <WalletOverviewSidebar /> */}
         <div className="page-main-content pt-0">
-          <div className="container-fluid">
+          <div className="">
             <WalletOverviewHeader title={`Spot Wallet`} />
             <div className="row bg-card-primary-clr">
               <div className="col-md-12">
