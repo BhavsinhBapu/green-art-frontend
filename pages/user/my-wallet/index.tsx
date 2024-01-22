@@ -276,9 +276,21 @@ const MyWallet: NextPage = () => {
         <div className="page-main-content pt-0">
           <div className="">
             <WalletOverviewHeader title={`Spot Wallet`} />
-            <div className="row bg-card-primary-clr">
-              <div className="col-md-12">
-                <div className="">
+            <div className="row bg-card-primary-clr container-fluid">
+              <div
+                className="col-md-12 "
+                style={{
+                  marginTop: "-60px",
+                  marginBottom: "30px",
+                }}
+              >
+                <div
+                  className="shadow p-5"
+                  style={{
+                    background: "var(--card-background-color)",
+                    borderRadius: "20px",
+                  }}
+                >
                   <div
                     className="py-5"
                     style={{ borderBottom: "1px solid var(--border-color)" }}
