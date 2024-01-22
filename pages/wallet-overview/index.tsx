@@ -63,15 +63,9 @@ const WalletOverview: NextPage = () => {
                         marginBottom: "30px",
                       }}
                     >
-                      <div className="row" style={{rowGap: '20px'}}>
+                      <div className="row" style={{ rowGap: "20px" }}>
                         <div className=" col-md-6">
-                          <div
-                            className="shadow p-5"
-                            style={{
-                              background: "var(--card-background-color)",
-                              borderRadius: "20px",
-                            }}
-                          >
+                          <div className="shadow-sm p-5 wallet-card-info-container">
                             <div
                               style={{
                                 display: "flex",
@@ -150,13 +144,7 @@ const WalletOverview: NextPage = () => {
                           </div>
                         </div>
                         <div className="col-md-6">
-                          <div
-                            className="shadow p-5"
-                            style={{
-                              background: "var(--card-background-color)",
-                              borderRadius: "20px",
-                            }}
-                          >
+                          <div className="shadow-sm p-5 wallet-card-info-container">
                             <div
                               style={{
                                 display: "flex",
@@ -216,13 +204,7 @@ const WalletOverview: NextPage = () => {
                         </div>
                         {Number(settings?.enable_future_trade) === 1 && (
                           <div className="col-md-6">
-                            <div
-                              className="shadow p-5"
-                              style={{
-                                background: "var(--card-background-color)",
-                                borderRadius: "20px",
-                              }}
-                            >
+                            <div className="shadow-sm p-5 wallet-card-info-container">
                               <div
                                 style={{
                                   display: "flex",
@@ -283,13 +265,7 @@ const WalletOverview: NextPage = () => {
                         )}
                         {parseInt(settings?.p2p_module) === 1 && (
                           <div className="col-md-6">
-                            <div
-                              className="shadow p-5"
-                              style={{
-                                background: "var(--card-background-color)",
-                                borderRadius: "20px",
-                              }}
-                            >
+                            <div className="shadow-sm p-5 wallet-card-info-container">
                               <div
                                 style={{
                                   display: "flex",
@@ -351,10 +327,8 @@ const WalletOverview: NextPage = () => {
                       </div>
                     </div>
                     <div
-                      className="shadow p-5"
+                      className="shadow-sm p-5 wallet-card-info-container"
                       style={{
-                        background: "var(--card-background-color)",
-                        borderRadius: "20px",
                         marginBottom: "60px",
                       }}
                     >

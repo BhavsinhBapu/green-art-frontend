@@ -15792,7 +15792,7 @@ input:checked + .gift-card-buy-slider:before {
   border-bottom: 1px solid var(--color-pallet-1);
 }
 .wallet-overview-tab-menu .active {
-  border-bottom: 1px solid var(--border-color-1);
+  border-bottom: 3px solid var(--border-color-1);
 }
 .wallet-overview-tab-menu .active a {
   color: white !important;
@@ -15807,6 +15807,10 @@ input:checked + .gift-card-buy-slider:before {
   background: transparent !important;
   border: none !important;
   color: var(--font-color);
+}
+.wallet-card-info-container {
+  background: var(--card-background-color);
+  border-radius: 10px;
 }
 @media (max-width: 1520px) {
   .trade-dashboard-side-margin {

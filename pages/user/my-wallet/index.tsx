@@ -284,13 +284,7 @@ const MyWallet: NextPage = () => {
                   marginBottom: "30px",
                 }}
               >
-                <div
-                  className="shadow p-5"
-                  style={{
-                    background: "var(--card-background-color)",
-                    borderRadius: "20px",
-                  }}
-                >
+                <div className="shadow-sm p-5 wallet-card-info-container">
                   <div
                     className="py-5"
                     style={{ borderBottom: "1px solid var(--border-color)" }}
