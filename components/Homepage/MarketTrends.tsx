@@ -1,9 +1,44 @@
-import ImageComponent from "components/common/ImageComponent";
+import Echo from "laravel-echo";
+import Pusher from "pusher-js";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect } from "react";
+let socketCall = 0;
 
+async function listenMessages(
+  setLocalAssetCoinPairs: any,
+  setLocalHourlyCoinPairs: any,
+  setLocalLatestCoinPairs: any
+) {
+  //@ts-ignore
+  window.Pusher = Pusher;
+  //@ts-ignore
+  window.Echo = new Echo({
+    broadcaster: "pusher",
+    key: "test",
+    wsHost: process.env.NEXT_PUBLIC_HOST_SOCKET,
+    wsPort: process.env.NEXT_PUBLIC_WSS_PORT
+      ? process.env.NEXT_PUBLIC_WSS_PORT
+      : 6006,
+    wssPort: 443,
+    forceTLS: false,
+    cluster: "mt1",
+    disableStats: true,
+    enabledTransports: ["ws", "wss"],
+  });
+  //@ts-ignore
+  window.Echo.channel(`market-coin-pair-data`).listen(
+    ".market-coin-pairs",
+    (e: any) => {
+      e.asset_coin_pairs.length && setLocalAssetCoinPairs(e.asset_coin_pairs);
+      e.hourly_coin_pairs.length &&
+        setLocalHourlyCoinPairs(e.hourly_coin_pairs);
+      e.latest_coin_pairs.length &&
+        setLocalLatestCoinPairs(e.latest_coin_pairs);
+    }
+  );
+}
 const MarketTrends = ({
   landing,
   asset_coin_pairs,
@@ -11,8 +46,23 @@ const MarketTrends = ({
   latest_coin_pairs,
 }: any) => {
   const { t } = useTranslation("common");
+  const [localAssetCoinPairs, setLocalAssetCoinPairs] =
+    React.useState<any>(asset_coin_pairs);
+  const [localHourlyCoinPairs, setLocalHourlyCoinPairs] =
+    React.useState<any>(hourly_coin_pairs);
+  const [localLatestCoinPairs, setLocalLatestCoinPairs] =
+    React.useState<any>(latest_coin_pairs);
   const router = useRouter();
-
+  useEffect(() => {
+    if (socketCall === 0) {
+      listenMessages(
+        setLocalAssetCoinPairs,
+        setLocalHourlyCoinPairs,
+        setLocalLatestCoinPairs
+      );
+    }
+    socketCall = 1;
+  });
   return (
     <div className="bg-card-primary-clr">
       {parseInt(landing.landing_third_section_status) === 1 && (
@@ -78,7 +128,7 @@ const MarketTrends = ({
                     <div
                       id="DataTables_Table_0_wrapper"
                       className="dataTables_wrapper no-footer"
-                      style={{overflowX: 'auto'}}
+                      style={{ overflowX: "auto" }}
                     >
                       <table
                         className="table table-borderless dataTable no-footer"
@@ -145,104 +195,106 @@ const MarketTrends = ({
                           </tr>
                         </thead>
                         <tbody>
-                          {asset_coin_pairs?.map((item: any, index: number) => (
-                            <tr role="row" className="odd" key={index}>
-                              <td className="p-2">
-                                <div className="d-flex flex-wrap">
-                                  <img
-                                    className="icon mr-3"
-                                    src={item?.coin_icon || "/bitcoin.png"}
-                                    alt="coin"
-                                    width="25px"
-                                    height="25px"
-                                  />
-                                  <a className="cellMarket" href="#">
-                                    <div className="marketSymbols">
-                                      <span className="quoteSymbol">
-                                        {item?.child_coin_name}
-                                      </span>
-                                      <span className="baseSymbol">
-                                        /{item?.parent_coin_name}
-                                      </span>
-                                    </div>
-                                  </a>
-                                </div>
-                              </td>
-                              <td className="text-black p-2">
-                                {item.last_price}
-                              </td>
-                              <td className="p-2">
-                                <span
-                                  className={`changePos  ${
-                                    parseFloat(item.price_change) >= 0
-                                      ? "text-success"
-                                      : "text-danger"
-                                  } `}
+                          {localAssetCoinPairs?.map(
+                            (item: any, index: number) => (
+                              <tr role="row" className="odd" key={index}>
+                                <td className="p-2">
+                                  <div className="d-flex flex-wrap">
+                                    <img
+                                      className="icon mr-3"
+                                      src={item?.coin_icon || "/bitcoin.png"}
+                                      alt="coin"
+                                      width="25px"
+                                      height="25px"
+                                    />
+                                    <a className="cellMarket" href="#">
+                                      <div className="marketSymbols">
+                                        <span className="quoteSymbol">
+                                          {item?.child_coin_name}
+                                        </span>
+                                        <span className="baseSymbol">
+                                          /{item?.parent_coin_name}
+                                        </span>
+                                      </div>
+                                    </a>
+                                  </div>
+                                </td>
+                                <td className="text-black p-2">
+                                  {item.last_price}
+                                </td>
+                                <td className="p-2">
+                                  <span
+                                    className={`changePos  ${
+                                      parseFloat(item.price_change) >= 0
+                                        ? "text-success"
+                                        : "text-danger"
+                                    } `}
+                                  >
+                                    {item.price_change}%
+                                  </span>
+                                </td>
+                                <td className="p-2">
+                                  {item.price_change >= 0 ? (
+                                    <img
+                                      src="/chart-image-1.png"
+                                      alt="chart-image"
+                                      className="chart-img"
+                                    />
+                                  ) : (
+                                    <img
+                                      src="/chart-image-2.png"
+                                      alt="chart-image"
+                                      className="chart-img"
+                                    />
+                                  )}
+                                </td>
+                                <td className="text-black p-2">
+                                  {item.volume} {item.parent_coin_name}
+                                </td>
+                                <td
+                                  className="p-2 text-right"
+                                  onClick={async () => {
+                                    await localStorage.setItem(
+                                      "base_coin_id",
+                                      item?.parent_coin_id
+                                    );
+                                    await localStorage.setItem(
+                                      "trade_coin_id",
+                                      item?.child_coin_id
+                                    );
+                                    // await localStorage.setItem(
+                                    //   "current_pair",
+                                    //   item?.child_coin_name +
+                                    //     "_" +
+                                    //     item?.parent_coin_name
+                                    // );
+                                  }}
                                 >
-                                  {item.price_change}%
-                                </span>
-                              </td>
-                              <td className="p-2">
-                                {item.price_change >= 0 ? (
-                                  <img
-                                    src="/chart-image-1.png"
-                                    alt="chart-image"
-                                    className="chart-img"
-                                  />
-                                ) : (
-                                  <img
-                                    src="/chart-image-2.png"
-                                    alt="chart-image"
-                                    className="chart-img"
-                                  />
-                                )}
-                              </td>
-                              <td className="text-black p-2">
-                                {item.volume} {item.parent_coin_name}
-                              </td>
-                              <td
-                                className="p-2 text-right"
-                                onClick={async () => {
-                                  await localStorage.setItem(
-                                    "base_coin_id",
-                                    item?.parent_coin_id
-                                  );
-                                  await localStorage.setItem(
-                                    "trade_coin_id",
-                                    item?.child_coin_id
-                                  );
-                                  // await localStorage.setItem(
-                                  //   "current_pair",
-                                  //   item?.child_coin_name +
-                                  //     "_" +
-                                  //     item?.parent_coin_name
-                                  // );
-                                }}
-                              >
-                                <Link
-                                  href={
-                                    router.locale !== "en"
-                                      ? `/${
-                                          router.locale
-                                        }/exchange/dashboard?coin_pair=${
-                                          item?.child_coin_name +
-                                          "_" +
-                                          item?.parent_coin_name
-                                        }`
-                                      : `/exchange/dashboard?coin_pair=${
-                                          item?.child_coin_name +
-                                          "_" +
-                                          item?.parent_coin_name
-                                        }`
-                                  }
-                                >
-                                  <a className="btnTrade btn-link">
-                                    {t("Trade")}
-                                  </a>
-                                </Link>
-                              </td>
-                            </tr>
-                          ))}
+                                  <Link
+                                    href={
+                                      router.locale !== "en"
+                                        ? `/${
+                                            router.locale
+                                          }/exchange/dashboard?coin_pair=${
+                                            item?.child_coin_name +
+                                            "_" +
+                                            item?.parent_coin_name
+                                          }`
+                                        : `/exchange/dashboard?coin_pair=${
+                                            item?.child_coin_name +
+                                            "_" +
+                                            item?.parent_coin_name
+                                          }`
+                                    }
+                                  >
+                                    <a className="btnTrade btn-link">
+                                      {t("Trade")}
+                                    </a>
+                                  </Link>
+                                </td>
+                              </tr>
+                            )
+                          )}
                         </tbody>
                       </table>
                     </div>
@@ -326,7 +378,7 @@ const MarketTrends = ({
                           </tr>
                         </thead>
                         <tbody>
-                          {hourly_coin_pairs?.map(
+                          {localHourlyCoinPairs?.map(
                             (item: any, index: number) => (
                               <tr role="row" className="odd" key={index}>
                                 <td className="p-2">
@@ -494,7 +546,7 @@ const MarketTrends = ({
                           </tr>
                         </thead>
                         <tbody>
-                          {latest_coin_pairs?.map(
+                          {localLatestCoinPairs?.map(
                             (item: any, index: number) => (
                               <tr role="row" className="odd" key={index}>
                                 <td className="p-2">

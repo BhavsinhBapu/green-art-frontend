@@ -17,6 +17,7 @@ import BottomDetails from "components/Homepage/BottomDetails";
 import GetInTouch from "components/Homepage/GetInTouch";
 import StartTradingNow from "components/Homepage/StartTradingNow";
 import CommunityHome from "components/community/CommunityHome";
+import SectionWrapper from "components/Animation/section-animation";
 const Home: NextPage = ({
   landing,
   bannerListdata,
@@ -49,7 +50,20 @@ const Home: NextPage = ({
       }
     })();
   }, [common.live_chat_status]);
-
+  const commonVariants = {
+    hidden: { opacity: 0, y: 15 },
+    visible: { opacity: 1, y: 0 },
+  };
+  const staggerVariants = {
+    hidden: { opacity: 0, y: 15 },
+    visible: (index: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: index * 0.1,
+      },
+    }),
+  };
   return (
     <SEO seoData={customSettings}>
       <div>
@@ -60,42 +74,60 @@ const Home: NextPage = ({
             <UnAuthNav />
           )}
           <>
-            <Cover
-              landing={landing}
-              loggedin={loggedin}
-              landing_banner_image={landing_banner_image}
-            />
+            <SectionWrapper
+              customVariants={{
+                ...commonVariants,
+                visible: { ...commonVariants.visible, x: 0 },
+              }}
+              visible={true}
+            >
+              <Cover
+                landing={landing}
+                loggedin={loggedin}
+                landing_banner_image={landing_banner_image}
+              />
+            </SectionWrapper>
 
-            <SliderSection
-              bannerListdata={bannerListdata}
-              landing={landing}
-              announcementListdata={announcementListdata}
-            />
-            <MarketTrends
-              landing={landing}
-              asset_coin_pairs={asset_coin_pairs}
-              hourly_coin_pairs={hourly_coin_pairs}
-              latest_coin_pairs={latest_coin_pairs}
-            />
-            {/* community section start*/}
-            {common?.blog_news_module == "1" && <CommunityHome />}
+            <SectionWrapper customVariants={commonVariants} visible={true}>
+              <SliderSection
+                bannerListdata={bannerListdata}
+                landing={landing}
+                announcementListdata={announcementListdata}
+              />
+            </SectionWrapper>
 
-            {/* community section end*/}
-            <DistributionSection landing={landing} />
+            <SectionWrapper customVariants={commonVariants}>
+              <MarketTrends
+                landing={landing}
+                asset_coin_pairs={asset_coin_pairs}
+                hourly_coin_pairs={hourly_coin_pairs}
+                latest_coin_pairs={latest_coin_pairs}
+              />
+            </SectionWrapper>
 
-            <BottomDetails landing={landing} />
+            {/* Additional sections with animations */}
 
-            {/* Trade. Anywhere. area end here  */}
-            {/* Get in touch. area start here  */}
-            <GetInTouch landing={landing} featureListdata={featureListdata} />
+            <SectionWrapper customVariants={staggerVariants}>
+              <CommunityHome />
+            </SectionWrapper>
 
-            {/* Get in touch. area end here  */}
-            {/* Start trading area start here  */}
-            <StartTradingNow landing={landing} loggedin={loggedin} />
+            <SectionWrapper customVariants={staggerVariants}>
+              <DistributionSection landing={landing} />
+            </SectionWrapper>
+
+            <SectionWrapper customVariants={staggerVariants}>
+              <BottomDetails landing={landing} />
+            </SectionWrapper>
+
+            <SectionWrapper customVariants={staggerVariants}>
+              <GetInTouch landing={landing} featureListdata={featureListdata} />
+            </SectionWrapper>
+
+            <SectionWrapper customVariants={staggerVariants}>
+              <StartTradingNow landing={landing} loggedin={loggedin} />
+            </SectionWrapper>
           </>
 
-          {/* Start trading area end here  */}
-          {/* footer area start here */}
           <Footer />
           <a
             id="scrollUp"

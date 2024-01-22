@@ -204,9 +204,9 @@ export const launchpadCreateUpdateTokenAction = async (
   if (Object.keys(payload).length > 0) {
     const formData: any = new FormData();
     formData.append("form_id", payload.form_id);
-    formData.append("base_coin", payload.base_coin);
+    // formData.append("base_coin", payload.base_coin);
     formData.append("token_name", payload.token_name);
-    formData.append("network", payload.network);
+    formData.append("network_id", payload.network_id);
     formData.append("wallet_address", payload.wallet_address);
     formData.append("contract_address", payload.contract_address);
     formData.append("wallet_private_key", payload.wallet_private_key);
