@@ -18,8 +18,8 @@ const DashboardBody = ({ ThemeColor, layout }: any) => {
   const { OpenBookBuy, OpenBooksell, marketTrades, currentPair, dashboard } =
     useSelector((state: RootState) => state.exchange);
 
-  useRandomPercentages(OpenBookBuy, setOpenBookBuy, dashboard, settings);
-  useRandomPercentages(OpenBooksell, setOpenBooksell, dashboard, settings);
+  // useRandomPercentages(OpenBookBuy, setOpenBookBuy, dashboard, settings);
+  // useRandomPercentages(OpenBooksell, setOpenBooksell, dashboard, settings);
 
   return (
     <>
