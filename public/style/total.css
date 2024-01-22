@@ -15784,11 +15784,12 @@ input:checked + .gift-card-buy-slider:before {
 .wallet-overview-tab-menu {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid var(--color-pallet-1);
+
   width: fit-content;
 }
 .wallet-overview-tab-menu li {
   padding: 4px 20px;
+  border-bottom: 1px solid var(--color-pallet-1);
 }
 .wallet-overview-tab-menu .active {
   border-bottom: 1px solid var(--border-color-1);
@@ -15840,6 +15841,16 @@ input:checked + .gift-card-buy-slider:before {
 }
 
 @media (max-width: 991px) {
+  .wallet-overview-header-main {
+    min-height: 550px;
+  }
+  .wallet-overview-tab-menu {
+    flex-direction: column;
+    align-items: start;
+  }
+  .wallet-overview-tab-menu li {
+    width: 100%;
+  }
   .text-45 {
     font-size: 36px;
   }
