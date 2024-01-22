@@ -57,160 +57,19 @@ const WalletOverview: NextPage = () => {
                 Object.keys(walletOverviewData).length > 0 && (
                   <>
                     <div
-                      className="shadow p-5"
+                      className="px-1"
                       style={{
-                        background: "var(--card-background-color)",
-                        borderRadius: "20px",
                         marginTop: "-60px",
                         marginBottom: "30px",
                       }}
                     >
                       <div className="row">
-                        <div
-                          className="col-md-6 pr-5 pb-5"
-                          style={{
-                            borderBottom: "1px solid var(--color-pallet-1)",
-                            borderRight: "1px solid var(--color-pallet-1)",
-                          }}
-                        >
+                        <div className=" col-md-6">
                           <div
+                            className="shadow p-5"
                             style={{
-                              display: "flex",
-                              justifyContent: "space-between",
-                              alignItems: "center",
-                            }}
-                          >
-                            <h6>{t(`Estimated Balance`)}</h6>
-                            <div
-                              style={{
-                                display: "flex",
-                                gap: "6px",
-                                alignItems: "center",
-                              }}
-                            >
-                              <span>
-                                {walletOverviewData?.selected_coin ?? "NA"}
-                              </span>
-                              {walletOverviewData?.coins?.length > 0 && (
-                                <div className="dropdown">
-                                  <button
-                                    className="dropdown-toggle wallet-overview-dropdown-tab-menu-btn"
-                                    type="button"
-                                    id="dropdownMenuButton"
-                                    data-toggle="dropdown"
-                                    aria-haspopup="true"
-                                    aria-expanded="false"
-                                  ></button>
-                                  <div
-                                    className="dropdown-menu shadow bg-main-clr"
-                                    style={{ minWidth: "4rem" }}
-                                    aria-labelledby="dropdownMenuButton"
-                                  >
-                                    {walletOverviewData?.coins.map(
-                                      (item: any, index: any) => (
-                                        <div
-                                          className="dropdown-item px-1 cursor-pointer text-primary wallet-dropdown-item"
-                                          key={index}
-                                          onClick={() => setCoinType(item)}
-                                        >
-                                          {item}
-                                        </div>
-                                      )
-                                    )}
-                                  </div>
-                                </div>
-                              )}
-                            </div>
-                          </div>
-                          <div className="pt-3 d-flex align-items-center gap-10">
-                            <div
-                              style={{
-                                display: "inline-block",
-                              }}
-                            >
-                              <h3>
-                                {`${
-                                  walletOverviewData?.total ?? "0.00000000"
-                                } ${walletOverviewData?.selected_coin ?? "NA"}`}
-                              </h3>
-                            </div>
-                          </div>
-                          <p>
-                            {/* {settings?.currency_symbol} */}$
-                            {`${
-                              walletOverviewData?.total_usd
-                                ? parseFloat(
-                                    walletOverviewData?.total_usd
-                                  ).toFixed(2)
-                                : "0.00"
-                            }`}
-                          </p>
-                        </div>
-                        <div
-                          className="col-md-6 pl-5 pb-5"
-                          style={{
-                            borderBottom: "1px solid var(--color-pallet-1)",
-                          }}
-                        >
-                          <div
-                            style={{
-                              display: "flex",
-                              justifyContent: "space-between",
-                              alignItems: "center",
-                            }}
-                          >
-                            <Link href="/user/my-wallet">
-                              <div className="d-flex align-items-center gap-10 cursor-pointer">
-                                <h6>{t("Spot")}</h6>
-                              </div>
-                            </Link>
-                            <div
-                              style={{
-                                padding: "6px",
-                                borderRadius: "10px",
-                                background: "var(--light)",
-                              }}
-                            >
-                              <BiShapeCircle
-                                size={24}
-                                color="var(--primary-color)"
-                              />
-                            </div>
-                          </div>
-                          <div className="pt-3 d-flex align-items-center gap-10">
-                            <div
-                              style={{
-                                display: "inline-block",
-                              }}
-                            >
-                              <h3>
-                                {`${
-                                  walletOverviewData?.spot_wallet
-                                    ? parseFloat(
-                                        walletOverviewData?.spot_wallet
-                                      ).toFixed(8)
-                                    : "0.0000000"
-                                } `}{" "}
-                                {`${walletOverviewData?.selected_coin ?? "NA"}`}
-                              </h3>
-                            </div>
-                          </div>
-                          <p>
-                            {/* {settings?.currency_symbol} */}$
-                            {`${
-                              walletOverviewData?.spot_wallet_usd
-                                ? parseFloat(
-                                    walletOverviewData?.spot_wallet_usd
-                                  ).toFixed(2)
-                                : "0.00"
-                            }`}
-                          </p>
-                        </div>
-                        {Number(settings?.enable_future_trade) === 1 && (
-                          <div
-                            className="col-md-6 pr-5 pt-5"
-                            style={{
-                              borderRight: "1px solid var(--color-pallet-1)",
+                              background: "var(--card-background-color)",
+                              borderRadius: "20px",
                             }}
                           >
                             <div
@@ -220,9 +79,94 @@ const WalletOverview: NextPage = () => {
                                 alignItems: "center",
                               }}
                             >
-                              <Link href="/futures/wallet-list">
+                              <h6>{t(`Estimated Balance`)}</h6>
+                              <div
+                                style={{
+                                  display: "flex",
+                                  gap: "6px",
+                                  alignItems: "center",
+                                  height: "36px",
+                                }}
+                              >
+                                <span>
+                                  {walletOverviewData?.selected_coin ?? "NA"}
+                                </span>
+                                {walletOverviewData?.coins?.length > 0 && (
+                                  <div className="dropdown">
+                                    <button
+                                      className="dropdown-toggle wallet-overview-dropdown-tab-menu-btn"
+                                      type="button"
+                                      id="dropdownMenuButton"
+                                      data-toggle="dropdown"
+                                      aria-haspopup="true"
+                                      aria-expanded="false"
+                                    ></button>
+                                    <div
+                                      className="dropdown-menu shadow bg-main-clr"
+                                      style={{ minWidth: "4rem" }}
+                                      aria-labelledby="dropdownMenuButton"
+                                    >
+                                      {walletOverviewData?.coins.map(
+                                        (item: any, index: any) => (
+                                          <div
+                                            className="dropdown-item px-1 cursor-pointer text-primary wallet-dropdown-item"
+                                            key={index}
+                                            onClick={() => setCoinType(item)}
+                                          >
+                                            {item}
+                                          </div>
+                                        )
+                                      )}
+                                    </div>
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                            <div className="pt-3 d-flex align-items-center gap-10">
+                              <div
+                                style={{
+                                  display: "inline-block",
+                                }}
+                              >
+                                <h3>
+                                  {`${
+                                    walletOverviewData?.total ?? "0.00000000"
+                                  } ${
+                                    walletOverviewData?.selected_coin ?? "NA"
+                                  }`}
+                                </h3>
+                              </div>
+                            </div>
+                            <p>
+                              {/* {settings?.currency_symbol} */}$
+                              {`${
+                                walletOverviewData?.total_usd
+                                  ? parseFloat(
+                                      walletOverviewData?.total_usd
+                                    ).toFixed(2)
+                                  : "0.00"
+                              }`}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="col-md-6">
+                          <div
+                            className="shadow p-5"
+                            style={{
+                              background: "var(--card-background-color)",
+                              borderRadius: "20px",
+                            }}
+                          >
+                            <div
+                              style={{
+                                display: "flex",
+                                justifyContent: "space-between",
+                                alignItems: "center",
+                              }}
+                            >
+                              <Link href="/user/my-wallet">
                                 <div className="d-flex align-items-center gap-10 cursor-pointer">
-                                  <h6>{t("Futures")}</h6>
+                                  <h6>{t("Spot")}</h6>
                                 </div>
                               </Link>
                               <div
@@ -246,7 +190,7 @@ const WalletOverview: NextPage = () => {
                               >
                                 <h3>
                                   {`${
-                                    walletOverviewData?.future_wallet
+                                    walletOverviewData?.spot_wallet
                                       ? parseFloat(
                                           walletOverviewData?.spot_wallet
                                         ).toFixed(8)
@@ -261,72 +205,147 @@ const WalletOverview: NextPage = () => {
                             <p>
                               {/* {settings?.currency_symbol} */}$
                               {`${
-                                walletOverviewData?.future_wallet_usd
+                                walletOverviewData?.spot_wallet_usd
                                   ? parseFloat(
-                                      walletOverviewData?.future_wallet_usd
+                                      walletOverviewData?.spot_wallet_usd
                                     ).toFixed(2)
                                   : "0.00"
                               }`}
                             </p>
                           </div>
-                        )}
-                        {parseInt(settings?.p2p_module) === 1 && (
-                          <div className="col-md-6 pl-5 pt-5">
+                        </div>
+                        {Number(settings?.enable_future_trade) === 1 && (
+                          <div className="col-md-6 mt-3">
                             <div
+                              className="shadow p-5"
                               style={{
-                                display: "flex",
-                                justifyContent: "space-between",
-                                alignItems: "center",
+                                background: "var(--card-background-color)",
+                                borderRadius: "20px",
                               }}
                             >
-                              <Link href="/p2p/p2p-wallet">
-                                <div className="d-flex align-items-center gap-10 cursor-pointer">
-                                  <h6>{t("P2P")}</h6>
+                              <div
+                                style={{
+                                  display: "flex",
+                                  justifyContent: "space-between",
+                                  alignItems: "center",
+                                }}
+                              >
+                                <Link href="/futures/wallet-list">
+                                  <div className="d-flex align-items-center gap-10 cursor-pointer">
+                                    <h6>{t("Futures")}</h6>
+                                  </div>
+                                </Link>
+                                <div
+                                  style={{
+                                    padding: "6px",
+                                    borderRadius: "10px",
+                                    background: "var(--light)",
+                                  }}
+                                >
+                                  <BiShapeCircle
+                                    size={24}
+                                    color="var(--primary-color)"
+                                  />
                                 </div>
-                              </Link>
+                              </div>
+                              <div className="pt-3 d-flex align-items-center gap-10">
+                                <div
+                                  style={{
+                                    display: "inline-block",
+                                  }}
+                                >
+                                  <h3>
+                                    {`${
+                                      walletOverviewData?.future_wallet
+                                        ? parseFloat(
+                                            walletOverviewData?.spot_wallet
+                                          ).toFixed(8)
+                                        : "0.0000000"
+                                    } `}{" "}
+                                    {`${
+                                      walletOverviewData?.selected_coin ?? "NA"
+                                    }`}
+                                  </h3>
+                                </div>
+                              </div>
+                              <p>
+                                {/* {settings?.currency_symbol} */}$
+                                {`${
+                                  walletOverviewData?.future_wallet_usd
+                                    ? parseFloat(
+                                        walletOverviewData?.future_wallet_usd
+                                      ).toFixed(2)
+                                    : "0.00"
+                                }`}
+                              </p>
+                            </div>
+                          </div>
+                        )}
+                        {parseInt(settings?.p2p_module) === 1 && (
+                          <div className="col-md-6 mt-3">
+                            <div
+                              className="shadow p-5"
+                              style={{
+                                background: "var(--card-background-color)",
+                                borderRadius: "20px",
+                              }}
+                            >
                               <div
                                 style={{
-                                  padding: "6px",
-                                  borderRadius: "10px",
-                                  background: "var(--light)",
+                                  display: "flex",
+                                  justifyContent: "space-between",
+                                  alignItems: "center",
                                 }}
                               >
-                                <BiShapeCircle
-                                  size={24}
-                                  color="var(--primary-color)"
-                                />
+                                <Link href="/p2p/p2p-wallet">
+                                  <div className="d-flex align-items-center gap-10 cursor-pointer">
+                                    <h6>{t("P2P")}</h6>
+                                  </div>
+                                </Link>
+                                <div
+                                  style={{
+                                    padding: "6px",
+                                    borderRadius: "10px",
+                                    background: "var(--light)",
+                                  }}
+                                >
+                                  <BiShapeCircle
+                                    size={24}
+                                    color="var(--primary-color)"
+                                  />
+                                </div>
                               </div>
-                            </div>
-                            <div className="pt-3 d-flex align-items-center gap-10">
-                              <div
-                                style={{
-                                  display: "inline-block",
-                                }}
-                              >
-                                <h3>
-                                  {`${
-                                    walletOverviewData?.p2p_wallet
-                                      ? parseFloat(
-                                          walletOverviewData?.p2p_wallet
-                                        ).toFixed(8)
-                                      : "0.0000000"
-                                  } `}{" "}
-                                  {`${
-                                    walletOverviewData?.selected_coin ?? "NA"
-                                  }`}
-                                </h3>
+                              <div className="pt-3 d-flex align-items-center gap-10">
+                                <div
+                                  style={{
+                                    display: "inline-block",
+                                  }}
+                                >
+                                  <h3>
+                                    {`${
+                                      walletOverviewData?.p2p_wallet
+                                        ? parseFloat(
+                                            walletOverviewData?.p2p_wallet
+                                          ).toFixed(8)
+                                        : "0.0000000"
+                                    } `}{" "}
+                                    {`${
+                                      walletOverviewData?.selected_coin ?? "NA"
+                                    }`}
+                                  </h3>
+                                </div>
                               </div>
+                              <p>
+                                {/* {settings?.currency_symbol} */}$
+                                {`${
+                                  walletOverviewData?.p2p_wallet_usd
+                                    ? parseFloat(
+                                        walletOverviewData?.p2p_wallet_usd
+                                      ).toFixed(2)
+                                    : "0.00"
+                                }`}
+                              </p>
                             </div>
-                            <p>
-                              {/* {settings?.currency_symbol} */}$
-                              {`${
-                                walletOverviewData?.p2p_wallet_usd
-                                  ? parseFloat(
-                                      walletOverviewData?.p2p_wallet_usd
-                                    ).toFixed(2)
-                                  : "0.00"
-                              }`}
-                            </p>
                           </div>
                         )}
                       </div>
