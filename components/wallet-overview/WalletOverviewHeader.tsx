@@ -7,8 +7,8 @@ export default function WalletOverviewHeader({ title, imageUrl }: any) {
     <div
       className="my-0 wallet-overview-header-main"
       style={{
-        // backgroundImage: `url(${imageUrl})`,
-        backgroundImage: `url(https://images.unsplash.com/photo-1564359179886-afa7f541e3b8?q=80&w=2076&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)`
+        backgroundImage: `url(${imageUrl})`,
+        // backgroundImage: `url(https://images.unsplash.com/photo-1564359179886-afa7f541e3b8?q=80&w=2076&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)`
       }}
     >
       <div className="profle-are-top container-fluid">
