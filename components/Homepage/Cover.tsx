@@ -84,7 +84,7 @@ const Cover = ({ landing, loggedin, landing_banner_image }: any) => {
                         ? `/${router.locale}/signup`
                         : "/signup"
                     }
-                    className="primary-btn"
+                    className="animated-button-two mt-4"
                     custom={2}
                     variants={textVariants}
                     initial="hidden"

@@ -28,7 +28,9 @@ const StartTradingNow = ({ landing, loggedin }: any) => {
             <div className="trading-button text-center">
               {!loggedin && (
                 <Link href="/signup">
-                  <a className="primary-btn mr-0 mr-sm-5">{t("Sign Up")}</a>
+                  <button className="animate-button-one mr-0 mr-sm-5">
+                    {t("Sign Up")}
+                  </button>
                 </Link>
               )}
               <a
@@ -38,7 +40,7 @@ const StartTradingNow = ({ landing, loggedin }: any) => {
                     : "/exchange/dashboard"
                 }
               >
-                <a className="primary-btn">{t("Trade Now")}</a>
+                <button className="animate-button-one">{t("Trade Now")}</button>
               </a>
             </div>
           </div>
