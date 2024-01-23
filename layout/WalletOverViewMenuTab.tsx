@@ -15,7 +15,7 @@ const WalletOverViewMenuTab = () => {
   const { settings } = useSelector((state: RootState) => state.common);
 
   return (
-    <div className="container-fluid">
+    <div className="container-4xl">
       <ul className="wallet-overview-tab-menu">
         <Link href="/wallet-overview">
           <li className={router.pathname == "/wallet-overview" ? "active" : ""}>

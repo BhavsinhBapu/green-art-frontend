@@ -161,10 +161,10 @@ const DepositHistory: NextPage = () => {
 
   return (
     <>
-      <div className="page-wrap rightMargin">
+      <div className="page-wrap rightMargin bg-card-primary-clr">
         <ReportSidebar />
         <div className="page-main-content">
-          <div className="container-fluid">
+          <div >
             <div className="section-top-wrap mb-25 inner-section-margin-top">
               <div className="overview-area">
                 <div className="overview-left">
@@ -201,7 +201,7 @@ const DepositHistory: NextPage = () => {
             {selectedType.id == 1 && (
               <div className="asset-balances-area">
                 <div className="asset-balances-left">
-                  <div className="section-wrapper">
+                  <div className="section-wrapper" style={{borderRadius: '16px'}}>
                     <div className="tableScroll">
                       <div className=" table-responsive tableScroll">
                         <CustomDataTable

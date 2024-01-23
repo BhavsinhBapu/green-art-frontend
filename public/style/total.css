@@ -5280,18 +5280,21 @@ select:-webkit-autofill:focus {
 .page-main-content {
   flex: 1;
   /* padding: 0 15px; */
-  padding-top: 20px;
+  /* padding-top: 20px; */
+  padding: 30px;
+  border-radius: 20px;
+  background: var(--main-background-color);
 }
 
 .section-top-wrap {
   position: relative;
-  padding: 25px;
+  /* padding: 25px;
   border-radius: 5px;
-  overflow: hidden;
-  background: var(--card-background-color);
+  overflow: hidden; */
+  /* background: var(--card-background-color); */
 }
 
-.section-top-wrap::before {
+/* .section-top-wrap::before {
   content: "";
   position: absolute;
   top: 0;
@@ -5302,7 +5305,7 @@ select:-webkit-autofill:focus {
   background-size: cover;
   padding: 50px;
   background-repeat: no-repeat;
-}
+} */
 
 /* .section-top-wrap::before {
     content: "";
@@ -5532,13 +5535,11 @@ select:-webkit-autofill:focus {
 /* page-left-sidebar */
 
 .page-left-sidebar {
-  width: 250px;
+  width: 300px;
+  padding: 20px 30px 40px;
   background: var(--card-background-color);
-  /* border-radius: 5px; */
-  min-width: 250px;
-  box-shadow: var(--box-shadow-color);
+  min-width: 300px;
   /* box-shadow: var(--box-shadow-color); */
-  border-right: 1px solid var(--border-color);
   min-height: 99vh !important;
 }
 
@@ -5566,7 +5567,7 @@ select:-webkit-autofill:focus {
   position: relative;
   /* margin-bottom: 22px; */
   list-style: none;
-  padding: 12px;
+  padding: 12px 20px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -5575,7 +5576,7 @@ select:-webkit-autofill:focus {
   color: var(--primary-color);
   margin-bottom: 10px;
   margin-top: 10px;
-  gap: 5px;
+  gap: 15px;
 }
 
 .page-left-sidebar .sidebar-top .left-menu li:last-child {
@@ -5605,13 +5606,15 @@ select:-webkit-autofill:focus {
 .page-left-sidebar .sidebar-top .left-menu li:hover {
   background: #f5e9bb5c !important;
   transition: 0.3s;
+  border-radius: 5px;
   /* border-radius: 4px; */
   /* transform: translateX(6px); */
 }
 
 .page-left-sidebar .sidebar-top .left-menu li.active {
   background: #f5e9bb5c;
-  border-left: 6px solid var(--primary-color);
+  /* border-left: 6px solid var(--primary-color); */
+  border-radius: 5px;
 }
 
 .page-left-sidebar .sidebar-top .left-menu li.active a {
@@ -15784,20 +15787,22 @@ input:checked + .gift-card-buy-slider:before {
 .wallet-overview-tab-menu {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid var(--color-pallet-1);
+
   width: fit-content;
 }
 .wallet-overview-tab-menu li {
   padding: 4px 20px;
+  border-bottom: 1px solid var(--color-pallet-1);
 }
 .wallet-overview-tab-menu .active {
-  border-bottom: 1px solid var(--border-color-1);
+  border-bottom: 3px solid var(--border-color-1);
 }
 .wallet-overview-tab-menu .active a {
   color: white !important;
 }
 .wallet-overview-tab-menu li a {
-  color: var(--color-pallet-1) !important;
+  /* color: var(--color-pallet-1) !important; */
+  color: white !important;
   font-size: 16px;
   cursor: pointer;
 }
@@ -15806,6 +15811,10 @@ input:checked + .gift-card-buy-slider:before {
   border: none !important;
   color: var(--font-color);
 }
+.wallet-card-info-container {
+  background: var(--card-background-color);
+  border-radius: 10px;
+}
 @media (max-width: 1520px) {
   .trade-dashboard-side-margin {
     margin-left: 0 !important;
@@ -15813,6 +15822,9 @@ input:checked + .gift-card-buy-slider:before {
   }
 }
 @media (max-width: 1199px) {
+  .page-left-sidebar {
+    padding: 0;
+  }
   .trade-dashboard-side-width {
     width: 100%;
   }
@@ -15839,6 +15851,16 @@ input:checked + .gift-card-buy-slider:before {
 }
 
 @media (max-width: 991px) {
+  .wallet-overview-header-main {
+    min-height: 550px;
+  }
+  .wallet-overview-tab-menu {
+    flex-direction: column;
+    align-items: start;
+  }
+  .wallet-overview-tab-menu li {
+    width: 100%;
+  }
   .text-45 {
     font-size: 36px;
   }
@@ -16012,4 +16034,19 @@ input:checked + .gift-card-buy-slider:before {
 
 .p2p-custom-scrollbar::-webkit-scrollbar-thumb {
   background: var(--color-pallet-1);
+}
+
+.container-4xl {
+  width: 100%;
+  max-width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 1200px) {
+  .container-4xl {
+    max-width: 1560px;
+  }
 }
