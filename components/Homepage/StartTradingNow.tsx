@@ -21,7 +21,7 @@ const StartTradingNow = ({ landing, loggedin }: any) => {
             padding: "60px 0",
           }}
         >
-          <div className="container">
+          <div className="container-4xl">
             <div className="section-title text-center">
               <h2 className="title">{t("Start trading now")}</h2>
             </div>

@@ -11,7 +11,7 @@ const GetInTouch = ({ landing, featureListdata }: any) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <div className="container">
+          <div className="container-4xl">
             <div className="section-title mb-3">
               <h2 className="title">{landing?.landing_feature_title}</h2>
             </div>
@@ -37,7 +37,6 @@ const GetInTouch = ({ landing, featureListdata }: any) => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 2 }} // Adjust the delay here
                 >
-                  
                   <a
                     href={`${
                       feature?.feature_url !== "" &&

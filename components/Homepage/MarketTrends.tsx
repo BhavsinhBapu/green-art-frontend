@@ -67,7 +67,7 @@ const MarketTrends = ({
     <div className="bg-card-primary-clr">
       {parseInt(landing.landing_third_section_status) === 1 && (
         <section className="market-trend-area">
-          <div className="container">
+          <div className="container-4xl">
             <div className="section-title">
               <h2 className="title">
                 {landing?.market_trend_title || t("Market Trend")}

@@ -10,7 +10,7 @@ const DistributionSection = ({ landing }: any) => {
       {parseInt(landing.landing_fourth_section_status) === 1 &&
         parseInt(landing.download_link_display_type) === 1 && (
           <section className="trade-anywhere-area sectiob-bg">
-            <div className="container">
+            <div className="container-4xl">
               {/* <div className="section-title">
                 <h2 className="title">{landing?.trade_anywhere_title}</h2>
               </div> */}

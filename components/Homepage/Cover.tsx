@@ -17,28 +17,13 @@ const Cover = ({ landing, loggedin, landing_banner_image }: any) => {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 2, // Slower duration
-        delay: index * 0.5, // Adjusted delay for staggered entrance
+        duration: 2,
+        delay: index * 0.5,
         type: "spring",
         damping: 10,
         stiffness: 100,
       },
     }),
-  };
-
-  // Image animation variants
-  const imageVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        type: "spring",
-        duration: 2.5, // Slower duration
-        damping: 10,
-        stiffness: 100,
-      },
-    },
   };
 
   useEffect(() => {
@@ -48,14 +33,26 @@ const Cover = ({ landing, loggedin, landing_banner_image }: any) => {
     // Trigger image animation after a longer delay
     setTimeout(() => {
       imageControls.start("visible");
-    }, 1500); // Adjusted delay for the image animation
+    }, 1500);
   }, [textControls, imageControls]);
 
   return (
     <div>
       {parseInt(landing?.landing_first_section_status) === 1 && (
         <section className="hero-banner-area">
-          <div className="container">
+          <div className={"placeTopLeft"}>
+            <img
+              src="https://assets-global.website-files.com/60c8db180183804ef2b45120/60cb6b0ac3e71fa837cb2929_hero-glow.svg"
+              alt="Hero Banner"
+            />
+          </div>
+          <div className="placeBottomRight">
+            <img
+              src="https://assets-global.website-files.com/60c8db180183804ef2b45120/60cb6b0ac3e71fa837cb2929_hero-glow.svg"
+              alt="Hero Banner"
+            />
+          </div>
+          <div className="container-4xl">
             <div className="row">
               <div className="col-md-6 conver-col1">
                 <motion.h1
@@ -97,20 +94,16 @@ const Cover = ({ landing, loggedin, landing_banner_image }: any) => {
                   </motion.a>
                 )}
               </div>
-              <motion.div
-                className="col-md-6"
-                initial="hidden"
-                animate={imageControls}
-                variants={imageVariants}
-              >
-                <ImageComponent
+              <div className="col-md-6 hero-banner-img">
+                <img
                   src={
                     landing_banner_image ||
                     "/undraw_crypto_flowers_re_dyqo.svg.svg"
                   }
                   height={440}
+                  alt="banner"
                 />
-              </motion.div>
+              </div>
             </div>
           </div>
         </section>

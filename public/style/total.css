@@ -10739,6 +10739,9 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
 
 .exchange-tab-menu {
   margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .exchange-tab-menu .nav-tabs .nav-item .nav-link {
@@ -10792,7 +10795,6 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
   padding: 10px 15px;
   border-radius: 3px;
   background: var(--primary-color);
-  color: var(--text-primary-color);
   color: var(--font-color);
   text-decoration: none;
   font-size: 14px;
@@ -10800,7 +10802,9 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
   line-height: 1;
   transition: all 0.3s;
 }
-
+.exchange-tab-menu-list{
+      background: var(--background-color);
+}
 .sectiob-bg {
   background: var(--main-background-color);
 }
@@ -11667,7 +11671,7 @@ input[type="number"] {
 }
 
 .exchange-tab-menu .nav-tabs .nav-item .nav-link.active {
-  background: var(--primary-color);
+  background: var(--background-color);
   color: var(--text-primary-color);
 }
 
@@ -11692,7 +11696,7 @@ input[type="number"] {
   display: inline-block;
   padding: 10px 15px;
   border-radius: 3px;
-  background: var(--primary-color);
+  background: var(--background-color);
   color: var(--font-color);
   text-decoration: none;
   font-size: 14px;

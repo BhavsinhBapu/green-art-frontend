@@ -34,8 +34,12 @@ export default function TradeSections() {
           <div className="market-trend-area ">
             <div className="container">
               <div className="exchange-tab-menu">
-                <ul className="nav nav-tabs" id="exchangeTab" role="tablist">
-                  <li className="nav-item" role="presentation">
+                <ul
+                  className="nav nav-tabs exchange-tab-menu-list"
+                  id="exchangeTab"
+                  role="tablist"
+                >
+                  <li className="nav-item " role="presentation">
                     <a
                       className="nav-link active"
                       id="CoreAssets-tab"

@@ -24,6 +24,12 @@ export function capitalizeFirstLetter(string: any) {
 export const formatCurrency = (value: any) => {
   return new Intl.NumberFormat("en-US").format(value);
 };
+export const formatCurrencyWithDecimals = (value: any) => {
+  return new Intl.NumberFormat("en-US", {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 5,
+  }).format(value);
+};
 export const copyTextById = (value: any) => {
   var dummy = document.createElement("input");
   document.body.appendChild(dummy);
