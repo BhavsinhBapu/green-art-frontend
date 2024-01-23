@@ -8,6 +8,7 @@ interface SectionWrapperProps {
   customVariants?: Variants; // Accept custom animation variants
   visible?: boolean;
   delay?: number; // Add delay as a prop
+  className?: string;
 }
 
 const SectionWrapper: React.FC<SectionWrapperProps> = ({
@@ -15,6 +16,7 @@ const SectionWrapper: React.FC<SectionWrapperProps> = ({
   customVariants = {}, // Default to an empty object
   visible = false,
   delay = 0, // Default delay is 0 seconds
+  className,
 }: SectionWrapperProps) => {
   const sectionRef: React.MutableRefObject<any> = useRef(null);
   const controls = useAnimation();
@@ -59,6 +61,7 @@ const SectionWrapper: React.FC<SectionWrapperProps> = ({
 
   return (
     <motion.div
+      className={className ? className : ""}
       variants={{
         ...customVariants,
         // Add custom variants for initial, animate, and exit states
