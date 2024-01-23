@@ -169,8 +169,14 @@ const DepositHistory: NextPage = () => {
             type === "deposit" ? t("Deposit History") : t("Withdrawal History")
           } ${search}`}
         />
-        <div className="page-main-content">
-          <div>
+        <div className="page-main-content container-4xl">
+          <div
+            className="report-overview-body-padding"
+            style={{
+              marginTop: "-60px",
+              marginBottom: "30px",
+            }}
+          >
             {/* <div className="section-top-wrap mb-25 inner-section-margin-top">
               <div className="overview-area">
                 <div className="overview-left">
@@ -207,10 +213,7 @@ const DepositHistory: NextPage = () => {
             {selectedType.id == 1 && (
               <div className="asset-balances-area">
                 <div className="asset-balances-left">
-                  <div
-                    className="section-wrapper"
-                    style={{ borderRadius: "16px" }}
-                  >
+                  <div style={{ borderRadius: "16px" }}>
                     <div className="tableScroll">
                       <div className=" table-responsive tableScroll">
                         <CustomDataTable
@@ -276,7 +279,7 @@ const DepositHistory: NextPage = () => {
             {selectedType.id == 2 && (
               <div className="asset-balances-area">
                 <div className="asset-balances-left">
-                  <div className="section-wrapper">
+                  <div>
                     <div className="tableScroll">
                       <div className="cp-user-wallet-table table-responsive tableScroll">
                         <div

@@ -15831,6 +15831,30 @@ input:checked + .gift-card-buy-slider:before {
   font-size: 16px;
   cursor: pointer;
 }
+.report-overview-tab-scroll {
+  overflow-x: auto;
+}
+
+/* width */
+.report-overview-tab-scroll::-webkit-scrollbar {
+  padding: 2px;
+  width: 4px;
+  height: 1px;
+}
+
+/* Track */
+.report-overview-tab-scroll::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+.report-overview-tab-scroll::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+.report-overview-body-padding {
+  padding: 3rem;
+}
 
 .wallet-overview-dropdown-tab-menu-btn {
   background: transparent !important;
@@ -15887,13 +15911,14 @@ input:checked + .gift-card-buy-slider:before {
   .wallet-overview-tab-menu li {
     width: 100%;
   }
-  .report-overview-tab-menu {
+  /* .report-overview-tab-menu {
     flex-direction: column;
     align-items: start;
   }
   .report-overview-tab-menu li {
     width: 100%;
-  }
+  } */
+
   .text-45 {
     font-size: 36px;
   }
