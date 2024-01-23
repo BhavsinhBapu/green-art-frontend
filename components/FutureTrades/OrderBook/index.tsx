@@ -83,7 +83,10 @@ const OrderBook = () => {
       </div>
       {select === 1 && (
         <>
-          <AllSellOrdersFull OpenBooksell={OpenBooksell} customClss={'buy-sell-order-max-h'}/>
+          <AllSellOrdersFull
+            OpenBooksell={OpenBooksell}
+            customClss={"buy-sell-order-max-h"}
+          />
           <div className="trades-table-footer">
             <div className="trades-table-row">
               <span
@@ -113,6 +116,8 @@ const OrderBook = () => {
                   dashboard?.last_price_data[0]?.price
                     ? dashboard?.last_price_data[0]?.price
                     : 0
+                ).toFixed(
+                  dashboard?.order_data?.total?.trade_wallet?.pair_decimal
                 )}
                 {parseFloat(
                   dashboard?.last_price_data &&
@@ -180,6 +185,8 @@ const OrderBook = () => {
                   dashboard?.last_price_data[0]?.price
                     ? dashboard?.last_price_data[0]?.price
                     : 0
+                ).toFixed(
+                  dashboard?.order_data?.total?.trade_wallet?.pair_decimal
                 )}
                 {parseFloat(
                   dashboard?.last_price_data &&
@@ -214,7 +221,11 @@ const OrderBook = () => {
               </span>
             </div>
           </div>
-          <AllBuyOrdersFull buy={OpenBookBuy} show={38} customClss={'buy-sell-order-max-h'}/>
+          <AllBuyOrdersFull
+            buy={OpenBookBuy}
+            show={38}
+            customClss={"buy-sell-order-max-h"}
+          />
         </>
       )}
       {select === 3 && (
@@ -252,6 +263,8 @@ const OrderBook = () => {
                     dashboard?.last_price_data
                       ? dashboard?.last_price_data[0]?.price
                       : 0
+                  ).toFixed(
+                    dashboard?.order_data?.total?.trade_wallet?.pair_decimal
                   )}
                   {parseFloat(
                     dashboard?.last_price_data &&

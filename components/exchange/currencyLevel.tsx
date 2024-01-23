@@ -49,7 +49,10 @@ const CurrencyLevel = () => {
             }
           >
             {dashboard?.last_price_data[0]?.last_price
-              ? formatCurrency(dashboard?.last_price_data[0]?.last_price)
+              ? formatCurrency(
+                  dashboard?.last_price_data[0]?.last_price,
+                  dashboard?.order_data?.total?.trade_wallet?.pair_decimal
+                )
               : 0}
             {parseFloat(
               dashboard?.last_price_data && dashboard?.last_price_data[0]?.price
@@ -74,7 +77,10 @@ const CurrencyLevel = () => {
           </span>
           <span className="label">
             {dashboard?.last_price_data[0]?.last_price
-              ? formatCurrency(dashboard?.last_price_data[0]?.last_price)
+              ? formatCurrency(
+                  dashboard?.last_price_data[0]?.last_price,
+                  dashboard?.order_data?.total?.trade_wallet?.pair_decimal
+                )
               : 0}
             ({dashboard?.order_data?.base_coin})
           </span>
@@ -100,7 +106,10 @@ const CurrencyLevel = () => {
           <span className="label">{t("24h high")}</span>
           <span className="value">
             {dashboard?.order_data?.total?.trade_wallet?.high
-              ? formatCurrency(dashboard?.order_data?.total?.trade_wallet?.high)
+              ? formatCurrency(
+                  dashboard?.order_data?.total?.trade_wallet?.high,
+                  dashboard?.order_data?.total?.trade_wallet?.pair_decimal
+                )
               : 0}
           </span>
         </li>
@@ -110,7 +119,8 @@ const CurrencyLevel = () => {
             {formatCurrency(
               dashboard?.order_data?.total?.trade_wallet?.low
                 ? dashboard?.order_data?.total?.trade_wallet?.low
-                : 0
+                : 0,
+              dashboard?.order_data?.total?.trade_wallet?.pair_decimal
             )}
           </span>
         </li>
@@ -123,7 +133,8 @@ const CurrencyLevel = () => {
             {formatCurrency(
               dashboard?.order_data?.total?.trade_wallet?.volume
                 ? dashboard?.order_data?.total?.trade_wallet?.volume
-                : 0
+                : 0,
+              dashboard?.order_data?.total?.trade_wallet?.pair_decimal
             )}
           </span>
         </li>
@@ -132,7 +143,12 @@ const CurrencyLevel = () => {
             {" "}
             {t("24h volume")}({dashboard?.order_data?.base_coin}){" "}
           </span>
-          <span className="value">{formatCurrency(volume ? volume : 0)}</span>
+          <span className="value">
+            {formatCurrency(
+              volume ? volume : 0,
+              dashboard?.order_data?.total?.trade_wallet?.pair_decimal
+            )}
+          </span>
         </li>
       </ul>
     </div>
