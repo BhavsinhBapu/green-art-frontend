@@ -16152,5 +16152,5 @@ input:checked + .gift-card-buy-slider:before {
 }
 
 .bg-primary-custom-color {
-  background: var(--background-color);
+  background: var(--custom-background-color);
 }
