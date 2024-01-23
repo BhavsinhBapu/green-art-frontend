@@ -16,6 +16,7 @@ import { customPage, landingPage } from "service/landing-page";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
 import CustomDataTable from "components/Datatable";
+import ReportOverviewHeader from "components/reports/ReportOverviewHeader";
 
 const BuyOrderHistory: NextPage = () => {
   type searchType = string;
@@ -131,12 +132,19 @@ const BuyOrderHistory: NextPage = () => {
   }, [selectedLimit, search]);
   return (
     <>
-      <div className="page-wrap rightMargin">
-        <ReportSidebar />
+      <div>
+        {/* <ReportSidebar /> */}
+        <ReportOverviewHeader title={t("Buy Order History")} />
 
-        <div className="page-main-content">
-          <div className="container-fluid">
-            <div className="section-top-wrap mb-25 inner-section-margin-top">
+        <div className="page-main-content container-4xl">
+          <div
+            className="report-overview-body-padding"
+            style={{
+              marginTop: "-60px",
+              marginBottom: "30px",
+            }}
+          >
+            {/* <div className="section-top-wrap mb-25 inner-section-margin-top">
               <div className="overview-area">
                 <div className="overview-left">
                   <h2 className="section-top-title">
@@ -144,11 +152,11 @@ const BuyOrderHistory: NextPage = () => {
                   </h2>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             <div className="asset-balances-area">
               <div className="asset-balances-left">
-                <div className="section-wrapper ">
+                <div>
                   <div className="tableScroll">
                     <div className=" table-responsive tableScroll">
                       <CustomDataTable
