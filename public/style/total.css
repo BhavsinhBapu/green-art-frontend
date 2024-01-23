@@ -10750,12 +10750,12 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
 }
 
 .exchange-tab-menu .nav-tabs .nav-item .nav-link.active {
-  background: var(--primary-color);
-  color: var(--text-primary-color);
-  border: none;
+  /* background: var(--primary-color); */
+  color: var(--primary-color);
+  border-bottom: 2px solid var(--primary-color);
   padding: 10px 15px;
   background: transparent;
-  color: var(--text-primary-color-2);
+  /* color: var(--text-primary-color-2); */
   /* border-radius: 5px; */
 }
 
@@ -11667,8 +11667,12 @@ input[type="number"] {
 }
 
 .exchange-tab-menu .nav-tabs .nav-item .nav-link.active {
-  background: var(--primary-color);
-  color: var(--text-primary-color);
+  /* background: var(--primary-color);
+  color: var(--text-primary-color); */
+  color: var(--primary-color);
+  border-bottom: 2px solid var(--primary-color);
+  padding: 10px 15px;
+  border-radius: 0;
 }
 
 .market-trend-area {
@@ -15771,6 +15775,17 @@ input:checked + .gift-card-buy-slider:before {
 }
 
 .wallet-overview-header-main {
+  min-height: 350px;
+  background-size: cover;
+  background-repeat: "no-repeat";
+  background-position: "center";
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
+.market-overview-header-main {
   min-height: 350px;
   background-size: cover;
   background-repeat: "no-repeat";

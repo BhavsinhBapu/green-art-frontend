@@ -105,6 +105,7 @@ export default function Index() {
           style={{
             marginTop: "-60px",
             marginBottom: "30px",
+            rowGap: '20px'
           }}
         >
           {marketsCardData?.highlight_coin.length > 0 && (
