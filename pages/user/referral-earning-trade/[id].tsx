@@ -17,6 +17,7 @@ import Footer from "components/common/footer";
 import { customPage, landingPage } from "service/landing-page";
 import { useRouter } from "next/router";
 import CustomDataTable from "components/Datatable";
+import ReportOverviewHeader from "components/reports/ReportOverviewHeader";
 
 const ReferralEarningTrade: NextPage = () => {
   type searchType = string;
@@ -91,12 +92,19 @@ const ReferralEarningTrade: NextPage = () => {
   }, [selectedLimit, search]);
   return (
     <>
-      <div className="page-wrap rightMargin">
-        <ReportSidebar />
+      <div>
+        {/* <ReportSidebar /> */}
+        <ReportOverviewHeader title={t("Referral earning trade")} />
 
-        <div className="page-main-content">
-          <div className="container-fluid">
-            <div className="section-top-wrap mb-25 inner-section-margin-top">
+        <div className="page-main-content container-4xl">
+          <div
+            className="report-overview-body-padding"
+            style={{
+              marginTop: "-60px",
+              marginBottom: "30px",
+            }}
+          >
+            {/* <div className="section-top-wrap mb-25 inner-section-margin-top">
               <div className="overview-area">
                 <div className="overview-left">
                   <h2 className="section-top-title">
@@ -104,11 +112,11 @@ const ReferralEarningTrade: NextPage = () => {
                   </h2>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             <div className="asset-balances-area">
               <div className="asset-balances-left">
-                <div className="section-wrapper ">
+                <div>
                   <div className="tableScroll">
                     <CustomDataTable
                       columns={columns}

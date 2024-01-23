@@ -15807,6 +15807,17 @@ input:checked + .gift-card-buy-slider:before {
   cursor: pointer;
 }
 
+.report-overview-header-main {
+  min-height: 350px;
+  background-size: cover;
+  background-repeat: "no-repeat";
+  background-position: "center";
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
 .report-overview-tab-menu {
   display: flex;
   align-items: center;
@@ -15901,9 +15912,17 @@ input:checked + .gift-card-buy-slider:before {
 }
 
 @media (max-width: 991px) {
+  .report-overview-body-padding {
+    padding: 3rem 4px;
+  }
+
+  .report-overview-header-main {
+    min-height: 400px;
+  }
   .wallet-overview-header-main {
     min-height: 550px;
   }
+
   .wallet-overview-tab-menu {
     flex-direction: column;
     align-items: start;
