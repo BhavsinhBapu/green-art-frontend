@@ -14,6 +14,7 @@ import { formatCurrency } from "common";
 import { customPage, landingPage } from "service/landing-page";
 import Footer from "components/common/footer";
 import CustomDataTable from "components/Datatable";
+import ReportOverviewHeader from "components/reports/ReportOverviewHeader";
 const SwapHistory: NextPage = () => {
   const { t } = useTranslation("common");
   type searchType = string;
@@ -35,7 +36,14 @@ const SwapHistory: NextPage = () => {
     );
   };
   const getReport = async () => {
-    CoinConvertHistoryAction(selectedLimit, 1, setHistory, setProcessing, setStillHistory, search);
+    CoinConvertHistoryAction(
+      selectedLimit,
+      1,
+      setHistory,
+      setProcessing,
+      setStillHistory,
+      search
+    );
   };
   const columns = [
     {
@@ -100,11 +108,18 @@ const SwapHistory: NextPage = () => {
   }, [selectedLimit, search]);
   return (
     <>
-      <div className="page-wrap">
-        <ReportSidebar />
-        <div className="page-main-content">
-          <div className="container-fluid">
-            <div className="section-top-wrap mb-25 inner-section-margin-top">
+      <div>
+        {/* <ReportSidebar /> */}
+        <ReportOverviewHeader title={t("Coin Swap History")} />
+        <div className="page-main-content container-4xl">
+          <div
+            className="report-overview-body-padding"
+            style={{
+              marginTop: "-60px",
+              marginBottom: "30px",
+            }}
+          >
+            {/* <div className="section-top-wrap mb-25 inner-section-margin-top">
               <div className="overview-area">
                 <div className="overview-left">
                   <h2 className="section-top-title">
@@ -112,11 +127,11 @@ const SwapHistory: NextPage = () => {
                   </h2>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             <div className="asset-balances-area">
               <div className="asset-balances-left">
-                <div className="section-wrapper">
+                <div>
                   <div className="tableScroll">
                     <div className=" table-responsive tableScroll">
                       <CustomDataTable
