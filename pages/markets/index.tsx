@@ -7,6 +7,7 @@ import useTranslation from "next-translate/useTranslation";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { getCurrenyApi, getMarketCardDatasApi } from "service/markets";
+import Footer from "components/common/footer";
 
 async function listenMessages(setMarketsCardData: any) {
   //@ts-ignore
@@ -137,6 +138,7 @@ export default function Index() {
         <TradesTable selectedCurrency={selectedCurrency} />
         {/* trade section end */}
       </div>
+      <Footer />
     </section>
   );
 }
