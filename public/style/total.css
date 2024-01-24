@@ -16154,3 +16154,8 @@ input:checked + .gift-card-buy-slider:before {
 .bg-primary-custom-color {
   background: var(--custom-background-color);
 }
+
+.body-margin-top-custom {
+  margin-top: -60px;
+  margin-bottom: 30px;
+}
