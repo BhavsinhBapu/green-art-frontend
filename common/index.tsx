@@ -21,8 +21,17 @@ export const splitPair = (word: any) => {
 export function capitalizeFirstLetter(string: any) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
-export const formatCurrency = (value: any) => {
-  return new Intl.NumberFormat("en-US").format(value);
+export const formatCurrency = (value: any, decemal?: number) => {
+  return new Intl.NumberFormat("en-US", {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: decemal ? decemal : 2,
+  }).format(value);
+};
+export const formatCurrencyWithDecimals = (value: any) => {
+  return new Intl.NumberFormat("en-US", {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 5,
+  }).format(value);
 };
 export const copyTextById = (value: any) => {
   var dummy = document.createElement("input");

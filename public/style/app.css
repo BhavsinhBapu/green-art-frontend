@@ -566,17 +566,151 @@ client-area
   background: #f5f5f5;
 }
 
+/* Animate Button One */
+.animate-button-one {
+  border: 4px solid #000;
+  border-radius: 10px;
+  background: #000;
+  color: #fff;
+  font-size: 32px;
+  font-weight: bold;
+  line-height: 2;
+  padding-inline: calc(0.5em + 80px) 0.5em;
+  padding-block: 0;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.animate-button-one:before,
+.animate-button-one:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 6px;
+  transform: translate(calc(80px - 100%));
+  transition: inherit;
+}
+
+.animate-button-one:before {
+  background: var(--primary-color);
+}
+
+.animate-button-one:after {
+  --r: calc(1lh / 18);
+  background: repeating-linear-gradient(90deg, #7d7d7d 0, #ddd, #7d7d7d 50%)
+    right/200%;
+  animation: b 1s linear infinite;
+  padding: calc(4 * var(--r)) calc(6 * var(--r));
+  clip-path: inset(0 0 0 calc(100% - 60px));
+  /* I can optimize the mask with fewer gradients, but I did a fast implementation */
+  --m: /calc(50% / 3) calc(2 * var(--r)) repeat-x content-box radial-gradient(var(
+          --r
+        )
+        at var(--r), #000 70%, #0000 82%);
+  -webkit-mask: calc(3 * var(--r)) calc(0 * var(--r)) var(--m),
+    calc(5 * var(--r)) calc(0 * var(--r)) var(--m),
+    calc(5 * var(--r)) calc(2 * var(--r)) var(--m),
+    calc(7 * var(--r)) calc(2 * var(--r)) var(--m),
+    calc(7 * var(--r)) calc(4 * var(--r)) var(--m),
+    calc(9 * var(--r)) calc(4 * var(--r)) var(--m),
+    calc(7 * var(--r)) calc(6 * var(--r)) var(--m),
+    calc(5 * var(--r)) calc(6 * var(--r)) var(--m),
+    calc(5 * var(--r)) calc(8 * var(--r)) var(--m),
+    calc(3 * var(--r)) calc(8 * var(--r)) var(--m);
+}
+
+@keyframes b {
+  to {
+    background-position: left;
+  }
+}
+
+.animate-button-one:hover {
+  transform: scale(1.2);
+}
+
+.animate-button-one:hover:before,
+.animate-button-one:hover:after {
+  transform: translate(0);
+  clip-path: inset(0);
+}
+.animated-button-two {
+  padding: 20px;
+  border-radius: 30px;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #fff;
+  font-size: 20px;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  box-sizing: border-box;
+  background: linear-gradient(
+    90deg,
+    #03a9f4,
+    var(--primary-color),
+    #ffeb3b,
+    #03a9f4
+  );
+  background-size: 400%;
+  cursor: pointer;
+}
+
+.animated-button-two:hover {
+  animation: animate 8s linear infinite;
+}
+
+@keyframes animate {
+  0% {
+    background-position: 0%;
+  }
+  100% {
+    background-position: 400%;
+  }
+}
+
+.animated-button-two:before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  bottom: -5px;
+  right: -5px;
+  z-index: -1;
+  background: linear-gradient(
+    90deg,
+    var(--primary-color),
+    #f441a5,
+    var(--primary-color),
+    var(--primary-color)
+  );
+  background-size: 400%;
+  border-radius: 40px;
+  opacity: 0;
+  transition: 1s;
+}
+
+.animated-button-two:hover:before {
+  filter: blur(20px);
+  opacity: 1;
+  animation: animate 8s linear infinite;
+}
+
 /*---------------------------
 #.section-title
 -----------------------------*/
 
 .section-title {
   margin-bottom: 45px;
+  text-align: center;
 }
 
 .section-title .title {
   margin: 0;
-  font-size: 32px;
+  font-size: 44px;
   font-weight: 700;
   text-transform: capitalize;
   margin: 0;
@@ -804,7 +938,11 @@ client-area
   font-size: 16px;
   font-weight: 500;
 }
-
+.hero-banner-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .hero-banner-area .hero-banner-bottom {
   margin-top: 80px;
 }
@@ -932,6 +1070,62 @@ client-area
 
 .about-area .owl-carousel .owl-nav button.owl-next {
   right: 10px;
+}
+/* styles.css */
+.placeTopLeft {
+  box-sizing: border-box;
+  display: inline-block;
+  overflow: hidden;
+  width: 800px;
+  height: 900px;
+  opacity: 1;
+  border: 0px;
+  margin: 0px;
+  padding: 0px;
+  position: absolute;
+  top: 105;
+  left: 0;
+}
+
+.placeTopLeft img {
+  position: absolute;
+  inset: 0;
+  box-sizing: border-box;
+  padding: 0;
+  border: none;
+  margin: auto;
+  display: block;
+}
+/* styles.css */
+.placeBottomRight {
+  box-sizing: border-box;
+  display: inline-block;
+  overflow: hidden;
+  width: 800px;
+  height: 400px;
+  opacity: 1;
+  border: 0px;
+  margin: 0px;
+  padding: 0px;
+  position: absolute;
+  bottom: 150;
+  right: 0;
+}
+
+.placeBottomRight img {
+  position: absolute;
+  inset: 0;
+  box-sizing: border-box;
+  padding: 0;
+  border: none;
+  margin: auto;
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-width: 100%;
+  max-width: 100%;
+  min-width: 100%;
+  max-height: 100%;
 }
 
 .about-area .owl-carousel .owl-nav button.owl-next:hover,

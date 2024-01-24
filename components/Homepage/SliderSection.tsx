@@ -94,7 +94,7 @@ const SliderSection = ({
   return (
     <div>
       <section className="about-area">
-        <div className="container">
+        <div className="container-4xl">
           {announcementListdata?.length > 0 && (
             <div className="about-info mb-5">
               <Slider {...notifiactionSettings}>

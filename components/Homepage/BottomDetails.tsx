@@ -9,7 +9,7 @@ const BottomDetails = ({ landing }: any) => {
       {" "}
       {parseInt(landing.landing_fifth_section_status) === 1 && (
         <section className="trade-anywhere-area">
-          <div className="container">
+          <div className="container-4xl">
             <div className="section-title">
               <h2 className="title"> {landing?.secure_trade_title} </h2>
             </div>

@@ -49,7 +49,7 @@ const CommunityHome = () => {
 
   return (
     <section className="bg-card-primary-clr pt-60 pb-60 community-home">
-      <div className="container">
+      <div className="container-4xl">
         <div className="community-home-header">
           <div className="community-home-title-section">
             <h3 className="community-home-title">
