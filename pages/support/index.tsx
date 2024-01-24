@@ -1,5 +1,6 @@
 import { NoItemFound } from "components/NoItemFound/NoItemFound";
 import PaginationGlobal from "components/Pagination/PaginationGlobal";
+import SupportHeader from "components/Support/SupportHeader";
 import { SupportCard } from "components/Support/support-card";
 import { TicketBox } from "components/Support/ticket-box";
 import { TicketFilter } from "components/Support/ticket-filter";
@@ -11,6 +12,7 @@ import {
   pageAvailabilityCheck,
 } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
+import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import {
@@ -20,6 +22,7 @@ import {
 import { customPage, landingPage, landingPageSlug } from "service/landing-page";
 
 const Support = () => {
+  const { t } = useTranslation("common");
   const [fullDashboar, setFullDashboard] = useState<any>();
   const [loading, setloading] = useState<any>(false);
   const [ticket_list, setTicket_list] = useState<any>();
@@ -96,57 +99,62 @@ const Support = () => {
   return (
     <>
       <div className="page-wrap">
-        <SupportSidebar getDashbaordData={getDashbaordData} />
-        <div className="page-main-content">
-          <div className="container-fluid">
-            <section className="my-5">
-              <div className="container">
-                <div className="row">
-                  <div className="col-md-12 col-lg-12">
-                    <div className="row  mb-5">
-                      <SupportCard
-                        name="Total Ticket"
-                        icon_name="fas fa-ticket-alt"
-                        ticketNumber={
-                          fullDashboar?.ticket_count?.total_ticket_count
-                        }
-                      />
-                      <SupportCard
-                        name="Pending Ticket"
-                        icon_name="fas fa-clock"
-                        ticketNumber={
-                          fullDashboar?.ticket_count?.total_pending_ticket_count
-                        }
-                      />
-                      <SupportCard
-                        name="Open Ticket"
-                        icon_name="fas fa-folder-open"
-                        ticketNumber={
-                          fullDashboar?.ticket_count?.total_open_ticket_count
-                        }
-                      />
-                      <SupportCard
-                        name="Close Ticket"
-                        icon_name="fas fa-check-circle"
-                        ticketNumber={
-                          fullDashboar?.ticket_count
-                            ?.total_close_forever_ticket_count
-                        }
-                      />
-                    </div>
-                    <div className="row">
-                      <div className="col-md-12 d-block d-md-flex align-items-center searchTicket">
-                        <input
-                          placeholder="Search Ticket ID or Title or Puchase Code"
-                          className="px-2 py-2 rounded"
-                          type="text"
-                          onChange={(e) => {
-                            setTimeout(() => {
-                              searchDashboardData(e.target.value);
-                            }, 1000);
-                          }}
-                        />
-                        {/* <Link href="/support/ticket-create">
+        {/* <SupportSidebar getDashbaordData={getDashbaordData} /> */}
+        <div className="page-main-content bg-primary-custom-color">
+          <SupportHeader
+            title={t("Support Dashboard")}
+            getDashbaordData={getDashbaordData}
+          />
+          <div className="container-4xl">
+            <section className="body-margin-top-custom ">
+              <div className="row">
+                <div className="col-md-12 col-lg-12">
+                  <div className="row  mb-5 shadow-sm p-5 wallet-card-info-container">
+                    <SupportCard
+                      name="Total Ticket"
+                      icon_name="fas fa-ticket-alt"
+                      ticketNumber={
+                        fullDashboar?.ticket_count?.total_ticket_count
+                      }
+                    />
+                    <SupportCard
+                      name="Pending Ticket"
+                      icon_name="fas fa-clock"
+                      ticketNumber={
+                        fullDashboar?.ticket_count?.total_pending_ticket_count
+                      }
+                    />
+                    <SupportCard
+                      name="Open Ticket"
+                      icon_name="fas fa-folder-open"
+                      ticketNumber={
+                        fullDashboar?.ticket_count?.total_open_ticket_count
+                      }
+                    />
+                    <SupportCard
+                      name="Close Ticket"
+                      icon_name="fas fa-check-circle"
+                      ticketNumber={
+                        fullDashboar?.ticket_count
+                          ?.total_close_forever_ticket_count
+                      }
+                    />
+                  </div>
+                  <div className="row shadow-sm p-5 wallet-card-info-container">
+                    <div className="col-12">
+                      <div className="row">
+                        <div className="col-md-12 d-block d-md-flex align-items-center searchTicket">
+                          <input
+                            placeholder="Search Ticket ID or Title or Puchase Code"
+                            className="px-2 py-2 rounded"
+                            type="text"
+                            onChange={(e) => {
+                              setTimeout(() => {
+                                searchDashboardData(e.target.value);
+                              }, 1000);
+                            }}
+                          />
+                          {/* <Link href="/support/ticket-create">
                           <div>
                             <button
                               type="button"
@@ -156,37 +164,40 @@ const Support = () => {
                             </button>
                           </div>
                         </Link> */}
+                        </div>
                       </div>
                     </div>
-                    <TicketFilter
-                      filter={filter}
-                      projectList={projectList}
-                      setfilter={setfilter}
-                      FilterDashboardData={FilterDashboardData}
-                    />
-                    {loading ? (
-                      <SectionLoading />
-                    ) : (
-                      <>
-                        <div className="row mt-5">
-                          {ticket_list?.data?.map((ticket: any, index: any) => (
-                            <TicketBox key={index} ticket={ticket} />
-                          ))}
-                        </div>
-                        {ticket_list?.data.length === 0 && <NoItemFound />}
-                        {ticket_list?.data.length > 0 && (
-                          <PaginationGlobal
-                            setTimelineData={setTicket_list}
-                            links={ticket_list?.links}
-                            setLoading={null}
-                            LinkTopaginationString={
-                              getDashbaordDataPaginationAction
-                            }
-                          />
-                        )}
-                      </>
-                    )}
+                    <div className="col-12">
+                      <TicketFilter
+                        filter={filter}
+                        projectList={projectList}
+                        setfilter={setfilter}
+                        FilterDashboardData={FilterDashboardData}
+                      />
+                    </div>
                   </div>
+                  {loading ? (
+                    <SectionLoading />
+                  ) : (
+                    <>
+                      <div className="row mt-5 shadow-sm p-5 wallet-card-info-container">
+                        {ticket_list?.data?.map((ticket: any, index: any) => (
+                          <TicketBox key={index} ticket={ticket} />
+                        ))}
+                      </div>
+                      {ticket_list?.data.length === 0 && <NoItemFound />}
+                      {ticket_list?.data.length > 0 && (
+                        <PaginationGlobal
+                          setTimelineData={setTicket_list}
+                          links={ticket_list?.links}
+                          setLoading={null}
+                          LinkTopaginationString={
+                            getDashbaordDataPaginationAction
+                          }
+                        />
+                      )}
+                    </>
+                  )}
                 </div>
               </div>
             </section>
