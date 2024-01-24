@@ -24,6 +24,7 @@ import {
 import Footer from "components/common/footer";
 import ImageComponent from "components/common/ImageComponent";
 import SectionLoading from "components/common/SectionLoading";
+import ProfileHeader from "components/profile/ProfileHeader";
 
 const Persona = dynamic(
   () => import("components/profile/personal-verification/Persoona"),
@@ -69,16 +70,17 @@ const PersonalVerification: NextPage = () => {
   return (
     <>
       <div className="page-wrap">
-        <ProfileSidebar />
-        <div className="page-main-content">
-          <div className="container-fluid">
-            <div className="section-top-wrap mb-25 inner-section-margin-top">
+        {/* <ProfileSidebar /> */}
+        <div className="page-main-content bg-primary-custom-color">
+          <ProfileHeader title= {t("Personal Verification")}/>
+          <div className="container-4xl">
+            {/* <div className="section-top-wrap mb-25 inner-section-margin-top">
               <div className="profle-are-top">
                 <h2 className="section-top-title">
                   {t("Personal Verification")}
                 </h2>
               </div>
-            </div>
+            </div> */}
             {verificationType === KYC_TYPE_MANUAL && isModalOpen && (
               <NidModal
                 type={type}
@@ -89,7 +91,7 @@ const PersonalVerification: NextPage = () => {
               />
             )}
 
-            <div className="profile-area">
+            <div className="profile-area body-margin-top-custom shadow-sm p-5 wallet-card-info-container">
               <div className="section-wrapper border-0">
                 {loading ? (
                   <>
