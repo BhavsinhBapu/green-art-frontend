@@ -555,7 +555,7 @@ p {
 .cp-user-top-bar-right .profile-dropdown .dropdown-menu .big-user-thumb {
   width: 80px;
   height: 80px;
-  /* overflow: hidden; */
+  overflow: hidden;
   display: block;
   object-fit: cover;
   margin: 12px auto 14px;
@@ -6287,12 +6287,13 @@ table.dataTable tbody tr.dataTable-white td {
 /* referral-area */
 
 .referral-area table.dataTable thead tr th {
-  background: var(--table-background-color);
+  /* background: var(--table-background-color); */
   border-bottom: 1px solid var(--border-color);
 }
 
 .referral-area table.dataTable tbody tr td {
-  background: var(--table-background-color);
+  /* background: var(--table-background-color); */
+  padding: 10px 10px;
 }
 
 .rewards-inviter {
@@ -7614,6 +7615,7 @@ p {
   box-shadow: none !important;
   outline: none !important;
   background-color: var(--primary-color);
+  color: white;
 }
 
 .body-bg {
@@ -10754,12 +10756,12 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
 }
 
 .exchange-tab-menu .nav-tabs .nav-item .nav-link.active {
-  background: var(--primary-color);
-  color: var(--text-primary-color);
-  border: none;
+  /* background: var(--primary-color); */
+  color: var(--primary-color);
+  border-bottom: 2px solid var(--primary-color);
   padding: 10px 15px;
   background: transparent;
-  color: var(--text-primary-color-2);
+  /* color: var(--text-primary-color-2); */
   /* border-radius: 5px; */
 }
 
@@ -13940,8 +13942,14 @@ input {
 .custom_file_uploder {
   background-color: transparent;
   border: 1px solid var(--border-color);
+  height: 40px;
+  display: flex;
+  align-items: center;
 }
-
+.custom_file_uploder::after {
+  height: 40px;
+  line-height: 30px;
+}
 .top_search button {
   border-radius: 0px 3px 3px 0px;
 }
@@ -15786,6 +15794,17 @@ input:checked + .gift-card-buy-slider:before {
   gap: 10px;
 }
 
+.market-overview-header-main {
+  min-height: 350px;
+  background-size: cover;
+  background-repeat: "no-repeat";
+  background-position: "center";
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
 .wallet-overview-header-title {
   color: white !important;
 }
@@ -15812,6 +15831,17 @@ input:checked + .gift-card-buy-slider:before {
   cursor: pointer;
 }
 
+.report-overview-header-main {
+  min-height: 350px;
+  background-size: cover;
+  background-repeat: "no-repeat";
+  background-position: "center";
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
 .report-overview-tab-menu {
   display: flex;
   align-items: center;
@@ -15835,6 +15865,30 @@ input:checked + .gift-card-buy-slider:before {
   color: white !important;
   font-size: 16px;
   cursor: pointer;
+}
+.report-overview-tab-scroll {
+  overflow-x: auto;
+}
+
+/* width */
+.report-overview-tab-scroll::-webkit-scrollbar {
+  padding: 2px;
+  width: 4px;
+  height: 1px;
+}
+
+/* Track */
+.report-overview-tab-scroll::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+.report-overview-tab-scroll::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+.report-overview-body-padding {
+  padding: 3rem;
 }
 
 .wallet-overview-dropdown-tab-menu-btn {
@@ -15882,9 +15936,17 @@ input:checked + .gift-card-buy-slider:before {
 }
 
 @media (max-width: 991px) {
+  .report-overview-body-padding {
+    padding: 3rem 4px;
+  }
+
+  .report-overview-header-main {
+    min-height: 400px;
+  }
   .wallet-overview-header-main {
     min-height: 550px;
   }
+
   .wallet-overview-tab-menu {
     flex-direction: column;
     align-items: start;
@@ -15892,13 +15954,14 @@ input:checked + .gift-card-buy-slider:before {
   .wallet-overview-tab-menu li {
     width: 100%;
   }
-  .report-overview-tab-menu {
+  /* .report-overview-tab-menu {
     flex-direction: column;
     align-items: start;
   }
   .report-overview-tab-menu li {
     width: 100%;
-  }
+  } */
+
   .text-45 {
     font-size: 36px;
   }
@@ -16087,4 +16150,19 @@ input:checked + .gift-card-buy-slider:before {
   .container-4xl {
     max-width: 1560px;
   }
+}
+.profile-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.bg-primary-custom-color {
+  background: var(--custom-background-color);
+}
+
+.body-margin-top-custom {
+  margin-top: -60px;
+  margin-bottom: 30px;
 }

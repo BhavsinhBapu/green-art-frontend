@@ -28,7 +28,7 @@ const ReportTabMenu = () => {
   const { settings } = useSelector((state: RootState) => state.common);
 
   return (
-    <div className="container-4xl">
+    <div className="container-4xl report-overview-tab-scroll">
       <ul className="report-overview-tab-menu">
         <Link href="/user/wallet-history?type=deposit">
           <li className={router.query.type == "deposit" ? "active" : ""}>

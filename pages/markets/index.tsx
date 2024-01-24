@@ -8,6 +8,7 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { getCurrenyApi, getMarketCardDatasApi } from "service/markets";
 import Footer from "components/common/footer";
+import MarketOverviewHeader from "components/markets/MarketOverviewHeader";
 
 async function listenMessages(setMarketsCardData: any) {
   //@ts-ignore
@@ -84,10 +85,11 @@ export default function Index() {
 
   return (
     <section>
-      <div className="container">
-        <div className=" pt-4 pb-2 p2p-gift-card-navbar-margin-top">
+      <MarketOverviewHeader title={t("Markets Overview")} />
+      <div className="container-4xl">
+        {/* <div className=" pt-4 pb-2 p2p-gift-card-navbar-margin-top">
           <h1 className="banner-title">{t("Markets Overview")}</h1>
-          {/* <div className="d-flex gap-5 align-items-center">
+          <div className="d-flex gap-5 align-items-center">
             <p className="text-14">{t(`All price information is in`)}</p>
             <CUstomSelect
               options={allCurrency}
@@ -95,45 +97,60 @@ export default function Index() {
               classname={"market-select-page"}
               defaultValue={allCurrency[0]}
             />
-          </div> */}
-        </div>
+          </div>
+        </div> */}
 
-        <div className="row my-2">
+        <div
+          className="row"
+          style={{
+            marginTop: "-60px",
+            marginBottom: "30px",
+            rowGap: '20px'
+          }}
+        >
           {marketsCardData?.highlight_coin.length > 0 && (
-            <div className="col-md-4 col-lg-3">
-              <MarketsCards
-                title={`Highlight Coin`}
-                cardItems={marketsCardData?.highlight_coin}
-              />
+            <div className="col-md-6 col-lg-3">
+              <div className="shadow-sm p-3 wallet-card-info-container">
+                <MarketsCards
+                  title={`Highlight Coin`}
+                  cardItems={marketsCardData?.highlight_coin}
+                />
+              </div>
             </div>
           )}
           {marketsCardData?.new_listing.length > 0 && (
-            <div className="col-md-4 col-lg-3">
-              <MarketsCards
-                title={`New Listing`}
-                cardItems={marketsCardData?.new_listing}
-              />
+            <div className="col-md-6 col-lg-3">
+              <div className="shadow-sm p-3 wallet-card-info-container">
+                <MarketsCards
+                  title={`New Listing`}
+                  cardItems={marketsCardData?.new_listing}
+                />
+              </div>
             </div>
           )}
           {marketsCardData?.top_gainer_coin.length > 0 && (
-            <div className="col-md-4 col-lg-3">
-              <MarketsCards
-                title={`Top Gainer Coin`}
-                cardItems={marketsCardData?.top_gainer_coin}
-              />
+            <div className="col-md-6 col-lg-3">
+              <div className="shadow-sm p-3 wallet-card-info-container">
+                <MarketsCards
+                  title={`Top Gainer Coin`}
+                  cardItems={marketsCardData?.top_gainer_coin}
+                />
+              </div>
             </div>
           )}
           {marketsCardData?.top_volume_coin.length > 0 && (
-            <div className="col-md-4 col-lg-3">
-              <MarketsCards
-                title={`Top Volume Coin`}
-                cardItems={marketsCardData?.top_volume_coin}
-              />
+            <div className="col-md-6 col-lg-3">
+              <div className="shadow-sm p-3 wallet-card-info-container">
+                <MarketsCards
+                  title={`Top Volume Coin`}
+                  cardItems={marketsCardData?.top_volume_coin}
+                />
+              </div>
             </div>
           )}
         </div>
       </div>
-      <div className="bg-card-primary-clr">
+      <div>
         {/* trade section start*/}
         <TradesTable selectedCurrency={selectedCurrency} />
         {/* trade section end */}

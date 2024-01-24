@@ -10,135 +10,142 @@ import { useDispatch } from "react-redux";
 import useTranslation from "next-translate/useTranslation";
 import Footer from "components/common/footer";
 import { customPage, landingPage } from "service/landing-page";
+import ProfileHeader from "components/profile/ProfileHeader";
 const PhoneVerification: NextPage = () => {
   const { t } = useTranslation("common");
   const dispatch = useDispatch();
   return (
     <>
       <div className="page-wrap">
-        <ProfileSidebar />
-        <div className="page-main-content">
-          <div className="container-fluid">
-            <div className="section-top-wrap mb-25 inner-section-margin-top">
+        {/* <ProfileSidebar /> */}
+        <div className="page-main-content bg-primary-custom-color">
+          <ProfileHeader title={t("Reset Password")} />
+          <div className="container-4xl">
+            {/* <div className="section-top-wrap mb-25 inner-section-margin-top">
               <div className="profle-are-top">
                 <h2 className="section-top-title mb-0">
                   {t("Reset Password")}
                 </h2>
               </div>
-            </div>
-            <Formik
-              initialValues={{
-                old_password: "",
-                password: "",
-                password_confirmation: "",
-              }}
-              validationSchema={Yup.object({
-                old_password: Yup.string()
-                  .min(8, "Password must be at least 6 characters")
-                  .required("Password is required"),
-                password: Yup.string()
-                  .min(8, "Password must be at least 6 characters")
-                  .required("Password is required"),
-                password_confirmation: Yup.string()
-                  .oneOf([Yup.ref("password"), null], "Passwords must match")
-                  .required("Password confirmation is required"),
-              })}
-              onSubmit={async (values) => {
-                await dispatch(ChangePasswordAction(values));
-              }}
-            >
-              {({ errors, touched }) => (
-                <Form>
-                  <div className="reset-password-area">
-                    {/* <h4 className="section-title-medium">
+            </div> */}
+            <div className="body-margin-top-custom shadow-sm p-5 wallet-card-info-container">
+              <Formik
+                initialValues={{
+                  old_password: "",
+                  password: "",
+                  password_confirmation: "",
+                }}
+                validationSchema={Yup.object({
+                  old_password: Yup.string()
+                    .min(8, "Password must be at least 6 characters")
+                    .required("Password is required"),
+                  password: Yup.string()
+                    .min(8, "Password must be at least 6 characters")
+                    .required("Password is required"),
+                  password_confirmation: Yup.string()
+                    .oneOf([Yup.ref("password"), null], "Passwords must match")
+                    .required("Password confirmation is required"),
+                })}
+                onSubmit={async (values) => {
+                  await dispatch(ChangePasswordAction(values));
+                }}
+              >
+                {({ errors, touched }) => (
+                  <Form>
+                    <div className="reset-password-area">
+                      {/* <h4 className="section-title-medium">
                     {t("Change Password")}
                   </h4> */}
-                    <div className="section-wrapper">
-                      <div className="row">
-                        <div className="col-lg-6 col-md-8">
-                          <div className="user-profile-form">
-                            <div className="form-group">
-                              <label>{t("Old password")}</label>
-                              <Field
+                      <div className="section-wrapper">
+                        <div className="row">
+                          <div className="col-lg-6 col-md-8">
+                            <div className="user-profile-form">
+                              <div className="form-group">
+                                <label>{t("Old password")}</label>
+                                <Field
+                                  name="old_password"
+                                  id="old_password"
+                                  type="password"
+                                  placeholder={t("Old password")}
+                                  className={`form-control ${
+                                    touched.old_password && errors.old_password
+                                      ? "is-invalid"
+                                      : ""
+                                  }`}
+                                />
+                              </div>
+                              <ErrorMessage
                                 name="old_password"
-                                id="old_password"
-                                type="password"
-                                placeholder={t("Old password")}
-                                className={`form-control ${
-                                  touched.old_password && errors.old_password
-                                    ? "is-invalid"
-                                    : ""
-                                }`}
+                                component="div"
+                                className="red-text"
                               />
-                            </div>
-                            <ErrorMessage
-                              name="old_password"
-                              component="div"
-                              className="red-text"
-                            />
-                            <div className="form-group">
-                              <label>{t("New Password")}</label>
-                              <Field
+                              <div className="form-group">
+                                <label>{t("New Password")}</label>
+                                <Field
+                                  name="password"
+                                  id="password"
+                                  type="password"
+                                  placeholder={t("New Password")}
+                                  className={`form-control ${
+                                    touched.password && errors.password
+                                      ? "is-invalid"
+                                      : ""
+                                  }`}
+                                />
+                              </div>
+                              <ErrorMessage
                                 name="password"
-                                id="password"
-                                type="password"
-                                placeholder={t("New Password")}
-                                className={`form-control ${
-                                  touched.password && errors.password
-                                    ? "is-invalid"
-                                    : ""
-                                }`}
+                                component="div"
+                                className="red-text"
                               />
-                            </div>
-                            <ErrorMessage
-                              name="password"
-                              component="div"
-                              className="red-text"
-                            />
-                            <div className="form-group">
-                              <label>{t("Password Conformation")}</label>
-                              <Field
+                              <div className="form-group">
+                                <label>{t("Password Conformation")}</label>
+                                <Field
+                                  name="password_confirmation"
+                                  id="password_confirmation"
+                                  type="password"
+                                  placeholder={t("Re Enter New Password")}
+                                  className={`form-control ${
+                                    touched.password_confirmation &&
+                                    errors.password_confirmation
+                                      ? "is-invalid"
+                                      : ""
+                                  }`}
+                                />
+                              </div>
+                              <ErrorMessage
                                 name="password_confirmation"
-                                id="password_confirmation"
-                                type="password"
-                                placeholder={t("Re Enter New Password")}
-                                className={`form-control ${
-                                  touched.password_confirmation &&
-                                  errors.password_confirmation
-                                    ? "is-invalid"
-                                    : ""
-                                }`}
+                                component="div"
+                                className="red-text"
                               />
-                            </div>
-                            <ErrorMessage
-                              name="password_confirmation"
-                              component="div"
-                              className="red-text"
-                            />
-                            <div className="form-group m-0">
-                              <button
-                                className="primary-btn-outline"
-                                type="submit"
-                              >
-                                {t("Change Password")}
-                              </button>
+                              <div className="form-group m-0">
+                                <button
+                                  className="primary-btn-outline"
+                                  type="submit"
+                                >
+                                  {t("Change Password")}
+                                </button>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                        <div className="col-lg-6 col-md-4  d-flex align-items-center justify-content-center">
-                          <div className="reset-password-right text-center" style={{marginTop: '0px'}}>
-                            <img
-                              src="/reset-password.svg"
-                              alt="reset-password"
-                            />
+                          <div className="col-lg-6 col-md-4  d-flex align-items-center justify-content-center">
+                            <div
+                              className="reset-password-right text-center"
+                              style={{ marginTop: "0px" }}
+                            >
+                              <img
+                                src="/reset-password.svg"
+                                alt="reset-password"
+                              />
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </Form>
-              )}
-            </Formik>
+                  </Form>
+                )}
+              </Formik>
+            </div>
           </div>
         </div>
       </div>
