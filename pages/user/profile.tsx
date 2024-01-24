@@ -10,15 +10,17 @@ import Footer from "components/common/footer";
 import { customPage, landingPage } from "service/landing-page";
 import moment from "moment";
 import ImageComponent from "components/common/ImageComponent";
+import ProfileHeader from "components/profile/ProfileHeader";
 const Profile: NextPage = ({ user, profileActivity }: any) => {
   const { t } = useTranslation("common");
 
   return (
     <>
       <div className="page-wrap">
-        <ProfileSidebar />
+        {/* <ProfileSidebar /> */}
         <div className="page-main-content">
-          <div className="container-fluid">
+          <ProfileHeader title={t("Profile")} />
+          <div className="container-4xl">
             <div className="section-top-wrap mb-25 inner-section-margin-top">
               <div className="profle-are-top">
                 <h2 className="section-top-title">
@@ -121,7 +123,10 @@ const Profile: NextPage = ({ user, profileActivity }: any) => {
               </div>
             </div>
 
-            <div className="profile-status-area section-wrapper boxShadow tableScroll mb-5" style={{border: 'none'}}>
+            <div
+              className="profile-status-area section-wrapper boxShadow tableScroll mb-5"
+              style={{ border: "none" }}
+            >
               <h5>{t("Profile Activity")}</h5>
               <table className="table">
                 <thead className="">
