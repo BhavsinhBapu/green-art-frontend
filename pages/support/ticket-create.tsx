@@ -1,3 +1,4 @@
+import SupportHeader from "components/Support/SupportHeader";
 import Footer from "components/common/footer";
 import SupportSidebar from "layout/supportSidebar";
 import {
@@ -78,17 +79,21 @@ const TicketCreate = () => {
   return (
     <>
       <div className="page-wrap">
-        <SupportSidebar />
+        {/* <SupportSidebar /> */}
         <div className="page-main-content">
-          <div className="container-fluid">
-            <section className="my-5">
-              <div className="container">
-                <div className="row">
-                  <div className="col-md-8 mx-auto">
-                    <div className="ticket_create_box p-4 rounded">
-                      <h4 className="fw_600">{t(`Create New Ticket`)}</h4>
-                      <input type="hidden" />
-                      <div className="p_color pt-4">
+          <SupportHeader title={t(`Create New Ticket`)} />
+          <div className="container-4xl">
+            <section className=" body-margin-top-custom">
+              <div className="row shadow-sm p-5 wallet-card-info-container">
+                <div className="col-md-12 mx-auto">
+                  <div className="">
+                    {/* <h4 className="fw_600">{t(`Create New Ticket`)}</h4> */}
+                    <input type="hidden" />
+                    <div
+                      className="p_color pt-4 row"
+                      style={{ rowGap: "20px" }}
+                    >
+                      <div className="col-md-6">
                         <label>{t(`Choose Category:`)}</label>
                         <select
                           id="inputState"
@@ -109,8 +114,9 @@ const TicketCreate = () => {
                             </option>
                           ))}
                         </select>
-
-                        <label className="pt-4">{t(`Choose Project:`)}</label>
+                      </div>
+                      <div className="col-md-6">
+                        <label>{t(`Choose Project:`)}</label>
                         <select
                           id="inputState"
                           className="w-100 px-2 py-2 rounded search-field ticketFilterBg"
@@ -128,8 +134,10 @@ const TicketCreate = () => {
                             </option>
                           ))}
                         </select>
+                      </div>
 
-                        <label className="pt-4">{t(`Title :`)}</label>
+                      <div className="col-md-6">
+                        <label>{t(`Title :`)}</label>
                         <input
                           className="w-100 px-2 py-2 rounded search-field"
                           type="text"
@@ -141,8 +149,10 @@ const TicketCreate = () => {
                             });
                           }}
                         />
+                      </div>
 
-                        <label className="pt-4">{t(`Description`)}</label>
+                      <div className="col-md-6">
+                        <label>{t(`Description`)}</label>
                         <textarea
                           id="description"
                           name="description"
@@ -154,10 +164,10 @@ const TicketCreate = () => {
                             });
                           }}
                         ></textarea>
+                      </div>
 
-                        <label className="pt-4">
-                          {t(`Purchase Code (optional) :`)}
-                        </label>
+                      <div className="col-md-6">
+                        <label>{t(`Purchase Code (optional) :`)}</label>
                         <input
                           className="w-100 px-2 py-2 rounded search-field"
                           type="text"
@@ -169,8 +179,11 @@ const TicketCreate = () => {
                             });
                           }}
                         />
-                        <label className="pt-4">{t(`Attach File:`)}</label>
-                        <div className="input-group">
+                      </div>
+
+                      <div className="col-md-6">
+                        <label>{t(`Attach File:`)}</label>
+                        <div className="input-group input-group-lg">
                           <div className="custom-file">
                             <input
                               type="file"
@@ -181,12 +194,13 @@ const TicketCreate = () => {
                                 setFile(e.target.files[0]);
                               }}
                             />
-                            <label className="custom-file-label custom_file_uploder">
+                            <label className="custom-file-label custom_file_uploder px-2 py-2">
                               {t(`Choose file`)}
                             </label>
                           </div>
                         </div>
-
+                      </div>
+                      <div className="col-md-6">
                         <button
                           className="btn btn-warning fw-bolder text-white mt-4 px-4 py-2 rounded"
                           onClick={createTicket}
