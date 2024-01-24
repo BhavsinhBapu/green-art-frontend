@@ -85,6 +85,10 @@ const Dashboard: NextPage = () => {
   ]);
   const { settings } = useSelector((state: RootState) => state.common);
 
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
     <div className="container-dashboard">
       <div className="background-col">
