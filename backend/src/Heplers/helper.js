@@ -42,7 +42,7 @@ function customFromWei(amount,decimal)
   let convertAmountLocalAmount = (convertAmount.toLocaleString()).replaceAll(",","");
   return convertAmountLocalAmount;
 }
-function customToWei(amount,decimal)
+function customToWeiOld(amount,decimal)
 {
   // return (amount*powerOfTen(decimal)).toString()
   const isDecimal = !Number.isInteger(amount);
@@ -66,6 +66,14 @@ function customToWei(amount,decimal)
   
   
   
+}
+
+function customToWei(amount,decimal)
+{
+  const tokenDecimals = Number(new BigNumber(10).pow(decimal));
+  const tokenAmount = Number(amount) * tokenDecimals;
+    
+    return tokenAmount['noExponents']();
 }
 function powerOfTen(x) {
   return Math.pow(10, x);
@@ -111,6 +119,25 @@ const BITGO_API = 3;
 const ERC20_TOKEN = 4;
 const BEP20_TOKEN = 5;
 const TRC20_TOKEN = 6;
+
+Number.prototype['noExponents'] = function () {
+  const data = String(this).split(/[eE]/);
+  if (data.length == 1) return data[0];
+
+  let z = '';
+  const sign = this < 0 ? '-' : '';
+  const str = data[0].replace('.', '');
+  let mag = Number(data[1]) + 1;
+
+  if (mag < 0) {
+    z = sign + '0.';
+    while (mag++) z += '0';
+    return z + str.replace(/^\-/, '');
+  }
+  mag -= str.length;
+  while (mag--) z += '0';
+  return str + z;
+};
 
 module.exports = {
     tronWebCall,
