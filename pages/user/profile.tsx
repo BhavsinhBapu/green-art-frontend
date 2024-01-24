@@ -124,7 +124,7 @@ const Profile: NextPage = ({ user, profileActivity }: any) => {
             </div>
 
             <div
-              className="profile-status-area shadow-sm p-5 wallet-card-info-container"
+              className="profile-status-area shadow-sm p-5 wallet-card-info-container mb-5"
               style={{ border: "none" }}
             >
               <h5>{t("Profile Activity")}</h5>
