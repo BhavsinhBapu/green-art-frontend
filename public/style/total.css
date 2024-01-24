@@ -1288,8 +1288,9 @@ table.dataTable.dtr-inline.collapsed
 }
 
 .slider-image-class {
-  border-radius: 8px;
+  border-radius: 16px;
   cursor: pointer;
+  opacity: 0.8;
 }
 
 /* Bank info */
@@ -10802,8 +10803,8 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
   line-height: 1;
   transition: all 0.3s;
 }
-.exchange-tab-menu-list{
-      background: var(--background-color);
+.exchange-tab-menu-list {
+  background: var(--background-color);
 }
 .sectiob-bg {
   background: var(--main-background-color);
@@ -14424,7 +14425,7 @@ input {
     rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 }
 .trend-image {
-  /* max-height: 400px; */
+  height: 435px !important;
 }
 .massage_img::after {
   position: absolute;

@@ -976,7 +976,8 @@ const Home: NextPage = ({
                     </div>
                   </div>
                 </section>
-              )}
+                )}
+                
 
               {/* Get in touch. area end here  */}
               {/* Start trading area start here  */}
