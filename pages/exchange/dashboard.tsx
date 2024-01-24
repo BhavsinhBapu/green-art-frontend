@@ -85,7 +85,9 @@ const Dashboard: NextPage = () => {
   ]);
   const { settings } = useSelector((state: RootState) => state.common);
 
-  console.log("currentPair", currentPair);
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <div className="container-dashboard">

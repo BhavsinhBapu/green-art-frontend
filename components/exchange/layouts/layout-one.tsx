@@ -40,7 +40,7 @@ const LayoutOne = ({ ThemeColor }: any) => {
   }, [ThemeColor.green, ThemeColor.red]);
   return (
     <div className="row trade-dashboard-side-margin">
-      <div className="col-xl px-0 trade-dashboard-side-width">
+      <div className="col-xl-3 px-0 trade-dashboard-side-width">
         <div className="trades-section">
           <div>
             <h6 className="text-white">{t("Order Book")}</h6>
@@ -348,7 +348,7 @@ const LayoutOne = ({ ThemeColor }: any) => {
           )}
         </div>
       </div>
-      <div className="col-xl-7 px-0">
+      <div className="col-xl-6 px-0">
         <div className="cp-user-buy-coin-content-area">
           <div className="card cp-user-custom-card">
             {currentPair && show && (
@@ -364,7 +364,7 @@ const LayoutOne = ({ ThemeColor }: any) => {
 
         <ExchangeBoxBottom />
       </div>
-      <div className="col-xl px-0 trade-dashboard-side-width">
+      <div className="col-xl-3 px-0 trade-dashboard-side-width">
         <SelectCurrencyRight />
 
         <TradesHistory marketTrades={marketTrades} />

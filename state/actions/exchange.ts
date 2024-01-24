@@ -270,7 +270,7 @@ export const initialDashboardCallAction =
           //   "current_pair",
           //   response?.pairs[0]?.coin_pair
           // );
-          // router.push(`/exchange/dashboard?coin_pair=${response?.pairs[0]?.coin_pair}`)
+          router.push(`/exchange/dashboard?coin_pair=${response?.pairs[0]?.coin_pair}`)
           response?.pairs[0]?.coin_pair &&
             dispatch(setCurrentPair(response?.pairs[0]?.coin_pair));
         }
