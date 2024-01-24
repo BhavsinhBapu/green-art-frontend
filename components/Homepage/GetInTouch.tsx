@@ -2,6 +2,32 @@ import React from "react";
 import { motion } from "framer-motion";
 
 const GetInTouch = ({ landing, featureListdata }: any) => {
+  const cards = [
+    {
+      backgroundUrl:
+        "https://images.unsplash.com/photo-1557177324-56c542165309?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+      category: "Category 1",
+      heading: "Example Card Heading 1",
+    },
+    {
+      backgroundUrl:
+        "https://images.unsplash.com/photo-1557187666-4fd70cf76254?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
+      category: "Category 2",
+      heading: "Example Card Heading 2",
+    },
+    {
+      backgroundUrl:
+        "https://images.unsplash.com/photo-1556680262-9990363a3e6d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
+      category: "Category 3",
+      heading: "Example Card Heading 3",
+    },
+    {
+      backgroundUrl:
+        "https://images.unsplash.com/photo-1557004396-66e4174d7bf6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
+      category: "Category 4",
+      heading: "Example Card Heading 4",
+    },
+  ];
   return (
     <div>
       {parseInt(landing.landing_sixth_section_status) === 1 && (
@@ -16,56 +42,13 @@ const GetInTouch = ({ landing, featureListdata }: any) => {
               <h2 className="title">{landing?.landing_feature_title}</h2>
             </div>
 
-            <motion.div
-              className="row"
-              initial="hidden"
-              animate="visible"
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: {
-                  opacity: 1,
-                  y: 0,
-                  transition: { staggerChildren: 0.2 },
-                },
-              }}
-            >
-              {featureListdata?.map((feature: any, index: any) => (
-                <motion.div
-                  className="col-lg-4 col-md-6 mt-4"
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 2 }} // Adjust the delay here
-                >
-                  <a
-                    href={`${
-                      feature?.feature_url !== "" &&
-                      feature?.feature_url != null
-                        ? feature?.feature_url
-                        : "#"
-                    }`}
-                    target={`${
-                      feature?.feature_url !== "" &&
-                      feature?.feature_url != null
-                        ? "_blank"
-                        : "_self"
-                    }`}
-                    rel="noreferrer"
-                    className="single-card"
-                  >
-                    <motion.img
-                      className="card-icon"
-                      src={feature.feature_icon}
-                      alt="icon"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                    />
-                    <h3 className="card-title">{feature?.feature_title}</h3>
-                    <p className="card-content">{feature?.description}</p>
-                  </a>
-                </motion.div>
-              ))}
-            </motion.div>
+            <section className="hero-section">
+              <div className="card-grid">
+                {featureListdata?.map((feature: any, index: any) => (
+                  <Card key={index} feature={feature} />
+                ))}
+              </div>
+            </section>
           </div>
         </motion.section>
       )}
@@ -74,3 +57,19 @@ const GetInTouch = ({ landing, featureListdata }: any) => {
 };
 
 export default GetInTouch;
+const Card = ({ feature }: any) => {
+  return (
+    <a className="card" href="#">
+      <div
+        className="card__background"
+        style={{
+          backgroundImage: `url(${feature.feature_icon})`,
+        }}
+      ></div>
+      <div className="card__content">
+        <h3 className="card__heading">{feature?.feature_title}</h3>
+        <p className="card__category">{feature?.description}</p>
+      </div>
+    </a>
+  );
+};
