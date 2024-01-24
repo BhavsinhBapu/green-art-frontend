@@ -18,7 +18,7 @@ export default function TradeSections() {
     listenMessagesFutureMarketData(setTradeDatas);
   }, []);
   const getTradeSectionData = async () => {
-   const data: any = await getExchangeMarketDetails(selectType);
+    const data: any = await getExchangeMarketDetails(selectType);
     if (!data.success) {
       toast.error(data.message);
       return;
@@ -28,11 +28,11 @@ export default function TradeSections() {
 
   const { t } = useTranslation();
   return (
-    <section className="container mt-5">
+    <section className="container-4xl my-5">
       <div className="row">
-        <div className="col-12 px-2">
-          <div className="market-trend-area ">
-            <div className="container">
+        <div className="col-12">
+          <div className="market-trend-area p-5 shadow-sm wallet-card-info-container">
+            <div>
               <div className="exchange-tab-menu">
                 <ul
                   className="nav nav-tabs exchange-tab-menu-list"
