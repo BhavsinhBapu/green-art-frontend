@@ -976,7 +976,7 @@ client-area
 }
 
 .hero-banner-area .banner-title {
-  font-size: 54px;
+  font-size: 73px;
   font-weight: 700;
   text-transform: capitalize;
 }
@@ -1669,23 +1669,21 @@ client-area
 }
 
 .block-container .btn-back {
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    width: inherit;
-    height: inherit;
-    border-radius: 32px;
-    transition: 250ms;
-    transform-style: preserve-3d;
-    transform-origin: bottom right;
-    transform: rotateZ(15deg);
-    will-change: transform;
-    box-shadow: 19px 0 40px var(--border-color);
-    background-color: var(--background-color);
-    border: 1px solid var(--bColor);
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: inherit;
+  height: inherit;
+  border-radius: 32px;
+  transition: 250ms;
+  transform-style: preserve-3d;
+  transform-origin: bottom right;
+  transform: rotateZ(15deg);
+  will-change: transform;
+  box-shadow: 19px 0 40px var(--border-color);
+  background-color: var(--background-color);
+  border: 1px solid var(--bColor);
 }
-
-
 
 .block-container .btn-back-1 {
   background: linear-gradient(135deg, #4682eb -20%, #01beff 120%);
@@ -1753,7 +1751,7 @@ client-area
 }
 .market-trend-area-container {
   background: var(--background-color) !important;
-  padding: 54px 48px;
+  padding: 54px 148px;
   border-radius: 27px;
 }
 .hero-section {
@@ -1792,7 +1790,7 @@ client-area
 }
 
 .card:before {
-  content: '';
+  content: "";
   display: block;
   padding-bottom: 150%;
   width: 100%;

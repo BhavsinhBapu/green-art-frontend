@@ -49,7 +49,13 @@ const CommunityHome = () => {
 
   return (
     <section className="bg-card-primary-clr pt-60 pb-60 community-home">
-      <div className="container-4xl">
+      <div className="placeTopLeft">
+        <img
+          src="https://assets-global.website-files.com/60c8db180183804ef2b45120/60cb6b0ac3e71fa837cb2929_hero-glow.svg"
+          alt="Hero Banner"
+        />
+      </div>
+      <div className="container-4xl market-trend-area-container px-5">
         <div className="community-home-header">
           <div className="community-home-title-section">
             <h3 className="community-home-title">

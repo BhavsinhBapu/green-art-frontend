@@ -12,6 +12,18 @@ const DistributionSection = ({ landing }: any) => {
       {parseInt(landing.landing_fourth_section_status) === 1 &&
         parseInt(landing.download_link_display_type) === 1 && (
           <section className="trade-anywhere-area sectiob-bg">
+            <div className="placeTopLeft">
+              <img
+                src="https://assets-global.website-files.com/60c8db180183804ef2b45120/60cb6b0ac3e71fa837cb2929_hero-glow.svg"
+                alt="Hero Banner"
+              />
+            </div>
+            <div className="placeBottomRight">
+              <img
+                src="https://assets-global.website-files.com/60c8db180183804ef2b45120/60cb6b0ac3e71fa837cb2929_hero-glow.svg"
+                alt="Hero Banner"
+              />
+            </div>
             <div className="container-4xl trade-anywhere-container">
               <div className="section-title">
                 <h2 className="title">{landing?.trade_anywhere_title}</h2>
