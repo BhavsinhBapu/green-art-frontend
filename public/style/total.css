@@ -13941,8 +13941,14 @@ input {
 .custom_file_uploder {
   background-color: transparent;
   border: 1px solid var(--border-color);
+  height: 40px;
+  display: flex;
+  align-items: center;
 }
-
+.custom_file_uploder::after {
+  height: 40px;
+  line-height: 30px;
+}
 .top_search button {
   border-radius: 0px 3px 3px 0px;
 }
