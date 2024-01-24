@@ -635,30 +635,25 @@ client-area
   clip-path: inset(0);
 }
 .animated-button-two {
-  padding: 20px;
-  border-radius: 30px;
-  transform: translate(-50%, -50%);
+  padding: 13px 22px 13px 22px;
+  border-radius: 10px;
+  /* transform: translate(-50%, -50%) !important; */
   text-align: center;
   color: #fff;
-  font-size: 20px;
+  font-size: 14px;
   text-transform: uppercase;
-  text-decoration: none;
+  text-decoration: none !important;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   box-sizing: border-box;
-  background: linear-gradient(
-    90deg,
-    #03a9f4,
-    var(--primary-color),
-    #ffeb3b,
-    #03a9f4
-  );
+  background: linear-gradient(90deg, #e74c3c, #fbc531, #ffeb3b, #e84118);
   background-size: 400%;
   cursor: pointer;
 }
 
 .animated-button-two:hover {
   animation: animate 8s linear infinite;
+  color: white;
 }
 
 @keyframes animate {
