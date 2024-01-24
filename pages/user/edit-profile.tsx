@@ -40,7 +40,7 @@ const Edit: NextPage = () => {
     <>
       <div className="page-wrap">
         {/* <ProfileSidebar /> */}
-        <div className="page-main-content">
+        <div className="page-main-content bg-primary-custom-color">
           <ProfileHeader title={t("Edit Profile")} />
           <div className="container-4xl">
             {/* <div className="section-top-wrap mb-25 inner-section-margin-top">
