@@ -195,6 +195,8 @@ async function calculateEstimateGasFees(req,type)
         const web3 = new Web3(network);
         let amount = req.body.amount_value;
         let gasPrice =  await web3.eth.getGasPrice();
+        console.log('network', network);
+        console.log('gasPrice', gasPrice);
         // gasPrice = Web3.utils.fromWei(gasPrice.toString(), 'gwei');
         console.log('gas price');
         console.log(gasPrice);
@@ -213,45 +215,36 @@ async function calculateEstimateGasFees(req,type)
             amount = customToWei(amount, contractDecimal);
             console.log("amount", amount);
             if (Number(usedGasLimit) > 0) {
-                gasFees = Number(usedGasLimit) * Number(gasPrice);
+                // gasFees = Number(usedGasLimit) * Number(gasPrice);
+                const multiply = Number(usedGasLimit) * Number(gasPrice);
+                console.log('mul', multiply);
+                const maxFee = customFromWei((Number(usedGasLimit) * Number(gasPrice)),18);
+                data = {
+                    status: true,
+                    message: 'Calculate gas fees successfully!',
+                    amount : amount,
+                    tx: 'ok',
+                    gasLimit: usedGasLimit,
+                    gasPrice: gasPrice,
+                    estimateGasFees: maxFee
+                }
             } else {
                 console.log('before estimate')
-                var estimateGasStatus = false
-                var estimateGasMessage = ''
-                const estimatedGasRes = await contract.methods.transfer(receiverAddress, amount)
-                                                                .estimateGas({ from: fromAddress }).catch(e=>{
-                                                                    estimateGasStatus = true
-                                                                    estimateGasMessage = e.message
-                                                                });
-                if(estimateGasStatus)
-                {
-                    return data = {
-                        status: false,
-                        message: estimateGasMessage
-                    }
+                let call = await contract.methods.transfer(receiverAddress,amount);
+                const calGas = await call.estimateGas({from:fromAddress})
+                const estimatedFee = customFromWei((calGas, Number(gasPrice)),18);
+                const nowFees = parseFloat(estimatedFee.toString()).toFixed(18);
+                
+                data = {
+                    status: true,
+                    message: 'Calculate gas fees successfully!',
+                    amount : amount,
+                    tx: 'ok',
+                    gasLimit: usedGasLimit,
+                    gasPrice: gasPrice,
+                    estimateGasFees: nowFees
                 }
-                console.log('estimateGas');
-                console.log(estimatedGasRes);
-                usedGasLimit = parseInt(estimatedGasRes/2) + estimatedGasRes;
-                console.log('usedGasLimit');
-                console.log(usedGasLimit);
-                gasFees = Number(usedGasLimit) * Number(gasPrice);
             }
-            console.log('gasFees');
-            console.log(gasFees);
-            finalGasFees = Web3.utils.fromWei(gasFees.toString());
-            
-            console.log(finalGasFees);
-            data = {
-                status: true,
-                message: 'Calculate gas fees successfully!',
-                amount : amount,
-                tx: 'ok',
-                gasLimit: usedGasLimit,
-                gasPrice: gasPrice,
-                estimateGasFees: finalGasFees
-            }
-        
         } else {
             const chainId = req.body.chain_id;
             console.log('type 2')
