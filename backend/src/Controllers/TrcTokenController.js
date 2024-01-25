@@ -1,4 +1,4 @@
-const { powerOfTen, tronWebCall, checkTx } = require("../Heplers/helper");
+const { powerOfTen, tronWebCall, checkTx, customToWei } = require("../Heplers/helper");
 const TronGrid = require('trongrid');
 const axios = require('axios');
 const { response } = require("express");
@@ -57,40 +57,30 @@ async function sendTrc20Token(req, res) {
         
         const privateKey = req.body.contracts;
         let amount = req.body.amount_value;
-
+        console.log('requested amount', amount);
         tronWeb.setPrivateKey(privateKey);
         contract = await tronWeb.contract().at(contractAddress);
         const decimalValue = await contract.decimals().call();
-        const getDecimal = powerOfTen(decimalValue);
-        amount = parseInt(Number(amount) * getDecimal);
-        console.log(req.body.amount_value);
-        console.log(Number(req.body.amount_value));
-        console.log(amount);
+        amount = customToWei(amount, decimalValue);
+        
+        console.log('amount',amount);
 
-        const transaction = await contract.transfer(receiverAddress,BigInt(amount.toString())).send();
+        const transaction = await contract.transfer(receiverAddress,amount.toString()).send({
+            shouldPollResponse: true,
+            keepTxID:true,
+        });
         console.log(transaction);
         if (transaction) {
-            const success = await checkTx(tronWeb,transaction);
             tronWeb.defaultPrivateKey = false;
-            if (success) {
-                res.json({
-                    status: true,
-                    message: "Transaction successful",
-                    data: {
-                        hash: transaction,
-                        used_gas: 0
-                    }
-                });
-            } else {
-                res.json({
-                    status: false,
-                    message: "Transaction failed. txid = ".transaction,
-                    data: {
-                        hash: transaction,
-                        used_gas: 0
-                    }
-                });
-            }
+            res.json({
+                status: true,
+                message: "Transaction successful",
+                data: {
+                    hash: transaction[0] ? transaction[0] :transaction,
+                    used_gas: 0
+                }
+            });
+            
         } else {
             tronWeb.defaultPrivateKey = false;
             res.json({

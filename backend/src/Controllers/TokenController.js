@@ -99,7 +99,6 @@ async function generateAddress(req, res)
 
 async function getWalletBalance(req, res)
 {
-    console.log('getWalletBalance', req.body);
     try {
         const network = req.headers.chainlinks;
         const networkType = req.headers.networktype;
@@ -299,7 +298,6 @@ async function checkEstimateGasFees(req, res)
 {
     try {
         console.log('checkEstimateGasFees called')
-        console.log('checkEstimateGasFees req',req.body);
         const network = req.headers.chainlinks;
         let contractJsons = contractJson();
         if (network) {

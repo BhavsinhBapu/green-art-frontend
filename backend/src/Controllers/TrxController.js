@@ -1,7 +1,8 @@
 const dotenv = require('dotenv');
-const { powerOfTen, tronWebCall } = require("../Heplers/helper");
+const { powerOfTen, tronWebCall, customToWei } = require("../Heplers/helper");
 const trcToken =  require("./TrcTokenController");
 const { json } = require('express/lib/response');
+const TronWeb =  require('tronweb');
 
 
 dotenv.config();
@@ -414,7 +415,6 @@ async function getTrxEstimateGas(req, res){
         const receiverWallet  = req.body.to_wallet;
         const contractAddress = req.body.contract;
         const amount          = req.body.amount;
-        const perTrx          = req.body.sun;
         const _function       = "transfer(address,uint256)";
         const options   = {
             feeLimit: 1_000_000,
@@ -422,30 +422,34 @@ async function getTrxEstimateGas(req, res){
         };
         const parameter = [
             {
-              "name" : "recipient",
               "type" : "address",
               "value": receiverWallet
             },
             {
-              "name" : "amount",
               "type" : "uint256",
-              "value": amount
+              "value": customToWei(amount,6)
             }
         ];
-        const response = await tronWeb.transactionBuilder
-                        .triggerConstantContract(
-                            contractAddress,_function,options,parameter,ownerWallet
+        const response = await tronWeb.transactionBuilder.triggerConstantContract(
+                            tronWeb.address.toHex(contractAddress)
+                            ,_function,
+                            {},
+                            parameter,
+                            tronWeb.address.toHex(ownerWallet)
                         );
         
         if (typeof response == 'object' && response.result.result) {
             let energy = response.energy_used;
-            let gas = ((energy * perTrx) / 1000000 );
+            console.log('energy',energy);
+            let gas = Number(TronWeb.fromSun(energy * 420));
+            console.log('gas', gas);
             res.json({
                 status: true,
                 message: "Estimted energy found successfully",
                 data: {
-                    gas : gas,
-                    energy : energy,
+                    gasLimit: 420,
+                    gasPrice: energy,
+                    estimateGasFees: gas
                 },
             });
         }else{
@@ -456,10 +460,11 @@ async function getTrxEstimateGas(req, res){
             });
         }
         
-    } catch(err){console.log(err);
+    } catch(err){
+        console.log(err);
         res.json({
             status: false,
-            message: err.error ?? "Something went wrong with node api",
+            message: err.stack ?? "Something went wrong with node api",
             data: {}
         });
     }
