@@ -802,6 +802,7 @@ async function getTransactionsByAccount(web3,myaccount, endBlockNumber,startBloc
 async function getLatestEvents(req, res)
 {
   try {
+      console.log("req.body", req.body);
       const network = req.headers.chainlinks;
       const networkType = req.headers.networktype;
       let decimalValue = 18;
@@ -816,22 +817,35 @@ async function getLatestEvents(req, res)
             console.log('contractAddress', contractAddress);
             // const numberOfBlock = req.body.number_of_previous_block;
             const lastBlockNumber = req.body.last_block_number;
+            const erc_block_number = Number(req.body?.erc_block_number);
+            let to_block_number = Number(req.body?.to_block_number);
+            let from_block_number = Number(req.body?.from_block_number);
             let fromBlockNumber = 0;
             const web3 = new Web3(new Web3.providers.HttpProvider(network));
             const contract = new web3.eth.Contract(contractJsons, contractAddress);
             decimalValue = await getContractDecimal(contract);
             
             const latestBlockNumber = await web3.eth.getBlockNumber();
+
+            if(!(to_block_number > 0) && !(from_block_number > 0)){
+                to_block_number = latestBlockNumber;
+                from_block_number = latestBlockNumber - erc_block_number;
+            }else{
+
+                let compeareBlock = latestBlockNumber - to_block_number;
+                from_block_number = to_block_number;
+                to_block_number = latestBlockNumber;
+
+                if(compeareBlock > erc_block_number)
+                    to_block_number = latestBlockNumber + erc_block_number;
+                
+            }
             
             console.log('latestBlockNumber => ',latestBlockNumber);
-            if(lastBlockNumber && latestBlockNumber > 0) {
-                fromBlockNumber = lastBlockNumber;
-            } else {
-                fromBlockNumber = latestBlockNumber;
-            }
-            console.log('fromBlockNumber => ',fromBlockNumber);
-            if (fromBlockNumber <= latestBlockNumber) {
-                const result = await getBlockDetails(contract,fromBlockNumber,latestBlockNumber);
+            console.log('to_block_number => ',to_block_number);
+            console.log('from_block_number => ',from_block_number);
+            if (from_block_number <= to_block_number) {
+                const result = await getBlockDetails(contract,from_block_number,to_block_number);
             
                 if (result.status === true) {
                     let resultData = [];
@@ -846,7 +860,9 @@ async function getLatestEvents(req, res)
                             to_address: res.returnValues.to,
                             amount: customFromWei(res.returnValues.value,decimalValue),
                             block_number: res.blockNumber,
-                            block_timestamp: 0
+                            block_timestamp: 0,
+                            to_block_number: to_block_number,
+                            from_block_number: from_block_number,
                         };
                         resultData.push(innerData)
                     });
@@ -865,10 +881,10 @@ async function getLatestEvents(req, res)
                     });
                 }
             } else {
-                console.log('Block number not greater than current block')
+                console.log('From block number not greater than to block')
                 res.json({
                     status: false,
-                    message: 'Block number not greater than current block',
+                    message: 'From block number not greater than to block',
                     data: {}
                 });
             }
