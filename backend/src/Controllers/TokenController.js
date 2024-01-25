@@ -99,6 +99,7 @@ async function generateAddress(req, res)
 
 async function getWalletBalance(req, res)
 {
+    console.log('getWalletBalance', req.body);
     try {
         const network = req.headers.chainlinks;
         const networkType = req.headers.networktype;
@@ -118,7 +119,6 @@ async function getWalletBalance(req, res)
                 if (type == 1) {
                     netBalance = await web3.eth.getBalance(address);
                     netBalance = Web3.utils.fromWei(netBalance.toString(), 'ether');
-
                 } else if(type == 2) {
                     const contractAddress = req.body.contract_address;
                     if (contractAddress) {
@@ -160,7 +160,7 @@ async function getWalletBalance(req, res)
                     net_balance : netBalance,
                     token_balance : tokenBalance
                 }
-
+                console.log('balance data', data);
                 res.send({
                     status: true,
                     message: "process successfully",
@@ -195,11 +195,10 @@ async function calculateEstimateGasFees(req,type)
         const web3 = new Web3(network);
         let amount = req.body.amount_value;
         let gasPrice =  await web3.eth.getGasPrice();
-        console.log('network', network);
+        
         console.log('gasPrice', gasPrice);
         // gasPrice = Web3.utils.fromWei(gasPrice.toString(), 'gwei');
-        console.log('gas price');
-        console.log(gasPrice);
+       
         const fromAddress = req.body.from_address;
         const receiverAddress = req.body.to_address;
         let usedGasLimit = req.body.gas_limit;
@@ -217,8 +216,10 @@ async function calculateEstimateGasFees(req,type)
             if (Number(usedGasLimit) > 0) {
                 // gasFees = Number(usedGasLimit) * Number(gasPrice);
                 const multiply = Number(usedGasLimit) * Number(gasPrice);
-                console.log('mul', multiply);
+                
                 const maxFee = customFromWei((Number(usedGasLimit) * Number(gasPrice)),18);
+                const feeBalanceRequired = parseFloat(maxFee.toString()).toFixed(18);
+                console.log('feeBalanceRequired => ', feeBalanceRequired)
                 data = {
                     status: true,
                     message: 'Calculate gas fees successfully!',
@@ -226,7 +227,7 @@ async function calculateEstimateGasFees(req,type)
                     tx: 'ok',
                     gasLimit: usedGasLimit,
                     gasPrice: gasPrice,
-                    estimateGasFees: maxFee
+                    estimateGasFees: feeBalanceRequired
                 }
             } else {
                 console.log('before estimate')
@@ -298,6 +299,7 @@ async function checkEstimateGasFees(req, res)
 {
     try {
         console.log('checkEstimateGasFees called')
+        console.log('checkEstimateGasFees req',req.body);
         const network = req.headers.chainlinks;
         let contractJsons = contractJson();
         if (network) {
