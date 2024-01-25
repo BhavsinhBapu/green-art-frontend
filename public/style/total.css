@@ -10812,13 +10812,9 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
   background: var(--main-background-color);
 }
 
-.trade-anywhere-right .subtitle {
-  margin-bottom: 10px;
-  color: var(--title-color);
-}
-
 .trade-anywhere-right p {
   margin-bottom: 20px;
+  font-size: 17px;
 }
 
 .exchange_VersionHeader__XKzVR h1 {
@@ -11714,7 +11710,8 @@ input[type="number"] {
 
 .trade-anywhere-right .subtitle {
   margin-bottom: 10px;
-  color: var(--title-color);
+  color: var(--title-color) !important;
+  font-size: 53px;
 }
 
 .trade-anywhere-right p {
@@ -14810,6 +14807,7 @@ input {
 .cover-img {
   margin-top: 50px;
   border-radius: 10px;
+  height:500px;
 }
 .conver-col1 {
   display: flex;
@@ -15635,7 +15633,7 @@ input:checked + .gift-card-buy-slider:before {
 
 .community-home-card {
   height: fit-content;
-  background-color: var(--main-background-color);
+  /* background-color: var(--main-background-color); */
   border-radius: 16px;
 }
 
