@@ -2603,7 +2603,7 @@ a#submit {
   height: 45px;
   font-size: 18px;
   box-shadow: none;
-  background: var(--card-background-color);
+  /* background: var(--card-background-color); */
   padding: 5px 15px;
   border-color: transparent;
 }
@@ -5278,7 +5278,7 @@ select:-webkit-autofill:focus {
   /* padding-top: 20px; */
   /* padding: 30px; */
   border-radius: 20px;
-  background: var(--glass-color-bg-1);
+  /* background: var(--glass-color-bg-1); */
 }
 
 .section-top-wrap {
@@ -10295,10 +10295,10 @@ label {
 }
 
 .form-control {
-  background: var(--card-background-color);
-  border: 1px solid var(--border-color);
-  box-shadow: none;
-  color: var(--text-primary-color-4);
+    background: var(--glass-color-bg-1);
+    border: 1px solid var(--border-color);
+    box-shadow: none;
+    color: var(--text-primary-color-4);
 }
 
 .form-control:focus {
@@ -11661,8 +11661,8 @@ input[type="number"] {
 }
 
 .exchange-tab-menu .nav-tabs .nav-item .nav-link.active {
-  background: var(--background-color);
-  color: var(--text-primary-color);
+    background: var(--glass-color-bg-1);
+    /* color: var(--text-primary-color); */
 }
 
 .market-trend-area {
@@ -14848,7 +14848,7 @@ input {
 }
 
 .bg-card-primary-color {
-  background: #181a20;
+  background: var(--glass-color-bg-1);
 }
 
 .py-80 {
@@ -14870,7 +14870,7 @@ input {
 }
 
 .gift-font-color {
-  color: #eaecef !important;
+  /* color: #eaecef !important; */
 }
 
 .gift-color {
@@ -15078,7 +15078,7 @@ input {
   width: 25px;
 }
 .main-bg {
-  background: var(--card-background-color);
+  /* background: var(--card-background-color); */
 }
 
 .buy-input-bg {
@@ -16174,7 +16174,7 @@ input:checked + .gift-card-buy-slider:before {
 }
 
 .bg-primary-custom-color {
-  background: var(--custom-background-color);
+  /* background: var(--custom-background-color); */
 }
 
 .body-margin-top-custom {
