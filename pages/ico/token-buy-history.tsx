@@ -21,6 +21,9 @@ import {
 } from "helpers/core-constants";
 import SectionLoading from "components/common/SectionLoading";
 import CustomDataTable from "components/Datatable";
+import LaunchpadHeader from "components/ico/LaunchpadHeader";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
 
 const TokenBuyHistory = () => {
   const [history, setHistory] = useState<any>([]);
@@ -115,15 +118,24 @@ const TokenBuyHistory = () => {
   return (
     <>
       <div className="page-wrap">
-        <LaunchpadSidebar />
+        {/* <LaunchpadSidebar /> */}
         <div className="page-main-content">
-          <div className="container-fluid">
-            <div className="section-top-wrap mb-25 inner-section-margin-top">
+          <LaunchpadHeader title={t("Token Buy History")} />
+          <PlaceTopLeft />
+          <PlaceBottomRight />
+          <div className="container-4xl">
+            {/* <div className="section-top-wrap mb-25 inner-section-margin-top">
               <div className="profle-are-top">
                 <h2 className="section-top-title">{t("Token Buy History")}</h2>
               </div>
-            </div>
-            <div className="asset-balances-area">
+            </div> */}
+            <div
+              className="asset-balances-area shadow-sm p-5 wallet-card-info-container"
+              style={{
+                marginTop: "-60px",
+                marginBottom: "30px",
+              }}
+            >
               <div className="asset-balances-left">
                 <div className="section-wrapper">
                   <div className="tableScroll">
