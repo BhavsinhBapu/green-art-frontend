@@ -1,5 +1,8 @@
 import SectionLoading from "components/common/SectionLoading";
 import Footer from "components/common/footer";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
+import LaunchpadHeader from "components/ico/LaunchpadHeader";
 import LaunchpadSidebar from "layout/launchpad-sidebar";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
@@ -63,18 +66,26 @@ const Withdraw = () => {
   return (
     <>
       <div className="page-wrap rightMargin">
-        <LaunchpadSidebar />
+        {/* <LaunchpadSidebar /> */}
         <div className="page-main-content">
-          <div className="container-fluid">
-            <div className="section-top-wrap mb-25 inner-section-margin-top">
+          <LaunchpadHeader title={t("Withdraw")} />
+          <PlaceTopLeft />
+          <PlaceBottomRight />
+          <div className="container-4xl">
+            {/* <div
+              className="section-top-wrap mb-25 inner-section-margin-top "
+            >
               <div className="overview-area">
                 <div className="overview-left">
                   <h2 className="section-top-title">{t("Withdraw")}</h2>
                 </div>
               </div>
-            </div>
-            <div className="asset-balances-area cstm-loader-area">
-              <div className="asset-balances-left">
+            </div> */}
+            <div className="asset-balances-area cstm-loader-area shadow-sm p-5 wallet-card-info-container" style={{
+                marginTop: "-60px",
+                marginBottom: "30px",
+              }}>
+              <div className="asset-balances-left" >
                 <div className="section-wrapper">
                   {loading ? (
                     <div className="mt-4">

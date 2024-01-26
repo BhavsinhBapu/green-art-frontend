@@ -1,6 +1,5 @@
-import WalletOverViewMenuTab from "layout/WalletOverViewMenuTab";
-import Link from "next/link";
 import React from "react";
+import LaunchpadMenuTab from "./LaunchpadMenuTab";
 
 export default function LaunchpadHeader({ title, imageUrl }: any) {
   return (
@@ -15,7 +14,7 @@ export default function LaunchpadHeader({ title, imageUrl }: any) {
         <div className="profle-are-top container-4xl">
           <h2 className="wallet-overview-header-title">{title}</h2>
         </div>
-        <WalletOverViewMenuTab />
+        <LaunchpadMenuTab />
       </div>
     </div>
   );

@@ -19,6 +19,32 @@ import Link from "next/link";
 import { IoWalletOutline } from "react-icons/io5";
 import { GiToken } from "react-icons/gi";
 import SectionLoading from "components/common/SectionLoading";
+import LaunchpadHeader from "components/ico/LaunchpadHeader";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
+const customStyles = {
+  rows: {
+    style: {
+      minHeight: "72px", // override the row height
+      backgroundColor: "var(--glass-color-bg-1)",
+    },
+  },
+  headCells: {
+    style: {
+      paddingLeft: "8px", // override the cell padding for head cells
+      paddingRight: "8px",
+      backgroundColor: "var(--glass-color-bg-1)",
+
+    },
+  },
+  cells: {
+    style: {
+      paddingLeft: "8px", // override the cell padding for data cells
+      paddingRight: "8px",
+    },
+  },
+};
+
 const Profile: NextPage = () => {
   const [history, setHistory] = useState<any>([]);
   const { t } = useTranslation("common");
@@ -108,15 +134,24 @@ const Profile: NextPage = () => {
   return (
     <>
       <div className="page-wrap">
-        <LaunchpadSidebar />
+        {/* <LaunchpadSidebar /> */}
         <div className="page-main-content">
-          <div className="container-fluid">
-            <div className="section-top-wrap mb-25 inner-section-margin-top">
+          <LaunchpadHeader title={t("Applied launchpad")} />
+          <PlaceTopLeft />
+          <PlaceBottomRight />
+          <div className="container-4xl">
+            {/* <div className="section-top-wrap mb-25 inner-section-margin-top">
               <div className="profle-are-top">
                 <h2 className="section-top-title">{t("Applied launchpad")}</h2>
               </div>
-            </div>
-            <div className="asset-balances-area">
+            </div> */}
+            <div
+              className="asset-balances-area shadow-sm p-5 wallet-card-info-container"
+              style={{
+                marginTop: "-60px",
+                marginBottom: "30px",
+              }}
+            >
               <div className="asset-balances-left">
                 <div className="section-wrapper">
                   <div className="tableScroll">
@@ -150,7 +185,11 @@ const Profile: NextPage = () => {
                       <SectionLoading />
                     ) : (
                       <>
-                        <DataTable columns={columns} data={history} />
+                        <DataTable
+                          columns={columns}
+                          data={history}
+                          customStyles={customStyles}
+                        />
                         <div
                           className="pagination-wrapper"
                           id="assetBalances_paginate"
