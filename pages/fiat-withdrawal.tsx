@@ -19,6 +19,7 @@ import SectionLoading from "components/common/SectionLoading";
 import SelectWithdrawl from "components/deposit/SelectWithdrawl";
 import { BANK_DEPOSIT } from "helpers/core-constants";
 import { NoItemFound } from "components/NoItemFound/NoItemFound";
+import FiatHeader from "components/fiat/FiatHeader";
 
 const FiatWithdrawal = () => {
   const { t } = useTranslation("common");
@@ -84,183 +85,179 @@ const FiatWithdrawal = () => {
   return (
     <>
       <div className="page-wrap">
-        <FiatSidebar />
+        {/* <FiatSidebar /> */}
         <div className="page-main-content">
-          <div className="container-fluid">
-            <div className="section-top-wrap mb-25">
-              <div className="profle-are-top">
-                <h2 className="section-top-title">
-                  {t("Crypto To Fiat Withdrawal")}
-                </h2>
-              </div>
-            </div>
-            <SelectWithdrawl
-              setSelectedMethod={setSelectedMethod}
-              depositInfo={initialData?.payment_method_list}
-              selectedMethod={selectedMethod}
-            />
-            <div className="asset-balances-area">
-              <div className=" bank-section">
-                <div className="">
-                  <div className="ico-tokenCreate ">
-                    <div className="ico-create-form col-12">
-                      {loading ? (
-                        <SectionLoading />
-                      ) : initialData?.payment_method_list?.length > 0 ? (
-                        <form
-                          className="row"
-                          onSubmit={(e) => {
-                            e.preventDefault();
-                            fiatWithdrawProcessAction(rateCred, setLoading);
-                          }}
-                        >
-                          <div className="col-md-6 form-input-div">
-                            <label className="ico-label-box" htmlFor="">
-                              {t("Select Wallet")}
-                            </label>
-                            <select
-                              name="wallet"
-                              className={`ico-input-box `}
-                              value={rateCred?.wallet_id}
-                              required
-                              onChange={(e: any) => {
-                                setRateCred({
-                                  ...rateCred,
-                                  wallet_id: e.target.value,
-                                });
-                              }}
-                            >
-                              <option value="">
-                                {t("Select Your Wallet")}
-                              </option>
-                              {initialData?.my_wallet?.map(
-                                (item: any, index: number) => (
-                                  <option value={item.encryptId} key={index}>
-                                    {item.coin_type}
-                                  </option>
-                                )
-                              )}
-                            </select>
-                          </div>
-                          <div className="col-md-6 form-input-div">
-                            <label className="ico-label-box" htmlFor="">
-                              {t("Select Currency")}
-                            </label>
-                            <select
-                              name="coin_list"
-                              value={rateCred?.currency}
-                              required
-                              className={`ico-input-box `}
-                              onChange={(e: any) => {
-                                setRateCred({
-                                  ...rateCred,
-                                  currency: e.target.value,
-                                });
-                              }}
-                            >
-                              <option value="">{t("Select Currency")}</option>
-                              {initialData?.currency?.map(
-                                (item: any, index: number) => (
-                                  <option key={index} value={item.code}>
-                                    {item.name}
-                                  </option>
-                                )
-                              )}
-                            </select>
-                          </div>
-
-                          <div className="col-md-6 form-input-div">
-                            <label className="ico-label-box" htmlFor="">
-                              {t("Amount")}
-                            </label>
-                            <input
-                              type="text"
-                              required
-                              value={rateCred?.amount}
-                              onChange={(e) => {
-                                setRateCred({
-                                  ...rateCred,
-                                  amount: e.target.value,
-                                });
-                                // getFiatWithdrawalRateAction(rateCred);
-                              }}
-                              name="amount"
-                              className={`ico-input-box`}
-                            />
-                          </div>
-
-                          <div className="col-md-6 form-input-div">
-                            <label className="ico-label-box" htmlFor="">
-                              {t("Amount Convert Price")}
-                            </label>
-                            <input
-                              type="text"
-                              disabled
-                              value={converted_value}
-                              required
-                              name="convert_price"
-                              className={`ico-input-box `}
-                            />
-                            <div>
-                              <span>
-                                {t("Fees:")}
-                                {fees}
-                              </span>
-                              <span className="float-right">
-                                {t("Net Amount:")}
-                                {netAmount}
-                                {currency}
-                              </span>
-                            </div>
-                          </div>
-                          {parseInt(selectedMethod.method) === BANK_DEPOSIT ? (
+          <FiatHeader title={t("Crypto To Fiat Withdrawal")} />
+          <div className="container-4xl">
+            <div className="my-5 p-5 wallet-card-info-container">
+              <SelectWithdrawl
+                setSelectedMethod={setSelectedMethod}
+                depositInfo={initialData?.payment_method_list}
+                selectedMethod={selectedMethod}
+              />
+              <div className="asset-balances-area">
+                <div className=" bank-section">
+                  <div className="">
+                    <div className="">
+                      <div className="ico-create-form col-12">
+                        {loading ? (
+                          <SectionLoading />
+                        ) : initialData?.payment_method_list?.length > 0 ? (
+                          <form
+                            className="row"
+                            onSubmit={(e) => {
+                              e.preventDefault();
+                              fiatWithdrawProcessAction(rateCred, setLoading);
+                            }}
+                          >
                             <div className="col-md-6 form-input-div">
                               <label className="ico-label-box" htmlFor="">
-                                {t("Select Bank")}
+                                {t("Select Wallet")}
                               </label>
                               <select
-                                name="bank_list"
-                                className={`ico-input-box `}
+                                name="wallet"
+                                className={`ico-input-box  `}
+                                value={rateCred?.wallet_id}
                                 required
-                                value={rateCred?.bank_id}
-                                onChange={(e) => {
+                                onChange={(e: any) => {
                                   setRateCred({
                                     ...rateCred,
-                                    bank_id: e.target.value,
+                                    wallet_id: e.target.value,
                                   });
                                 }}
                               >
                                 <option value="">
-                                  {t("Select Bank List")}
+                                  {t("Select Your Wallet")}
                                 </option>
-                                {initialData?.my_bank?.map(
+                                {initialData?.my_wallet?.map(
                                   (item: any, index: number) => (
-                                    <option value={item.id} key={index}>
-                                      {item.bank_name}
+                                    <option value={item.encryptId} key={index}>
+                                      {item.coin_type}
                                     </option>
                                   )
                                 )}
                               </select>
                             </div>
-                          ) : (
-                            <div className="col-md-12 form-input-div">
+                            <div className="col-md-6 form-input-div">
                               <label className="ico-label-box" htmlFor="">
-                                {t("Payment Info")}
+                                {t("Select Currency")}
                               </label>
-                              <textarea
-                                className={`ico-input-box `}
-                                value={rateCred?.payment_info}
+                              <select
+                                name="coin_list"
+                                value={rateCred?.currency}
+                                required
+                                className={`ico-input-box  `}
+                                onChange={(e: any) => {
+                                  setRateCred({
+                                    ...rateCred,
+                                    currency: e.target.value,
+                                  });
+                                }}
+                              >
+                                <option value="">{t("Select Currency")}</option>
+                                {initialData?.currency?.map(
+                                  (item: any, index: number) => (
+                                    <option key={index} value={item.code}>
+                                      {item.name}
+                                    </option>
+                                  )
+                                )}
+                              </select>
+                            </div>
+
+                            <div className="col-md-6 form-input-div">
+                              <label className="ico-label-box" htmlFor="">
+                                {t("Amount")}
+                              </label>
+                              <input
+                                type="text"
+                                required
+                                value={rateCred?.amount}
                                 onChange={(e) => {
                                   setRateCred({
                                     ...rateCred,
-                                    payment_info: e.target.value,
+                                    amount: e.target.value,
                                   });
+                                  // getFiatWithdrawalRateAction(rateCred);
                                 }}
-                              ></textarea>
+                                name="amount"
+                                className={`ico-input-box  `}
+                              />
                             </div>
-                          )}
 
-                          {/* <div className="col-md-6 form-input-div">
+                            <div className="col-md-6 form-input-div">
+                              <label className="ico-label-box" htmlFor="">
+                                {t("Amount Convert Price")}
+                              </label>
+                              <input
+                                type="text"
+                                disabled
+                                value={converted_value}
+                                required
+                                name="convert_price"
+                                className={`ico-input-box  `}
+                              />
+                              <div>
+                                <span>
+                                  {t("Fees:")}
+                                  {fees}
+                                </span>
+                                <span className="float-right">
+                                  {t("Net Amount:")}
+                                  {netAmount}
+                                  {currency}
+                                </span>
+                              </div>
+                            </div>
+                            {parseInt(selectedMethod.method) ===
+                            BANK_DEPOSIT ? (
+                              <div className="col-md-6 form-input-div">
+                                <label className="ico-label-box" htmlFor="">
+                                  {t("Select Bank")}
+                                </label>
+                                <select
+                                  name="bank_list"
+                                  className={`ico-input-box  `}
+                                  required
+                                  value={rateCred?.bank_id}
+                                  onChange={(e) => {
+                                    setRateCred({
+                                      ...rateCred,
+                                      bank_id: e.target.value,
+                                    });
+                                  }}
+                                >
+                                  <option value="">
+                                    {t("Select Bank List")}
+                                  </option>
+                                  {initialData?.my_bank?.map(
+                                    (item: any, index: number) => (
+                                      <option value={item.id} key={index}>
+                                        {item.bank_name}
+                                      </option>
+                                    )
+                                  )}
+                                </select>
+                              </div>
+                            ) : (
+                              <div className="col-md-12 form-input-div">
+                                <label className="ico-label-box" htmlFor="">
+                                  {t("Payment Info")}
+                                </label>
+                                <textarea
+                                  className={`ico-input-box  `}
+                                  value={rateCred?.payment_info}
+                                  onChange={(e) => {
+                                    setRateCred({
+                                      ...rateCred,
+                                      payment_info: e.target.value,
+                                    });
+                                  }}
+                                ></textarea>
+                              </div>
+                            )}
+
+                            {/* <div className="col-md-6 form-input-div">
                             <label className="ico-label-box" htmlFor="">
                               {t("Select Bank")}
                             </label>
@@ -285,15 +282,18 @@ const FiatWithdrawal = () => {
                               )}
                             </select>
                           </div> */}
-                          <div className="col-md-12 form-input-div">
-                            <button type="submit" className="primary-btn">
-                              {loading ? t("Loading..") : t("Submit Withdrawl")}
-                            </button>
-                          </div>
-                        </form>
-                      ) : (
-                        <NoItemFound message={`No Payment Method Found`}/>
-                      )}
+                            <div className="col-md-12 form-input-div">
+                              <button type="submit" className="primary-btn">
+                                {loading
+                                  ? t("Loading..")
+                                  : t("Submit Withdrawl")}
+                              </button>
+                            </div>
+                          </form>
+                        ) : (
+                          <NoItemFound message={`No Payment Method Found`} />
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
