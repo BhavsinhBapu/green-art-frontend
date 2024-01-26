@@ -7610,6 +7610,7 @@ p {
   outline: none !important;
   background-color: var(--gray-dark);
   color: white;
+  border: none;
 }
 
 .body-bg {
@@ -13552,7 +13553,7 @@ label.upload-file-btn.press-enter {
 }
 
 .top_bg {
-  background-image: url("../top_bg.jpg");
+  background-image: url("https://images.unsplash.com/photo-1620207418302-439b387441b0?q=80&w=1934&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -13589,11 +13590,11 @@ label.upload-file-btn.press-enter {
 }
 
 .article_card {
-  border-radius: 10px 10px 0px 0px;
-  border: 1px solid var(--border-color);
-  padding: 10px;
-  height: 310px;
-  overflow: hidden;
+    border-radius: 10px 10px 0px 0px;
+    padding: 10px;
+    height: 310px;
+    overflow: hidden;
+    background: var(--glass-color-bg-1);
 }
 
 .article_card div h5 {

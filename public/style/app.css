@@ -214,7 +214,7 @@ button:focus {
 .form-control:focus,
 .btn.focus,
 .btn:focus {
-  color: #495057;
+  color: var(--gray-dark);
   background-color: #fff;
   outline: 0;
   box-shadow: none;
@@ -772,7 +772,7 @@ client-area
 -----------------------------*/
 
 .footer-area {
-  background: var(--footer-background-color);
+  background: var(--glass-color-bg-1);
 }
 
 .footer-area .footer-top {
@@ -1773,6 +1773,7 @@ client-area
     position: absolute;
     top: 105;
     left: 0;
+    z-index: -1;
   }
 
   .placeTopLeft img {

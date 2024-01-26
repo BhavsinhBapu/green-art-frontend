@@ -8,13 +8,17 @@ import { customPage, landingPage } from "service/landing-page";
 import { getNewsDetails } from "service/news";
 import Link from "next/link";
 import useTranslation from "next-translate/useTranslation";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
 
 const KnowledgebaseArticleDetails = ({ articleDetails }: any) => {
   const { t } = useTranslation("common");
 
   return (
     <>
-      <div className="container mb-5">
+      <PlaceTopLeft />
+      <PlaceBottomRight />
+      <div className="container mb-5 bg-card-glass-clr mt-5">
         <div className="row">
           <div className="col-md-6 col-lg-8 mt-4">
             <div className="main_img">

@@ -3,24 +3,27 @@ import Link from "next/link";
 import { useState } from "react";
 import { knowledgebaseArticleSearchAction } from "state/actions/knowlegdgbase";
 import OutsideClickHandler from "react-outside-click-handler";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
 
 export const TopBanner = ({ resorce }: any) => {
   const [suggestions, setSuggestions] = useState(true);
 
   const [lists, setLists] = useState([]);
-  
+
   return (
     <section
       className=""
       style={{
         backgroundImage: resorce?.cover_image
           ? `url(${resorce?.cover_image})`
-          : "url(/top_bg.jpg)",
+          : "url(https://images.unsplash.com/photo-1620207418302-439b387441b0?q=80&w=1934&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
       }}
     >
+      <PlaceTopLeft />
       <div className="container">
         <div className="row">
           <div className="col-12 text-center text-white mt-5 pt-5">
@@ -47,6 +50,7 @@ export const TopBanner = ({ resorce }: any) => {
                         setSuggestions(true);
                       }}
                     />
+
                     {/* <button
                     className="border-0 px-4 btn-secondary rounded-r"
                     type="submit"
@@ -74,6 +78,7 @@ export const TopBanner = ({ resorce }: any) => {
               </form>
             </OutsideClickHandler>
           </div>
+          <PlaceBottomRight />
         </div>
       </div>
     </section>
