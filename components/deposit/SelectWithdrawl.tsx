@@ -14,7 +14,7 @@ export default function SelectWithdrawl({
   }, [depositInfo]);
 
   return (
-    <div className="d-flex mt-3">
+    <div className="d-flex mt-3" style={{ flexWrap: "wrap" }}>
       {depositInfo?.map((payment: any, index: number) => (
         <div
           key={index}
