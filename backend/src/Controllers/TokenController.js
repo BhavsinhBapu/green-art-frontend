@@ -203,7 +203,7 @@ async function calculateEstimateGasFees(req,type)
         let usedGasLimit = req.body.gas_limit;
         let gasFees = 0;
         let finalGasFees = 0;
-        
+        console.log('usedGasLimit',usedGasLimit);
         if (type == 1) {
             const contractAddress = req.body.contract_address;
             let contractJsons = contractJson();
