@@ -118,7 +118,6 @@ async function getWalletBalance(req, res)
                 if (type == 1) {
                     netBalance = await web3.eth.getBalance(address);
                     netBalance = Web3.utils.fromWei(netBalance.toString(), 'ether');
-
                 } else if(type == 2) {
                     const contractAddress = req.body.contract_address;
                     if (contractAddress) {
@@ -160,7 +159,7 @@ async function getWalletBalance(req, res)
                     net_balance : netBalance,
                     token_balance : tokenBalance
                 }
-
+                console.log('balance data', data);
                 res.send({
                     status: true,
                     message: "process successfully",
@@ -195,11 +194,10 @@ async function calculateEstimateGasFees(req,type)
         const web3 = new Web3(network);
         let amount = req.body.amount_value;
         let gasPrice =  await web3.eth.getGasPrice();
-        console.log('network', network);
+        
         console.log('gasPrice', gasPrice);
         // gasPrice = Web3.utils.fromWei(gasPrice.toString(), 'gwei');
-        console.log('gas price');
-        console.log(gasPrice);
+       
         const fromAddress = req.body.from_address;
         const receiverAddress = req.body.to_address;
         let usedGasLimit = req.body.gas_limit;
@@ -217,8 +215,10 @@ async function calculateEstimateGasFees(req,type)
             if (Number(usedGasLimit) > 0) {
                 // gasFees = Number(usedGasLimit) * Number(gasPrice);
                 const multiply = Number(usedGasLimit) * Number(gasPrice);
-                console.log('mul', multiply);
+                
                 const maxFee = customFromWei((Number(usedGasLimit) * Number(gasPrice)),18);
+                const feeBalanceRequired = parseFloat(maxFee.toString()).toFixed(18);
+                console.log('feeBalanceRequired => ', feeBalanceRequired)
                 data = {
                     status: true,
                     message: 'Calculate gas fees successfully!',
@@ -226,7 +226,7 @@ async function calculateEstimateGasFees(req,type)
                     tx: 'ok',
                     gasLimit: usedGasLimit,
                     gasPrice: gasPrice,
-                    estimateGasFees: maxFee
+                    estimateGasFees: feeBalanceRequired
                 }
             } else {
                 console.log('before estimate')
@@ -802,6 +802,7 @@ async function getTransactionsByAccount(web3,myaccount, endBlockNumber,startBloc
 async function getLatestEvents(req, res)
 {
   try {
+      console.log("req.body", req.body);
       const network = req.headers.chainlinks;
       const networkType = req.headers.networktype;
       let decimalValue = 18;
@@ -816,26 +817,40 @@ async function getLatestEvents(req, res)
             console.log('contractAddress', contractAddress);
             // const numberOfBlock = req.body.number_of_previous_block;
             const lastBlockNumber = req.body.last_block_number;
+            const erc_block_number = Number(req.body?.erc_block_number);
+            let to_block_number = Number(req.body?.to_block_number);
+            let from_block_number = Number(req.body?.from_block_number);
             let fromBlockNumber = 0;
             const web3 = new Web3(new Web3.providers.HttpProvider(network));
             const contract = new web3.eth.Contract(contractJsons, contractAddress);
             decimalValue = await getContractDecimal(contract);
             
             const latestBlockNumber = await web3.eth.getBlockNumber();
+
+            if(!(to_block_number > 0) && !(from_block_number > 0)){
+                to_block_number = latestBlockNumber;
+                from_block_number = latestBlockNumber - erc_block_number;
+            }else{
+
+                let compeareBlock = latestBlockNumber - to_block_number;
+                from_block_number = to_block_number;
+                to_block_number = latestBlockNumber;
+
+                if(compeareBlock > erc_block_number)
+                    to_block_number = from_block_number + erc_block_number;
+                
+            }
             
             console.log('latestBlockNumber => ',latestBlockNumber);
-            if(lastBlockNumber && latestBlockNumber > 0) {
-                fromBlockNumber = lastBlockNumber;
-            } else {
-                fromBlockNumber = latestBlockNumber;
-            }
-            console.log('fromBlockNumber => ',fromBlockNumber);
-            if (fromBlockNumber <= latestBlockNumber) {
-                const result = await getBlockDetails(contract,fromBlockNumber,latestBlockNumber);
+            console.log('to_block_number => ',to_block_number);
+            console.log('from_block_number => ',from_block_number);
+
+            if (from_block_number <= to_block_number) {
+                const result = await getBlockDetails(contract,from_block_number,to_block_number);
             
                 if (result.status === true) {
                     let resultData = [];
-                    result.data.forEach(function (res) {
+                    result.data?.response?.forEach(function (res) {
                         let innerData = {
                             event: res.event,
                             signature: res.signature,
@@ -846,7 +861,9 @@ async function getLatestEvents(req, res)
                             to_address: res.returnValues.to,
                             amount: customFromWei(res.returnValues.value,decimalValue),
                             block_number: res.blockNumber,
-                            block_timestamp: 0
+                            block_timestamp: 0,
+                            // to_block_number: to_block_number,
+                            // from_block_number: from_block_number,
                         };
                         resultData.push(innerData)
                     });
@@ -855,20 +872,24 @@ async function getLatestEvents(req, res)
                         message: result.message,
                         data: {
                             result: resultData,
+                            block:result.data.block
                         }
                     });
                 } else {
                     res.json({
                         status: false,
                         message: result.message,
-                        data: {}
+                        data: {
+                            result: [],
+                            block:result.data?.block
+                        }
                     });
                 }
             } else {
-                console.log('Block number not greater than current block')
+                console.log('From block number not greater than to block')
                 res.json({
                     status: false,
-                    message: 'Block number not greater than current block',
+                    message: 'From block number not greater than to block',
                     data: {}
                 });
             }
@@ -892,6 +913,10 @@ async function getLatestEvents(req, res)
 async function getBlockDetails(contract,fromBlockNumber,toBlockNumber)
 {
   try {
+    const blockData = {
+        from_block_number:fromBlockNumber,
+        to_block_number:toBlockNumber,
+    }
       const response = await contract.getPastEvents("Transfer",
           {
               fromBlock: fromBlockNumber,
@@ -918,13 +943,19 @@ async function getBlockDetails(contract,fromBlockNumber,toBlockNumber)
           return {
               status: true,
               message: "found block details",
-              data: response
+              data: {
+                response:response,
+                block:blockData
+            }
           };
       } else {
           return {
               status: false,
               message: "nodatafound",
-              data: []
+              data: {
+                response:[],
+                block:blockData
+            }
           };
       }
   } catch (e) {

@@ -1675,20 +1675,20 @@ client-area
 }
 
 .block-container .btn-front {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    width: inherit;
-    height: inherit;
-    border-radius: 32px;
-    background-color: var(--glass-color-bg-1);
-    -webkit-backdrop-filter: blur(20px);
-    backdrop-filter: blur(20px);
-    transition: 250ms;
-    transform-style: preserve-3d;
-    transform-origin: top left;
-    overflow: hidden;
-    border: 1px solid var(--bColor);
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: inherit;
+  height: inherit;
+  border-radius: 32px;
+  background-color: var(--glass-color-bg-1);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  transition: 250ms;
+  transform-style: preserve-3d;
+  transform-origin: top left;
+  overflow: hidden;
+  border: 1px solid var(--bColor);
 }
 
 .block-container .btn-front svg.frame {
@@ -1847,6 +1847,6 @@ client-area
   line-height: 1.4;
   word-spacing: 100vw;
 }
-.badge-danger{
+.badge-danger {
   background-color: #ff79863d;
 }
