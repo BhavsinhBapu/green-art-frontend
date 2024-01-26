@@ -20,13 +20,7 @@ const P2pOrder = () => {
     <>
       <div>
         <MarketOverviewHeader title={t(`My Orders`)} />
-        {/* <div className="section-top-wrap mb-25">
-          <div className="overview-area">
-            <div className="overview-left">
-              <h2 className="section-top-title">{t(`My Orders`)}</h2>
-            </div>
-          </div>
-        </div> */}
+
         <P2pTopBar />
         <PlaceTopLeft />
         <PlaceBottomRight />
