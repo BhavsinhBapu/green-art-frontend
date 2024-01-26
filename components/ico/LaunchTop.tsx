@@ -12,8 +12,9 @@ const LaunchTop = ({ data }: any) => {
       style={{
         backgroundImage: `url(${data?.launchpad_cover_image})`,
       }}
-      className="section-top-wrap mb-25 background-image-class">
-      <div className="container">
+      className="section-top-wrap py-5 mb-25 background-image-class"
+    >
+      <div className="container-4xl">
         <div className="overview-area">
           <div className="overview-left ">
             <h1 className="big-top-title text-white">

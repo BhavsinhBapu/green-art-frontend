@@ -1,5 +1,7 @@
 import SectionLoading from "components/common/SectionLoading";
 import Footer from "components/common/footer";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
 import Hero from "components/ico/Hero";
 import LaunchPad from "components/ico/LaunchPad";
 import LaunchTop from "components/ico/LaunchTop";
@@ -76,8 +78,12 @@ const Index = () => {
       ) : (
         <div className="launchPad">
           <LaunchTop data={launchpadLandingPage?.data} />
-          <div className="launch-body container">
+          <PlaceTopLeft />
+          <PlaceBottomRight />
+          <div className="launch-body container-4xl">
             <Hero data={launchpadLandingPage?.data} />
+            <PlaceTopLeft />
+            <PlaceBottomRight />
             {launchpadFeatureItem.length > 0 && (
               <>
                 <h2 className="">{t("Featured Item")}</h2>
@@ -148,52 +154,7 @@ const Index = () => {
                 </div>
               </>
             )}
-            {/* <div
-            id="carouselExampleControls"
-            className="carousel slide"
-            data-ride="carousel"
-          >
-            <div className="carousel-inner">
-              <div className="carousel-item active">
-                <LaunchPad key={1} viewMore={false} data={{}} />
-              </div>
-              <div className="carousel-item">
-                <LaunchPad key={1} viewMore={false} data={{}} />
-              </div>
 
-              <div className="carousel-item">
-                <LaunchPad key={1} viewMore={false} data={{}} />
-                <div className="carousel-caption d-none d-md-block">
-                  <h5>This is a header</h5>
-                  <p>This is paragraph</p>
-                </div>
-              </div>
-            </div>
-            <a
-              className="carousel-control-prev"
-              href="#carouselExampleControls"
-              role="button"
-              data-slide="prev"
-            >
-              <span
-                className="carousel-control-prev-icon"
-                aria-hidden="true"
-              ></span>
-              <span className="sr-only">Previous</span>
-            </a>
-            <a
-              className="carousel-control-next"
-              href="#carouselExampleControls"
-              role="button"
-              data-slide="next"
-            >
-              <span
-                className="carousel-control-next-icon"
-                aria-hidden="true"
-              ></span>
-              <span className="sr-only">Next</span>
-            </a>
-          </div> */}
             <SellingSection data={launchpadLandingPage?.data} />
           </div>
         </div>

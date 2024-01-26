@@ -3,7 +3,7 @@ import React from "react";
 const SellingSection = ({ data }: any) => {
   return (
     <section className="mt-5">
-      <div className="container">
+      <div className="container-4xl">
         <div className="section-title">
           <h2>{data?.launchpad_why_choose_us_text}</h2>
         </div>
