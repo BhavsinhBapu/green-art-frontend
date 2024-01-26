@@ -1,5 +1,6 @@
 import Footer from "components/common/footer";
 import SectionLoading from "components/common/SectionLoading";
+import MarketOverviewHeader from "components/markets/MarketOverviewHeader";
 import { P2pTopBar } from "components/P2P/P2pHome/TopBar";
 import { OrderFilter } from "components/P2P/P2pOrder/OrderFilter";
 import { OrderTable } from "components/P2P/P2pOrder/OrderTable";
@@ -16,15 +17,16 @@ const P2pOrder = () => {
   return (
     <>
       <div>
-        <div className="section-top-wrap mb-25">
+        <MarketOverviewHeader title={t(`My Orders`)} />
+        {/* <div className="section-top-wrap mb-25">
           <div className="overview-area">
             <div className="overview-left">
               <h2 className="section-top-title">{t(`My Orders`)}</h2>
             </div>
           </div>
-        </div>
+        </div> */}
         <P2pTopBar />
-        <div className="container">
+        <div className="container-4xl">
           <div className="row">
             <div className="col-12">
               <ul className="d-flex p2pTabList py-3 tableRow">

@@ -11,7 +11,7 @@ export const P2pTopBar = () => {
   const router = useRouter();
   return (
     <div className="py-3">
-      <div className="container">
+      <div className="container-4xl">
         <div className="row">
           <div className="col-12">
             <ul className="topBarList p2p-top-bar-root-cls">

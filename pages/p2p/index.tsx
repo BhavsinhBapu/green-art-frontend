@@ -93,7 +93,7 @@ const P2P = ({ data }: any) => {
     <>
       <div className="mb-5">
         <div className="p2p_bg">
-          <div className="container">
+          <div className="container-4xl">
             <div className="row">
               <div className="col-12 text-center">
                 {data?.p2p_banner_header && (
