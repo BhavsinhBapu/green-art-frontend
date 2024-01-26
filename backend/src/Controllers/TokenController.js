@@ -844,6 +844,10 @@ async function getLatestEvents(req, res)
             console.log('latestBlockNumber => ',latestBlockNumber);
             console.log('to_block_number => ',to_block_number);
             console.log('from_block_number => ',from_block_number);
+            const blockData = {
+                from_block_number:from_block_number,
+                from_block_number:to_block_number,
+            }
             if (from_block_number <= to_block_number) {
                 const result = await getBlockDetails(contract,from_block_number,to_block_number);
             
@@ -861,8 +865,8 @@ async function getLatestEvents(req, res)
                             amount: customFromWei(res.returnValues.value,decimalValue),
                             block_number: res.blockNumber,
                             block_timestamp: 0,
-                            to_block_number: to_block_number,
-                            from_block_number: from_block_number,
+                            // to_block_number: to_block_number,
+                            // from_block_number: from_block_number,
                         };
                         resultData.push(innerData)
                     });
@@ -871,13 +875,17 @@ async function getLatestEvents(req, res)
                         message: result.message,
                         data: {
                             result: resultData,
+                            block:result.data.block
                         }
                     });
                 } else {
                     res.json({
                         status: false,
                         message: result.message,
-                        data: {}
+                        data: {
+                            result: [],
+                            block:result.data?.block
+                        }
                     });
                 }
             } else {
@@ -908,6 +916,10 @@ async function getLatestEvents(req, res)
 async function getBlockDetails(contract,fromBlockNumber,toBlockNumber)
 {
   try {
+    const blockData = {
+        from_block_number:fromBlockNumber,
+        to_block_number:toBlockNumber,
+    }
       const response = await contract.getPastEvents("Transfer",
           {
               fromBlock: fromBlockNumber,
@@ -934,13 +946,19 @@ async function getBlockDetails(contract,fromBlockNumber,toBlockNumber)
           return {
               status: true,
               message: "found block details",
-              data: response
+              data: {
+                response:response,
+                block:blockData
+            }
           };
       } else {
           return {
               status: false,
               message: "nodatafound",
-              data: []
+              data: {
+                response:[],
+                block:blockData
+            }
           };
       }
   } catch (e) {
