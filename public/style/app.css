@@ -59,7 +59,7 @@ Tags: admin, best react admin template, das
   --trade-green: #32d777;
   --trade-red: #d63031;
   --white: #ffffff;
-  --glass-color-bg-1: rgb(193 193 193 / 36%);
+  --glass-color-bg-1: rgb(193 193 193 / 14%);
   --black: #000000;
   --color-pallet-1: #b4b8d7;
   --background-color: #ffff;
@@ -1658,7 +1658,7 @@ client-area
   transform: rotateZ(15deg);
   will-change: transform;
   box-shadow: 19px 0 40px var(--border-color);
-  background-color: var(--background-color);
+  background-color: var(--glass-color-bg-1);
   border: 1px solid var(--bColor);
 }
 
@@ -1675,19 +1675,20 @@ client-area
 }
 
 .block-container .btn-front {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  width: inherit;
-  height: inherit;
-  border-radius: 32px;
-  background-color: #dddddd33;
-  -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px);
-  transition: 250ms;
-  transform-style: preserve-3d;
-  transform-origin: top left;
-  overflow: hidden;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    width: inherit;
+    height: inherit;
+    border-radius: 32px;
+    background-color: var(--glass-color-bg-1);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    transition: 250ms;
+    transform-style: preserve-3d;
+    transform-origin: top left;
+    overflow: hidden;
+    border: 1px solid var(--bColor);
 }
 
 .block-container .btn-front svg.frame {
@@ -1845,4 +1846,7 @@ client-area
   text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
   line-height: 1.4;
   word-spacing: 100vw;
+}
+.badge-danger{
+  background-color: #ff79863d;
 }

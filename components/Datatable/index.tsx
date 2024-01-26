@@ -95,7 +95,7 @@ const CustomDataTable = ({
                       {...column.getHeaderProps(column.getSortByToggleProps())} // Add sorting props to the column header
                       style={{
                         borderBottom: "1px solid #7d7d7d33",
-                        background: "var(--main-background-color)",
+                        background: "transparent",
                         padding: "12px 8px",
                         textAlign: "left", // Update this line
                         cursor: "pointer",

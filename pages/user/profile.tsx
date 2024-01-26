@@ -25,14 +25,7 @@ const Profile: NextPage = ({ user, profileActivity }: any) => {
           <PlaceTopLeft />
           <PlaceBottomRight />
           <div className="container-4xl">
-            {/* <div className="section-top-wrap mb-25 inner-section-margin-top">
-              <div className="profle-are-top">
-                <h2 className="section-top-title">
-                  {user?.first_name + " " + user?.last_name}
-                </h2>
-                <h3 className="user-mail">{user?.email}</h3>
-              </div>
-            </div> */}
+           
             <div className="profile-area body-margin-top-custom shadow-sm p-5 wallet-card-info-container">
               <div className="section-wrapper">
                 <div className="user-profile">
