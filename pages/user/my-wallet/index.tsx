@@ -26,6 +26,8 @@ import CustomDataTable from "components/Datatable";
 import WalletOverviewSidebar from "layout/WalletOverviewSidebar";
 import WalletOverviewHeader from "components/wallet-overview/WalletOverviewHeader";
 import { useRouter } from "next/router";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
 const MyWallet: NextPage = () => {
   const { t } = useTranslation("common");
   const router = useRouter();
@@ -255,28 +257,15 @@ const MyWallet: NextPage = () => {
   };
   return (
     <>
-      {/* <div className="page-wrap">
-        <div className="page-main-content container-fluid">
-          <div className="section-top-wrap mb-25 inner-section-margin-top">
-            <div className="overview-area">
-              <div className="overview-left">
-                <h2 className="section-top-title">{t("Overview")}</h2>
-                <h4 className="blance-title">{t("Total balance")}</h4>
-                <h4 className="blance">
-                  {allData?.total ? parseFloat(allData?.total).toFixed(8) : 0}
-                  {""} {settings?.currency}
-                </h4>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> */}
       <div className="page-wrap">
         {/* <WalletOverviewSidebar /> */}
         <div className="page-main-content pt-0">
           <div className="">
             <WalletOverviewHeader title={`Spot Wallet`} />
+            <PlaceBottomRight />
+
             <div className="row  container-4xl">
+              <PlaceTopLeft />
               <div
                 className="col-md-12 px-0"
                 style={{

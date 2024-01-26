@@ -2,6 +2,8 @@ import MarketIndex from "components/FutureTrades/home/market-index/MarketIndex";
 import TopCharts from "components/FutureTrades/home/top-charts/TopCharts";
 import TradeSections from "components/FutureTrades/home/trade-sections/TradeSections";
 import Footer from "components/common/footer";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
 import MarketOverviewHeader from "components/markets/MarketOverviewHeader";
 import request from "lib/request";
 import useTranslation from "next-translate/useTranslation";
@@ -32,16 +34,14 @@ export default function Index() {
     <section>
       <div className="bg-primary-custom-color">
         <MarketOverviewHeader title={t("Crypto Futures Market")} />
+        <PlaceBottomRight />
         <div className="container-4xl">
-          {/* <h1 className="banner-title py-4">{t("Crypto Futures Market")}</h1> */}
-          {/* top chart start*/}
           {tradeDatas?.coins?.length > 0 && (
             <TopCharts tradeDatas={tradeDatas} />
           )}
-          {/* top chart end*/}
+          <PlaceTopLeft />
         </div>
         <div>
-          {/* trade section start*/}
           <TradeSections />
           {/* trade section end */}
 

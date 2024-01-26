@@ -10,6 +10,7 @@ import Link from "next/link";
 import { formateDateMunite } from "common";
 import { NoItemFound } from "components/NoItemFound/NoItemFound";
 import SectionLoading from "components/common/SectionLoading";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
 
 const CommunityHome = () => {
   const { settings } = useSelector((state: RootState) => state.common);
@@ -48,13 +49,8 @@ const CommunityHome = () => {
   if (loading) return <SectionLoading />;
 
   return (
-    <section className="bg-card-primary-clr pt-60 pb-60 community-home">
-      <div className="placeTopLeft">
-        <img
-          src="https://assets-global.website-files.com/60c8db180183804ef2b45120/60cb6b0ac3e71fa837cb2929_hero-glow.svg"
-          alt="Hero Banner"
-        />
-      </div>
+    <section className="pt-60 pb-60 community-home">
+      <PlaceTopLeft />
       <div className="container-4xl market-trend-area-container px-5">
         <div className="community-home-header">
           <div className="community-home-title-section">

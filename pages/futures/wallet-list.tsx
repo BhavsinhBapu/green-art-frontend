@@ -14,6 +14,8 @@ import CustomDataTable from "components/Datatable";
 import moment from "moment";
 import WalletOverviewSidebar from "layout/WalletOverviewSidebar";
 import WalletOverviewHeader from "components/wallet-overview/WalletOverviewHeader";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
 const WalletList: NextPage = () => {
   const { t } = useTranslation("common");
   const [walletList, setWalletList] = useState<any>([]);
@@ -141,6 +143,8 @@ const WalletList: NextPage = () => {
         <div className="page-main-content pt-0">
           <div className="">
             <WalletOverviewHeader title={`Future Wallet`} />
+            <PlaceTopLeft />
+            <PlaceBottomRight/>
             <div className="row  container-4xl">
               <div
                 className="col-md-12 px-0"

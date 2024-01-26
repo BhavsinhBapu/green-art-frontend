@@ -59,6 +59,7 @@ Tags: admin, best react admin template, das
   --trade-green: #32d777;
   --trade-red: #d63031;
   --white: #ffffff;
+  --glass-color-bg-1: rgb(193 193 193 / 36%);
   --black: #000000;
   --color-pallet-1: #b4b8d7;
   --background-color: #ffff;
@@ -78,6 +79,7 @@ Tags: admin, best react admin template, das
 :root[data-theme="dark"] {
   --primary-color: #f0b90b;
   --text-primary-color: #ffffff;
+  --glass-color-bg-1: rgb(14 4 4 / 36%);
   --text-primary-color-2: #ffffff;
   --text-primary-color-3: #ffffff;
   --text-primary-color-4: #cbcfd7;

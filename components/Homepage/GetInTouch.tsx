@@ -1,21 +1,13 @@
 import React from "react";
 import { motion } from "framer-motion";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
 
 const GetInTouch = ({ landing, featureListdata }: any) => {
   return (
     <div>
-      <div className="placeTopLeft">
-        <img
-          src="https://assets-global.website-files.com/60c8db180183804ef2b45120/60cb6b0ac3e71fa837cb2929_hero-glow.svg"
-          alt="Hero Banner"
-        />
-      </div>
-      <div className="placeBottomRight">
-        <img
-          src="https://assets-global.website-files.com/60c8db180183804ef2b45120/60cb6b0ac3e71fa837cb2929_hero-glow.svg"
-          alt="Hero Banner"
-        />
-      </div>
+      <PlaceTopLeft />
+      <PlaceBottomRight />
       {parseInt(landing.landing_sixth_section_status) === 1 && (
         <motion.section
           className="get-touch-area"

@@ -3,6 +3,7 @@ import ImageComponent from "components/common/ImageComponent";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
 
 const Cover = ({ landing, loggedin, landing_banner_image }: any) => {
   const router = useRouter();
@@ -46,12 +47,7 @@ const Cover = ({ landing, loggedin, landing_banner_image }: any) => {
               alt="Hero Banner"
             />
           </div>
-          <div className="placeBottomRight">
-            <img
-              src="https://assets-global.website-files.com/60c8db180183804ef2b45120/60cb6b0ac3e71fa837cb2929_hero-glow.svg"
-              alt="Hero Banner"
-            />
-          </div>
+          <PlaceBottomRight />
           <div className="container-4xl">
             <div className="row">
               <div className="col-md-6 conver-col1">

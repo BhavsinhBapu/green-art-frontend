@@ -3,6 +3,7 @@ import { FaApple, FaGoogle, FaWindows, FaLinux, FaMap } from "react-icons/fa";
 
 import React from "react";
 import BlockComponent from "components/Animation/block-component";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
 
 const DistributionSection = ({ landing }: any) => {
   const { t } = useTranslation("common");
@@ -18,12 +19,7 @@ const DistributionSection = ({ landing }: any) => {
                 alt="Hero Banner"
               />
             </div>
-            <div className="placeBottomRight">
-              <img
-                src="https://assets-global.website-files.com/60c8db180183804ef2b45120/60cb6b0ac3e71fa837cb2929_hero-glow.svg"
-                alt="Hero Banner"
-              />
-            </div>
+            <PlaceBottomRight />
             <div className="container-4xl trade-anywhere-container">
               <div className="section-title">
                 <h2 className="title">{landing?.trade_anywhere_title}</h2>

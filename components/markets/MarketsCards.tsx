@@ -6,7 +6,7 @@ export default function MarketsCards({ title, cardItems }: any) {
     <div className="p-3 card-for-markets">
       <div className="row">
         <div className="col-12 mb-3">
-          <p className="text-12">{title}</p>
+          <p className="text-12 text-white">{title}</p>
         </div>
         {cardItems?.length > 0
           ? cardItems.map((item: any, index: any) => (

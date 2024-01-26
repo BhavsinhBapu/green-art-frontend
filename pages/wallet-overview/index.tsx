@@ -14,6 +14,8 @@ import SectionLoading from "components/common/SectionLoading";
 import WalletOverviewHeader from "components/wallet-overview/WalletOverviewHeader";
 import { RootState } from "state/store";
 import { useSelector } from "react-redux";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
 const WalletOverview: NextPage = () => {
   const { t } = useTranslation("common");
   const { settings } = useSelector((state: RootState) => state.common);
@@ -43,7 +45,10 @@ const WalletOverview: NextPage = () => {
     <>
       <div className="page-wrap">
         {/* <WalletOverviewSidebar /> */}
+        {/* <PlaceTopLeft /> */}
+          <PlaceBottomRight />
         <div className="page-main-content pt-0">
+
           <div>
             <WalletOverviewHeader
               title={`Wallet Overview`}
@@ -67,11 +72,12 @@ const WalletOverview: NextPage = () => {
                         <div className=" col-md-6">
                           <div className="shadow-sm p-5 wallet-card-info-container">
                             <div
-                              style={{
-                                display: "flex",
-                                justifyContent: "space-between",
-                                alignItems: "center",
-                              }}
+                              // style={{
+                              //   display: "flex",
+                              //   justifyContent: "space-between",
+                              //   alignItems: "center",
+                              // }}
+                              className="card-head"
                             >
                               <h6>{t(`Estimated Balance`)}</h6>
                               <div
@@ -145,13 +151,7 @@ const WalletOverview: NextPage = () => {
                         </div>
                         <div className="col-md-6">
                           <div className="shadow-sm p-5 wallet-card-info-container">
-                            <div
-                              style={{
-                                display: "flex",
-                                justifyContent: "space-between",
-                                alignItems: "center",
-                              }}
-                            >
+                            <div className="card-head">
                               <Link href="/user/my-wallet">
                                 <div className="d-flex align-items-center gap-10 cursor-pointer">
                                   <h6>{t("Spot")}</h6>
@@ -161,7 +161,7 @@ const WalletOverview: NextPage = () => {
                                 style={{
                                   padding: "6px",
                                   borderRadius: "10px",
-                                  background: "var(--light)",
+                                  background: "var(--main-background-color)",
                                 }}
                               >
                                 <BiShapeCircle
@@ -205,13 +205,7 @@ const WalletOverview: NextPage = () => {
                         {Number(settings?.enable_future_trade) === 1 && (
                           <div className="col-md-6">
                             <div className="shadow-sm p-5 wallet-card-info-container">
-                              <div
-                                style={{
-                                  display: "flex",
-                                  justifyContent: "space-between",
-                                  alignItems: "center",
-                                }}
-                              >
+                              <div className="card-head">
                                 <Link href="/futures/wallet-list">
                                   <div className="d-flex align-items-center gap-10 cursor-pointer">
                                     <h6>{t("Futures")}</h6>
@@ -221,7 +215,7 @@ const WalletOverview: NextPage = () => {
                                   style={{
                                     padding: "6px",
                                     borderRadius: "10px",
-                                    background: "var(--light)",
+                                    background: "var(--main-background-color)",
                                   }}
                                 >
                                   <BiShapeCircle
@@ -266,13 +260,7 @@ const WalletOverview: NextPage = () => {
                         {parseInt(settings?.p2p_module) === 1 && (
                           <div className="col-md-6">
                             <div className="shadow-sm p-5 wallet-card-info-container">
-                              <div
-                                style={{
-                                  display: "flex",
-                                  justifyContent: "space-between",
-                                  alignItems: "center",
-                                }}
-                              >
+                              <div className="card-head">
                                 <Link href="/p2p/p2p-wallet">
                                   <div className="d-flex align-items-center gap-10 cursor-pointer">
                                     <h6>{t("P2P")}</h6>
@@ -282,7 +270,7 @@ const WalletOverview: NextPage = () => {
                                   style={{
                                     padding: "6px",
                                     borderRadius: "10px",
-                                    background: "var(--light)",
+                                    background: "var(--main-background-color)",
                                   }}
                                 >
                                   <BiShapeCircle
@@ -333,7 +321,7 @@ const WalletOverview: NextPage = () => {
                       }}
                     >
                       <div>
-                        <div className="mb-3 px-2 d-flex justify-content-between align-items-center gap-10">
+                        <div className="mb-3 px-2 d-flex justify-content-between align-items-center gap-10 card-head">
                           <h6>{t(`Recent Transactions`)}</h6>
                           <Link href="/user/transaction-history">
                             <div className="text-12 bg-main-clr py-1 px-3 rounded cursor-pointer">

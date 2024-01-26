@@ -9,6 +9,8 @@ import { toast } from "react-toastify";
 import { getCurrenyApi, getMarketCardDatasApi } from "service/markets";
 import Footer from "components/common/footer";
 import MarketOverviewHeader from "components/markets/MarketOverviewHeader";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
 
 async function listenMessages(setMarketsCardData: any) {
   //@ts-ignore
@@ -86,6 +88,8 @@ export default function Index() {
   return (
     <section>
       <MarketOverviewHeader title={t("Markets Overview")} />
+      <PlaceBottomRight />
+      <PlaceTopLeft />
       <div className="container-4xl">
         {/* <div className=" pt-4 pb-2 p2p-gift-card-navbar-margin-top">
           <h1 className="banner-title">{t("Markets Overview")}</h1>
@@ -110,7 +114,7 @@ export default function Index() {
         >
           {marketsCardData?.highlight_coin.length > 0 && (
             <div className="col-md-6 col-lg-3">
-              <div className="shadow-sm p-3 wallet-card-info-container">
+              <div className="shadow-sm p-3 bg-card-glass-clr">
                 <MarketsCards
                   title={`Highlight Coin`}
                   cardItems={marketsCardData?.highlight_coin}
@@ -120,7 +124,7 @@ export default function Index() {
           )}
           {marketsCardData?.new_listing.length > 0 && (
             <div className="col-md-6 col-lg-3">
-              <div className="shadow-sm p-3 wallet-card-info-container">
+              <div className="shadow-sm p-3 bg-card-glass-clr">
                 <MarketsCards
                   title={`New Listing`}
                   cardItems={marketsCardData?.new_listing}
@@ -130,7 +134,7 @@ export default function Index() {
           )}
           {marketsCardData?.top_gainer_coin.length > 0 && (
             <div className="col-md-6 col-lg-3">
-              <div className="shadow-sm p-3 wallet-card-info-container">
+              <div className="shadow-sm p-3 bg-card-glass-clr">
                 <MarketsCards
                   title={`Top Gainer Coin`}
                   cardItems={marketsCardData?.top_gainer_coin}
@@ -140,7 +144,7 @@ export default function Index() {
           )}
           {marketsCardData?.top_volume_coin.length > 0 && (
             <div className="col-md-6 col-lg-3">
-              <div className="shadow-sm p-3 wallet-card-info-container">
+              <div className="shadow-sm p-3 bg-card-glass-clr">
                 <MarketsCards
                   title={`Top Volume Coin`}
                   cardItems={marketsCardData?.top_volume_coin}

@@ -10,23 +10,23 @@ export default function TopCharts({ tradeDatas }: any) {
   return (
     <div className="row body-margin-top-custom" style={{ rowGap: "20px" }}>
       <div className="col-lg-3 col-md-6">
-        <div className="shadow-sm wallet-card-info-container">
+        <div className="shadow-sm">
           <AreaCharts tradeDatas={tradeDatas} />
         </div>
       </div>
       <div className="col-lg-3 col-md-6">
-        <div className="shadow-sm wallet-card-info-container">
+        <div className="shadow-sm">
           <PieCharts tradeDatas={tradeDatas} />
         </div>
       </div>
       <div className="col-lg-3 col-md-6 ">
         {/* <PieChartsWithNeddle /> */}
-        <div className="shadow-sm wallet-card-info-container">
+        <div className="shadow-sm">
           <ListCharts tradeDatas={tradeDatas} />
         </div>
       </div>
       <div className="col-lg-3 col-md-6">
-        <div className="shadow-sm wallet-card-info-container">
+        <div className="shadow-sm">
           <HighestSearchedLists tradeDatas={tradeDatas} />
         </div>
       </div>

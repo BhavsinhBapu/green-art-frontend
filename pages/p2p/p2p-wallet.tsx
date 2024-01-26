@@ -17,6 +17,8 @@ import SectionLoading from "components/common/SectionLoading";
 import CustomDataTable from "components/Datatable";
 import WalletOverviewSidebar from "layout/WalletOverviewSidebar";
 import WalletOverviewHeader from "components/wallet-overview/WalletOverviewHeader";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
 const MyWallet: NextPage = () => {
   const { t } = useTranslation("common");
   const [search, setSearch] = useState<any>("");
@@ -133,7 +135,8 @@ const MyWallet: NextPage = () => {
         <div className="page-main-content pt-0">
           <div className="">
             <WalletOverviewHeader title={`P2P Wallet`} />
-
+            <PlaceTopLeft />
+            <PlaceBottomRight />
             <div className="row container-4xl">
               <div
                 className="col-md-12 px-0"
