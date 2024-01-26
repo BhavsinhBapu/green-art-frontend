@@ -1379,10 +1379,10 @@ client-area
   margin-top: 30px;
 }
 
-.avable-items .item-lsit {
+/* .avable-items .item-lsit {
   display: flex;
   flex-flow: row wrap;
-}
+} */
 
 .avable-items .item-lsit .single-item {
   width: 33%;
@@ -1641,7 +1641,7 @@ client-area
   position: relative;
   width: 120px;
   height: 120px;
-  margin: 32px;
+  margin: 32px 0;
   transition: 250ms;
   perspective: 500px;
 }

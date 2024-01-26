@@ -37,9 +37,9 @@ const DistributionSection = ({ landing }: any) => {
                 <div className="col-lg-6">
                   <div className="trade-anywhere-right">
                     <div className="avable-items">
-                      <ul className="item-lsit">
+                      <ul className="item-lsit row">
                         {landing?.apple_store_link && (
-                          <li className="single-item">
+                          <li className="single-item col-6 col-sm-4">
                             <BlockComponent
                               gradientClass="gradient-full"
                               icon={<FaApple size={22} />}
@@ -48,7 +48,7 @@ const DistributionSection = ({ landing }: any) => {
                         )}
 
                         {landing?.google_store_link && (
-                          <li className="single-item">
+                          <li className="single-item col-6 col-sm-4">
                             <BlockComponent
                               gradientClass="gradient-full"
                               icon={<FaGoogle size={22} />}
@@ -57,7 +57,7 @@ const DistributionSection = ({ landing }: any) => {
                         )}
 
                         {landing?.macos_store_link && (
-                          <li className="single-item">
+                          <li className="single-item col-6 col-sm-4">
                             <BlockComponent
                               gradientClass="gradient-full"
                               icon={<FaApple size={22} />}
@@ -66,7 +66,7 @@ const DistributionSection = ({ landing }: any) => {
                         )}
 
                         {landing?.windows_store_link && (
-                          <li className="single-item">
+                          <li className="single-item col-6 col-sm-4">
                             <BlockComponent
                               gradientClass="gradient-full"
                               icon={<FaWindows size={22} />}
@@ -75,7 +75,7 @@ const DistributionSection = ({ landing }: any) => {
                         )}
 
                         {landing?.linux_store_link && (
-                          <li className="single-item">
+                          <li className="single-item col-6 col-sm-4">
                             <BlockComponent
                               gradientClass="gradient-full"
                               icon={<FaLinux size={22} />}
@@ -84,7 +84,7 @@ const DistributionSection = ({ landing }: any) => {
                         )}
 
                         {landing?.api_link && (
-                          <li className="single-item">
+                          <li className="single-item col-6 col-sm-4">
                             <BlockComponent
                               gradientClass="gradient-full"
                               icon={<FaMap size={22} />}
