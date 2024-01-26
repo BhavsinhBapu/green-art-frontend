@@ -319,7 +319,7 @@ const DepositHistory: NextPage = () => {
                                 <AiOutlineSearch />
                                 <input
                                   type="search"
-                                  className="data_table_input"
+                                  className="data_table_input bg-transparent"
                                   placeholder="Search..."
                                   value={search}
                                   onChange={(e) => setSearch(e.target.value)}
