@@ -837,23 +837,20 @@ async function getLatestEvents(req, res)
                 to_block_number = latestBlockNumber;
 
                 if(compeareBlock > erc_block_number)
-                    to_block_number = latestBlockNumber + erc_block_number;
+                    to_block_number = from_block_number + erc_block_number;
                 
             }
             
             console.log('latestBlockNumber => ',latestBlockNumber);
             console.log('to_block_number => ',to_block_number);
             console.log('from_block_number => ',from_block_number);
-            const blockData = {
-                from_block_number:from_block_number,
-                from_block_number:to_block_number,
-            }
+
             if (from_block_number <= to_block_number) {
                 const result = await getBlockDetails(contract,from_block_number,to_block_number);
             
                 if (result.status === true) {
                     let resultData = [];
-                    result.data.forEach(function (res) {
+                    result.data?.response?.forEach(function (res) {
                         let innerData = {
                             event: res.event,
                             signature: res.signature,
