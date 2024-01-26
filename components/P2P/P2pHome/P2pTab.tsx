@@ -7,7 +7,7 @@ export const P2pTab = ({ filters, setFilters, settings }: any) => {
   const { t } = useTranslation("common");
 
   return (
-    <div className="p2pTabList_bg shadow-sm">
+    <div className="p2pTabList_bg shadow-sm glass-color-bg-custom">
       <div className="container-4xl">
         <div className="row">
           <div className="col-12 ">
