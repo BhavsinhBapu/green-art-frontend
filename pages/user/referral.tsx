@@ -1,5 +1,7 @@
 import Footer from "components/common/footer";
 import Loading from "components/common/loading";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
 import MarketOverviewHeader from "components/markets/MarketOverviewHeader";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import type { GetServerSideProps, NextPage } from "next";
@@ -30,15 +32,9 @@ const Referral: NextPage = () => {
     <>
       <MarketOverviewHeader title={t("Referrals")} />
       <div className="bg-primary-custom-color ">
+        <PlaceTopLeft />
+        <PlaceBottomRight />
         <div className="referral-area container-4xl ">
-          {/* <div className="section-top-wrap mb-25">
-          <div className="profle-are-top">
-            {loading && <Loading />}
-            <div className="container">
-              <h2 className="section-top-title">{t("Referrals")}</h2>
-            </div>
-          </div>
-        </div> */}
           <div
             style={{
               marginTop: "-60px",

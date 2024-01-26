@@ -5201,8 +5201,6 @@ select:-webkit-autofill:focus {
   color: var(--text-primary-color-4) !important;
 }
 
-
-
 .cp-user-body-bg .card {
   border-radius: 12px;
   background: transparent;
@@ -10280,8 +10278,6 @@ table.dataTable thead .sorting_desc_disabled:after {
 
 /* custome code start here  */
 
-
-
 label {
   color: var(--text-primary-color-4);
 }
@@ -12970,7 +12966,6 @@ input[type="number"] {
   margin-bottom: 10px;
 }
 
-
 .timeLineLists p {
   font-size: 16px;
   line-height: 1.4;
@@ -14898,19 +14893,18 @@ input {
 }
 
 .gift-btn {
-  background: #eaecef !important;
+  background: var(--glass-color-bg-1) !important;
   padding: 6px 20px;
   border-radius: 5px;
   text-transform: capitalize;
-  border-color: #eaecef !important;
+  border-color: var(--text-primary-color) !important;
   display: flex;
-  color: var(--black);
+  color: white !important;
   align-items: center;
-  gap: 5px;
 }
 
 .gift-inner-card {
-  background: #3e444d;
+  background: var(--glass-color-bg-1);
   padding: 20px;
   border-color: #3e444d;
   border-radius: 10px;
@@ -15087,11 +15081,11 @@ input {
 }
 
 .buy-input-bg {
-  background: var(--hover-bg-color) !important;
+  background: var(--glass-color-bg-1) !important;
 }
 
 .buy-amount-select-section .custom-select__control {
-  background: var(--hover-bg-color) !important;
+  background: var(--glass-color-bg-1) !important;
   box-shadow: unset !important;
 }
 
@@ -15775,10 +15769,10 @@ input:checked + .gift-card-buy-slider:before {
 }
 
 .overall-margin-top-cls {
-      margin-top: 3rem;
-    padding: 2rem;
-    background: var(--glass-color-bg-1);
-    border-radius: 20px;
+  margin-top: 3rem;
+  padding: 2rem;
+  background: var(--glass-color-bg-1);
+  border-radius: 20px;
 }
 
 .tarde-coin-pair-header {

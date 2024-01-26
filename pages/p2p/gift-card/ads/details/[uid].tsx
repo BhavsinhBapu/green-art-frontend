@@ -4,6 +4,8 @@ import P2PGiftCardNavbar from "components/P2P/p2p-gift-card/p2p-gift-card-navbar
 import { CUstomSelect } from "components/common/CUstomSelect";
 import ImageComponent from "components/common/ImageComponent";
 import SectionLoading from "components/common/SectionLoading";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
 import useTranslation from "next-translate/useTranslation";
@@ -73,6 +75,8 @@ export default function Index() {
       <P2PGiftCardNavbar />
 
       <P2PGiftCardHeader title={"Gift Card Add Details"} />
+      <PlaceTopLeft />
+      <PlaceBottomRight />
       <div className="container">
         <div className="row p-5 boxShadow mt-5 mb-5">
           <div className="col-12">
