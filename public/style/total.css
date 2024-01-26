@@ -2603,7 +2603,7 @@ a#submit {
   height: 45px;
   font-size: 18px;
   box-shadow: none;
-  background: var(--card-background-color);
+  /* background: var(--card-background-color); */
   padding: 5px 15px;
   border-color: transparent;
 }
@@ -5278,7 +5278,7 @@ select:-webkit-autofill:focus {
   /* padding-top: 20px; */
   /* padding: 30px; */
   border-radius: 20px;
-  background: var(--glass-color-bg-1);
+  /* background: var(--glass-color-bg-1); */
 }
 
 .section-top-wrap {
