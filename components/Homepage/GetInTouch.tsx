@@ -1,51 +1,53 @@
-import ImageComponent from "components/common/ImageComponent";
-import React from "react";
+  import React from "react";
+  import { motion } from "framer-motion";
+  import PlaceBottomRight from "components/gradient/placeBottomRight";
+  import PlaceTopLeft from "components/gradient/placeTopLeft";
 
-const GetInTouch = ({ landing, featureListdata }: any) => {
-  return (
-    <div>
-      {parseInt(landing.landing_sixth_section_status) === 1 && (
-        <section className="get-touch-area" style={{padding: '60px 0'}}>
-          <div className="container">
-            <div className="section-title mb-3">
-              <h2 className="title">{landing?.landing_feature_title}</h2>
-            </div>
+  const GetInTouch = ({ landing, featureListdata }: any) => {
+    return (
+      <div>
+        <PlaceTopLeft />
+        <PlaceBottomRight />
+        {parseInt(landing.landing_sixth_section_status) === 1 && (
+          <motion.section
+            className="get-touch-area"
+            style={{ padding: "60px 0" }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
+            <div className="container-4xl">
+              <div className="section-title mb-3">
+                <h2 className="title">{landing?.landing_feature_title}</h2>
+              </div>
 
-            <div className="row">
-              {featureListdata?.map((feature: any, index: any) => (
-                <div className="col-lg-4 col-md-6 mt-4" key={index}>
-                  <a
-                    href={`${
-                      feature?.feature_url !== "" &&
-                      feature?.feature_url != null
-                        ? feature?.feature_url
-                        : "#"
-                    }`}
-                    target={`${
-                      feature?.feature_url !== "" &&
-                      feature?.feature_url != null
-                        ? "_blank"
-                        : "_self"
-                    }`}
-                    rel="noreferrer"
-                    className="single-card"
-                  >
-                    <img
-                      className="card-icon"
-                      src={feature.feature_icon}
-                      alt="icon"
-                    />
-                    <h3 className="card-title">{feature?.feature_title}</h3>
-                    <p className="card-content">{feature?.description}</p>
-                  </a>
+              <section className="hero-section">
+                <div className="card-grid">
+                  {featureListdata?.map((feature: any, index: any) => (
+                    <Card key={index} feature={feature} />
+                  ))}
                 </div>
-              ))}
+              </section>
             </div>
-          </div>
-        </section>
-      )}
-    </div>
-  );
-};
+          </motion.section>
+        )}
+      </div>
+    );
+  };
 
-export default GetInTouch;
+  export default GetInTouch;
+  const Card = ({ feature }: any) => {
+    return (
+      <a className="card glass-card" href="#">
+        <div
+          className="card__background"
+          style={{
+            backgroundImage: `url(${feature.feature_icon})`,
+          }}
+        ></div>
+        <div className="card__content">
+          <h3 className="card__heading">{feature?.feature_title}</h3>
+          <p className="card__category">{feature?.description}</p>
+        </div>
+      </a>
+    );
+  };

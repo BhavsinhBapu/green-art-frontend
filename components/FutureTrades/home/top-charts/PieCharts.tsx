@@ -15,13 +15,13 @@ export default function PieCharts({ tradeDatas }: any) {
   ];
   return (
     <div
-      className="bg-card-primary-clr"
+      className="bg-card-glass-clr"
       style={{ height: "224px", borderRadius: "8px" }}
     >
       <div className="p-3">
         <div className="d-flex justify-content-between align-items-center">
           <div>
-            <span className="text-12 text-color-4">
+            <span className="text-12 text-color-white">
               Long/Short Ratio{" "}
               <span
                 className="ml-1 px-1 rounded"
@@ -31,10 +31,10 @@ export default function PieCharts({ tradeDatas }: any) {
               </span>
             </span>
             <div className="d-flex align-items-center">
-              <h5 className="text-14 mr-1">
+              <h5 className="text-14 text-color-white mr-1">
                 {tradeDatas?.getHighestVolumePair?.coin_pair}
               </h5>
-              <span className="text-12 text-color-4">
+              <span className="text-12 text-color-white">
                 {tradeDatas?.getHighestVolumePair?.type}
               </span>
             </div>
@@ -53,8 +53,11 @@ export default function PieCharts({ tradeDatas }: any) {
                   marginRight: "6px",
                 }}
               ></span>
-              <span className="text-12 text-color-4">Short Account%</span>
-              <h5 className="text-16" style={{ marginLeft: "12px" }}>
+              <span className="text-12 text-color-white">Short Account%</span>
+              <h5
+                className="text-16 text-color-white"
+                style={{ marginLeft: "12px" }}
+              >
                 {tradeDatas?.getHighestVolumePair?.short_account || 0}%
               </h5>
             </div>
@@ -68,19 +71,25 @@ export default function PieCharts({ tradeDatas }: any) {
                   marginRight: "6px",
                 }}
               ></span>
-              <span className="text-12 text-color-4">Long Account%</span>
-              <h5 className="text-16" style={{ marginLeft: "12px" }}>
+              <span className="text-12 text-color-white">Long Account%</span>
+              <h5
+                className="text-16 text-color-white"
+                style={{ marginLeft: "12px" }}
+              >
                 {tradeDatas?.getHighestVolumePair?.long_account || 0}%
               </h5>
             </div>
             <div>
               <span
-                className="text-12 text-color-4"
+                className="text-12 text-color-white"
                 style={{ marginLeft: "12px" }}
               >
                 Long/Short Ratio
               </span>
-              <h5 className="text-16" style={{ marginLeft: "12px" }}>
+              <h5
+                className="text-16 text-color-white"
+                style={{ marginLeft: "12px" }}
+              >
                 {tradeDatas?.getHighestVolumePair?.ratio || 0}
               </h5>
             </div>

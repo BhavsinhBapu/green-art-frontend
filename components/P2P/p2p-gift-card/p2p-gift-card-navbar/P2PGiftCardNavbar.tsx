@@ -10,7 +10,7 @@ export default function P2PGiftCardNavbar() {
   return (
     <div>
       <div className="py-3 border-bottom primary-border-color p2p-gift-card-navbar-margin-top">
-        <div className="container">
+        <div className="container-4xl">
           <div className="row">
             <div className="col-12">
               <ul className="d-flex justify-content-between topBarList">

@@ -15,6 +15,8 @@ import SocialShare from "components/common/SocialShare";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { setLoading } from "state/reducer/user";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
 
 const BlogDetails = ({ BlogNewsSettings }: any) => {
   const router = useRouter();
@@ -34,6 +36,8 @@ const BlogDetails = ({ BlogNewsSettings }: any) => {
 
   return (
     <>
+      <PlaceTopLeft />
+      <PlaceBottomRight />
       <div className="container overall-margin-top-cls">
         <Link href="/blog">
           <a>
@@ -65,6 +69,7 @@ const BlogDetails = ({ BlogNewsSettings }: any) => {
               ></div>
             </div>
           </div>
+
           <div className="col-md-4">
             <SocialShare
               url={

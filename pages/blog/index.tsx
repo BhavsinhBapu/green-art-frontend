@@ -3,6 +3,8 @@ import SliderCover from "components/Blog/SliderCover";
 import TabSection from "components/Blog/TabSection";
 import Footer from "components/common/footer";
 import { Search } from "components/common/search";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
 import { pageAvailabilityCheck } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
 import React, { useEffect, useState } from "react";
@@ -32,6 +34,8 @@ const Index = ({}: any) => {
   return (
     <>
       <div className="overall-margin-top-cls">
+        <PlaceTopLeft />
+        <PlaceBottomRight />
         <div className="container ">
           <div className="row align-items-center">
             <div className="col-md-7">

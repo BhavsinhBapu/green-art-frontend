@@ -15,14 +15,14 @@ export default function ListCharts({ tradeDatas }: any) {
   ];
   return (
     <div
-      className="bg-card-primary-clr"
+      className="bg-card-glass-clr"
       style={{ height: "224px", borderRadius: "8px" }}
     >
       <div className="p-3">
         <div className="d-flex justify-content-between align-items-center">
           <div>
-            <span className="text-12 text-color-4">
-              Highest/Lowest PNL{" "}
+            <span className="text-12 text-color-white">
+              Highest/Lowest PNL{"  "}
               <span
                 className="ml-1 px-1 rounded"
                 style={{ color: "#F0B90B", background: "#3C2601" }}
@@ -37,12 +37,12 @@ export default function ListCharts({ tradeDatas }: any) {
           <div className="col-6 pl-3 pr-1">
             <div>
               <div className="d-flex align-items-center">
-                <h5 className="text-14 mr-1">
+                <h5 className="text-14 text-color-white mr-1">
                   {tradeDatas?.profit_loss_by_coin_pair?.highest_PNL?.symbol}
                 </h5>
-                <span className="text-12 text-color-4">Perpetual</span>
+                <span className="text-12 text-color-white">Perpetual</span>
               </div>
-              <p className="text-16" style={{ color: "#0ecb81" }}>
+              <p className="text-16 text-color-white">
                 {tradeDatas?.profit_loss_by_coin_pair?.highest_PNL
                   ?.total_amount || 0}
                 {tradeDatas?.profit_loss_by_coin_pair?.highest_PNL?.coin_type}
@@ -50,12 +50,15 @@ export default function ListCharts({ tradeDatas }: any) {
             </div>
             <div>
               <div className="d-flex align-items-center">
-                <h5 className="text-14 mr-1">
+                <h5 className="text-14 text-color-white mr-1">
                   {tradeDatas?.profit_loss_by_coin_pair?.lowest_PNL?.symbol}
                 </h5>
-                <span className="text-12 text-color-4">Perpetual</span>
+                <span className="text-12 text-color-white">Perpetual</span>
               </div>
-              <p className="text-16" style={{ color: "#F6465D" }}>
+              <p
+                className="text-16 text-color-white"
+                style={{ color: "#F6465D" }}
+              >
                 {tradeDatas?.profit_loss_by_coin_pair?.lowest_PNL
                   ?.total_amount || 0}
                 {tradeDatas?.profit_loss_by_coin_pair?.lowest_PNL?.coin_type}

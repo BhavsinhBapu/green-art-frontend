@@ -4,7 +4,7 @@ export default function MarketsCardItem({ item }: any) {
   return (
     <div className="card-for-markets-item">
       <div className="row">
-        <div className="col-4 d-flex align-items-center">
+        <div className="col-4 d-flex  align-items-center">
           <img
             className="icon mr-2"
             src={item?.coin_icon || "/bitcoin.png"}
@@ -12,11 +12,14 @@ export default function MarketsCardItem({ item }: any) {
             width="25px"
             height="25px"
           />
-          <p>{item?.coin_type}</p>
+          <p className="text-white">{item?.coin_type}</p>
         </div>
 
         <div className="col-4">
-          <p>{item?.currency_symbol}{parseFloat(item?.usdt_price).toFixed(2)}</p>
+          <p className="text-white">
+            {item?.currency_symbol}
+            {parseFloat(item?.usdt_price).toFixed(2)}
+          </p>
         </div>
         <div className="col-4">
           <p

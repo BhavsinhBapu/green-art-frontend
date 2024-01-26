@@ -29,13 +29,18 @@ const ReportSidebar = () => {
         <ul className="left-menu">
           <Link href="/user/wallet-history?type=deposit">
             <li className={router.query.type == "deposit" ? "active" : ""}>
-              <RiLuggageDepositLine />
+              <div style={{ minWidth: "21px" }}>
+                <RiLuggageDepositLine size={20} />
+              </div>
               <a href="coinSwapHistory">{t("Deposit History")}</a>
             </li>
           </Link>
           <Link href="/user/wallet-history?type=withdrawal">
             <li className={router.query.type == "withdrawal" ? "active" : ""}>
-              <TbCashBanknoteOff />
+              <div style={{ minWidth: "21px" }}>
+                <TbCashBanknoteOff size={20} />
+              </div>
+
               <a href="coinSwapHistory">{t("Withdrawal History")}</a>
             </li>
           </Link>
@@ -47,7 +52,9 @@ const ReportSidebar = () => {
                   : ""
               }
             >
-              <BsFillStopCircleFill />
+              <div style={{ minWidth: "21px" }}>
+                <BsFillStopCircleFill size={20} />
+              </div>
               <a href="coinSwapHistory">{t("Stop Limit History")}</a>
             </li>
           </Link>
@@ -57,7 +64,9 @@ const ReportSidebar = () => {
                 router.pathname == "/user/swap-history" ? "active" : ""
               }
             >
-              <MdOutlineSwapHorizontalCircle />
+              <div style={{ minWidth: "21px" }}>
+                <MdOutlineSwapHorizontalCircle size={20} />
+              </div>
               <a href="coinSwapHistory">{t("Swap History")}</a>
             </li>
           </Link>
@@ -67,7 +76,9 @@ const ReportSidebar = () => {
                 router.pathname == "/user/buy-order-history" ? "active" : ""
               }
             >
-              <GiBuyCard />
+              <div style={{ minWidth: "21px" }}>
+                <GiBuyCard size={20} />
+              </div>
               <a href="getAllOrdersHistoryBuy">{t("Buy Order History")}</a>
             </li>
           </Link>
@@ -77,7 +88,9 @@ const ReportSidebar = () => {
                 router.pathname == "/user/sell-order-history" ? "active" : ""
               }
             >
-              <MdSell />
+              <div style={{ minWidth: "21px" }}>
+                <MdSell size={20} />
+              </div>
               <a href="getAllOrdersHistorySell">{t("Sell Order History")}</a>
             </li>
           </Link>
@@ -87,7 +100,9 @@ const ReportSidebar = () => {
                 router.pathname == "/user/transaction-history" ? "active" : ""
               }
             >
-              <MdOutlineTransferWithinAStation />
+              <div style={{ minWidth: "21px" }}>
+                <MdOutlineTransferWithinAStation size={20} />
+              </div>
               <a href="getAllTransactionHistory">{t("Transaction History")}</a>
             </li>
           </Link>
@@ -100,7 +115,9 @@ const ReportSidebar = () => {
                     : ""
                 }
               >
-                <SiFiat />
+                <div style={{ minWidth: "21px" }}>
+                  <SiFiat size={20} />
+                </div>
                 <a href="getAllTransactionHistory">
                   {t("Fiat To Crypto deposit History")}
                 </a>
@@ -116,7 +133,9 @@ const ReportSidebar = () => {
                     : ""
                 }
               >
-                <SiFiat />
+                <div style={{ minWidth: "21px" }}>
+                  <SiFiat size={20} />
+                </div>
                 <a href="getAllTransactionHistory">
                   {t("Crypto To Fiat withdrawal History")}
                 </a>
@@ -134,7 +153,9 @@ const ReportSidebar = () => {
                   : ""
               }
             >
-              <SiFiat />
+              <div style={{ minWidth: "21px" }}>
+                <SiFiat size={20} />
+              </div>
               <a href="getAllTransactionHistory">
                 {t("Referral earning from withdrawal")}
               </a>
@@ -149,7 +170,9 @@ const ReportSidebar = () => {
                   : ""
               }
             >
-              <SiFiat />
+              <div style={{ minWidth: "21px" }}>
+                <SiFiat size={20} />
+              </div>
               <a href="getAllTransactionHistory">
                 {t("Referral earning from trade")}
               </a>

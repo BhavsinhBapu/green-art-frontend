@@ -1,4 +1,7 @@
 import Footer from "components/common/footer";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
+import LaunchpadHeader from "components/ico/LaunchpadHeader";
 import LaunchpadSidebar from "layout/launchpad-sidebar";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import moment from "moment";
@@ -15,6 +18,28 @@ import { customPage, landingPage } from "service/landing-page";
 import { SaveIcoPhaseStatus } from "service/launchpad";
 import { IcoTokenPhaseListAction } from "state/actions/launchpad";
 import { handleSwapHistorySearch } from "state/actions/reports";
+
+const customStyles = {
+  rows: {
+    style: {
+      minHeight: "72px", // override the row height
+      backgroundColor: "var(--glass-color-bg-1)",
+    },
+  },
+  headCells: {
+    style: {
+      paddingLeft: "8px", // override the cell padding for head cells
+      paddingRight: "8px",
+      backgroundColor: "var(--glass-color-bg-1)",
+    },
+  },
+  cells: {
+    style: {
+      paddingLeft: "8px", // override the cell padding for data cells
+      paddingRight: "8px",
+    },
+  },
+};
 
 const IcoTokenPhaseList = ({ id }: any) => {
   const [history, setHistory] = useState<any>([]);
@@ -157,15 +182,24 @@ const IcoTokenPhaseList = ({ id }: any) => {
   return (
     <>
       <div className="page-wrap">
-        <LaunchpadSidebar />
+        {/* <LaunchpadSidebar /> */}
         <div className="page-main-content">
-          <div className="container-fluid">
-            <div className="section-top-wrap mb-25">
+          <LaunchpadHeader title={t("Token Phase List")} />
+          <PlaceTopLeft />
+          <PlaceBottomRight />
+          <div className="container-4xl">
+            {/* <div className="section-top-wrap mb-25">
               <div className="profle-are-top">
                 <h2 className="section-top-title">{t("Token Phase List")}</h2>
               </div>
-            </div>
-            <div className="asset-balances-area">
+            </div> */}
+            <div
+              className="asset-balances-area shadow-sm p-5 wallet-card-info-container"
+              style={{
+                marginTop: "-60px",
+                marginBottom: "30px",
+              }}
+            >
               <div className="asset-balances-left">
                 <div className="section-wrapper">
                   <div className="tableScroll">
@@ -195,7 +229,11 @@ const IcoTokenPhaseList = ({ id }: any) => {
                         </div>
                       </div>
                     </div>
-                    <DataTable columns={columns} data={history} />
+                    <DataTable
+                      columns={columns}
+                      data={history}
+                      customStyles={customStyles}
+                    />
                     <div
                       className="pagination-wrapper"
                       id="assetBalances_paginate"

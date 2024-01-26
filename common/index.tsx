@@ -27,6 +27,12 @@ export const formatCurrency = (value: any, decemal?: number) => {
     maximumFractionDigits: decemal ? decemal : 2,
   }).format(value);
 };
+export const formatCurrencyWithDecimals = (value: any) => {
+  return new Intl.NumberFormat("en-US", {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 5,
+  }).format(value);
+};
 export const copyTextById = (value: any) => {
   var dummy = document.createElement("input");
   document.body.appendChild(dummy);

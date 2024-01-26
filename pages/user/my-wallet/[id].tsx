@@ -27,6 +27,8 @@ import Wallethistory from "components/wallet/wallet-history";
 import { MyWalletProcessSidebar } from "service/wallet";
 import Link from "next/link";
 import { IoIosArrowBack } from "react-icons/io";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
 
 const DeposiAndWithdraw = ({ withdrawFaq, depositFaq }: any) => {
   const router = useRouter();
@@ -130,6 +132,8 @@ const DeposiAndWithdraw = ({ withdrawFaq, depositFaq }: any) => {
   return (
     <>
       <div className="page-wrap my-wallet-page">
+        <PlaceTopLeft />
+        <PlaceBottomRight />
         <div className="container">
           <div className={`row`}>
             <div className="col-md-12">
@@ -193,6 +197,7 @@ const DeposiAndWithdraw = ({ withdrawFaq, depositFaq }: any) => {
                                 </div>
                               </div>
                             )}
+                          <PlaceTopLeft />
 
                           {getProcessData?.data?.progress_status_list?.length >
                             0 && (

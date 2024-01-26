@@ -1,10 +1,10 @@
 import React from "react";
 import HighestSearchedItem from "./HighestSearchedItem";
 
-export default function HighestSearchedLists({tradeDatas}:any) {
+export default function HighestSearchedLists({ tradeDatas }: any) {
   return (
     <div
-      className="bg-card-primary-clr"
+      className="bg-card-glass-clr"
       style={{ height: "224px", borderRadius: "8px" }}
     >
       <div className="p-3">
@@ -73,7 +73,7 @@ export default function HighestSearchedLists({tradeDatas}:any) {
                 </linearGradient>
               </defs>
             </svg>
-            <span>Highest Searched</span>
+            <span className="text-color-white">Highest Searched</span>
 
             <span
               className="ml-1 px-1 rounded"

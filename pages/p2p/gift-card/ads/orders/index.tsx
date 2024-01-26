@@ -4,6 +4,9 @@ import P2PGiftCardNavbar from "components/P2P/p2p-gift-card/p2p-gift-card-navbar
 import { CUstomSelect } from "components/common/CUstomSelect";
 import ImageComponent from "components/common/ImageComponent";
 import SectionLoading from "components/common/SectionLoading";
+import Footer from "components/common/footer";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
 import useTranslation from "next-translate/useTranslation";
@@ -59,7 +62,7 @@ export default function Index() {
       <P2PGiftCardHeader title={"Order Lists"} />
       {/* item part */}
 
-      <div className="container">
+      <div className="container-4xl">
         <div className="col-md-3">
           <div className="form-group p2pSelectFilter">
             <label> {t(`Payment Type`)}</label>
@@ -70,6 +73,8 @@ export default function Index() {
             />
           </div>
         </div>
+        <PlaceTopLeft />
+        <PlaceBottomRight />
         {loading ? (
           <SectionLoading />
         ) : (
@@ -129,6 +134,7 @@ export default function Index() {
           />
         </div>
       </div>
+      <Footer />
     </section>
   );
 }

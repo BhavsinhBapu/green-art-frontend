@@ -1,6 +1,10 @@
 import MarketIndex from "components/FutureTrades/home/market-index/MarketIndex";
 import TopCharts from "components/FutureTrades/home/top-charts/TopCharts";
 import TradeSections from "components/FutureTrades/home/trade-sections/TradeSections";
+import Footer from "components/common/footer";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
+import MarketOverviewHeader from "components/markets/MarketOverviewHeader";
 import request from "lib/request";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
@@ -28,42 +32,48 @@ export default function Index() {
   };
   return (
     <section>
-      <div className="container">
-        <h1 className="banner-title py-4">{t("Crypto Futures Market")}</h1>
-        {/* top chart start*/}
-        {tradeDatas?.coins?.length > 0 && <TopCharts tradeDatas={tradeDatas} />}
-        {/* top chart end*/}
-      </div>
-      <div className="bg-card-primary-clr">
-        {/* trade section start*/}
-        <TradeSections />
-        {/* trade section end */}
+      <div className="bg-primary-custom-color">
+        <MarketOverviewHeader title={t("Crypto Futures Market")} />
+        <PlaceBottomRight />
+        <div className="container-4xl">
+          {tradeDatas?.coins?.length > 0 && (
+            <TopCharts tradeDatas={tradeDatas} />
+          )}
+          <PlaceTopLeft />
+        </div>
+        <div>
+          <TradeSections />
+          {/* trade section end */}
 
-        {/* market index  start*/}
-        <MarketIndex tradeDatas={tradeDatas} />
-        {/* market index  end*/}
+          {/* market index  start*/}
+          <MarketIndex tradeDatas={tradeDatas} />
+          {/* market index  end*/}
 
-        <section className="py-5">
-          <div className="container">
-            <div className="section-title text-center">
-              <h2 className="title">{t("Start trading now")}</h2>
+          <section className="py-5">
+            <div className="container-4xl ">
+              <div className="shadow-sm wallet-card-info-container p-5">
+                <div className="section-title text-center">
+                  <h2 className="title">{t("Start trading now")}</h2>
+                </div>
+                <div className="trading-button text-center">
+                  <Link
+                    href={
+                      router.locale !== "en"
+                        ? `/${router.locale}/exchange/dashboard`
+                        : "/exchange/dashboard"
+                    }
+                  >
+                    <a>
+                      <a className="primary-btn">{t("Trade Now")}</a>
+                    </a>
+                  </Link>
+                </div>
+              </div>
             </div>
-            <div className="trading-button text-center">
-              <Link
-                href={
-                  router.locale !== "en"
-                    ? `/${router.locale}/exchange/dashboard`
-                    : "/exchange/dashboard"
-                }
-              >
-                <a>
-                  <a className="primary-btn">{t("Trade Now")}</a>
-                </a>
-              </Link>
-            </div>
-          </div>
-        </section>
+          </section>
+        </div>
       </div>
+      <Footer />
     </section>
   );
 }

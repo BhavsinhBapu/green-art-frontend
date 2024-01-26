@@ -14,6 +14,9 @@ import {
   getCreateAdsSettingsDataApi,
 } from "service/p2pGiftCards";
 import useTranslation from "next-translate/useTranslation";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
+import Footer from "components/common/footer";
 
 const options = [
   { value: 1, label: "Bank Transfer" },
@@ -33,7 +36,6 @@ export default function Index({ data }: any) {
   const [selectedCountry, setSelectedCountry] = useState<any>({});
   const [price, setPrice] = useState("");
   const { t } = useTranslation("common");
-
 
   useEffect(() => {
     getCreateAdsSettingsData();
@@ -110,7 +112,7 @@ export default function Index({ data }: any) {
   return (
     <section>
       <div className="p2p_bg">
-        <div className="container">
+        <div className="container-4xl">
           <div className="row">
             <div className="col-12 text-center">
               {data?.header && <h2 className="text-white">{data?.header}</h2>}
@@ -125,7 +127,7 @@ export default function Index({ data }: any) {
       {/* second nav */}
       <P2PGiftCardNavbar />
       {/* filter part */}
-      <div className="container mt-4">
+      <div className="container-4xl mt-4">
         <div className="row">
           <div className="col-md-2">
             <label>{t(`Price`)}</label>
@@ -196,7 +198,9 @@ export default function Index({ data }: any) {
         </div>
       </div>
       {/* item part */}
-      <div className="container">
+      <div className="container-4xl">
+        <PlaceTopLeft />
+        <PlaceBottomRight />
         {loading ? (
           <SectionLoading />
         ) : (
@@ -205,11 +209,21 @@ export default function Index({ data }: any) {
               <table className="table">
                 <thead>
                   <tr>
-                    <th scope="col">{t(`Advertisers`)}</th>
-                    <th scope="col">{t(`Price`)}</th>
-                    <th scope="col">{t(`Value of gift card`)}</th>
-                    <th scope="col">{t(`Payment`)}</th>
-                    <th scope="col">{t(`Trade`)}</th>
+                    <th scope="col" className="px-3 py-2">
+                      {t(`Advertisers`)}
+                    </th>
+                    <th scope="col" className="px-3 py-2">
+                      {t(`Price`)}
+                    </th>
+                    <th scope="col" className="px-3 py-2">
+                      {t(`Value of gift card`)}
+                    </th>
+                    <th scope="col" className="px-3 py-2">
+                      {t(`Payment`)}
+                    </th>
+                    <th scope="col" className="text-right px-3 py-2">
+                      {t(`Trade`)}
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -226,10 +240,6 @@ export default function Index({ data }: any) {
                         <div className="d-flex align-items-center">
                           <h6 className="limitBalance">{item?.amount}</h6>
                         </div>
-                        {/* <div className="d-flex align-items-center">
-                          <small className="mr-2">Limit</small>
-                          <h6 className="limitBalance">{item?.time_limit}</h6>
-                        </div> */}
                       </td>
                       <td>
                         {Number(item.payment_currency_type) === 1 ? (
@@ -248,7 +258,7 @@ export default function Index({ data }: any) {
                         )}
                       </td>
 
-                      <td>
+                      <td className="text-right">
                         <button
                           className="tableButton p2p-gift-card-adds-margin-bottom"
                           onClick={() => handleBuyFunc(item.uid)}
@@ -283,6 +293,7 @@ export default function Index({ data }: any) {
           />
         </div>
       </div>
+      <Footer />
     </section>
   );
 }

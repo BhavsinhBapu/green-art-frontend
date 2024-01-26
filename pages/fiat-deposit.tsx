@@ -36,6 +36,9 @@ import PerfectMoney from "components/deposit/perfectMoney";
 import MobileMoney from "components/deposit/mobile-money";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
+import FiatHeader from "components/fiat/FiatHeader";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
 
 const Deposit = () => {
   const { t } = useTranslation("common");
@@ -123,22 +126,17 @@ const Deposit = () => {
   return (
     <>
       <div className="page-wrap">
-        <FiatSidebar />
+        {/* <FiatSidebar /> */}
         <div className="page-main-content">
-          <div className="container-fluid">
+          <FiatHeader title={t("Fiat To Crypto Deposit")} />
+          <div className="container-4xl">
             <div className="deposit-page">
-              <div className="section-top-wrap mb-25">
-                <div className="profle-are-top">
-                  <h2 className="section-top-title">
-                    {t("Fiat To Crypto Deposit")}
-                  </h2>
-                </div>
-              </div>
-
               <div className="asset-balances-area">
                 <div className=" bank-section">
                   <div className="">
-                    <div className="deposit-conatiner">
+                    <PlaceTopLeft />
+                    <PlaceBottomRight />
+                    <div className="deposit-conatiner my-5 p-5 wallet-card-info-container">
                       {selectedMethod.method && (
                         <div className="cp-user-title">
                           <h4>{t("Select method")}</h4>

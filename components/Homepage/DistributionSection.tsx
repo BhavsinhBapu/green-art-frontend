@@ -1,19 +1,29 @@
-import ImageComponent from "components/common/ImageComponent";
 import useTranslation from "next-translate/useTranslation";
+import { FaApple, FaGoogle, FaWindows, FaLinux, FaMap } from "react-icons/fa";
+
 import React from "react";
+import BlockComponent from "components/Animation/block-component";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
 
 const DistributionSection = ({ landing }: any) => {
   const { t } = useTranslation("common");
+
   return (
     <div>
-      {" "}
       {parseInt(landing.landing_fourth_section_status) === 1 &&
         parseInt(landing.download_link_display_type) === 1 && (
           <section className="trade-anywhere-area sectiob-bg">
-            <div className="container">
-              {/* <div className="section-title">
+            <div className="placeTopLeft">
+              <img
+                src="https://assets-global.website-files.com/60c8db180183804ef2b45120/60cb6b0ac3e71fa837cb2929_hero-glow.svg"
+                alt="Hero Banner"
+              />
+            </div>
+            <PlaceBottomRight />
+            <div className="container-4xl trade-anywhere-container">
+              <div className="section-title">
                 <h2 className="title">{landing?.trade_anywhere_title}</h2>
-              </div> */}
+              </div>
               <div className="row align-items-center">
                 <div className="col-lg-6">
                   <div className="trade-anywhere-left text-center">
@@ -22,122 +32,63 @@ const DistributionSection = ({ landing }: any) => {
                       src={landing?.trade_anywhere_left_img}
                       alt="trade-imge"
                     />
-
-                    {/* <ImageComponent
-                      className="trend-image"
-                      src={landing?.trade_anywhere_left_img}
-                      height={300}
-                    /> */}
                   </div>
                 </div>
                 <div className="col-lg-6">
-                  <div className="section-title">
-                    <h2 className="title">{landing?.trade_anywhere_title}</h2>
-                  </div>
                   <div className="trade-anywhere-right">
                     <div className="avable-items">
-                      <ul className="item-lsit">
+                      <ul className="item-lsit row">
                         {landing?.apple_store_link && (
-                          <li className="single-item">
-                            <a
-                              href={landing?.apple_store_link}
-                              target="_blank"
-                              rel="noreferrer"
-                              className="item-link"
-                            >
-                              <img
-                                className="icon"
-                                src="/apple-logo.png"
-                                alt="apple-logo"
-                              />
-                              <span>{t("App Store")}</span>
-                            </a>
+                          <li className="single-item col-6 col-sm-4">
+                            <BlockComponent
+                              gradientClass="gradient-full"
+                              icon={<FaApple size={22} />}
+                            />
                           </li>
                         )}
 
                         {landing?.google_store_link && (
-                          <li className="single-item">
-                            <a
-                              href={landing?.google_store_link}
-                              target="_blank"
-                              className="item-link"
-                              rel="noreferrer"
-                            >
-                              <img
-                                className="icon"
-                                src="/google-play.png"
-                                alt="google-play"
-                              />
-                              <span>{t("Google Play")}</span>
-                            </a>
+                          <li className="single-item col-6 col-sm-4">
+                            <BlockComponent
+                              gradientClass="gradient-full"
+                              icon={<FaGoogle size={22} />}
+                            />
                           </li>
                         )}
 
                         {landing?.macos_store_link && (
-                          <li className="single-item">
-                            <a
-                              href={landing?.macos_store_link}
-                              target="_blank"
-                              rel="noreferrer"
-                              className="item-link"
-                            >
-                              <img
-                                className="icon"
-                                src="/command-symbol.png"
-                                alt="command-symbol"
-                              />
-                              <span>{t("MacOS")}</span>
-                            </a>
+                          <li className="single-item col-6 col-sm-4">
+                            <BlockComponent
+                              gradientClass="gradient-full"
+                              icon={<FaApple size={22} />}
+                            />
                           </li>
                         )}
 
                         {landing?.windows_store_link && (
-                          <li className="single-item">
-                            <a
-                              href={landing?.windows_store_link}
-                              target="_blank"
-                              className="item-link"
-                              rel="noreferrer"
-                            >
-                              <img
-                                className="icon"
-                                src="/windows.png"
-                                alt="windows"
-                              />
-                              <span>{t("Windows")}</span>
-                            </a>
+                          <li className="single-item col-6 col-sm-4">
+                            <BlockComponent
+                              gradientClass="gradient-full"
+                              icon={<FaWindows size={22} />}
+                            />
                           </li>
                         )}
 
                         {landing?.linux_store_link && (
-                          <li className="single-item">
-                            <a
-                              href={landing?.linux_store_link}
-                              target="_blank"
-                              className="item-link"
-                              rel="noreferrer"
-                            >
-                              <img
-                                className="icon"
-                                src="/linux.png"
-                                alt="linux"
-                              />
-                              <span>{t("Linux")}</span>
-                            </a>
+                          <li className="single-item col-6 col-sm-4">
+                            <BlockComponent
+                              gradientClass="gradient-full"
+                              icon={<FaLinux size={22} />}
+                            />
                           </li>
                         )}
 
                         {landing?.api_link && (
-                          <li className="single-item">
-                            <a
-                              href={landing?.api_link}
-                              target="_blank"
-                              className="item-link"
-                              rel="noreferrer"
-                            >
-                              <img className="icon" src="/api.png" alt="api" />
-                              <span>{t("API")}</span>
-                            </a>
+                          <li className="single-item col-6 col-sm-4">
+                            <BlockComponent
+                              gradientClass="gradient-full"
+                              icon={<FaMap size={22} />}
+                            />
                           </li>
                         )}
                       </ul>

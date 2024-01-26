@@ -173,3 +173,119 @@ export const LIMIT_ORDER = 1;
 export const MARKET_ORDER = 2;
 export const STOP_LIMIT_ORDER = 3;
 export const STOP_MARKET_ORDER = 4;
+
+
+export  const tabs = [
+  {
+    type: "deposit",
+    label: "Deposit History",
+    link: "/user/wallet-history?type=deposit",
+  },
+  {
+    type: "withdrawal",
+    label: "Withdrawal History",
+    link: "/user/wallet-history?type=withdrawal",
+  },
+  {
+    type: "stop-limit-order",
+    label: "Stop Limit History",
+    link: "/user/stop-limit-order-history",
+  },
+  {
+    type: "swap",
+    label: "Swap History",
+    link: "/user/swap-history",
+  },
+  {
+    type: "buy-order",
+    label: "Buy Order History",
+    link: "/user/buy-order-history",
+  },
+  {
+    type: "sell-order",
+    label: "Sell Order History",
+    link: "/user/sell-order-history",
+  },
+  {
+    type: "transaction",
+    label: "Transaction History",
+    link: "/user/transaction-history",
+  },
+  {
+    type: "currency-deposit",
+    label: "Fiat To Crypto deposit History",
+    link: "/user/currency-deposit-history",
+  },
+  {
+    type: "currency-withdraw",
+    label: "Crypto To Fiat withdrawal History",
+    link: "/user/currency-withdraw-history",
+  },
+  {
+    type: "referral-deposit",
+    label: "Referral earning from withdrawal",
+    link: "/user/referral-earning-withdrawal/" + REFERRAL_TYPE_DEPOSIT,
+  },
+  {
+    type: "referral-trade",
+    label: "Referral earning from trade",
+    link: "/user/referral-earning-trade/" + REFERRAL_TYPE_TRADE,
+  },
+];
+export const dropdownTabs = [
+  {
+    type: "deposit",
+    label: "Deposit History",
+    link: "/user/wallet-history?type=deposit",
+  },
+  {
+    type: "withdrawal",
+    label: "Withdrawal History",
+    link: "/user/wallet-history?type=withdrawal",
+  },
+  {
+    type: "stop-limit-order",
+    label: "Stop Limit History",
+    link: "/user/stop-limit-order-history",
+  },
+  {
+    type: "swap",
+    label: "Swap History",
+    link: "/user/swap-history",
+  },
+  {
+    type: "buy-order",
+    label: "Buy Order History",
+    link: "/user/buy-order-history",
+  },
+  {
+    type: "sell-order",
+    label: "Sell Order History",
+    link: "/user/sell-order-history",
+  },
+  {
+    type: "transaction",
+    label: "Transaction History",
+    link: "/user/transaction-history",
+  },
+  {
+    type: "currency-deposit",
+    label: "Fiat To Crypto deposit History",
+    link: "/user/currency-deposit-history",
+  },
+  {
+    type: "currency-withdraw",
+    label: "Crypto To Fiat withdrawal History",
+    link: "/user/currency-withdraw-history",
+  },
+  {
+    type: "referral-deposit",
+    label: "Referral earning from withdrawal",
+    link: "/user/referral-earning-withdrawal/" + REFERRAL_TYPE_DEPOSIT,
+  },
+  {
+    type: "referral-trade",
+    label: "Referral earning from trade",
+    link: "/user/referral-earning-trade/" + REFERRAL_TYPE_TRADE,
+  },
+];

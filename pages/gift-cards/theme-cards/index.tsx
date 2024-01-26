@@ -3,6 +3,8 @@ import { CUstomSelect } from "components/common/CUstomSelect";
 import ImageComponent from "components/common/ImageComponent";
 import SectionLoading from "components/common/SectionLoading";
 import Footer from "components/common/footer";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
@@ -62,6 +64,8 @@ export default function Index() {
     <section>
       {/* gift card banner start */}
       <div className="bg-card-primary-color py-80">
+        <PlaceTopLeft />
+        <PlaceBottomRight />
         <div className="container">
           <div className="row">
             <div className="col-lg-6 d-flex align-items-center justify-content-center">

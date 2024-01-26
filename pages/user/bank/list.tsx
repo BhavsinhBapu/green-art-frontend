@@ -1,6 +1,9 @@
 import { formatCurrency } from "common";
 import Footer from "components/common/footer";
 import TableLoading from "components/common/SectionLoading";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
+import ProfileHeader from "components/profile/ProfileHeader";
 import ProfileSidebar from "layout/profile-sidebar";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import moment from "moment";
@@ -66,16 +69,13 @@ const List = () => {
   return (
     <>
       <div className="page-wrap">
-        <ProfileSidebar />
-        <div className="page-main-content">
-          <div className="container-fluid">
-            <div className="section-top-wrap mb-25 inner-section-margin-top">
-              <div className="profle-are-top">
-                <h2 className="section-top-title">{t("Bank List")}</h2>
-              </div>
-            </div>
-
-            <div className="asset-balances-area">
+        {/* <ProfileSidebar /> */}
+        <div className="page-main-content bg-primary-custom-color">
+          <ProfileHeader title={t("Bank List")} />
+          <PlaceTopLeft />
+          <PlaceBottomRight />
+          <div className="container-4xl">
+            <div className="asset-balances-area body-margin-top-custom shadow-sm p-5 wallet-card-info-container">
               {processing ? (
                 <TableLoading />
               ) : (

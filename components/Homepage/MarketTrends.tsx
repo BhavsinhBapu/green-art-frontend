@@ -64,10 +64,23 @@ const MarketTrends = ({
     socketCall = 1;
   });
   return (
-    <div className="bg-card-primary-clr">
+    <div className="">
+      <div className="placeTopLeft">
+        <img
+          src="https://assets-global.website-files.com/60c8db180183804ef2b45120/60cb6b0ac3e71fa837cb2929_hero-glow.svg"
+          alt="Hero Banner"
+        />
+      </div>
+      <div className="placeBottomRight">
+        <img
+          src="https://assets-global.website-files.com/60c8db180183804ef2b45120/60cb6b0ac3e71fa837cb2929_hero-glow.svg"
+          alt="Hero Banner"
+        />
+      </div>
+
       {parseInt(landing.landing_third_section_status) === 1 && (
         <section className="market-trend-area">
-          <div className="container">
+          <div className="container-4xl market-trend-area-container px-5">
             <div className="section-title">
               <h2 className="title">
                 {landing?.market_trend_title || t("Market Trend")}
@@ -641,7 +654,7 @@ const MarketTrends = ({
           </div>
         </section>
       )}
-      <div className="container ">
+      <div className="container-4xl ">
         {Number(landing?.landing_advertisement_section_status) === 1 && (
           <Link href={`${landing?.landing_advertisement_url ?? "#"}`}>
             <img

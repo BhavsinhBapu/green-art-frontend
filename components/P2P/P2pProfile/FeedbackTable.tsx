@@ -8,7 +8,7 @@ export const FeedbackTable = ({ details }: any) => {
 
   const [active, setActive] = useState(0);
   return (
-    <div className="container">
+    <div className="container-4xl">
       <div className="row">
         <div className="col-12">
           <div className="paymentMethodBox mt-4 rounded shadow-sm">

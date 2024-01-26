@@ -16,7 +16,7 @@ const Footer = () => {
       {customPageData && socialData && copyright_text && (
         <footer className="footer-area pt--70">
           <div className="footer-top">
-            <div className="container">
+            <div className="container-4xl">
               <div className="row">
                 <div className="col-lg-2 col-md-6 col-sm-6 mb-30">
                   <div className="cp-user-logo">

@@ -9,6 +9,9 @@ import { useEffect, useState } from "react";
 import useTranslation from "next-translate/useTranslation";
 import { customPage, landingPage } from "service/landing-page";
 import Footer from "components/common/footer";
+import ProfileHeader from "components/profile/ProfileHeader";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
 const Security: NextPage = () => {
   const { user } = useSelector((state: RootState) => state.user);
   const { t } = useTranslation("common");
@@ -34,18 +37,14 @@ const Security: NextPage = () => {
   return (
     <>
       <div className="page-wrap">
-        <ProfileSidebar />
+        {/* <ProfileSidebar /> */}
 
-        <div className="page-main-content">
-          <div className="container-fluid">
-            <div className="section-top-wrap mb-25 inner-section-margin-top">
-              <div className="profle-are-top">
-                <h2 className="section-top-title mb-0">
-                  {t("Profile Security Status")}
-                </h2>
-              </div>
-            </div>
-            <div className="two-factor-area mb-25">
+        <div className="page-main-content bg-primary-custom-color">
+          <ProfileHeader title={t("Profile Security Status")} />
+          <PlaceTopLeft />
+          <PlaceBottomRight />
+          <div className="container-4xl">
+            <div className="two-factor-area mb-25 body-margin-top-custom shadow-sm p-5 wallet-card-info-container">
               <h4 className="section-title-medium" />
               <div className="section-wrapper">
                 <div className="security-list">
@@ -148,7 +147,7 @@ const Security: NextPage = () => {
                 </div>
               </div>
             </div>
-            <div className="advanced-security-area">
+            <div className="advanced-security-area shadow-sm p-5 wallet-card-info-container mb-5">
               {/* <h4 className="section-title-medium">{t("Advanced Security")}</h4> */}
               <div className="section-wrapper">
                 <div className="security-list">

@@ -1,5 +1,8 @@
 import Footer from "components/common/footer";
 import Loading from "components/common/loading";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
+import MarketOverviewHeader from "components/markets/MarketOverviewHeader";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import type { GetServerSideProps, NextPage } from "next";
 import useTranslation from "next-translate/useTranslation";
@@ -17,11 +20,7 @@ const Referral: NextPage = () => {
   useEffect(() => {
     getReferral().then((res) => {
       const code = res.data.data.url;
-      setReferral(
-        process.env.NEXT_PUBLIC_HOSTED_CLIENT_URL +
-          "signup?" +
-          code
-      );
+      setReferral(process.env.NEXT_PUBLIC_HOSTED_CLIENT_URL + "signup?" + code);
       setAllData(res.data.data);
       setLoading(false);
     });
@@ -31,177 +30,205 @@ const Referral: NextPage = () => {
   }, []);
   return (
     <>
-      <div className="referral-area container">
-        <div className="section-top-wrap mb-25">
-          <div className="profle-are-top">
-            {loading && <Loading />}
-            <div className="container">
-              <h2 className="section-top-title">{t("Referrals")}</h2>
-            </div>
-          </div>
-        </div>
-        <div className="container mb-5">
-          <div className="invite-friends">
-            <h4>{t("Invite your friends")}</h4>
-            <div className="input-group rounded">
-              <input
-                ref={selectReference}
-                onClick={() => {
-                  navigator.clipboard.writeText(referral);
-                  toast.success(t("Copied to clipboard"));
-                  selectReference.current.select();
-                }}
-                type="url"
-                className="form-control referel-inputfield rounded-0"
-                id="url"
-                defaultValue={referral}
-                readOnly
-              />
-              <button
-                type="button"
-                className="btn copy-url-btn"
-                onClick={() => {
-                  navigator.clipboard.writeText(referral);
-                  toast.success(t("Copied to clipboard"));
-                  selectReference.current.select();
-                }}>
-                <i className="fa fa-clone" />
-              </button>
-            </div>
-          </div>
-        </div>
-        <div className="container">
-          <div className="section-wrapper rounded-sm boxShadow">
-            <div className="rewards-inviter mb-25">
-              <div className="single-item">
-                <h4>{t("Total Rewards")}</h4>
-                <h2>
-                  {parseFloat(allData?.total_reward).toFixed(6)} <span />
-                </h2>
-              </div>
-              <div className="single-item">
-                <h4>{t("Total Invited")}</h4>
-                <h2>{allData?.count_referrals}</h2>
+      <MarketOverviewHeader title={t("Referrals")} />
+      <div className="bg-primary-custom-color ">
+        <PlaceTopLeft />
+        <PlaceBottomRight />
+        <div className="referral-area container-4xl ">
+          <div
+            style={{
+              marginTop: "-60px",
+              marginBottom: "30px",
+            }}
+          >
+            <div className="invite-friends mb-5 shadow-sm p-5 wallet-card-info-container">
+              <h4>{t("Invite your friends")}</h4>
+              <div className="input-group rounded">
+                <input
+                  ref={selectReference}
+                  onClick={() => {
+                    navigator.clipboard.writeText(referral);
+                    toast.success(t("Copied to clipboard"));
+                    selectReference.current.select();
+                  }}
+                  type="url"
+                  className="form-control referel-inputfield rounded-0"
+                  id="url"
+                  defaultValue={referral}
+                  readOnly
+                />
+                <button
+                  type="button"
+                  className="btn copy-url-btn"
+                  onClick={() => {
+                    navigator.clipboard.writeText(referral);
+                    toast.success(t("Copied to clipboard"));
+                    selectReference.current.select();
+                  }}
+                >
+                  <i className="fa fa-clone" />
+                </button>
               </div>
             </div>
-            <div className="referrals-table">
-              <h4 className="section-title-medium">{t("My Referrals")}</h4>
-              <div className="table-responsive">
-                <table
-                  className="table cp-user-custom-table table-borderless text-center dataTable no-footer"
-                  id="DataTables_Table_0">
-                  <thead>
-                    <tr>
-                      <th
-                        className="referral-level"
-                        rowSpan={1}
-                        colSpan={1}
-                        aria-label="Level 1">
-                        {t("Level 1")}
-                      </th>
-                      <th
-                        className="referral-level"
-                        rowSpan={1}
-                        colSpan={1}
-                        aria-label="Level 2">
-                        {t("Level 2")}
-                      </th>
-                      <th
-                        className="referral-level"
-                        rowSpan={1}
-                        colSpan={1}
-                        aria-label="Level 3">
-                        {t("Level 3")}
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr id="" role="row referral" className="">
-                      <td className="referral-text">
-                        {allData?.referralLevel[1]}
-                      </td>
-                      <td className="referral-text">
-                        {allData?.referralLevel[2]}
-                      </td>
-                      <td className="referral-text">
-                        {allData?.referralLevel[3]}
-                      </td>
-                    </tr>
-                    {allData?.referralLevel.length == 0 && (
-                      <td colSpan={5} className="text-center referral-text">
-                        <b>{t("No Data available")}</b>
-                      </td>
-                    )}
-
-                    <tr>
-                      <td colSpan={3} />
-                    </tr>
-                  </tbody>
-                </table>
+            <div className="section-wrapper shadow-sm p-5 wallet-card-info-container">
+              <div className="rewards-inviter mb-25">
+                <div className="single-item">
+                  <h4>{t("Total Rewards")}</h4>
+                  <h2>
+                    {parseFloat(allData?.total_reward).toFixed(6)} <span />
+                  </h2>
+                </div>
+                <div className="single-item">
+                  <h4>{t("Total Invited")}</h4>
+                  <h2>{allData?.count_referrals}</h2>
+                </div>
               </div>
-            </div>
-            <div className="referrals-table">
-              <h4 className="section-title-medium">{t("My References")}</h4>
-              <div className="table-responsive">
-                <table className="table dataTable cp-user-custom-table table-borderless text-center">
-                  <thead>
-                    <tr>
-                      <th className="">{t("Full Name")}</th>
-                      <th className="">{t("Email")}</th>
-                      <th className="">{t("Level")}</th>
-                      <th className="">{t("Joining Date")}</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {allData?.referrals?.map((data: any, index: number) => (
-                      <tr key={index}>
-                        <td className="referral-text">{data?.full_name}</td>
-                        <td className="referral-text">{data?.email}</td>
-                        <td className="referral-text">{data?.level}</td>
-                        <td className="referral-text">{data?.joining_date}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            <div className="my-earnings-table">
-              <h4 className="section-title-medium">{t("My Earnings")}</h4>
-              <div className="table-responsive">
-                <table className="table dataTable cp-user-custom-table table-borderless text-center">
-                  <thead>
-                    <tr>
-                      <th>{t("Coin type")}</th>
-                      <th>{t("Amount")}</th>
-                      <th>{t("Transaction Id")}</th>
-                      <th>{t("Level")}</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {allData?.monthlyEarningHistories?.map(
-                      (data: any, index: number) => (
-                        <tr key={index}>
-                          <td>{data?.coin_type}</td>
-                          <td>{data?.amount}</td>
-                          <td>{data?.transaction_id}</td>
-                          <td>{data?.level}</td>
-                        </tr>
-                      )
-                    )}
-                    {allData?.monthlyEarningHistories.length === 0 && (
+              <div className="referrals-table">
+                <h4 className="section-title-medium font-bold">
+                  {t("My Referrals")}
+                </h4>
+                <div className="table-responsive">
+                  <table
+                    className="table cp-user-custom-table table-borderless text-center dataTable no-footer"
+                    id="DataTables_Table_0"
+                  >
+                    <thead>
                       <tr>
-                        <td colSpan={6} className="text-center referral-text">
-                          <b>{t("No Data available")}</b>
+                        <th
+                          className="referral-level text-left"
+                          rowSpan={1}
+                          colSpan={1}
+                          aria-label="Level 1"
+                        >
+                          {t("Level 1")}
+                        </th>
+                        <th
+                          className="referral-level text-left"
+                          rowSpan={1}
+                          colSpan={1}
+                          aria-label="Level 2"
+                        >
+                          {t("Level 2")}
+                        </th>
+                        <th
+                          className="referral-level text-right"
+                          rowSpan={1}
+                          colSpan={1}
+                          aria-label="Level 3"
+                        >
+                          {t("Level 3")}
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr id="" role="row referral" className="">
+                        <td className="referral-text text-left">
+                          {allData?.referralLevel[1]}
+                        </td>
+                        <td className="referral-text text-left">
+                          {allData?.referralLevel[2]}
+                        </td>
+                        <td className="referral-text text-right">
+                          {allData?.referralLevel[3]}
                         </td>
                       </tr>
-                    )}
-                  </tbody>
-                </table>
+                      {allData?.referralLevel.length == 0 && (
+                        <td
+                          colSpan={5}
+                          className="text-center referral-text py-5"
+                        >
+                          <b>{t("No Data available")}</b>
+                        </td>
+                      )}
+
+                      <tr>
+                        <td colSpan={3} />
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
-            </div>
+              <div className="referrals-table">
+                <h4 className="section-title-medium font-bold">
+                  {t("My References")}
+                </h4>
+                <div className="table-responsive">
+                  <table className="table dataTable cp-user-custom-table table-borderless text-center">
+                    <thead>
+                      <tr>
+                        <th className="text-left">{t("Full Name")}</th>
+                        <th className="text-left">{t("Email")}</th>
+                        <th className="text-left">{t("Level")}</th>
+                        <th className="text-right">{t("Joining Date")}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {allData?.referrals?.map((data: any, index: number) => (
+                        <tr key={index}>
+                          <td className="referral-text text-left">
+                            {data?.full_name}
+                          </td>
+                          <td className="referral-text text-left">
+                            {data?.email}
+                          </td>
+                          <td className="referral-text text-left">
+                            {data?.level}
+                          </td>
+                          <td className="referral-text text-right">
+                            {data?.joining_date}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div className="my-earnings-table">
+                <h4 className="section-title-medium font-bold">
+                  {t("My Earnings")}
+                </h4>
+                <div className="table-responsive">
+                  <table className="table dataTable cp-user-custom-table table-borderless text-center">
+                    <thead>
+                      <tr>
+                        <th className="text-left">{t("Coin type")}</th>
+                        <th className="text-left">{t("Amount")}</th>
+                        <th className="text-left">{t("Transaction Id")}</th>
+                        <th className="text-right">{t("Level")}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {allData?.monthlyEarningHistories?.map(
+                        (data: any, index: number) => (
+                          <tr key={index}>
+                            <td className="text-left">{data?.coin_type}</td>
+                            <td className="text-left">{data?.amount}</td>
+                            <td className="text-left">
+                              {data?.transaction_id}
+                            </td>
+                            <td className="text-right">{data?.level}</td>
+                          </tr>
+                        )
+                      )}
+                      {allData?.monthlyEarningHistories.length === 0 && (
+                        <tr>
+                          <td
+                            colSpan={6}
+                            className="text-center referral-text py-5"
+                          >
+                            <b>{t("No Data available")}</b>
+                          </td>
+                        </tr>
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>{" "}
           </div>
         </div>
       </div>
+
       <Footer />
     </>
   );
