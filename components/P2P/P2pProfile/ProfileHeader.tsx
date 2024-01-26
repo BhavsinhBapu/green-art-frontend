@@ -3,7 +3,7 @@ import { IoIosEye } from "react-icons/io";
 
 export const ProfileHeader = ({ details }: any) => {
   return (
-    <div className="container">
+    <div className="container-4xl">
       <div className="row py-4 tableRow align-items-center">
         <div className="col-md-6">
           <div className="tableImg d-flex align-items-center">
