@@ -7,10 +7,10 @@ export const CustomAccordion = ({ faqIten }: any) => {
 
   return (
     <div className="accordion" id="accordionExample">
-      <div className="card faqAccordion shadow-sm">
+      <div className="card faqAccordion shadow-sm glass-color-bg-custom">
         <div className="card-header" id="headingThree">
           <button
-            className="collapsed d-flex justify-content-between align-items-center"
+            className="collapsed d-flex justify-content-between align-items-center glass-color-bg-custom"
             type="button"
             onClick={faqArrow}
             data-toggle="collapse"

@@ -1,5 +1,8 @@
 import Footer from "components/common/footer";
 import SectionLoading from "components/common/SectionLoading";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
+import MarketOverviewHeader from "components/markets/MarketOverviewHeader";
 import { P2pTopBar } from "components/P2P/P2pHome/TopBar";
 import { OrderFilter } from "components/P2P/P2pOrder/OrderFilter";
 import { OrderTable } from "components/P2P/P2pOrder/OrderTable";
@@ -16,55 +19,55 @@ const P2pOrder = () => {
   return (
     <>
       <div>
-        <div className="section-top-wrap mb-25">
-          <div className="overview-area">
-            <div className="overview-left">
-              <h2 className="section-top-title">{t(`My Orders`)}</h2>
-            </div>
-          </div>
-        </div>
-        <P2pTopBar />
-        <div className="container">
-          <div className="row">
-            <div className="col-12">
-              <ul className="d-flex p2pTabList py-3 tableRow">
-                <li
-                  onClick={() => {
-                    setselectedMenu(1);
-                  }}
-                >
-                  <a
-                    className={`${
-                      selectedMenu === 1 && "p2pOrderTabListActive"
-                    }`}
-                  >
-                    {t(`All Orders`)}
-                  </a>
-                </li>
-                <li
-                  onClick={() => {
-                    setselectedMenu(2);
-                  }}
-                >
-                  <a
-                    className={`${
-                      selectedMenu === 2 && "p2pOrderTabListActive"
-                    }`}
-                  >
-                    {t(`Disputed Orders`)}
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
+        <MarketOverviewHeader title={t(`My Orders`)} />
 
-        {selectedMenu === 1 && (
-          <OrderTable actionFunction={myP2pOrderAction} filter={true} />
-        )}
-        {selectedMenu === 2 && (
-          <OrderTable actionFunction={myP2pDisputeAction} />
-        )}
+        <P2pTopBar />
+        <PlaceTopLeft />
+        <PlaceBottomRight />
+        <div className="glass-color-bg-custom">
+          <div className="container-4xl">
+            <div className="row">
+              <div className="col-12">
+                <ul className="d-flex p2pTabList py-3 tableRow">
+                  <li
+                    onClick={() => {
+                      setselectedMenu(1);
+                    }}
+                  >
+                    <a
+                      className={`${
+                        selectedMenu === 1 && "p2pOrderTabListActive"
+                      }`}
+                    >
+                      {t(`All Orders`)}
+                    </a>
+                  </li>
+                  <li
+                    onClick={() => {
+                      setselectedMenu(2);
+                    }}
+                  >
+                    <a
+                      className={`${
+                        selectedMenu === 2 && "p2pOrderTabListActive"
+                      }`}
+                    >
+                      {t(`Disputed Orders`)}
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="glass-color-bg-custom">
+          {selectedMenu === 1 && (
+            <OrderTable actionFunction={myP2pOrderAction} filter={true} />
+          )}
+          {selectedMenu === 2 && (
+            <OrderTable actionFunction={myP2pDisputeAction} />
+          )}
+        </div>
       </div>
       <Footer />
     </>

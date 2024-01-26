@@ -5,9 +5,9 @@ import { NoItemFound } from "components/NoItemFound/NoItemFound";
 
 export default function MarketIndex({ tradeDatas }: any) {
   return (
-    <div className="container">
-      <div className="row pt-3">
-        <div className="col-12 px-2" style={{ marginBottom: "24px" }}>
+    <div className="container-4xl">
+      <div className="row mx-0 p-5 shadow-sm wallet-card-info-container">
+        <div className="col-12" style={{ marginBottom: "24px" }}>
           <h4>Market Index</h4>
         </div>
         <div className="col-12 px-2">

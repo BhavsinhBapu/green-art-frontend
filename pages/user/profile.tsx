@@ -10,24 +10,23 @@ import Footer from "components/common/footer";
 import { customPage, landingPage } from "service/landing-page";
 import moment from "moment";
 import ImageComponent from "components/common/ImageComponent";
+import ProfileHeader from "components/profile/ProfileHeader";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
 const Profile: NextPage = ({ user, profileActivity }: any) => {
   const { t } = useTranslation("common");
 
   return (
     <>
       <div className="page-wrap">
-        <ProfileSidebar />
-        <div className="page-main-content">
-          <div className="container-fluid">
-            <div className="section-top-wrap mb-25 inner-section-margin-top">
-              <div className="profle-are-top">
-                <h2 className="section-top-title">
-                  {user?.first_name + " " + user?.last_name}
-                </h2>
-                <h3 className="user-mail">{user?.email}</h3>
-              </div>
-            </div>
-            <div className="profile-area">
+        {/* <ProfileSidebar /> */}
+        <div className="page-main-content bg-primary-custom-color">
+          <ProfileHeader title={t("Profile")} />
+          <PlaceTopLeft />
+          <PlaceBottomRight />
+          <div className="container-4xl">
+           
+            <div className="profile-area body-margin-top-custom shadow-sm p-5 wallet-card-info-container">
               <div className="section-wrapper">
                 <div className="user-profile">
                   <div className="row">
@@ -121,24 +120,37 @@ const Profile: NextPage = ({ user, profileActivity }: any) => {
               </div>
             </div>
 
-            <div className="profile-status-area section-wrapper boxShadow tableScroll mb-5" style={{border: 'none'}}>
+            <div
+              className="profile-status-area shadow-sm p-5 wallet-card-info-container mb-5"
+              style={{ border: "none" }}
+            >
               <h5>{t("Profile Activity")}</h5>
               <table className="table">
                 <thead className="">
                   <tr>
-                    <th scope="col">{t("Source")}</th>
-                    <th scope="col">{t("Ip Address")}:</th>
-                    <th scope="col">{t("Time:")}</th>
-                    <th scope="col">{t("Action")}</th>
+                    <th scope="col" className="p-2">
+                      {t("Source")}
+                    </th>
+                    <th scope="col" className="p-2">
+                      {t("Ip Address")}:
+                    </th>
+                    <th scope="col" className="p-2">
+                      {t("Time:")}
+                    </th>
+                    <th scope="col" className="p-2">
+                      {t("Action")}
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
                   {profileActivity?.map((item: any, index: number) => (
                     <tr key={`userAct${index}`}>
-                      <td>{item.source}</td>
-                      <td>{item.ip_address}</td>
-                      <td>{moment(item.created_at).format("DD MMM YYYY")}</td>
-                      <td>{t("Login")}</td>
+                      <td className="p-2">{item.source}</td>
+                      <td className="p-2">{item.ip_address}</td>
+                      <td className="p-2">
+                        {moment(item.created_at).format("DD MMM YYYY")}
+                      </td>
+                      <td className="p-2">{t("Login")}</td>
                     </tr>
                   ))}
                 </tbody>

@@ -11,6 +11,9 @@ import Footer from "components/common/footer";
 import { customPage, landingPage } from "service/landing-page";
 import LaunchpadSidebar from "layout/launchpad-sidebar";
 import SectionLoading from "components/common/SectionLoading";
+import LaunchpadHeader from "components/ico/LaunchpadHeader";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
 
 const MyWallet: NextPage = () => {
   const [history, setHistory] = useState<any>([]);
@@ -48,17 +51,26 @@ const MyWallet: NextPage = () => {
   return (
     <>
       <div className="page-wrap rightMargin">
-        <LaunchpadSidebar />
+        {/* <LaunchpadSidebar /> */}
         <div className="page-main-content">
-          <div className="container-fluid">
-            <div className="section-top-wrap mb-25 inner-section-margin-top">
+          <LaunchpadHeader title={t("Token Wallet")} />
+          <PlaceTopLeft />
+          <PlaceBottomRight />
+          <div className="container-4xl">
+            {/* <div className="section-top-wrap mb-25 inner-section-margin-top">
               <div className="overview-area">
                 <div className="overview-left">
                   <h2 className="section-top-title">{t("Token Wallet")}</h2>
                 </div>
               </div>
-            </div>
-            <div className="asset-balances-area cstm-loader-area">
+            </div> */}
+            <div
+              className="asset-balances-area cstm-loader-area shadow-sm p-5 wallet-card-info-container"
+              style={{
+                marginTop: "-60px",
+                marginBottom: "30px",
+              }}
+            >
               <div className="asset-balances-left">
                 <div className="section-wrapper">
                   <div
@@ -119,17 +131,27 @@ const MyWallet: NextPage = () => {
                       >
                         <thead>
                           <tr>
-                            <th scope="col">{t("Asset")}</th>
-                            <th scope="col">{t("Symbol")}</th>
-                            <th scope="col">{t("Available Balance")}</th>
-                            <th scope="col">{t("Address")}</th>
-                            <th scope="col">{t("Date")}</th>
+                            <th className="px-3 py-2" scope="col">
+                              {t("Asset")}
+                            </th>
+                            <th className="px-3 py-2" scope="col">
+                              {t("Symbol")}
+                            </th>
+                            <th className="px-3 py-2" scope="col">
+                              {t("Available Balance")}
+                            </th>
+                            <th className="px-3 py-2" scope="col">
+                              {t("Address")}
+                            </th>
+                            <th className="px-3 py-2" scope="col">
+                              {t("Date")}
+                            </th>
                           </tr>
                         </thead>
                         <tbody>
                           {history?.map((item: any, index: number) => (
                             <tr id="" key={index}>
-                              <td>
+                              <td className="px-3 py-2">
                                 <div className="asset">
                                   <img
                                     className="asset-icon"
@@ -141,19 +163,19 @@ const MyWallet: NextPage = () => {
                                   </span>
                                 </div>
                               </td>
-                              <td>
+                              <td className="px-3 py-2">
                                 <span className="symbol">
                                   {item?.coin_type}
                                 </span>
                               </td>
-                              <td>
+                              <td className="px-3 py-2">
                                 <div className="blance-text">
                                   <span className="blance">
                                     {parseFloat(item?.balance).toFixed(8)}
                                   </span>
                                 </div>
                               </td>
-                              <td>
+                              <td className="px-3 py-2">
                                 <div className="blance-text">
                                   <span className="blance">
                                     {/* @ts-ignore */}
@@ -161,7 +183,7 @@ const MyWallet: NextPage = () => {
                                   </span>
                                 </div>
                               </td>
-                              <td>
+                              <td className="px-3 py-2">
                                 <div className="blance-text">
                                   <span className="blance">
                                     {/* @ts-ignore */}

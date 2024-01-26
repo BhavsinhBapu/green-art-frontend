@@ -246,26 +246,59 @@ const Dashboard: NextPage = () => {
                       style={{ border: "1px solid rgb(126 126 126 / 20%)" }}
                     >
                       <div className="cxchange-summary-wrap mt-3">
-                        <div className="row w-full">
-                          <div className="col-md-2">
+                        <div className="tarde-coin-pair-header w-full">
+                          <div>
                             {currentPair && (
                               <div className="cxchange-summary-name">
-                                <div className="summber-coin-type dropdown">
-                                  <span
-                                    className="coin-badge dropdown-toggle"
-                                    id="dropdownMenuButton"
-                                    data-toggle="dropdown"
-                                    aria-haspopup="true"
-                                    aria-expanded="false"
+                                <div
+                                  className="summber-coin-type dropdown"
+                                  style={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    gap: "4px",
+                                  }}
+                                >
+                                  <div>
+                                    <img
+                                      src={
+                                        dashboard?.pairs?.find(
+                                          (item: any) =>
+                                            item.coin_pair == currentPair
+                                        )?.icon || "/add-pockaet-vector.svg"
+                                      }
+                                      alt=""
+                                      style={{ width: "30px", height: "30px" }}
+                                    />
+                                  </div>
+                                  <div
+                                    style={{
+                                      display: "flex",
+                                      flexDirection: "column",
+                                      gap: "2px",
+                                    }}
                                   >
-                                    {currentPair.replace(/_/g, "/")}
-                                  </span>
-                                  <DemoSelectCurrency />
+                                    <span
+                                      className="coin-badge dropdown-toggle"
+                                      id="dropdownMenuButton"
+                                      data-toggle="dropdown"
+                                      aria-haspopup="true"
+                                      aria-expanded="false"
+                                    >
+                                      {currentPair.replace(/_/g, "/")}
+                                    </span>
+                                    <span style={{ lineHeight: "1" }}>
+                                      {dashboard?.pairs?.find(
+                                        (item: any) =>
+                                          item.coin_pair == currentPair
+                                      )?.coin_pair_name || ""}
+                                    </span>
+                                    <DemoSelectCurrency />
+                                  </div>
                                 </div>
                               </div>
                             )}
                           </div>
-                          <div className="col-md-10">
+                          <div>
                             {dashboard?.last_price_data && (
                               <DemoCurrencyLevel />
                             )}

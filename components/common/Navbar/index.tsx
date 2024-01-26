@@ -36,6 +36,7 @@ import { MdOutlineSwapHorizontalCircle, MdTransform } from "react-icons/md";
 import { GiBuyCard, GiSellCard, GiTrade } from "react-icons/gi";
 import { GoStop } from "react-icons/go";
 import { AiFillCaretDown, AiFillGift, AiOutlineClose } from "react-icons/ai";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
 
 const Navbar = ({
   settings,
@@ -108,7 +109,6 @@ const Navbar = ({
                       </a>
                     </Link>
                   </div>
-
                   <nav className="main-menu">
                     <ul>
                       {navbar?.trade?.status && (
@@ -986,86 +986,6 @@ const Navbar = ({
                         </Link>
                       )}
 
-                      {/* {Number(settings?.enable_future_trade) === 1 && (
-                        <li
-                          className={
-                            router.pathname == "/futures/wallet-list" ||
-                            router.pathname == "/futures"
-                              ? "cp-user-active-page"
-                              : ""
-                          }
-                        >
-                          <Link
-                            href={
-                              router.locale !== "en"
-                                ? `/${router.locale}/futures`
-                                : "/futures"
-                            }
-                          >
-                            <a
-                              className="arrow-icon"
-                              href="#"
-                              aria-expanded="true"
-                              style={{ height: "48px" }}
-                            >
-                              <span className="cp-user-icon">
-                                <FaTradeFederation />
-                              </span>
-                              <span className="cp-user-name">
-                                {t("Future")}
-                              </span>
-                            </a>
-                          </Link>
-                          <ul className="dropdown-menu bg-transparent-main">
-                            <Link
-                              href={
-                                router.locale !== "en"
-                                  ? `/${router.locale}/futures`
-                                  : "/futures"
-                              }
-                            >
-                              <li
-                                className={
-                                  router.pathname == "/futures"
-                                    ? "cp-user-active-page"
-                                    : ""
-                                }
-                              >
-                                <a href="" className="menu-hover">
-                                  <span className="cp-user-icon">
-                                    {" "}
-                                    <BiShapeCircle />{" "}
-                                  </span>{" "}
-                                  <span>{t("Future Market")}</span>
-                                </a>
-                              </li>
-                            </Link>
-                            <Link
-                              href={
-                                router.locale !== "en"
-                                  ? `/${router.locale}/futures/wallet-list`
-                                  : "/futures/wallet-list"
-                              }
-                            >
-                              <li
-                                className={
-                                  router.pathname == "/futures/wallet-list"
-                                    ? "cp-user-active-page"
-                                    : ""
-                                }
-                              >
-                                <a href="" className="menu-hover">
-                                  <span className="cp-user-icon">
-                                    {" "}
-                                    <BiShapeCircle />{" "}
-                                  </span>{" "}
-                                  <span>{t("Future Wallet")}</span>
-                                </a>
-                              </li>
-                            </Link>
-                          </ul>
-                        </li>
-                      )} */}
                       {Number(settings?.enable_demo_trade) === 1 && (
                         <li
                           className={

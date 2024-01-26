@@ -21,6 +21,8 @@ import {
   handleBuyCardApi,
   handleCoinsApi,
 } from "service/gift-cards";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
 
 export default function Index() {
   const { settings } = useSelector((state: RootState) => state.common);
@@ -190,7 +192,9 @@ export default function Index() {
           </div>
         </div>
       </div>
-      <div className="container">
+      <PlaceTopLeft />
+      <PlaceBottomRight />
+      <div className="container bg-card-glass-clr mt-5">
         <div className="py-80">
           <div className="row">
             <div className="col-lg-12">

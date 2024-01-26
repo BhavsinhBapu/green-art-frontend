@@ -13,6 +13,9 @@ import { RootState } from "state/store";
 import Footer from "components/common/footer";
 import { customPage, landingPage } from "service/landing-page";
 import CustomDataTable from "components/Datatable";
+import ReportOverviewHeader from "components/reports/ReportOverviewHeader";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
 
 const BuyOrderHistory: NextPage = () => {
   const { t } = useTranslation("common");
@@ -25,7 +28,7 @@ const BuyOrderHistory: NextPage = () => {
   const [history, setHistory] = useState<any>([]);
   const [stillHistory, setStillHistory] = useState<any>([]);
   const [selectedLimit, setSelectedLimit] = useState<any>("10");
-  const [search, setSearch] = useState('')
+  const [search, setSearch] = useState("");
   const LinkTopaginationString = (page: any) => {
     const url = page.url.split("?")[1];
     const number = url.split("=")[1];
@@ -87,12 +90,20 @@ const BuyOrderHistory: NextPage = () => {
   }, [selectedLimit, search]);
   return (
     <>
-      <div className="page-wrap rightMargin">
-        <ReportSidebar />
-
-        <div className="page-main-content">
-          <div className="container-fluid">
-            <div className="section-top-wrap mb-25 inner-section-margin-top">
+      <div>
+        {/* <ReportSidebar /> */}
+        <ReportOverviewHeader title={"Stop Limit Order History"} />
+        <PlaceTopLeft />
+        <PlaceBottomRight />
+        <div className="page-main-content container-4xl">
+          <div
+            className="report-overview-body-padding"
+            style={{
+              marginTop: "-60px",
+              marginBottom: "30px",
+            }}
+          >
+            {/* <div className="section-top-wrap mb-25 inner-section-margin-top">
               <div className="overview-area">
                 <div className="overview-left">
                   <h2 className="section-top-title">
@@ -100,27 +111,26 @@ const BuyOrderHistory: NextPage = () => {
                   </h2>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             <div className="asset-balances-area">
-             
-                <div className="asset-balances-left">
-                  <div className="section-wrapper ">
-                    <div className="tableScroll">
-                      <CustomDataTable
-                        columns={columns}
-                        data={history}
-                        stillHistory={stillHistory}
-                        paginateFunction={LinkTopaginationString}
-                        setSelectedLimit={setSelectedLimit}
-                        selectedLimit={selectedLimit}
-                        setSearch={setSearch}
-                        search={search}
-                        processing={processing}
-                      />
-                    </div>
+              <div className="asset-balances-left">
+                <div>
+                  <div className="tableScroll">
+                    <CustomDataTable
+                      columns={columns}
+                      data={history}
+                      stillHistory={stillHistory}
+                      paginateFunction={LinkTopaginationString}
+                      setSelectedLimit={setSelectedLimit}
+                      selectedLimit={selectedLimit}
+                      setSearch={setSearch}
+                      search={search}
+                      processing={processing}
+                    />
                   </div>
                 </div>
+              </div>
             </div>
           </div>
         </div>

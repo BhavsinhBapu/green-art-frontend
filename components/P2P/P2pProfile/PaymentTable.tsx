@@ -38,7 +38,7 @@ export const PaymentTable = () => {
     };
   }, []);
   return (
-    <div className="container">
+    <div className="container-4xl">
       <div className="row">
         <div className="col-12">
           <ul className="d-flex p2pTabList py-3 tableRow">

@@ -95,11 +95,11 @@ export default function TradesTable({ selectedCurrency }: any) {
 
   const { t } = useTranslation();
   return (
-    <section className="container mt-5">
-      <div className="row">
-        <div className="col-12 px-2">
-          <div className="market-trend-area ">
-            <div className="container">
+    <section className="container-4xl mt-5 ">
+      <div className="row ">
+        <div className="col-12">
+          <div className="market-trend-area shadow-sm p-5 wallet-card-info-container">
+            <div className="container-4xl">
               <div className="row">
                 <div className="col-md-9 col-12">
                   <div className="exchange-tab-menu">
@@ -221,7 +221,7 @@ export default function TradesTable({ selectedCurrency }: any) {
                                     </th>
                                     <th
                                       scope="col"
-                                      className="sorting_disabled text-center"
+                                      className="sorting_disabled text-right"
                                       rowSpan={1}
                                       colSpan={1}
                                       style={{ width: "81.2812px" }}
@@ -230,7 +230,7 @@ export default function TradesTable({ selectedCurrency }: any) {
                                     </th>
                                     <th
                                       scope="col"
-                                      className="sorting_disabled text-center"
+                                      className="sorting_disabled text-right"
                                       rowSpan={1}
                                       colSpan={1}
                                       style={{ width: "193.797px" }}
@@ -248,7 +248,7 @@ export default function TradesTable({ selectedCurrency }: any) {
                                 </th> */}
                                     <th
                                       scope="col"
-                                      className="sorting_disabled text-center"
+                                      className="sorting_disabled text-right"
                                       rowSpan={1}
                                       colSpan={1}
                                       style={{ width: "207.766px" }}
@@ -257,7 +257,7 @@ export default function TradesTable({ selectedCurrency }: any) {
                                     </th>
                                     <th
                                       scope="col"
-                                      className="sorting_disabled text-center"
+                                      className="sorting_disabled text-right"
                                       rowSpan={1}
                                       colSpan={1}
                                       style={{ width: "207.766px" }}
@@ -309,10 +309,10 @@ export default function TradesTable({ selectedCurrency }: any) {
                                           </a>
                                         </div>
                                       </td>
-                                      <td className="text-black text-center p-2">
+                                      <td className="text-black text-right p-2">
                                         ${item.price}
                                       </td>
-                                      <td className="text-center p-2">
+                                      <td className="text-right p-2">
                                         <span
                                           className={`changePos  ${
                                             parseFloat(item.change) >= 0
@@ -338,10 +338,10 @@ export default function TradesTable({ selectedCurrency }: any) {
                                         />
                                       )}
                                     </td> */}
-                                      <td className="text-black text-center p-2">
+                                      <td className="text-black text-right p-2">
                                         {item.volume}
                                       </td>
-                                      <td className="text-black text-center p-2">
+                                      <td className="text-black text-right p-2">
                                         {item.total_balance
                                           ? parseFloat(
                                               item.total_balance

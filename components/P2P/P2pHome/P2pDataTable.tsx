@@ -69,146 +69,148 @@ export const P2pDataTable = ({
     toast.success(response.message);
   };
   return (
-    <div className="container mt-4">
-      <div className="row">
-        <div className="table-responsive">
-          {historyData?.length <= 0 || !historyData ? (
-            <NoItemFound />
-          ) : (
-            <table className="table">
-              <thead>
-                <tr>
-                  <th scope="col">{t(`Advertisers`)}</th>
-                  <th scope="col">{t(`Price`)}</th>
-                  <th scope="col">{t(`Limit/Available`)}</th>
-                  {statusChange && (
-                    <th scope="col" className="text-center">
-                      {t(`Status`)}
-                    </th>
-                  )}
-
-                  {payment === true && <th scope="col">{t(`Payment`)}</th>}
-                  {action === true && <th scope="col">{t(`Trade`)}</th>}
-                  {edit === true && <th scope="col">{t(`Action`)}</th>}
-                </tr>
-              </thead>
-              <tbody>
-                {historyData?.map((item: any, index: any) => (
-                  <tr className="tableRow" key={index}>
-                    <td>
-                      <Link href={"/p2p/profile/" + item?.user_id}>
-                        <div className="tableImg d-flex align-items-center">
-                          <img src={item?.user?.photo} alt="" />
-                          <h5>{item?.user?.nickname}</h5>
-                        </div>
-                      </Link>
-                    </td>
-                    <td className="d-flex">
-                      <h5 className="mr-1">
-                        {parseFloat(item?.price).toFixed(2)}
-                      </h5>{" "}
-                      {item?.currency}
-                    </td>
-                    <td>
-                      <div className="d-flex align-items-center">
-                        <small className="mr-2">{t(`Available`)}</small>
-                        <h6 className="limitBalance">
-                          {parseFloat(item?.available).toFixed(8)}{" "}
-                          {item?.coin_type}
-                        </h6>
-                      </div>
-                      <div className="d-flex align-items-center">
-                        <small className="mr-2">{t(`Limit`)}</small>
-                        <h6 className="limitBalance">
-                          {item?.minimum_trade_size} {item?.currency}-
-                          {item?.maximum_trade_size} {item?.currency}
-                        </h6>
-                      </div>
-                    </td>
+    <div className="glass-color-bg-custom">
+      <div className="container-4xl">
+        <div className="row mx-0">
+          <div className="table-responsive">
+            {historyData?.length <= 0 || !historyData ? (
+              <NoItemFound />
+            ) : (
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th scope="col">{t(`Advertisers`)}</th>
+                    <th scope="col">{t(`Price`)}</th>
+                    <th scope="col">{t(`Limit/Available`)}</th>
                     {statusChange && (
-                      <td
-                        style={{ verticalAlign: "middle" }}
-                        className="text-center"
-                      >
-                        <label className="gift-card-buy-switch mb-0">
-                          <input
-                            type="checkbox"
-                            checked={item?.status == 1 ? true : false}
-                            onChange={(e) => handleStatusChange(item)}
-                          />
-                          <span className="gift-card-buy-slider gift-card-buy"></span>
-                        </label>
-                      </td>
+                      <th scope="col" className="text-center">
+                        {t(`Status`)}
+                      </th>
                     )}
 
-                    {payment && (
-                      <td>
-                        {item?.payment_method_list?.map(
-                          (payment: any, index: any) => (
-                            <span
-                              className="badge badge-light mr-2"
-                              key={index}
-                            >
-                              {payment?.admin_pamynt_method?.name}
-                            </span>
-                          )
-                        )}
-                      </td>
-                    )}
-
-                    {action === true && (
-                      <td>
-                        {isLoggedIn === true && (
-                          <Link
-                            href={`/p2p/details/${item.uid}?adtype=${filters.type}`}
-                          >
-                            <button className="tableButton">
-                              {filters.type === BUY ? "Buy" : "Sell"}{" "}
-                              {item.coin_type}
-                            </button>
-                          </Link>
-                        )}
-                      </td>
-                    )}
-                    {(edit === true || deleteBtn === true) && (
-                      <td>
-                        {isLoggedIn === true && (
-                          // <Link
-                          //   href={`/p2p/add-post?uid=${item.uid}&&ads_type=${filters.type}`}
-                          // >
-                          <>
-                            {edit && (
-                              <button
-                                onClick={async () => {
-                                  await router.push(
-                                    `/p2p/add-post?uid=${item.uid}&&ads_type=${filters.type}`
-                                  );
-                                  await router.reload();
-                                }}
-                                className="tableButton"
-                              >
-                                {t(`Edit`)}
-                              </button>
-                            )}
-
-                            {deleteBtn && (
-                              <button
-                                onClick={() => handleAdsDelete(item.uid)}
-                                className="tableButton bg-secondary ml-2"
-                              >
-                                {t(`Delete`)}
-                              </button>
-                            )}
-                          </>
-                          // </Link>
-                        )}
-                      </td>
-                    )}
+                    {payment === true && <th scope="col">{t(`Payment`)}</th>}
+                    {action === true && <th scope="col">{t(`Trade`)}</th>}
+                    {edit === true && <th scope="col">{t(`Action`)}</th>}
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          )}
+                </thead>
+                <tbody>
+                  {historyData?.map((item: any, index: any) => (
+                    <tr className="tableRow" key={index}>
+                      <td>
+                        <Link href={"/p2p/profile/" + item?.user_id}>
+                          <div className="tableImg d-flex align-items-center">
+                            <img src={item?.user?.photo} alt="" />
+                            <h5>{item?.user?.nickname}</h5>
+                          </div>
+                        </Link>
+                      </td>
+                      <td className="d-flex">
+                        <h5 className="mr-1">
+                          {parseFloat(item?.price).toFixed(2)}
+                        </h5>{" "}
+                        {item?.currency}
+                      </td>
+                      <td>
+                        <div className="d-flex align-items-center">
+                          <small className="mr-2">{t(`Available`)}</small>
+                          <h6 className="limitBalance">
+                            {parseFloat(item?.available).toFixed(8)}{" "}
+                            {item?.coin_type}
+                          </h6>
+                        </div>
+                        <div className="d-flex align-items-center">
+                          <small className="mr-2">{t(`Limit`)}</small>
+                          <h6 className="limitBalance">
+                            {item?.minimum_trade_size} {item?.currency}-
+                            {item?.maximum_trade_size} {item?.currency}
+                          </h6>
+                        </div>
+                      </td>
+                      {statusChange && (
+                        <td
+                          style={{ verticalAlign: "middle" }}
+                          className="text-center"
+                        >
+                          <label className="gift-card-buy-switch mb-0">
+                            <input
+                              type="checkbox"
+                              checked={item?.status == 1 ? true : false}
+                              onChange={(e) => handleStatusChange(item)}
+                            />
+                            <span className="gift-card-buy-slider gift-card-buy"></span>
+                          </label>
+                        </td>
+                      )}
+
+                      {payment && (
+                        <td>
+                          {item?.payment_method_list?.map(
+                            (payment: any, index: any) => (
+                              <span
+                                className="badge badge-light mr-2"
+                                key={index}
+                              >
+                                {payment?.admin_pamynt_method?.name}
+                              </span>
+                            )
+                          )}
+                        </td>
+                      )}
+
+                      {action === true && (
+                        <td>
+                          {isLoggedIn === true && (
+                            <Link
+                              href={`/p2p/details/${item.uid}?adtype=${filters.type}`}
+                            >
+                              <button className="tableButton">
+                                {filters.type === BUY ? "Buy" : "Sell"}{" "}
+                                {item.coin_type}
+                              </button>
+                            </Link>
+                          )}
+                        </td>
+                      )}
+                      {(edit === true || deleteBtn === true) && (
+                        <td>
+                          {isLoggedIn === true && (
+                            // <Link
+                            //   href={`/p2p/add-post?uid=${item.uid}&&ads_type=${filters.type}`}
+                            // >
+                            <>
+                              {edit && (
+                                <button
+                                  onClick={async () => {
+                                    await router.push(
+                                      `/p2p/add-post?uid=${item.uid}&&ads_type=${filters.type}`
+                                    );
+                                    await router.reload();
+                                  }}
+                                  className="tableButton"
+                                >
+                                  {t(`Edit`)}
+                                </button>
+                              )}
+
+                              {deleteBtn && (
+                                <button
+                                  onClick={() => handleAdsDelete(item.uid)}
+                                  className="tableButton bg-secondary ml-2"
+                                >
+                                  {t(`Delete`)}
+                                </button>
+                              )}
+                            </>
+                            // </Link>
+                          )}
+                        </td>
+                      )}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
+          </div>
         </div>
       </div>
     </div>

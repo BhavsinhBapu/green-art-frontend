@@ -50,7 +50,7 @@ const value = 70;
 export default function PieChartsWithNeddle() {
   return (
     <div
-      className="bg-card-primary-clr"
+      className="bg-card-glass-clr"
       style={{ height: "224px", borderRadius: "8px" }}
     >
       {/* <div className="p-3" style={{ height: "245px" }}>
