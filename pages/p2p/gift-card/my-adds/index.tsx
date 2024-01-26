@@ -4,6 +4,9 @@ import P2PGiftCardNavbar from "components/P2P/p2p-gift-card/p2p-gift-card-navbar
 import { CUstomSelect } from "components/common/CUstomSelect";
 import ImageComponent from "components/common/ImageComponent";
 import SectionLoading from "components/common/SectionLoading";
+import Footer from "components/common/footer";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import moment from "moment";
 import { GetServerSideProps } from "next";
@@ -78,7 +81,9 @@ export default function Index() {
       <P2PGiftCardHeader title={"My Gift Card Ads"} />
       {/* item part */}
 
-      <div className="container">
+      <div className="container-4xl">
+        <PlaceTopLeft />
+        <PlaceBottomRight />
         <div className="col-md-3">
           <div className="form-group p2pSelectFilter">
             <label> {t(`Payment Type`)}</label>
@@ -97,11 +102,11 @@ export default function Index() {
               <table className="table">
                 <thead>
                   <tr>
-                    <th scope="col">{t(`Price`)}</th>
-                    <th scope="col">{t(`Amount`)}</th>
-                    <th scope="col">{t(`Status`)}</th>
-                    <th scope="col">{t(`Created At`)}</th>
-                    <th scope="col">{t(`Action`)}</th>
+                    <th scope="col" className="px-3 py-2">{t(`Price`)}</th>
+                    <th scope="col" className="px-3 py-2">{t(`Amount`)}</th>
+                    <th scope="col" className="px-3 py-2">{t(`Status`)}</th>
+                    <th scope="col" className="px-3 py-2">{t(`Created At`)}</th>
+                    <th scope="col" className="px-3 py-2 text-right">{t(`Action`)}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -117,7 +122,7 @@ export default function Index() {
                       <td>{item.status_name}</td>
                       <td>{moment(item?.created_at).calendar()}</td>
 
-                      <td>
+                      <td className="text-right">
                         {(item.status == 1 || item.status == 0) && (
                           <>
                             <button
@@ -162,6 +167,7 @@ export default function Index() {
           />
         </div>
       </div>
+      <Footer />
     </section>
   );
 }
