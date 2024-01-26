@@ -1,4 +1,4 @@
-const { powerOfTen, tronWebCall, checkTx, customToWei } = require("../Heplers/helper");
+const { customFromWei, powerOfTen, tronWebCall, checkTx, customToWei } = require("../Heplers/helper");
 const TronGrid = require('trongrid');
 const axios = require('axios');
 const { response } = require("express");
@@ -218,65 +218,153 @@ async function tornWebTransactionListByContractAddress(req, res){
 
             const decimal = await contract.decimals().call();
             const getDecimal = powerOfTen(decimal);
-            
             const tronGrid = new TronGrid(tronWeb);
 
-            if(lastBlock == 0)
-            {
-                var latestTransaction = await tronGrid.contract.getEvents(contractAddress, {
-                    only_confirmed: true,
-                    event_name: "Transfer",
-                    limit: limit,
-                    order_by: "timestamp,desc",
-                });
-
-                lastBlock = latestTransaction.data[0].block_number;
-                lastTimeStamp = latestTransaction.data[0].block_timestamp;
-
-                console.log('current block set', lastBlock);
-            }
-            
-            var result = await tronGrid.block.getEvents(lastBlock, { //contract contractAddress
+            var latestTransaction = await tronGrid.contract.getEvents(contractAddress, {
                 only_confirmed: true,
-                // event_name: "Transfer",
-                limit: limit,
-                // order_by: "timestamp,asc",
-                // min_block_timestamp:lastTimeStamp
+                event_name: "Transfer",
+                order_by: "timestamp,desc",
             });
-            console.log("result", result);
-            let transactionData = [];
-            if (result.data.length > 0) {
-                result.data.map(tx => {
 
-                    if(tx.event_name == "Transfer"){
-                        tx.from_address = tronWeb.address.fromHex(tx.result.from); // this makes it easy for me to check the address at the other end
-                        tx.to_address = tronWeb.address.fromHex(tx.result.to); // this makes it easy for me to check the address at the other end
-                        tx.amount = (tx.result.value / getDecimal);
-                        tx.event = tx.event_name;
-                        tx.tx_hash = tx.transaction_id;
-                        transactionData.push(tx);
-                    }
-                    
+            const latestBlockNumber = latestTransaction.data[0].block_number;
+            lastTimeStamp = latestTransaction.data[0].block_timestamp;
+
+            // const block = await tronWeb.trx.getCurrentBlock();
+            // if (block && block.block_header) {
+            //     latestBlock = block.block_header.raw_data.number; 
+            //    console.log(latestBlock);
+            //    throw {latestBlockNumber, latestBlock}
+            // }
+
+            const trc_block_number = Number(req.body?.trc_block_number);
+            let to_block_number = Number(req.body?.to_block_number);
+            let from_block_number = Number(req.body?.from_block_number);
+
+            if(!(to_block_number > 0) && !(from_block_number > 0)){
+                to_block_number = latestBlockNumber;
+                from_block_number = latestBlockNumber - trc_block_number;
+            }else{
+
+                let compeareBlock = latestBlockNumber - to_block_number;
+                from_block_number = to_block_number;
+                to_block_number = latestBlockNumber;
+
+                if(compeareBlock > trc_block_number)
+                    to_block_number = from_block_number + trc_block_number;
+                
+            }
+
+            const blockData = {
+                to_block_number : to_block_number,
+                from_block_number : from_block_number
+            }
+
+            if (! (from_block_number <= to_block_number)){
+                return res.json({
+                    status: false,
+                    message: "From block number should not greater than to block",
+                    data: {} 
                 });
             }
-            console.log("transactionData result", transactionData);
-            // res.send({result})
-            // const nextLink = result.meta?.links?.next;
+            console.log('from block', from_block_number,'to block', to_block_number);
+            const transactions = await tronWeb.trx.getBlockRange(from_block_number, to_block_number);
 
-            // if(nextLink)
-            // {
-            //     transactionData = await hitNextLink(contractAddress,tronGrid,tronWeb,nextLink,transactionData,getDecimal,limit,lastTimeStamp);
-            // }
-            console.log('transactionData.length',transactionData.length)
+            let transactionRawData = [];
+            if (transactions.length > 0) {
+              transactions.forEach(function (transaction) {
+                // console.log('blockID =>', transaction.blockID);
+                // console.log('tran',transaction.transactions);
+                if (transaction.transactions && transaction.transactions.length > 0) {
+                    transactionRawData = [...transactionRawData, ...transaction.transactions];
+                    // let transactionList = transaction.transactions;
+                    // console.log('tx length',transaction.transactions.length)
+                    // transactionList.forEach(item => {
+                    // const rawTransaction = item.raw_data.contract[0];
+                    // console.log('item =>', rawTransaction);
+                    // })
+                }
+              })
+            }
+            //console.log('transactions', transactionRawData.length,transactionRawData[0]["raw_data"]["contract"]);
 
-            // res.send({transactionData});
-            return res.json({
-                status: true,
-                message: "Get TRC20 token transactions",
-                data: {
-                    result: transactionData,
-                } 
-            });
+            let responseTransactions = [];
+            if(transactionRawData){
+                
+                await transactionRawData.forEach(async function (transaction) {
+                    let transactionData = (transaction.raw_data.contract[0]) 
+                                        ? transaction.raw_data.contract[0]
+                                        : [];
+                    
+                    console.log();
+                    if (transactionData){
+                        // console.log("transaction", transaction);
+                        // console.log("transaction[raw_data]", transaction.raw_data);
+                        // console.log("transaction[raw_data>contract]", transaction.raw_data.contract);
+                        
+                        const contractType = transactionData.type;
+                        const rawTransactionData = transactionData.parameter;
+                        const tokenContract = tronWeb.address.fromHex(rawTransactionData?.value?.contract_address);
+                        if(tokenContract == contractAddress){             
+                            //console.log("contractType", contractType);
+                            if(contractType === 'TriggerSmartContract') {
+                                const valueData = rawTransactionData.value.data;
+                                console.log("valueData", valueData);
+                                const method = valueData.slice(0, 10);
+                                console.log("valueData", valueData);
+                                if (method === 'a9059cbb00') {
+                                    let responseData = null;
+                                    const toAddress = '0x' + valueData.slice(32, 72); 
+                                    let amountData = '0x' + valueData.slice(74);
+                                    console.log("amountData", amountData);
+                                    const amount = parseInt(amountData, 16);
+                                    console.log("parseInt", amount);
+                                    const convertData = await convertAddressAmount(req,'token',rawTransactionData.value.owner_address,toAddress,amount, decimal,rawTransactionData.value.contract_address);
+                                    const fromAddress = convertData.from_address;
+                                    const to_address = convertData.to_address;
+                                    const amountVal = convertData.amount;
+                                    console.log("amountVal", amountVal);
+                                    const contract_address = convertData.contract_address;
+                                    console.log("decimal", amountVal, decimal);
+                                    responseData = {
+                                        'tx_type': 'token',
+                                        'from_address': fromAddress,
+                                        'to_address': to_address,
+                                        'amount': Number(amountVal.toFixed(decimal)),
+                                        'block_number': 0,
+                                        'tx_hash' : transaction.txID,
+                                        'contract_address' : contract_address,
+                                        'fee_limit': transaction.fee_limit ? transaction.fee_limit : 0
+                                    }
+
+                                    responseTransactions.push(responseData);
+                                    //console.log("responseData", responseData);
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            if(responseTransactions){
+                console.log("responseTransactions.length > ", responseTransactions);
+                res.json({
+                    status: true,
+                    message: "Tron transaction found successfully",
+                    data: {
+                        result: responseTransactions,
+                        block: blockData
+                    }
+                });
+            }else{
+                res.json({
+                    status: false,
+                    message: "Tron transaction not found",
+                    data: {
+                        result: responseTransactions,
+                        block: blockData
+                    }
+                });
+            }
     }
 
     }catch(err){
@@ -287,6 +375,42 @@ async function tornWebTransactionListByContractAddress(req, res){
             data: {}
         });
     }
+}
+
+async function convertAddressAmount (req,type,fromAddress,toAddress,amountVal, decimal,contractAddress = null) {
+    try {
+        const tronWeb = tronWebCall(req);
+      const from_address = tronWeb.address.fromHex(fromAddress);
+      let to_address = toAddress;
+      if (type == 'token') {
+        to_address = tronWeb.address.fromHex(tronWeb.address.toHex(toAddress))
+      } else {
+        to_address = tronWeb.address.fromHex(toAddress);
+      }
+      console.log("before fromSun", amountVal);
+    //   const amount = parseFloat(tronWeb.fromSun(amountVal));
+      const amount = Number(customFromWei(amountVal, decimal));
+      console.log("after fromSun", amount);
+      let contract_address = '';
+      if (contractAddress) {
+        contract_address = tronWeb.address.fromHex(contractAddress);
+      }
+      return {
+        from_address:from_address,
+        to_address:to_address,
+        contract_address:contract_address,
+        amount:amount,
+      }
+    } catch (err) {
+      console.log('ex err', err);
+      return {
+        from_address:0,
+        to_address:0,
+        contract_address:0,
+        amount:0,
+      }
+    }
+    
 }
 
 async function hitNextLink(contractAddress,tronGrid,tronWeb, nextLink, transactionData,getDecimal,limit, lastTimeStamp) {

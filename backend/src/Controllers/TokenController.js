@@ -886,10 +886,10 @@ async function getLatestEvents(req, res)
                     });
                 }
             } else {
-                console.log('From block number not greater than to block')
+                console.log('From block number should not greater than to block')
                 res.json({
                     status: false,
-                    message: 'From block number not greater than to block',
+                    message: 'From block number should not greater than to block',
                     data: {}
                 });
             }
