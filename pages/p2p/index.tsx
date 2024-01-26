@@ -1,5 +1,7 @@
 import Footer from "components/common/footer";
 import SectionLoading from "components/common/SectionLoading";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
 import { P2pAdvantage } from "components/P2P/P2pHome/P2pAdvantage";
 import { P2pDataTable } from "components/P2P/P2pHome/P2pDataTable";
 import { P2pFaq } from "components/P2P/P2pHome/p2pFAQ";
@@ -91,7 +93,7 @@ const P2P = ({ data }: any) => {
   }, [filters]);
   return (
     <>
-      <div className="mb-5">
+      <div className="pb-5 glass-color-bg-custom">
         <div className="p2p_bg">
           <div className="container-4xl">
             <div className="row">
@@ -114,6 +116,8 @@ const P2P = ({ data }: any) => {
           filters={filters}
           settings={settings}
         />
+        <PlaceTopLeft />
+        <PlaceBottomRight />
         {processing ? (
           <SectionLoading />
         ) : (

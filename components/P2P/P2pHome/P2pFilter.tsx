@@ -58,40 +58,45 @@ export const P2pFilter = ({ filters, setFilters, settings }: any) => {
     setPayment(payment);
   }, [settings]);
   return (
-    <div className="container-4xl mt-4">
-      <div className="row">
-        <div className="col-md-3">
-          <label>{t(`Amount`)}</label>
-          <div className="P2psearchBox position-relative">
-            <input
-              type="text"
-              placeholder="Enter amount EUR"
-              value={filters.amount}
-              onChange={(e) => {
-                setFilters({
-                  ...filters,
-                  amount: e.target.value,
-                });
-              }}
-            />
+    <div className="glass-color-bg-custom py-4">
+      <div className="container-4xl mt-4">
+        <div className="row">
+          <div className="col-md-3">
+            <label>{t(`Amount`)}</label>
+            <div className="P2psearchBox position-relative">
+              <input
+                type="text"
+                placeholder="Enter amount EUR"
+                value={filters.amount}
+                onChange={(e) => {
+                  setFilters({
+                    ...filters,
+                    amount: e.target.value,
+                  });
+                }}
+              />
+            </div>
           </div>
-        </div>
-        <div className="col-md-3">
-          <div className="form-group p2pSelectFilter">
-            <label> {t(`Fiat`)}</label>
-            <CUstomSelect options={currency} handleFunction={handleCurrency} />
+          <div className="col-md-3">
+            <div className="form-group p2pSelectFilter">
+              <label> {t(`Fiat`)}</label>
+              <CUstomSelect
+                options={currency}
+                handleFunction={handleCurrency}
+              />
+            </div>
           </div>
-        </div>
-        <div className="col-md-3">
-          <div className="form-group p2pSelectFilter">
-            <label> {t(`Payment`)}</label>
-            <CUstomSelect options={payment} handleFunction={handlePayment} />
+          <div className="col-md-3">
+            <div className="form-group p2pSelectFilter">
+              <label> {t(`Payment`)}</label>
+              <CUstomSelect options={payment} handleFunction={handlePayment} />
+            </div>
           </div>
-        </div>
-        <div className="col-md-3">
-          <div className="form-group p2pSelectFilter">
-            <label>{t(`Available Region(s)`)}</label>
-            <CUstomSelect options={country} handleFunction={handleCountry} />
+          <div className="col-md-3">
+            <div className="form-group p2pSelectFilter">
+              <label>{t(`Available Region(s)`)}</label>
+              <CUstomSelect options={country} handleFunction={handleCountry} />
+            </div>
           </div>
         </div>
       </div>

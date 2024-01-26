@@ -14384,7 +14384,7 @@ input {
 }
 
 .faqAccordion .card-header button {
-  background: var(--footer-background-color) !important;
+  background: var(--glass-color-bg-1) !important;
   width: 100%;
   border: none;
   padding: 18px 10px;
@@ -16182,5 +16182,5 @@ input:checked + .gift-card-buy-slider:before {
   margin-bottom: 30px;
 }
 .glass-color-bg-custom {
-  background: var(--glass-color-bg-1);
+  background: var(--glass-color-bg-1) !important;
 }
