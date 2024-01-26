@@ -12,6 +12,8 @@ import { RootState } from "state/store";
 import useTranslation from "next-translate/useTranslation";
 import Footer from "components/common/footer";
 import { customPage, landingPage } from "service/landing-page";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
 
 const Settings: NextPage = () => {
   const dispatch = useDispatch();
@@ -41,6 +43,8 @@ const Settings: NextPage = () => {
             </div>
           </div>
           <div className="setting-area">
+            <PlaceTopLeft />
+            <PlaceBottomRight />
             <div className="container">
               <div className="setting-bg boxShadow mb-4">
                 <div className="row">
@@ -70,7 +74,8 @@ const Settings: NextPage = () => {
                                 href=""
                                 data-toggle="modal"
                                 data-target="#exampleModal"
-                                className="btn cp-user-setupbtn">
+                                className="btn cp-user-setupbtn"
+                              >
                                 {t("Set up")}
                               </a>
                             ) : (
@@ -78,7 +83,8 @@ const Settings: NextPage = () => {
                                 href=""
                                 data-toggle="modal"
                                 data-target="#exampleModal"
-                                className="">
+                                className=""
+                              >
                                 {t("Remove Google Authentication")}
                               </a>
                             )}
@@ -149,7 +155,8 @@ const Settings: NextPage = () => {
                                     dispatch(
                                       UpdateCurrencyAction(e.target.value)
                                     );
-                                  }}>
+                                  }}
+                                >
                                   {settings?.fiat_currency?.map(
                                     (currency: any, index: any) => (
                                       <option
@@ -162,7 +169,8 @@ const Settings: NextPage = () => {
                                           settingsReducer.currency ===
                                           currency.lang
                                         }
-                                        value={currency.code}>
+                                        value={currency.code}
+                                      >
                                         {currency.name}
                                       </option>
                                     )

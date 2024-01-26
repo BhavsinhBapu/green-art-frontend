@@ -2523,9 +2523,9 @@ a#submit {
 }
 
 .cp-user-setting-card .cp-user-content .cp-user-setupbtn {
-  background: var(--primary-color);
+  background: var(--gray-dark);
   color: var(--text-primary-color);
-  border-radius: 3px;
+  border-radius: 10px;
   font-weight: 700;
   font-size: 20px;
   height: 60px;
@@ -6248,7 +6248,7 @@ table.dataTable tbody tr.dataTable-white td {
 }
 
 .setting-bg {
-  background-color: var(--card-background-color);
+  background-color: var(--glass-color-bg-1);
   padding: 20px;
 }
 
