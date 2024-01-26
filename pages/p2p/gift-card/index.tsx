@@ -16,6 +16,7 @@ import {
 import useTranslation from "next-translate/useTranslation";
 import PlaceTopLeft from "components/gradient/placeTopLeft";
 import PlaceBottomRight from "components/gradient/placeBottomRight";
+import Footer from "components/common/footer";
 
 const options = [
   { value: 1, label: "Bank Transfer" },
@@ -292,6 +293,7 @@ export default function Index({ data }: any) {
           />
         </div>
       </div>
+      <Footer />
     </section>
   );
 }

@@ -3,8 +3,11 @@ import P2PGiftCardHeader from "components/P2P/p2p-gift-card/p2p-gift-card-header
 import P2PGiftCardNavbar from "components/P2P/p2p-gift-card/p2p-gift-card-navbar/P2PGiftCardNavbar";
 import ImageComponent from "components/common/ImageComponent";
 import SectionLoading from "components/common/SectionLoading";
+import Footer from "components/common/footer";
 import MyCardModal from "components/gift-cards/modal/MyCardModal";
 import P2PGiftCardSingleModal from "components/gift-cards/modal/P2PGiftCardSingleModal";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
 import useTranslation from "next-translate/useTranslation";
@@ -47,7 +50,6 @@ export default function Index() {
     setIsModalOpen(true);
   };
 
-
   return (
     <section>
       {/* second nav */}
@@ -56,7 +58,9 @@ export default function Index() {
       <P2PGiftCardHeader title={"Gift Card Lists"} />
       {/* item part */}
 
-      <div className="container">
+      <div className="container-4xl">
+        <PlaceTopLeft />
+        <PlaceBottomRight />
         {loading ? (
           <SectionLoading />
         ) : (
@@ -65,10 +69,18 @@ export default function Index() {
               <table className="table">
                 <thead>
                   <tr>
-                    <th scope="col">{t(`Image`)}</th>
-                    <th scope="col">{t(`Name`)}</th>
-                    <th scope="col">{t(`Amount`)}</th>
-                    <th scope="col">{t(`Action`)}</th>
+                    <th scope="col" className="px-3 py-2">
+                      {t(`Image`)}
+                    </th>
+                    <th scope="col" className="px-3 py-2">
+                      {t(`Name`)}
+                    </th>
+                    <th scope="col" className="px-3 py-2">
+                      {t(`Amount`)}
+                    </th>
+                    <th scope="col" className="text-right px-3 py-2">
+                      {t(`Action`)}
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -84,14 +96,19 @@ export default function Index() {
                       <td>
                         {parseFloat(item.amount).toFixed(8)} {item.coin_type}
                       </td>
-                      <td>
+                      <td className="text-right">
                         <Link href={`/p2p/gift-card/create-ads/${item.id}`}>
                           <a className="tableButton p2p-gift-card-adds-margin-right">
                             {t(`Create Ads`)}
                           </a>
                         </Link>
 
-                        <span className="tableButton pointer" onClick={() => myCardHandle(item)}>{t(`Details`)}</span>
+                        <span
+                          className="tableButton pointer"
+                          onClick={() => myCardHandle(item)}
+                        >
+                          {t(`Details`)}
+                        </span>
                       </td>
                     </tr>
                   ))}
@@ -126,6 +143,7 @@ export default function Index() {
           setIsModalOpen={setIsModalOpen}
         />
       )}
+      <Footer />
     </section>
   );
 }
