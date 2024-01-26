@@ -4215,8 +4215,8 @@ table.dataTable tbody tr.selected td {
 }
 
 .card {
-  background-color: var(--main-background-color);
-  border-radius: 12px;
+  background-color: var(--glass-color-bg-1);
+  border-radius: 12px !important;
   border: 0;
 }
 
@@ -5201,11 +5201,7 @@ select:-webkit-autofill:focus {
   color: var(--text-primary-color-4) !important;
 }
 
-.card {
-  border-radius: 12px;
-  background: var(--main-background-color);
-  height: 100%;
-}
+
 
 .cp-user-body-bg .card {
   border-radius: 12px;
@@ -5652,7 +5648,7 @@ select:-webkit-autofill:focus {
   color: var(--text-primary-color) !important;
   text-align: center;
   transition: all 0.5s;
-  background: var(--primary-color);
+  background: var(--gray-dark);
   cursor: pointer;
   opacity: 0.7;
 }
@@ -10284,9 +10280,7 @@ table.dataTable thead .sorting_desc_disabled:after {
 
 /* custome code start here  */
 
-.card {
-  background: var(--card-background-color);
-}
+
 
 label {
   color: var(--text-primary-color-4);
@@ -12656,9 +12650,9 @@ input[type="number"] {
 } */
 
 .single-wallet {
-  margin: 0 auto;
-  background: var(--main-background-color);
+  background: var(--glass-color-bg-1);
   padding: 50px 20px 0 20px;
+  margin-top: 60px;
 }
 
 .my-wallet-new {
@@ -12673,9 +12667,8 @@ input[type="number"] {
   font-weight: 600;
   align-items: center;
   justify-content: space-between;
-  background: var(--main-background-color);
   padding: 20px 20px;
-  background: var(--main-background-color) !important;
+  background: var(--glass-color-bg-1) !important;
   padding: 6px 15px;
   border-radius: 5px;
   border: 1px solid var(--border-color);
@@ -12689,7 +12682,7 @@ input[type="number"] {
   font-weight: 600;
   align-items: center;
   justify-content: space-between;
-  background: var(--main-background-color);
+  background: var(--glass-color-bg-1);
   padding: 5px 5px;
   border-radius: 5px;
   border: 1px solid var(--border-color);
@@ -12976,11 +12969,7 @@ input[type="number"] {
 .timeLineLists h5 {
   margin-bottom: 10px;
 }
-.single-wallet {
-  margin: 0 auto;
-  background: var(--main-background-color);
-  padding: 50px 20px 0 20px;
-}
+
 
 .timeLineLists p {
   font-size: 16px;
@@ -14014,7 +14003,7 @@ input {
   width: 100%;
   padding: 8px;
   border-radius: 22px;
-  background-color: var(--main-background-color);
+  background-color: var(--glass-color-bg-1);
 }
 
 .searchBox button {
@@ -14069,6 +14058,11 @@ input {
 
 .blogSlider ul {
   bottom: -50px;
+}
+.blogSlider {
+  background-color: var(--glass-color-bg-1);
+  padding: 10px;
+  border-radius: 10px;
 }
 
 .blogSlider ul li button::before {
@@ -15781,7 +15775,10 @@ input:checked + .gift-card-buy-slider:before {
 }
 
 .overall-margin-top-cls {
-  margin-top: 3rem;
+      margin-top: 3rem;
+    padding: 2rem;
+    background: var(--glass-color-bg-1);
+    border-radius: 20px;
 }
 
 .tarde-coin-pair-header {
@@ -15889,23 +15886,25 @@ input:checked + .gift-card-buy-slider:before {
 }
 .report-overview-tab-scroll {
   overflow-x: auto;
+  padding-bottom: 8px;
 }
 
 /* width */
 .report-overview-tab-scroll::-webkit-scrollbar {
   padding: 2px;
   width: 4px;
-  height: 1px;
+  height: 5px;
+  margin-top: 20px;
 }
 
 /* Track */
 .report-overview-tab-scroll::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--glass-color-bg-1);
 }
 
 /* Handle */
 .report-overview-tab-scroll::-webkit-scrollbar-thumb {
-  background: #888;
+  background: var(--glass-color-bg-1);
 }
 
 .report-overview-body-padding {
