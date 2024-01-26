@@ -49,7 +49,7 @@ export default function MyCards({ myCards, hanldeMyCards }: any) {
       {myCards.length > 0 ? (
         <div className="row mt-3 get-touch-area py-2">
           {myCards.map((item: any, index: number) => (
-            <div className="col-lg-4 col-md-4 col-12 my-3 pointer" key={index}>
+            <div className="card col-lg-4 col-md-4 col-12 my-3 pointer" key={index}>
               <div
                 className="single-card h-full"
                 onClick={() => myCardHandle(item)}
