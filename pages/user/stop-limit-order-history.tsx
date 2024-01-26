@@ -14,6 +14,8 @@ import Footer from "components/common/footer";
 import { customPage, landingPage } from "service/landing-page";
 import CustomDataTable from "components/Datatable";
 import ReportOverviewHeader from "components/reports/ReportOverviewHeader";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
 
 const BuyOrderHistory: NextPage = () => {
   const { t } = useTranslation("common");
@@ -91,7 +93,8 @@ const BuyOrderHistory: NextPage = () => {
       <div>
         {/* <ReportSidebar /> */}
         <ReportOverviewHeader title={"Stop Limit Order History"} />
-
+        <PlaceTopLeft />
+        <PlaceBottomRight />
         <div className="page-main-content container-4xl">
           <div
             className="report-overview-body-padding"

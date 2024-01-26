@@ -17,6 +17,8 @@ import { useSelector } from "react-redux";
 import { RootState } from "state/store";
 import CustomDataTable from "components/Datatable";
 import ReportOverviewHeader from "components/reports/ReportOverviewHeader";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
 
 const BuyOrderHistory: NextPage = () => {
   type searchType = string;
@@ -135,7 +137,8 @@ const BuyOrderHistory: NextPage = () => {
       <div>
         {/* <ReportSidebar /> */}
         <ReportOverviewHeader title={t("Buy Order History")} />
-
+        <PlaceTopLeft />
+        <PlaceBottomRight />
         <div className="page-main-content container-4xl">
           <div
             className="report-overview-body-padding"

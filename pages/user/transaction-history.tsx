@@ -14,6 +14,8 @@ import { formatCurrency } from "common";
 import Footer from "components/common/footer";
 import CustomDataTable from "components/Datatable";
 import ReportOverviewHeader from "components/reports/ReportOverviewHeader";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
 const TransactionHistory: NextPage = () => {
   const { t } = useTranslation("common");
   type searchType = string;
@@ -85,7 +87,8 @@ const TransactionHistory: NextPage = () => {
       <div>
         {/* <ReportSidebar /> */}
         <ReportOverviewHeader title={t("Transaction History")} />
-
+        <PlaceTopLeft />
+        <PlaceBottomRight />
         <div className="page-main-content container-4xl">
           <div
             className="report-overview-body-padding"

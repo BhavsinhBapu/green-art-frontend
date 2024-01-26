@@ -44,16 +44,16 @@ const WalletOverview: NextPage = () => {
   return (
     <>
       <div className="page-wrap">
-        {/* <WalletOverviewSidebar /> */}
-        {/* <PlaceTopLeft /> */}
-          <PlaceBottomRight />
+        <PlaceBottomRight />
         <div className="page-main-content pt-0">
-
           <div>
             <WalletOverviewHeader
               title={`Wallet Overview`}
               imageUrl={walletOverviewData?.banner}
             />
+            {/* <WalletOverviewSidebar /> */}
+            <PlaceTopLeft />
+            <PlaceBottomRight />
             <div className="container-4xl">
               {" "}
               {loading ? (

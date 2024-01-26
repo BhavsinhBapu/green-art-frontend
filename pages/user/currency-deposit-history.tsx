@@ -12,6 +12,8 @@ import {
 import SectionLoading from "components/common/SectionLoading";
 import CustomDataTable from "components/Datatable";
 import ReportOverviewHeader from "components/reports/ReportOverviewHeader";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
 
 const CurrencyDepositHistory = () => {
   type searchType = string;
@@ -128,7 +130,8 @@ const CurrencyDepositHistory = () => {
       <div>
         {/* <ReportSidebar /> */}
         <ReportOverviewHeader title={t("Fiat To Crypto Deposit History")} />
-
+        <PlaceTopLeft />
+        <PlaceBottomRight />
         <div className="page-main-content container-4xl">
           <div
             className="report-overview-body-padding"

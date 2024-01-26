@@ -17,6 +17,8 @@ import {
 import WithdrawlHistoryModal from "components/gift-cards/modal/WithdrawlHistoryModal";
 import CustomDataTable from "components/Datatable";
 import ReportOverviewHeader from "components/reports/ReportOverviewHeader";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
 
 const CurrencyWithdrawHistory = () => {
   type searchType = string;
@@ -143,7 +145,8 @@ const CurrencyWithdrawHistory = () => {
       <div>
         {/* <ReportSidebar /> */}
         <ReportOverviewHeader title={t("Crypto To Fiat Withdraw History")} />
-
+        <PlaceTopLeft />
+        <PlaceBottomRight />
         <div className="page-main-content container-4xl">
           <div
             className="report-overview-body-padding"

@@ -15825,7 +15825,7 @@ input:checked + .gift-card-buy-slider:before {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: var(--background-color);
+  /* background: var(--background-color-trade); */
   width: auto;
   padding: 20px;
   border-radius: 10px;

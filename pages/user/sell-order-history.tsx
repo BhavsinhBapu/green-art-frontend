@@ -15,6 +15,8 @@ import { customPage, landingPage } from "service/landing-page";
 import Footer from "components/common/footer";
 import CustomDataTable from "components/Datatable";
 import ReportOverviewHeader from "components/reports/ReportOverviewHeader";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
 const SellOrderHistory: NextPage = () => {
   type searchType = string;
   const [search, setSearch] = useState<searchType>("");
@@ -134,7 +136,8 @@ const SellOrderHistory: NextPage = () => {
       <div>
         {/* <ReportSidebar /> */}
         <ReportOverviewHeader title={t("Sell Order History")} />
-
+        <PlaceTopLeft />
+        <PlaceBottomRight />
         <div className="page-main-content container-4xl">
           <div
             className="report-overview-body-padding"

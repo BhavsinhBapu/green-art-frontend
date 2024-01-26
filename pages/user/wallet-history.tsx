@@ -20,6 +20,8 @@ import FiatTableForDeposit from "components/user/fiat/FiatTableForDeposit";
 import FiatTableForWithdraw from "components/user/fiat/FiatTableForWithdraw";
 import { AiOutlineSearch } from "react-icons/ai";
 import ReportOverviewHeader from "components/reports/ReportOverviewHeader";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
 const DepositHistory: NextPage = () => {
   const router = useRouter();
   const { type } = router.query;
@@ -169,6 +171,8 @@ const DepositHistory: NextPage = () => {
             type === "deposit" ? t("Deposit History") : t("Withdrawal History")
           } ${search}`}
         />
+        <PlaceTopLeft />
+        <PlaceBottomRight />
         <div className="page-main-content container-4xl">
           <div
             className="report-overview-body-padding"

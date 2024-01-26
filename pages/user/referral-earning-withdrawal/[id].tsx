@@ -18,6 +18,8 @@ import { customPage, landingPage } from "service/landing-page";
 import { useRouter } from "next/router";
 import CustomDataTable from "components/Datatable";
 import ReportOverviewHeader from "components/reports/ReportOverviewHeader";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
 
 const ReferralEarningWithdraw: NextPage = () => {
   type searchType = string;
@@ -95,7 +97,8 @@ const ReferralEarningWithdraw: NextPage = () => {
       <div>
         {/* <ReportSidebar /> */}
         <ReportOverviewHeader title={t("Referral earning withdrawal")} />
-
+        <PlaceTopLeft />
+        <PlaceBottomRight />
         <div className="page-main-content container-4xl">
           <div
             className="report-overview-body-padding"
