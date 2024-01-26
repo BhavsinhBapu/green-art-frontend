@@ -10295,10 +10295,10 @@ label {
 }
 
 .form-control {
-    background: var(--glass-color-bg-1);
-    border: 1px solid var(--border-color);
-    box-shadow: none;
-    color: var(--text-primary-color-4);
+  background: var(--glass-color-bg-1);
+  border: 1px solid var(--border-color);
+  box-shadow: none;
+  color: var(--text-primary-color-4);
 }
 
 .form-control:focus {
@@ -11661,8 +11661,8 @@ input[type="number"] {
 }
 
 .exchange-tab-menu .nav-tabs .nav-item .nav-link.active {
-    background: var(--glass-color-bg-1);
-    /* color: var(--text-primary-color); */
+  background: var(--glass-color-bg-1);
+  /* color: var(--text-primary-color); */
 }
 
 .market-trend-area {
@@ -13271,7 +13271,7 @@ textarea.apply-file-input {
 
 .ico-input-box {
   width: 100%;
-  background: var(--card-background-color);
+  background: var(--glass-color-bg-1);
   border: 1px solid var(--border-color) !important;
   padding: 10px 10px;
   border-radius: 5px;
