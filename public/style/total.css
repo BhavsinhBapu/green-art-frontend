@@ -14568,11 +14568,11 @@ input {
 }
 
 .userProfileBg {
-  background-color: var(--footer-background-color);
+  background-color: var(--glass-color-bg-1);
 }
 
 .paymentMethodBox {
-  background-color: var(--main-background-color);
+  background-color: var(--glass-color-bg-1);
 }
 
 .paymentMethodSubBox {
@@ -14738,7 +14738,7 @@ input {
 }
 .single-feedback {
   padding: 24px 20px;
-  background: var(--footer-background-color);
+  background: var(--glass-color-bg-1);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.02);
   border-radius: 8px;
 }

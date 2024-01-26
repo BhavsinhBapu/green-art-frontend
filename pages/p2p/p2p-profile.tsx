@@ -11,6 +11,8 @@ import { userCenterAction } from "state/actions/p2p";
 import SectionLoading from "components/common/SectionLoading";
 import useTranslation from "next-translate/useTranslation";
 import MarketOverviewHeader from "components/markets/MarketOverviewHeader";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
 
 const P2pProfile = () => {
   const { t } = useTranslation("common");
@@ -27,15 +29,10 @@ const P2pProfile = () => {
         <SectionLoading />
       ) : (
         <div className="mb-5">
-          {/* <div className="section-top-wrap mb-25">
-            <div className="overview-area">
-              <div className="overview-left">
-                <h2 className="section-top-title">{t(`User center`)}</h2>
-              </div>
-            </div>
-          </div> */}
           <P2pTopBar />
           <ProfileHeader details={details} />
+          <PlaceTopLeft />
+          <PlaceBottomRight />
           <TradeDetails details={details} />
           <div className="userProfileBg mt-5 pb-5 pt-3">
             <PaymentTable />
