@@ -5278,7 +5278,7 @@ select:-webkit-autofill:focus {
   /* padding-top: 20px; */
   /* padding: 30px; */
   border-radius: 20px;
-  /* background: var(--glass-color-bg-1); */
+  background: var(--glass-color-bg-1);
 }
 
 .section-top-wrap {

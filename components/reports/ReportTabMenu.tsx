@@ -1,150 +1,101 @@
+import React, { useState, useEffect } from "react";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
-import { CgProfile } from "react-icons/cg";
-import { MdDashboardCustomize, MdPassword } from "react-icons/md";
-import { FaPeopleArrows } from "react-icons/fa";
-import { SiFiat } from "react-icons/si";
-import { MdSell } from "react-icons/md";
-import {
-  MdOutlineSwapHorizontalCircle,
-  MdOutlineTransferWithinAStation,
-} from "react-icons/md";
-import { BiSupport, BiShapeCircle } from "react-icons/bi";
-import { RiLuggageDepositLine } from "react-icons/ri";
-import { TbCashBanknoteOff } from "react-icons/tb";
-import { GiBuyCard } from "react-icons/gi";
 import { useRouter } from "next/router";
-import { RootState } from "state/store";
-import { useSelector } from "react-redux";
-import { BsFillStopCircleFill } from "react-icons/bs";
-import {
-  REFERRAL_TYPE_DEPOSIT,
-  REFERRAL_TYPE_TRADE,
-} from "helpers/core-constants";
+import { dropdownTabs, tabs } from "helpers/core-constants";
 
-const ReportTabMenu = () => {
+interface Tab {
+  type: string;
+  label: string;
+  link: string;
+}
+
+const ReportTabMenu: React.FC = () => {
   const router = useRouter();
   const { t } = useTranslation("common");
-  const { settings } = useSelector((state: RootState) => state.common);
+  const [visibleTabs, setVisibleTabs] = useState<Tab[]>([]);
+  const [visibleDropdownTabs, setVisibleDropdownTabs] = useState<Tab[]>([]);
+
+  const updateTabsVisibility = () => {
+    const screenWidth = window.innerWidth;
+
+    if (screenWidth >= 1400) {
+      setVisibleTabs(tabs.slice(0, 6));
+      setVisibleDropdownTabs(dropdownTabs.slice(6, 11));
+    } else if (screenWidth >= 1200) {
+      setVisibleTabs(tabs.slice(0, 5));
+      setVisibleDropdownTabs(dropdownTabs.slice(5, 11));
+    } else if (screenWidth >= 992) {
+      setVisibleTabs(tabs.slice(0, 4));
+      setVisibleDropdownTabs(dropdownTabs.slice(4, 11));
+    } else if (screenWidth >= 768) {
+      setVisibleTabs(tabs.slice(0, 3));
+      setVisibleDropdownTabs(dropdownTabs.slice(3, 11));
+    } else if (screenWidth >= 576) {
+      setVisibleTabs(tabs.slice(0, 2));
+      setVisibleDropdownTabs(dropdownTabs.slice(2, 11));
+    } else {
+      setVisibleTabs([]);
+      setVisibleDropdownTabs(dropdownTabs);
+    }
+  };
+
+  useEffect(() => {
+    // Initial update
+    updateTabsVisibility();
+
+    // Update on window resize
+    const handleResize = () => {
+      updateTabsVisibility();
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
-    <div className="container-4xl report-overview-tab-scroll">
+    <div className="container-4xl ">
       <ul className="report-overview-tab-menu">
-        <Link href="/user/wallet-history?type=deposit">
-          <li className={router.query.type == "deposit" ? "active" : ""}>
-            <a href="coinSwapHistory">{t("Deposit History")}</a>
-          </li>
-        </Link>
-        <Link href="/user/wallet-history?type=withdrawal">
-          <li className={router.query.type == "withdrawal" ? "active" : ""}>
-            <a href="coinSwapHistory">{t("Withdrawal History")}</a>
-          </li>
-        </Link>
-        <Link href="/user/stop-limit-order-history">
-          <li
-            className={
-              router.pathname == "/user/stop-limit-order-history"
-                ? "active"
-                : ""
-            }
-          >
-            <a href="coinSwapHistory">{t("Stop Limit History")}</a>
-          </li>
-        </Link>
-        <Link href="/user/swap-history">
-          <li
-            className={router.pathname == "/user/swap-history" ? "active" : ""}
-          >
-            <a href="coinSwapHistory">{t("Swap History")}</a>
-          </li>
-        </Link>
-        <Link href="/user/buy-order-history">
-          <li
-            className={
-              router.pathname == "/user/buy-order-history" ? "active" : ""
-            }
-          >
-            <a href="getAllOrdersHistoryBuy">{t("Buy Order History")}</a>
-          </li>
-        </Link>
-        <Link href="/user/sell-order-history">
-          <li
-            className={
-              router.pathname == "/user/sell-order-history" ? "active" : ""
-            }
-          >
-            <a href="getAllOrdersHistorySell">{t("Sell Order History")}</a>
-          </li>
-        </Link>
-        <Link href="/user/transaction-history">
-          <li
-            className={
-              router.pathname == "/user/transaction-history" ? "active" : ""
-            }
-          >
-            <a href="getAllTransactionHistory">{t("Transaction History")}</a>
-          </li>
-        </Link>
-        {parseInt(settings.currency_deposit_status) === 1 && (
-          <Link href="/user/currency-deposit-history">
-            <li
-              className={
-                router.pathname == "/user/currency-deposit-history"
-                  ? "active"
-                  : ""
-              }
-            >
-              <a href="getAllTransactionHistory">
-                {t("Fiat To Crypto deposit History")}
-              </a>
+        {visibleTabs.map((tab) => (
+          <Link key={tab.type} href={tab.link}>
+            <li className={router.query.type === tab.type ? "active" : ""}>
+              <a href={tab.link}>{t(tab.label)}</a>
             </li>
           </Link>
-        )}
-        {parseInt(settings.currency_deposit_status) === 1 && (
-          <Link href="/user/currency-withdraw-history">
-            <li
-              className={
-                router.pathname == "/user/currency-withdraw-history"
-                  ? "active"
-                  : ""
-              }
+        ))}
+        {visibleDropdownTabs.length > 0 && (
+          <li className="nav-item dropdown">
+            <a
+              className="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
             >
-              <a href="getAllTransactionHistory">
-                {t("Crypto To Fiat withdrawal History")}
-              </a>
-            </li>
-          </Link>
+              {t("More")}
+            </a>
+            <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+              {visibleDropdownTabs.map((tab) => (
+                <li key={tab.type}>
+                  <Link href={tab.link}>
+                    <a
+                      className={`dropdown-item ${
+                        router.query.type === tab.type ? "active" : ""
+                      }`}
+                    >
+                      {t(tab.label)}
+                    </a>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </li>
         )}
-        <Link
-          href={"/user/referral-earning-withdrawal/" + REFERRAL_TYPE_DEPOSIT}
-        >
-          <li
-            className={
-              router.asPath ==
-              `/user/referral-earning-withdrawal/${REFERRAL_TYPE_DEPOSIT}`
-                ? "active"
-                : ""
-            }
-          >
-            <a href="getAllTransactionHistory">
-              {t("Referral earning from withdrawal")}
-            </a>
-          </li>
-        </Link>
-        <Link href={"/user/referral-earning-trade/" + REFERRAL_TYPE_TRADE}>
-          <li
-            className={
-              router.asPath ==
-              "/user/referral-earning-trade/" + REFERRAL_TYPE_TRADE
-                ? "active"
-                : ""
-            }
-          >
-            <a href="getAllTransactionHistory">
-              {t("Referral earning from trade")}
-            </a>
-          </li>
-        </Link>
       </ul>
     </div>
   );
