@@ -10,6 +10,8 @@ import useTranslation from "next-translate/useTranslation";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
 import { CAPTCHA_TYPE_GEETESTCAPTCHA, CAPTCHA_TYPE_RECAPTCHA } from "helpers/core-constants";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
 const ResetPassword: NextPage = () => {
   const { t } = useTranslation("common");
   const { geeTest, captchaData } = useCapchaInitialize();

@@ -1146,6 +1146,7 @@ client-area
   position: absolute;
   bottom: 150;
   right: 0;
+  z-index: -1;
 }
 
 .placeBottomRight img {

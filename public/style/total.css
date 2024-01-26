@@ -2350,7 +2350,7 @@ a#submit {
 }
 
 .id-card-type .id-card {
-  background: var(--card-background-color);
+  background: var(--glass-color-bg-1);
   border-radius: 12px;
   height: 250px;
   width: 100%;
@@ -5878,7 +5878,7 @@ select:-webkit-autofill:focus {
 
 .user-profile .user-profile-left {
   padding: 45px 25px;
-  background: var(--card-background-color);
+  background: var(--glass-color-bg-1);
   border-radius: 7px;
   text-align: center;
 }
@@ -5991,7 +5991,7 @@ select:-webkit-autofill:focus {
   font-size: 18px;
   font-weight: 400;
   color: var(--text-primary-color-2);
-  background: var(--main-background-color);
+  background: var(--glass-color-bg-1);
 }
 
 .user-profile-form .form-group label {
@@ -7608,7 +7608,7 @@ p {
 .btn:not(.note-btn):active {
   box-shadow: none !important;
   outline: none !important;
-  background-color: var(--primary-color);
+  background-color: var(--gray-dark);
   color: white;
 }
 
@@ -13576,7 +13576,7 @@ label.upload-file-btn.press-enter {
 .sub_title {
   border-radius: 10px 10px 0px 0px;
   padding: 10px;
-  background: var(--card-background-color);
+  background: var(--glass-color-bg-1);
 }
 
 .sub_title div h5 {
@@ -13839,7 +13839,7 @@ label.upload-file-btn.press-enter {
 
 .ticket-card-unseen .card {
   border: 1px solid var(--border-color);
-  background-color: var(--footer-background-color);
+  background-color: var(--glass-color-bg-1);
 }
 
 .search-field {

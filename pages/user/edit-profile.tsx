@@ -15,6 +15,8 @@ import { customPage, landingPage } from "service/landing-page";
 import Footer from "components/common/footer";
 import { toast } from "react-toastify";
 import ProfileHeader from "components/profile/ProfileHeader";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
 const Edit: NextPage = () => {
   const { user } = useSelector((state: RootState) => state.user);
   const { t } = useTranslation("common");
@@ -42,6 +44,8 @@ const Edit: NextPage = () => {
         {/* <ProfileSidebar /> */}
         <div className="page-main-content bg-primary-custom-color">
           <ProfileHeader title={t("Edit Profile")} />
+          <PlaceTopLeft />
+          <PlaceBottomRight />
           <div className="container-4xl">
             {/* <div className="section-top-wrap mb-25 inner-section-margin-top">
               <div className="profle-are-top">

@@ -11,6 +11,8 @@ import useTranslation from "next-translate/useTranslation";
 import Footer from "components/common/footer";
 import { customPage, landingPage } from "service/landing-page";
 import ProfileHeader from "components/profile/ProfileHeader";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
 const PhoneVerification: NextPage = () => {
   const { t } = useTranslation("common");
   const dispatch = useDispatch();
@@ -20,14 +22,9 @@ const PhoneVerification: NextPage = () => {
         {/* <ProfileSidebar /> */}
         <div className="page-main-content bg-primary-custom-color">
           <ProfileHeader title={t("Reset Password")} />
+          <PlaceTopLeft />
+          <PlaceBottomRight />
           <div className="container-4xl">
-            {/* <div className="section-top-wrap mb-25 inner-section-margin-top">
-              <div className="profle-are-top">
-                <h2 className="section-top-title mb-0">
-                  {t("Reset Password")}
-                </h2>
-              </div>
-            </div> */}
             <div className="body-margin-top-custom shadow-sm p-5 wallet-card-info-container">
               <Formik
                 initialValues={{

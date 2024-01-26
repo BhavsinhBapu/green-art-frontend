@@ -1,5 +1,7 @@
 import SupportHeader from "components/Support/SupportHeader";
 import Footer from "components/common/footer";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
 import SupportSidebar from "layout/supportSidebar";
 import {
   SSRAuthCheck,
@@ -82,6 +84,8 @@ const TicketCreate = () => {
         {/* <SupportSidebar /> */}
         <div className="page-main-content">
           <SupportHeader title={t(`Create New Ticket`)} />
+          <PlaceTopLeft />
+          <PlaceBottomRight />
           <div className="container-4xl">
             <section className=" body-margin-top-custom">
               <div className="row shadow-sm p-5 wallet-card-info-container">

@@ -16,6 +16,8 @@ import { customPage, landingPage } from "service/landing-page";
 import Footer from "components/common/footer";
 import ImageComponent from "components/common/ImageComponent";
 import ProfileHeader from "components/profile/ProfileHeader";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
 
 const PhoneVerification: NextPage = () => {
   const { t } = useTranslation("common");
@@ -38,14 +40,9 @@ const PhoneVerification: NextPage = () => {
         {/* <ProfileSidebar /> */}
         <div className="page-main-content bg-primary-custom-color">
           <ProfileHeader title={t("Phone Verification")} />
+          <PlaceTopLeft />
+          <PlaceBottomRight />  
           <div className="container-4xl">
-            {/* <div className="section-top-wrap mb-25 inner-section-margin-top">
-              <div className="profle-are-top">
-                <h2 className="section-top-title mb-0">
-                  {t("Phone Verification")}
-                </h2>
-              </div>
-            </div> */}
             <div className="reset-password-area body-margin-top-custom shadow-sm p-5 wallet-card-info-container">
               <div className="section-wrapper">
                 <div className="row">

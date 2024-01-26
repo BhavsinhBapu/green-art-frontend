@@ -11,6 +11,8 @@ import { customPage, landingPage } from "service/landing-page";
 import moment from "moment";
 import ImageComponent from "components/common/ImageComponent";
 import ProfileHeader from "components/profile/ProfileHeader";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
 const Profile: NextPage = ({ user, profileActivity }: any) => {
   const { t } = useTranslation("common");
 
@@ -20,6 +22,8 @@ const Profile: NextPage = ({ user, profileActivity }: any) => {
         {/* <ProfileSidebar /> */}
         <div className="page-main-content bg-primary-custom-color">
           <ProfileHeader title={t("Profile")} />
+          <PlaceTopLeft />
+          <PlaceBottomRight />
           <div className="container-4xl">
             {/* <div className="section-top-wrap mb-25 inner-section-margin-top">
               <div className="profle-are-top">

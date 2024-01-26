@@ -6,6 +6,8 @@ import { TicketBox } from "components/Support/ticket-box";
 import { TicketFilter } from "components/Support/ticket-filter";
 import SectionLoading from "components/common/SectionLoading";
 import Footer from "components/common/footer";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
 import SupportSidebar from "layout/supportSidebar";
 import {
   SSRAuthCheck,
@@ -105,6 +107,8 @@ const Support = () => {
             title={t("Support Dashboard")}
             getDashbaordData={getDashbaordData}
           />
+          <PlaceTopLeft />
+          <PlaceBottomRight />
           <div className="container-4xl">
             <section className="body-margin-top-custom ">
               <div className="row">
