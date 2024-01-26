@@ -16191,3 +16191,9 @@ input:checked + .gift-card-buy-slider:before {
 .glass-color-bg-custom {
   background: var(--glass-color-bg-1) !important;
 }
+.report-navbar-dropdown-menu-custom {
+  background: rgb(193 193 193/70%);
+}
+.report-navbar-dropdown-menu-custom .dropdown-item:hover {
+  background: transparent;
+}

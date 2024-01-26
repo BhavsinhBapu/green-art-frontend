@@ -58,7 +58,7 @@ const ReportTabMenu: React.FC = () => {
 
   return (
     <div className="container-4xl ">
-      <ul className="report-overview-tab-menu">
+      <ul className="report-overview-tab-menu" style={{ overflow: "visible" }}>
         {visibleTabs.map((tab) => (
           <Link key={tab.type} href={tab.link}>
             <li className={router.query.type === tab.type ? "active" : ""}>
@@ -69,7 +69,7 @@ const ReportTabMenu: React.FC = () => {
         {visibleDropdownTabs.length > 0 && (
           <li className="nav-item dropdown">
             <a
-              className="nav-link dropdown-toggle"
+              className="dropdown-toggle"
               href="#"
               id="navbarDropdown"
               role="button"
@@ -79,7 +79,10 @@ const ReportTabMenu: React.FC = () => {
             >
               {t("More")}
             </a>
-            <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+            <ul
+              className="dropdown-menu report-navbar-dropdown-menu-custom"
+              aria-labelledby="navbarDropdown"
+            >
               {visibleDropdownTabs.map((tab) => (
                 <li key={tab.type}>
                   <Link href={tab.link}>
