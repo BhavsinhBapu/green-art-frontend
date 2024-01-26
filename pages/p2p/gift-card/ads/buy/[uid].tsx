@@ -45,6 +45,8 @@ import P2PGiftCardNavbar from "components/P2P/p2p-gift-card/p2p-gift-card-navbar
 import P2PGiftCardHeader from "components/P2P/p2p-gift-card/p2p-gift-card-header/P2PGiftCardHeader";
 import TradeDisputeGift from "components/P2P/P2pHome/TradeDisputeGift";
 import { toast } from "react-toastify";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
 
 let socketCall = 0;
 
@@ -151,7 +153,9 @@ const Trading = () => {
     <>
       <P2PGiftCardNavbar />
       <P2PGiftCardHeader title={`Gift Card Trade`} />
-      <div className="my-trade-container mt-0">
+      <div className="my-trade-container mt-0 container-4xl">
+        <PlaceTopLeft />
+        <PlaceBottomRight />
         <div className="boxShadow p-4 mb-3">
           <BackButton />
           <div className="py-4">
@@ -208,7 +212,9 @@ const Trading = () => {
           </div>
           {parseInt(details?.order?.is_reported) !== 0 && (
             <div className="boxShadow p-5 text-center mt-3">
-              <h4 className="mb-3">{t(`Seller created dispute against order`)}</h4>
+              <h4 className="mb-3">
+                {t(`Seller created dispute against order`)}
+              </h4>
             </div>
           )}
           {parseInt(details?.order?.status) === TRADE_STATUS_CANCELED && (
@@ -260,7 +266,10 @@ const Trading = () => {
                         {details?.payment_methods?.admin_pamynt_method
                           ?.name && (
                           <div className="mb-3 mt-3">
-                            <span className="mr-1">{t(`Payment Method Name`)}</span>:{" "}
+                            <span className="mr-1">
+                              {t(`Payment Method Name`)}
+                            </span>
+                            :{" "}
                             <span className="badge badge-warning ">
                               {
                                 details?.payment_methods?.admin_pamynt_method
@@ -279,7 +288,9 @@ const Trading = () => {
                         )}
                         {details?.payment_methods?.bank_account_number && (
                           <div className="mb-3">
-                            <span className="mr-1">{t(`Bank Account Number`)}</span>
+                            <span className="mr-1">
+                              {t(`Bank Account Number`)}
+                            </span>
                             <span className="badge badge-warning ">
                               {details?.payment_methods?.bank_account_number}
                             </span>
@@ -372,7 +383,9 @@ const Trading = () => {
                   {details.user_type === BUY && (
                     <>
                       <div className="boxShadow p-5 text-center mt-3">
-                        <h4 className="mb-3">{t(`Waiting for releasing order`)}</h4>
+                        <h4 className="mb-3">
+                          {t(`Waiting for releasing order`)}
+                        </h4>
                       </div>
                       {parseInt(details?.order?.is_reported) === 0 && (
                         <a
