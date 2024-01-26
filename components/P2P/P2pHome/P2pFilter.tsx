@@ -58,7 +58,7 @@ export const P2pFilter = ({ filters, setFilters, settings }: any) => {
     setPayment(payment);
   }, [settings]);
   return (
-    <div className="container mt-4">
+    <div className="container-4xl mt-4">
       <div className="row">
         <div className="col-md-3">
           <label>{t(`Amount`)}</label>

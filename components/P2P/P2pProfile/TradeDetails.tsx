@@ -4,7 +4,7 @@ export const TradeDetails = ({ details }: any) => {
   const { t } = useTranslation("common");
 
   return (
-    <div className="container">
+    <div className="container-4xl">
       <div className="row">
         <div className="col-lg-3 col-md-4 col-6 mt-4">
           <p>{t("30d Trades")}</p>

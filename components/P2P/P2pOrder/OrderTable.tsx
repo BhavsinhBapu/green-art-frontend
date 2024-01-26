@@ -53,7 +53,7 @@ export const OrderTable = ({ actionFunction, filter = false }: any) => {
   }, [fromDate, toDate, selectedStatus, selectedCoin]);
   if (history?.length <= 0 || !history)
     return (
-      <div className="container">
+      <div className="container-4xl">
         {filter && (
           <OrderFilter
             setSelectedStatus={setSelectedStatus}
@@ -67,7 +67,7 @@ export const OrderTable = ({ actionFunction, filter = false }: any) => {
       </div>
     );
   return (
-    <div className="container">
+    <div className="container-4xl">
       {filter && (
         <OrderFilter
           setSelectedStatus={setSelectedStatus}

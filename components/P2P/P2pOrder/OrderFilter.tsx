@@ -49,7 +49,7 @@ export const OrderFilter = ({
     setCoins(myCoins);
   }, [filterData?.coins]);
   return (
-    <div className="container">
+    <div className="container-4xl">
       <div className="row align-items-center">
         <div className="col-lg-2 col-md-3 col-6 mt-4">
           <label>{t(`Coins:`)}</label>

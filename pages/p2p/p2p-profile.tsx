@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { userCenterAction } from "state/actions/p2p";
 import SectionLoading from "components/common/SectionLoading";
 import useTranslation from "next-translate/useTranslation";
+import MarketOverviewHeader from "components/markets/MarketOverviewHeader";
 
 const P2pProfile = () => {
   const { t } = useTranslation("common");
@@ -21,17 +22,18 @@ const P2pProfile = () => {
   }, []);
   return (
     <>
+      <MarketOverviewHeader title={t(`User center`)} />
       {loading ? (
         <SectionLoading />
       ) : (
         <div className="mb-5">
-          <div className="section-top-wrap mb-25">
+          {/* <div className="section-top-wrap mb-25">
             <div className="overview-area">
               <div className="overview-left">
                 <h2 className="section-top-title">{t(`User center`)}</h2>
               </div>
             </div>
-          </div>
+          </div> */}
           <P2pTopBar />
           <ProfileHeader details={details} />
           <TradeDetails details={details} />

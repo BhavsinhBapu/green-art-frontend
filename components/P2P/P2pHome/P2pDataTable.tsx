@@ -69,8 +69,8 @@ export const P2pDataTable = ({
     toast.success(response.message);
   };
   return (
-    <div className="container mt-4">
-      <div className="row">
+    <div className="container-4xl mt-4">
+      <div className="row mx-0">
         <div className="table-responsive">
           {historyData?.length <= 0 || !historyData ? (
             <NoItemFound />

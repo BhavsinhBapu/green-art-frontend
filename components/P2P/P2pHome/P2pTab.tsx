@@ -8,7 +8,7 @@ export const P2pTab = ({ filters, setFilters, settings }: any) => {
 
   return (
     <div className="p2pTabList_bg shadow-sm">
-      <div className="container">
+      <div className="container-4xl">
         <div className="row">
           <div className="col-12 ">
             <div className="p2pTabList d-flex" style={{ flexFlow: "row"}}>
