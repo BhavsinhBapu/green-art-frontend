@@ -16001,6 +16001,13 @@ input:checked + .gift-card-buy-slider:before {
   }
 }
 @media (max-width: 770px) {
+  .cover-img {
+    height: 100%;
+    width: 100%;
+  }
+  .trade-anywhere-right .subtitle {
+    font-size: 24px;
+  }
   .tarde-coin-pair-header {
     flex-direction: column;
     gap: 0;
