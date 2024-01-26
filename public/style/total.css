@@ -10800,7 +10800,7 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
   background: var(--background-color);
 }
 .sectiob-bg {
-  background: var(--glass-color-bg-1);
+  background: transparent;
 }
 
 .trade-anywhere-right p {

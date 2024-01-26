@@ -974,7 +974,6 @@ client-area
 
 .hero-banner-area {
   padding: 150px 0 80px 0;
- 
 }
 
 .hero-banner-area .banner-title {
@@ -1797,8 +1796,10 @@ client-area
 .card:before {
   content: "";
   display: block;
-  /* padding-bottom: 150%; */
   width: 100%;
+}
+.glass-card::before {
+  padding-bottom: 150%;
 }
 
 .card__background {
