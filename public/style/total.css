@@ -10800,7 +10800,7 @@ button.btn.nimmu-user-sibmit-button .spinner-border {
   background: var(--background-color);
 }
 .sectiob-bg {
-  background: var(--main-background-color);
+  background: var(--glass-color-bg-1);
 }
 
 .trade-anywhere-right p {
@@ -11666,7 +11666,7 @@ input[type="number"] {
 }
 
 .market-trend-area {
-  background: var(--card-background-color);
+  background: transparent;
 }
 
 .market-trend-area .table tr th {
@@ -11696,7 +11696,7 @@ input[type="number"] {
 }
 
 .sectiob-bg {
-  background: var(--main-background-color);
+  background: var(--glass-color-bg-1);
 }
 
 .trade-anywhere-right .subtitle {

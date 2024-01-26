@@ -974,7 +974,7 @@ client-area
 
 .hero-banner-area {
   padding: 150px 0 80px 0;
-  background-color: var(--main-background-color);
+ 
 }
 
 .hero-banner-area .banner-title {
@@ -1083,13 +1083,12 @@ client-area
 
 .about-area {
   padding: 40px 0;
-  background: var(--card-background-color);
 }
 .single-banner {
   padding: 20px;
   display: flex;
   justify-content: center;
-  background-color: var(--background-color) !important;
+  background-color: var(--glass-color-bg-1) !important;
   border-radius: 1rem;
   -webkit-backdrop-filter: blur(0.75rem);
   backdrop-filter: blur(0.75rem);
@@ -1724,12 +1723,12 @@ client-area
   }
 }
 .trade-anywhere-container {
-  background: var(--background-color) !important;
+  background: var(--glass-color-bg-1) !important;
   padding: 54px 28px;
   border-radius: 77px;
 }
 .market-trend-area-container {
-  background: var(--background-color) !important;
+  background: var(--glass-color-bg-1) !important;
   padding: 54px 148px;
   border-radius: 27px;
 }

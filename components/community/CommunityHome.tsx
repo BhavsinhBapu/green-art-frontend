@@ -11,6 +11,7 @@ import { formateDateMunite } from "common";
 import { NoItemFound } from "components/NoItemFound/NoItemFound";
 import SectionLoading from "components/common/SectionLoading";
 import PlaceTopLeft from "components/gradient/placeTopLeft";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
 
 const CommunityHome = () => {
   const { settings } = useSelector((state: RootState) => state.common);
@@ -50,8 +51,9 @@ const CommunityHome = () => {
 
   return (
     <section className="pt-60 pb-60 community-home">
-      <PlaceTopLeft />
       <div className="container-4xl market-trend-area-container px-5">
+        <PlaceTopLeft />
+        <PlaceBottomRight />
         <div className="community-home-header">
           <div className="community-home-title-section">
             <h3 className="community-home-title">
