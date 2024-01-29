@@ -51,7 +51,7 @@ export default function Index() {
 
           <section className="py-5">
             <div className="container-4xl ">
-              <div className="shadow-sm wallet-card-info-container p-5">
+              <div className="shadow-sm wallet-card-info-container section-padding-custom">
                 <div className="section-title text-center">
                   <h2 className="title">{t("Start trading now")}</h2>
                 </div>

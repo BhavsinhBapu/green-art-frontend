@@ -15921,6 +15921,9 @@ input:checked + .gift-card-buy-slider:before {
   background: var(--glass-color-bg-1);
   border-radius: 10px;
 }
+.section-padding-custom {
+  padding: 3rem;
+}
 @media (max-width: 1520px) {
   .trade-dashboard-side-margin {
     margin-left: 0 !important;
@@ -16007,6 +16010,12 @@ input:checked + .gift-card-buy-slider:before {
   }
 }
 @media (max-width: 770px) {
+  .wallet-overview-header-title {
+    font-size: 34px;
+  }
+  .section-padding-custom {
+    padding: 1rem;
+  }
   .cover-img {
     height: 100%;
     width: 100%;
