@@ -43,7 +43,7 @@ const PhoneVerification: NextPage = () => {
           <PlaceTopLeft />
           <PlaceBottomRight />  
           <div className="container-4xl">
-            <div className="reset-password-area body-margin-top-custom shadow-sm p-5 wallet-card-info-container">
+            <div className="reset-password-area body-margin-top-custom shadow-sm section-padding-custom wallet-card-info-container">
               <div className="section-wrapper">
                 <div className="row">
                   <div className="col-lg-6 col-md-8 d-flex align-items-center">

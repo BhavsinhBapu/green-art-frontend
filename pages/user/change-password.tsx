@@ -25,7 +25,7 @@ const PhoneVerification: NextPage = () => {
           <PlaceTopLeft />
           <PlaceBottomRight />
           <div className="container-4xl">
-            <div className="body-margin-top-custom shadow-sm p-5 wallet-card-info-container">
+            <div className="body-margin-top-custom shadow-sm  section-padding-custom wallet-card-info-container">
               <Formik
                 initialValues={{
                   old_password: "",

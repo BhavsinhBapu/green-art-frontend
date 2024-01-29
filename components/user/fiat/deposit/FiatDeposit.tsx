@@ -118,7 +118,7 @@ const FiatDeposit = ({ currency_type, wallet_id }: any) => {
                         ) : (
                           <div className={`col-lg-12 col-sm-12`}>
                             {!loading && !selectedMethods.method ? (
-                              <div className="cp-user-title text-center  p-5">
+                              <div className="cp-user-title text-center  section-padding-custom">
                                 <h4>{t("No Avaiable payment method")}</h4>
                               </div>
                             ) : (

@@ -113,7 +113,7 @@ const Support = () => {
             <section className="body-margin-top-custom ">
               <div className="row">
                 <div className="col-md-12 col-lg-12">
-                  <div className="row  mb-5 shadow-sm p-5 wallet-card-info-container">
+                  <div className="row  mb-5 shadow-sm section-padding-custom wallet-card-info-container">
                     <SupportCard
                       name="Total Ticket"
                       icon_name="fas fa-ticket-alt"
@@ -144,7 +144,7 @@ const Support = () => {
                       }
                     />
                   </div>
-                  <div className="row shadow-sm p-5 wallet-card-info-container">
+                  <div className="row shadow-sm section-padding-custom wallet-card-info-container">
                     <div className="col-12">
                       <div className="row">
                         <div className="col-md-12 d-block d-md-flex align-items-center searchTicket">
@@ -184,7 +184,7 @@ const Support = () => {
                     <SectionLoading />
                   ) : (
                     <>
-                      <div className="row mt-5 shadow-sm p-5 wallet-card-info-container">
+                      <div className="row mt-5 shadow-sm  section-padding-custom wallet-card-info-container">
                         {ticket_list?.data?.map((ticket: any, index: any) => (
                           <TicketBox key={index} ticket={ticket} />
                         ))}

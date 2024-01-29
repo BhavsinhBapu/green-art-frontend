@@ -211,28 +211,28 @@ const Trading = () => {
             </div>
           </div>
           {parseInt(details?.order?.is_reported) !== 0 && (
-            <div className="boxShadow p-5 text-center mt-3">
+            <div className="boxShadow section-padding-custom text-center mt-3">
               <h4 className="mb-3">
                 {t(`Seller created dispute against order`)}
               </h4>
             </div>
           )}
           {parseInt(details?.order?.status) === TRADE_STATUS_CANCELED && (
-            <div className="boxShadow p-5 text-center mt-3">
+            <div className="boxShadow section-padding-custom text-center mt-3">
               <h4 className="mb-3">{t(`Trade canceled`)}</h4>
             </div>
           )}
           {parseInt(details?.order?.status) ===
             TRADE_STATUS_CANCELED_TIME_EXPIRED &&
             parseInt(details?.order?.is_reported) === 0 && (
-              <div className="boxShadow p-5 text-center mt-3">
+              <div className="boxShadow section-padding-custom text-center mt-3">
                 <h4 className="mb-3">{t(`Trade time expired`)}</h4>
               </div>
             )}
           {parseInt(details?.order?.status) ===
             TRADE_STATUS_REFUNDED_BY_ADMIN &&
             parseInt(details?.order?.is_reported) === 0 && (
-              <div className="boxShadow p-5 text-center mt-3">
+              <div className="boxShadow section-padding-custom text-center mt-3">
                 <h4 className="mb-3">
                   {t(`Trade payment hasbeen refunded by admin`)}
                 </h4>
@@ -241,7 +241,7 @@ const Trading = () => {
           {parseInt(details?.order?.status) ===
             TRADE_STATUS_RELEASED_BY_ADMIN &&
             parseInt(details?.order?.is_reported) === 0 && (
-              <div className="boxShadow p-5 text-center mt-3">
+              <div className="boxShadow section-padding-custom text-center mt-3">
                 <h4 className="mb-3">{t(`Trade hasbeen released by admin`)}</h4>
               </div>
             )}
@@ -372,7 +372,7 @@ const Trading = () => {
                     </>
                   )}
                   {details.user_type === SELL && (
-                    <div className="boxShadow p-5 text-center mt-3">
+                    <div className="boxShadow section-padding-custom text-center mt-3">
                       <h4 className="mb-3">{t(`Waiting for payment`)}</h4>
                     </div>
                   )}
@@ -382,7 +382,7 @@ const Trading = () => {
                 <>
                   {details.user_type === BUY && (
                     <>
-                      <div className="boxShadow p-5 text-center mt-3">
+                      <div className="boxShadow section-padding-custom text-center mt-3">
                         <h4 className="mb-3">
                           {t(`Waiting for releasing order`)}
                         </h4>
@@ -447,7 +447,7 @@ const Trading = () => {
                 <>
                   {details.user_type === BUY && (
                     <>
-                      <div className="boxShadow p-5 text-center mt-3">
+                      <div className="boxShadow section-padding-custom text-center mt-3">
                         <h4 className="mb-3">{t(`Trade completed`)}</h4>
                       </div>
                       {details?.order?.feedback && (
@@ -529,7 +529,7 @@ const Trading = () => {
                   )}
                   {details.user_type === SELL && (
                     <>
-                      <div className="boxShadow p-5 text-center mt-3">
+                      <div className="boxShadow section-padding-custom text-center mt-3">
                         <h4 className="mb-3">{t(`Trade completed`)}</h4>
                       </div>
 

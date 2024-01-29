@@ -44,7 +44,7 @@ const Security: NextPage = () => {
           <PlaceTopLeft />
           <PlaceBottomRight />
           <div className="container-4xl">
-            <div className="two-factor-area mb-25 body-margin-top-custom shadow-sm p-5 wallet-card-info-container">
+            <div className="two-factor-area mb-25 body-margin-top-custom shadow-sm  section-padding-custom wallet-card-info-container">
               <h4 className="section-title-medium" />
               <div className="section-wrapper">
                 <div className="security-list">
@@ -147,7 +147,7 @@ const Security: NextPage = () => {
                 </div>
               </div>
             </div>
-            <div className="advanced-security-area shadow-sm p-5 wallet-card-info-container mb-5">
+            <div className="advanced-security-area shadow-sm section-padding-custom wallet-card-info-container mb-5">
               {/* <h4 className="section-title-medium">{t("Advanced Security")}</h4> */}
               <div className="section-wrapper">
                 <div className="security-list">

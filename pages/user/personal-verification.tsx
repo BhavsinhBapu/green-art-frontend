@@ -88,7 +88,7 @@ const PersonalVerification: NextPage = () => {
               />
             )}
 
-            <div className="profile-area body-margin-top-custom shadow-sm p-5 wallet-card-info-container">
+            <div className="profile-area body-margin-top-custom shadow-sm section-padding-custom wallet-card-info-container">
               <div className="section-wrapper border-0">
                 {loading ? (
                   <>

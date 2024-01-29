@@ -75,7 +75,7 @@ const List = () => {
           <PlaceTopLeft />
           <PlaceBottomRight />
           <div className="container-4xl">
-            <div className="asset-balances-area body-margin-top-custom shadow-sm p-5 wallet-card-info-container">
+            <div className="asset-balances-area body-margin-top-custom shadow-sm section-padding-custom wallet-card-info-container">
               {processing ? (
                 <TableLoading />
               ) : (

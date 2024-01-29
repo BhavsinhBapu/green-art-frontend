@@ -12,7 +12,7 @@ export const P2pAdvantage = ({ data }: any) => {
   const { t } = useTranslation("common");
 
   return (
-    <div className="container-4xl mt-5 p-5 glass-color-bg-custom p2pWork">
+    <div className="container-4xl mt-5 section-padding-custom glass-color-bg-custom p2pWork">
       <PlaceTopLeft />
       <PlaceBottomRight />
       <div className="row align-items-center">

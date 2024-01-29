@@ -6,7 +6,7 @@ export default function FiatHistoryModal({ setIsModalOpen, modalItem }: any) {
   return (
     <div id="demo-modal" className="gift-card-modal">
       <div
-        className="gift-card-modal__content p-5"
+        className="gift-card-modal__content section-padding-custom"
         style={{ width: "auto", minWidth: "50%" }}
       >
         <h2>{t(modalItem.title)}</h2>

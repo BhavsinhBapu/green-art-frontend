@@ -60,7 +60,7 @@ const LockedStaking = () => {
         {loading ? (
           <SectionLoading />
         ) : (
-          <div className="col-12 p-5 boxShadow mb-5 mt-5">
+          <div className="col-12 section-padding-custom boxShadow mb-5 mt-5">
             <div className="mt-3 mb-3">
               <BackButton />
             </div>

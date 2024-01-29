@@ -26,7 +26,7 @@ const Profile: NextPage = ({ user, profileActivity }: any) => {
           <PlaceBottomRight />
           <div className="container-4xl">
            
-            <div className="profile-area body-margin-top-custom shadow-sm p-5 wallet-card-info-container">
+            <div className="profile-area body-margin-top-custom shadow-sm section-padding-custom wallet-card-info-container">
               <div className="section-wrapper">
                 <div className="user-profile">
                   <div className="row">
@@ -121,7 +121,7 @@ const Profile: NextPage = ({ user, profileActivity }: any) => {
             </div>
 
             <div
-              className="profile-status-area shadow-sm p-5 wallet-card-info-container mb-5"
+              className="profile-status-area shadow-sm section-padding-custom wallet-card-info-container mb-5"
               style={{ border: "none" }}
             >
               <h5>{t("Profile Activity")}</h5>

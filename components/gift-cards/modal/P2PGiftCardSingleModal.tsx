@@ -12,7 +12,7 @@ export default function P2PGiftCardSingleModal({
 
   return (
     <div id="demo-modal" className="gift-card-modal">
-      <div className="gift-card-modal__content p-5">
+      <div className="gift-card-modal__content section-padding-custom">
         <h2>{t(`Gift Card Details`)}</h2>
 
         <div className="row my-5">

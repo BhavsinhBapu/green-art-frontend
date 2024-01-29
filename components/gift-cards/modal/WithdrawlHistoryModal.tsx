@@ -7,7 +7,7 @@ export default function WithdrawlHistoryModal({ close, item }: any) {
   return (
     <div id="demo-modal" className="gift-card-modal">
       <div
-        className="gift-card-modal__content p-5"
+        className="gift-card-modal__content section-padding-custom"
         style={{ width: "auto", minWidth: "75%" }}
       >
         <h2>{t(`Payment Details`)}</h2>

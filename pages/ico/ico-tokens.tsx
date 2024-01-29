@@ -154,7 +154,7 @@ const Profile: NextPage = ({}: any) => {
               </div>
             </div> */}
             <div
-              className="asset-balances-area shadow-sm p-5 wallet-card-info-container"
+              className="asset-balances-area shadow-sm section-padding-custom wallet-card-info-container"
               style={{
                 marginTop: "-60px",
                 marginBottom: "30px",

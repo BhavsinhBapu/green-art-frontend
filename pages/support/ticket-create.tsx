@@ -88,7 +88,7 @@ const TicketCreate = () => {
           <PlaceBottomRight />
           <div className="container-4xl">
             <section className=" body-margin-top-custom">
-              <div className="row shadow-sm p-5 wallet-card-info-container">
+              <div className="row shadow-sm section-padding-custom wallet-card-info-container">
                 <div className="col-md-12 mx-auto">
                   <div className="">
                     {/* <h4 className="fw_600">{t(`Create New Ticket`)}</h4> */}

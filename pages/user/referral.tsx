@@ -41,7 +41,7 @@ const Referral: NextPage = () => {
               marginBottom: "30px",
             }}
           >
-            <div className="invite-friends mb-5 shadow-sm p-5 wallet-card-info-container">
+            <div className="invite-friends mb-5 shadow-sm  section-padding-custom wallet-card-info-container">
               <h4>{t("Invite your friends")}</h4>
               <div className="input-group rounded">
                 <input
@@ -70,7 +70,7 @@ const Referral: NextPage = () => {
                 </button>
               </div>
             </div>
-            <div className="section-wrapper shadow-sm p-5 wallet-card-info-container">
+            <div className="section-wrapper shadow-sm  section-padding-custom wallet-card-info-container">
               <div className="rewards-inviter mb-25">
                 <div className="single-item">
                   <h4>{t("Total Rewards")}</h4>

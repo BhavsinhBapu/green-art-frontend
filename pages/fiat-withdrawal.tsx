@@ -89,7 +89,7 @@ const FiatWithdrawal = () => {
         <div className="page-main-content">
           <FiatHeader title={t("Crypto To Fiat Withdrawal")} />
           <div className="container-4xl">
-            <div className="my-5 p-5 wallet-card-info-container">
+            <div className="my-5 section-padding-custom wallet-card-info-container">
               <SelectWithdrawl
                 setSelectedMethod={setSelectedMethod}
                 depositInfo={initialData?.payment_method_list}

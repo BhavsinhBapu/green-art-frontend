@@ -44,7 +44,7 @@ const TpslModal = ({ uid }: any) => {
           {loading ? (
             <SectionLoading />
           ) : (
-            <div className="future-modal__content p-5">
+            <div className="future-modal__content section-padding-custom">
               <h6 className="text-center">{t(`Take Profit and Stop Loss`)}</h6>
               <div className="mb-3">
                 <div className="position-content">

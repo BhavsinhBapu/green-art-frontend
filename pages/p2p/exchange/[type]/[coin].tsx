@@ -46,7 +46,7 @@ const Exchange = () => {
             <div className="offset-lg-1"></div>
             <div className="col-lg-10 h-full">
               <div className="d-flex align-items-center h-full">
-                <div className="boxShadow p-5 w-full border-0">
+                <div className="boxShadow section-padding-custom w-full border-0">
                   <h1 className="font-medium">
                     {/* @ts-ignore */}
                     {parseInt(type) === SEND ? "Send" : "Recieve"} {t(`Balance`)}

@@ -4,12 +4,12 @@ import React from "react";
 export default function FaucetModal({
   setIsModalOpen,
   selectedItemForFaucet,
-  addFaucetHandler
+  addFaucetHandler,
 }: any) {
   const { t } = useTranslation();
   return (
     <div id="demo-modal" className="gift-card-modal">
-      <div className="faucet-modal__content p-5">
+      <div className="faucet-modal__content section-padding-custom">
         <h2>{t(`Faucet`)}</h2>
         <div>
           <p className="text-16">{t("Coin:")}</p>
@@ -33,7 +33,11 @@ export default function FaucetModal({
           </p>
         </div>
         <div className="text-center mt-3">
-          <button type="button" className="btn bg-primary-color capitalize" onClick={()=> addFaucetHandler(selectedItemForFaucet?.coin_type)}>
+          <button
+            type="button"
+            className="btn bg-primary-color capitalize"
+            onClick={() => addFaucetHandler(selectedItemForFaucet?.coin_type)}
+          >
             {t("Add Assests")}
           </button>
         </div>

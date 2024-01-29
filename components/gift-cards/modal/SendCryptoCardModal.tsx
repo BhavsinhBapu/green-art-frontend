@@ -49,7 +49,7 @@ export default function SendCryptoCardModal({
   const [activeType, setActiveType] = useState<any>({});
   return (
     <div id="demo-modal" className="gift-card-modal">
-      <div className="gift-card-modal__content p-5 send-crypto-w">
+      <div className="gift-card-modal__content section-padding-custom send-crypto-w">
         <h2>{t(`Send Crpto Gift Card`)}</h2>
 
         <div className="row my-5">

@@ -136,7 +136,7 @@ const Deposit = () => {
                   <div className="">
                     <PlaceTopLeft />
                     <PlaceBottomRight />
-                    <div className="deposit-conatiner my-5 p-5 wallet-card-info-container">
+                    <div className="deposit-conatiner my-5 section-padding-custom wallet-card-info-container">
                       {selectedMethod.method && (
                         <div className="cp-user-title">
                           <h4>{t("Select method")}</h4>
@@ -160,7 +160,7 @@ const Deposit = () => {
                             }`}
                           >
                             {!loading && !selectedMethod.method ? (
-                              <div className="cp-user-title text-center  p-5">
+                              <div className="cp-user-title text-center  section-padding-custom">
                                 <h4>{t("No Avaiable payment method")}</h4>
                               </div>
                             ) : (

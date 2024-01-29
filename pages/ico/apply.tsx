@@ -49,7 +49,7 @@ const Apply = () => {
       <PlaceBottomRight />
       <div className="container-4xl">
         <div
-          className="shadow-sm p-5 wallet-card-info-container"
+          className="shadow-sm section-padding-custom wallet-card-info-container"
           style={{
             marginTop: "-60px",
             marginBottom: "30px",

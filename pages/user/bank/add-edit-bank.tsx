@@ -37,7 +37,7 @@ const AddBank = ({ id, data }: any) => {
               </div>
             </div> */}
 
-            <div className="asset-balances-area body-margin-top-custom shadow-sm p-5 wallet-card-info-container">
+            <div className="asset-balances-area body-margin-top-custom shadow-sm  section-padding-custom wallet-card-info-container">
               <div className="bank-section">
                 <div className="row">
                   <div className="col-12">

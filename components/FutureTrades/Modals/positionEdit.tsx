@@ -33,7 +33,7 @@ const PositionEdit = ({ item }: any) => {
       </div>
       {isModalOpen && (
         <div id="demo-modal" className="gift-card-modal">
-          <div className="future-modal__content p-5">
+          <div className="future-modal__content section-padding-custom">
             <h3>{t(`TP/SL for entire positon`)}</h3>
             <div className="mb-3">
               <div className="position-content">

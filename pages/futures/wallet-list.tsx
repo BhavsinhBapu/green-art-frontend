@@ -153,7 +153,7 @@ const WalletList: NextPage = () => {
                   marginBottom: "30px",
                 }}
               >
-                <div className="asset-balances-area cstm-loader-area shadow-sm p-5 wallet-card-info-container">
+                <div className="asset-balances-area cstm-loader-area shadow-sm section-padding-custom wallet-card-info-container">
                   <div className="asset-balances-left">
                     <div className="section-wrapper px-0">
                       <div className="tableScroll pr-0">

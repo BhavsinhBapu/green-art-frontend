@@ -32,7 +32,7 @@ const TokenCreate = ({ id, edit, data }: any) => {
       <div className="container-4xl">
         <div className="row">
           <div
-            className="ico-tokenCreate shadow-sm p-5 wallet-card-info-container"
+            className="ico-tokenCreate shadow-sm section-padding-custom wallet-card-info-container"
             style={{
               marginTop: "-60px",
               marginBottom: "30px",
