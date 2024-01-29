@@ -31,7 +31,7 @@ const SliderSection = ({
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 900,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
@@ -39,7 +39,7 @@ const SliderSection = ({
         },
       },
       {
-        breakpoint: 360,
+        breakpoint: 460,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
