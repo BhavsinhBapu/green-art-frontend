@@ -70,7 +70,7 @@ const WalletOverview: NextPage = () => {
                     >
                       <div className="row" style={{ rowGap: "20px" }}>
                         <div className=" col-md-6">
-                          <div className="shadow-sm p-5 wallet-card-info-container">
+                          <div className="shadow-sm section-padding-custom wallet-card-info-container">
                             <div
                               // style={{
                               //   display: "flex",
@@ -150,7 +150,7 @@ const WalletOverview: NextPage = () => {
                           </div>
                         </div>
                         <div className="col-md-6">
-                          <div className="shadow-sm p-5 wallet-card-info-container">
+                          <div className="shadow-sm section-padding-custom wallet-card-info-container">
                             <div className="card-head">
                               <Link href="/user/my-wallet">
                                 <div className="d-flex align-items-center gap-10 cursor-pointer">
@@ -204,7 +204,7 @@ const WalletOverview: NextPage = () => {
                         </div>
                         {Number(settings?.enable_future_trade) === 1 && (
                           <div className="col-md-6">
-                            <div className="shadow-sm p-5 wallet-card-info-container">
+                            <div className="shadow-sm section-padding-custom wallet-card-info-container">
                               <div className="card-head">
                                 <Link href="/futures/wallet-list">
                                   <div className="d-flex align-items-center gap-10 cursor-pointer">
@@ -259,7 +259,7 @@ const WalletOverview: NextPage = () => {
                         )}
                         {parseInt(settings?.p2p_module) === 1 && (
                           <div className="col-md-6">
-                            <div className="shadow-sm p-5 wallet-card-info-container">
+                            <div className="shadow-sm section-padding-custom wallet-card-info-container">
                               <div className="card-head">
                                 <Link href="/p2p/p2p-wallet">
                                   <div className="d-flex align-items-center gap-10 cursor-pointer">
@@ -315,7 +315,7 @@ const WalletOverview: NextPage = () => {
                       </div>
                     </div>
                     <div
-                      className="shadow-sm p-5 wallet-card-info-container"
+                      className="shadow-sm section-padding-custom wallet-card-info-container"
                       style={{
                         marginBottom: "60px",
                       }}
