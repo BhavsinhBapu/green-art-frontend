@@ -282,7 +282,7 @@ const MyWallet: NextPage = () => {
                       <h6>{t("Total Balance")}</h6>
                       <div className="pt-3">
                         <div>
-                          <h3>
+                          <h3 className="mobile-font-size-for-total-wallet">
                             {allData?.total
                               ? parseFloat(allData?.total).toFixed(8)
                               : 0}

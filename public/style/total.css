@@ -13105,6 +13105,9 @@ input[type="number"] {
 }
 
 @media screen and (max-width: 769px) {
+  .mobile-font-size-for-total-wallet {
+    font-size: 18px;
+  }
   .launchPad {
     padding-top: 40px;
   }
