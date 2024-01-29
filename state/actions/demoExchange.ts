@@ -224,7 +224,6 @@ export async function listenMessages(dispatch: any, user: any) {
       "base_coin_id"
     )}-${localStorage.getItem("trade_coin_id")}`
   ).listen(`.process-${localStorage.getItem("user_id")}`, (e: any) => {
-    console.log("tradeHistory", e);
     dispatch(setTradeOrderHistory(e?.my_trade?.transactions));
   });
   //@ts-ignore

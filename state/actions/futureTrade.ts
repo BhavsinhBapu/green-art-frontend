@@ -208,10 +208,9 @@ export const initialDashboardCallAction =
       response = await appDashboardDataWithoutPair();
       if (!response?.success) {
         toast.error(response.message);
-        router.push('/');
-        return
+        router.push("/");
+        return;
       }
-      console.log("appDashboardData", response);
 
       if (!response?.pairs) {
         setisLoading && setisLoading(false);
@@ -453,7 +452,7 @@ export const placeSellOrderDataAction =
     formData.append("leverage_amount", String(leverage_amount));
     formData.append("coin_pair_id", String(coin_pair_id));
     const response = await placeSellOrderData(formData);
-    console.log(response, "responseresponse");
+
     if (response.success) {
       setPrePlaceData(response.data);
       toast.success(response.message);
@@ -531,7 +530,6 @@ export const CloseBuyOrderAction =
     stop_price: any
   ) =>
   async (dispatch: any) => {
-    console.log(order_type, "order_type");
     const formData = new FormData();
     formData.append("side", String(trade_type));
     formData.append("margin_mode", String(margin_mode));
@@ -553,7 +551,11 @@ export const CloseBuyOrderAction =
       toast.error(response.message);
     }
   };
-export const getWalletsFutureAction = async (per_page: any, page: any, search:any) => {
+export const getWalletsFutureAction = async (
+  per_page: any,
+  page: any,
+  search: any
+) => {
   const response = await getWalletsFuture(per_page, page, 2, search);
   return response;
 };

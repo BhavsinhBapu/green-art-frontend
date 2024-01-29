@@ -460,7 +460,7 @@ export const myP2pOrderAction = async (
   toDate: any
 ) => {
   setProcessing(true);
-  console.log(selectedStatus, "selectedStatus");
+
   const response = await myP2pOrder(
     per_page,
     page,
@@ -605,7 +605,6 @@ export const p2pOrderRateAction = async (
     price
   );
   setRate(data);
-  console.log(data, "My data");
 };
 
 export const placeP2POrderAction = async (
@@ -642,7 +641,7 @@ export const getGiftCardDetailsAction = async (
   const response = await getGiftCardDetails(order_uid);
   dispatch(setP2pDetails(response?.data));
   dispatch(setTradeChatAll(response?.data?.chat_messages));
-  console.log(response, "responseresponseresponse");
+
   if (response?.data?.order?.status === TRADE_STATUS_ESCROW) {
     setStep(1);
   } else if (response?.data?.order?.status === TRADE_STATUS_PAYMENT_DONE) {
@@ -810,7 +809,11 @@ export const releaseP2pOrderAction = async (trade_id: any, dispatch: any) => {
   }
 };
 // getWallets;
-export const getWalletsAction = async (per_page: any, page: any, search:any) => {
+export const getWalletsAction = async (
+  per_page: any,
+  page: any,
+  search: any
+) => {
   const response = await getWallets(per_page, page, search);
   return response;
 };

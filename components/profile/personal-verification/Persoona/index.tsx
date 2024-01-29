@@ -42,9 +42,6 @@ const PersonaComponent = ({ personaDetails, setPersonaVerified }: any) => {
           case "start":
             break;
           default:
-            console.log(
-              `Received event: ${name} with meta: ${JSON.stringify(meta)}`
-            );
         }
       },
     });

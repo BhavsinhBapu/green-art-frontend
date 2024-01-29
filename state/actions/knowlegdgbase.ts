@@ -25,7 +25,7 @@ export const knowledgebaseArticleListAction = async (
   const articleList = await knowledgebaseArticleList(uniqueCode);
   setList(articleList?.data?.article_list);
   setDetails(articleList?.data?.sub_category_details);
-  console.log(articleList.data, "articleList.data");
+
   setLoading(false);
 };
 export const knowledgebaseSubcategoryListbyIdAction = async (
@@ -50,6 +50,6 @@ export const knowledgebaseArticleSearchAction = async (
     return;
   }
   const searchList = await knowledgebaseArticleSearch(query);
-  console.log(searchList.data, "query");
+
   setLists(searchList.data);
 };

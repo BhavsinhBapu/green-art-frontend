@@ -1,9 +1,9 @@
-const web3 = require('web3');
+const web3 = require("web3");
 const TronWeb = require("tronweb");
 const TronGrid = require("trongrid");
 
-const { contractJson } = require('../src/ContractAbiJson');
-const { powerOfTen, customToWei } = require('../src/Heplers/helper');
+const { contractJson } = require("../src/ContractAbiJson");
+const { powerOfTen, customToWei } = require("../src/Heplers/helper");
 
 const client = new web3(
   //   "https://bsc.rpc.blxrbdn.com"
@@ -20,23 +20,22 @@ const tronWeb = new TronWeb({
 });
 
 async function test() {
-
-  let amount = 50000000; 
+  let amount = 50000000;
   let decimal = 18;
   const check = customToWei(amount, decimal);
-  console.log(check);
+
   return check;
   // let contractABI = contractJson();
-    // res = await client.eth.getBlockNumber();
-    // console.log(res);
+  // res = await client.eth.getBlockNumber();
+  // console.log(res);
 
-    // res = await client.eth.getBlock(25498132);
-    // console.log(res);
+  // res = await client.eth.getBlock(25498132);
+  // console.log(res);
 
-    // res = await client.eth.getTransaction(
-    //   "0x48729dac5657b2bad2f5b6e5be14a333bd1e52de83e43dd347f5dcde5e731f41"
-    // );
-    // console.log(res);
+  // res = await client.eth.getTransaction(
+  //   "0x48729dac5657b2bad2f5b6e5be14a333bd1e52de83e43dd347f5dcde5e731f41"
+  // );
+  // console.log(res);
   // let contractAddress = "0x85194EB5110049bE1E5B10A8334DBE29d5735fa0";
   // const contract = new client.eth.Contract(contractABI, contractAddress);
   // decimalValue = await contract.methods.decimals().call();
@@ -48,11 +47,8 @@ async function test() {
     tronWeb.setAddress(adminAccount);
 
     const decimal = await contract.decimals().call();
-    
-    const getDecimal = powerOfTen(decimal);
 
-    console.log(decimal);
-    console.log(getDecimal);
+    const getDecimal = powerOfTen(decimal);
 
     const tronGrid = new TronGrid(tronWeb);
     // var result = await tronGrid.contract.getEvents(contractAddress, {
@@ -66,11 +62,6 @@ async function test() {
     const address = "TBnQHhTJfaiihLJxfRH9CURwsNUnuDLdDc";
     const response = await contract.balanceOf(address).call();
     const balance = tronWeb.BigNumber(response._hex) / getDecimal;
-
-    console.log(balance);
-  } catch (err) {
-    console.log(err);
-  }
-  
+  } catch (err) {}
 }
 test();

@@ -36,7 +36,7 @@ const WalletOverview: NextPage = () => {
       setLoading(false);
       return;
     }
-    console.log("response", response);
+
     setWalletOverviewData(response.data);
     setLoading(false);
   };

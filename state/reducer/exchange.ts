@@ -47,7 +47,6 @@ export const exchangeSlice = createSlice({
       state.total_volume = action.payload;
     },
     setDashboard: (state: any, action: PayloadAction<ExchangeState>) => {
-      console.log("Callingggggggggggggggggggg")
       state.dashboard = action.payload;
     },
     setCurrentPair: (state: any, action: PayloadAction<string>) => {

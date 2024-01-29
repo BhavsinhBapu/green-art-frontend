@@ -25,31 +25,21 @@ const Geetest = () => {
   }, []);
 
   async function handlerForBind(c: any) {
-    // console.log(c);
-
     const button = btnRef.current;
     var isReady = false;
-    // console.log(isReady);
 
     c.onReady(() => {
       isReady = true;
     });
 
     button?.addEventListener("click", function () {
-      // console.log("before ready: btn clicked");
-
       if (isReady) {
-        // console.log("after ready: btn clicked");
-
-        // both methods work
-        // c.showBox();
         c.showCaptcha();
       }
     });
 
     c.onSuccess(async () => {
       var result = c.getValidate();
-      // console.log("GT success: ", result);
 
       const inputText = inputRef.current?.value;
 
@@ -65,18 +55,15 @@ const Geetest = () => {
     });
 
     c.onError((err: any) => {
-      // console.log("GT error: ", err);
       toast.error(err.msg);
       c.reset();
     });
     c.onClose(() => {
-      // console.log("GT close: ");
       toast.error("Captcha Closed!");
 
       c.reset();
     });
     c.onFail((err: any) => {
-      // console.log("GT fail: ", err);
       toast.error("Captcha Failed!");
 
       c.reset();
@@ -89,8 +76,6 @@ const Geetest = () => {
 
     captcha.onSuccess(() => {
       var result = captcha.getValidate();
-
-      console.log("GT success: ", result);
     });
     captcha.onError(() => console.log("GT error: "));
     captcha.onClose(() => console.log("GT close: "));

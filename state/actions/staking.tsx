@@ -52,7 +52,7 @@ export const GetOfferlistDetailsAction = async (
   const response = await GetOfferlistDetails(uid);
   setDetails(response.data?.offer_details);
   setOfferList(response.data?.offer_list);
-  console.log(response.data, "response.data");
+
   setLoading(false);
 };
 // InvesmentSubmit;

@@ -61,7 +61,7 @@ export async function unlistenAllChannels() {
       enabledTransports: ["ws", "wss"],
     });
   }
-  console.log("unlisten calling");
+
   //@ts-ignore
   window.Echo.leaveChannel(); // Leave the currently subscribed channel
   //@ts-ignore
@@ -188,15 +188,12 @@ export async function listenMessages(dispatch: any, user: any) {
     )}`
   ).listen(".order_place", (e: any) => {
     if (e.orders.order_type === "buy") {
-      console.log("buy", e.orders);
       dispatch(setOpenBookBuy(e.orders.orders));
     }
     if (e.orders.order_type === "sell") {
-      console.log(" sell", e.orders);
       dispatch(setOpenBooksell(e.orders.orders));
     }
     if (e.orders.order_type === "buy_sell") {
-      console.log("Calling buy sell", e.orders);
       dispatch(setOpenBookBuy(e.orders.buy_orders));
       dispatch(setOpenBooksell(e.orders.sell_orders));
     }
@@ -208,7 +205,7 @@ export async function listenMessages(dispatch: any, user: any) {
     )}`
   ).listen(".process", (e: any) => {
     dispatch(setAllmarketTrades(e.trades.transactions));
-    console.log(e, "eeeeeeeeeee");
+
     updateChart({
       price: parseFloat(e?.last_trade?.price),
       ts: e?.last_trade?.time,
@@ -270,7 +267,9 @@ export const initialDashboardCallAction =
           //   "current_pair",
           //   response?.pairs[0]?.coin_pair
           // );
-          router.push(`/exchange/dashboard?coin_pair=${response?.pairs[0]?.coin_pair}`)
+          router.push(
+            `/exchange/dashboard?coin_pair=${response?.pairs[0]?.coin_pair}`
+          );
           response?.pairs[0]?.coin_pair &&
             dispatch(setCurrentPair(response?.pairs[0]?.coin_pair));
         }
