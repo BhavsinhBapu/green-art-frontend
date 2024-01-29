@@ -23,14 +23,14 @@ const customStyles = {
   rows: {
     style: {
       minHeight: "72px", // override the row height
-      backgroundColor: "var(--glass-color-bg-1)",
+      // backgroundColor: "var(--glass-color-bg-1)",
     },
   },
   headCells: {
     style: {
       paddingLeft: "8px", // override the cell padding for head cells
       paddingRight: "8px",
-      backgroundColor: "var(--glass-color-bg-1)",
+      // backgroundColor: "var(--glass-color-bg-1)",
     },
   },
   cells: {

@@ -17,7 +17,7 @@ const DemoSelectCurrency = () => {
   const customStyles = {
     rows: {
       style: {
-        backgroundColor: "var(--main-background-color)",
+        // backgroundColor: "var(--main-background-color)",
         color: "var(--font-color)",
         // borderColor: "var(--border-color)",
         "&:not(:last-of-type)": {
@@ -34,7 +34,7 @@ const DemoSelectCurrency = () => {
     },
     headCells: {
       style: {
-        backgroundColor: "var(--main-background-color)",
+        // backgroundColor: "var(--main-background-color)",
         color: "var(--font-color)",
         // borderColor: "var(--border-color)",
         padding: "4px",
@@ -46,7 +46,7 @@ const DemoSelectCurrency = () => {
     },
     cells: {
       style: {
-        backgroundColor: "var(--main-background-color)",
+        // backgroundColor: "var(--main-background-color)",
         color: "var(--font-color)",
         // borderColor: "var(--border-color)",
         fontSize: "11px",

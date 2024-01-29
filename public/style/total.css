@@ -16197,3 +16197,15 @@ input:checked + .gift-card-buy-slider:before {
 .report-navbar-dropdown-menu-custom .dropdown-item:hover {
   background: transparent;
 }
+.rdt_Table {
+  background: transparent !important;
+}
+.rdt_TableHeadRow {
+  background: transparent !important;
+}
+.rdt_TableCell {
+  color: var(--font-color);
+}
+.rdt_TableRow {
+  background: transparent !important;
+}

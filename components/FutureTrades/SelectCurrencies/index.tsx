@@ -17,7 +17,7 @@ const SelectCurrency = () => {
   const customStyles = {
     rows: {
       style: {
-        backgroundColor: "var(--main-background-color)",
+        // backgroundColor: "var(--main-background-color)",
         color: "var(--font-color)",
         // borderColor: "var(--border-color)",
         "&:not(:last-of-type)": {
@@ -34,7 +34,7 @@ const SelectCurrency = () => {
     },
     headCells: {
       style: {
-        backgroundColor: "var(--main-background-color)",
+        // backgroundColor: "var(--main-background-color)",
         color: "var(--font-color)",
         // borderColor: "var(--border-color)",
         padding: "4px",
@@ -47,7 +47,7 @@ const SelectCurrency = () => {
     cells: {
       style: {
         width: "100%",
-        backgroundColor: "var(--main-background-color)",
+        // backgroundColor: "var(--main-background-color)",
         padding: "4px",
         color: "var(--font-color)",
         // borderColor: "var(--border-color)",
