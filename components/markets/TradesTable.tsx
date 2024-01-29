@@ -98,7 +98,7 @@ export default function TradesTable({ selectedCurrency }: any) {
     <section className="container-4xl mt-5 ">
       <div className="row ">
         <div className="col-12">
-          <div className="market-trend-area shadow-sm p-5 wallet-card-info-container">
+          <div className="market-trend-area shadow-sm section-padding-custom wallet-card-info-container">
             <div className="container-4xl">
               <div className="row">
                 <div className="col-md-9 col-12">

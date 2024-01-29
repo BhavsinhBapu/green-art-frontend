@@ -31,7 +31,7 @@ export default function TradeSections() {
     <section className="container-4xl my-5">
       <div className="row">
         <div className="col-12">
-          <div className="market-trend-area p-5 shadow-sm wallet-card-info-container">
+          <div className="market-trend-area section-padding-custom shadow-sm wallet-card-info-container">
             <div>
               <div className="exchange-tab-menu">
                 <ul

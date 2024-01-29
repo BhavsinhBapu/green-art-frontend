@@ -72,7 +72,7 @@ const Leverage = ({ leverage, setLeverage, dashboard }: any) => {
       </div>
       {isModalOpen && (
         <div id="demo-modal" className="gift-card-modal">
-          <div className="future-modal__content p-5">
+          <div className="future-modal__content section-padding-custom">
             <h3>Leverage</h3>
             <div className="leverage-section">{leverage}x</div>
             <div className="mt-3 percent-container mb-5 d-flex flex-wrap">
