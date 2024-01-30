@@ -231,6 +231,11 @@ async function tornWebTransactionListByContractAddress(req, res) {
       let to_block_number = Number(req.body?.to_block_number);
       let from_block_number = Number(req.body?.from_block_number);
 
+      console.log("Tron block");
+      console.log("latestBlockNumber", latestBlockNumber);
+      console.log("from_block_number", from_block_number);
+      console.log("to_block_number", to_block_number);
+
       if (!(to_block_number > 0) && !(from_block_number > 0)) {
         to_block_number = latestBlockNumber;
         from_block_number = latestBlockNumber - trc_block_number;

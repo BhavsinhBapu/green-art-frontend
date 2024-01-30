@@ -763,6 +763,11 @@ async function getLatestEvents(req, res) {
 
         const latestBlockNumber = await web3.eth.getBlockNumber();
 
+        console.log("EVM block");
+        console.log("latestBlockNumber", latestBlockNumber);
+        console.log("from_block_number", from_block_number);
+        console.log("to_block_number", to_block_number);
+
         if (!(to_block_number > 0) && !(from_block_number > 0)) {
           to_block_number = latestBlockNumber;
           from_block_number = latestBlockNumber - erc_block_number;
