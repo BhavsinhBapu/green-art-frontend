@@ -15888,7 +15888,7 @@ input:checked + .gift-card-buy-slider:before {
   align-items: center;
   /* background: var(--background-color-trade); */
   width: auto;
-  padding: 20px;
+  /* padding: 20px; */
   border-radius: 10px;
 }
 .wallet-overview-tab-menu li {
