@@ -21,7 +21,7 @@ export default function ListCharts({ tradeDatas }: any) {
       <div className="p-3">
         <div className="d-flex justify-content-between align-items-center">
           <div>
-            <span className="text-12 text-color-white">
+            <span className="text-12 text-primary">
               Highest/Lowest PNL{"  "}
               <span
                 className="ml-1 px-1 rounded"
@@ -37,12 +37,12 @@ export default function ListCharts({ tradeDatas }: any) {
           <div className="col-6 pl-3 pr-1">
             <div>
               <div className="d-flex align-items-center">
-                <h5 className="text-14 text-color-white mr-1">
+                <h5 className="text-14 text-primary mr-1">
                   {tradeDatas?.profit_loss_by_coin_pair?.highest_PNL?.symbol}
                 </h5>
-                <span className="text-12 text-color-white">Perpetual</span>
+                <span className="text-12 text-primary">Perpetual</span>
               </div>
-              <p className="text-16 text-color-white">
+              <p className="text-16 text-primary">
                 {tradeDatas?.profit_loss_by_coin_pair?.highest_PNL
                   ?.total_amount || 0}
                 {tradeDatas?.profit_loss_by_coin_pair?.highest_PNL?.coin_type}
@@ -50,13 +50,13 @@ export default function ListCharts({ tradeDatas }: any) {
             </div>
             <div>
               <div className="d-flex align-items-center">
-                <h5 className="text-14 text-color-white mr-1">
+                <h5 className="text-14 text-primary mr-1">
                   {tradeDatas?.profit_loss_by_coin_pair?.lowest_PNL?.symbol}
                 </h5>
-                <span className="text-12 text-color-white">Perpetual</span>
+                <span className="text-12 text-primary">Perpetual</span>
               </div>
               <p
-                className="text-16 text-color-white"
+                className="text-16 text-primary"
                 style={{ color: "#F6465D" }}
               >
                 {tradeDatas?.profit_loss_by_coin_pair?.lowest_PNL

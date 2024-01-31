@@ -49,13 +49,13 @@ export default function AreaCharts({ tradeDatas }: any) {
       <div className="p-3">
         <div className="d-flex justify-content-between align-items-start">
           <div>
-            <span className="text-12 text-color-white">Open Interest</span>
+            <span className="text-12 text-primary">Open Interest</span>
             <div className="d-flex align-items-center">
-              <h5 className="text-14 mr-1 text-color-white">
+              <h5 className="text-14 mr-1 text-primary">
                 {tradeDatas?.coins[0]?.child_coin_name}
                 {tradeDatas?.coins[0]?.parent_coin_name}
               </h5>
-              <span className="text-12 text-color-white">Perpetual</span>
+              <span className="text-12 text-primary">Perpetual</span>
             </div>
           </div>
           {/* <div className="area-charts-button mt-1">
@@ -69,7 +69,7 @@ export default function AreaCharts({ tradeDatas }: any) {
           </div> */}
         </div>
         <div className="mt-3 mb-2">
-          <h4 className="text-16 text-color-white">
+          <h4 className="text-16 text-primary">
             {tradeDatas?.coins[0]?.volume || 0}
             {tradeDatas?.coins[0]?.parent_coin_name}
           </h4>
@@ -86,7 +86,7 @@ export default function AreaCharts({ tradeDatas }: any) {
           >
             {parseFloat(tradeDatas?.coins[0]?.price_change || 0).toFixed(4)}%
           </span>
-          <span className="text-14 text-color-white">24H Change</span>
+          <span className="text-14 text-primary">24H Change</span>
         </div>
       </div>
       <div

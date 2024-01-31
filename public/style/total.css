@@ -16289,3 +16289,18 @@ input:checked + .gift-card-buy-slider:before {
 .rdt_TableRow {
   background: transparent !important;
 }
+
+.future-market-page-custom-sidebar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.future-market-page-custom-sidebar::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+.future-market-page-custom-sidebar::-webkit-scrollbar-thumb {
+  background: var(--glass-color-bg-1);
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}

@@ -2,6 +2,7 @@ import React from "react";
 import HighestSearchedItem from "./HighestSearchedItem";
 
 export default function HighestSearchedLists({ tradeDatas }: any) {
+  console.log("tradeDatas", tradeDatas);
   return (
     <div
       className="bg-card-glass-clr"
@@ -73,7 +74,7 @@ export default function HighestSearchedLists({ tradeDatas }: any) {
                 </linearGradient>
               </defs>
             </svg>
-            <span className="text-color-white">Highest Searched</span>
+            <span className="text-primary">Highest Searched</span>
 
             <span
               className="ml-1 px-1 rounded"
@@ -83,8 +84,11 @@ export default function HighestSearchedLists({ tradeDatas }: any) {
             </span>
           </div>
         </div>
-        <div className="my-3">
-          {tradeDatas?.coins?.data?.map((item: any, index: number) => (
+        <div
+          className="my-3 future-market-page-custom-sidebar"
+          style={{ maxHeight: "150px", overflowY: "auto" }}
+        >
+          {tradeDatas?.coins?.map((item: any, index: number) => (
             <HighestSearchedItem item={item} key={index} />
           ))}
         </div>

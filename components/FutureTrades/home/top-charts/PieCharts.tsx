@@ -21,7 +21,7 @@ export default function PieCharts({ tradeDatas }: any) {
       <div className="p-3">
         <div className="d-flex justify-content-between align-items-center">
           <div>
-            <span className="text-12 text-color-white">
+            <span className="text-12 text-primary">
               Long/Short Ratio{" "}
               <span
                 className="ml-1 px-1 rounded"
@@ -31,10 +31,10 @@ export default function PieCharts({ tradeDatas }: any) {
               </span>
             </span>
             <div className="d-flex align-items-center">
-              <h5 className="text-14 text-color-white mr-1">
+              <h5 className="text-14 text-primary mr-1">
                 {tradeDatas?.getHighestVolumePair?.coin_pair}
               </h5>
-              <span className="text-12 text-color-white">
+              <span className="text-12 text-primary">
                 {tradeDatas?.getHighestVolumePair?.type}
               </span>
             </div>
@@ -53,9 +53,9 @@ export default function PieCharts({ tradeDatas }: any) {
                   marginRight: "6px",
                 }}
               ></span>
-              <span className="text-12 text-color-white">Short Account%</span>
+              <span className="text-12 text-primary">Short Account%</span>
               <h5
-                className="text-16 text-color-white"
+                className="text-16 text-primary"
                 style={{ marginLeft: "12px" }}
               >
                 {tradeDatas?.getHighestVolumePair?.short_account || 0}%
@@ -71,9 +71,9 @@ export default function PieCharts({ tradeDatas }: any) {
                   marginRight: "6px",
                 }}
               ></span>
-              <span className="text-12 text-color-white">Long Account%</span>
+              <span className="text-12 text-primary">Long Account%</span>
               <h5
-                className="text-16 text-color-white"
+                className="text-16 text-primary"
                 style={{ marginLeft: "12px" }}
               >
                 {tradeDatas?.getHighestVolumePair?.long_account || 0}%
@@ -81,13 +81,13 @@ export default function PieCharts({ tradeDatas }: any) {
             </div>
             <div>
               <span
-                className="text-12 text-color-white"
+                className="text-12 text-primary"
                 style={{ marginLeft: "12px" }}
               >
                 Long/Short Ratio
               </span>
               <h5
-                className="text-16 text-color-white"
+                className="text-16 text-primary"
                 style={{ marginLeft: "12px" }}
               >
                 {tradeDatas?.getHighestVolumePair?.ratio || 0}
