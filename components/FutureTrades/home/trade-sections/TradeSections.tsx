@@ -134,15 +134,7 @@ export default function TradeSections() {
                                 >
                                   {t("Change (24h)")}
                                 </th>
-                                <th
-                                  scope="col"
-                                  className="sorting_disabled text-center"
-                                  rowSpan={1}
-                                  colSpan={1}
-                                  style={{ width: "182.297px" }}
-                                >
-                                  {t("Chart")}
-                                </th>
+
                                 <th
                                   scope="col"
                                   className="sorting_disabled text-center"
@@ -200,21 +192,7 @@ export default function TradeSections() {
                                         {item.price_change}%
                                       </span>
                                     </td>
-                                    <td className="text-center">
-                                      {parseFloat(item.price_change) >= 0 ? (
-                                        <img
-                                          src="/chart-image-1.png"
-                                          alt="chart-image"
-                                          className="chart-img"
-                                        />
-                                      ) : (
-                                        <img
-                                          src="/chart-image-2.png"
-                                          alt="chart-image"
-                                          className="chart-img"
-                                        />
-                                      )}
-                                    </td>
+
                                     <td className="text-black text-center">
                                       {item.volume} {item.parent_coin_name}
                                     </td>
