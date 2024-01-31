@@ -2,7 +2,6 @@ import React from "react";
 import HighestSearchedItem from "./HighestSearchedItem";
 
 export default function HighestSearchedLists({ tradeDatas }: any) {
-  console.log("tradeDatas", tradeDatas);
   return (
     <div
       className="bg-card-glass-clr"
