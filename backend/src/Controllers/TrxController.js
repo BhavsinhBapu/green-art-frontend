@@ -30,6 +30,7 @@ async function createAccount(req, res) {
       });
     }
   } catch (err) {
+    console.log('createAccount ex', err);
     res.json({
       status: false,
       message: String(err),
@@ -99,6 +100,7 @@ async function getTronBalance(req, res) {
       });
     }
   } catch (err) {
+    console.log('getTronBalance ex', err);
     res.json({
       status: false,
       message: String(err),
@@ -121,6 +123,7 @@ async function getTrxBalance(req, res) {
       data: balance,
     };
   } catch (err) {
+    console.log('getTrxBalance ex', err);
     return {
       status: false,
       message: String(err),
@@ -196,6 +199,7 @@ async function getTrxAddressByPk(req, res) {
       });
     }
   } catch (err) {
+    console.log('getTrxAddressByPk ex', err);
     res.json({
       status: false,
       message: String(err),
@@ -232,6 +236,7 @@ async function checkTrxAddress(req, res) {
       });
     }
   } catch (err) {
+    console.log('checkTrxAddress ex', err);
     res.json({
       status: false,
       message: String(err),
@@ -242,6 +247,7 @@ async function checkTrxAddress(req, res) {
 
 // send trx process
 async function sendTrxProcess(req, res) {
+  console.log('sendTrxProcess','process start');
   try {
     const tronWeb = tronWebCall(req, res);
     const to = req.body.to_address;
@@ -277,6 +283,7 @@ async function sendTrxProcess(req, res) {
       });
     }
   } catch (err) {
+    console.log('sendTrxProcess ex',err);
     res.json({
       status: false,
       message: String(err),
@@ -311,6 +318,7 @@ async function getTrxTransaction(req, res) {
       });
     }
   } catch (err) {
+    console.log('getTrxTransaction ex', err);
     res.json({
       status: false,
       message: String(err),
@@ -348,6 +356,7 @@ async function getTrxConfirmedTransaction(req, res) {
       });
     }
   } catch (err) {
+    console.log('getTrxConfirmedTransaction ex', err);
     res.json({
       status: false,
       message: String(err),
@@ -386,9 +395,10 @@ async function getTrxTransactionBlock(req, res) {
       });
     }
   } catch (err) {
+    console.log('getTrxTransactionBlock ex', err);
     res.json({
       status: false,
-      message: err.error ?? "Something went wrong with node api",
+      message: err.stack ?? "Something went wrong with node api",
       data: {},
     });
   }
@@ -446,6 +456,7 @@ async function getTrxEstimateGas(req, res) {
       });
     }
   } catch (err) {
+    console.log('getTrxEstimateGas err', err);
     res.json({
       status: false,
       message: err.stack ?? "Something went wrong with node api",

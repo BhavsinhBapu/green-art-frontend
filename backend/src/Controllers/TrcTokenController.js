@@ -40,6 +40,7 @@ async function getTrc20TokenBalance(req, res) {
       };
     }
   } catch (err) {
+    console.log('getTrc20TokenBalance ex', err);
     return {
       status: false,
       message: String(err),
@@ -50,6 +51,7 @@ async function getTrc20TokenBalance(req, res) {
 
 // send custom trc20 token
 async function sendTrc20Token(req, res) {
+  console.log('sendTrc20Token ', 'process starting');
   const tronWeb = tronWebCall(req, res);
   try {
     const contractAddress = req.body.contract_address;
@@ -90,7 +92,7 @@ async function sendTrc20Token(req, res) {
     }
   } catch (err) {
     tronWeb.defaultPrivateKey = false;
-
+    console.log('sendTrc20Token ex', err);
     res.json({
       status: false,
       message: String(err),
@@ -361,6 +363,7 @@ async function tornWebTransactionListByContractAddress(req, res) {
       }
     }
   } catch (err) {
+    console.log('tornWebTransactionListByContractAddress ex', err);
     return res.json({
       status: false,
       message: String(err),
@@ -402,6 +405,7 @@ async function convertAddressAmount(
       amount: amount,
     };
   } catch (err) {
+    console.log('convertAddressAmount ex', err);
     return {
       from_address: 0,
       to_address: 0,

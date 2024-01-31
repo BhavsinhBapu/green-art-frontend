@@ -55,6 +55,7 @@ async function getContractDecimal(contractInstance) {
 }*/
 
 async function generateAddress(req, res) {
+  console.log('generateAddress', 'start')
   try {
     const network = req.headers.chainlinks;
     const networkType = req.headers.networktype;
@@ -88,6 +89,7 @@ async function generateAddress(req, res) {
       });
     }
   } catch (e) {
+    console.log('generateAddress ex',e);
     res.json({
       status: false,
       message: e.message,
@@ -178,6 +180,7 @@ async function getWalletBalance(req, res) {
       });
     }
   } catch (e) {
+    console.log('getWalletBalance ex',e);
     res.json({
       status: false,
       message: e.message,
@@ -188,6 +191,7 @@ async function getWalletBalance(req, res) {
 
 // calculate estimate gas fees
 async function calculateEstimateGasFees(req, type) {
+  console.log('calculateEstimateGasFees','starting')
   let data = "";
   try {
     const network = req.headers.chainlinks;
@@ -280,6 +284,7 @@ async function calculateEstimateGasFees(req, type) {
       };
     }
   } catch (e) {
+    console.log('calculateEstimateGasFees ex',e)
     data = {
       status: false,
       message: e.message,
@@ -330,6 +335,7 @@ async function checkEstimateGasFees(req, res) {
 }
 
 async function sendToken(req, res) {
+  console.log('sendToken','processing');
   try {
     const network = req.headers.chainlinks;
     let contractJsons = contractJson();
@@ -423,6 +429,7 @@ async function sendToken(req, res) {
       });
     }
   } catch (e) {
+    console.log('sendToken ex',e)
     res.json({
       status: false,
       message: e.message,
@@ -447,6 +454,7 @@ async function getDataByTransactionHash(req, res) {
       });
     }
   } catch (e) {
+    console.log('getDataByTransactionHash ex',e)
     res.send({
       status: false,
       message: e.message,
@@ -503,6 +511,7 @@ async function getERC20tokenTransactionDetails(req) {
       };
     }
   } catch (err) {
+    console.log('getERC20tokenTransactionDetails ex',e)
     return {
       status: false,
       message: String(err),
@@ -553,6 +562,7 @@ async function getHashTransaction(network, hash) {
 }
 
 async function sendEth(req, res) {
+  console.log('sendEth', 'process start');
   try {
     const network = req.headers.chainlinks;
     const networkType = req.headers.networktype;
@@ -631,6 +641,7 @@ async function sendEth(req, res) {
       });
     }
   } catch (e) {
+    console.log('sendEth ex', e);
     res.json({
       status: false,
       message: e.message,
@@ -708,7 +719,9 @@ async function getBlockData(web3, blockNumber) {
         data: {},
       };
     }
-  } catch (e) {}
+  } catch (e) {
+    console.log('getBlockData ex', e);
+  }
 }
 
 async function getTransactionsByAccount(
@@ -840,6 +853,7 @@ async function getLatestEvents(req, res) {
       });
     }
   } catch (e) {
+    console.log('getLatestEvents ex', e);
     res.json({
       status: false,
       message: e.message,
@@ -877,6 +891,7 @@ async function getBlockDetails(contract, fromBlockNumber, toBlockNumber) {
       };
     }
   } catch (e) {
+    console.log('getBlockDetails ex', e);
     return {
       status: false,
       message: e.message,
@@ -945,6 +960,7 @@ async function getContractDetails(req, res) {
       });
     }
   } catch (e) {
+    console.log('getContractDetails ex', e);
     res.json({
       status: false,
       message: e.message,
@@ -968,6 +984,7 @@ async function getAddressFromPK(req, res) {
       });
     }
   } catch (e) {
+    console.log('getAddressFromPK ex', e);
     res.send({
       status: false,
       message: e.message,
@@ -1000,6 +1017,7 @@ async function getETHAddressFromPk(req) {
       };
     }
   } catch (err) {
+    console.log('getETHAddressFromPk ex', err);
     return {
       status: false,
       message: String(err),
