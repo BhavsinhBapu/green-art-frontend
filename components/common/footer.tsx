@@ -5,15 +5,81 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
 
+const socialDefaltData = [
+  {
+    id: 7,
+    media_title: "instagram",
+    media_link: "https://www.instagram.com/",
+    media_icon: "/instagram_1.svg",
+    status: 1,
+    created_at: "2023-05-29T07:00:22.000000Z",
+    updated_at: "2023-06-02T11:47:27.000000Z",
+  },
+  {
+    id: 6,
+    media_title: "Printerest",
+    media_link: "https://www.pinterest.com/",
+    media_icon: "/social_1.svg",
+    status: 1,
+    created_at: "2023-05-29T06:57:13.000000Z",
+    updated_at: "2023-06-02T11:46:53.000000Z",
+  },
+  {
+    id: 5,
+    media_title: "Discord",
+    media_link: "https://discord.com/",
+    media_icon: "/discord_1.svg",
+    status: 1,
+    created_at: "2023-05-29T06:51:16.000000Z",
+    updated_at: "2023-06-02T11:48:17.000000Z",
+  },
+  {
+    id: 4,
+    media_title: "Linkedin",
+    media_link: "https://www.linkedin.com/",
+    media_icon: "/linkedin_123.svg",
+    status: 1,
+    created_at: "2022-07-23T10:16:17.000000Z",
+    updated_at: "2023-06-02T11:52:09.000000Z",
+  },
+  {
+    id: 3,
+    media_title: "Youtube",
+    media_link: "https://www.youtube.com/",
+    media_icon: "/youtube_1.svg",
+    status: 1,
+    created_at: "2022-07-23T10:14:50.000000Z",
+    updated_at: "2023-06-02T11:53:13.000000Z",
+  },
+  {
+    id: 2,
+    media_title: "Twitter",
+    media_link: "https://twitter.com/",
+    media_icon: "/twitter_1.svg",
+    status: 1,
+    created_at: "2022-07-23T10:13:54.000000Z",
+    updated_at: "2023-02-23T09:46:15.000000Z",
+  },
+  {
+    id: 1,
+    media_title: "Facebook",
+    media_link: "https://www.facebook.com/",
+    media_icon: "/facebook-logo_1.svg",
+    status: 1,
+    created_at: "2022-05-05T12:16:31.000000Z",
+    updated_at: "2023-06-02T11:52:41.000000Z",
+  },
+];
+
 const Footer = () => {
   const { t } = useTranslation("common");
   const { settings } = useSelector((state: RootState) => state.common);
-  const { isLoggedIn, customPageData, logo,socialData, copyright_text } =
+  const { isLoggedIn, customPageData, logo, socialData, copyright_text } =
     useSelector((state: RootState) => state.user);
 
   return (
     <>
-      {customPageData && socialData && copyright_text && (
+      {customPageData && copyright_text && (
         <footer className="footer-area pt--70">
           <div className="footer-top">
             <div className="container-4xl">
@@ -194,22 +260,41 @@ const Footer = () => {
                       </h4>
                     </div>
                     <div className="widget-inner">
-                      <ul className="d-flex flex-wrap align-items-center">
-                        {socialData?.map((social: any, index: any) => (
-                          <li key={index}>
-                            <a
-                              href={social.media_link}
-                              target="_blank"
-                              rel="noreferrer"
-                            >
-                              <img
-                                src={social.media_icon}
-                                alt={social.media_title}
-                                width={18}
-                              />
-                            </a>
-                          </li>
-                        ))}
+                      <ul
+                        className="d-flex flex-wrap align-items-center"
+                        style={{ gap: "20px" }}
+                      >
+                        {socialData?.length > 0
+                          ? socialData?.map((social: any, index: any) => (
+                              <li key={index}>
+                                <a
+                                  href={social.media_link}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                >
+                                  <img
+                                    src={social.media_icon}
+                                    alt={social.media_title}
+                                    width={20}
+                                  />
+                                </a>
+                              </li>
+                            ))
+                          : socialDefaltData?.map((social: any, index: any) => (
+                              <li key={index}>
+                                <a
+                                  href={social.media_link}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                >
+                                  <img
+                                    src={social.media_icon}
+                                    alt={social.media_title}
+                                    width={20}
+                                  />
+                                </a>
+                              </li>
+                            ))}
                       </ul>
                     </div>
                   </div>

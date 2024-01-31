@@ -796,7 +796,7 @@ client-area
 
 .footer-area .footer-top .single-wedgets .widget-inner ul li {
   display: block;
-  margin-bottom: 5px;
+  /* margin-bottom: 5px; */
 }
 
 .footer-area .footer-top .single-wedgets .widget-inner ul li:last-child {
@@ -834,8 +834,8 @@ client-area
 }
 
 .footer-area .footer-top .social-link .widget-inner ul li a {
-  margin-bottom: 15px;
-  margin-right: 15px;
+  /* margin-bottom: 15px;
+  margin-right: 15px; */
   color: var(--text-primary-color-4);
   font-size: 20px;
   transition: all 0.3s;
@@ -902,11 +902,11 @@ client-area
   color: var(--primary-color);
 }
 
-@media (max-width: 767px) {
+/* @media (max-width: 767px) {
   .footer-area .footer-top {
     padding-bottom: 0;
   }
-}
+} */
 
 .animation-img {
   animation: bounce 3s linear infinite;
