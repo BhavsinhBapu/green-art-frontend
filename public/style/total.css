@@ -14952,10 +14952,14 @@ input {
   text-transform: capitalize;
   border-color: var(--text-primary-color) !important;
   display: flex;
-  color: white !important;
+  color: var(--font-color) !important;
   align-items: center;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border: unset;
+  height: 40px;
+  line-height: 30px;
 }
 
 .gift-inner-card {
@@ -14965,6 +14969,7 @@ input {
   border-radius: 10px;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
 .gift-inner-card-btns {
   display: flex;
@@ -14989,8 +14994,8 @@ input {
   width: 100%;
   padding: 7px 10px;
   border-radius: 5px;
-  background: #181a20;
-  color: white;
+  background: var(--glass-color-bg-1);
+  color: var(--font-color);
 }
 
 .line-24 {
