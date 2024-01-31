@@ -15414,9 +15414,9 @@ input:checked + .gift-card-buy-slider:before {
 }
 
 .card-for-markets:hover {
-  background-color: var(--card-background-color);
+  /* background-color: var(--card-background-color); */
   cursor: pointer;
-  border-radius: 8px;
+  /* border-radius: 8px; */
 }
 .card-for-markets-item {
   border-radius: 8px;
