@@ -59,7 +59,7 @@ Tags: admin, best react admin template, das
   --trade-green: #32d777;
   --trade-red: #d63031;
   --white: #ffffff;
-  --glass-color-bg-1: rgb(193 193 193 / 14%);
+  --glass-color-bg-1: rgb(255, 255, 255, 0.85);
   --black: #000000;
   --color-pallet-1: #b4b8d7;
   --background-color: #ffff;
@@ -773,6 +773,8 @@ client-area
 
 .footer-area {
   background: var(--glass-color-bg-1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .footer-area .footer-top {
@@ -1089,9 +1091,9 @@ client-area
   justify-content: center;
   background-color: var(--glass-color-bg-1) !important;
   border-radius: 1rem;
-  -webkit-backdrop-filter: blur(0.75rem);
-  backdrop-filter: blur(0.75rem);
   transition: ease 0.5s;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 .about-area .single-banner a {
   display: block;
@@ -1341,6 +1343,8 @@ client-area
 .trade-anywhere-area {
   padding: 60px 0;
   background: var(--glass-color-bg-1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .trade-anywhere-area .qr-code-area {
@@ -1660,6 +1664,8 @@ client-area
   box-shadow: 19px 0 40px var(--border-color);
   background-color: var(--glass-color-bg-1);
   border: 1px solid var(--bColor);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .block-container .btn-back-1 {
@@ -1726,11 +1732,15 @@ client-area
   background: var(--glass-color-bg-1) !important;
   padding: 54px 28px;
   border-radius: 77px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 .market-trend-area-container {
   background: var(--glass-color-bg-1) !important;
   padding: 54px 148px;
   border-radius: 27px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 .hero-section {
   align-items: flex-start;

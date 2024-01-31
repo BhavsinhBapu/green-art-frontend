@@ -2365,6 +2365,8 @@ a#submit {
   align-items: center;
   margin-bottom: 30px;
   cursor: pointer;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .id-card-type .id-card img {
@@ -4218,6 +4220,8 @@ table.dataTable tbody tr.selected td {
   background-color: var(--glass-color-bg-1);
   border-radius: 12px !important;
   border: 0;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .dataTables_wrapper.no-footer .dataTables_scrollBody {
@@ -5279,6 +5283,8 @@ select:-webkit-autofill:focus {
   /* padding: 30px; */
   border-radius: 20px;
   background: var(--glass-color-bg-1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .section-top-wrap {
@@ -5881,6 +5887,8 @@ select:-webkit-autofill:focus {
   background: var(--glass-color-bg-1);
   border-radius: 7px;
   text-align: center;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .user-profile .user-thumbnail {
@@ -5992,6 +6000,8 @@ select:-webkit-autofill:focus {
   font-weight: 400;
   color: var(--text-primary-color-2);
   background: var(--glass-color-bg-1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .user-profile-form .form-group label {
@@ -6250,6 +6260,8 @@ table.dataTable tbody tr.dataTable-white td {
 .setting-bg {
   background-color: var(--glass-color-bg-1);
   padding: 20px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .referral-area .invite-friends .input-group {
@@ -10299,6 +10311,8 @@ label {
   border: 1px solid var(--border-color);
   box-shadow: none;
   color: var(--text-primary-color-4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .form-control:focus {
@@ -11663,6 +11677,8 @@ input[type="number"] {
 .exchange-tab-menu .nav-tabs .nav-item .nav-link.active {
   background: var(--glass-color-bg-1);
   /* color: var(--text-primary-color); */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .market-trend-area {
@@ -11697,6 +11713,8 @@ input[type="number"] {
 
 .sectiob-bg {
   background: var(--glass-color-bg-1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .trade-anywhere-right .subtitle {
@@ -12650,6 +12668,8 @@ input[type="number"] {
   background: var(--glass-color-bg-1);
   padding: 50px 20px 0 20px;
   margin-top: 60px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .my-wallet-new {
@@ -12669,6 +12689,8 @@ input[type="number"] {
   padding: 6px 15px;
   border-radius: 5px;
   border: 1px solid var(--border-color);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .input-address-bar {
@@ -12683,6 +12705,8 @@ input[type="number"] {
   padding: 5px 5px;
   border-radius: 5px;
   border: 1px solid var(--border-color);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .input-address-bar .form-control {
@@ -13284,6 +13308,8 @@ textarea.apply-file-input {
   color: var(--font-color);
   font-size: 16px;
   outline: none;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .form-input-div {
@@ -13584,6 +13610,8 @@ label.upload-file-btn.press-enter {
   border-radius: 10px 10px 0px 0px;
   padding: 10px;
   background: var(--glass-color-bg-1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .sub_title div h5 {
@@ -13601,6 +13629,8 @@ label.upload-file-btn.press-enter {
   height: 310px;
   overflow: hidden;
   background: var(--glass-color-bg-1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .article_card div h5 {
@@ -13847,6 +13877,8 @@ label.upload-file-btn.press-enter {
 .ticket-card-unseen .card {
   border: 1px solid var(--border-color);
   background-color: var(--glass-color-bg-1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .search-field {
@@ -14006,6 +14038,8 @@ input {
   padding: 8px;
   border-radius: 22px;
   background-color: var(--glass-color-bg-1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .searchBox button {
@@ -14065,6 +14099,8 @@ input {
   background-color: var(--glass-color-bg-1);
   padding: 10px;
   border-radius: 10px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .blogSlider ul li button::before {
@@ -14395,6 +14431,8 @@ input {
   border: none;
   padding: 18px 10px;
   color: var(--text-primary-color-3);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .faqDown {
@@ -14575,10 +14613,14 @@ input {
 
 .userProfileBg {
   background-color: var(--glass-color-bg-1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .paymentMethodBox {
   background-color: var(--glass-color-bg-1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .paymentMethodSubBox {
@@ -14747,6 +14789,8 @@ input {
   background: var(--glass-color-bg-1);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.02);
   border-radius: 8px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 .single-feedback h3 {
   font-size: 20px;
@@ -14855,6 +14899,8 @@ input {
 
 .bg-card-primary-color {
   background: var(--glass-color-bg-1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .py-80 {
@@ -14908,6 +14954,8 @@ input {
   display: flex;
   color: white !important;
   align-items: center;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .gift-inner-card {
@@ -14915,6 +14963,8 @@ input {
   padding: 20px;
   border-color: #3e444d;
   border-radius: 10px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 .gift-inner-card-btns {
   display: flex;
@@ -15089,11 +15139,15 @@ input {
 
 .buy-input-bg {
   background: var(--glass-color-bg-1) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .buy-amount-select-section .custom-select__control {
   background: var(--glass-color-bg-1) !important;
   box-shadow: unset !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .themed-category-select-section .custom-select__control {
@@ -15314,7 +15368,8 @@ input:checked + .gift-card-buy-slider:before {
 .bg-card-glass-clr {
   background: var(--glass-color-bg-1);
   border-radius: 8px;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -15780,6 +15835,8 @@ input:checked + .gift-card-buy-slider:before {
   padding: 2rem;
   background: var(--glass-color-bg-1);
   border-radius: 20px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .tarde-coin-pair-header {
@@ -15833,6 +15890,8 @@ input:checked + .gift-card-buy-slider:before {
   border-bottom: 3px solid var(--glass-color-bg-1);
   padding-right: 36px;
   padding-bottom: 11px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 .backgound-class {
   background-color: var(--card-background-color);
@@ -15872,6 +15931,8 @@ input:checked + .gift-card-buy-slider:before {
   padding: 4px 20px;
   border-bottom: 1px solid var(--glass-color-bg-1);
   text-wrap: nowrap;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 .report-overview-tab-menu .active {
   border-bottom: 3px solid var(--primary-color);
@@ -15920,6 +15981,8 @@ input:checked + .gift-card-buy-slider:before {
 .wallet-card-info-container {
   background: var(--glass-color-bg-1);
   border-radius: 10px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 .section-padding-custom {
   padding: 3rem !important;
@@ -16205,6 +16268,8 @@ input:checked + .gift-card-buy-slider:before {
 }
 .glass-color-bg-custom {
   background: var(--glass-color-bg-1) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 .report-navbar-dropdown-menu-custom {
   background: rgb(193 193 193/70%);

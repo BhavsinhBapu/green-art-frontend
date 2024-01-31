@@ -12,11 +12,11 @@ export default function MarketsCardItem({ item }: any) {
             width="25px"
             height="25px"
           />
-          <p className="text-white">{item?.coin_type}</p>
+          <p className="text-primary">{item?.coin_type}</p>
         </div>
 
         <div className="col-4">
-          <p className="text-white">
+          <p className="text-primary">
             {item?.currency_symbol}
             {parseFloat(item?.usdt_price).toFixed(2)}
           </p>

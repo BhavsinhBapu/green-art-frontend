@@ -95,7 +95,7 @@ export default function TradesTable({ selectedCurrency }: any) {
 
   const { t } = useTranslation();
   return (
-    <section className="container-4xl mt-5 ">
+    <section className="container-4xl my-5 ">
       <div className="row ">
         <div className="col-12">
           <div className="market-trend-area shadow-sm section-padding-custom wallet-card-info-container">
