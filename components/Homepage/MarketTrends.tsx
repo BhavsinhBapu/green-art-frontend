@@ -178,15 +178,7 @@ const MarketTrends = ({
                             >
                               {t("Change (24h)")}
                             </th>
-                            <th
-                              scope="col"
-                              className="sorting_disabled"
-                              rowSpan={1}
-                              colSpan={1}
-                              style={{ width: "182.297px" }}
-                            >
-                              {t("Chart")}
-                            </th>
+
                             <th
                               scope="col"
                               className="sorting_disabled"
@@ -246,21 +238,7 @@ const MarketTrends = ({
                                     {item.price_change}%
                                   </span>
                                 </td>
-                                <td className="p-2">
-                                  {item.price_change >= 0 ? (
-                                    <img
-                                      src="/chart-image-1.png"
-                                      alt="chart-image"
-                                      className="chart-img"
-                                    />
-                                  ) : (
-                                    <img
-                                      src="/chart-image-2.png"
-                                      alt="chart-image"
-                                      className="chart-img"
-                                    />
-                                  )}
-                                </td>
+
                                 <td className="text-black p-2">
                                   {item.volume} {item.parent_coin_name}
                                 </td>
@@ -361,15 +339,7 @@ const MarketTrends = ({
                             >
                               {t("Change (24h)")}
                             </th>
-                            <th
-                              scope="col"
-                              className="sorting_disabled"
-                              rowSpan={1}
-                              colSpan={1}
-                              style={{ width: "0px" }}
-                            >
-                              {t("Chart")}
-                            </th>
+
                             <th
                               scope="col"
                               className="sorting_disabled"
@@ -429,21 +399,7 @@ const MarketTrends = ({
                                     {item.price_change}%
                                   </span>
                                 </td>
-                                <td className="p-2">
-                                  {item.price_change >= 0 ? (
-                                    <img
-                                      src="/chart-image-1.png"
-                                      alt="chart-image"
-                                      className="chart-img"
-                                    />
-                                  ) : (
-                                    <img
-                                      src="/chart-image-2.png"
-                                      alt="chart-image"
-                                      className="chart-img"
-                                    />
-                                  )}
-                                </td>
+
                                 <td className="text-black p-2">
                                   {item.volume} {item.parent_coin_name}
                                 </td>
@@ -529,15 +485,7 @@ const MarketTrends = ({
                             >
                               {t("Change (24h)")}
                             </th>
-                            <th
-                              scope="col"
-                              className="sorting_disabled"
-                              rowSpan={1}
-                              colSpan={1}
-                              style={{ width: "0px" }}
-                            >
-                              {t("Chart")}
-                            </th>
+
                             <th
                               scope="col"
                               className="sorting_disabled"
@@ -597,21 +545,7 @@ const MarketTrends = ({
                                     {item.price_change}%
                                   </span>
                                 </td>
-                                <td className="p-2">
-                                  {item.price_change >= 0 ? (
-                                    <img
-                                      src="/chart-image-1.png"
-                                      alt="chart-image"
-                                      className="chart-img"
-                                    />
-                                  ) : (
-                                    <img
-                                      src="/chart-image-2.png"
-                                      alt="chart-image"
-                                      className="chart-img"
-                                    />
-                                  )}
-                                </td>
+
                                 <td className="text-black p-2">
                                   {item.volume} {item.parent_coin_name}
                                 </td>
