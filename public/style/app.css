@@ -644,9 +644,8 @@ client-area
   font-size: 18px;
   font-weight: bold;
   text-decoration: none;
-  color: #fff;
-  background-color: rgb(255 255 255 / 4%);
-  border: 1px solid var(--border-color-2);
+  color: var(--font-color);
+  background-color: var(--glass-color-bg-1);
   border-radius: 8px;
   transition: background-color 0.3s, border-color 0.3s, transform 0.3s;
   overflow: hidden;
@@ -667,7 +666,7 @@ client-area
     0.7
   ); /* Border color on hover with increased transparency */
   transform: scale(1.05); /* Scale the button on hover for a subtle animation */
-  color: white;
+  color: var(--font-color);
 }
 
 .glass-button::before {
