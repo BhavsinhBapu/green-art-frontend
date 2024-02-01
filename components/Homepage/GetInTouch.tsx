@@ -42,6 +42,7 @@ const Card = ({ feature }: any) => {
       className="card glass-card"
       href={feature?.feature_url ?? "#"}
       target="_blank"
+      rel="noreferrer"
     >
       <div
         className="card__background"

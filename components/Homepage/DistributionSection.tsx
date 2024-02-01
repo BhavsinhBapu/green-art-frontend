@@ -43,6 +43,7 @@ const DistributionSection = ({ landing }: any) => {
                             <a
                               href={landing?.apple_store_link ?? "#"}
                               target="_blank"
+                              rel="noreferrer"
                             >
                               <BlockComponent
                                 gradientClass="gradient-full"
@@ -62,6 +63,7 @@ const DistributionSection = ({ landing }: any) => {
                             <a
                               href={landing?.google_store_link ?? "#"}
                               target="_blank"
+                              rel="noreferrer"
                             >
                               <BlockComponent
                                 gradientClass="gradient-full"
@@ -81,6 +83,7 @@ const DistributionSection = ({ landing }: any) => {
                             <a
                               href={landing?.macos_store_link ?? "#"}
                               target="_blank"
+                              rel="noreferrer"
                             >
                               <BlockComponent
                                 gradientClass="gradient-full"
@@ -100,6 +103,7 @@ const DistributionSection = ({ landing }: any) => {
                             <a
                               href={landing?.windows_store_link ?? "#"}
                               target="_blank"
+                              rel="noreferrer"
                             >
                               <BlockComponent
                                 gradientClass="gradient-full"
@@ -119,6 +123,7 @@ const DistributionSection = ({ landing }: any) => {
                             <a
                               href={landing?.linux_store_link ?? "#"}
                               target="_blank"
+                              rel="noreferrer"
                             >
                               <BlockComponent
                                 gradientClass="gradient-full"
@@ -135,7 +140,11 @@ const DistributionSection = ({ landing }: any) => {
 
                         {landing?.api_link && (
                           <li className="single-item col-6 col-sm-4">
-                            <a href={landing?.api_link ?? "#"} target="_blank">
+                            <a
+                              href={landing?.api_link ?? "#"}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
                               <BlockComponent
                                 gradientClass="gradient-full"
                                 icon={
