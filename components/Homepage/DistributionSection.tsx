@@ -40,55 +40,109 @@ const DistributionSection = ({ landing }: any) => {
                       <ul className="item-lsit row">
                         {landing?.apple_store_link && (
                           <li className="single-item col-6 col-sm-4">
-                            <BlockComponent
-                              gradientClass="gradient-full"
-                              icon={<FaApple size={22} />}
-                            />
+                            <a
+                              href={landing?.apple_store_link ?? "#"}
+                              target="_blank"
+                            >
+                              <BlockComponent
+                                gradientClass="gradient-full"
+                                icon={
+                                  <FaApple
+                                    size={22}
+                                    color="var(--font-color)"
+                                  />
+                                }
+                              />
+                            </a>
                           </li>
                         )}
 
                         {landing?.google_store_link && (
                           <li className="single-item col-6 col-sm-4">
-                            <BlockComponent
-                              gradientClass="gradient-full"
-                              icon={<FaGoogle size={22} />}
-                            />
+                            <a
+                              href={landing?.google_store_link ?? "#"}
+                              target="_blank"
+                            >
+                              <BlockComponent
+                                gradientClass="gradient-full"
+                                icon={
+                                  <FaGoogle
+                                    size={22}
+                                    color="var(--font-color)"
+                                  />
+                                }
+                              />
+                            </a>
                           </li>
                         )}
 
                         {landing?.macos_store_link && (
                           <li className="single-item col-6 col-sm-4">
-                            <BlockComponent
-                              gradientClass="gradient-full"
-                              icon={<FaApple size={22} />}
-                            />
+                            <a
+                              href={landing?.macos_store_link ?? "#"}
+                              target="_blank"
+                            >
+                              <BlockComponent
+                                gradientClass="gradient-full"
+                                icon={
+                                  <FaApple
+                                    size={22}
+                                    color="var(--font-color)"
+                                  />
+                                }
+                              />
+                            </a>
                           </li>
                         )}
 
                         {landing?.windows_store_link && (
                           <li className="single-item col-6 col-sm-4">
-                            <BlockComponent
-                              gradientClass="gradient-full"
-                              icon={<FaWindows size={22} />}
-                            />
+                            <a
+                              href={landing?.windows_store_link ?? "#"}
+                              target="_blank"
+                            >
+                              <BlockComponent
+                                gradientClass="gradient-full"
+                                icon={
+                                  <FaWindows
+                                    size={22}
+                                    color="var(--font-color)"
+                                  />
+                                }
+                              />
+                            </a>
                           </li>
                         )}
 
                         {landing?.linux_store_link && (
                           <li className="single-item col-6 col-sm-4">
-                            <BlockComponent
-                              gradientClass="gradient-full"
-                              icon={<FaLinux size={22} />}
-                            />
+                            <a
+                              href={landing?.linux_store_link ?? "#"}
+                              target="_blank"
+                            >
+                              <BlockComponent
+                                gradientClass="gradient-full"
+                                icon={
+                                  <FaLinux
+                                    size={22}
+                                    color="var(--font-color)"
+                                  />
+                                }
+                              />
+                            </a>
                           </li>
                         )}
 
                         {landing?.api_link && (
                           <li className="single-item col-6 col-sm-4">
-                            <BlockComponent
-                              gradientClass="gradient-full"
-                              icon={<FaMap size={22} />}
-                            />
+                            <a href={landing?.api_link ?? "#"} target="_blank">
+                              <BlockComponent
+                                gradientClass="gradient-full"
+                                icon={
+                                  <FaMap size={22} color="var(--font-color)" />
+                                }
+                              />
+                            </a>
                           </li>
                         )}
                       </ul>
