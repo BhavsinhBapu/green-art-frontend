@@ -778,8 +778,7 @@ async function getLatestEvents(req, res) {
 
         console.log("EVM block");
         console.log("latestBlockNumber", latestBlockNumber);
-        console.log("from_block_number", from_block_number);
-        console.log("to_block_number", to_block_number);
+        console.log("erc_block_number", erc_block_number);
 
         if (!(to_block_number > 0) && !(from_block_number > 0)) {
           to_block_number = latestBlockNumber;
@@ -793,13 +792,16 @@ async function getLatestEvents(req, res) {
             to_block_number = from_block_number + erc_block_number;
         }
 
+        console.log("from_block_number", from_block_number);
+        console.log("to_block_number", to_block_number);
+
         if (from_block_number <= to_block_number) {
           const result = await getBlockDetails(
             contract,
             from_block_number,
             to_block_number
           );
-
+           
           if (result.status === true) {
             let resultData = [];
             result.data?.response?.forEach(function (res) {
@@ -866,11 +868,12 @@ async function getBlockDetails(contract, fromBlockNumber, toBlockNumber) {
       from_block_number: fromBlockNumber,
       to_block_number: toBlockNumber,
     };
+    console.log('getPastEvents','processing');
     const response = await contract.getPastEvents("Transfer", {
       fromBlock: fromBlockNumber,
       toBlock: toBlockNumber, // You can also specify 'latest'
     });
-
+    
     if (response && response.length > 0) {
       return {
         status: true,
