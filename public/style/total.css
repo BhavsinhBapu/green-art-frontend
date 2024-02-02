@@ -15935,8 +15935,6 @@ input:checked + .gift-card-buy-slider:before {
   padding: 4px 20px;
   border-bottom: 1px solid var(--glass-color-bg-1);
   text-wrap: nowrap;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
 }
 .report-overview-tab-menu .active {
   border-bottom: 3px solid var(--primary-color);
@@ -15975,6 +15973,7 @@ input:checked + .gift-card-buy-slider:before {
 
 .report-overview-body-padding {
   padding: 3rem;
+  background: transparent !important;
 }
 
 .wallet-overview-dropdown-tab-menu-btn {
