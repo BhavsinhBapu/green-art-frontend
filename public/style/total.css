@@ -16276,7 +16276,15 @@ input:checked + .gift-card-buy-slider:before {
   -webkit-backdrop-filter: blur(20px);
 }
 .report-navbar-dropdown-menu-custom {
-  background: rgb(193 193 193/70%);
+  background: var(--glass-color-bg-1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+.report-navbar-dropdown-menu-custom li {
+  border-bottom: unset !important;
+}
+.report-navbar-dropdown-menu-custom li a {
+  color: var(--font-color) !important;
 }
 .report-navbar-dropdown-menu-custom .dropdown-item:hover {
   background: transparent;
