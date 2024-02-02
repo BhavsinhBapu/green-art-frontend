@@ -80,7 +80,7 @@ function tronWebCall(req, res) {
   const tronWeb = new TronWeb({
     fullHost: req.headers.chainlinks,
     headers: {
-      "TRON-PRO-API-KEY": process.env.TRONGRID_API_KEY,
+      "TRON-PRO-API-KEY": req.headers?.tron_grid_api_key ?? "",
     },
   });
   return tronWeb;
