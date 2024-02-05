@@ -181,32 +181,34 @@ const Settings: NextPage = () => {
                     </div>
                   </div>
                   <div className="col-md-6 mb-xl-0 mb-4">
-                    <div className="cp-user-card-header-area">
-                      <div className="cp-user-title">
-                        <h4>{t("Generate Secret Key")}</h4>
+                    <div className="card-body">
+                      <div className="cp-user-card-header-area">
+                        <div className="cp-user-title">
+                          <h4>{t("Generate Secret Key")}</h4>
+                        </div>
                       </div>
+                      {settingsReducer?.secret_key_available == 1 ? (
+                        <button
+                          type="button"
+                          className="btn btn-primary px-3 py-2"
+                          data-toggle="modal"
+                          data-target="#secretKeyModal"
+                          onClick={() => setIsKeyGenerate(false)}
+                        >
+                          Show Key
+                        </button>
+                      ) : (
+                        <button
+                          type="button"
+                          className="btn btn-primary px-3 py-2"
+                          data-toggle="modal"
+                          data-target="#secretKeyModal"
+                          onClick={() => setIsKeyGenerate(true)}
+                        >
+                          Generate Key
+                        </button>
+                      )}
                     </div>
-                    {settingsReducer?.secret_key_available == 1 ? (
-                      <button
-                        type="button"
-                        className="btn btn-primary px-3 py-2"
-                        data-toggle="modal"
-                        data-target="#secretKeyModal"
-                        onClick={() => setIsKeyGenerate(false)}
-                      >
-                        Show Key
-                      </button>
-                    ) : (
-                      <button
-                        type="button"
-                        className="btn btn-primary px-3 py-2"
-                        data-toggle="modal"
-                        data-target="#secretKeyModal"
-                        onClick={() => setIsKeyGenerate(true)}
-                      >
-                        Generate Key
-                      </button>
-                    )}
                   </div>
                 </div>
               </div>
