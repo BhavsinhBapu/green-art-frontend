@@ -15,6 +15,7 @@ import { customPage, landingPage } from "service/landing-page";
 import PlaceBottomRight from "components/gradient/placeBottomRight";
 import PlaceTopLeft from "components/gradient/placeTopLeft";
 import SecretKeyModal from "components/settings/SecretKeyModal";
+import { toast } from "react-toastify";
 
 const Settings: NextPage = () => {
   const dispatch = useDispatch();
@@ -180,7 +181,7 @@ const Settings: NextPage = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="col-md-6 mb-xl-0 mb-4">
+                  <div className="col-md-12 mb-xl-0 mb-4">
                     <div className="card-body">
                       <div className="cp-user-card-header-area">
                         <div className="cp-user-title">
@@ -189,13 +190,31 @@ const Settings: NextPage = () => {
                       </div>
                       <div className="my-3 ">
                         <div
-                          className="border rounded px-3 py-2 d-flex flex-wrap"
+                          className="border rounded d-flex flex-wrap py-2 px-3 align-items-center justify-content-between"
                           style={{ gap: "10px" }}
                         >
-                          <p>{t(`Public Key : `)}</p>
-                          <p style={{ wordBreak: "break-all" }}>
-                            {settingsReducer?.public_key || ""}
-                          </p>
+                          <div
+                            className=" d-flex flex-wrap"
+                            style={{ gap: "10px" }}
+                          >
+                            <p>{t(`Public Key : `)}</p>
+                            <p style={{ wordBreak: "break-all" }}>
+                              {settingsReducer?.public_key || ""}
+                            </p>
+                          </div>
+                          {settingsReducer?.public_key && (
+                            <span
+                              onClick={() => {
+                                navigator.clipboard.writeText(
+                                  settingsReducer?.public_key
+                                );
+                                toast.success("Successfully copied");
+                              }}
+                              style={{ cursor: "pointer" }}
+                            >
+                              <i className="fa fa-clone"></i>
+                            </span>
+                          )}
                         </div>
                         <div
                           className="border mt-3 rounded px-3 py-2 d-flex flex-wrap"
