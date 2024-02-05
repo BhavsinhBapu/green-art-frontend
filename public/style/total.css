@@ -15991,6 +15991,10 @@ input:checked + .gift-card-buy-slider:before {
 .section-padding-custom {
   padding: 3rem !important;
 }
+
+.secret-key-dialog {
+  max-width: 60vw !important;
+}
 @media (max-width: 1520px) {
   .trade-dashboard-side-margin {
     margin-left: 0 !important;
@@ -16077,6 +16081,9 @@ input:checked + .gift-card-buy-slider:before {
   }
 }
 @media (max-width: 770px) {
+  .secret-key-dialog {
+    max-width: 100% !important;
+  }
   .wallet-overview-header-title {
     font-size: 34px;
   }

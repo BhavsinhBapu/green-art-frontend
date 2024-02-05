@@ -33,3 +33,17 @@ export const UpdateCurrency = async (code: string) => {
   const { data } = await request.post("/update-currency", { code: code });
   return data;
 };
+
+export const GenerateSecretKey = async (password: any) => {
+  const { data } = await request.post("/generate-secret-key", {
+    password: password,
+  });
+  return data;
+};
+
+export const ShowGeneratedSecretKey = async (password: any) => {
+  const { data } = await request.post("/show-secret-key", {
+    password: password,
+  });
+  return data;
+};

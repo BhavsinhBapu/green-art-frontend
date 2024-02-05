@@ -14,9 +14,11 @@ import Footer from "components/common/footer";
 import { customPage, landingPage } from "service/landing-page";
 import PlaceBottomRight from "components/gradient/placeBottomRight";
 import PlaceTopLeft from "components/gradient/placeTopLeft";
+import SecretKeyModal from "components/settings/SecretKeyModal";
 
 const Settings: NextPage = () => {
   const dispatch = useDispatch();
+  const [isKeyGenerate, setIsKeyGenerate] = useState(true);
   const { t } = useTranslation("common");
   const [settings, setSettings] = useState<any>();
   const { settings: settingsReducer } = useSelector(
@@ -88,11 +90,6 @@ const Settings: NextPage = () => {
                                 {t("Remove Google Authentication")}
                               </a>
                             )}
-
-                            <GoogleAuthModal
-                              settings={settings}
-                              setSettings={setSettings}
-                            />
                           </div>
                           <div className="cp-user-content">
                             <h5>{t("Security")}</h5>
@@ -183,6 +180,34 @@ const Settings: NextPage = () => {
                       </div>
                     </div>
                   </div>
+                  <div className="col-md-6 mb-xl-0 mb-4">
+                    <div className="cp-user-card-header-area">
+                      <div className="cp-user-title">
+                        <h4>{t("Generate Secret Key")}</h4>
+                      </div>
+                    </div>
+                    {settingsReducer?.secret_key_available == 1 ? (
+                      <button
+                        type="button"
+                        className="btn btn-primary px-3 py-2"
+                        data-toggle="modal"
+                        data-target="#secretKeyModal"
+                        onClick={() => setIsKeyGenerate(false)}
+                      >
+                        Show Key
+                      </button>
+                    ) : (
+                      <button
+                        type="button"
+                        className="btn btn-primary px-3 py-2"
+                        data-toggle="modal"
+                        data-target="#secretKeyModal"
+                        onClick={() => setIsKeyGenerate(true)}
+                      >
+                        Generate Key
+                      </button>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
@@ -190,6 +215,8 @@ const Settings: NextPage = () => {
         </div>
       </div>
       <Footer />
+      <GoogleAuthModal settings={settings} setSettings={setSettings} />
+      <SecretKeyModal isKeyGenerate={isKeyGenerate} />
     </>
   );
 };
