@@ -1,12 +1,15 @@
 import useTranslation from "next-translate/useTranslation";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { GenerateSecretKey, ShowGeneratedSecretKey } from "service/settings";
 import { SetupGoogle2faAction } from "state/actions/settings";
+import { setSecretKeySettings } from "state/reducer/common";
 
 const SecretKeyModal = ({ isKeyGenerate }: any) => {
   const [password, setPassword] = useState<any>("");
   const [secretKey, setSecretKey] = useState<any>("");
+  const dispatch = useDispatch();
   const { t } = useTranslation("common");
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -18,6 +21,7 @@ const SecretKeyModal = ({ isKeyGenerate }: any) => {
       }
       toast.success(response.message);
       setSecretKey(response?.data?.secret_key || "");
+      dispatch(setSecretKeySettings(1));
       return;
     }
     const response = await ShowGeneratedSecretKey(password);

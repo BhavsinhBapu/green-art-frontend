@@ -20,8 +20,14 @@ export const commonSlice = createSlice({
     setThemeColor: (state, action: any) => {
       state.theme = action.payload;
     },
+    setSecretKeySettings: (state, action: any) => {
+      state.settings = {
+        ...state.settings,
+        secret_key_available: action.payload,
+      };
+    },
   },
 });
 
-export const { setSettings, setThemeColor } = commonSlice.actions;
+export const { setSettings, setThemeColor, setSecretKeySettings } = commonSlice.actions;
 export default commonSlice.reducer;
