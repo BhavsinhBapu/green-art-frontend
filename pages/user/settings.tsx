@@ -187,6 +187,24 @@ const Settings: NextPage = () => {
                           <h4>{t("Generate Secret Key")}</h4>
                         </div>
                       </div>
+                      <div className="my-3 ">
+                        <div
+                          className="border rounded px-3 py-2 d-flex flex-wrap"
+                          style={{ gap: "10px" }}
+                        >
+                          <p>{t(`Public Key : `)}</p>
+                          <p style={{ wordBreak: "break-all" }}>
+                            {settingsReducer?.public_key || ""}
+                          </p>
+                        </div>
+                        <div
+                          className="border mt-3 rounded px-3 py-2 d-flex flex-wrap"
+                          style={{ gap: "10px" }}
+                        >
+                          <p>{t(`Secret Key : `)}</p>
+                          <p>*********************</p>
+                        </div>
+                      </div>
                       {settingsReducer?.secret_key_available == 1 ? (
                         <button
                           type="button"
@@ -195,7 +213,7 @@ const Settings: NextPage = () => {
                           data-target="#secretKeyModal"
                           onClick={() => setIsKeyGenerate(false)}
                         >
-                          Show Key
+                          Show Secret Key
                         </button>
                       ) : (
                         <button
@@ -205,7 +223,7 @@ const Settings: NextPage = () => {
                           data-target="#secretKeyModal"
                           onClick={() => setIsKeyGenerate(true)}
                         >
-                          Generate Key
+                          Generate Secret Key
                         </button>
                       )}
                     </div>

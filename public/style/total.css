@@ -16001,6 +16001,11 @@ input:checked + .gift-card-buy-slider:before {
     margin-right: 0 !important;
   }
 }
+@media (max-width: 1320px) {
+  .secret-key-dialog {
+    max-width: 90vw !important;
+  }
+}
 @media (max-width: 1199px) {
   .page-left-sidebar {
     padding: 0;

@@ -59,9 +59,23 @@ const SecretKeyModal = ({ isKeyGenerate }: any) => {
             <div className="modal-body">
               <div className="row">
                 <div className="col-12">
-                  <p>
-                    Secret Key: <strong> {secretKey}</strong>
-                  </p>
+                  <div
+                    className="border rounded d-flex flex-wrap py-2 px-3 align-items-center justify-content-between"
+                    style={{ gap: "10px" }}
+                  >
+                    <p style={{ wordBreak: "break-all" }}>
+                      Secret Key: <strong> {secretKey}</strong>
+                    </p>
+                    <span
+                      onClick={() => {
+                        navigator.clipboard.writeText(secretKey);
+                        toast.success("Successfully copied");
+                      }}
+                      style={{ cursor: "pointer" }}
+                    >
+                      <i className="fa fa-clone"></i>
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
