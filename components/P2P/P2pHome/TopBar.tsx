@@ -10,7 +10,7 @@ export const P2pTopBar = () => {
 
   const router = useRouter();
   return (
-    <div className="py-3 glass-color-bg-custom">
+    <div className="py-3">
       <div className="container-4xl">
         <div className="row">
           <div className="col-12">
