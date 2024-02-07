@@ -88,11 +88,6 @@ const Settings: NextPage = () => {
                                 {t("Remove Google Authentication")}
                               </a>
                             )}
-
-                            <GoogleAuthModal
-                              settings={settings}
-                              setSettings={setSettings}
-                            />
                           </div>
                           <div className="cp-user-content">
                             <h5>{t("Security")}</h5>
@@ -190,6 +185,7 @@ const Settings: NextPage = () => {
         </div>
       </div>
       <Footer />
+      <GoogleAuthModal settings={settings} setSettings={setSettings} />
     </>
   );
 };
