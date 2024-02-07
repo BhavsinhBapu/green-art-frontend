@@ -84,7 +84,7 @@ export const AddPostTwo = ({
                 <small>{t("Select up to 5 payment methods")}</small>
               </div>
               <div className="col-md-6 col-lg-6 col-12">
-                <label>{t("Payment Time Limit")}</label>
+                <label>{t("Payment Time Limit (in Minutes)")}</label>
                 <div className="col-12 p-0">
                   <CUstomSelect
                     options={PaymentTime}
