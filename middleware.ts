@@ -20,6 +20,13 @@ export async function middleware(req: NextRequest) {
     }
   );
   const data = await res.json();
+
+  if (
+    curentUrl(req.nextUrl.pathname) === true &&
+    parseInt(data?.maintenance_mode_status) === 0
+  ) {
+    return NextResponse.redirect(new URL("/", req.url));
+  }
   if (parseInt(data?.data?.maintenance_mode_status) === 1) {
     if (curentUrl(req.nextUrl.pathname) === true) {
       return NextResponse.next();
