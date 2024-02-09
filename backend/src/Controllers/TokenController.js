@@ -827,6 +827,7 @@ async function getLatestEvents(req, res) {
               data: {
                 result: resultData,
                 block: result.data.block,
+                latest: latestBlockNumber
               },
             });
           } else {
@@ -836,6 +837,7 @@ async function getLatestEvents(req, res) {
               data: {
                 result: [],
                 block: result.data?.block,
+                latest: latestBlockNumber
               },
             });
           }

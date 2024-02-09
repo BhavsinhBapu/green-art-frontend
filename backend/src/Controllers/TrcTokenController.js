@@ -349,6 +349,7 @@ async function tornWebTransactionListByContractAddress(req, res) {
           data: {
             result: responseTransactions,
             block: blockData,
+            latest: latestBlockNumber
           },
         });
       } else {
@@ -358,6 +359,7 @@ async function tornWebTransactionListByContractAddress(req, res) {
           data: {
             result: responseTransactions,
             block: blockData,
+            latest: latestBlockNumber
           },
         });
       }
