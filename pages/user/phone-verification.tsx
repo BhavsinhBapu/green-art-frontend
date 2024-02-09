@@ -41,7 +41,7 @@ const PhoneVerification: NextPage = () => {
         <div className="page-main-content bg-primary-custom-color">
           <ProfileHeader title={t("Phone Verification")} />
           <PlaceTopLeft />
-          <PlaceBottomRight />  
+          <PlaceBottomRight />
           <div className="container-4xl">
             <div className="reset-password-area body-margin-top-custom shadow-sm section-padding-custom wallet-card-info-container">
               <div className="section-wrapper">
@@ -107,7 +107,13 @@ const PhoneVerification: NextPage = () => {
                                   t("Send SMS")
                                 )}
                               </button>
-                              <p>{t("Did not receive code?")}</p>
+                              {ShowOtpSection && (
+                                <p>
+                                  {t(
+                                    "If you did not receive the code, click the Resend SMS button."
+                                  )}
+                                </p>
+                              )}
                             </div>
                           ) : (
                             <div className="code-list">

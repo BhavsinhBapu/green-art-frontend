@@ -64,3 +64,4 @@ export const SetupGoogle2faAction = async (
   setSettings(settings.data);
   return setup.data;
 };
+
