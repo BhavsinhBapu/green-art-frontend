@@ -18,6 +18,7 @@ const CommunityHome = () => {
   const { t } = useTranslation();
 
   const [blogList, setBlogList] = useState<any>([]);
+  const [isSuccess, setIsSuccess] = useState<any>(false);
   const [loading, setLoading] = useState(false);
 
   const {
@@ -35,11 +36,12 @@ const CommunityHome = () => {
     setLoading(true);
     const response = await getBlogHomePageDataApi();
     if (!response.success) {
-      toast.error(response.message);
+      setLoading(false);
       return;
     }
     setBlogList(response.data);
     setLoading(false);
+    setIsSuccess(true);
   };
 
   const itemVariants = {
@@ -48,6 +50,8 @@ const CommunityHome = () => {
   };
 
   if (loading) return <SectionLoading />;
+
+  if (!isSuccess) return <></>;
 
   return (
     <section className="pt-60 pb-60 community-home">
