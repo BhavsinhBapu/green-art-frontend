@@ -203,21 +203,21 @@ const Settings: NextPage = () => {
                                 process.env.NEXT_PUBLIC_SECRET_KEY}
                             </p>
                           </div>
-                          {settingsReducer?.public_key ||
-                            (process.env.NEXT_PUBLIC_SECRET_KEY && (
-                              <span
-                                onClick={() => {
-                                  navigator.clipboard.writeText(
-                                    settingsReducer?.public_key ||
-                                      process.env.NEXT_PUBLIC_SECRET_KEY
-                                  );
-                                  toast.success("Successfully copied");
-                                }}
-                                style={{ cursor: "pointer" }}
-                              >
-                                <i className="fa fa-clone"></i>
-                              </span>
-                            ))}
+                          {(settingsReducer?.public_key ||
+                            process.env.NEXT_PUBLIC_SECRET_KEY) && (
+                            <span
+                              onClick={() => {
+                                navigator.clipboard.writeText(
+                                  settingsReducer?.public_key ||
+                                    process.env.NEXT_PUBLIC_SECRET_KEY
+                                );
+                                toast.success("Successfully copied");
+                              }}
+                              style={{ cursor: "pointer" }}
+                            >
+                              <i className="fa fa-clone"></i>
+                            </span>
+                          )}
                         </div>
                         <div
                           className="border mt-3 rounded px-3 py-2 d-flex flex-wrap"
