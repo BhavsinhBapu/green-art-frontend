@@ -181,6 +181,7 @@ const Settings: NextPage = () => {
                       </div>
                     </div>
                   </div>
+                            
                   <div className="col-md-12 mb-xl-0 mb-4">
                     <div className="card-body">
                       <div className="cp-user-card-header-area">
@@ -250,6 +251,7 @@ const Settings: NextPage = () => {
                       )}
                     </div>
                   </div>
+
                 </div>
               </div>
             </div>
