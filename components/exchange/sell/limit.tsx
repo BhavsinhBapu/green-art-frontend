@@ -1,7 +1,7 @@
 import { formateZert } from "common";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
-import React from "react";
+import React, { Fragment } from "react";
 import { useDispatch } from "react-redux";
 import {
   sellLimitAppAction,
@@ -16,6 +16,20 @@ const Limit = ({
   isLoggedIn,
   currentPair,
 }: any) => {
+  const buySellSliderRanges = [
+    {
+      percent: 0.25,
+    },
+    {
+      percent: 0.5,
+    },
+    {
+      percent: 0.75,
+    },
+    {
+      percent: 1,
+    },
+  ];
   const { t } = useTranslation("common");
   const [loading, setLoading] = React.useState(false);
   const dispatch = useDispatch();
@@ -203,42 +217,41 @@ const Limit = ({
                   </span>
                 </div>
                 {isLoggedIn && (
-                  <div className=" mt-3 percent-container ">
-                    <span
-                      className=" percent-btn col-3"
-                      onClick={() => setAmountBasedOnPercentage(0.25)}
-                    >
-                      {t("25%")}
-                    </span>
-                    <span
-                      className=" percent-btn col-3"
-                      onClick={() => setAmountBasedOnPercentage(0.5)}
-                    >
-                      {t("50%")}
-                    </span>
-                    <span
-                      className=" percent-btn col-3"
-                      onClick={() => setAmountBasedOnPercentage(0.75)}
-                    >
-                      {t("75%")}
-                    </span>
-                    <span
-                      className=" percent-btn col-3"
-                      onClick={() => setAmountBasedOnPercentage(1)}
-                    >
-                      {t("100%")}
-                    </span>
+                  <div className="exchange-dashboard-slider-range-cls mt-3 mb-5">
+                    {buySellSliderRanges?.map((data: any, index: any) => (
+                      <Fragment key={index}>
+                        <input
+                          type="radio"
+                          name="debt-amount"
+                          id={index}
+                          defaultValue={index}
+                          required
+                          onClick={() =>
+                            setAmountBasedOnPercentage(data?.percent)
+                          }
+                        />
+                        <label
+                          htmlFor={index}
+                          data-debt-amount={`${data?.percent * 100}%`}
+                        />
+                      </Fragment>
+                    ))}
                   </div>
                 )}
                 {!isLoggedIn ? (
                   <div className="form-group mt-4">
                     <Link href="/signin">
-                      <a className="btn theme-btn-red">{t("Login")}</a>
+                      <a className="btn theme-btn-red bg-primary-color">
+                        {t("Login")}
+                      </a>
                     </Link>
                   </div>
                 ) : loading ? (
                   <div className="form-group mt-4">
-                    <button type="submit" className="btn theme-btn-red">
+                    <button
+                      type="submit"
+                      className="btn theme-btn-red bg-primary-color"
+                    >
                       <span v-if="limitBuyData.placingOrder">
                         <span
                           className="spinner-border spinner-border-sm"
@@ -253,7 +266,7 @@ const Limit = ({
                   <div className="form-group mt-4">
                     <button
                       type="submit"
-                      className="btn theme-btn-red"
+                      className="btn theme-btn-red bg-primary-color"
                       onClick={async (e) => {
                         e.preventDefault();
                         await sellLimitAppAction(
