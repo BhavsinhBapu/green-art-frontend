@@ -1,4 +1,5 @@
 import { formateZert } from "common";
+import RangeSlider from "components/dashboard/RangeSlider";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import React, { Fragment } from "react";
@@ -221,28 +222,11 @@ const Limit = ({
                   </span>
                 </div>
                 {isLoggedIn && (
-                  <>
-                    <div className="exchange-dashboard-slider-range-cls mt-3 mb-5">
-                      {buySellSliderRanges?.map((data: any, index: any) => (
-                        <Fragment key={index}>
-                          <input
-                            type="radio"
-                            name="debt-amount"
-                            id={index}
-                            defaultValue={index}
-                            required
-                            onClick={() =>
-                              setAmountBasedOnPercentage(data?.percent)
-                            }
-                          />
-                          <label
-                            htmlFor={index}
-                            data-debt-amount={`${data?.percent * 100}%`}
-                          />
-                        </Fragment>
-                      ))}
-                    </div>
-                  </>
+                  <RangeSlider
+                    items={buySellSliderRanges}
+                    handleFunc={setAmountBasedOnPercentage}
+                    idPrefix="buyLimit"
+                  />
                 )}
 
                 {!isLoggedIn ? (
