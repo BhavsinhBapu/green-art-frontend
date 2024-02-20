@@ -157,7 +157,10 @@ export const BuyFrom = ({
                   value={rate?.amount_price}
                   placeholder="233.0555 - 24.24240"
                   onChange={(e) => {
-                    if (Number(e.target.value) < 0) {
+                    if (
+                      Number(e.target.value) < 0 ||
+                      isNaN(Number(e.target.value))
+                    ) {
                       return;
                     }
                     if (!e.target.value) {
@@ -170,9 +173,9 @@ export const BuyFrom = ({
                     }
                     setRate({
                       ...rate,
-                      amount_price: parseFloat(e.target.value),
+                      amount_price: e.target.value,
                     });
-                    getRate(null, parseFloat(e.target.value));
+                    getRate(null, e.target.value);
                     setlastChanged(AMOUNT_PRICE);
                   }}
                 />
@@ -198,7 +201,10 @@ export const BuyFrom = ({
                   placeholder="0.00"
                   value={rate?.amount}
                   onChange={(e) => {
-                    if (Number(e.target.value) < 0) {
+                    if (
+                      Number(e.target.value) < 0 ||
+                      isNaN(Number(e.target.value))
+                    ) {
                       return;
                     }
                     if (!e.target.value) {
@@ -206,8 +212,8 @@ export const BuyFrom = ({
                       getRate(0, null);
                       return;
                     }
-                    setRate({ ...rate, amount: parseFloat(e.target.value) });
-                    getRate(parseFloat(e.target.value), null);
+                    setRate({ ...rate, amount: e.target.value });
+                    getRate(e.target.value, null);
                     setlastChanged(AMOUNT);
                   }}
                 />
