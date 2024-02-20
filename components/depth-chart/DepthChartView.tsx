@@ -53,7 +53,7 @@ export default function DepthChartView() {
   const theme = localStorage.getItem("theme");
   return (
     <div style={{ height: "570px", width: "100%" }}>
-      <DepthChart data={AAPL_data} theme={theme == "dark" ? "Dark" : "Light"} />
+      <DepthChart data={AAPL_data} theme={theme == "dark" ? "dark" : "light"} />
     </div>
   );
 }
