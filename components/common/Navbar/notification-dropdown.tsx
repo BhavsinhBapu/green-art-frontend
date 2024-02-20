@@ -102,7 +102,10 @@ const NotificationDropdown = ({
                     <div className="user-name">
                       <p
                         className="nav-userName"
-                        style={{ color: "var(--text-primary-color-4)", fontWeight: "bold" }}
+                        style={{
+                          color: "var(--text-primary-color-4)",
+                          fontWeight: "bold",
+                        }}
                       >
                         {user?.first_name!} {user?.last_name!}
                       </p>
@@ -120,6 +123,15 @@ const NotificationDropdown = ({
                         <a href="">
                           <i className="fa fa-cog"></i>
                           {t("My Settings")}
+                        </a>
+                      </button>
+                    </Link>
+
+                    <Link href={isLoggedIn ? "/user/api-settings" : "/signin"}>
+                      <button className="dropdown-item" type="button">
+                        <a href="">
+                          <i className="fa fa-cog"></i>
+                          {t("Api Settings")}
                         </a>
                       </button>
                     </Link>
