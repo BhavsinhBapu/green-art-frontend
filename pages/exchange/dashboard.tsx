@@ -85,6 +85,14 @@ const Dashboard: NextPage = () => {
   ]);
   const { settings } = useSelector((state: RootState) => state.common);
 
+  useEffect(() => {
+    if (!settings?.exchange_layout_view) {
+      return;
+    }
+    console.log("settings?.exchange_layout_view", settings?.exchange_layout_view)
+    setLayout(settings?.exchange_layout_view);
+  }, [settings]);
+
   if (isLoading) {
     return <Loading />;
   }
