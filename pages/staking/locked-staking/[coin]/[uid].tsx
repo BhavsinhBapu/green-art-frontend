@@ -142,7 +142,7 @@ const LockedStaking = () => {
                         <h6 className="pl-3">{details?.minimum_investment}</h6>
                       </div>
                       <div className="est-price">
-                        <p>{t(`Available Amount`)}</p>
+                        <p>{t(`Maximum Amount`)}</p>
                         <h6 className="pl-3">
                           {!parseFloat(details?.total_investment_amount)
                             ? parseFloat(details?.maximum_investment) - 0
@@ -150,16 +150,16 @@ const LockedStaking = () => {
                               parseFloat(details?.total_investment_amount)}
                         </h6>
                       </div>
-                      {details?.terms_type !== STAKING_TERMS_TYPE_STRICT && (
+                      {/* {details?.terms_type !== STAKING_TERMS_TYPE_STRICT && (
                         <div className="est-price">
                           <p>{t(`Minimum Maturity Period`)}</p>
                           <h6 className="pl-3">
                             {details?.minimum_maturity_period} {t(`Day`)}
                           </h6>
                         </div>
-                      )}
+                      )} */}
                       <div className="est-price">
-                        <p>{t(`Estimated Intereste`)}</p>
+                        <p>{t(`Estimated Interest`)}</p>
                         <h6 className="pl-3">{totalBonus}</h6>
                       </div>
                       <div className=" mt-5">

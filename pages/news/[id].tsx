@@ -27,17 +27,17 @@ const NewsDetails = ({ BlogNewsSettings }: any) => {
   const dispatch = useDispatch();
   const { id } = router.query;
   const getDetails = async (id: any) => {
-    dispatch(setLoading(true));
+    // dispatch(setLoading(true));
     const newsDetails = await getNewsDetails(id);
     setnewsDetails(newsDetails?.data);
-    dispatch(setLoading(false));
+    // dispatch(setLoading(false));
   };
   useEffect(() => {
     id && getDetails(id);
-  }, []);
+  }, [id]);
   return (
     <>
-      <div className="container">
+      <div className="container inner-section-margin-top mt-5">
         <Link href="/news">
           <a>
             <h3 className="pb-3 newsDetailsTitle sectionTitle d-flex align-items-center">
@@ -110,7 +110,7 @@ const NewsDetails = ({ BlogNewsSettings }: any) => {
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   // await SSRAuthCheck(ctx, "/news");
   const { id } = ctx.params;
-  const newsDetails = await getNewsDetails(id);
+  // const newsDetails = await getNewsDetails(id);
   const { data: BlogNewsSettings } = await getBlogNewsSettings();
   const commonRes = await pageAvailabilityCheck();
   if (parseInt(commonRes.blog_news_module) !== 1) {
@@ -123,7 +123,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   }
   return {
     props: {
-      newsDetails: newsDetails.data,
+      // newsDetails: newsDetails.data,
       BlogNewsSettings: BlogNewsSettings,
     },
   };

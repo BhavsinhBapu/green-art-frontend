@@ -36,7 +36,7 @@ const News = ({ BlogNewsSettings }: any) => {
   }, []);
   return (
     <>
-      <div className="container">
+      <div className="container inner-section-margin-top mt-5">
         <div className="row align-items-center">
           <div className="col-md-7">
             <h2 className="pb-2 sectionTitle">{t("Top news")}</h2>
