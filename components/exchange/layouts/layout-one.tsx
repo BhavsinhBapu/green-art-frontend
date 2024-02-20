@@ -24,10 +24,16 @@ const TradingChart = dynamic(
     ),
   { ssr: false }
 );
+
+const DepthChart = dynamic(
+  () => import("components/depth-chart/DepthChartView"),
+  { ssr: false }
+);
 const LayoutOne = ({ ThemeColor }: any) => {
   const [show, setShow] = useState(true);
   const { t } = useTranslation("common");
   const [select, setSelect] = React.useState(3);
+  const [isActiveTradingView, setIsActiveTradingView] = useState(true);
   const { dashboard, OpenBookBuy, OpenBooksell, marketTrades, currentPair } =
     useSelector((state: RootState) => state.exchange);
   const { settings, theme } = useSelector((state: RootState) => state.common);
@@ -349,9 +355,27 @@ const LayoutOne = ({ ThemeColor }: any) => {
         </div>
       </div>
       <div className="col-xl-6 px-0">
+        <div className="py-2 px-2 d-flex align-items-center gap-10">
+          <span
+            onClick={() => setIsActiveTradingView(true)}
+            className={`${
+              isActiveTradingView && "text-primary-color"
+            } font-bold cursor-pointer`}
+          >
+            Trading View
+          </span>
+          <span
+            onClick={() => setIsActiveTradingView(false)}
+            className={`${
+              !isActiveTradingView && "text-primary-color"
+            } font-bold cursor-pointer`}
+          >
+            Depth
+          </span>
+        </div>
         <div className="cp-user-buy-coin-content-area">
           <div className="card cp-user-custom-card">
-            {currentPair && show && (
+            {currentPair && show && isActiveTradingView && (
               <TradingChart
                 //@ts-ignore
                 currentPair={currentPair}
@@ -359,6 +383,7 @@ const LayoutOne = ({ ThemeColor }: any) => {
                 ThemeColor={ThemeColor}
               />
             )}
+            {!isActiveTradingView && <DepthChart />}
           </div>
         </div>
 
