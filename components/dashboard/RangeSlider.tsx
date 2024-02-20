@@ -13,8 +13,6 @@ export default function RangeSlider({
             type="radio"
             name="debt-amount"
             id={`${idPrefix}${index}`}
-            defaultValue={index}
-            required
             onClick={() => handleFunc(data?.percent)}
           />
           <label
