@@ -89,7 +89,8 @@ const Dashboard: NextPage = () => {
     if (!settings?.exchange_layout_view) {
       return;
     }
-    console.log("settings?.exchange_layout_view", settings?.exchange_layout_view)
+
+    localStorage.setItem("layout-trade", settings?.exchange_layout_view);
     setLayout(settings?.exchange_layout_view);
   }, [settings]);
 
