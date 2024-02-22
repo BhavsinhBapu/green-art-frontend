@@ -360,7 +360,7 @@ const LayoutTwo = ({ ThemeColor }: any) => {
               isActiveTradingView && "text-primary-color"
             } font-bold cursor-pointer`}
           >
-            Trading View
+            {t(`Trading View`)}
           </span>
           <span
             onClick={() => setIsActiveTradingView(false)}
@@ -368,7 +368,7 @@ const LayoutTwo = ({ ThemeColor }: any) => {
               !isActiveTradingView && "text-primary-color"
             } font-bold cursor-pointer`}
           >
-            Depth
+            {t(`Depth Chart`)}
           </span>
         </div>
         <div className="cp-user-buy-coin-content-area">
