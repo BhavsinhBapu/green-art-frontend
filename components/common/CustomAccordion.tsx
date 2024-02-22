@@ -14,16 +14,16 @@ export const CustomAccordion = ({ faqIten }: any) => {
             type="button"
             onClick={faqArrow}
             data-toggle="collapse"
-            data-target="#collapseThree"
+            data-target={`#collapseThree${faqIten?.id}`}
             aria-expanded="false"
-            aria-controls="collapseThree"
+            aria-controls={`collapseThree${faqIten?.id}`}
           >
             {faqIten?.question}
             <FaAngleDown className={`${faqDown ? "faqDown" : ""}`} />
           </button>
         </div>
         <div
-          id="collapseThree"
+          id={`collapseThree${faqIten?.id}`}
           className="collapse"
           aria-labelledby="headingThree"
           data-parent="#accordionExample"

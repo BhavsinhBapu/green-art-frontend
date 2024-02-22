@@ -33,8 +33,11 @@ const BottomDetails = ({ landing }: any) => {
                 <div className="trade-anywhere-right">
                   <h2 className="subtitle"> {landing?.customization_title} </h2>
                   <p>{landing?.customization_details}</p>
-                  <a href="/exchange/dashboard" className="glass-button">
-                    {t("Know More")}
+                  <a
+                    href={`${landing?.know_more_link || "/"}`}
+                    className="glass-button"
+                  >
+                    {t(landing?.know_more_button_title || "Know More")}
                   </a>
                 </div>
               </div>
