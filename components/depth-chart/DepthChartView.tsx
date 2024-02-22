@@ -22,7 +22,7 @@ export default function DepthChartView() {
     }
     const results = OpenBookBuy.map((buy: any) => ({
       price: parseFloat(buy.price),
-      volume: parseFloat(buy.total),
+      volume: parseFloat(buy.amount),
     }));
 
     setDepthCartData((prev: any) => ({
@@ -37,7 +37,7 @@ export default function DepthChartView() {
     }
     const results = OpenBooksell.map((buy: any) => ({
       price: parseFloat(buy.price),
-      volume: parseFloat(buy.total),
+      volume: parseFloat(buy.amount),
     }));
 
     setDepthCartData((prev: any) => ({
