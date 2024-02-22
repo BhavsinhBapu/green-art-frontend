@@ -34,10 +34,10 @@ const BottomDetails = ({ landing }: any) => {
                   <h2 className="subtitle"> {landing?.customization_title} </h2>
                   <p>{landing?.customization_details}</p>
                   <a
-                    href={`${landing?.know_more_link}`}
+                    href={`${landing?.know_more_link || "/"}`}
                     className="glass-button"
                   >
-                    {t(landing?.know_more_button_title)}
+                    {t(landing?.know_more_button_title || "Know More")}
                   </a>
                 </div>
               </div>
