@@ -19,7 +19,6 @@ import { toast } from "react-toastify";
 
 const Settings: NextPage = () => {
   const dispatch = useDispatch();
-  const [isKeyGenerate, setIsKeyGenerate] = useState(true);
   const { t } = useTranslation("common");
   const [settings, setSettings] = useState<any>();
   const { settings: settingsReducer } = useSelector(
@@ -181,75 +180,6 @@ const Settings: NextPage = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="col-md-12 mb-xl-0 mb-4">
-                    <div className="card-body">
-                      <div className="cp-user-card-header-area">
-                        <div className="cp-user-title">
-                          <h4>{t("Generate Secret Key")}</h4>
-                        </div>
-                      </div>
-                      <div className="my-3 ">
-                        <div
-                          className="border rounded d-flex flex-wrap py-2 px-3 align-items-center justify-content-between"
-                          style={{ gap: "10px" }}
-                        >
-                          <div
-                            className=" d-flex flex-wrap"
-                            style={{ gap: "10px" }}
-                          >
-                            <p>{t(`Public Key : `)}</p>
-                            <p style={{ wordBreak: "break-all" }}>
-                              {settingsReducer?.public_key ||
-                                process.env.NEXT_PUBLIC_SECRET_KEY}
-                            </p>
-                          </div>
-                          {(settingsReducer?.public_key ||
-                            process.env.NEXT_PUBLIC_SECRET_KEY) && (
-                            <span
-                              onClick={() => {
-                                navigator.clipboard.writeText(
-                                  settingsReducer?.public_key ||
-                                    process.env.NEXT_PUBLIC_SECRET_KEY
-                                );
-                                toast.success("Successfully copied");
-                              }}
-                              style={{ cursor: "pointer" }}
-                            >
-                              <i className="fa fa-clone"></i>
-                            </span>
-                          )}
-                        </div>
-                        <div
-                          className="border mt-3 rounded px-3 py-2 d-flex flex-wrap"
-                          style={{ gap: "10px" }}
-                        >
-                          <p>{t(`Secret Key : `)}</p>
-                          <p>*********************</p>
-                        </div>
-                      </div>
-                      {settingsReducer?.secret_key_available == 1 ? (
-                        <button
-                          type="button"
-                          className="btn btn-primary px-3 py-2"
-                          data-toggle="modal"
-                          data-target="#secretKeyModal"
-                          onClick={() => setIsKeyGenerate(false)}
-                        >
-                          Show Secret Key
-                        </button>
-                      ) : (
-                        <button
-                          type="button"
-                          className="btn btn-primary px-3 py-2"
-                          data-toggle="modal"
-                          data-target="#secretKeyModal"
-                          onClick={() => setIsKeyGenerate(true)}
-                        >
-                          Generate Secret Key
-                        </button>
-                      )}
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -258,7 +188,6 @@ const Settings: NextPage = () => {
       </div>
       <Footer />
       <GoogleAuthModal settings={settings} setSettings={setSettings} />
-      <SecretKeyModal isKeyGenerate={isKeyGenerate} />
     </>
   );
 };
