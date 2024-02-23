@@ -240,7 +240,7 @@ const MarketTrends = ({
                                 </td>
 
                                 <td className="text-black p-2">
-                                  {item.volume} {item.parent_coin_name}
+                                  {item.volume} {item.child_coin_name}
                                 </td>
                                 <td
                                   className="p-2 text-right"
@@ -401,7 +401,7 @@ const MarketTrends = ({
                                 </td>
 
                                 <td className="text-black p-2">
-                                  {item.volume} {item.parent_coin_name}
+                                  {item.volume} {item.child_coin_name}
                                 </td>
                                 <td
                                   onClick={async () => {
@@ -547,7 +547,7 @@ const MarketTrends = ({
                                 </td>
 
                                 <td className="text-black p-2">
-                                  {item.volume} {item.parent_coin_name}
+                                  {item.volume} {item.child_coin_name}
                                 </td>
                                 <td
                                   onClick={async () => {
