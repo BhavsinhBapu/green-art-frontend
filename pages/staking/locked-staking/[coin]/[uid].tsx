@@ -31,7 +31,6 @@ const LockedStaking = () => {
   const [selectedDayUid, setSelectedDayUid] = useState(uid);
   const { t } = useTranslation("common");
 
-
   const handleAutoRenewChange = (event: any) => {
     if (event.target.checked) {
       setAutoRenew(2);
@@ -50,10 +49,12 @@ const LockedStaking = () => {
     }
   };
   useEffect(() => {
-    setTimeout(() => {
-      getBonus();
-    }, 1000);
-  }, [amount]);
+    if (!amount || amount < 0) {
+      return;
+    }
+
+    getBonus();
+  }, [amount, uid]);
   return (
     <div className="">
       <div className="container">
@@ -175,7 +176,9 @@ const LockedStaking = () => {
                         </label>
                         <br />
                         <small>
-                          {t(`Auto Staking is a feature that lets you earn staking rewards automatically without any manual effort.`)}
+                          {t(
+                            `Auto Staking is a feature that lets you earn staking rewards automatically without any manual effort.`
+                          )}
                         </small>
                       </div>
                       <div className="est-price mt-5">
@@ -226,7 +229,8 @@ const LockedStaking = () => {
                         <div className="">
                           <b>
                             - {t(`You must have registered before`)}{" "}
-                            {parseFloat(details?.registration_before)} {t(`days`)}
+                            {parseFloat(details?.registration_before)}{" "}
+                            {t(`days`)}
                           </b>
                         </div>
                       )}
@@ -237,7 +241,10 @@ const LockedStaking = () => {
                       )}
                       {parseFloat(details?.kyc_verification) > 0 && (
                         <div className="">
-                          <b>- {t(`You must have completed your KYC Verification`)}</b>
+                          <b>
+                            -{" "}
+                            {t(`You must have completed your KYC Verification`)}
+                          </b>
                         </div>
                       )}
 
