@@ -52,13 +52,13 @@ const AllSellOrders = ({ OpenBooksell, show, customClass }: any) => {
                     style={{ width: "100%" }}
                   >
                     <thead>
-                      <tr role="row" className="trade_tableList">
+                      <tr role="row" className="">
                         <th
                           className="table-col price sorting_disabled"
                           rowSpan={1}
                           colSpan={1}
                           // style={{ width: "170.656px" }}
-                          style={{padding: '3px'}}
+                          style={{ padding: "3px" }}
                           aria-label="Price"
                         >
                           {t("Price")}({dashboard?.order_data?.base_coin})
@@ -67,7 +67,7 @@ const AllSellOrders = ({ OpenBooksell, show, customClass }: any) => {
                           className="table-col amount sorting_disabled"
                           rowSpan={1}
                           colSpan={1}
-                          style={{padding: '3px'}}
+                          style={{ padding: "3px" }}
                           // style={{ width: "120.75px" }}
                           aria-label="Amount"
                         >
@@ -77,7 +77,7 @@ const AllSellOrders = ({ OpenBooksell, show, customClass }: any) => {
                           className="table-col time sorting_desc"
                           rowSpan={1}
                           colSpan={1}
-                          style={{padding: '3px'}}
+                          style={{ padding: "3px" }}
                           // style={{ width: "79.8438px" }}
                           aria-label="Time"
                         >
