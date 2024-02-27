@@ -1,3 +1,4 @@
+import StakingHeader from "components/Staking/StakingHeader";
 import { StakingTopBar } from "components/Staking/common/TopBar";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
@@ -13,7 +14,7 @@ const Earnings = () => {
   }, []);
   return (
     <div>
-      <div className="">
+      {/* <div className="">
         <div className="section-top-wrap mb-25">
           <div className="overview-area">
             <div className="overview-left">
@@ -22,184 +23,201 @@ const Earnings = () => {
           </div>
         </div>
       </div>
-      <StakingTopBar />
-      <div className="container">
-        <div className=" row">
-          <div className="col-6 mt-3">
-            <h5>{t("Total Investment")}</h5>
-            {statsDetails?.total_investment.length === 0 ? (
-              <p className="p-5 boxShadow text-center mt-3">
-                {t("No data available")}
-              </p>
-            ) : (
-              <table className="table mt-4">
-                <thead>
-                  <tr>
-                    <th scope="col">{t("Coin Type")}</th>
-                    <th scope="col">{t("Total Bonus")}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {statsDetails?.total_investment?.map(
-                    (item: any, index: any) => (
-                      <tr className="tableRow" key={index}>
-                        <td>
-                          <div className="tableImg d-flex align-items-center">
-                            <h6 className="">{item?.coin_type}</h6>
-                          </div>
-                        </td>
-                        <td>
-                          <h6 className="mx-2">
-                            {parseFloat(item?.total_investment)}
-                          </h6>
-                        </td>
-                      </tr>
-                    )
-                  )}
-                </tbody>
-              </table>
-            )}
+      <StakingTopBar /> */}
+      <StakingHeader title={t("My Earnings")} />
+      <div
+        className="container-4xl"
+        style={{
+          marginTop: "-60px",
+          marginBottom: "30px",
+        }}
+      >
+        <div className=" row ">
+          <div className="col-md-6 col-12 mt-3">
+            <div className="shadow-sm section-padding-custom wallet-card-info-container ">
+              <h5>{t("Total Investment")}</h5>
+              {statsDetails?.total_investment.length === 0 ? (
+                <p className="p-5 boxShadow text-center mt-3">
+                  {t("No data available")}
+                </p>
+              ) : (
+                <table className="table mt-4">
+                  <thead>
+                    <tr>
+                      <th scope="col">{t("Coin Type")}</th>
+                      <th scope="col">{t("Total Bonus")}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {statsDetails?.total_investment?.map(
+                      (item: any, index: any) => (
+                        <tr className="tableRow" key={index}>
+                          <td>
+                            <div className="tableImg d-flex align-items-center">
+                              <h6 className="">{item?.coin_type}</h6>
+                            </div>
+                          </td>
+                          <td>
+                            <h6 className="mx-2">
+                              {parseFloat(item?.total_investment)}
+                            </h6>
+                          </td>
+                        </tr>
+                      )
+                    )}
+                  </tbody>
+                </table>
+              )}
+            </div>
           </div>
 
-          <div className="col-6 mt-3">
-            <h5>{t("Disputed Investment")}</h5>
-            {statsDetails?.total_paid_investment.length === 0 ? (
-              <p className="p-5 boxShadow text-center mt-3">
-                {t("No data available")}
-              </p>
-            ) : (
-              <table className="table mt-4">
-                <thead>
-                  <tr>
-                    <th scope="col">{t("Coin Type")}</th>
-                    <th scope="col">{t("Total Bonus")}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {statsDetails?.total_paid_investment?.map(
-                    (item: any, index: any) => (
-                      <tr className="tableRow" key={index}>
-                        <td>
-                          <div className="tableImg d-flex align-items-center">
-                            <h6 className="">{item?.coin_type}</h6>
-                          </div>
-                        </td>
-                        <td>
-                          <h6 className="mx-2">
-                            {parseFloat(item?.total_investment)}
-                          </h6>
-                        </td>
-                      </tr>
-                    )
-                  )}
-                </tbody>
-              </table>
-            )}
+          <div className="col-md-6 col-12 mt-3">
+            <div className="shadow-sm section-padding-custom wallet-card-info-container ">
+              <h5>{t("Disputed Investment")}</h5>
+              {statsDetails?.total_paid_investment.length === 0 ? (
+                <p className="p-5 boxShadow text-center mt-3">
+                  {t("No data available")}
+                </p>
+              ) : (
+                <table className="table mt-4">
+                  <thead>
+                    <tr>
+                      <th scope="col">{t("Coin Type")}</th>
+                      <th scope="col">{t("Total Bonus")}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {statsDetails?.total_paid_investment?.map(
+                      (item: any, index: any) => (
+                        <tr className="tableRow" key={index}>
+                          <td>
+                            <div className="tableImg d-flex align-items-center">
+                              <h6 className="">{item?.coin_type}</h6>
+                            </div>
+                          </td>
+                          <td>
+                            <h6 className="mx-2">
+                              {parseFloat(item?.total_investment)}
+                            </h6>
+                          </td>
+                        </tr>
+                      )
+                    )}
+                  </tbody>
+                </table>
+              )}
+            </div>
           </div>
-          <div className="col-6 mt-3">
-            <h5>{t("Total Running Investment")}</h5>
-            {statsDetails?.total_running_investment.length === 0 ? (
-              <p className="p-5 boxShadow text-center mt-3">
-                {t("No data available")}
-              </p>
-            ) : (
-              <table className="table mt-4">
-                <thead>
-                  <tr>
-                    <th scope="col">{t("Coin Type")}</th>
-                    <th scope="col">{t("Total Bonus")}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {statsDetails?.total_running_investment?.map(
-                    (item: any, index: any) => (
-                      <tr className="tableRow" key={index}>
-                        <td>
-                          <div className="tableImg d-flex align-items-center">
-                            <h6 className="">{item?.coin_type}</h6>
-                          </div>
-                        </td>
-                        <td>
-                          <h6 className="mx-2">
-                            {parseFloat(item?.total_investment)}
-                          </h6>
-                        </td>
-                      </tr>
-                    )
-                  )}
-                </tbody>
-              </table>
-            )}
+          <div className="col-md-6 col-12 mt-3">
+            <div className="shadow-sm section-padding-custom wallet-card-info-container ">
+              <h5>{t("Total Running Investment")}</h5>
+              {statsDetails?.total_running_investment.length === 0 ? (
+                <p className="p-5 boxShadow text-center mt-3">
+                  {t("No data available")}
+                </p>
+              ) : (
+                <table className="table mt-4">
+                  <thead>
+                    <tr>
+                      <th scope="col">{t("Coin Type")}</th>
+                      <th scope="col">{t("Total Bonus")}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {statsDetails?.total_running_investment?.map(
+                      (item: any, index: any) => (
+                        <tr className="tableRow" key={index}>
+                          <td>
+                            <div className="tableImg d-flex align-items-center">
+                              <h6 className="">{item?.coin_type}</h6>
+                            </div>
+                          </td>
+                          <td>
+                            <h6 className="mx-2">
+                              {parseFloat(item?.total_investment)}
+                            </h6>
+                          </td>
+                        </tr>
+                      )
+                    )}
+                  </tbody>
+                </table>
+              )}
+            </div>
           </div>
-          <div className="col-6 mt-3">
-            <h5>{t("Total Dispributable Investment")}</h5>
-            {statsDetails?.total_unpaid_investment.length === 0 ? (
-              <p className="p-5 boxShadow text-center mt-3">
-                {t("No data available")}
-              </p>
-            ) : (
-              <table className="table mt-4">
-                <thead>
-                  <tr>
-                    <th scope="col">{t("Coin Type")}</th>
-                    <th scope="col">{t("Total Bonus")}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {statsDetails?.total_unpaid_investment?.map(
-                    (item: any, index: any) => (
-                      <tr className="tableRow" key={index}>
-                        <td>
-                          <div className="tableImg d-flex align-items-center">
-                            <h6 className="">{item?.coin_type}</h6>
-                          </div>
-                        </td>
-                        <td>
-                          <h6 className="mx-2">
-                            {parseFloat(item?.total_investment)}
-                          </h6>
-                        </td>
-                      </tr>
-                    )
-                  )}
-                </tbody>
-              </table>
-            )}
+          <div className="col-md-6 col-12 mt-3">
+            <div className="shadow-sm section-padding-custom wallet-card-info-container ">
+              <h5>{t("Total Dispributable Investment")}</h5>
+              {statsDetails?.total_unpaid_investment.length === 0 ? (
+                <p className="p-5 boxShadow text-center mt-3">
+                  {t("No data available")}
+                </p>
+              ) : (
+                <table className="table mt-4">
+                  <thead>
+                    <tr>
+                      <th scope="col">{t("Coin Type")}</th>
+                      <th scope="col">{t("Total Bonus")}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {statsDetails?.total_unpaid_investment?.map(
+                      (item: any, index: any) => (
+                        <tr className="tableRow" key={index}>
+                          <td>
+                            <div className="tableImg d-flex align-items-center">
+                              <h6 className="">{item?.coin_type}</h6>
+                            </div>
+                          </td>
+                          <td>
+                            <h6 className="mx-2">
+                              {parseFloat(item?.total_investment)}
+                            </h6>
+                          </td>
+                        </tr>
+                      )
+                    )}
+                  </tbody>
+                </table>
+              )}
+            </div>
           </div>
-          <div className="col-6 mt-3">
-            <h5>{t("Total Investment Cancelled")}</h5>
-            {statsDetails?.total_cancel_investment.length === 0 ? (
-              <p className="p-5 boxShadow text-center mt-3">
-                {t("No data available")}
-              </p>
-            ) : (
-              <table className="table mt-4">
-                <thead>
-                  <tr>
-                    <th scope="col">{t("Coin Type")}</th>
-                    <th scope="col">{t("Total Bonus")}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {statsDetails?.total_cancel_investment?.map(
-                    (item: any, index: any) => (
-                      <tr className="tableRow" key={index}>
-                        <td>
-                          <div className="tableImg d-flex align-items-center">
-                            <h6 className="">{item?.coin_type}</h6>
-                          </div>
-                        </td>
-                        <td>
-                          <h6 className="mx-2">
-                            {parseFloat(item?.total_investment)}
-                          </h6>
-                        </td>
-                      </tr>
-                    )
-                  )}
-                </tbody>
-              </table>
-            )}
+          <div className="col-md-6 col-12 mt-3">
+            <div className="shadow-sm section-padding-custom wallet-card-info-container ">
+              <h5>{t("Total Investment Cancelled")}</h5>
+              {statsDetails?.total_cancel_investment.length === 0 ? (
+                <p className="p-5 boxShadow text-center mt-3">
+                  {t("No data available")}
+                </p>
+              ) : (
+                <table className="table mt-4">
+                  <thead>
+                    <tr>
+                      <th scope="col">{t("Coin Type")}</th>
+                      <th scope="col">{t("Total Bonus")}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {statsDetails?.total_cancel_investment?.map(
+                      (item: any, index: any) => (
+                        <tr className="tableRow" key={index}>
+                          <td>
+                            <div className="tableImg d-flex align-items-center">
+                              <h6 className="">{item?.coin_type}</h6>
+                            </div>
+                          </td>
+                          <td>
+                            <h6 className="mx-2">
+                              {parseFloat(item?.total_investment)}
+                            </h6>
+                          </td>
+                        </tr>
+                      )
+                    )}
+                  </tbody>
+                </table>
+              )}
+            </div>
           </div>
         </div>
       </div>

@@ -69,13 +69,19 @@ export const InvesmentOrderTable = ({
   };
 
   return (
-    <div className="container">
+    <div
+      className="container-4xl"
+      style={{
+        marginTop: "-60px",
+        marginBottom: "30px",
+      }}
+    >
       {processing ? (
         <SectionLoading />
       ) : (
-        <div className="row">
+        <div className="row ">
           <div className="col-12">
-            <div className="table-responsive">
+            <div className="table-responsive shadow-sm section-padding-custom wallet-card-info-container " >
               <table className="table mt-4">
                 <thead>
                   <tr>
@@ -134,7 +140,9 @@ export const InvesmentOrderTable = ({
                         <td>
                           {item.total_bonus} {item?.coin_type}
                         </td>
-                        <td>{item.period} {t(`Days`)}</td>
+                        <td>
+                          {item.period} {t(`Days`)}
+                        </td>
                         {parseInt(item?.status) ===
                         STAKING_INVESTMENT_STATUS_RUNNING ? (
                           <td

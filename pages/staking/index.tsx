@@ -9,38 +9,19 @@ import { LandingDetailsStaking } from "service/staking";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
+import StakingHeader from "components/Staking/StakingHeader";
 
 const Index = ({ data }: any) => {
   const { isLoggedIn } = useSelector((state: RootState) => state.user);
 
-  const changeBackground = () => {
-    const elements = document.getElementsByClassName("p2p_bg");
-
-    // Loop through the elements and add the background image
-    for (let i = 0; i < elements.length; i++) {
-      //@ts-ignore
-      elements[i].style.backgroundImage = `url('${data?.staking_landing_cover_image}')`;
-    }
-  };
-  useEffect(() => {
-    data?.staking_landing_cover_image && changeBackground();
-  }, []);
   return (
     <>
       <div className="mb-5">
-        <div className="p2p_bg">
-          <div className="container">
-            <div className="row">
-              <div className="col-12 text-center">
-                <h2 className="text-white">{data?.staking_landing_title}</h2>
-                <p className="text-white">
-                  {data?.staking_landing_description}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        {isLoggedIn && <StakingTopBar />}
+        <StakingHeader
+          title={data?.staking_landing_title}
+          description={data?.staking_landing_description}
+        />
+
         <OfferTable isLoggedIn={isLoggedIn} />
         <FaqStaking faq_list={data?.faq_list} />
       </div>

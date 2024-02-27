@@ -1,5 +1,6 @@
 import { formateData } from "common";
 import BackButton from "components/P2P/BackButton";
+import StakingHeader from "components/Staking/StakingHeader";
 import SectionLoading from "components/common/SectionLoading";
 import Footer from "components/common/footer";
 import { STAKING_TERMS_TYPE_STRICT } from "helpers/core-constants";
@@ -57,11 +58,18 @@ const LockedStaking = () => {
   }, [amount, uid]);
   return (
     <div className="">
-      <div className="container">
+      <StakingHeader title={t(`Staking`)} />
+      <div
+        className="container-4xl"
+        style={{
+          marginTop: "-60px",
+          marginBottom: "30px",
+        }}
+      >
         {loading ? (
           <SectionLoading />
         ) : (
-          <div className="col-12 section-padding-custom boxShadow mb-5 mt-5">
+          <div className="col-12 shadow-sm section-padding-custom wallet-card-info-container mb-5">
             <div className="mt-3 mb-3">
               <BackButton />
             </div>
