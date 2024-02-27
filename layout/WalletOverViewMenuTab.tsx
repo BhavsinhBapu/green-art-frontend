@@ -48,6 +48,11 @@ const WalletOverViewMenuTab = () => {
             </li>
           </Link>
         )}
+        <Link href={`/user/check-deposit`}>
+          <li>
+            <a>Check Deposit</a>
+          </li>
+        </Link>
         <Link href={`/user/wallet-history?type=deposit`}>
           <li>
             <a>Deposit History</a>
