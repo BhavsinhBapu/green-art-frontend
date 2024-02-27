@@ -127,19 +127,19 @@ const Deposit = () => {
     <>
       <div className="page-wrap">
         {/* <FiatSidebar /> */}
-        <div className="page-main-content">
+        <div className="page-main-content" style={{ backdropFilter: "none" }}>
           <FiatHeader title={t("Fiat To Crypto Deposit")} />
-          <div className="container-4xl">
-            <div
-              className="deposit-page"
-              style={{ marginTop: "-60px", marginBottom: "60px" }}
-            >
+          <div className="container-4xl mt-5">
+            <div className="deposit-page">
               <div className="asset-balances-area">
                 <div className=" bank-section">
                   <div className="">
                     <PlaceTopLeft />
                     <PlaceBottomRight />
-                    <div className="deposit-conatiner section-padding-custom wallet-card-info-container">
+                    <div
+                      className="deposit-conatiner section-padding-custom wallet-card-info-container"
+                      style={{ backdropFilter: "none" }}
+                    >
                       {selectedMethod.method && (
                         <div className="cp-user-title">
                           <h4>{t("Select method")}</h4>
