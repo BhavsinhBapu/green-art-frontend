@@ -5,9 +5,11 @@ import { RootState } from "state/store";
 import SellTable from "./SellTable";
 import { useRouter } from "next/router";
 import { formatCurrency } from "common";
+import Link from "next/link";
 const TradesHistory = ({ marketTrades, customClass }: any) => {
   const { t } = useTranslation("common");
   const { dashboard } = useSelector((state: RootState) => state.exchange);
+  const { isLoggedIn } = useSelector((state: RootState) => state.user);
   const router = useRouter();
   const [isMarketTradeShow, setIsMarketTradeShow] = useState<any>(true);
 
@@ -179,12 +181,28 @@ const TradesHistory = ({ marketTrades, customClass }: any) => {
               </div>
             </div>
             <div className="mt-4 d-flex justify-content-between align-items-center gap-10">
-              <button className="btn w-full rounded-pill bg-primary-color">
-                {t(`Deposit`)}
-              </button>
-              <button className="btn w-full rounded-pill bg-primary-color">
-                {t(`Transfer`)}
-              </button>
+              <Link
+                href={
+                  !isLoggedIn
+                    ? "/signin"
+                    : `/user/my-wallet/deposit?type=deposit&coin_id=${dashboard?.order_data?.total?.trade_wallet?.wallet_id}`
+                }
+              >
+                <button className="btn w-full rounded-pill bg-primary-color">
+                  {t(`Deposit`)}
+                </button>
+              </Link>
+              <Link
+                href={
+                  !isLoggedIn
+                    ? "/signin"
+                    : `/user/my-wallet/withdraw?type=withdraw&coin_id=${dashboard?.order_data?.total?.trade_wallet?.wallet_id}`
+                }
+              >
+                <button className="btn w-full rounded-pill bg-primary-color">
+                  {t(`Transfer`)}
+                </button>
+              </Link>
             </div>
           </div>
         )
