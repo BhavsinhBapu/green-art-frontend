@@ -3,10 +3,12 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
 import SellTable from "./SellTable";
+import { useRouter } from "next/router";
+import { formatCurrency } from "common";
 const TradesHistory = ({ marketTrades, customClass }: any) => {
   const { t } = useTranslation("common");
   const { dashboard } = useSelector((state: RootState) => state.exchange);
-
+  const router = useRouter();
   const [isMarketTradeShow, setIsMarketTradeShow] = useState<any>(true);
 
   return (
@@ -20,14 +22,16 @@ const TradesHistory = ({ marketTrades, customClass }: any) => {
         >
           {t("Market Trades")}
         </h3>
-        <h3
-          className={`${
-            !isMarketTradeShow && "text-primary-color"
-          } cursor-pointer`}
-          onClick={() => setIsMarketTradeShow(false)}
-        >
-          {t("Asset Overview")}
-        </h3>
+        {router.pathname == "/exchange/dashboard" && (
+          <h3
+            className={`${
+              !isMarketTradeShow && "text-primary-color"
+            } cursor-pointer`}
+            onClick={() => setIsMarketTradeShow(false)}
+          >
+            {t("Asset Overview")}
+          </h3>
+        )}
       </div>
       {isMarketTradeShow ? (
         <div className="primary-table">
@@ -126,38 +130,64 @@ const TradesHistory = ({ marketTrades, customClass }: any) => {
           </div>
         </div>
       ) : (
-        <div>
+        router.pathname == "/exchange/dashboard" && (
           <div>
-            <p style={{ fontWeight: "600" }}>{t("Trading Account")}</p>
-            <div className="d-flex justify-content-between align-items-center">
-              <p>BTC</p>
-              <p>$2.00</p>
+            <div>
+              <p style={{ fontWeight: "600" }}>{t("Trading Account")}</p>
+              <div className="d-flex justify-content-between align-items-center">
+                <p>{dashboard?.order_data?.base_coin}</p>
+                <p>
+                  {dashboard?.order_data?.on_order?.base_wallet &&
+                    formatCurrency(
+                      dashboard?.order_data?.on_order?.base_wallet,
+                      dashboard?.order_data?.total?.trade_wallet?.pair_decimal
+                    )}
+                </p>
+              </div>
+              <div className="d-flex justify-content-between align-items-center">
+                <p>{dashboard?.order_data?.trade_coin}</p>
+                <p>
+                  {dashboard?.order_data?.on_order?.trade_wallet &&
+                    formatCurrency(
+                      dashboard?.order_data?.on_order?.trade_wallet,
+                      dashboard?.order_data?.total?.trade_wallet?.pair_decimal
+                    )}
+                </p>
+              </div>
             </div>
-            <div className="d-flex justify-content-between align-items-center">
-              <p>USDT</p>
-              <p>$1.00</p>
+            <div>
+              <p style={{ fontWeight: "600" }}>{t("Funding Account")}</p>
+              <div className="d-flex justify-content-between align-items-center">
+                <p>{dashboard?.order_data?.base_coin}</p>
+                <p>
+                  {dashboard?.order_data?.total?.base_wallet?.balance &&
+                    formatCurrency(
+                      dashboard?.order_data?.total?.base_wallet?.balance,
+                      dashboard?.order_data?.total?.trade_wallet?.pair_decimal
+                    )}
+                </p>
+              </div>
+              <div className="d-flex justify-content-between align-items-center">
+                <p>{dashboard?.order_data?.trade_coin}</p>
+                <p>
+                  {dashboard?.order_data?.total?.trade_wallet?.balance &&
+                    formatCurrency(
+                      dashboard?.order_data?.total?.trade_wallet?.balance,
+                      dashboard?.order_data?.total?.trade_wallet?.pair_decimal
+                    )}
+                </p>
+              </div>
+            </div>
+            <div className="mt-4 d-flex justify-content-between align-items-center gap-10">
+              <button className="btn w-full rounded-pill bg-primary-color">
+                {t(`Deposit`)}
+              </button>
+              <button className="btn w-full rounded-pill bg-primary-color">
+                {t(`Transfer`)}
+              </button>
             </div>
           </div>
-          <div>
-            <p style={{ fontWeight: "600" }}>{t("Funding Account")}</p>
-            <div className="d-flex justify-content-between align-items-center">
-              <p>BTC</p>
-              <p>$2.00</p>
-            </div>
-            <div className="d-flex justify-content-between align-items-center">
-              <p>USDT</p>
-              <p>$1.00</p>
-            </div>
-          </div>
-          <div className="mt-4 d-flex justify-content-between align-items-center gap-10">
-            <button className="btn w-full rounded-pill bg-primary-color">
-              {t(`Deposit`)}
-            </button>
-            <button className="btn w-full rounded-pill bg-primary-color">
-              {t(`Transfer`)}
-            </button>
-          </div>
-        </div>
+        )
       )}
     </div>
   );
