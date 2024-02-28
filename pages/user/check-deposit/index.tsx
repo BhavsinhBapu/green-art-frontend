@@ -207,6 +207,10 @@ export default function CheckDeposit() {
                       <table className="table">
                         <tbody>
                           <tr>
+                            <td className="font-bold">{t("Network")}</td>
+                            <td>: {depositInfo?.network}</td>
+                          </tr>
+                          <tr>
                             <td className="font-bold">{t("Address")}</td>
                             <td>: {depositInfo?.address}</td>
                           </tr>
@@ -218,6 +222,7 @@ export default function CheckDeposit() {
                             <td className="font-bold">{t("Transaction ID")}</td>
                             <td>: {depositInfo?.txId}</td>
                           </tr>
+
                           <tr>
                             <td className="font-bold">{t("Amount")}</td>
                             <td>
