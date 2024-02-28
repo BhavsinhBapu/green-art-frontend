@@ -85,7 +85,7 @@ export default function CheckDeposit() {
       setIsModalOpen(false);
       return;
     }
-    setDepositInfo(response?.data);
+    setDepositInfo(response);
     setSelectedCoin("");
     setSelectedNetwork("");
     setTransactionId("");
@@ -201,53 +201,49 @@ export default function CheckDeposit() {
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-                <div className="modal-body py-3 px-5">
-                  {isProcessing ? (
-                    <SectionLoading />
-                  ) : (
-                    <div>
-                      <table className="table">
-                        <tbody>
-                          <tr>
-                            <td className="font-bold">{t("Network")}</td>
-                            <td>: {depositInfo?.network}</td>
-                          </tr>
-                          <tr>
-                            <td className="font-bold">{t("Address")}</td>
-                            <td>: {depositInfo?.address}</td>
-                          </tr>
-                          <tr>
-                            <td className="font-bold">{t("From Address")}</td>
-                            <td>: {depositInfo?.from_address}</td>
-                          </tr>
-                          <tr>
-                            <td className="font-bold">{t("Transaction ID")}</td>
-                            <td>: {depositInfo?.txId}</td>
-                          </tr>
+                {isProcessing ? (
+                  <SectionLoading />
+                ) : (
+                  <>
+                    <div className="modal-body py-3 px-5">
+                      <div>
+                        <table className="table">
+                          <tbody>
+                            <tr>
+                              <td className="font-bold">{t("Network")}</td>
+                              <td>: {depositInfo?.data?.network}</td>
+                            </tr>
+                            <tr>
+                              <td className="font-bold">{t("Address")}</td>
+                              <td>: {depositInfo?.data?.address}</td>
+                            </tr>
+                            <tr>
+                              <td className="font-bold">{t("From Address")}</td>
+                              <td>: {depositInfo?.data?.from_address}</td>
+                            </tr>
+                            <tr>
+                              <td className="font-bold">
+                                {t("Transaction ID")}
+                              </td>
+                              <td>: {depositInfo?.data?.txId}</td>
+                            </tr>
 
-                          <tr>
-                            <td className="font-bold">{t("Amount")}</td>
-                            <td>
-                              : {depositInfo?.amount} {depositInfo?.coin_type}
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
+                            <tr>
+                              <td className="font-bold">{t("Amount")}</td>
+                              <td>
+                                : {depositInfo?.data?.amount}{" "}
+                                {depositInfo?.data?.coin_type}
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
                     </div>
-                  )}
-                </div>
-                {/* <div className="modal-footer">
-                  <button
-                    type="button"
-                    className="btn btn-secondary"
-                    data-dismiss="modal"
-                  >
-                    Close
-                  </button>
-                  <button type="button" className="btn btn-primary">
-                    Save changes
-                  </button>
-                </div> */}
+                    <div className="modal-footer justify-content-center">
+                      <h6 className="font-bold">{`**${depositInfo?.message}**`}</h6>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </div>
