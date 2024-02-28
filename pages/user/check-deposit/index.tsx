@@ -39,6 +39,8 @@ export default function CheckDeposit() {
   };
 
   const getCoinLists = async (event: any) => {
+    setCoinLists([]);
+    setSelectedCoin("");
     if (!event.target.value) {
       setSelectedNetwork(event.target.value);
       return;
