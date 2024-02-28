@@ -2,10 +2,11 @@ import Footer from "components/common/footer";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
 import useTranslation from "next-translate/useTranslation";
-import React from "react";
+import React, { useState } from "react";
 
 export default function index() {
   const { t } = useTranslation();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <div>
       <div className="mb-5 pb-5">
@@ -81,6 +82,42 @@ export default function index() {
         </div>
       </div>
       <Footer />
+      {!isModalOpen && (
+        <>
+          <div className="modal d-block">
+            <div className="modal-dialog modal-dialog-centered modal-lg">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h5 className="modal-title">Modal title</h5>
+                  <button
+                    type="button"
+                    className="close"
+                    onClick={() => setIsModalOpen(true)}
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div className="modal-body">
+                  <p>Modal body text goes here.</p>
+                </div>
+                <div className="modal-footer">
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    data-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button type="button" className="btn btn-primary">
+                    Save changes
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="modal-backdrop fade show"></div>
+        </>
+      )}
     </div>
   );
 }
