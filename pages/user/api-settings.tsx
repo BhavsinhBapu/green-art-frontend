@@ -66,7 +66,7 @@ const ApiSettings: NextPage = () => {
   const [Changeable, setChangeable] = useState<any[]>([
     {
       id: 1,
-      ip_address: "127.0.0.1",
+      ip_address: "121.90.21.21",
       tradeingAccess: true,
       withdrawlAccess: false,
       isBlocked: false,
@@ -74,7 +74,7 @@ const ApiSettings: NextPage = () => {
     },
     {
       id: 2,
-      ip_address: "155.0.0.1",
+      ip_address: "155.230.18.21",
       tradeingAccess: false,
       withdrawlAccess: true,
       isBlocked: true,
@@ -82,7 +82,7 @@ const ApiSettings: NextPage = () => {
     },
     {
       id: 3,
-      ip_address: "167.0.0.1",
+      ip_address: "167.10.20.91",
       tradeingAccess: true,
       withdrawlAccess: false,
       isBlocked: true,
@@ -90,7 +90,7 @@ const ApiSettings: NextPage = () => {
     },
     {
       id: 4,
-      ip_address: "127.0.0.1",
+      ip_address: "121.12.19.12",
       tradeingAccess: false,
       withdrawlAccess: true,
       isBlocked: false,
