@@ -197,6 +197,7 @@ export default function CheckDeposit() {
                     type="button"
                     className="close"
                     onClick={() => setIsModalOpen(false)}
+                    style={{ right: "0" }}
                   >
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -205,7 +206,7 @@ export default function CheckDeposit() {
                   <SectionLoading />
                 ) : (
                   <>
-                    <div className="modal-body py-3 px-5">
+                    <div className="modal-body p-3">
                       <div>
                         <table className="table">
                           <tbody>
@@ -215,17 +216,23 @@ export default function CheckDeposit() {
                             </tr>
                             <tr>
                               <td className="font-bold">{t("Address")}</td>
-                              <td>: {depositInfo?.data?.address}</td>
+                              <td className="text-break text-wrap">
+                                : {depositInfo?.data?.address}
+                              </td>
                             </tr>
                             <tr>
                               <td className="font-bold">{t("From Address")}</td>
-                              <td>: {depositInfo?.data?.from_address}</td>
+                              <td className="text-break text-wrap">
+                                : {depositInfo?.data?.from_address}
+                              </td>
                             </tr>
                             <tr>
                               <td className="font-bold">
                                 {t("Transaction ID")}
                               </td>
-                              <td>: {depositInfo?.data?.txId}</td>
+                              <td className="text-break text-wrap">
+                                : {depositInfo?.data?.txId}
+                              </td>
                             </tr>
 
                             <tr>
