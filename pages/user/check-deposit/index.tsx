@@ -11,7 +11,7 @@ import {
   getNetworkListsForCheckDeposit,
 } from "service/user";
 
-export default function index() {
+export default function CheckDeposit() {
   const { t } = useTranslation();
   const [isProcessing, setIsProcessing] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState<any>(false);
