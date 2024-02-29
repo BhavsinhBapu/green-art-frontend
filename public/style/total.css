@@ -15995,6 +15995,10 @@ input:checked + .gift-card-buy-slider:before {
 .secret-key-dialog {
   max-width: 60vw !important;
 }
+
+.custom-inner-padding {
+  padding: 3rem !important;
+}
 @media (max-width: 1520px) {
   .trade-dashboard-side-margin {
     margin-left: 0 !important;
@@ -16086,6 +16090,9 @@ input:checked + .gift-card-buy-slider:before {
   }
 }
 @media (max-width: 770px) {
+  .custom-inner-padding {
+    padding: 0 !important;
+  }
   .secret-key-dialog {
     max-width: 100% !important;
   }

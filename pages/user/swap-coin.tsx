@@ -127,7 +127,10 @@ const SwapCoin: NextPage = ({
             </ul>
           </div>
         </div>
-        <div className="page-main-content">
+        <div
+          className="page-main-content inner-section-margin-top custom-inner-padding"
+          style={{ backdropFilter: "none" }}
+        >
           <div className="container-fluid">
             <div className="section-top-wrap mb-25">
               <div className="overview-area">
