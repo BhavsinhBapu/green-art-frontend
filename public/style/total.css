@@ -16423,3 +16423,7 @@ input:checked + .gift-card-buy-slider:before {
   transform: translate(-50%, 45px) scale(1.1);
   transition: all 0.15s linear;
 }
+
+.overflow-x-auto {
+  overflow-x: auto !important;
+}
