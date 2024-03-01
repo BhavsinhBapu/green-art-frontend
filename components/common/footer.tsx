@@ -264,37 +264,41 @@ const Footer = () => {
                         className="d-flex flex-wrap align-items-center"
                         style={{ gap: "20px" }}
                       >
-                        {socialData?.length > 0
-                          ? socialData?.map((social: any, index: any) => (
-                              <li key={index}>
-                                <a
-                                  href={social.media_link}
-                                  target="_blank"
-                                  rel="noreferrer"
-                                >
-                                  <img
-                                    src={social.media_icon}
-                                    alt={social.media_title}
-                                    width={20}
-                                  />
-                                </a>
-                              </li>
-                            ))
-                          : socialDefaltData?.map((social: any, index: any) => (
-                              <li key={index}>
-                                <a
-                                  href={social.media_link}
-                                  target="_blank"
-                                  rel="noreferrer"
-                                >
-                                  <img
-                                    src={social.media_icon}
-                                    alt={social.media_title}
-                                    width={20}
-                                  />
-                                </a>
-                              </li>
-                            ))}
+                        {socialData?.length > 0 ? (
+                          socialData?.map((social: any, index: any) => (
+                            <li key={index}>
+                              <a
+                                href={social.media_link}
+                                target="_blank"
+                                rel="noreferrer"
+                              >
+                                <img
+                                  src={social.media_icon}
+                                  alt={social.media_title}
+                                  width={20}
+                                />
+                              </a>
+                            </li>
+                          ))
+                        ) : process.env.NEXT_PUBLIC_DEMO_MODE == "1" ? (
+                          socialDefaltData?.map((social: any, index: any) => (
+                            <li key={index}>
+                              <a
+                                href={social.media_link}
+                                target="_blank"
+                                rel="noreferrer"
+                              >
+                                <img
+                                  src={social.media_icon}
+                                  alt={social.media_title}
+                                  width={20}
+                                />
+                              </a>
+                            </li>
+                          ))
+                        ) : (
+                          <></>
+                        )}
                       </ul>
                     </div>
                   </div>
