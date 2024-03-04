@@ -117,7 +117,7 @@ const Trading = () => {
       return;
     }
     if (fileObj.size > 2 * 1024 * 1024) {
-    toast.error(t("File size must be less than 2MB"));
+      toast.error(t("File size must be less than 2MB"));
       return;
     }
     event;
@@ -175,6 +175,20 @@ const Trading = () => {
               {formateData(details?.order?.created_at)}
             </span>
           </div>
+          {details?.order?.payment_sleep && (
+            <div className="mb-3">
+              <span className="mr-1 font-bold">{t(`Deposit Proof`)}</span>:{" "}
+              <a
+                href={details?.order?.payment_sleep}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ml-2 btn"
+              >
+                View
+              </a>
+            </div>
+          )}
+
           {/* order.status */}
           {details?.order < 4 && (
             <TradeSteps step={step} order={details?.order} />
@@ -202,7 +216,9 @@ const Trading = () => {
           </div>
           {parseInt(details?.order?.is_reported) !== 0 && (
             <div className="boxShadow section-padding-custom text-center mt-3">
-              <h4 className="mb-3">{t(`Seller created dispute against order`)}</h4>
+              <h4 className="mb-3">
+                {t(`Seller created dispute against order`)}
+              </h4>
             </div>
           )}
           {parseInt(details?.order?.status) === TRADE_STATUS_CANCELED && (
@@ -240,7 +256,9 @@ const Trading = () => {
                   {details.user_type === BUY && (
                     <>
                       <div className="mt-4 badge badge-warning p-2">
-                        {t(`Transfer the fund to the seller account provided below`)}
+                        {t(
+                          `Transfer the fund to the seller account provided below`
+                        )}
                       </div>
                       <div>
                         {details?.payment_methods?.username && (
@@ -254,7 +272,10 @@ const Trading = () => {
                         {details?.payment_methods?.admin_pamynt_method
                           ?.name && (
                           <div className="mb-3 mt-3">
-                            <span className="mr-1">{t(`Payment Method Name`)}</span>:{" "}
+                            <span className="mr-1">
+                              {t(`Payment Method Name`)}
+                            </span>
+                            :{" "}
                             <span className="badge badge-warning ">
                               {
                                 details?.payment_methods?.admin_pamynt_method
@@ -273,7 +294,9 @@ const Trading = () => {
                         )}
                         {details?.payment_methods?.bank_account_number && (
                           <div className="mb-3">
-                            <span className="mr-1">{t(`Bank Account Number`)}</span>
+                            <span className="mr-1">
+                              {t(`Bank Account Number`)}
+                            </span>
                             <span className="badge badge-warning ">
                               {details?.payment_methods?.bank_account_number}
                             </span>
@@ -361,7 +384,9 @@ const Trading = () => {
                   {details.user_type === BUY && (
                     <>
                       <div className="boxShadow section-padding-custom text-center mt-3">
-                        <h4 className="mb-3">{t(`Waiting for releasing order`)}</h4>
+                        <h4 className="mb-3">
+                          {t(`Waiting for releasing order`)}
+                        </h4>
                       </div>
                       {parseInt(details?.order?.is_reported) === 0 && (
                         <a
@@ -481,7 +506,7 @@ const Trading = () => {
                               );
                             }}
                           >
-                           {t(`Submit review`)}
+                            {t(`Submit review`)}
                           </button>
                         </div>
                       )}

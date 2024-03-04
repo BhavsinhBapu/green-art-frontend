@@ -3,8 +3,10 @@ import Footer from "components/common/footer";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
 import useTranslation from "next-translate/useTranslation";
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { BiArrowBack } from "react-icons/bi";
 import {
   checkCoinTransactionDepositApi,
   getCoinListsForCheckDeposit,
@@ -13,6 +15,7 @@ import {
 
 export default function CheckDeposit() {
   const { t } = useTranslation();
+  const router = useRouter();
   const [isProcessing, setIsProcessing] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState<any>(false);
   const [isLoading, setIsLoading] = useState<any>(false);
@@ -114,7 +117,16 @@ export default function CheckDeposit() {
           >
             <div className="row">
               <div className="offset-md-2 col-md-8 shadow-sm section-padding-custom wallet-card-info-container">
-                <div className="total-balance">
+                <div
+                  onClick={() => {
+                    router.back();
+                  }}
+                  className="cursor-pointer d-flex gap-5 align-items-center"
+                >
+                  <BiArrowBack />
+                  <h5 className="font-bold">{t("Back")}</h5>
+                </div>
+                <div className="total-balance mt-4">
                   <h5>{t("Select Network")}</h5>
                   <div className="cp-select-area">
                     <select
