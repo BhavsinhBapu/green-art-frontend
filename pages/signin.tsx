@@ -139,7 +139,7 @@ const Signin: NextPage = () => {
                         const response: any = await dispatch(
                           SigninAction(values, setProcessing)
                         );
-                        if (!response.success) {
+                        if (!response?.success) {
                           resetCaptcha();
                         }
                         await dispatch(GetUserInfoByTokenAction());
