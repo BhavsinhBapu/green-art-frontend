@@ -136,7 +136,12 @@ const Signin: NextPage = () => {
                           await dispatch(GetUserInfoByTokenAction());
                         });
                       } else {
-                        await dispatch(SigninAction(values, setProcessing));
+                        const response: any = await dispatch(
+                          SigninAction(values, setProcessing)
+                        );
+                        if (!response.success) {
+                          resetCaptcha();
+                        }
                         await dispatch(GetUserInfoByTokenAction());
                       }
                     }}
@@ -217,7 +222,7 @@ const Signin: NextPage = () => {
                           )}
 
                         <button
-                          onClick={() => resetCaptcha()}
+                          // onClick={() => resetCaptcha()}
                           type="submit"
                           disabled={processing}
                           className="btn nimmu-user-sibmit-button mt-4"
