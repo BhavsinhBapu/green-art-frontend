@@ -11,7 +11,10 @@ import { authPageRequireCheck } from "middlewares/ssr-authentication-check";
 import ReCAPTCHA from "react-google-recaptcha";
 import useTranslation from "next-translate/useTranslation";
 import { RootState } from "state/store";
-import { CAPTCHA_TYPE_GEETESTCAPTCHA, CAPTCHA_TYPE_RECAPTCHA } from "helpers/core-constants";
+import {
+  CAPTCHA_TYPE_GEETESTCAPTCHA,
+  CAPTCHA_TYPE_RECAPTCHA,
+} from "helpers/core-constants";
 const Signup: NextPage = () => {
   const { logo } = useSelector((state: RootState) => state.user);
   const { settings } = useSelector((state: RootState) => state.common);
@@ -168,6 +171,11 @@ const Signup: NextPage = () => {
                           }`}
                           placeholder={t("Your first name here")}
                         />
+                        {touched.first_name && errors.first_name && (
+                          <div className="invalid-feedback">
+                            {errors.first_name}
+                          </div>
+                        )}
                       </div>
 
                       <div className="form-group">
@@ -182,6 +190,11 @@ const Signup: NextPage = () => {
                           }`}
                           placeholder={t("Your last name here")}
                         />
+                        {touched.last_name && errors.last_name && (
+                          <div className="invalid-feedback">
+                            {errors.last_name}
+                          </div>
+                        )}
                       </div>
 
                       <div className="form-group">
@@ -194,21 +207,30 @@ const Signup: NextPage = () => {
                           }`}
                           placeholder={t("Your email here")}
                         />
+                        {touched.email && errors.email && (
+                          <div className="invalid-feedback">{errors.email}</div>
+                        )}
                       </div>
-
                       <div className="form-group">
-                        <Field
-                          type={showPassword.password ? "text" : "password"}
-                          name="password"
-                          id="password"
-                          className={`form-control form-control-password look-pass ${
-                            touched.password && errors.password
-                              ? "is-invalid"
-                              : ""
-                          }`}
-                          placeholder={t("Your password here")}
-                        />
+                        <div>
+                          <Field
+                            type={showPassword.password ? "text" : "password"}
+                            name="password"
+                            id="password"
+                            className={`form-control form-control-password look-pass ${
+                              touched.password && errors.password
+                                ? "is-invalid"
+                                : ""
+                            }`}
+                            placeholder={t("Your password here")}
+                          />
 
+                          {touched.password && errors.password && (
+                            <div className="invalid-feedback">
+                              {errors.password}
+                            </div>
+                          )}
+                        </div>
                         <span
                           className="eye rev"
                           onClick={() =>
@@ -217,6 +239,12 @@ const Signup: NextPage = () => {
                               password: !showPassword.password,
                             })
                           }
+                          style={{
+                            top:
+                              touched.password && errors.password
+                                ? "35%"
+                                : "50%",
+                          }}
                         >
                           <i className="fa fa-eye-slash toggle-password"></i>
                         </span>
@@ -238,6 +266,13 @@ const Signup: NextPage = () => {
                           placeholder={t("Your password here")}
                         />
 
+                        {touched.password_confirmation &&
+                          errors.password_confirmation && (
+                            <div className="invalid-feedback">
+                              {errors.password_confirmation}
+                            </div>
+                          )}
+
                         <span
                           className="eye rev"
                           onClick={() =>
@@ -246,6 +281,13 @@ const Signup: NextPage = () => {
                               confirm_password: !showPassword.confirm_password,
                             })
                           }
+                          style={{
+                            top:
+                              touched.password_confirmation &&
+                              errors.password_confirmation
+                                ? "35%"
+                                : "50%",
+                          }}
                         >
                           <i className="fa fa-eye-slash toggle-password"></i>
                         </span>
