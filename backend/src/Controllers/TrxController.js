@@ -354,8 +354,8 @@ const getTransactionDetailsData = async (tronWeb,transaction) => {
 
       data = {
           'tx_type': 'token',
-          'from_address': fromAddress,
-          'to_address': to_address,
+          'fromAddress': fromAddress,
+          'toAddress': to_address,
           'amount': amountVal,
           'transaction_id' : transaction.txID,
           'contract_address' : contract_address,
