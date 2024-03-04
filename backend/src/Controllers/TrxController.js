@@ -1,8 +1,9 @@
 const dotenv = require("dotenv");
-const { powerOfTen, tronWebCall, customToWei } = require("../Heplers/helper");
+const { customFromWei, powerOfTen, tronWebCall, customToWei } = require("../Heplers/helper");
 const trcToken = require("./TrcTokenController");
 const { json } = require("express/lib/response");
 const TronWeb = require("tronweb");
+const tronABI  = require("../Heplers/tronABI.json");
 
 dotenv.config();
 
@@ -327,25 +328,124 @@ async function getTrxTransaction(req, res) {
   }
 }
 
+const getTransactionDetailsData = async (tronWeb,transaction) => {
+  let data = {};
+  const rawData = transaction.raw_data;
+  const contractType = rawData.contract[0].type;
+  const rawTransactionData = rawData.contract[0].parameter;
+  const valueData = rawTransactionData.value.data;
+  const method = valueData.slice(0, 10);
+  console.log("method", method);
+  if (method === 'a9059cbb00') {
+      const toAddress = '0x' + valueData.slice(32, 72); 
+      let amountData = '0x' + valueData.slice(74);
+      const amount = parseInt(amountData, 16);
+      const convertData = await convertAddressAmount(
+        tronWeb,
+        rawTransactionData.value.owner_address,
+        toAddress,
+        amount,
+        rawTransactionData.value.contract_address
+      );
+      const fromAddress = convertData.from_address;
+      const to_address = convertData.to_address;
+      const amountVal = convertData.amount;
+      const contract_address = convertData.contract_address;
+
+      data = {
+          'tx_type': 'token',
+          'from_address': fromAddress,
+          'to_address': to_address,
+          'amount': amountVal,
+          'transaction_id' : transaction.txID,
+          'contract_address' : contract_address,
+          'fee_limit': rawData.fee_limit ? rawData.fee_limit : 0
+      }
+  }
+  return data;
+}
+
+const convertAddressAmount = async(tronWeb,fromAddress,toAddress,amountVal,contractAddress) => {
+  try {
+    const from_address = tronWeb.address.fromHex(fromAddress);
+    let to_address = toAddress;
+    let contract_address = '';
+    let amount = 0;
+    
+    to_address = tronWeb.address.fromHex(tronWeb.address.toHex(toAddress))
+    contract_address = tronWeb.address.fromHex(contractAddress);
+    const contactData = await getContractDetails(tronWeb,contract_address);
+    let decimal = contactData.data.decimal;
+    amount = customFromWei(amountVal,decimal);
+    
+      
+    return {
+      from_address:from_address,
+      to_address:to_address,
+      contract_address:contract_address,
+      amount:amount,
+    }
+  } catch (err) {
+    console.log('ex err', err);
+    return {
+      from_address:0,
+      to_address:0,
+      contract_address:0,
+      amount:0,
+    }
+  }
+  
+}
+
+const getContractDetails = async (tronWeb, contact) => {
+  try {
+    if(!tronWeb.isAddress(contact)) return generateErrorResponse("Token contract address is invalid");
+
+    tronWeb.setAddress(contact);
+    const contract_interface = tronWeb.contract(tronABI.entrys,contact);
+    const contractName    = await contract_interface.name().call();
+    const contractSymbol  = await contract_interface.symbol().call();
+    const contractDecimal = await contract_interface.decimals().call();
+    let data = {
+      name     : contractName,
+      coin_type: contractSymbol,
+      decimal  : contractDecimal
+    };
+    
+    return {
+      success: true,
+      message: "Contact details get successfully",
+      data: data ? data : {},
+    };
+  } catch (error) {
+    console.error('getContractDetails Error:', error);
+    return {
+      success: false,
+      message: error.message ?? "Something went wrong",
+      data:{},
+    };
+  }
+}
+
 // get trx confirmed transaction by hash
 async function getTrxConfirmedTransaction(req, res) {
   try {
     const tronWeb = tronWebCall(req, res);
     const txId = req.body.transaction_hash;
 
-    const response = await tronWeb.trx.getTransactionInfo(txId);
-
+    const tronResponse = await tronWeb.trx.getTransaction(txId);
+    response = await getTransactionDetailsData(tronWeb,tronResponse);
     if (response) {
       const contractAddress = req.body.contract_address;
       const contract = await tronWeb.contract().at(contractAddress);
-
+      console.log("response", response,txId);
       res.json({
         status: true,
         message: "Get transaction success",
         data: {
-          hash: response,
+          ...response,
           gas_used: parseFloat(tronWeb.fromSun(response.fee)),
-          txID: response.id,
+          txID: response.transaction_id,
         },
       });
     } else {
