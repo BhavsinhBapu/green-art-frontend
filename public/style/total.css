@@ -16427,3 +16427,7 @@ input:checked + .gift-card-buy-slider:before {
 .overflow-x-auto {
   overflow-x: auto !important;
 }
+::placeholder {
+  color: var(--text-primary-color-2) !important;
+  opacity: 1;
+}
