@@ -36,7 +36,7 @@ export default function SendCryptoCardModal({
     if (activeType.value == 2) {
       url = `/gift-card/send-gift-card?send_by=${activeType.value}&to_phone=${phone}&card_uid=${giftCardData.uid}&message=${massage}`;
     }
-    const data  = await sendGiftCardApi(url);
+    const data = await sendGiftCardApi(url);
 
     if (!data.success) {
       toast.error(data.message);
@@ -91,7 +91,9 @@ export default function SendCryptoCardModal({
                 )}
               </div>
               <div className="form-group">
-                <label htmlFor="exampleFormControlTextarea1">{t(`Massage`)}</label>
+                <label htmlFor="exampleFormControlTextarea1">
+                  {t(`Message`)}
+                </label>
                 <textarea
                   className="form-control"
                   id="exampleFormControlTextarea1"
