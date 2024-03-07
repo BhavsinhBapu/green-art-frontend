@@ -47,3 +47,8 @@ export const ShowGeneratedSecretKey = async (password: any) => {
   });
   return data;
 };
+
+export const getApiSettingsApi = async () => {
+  const { data } = await request.get("/get-api-settings");
+  return data;
+};

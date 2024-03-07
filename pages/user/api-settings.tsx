@@ -19,6 +19,7 @@ import { toast } from "react-toastify";
 import { CUstomSelect } from "components/common/CUstomSelect";
 import CustomDataTable from "components/Datatable";
 import IpAddressModal from "components/settings/IpAddressModal";
+import { getApiSettingsApi } from "service/settings";
 
 const allowUser = [
   {
@@ -157,6 +158,16 @@ const ApiSettings: NextPage = () => {
   const handleFunc = () => {
     console.log("good");
   };
+
+  useEffect(() => {
+    getApiSttingsHandler();
+  }, []);
+
+  const getApiSttingsHandler = async () => {
+    const response = await getApiSettingsApi();
+    console.log("responsr", response);
+  };
+
   return (
     <>
       <div className="page-wrap">
@@ -258,10 +269,7 @@ const ApiSettings: NextPage = () => {
                         <div className="row" style={{ alignItems: "end" }}>
                           <div className="col-md-3">
                             <div className="form-group p2pSelectFilter">
-                              <label>
-                                {" "}
-                                {t(`Allow This User To Access Api`)}
-                              </label>
+                              <label> {t(`Allow User To Access Api`)}</label>
                               <CUstomSelect
                                 options={allowUser}
                                 handleFunction={handleFunc}
