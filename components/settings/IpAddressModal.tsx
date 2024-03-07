@@ -15,6 +15,8 @@ const IpAddressModal = ({
   setIsWhiteListModalOpen,
 }: any) => {
   const [ipAddress, setIpAddress] = useState<any>("");
+  const [isAddWhiteListLoading, setIsAddWhiteListLoading] =
+    useState<any>(false);
   const dispatch = useDispatch();
   const { t } = useTranslation("common");
   const handleSubmit = async (e: any) => {
@@ -24,6 +26,7 @@ const IpAddressModal = ({
       toast.error("Add Ip Address");
       return;
     }
+    setIsAddWhiteListLoading(true);
     let value = {
       ip: ipAddress,
       status: 1,
@@ -33,10 +36,13 @@ const IpAddressModal = ({
     const response = await addWhiteListApi(value);
     if (!response.success) {
       toast.error(response.message);
+      setIsAddWhiteListLoading(false);
+
       return;
     }
     toast.success(response.message);
     setIsWhiteListModalOpen(false);
+    setIsAddWhiteListLoading(false);
   };
 
   return (
@@ -53,6 +59,7 @@ const IpAddressModal = ({
                   type="button"
                   className="close"
                   onClick={() => setIsWhiteListModalOpen(false)}
+                  disabled={isAddWhiteListLoading}
                 >
                   <span aria-hidden="true">×</span>
                 </button>
@@ -78,6 +85,7 @@ const IpAddressModal = ({
                   type="button"
                   className="btn btn-secondary"
                   onClick={() => setIsWhiteListModalOpen(false)}
+                  disabled={isAddWhiteListLoading}
                 >
                   {t("Close")}
                 </button>
@@ -86,8 +94,9 @@ const IpAddressModal = ({
                   type="submit"
                   className="btn btn-primary bg-primary-color"
                   onClick={handleSubmit}
+                  disabled={isAddWhiteListLoading}
                 >
-                  Submit
+                  {isAddWhiteListLoading ? t("Loading..") : t("Submit")}
                 </button>
               </div>
             </div>
