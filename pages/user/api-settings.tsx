@@ -26,6 +26,7 @@ import {
   getApiSettingsApi,
   getWhiteListsApi,
   updateApiSettingsApi,
+  updateWhiteListApi,
 } from "service/settings";
 import SectionLoading from "components/common/SectionLoading";
 import moment from "moment";
@@ -93,6 +94,8 @@ const ApiSettings: NextPage = () => {
   const [processing, setProcessing] = useState<boolean>(false);
   const [search, setSearch] = useState<any>("");
 
+  const [page, setPage] = useState<any>(1);
+
   const columns = [
     {
       Header: t("Ip Address"),
@@ -103,7 +106,17 @@ const ApiSettings: NextPage = () => {
       Header: t("Trading Access"),
       Cell: ({ row }: any) => (
         <label className="gift-card-buy-switch mb-0">
-          <input type="checkbox" checked={row?.original?.trade_access} />
+          <input
+            type="checkbox"
+            checked={row?.original?.trade_access}
+            onChange={() =>
+              updateWhiteListStatus(
+                row?.original?.id,
+                "trade",
+                row?.original?.trade_access ? 0 : 1
+              )
+            }
+          />
           <span className="gift-card-buy-slider gift-card-buy"></span>
         </label>
       ),
@@ -112,7 +125,17 @@ const ApiSettings: NextPage = () => {
       Header: t("Withdrawal Access"),
       Cell: ({ row }: any) => (
         <label className="gift-card-buy-switch mb-0">
-          <input type="checkbox" checked={row?.original?.withdrawal_access} />
+          <input
+            type="checkbox"
+            checked={row?.original?.withdrawal_access}
+            onChange={() =>
+              updateWhiteListStatus(
+                row?.original?.id,
+                "withdrawal",
+                row?.original?.withdrawal_access ? 0 : 1
+              )
+            }
+          />
           <span className="gift-card-buy-slider gift-card-buy"></span>
         </label>
       ),
@@ -121,7 +144,17 @@ const ApiSettings: NextPage = () => {
       Header: t("Is Blocked"),
       Cell: ({ row }: any) => (
         <label className="gift-card-buy-switch mb-0">
-          <input type="checkbox" checked={row?.original?.status} />
+          <input
+            type="checkbox"
+            checked={row?.original?.status}
+            onChange={() =>
+              updateWhiteListStatus(
+                row?.original?.id,
+                "status",
+                row?.original?.status ? 0 : 1
+              )
+            }
+          />
           <span className="gift-card-buy-slider gift-card-buy"></span>
         </label>
       ),
@@ -150,9 +183,9 @@ const ApiSettings: NextPage = () => {
     getWhiteListsHandler(1);
   }, [selectedLimit]);
 
-  const getWhiteListsHandler = async (page: any) => {
+  const getWhiteListsHandler = async (c_page: any) => {
     setProcessing(true);
-    const response = await getWhiteListsApi(page, selectedLimit, search);
+    const response = await getWhiteListsApi(c_page, selectedLimit, search);
     if (!response.success) {
       toast.error(response.message);
       setProcessing(false);
@@ -206,6 +239,17 @@ const ApiSettings: NextPage = () => {
 
   const handlePageClick = (event: any) => {
     getWhiteListsHandler(event.selected + 1);
+    setPage(event.selected + 1);
+  };
+
+  const updateWhiteListStatus = async (id: any, type: any, value: any) => {
+    const response = await updateWhiteListApi(id, type, value);
+    if (!response.success) {
+      toast.error(response.message);
+      return;
+    }
+    toast.success(response.message);
+    getWhiteListsHandler(page);
   };
 
   return (

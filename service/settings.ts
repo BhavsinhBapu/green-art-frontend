@@ -69,3 +69,8 @@ export const getWhiteListsApi = async (page: any, limit: any, search: any) => {
   );
   return data;
 };
+
+export const updateWhiteListApi = async (id: any, type: any, value: any) => {
+  const { data } = await request.get(`/white-list-${id}-${type}-${value}`);
+  return data;
+};
