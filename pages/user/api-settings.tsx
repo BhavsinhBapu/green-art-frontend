@@ -2,6 +2,7 @@ import type { GetServerSideProps, NextPage } from "next";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { useEffect, useState } from "react";
 import Select from "react-select";
+import ReactPaginate from "react-paginate";
 import {
   UserSettingsAction,
   Google2faLoginAction,
@@ -23,9 +24,11 @@ import IpAddressModal from "components/settings/IpAddressModal";
 import {
   addWhiteListApi,
   getApiSettingsApi,
+  getWhiteListsApi,
   updateApiSettingsApi,
 } from "service/settings";
 import SectionLoading from "components/common/SectionLoading";
+import moment from "moment";
 
 const allowUser = [
   {
@@ -75,50 +78,18 @@ const ApiSettings: NextPage = () => {
     useState<any>(false);
   const [isGetApiSettingsLoading, setIsGetApiSettingsLoading] =
     useState<any>(false);
+
   const { t } = useTranslation("common");
   const [selectedAllowUser, setSelectedAllowUser] = useState<any>({});
   const [selectedTradeAcces, setSelectedTradeAcces] = useState<any>({});
   const [selectedWithdrawAcces, setSelectedWithdrawAcces] = useState<any>({});
 
-  const [settings, setSettings] = useState<any>();
   const { settings: settingsReducer } = useSelector(
     (state: RootState) => state.common
   );
+
   const [selectedLimit, setSelectedLimit] = useState<any>("10");
-  const [Changeable, setChangeable] = useState<any[]>([
-    {
-      id: 1,
-      ip_address: "121.90.21.21",
-      tradeingAccess: true,
-      withdrawlAccess: false,
-      isBlocked: false,
-      date: "10-03-2024",
-    },
-    {
-      id: 2,
-      ip_address: "155.230.18.21",
-      tradeingAccess: false,
-      withdrawlAccess: true,
-      isBlocked: true,
-      date: "11-03-2024",
-    },
-    {
-      id: 3,
-      ip_address: "167.10.20.91",
-      tradeingAccess: true,
-      withdrawlAccess: false,
-      isBlocked: true,
-      date: "12-03-2024",
-    },
-    {
-      id: 4,
-      ip_address: "121.12.19.12",
-      tradeingAccess: false,
-      withdrawlAccess: true,
-      isBlocked: false,
-      date: "13-03-2024",
-    },
-  ]);
+  const [Changeable, setChangeable] = useState<any>({});
   const [processing, setProcessing] = useState<boolean>(false);
   const [search, setSearch] = useState<any>("");
 
@@ -132,7 +103,7 @@ const ApiSettings: NextPage = () => {
       Header: t("Trading Access"),
       Cell: ({ row }: any) => (
         <label className="gift-card-buy-switch mb-0">
-          <input type="checkbox" checked={row?.original?.tradeingAccess} />
+          <input type="checkbox" checked={row?.original?.trade_access} />
           <span className="gift-card-buy-slider gift-card-buy"></span>
         </label>
       ),
@@ -141,7 +112,7 @@ const ApiSettings: NextPage = () => {
       Header: t("Withdrawal Access"),
       Cell: ({ row }: any) => (
         <label className="gift-card-buy-switch mb-0">
-          <input type="checkbox" checked={row?.original?.withdrawlAccess} />
+          <input type="checkbox" checked={row?.original?.withdrawal_access} />
           <span className="gift-card-buy-slider gift-card-buy"></span>
         </label>
       ),
@@ -150,14 +121,16 @@ const ApiSettings: NextPage = () => {
       Header: t("Is Blocked"),
       Cell: ({ row }: any) => (
         <label className="gift-card-buy-switch mb-0">
-          <input type="checkbox" checked={row?.original?.tradeingAccess} />
+          <input type="checkbox" checked={row?.original?.status} />
           <span className="gift-card-buy-slider gift-card-buy"></span>
         </label>
       ),
     },
     {
       Header: t("Date"),
-      accessor: "date",
+      accessor: "created_at",
+      Cell: ({ row }: any) =>
+        moment(row?.original?.created_at).format("DD MMM YYYY"),
     },
     {
       Header: t("Action"),
@@ -168,21 +141,24 @@ const ApiSettings: NextPage = () => {
       ),
     },
   ];
-  useEffect(() => {
-    dispatch(UserSettingsAction(setSettings));
-
-    return () => {
-      setSettings(null);
-    };
-  }, []);
-
-  const handleFunc = () => {
-    console.log("good");
-  };
 
   useEffect(() => {
     getApiSttingsHandler();
+    getWhiteListsHandler(1);
   }, []);
+
+  const getWhiteListsHandler = async (page: any) => {
+    setProcessing(true);
+    const response = await getWhiteListsApi(page, selectedLimit, search);
+    if (!response.success) {
+      toast.error(response.message);
+      setProcessing(false);
+      return;
+    }
+    console.log("setIsGetWhiteListsLoading", response);
+    setChangeable(response?.data);
+    setProcessing(false);
+  };
 
   const getApiSttingsHandler = async () => {
     setIsGetApiSettingsLoading(true);
@@ -223,6 +199,10 @@ const ApiSettings: NextPage = () => {
     }
     toast.success(response.message);
     setIsUpdateApiSettingsLoading(false);
+  };
+
+  const handlePageClick = (event: any) => {
+    getWhiteListsHandler(event.selected + 1);
   };
 
   return (
@@ -426,7 +406,7 @@ const ApiSettings: NextPage = () => {
                               <div className=" table-responsive">
                                 <CustomDataTable
                                   columns={columns}
-                                  data={Changeable}
+                                  data={Changeable?.data || []}
                                   selectedLimit={selectedLimit}
                                   setSelectedLimit={setSelectedLimit}
                                   search={search}
@@ -435,6 +415,26 @@ const ApiSettings: NextPage = () => {
                                   verticalAlignData={`middle`}
                                   isOverflow={true}
                                 />
+                                {Changeable?.data?.length > 0 && (
+                                  <div className="row justify-content-end mt-1 px-5">
+                                    <ReactPaginate
+                                      nextLabel=">"
+                                      onPageChange={handlePageClick}
+                                      pageRangeDisplayed={5}
+                                      pageCount={Math.ceil(
+                                        Changeable?.total / selectedLimit
+                                      )}
+                                      previousLabel="<"
+                                      renderOnZeroPageCount={null}
+                                      className={`d-flex align-items-center justify-content-center`}
+                                      pageLinkClassName={`paginate-number`}
+                                      activeLinkClassName={`active-paginate-cls`}
+                                      previousLinkClassName={`text-primary-color text-25 mr-2`}
+                                      nextLinkClassName={`text-primary-color text-25 ml-2 mr-4`}
+                                      forcePage={Changeable?.current_page - 1}
+                                    />
+                                  </div>
+                                )}
                               </div>
                             </div>
                           </div>
