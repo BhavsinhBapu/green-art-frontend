@@ -73,9 +73,9 @@ const Limit = ({
                       >
                         <span>
                           {parseFloat(
-                            dashboard?.order_data?.on_order?.trade_wallet_total
-                              ? dashboard?.order_data?.on_order
-                                  ?.trade_wallet_total
+                            dashboard?.order_data?.total?.trade_wallet?.balance
+                              ? dashboard?.order_data?.total?.trade_wallet
+                                  ?.balance
                               : 0
                           ).toFixed(4)}
                         </span>

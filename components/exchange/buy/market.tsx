@@ -80,9 +80,9 @@ const Market = ({
                       >
                         <span>
                           {parseFloat(
-                            dashboard?.order_data?.on_order?.base_wallet_total
-                              ? dashboard?.order_data?.on_order
-                                  ?.base_wallet_total
+                            dashboard?.order_data?.total?.base_wallet?.balance
+                              ? dashboard?.order_data?.total?.base_wallet
+                                  ?.balance
                               : 0
                           ).toFixed(4)}
                         </span>
