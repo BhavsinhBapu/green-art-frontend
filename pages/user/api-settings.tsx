@@ -23,6 +23,7 @@ import CustomDataTable from "components/Datatable";
 import IpAddressModal from "components/settings/IpAddressModal";
 import {
   addWhiteListApi,
+  deleteWhiteListApi,
   getApiSettingsApi,
   getWhiteListsApi,
   updateApiSettingsApi,
@@ -169,7 +170,12 @@ const ApiSettings: NextPage = () => {
       Header: t("Action"),
       Cell: ({ row }: any) => (
         <div className="active-link">
-          <button className="btn">Delete</button>
+          <button
+            className="btn"
+            onClick={() => deleteWhiteList(row?.original?.id)}
+          >
+            Delete
+          </button>
         </div>
       ),
     },
@@ -191,7 +197,7 @@ const ApiSettings: NextPage = () => {
       setProcessing(false);
       return;
     }
-    console.log("setIsGetWhiteListsLoading", response);
+
     setChangeable(response?.data);
     setProcessing(false);
   };
@@ -199,7 +205,7 @@ const ApiSettings: NextPage = () => {
   const getApiSttingsHandler = async () => {
     setIsGetApiSettingsLoading(true);
     const response = await getApiSettingsApi();
-    console.log("responsr", response);
+
     if (!response.success) {
       toast.error(response.message);
       setIsGetApiSettingsLoading(false);
@@ -245,6 +251,16 @@ const ApiSettings: NextPage = () => {
   const updateWhiteListStatus = async (id: any, type: any, value: any) => {
     const response = await updateWhiteListApi(id, type, value);
     if (!response.success) {
+      toast.error(response.message);
+      return;
+    }
+    toast.success(response.message);
+    getWhiteListsHandler(page);
+  };
+
+  const deleteWhiteList = async (id: any) => {
+    const response = await deleteWhiteListApi(id);
+    if (!response?.success) {
       toast.error(response.message);
       return;
     }
