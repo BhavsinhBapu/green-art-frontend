@@ -52,3 +52,13 @@ export const getApiSettingsApi = async () => {
   const { data } = await request.get("/get-api-settings");
   return data;
 };
+
+export const updateApiSettingsApi = async (value: any) => {
+  const { data } = await request.post("/update-api-settings", value);
+  return data;
+};
+
+export const addWhiteListApi = async (value: any) => {
+  const { data } = await request.post("/add-api-white-list", value);
+  return data;
+};

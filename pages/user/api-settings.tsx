@@ -1,6 +1,7 @@
 import type { GetServerSideProps, NextPage } from "next";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { useEffect, useState } from "react";
+import Select from "react-select";
 import {
   UserSettingsAction,
   Google2faLoginAction,
@@ -19,7 +20,12 @@ import { toast } from "react-toastify";
 import { CUstomSelect } from "components/common/CUstomSelect";
 import CustomDataTable from "components/Datatable";
 import IpAddressModal from "components/settings/IpAddressModal";
-import { getApiSettingsApi } from "service/settings";
+import {
+  addWhiteListApi,
+  getApiSettingsApi,
+  updateApiSettingsApi,
+} from "service/settings";
+import SectionLoading from "components/common/SectionLoading";
 
 const allowUser = [
   {
@@ -35,30 +41,45 @@ const allowUser = [
 const withdrawlAccess = [
   {
     label: "Off",
-    value: 1,
+    value: 0,
   },
   {
     label: "On",
-    value: 0,
+    value: 1,
   },
 ];
 
-const tradelAccess = [
+const tradeAccess = [
   {
     label: "Off",
-    value: 1,
+    value: 0,
   },
   {
     label: "On",
-    value: 0,
+    value: 1,
   },
 ];
-
+const colourStyles: any = {
+  placeholder: (defaultStyles: any) => {
+    return {
+      ...defaultStyles,
+      color: "var(--text-primary-color-2)",
+    };
+  },
+};
 const ApiSettings: NextPage = () => {
   const dispatch = useDispatch();
-
+  const [isWhiteListModalOpen, setIsWhiteListModalOpen] = useState<any>(false);
   const [isKeyGenerate, setIsKeyGenerate] = useState(true);
+  const [isUpdateApiSettingsLoading, setIsUpdateApiSettingsLoading] =
+    useState<any>(false);
+  const [isGetApiSettingsLoading, setIsGetApiSettingsLoading] =
+    useState<any>(false);
   const { t } = useTranslation("common");
+  const [selectedAllowUser, setSelectedAllowUser] = useState<any>({});
+  const [selectedTradeAcces, setSelectedTradeAcces] = useState<any>({});
+  const [selectedWithdrawAcces, setSelectedWithdrawAcces] = useState<any>({});
+
   const [settings, setSettings] = useState<any>();
   const { settings: settingsReducer } = useSelector(
     (state: RootState) => state.common
@@ -164,8 +185,44 @@ const ApiSettings: NextPage = () => {
   }, []);
 
   const getApiSttingsHandler = async () => {
+    setIsGetApiSettingsLoading(true);
     const response = await getApiSettingsApi();
     console.log("responsr", response);
+    if (!response.success) {
+      toast.error(response.message);
+      setIsGetApiSettingsLoading(false);
+      return;
+    }
+    setSelectedAllowUser(
+      allowUser.find((user) => user.value == response.data?.status) || {}
+    );
+    setSelectedTradeAcces(
+      tradeAccess.find((trade) => trade.value == response.data?.trade_access) ||
+        {}
+    );
+    setSelectedWithdrawAcces(
+      withdrawlAccess.find(
+        (withdraw) => withdraw.value == response.data?.withdrawal_access
+      ) || {}
+    );
+    setIsGetApiSettingsLoading(false);
+  };
+
+  const handleUpdateApiSettings = async () => {
+    let value = {
+      status: selectedAllowUser?.value || 0,
+      trade: selectedTradeAcces?.value || 0,
+      withdrawal: selectedWithdrawAcces?.value || 0,
+    };
+    setIsUpdateApiSettingsLoading(true);
+    const response = await updateApiSettingsApi(value);
+    if (!response.success) {
+      toast.error(response.message);
+      setIsUpdateApiSettingsLoading(false);
+      return;
+    }
+    toast.success(response.message);
+    setIsUpdateApiSettingsLoading(false);
   };
 
   return (
@@ -256,59 +313,89 @@ const ApiSettings: NextPage = () => {
                   </div>
                 </div>
               </div>
+
               <div className="setting-bg boxShadow mb-5">
                 <div className="row">
                   <div className="col-md-12 mb-xl-0 mb-4">
                     <div className="card-body">
-                      <div className="cp-user-card-header-area">
-                        <div className="cp-user-title">
-                          <h4>{t("Api Access Settings")}</h4>
-                        </div>
-                      </div>
-                      <div className="my-3 ">
-                        <div className="row" style={{ alignItems: "end" }}>
-                          <div className="col-md-3">
-                            <div className="form-group p2pSelectFilter">
-                              <label> {t(`Allow User To Access Api`)}</label>
-                              <CUstomSelect
-                                options={allowUser}
-                                handleFunction={handleFunc}
-                              />
+                      {isGetApiSettingsLoading ? (
+                        <SectionLoading />
+                      ) : (
+                        <>
+                          <div className="cp-user-card-header-area">
+                            <div className="cp-user-title">
+                              <h4>{t("Api Access Settings")}</h4>
                             </div>
                           </div>
-                          <div className="col-md-3">
-                            <div className="form-group p2pSelectFilter">
-                              <label>
-                                {" "}
-                                {t(`Withdrawal Api Access Enable`)}
-                              </label>
-                              <CUstomSelect
-                                options={withdrawlAccess}
-                                handleFunction={handleFunc}
-                              />
+                          <div className="my-3 ">
+                            <div className="row" style={{ alignItems: "end" }}>
+                              <div className="col-md-3">
+                                <div className="form-group p2pSelectFilter">
+                                  <label>
+                                    {" "}
+                                    {t(`Allow User To Access Api`)}
+                                  </label>
+                                  <Select
+                                    options={allowUser}
+                                    classNamePrefix={"custom-select"}
+                                    value={selectedAllowUser}
+                                    onChange={(e: any) =>
+                                      setSelectedAllowUser(e)
+                                    }
+                                    styles={colourStyles}
+                                  />
+                                </div>
+                              </div>
+                              <div className="col-md-3">
+                                <div className="form-group p2pSelectFilter">
+                                  <label>
+                                    {" "}
+                                    {t(`Withdrawal Api Access Enable`)}
+                                  </label>
+
+                                  <Select
+                                    options={withdrawlAccess}
+                                    classNamePrefix={"custom-select"}
+                                    value={selectedWithdrawAcces}
+                                    onChange={(e: any) =>
+                                      setSelectedWithdrawAcces(e)
+                                    }
+                                    styles={colourStyles}
+                                  />
+                                </div>
+                              </div>
+                              <div className="col-md-3">
+                                <div className="form-group p2pSelectFilter">
+                                  <label>{t(`Trade Api Access Enable`)}</label>
+                                  <Select
+                                    options={tradeAccess}
+                                    classNamePrefix={"custom-select"}
+                                    value={selectedTradeAcces}
+                                    onChange={(e: any) =>
+                                      setSelectedTradeAcces(e)
+                                    }
+                                    styles={colourStyles}
+                                  />
+                                </div>
+                              </div>
+                              <div className="col-md-3">
+                                <div className="form-group p2pSelectFilter">
+                                  <button
+                                    className="btn w-full"
+                                    style={{ height: "42px" }}
+                                    onClick={handleUpdateApiSettings}
+                                    disabled={isUpdateApiSettingsLoading}
+                                  >
+                                    {isUpdateApiSettingsLoading
+                                      ? t("Processing")
+                                      : t(`Update`)}
+                                  </button>
+                                </div>
+                              </div>
                             </div>
                           </div>
-                          <div className="col-md-3">
-                            <div className="form-group p2pSelectFilter">
-                              <label>{t(`Trade Api Access Enable`)}</label>
-                              <CUstomSelect
-                                options={tradelAccess}
-                                handleFunction={handleFunc}
-                              />
-                            </div>
-                          </div>
-                          <div className="col-md-3">
-                            <div className="form-group p2pSelectFilter">
-                              <button
-                                className="btn w-full"
-                                style={{ height: "42px" }}
-                              >
-                                Update
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                        </>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -325,8 +412,7 @@ const ApiSettings: NextPage = () => {
                           <button
                             type="button"
                             className="btn btn-primary px-3 py-2"
-                            data-toggle="modal"
-                            data-target="#newIpAddressModal"
+                            onClick={() => setIsWhiteListModalOpen(true)}
                           >
                             Add New
                           </button>
@@ -364,7 +450,12 @@ const ApiSettings: NextPage = () => {
       </div>
       <Footer />
       <SecretKeyModal isKeyGenerate={isKeyGenerate} />
-      <IpAddressModal />
+      {isWhiteListModalOpen && (
+        <IpAddressModal
+          setIsWhiteListModalOpen={setIsWhiteListModalOpen}
+          isWhiteListModalOpen={isWhiteListModalOpen}
+        />
+      )}
     </>
   );
 };
