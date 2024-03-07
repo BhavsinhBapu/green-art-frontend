@@ -144,8 +144,11 @@ const ApiSettings: NextPage = () => {
 
   useEffect(() => {
     getApiSttingsHandler();
-    getWhiteListsHandler(1);
   }, []);
+
+  useEffect(() => {
+    getWhiteListsHandler(1);
+  }, [selectedLimit]);
 
   const getWhiteListsHandler = async (page: any) => {
     setProcessing(true);
