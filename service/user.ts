@@ -139,3 +139,20 @@ export const KycActiveList = async () => {
   const { data } = await request.get("/kyc-active-list");
   return data;
 };
+
+export const getNetworkListsForCheckDeposit = async () => {
+  const { data } = await request.get("/get-networks-list");
+  return data;
+};
+
+export const getCoinListsForCheckDeposit = async (network_id: any) => {
+  const { data } = await request.get(
+    `/get-coin-network?network_id=${network_id}`
+  );
+  return data;
+};
+
+export const checkCoinTransactionDepositApi = async (value: any) => {
+  const { data } = await request.post("/check-coin-transaction", value);
+  return data;
+};

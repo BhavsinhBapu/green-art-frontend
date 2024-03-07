@@ -1,7 +1,8 @@
 import { formateZert } from "common";
+import RangeSlider from "components/dashboard/RangeSlider";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
-import React from "react";
+import React, { Fragment } from "react";
 import { useDispatch } from "react-redux";
 import {
   getDashboardData,
@@ -16,6 +17,21 @@ const StopLimit = ({
   isLoggedIn,
   currentPair,
 }: any) => {
+  const buySellSliderRanges = [
+    {
+      percent: 0.25,
+    },
+    {
+      percent: 0.5,
+    },
+    {
+      percent: 0.75,
+    },
+    {
+      percent: 1,
+    },
+  ];
+
   const [loading, setLoading] = React.useState(false);
   const { t } = useTranslation("common");
   const dispatch = useDispatch();
@@ -58,9 +74,9 @@ const StopLimit = ({
                       >
                         <span>
                           {parseFloat(
-                            dashboard?.order_data?.total?.trade_wallet?.balance
-                              ? dashboard?.order_data?.total?.trade_wallet
-                                  ?.balance
+                            dashboard?.order_data?.on_order?.trade_wallet_total
+                              ? dashboard?.order_data?.on_order
+                                  ?.trade_wallet_total
                               : 0
                           ).toFixed(4)}
                         </span>
@@ -232,42 +248,26 @@ const StopLimit = ({
                 </div>
 
                 {isLoggedIn && (
-                  <div className=" mt-3 percent-container ">
-                    <span
-                      className=" percent-btn col-3"
-                      onClick={() => setAmountBasedOnPercentage(0.25)}
-                    >
-                      {t("25%")}
-                    </span>
-                    <span
-                      className=" percent-btn col-3"
-                      onClick={() => setAmountBasedOnPercentage(0.5)}
-                    >
-                      {t("50%")}
-                    </span>
-                    <span
-                      className=" percent-btn col-3"
-                      onClick={() => setAmountBasedOnPercentage(0.75)}
-                    >
-                      {t("75%")}
-                    </span>
-                    <span
-                      className=" percent-btn col-3"
-                      onClick={() => setAmountBasedOnPercentage(1)}
-                    >
-                      {t("100%")}
-                    </span>
-                  </div>
+                  <RangeSlider
+                    items={buySellSliderRanges}
+                    handleFunc={setAmountBasedOnPercentage}
+                    idPrefix="sellStopLimit"
+                  />
                 )}
                 {!isLoggedIn ? (
                   <div className="form-group mt-4">
                     <Link href="/signin">
-                      <a className="btn theme-btn-red">{t("Login")}</a>
+                      <a className="btn theme-btn-red bg-primary-color">
+                        {t("Login")}
+                      </a>
                     </Link>
                   </div>
                 ) : loading ? (
                   <div className="form-group mt-4">
-                    <button type="submit" className="btn theme-btn-red">
+                    <button
+                      type="submit"
+                      className="btn theme-btn-red bg-primary-color"
+                    >
                       <span v-if="limitBuyData.placingOrder">
                         <span
                           className="spinner-border spinner-border-sm"
@@ -282,7 +282,7 @@ const StopLimit = ({
                   <div className="form-group mt-4">
                     <button
                       type="submit"
-                      className="btn theme-btn-red"
+                      className="btn theme-btn-red bg-primary-color"
                       onClick={async (e) => {
                         e.preventDefault();
                         await sellStopLimitAppAction(

@@ -53,7 +53,7 @@ const DemoAllSellOrders = ({ OpenBooksell, show }: any) => {
                     style={{ width: "100%" }}
                   >
                     <thead>
-                      <tr role="row" className="trade_tableList">
+                      <tr role="row" className="">
                         <th
                           className="table-col price sorting_disabled"
                           rowSpan={1}

@@ -15995,6 +15995,10 @@ input:checked + .gift-card-buy-slider:before {
 .secret-key-dialog {
   max-width: 60vw !important;
 }
+
+.custom-inner-padding {
+  padding: 3rem !important;
+}
 @media (max-width: 1520px) {
   .trade-dashboard-side-margin {
     margin-left: 0 !important;
@@ -16086,6 +16090,9 @@ input:checked + .gift-card-buy-slider:before {
   }
 }
 @media (max-width: 770px) {
+  .custom-inner-padding {
+    padding: 0 !important;
+  }
   .secret-key-dialog {
     max-width: 100% !important;
   }
@@ -16327,4 +16334,100 @@ input:checked + .gift-card-buy-slider:before {
   background: var(--glass-color-bg-1);
   border-radius: 10px;
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
+.exchange-dashboard-slider-range-cls {
+  display: flex;
+  flex-direction: row;
+  align-content: stretch;
+  position: relative;
+  width: 100%;
+  height: 50px;
+  user-select: none;
+}
+.exchange-dashboard-slider-range-cls::before {
+  content: " ";
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  width: calc(100% * (4 / 5));
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--primary-color);
+}
+.exchange-dashboard-slider-range-cls input,
+.exchange-dashboard-slider-range-cls label {
+  box-sizing: border-box;
+  flex: 1;
+  user-select: none;
+  cursor: pointer;
+}
+.exchange-dashboard-slider-range-cls label {
+  display: inline-block;
+  position: relative;
+  width: 20%;
+  height: 100%;
+  user-select: none;
+  margin-bottom: 0;
+}
+.exchange-dashboard-slider-range-cls label::before {
+  content: attr(data-debt-amount);
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 45px);
+  font-size: 14px;
+  letter-spacing: 0.4px;
+  font-weight: 400;
+  white-space: nowrap;
+  opacity: 0.85;
+  transition: all 0.15s ease-in-out;
+}
+.exchange-dashboard-slider-range-cls label::after {
+  content: " ";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--primary-color);
+  background: var(--card-background-color);
+  border-radius: 50%;
+  pointer-events: none;
+  user-select: none;
+  z-index: 1;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+}
+.exchange-dashboard-slider-range-cls label:hover::after {
+  transform: translate(-50%, -50%) scale(1.25);
+}
+.exchange-dashboard-slider-range-cls input {
+  display: none;
+}
+.exchange-dashboard-slider-range-cls input:checked + label::before {
+  font-weight: 800;
+  opacity: 1;
+}
+.exchange-dashboard-slider-range-cls input:checked + label::after {
+  border-width: 10px;
+  transform: translate(-50%, -50%) scale(0.75);
+}
+
+.exchange-dashboard-slider-range-cls input + label::before {
+  transform: translate(-50%, 45px) scale(0.9);
+  transition: all 0.15s linear;
+}
+.exchange-dashboard-slider-range-cls input:checked + label::before {
+  transform: translate(-50%, 45px) scale(1.1);
+  transition: all 0.15s linear;
+}
+
+.overflow-x-auto {
+  overflow-x: auto !important;
+}
+::placeholder {
+  color: var(--text-primary-color-2) !important;
+  opacity: 1;
 }
