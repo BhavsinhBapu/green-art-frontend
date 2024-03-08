@@ -76,6 +76,7 @@ const ApiSettings: NextPage = () => {
   const dispatch = useDispatch();
   const [isWhiteListModalOpen, setIsWhiteListModalOpen] = useState<any>(false);
   const [isKeyGenerate, setIsKeyGenerate] = useState(true);
+  const [isSecretKeyAvailable, setIsSecretKeyAvailable] = useState<any>(false);
   const [isUpdateApiSettingsLoading, setIsUpdateApiSettingsLoading] =
     useState<any>(false);
   const [isGetApiSettingsLoading, setIsGetApiSettingsLoading] =
@@ -182,8 +183,17 @@ const ApiSettings: NextPage = () => {
   ];
 
   useEffect(() => {
-    getApiSttingsHandler();
-  }, []);
+    if (isSecretKeyAvailable) {
+      getApiSttingsHandler();
+    }
+  }, [isSecretKeyAvailable]);
+
+  useEffect(() => {
+    if (!settingsReducer || !settingsReducer?.secret_key_available) {
+      return;
+    }
+    setIsSecretKeyAvailable(true);
+  }, [settingsReducer]);
 
   useEffect(() => {
     getWhiteListsHandler(1);
@@ -356,93 +366,99 @@ const ApiSettings: NextPage = () => {
                   </div>
                 </div>
               </div>
-
-              <div className="setting-bg boxShadow mb-5">
-                <div className="row">
-                  <div className="col-md-12 mb-xl-0 mb-4">
-                    <div className="card-body">
-                      {isGetApiSettingsLoading ? (
-                        <SectionLoading />
-                      ) : (
-                        <>
-                          <div className="cp-user-card-header-area">
-                            <div className="cp-user-title">
-                              <h4>{t("Api Access Settings")}</h4>
-                            </div>
-                          </div>
-                          <div className="my-3 ">
-                            <div className="row" style={{ alignItems: "end" }}>
-                              <div className="col-md-3">
-                                <div className="form-group p2pSelectFilter">
-                                  <label>
-                                    {" "}
-                                    {t(`Allow User To Access Api`)}
-                                  </label>
-                                  <Select
-                                    options={allowUser}
-                                    classNamePrefix={"custom-select"}
-                                    value={selectedAllowUser}
-                                    onChange={(e: any) =>
-                                      setSelectedAllowUser(e)
-                                    }
-                                    styles={colourStyles}
-                                  />
-                                </div>
-                              </div>
-                              <div className="col-md-3">
-                                <div className="form-group p2pSelectFilter">
-                                  <label>
-                                    {" "}
-                                    {t(`Withdrawal Api Access Enable`)}
-                                  </label>
-
-                                  <Select
-                                    options={withdrawlAccess}
-                                    classNamePrefix={"custom-select"}
-                                    value={selectedWithdrawAcces}
-                                    onChange={(e: any) =>
-                                      setSelectedWithdrawAcces(e)
-                                    }
-                                    styles={colourStyles}
-                                  />
-                                </div>
-                              </div>
-                              <div className="col-md-3">
-                                <div className="form-group p2pSelectFilter">
-                                  <label>{t(`Trade Api Access Enable`)}</label>
-                                  <Select
-                                    options={tradeAccess}
-                                    classNamePrefix={"custom-select"}
-                                    value={selectedTradeAcces}
-                                    onChange={(e: any) =>
-                                      setSelectedTradeAcces(e)
-                                    }
-                                    styles={colourStyles}
-                                  />
-                                </div>
-                              </div>
-                              <div className="col-md-3">
-                                <div className="form-group p2pSelectFilter">
-                                  <button
-                                    className="btn w-full"
-                                    style={{ height: "42px" }}
-                                    onClick={handleUpdateApiSettings}
-                                    disabled={isUpdateApiSettingsLoading}
-                                  >
-                                    {isUpdateApiSettingsLoading
-                                      ? t("Processing")
-                                      : t(`Update`)}
-                                  </button>
-                                </div>
+              {isSecretKeyAvailable && (
+                <div className="setting-bg boxShadow mb-5">
+                  <div className="row">
+                    <div className="col-md-12 mb-xl-0 mb-4">
+                      <div className="card-body">
+                        {isGetApiSettingsLoading ? (
+                          <SectionLoading />
+                        ) : (
+                          <>
+                            <div className="cp-user-card-header-area">
+                              <div className="cp-user-title">
+                                <h4>{t("Api Access Settings")}</h4>
                               </div>
                             </div>
-                          </div>
-                        </>
-                      )}
+                            <div className="my-3 ">
+                              <div
+                                className="row"
+                                style={{ alignItems: "end" }}
+                              >
+                                <div className="col-md-3">
+                                  <div className="form-group p2pSelectFilter">
+                                    <label>
+                                      {" "}
+                                      {t(`Allow User To Access Api`)}
+                                    </label>
+                                    <Select
+                                      options={allowUser}
+                                      classNamePrefix={"custom-select"}
+                                      value={selectedAllowUser}
+                                      onChange={(e: any) =>
+                                        setSelectedAllowUser(e)
+                                      }
+                                      styles={colourStyles}
+                                    />
+                                  </div>
+                                </div>
+                                <div className="col-md-3">
+                                  <div className="form-group p2pSelectFilter">
+                                    <label>
+                                      {" "}
+                                      {t(`Withdrawal Api Access Enable`)}
+                                    </label>
+
+                                    <Select
+                                      options={withdrawlAccess}
+                                      classNamePrefix={"custom-select"}
+                                      value={selectedWithdrawAcces}
+                                      onChange={(e: any) =>
+                                        setSelectedWithdrawAcces(e)
+                                      }
+                                      styles={colourStyles}
+                                    />
+                                  </div>
+                                </div>
+                                <div className="col-md-3">
+                                  <div className="form-group p2pSelectFilter">
+                                    <label>
+                                      {t(`Trade Api Access Enable`)}
+                                    </label>
+                                    <Select
+                                      options={tradeAccess}
+                                      classNamePrefix={"custom-select"}
+                                      value={selectedTradeAcces}
+                                      onChange={(e: any) =>
+                                        setSelectedTradeAcces(e)
+                                      }
+                                      styles={colourStyles}
+                                    />
+                                  </div>
+                                </div>
+                                <div className="col-md-3">
+                                  <div className="form-group p2pSelectFilter">
+                                    <button
+                                      className="btn w-full"
+                                      style={{ height: "42px" }}
+                                      onClick={handleUpdateApiSettings}
+                                      disabled={isUpdateApiSettingsLoading}
+                                    >
+                                      {isUpdateApiSettingsLoading
+                                        ? t("Processing")
+                                        : t(`Update`)}
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              )}
               <div className="setting-bg boxShadow mb-5">
                 <div className="row">
                   <div className="col-md-12 mb-xl-0 mb-4">
@@ -512,7 +528,10 @@ const ApiSettings: NextPage = () => {
         </div>
       </div>
       <Footer />
-      <SecretKeyModal isKeyGenerate={isKeyGenerate} />
+      <SecretKeyModal
+        isKeyGenerate={isKeyGenerate}
+        setIsSecretKeyAvailable={setIsSecretKeyAvailable}
+      />
       {isWhiteListModalOpen && (
         <IpAddressModal
           setIsWhiteListModalOpen={setIsWhiteListModalOpen}

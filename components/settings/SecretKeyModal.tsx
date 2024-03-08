@@ -6,7 +6,7 @@ import { GenerateSecretKey, ShowGeneratedSecretKey } from "service/settings";
 import { SetupGoogle2faAction } from "state/actions/settings";
 import { setSecretKeySettings } from "state/reducer/common";
 
-const SecretKeyModal = ({ isKeyGenerate }: any) => {
+const SecretKeyModal = ({ isKeyGenerate, setIsSecretKeyAvailable }: any) => {
   const [password, setPassword] = useState<any>("");
   const [otp, setOtp] = useState<any>("");
   const [secretKey, setSecretKey] = useState<any>("");
@@ -32,6 +32,7 @@ const SecretKeyModal = ({ isKeyGenerate }: any) => {
     }
     toast.success(response.message);
     setSecretKey(response?.data?.secret_key || "");
+    setIsSecretKeyAvailable(true);
   };
   return (
     <div
