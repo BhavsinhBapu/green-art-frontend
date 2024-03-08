@@ -58,7 +58,7 @@ const PaymentList = ({}: any) => {
                         </tr>
                       </thead>
                       <tbody>
-                        {history?.length > 0 ? (
+                        {history?.length > 0 &&
                           history?.map((item: any, index: any) => (
                             <tr className="tableRow" key={index}>
                               <td>
@@ -75,12 +75,10 @@ const PaymentList = ({}: any) => {
                               <td>{item?.total_bonus}</td>
                               <td>{item?.total_investment}</td>
                             </tr>
-                          ))
-                        ) : (
-                          <NoItemFound />
-                        )}
+                          ))}
                       </tbody>
                     </table>
+                    {history?.length == 0 && <NoItemFound />}
                     {history?.length > 0 && (
                       <div
                         className="pagination-wrapper"

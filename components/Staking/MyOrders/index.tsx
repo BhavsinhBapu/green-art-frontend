@@ -81,7 +81,7 @@ export const InvesmentOrderTable = ({
       ) : (
         <div className="row ">
           <div className="col-12">
-            <div className="table-responsive shadow-sm section-padding-custom wallet-card-info-container " >
+            <div className="table-responsive shadow-sm section-padding-custom wallet-card-info-container ">
               <table className="table mt-4">
                 <thead>
                   <tr>
@@ -96,7 +96,7 @@ export const InvesmentOrderTable = ({
                   </tr>
                 </thead>
                 <tbody>
-                  {history.length > 0 ? (
+                  {history.length > 0 &&
                     history?.map((item: any, index: any) => (
                       <tr className="tableRow" key={index}>
                         <td>
@@ -172,13 +172,11 @@ export const InvesmentOrderTable = ({
                           {t(`Details`)}
                         </td>
                       </tr>
-                    ))
-                  ) : (
-                    <NoItemFound />
-                  )}
+                    ))}
                 </tbody>
                 <MyModalsPayment modalData={modalData} />
               </table>
+              {history?.length == 0 && <NoItemFound />}
               {history?.length > 0 && (
                 <div className="pagination-wrapper" id="assetBalances_paginate">
                   <span>
