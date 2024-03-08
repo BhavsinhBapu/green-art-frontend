@@ -59,8 +59,7 @@ const SecretKeyModal = ({
                 <button
                   type="button"
                   className="close"
-                  data-dismiss="modal"
-                  aria-label="Close"
+                  onClick={() => setIsSecretKeyModalOpen(false)}
                 >
                   <span aria-hidden="true">×</span>
                 </button>
@@ -92,7 +91,7 @@ const SecretKeyModal = ({
                 <button
                   type="button"
                   className="btn btn-secondary"
-                  data-dismiss="modal"
+                  onClick={() => setIsSecretKeyModalOpen(false)}
                 >
                   {t("Close")}
                 </button>
