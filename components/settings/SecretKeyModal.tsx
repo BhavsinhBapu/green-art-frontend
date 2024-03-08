@@ -12,14 +12,14 @@ const SecretKeyModal = ({
   generateSecret2faEnable,
 }: any) => {
   const [password, setPassword] = useState<any>("");
-  const [otp, setOtp] = useState<any>("");
+  const [code, setCode] = useState<any>("");
   const [secretKey, setSecretKey] = useState<any>("");
   const dispatch = useDispatch();
   const { t } = useTranslation("common");
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     if (isKeyGenerate) {
-      const response = await GenerateSecretKey(password);
+      const response = await GenerateSecretKey(password, code);
       if (!response.success) {
         toast.error(response.message);
         return;
@@ -29,7 +29,7 @@ const SecretKeyModal = ({
       dispatch(setSecretKeySettings(1));
       return;
     }
-    const response = await ShowGeneratedSecretKey(password);
+    const response = await ShowGeneratedSecretKey(password, code);
     if (!response.success) {
       toast.error(response.message);
       return;
@@ -137,9 +137,9 @@ const SecretKeyModal = ({
                         type="text"
                         className="form-control "
                         name="otp"
-                        value={otp}
+                        value={code}
                         onChange={(e) => {
-                          setOtp(e.target.value);
+                          setCode(e.target.value);
                         }}
                         style={{ height: "46px" }}
                       />
