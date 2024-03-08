@@ -6,7 +6,11 @@ import { GenerateSecretKey, ShowGeneratedSecretKey } from "service/settings";
 import { SetupGoogle2faAction } from "state/actions/settings";
 import { setSecretKeySettings } from "state/reducer/common";
 
-const SecretKeyModal = ({ isKeyGenerate, setIsSecretKeyAvailable }: any) => {
+const SecretKeyModal = ({
+  isKeyGenerate,
+  setIsSecretKeyAvailable,
+  generateSecret2faEnable,
+}: any) => {
   const [password, setPassword] = useState<any>("");
   const [otp, setOtp] = useState<any>("");
   const [secretKey, setSecretKey] = useState<any>("");
@@ -126,19 +130,21 @@ const SecretKeyModal = ({ isKeyGenerate, setIsSecretKeyAvailable }: any) => {
                       style={{ height: "46px" }}
                     />
                   </div>
-                  <div className="col-12 mt-4">
-                    <input
-                      placeholder={t("Google Authentication Code")}
-                      type="text"
-                      className="form-control "
-                      name="otp"
-                      value={otp}
-                      onChange={(e) => {
-                        setOtp(e.target.value);
-                      }}
-                      style={{ height: "46px" }}
-                    />
-                  </div>
+                  {generateSecret2faEnable == 1 && (
+                    <div className="col-12 mt-4">
+                      <input
+                        placeholder={t("Google Authentication Code")}
+                        type="text"
+                        className="form-control "
+                        name="otp"
+                        value={otp}
+                        onChange={(e) => {
+                          setOtp(e.target.value);
+                        }}
+                        style={{ height: "46px" }}
+                      />
+                    </div>
+                  )}
                 </div>
               </div>
               <div className="modal-footer">

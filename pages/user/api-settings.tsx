@@ -531,6 +531,7 @@ const ApiSettings: NextPage = () => {
       <SecretKeyModal
         isKeyGenerate={isKeyGenerate}
         setIsSecretKeyAvailable={setIsSecretKeyAvailable}
+        generateSecret2faEnable={settingsReducer?.generate_secret_2fa_enable}
       />
       {isWhiteListModalOpen && (
         <IpAddressModal
