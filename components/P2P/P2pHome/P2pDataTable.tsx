@@ -72,33 +72,58 @@ export const P2pDataTable = ({
     <div className="glass-color-bg-custom">
       <div className="container-4xl">
         <div className="row mx-0">
-          <div className="table-responsive">
+          <div className="table-responsive overflow-x-auto">
             {historyData?.length <= 0 || !historyData ? (
               <NoItemFound />
             ) : (
               <table className="table">
                 <thead>
                   <tr>
-                    <th scope="col">{t(`Advertisers`)}</th>
-                    <th scope="col">{t(`Price`)}</th>
-                    <th scope="col">{t(`Limit/Available`)}</th>
+                    <th scope="col" style={{ padding: "0 10px" }}>
+                      {t(`Advertisers`)}
+                    </th>
+                    <th scope="col" style={{ padding: "0 10px" }}>
+                      {t(`Price`)}
+                    </th>
+                    <th scope="col" style={{ padding: "0 10px" }}>
+                      {t(`Limit/Available`)}
+                    </th>
                     {statusChange && (
-                      <th scope="col" className="text-center">
+                      <th
+                        scope="col"
+                        className="text-center"
+                        style={{ padding: "0 10px" }}
+                      >
                         {t(`Status`)}
                       </th>
                     )}
 
-                    {payment === true && <th scope="col">{t(`Payment`)}</th>}
-                    {action === true && <th scope="col">{t(`Trade`)}</th>}
-                    {edit === true && <th scope="col">{t(`Action`)}</th>}
+                    {payment === true && (
+                      <th scope="col" style={{ padding: "0 10px" }}>
+                        {t(`Payment`)}
+                      </th>
+                    )}
+                    {action === true && (
+                      <th scope="col" style={{ padding: "0 10px" }}>
+                        {t(`Trade`)}
+                      </th>
+                    )}
+                    {edit === true && (
+                      <th scope="col" style={{ padding: "0 10px" }}>
+                        {t(`Action`)}
+                      </th>
+                    )}
                   </tr>
                 </thead>
                 <tbody>
                   {historyData?.map((item: any, index: any) => (
                     <tr className="tableRow" key={index}>
-                      <td>
+                      <td className="text-nowrap">
                         <Link href={"/p2p/profile/" + item?.user_id}>
-                          <div className="tableImg d-flex align-items-center">
+                          <div
+                            className="tableImg d-flex align-items-center"
+                            style={{ minWidth: "max-content" }}
+                          >
                             <img src={item?.user?.photo} alt="" />
                             <h5>{item?.user?.nickname}</h5>
                           </div>
@@ -110,7 +135,7 @@ export const P2pDataTable = ({
                         </h5>{" "}
                         {item?.currency}
                       </td>
-                      <td>
+                      <td className="text-nowrap">
                         <div className="d-flex align-items-center">
                           <small className="mr-2">{t(`Available`)}</small>
                           <h6 className="limitBalance">
@@ -129,7 +154,7 @@ export const P2pDataTable = ({
                       {statusChange && (
                         <td
                           style={{ verticalAlign: "middle" }}
-                          className="text-center"
+                          className="text-center text-nowrap"
                         >
                           <label className="gift-card-buy-switch mb-0">
                             <input
@@ -143,7 +168,7 @@ export const P2pDataTable = ({
                       )}
 
                       {payment && (
-                        <td>
+                        <td className="text-nowrap">
                           {item?.payment_method_list?.map(
                             (payment: any, index: any) => (
                               <span
@@ -158,7 +183,7 @@ export const P2pDataTable = ({
                       )}
 
                       {action === true && (
-                        <td>
+                        <td className="text-nowrap">
                           {isLoggedIn === true && (
                             <Link
                               href={`/p2p/details/${item.uid}?adtype=${filters.type}`}
@@ -172,7 +197,7 @@ export const P2pDataTable = ({
                         </td>
                       )}
                       {(edit === true || deleteBtn === true) && (
-                        <td>
+                        <td className="text-nowrap">
                           {isLoggedIn === true && (
                             // <Link
                             //   href={`/p2p/add-post?uid=${item.uid}&&ads_type=${filters.type}`}

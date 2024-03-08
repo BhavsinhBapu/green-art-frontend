@@ -47,7 +47,11 @@ const Wallethistory = ({ type }: any) => {
       Header: t("Created At"),
       accessor: "created_at",
       Cell: ({ cell }: any) => (
-        <div>{moment(cell.value).format("YYYY-MM-DD HH:mm:ss")}</div>
+        <div>
+          {cell?.value
+            ? moment(cell.value).format("YYYY-MM-DD HH:mm:ss")
+            : "N/A"}
+        </div>
       ),
     },
     {

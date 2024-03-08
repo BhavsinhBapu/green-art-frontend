@@ -16,6 +16,14 @@ export const CUstomSelect = ({
     setSelectedOption(selectedOption);
     handleFunction(selectedOption);
   };
+  const colourStyles: any = {
+    placeholder: (defaultStyles: any) => {
+      return {
+        ...defaultStyles,
+        color: "var(--text-primary-color-2)",
+      };
+    },
+  };
 
   return (
     <>
@@ -29,6 +37,7 @@ export const CUstomSelect = ({
         isDisabled={disable}
         value={selectedOption}
         onChange={handleChange}
+        styles={colourStyles}
       />
     </>
   );
