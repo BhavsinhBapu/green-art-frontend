@@ -96,7 +96,7 @@ const ApiSettings: NextPage = () => {
   const [Changeable, setChangeable] = useState<any>({});
   const [processing, setProcessing] = useState<boolean>(false);
   const [search, setSearch] = useState<any>("");
-
+  const [settings, setSettings] = useState<any>();
   const [page, setPage] = useState<any>(1);
 
   const columns = [
@@ -182,6 +182,14 @@ const ApiSettings: NextPage = () => {
       ),
     },
   ];
+
+  useEffect(() => {
+    dispatch(UserSettingsAction(setSettings));
+
+    return () => {
+      setSettings(null);
+    };
+  }, []);
 
   useEffect(() => {
     if (isSecretKeyAvailable) {
@@ -537,6 +545,7 @@ const ApiSettings: NextPage = () => {
           setIsSecretKeyAvailable={setIsSecretKeyAvailable}
           generateSecret2faEnable={settingsReducer?.generate_secret_2fa_enable}
           setIsSecretKeyModalOpen={setIsSecretKeyModalOpen}
+          settings={settings}
         />
       )}
       {isWhiteListModalOpen && (

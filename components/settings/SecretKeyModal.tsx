@@ -13,6 +13,7 @@ const SecretKeyModal = ({
   setIsSecretKeyAvailable,
   generateSecret2faEnable,
   setIsSecretKeyModalOpen,
+  settings,
 }: any) => {
   const { user } = useSelector((state: RootState) => state.user);
   const [password, setPassword] = useState<any>("");
@@ -128,7 +129,7 @@ const SecretKeyModal = ({
                       />
                     </div>
                     {generateSecret2faEnable == 1 &&
-                      (!user?.google2fa_secret ? (
+                      (!settings?.user?.google2fa_secret ? (
                         <div className="col-12  mt-4">
                           <div className="text-center d-flex gap-5 align-items-center">
                             <h5>{t(`Google two factor is required. `)}</h5>
