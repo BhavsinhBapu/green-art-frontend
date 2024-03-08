@@ -75,6 +75,7 @@ const colourStyles: any = {
 const ApiSettings: NextPage = () => {
   const dispatch = useDispatch();
   const [isWhiteListModalOpen, setIsWhiteListModalOpen] = useState<any>(false);
+  const [isSecretKeyModalOpen, setIsSecretKeyModalOpen] = useState<any>(false);
   const [isKeyGenerate, setIsKeyGenerate] = useState(true);
   const [isSecretKeyAvailable, setIsSecretKeyAvailable] = useState<any>(false);
   const [isUpdateApiSettingsLoading, setIsUpdateApiSettingsLoading] =
@@ -345,9 +346,10 @@ const ApiSettings: NextPage = () => {
                         <button
                           type="button"
                           className="btn btn-primary px-3 py-2"
-                          data-toggle="modal"
-                          data-target="#secretKeyModal"
-                          onClick={() => setIsKeyGenerate(false)}
+                          onClick={() => {
+                            setIsKeyGenerate(false);
+                            setIsSecretKeyModalOpen(true);
+                          }}
                         >
                           Show Secret Key
                         </button>
@@ -355,9 +357,10 @@ const ApiSettings: NextPage = () => {
                         <button
                           type="button"
                           className="btn btn-primary px-3 py-2"
-                          data-toggle="modal"
-                          data-target="#secretKeyModal"
-                          onClick={() => setIsKeyGenerate(true)}
+                          onClick={() => {
+                            setIsKeyGenerate(true);
+                            setIsSecretKeyModalOpen(true);
+                          }}
                         >
                           Generate Secret Key
                         </button>
@@ -528,11 +531,14 @@ const ApiSettings: NextPage = () => {
         </div>
       </div>
       <Footer />
-      <SecretKeyModal
-        isKeyGenerate={isKeyGenerate}
-        setIsSecretKeyAvailable={setIsSecretKeyAvailable}
-        generateSecret2faEnable={settingsReducer?.generate_secret_2fa_enable}
-      />
+      {isSecretKeyModalOpen && (
+        <SecretKeyModal
+          isKeyGenerate={isKeyGenerate}
+          setIsSecretKeyAvailable={setIsSecretKeyAvailable}
+          generateSecret2faEnable={settingsReducer?.generate_secret_2fa_enable}
+          setIsSecretKeyModalOpen={setIsSecretKeyModalOpen}
+        />
+      )}
       {isWhiteListModalOpen && (
         <IpAddressModal
           setIsWhiteListModalOpen={setIsWhiteListModalOpen}

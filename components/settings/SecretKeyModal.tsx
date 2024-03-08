@@ -1,16 +1,20 @@
 import useTranslation from "next-translate/useTranslation";
+import Link from "next/link";
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { GenerateSecretKey, ShowGeneratedSecretKey } from "service/settings";
 import { SetupGoogle2faAction } from "state/actions/settings";
 import { setSecretKeySettings } from "state/reducer/common";
+import { RootState } from "state/store";
 
 const SecretKeyModal = ({
   isKeyGenerate,
   setIsSecretKeyAvailable,
   generateSecret2faEnable,
+  setIsSecretKeyModalOpen,
 }: any) => {
+  const { user } = useSelector((state: RootState) => state.user);
   const [password, setPassword] = useState<any>("");
   const [code, setCode] = useState<any>("");
   const [secretKey, setSecretKey] = useState<any>("");
@@ -39,69 +43,14 @@ const SecretKeyModal = ({
     setIsSecretKeyAvailable(true);
   };
   return (
-    <div
-      className="modal fade"
-      id="secretKeyModal"
-      tabIndex={-1}
-      role="dialog"
-      aria-labelledby="secretKeyLabel"
-      aria-hidden="true"
-    >
-      <div
-        className="modal-dialog modal-dialog-centered secret-key-dialog"
-        role="document"
-      >
-        {secretKey ? (
-          <div className="modal-content w-full">
-            <div className="modal-header">
-              <h5 className="modal-title" id="secretKeyLabel">
-                {t("Secret Key")}
-              </h5>
-              <button
-                type="button"
-                className="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">×</span>
-              </button>
-            </div>
-            <div className="modal-body">
-              <div className="row">
-                <div className="col-12">
-                  <div
-                    className="border rounded d-flex flex-wrap py-2 px-3 align-items-center justify-content-between"
-                    style={{ gap: "10px" }}
-                  >
-                    <p style={{ wordBreak: "break-all" }}>
-                      Secret Key: <strong> {secretKey}</strong>
-                    </p>
-                    <span
-                      onClick={() => {
-                        navigator.clipboard.writeText(secretKey);
-                        toast.success("Successfully copied");
-                      }}
-                      style={{ cursor: "pointer" }}
-                    >
-                      <i className="fa fa-clone"></i>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-secondary"
-                data-dismiss="modal"
-              >
-                {t("Close")}
-              </button>
-            </div>
-          </div>
-        ) : (
-          <form method="post" className="w-full">
-            <div className="modal-content">
+    <>
+      <div className="modal d-block">
+        <div
+          className="modal-dialog modal-dialog-centered secret-key-dialog"
+          role="document"
+        >
+          {secretKey ? (
+            <div className="modal-content w-full">
               <div className="modal-header">
                 <h5 className="modal-title" id="secretKeyLabel">
                   {t("Secret Key")}
@@ -118,33 +67,24 @@ const SecretKeyModal = ({
               <div className="modal-body">
                 <div className="row">
                   <div className="col-12">
-                    <input
-                      placeholder={t("Password")}
-                      type="password"
-                      className="form-control "
-                      name="password"
-                      value={password}
-                      onChange={(e) => {
-                        setPassword(e.target.value);
-                      }}
-                      style={{ height: "46px" }}
-                    />
-                  </div>
-                  {generateSecret2faEnable == 1 && (
-                    <div className="col-12 mt-4">
-                      <input
-                        placeholder={t("Google Authentication Code")}
-                        type="text"
-                        className="form-control "
-                        name="otp"
-                        value={code}
-                        onChange={(e) => {
-                          setCode(e.target.value);
+                    <div
+                      className="border rounded d-flex flex-wrap py-2 px-3 align-items-center justify-content-between"
+                      style={{ gap: "10px" }}
+                    >
+                      <p style={{ wordBreak: "break-all" }}>
+                        Secret Key: <strong> {secretKey}</strong>
+                      </p>
+                      <span
+                        onClick={() => {
+                          navigator.clipboard.writeText(secretKey);
+                          toast.success("Successfully copied");
                         }}
-                        style={{ height: "46px" }}
-                      />
+                        style={{ cursor: "pointer" }}
+                      >
+                        <i className="fa fa-clone"></i>
+                      </span>
                     </div>
-                  )}
+                  </div>
                 </div>
               </div>
               <div className="modal-footer">
@@ -155,20 +95,99 @@ const SecretKeyModal = ({
                 >
                   {t("Close")}
                 </button>
-
-                <button
-                  type="submit"
-                  className="btn btn-primary"
-                  onClick={handleSubmit}
-                >
-                  {isKeyGenerate ? t("Geneate") : t("Show")}
-                </button>
               </div>
             </div>
-          </form>
-        )}
+          ) : (
+            <form method="post" className="w-full">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h5 className="modal-title" id="secretKeyLabel">
+                    {t("Secret Key")}
+                  </h5>
+                  <button
+                    type="button"
+                    className="close"
+                    onClick={() => setIsSecretKeyModalOpen(false)}
+                  >
+                    <span aria-hidden="true">×</span>
+                  </button>
+                </div>
+                <div className="modal-body">
+                  <div className="row">
+                    <div className="col-12">
+                      <input
+                        placeholder={t("Password")}
+                        type="password"
+                        className="form-control "
+                        name="password"
+                        value={password}
+                        onChange={(e) => {
+                          setPassword(e.target.value);
+                        }}
+                        style={{ height: "46px" }}
+                      />
+                    </div>
+                    {generateSecret2faEnable == 1 &&
+                      (!user?.google2fa_secret ? (
+                        <div className="col-12  mt-4">
+                          <div className="text-center d-flex gap-5 align-items-center">
+                            <h5>{t(`Google two factor is required. `)}</h5>
+                            <Link
+                              href={"/user/settings"}
+                              onClick={() => setIsSecretKeyModalOpen(false)}
+                            >
+                              <h5
+                                style={{
+                                  textDecoration: "underline",
+                                  cursor: "pointer",
+                                }}
+                              >
+                                {t(`[ Set Two Factor ]`)}
+                              </h5>
+                            </Link>{" "}
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="col-12 mt-4">
+                          <input
+                            placeholder={t("Google Authentication Code")}
+                            type="text"
+                            className="form-control "
+                            name="otp"
+                            value={code}
+                            onChange={(e) => {
+                              setCode(e.target.value);
+                            }}
+                            style={{ height: "46px" }}
+                          />
+                        </div>
+                      ))}
+                  </div>
+                </div>
+                <div className="modal-footer">
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    onClick={() => setIsSecretKeyModalOpen(false)}
+                  >
+                    {t("Close")}
+                  </button>
+
+                  <button
+                    type="submit"
+                    className="btn btn-primary"
+                    onClick={handleSubmit}
+                  >
+                    {isKeyGenerate ? t("Geneate") : t("Show")}
+                  </button>
+                </div>
+              </div>
+            </form>
+          )}
+        </div>
       </div>
-    </div>
+      <div className="modal-backdrop fade show"></div>
+    </>
   );
 };
 
