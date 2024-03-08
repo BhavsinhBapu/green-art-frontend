@@ -13,6 +13,7 @@ import { setSecretKeySettings } from "state/reducer/common";
 const IpAddressModal = ({
   isWhiteListModalOpen,
   setIsWhiteListModalOpen,
+  getWhiteListsHandler,
 }: any) => {
   const [ipAddress, setIpAddress] = useState<any>("");
   const [isAddWhiteListLoading, setIsAddWhiteListLoading] =
@@ -43,6 +44,7 @@ const IpAddressModal = ({
     toast.success(response.message);
     setIsWhiteListModalOpen(false);
     setIsAddWhiteListLoading(false);
+    getWhiteListsHandler(1);
   };
 
   return (

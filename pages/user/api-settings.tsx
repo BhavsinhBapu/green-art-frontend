@@ -517,6 +517,7 @@ const ApiSettings: NextPage = () => {
         <IpAddressModal
           setIsWhiteListModalOpen={setIsWhiteListModalOpen}
           isWhiteListModalOpen={isWhiteListModalOpen}
+          getWhiteListsHandler={getWhiteListsHandler}
         />
       )}
     </>
