@@ -106,3 +106,11 @@ export const appGetPairs = async (req: any) => {
   );
   return data;
 };
+
+export const getAppDashboardData = async (req: any, pair: any) => {
+  const { data } = await request.get(
+    `/app-dashboard/${pair}`,
+    getPublicCustomHeader(req)
+  );
+  return data;
+};
