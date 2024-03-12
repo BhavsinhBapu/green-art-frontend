@@ -1,5 +1,6 @@
 import { formateData } from "common";
 import { NoItemFound } from "components/NoItemFound/NoItemFound";
+import StakingHeader from "components/Staking/StakingHeader";
 import { StakingTopBar } from "components/Staking/common/TopBar";
 import SectionLoading from "components/common/SectionLoading";
 import Footer from "components/common/footer";
@@ -32,23 +33,20 @@ const PaymentList = ({}: any) => {
     <>
       <div className="page-wrap">
         <div className="page-main-content">
-          <div className="container-fluid">
-            <div className="section-top-wrap mb-25">
-              <div className="overview-area">
-                <div className="overview-left">
-                  <h2 className="section-top-title">{t("My Earnings")}</h2>
-                </div>
-              </div>
-            </div>
-          </div>
-          <StakingTopBar />
-          <div className="container">
+          <StakingHeader title={t("My Earnings")} />
+          <div
+            className="container-4xl"
+            style={{
+              marginTop: "-60px",
+              marginBottom: "30px",
+            }}
+          >
             {processing ? (
               <SectionLoading />
             ) : (
               <div className="row">
                 <div className="col-12">
-                  <div className="table-responsive">
+                  <div className="table-responsive shadow-sm section-padding-custom wallet-card-info-container ">
                     <table className="table mt-4">
                       <thead>
                         <tr>
@@ -60,7 +58,7 @@ const PaymentList = ({}: any) => {
                         </tr>
                       </thead>
                       <tbody>
-                        {history?.length > 0 ? (
+                        {history?.length > 0 &&
                           history?.map((item: any, index: any) => (
                             <tr className="tableRow" key={index}>
                               <td>
@@ -77,12 +75,10 @@ const PaymentList = ({}: any) => {
                               <td>{item?.total_bonus}</td>
                               <td>{item?.total_investment}</td>
                             </tr>
-                          ))
-                        ) : (
-                          <NoItemFound />
-                        )}
+                          ))}
                       </tbody>
                     </table>
+                    {history?.length == 0 && <NoItemFound />}
                     {history?.length > 0 && (
                       <div
                         className="pagination-wrapper"

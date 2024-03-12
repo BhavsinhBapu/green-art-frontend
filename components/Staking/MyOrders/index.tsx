@@ -69,13 +69,19 @@ export const InvesmentOrderTable = ({
   };
 
   return (
-    <div className="container">
+    <div
+      className="container-4xl"
+      style={{
+        marginTop: "-60px",
+        marginBottom: "30px",
+      }}
+    >
       {processing ? (
         <SectionLoading />
       ) : (
-        <div className="row">
+        <div className="row ">
           <div className="col-12">
-            <div className="table-responsive">
+            <div className="table-responsive shadow-sm section-padding-custom wallet-card-info-container ">
               <table className="table mt-4">
                 <thead>
                   <tr>
@@ -90,7 +96,7 @@ export const InvesmentOrderTable = ({
                   </tr>
                 </thead>
                 <tbody>
-                  {history.length > 0 ? (
+                  {history.length > 0 &&
                     history?.map((item: any, index: any) => (
                       <tr className="tableRow" key={index}>
                         <td>
@@ -134,7 +140,9 @@ export const InvesmentOrderTable = ({
                         <td>
                           {item.total_bonus} {item?.coin_type}
                         </td>
-                        <td>{item.period} {t(`Days`)}</td>
+                        <td>
+                          {item.period} {t(`Days`)}
+                        </td>
                         {parseInt(item?.status) ===
                         STAKING_INVESTMENT_STATUS_RUNNING ? (
                           <td
@@ -164,13 +172,11 @@ export const InvesmentOrderTable = ({
                           {t(`Details`)}
                         </td>
                       </tr>
-                    ))
-                  ) : (
-                    <NoItemFound />
-                  )}
+                    ))}
                 </tbody>
                 <MyModalsPayment modalData={modalData} />
               </table>
+              {history?.length == 0 && <NoItemFound />}
               {history?.length > 0 && (
                 <div className="pagination-wrapper" id="assetBalances_paginate">
                   <span>

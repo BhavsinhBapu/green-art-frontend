@@ -1,4 +1,5 @@
 import { InvesmentOrderTable } from "components/Staking/MyOrders";
+import StakingHeader from "components/Staking/StakingHeader";
 import { StakingTopBar } from "components/Staking/common/TopBar";
 import Footer from "components/common/footer";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
@@ -12,16 +13,7 @@ const MyOrder = () => {
 
   return (
     <>
-      <div className="">
-        <div className="section-top-wrap mb-25">
-          <div className="overview-area">
-            <div className="overview-left">
-              <h2 className="section-top-title">{t(`My Invesments`)}</h2>
-            </div>
-          </div>
-        </div>
-      </div>
-      <StakingTopBar />
+      <StakingHeader title={t(`My Invesments`)} />
       <InvesmentOrderTable actionFunction={myOrderAction} filter={true} />
       <Footer />
     </>

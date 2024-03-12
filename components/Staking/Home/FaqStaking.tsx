@@ -3,7 +3,7 @@ import React from "react";
 function FaqStaking({ faq_list }: any) {
   return (
     <div>
-      <div className="container mt-5 pt-5">
+      <div className="container-4xl mt-5 pt-5">
         <div className="row">
           <div className="col-12">
             <h3 className="pb-2">FAQS</h3>
