@@ -136,3 +136,24 @@ export const cancelOpenOrderApp = async (req: any, bodyData: any) => {
   );
   return data;
 };
+
+export const getAllBuyOrdersHistoryApp = async (req: any, queryParams: any) => {
+  const params = new URLSearchParams(queryParams);
+  const { data } = await request.get(
+    "/all-buy-orders-history-app?" + params.toString(),
+    getCustomHeader(req)
+  );
+  return data;
+};
+
+export const getAllSellOrdersHistoryApp = async (
+  req: any,
+  queryParams: any
+) => {
+  const params = new URLSearchParams(queryParams);
+  const { data } = await request.get(
+    "/all-sell-orders-history-app?" + params.toString(),
+    getCustomHeader(req)
+  );
+  return data;
+};
