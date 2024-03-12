@@ -126,3 +126,12 @@ export const getExchangeMarketTradesApp = async (
   );
   return data;
 };
+
+export const getExchangeChartDataApp = async (req: any, queryParams: any) => {
+  const params = new URLSearchParams(queryParams);
+  const { data } = await request.get(
+    "/get-exchange-chart-data-app?" + params.toString(),
+    getPublicCustomHeader(req)
+  );
+  return data;
+};
