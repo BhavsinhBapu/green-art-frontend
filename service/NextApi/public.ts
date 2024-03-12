@@ -81,3 +81,11 @@ export const getMarketOverviewTopCoinList = async (
   );
   return data;
 };
+
+export const getCurrencyLists = async (req: any) => {
+  const { data } = await request.get(
+    "/currency-list",
+    getPublicCustomHeader(req)
+  );
+  return data;
+};
