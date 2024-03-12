@@ -140,7 +140,7 @@ const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
   const BuyOrder = async (data: any, setData: any) => {
     await dispatch(
       placeBuyOrderAction(
-        trade_type,
+        1,
         marginMode,
         orderType,
         data.price,
@@ -169,7 +169,7 @@ const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
   const SellOrder = async (data: any, setData: any) => {
     await dispatch(
       placeSellOrderDataAction(
-        trade_type,
+        2,
         marginMode,
         orderType,
         data.price,
