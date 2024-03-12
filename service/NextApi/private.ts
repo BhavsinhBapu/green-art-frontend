@@ -39,6 +39,17 @@ export const addSellLimitApp = async (req: any, bodyData: any) => {
   return data;
 };
 
+export const addSellMarketApp = async (req: any, bodyData: any) => {
+  const { data } = await request.post(
+    "/sell-market-app",
+    {
+      ...bodyData,
+    },
+    getCustomHeader(req)
+  );
+  return data;
+};
+
 export const getWalletDepositByWalletId = async (req: any, wallet_id: any) => {
   const { data } = await request.get(
     `/wallet-deposit-${wallet_id}`,
