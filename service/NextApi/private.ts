@@ -46,3 +46,15 @@ export const getWalletDepositByWalletId = async (req: any, wallet_id: any) => {
   });
   return data;
 };
+export const getWalletWithdrawlByWalletId = async (
+  req: any,
+  wallet_id: any
+) => {
+  const { data } = await request.get(`/wallet-withdrawal-${wallet_id}`, {
+    headers: {
+      userpublickey: `${req?.headers?.userpublickey}`,
+      usersecretkey: `${req?.headers?.usersecretkey}`,
+    },
+  });
+  return data;
+};
