@@ -157,3 +157,15 @@ export const getAllSellOrdersHistoryApp = async (
   );
   return data;
 };
+
+export const getAllTransactionsHistoryApp = async (
+  req: any,
+  queryParams: any
+) => {
+  const params = new URLSearchParams(queryParams);
+  const { data } = await request.get(
+    "/all-transaction-history-app?" + params.toString(),
+    getCustomHeader(req)
+  );
+  return data;
+};
