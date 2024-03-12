@@ -98,3 +98,21 @@ export const getAllBuyOrdersApp = async (req: any, queryParams: any) => {
   );
   return data;
 };
+
+export const getAllSellOrdersApp = async (req: any, queryParams: any) => {
+  const params = new URLSearchParams(queryParams);
+  const { data } = await request.get(
+    "/get-all-sell-orders-app?" + params.toString(),
+    getCustomHeader(req)
+  );
+  return data;
+};
+
+export const getMyAllOrdersApp = async (req: any, queryParams: any) => {
+  const params = new URLSearchParams(queryParams);
+  const { data } = await request.get(
+    "/get-my-all-orders-app?" + params.toString(),
+    getCustomHeader(req)
+  );
+  return data;
+};
