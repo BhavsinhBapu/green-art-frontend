@@ -57,3 +57,15 @@ export const getFaqLists = async (req: any, queryParams: any) => {
   );
   return data;
 };
+
+export const getMarketOverviewCoinStatisticList = async (
+  req: any,
+  queryParams: any
+) => {
+  const params = new URLSearchParams(queryParams);
+  const { data } = await request.get(
+    "/market-overview-coin-statistic-list?" + params.toString(),
+    getPublicCustomHeader(req)
+  );
+  return data;
+};
