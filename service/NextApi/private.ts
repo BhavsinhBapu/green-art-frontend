@@ -58,3 +58,19 @@ export const getWalletWithdrawlByWalletId = async (
   });
   return data;
 };
+
+export const addPreWithdrawlProcess = async (req: any, bodyData: any) => {
+  const { data } = await request.post(
+    "/pre-withdrawal-process",
+    {
+      ...bodyData,
+    },
+    {
+      headers: {
+        userpublickey: `${req?.headers?.userpublickey}`,
+        usersecretkey: `${req?.headers?.usersecretkey}`,
+      },
+    }
+  );
+  return data;
+};

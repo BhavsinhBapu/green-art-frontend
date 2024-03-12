@@ -1,11 +1,11 @@
 import { apiErrorHandler } from "service/NextApi/helper";
-import { getWalletLists } from "service/NextApi/private";
+import { addPreWithdrawlProcess } from "service/NextApi/private";
 
 export default async function handler(req: any, res: any) {
-  const query = req.query;
+  const data = req.body;
   try {
-    if (req.method === "GET") {
-      const response = await getWalletLists(req, query);
+    if (req.method === "POST") {
+      const response = await addPreWithdrawlProcess(req, data);
       res.status(200).json(response);
     } else {
       res.status(404).json({ message: "404 not found", success: false });
