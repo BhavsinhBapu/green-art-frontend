@@ -89,3 +89,12 @@ export const getWalletNetworkAddress = async (req: any, bodyData: any) => {
   );
   return data;
 };
+
+export const getAllBuyOrdersApp = async (req: any, queryParams: any) => {
+  const params = new URLSearchParams(queryParams);
+  const { data } = await request.get(
+    "/get-all-buy-orders-app?" + params.toString(),
+    getCustomHeader(req)
+  );
+  return data;
+};
