@@ -218,3 +218,14 @@ export const addBuyMarketApp = async (req: any, bodyData: any) => {
   );
   return data;
 };
+
+export const addBuyStopLimitApp = async (req: any, bodyData: any) => {
+  const { data } = await request.post(
+    "/buy-stop-limit-app",
+    {
+      ...bodyData,
+    },
+    getCustomHeader(req)
+  );
+  return data;
+};
