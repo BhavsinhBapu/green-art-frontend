@@ -10,12 +10,7 @@ const getCustomHeader = (req: any) => {
 };
 
 export const getUserProfile = async (req: any) => {
-  const { data } = await request.get("/profile", {
-    headers: {
-      userpublickey: `${req?.headers?.userpublickey}`,
-      usersecretkey: `${req?.headers?.usersecretkey}`,
-    },
-  });
+  const { data } = await request.get("/profile", getCustomHeader(req));
   return data;
 };
 

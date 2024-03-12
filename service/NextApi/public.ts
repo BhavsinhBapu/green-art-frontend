@@ -1,5 +1,13 @@
 import request from "lib/request";
 
+const getPublicCustomHeader = (req: any) => {
+  return {
+    headers: {
+      userpublickey: `${req?.headers?.userpublickey}`,
+    },
+  };
+};
+
 export const getMarketPrice = async (pair: string) => {
   const { data } = await request.get("/v1/markets/price/" + pair, {
     headers: {
@@ -30,5 +38,13 @@ export const getChart = async (pair: string) => {
       publicapisecret: `{z)E/f+2sW?G!f]>E,rh^K4N-=8^Uw5dM]B9g<(mJ:HU^5?6~PwyewwM!a"}gs#N`,
     },
   });
+  return data;
+};
+
+export const getPublicSiteSettings = async (req: any) => {
+  const { data } = await request.get(
+    "/public-site-settings",
+    getPublicCustomHeader(req)
+  );
   return data;
 };
