@@ -36,3 +36,13 @@ export const addSellLimitAdd = async (req: any, bodyData: any) => {
   );
   return data;
 };
+
+export const getWalletDepositByWalletId = async (req: any, wallet_id: any) => {
+  const { data } = await request.get(`/wallet-deposit-${wallet_id}`, {
+    headers: {
+      userpublickey: `${req?.headers?.userpublickey}`,
+      usersecretkey: `${req?.headers?.usersecretkey}`,
+    },
+  });
+  return data;
+};
