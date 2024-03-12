@@ -49,7 +49,11 @@ export const getPublicSiteSettings = async (req: any) => {
   return data;
 };
 
-export const getFaqLists = async (req: any) => {
-  const { data } = await request.get("/faq-list", getPublicCustomHeader(req));
+export const getFaqLists = async (req: any, queryParams: any) => {
+  const params = new URLSearchParams(queryParams);
+  const { data } = await request.get(
+    "/faq-list?" + params.toString(),
+    getPublicCustomHeader(req)
+  );
   return data;
 };
