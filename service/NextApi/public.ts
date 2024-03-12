@@ -98,3 +98,11 @@ export const getExchangeAllOrdersApp = async (req: any, queryParams: any) => {
   );
   return data;
 };
+
+export const appGetPairs = async (req: any) => {
+  const { data } = await request.get(
+    "/app-get-pair",
+    getPublicCustomHeader(req)
+  );
+  return data;
+};
