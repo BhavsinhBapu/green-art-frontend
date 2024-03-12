@@ -116,3 +116,12 @@ export const getMyAllOrdersApp = async (req: any, queryParams: any) => {
   );
   return data;
 };
+
+export const getMyTradesApp = async (req: any, queryParams: any) => {
+  const params = new URLSearchParams(queryParams);
+  const { data } = await request.get(
+    "/get-my-trades-app?" + params.toString(),
+    getCustomHeader(req)
+  );
+  return data;
+};
