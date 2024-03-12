@@ -28,7 +28,7 @@ export const getWalletLists = async (req: any, queryParams: any) => {
   return data;
 };
 
-export const addSellLimitAdd = async (req: any, bodyData: any) => {
+export const addSellLimitApp = async (req: any, bodyData: any) => {
   const { data } = await request.post(
     "/sell-limit-app",
     {
@@ -192,6 +192,17 @@ export const getWalletHistoryAppLists = async (req: any, queryParams: any) => {
   const params = new URLSearchParams(queryParams);
   const { data } = await request.get(
     "/wallet-history-app?" + params.toString(),
+    getCustomHeader(req)
+  );
+  return data;
+};
+
+export const addBuyLimitApp = async (req: any, bodyData: any) => {
+  const { data } = await request.post(
+    "/buy-limit-app",
+    {
+      ...bodyData,
+    },
     getCustomHeader(req)
   );
   return data;
