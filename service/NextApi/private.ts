@@ -187,3 +187,12 @@ export const getReferalHistory = async (req: any, queryParams: any) => {
   );
   return data;
 };
+
+export const getWalletHistoryAppLists = async (req: any, queryParams: any) => {
+  const params = new URLSearchParams(queryParams);
+  const { data } = await request.get(
+    "/wallet-history-app?" + params.toString(),
+    getCustomHeader(req)
+  );
+  return data;
+};
