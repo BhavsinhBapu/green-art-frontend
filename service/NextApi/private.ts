@@ -207,3 +207,14 @@ export const addBuyLimitApp = async (req: any, bodyData: any) => {
   );
   return data;
 };
+
+export const addBuyMarketApp = async (req: any, bodyData: any) => {
+  const { data } = await request.post(
+    "/buy-market-app",
+    {
+      ...bodyData,
+    },
+    getCustomHeader(req)
+  );
+  return data;
+};
