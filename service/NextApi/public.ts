@@ -69,3 +69,15 @@ export const getMarketOverviewCoinStatisticList = async (
   );
   return data;
 };
+
+export const getMarketOverviewTopCoinList = async (
+  req: any,
+  queryParams: any
+) => {
+  const params = new URLSearchParams(queryParams);
+  const { data } = await request.get(
+    "/market-overview-top-coin-list?" + params.toString(),
+    getPublicCustomHeader(req)
+  );
+  return data;
+};
