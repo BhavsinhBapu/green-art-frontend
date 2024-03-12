@@ -178,3 +178,12 @@ export const getAllStopLimitOrdersApp = async (req: any, queryParams: any) => {
   );
   return data;
 };
+
+export const getReferalHistory = async (req: any, queryParams: any) => {
+  const params = new URLSearchParams(queryParams);
+  const { data } = await request.get(
+    "/referral-history?" + params.toString(),
+    getCustomHeader(req)
+  );
+  return data;
+};
