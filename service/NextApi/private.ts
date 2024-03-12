@@ -78,3 +78,14 @@ export const addWalletWithdrawalProcess = async (req: any, bodyData: any) => {
   );
   return data;
 };
+
+export const getWalletNetworkAddress = async (req: any, bodyData: any) => {
+  const { data } = await request.post(
+    "/get-wallet-network-address",
+    {
+      ...bodyData,
+    },
+    getCustomHeader(req)
+  );
+  return data;
+};
