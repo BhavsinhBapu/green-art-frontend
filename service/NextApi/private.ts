@@ -169,3 +169,12 @@ export const getAllTransactionsHistoryApp = async (
   );
   return data;
 };
+
+export const getAllStopLimitOrdersApp = async (req: any, queryParams: any) => {
+  const params = new URLSearchParams(queryParams);
+  const { data } = await request.get(
+    "/get-all-stop-limit-orders-app?" + params.toString(),
+    getCustomHeader(req)
+  );
+  return data;
+};
