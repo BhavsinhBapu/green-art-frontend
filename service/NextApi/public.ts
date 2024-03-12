@@ -89,3 +89,12 @@ export const getCurrencyLists = async (req: any) => {
   );
   return data;
 };
+
+export const getExchangeAllOrdersApp = async (req: any, queryParams: any) => {
+  const params = new URLSearchParams(queryParams);
+  const { data } = await request.get(
+    "/get-exchange-all-orders-app?" + params.toString(),
+    getPublicCustomHeader(req)
+  );
+  return data;
+};
