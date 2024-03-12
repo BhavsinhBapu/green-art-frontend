@@ -125,3 +125,14 @@ export const getMyTradesApp = async (req: any, queryParams: any) => {
   );
   return data;
 };
+
+export const cancelOpenOrderApp = async (req: any, bodyData: any) => {
+  const { data } = await request.post(
+    "/cancel-open-order-app",
+    {
+      ...bodyData,
+    },
+    getCustomHeader(req)
+  );
+  return data;
+};
