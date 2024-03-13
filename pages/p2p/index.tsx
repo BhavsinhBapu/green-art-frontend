@@ -93,7 +93,7 @@ const P2P = ({ data }: any) => {
   }, [filters]);
   return (
     <>
-      <div className="pb-5 glass-color-bg-custom">
+      <div className="pb-5">
         <div className="p2p_bg">
           <div className="container-4xl">
             <div className="row">
@@ -111,6 +111,7 @@ const P2P = ({ data }: any) => {
         </div>
         {isLoggedIn && <P2pTopBar />}
         <P2pTab setFilters={setFilters} filters={filters} settings={settings} />
+
         <P2pFilter
           setFilters={setFilters}
           filters={filters}
@@ -119,7 +120,9 @@ const P2P = ({ data }: any) => {
         <PlaceTopLeft />
         <PlaceBottomRight />
         {processing ? (
-          <SectionLoading />
+          <div className="glass-color-bg-custom">
+            <SectionLoading />
+          </div>
         ) : (
           <P2pDataTable
             history={history}
@@ -127,9 +130,11 @@ const P2P = ({ data }: any) => {
             isLoggedIn={isLoggedIn}
           />
         )}
-
         {history?.length > 0 && (
-          <div className="pagination-wrapper" id="assetBalances_paginate">
+          <div
+            className="pagination-wrapper glass-color-bg-custom mt-0 py-5"
+            id="assetBalances_paginate"
+          >
             <span>
               {stillHistory?.links?.map((link: any, index: number) =>
                 link.label === "&laquo; Previous" ? (
@@ -167,6 +172,7 @@ const P2P = ({ data }: any) => {
             </span>
           </div>
         )}
+
         <P2pWork data={data} />
         <P2pAdvantage data={data} />
         {data?.p2p_faq.length > 0 && <P2pFaq data={data} />}
