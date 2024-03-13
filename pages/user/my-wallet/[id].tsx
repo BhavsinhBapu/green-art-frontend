@@ -29,6 +29,7 @@ import Link from "next/link";
 import { IoIosArrowBack } from "react-icons/io";
 import PlaceTopLeft from "components/gradient/placeTopLeft";
 import PlaceBottomRight from "components/gradient/placeBottomRight";
+import CheckDeposit from "components/check-deposit/CheckDeposit";
 
 const DeposiAndWithdraw = ({ withdrawFaq, depositFaq }: any) => {
   const router = useRouter();
@@ -128,6 +129,16 @@ const DeposiAndWithdraw = ({ withdrawFaq, depositFaq }: any) => {
     faqs?.length,
     getProcessData?.data?.progress_status_list,
   ]);
+
+  const networkTypeCheckHandler = (network: any) => {
+    if (!network) {
+      return false;
+    }
+    if (network == 1 || network == 2 || network == 3) {
+      return false;
+    }
+    return true;
+  };
 
   return (
     <>
@@ -249,6 +260,11 @@ const DeposiAndWithdraw = ({ withdrawFaq, depositFaq }: any) => {
               </div>
             </div>
           </div>
+          {router.query.id === MY_WALLET_DEPOSIT_TYPE &&
+            networkTypeCheckHandler(responseData?.wallet?.network) && (
+              <CheckDeposit />
+            )}
+
           {router.query.id && (
             <Wallethistory
               type={
