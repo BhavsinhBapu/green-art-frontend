@@ -5,7 +5,7 @@ export const P2pPaymentMethod = ({ data }: any) => {
 
   return (
     <div className="container-4xl px-0 my-5">
-      <div className="row align-items-center payment_box p-4 mx-2 mx-sm-0 glass-color-bg-custom">
+      <div className="row align-items-center payment_box p-4 px-md-4 py-md-5 mx-2 mx-sm-0 glass-color-bg-custom">
         <div className="col-md-12">
           <h2>{t(`Top Payment Methods`)}</h2>
         </div>
