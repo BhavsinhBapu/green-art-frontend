@@ -19,7 +19,7 @@ export default function SelectWithdrawl({
         <div
           key={index}
           className={
-            selectedMethod.method === payment.payment_method
+            selectedMethod.method_id === payment.id
               ? "select-deposit-method-item-active"
               : "select-deposit-method-item"
           }
