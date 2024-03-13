@@ -11,7 +11,7 @@ export const P2pTab = ({ filters, setFilters, settings }: any) => {
       <div className="container-4xl">
         <div className="row">
           <div className="col-12 ">
-            <div className="p2pTabList d-flex" style={{ flexFlow: "row"}}>
+            <div className="p2pTabList d-flex" style={{ flexFlow: "row" }}>
               <div className="buySellBox rounded d-flex">
                 <button
                   className={`${
@@ -74,7 +74,7 @@ export const P2pTab = ({ filters, setFilters, settings }: any) => {
                     }}
                     className={`${
                       filters.coin === coinName?.coin_type && "p2pTabListActive"
-                    }`}
+                    } text-nowrap`}
                   >
                     <a>{coinName?.coin_type}</a>
                   </li>
