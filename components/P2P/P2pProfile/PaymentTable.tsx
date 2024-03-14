@@ -50,7 +50,7 @@ export const PaymentTable = () => {
           </ul>
         </div>
         <div className="col-12">
-          <div className="paymentMethodBox p-4 mt-3 rounded shadow-sm">
+          <div className="paymentMethodBox p-4 mt-3 rounded custom-dark-light-shadow ">
             <div className="row d-flex align-items-center justify-content-between">
               <div className="col-md-7">
                 <h5>{t(`P2P Payment Methods`)}</h5>

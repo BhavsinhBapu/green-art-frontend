@@ -16431,3 +16431,7 @@ input:checked + .gift-card-buy-slider:before {
   color: var(--text-primary-color-2) !important;
   opacity: 1;
 }
+
+.custom-dark-light-shadow {
+  box-shadow: 0 4px 30px var(--primary-box-shadow-color);
+}

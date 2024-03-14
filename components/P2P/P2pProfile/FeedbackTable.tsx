@@ -11,7 +11,7 @@ export const FeedbackTable = ({ details }: any) => {
     <div className="container-4xl">
       <div className="row">
         <div className="col-12">
-          <div className="paymentMethodBox mt-4 rounded shadow-sm">
+          <div className="paymentMethodBox mt-4 rounded custom-dark-light-shadow">
             <div className="row">
               <div className="col-12">
                 <ul className="d-flex p2pTabList py-3 tableRow userProfileBg px-4">
@@ -58,7 +58,7 @@ export const FeedbackTable = ({ details }: any) => {
                         (list: any) =>
                           list.feedback && (
                             <div className=" col-sm-12 col-md-6 mt-3">
-                              <div className="single-feedback">
+                              <div className="single-feedback custom-dark-light-shadow">
                                 <div className="d-flex gap-10 align-items-center justify-content-between mb-3">
                                   <div className="d-flex gap-10 align-items-center">
                                     <img

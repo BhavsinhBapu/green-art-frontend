@@ -28,13 +28,13 @@ const P2pProfile = () => {
       {loading ? (
         <SectionLoading />
       ) : (
-        <div className="mb-5">
+        <div className="">
           <P2pTopBar />
           <ProfileHeader details={details} />
           <PlaceTopLeft />
           <PlaceBottomRight />
           <TradeDetails details={details} />
-          <div className=" pb-5 pt-3">
+          <div className="glass-color-bg-custom  pb-5 pt-3">
             <PaymentTable />
             <FeedbackTable details={details} />
           </div>
