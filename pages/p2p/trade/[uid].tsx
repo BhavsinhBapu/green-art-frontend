@@ -145,7 +145,7 @@ const Trading = () => {
   return (
     <>
       <P2pTopBar />
-      <div className="my-trade-container">
+      <div className="my-trade-container container-4xl mt-5">
         <div className="boxShadow p-4 mb-3">
           <BackButton />
           <div className="py-4">
