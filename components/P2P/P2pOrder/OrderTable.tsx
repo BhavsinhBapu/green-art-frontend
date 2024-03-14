@@ -4,7 +4,13 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { OrderFilter } from "./OrderFilter";
 import { myP2pOrderListData } from "service/p2p";
-import { TRADE_STATUS_CANCELED, TRADE_STATUS_CANCELED_TIME_EXPIRED, TRADE_STATUS_ESCROW, TRADE_STATUS_PAYMENT_DONE, TRADE_STATUS_REFUNDED_BY_ADMIN } from "helpers/core-constants";
+import {
+  TRADE_STATUS_CANCELED,
+  TRADE_STATUS_CANCELED_TIME_EXPIRED,
+  TRADE_STATUS_ESCROW,
+  TRADE_STATUS_PAYMENT_DONE,
+  TRADE_STATUS_REFUNDED_BY_ADMIN,
+} from "helpers/core-constants";
 import useTranslation from "next-translate/useTranslation";
 
 export const OrderTable = ({ actionFunction, filter = false }: any) => {
@@ -63,7 +69,9 @@ export const OrderTable = ({ actionFunction, filter = false }: any) => {
             setToData={setToData}
           />
         )}
-        <NoItemFound />
+        <div className="pt-5">
+          <NoItemFound />
+        </div>
       </div>
     );
   return (
@@ -83,12 +91,42 @@ export const OrderTable = ({ actionFunction, filter = false }: any) => {
             <table className="table mt-4">
               <thead>
                 <tr>
-                  <th scope="col">{t(`Order Id`)}</th>
-                  <th scope="col">{t(`Amount`)}</th>
-                  <th scope="col">{t(`Price`)}</th>
-                  <th scope="col">{t(`Seller fees`)}</th>
-                  <th scope="col">{t(`Status`)}</th>
-                  <th scope="col">{t(`Operation`)}</th>
+                  <th
+                    scope="col"
+                    style={{ paddingLeft: "10px", paddingRight: "10px" }}
+                  >
+                    {t(`Order Id`)}
+                  </th>
+                  <th
+                    scope="col"
+                    style={{ paddingLeft: "10px", paddingRight: "10px" }}
+                  >
+                    {t(`Amount`)}
+                  </th>
+                  <th
+                    scope="col"
+                    style={{ paddingLeft: "10px", paddingRight: "10px" }}
+                  >
+                    {t(`Price`)}
+                  </th>
+                  <th
+                    scope="col"
+                    style={{ paddingLeft: "10px", paddingRight: "10px" }}
+                  >
+                    {t(`Seller fees`)}
+                  </th>
+                  <th
+                    scope="col"
+                    style={{ paddingLeft: "10px", paddingRight: "10px" }}
+                  >
+                    {t(`Status`)}
+                  </th>
+                  <th
+                    scope="col"
+                    style={{ paddingLeft: "10px", paddingRight: "10px" }}
+                  >
+                    {t(`Operation`)}
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -100,7 +138,7 @@ export const OrderTable = ({ actionFunction, filter = false }: any) => {
                       </div>
                     </td>
                     <td>
-                      <h6 className="mx-2">
+                      <h6>
                         {parseFloat(item.amount)} {item.coin_type}
                       </h6>
                     </td>
@@ -131,7 +169,9 @@ export const OrderTable = ({ actionFunction, filter = false }: any) => {
 
                     <td>
                       <Link href={`/p2p/trade/${item.uid}`}>
-                        <p className="text-warning">{t(`Details`)}</p>
+                        <span className="badge bg-primary-color text-white cursor-pointer">
+                          {t(`Details`)}
+                        </span>
                       </Link>
                     </td>
                   </tr>
@@ -139,7 +179,10 @@ export const OrderTable = ({ actionFunction, filter = false }: any) => {
               </tbody>
             </table>
             {history?.length > 0 && (
-              <div className="pagination-wrapper mb-34" id="assetBalances_paginate">
+              <div
+                className="pagination-wrapper mb-34"
+                id="assetBalances_paginate"
+              >
                 <span>
                   {stillHistory?.links?.map((link: any, index: number) =>
                     link.label === "&laquo; Previous" ? (
