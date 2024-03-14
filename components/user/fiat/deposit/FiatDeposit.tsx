@@ -42,6 +42,8 @@ import FiatPaystack from "components/deposit/FiatPaystack";
 import FiatPerfectMoney from "components/deposit/FiatPerfectMoney";
 import FiatMobileMoney from "components/deposit/FiatMobileMoney";
 import FiatPaydunya from "components/deposit/FiatPaydunya";
+import Link from "next/link";
+import { IoIosArrowBack } from "react-icons/io";
 
 const FiatDeposit = ({ currency_type, wallet_id }: any) => {
   const router = useRouter();
@@ -51,7 +53,7 @@ const FiatDeposit = ({ currency_type, wallet_id }: any) => {
   const [methods, setMethods] = useState<any>();
   const [banks, setBanks] = useState<any>([]);
   const [mobileBanks, setMobileBanks] = useState<any>([]);
-  const [currencyLists, setCurrencyLists] = useState([])
+  const [currencyLists, setCurrencyLists] = useState([]);
 
   const [selectedMethods, setSelectedMethods] = useState<any>({
     method: null,
@@ -91,18 +93,28 @@ const FiatDeposit = ({ currency_type, wallet_id }: any) => {
       <div className="page-wrap">
         {/* <FiatSidebar /> */}
         <div className="page-main-content">
-          <div className="container">
+          <div className="my-0 page-overview-header-main bg_cover_dashboard">
+            <div className="profle-are-top container-4xl">
+              <h2 className="wallet-overview-header-title">
+                {t("Fiat Deposit")}
+              </h2>
+            </div>
+          </div>
+          <div className="container-4xl mt-5">
             <div className="deposit-page">
-              <div className="section-top-wrap mb-25">
-                <div className="profle-are-top">
-                  <h2 className="section-top-title">{t("Fiat Deposit")}</h2>
-                </div>
-              </div>
-
               <div className="asset-balances-area">
                 <div className=" bank-section">
-                  <div className="">
+                  <div className="section-padding-custom wallet-card-info-container">
                     <div className="deposit-conatiner">
+                      <Link href="/user/my-wallet">
+                        <div className="wallet-back mb-4">
+                          <IoIosArrowBack
+                            className="wallet-backIcon"
+                            size={25}
+                          />
+                          <a href="">{t("My Wallet")}</a>
+                        </div>
+                      </Link>
                       <div className="cp-user-title">
                         <h4>{t("Select method")}</h4>
                       </div>
@@ -116,7 +128,7 @@ const FiatDeposit = ({ currency_type, wallet_id }: any) => {
                         {loading ? (
                           <SectionLoading />
                         ) : (
-                          <div className={`col-lg-12 col-sm-12`}>
+                          <div className={`col-lg-12 col-sm-12 `}>
                             {!loading && !selectedMethods.method ? (
                               <div className="cp-user-title text-center  section-padding-custom">
                                 <h4>{t("No Avaiable payment method")}</h4>
