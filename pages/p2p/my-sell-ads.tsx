@@ -72,13 +72,11 @@ const P2pOrder = () => {
   return (
     <>
       <div className="mb-5">
-        <div className="section-top-wrap mb-25">
-          <div className="overview-area">
-            <div className="overview-left">
-              <h2 className="section-top-title">
-                {t(`My Sell Order History`)}
-              </h2>
-            </div>
+        <div className="my-0 wallet-overview-header-main bg_cover_dashboard">
+          <div className="profle-are-top container-4xl">
+            <h2 className="wallet-overview-header-title text-center">
+              {t(`My Sell Order History`)}
+            </h2>
           </div>
         </div>
         <P2pTopBar />
@@ -89,7 +87,9 @@ const P2pOrder = () => {
             settings={settings}
           /> */}
           {processing ? (
-            <SectionLoading />
+            <div className="glass-color-bg-custom">
+              <SectionLoading />
+            </div>
           ) : (
             <P2pDataTable
               history={history}
@@ -105,7 +105,10 @@ const P2pOrder = () => {
           )}
 
           {history?.length > 0 && (
-            <div className="pagination-wrapper" id="assetBalances_paginate">
+            <div
+              className="pagination-wrapper glass-color-bg-custom mt-0 pt-3 pb-5"
+              id="assetBalances_paginate"
+            >
               <span>
                 {stillHistory?.links?.map((link: any, index: number) =>
                   link.label === "&laquo; Previous" ? (
