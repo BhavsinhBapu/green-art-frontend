@@ -169,7 +169,7 @@ export const OrderTable = ({ actionFunction, filter = false }: any) => {
 
                     <td>
                       <Link href={`/p2p/trade/${item.uid}`}>
-                        <span className="badge bg-primary-color text-white cursor-pointer">
+                        <span className="btn bg-primary-color text-white cursor-pointer">
                           {t(`Details`)}
                         </span>
                       </Link>
