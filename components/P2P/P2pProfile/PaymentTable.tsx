@@ -78,9 +78,9 @@ export const PaymentTable = () => {
                           href={
                             "/p2p/add-payment-method?edit=true&uid=" + item?.uid
                           }
-                          className="paymentBox border-0"
+                          className="paymentBox border-0 "
                         >
-                          <b>{t(`Edit`)}</b>
+                          <b className="cursor-pointer">{t(`Edit`)}</b>
                         </Link>
                         <a
                           onClick={() => {
@@ -93,7 +93,7 @@ export const PaymentTable = () => {
                               item?.uid
                             );
                           }}
-                          className="paymentBox border-0 ml-4"
+                          className="paymentBox border-0 ml-4 cursor-pointer"
                         >
                           <b>{t(`Delete`)}</b>
                         </a>
