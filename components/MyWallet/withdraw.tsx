@@ -38,9 +38,15 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
     message: "",
   });
   const [processing, setProcessing] = React.useState(false);
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-    WalletWithdrawProcessApiAction(withdrawalCredentials, setProcessing);
+    const response = await WalletWithdrawProcessApiAction(
+      withdrawalCredentials,
+      setProcessing
+    );
+    if (response.success) {
+      router.push("/user/wallet-history?type=withdrawal");
+    }
   };
   const CheckG2faEnabled = async () => {
     const { data } = await UserSettingsApi();
@@ -252,7 +258,9 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
           </div>
         </div>
         <div className="wallet-addres">
-          <h5>{t("Memo")} ({t("optional")})</h5>
+          <h5>
+            {t("Memo")} ({t("optional")})
+          </h5>
           <div className="">
             <div className="">
               <div className="input-group input-address-bar mt-3">
@@ -270,18 +278,15 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
                     });
                   }}
                 />
-                
               </div>
-              
-                <div>
-                  <small>
-                    {t(
-                      `Add your memo if needed but please ensure it that's correct, otherwise you lost coin.`
-                    )}
-                  </small>
-                </div>
-              
-              
+
+              <div>
+                <small>
+                  {t(
+                    `Add your memo if needed but please ensure it that's correct, otherwise you lost coin.`
+                  )}
+                </small>
+              </div>
             </div>
           </div>
         </div>
