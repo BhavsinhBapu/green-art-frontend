@@ -11,6 +11,8 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 import SelectWithdrawl from "components/deposit/SelectWithdrawl";
 import { BANK_DEPOSIT } from "helpers/core-constants";
+import Link from "next/link";
+import { IoIosArrowBack } from "react-icons/io";
 
 const FiatWithdraw = ({ currency_type }: any) => {
   const { t } = useTranslation("common");
@@ -80,101 +82,114 @@ const FiatWithdraw = ({ currency_type }: any) => {
     <>
       <div className="page-wrap">
         <div className="page-main-content">
-          <div className="container">
-            <div className="section-top-wrap mb-25">
-              <div className="profle-are-top">
-                <h2 className="section-top-title">
-                  {t("Fiat Withdrawal")}
-                </h2>
-              </div>
+          <div className="my-0 page-overview-header-main bg_cover_dashboard">
+            <div className="profle-are-top container-4xl">
+              <h2 className="wallet-overview-header-title">
+                {t("Fiat Withdrawal")}
+              </h2>
             </div>
-            <SelectWithdrawl
-              setSelectedMethod={setSelectPaymentMethod}
-              depositInfo={paymentMethods}
-              selectedMethod={selectPaymentMethod}
-            />
-            <div className="asset-balances-area">
-              <div className=" bank-section">
-                <div className="">
-                  <div className="ico-tokenCreate ">
-                    <div className="ico-create-form col-12">
-                      {loading ? (
-                        <SectionLoading />
-                      ) : (
-                        <form className="row" onSubmit={fiatSubmitFormHandler}>
-                          <div className="col-md-6 form-input-div">
-                            <label className="ico-label-box" htmlFor="">
-                              {t("Select Wallet")}
-                            </label>
-                            <input
-                              type="text"
-                              required
-                              name="amount"
-                              className={`ico-input-box`}
-                              readOnly
-                              value={currency_type}
-                            />
-                          </div>
-
-                          <div className="col-md-6 form-input-div">
-                            <label className="ico-label-box" htmlFor="">
-                              {t("Amount")}
-                            </label>
-                            <input
-                              type="text"
-                              required
-                              name="amount"
-                              className={`ico-input-box`}
-                              value={amount}
-                              onChange={(e) => setAmount(e.target.value)}
-                            />
-                          </div>
-                          {parseInt(selectPaymentMethod?.method) ===
-                          BANK_DEPOSIT ? (
+          </div>
+          <div className="container-4xl my-5">
+            <div className="section-padding-custom  wallet-card-info-container">
+              <Link href="/user/my-wallet">
+                <div className="wallet-back mb-4">
+                  <IoIosArrowBack className="wallet-backIcon" size={25} />
+                  <a href="">{t("My Wallet")}</a>
+                </div>
+              </Link>
+              <SelectWithdrawl
+                setSelectedMethod={setSelectPaymentMethod}
+                depositInfo={paymentMethods}
+                selectedMethod={selectPaymentMethod}
+              />
+              <div className="asset-balances-area">
+                <div className=" bank-section">
+                  <div className="">
+                    <div className="ico-tokenCreate p-0">
+                      <div className="ico-create-form col-12">
+                        {loading ? (
+                          <SectionLoading />
+                        ) : (
+                          <form
+                            className="row"
+                            onSubmit={fiatSubmitFormHandler}
+                          >
                             <div className="col-md-6 form-input-div">
                               <label className="ico-label-box" htmlFor="">
-                                {t("Select Bank")}
+                                {t("Select Wallet")}
                               </label>
-                              <select
-                                name="bank_list"
-                                className={`ico-input-box `}
+                              <input
+                                type="text"
                                 required
-                                onChange={(e) =>
-                                  setSelectedBankId(e.target.value)
-                                }
-                              >
-                                <option value="">
-                                  {t("Select Bank List")}
-                                </option>
-                                {banks?.map((item: any, index: number) => (
-                                  <option value={item.id} key={index}>
-                                    {item.bank_name}
-                                  </option>
-                                ))}
-                              </select>
+                                name="amount"
+                                className={`ico-input-box`}
+                                readOnly
+                                value={currency_type}
+                              />
                             </div>
-                          ) : (
-                            <div className="col-md-12 form-input-div">
-                              <label className="ico-label-box" htmlFor="">
-                                {t("Payment Info")}
-                              </label>
-                              <textarea
-                                className={`ico-input-box `}
-                                value={paymentInfo}
-                                onChange={(e) => {
-                                  setPaymentInfo(e.target.value);
-                                }}
-                              ></textarea>
-                            </div>
-                          )}
 
-                          <div className="col-md-12 form-input-div">
-                            <button type="submit" className="primary-btn">
-                              {loading ? t("Loading..") : t("Submit Withdrawl")}
-                            </button>
-                          </div>
-                        </form>
-                      )}
+                            <div className="col-md-6 form-input-div">
+                              <label className="ico-label-box" htmlFor="">
+                                {t("Amount")}
+                              </label>
+                              <input
+                                type="text"
+                                required
+                                name="amount"
+                                className={`ico-input-box`}
+                                value={amount}
+                                onChange={(e) => setAmount(e.target.value)}
+                              />
+                            </div>
+                            {parseInt(selectPaymentMethod?.method) ===
+                            BANK_DEPOSIT ? (
+                              <div className="col-md-6 form-input-div">
+                                <label className="ico-label-box" htmlFor="">
+                                  {t("Select Bank")}
+                                </label>
+                                <select
+                                  name="bank_list"
+                                  className={`ico-input-box `}
+                                  required
+                                  onChange={(e) =>
+                                    setSelectedBankId(e.target.value)
+                                  }
+                                >
+                                  <option value="">
+                                    {t("Select Bank List")}
+                                  </option>
+                                  {banks?.map((item: any, index: number) => (
+                                    <option value={item.id} key={index}>
+                                      {item.bank_name}
+                                    </option>
+                                  ))}
+                                </select>
+                              </div>
+                            ) : (
+                              <div className="col-md-12 form-input-div">
+                                <label className="ico-label-box" htmlFor="">
+                                  {t("Payment Info")}
+                                </label>
+                                <textarea
+                                  className={`ico-input-box `}
+                                  value={paymentInfo}
+                                  onChange={(e) => {
+                                    setPaymentInfo(e.target.value);
+                                  }}
+                                ></textarea>
+                              </div>
+                            )}
+
+                            <div className="col-md-12 form-input-div">
+                              <button type="submit" className="primary-btn">
+                                {loading
+                                  ? t("Loading..")
+                                  : t("Submit Withdrawl")}
+                              </button>
+                            </div>
+                          </form>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>

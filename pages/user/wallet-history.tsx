@@ -120,7 +120,7 @@ const DepositHistory: NextPage = () => {
     {
       Header:
         type === t("deposit") ? t("Transaction Id") : t("Transaction Hash"),
-      accessor: "transaction_id",
+      accessor: type == "deposit" ? "transaction_id" : "transaction_hash",
     },
     {
       Header: t("Status"),
