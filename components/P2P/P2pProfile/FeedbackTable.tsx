@@ -58,7 +58,7 @@ export const FeedbackTable = ({ details }: any) => {
                         (list: any) =>
                           list.feedback && (
                             <div className=" col-sm-12 col-md-6 mt-3">
-                              <div className="single-feedback custom-dark-light-shadow">
+                              <div className="single-feedback custom-dark-light-inner-shadow ">
                                 <div className="d-flex gap-10 align-items-center justify-content-between mb-3">
                                   <div className="d-flex gap-10 align-items-center">
                                     <img
@@ -104,7 +104,7 @@ export const FeedbackTable = ({ details }: any) => {
                         (list: any) =>
                           list.feedback && (
                             <div className=" col-sm-12 col-md-6 mt-3">
-                              <div className="single-feedback">
+                              <div className="single-feedback custom-dark-light-inner-shadow ">
                                 <div className="d-flex gap-10 align-items-center justify-content-between mb-3">
                                   <div className="d-flex gap-10 align-items-center">
                                     <img
@@ -142,7 +142,7 @@ export const FeedbackTable = ({ details }: any) => {
                         (list: any) =>
                           list.feedback && (
                             <div className=" col-sm-12 col-md-6 mt-3">
-                              <div className="single-feedback">
+                              <div className="single-feedback custom-dark-light-inner-shadow ">
                                 <div className="d-flex gap-10 align-items-center justify-content-between mb-3">
                                   <div className="d-flex gap-10 align-items-center">
                                     <img
