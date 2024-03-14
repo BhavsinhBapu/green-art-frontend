@@ -65,7 +65,7 @@ const AddPost = () => {
         <div className="mb-5">
           <P2pTopBar />
           <div className="adPost_bg py-3 mb-5">
-            <div className="container">
+            <div className="container-4xl">
               <div className="row">
                 <div className="col-12">
                   <h3>{uid ? "Edit ads" : "Post Normal Ad"}</h3>
@@ -74,7 +74,7 @@ const AddPost = () => {
             </div>
           </div>
           {/* <AddPostStep /> */}
-          <div className="container">
+          <div className="container-4xl">
             <div className="row">
               {!uid && (
                 <div className="col-6">
