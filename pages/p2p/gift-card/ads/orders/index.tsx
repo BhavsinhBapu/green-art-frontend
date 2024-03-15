@@ -83,11 +83,37 @@ export default function Index() {
               <table className="table">
                 <thead>
                   <tr>
-                    <th scope="col">{t(`Order Id`)}</th>
-                    <th scope="col">{t(`Amount`)}</th>
-                    <th scope="col">{t(`Price`)}</th>
-                    <th scope="col">{t(`Status`)}</th>
-                    <th scope="col">{t(`Operation`)}</th>
+                    <th
+                      scope="col"
+                      style={{ paddingLeft: "10px", paddingRight: "10px" }}
+                    >
+                      {t(`Order Id`)}
+                    </th>
+                    <th
+                      scope="col"
+                      style={{ paddingLeft: "10px", paddingRight: "10px" }}
+                    >
+                      {t(`Amount`)}
+                    </th>
+                    <th
+                      scope="col"
+                      style={{ paddingLeft: "10px", paddingRight: "10px" }}
+                    >
+                      {t(`Price`)}
+                    </th>
+                    <th
+                      scope="col"
+                      style={{ paddingLeft: "10px", paddingRight: "10px" }}
+                    >
+                      {t(`Status`)}
+                    </th>
+                    <th
+                      scope="col"
+                      style={{ paddingLeft: "10px", paddingRight: "10px" }}
+                      className="text-right"
+                    >
+                      {t(`Operation`)}
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -102,7 +128,7 @@ export default function Index() {
                         {parseFloat(item.price)} {item.currency_type}
                       </td>
                       <td>{item.status_name}</td>
-                      <td>
+                      <td className="text-right">
                         <Link href={`/p2p/gift-card/ads/buy/${item.uid}`}>
                           <a className="tableButton">{t(`Details`)}</a>
                         </Link>
