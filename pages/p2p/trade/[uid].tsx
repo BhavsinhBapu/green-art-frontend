@@ -145,6 +145,27 @@ const Trading = () => {
   return (
     <>
       <P2pTopBar />
+      <div className="adPost_bg py-3">
+        <div className="container-4xl">
+          <div className="row">
+            <div className="col-12">
+              {details?.user_type === BUY && (
+                <h3>
+                  {"Buy"} {details?.order?.coin_type} from{" "}
+                  {details?.user_seller?.nickname}
+                </h3>
+              )}
+
+              {details?.user_type === SELL && (
+                <h3>
+                  {"Sell"} {details?.order?.coin_type} to{" "}
+                  {details?.user_buyer?.nickname}
+                </h3>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="my-trade-container container-4xl mt-5">
         <div className="boxShadow p-4 mb-3">
           <BackButton />
