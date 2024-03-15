@@ -97,9 +97,9 @@ export default function Index({ data }: any) {
       elements[i].style.backgroundImage = `url('${data?.banner}')`;
     }
   };
-  useEffect(() => {
-    changeBackground();
-  }, []);
+  // useEffect(() => {
+  //   changeBackground();
+  // }, []);
 
   const resetHandler = () => {
     setSelectedPaymentType({});
@@ -111,12 +111,20 @@ export default function Index({ data }: any) {
 
   return (
     <section>
-      <div className="p2p_bg">
+      <div
+        className="p2p_bg"
+        style={{
+          background: data?.banner ? `url('${data?.banner}')` : "",
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
         <div className="container-4xl">
           <div className="row">
             <div className="col-12 text-center">
               {data?.header && <h2 className="text-white">{data?.header}</h2>}
-              {data?.p2p_banner_des && (
+              {data?.description && (
                 <p className="text-white">{data?.description}</p>
               )}
             </div>
