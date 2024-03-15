@@ -409,7 +409,7 @@ export default function Index() {
           </div>
           <div className="text-right my-3">
             <button
-              className="tableButton bg-card-primary-color mr-5"
+              className="tableButton btn mr-5"
               onClick={() => router.push(`/p2p/gift-card/my-adds`)}
             >
               {t(`Cancel`)}

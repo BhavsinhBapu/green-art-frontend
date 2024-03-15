@@ -245,14 +245,14 @@ export default function Index({ data }: any) {
                         {Number(item.payment_currency_type) === 1 ? (
                           item.payment_methods.map((item: any, index: any) => (
                             <span
-                              className="mr-1 bg-primary-color px-2 py-1 rounded text-white"
+                              className="mr-1 bg-primary-color px-2 py-1 rounded"
                               key={index}
                             >
                               {item.admin_pamynt_method.name}
                             </span>
                           ))
                         ) : (
-                          <span className="mr-1 bg-card-primary-color px-2 py-1 rounded text-white">
+                          <span className="mr-1 bg-card-primary-color px-2 py-1 rounded">
                             {t(`Crypto`)}
                           </span>
                         )}
