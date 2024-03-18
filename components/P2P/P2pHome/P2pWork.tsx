@@ -9,7 +9,7 @@ export const P2pWork = ({ data }: any) => {
   const { t } = useTranslation("common");
 
   return (
-    <div className="container-4xl pt-5 ">
+    <div className="container-4xl pt-5 mb-5">
       <div className="row">
         <div className="col-12 px-3 px-md-0">
           <div className="p2pWork p-4 p-md-5 glass-color-bg-custom">

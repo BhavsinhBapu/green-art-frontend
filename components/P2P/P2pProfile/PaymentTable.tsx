@@ -50,7 +50,7 @@ export const PaymentTable = () => {
           </ul>
         </div>
         <div className="col-12">
-          <div className="paymentMethodBox p-4 mt-3 rounded shadow-sm">
+          <div className="paymentMethodBox p-4 mt-3 rounded custom-dark-light-shadow ">
             <div className="row d-flex align-items-center justify-content-between">
               <div className="col-md-7">
                 <h5>{t(`P2P Payment Methods`)}</h5>
@@ -78,9 +78,9 @@ export const PaymentTable = () => {
                           href={
                             "/p2p/add-payment-method?edit=true&uid=" + item?.uid
                           }
-                          className="paymentBox border-0"
+                          className="paymentBox border-0 "
                         >
-                          <b>{t(`Edit`)}</b>
+                          <b className="cursor-pointer">{t(`Edit`)}</b>
                         </Link>
                         <a
                           onClick={() => {
@@ -93,7 +93,7 @@ export const PaymentTable = () => {
                               item?.uid
                             );
                           }}
-                          className="paymentBox border-0 ml-4"
+                          className="paymentBox border-0 ml-4 cursor-pointer"
                         >
                           <b>{t(`Delete`)}</b>
                         </a>

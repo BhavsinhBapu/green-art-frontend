@@ -5,14 +5,14 @@ export const P2pPaymentMethod = ({ data }: any) => {
 
   return (
     <div className="container-4xl px-0 my-5">
-      <div className="row align-items-center payment_box section-padding-custom mx-2 mx-sm-0 glass-color-bg-custom">
-        <div className="col-md-4">
+      <div className="row align-items-center payment_box p-4 px-md-4 py-md-5 mx-2 mx-sm-0 glass-color-bg-custom">
+        <div className="col-md-12">
           <h2>{t(`Top Payment Methods`)}</h2>
         </div>
-        <div className="col-md-8 pb-4">
-          <div className="row">
+        <div className="col-md-12 pb-4 mt-4">
+          <div className="row" style={{ rowGap: "20px" }}>
             {data.payment_method_landing.map((data: any, index: any) => (
-              <div className="col-sm-6 col-lg-4 pt-4" key={index}>
+              <div className="col-sm-6 col-lg-4" key={index}>
                 <a className="paymentBox d-flex align-items-center p-3" href="">
                   <div></div>
                   {data?.name}

@@ -55,7 +55,7 @@ export const BuyFrom = ({
     setPaymethods(PaymentMethods);
   }, [details]);
   return (
-    <div className="col-12 section-padding-custom boxShadow mt-5 mb-5">
+    <div className="col-12 section-padding-custom boxShadow mt-5 mb-5 glass-color-bg-custom wallet-card-info-container">
       <div className="mt-3 mb-3">
         <BackButton />
       </div>

@@ -38,7 +38,7 @@ export const AddPostThree = ({
   }, [data.data.payment_method, data.data.payment_time]);
   return (
     <div className="col-12 mt-4">
-      <div className="buySellAddBox px-5 py-5 rounded">
+      <div className="buySellAddBox px-5 py-5 rounded custom-dark-light-shadow ">
         <div className="row">
           <div className="col-12">
             <label className="">{t("Available Region[s]")}</label>
@@ -93,7 +93,7 @@ export const AddPostThree = ({
             <label className="d-block pb-0 mb-0">
               <strong>{t("Counterparty Conditions")}</strong>
             </label>
-            
+
             <div className="row">
               <div className="col-md-6 col-lg-6 col-12">
                 <label>{t("Register days")}</label>
@@ -102,7 +102,7 @@ export const AddPostThree = ({
                     type="number"
                     value={registerDays}
                     className="pricePoint_field custom-border-box"
-                    style={{ width: "100%", height:'41px' }}
+                    style={{ width: "100%", height: "41px" }}
                     onChange={(e) => {
                       setregisterDays(e.target.value);
                     }}
@@ -114,7 +114,7 @@ export const AddPostThree = ({
                 <div className="adFromCheckBox">
                   <input
                     type="number"
-                    style={{ width: "100%", height:'41px' }}
+                    style={{ width: "100%", height: "41px" }}
                     value={coinHolding}
                     className="pricePoint_field custom-border-box"
                     onChange={(e) => {

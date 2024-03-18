@@ -93,7 +93,7 @@ const P2P = ({ data }: any) => {
   }, [filters]);
   return (
     <>
-      <div className="pb-5 glass-color-bg-custom">
+      <div className="pb-5">
         <div className="p2p_bg">
           <div className="container-4xl">
             <div className="row">
@@ -111,62 +111,70 @@ const P2P = ({ data }: any) => {
         </div>
         {isLoggedIn && <P2pTopBar />}
         <P2pTab setFilters={setFilters} filters={filters} settings={settings} />
-        <P2pFilter
-          setFilters={setFilters}
-          filters={filters}
-          settings={settings}
-        />
-        <PlaceTopLeft />
-        <PlaceBottomRight />
-        {processing ? (
-          <SectionLoading />
-        ) : (
-          <P2pDataTable
-            history={history}
-            filters={filters}
-            isLoggedIn={isLoggedIn}
-          />
-        )}
 
-        {history?.length > 0 && (
-          <div className="pagination-wrapper" id="assetBalances_paginate">
-            <span>
-              {stillHistory?.links?.map((link: any, index: number) =>
-                link.label === "&laquo; Previous" ? (
-                  <a
-                    className="paginate-button"
-                    onClick={() => {
-                      if (link.url) LinkTopaginationString(link);
-                    }}
-                    key={index}
-                  >
-                    <i className="fa fa-angle-left"></i>
-                  </a>
-                ) : link.label === "Next &raquo;" ? (
-                  <a
-                    className="paginate-button"
-                    onClick={() => LinkTopaginationString(link)}
-                    key={index}
-                  >
-                    <i className="fa fa-angle-right"></i>
-                  </a>
-                ) : (
-                  <a
-                    className={`paginate_button paginate-number ${
-                      link.active === true && "text-warning"
-                    }`}
-                    aria-controls="assetBalances"
-                    data-dt-idx="1"
-                    onClick={() => LinkTopaginationString(link)}
-                    key={index}
-                  >
-                    {link.label}
-                  </a>
-                )
-              )}
-            </span>
-          </div>
-        )}
+        <div className="container-4xl glass-color-bg-custom p2pWork mt-5">
+          <P2pFilter
+            setFilters={setFilters}
+            filters={filters}
+            settings={settings}
+          />
+          <PlaceTopLeft />
+          <PlaceBottomRight />
+          {processing ? (
+            <div className="glass-color-bg-custom">
+              <SectionLoading />
+            </div>
+          ) : (
+            <P2pDataTable
+              history={history}
+              filters={filters}
+              isLoggedIn={isLoggedIn}
+            />
+          )}
+          {history?.length > 0 && (
+            <div
+              className="pagination-wrapper glass-color-bg-custom mt-0 py-5"
+              id="assetBalances_paginate"
+            >
+              <span>
+                {stillHistory?.links?.map((link: any, index: number) =>
+                  link.label === "&laquo; Previous" ? (
+                    <a
+                      className="paginate-button"
+                      onClick={() => {
+                        if (link.url) LinkTopaginationString(link);
+                      }}
+                      key={index}
+                    >
+                      <i className="fa fa-angle-left"></i>
+                    </a>
+                  ) : link.label === "Next &raquo;" ? (
+                    <a
+                      className="paginate-button"
+                      onClick={() => LinkTopaginationString(link)}
+                      key={index}
+                    >
+                      <i className="fa fa-angle-right"></i>
+                    </a>
+                  ) : (
+                    <a
+                      className={`paginate_button paginate-number ${
+                        link.active === true && "text-warning"
+                      }`}
+                      aria-controls="assetBalances"
+                      data-dt-idx="1"
+                      onClick={() => LinkTopaginationString(link)}
+                      key={index}
+                    >
+                      {link.label}
+                    </a>
+                  )
+                )}
+              </span>
+            </div>
+          )}
+        </div>
+
         <P2pWork data={data} />
         <P2pAdvantage data={data} />
         {data?.p2p_faq.length > 0 && <P2pFaq data={data} />}

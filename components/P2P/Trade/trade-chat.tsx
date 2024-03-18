@@ -50,11 +50,19 @@ export const TradeChat = ({
                       ></small>
                     )}
 
-                    <div>
+                    <div style={{ minWidth: "45px", minHeight: "45px" }}>
                       <img
                         className="chat_img ml-1"
                         src={chat?.user?.photo}
                         alt=""
+                        style={{
+                          maxWidth: "45px",
+                          maxHeight: "45px",
+                          width: "45px",
+                          height: "45px",
+                          objectFit: "cover",
+                          objectPosition: "center",
+                        }}
                       />
                     </div>
                   </div>
@@ -76,11 +84,19 @@ export const TradeChat = ({
               ) : (
                 <div className="col-md-8 chat_layout_left">
                   <div className="d-flex justify-content-between my-2">
-                    <div>
+                    <div style={{ minWidth: "45px", minHeight: "45px" }}>
                       <img
                         className="chat_img"
                         src={chat?.user?.photo}
                         alt=""
+                        style={{
+                          maxWidth: "45px",
+                          maxHeight: "45px",
+                          width: "45px",
+                          height: "45px",
+                          objectFit: "cover",
+                          objectPosition: "center",
+                        }}
                       />
                     </div>
                     {chat?.message && (

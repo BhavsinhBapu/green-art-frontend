@@ -102,11 +102,21 @@ export default function Index() {
               <table className="table">
                 <thead>
                   <tr>
-                    <th scope="col" className="px-3 py-2">{t(`Price`)}</th>
-                    <th scope="col" className="px-3 py-2">{t(`Amount`)}</th>
-                    <th scope="col" className="px-3 py-2">{t(`Status`)}</th>
-                    <th scope="col" className="px-3 py-2">{t(`Created At`)}</th>
-                    <th scope="col" className="px-3 py-2 text-right">{t(`Action`)}</th>
+                    <th scope="col" className="px-3 py-2">
+                      {t(`Price`)}
+                    </th>
+                    <th scope="col" className="px-3 py-2">
+                      {t(`Amount`)}
+                    </th>
+                    <th scope="col" className="px-3 py-2">
+                      {t(`Status`)}
+                    </th>
+                    <th scope="col" className="px-3 py-2">
+                      {t(`Created At`)}
+                    </th>
+                    <th scope="col" className="px-3 py-2 text-right">
+                      {t(`Action`)}
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -124,7 +134,7 @@ export default function Index() {
 
                       <td className="text-right">
                         {(item.status == 1 || item.status == 0) && (
-                          <>
+                          <div className="d-flex align-items-center justify-content-end">
                             <button
                               className="tableButton p2p-gift-card-adds-margin-bottom p2p-gift-card-adds-margin-right"
                               onClick={() => handleAdsEdit(item.uid)}
@@ -132,12 +142,12 @@ export default function Index() {
                               {t(`Edit`)}
                             </button>
                             <button
-                              className="tableButton bg-card-primary-color"
+                              className="tableButton btn"
                               onClick={() => handleAdsDelete(item.id)}
                             >
                               {t(`Delete`)}
                             </button>
-                          </>
+                          </div>
                         )}
                       </td>
                     </tr>

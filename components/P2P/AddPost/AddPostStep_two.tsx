@@ -64,7 +64,7 @@ export const AddPostTwo = ({
 
   return (
     <div className="col-12 mt-4">
-      <div className="buySellAddBox px-5 py-5 rounded">
+      <div className="buySellAddBox px-5 py-5 rounded custom-dark-light-shadow ">
         <div className="row">
           <div className="col-12 mt-4">
             <div className="row">

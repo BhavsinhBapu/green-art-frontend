@@ -17,6 +17,7 @@ import { GetServerSideProps } from "next";
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import ImageComponent from "components/common/ImageComponent";
 import { BsGiftFill } from "react-icons/bs";
+import Footer from "components/common/footer";
 
 const options = [
   { value: 1, label: "Bank Transfer" },
@@ -148,203 +149,210 @@ export default function Index() {
   };
 
   return (
-    <section>
-      <P2PGiftCardNavbar />
-      <P2PGiftCardHeader title={"Create Gift Card Ads"} />
+    <>
+      <section className="mb-5">
+        <P2PGiftCardNavbar />
+        <P2PGiftCardHeader title={"Create Gift Card Ads"} />
 
-      {/* from for create */}
-      {loading ? (
-        <div className="container">
-          <SectionLoading />
-        </div>
-      ) : (
-        <div className="container">
-          <div className="row mb-5">
-            <div className="col-md-12">
-              <div className="row">
-                <div className="col-md-6">
-                  <div className="relative">
-                    <ImageComponent
-                      src={
-                        giftCardDetais?.banner?.banner ||
-                        "/demo_gift_banner.png"
-                      }
-                      height={300}
-                    />{" "}
-                    <div>
-                      <div className="d-flex gap-10 buy-absolute-btn">
-                        <BsGiftFill size={22} />
-                        <h4>{`${parseFloat(giftCardDetais.amount)} ${
-                          giftCardDetais?.coin_type || ""
-                        }`}</h4>
+        {/* from for create */}
+        {loading ? (
+          <div className="container-4xl">
+            <SectionLoading />
+          </div>
+        ) : (
+          <div className="container-4xl">
+            <div className="row mb-5">
+              <div className="col-md-12">
+                <div className="row">
+                  <div className="col-md-6">
+                    <div className="relative">
+                      <ImageComponent
+                        src={
+                          giftCardDetais?.banner?.banner ||
+                          "/demo_gift_banner.png"
+                        }
+                        height={300}
+                      />{" "}
+                      <div>
+                        <div className="d-flex gap-10 buy-absolute-btn">
+                          <BsGiftFill size={22} />
+                          <h4>{`${parseFloat(giftCardDetais.amount)} ${
+                            giftCardDetais?.coin_type || ""
+                          }`}</h4>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div className="col-md-6">
-                  <div className="mt-5 mb-4 ">
-                    <h3 className="mb-3">{t(giftCardDetais?.banner?.title)}</h3>
-                    <h5 className="font-normal">
-                      {t(giftCardDetais?.banner?.sub_title)}
-                    </h5>
+                  <div className="col-md-6">
+                    <div className="mt-5 mb-4 ">
+                      <h3 className="mb-3">
+                        {t(giftCardDetais?.banner?.title)}
+                      </h3>
+                      <h5 className="font-normal">
+                        {t(giftCardDetais?.banner?.sub_title)}
+                      </h5>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="row">
-            <div className="col-md-6">
-              <div className="form-group p2pSelectFilter">
-                <h6 className="gift-buy-input-label font-normal mb-3">
-                  {t(`Payment Currencey Type`)}
-                </h6>
-                <CUstomSelect
-                  options={options}
-                  classname={
-                    "buy-amount-select-section border border-main-color rounded"
-                  }
-                  handleFunction={paymentTypeHandler}
-                />
-              </div>
-            </div>
-            {selectedPaymentType && (
+            <div className="row">
               <div className="col-md-6">
                 <div className="form-group p2pSelectFilter">
                   <h6 className="gift-buy-input-label font-normal mb-3">
-                    {t(`Currencey Type`)}
+                    {t(`Payment Currencey Type`)}
                   </h6>
-
-                  <Select
-                    options={
-                      selectedPaymentType === 1
-                        ? settings?.currency
-                        : settings?.assets
-                    }
-                    classNamePrefix={"custom-select"}
-                    className={
+                  <CUstomSelect
+                    options={options}
+                    classname={
                       "buy-amount-select-section border border-main-color rounded"
                     }
-                    value={selectedCurrencyType}
-                    onChange={handleCurrencyType}
+                    handleFunction={paymentTypeHandler}
                   />
                 </div>
               </div>
-            )}
+              {selectedPaymentType && (
+                <div className="col-md-6">
+                  <div className="form-group p2pSelectFilter">
+                    <h6 className="gift-buy-input-label font-normal mb-3">
+                      {t(`Currencey Type`)}
+                    </h6>
 
-            <div className="col-md-6">
-              <div className="form-group p2pSelectFilter">
-                <h6 className="gift-buy-input-label font-normal mb-3">
-                  {t(`Price`)}
-                </h6>
-                <div className="d-flex buy-input-bg input-padding-y rounded border border-main-color">
-                  <input
-                    type="number"
-                    min={1}
-                    placeholder="Enter Price"
-                    className="px-3 w-full bg-transparent border-none"
-                    value={price}
-                    onChange={(e) => setPrice(e.target.value)}
-                  />
+                    <Select
+                      options={
+                        selectedPaymentType === 1
+                          ? settings?.currency
+                          : settings?.assets
+                      }
+                      classNamePrefix={"custom-select"}
+                      className={
+                        "buy-amount-select-section border border-main-color rounded"
+                      }
+                      value={selectedCurrencyType}
+                      onChange={handleCurrencyType}
+                    />
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div className="col-md-6">
-              <div className="form-group p2pSelectFilter">
-                <h6 className="gift-buy-input-label font-normal mb-3">
-                  {t(`Status`)}
-                </h6>
-                <CUstomSelect
-                  options={status}
-                  classname={
-                    "buy-amount-select-section border border-main-color rounded"
-                  }
-                  defaultValue={status[0]}
-                  handleFunction={(event: any) =>
-                    setSelectedStatus(event.value)
-                  }
-                />
-              </div>
-            </div>
-            {selectedPaymentType === 1 && (
+              )}
+
               <div className="col-md-6">
                 <div className="form-group p2pSelectFilter">
                   <h6 className="gift-buy-input-label font-normal mb-3">
-                    {t(`Payment Method`)}
+                    {t(`Price`)}
                   </h6>
-
-                  <Select
-                    options={settings?.payment_method}
-                    classNamePrefix={"custom-select"}
-                    isMulti={true}
-                    className={"buy-amount-select-section border rounded"}
-                    value={selectedPayment}
-                    onChange={handlePayment}
+                  <div className="d-flex buy-input-bg input-padding-y rounded border border-main-color">
+                    <input
+                      type="number"
+                      min={1}
+                      placeholder="Enter Price"
+                      className="px-3 w-full bg-transparent border-none"
+                      value={price}
+                      onChange={(e) => setPrice(e.target.value)}
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="col-md-6">
+                <div className="form-group p2pSelectFilter">
+                  <h6 className="gift-buy-input-label font-normal mb-3">
+                    {t(`Status`)}
+                  </h6>
+                  <CUstomSelect
+                    options={status}
+                    classname={
+                      "buy-amount-select-section border border-main-color rounded"
+                    }
+                    defaultValue={status[0]}
+                    handleFunction={(event: any) =>
+                      setSelectedStatus(event.value)
+                    }
                   />
                 </div>
               </div>
-            )}
+              {selectedPaymentType === 1 && (
+                <div className="col-md-6">
+                  <div className="form-group p2pSelectFilter">
+                    <h6 className="gift-buy-input-label font-normal mb-3">
+                      {t(`Payment Method`)}
+                    </h6>
 
-            <div className="col-md-6">
-              <div className="form-group p2pSelectFilter">
-                <h6 className="gift-buy-input-label font-normal mb-3">
-                  {t(`Country`)}
-                </h6>
-                <CUstomSelect
-                  options={settings?.country}
-                  isSearchable={true}
-                  isMulti={true}
-                  classname={
-                    "buy-amount-select-section border border-main-color rounded"
-                  }
-                  handleFunction={handleCountry}
-                />
+                    <Select
+                      options={settings?.payment_method}
+                      classNamePrefix={"custom-select"}
+                      isMulti={true}
+                      className={"buy-amount-select-section border rounded"}
+                      value={selectedPayment}
+                      onChange={handlePayment}
+                    />
+                  </div>
+                </div>
+              )}
+
+              <div className="col-md-6">
+                <div className="form-group p2pSelectFilter">
+                  <h6 className="gift-buy-input-label font-normal mb-3">
+                    {t(`Country`)}
+                  </h6>
+                  <CUstomSelect
+                    options={settings?.country}
+                    isSearchable={true}
+                    isMulti={true}
+                    classname={
+                      "buy-amount-select-section border border-main-color rounded"
+                    }
+                    handleFunction={handleCountry}
+                  />
+                </div>
               </div>
-            </div>
-            <div className="col-md-6">
-              <div className="form-group p2pSelectFilter">
-                <h6 className="gift-buy-input-label font-normal mb-3">
-                  {t(`Time Limit`)}
-                </h6>
-                <CUstomSelect
-                  options={settings?.payment_time}
-                  classname={
-                    "buy-amount-select-section border border-main-color rounded"
-                  }
-                  handleFunction={(event: any) => setSelectedTime(event.value)}
-                />
+              <div className="col-md-6">
+                <div className="form-group p2pSelectFilter">
+                  <h6 className="gift-buy-input-label font-normal mb-3">
+                    {t(`Time Limit`)}
+                  </h6>
+                  <CUstomSelect
+                    options={settings?.payment_time}
+                    classname={
+                      "buy-amount-select-section border border-main-color rounded"
+                    }
+                    handleFunction={(event: any) =>
+                      setSelectedTime(event.value)
+                    }
+                  />
+                </div>
               </div>
-            </div>
-            <div className="col-md-6">
-              <div className="form-group p2pSelectFilter">
-                <h6 className="gift-buy-input-label font-normal mb-3">
-                  {t(`Terms And Condition`)}
-                </h6>
-                <div className="d-flex buy-input-bg input-padding-y rounded border border-main-color">
-                  <textarea
-                    placeholder="Enter Terms And Condition"
-                    className="px-3 w-full bg-transparent border-none text-primary"
-                    rows={4}
-                    value={termsData}
-                    onChange={(e) => setTermsData(e.target.value)}
-                  ></textarea>
+              <div className="col-md-6">
+                <div className="form-group p2pSelectFilter">
+                  <h6 className="gift-buy-input-label font-normal mb-3">
+                    {t(`Terms And Condition`)}
+                  </h6>
+                  <div className="d-flex buy-input-bg input-padding-y rounded border border-main-color">
+                    <textarea
+                      placeholder="Enter Terms And Condition"
+                      className="px-3 w-full bg-transparent border-none text-primary"
+                      rows={4}
+                      value={termsData}
+                      onChange={(e) => setTermsData(e.target.value)}
+                    ></textarea>
+                  </div>
                 </div>
               </div>
             </div>
+            <div className="text-right my-3">
+              <button
+                className="tableButton btn mr-5"
+                onClick={() => router.push(`/p2p/gift-card/lists`)}
+              >
+                {t(`Cancel`)}
+              </button>
+              <button className="tableButton" onClick={createAdsHandler}>
+                {t(`Create`)}
+              </button>
+            </div>
           </div>
-          <div className="text-right my-3">
-            <button
-              className="tableButton bg-card-primary-color mr-5"
-              onClick={() => router.push(`/p2p/gift-card/lists`)}
-            >
-              {t(`Cancel`)}
-            </button>
-            <button className="tableButton" onClick={createAdsHandler}>
-              {t(`Create`)}
-            </button>
-          </div>
-        </div>
-      )}
-    </section>
+        )}
+      </section>
+      <Footer />
+    </>
   );
 }
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
