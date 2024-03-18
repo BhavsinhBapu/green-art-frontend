@@ -80,7 +80,7 @@ const Index = () => {
           <LaunchTop data={launchpadLandingPage?.data} />
           <PlaceTopLeft />
           <PlaceBottomRight />
-          <div className="launch-body container-4xl">
+          <div className="launch-body container-4xl mt-5">
             <Hero data={launchpadLandingPage?.data} />
             <PlaceTopLeft />
             <PlaceBottomRight />
