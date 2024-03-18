@@ -74,7 +74,10 @@ const Profile: NextPage = ({}: any) => {
     {
       Header: t("Actions"),
       Cell: ({ row }: any) => (
-        <div className="blance-text flex flex-row">
+        <div
+          className="blance-text flex flex-row"
+          style={{ position: "relative" }}
+        >
           {row?.original?.approved_status === 1 ? (
             <Link href={`/ico/create-edit-phase/${row?.original?.id}`}>
               <li className="toolTip" title="Create Phase">
@@ -171,6 +174,7 @@ const Profile: NextPage = ({}: any) => {
                       search={search}
                       setSearch={setSearch}
                       processing={processing}
+                      isOverflow={true}
                     />
                     <div
                       className="pagination-wrapper"
