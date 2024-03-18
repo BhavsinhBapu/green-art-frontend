@@ -13,7 +13,9 @@ import {
 import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { GetServerSideProps } from "next";
 import useTranslation from "next-translate/useTranslation";
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import { BiArrowBack } from "react-icons/bi";
 import { customPage, landingPage } from "service/landing-page";
 import {
   launchpadDynamicFromAction,
@@ -24,7 +26,7 @@ const Apply = () => {
   const [loading, setLoading] = useState(true);
   const [launchpadForm, setLaunchpadForm] = useState<any>([]);
   const [formFields, setFormFields] = useState<any>([]);
-
+  const router = useRouter();
   const { t } = useTranslation("common");
 
   useEffect(() => {
@@ -49,7 +51,7 @@ const Apply = () => {
       <PlaceBottomRight />
       <div className="container-4xl">
         <div
-          className="shadow-sm section-padding-custom wallet-card-info-container"
+          className="shadow-sm wallet-card-info-container"
           style={{
             marginTop: "-60px",
             marginBottom: "30px",
@@ -73,6 +75,15 @@ const Apply = () => {
                   ? t("Apply For Launchpad")
                   : launchpadForm.dynamic_form_for_ico_title}
               </h2> */}
+                <div
+                  onClick={() => {
+                    router.back();
+                  }}
+                  className="cursor-pointer mb-4"
+                >
+                  <BiArrowBack />
+                  Back
+                </div>
                 <p className="launchpadDescription">
                   {launchpadForm?.dynamic_form_for_ico_description === false
                     ? t(
