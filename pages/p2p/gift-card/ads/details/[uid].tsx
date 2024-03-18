@@ -79,117 +79,121 @@ export default function Index() {
       <PlaceTopLeft />
       <PlaceBottomRight />
       <div className="container-4xl">
-        <div className="row section-padding-custom boxShadow mt-5 mb-5">
-          <div className="col-12">
-            <div className="mt-3 mb-3">
-              <BackButton />
+        <div className="section-padding-custom boxShadow   mt-5 mb-5">
+          <div className="row">
+            <div className="col-12">
+              <div className="mt-3 mb-3">
+                <BackButton />
+              </div>
+              <h1 className="ny-3">{t("Details")}</h1>
             </div>
-            <h1 className="ny-3">{t("Details")}</h1>
-          </div>
-          {loading ? (
-            <SectionLoading />
-          ) : (
-            <>
-              <div className="col-md-6 col-12 ">
-                <div className=" py-4 rounded">
-                  <div className="tableImg d-flex align-items-center">
-                    <img
-                      src="https://api-tradex.nftarttoken.xyz/images/avatars/yellow-hat.png"
-                      alt=""
-                    />
-                    <h5>
-                      {adsDetails?.user?.first_name}{" "}
-                      {adsDetails?.user?.last_name}
-                    </h5>
-                  </div>
-                  <div className="row pt-4">
-                    <div className="col-12">
-                      <div className="gift-card-banner-section-bottom-border">
-                        <div className="relative">
-                          <ImageComponent
-                            src={
-                              adsDetails?.gift_card?.banner?.banner ||
-                              "/demo_gift_banner.png"
-                            }
-                            height={300}
-                          />{" "}
-                          <div>
-                            <div className="d-flex gap-10 buy-absolute-btn">
-                              <BsGiftFill size={22} />
-                              <h4>{`${parseFloat(
-                                adsDetails?.gift_card?.amount
-                              )} ${adsDetails?.gift_card?.coin_type}`}</h4>
+            {loading ? (
+              <SectionLoading />
+            ) : (
+              <>
+                <div className="col-md-6 col-12 ">
+                  <div className=" py-4 rounded">
+                    <div className="tableImg d-flex align-items-center">
+                      <img
+                        src="https://api-tradex.nftarttoken.xyz/images/avatars/yellow-hat.png"
+                        alt=""
+                      />
+                      <h5>
+                        {adsDetails?.user?.first_name}{" "}
+                        {adsDetails?.user?.last_name}
+                      </h5>
+                    </div>
+                    <div className="row pt-4">
+                      <div className="col-12">
+                        <div className="gift-card-banner-section-bottom-border">
+                          <div className="relative">
+                            <ImageComponent
+                              src={
+                                adsDetails?.gift_card?.banner?.banner ||
+                                "/demo_gift_banner.png"
+                              }
+                              height={300}
+                            />{" "}
+                            <div>
+                              <div className="d-flex gap-10 buy-absolute-btn">
+                                <BsGiftFill size={22} />
+                                <h4>{`${parseFloat(
+                                  adsDetails?.gift_card?.amount
+                                )} ${adsDetails?.gift_card?.coin_type}`}</h4>
+                              </div>
                             </div>
                           </div>
+                          <div className="mt-5 mb-4">
+                            <h3 className="mb-3">
+                              {adsDetails?.gift_card?.banner?.title}
+                            </h3>
+                            <h5 className="font-normal">
+                              {adsDetails?.gift_card?.banner?.sub_title}
+                            </h5>
+                          </div>
                         </div>
-                        <div className="mt-5 mb-4">
-                          <h3 className="mb-3">
-                            {adsDetails?.gift_card?.banner?.title}
-                          </h3>
-                          <h5 className="font-normal">
-                            {adsDetails?.gift_card?.banner?.sub_title}
-                          </h5>
+                        <div className="d-flex align-items-center">
+                          <p>{t(`Price`)}</p>
+                          <h6 className="pl-3 text-warning">
+                            {parseFloat(adsDetails?.price)}{" "}
+                            {adsDetails?.currency_type}
+                          </h6>
+                        </div>
+                        <div className="d-flex align-items-center">
+                          <p>{t("Available")}</p>
+                          <h6 className="pl-3">
+                            {parseFloat(adsDetails?.gift_card?.amount)}{" "}
+                            {adsDetails?.gift_card?.coin_type}
+                          </h6>
+                        </div>
+                        <div className="d-flex align-items-center">
+                          <p>({t("Payment Time Limit")})</p>
+                          <h6 className="pl-3">
+                            {adsDetails?.time_limit} {t("Minutes")}
+                          </h6>
                         </div>
                       </div>
-                      <div className="d-flex align-items-center">
-                        <p>{t(`Price`)}</p>
-                        <h6 className="pl-3 text-warning">
-                          {parseFloat(adsDetails?.price)}{" "}
-                          {adsDetails?.currency_type}
-                        </h6>
-                      </div>
-                      <div className="d-flex align-items-center">
-                        <p>{t("Available")}</p>
-                        <h6 className="pl-3">
-                          {parseFloat(adsDetails?.gift_card?.amount)}{" "}
-                          {adsDetails?.gift_card?.coin_type}
-                        </h6>
-                      </div>
-                      <div className="d-flex align-items-center">
-                        <p>({t("Payment Time Limit")})</p>
-                        <h6 className="pl-3">
-                          {adsDetails?.time_limit} {t("Minutes")}
-                        </h6>
-                      </div>
-                    </div>
 
-                    <div className="col-12">
-                      <div className="pt-5">
-                        <h5>{t("Terms and Conditions")}</h5>
-                        <div className="d-flex align-items-center p2pTerms pt-3">
-                          <TfiHandPointRight />
-                          <p>{adsDetails?.terms_condition}</p>
+                      <div className="col-12">
+                        <div className="pt-5">
+                          <h5>{t("Terms and Conditions")}</h5>
+                          <div className="d-flex align-items-center p2pTerms pt-3">
+                            <TfiHandPointRight />
+                            <p>{adsDetails?.terms_condition}</p>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              {Number(adsDetails?.payment_currency_type === 1) ? (
-                <div className="col-md-6 col-12 mt-4">
-                  <div>
-                    <label className="pt-3">{t(`Select payment method`)}</label>
+                {Number(adsDetails?.payment_currency_type === 1) ? (
+                  <div className="col-md-6 col-12 mt-4">
+                    <div>
+                      <label className="pt-3">
+                        {t(`Select payment method`)}
+                      </label>
 
-                    <CUstomSelect
-                      options={adsDetails?.payment_methods}
-                      handleFunction={setSelectedPayment}
-                    />
+                      <CUstomSelect
+                        options={adsDetails?.payment_methods}
+                        handleFunction={setSelectedPayment}
+                      />
+                    </div>
+                  </div>
+                ) : null}
+
+                <div className="col-12">
+                  <div className="mt-3">
+                    <button
+                      className="primary-btn-outline"
+                      onClick={buyGiftCardHandler}
+                    >
+                      {t(`Buy`)}
+                    </button>
                   </div>
                 </div>
-              ) : null}
-
-              <div className="col-12">
-                <div className="mt-3">
-                  <button
-                    className="primary-btn-outline"
-                    onClick={buyGiftCardHandler}
-                  >
-                    {t(`Buy`)}
-                  </button>
-                </div>
-              </div>
-            </>
-          )}
+              </>
+            )}
+          </div>
         </div>
       </div>
       <Footer />
