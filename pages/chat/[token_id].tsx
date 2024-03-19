@@ -240,7 +240,7 @@ export const Chat = () => {
                             </div>
                           )}
 
-                          <div className="chat-submit-bottom rounded-circle">
+                          <div className="chat-submit-bottom rounded-pill">
                             <div className="image-upload">
                               <label className="upload-file-btn press-enter">
                                 <span className="fa fa-paperclip press-enter mx-1"></span>
