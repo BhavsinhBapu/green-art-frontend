@@ -179,7 +179,7 @@ export const DynamicSubmittedFormListAction = async (
   column_name: string,
   order_by: string
 ) => {
-  setProcessing(true)
+  setProcessing(true);
   const response = await DynamicSubmittedFormList(
     per_page,
     page,
@@ -192,7 +192,6 @@ export const DynamicSubmittedFormListAction = async (
     setStillHistory(response.data);
   }
   setProcessing(false);
-
 };
 
 export const launchpadCreateUpdateTokenAction = async (
@@ -301,7 +300,13 @@ export const GetTokenListAction = async (
   order_by: string,
   search: any
 ) => {
-  const response = await GetTokenList(per_page, page, column_name, order_by, search);
+  const response = await GetTokenList(
+    per_page,
+    page,
+    column_name,
+    order_by,
+    search
+  );
   checkDisable(response);
   if (response.success === true) {
     setReport(response.data.data);
@@ -320,7 +325,6 @@ export const getEarningDetailsAction = async (
     setData(response.data);
   }
   setLoading(false);
-
 };
 
 export const getMyTokenBalanceAction = async (
@@ -330,14 +334,16 @@ export const getMyTokenBalanceAction = async (
   setProcessing: any,
   setStillHistory: any,
   column_name: string,
-  order_by: string
+  order_by: string,
+  search: any
 ) => {
-  setProcessing(true)
+  setProcessing(true);
   const response = await getMyTokenBalance(
     per_page,
     page,
     column_name,
-    order_by
+    order_by,
+    search
   );
   checkDisable(response);
   if (response.success === true) {
@@ -345,7 +351,6 @@ export const getMyTokenBalanceAction = async (
     setStillHistory(response.data);
   }
   setProcessing(false);
-
 };
 export const getTokenBuyHistoryAction = async (
   per_page: number,
@@ -357,7 +362,7 @@ export const getTokenBuyHistoryAction = async (
   order_by: string,
   search: any
 ) => {
-  setProcessing(true)
+  setProcessing(true);
   const response = await getTokenBuyHistory(
     per_page,
     page,

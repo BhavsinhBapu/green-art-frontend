@@ -37,10 +37,11 @@ export const getMyTokenBalance = async (
   per_page: any,
   page: any,
   column_name: any,
-  order_by: any
+  order_by: any,
+  search: any
 ) => {
   const { data } = await launchpadRequest.get(
-    `/my-token-balance?per_page=${per_page}&page=${page}&column_name=${column_name}&order_by=${order_by}`
+    `/my-token-balance?per_page=${per_page}&page=${page}&column_name=${column_name}&order_by=${order_by}&search=${search}`
   );
   return data;
 };

@@ -77,26 +77,28 @@ const MyWallet: NextPage = () => {
     const url = page.url.split("?")[1];
     const number = url.split("=")[1];
     getMyTokenBalanceAction(
-      10,
+      selectedLimit,
       parseInt(number),
       setHistory,
       setProcessing,
       setStillHistory,
       sortingInfo.column_name,
-      sortingInfo.order_by
+      sortingInfo.order_by,
+      search
     );
   };
   useEffect(() => {
     getMyTokenBalanceAction(
-      10,
+      selectedLimit,
       1,
       setHistory,
       setProcessing,
       setStillHistory,
       sortingInfo.column_name,
-      sortingInfo.order_by
+      sortingInfo.order_by,
+      search
     );
-  }, []);
+  }, [selectedLimit, search]);
   return (
     <>
       <div className="page-wrap rightMargin">
