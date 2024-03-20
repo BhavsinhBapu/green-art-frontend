@@ -5,9 +5,18 @@ import { SSRAuthCheck } from "middlewares/ssr-authentication-check";
 import { launchpadCreateUpdatePhaseAdditionalAction } from "state/actions/launchpad";
 import { getAdditionalPhaseDetails } from "service/launchpad";
 import { parseCookies } from "nookies";
+import PlaceTopLeft from "components/gradient/placeTopLeft";
+import PlaceBottomRight from "components/gradient/placeBottomRight";
+import MarketOverviewHeader from "components/markets/MarketOverviewHeader";
+import Footer from "components/common/footer";
+import { BiArrowBack } from "react-icons/bi";
+import { useRouter } from "next/router";
+import { IoMdAdd } from "react-icons/io";
 
 const CreateEditAdditionalPhase = ({ id, edit, data }: any) => {
   const { t } = useTranslation("common");
+
+  const router = useRouter();
 
   const [inputFields, setInputFields] = useState<any>([
     { value: "", title: "", file: "" },
@@ -39,87 +48,122 @@ const CreateEditAdditionalPhase = ({ id, edit, data }: any) => {
     if (edit) getEditData();
   }, []);
   return (
-    <div className="container">
-      <div className="row">
-        <div className="ico-tokenCreate">
-          <div className="col-12">
-            <h2>{t(`${edit ? "Edit" : "Add"}  Additional Info`)}</h2>
-            <button className="primary-btn mt-3" onClick={addFields}>
-              {t("Add Field")}
-            </button>
-          </div>
-          <div className="ico-create-form col-12">
-            <form
-              className="row"
-              onSubmit={(e) => {
-                e.preventDefault();
+    <>
+      <div>
+        <MarketOverviewHeader
+          title={t(`${edit ? "Edit" : "Add"}  Additional Info`)}
+        />
+        <PlaceTopLeft />
+        <PlaceBottomRight />
+        <div className="container-4xl">
+          <div
+            className="shadow-sm section-padding-custom wallet-card-info-container mb-5"
+            style={{
+              marginTop: "-60px",
+              marginBottom: "30px",
+            }}
+          >
+            <div className="row">
+              <div className="">
+                <div className="col-12">
+                  <div
+                    onClick={() => {
+                      router.back();
+                    }}
+                    className="cursor-pointer mb-4"
+                    style={{ fontSize: "18px" }}
+                  >
+                    <BiArrowBack />
+                    Back
+                  </div>
+                  <button
+                    className="primary-btn mt-3 d-flex justify-content-center align-items-center gap-10"
+                    onClick={addFields}
+                  >
+                    <IoMdAdd />
+                    {t("Add Field")}
+                  </button>
+                </div>
+                <div className="ico-create-form col-12">
+                  <form
+                    className="row"
+                    onSubmit={(e) => {
+                      e.preventDefault();
 
-                launchpadCreateUpdatePhaseAdditionalAction(
-                  inputFields,
-                  id,
-                  setLoading
-                );
-              }}>
-              {inputFields.map((item: any, index: any) => (
-                <>
-                  <div className="col-md-4 form-input-div">
-                    <label className="ico-label-box" htmlFor="">
-                      {t("Title")}
-                    </label>
-                    <input
-                      type="text"
-                      name="title"
-                      placeholder="Title"
-                      required
-                      value={item.title}
-                      onChange={(event) => handleFormChange(index, event)}
-                      className={`ico-input-box`}
-                    />
-                  </div>
-                  <div className="col-md-4 form-input-div">
-                    <label className="ico-label-box" htmlFor="">
-                      {t("Value")}
-                    </label>
-                    <input
-                      type="text"
-                      name="value"
-                      placeholder="Value"
-                      value={item.value}
-                      required
-                      onChange={(event) => handleFormChange(index, event)}
-                      className={`ico-input-box`}
-                    />
-                  </div>
-                  <div className="col-md-4 form-input-div">
-                    <label className="ico-label-box" htmlFor="">
-                      {t("File")}
-                    </label>
-                    <input
-                      type="file"
-                      name="file"
-                      placeholder="File"
-                      onChange={(event) => handleFormFileChange(index, event)}
-                      className={`ico-input-box`}
-                    />
-                  </div>
-                </>
-              ))}
+                      launchpadCreateUpdatePhaseAdditionalAction(
+                        inputFields,
+                        id,
+                        setLoading
+                      );
+                    }}
+                  >
+                    {inputFields.map((item: any, index: any) => (
+                      <>
+                        <div className="col-md-4 form-input-div">
+                          <label className="ico-label-box" htmlFor="">
+                            {t("Title")}
+                          </label>
+                          <input
+                            type="text"
+                            name="title"
+                            placeholder="Title"
+                            required
+                            value={item.title}
+                            onChange={(event) => handleFormChange(index, event)}
+                            className={`ico-input-box`}
+                          />
+                        </div>
+                        <div className="col-md-4 form-input-div">
+                          <label className="ico-label-box" htmlFor="">
+                            {t("Value")}
+                          </label>
+                          <input
+                            type="text"
+                            name="value"
+                            placeholder="Value"
+                            value={item.value}
+                            required
+                            onChange={(event) => handleFormChange(index, event)}
+                            className={`ico-input-box`}
+                          />
+                        </div>
+                        <div className="col-md-4 form-input-div">
+                          <label className="ico-label-box" htmlFor="">
+                            {t("File")}
+                          </label>
+                          <input
+                            type="file"
+                            name="file"
+                            placeholder="File"
+                            onChange={(event) =>
+                              handleFormFileChange(index, event)
+                            }
+                            className={`ico-input-box`}
+                          />
+                        </div>
+                      </>
+                    ))}
 
-              <div className="col-md-12 form-input-div">
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="primary-btn">
-                  {loading
-                    ? t("Loading..")
-                    : t(`${edit ? "Edit" : "Add"} aditional data`)}
-                </button>
+                    <div className="col-md-12 form-input-div">
+                      <button
+                        type="submit"
+                        disabled={loading}
+                        className="primary-btn"
+                      >
+                        {loading
+                          ? t("Loading..")
+                          : t(`${edit ? "Edit" : "Add"} aditional data`)}
+                      </button>
+                    </div>
+                  </form>
+                </div>
               </div>
-            </form>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 };
 
