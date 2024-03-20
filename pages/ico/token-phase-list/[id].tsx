@@ -157,7 +157,7 @@ const IcoTokenPhaseList = ({ id }: any) => {
             <li
               className="toolTipForPhaseList d-inline-block"
               title="Edit Phase"
-              style={{ position: "relative" }}
+              style={{ position: "relative", cursor: "pointer" }}
             >
               <IoCreateOutline size={20} />
             </li>
@@ -166,7 +166,7 @@ const IcoTokenPhaseList = ({ id }: any) => {
             <li
               className="toolTipForPhaseList ml-3 d-inline-block"
               title="Add Edit Additional phase"
-              style={{ position: "relative" }}
+              style={{ position: "relative", cursor: "pointer" }}
             >
               <AiOutlineAppstoreAdd size={20} />
             </li>
