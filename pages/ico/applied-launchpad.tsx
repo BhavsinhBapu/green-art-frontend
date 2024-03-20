@@ -22,6 +22,7 @@ import SectionLoading from "components/common/SectionLoading";
 import LaunchpadHeader from "components/ico/LaunchpadHeader";
 import PlaceTopLeft from "components/gradient/placeTopLeft";
 import PlaceBottomRight from "components/gradient/placeBottomRight";
+import CustomDataTable from "components/Datatable";
 const customStyles = {
   rows: {
     style: {
@@ -34,7 +35,6 @@ const customStyles = {
       paddingLeft: "8px", // override the cell padding for head cells
       paddingRight: "8px",
       // backgroundColor: "var(--glass-color-bg-1)",
-
     },
   },
   cells: {
@@ -47,6 +47,8 @@ const customStyles = {
 
 const Profile: NextPage = () => {
   const [history, setHistory] = useState<any>([]);
+  const [selectedLimit, setSelectedLimit] = useState<any>("10");
+
   const { t } = useTranslation("common");
   const [search, setSearch] = useState<any>("");
   const [processing, setProcessing] = useState<boolean>(false);
@@ -57,25 +59,24 @@ const Profile: NextPage = () => {
   const [stillHistory, setStillHistory] = useState<any>([]);
   const columns = [
     {
-      name: t("Id"),
-      selector: (row: any) => row?.unique_id,
+      Header: t("Id"),
+      Cell: ({ row }: any) => row?.original?.unique_id,
       sortable: true,
     },
     {
-      name: t("Updated At"),
-      selector: (row: any) => row?.updated_at,
+      Header: t("Updated At"),
+      Cell: ({ row }: any) => row?.original?.updated_at,
       sortable: true,
     },
 
     {
-      name: t("Status"),
-      selector: (row: any) => row?.status,
+      Header: t("Status"),
       sortable: true,
-      cell: (row: any) => (
+      Cell: ({ row }: any) => (
         <div>
-          {row.status === 0 ? (
+          {row.original?.status === 0 ? (
             <span className="text-warning">{t("Pending")}</span>
-          ) : row.status === 1 ? (
+          ) : row.original?.status === 1 ? (
             <span className="text-success"> {t("Success")}</span>
           ) : (
             <span className="text-danger">{t("Failed")}</span>
@@ -84,24 +85,28 @@ const Profile: NextPage = () => {
       ),
     },
     {
-      name: t("Date"),
-      selector: (row: any) =>
-        moment(row.created_at).format("YYYY-MM-DD HH:mm:ss"),
+      Header: t("Date"),
+      Cell: ({ row }: any) =>
+        moment(row.original?.created_at).format("YYYY-MM-DD HH:mm:ss"),
       sortable: true,
     },
     {
-      name: t("Actions"),
-      selector: (row: any) => row?.status,
+      Header: t("Actions"),
       sortable: true,
-      cell: (row: any) => (
+      Cell: ({ row }: any) => (
         <div className="blance-text">
-          {row?.status === 1 && row?.token_create_status === 1 && (
-            <Link href={`/ico/create-edit-token/${row?.id}`}>
-              <li className="toolTip" title="Create Token">
-                <GiToken size={25} />
-              </li>
-            </Link>
-          )}
+          {row?.original?.status === 1 &&
+            row?.original?.token_create_status === 1 && (
+              <Link href={`/ico/create-edit-token/${row?.original?.id}`}>
+                <li
+                  className="toolTipForPhaseList d-inline-block"
+                  title="Create Token"
+                  style={{ position: "relative", cursor: "pointer" }}
+                >
+                  <GiToken size={25} />
+                </li>
+              </Link>
+            )}
         </div>
       ),
     },
@@ -110,26 +115,28 @@ const Profile: NextPage = () => {
     const url = page.url.split("?")[1];
     const number = url.split("=")[1];
     DynamicSubmittedFormListAction(
-      10,
+      selectedLimit,
       parseInt(number),
       setHistory,
       setProcessing,
       setStillHistory,
       sortingInfo.column_name,
-      sortingInfo.order_by
+      sortingInfo.order_by,
+      search
     );
   };
   useEffect(() => {
     DynamicSubmittedFormListAction(
-      10,
+      selectedLimit,
       1,
       setHistory,
       setProcessing,
       setStillHistory,
       sortingInfo.column_name,
-      sortingInfo.order_by
+      sortingInfo.order_by,
+      search
     );
-  }, []);
+  }, [selectedLimit, search]);
 
   return (
     <>
@@ -155,83 +162,54 @@ const Profile: NextPage = () => {
               <div className="asset-balances-left">
                 <div className="section-wrapper">
                   <div className="tableScroll">
+                    <CustomDataTable
+                      columns={columns}
+                      data={history}
+                      selectedLimit={selectedLimit}
+                      setSelectedLimit={setSelectedLimit}
+                      search={search}
+                      setSearch={setSearch}
+                      processing={processing}
+                      isOverflow={true}
+                    />
                     <div
-                      id="assetBalances_wrapper"
-                      className="dataTables_wrapper no-footer"
+                      className="pagination-wrapper"
+                      id="assetBalances_paginate"
                     >
-                      <div className="dataTables_head">
-                        <div id="table_filter" className="dataTables_filter">
-                          <label>
-                            {t("Search:")}
-                            <input
-                              type="search"
-                              className="data_table_input"
-                              aria-controls="table"
-                              value={search}
-                              onChange={(e) => {
-                                handleSwapHistorySearch(
-                                  e,
-                                  setSearch,
-                                  stillHistory,
-                                  setHistory
-                                );
+                      <span>
+                        {stillHistory?.links?.map((link: any, index: number) =>
+                          link.label === "&laquo; Previous" ? (
+                            <a
+                              className="paginate-button"
+                              onClick={() => {
+                                if (link.url) LinkTopaginationString(link);
                               }}
-                            />
-                          </label>
-                        </div>
-                      </div>
+                              key={index}
+                            >
+                              <i className="fa fa-angle-left"></i>
+                            </a>
+                          ) : link.label === "Next &raquo;" ? (
+                            <a
+                              className="paginate-button"
+                              onClick={() => LinkTopaginationString(link)}
+                              key={index}
+                            >
+                              <i className="fa fa-angle-right"></i>
+                            </a>
+                          ) : (
+                            <a
+                              className="paginate_button paginate-number"
+                              aria-controls="assetBalances"
+                              data-dt-idx="1"
+                              onClick={() => LinkTopaginationString(link)}
+                              key={index}
+                            >
+                              {link.label}
+                            </a>
+                          )
+                        )}
+                      </span>
                     </div>
-                    {processing ? (
-                      <SectionLoading />
-                    ) : (
-                      <>
-                        <DataTable
-                          columns={columns}
-                          data={history}
-                          customStyles={customStyles}
-                        />
-                        <div
-                          className="pagination-wrapper"
-                          id="assetBalances_paginate"
-                        >
-                          <span>
-                            {stillHistory?.links?.map(
-                              (link: any, index: number) =>
-                                link.label === "&laquo; Previous" ? (
-                                  <a
-                                    className="paginate-button"
-                                    onClick={() => {
-                                      if (link.url)
-                                        LinkTopaginationString(link);
-                                    }}
-                                    key={index}
-                                  >
-                                    <i className="fa fa-angle-left"></i>
-                                  </a>
-                                ) : link.label === "Next &raquo;" ? (
-                                  <a
-                                    className="paginate-button"
-                                    onClick={() => LinkTopaginationString(link)}
-                                    key={index}
-                                  >
-                                    <i className="fa fa-angle-right"></i>
-                                  </a>
-                                ) : (
-                                  <a
-                                    className="paginate_button paginate-number"
-                                    aria-controls="assetBalances"
-                                    data-dt-idx="1"
-                                    onClick={() => LinkTopaginationString(link)}
-                                    key={index}
-                                  >
-                                    {link.label}
-                                  </a>
-                                )
-                            )}
-                          </span>
-                        </div>
-                      </>
-                    )}
                   </div>
                 </div>
               </div>
