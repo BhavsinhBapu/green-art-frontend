@@ -188,10 +188,11 @@ export const IcoTokenPhaseList = async (
   page: number,
   column_name: string,
   order_by: string,
-  id: any
+  id: any,
+  search: string
 ) => {
   const { data } = await launchpadRequest.get(
-    `/ico-token-phase-list?ico_token_id=${id}&per_page=${per_page}&page=${page}&column_name=${column_name}&order_by=${order_by}`
+    `/ico-token-phase-list?ico_token_id=${id}&per_page=${per_page}&page=${page}&column_name=${column_name}&order_by=${order_by}&search=${search}`
   );
   return data;
 };

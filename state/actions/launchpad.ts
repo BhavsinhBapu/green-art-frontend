@@ -275,20 +275,25 @@ export const IcoTokenPhaseListAction = async (
   setStillHistory: any,
   column_name: string,
   order_by: string,
-  id: number
+  id: number,
+  search: string
 ) => {
+  setProcessing(true);
   const response = await IcoTokenPhaseList(
     per_page,
     page,
     column_name,
     order_by,
-    id
+    id,
+    search
   );
   checkDisable(response);
   if (response.success === true) {
     setReport(response.data.data);
     setStillHistory(response.data);
+    setProcessing(false);
   }
+  setProcessing(false);
 };
 export const GetTokenListAction = async (
   per_page: number,

@@ -16450,3 +16450,17 @@ input:checked + .gift-card-buy-slider:before {
   justify-content: center;
   gap: 10px;
 }
+
+.toolTipForPhaseList:hover::after {
+  background: var(--primary-color);
+  border-radius: 4px;
+  bottom: 100%;
+  content: attr(title);
+  display: block;
+  right: 0;
+  padding: 5px 10px;
+  position: absolute;
+  z-index: 1;
+  font-size: 12px;
+  min-width: 75px;
+}
