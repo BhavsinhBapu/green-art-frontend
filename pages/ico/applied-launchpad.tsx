@@ -171,6 +171,7 @@ const Profile: NextPage = () => {
                       setSearch={setSearch}
                       processing={processing}
                       isOverflow={true}
+                      isSearchable={false}
                     />
                     <div
                       className="pagination-wrapper"
