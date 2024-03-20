@@ -980,13 +980,15 @@ client-area
 }
 
 .hero-banner-area .banner-title {
-  font-size: 73px;
+  font-size: 56px;
   font-weight: 700;
+  line-height: 130%;
   text-transform: capitalize;
 }
 
 .hero-banner-area .banner-content {
   margin-bottom: 20px;
+  margin-top: 12px;
   font-size: 16px;
   font-weight: 500;
 }
