@@ -8,14 +8,17 @@ const BottomDetails = ({ landing }: any) => {
     <div>
       {" "}
       {parseInt(landing.landing_fifth_section_status) === 1 && (
-        <section className="trade-anywhere-area">
+        <section className="trade-anywhere-area bg-transparent">
           <div className="placeTopLeft">
             <img
               src="https://assets-global.website-files.com/60c8db180183804ef2b45120/60cb6b0ac3e71fa837cb2929_hero-glow.svg"
               alt="Hero Banner"
             />
           </div>
-          <div className="container-4xl trade-anywhere-container">
+          <div
+            className="container-4xl trade-anywhere-container"
+            style={{ borderRadius: "27px" }}
+          >
             <div className="section-title">
               <h2 className="title"> {landing?.secure_trade_title} </h2>
             </div>
