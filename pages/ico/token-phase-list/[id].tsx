@@ -1,3 +1,4 @@
+import CustomDataTable from "components/Datatable";
 import Footer from "components/common/footer";
 import PlaceBottomRight from "components/gradient/placeBottomRight";
 import PlaceTopLeft from "components/gradient/placeTopLeft";
@@ -46,6 +47,7 @@ const IcoTokenPhaseList = ({ id }: any) => {
   const { t } = useTranslation("common");
   const [search, setSearch] = useState<any>("");
   const [processing, setProcessing] = useState<boolean>(false);
+  const [selectedLimit, setSelectedLimit] = useState<any>("10");
   const [sortingInfo, setSortingInfo] = useState<any>({
     column_name: "created_at",
     order_by: "desc",
@@ -53,67 +55,79 @@ const IcoTokenPhaseList = ({ id }: any) => {
   const [stillHistory, setStillHistory] = useState<any>([]);
   const columns = [
     {
-      name: t("Phase title"),
-      selector: (row: any) => row?.phase_title,
+      Header: t("Phase title"),
+      accessor: "phase_title",
+      Cell: ({ row }: any) => (
+        <div
+          style={{
+            wordWrap: "break-word",
+            whiteSpace: "break-spaces",
+          }}
+        >
+          <p>{row?.original?.phase_title}</p>
+        </div>
+      ),
       sortable: true,
     },
     {
-      name: t("Token name"),
-      selector: (row: any) => row?.coin_type,
+      Header: t("Token name"),
+      accessor: "coin_type",
       sortable: true,
     },
     {
-      name: t("Total Token Supply"),
-      // selector: (row: any) => parseFloat(row.total_token_supply).toFixed(5),
+      Header: t("Total Token Supply"),
       sortable: true,
-      cell: (row: any) => (
+      Cell: ({ row }: any) => (
         <div className="blance-text">
-          {parseFloat(row.total_token_supply).toFixed(5)} {row?.coin_type}
+          {parseFloat(row?.original?.total_token_supply).toFixed(5)}{" "}
+          {row?.original?.coin_type}
         </div>
       ),
     },
     {
-      name: t("Available Token Supply"),
+      Header: t("Available Token Supply"),
       sortable: true,
-      cell: (row: any) => (
+      Cell: ({ row }: any) => (
         <div className="blance-text">
-          {parseFloat(row?.available_token_supply).toFixed(4)} {row?.coin_type}
+          {parseFloat(row?.original?.available_token_supply).toFixed(4)}{" "}
+          {row?.original?.coin_type}
         </div>
       ),
     },
     {
-      name: t("Coin Price"),
+      Header: t("Coin Price"),
       sortable: true,
-      cell: (row: any) => (
+      Cell: ({ row }: any) => (
         <div className="blance-text">
-          {row?.coin_price} {row?.coin_currency}
+          {row?.original?.coin_price} {row?.original?.coin_currency}
         </div>
       ),
     },
     {
-      name: t("Status"),
-      selector: (row: any) => row?.status,
+      Header: t("Status"),
+      selector: ({ row }: any) => row?.status,
       sortable: true,
-      cell: (row: any) => (
-        <div>
+      Cell: ({ row }: any) => (
+        <div style={{ position: "relative" }}>
           <li
             className="toolTip ml-3"
-            title={row.status === 0 ? "Turn on" : "Turn off"}
+            title={row?.original?.status === 0 ? "Turn on" : "Turn off"}
             onClick={async () => {
-              await SaveIcoPhaseStatus(row.id);
+              await SaveIcoPhaseStatus(row?.original?.id);
               await IcoTokenPhaseListAction(
-                10,
+                selectedLimit,
                 1,
                 setHistory,
                 setProcessing,
                 setStillHistory,
                 sortingInfo.column_name,
                 sortingInfo.order_by,
-                id
+                id,
+                search
               );
             }}
           >
-            {row.status === 0 ? (
+            {row?.original?.status === 0 ? (
               <BsToggle2Off size={20} />
             ) : (
               <BsToggle2On size={20} />
@@ -123,29 +137,37 @@ const IcoTokenPhaseList = ({ id }: any) => {
       ),
     },
     {
-      name: t("Start Date"),
-      selector: (row: any) =>
-        moment(row.start_date).format("YYYY-MM-DD HH:mm:ss"),
+      Header: t("Start Date"),
+      Cell: ({ row }: any) =>
+        moment(row?.original?.start_date).format("YYYY-MM-DD HH:mm:ss"),
       sortable: true,
     },
     {
-      name: t("End Date"),
-      selector: (row: any) =>
-        moment(row.end_date).format("YYYY-MM-DD HH:mm:ss"),
+      Header: t("End Date"),
+      Cell: ({ row }: any) =>
+        moment(row?.original?.end_date).format("YYYY-MM-DD HH:mm:ss"),
       sortable: true,
     },
     {
-      name: t("Actions"),
+      Header: t("Actions"),
       sortable: true,
-      cell: (row: any) => (
+      Cell: ({ row }: any) => (
         <div className="blance-text">
-          <Link href={`/ico/create-edit-phase/${row?.id}?edit=true`}>
-            <li className="toolTip" title="Edit Phase">
+          <Link href={`/ico/create-edit-phase/${row?.original?.id}?edit=true`}>
+            <li
+              className="toolTipForPhaseList d-inline-block"
+              title="Edit Phase"
+              style={{ position: "relative", cursor: "pointer" }}
+            >
               <IoCreateOutline size={20} />
             </li>
           </Link>
-          <Link href={`/ico/create-edit-additional-phase/${row?.id}`}>
-            <li className="toolTip ml-3" title="Add Edit Additional phase">
+          <Link href={`/ico/create-edit-additional-phase/${row?.original?.id}`}>
+            <li
+              className="toolTipForPhaseList ml-3 d-inline-block"
+              title="Add Edit Additional phase"
+              style={{ position: "relative", cursor: "pointer" }}
+            >
               <AiOutlineAppstoreAdd size={20} />
             </li>
           </Link>
@@ -157,42 +179,38 @@ const IcoTokenPhaseList = ({ id }: any) => {
     const url = page.url.split("?")[1];
     const number = url.split("=")[1];
     IcoTokenPhaseListAction(
-      10,
+      selectedLimit,
       parseInt(number),
       setHistory,
       setProcessing,
       setStillHistory,
       sortingInfo.column_name,
       sortingInfo.order_by,
-      id
+      id,
+      search
     );
   };
   useEffect(() => {
     IcoTokenPhaseListAction(
-      10,
+      selectedLimit,
       1,
       setHistory,
       setProcessing,
       setStillHistory,
       sortingInfo.column_name,
       sortingInfo.order_by,
-      id
+      id,
+      search
     );
-  }, []);
+  }, [selectedLimit, search]);
   return (
     <>
       <div className="page-wrap">
-        {/* <LaunchpadSidebar /> */}
         <div className="page-main-content">
           <LaunchpadHeader title={t("Token Phase List")} />
           <PlaceTopLeft />
           <PlaceBottomRight />
           <div className="container-4xl">
-            {/* <div className="section-top-wrap mb-25">
-              <div className="profle-are-top">
-                <h2 className="section-top-title">{t("Token Phase List")}</h2>
-              </div>
-            </div> */}
             <div
               className="asset-balances-area shadow-sm section-padding-custom wallet-card-info-container"
               style={{
@@ -201,77 +219,54 @@ const IcoTokenPhaseList = ({ id }: any) => {
               }}
             >
               <div className="asset-balances-left">
-                <div className="section-wrapper">
-                  <div className="tableScroll">
-                    <div
-                      id="assetBalances_wrapper"
-                      className="dataTables_wrapper no-footer"
-                    >
-                      <div className="dataTables_head">
-                        <div id="table_filter" className="dataTables_filter">
-                          <label>
-                            {t("Search:")}
-                            <input
-                              type="search"
-                              className="data_table_input"
-                              aria-controls="table"
-                              value={search}
-                              onChange={(e) => {
-                                handleSwapHistorySearch(
-                                  e,
-                                  setSearch,
-                                  stillHistory,
-                                  setHistory
-                                );
-                              }}
-                            />
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                    <DataTable
-                      columns={columns}
-                      data={history}
-                      customStyles={customStyles}
-                    />
-                    <div
-                      className="pagination-wrapper"
-                      id="assetBalances_paginate"
-                    >
-                      <span>
-                        {stillHistory?.links?.map((link: any, index: number) =>
-                          link.label === "&laquo; Previous" ? (
-                            <a
-                              className="paginate-button"
-                              onClick={() => {
-                                if (link.url) LinkTopaginationString(link);
-                              }}
-                              key={index}
-                            >
-                              <i className="fa fa-angle-left"></i>
-                            </a>
-                          ) : link.label === "Next &raquo;" ? (
-                            <a
-                              className="paginate-button"
-                              onClick={() => LinkTopaginationString(link)}
-                              key={index}
-                            >
-                              <i className="fa fa-angle-right"></i>
-                            </a>
-                          ) : (
-                            <a
-                              className="paginate_button paginate-number"
-                              aria-controls="assetBalances"
-                              data-dt-idx="1"
-                              onClick={() => LinkTopaginationString(link)}
-                              key={index}
-                            >
-                              {link.label}
-                            </a>
-                          )
-                        )}
-                      </span>
-                    </div>
+                <div className="tableScroll">
+                  <CustomDataTable
+                    columns={columns}
+                    data={history}
+                    selectedLimit={selectedLimit}
+                    setSelectedLimit={setSelectedLimit}
+                    search={search}
+                    setSearch={setSearch}
+                    processing={processing}
+                    isOverflow={true}
+                  />
+                  <div
+                    className="pagination-wrapper"
+                    id="assetBalances_paginate"
+                  >
+                    <span>
+                      {stillHistory?.links?.map((link: any, index: number) =>
+                        link.label === "&laquo; Previous" ? (
+                          <a
+                            className="paginate-button"
+                            onClick={() => {
+                              if (link.url) LinkTopaginationString(link);
+                            }}
+                            key={index}
+                          >
+                            <i className="fa fa-angle-left"></i>
+                          </a>
+                        ) : link.label === "Next &raquo;" ? (
+                          <a
+                            className="paginate-button"
+                            onClick={() => LinkTopaginationString(link)}
+                            key={index}
+                          >
+                            <i className="fa fa-angle-right"></i>
+                          </a>
+                        ) : (
+                          <a
+                            className="paginate_button paginate-number"
+                            aria-controls="assetBalances"
+                            data-dt-idx="1"
+                            onClick={() => LinkTopaginationString(link)}
+                            key={index}
+                          >
+                            {link.label}
+                          </a>
+                        )
+                      )}
+                    </span>
                   </div>
                 </div>
               </div>

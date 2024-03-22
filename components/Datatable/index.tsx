@@ -18,6 +18,7 @@ const CustomDataTable = ({
   processing,
   verticalAlignData = "top",
   isOverflow = false,
+  isSearchable = true,
 }: any) => {
   const dataColumns = useMemo(() => columns, [columns]);
   const tableData = useMemo(() => data, [data]);
@@ -43,7 +44,7 @@ const CustomDataTable = ({
   const { globalFilter }: any = state;
 
   return (
-    <div style={{overflowX: 'auto'}}>
+    <div style={{ overflowX: "auto" }}>
       <div id="assetBalances_wrapper" className="dataTables_wrapper no-footer">
         <div className="dataTables_head">
           <div className="dataTables_length" id="assetBalances_length">
@@ -66,19 +67,21 @@ const CustomDataTable = ({
               </select>
             </label>
           </div>
-          <div id="table_filter" className="dataTables_filter_class">
-            <label>
-              <AiOutlineSearch />
-              <input
-                type="search"
-                className="data_table_input bg-transparent"
-                aria-controls="table"
-                placeholder="Search..."
-                value={search || ""}
-                onChange={(e) => setSearch(e.target.value)}
-              />
-            </label>
-          </div>
+          {isSearchable && (
+            <div id="table_filter" className="dataTables_filter_class">
+              <label>
+                <AiOutlineSearch />
+                <input
+                  type="search"
+                  className="data_table_input bg-transparent"
+                  aria-controls="table"
+                  placeholder="Search..."
+                  value={search || ""}
+                  onChange={(e) => setSearch(e.target.value)}
+                />
+              </label>
+            </div>
+          )}
         </div>
       </div>
       {processing ? (

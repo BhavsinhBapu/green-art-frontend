@@ -14,40 +14,91 @@ import SectionLoading from "components/common/SectionLoading";
 import LaunchpadHeader from "components/ico/LaunchpadHeader";
 import PlaceTopLeft from "components/gradient/placeTopLeft";
 import PlaceBottomRight from "components/gradient/placeBottomRight";
+import moment from "moment";
+import CustomDataTable from "components/Datatable";
 
 const MyWallet: NextPage = () => {
   const [history, setHistory] = useState<any>([]);
   const { t } = useTranslation("common");
+  const columns = [
+    {
+      Header: t("Asset"),
+      accessor: "name",
+      Cell: ({ row }: any) => (
+        <div className="asset">
+          <img
+            className="asset-icon"
+            src={row?.original?.image_path || "/bitcoin.png"}
+            alt=""
+          />
+          <span className="asset-name pl-2">{row?.original?.name}</span>
+        </div>
+      ),
+    },
+
+    {
+      Header: t("Symbol"),
+      Cell: ({ row }: any) => (
+        <span className="symbol">{row?.original?.coin_type}</span>
+      ),
+    },
+    {
+      Header: t("Available Balance"),
+      Cell: ({ row }: any) => (
+        <div className="blance-text">
+          <span className="blance">
+            {parseFloat(row?.original?.balance).toFixed(8)}
+          </span>
+        </div>
+      ),
+    },
+
+    {
+      Header: t("Address"),
+      accessor: "address",
+    },
+
+    {
+      Header: t("Date"),
+      accessor: "created_at",
+      Cell: ({ cell }: any) => moment(cell.value).format("YYYY-MM-DD HH:mm:ss"),
+    },
+  ];
+  const [search, setSearch] = useState<any>("");
+  const [selectedLimit, setSelectedLimit] = useState<any>("10");
   const [processing, setProcessing] = useState<boolean>(false);
   const [sortingInfo, setSortingInfo] = useState<any>({
     column_name: "created_at",
     order_by: "desc",
   });
   const [stillHistory, setStillHistory] = useState<any>([]);
+
   const LinkTopaginationString = (page: any) => {
     const url = page.url.split("?")[1];
     const number = url.split("=")[1];
     getMyTokenBalanceAction(
-      10,
+      selectedLimit,
       parseInt(number),
       setHistory,
       setProcessing,
       setStillHistory,
       sortingInfo.column_name,
-      sortingInfo.order_by
+      sortingInfo.order_by,
+      search
     );
   };
   useEffect(() => {
     getMyTokenBalanceAction(
-      10,
+      selectedLimit,
       1,
       setHistory,
       setProcessing,
       setStillHistory,
       sortingInfo.column_name,
-      sortingInfo.order_by
+      sortingInfo.order_by,
+      search
     );
-  }, []);
+  }, [selectedLimit, search]);
   return (
     <>
       <div className="page-wrap rightMargin">
@@ -65,7 +116,7 @@ const MyWallet: NextPage = () => {
               </div>
             </div> */}
             <div
-              className="asset-balances-area cstm-loader-area shadow-sm section-padding-custom wallet-card-info-container"
+              className="asset-balances-area cstm-loader-area shadow-sm  wallet-card-info-container"
               style={{
                 marginTop: "-60px",
                 marginBottom: "30px",
@@ -73,129 +124,16 @@ const MyWallet: NextPage = () => {
             >
               <div className="asset-balances-left">
                 <div className="section-wrapper">
-                  <div
-                    id="assetBalances_wrapper"
-                    className="dataTables_wrapper no-footer"
-                  >
-                    <div className="dataTables_head">
-                      <div
-                        className="dataTables_length"
-                        id="assetBalances_length"
-                      >
-                        <label className="">
-                          {t("Show")}
-                          <select
-                            name="assetBalances_length"
-                            aria-controls="assetBalances"
-                            className=""
-                            // onChange={async (e) => {
-                            //   await getWalletLists(
-                            //     "/wallet-list?page=1&per_page=" + e.target.value
-                            //   );
-                            // }}
-                          >
-                            <option value="15">15</option>
-                            <option value="25">25</option>
-                            <option value="50">50</option>
-                            <option value="100">100</option>
-                          </select>
-                        </label>
-                      </div>
-                      <div id="table_filter" className="dataTables_filter">
-                        <label>
-                          {t("Search")}:
-                          <input
-                            type="search"
-                            className="data_table_input"
-                            placeholder=""
-                            aria-controls="table"
-                            // onChange={(e) =>
-                            //   SearchObjectArrayFuesJS(
-                            //     walletList,
-                            //     setChangeable,
-                            //     e.target.value
-                            //   )
-                            // }
-                          />
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="table-responsive tableScroll">
-                    {processing ? (
-                      <SectionLoading />
-                    ) : (
-                      <table
-                        id="assetBalances"
-                        className="table table-borderless secendary-table asset-balances-table"
-                      >
-                        <thead>
-                          <tr>
-                            <th className="px-3 py-2" scope="col">
-                              {t("Asset")}
-                            </th>
-                            <th className="px-3 py-2" scope="col">
-                              {t("Symbol")}
-                            </th>
-                            <th className="px-3 py-2" scope="col">
-                              {t("Available Balance")}
-                            </th>
-                            <th className="px-3 py-2" scope="col">
-                              {t("Address")}
-                            </th>
-                            <th className="px-3 py-2" scope="col">
-                              {t("Date")}
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {history?.map((item: any, index: number) => (
-                            <tr id="" key={index}>
-                              <td className="px-3 py-2">
-                                <div className="asset">
-                                  <img
-                                    className="asset-icon"
-                                    src={item?.image_path || "/bitcoin.png"}
-                                    alt=""
-                                  />
-                                  <span className="asset-name">
-                                    {item?.name}
-                                  </span>
-                                </div>
-                              </td>
-                              <td className="px-3 py-2">
-                                <span className="symbol">
-                                  {item?.coin_type}
-                                </span>
-                              </td>
-                              <td className="px-3 py-2">
-                                <div className="blance-text">
-                                  <span className="blance">
-                                    {parseFloat(item?.balance).toFixed(8)}
-                                  </span>
-                                </div>
-                              </td>
-                              <td className="px-3 py-2">
-                                <div className="blance-text">
-                                  <span className="blance">
-                                    {/* @ts-ignore */}
-                                    {item?.address}
-                                  </span>
-                                </div>
-                              </td>
-                              <td className="px-3 py-2">
-                                <div className="blance-text">
-                                  <span className="blance">
-                                    {/* @ts-ignore */}
-                                    {item?.created_at}
-                                  </span>
-                                </div>
-                              </td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    )}
+                  <div className="tableScroll">
+                    <CustomDataTable
+                      columns={columns}
+                      data={history}
+                      selectedLimit={selectedLimit}
+                      setSelectedLimit={setSelectedLimit}
+                      search={search}
+                      setSearch={setSearch}
+                      processing={processing}
+                    />
                   </div>
                   {history.length > 0 && (
                     <div

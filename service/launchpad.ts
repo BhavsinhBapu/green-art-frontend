@@ -37,10 +37,11 @@ export const getMyTokenBalance = async (
   per_page: any,
   page: any,
   column_name: any,
-  order_by: any
+  order_by: any,
+  search: any
 ) => {
   const { data } = await launchpadRequest.get(
-    `/my-token-balance?per_page=${per_page}&page=${page}&column_name=${column_name}&order_by=${order_by}`
+    `/my-token-balance?per_page=${per_page}&page=${page}&column_name=${column_name}&order_by=${order_by}&search=${search}`
   );
   return data;
 };
@@ -100,10 +101,11 @@ export const DynamicSubmittedFormList = async (
   per_page: number,
   page: number,
   column_name: string,
-  order_by: string
+  order_by: string,
+  search: string
 ) => {
   const { data } = await launchpadRequest.get(
-    `/submitted-dynamic-form-list?per_page=${per_page}&page=${page}&column_name=${column_name}&order_by=${order_by}`
+    `/submitted-dynamic-form-list?per_page=${per_page}&page=${page}&column_name=${column_name}&order_by=${order_by}&search=${search}`
   );
   return data;
 };
@@ -187,10 +189,11 @@ export const IcoTokenPhaseList = async (
   page: number,
   column_name: string,
   order_by: string,
-  id: any
+  id: any,
+  search: string
 ) => {
   const { data } = await launchpadRequest.get(
-    `/ico-token-phase-list?ico_token_id=${id}&per_page=${per_page}&page=${page}&column_name=${column_name}&order_by=${order_by}`
+    `/ico-token-phase-list?ico_token_id=${id}&per_page=${per_page}&page=${page}&column_name=${column_name}&order_by=${order_by}&search=${search}`
   );
   return data;
 };

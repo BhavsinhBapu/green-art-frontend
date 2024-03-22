@@ -18,6 +18,8 @@ import moment from "moment";
 import MarketOverviewHeader from "components/markets/MarketOverviewHeader";
 import PlaceTopLeft from "components/gradient/placeTopLeft";
 import PlaceBottomRight from "components/gradient/placeBottomRight";
+import { BiArrowBack } from "react-icons/bi";
+import { IoIosSend } from "react-icons/io";
 let socketCall = 0;
 
 export const Chat = () => {
@@ -128,6 +130,15 @@ export const Chat = () => {
                   <div className="asset-balances-left">
                     <div className="border-0">
                       <div className="live-chat w-full shadow-sm section-padding-custom wallet-card-info-container">
+                        <h5
+                          onClick={() => {
+                            router.back();
+                          }}
+                          className="cursor-pointer mb-4 d-flex align-items-center"
+                        >
+                          <BiArrowBack />
+                          Back
+                        </h5>
                         <div className="chat-inner">
                           <div className="chat-header">
                             {/* <img
@@ -229,7 +240,7 @@ export const Chat = () => {
                             </div>
                           )}
 
-                          <div className="chat-submit-bottom">
+                          <div className="chat-submit-bottom rounded-pill">
                             <div className="image-upload">
                               <label className="upload-file-btn press-enter">
                                 <span className="fa fa-paperclip press-enter mx-1"></span>
@@ -260,13 +271,17 @@ export const Chat = () => {
                               />
                             </div>
 
-                            <div className="submit-button ml-2">
+                            <div
+                              className="submit-button ml-2"
+                              style={{ width: "50px", height: "50px" }}
+                            >
                               <button
-                                className="chat-button"
+                                className="chat-button rounded-circle align-items-center justify-content-center"
+                                style={{ display: "grid" }}
                                 type="submit"
                                 disabled={sendFile || message ? false : true}
                               >
-                                {t("Send")}
+                                <IoIosSend color="#ffffff" size={24} />
                               </button>
                             </div>
                           </div>
