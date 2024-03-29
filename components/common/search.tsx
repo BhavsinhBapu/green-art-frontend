@@ -22,8 +22,12 @@ export const Search = ({ searchFunction, linkName }: any) => {
       <div className="row my-4 my-md-0">
         <div className="col-12">
           <div className="searchBox position-relative">
-            <input type="text" onChange={onSearch} />
-            <button>
+            <input
+              type="text"
+              onChange={onSearch}
+              className="bg-primary-card-color  px-4"
+            />
+            <button className="bg-primary-card-color ">
               <MdOutlineSearch />
             </button>
             {suggestions && (
@@ -31,7 +35,8 @@ export const Search = ({ searchFunction, linkName }: any) => {
                 {results?.map((item: any) => (
                   <Link
                     key={item.post_id}
-                    href={`/${linkName}/` + item.post_id}>
+                    href={`/${linkName}/` + item.post_id}
+                  >
                     <p className="px-2 suggestionsList" key={item.title}>
                       {item.title}
                     </p>

@@ -13,26 +13,41 @@ const SliderCover = ({ featuredblogs }: any) => {
     arrows: false,
     autoplay: true,
   };
+  console.log("featuredblogs", featuredblogs);
   return (
     <div className="mt-4">
       <Slider className="blogSlider" {...settings}>
         {featuredblogs?.map((featuredblog: any, index: any) => (
           <Link href={"/blog/" + featuredblog?.post_id} key={index}>
-            <a>
-              <div className="row mt-4">
+            <a
+              style={{
+                maxHeight: "350px",
+                borderRadius: "10px",
+                overflow: "hidden",
+              }}
+              className=" mt-4 glass-color-bg-custom d-block "
+            >
+              <div className="row">
                 <div className="col-md-5">
                   <img
                     className="SliderBlog rounded"
                     src={featuredblog?.thumbnail}
                   />
                 </div>
-                <div className="col-md-7 blogSliderText">
+                <div className="col-md-7 blogSliderText p-3">
                   <h1 className="pt-4 pb-3 pt-md-0 titleText">
                     {featuredblog?.title}
                   </h1>
-                  <small>
-                    {formateDateMunite(featuredblog?.created_at)}
-                  </small>
+                  <p>
+                    {" "}
+                    {featuredblog?.description?.length > 100
+                      ? `${featuredblog?.description.slice(0, 100)}...`
+                      : featuredblog?.description}
+                  </p>
+                  <p>
+                    {" "}
+                    <small>{formateDateMunite(featuredblog?.created_at)}</small>
+                  </p>
                 </div>
               </div>
             </a>

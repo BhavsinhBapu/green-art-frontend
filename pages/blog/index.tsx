@@ -20,7 +20,8 @@ const Index = ({}: any) => {
 
   const getIt = async () => {
     setLoading(true);
-    const { FeaturedBlogs, RecentBlogs, Categories } = await BlogHomePageAction();
+    const { FeaturedBlogs, RecentBlogs, Categories } =
+      await BlogHomePageAction();
     setfeaturedBlogs(FeaturedBlogs.data);
     setRecentBlogState(RecentBlogs.data.data);
     setcategories(Categories.data);
@@ -33,10 +34,32 @@ const Index = ({}: any) => {
   }, []);
   return (
     <>
-      <div className="overall-margin-top-cls">
+      <div className="">
+        <div className="my-0 wallet-overview-header-main bg_cover_dashboard">
+          <div className="profle-are-top container-4xl">
+            <h2 className="wallet-overview-header-title text-center">
+              {BlogNewsSettings?.blog_feature_heading}
+            </h2>
+            <div className="row">
+              <div className="col-md-8 offset-md-2">
+                <p className="text-center text-white">
+                  {BlogNewsSettings?.blog_feature_description}
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-5 row">
+              <div className="col-md-6 offset-md-3">
+                {parseInt(BlogNewsSettings?.blog_search_enable) === 1 && (
+                  <Search searchFunction={BlogSearchAction} linkName={"blog"} />
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
         <PlaceTopLeft />
         <PlaceBottomRight />
-        <div className="container ">
+        {/* <div className="container ">
           <div className="row align-items-center">
             <div className="col-md-7">
               <h2>{BlogNewsSettings?.blog_feature_heading}</h2>
@@ -49,7 +72,7 @@ const Index = ({}: any) => {
             </div>
           </div>
           <hr />
-        </div>
+        </div> */}
       </div>
       <div className="container">
         <SliderCover featuredblogs={featuredBlogs?.data} />

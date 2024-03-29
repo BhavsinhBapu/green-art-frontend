@@ -16,7 +16,7 @@ const SocialShare = (url: any) => {
   const { t } = useTranslation("common");
 
   return (
-    <div className="col-md-4 ">
+    <div>
       <h4 className="mt-4 ">{t("Share")}</h4>
       <div className="my-3 newsShare d-flex align-items-center">
         <a href="">

@@ -14094,13 +14094,13 @@ input {
 .blogSlider ul {
   bottom: -50px;
 }
-.blogSlider {
+/* .blogSlider {
   background-color: var(--glass-color-bg-1);
   padding: 10px;
   border-radius: 10px;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-}
+} */
 
 .blogSlider ul li button::before {
   background-color: #ffc425;
@@ -14119,11 +14119,12 @@ input {
 
 .itemCatagory {
   padding: 7px 15px;
-  border-radius: 3px;
+  /* border-radius: 3px; */
 }
 
 .itemCatagoryactive {
-  background-color: var(--background-color-hover);
+  /* background-color: var(--background-color-hover); */
+  border-bottom: 2px solid var(--primary-color);
 }
 
 .newsShare {
@@ -16281,8 +16282,8 @@ input:checked + .gift-card-buy-slider:before {
   object-position: center;
 }
 
-.bg-primary-custom-color {
-  /* background: var(--custom-background-color); */
+.bg-primary-card-color {
+  background: var(--card-background-color) !important;
 }
 
 .body-margin-top-custom {
