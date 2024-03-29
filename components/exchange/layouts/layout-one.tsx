@@ -303,7 +303,7 @@ const LayoutOne = ({ ThemeColor }: any) => {
                         ) ? (
                         <i className="fa-solid fa-down-long value-decreaseicon ml-2"></i>
                       ) : (
-                        "0"
+                        ""
                       )}
                     </span>
                     <span className="value-previous">
