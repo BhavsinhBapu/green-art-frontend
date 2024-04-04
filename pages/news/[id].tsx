@@ -37,13 +37,20 @@ const NewsDetails = ({ BlogNewsSettings }: any) => {
   }, [id]);
   return (
     <>
-      <div className="container inner-section-margin-top mt-5">
+      <div className="my-0 wallet-overview-header-main bg_cover_dashboard">
+        <div className="profle-are-top container-4xl">
+          <h2 className="wallet-overview-header-title text-center">
+            {t(`News Details`)}
+          </h2>
+        </div>
+      </div>
+      <div className="container inner-section-margin-top my-5">
         <Link href="/news">
           <a>
-            <h3 className="pb-3 newsDetailsTitle sectionTitle d-flex align-items-center">
+            <h4 className="pb-3 newsDetailsTitle sectionTitle d-flex align-items-center">
               <BiChevronLeft />
               {t("Back")}
-            </h3>
+            </h4>
           </a>
         </Link>
 
@@ -53,7 +60,12 @@ const NewsDetails = ({ BlogNewsSettings }: any) => {
               <h3 className="titleText">{newsDetails?.details?.title}</h3>
               <small>{formateData(newsDetails?.details?.created_at)}</small>
               <img
-                className="my-3 rounded"
+                className="rounded my-3 w-full"
+                style={{
+                  maxHeight: "350px",
+                  objectPosition: "center",
+                  objectFit: "cover",
+                }}
                 src={newsDetails?.details?.thumbnail}
                 alt=""
               />
@@ -64,6 +76,14 @@ const NewsDetails = ({ BlogNewsSettings }: any) => {
                 }}
               ></div>
             </div>
+            {parseInt(BlogNewsSettings?.news_comment_enable) === 1 && (
+              <CommentSection
+                comments={newsDetails?.comments}
+                post_id={newsDetails?.details?.post_id}
+                PostCommentAction={PostCommentAction}
+                comment_allow={newsDetails?.details?.comment_allow}
+              />
+            )}
           </div>
           <div className="col-md-4">
             <SocialShare
@@ -73,35 +93,61 @@ const NewsDetails = ({ BlogNewsSettings }: any) => {
                 newsDetails?.details?.post_id
               }
             />
-
-            {newsDetails?.related?.data.map((item: any, index: any) => (
-              <div className="newsCard p-4 mt-2" key={index}>
-                <a href="">
-                  <div className="row">
-                    <div className="col-12">
-                      <img className="rounded" src={item.thumbnail} alt="" />
-                    </div>
-                    <div className="col-12 pt-3">
-                      <div className="newsCardText">
-                        <h3 className="titleText">{item.title}</h3>
-                        <small>{formateData(item.created_at)}</small>
-                        <p>{item.description}</p>
+            <div className="newsCard p-4 ">
+              {newsDetails?.related?.data.map((item: any, index: any) => (
+                <div
+                  className={
+                    newsDetails?.related?.data?.length == index + 1
+                      ? ""
+                      : "pb-4 mb-4"
+                  }
+                  style={{
+                    borderBottom:
+                      newsDetails?.related?.data?.length == index + 1
+                        ? "none"
+                        : "1px solid var(--border-color)",
+                  }}
+                  key={index}
+                >
+                  <a href="">
+                    <div className="row">
+                      <div className="col-3">
+                        <img
+                          className="rounded"
+                          style={{
+                            minWidth: "69px",
+                            width: "69px",
+                            height: "69px",
+                            objectFit: "cover",
+                            objectPosition: "center",
+                          }}
+                          src={item.thumbnail}
+                          alt=""
+                        />
+                      </div>
+                      <div className="col-9">
+                        <div className="newsCardText">
+                          <p
+                            className="titleText"
+                            style={{
+                              fontSize: "16px",
+                              lineHeight: "1.5",
+                              paddingBottom: "5px",
+                              fontWeight: "bolder",
+                            }}
+                          >
+                            {item.title}
+                          </p>
+                          <small>{formateData(item.created_at)}</small>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </a>
-              </div>
-            ))}
+                  </a>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-        {parseInt(BlogNewsSettings?.news_comment_enable) === 1 && (
-          <CommentSection
-            comments={newsDetails?.comments}
-            post_id={newsDetails?.details?.post_id}
-            PostCommentAction={PostCommentAction}
-            comment_allow={newsDetails?.details?.comment_allow}
-          />
-        )}
       </div>
       <Footer />
     </>

@@ -36,19 +36,22 @@ const News = ({ BlogNewsSettings }: any) => {
   }, []);
   return (
     <>
-      <div className="container inner-section-margin-top mt-5">
-        <div className="row align-items-center">
-          <div className="col-md-7">
-            <h2 className="pb-2 sectionTitle">{t("Top news")}</h2>
-          </div>
-          <div className="col-md-5">
-            {parseInt(BlogNewsSettings?.news_search_enable) === 1 && (
-              <Search searchFunction={NewsSearchAction} linkName={"news"} />
-            )}
+      <div className="my-0 wallet-overview-header-main bg_cover_dashboard">
+        <div className="profle-are-top container-4xl">
+          <h2 className="wallet-overview-header-title text-center">
+            {t("Top news")}
+          </h2>
+
+          <div className="mt-5 row">
+            <div className="col-md-6 offset-md-3">
+              {parseInt(BlogNewsSettings?.news_search_enable) === 1 && (
+                <Search searchFunction={NewsSearchAction} linkName={"news"} />
+              )}
+            </div>
           </div>
         </div>
-        <hr />
-
+      </div>
+      <div className="container inner-section-margin-top mt-5">
         <NewsSlider PopularNews={PopularNewsData?.data?.data} />
         <NewsList
           recentNewsData={recentNewsData}

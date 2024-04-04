@@ -36,15 +36,22 @@ const BlogDetails = ({ BlogNewsSettings }: any) => {
 
   return (
     <>
+      <div className="my-0 wallet-overview-header-main bg_cover_dashboard">
+        <div className="profle-are-top container-4xl">
+          <h2 className="wallet-overview-header-title text-center">
+            {t(`Blog Details`)}
+          </h2>
+        </div>
+      </div>
       <PlaceTopLeft />
       <PlaceBottomRight />
-      <div className="container overall-margin-top-cls">
+      <div className="container overall-margin-top-cls bg-transparent p-0 mb-5">
         <Link href="/blog">
           <a>
-            <h3 className="pb-3 newsDetailsTitle d-flex align-items-center">
+            <h4 className="pb-3 newsDetailsTitle d-flex align-items-center">
               <BiChevronLeft />
               {t("Back")}
-            </h3>
+            </h4>
           </a>
         </Link>
         <div className="row">
@@ -57,7 +64,12 @@ const BlogDetails = ({ BlogNewsSettings }: any) => {
               <hr />
               {blogDetails?.data?.details?.thumbnail && (
                 <img
-                  className="rounded my-3"
+                  className="rounded my-3 w-full"
+                  style={{
+                    maxHeight: "350px",
+                    objectPosition: "center",
+                    objectFit: "cover",
+                  }}
                   src={blogDetails?.data?.details?.thumbnail}
                   alt=""
                 />
