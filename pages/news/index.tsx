@@ -52,18 +52,6 @@ const News = ({ BlogNewsSettings }: any) => {
         </div>
       </div>
       <div className="container inner-section-margin-top mt-5">
-        {/* <div className="row align-items-center">
-          <div className="col-md-7">
-            <h2 className="pb-2 sectionTitle">{t("Top news")}</h2>
-          </div>
-          <div className="col-md-5">
-            {parseInt(BlogNewsSettings?.news_search_enable) === 1 && (
-              <Search searchFunction={NewsSearchAction} linkName={"news"} />
-            )}
-          </div>
-        </div>
-        <hr /> */}
-
         <NewsSlider PopularNews={PopularNewsData?.data?.data} />
         <NewsList
           recentNewsData={recentNewsData}

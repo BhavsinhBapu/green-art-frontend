@@ -139,12 +139,6 @@ const NewsDetails = ({ BlogNewsSettings }: any) => {
                             {item.title}
                           </p>
                           <small>{formateData(item.created_at)}</small>
-
-                          {/* <p className="pt-2" style={{ lineHeight: "18px" }}>
-                            {item?.description?.length > 100
-                              ? `${item?.description.slice(0, 100)}...`
-                              : item?.description}
-                          </p> */}
                         </div>
                       </div>
                     </div>
