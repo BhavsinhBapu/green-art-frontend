@@ -54,7 +54,7 @@ const DashboardNavbar = () => {
     });
   };
   useEffect(() => {
-    checkThemeState(setTheme,dispatch);
+    checkThemeState(setTheme, dispatch);
     isLoggedIn && getNotifications();
   }, [isLoggedIn]);
   useEffect(() => {
@@ -76,6 +76,7 @@ const DashboardNavbar = () => {
                     <img
                       src={logo || ""}
                       className="img-fluid cp-user-logo-large"
+                      style={{ maxHeight: "50px" }}
                       alt=""
                     />
                   </a>
@@ -113,7 +114,6 @@ const DashboardNavbar = () => {
                                 ? `/${router.locale}/exchange/dashboard`
                                 : "/exchange/dashboard"
                             }
-                         
                           >
                             <li
                               className={

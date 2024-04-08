@@ -104,6 +104,7 @@ const Navbar = ({
                         <img
                           src={logo || ""}
                           className="img-fluid cp-user-logo-large"
+                          style={{maxHeight: '50px'}}
                           alt=""
                         />
                       </a>

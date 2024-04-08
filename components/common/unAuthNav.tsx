@@ -92,6 +92,7 @@ const UnAuthNav = ({
                     <img
                       src={logo || ""}
                       className="img-fluid cp-user-logo-large"
+                      style={{maxHeight: '50px'}}
                       alt=""
                     />
                   </a>
