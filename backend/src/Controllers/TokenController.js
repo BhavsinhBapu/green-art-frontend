@@ -511,7 +511,7 @@ async function getERC20tokenTransactionDetails(req) {
       };
     }
   } catch (err) {
-    console.log('getERC20tokenTransactionDetails ex',e)
+    console.log('getERC20tokenTransactionDetails ex',err)
     return {
       status: false,
       message: String(err),
