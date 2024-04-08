@@ -46,20 +46,19 @@ const GoogleAuthModal = ({ settings, setSettings }: any) => {
               </button>
             </div>
             <div className="modal-body">
-              <div className="row">
-                <div className="col-4 ">
-                  {settings?.user?.google2fa === 0 && (
+            <div className="wallet-bar-code">
+              <div className="qr-background">
+              {settings?.user?.google2fa === 0 && (
                     // <img src={settings?.qrcode} className="img-fluid" alt="" />
                     <QRCode
                     className="qrCodeBg rounded"
                     value={settings?.qrcode}
-                    size={150}
+                    size={140}
                   />
                   )}
                 </div>
-                <div className="col-1"></div>
-                <div className="col-7">
-                  <p>
+                <div className="mt-3">
+                <p>
                     {t(
                       "Open your Google Authenticator app, and scan Your secret code and enter the 6-digit code from the app into the input field"
                     )}
@@ -75,7 +74,7 @@ const GoogleAuthModal = ({ settings, setSettings }: any) => {
                     }}
                   />
                 </div>
-              </div>
+                </div>
             </div>
             <div className="modal-footer">
               <button
