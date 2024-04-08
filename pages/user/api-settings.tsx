@@ -212,7 +212,7 @@ const ApiSettings: NextPage = () => {
     setProcessing(true);
     const response = await getWhiteListsApi(c_page, selectedLimit, search);
     if (!response.success) {
-      toast.error(response.message);
+      // toast.error(response.message);
       setProcessing(false);
       return;
     }
