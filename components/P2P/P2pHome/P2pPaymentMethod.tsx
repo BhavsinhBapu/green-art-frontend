@@ -13,8 +13,25 @@ export const P2pPaymentMethod = ({ data }: any) => {
           <div className="row" style={{ rowGap: "20px" }}>
             {data.payment_method_landing.map((data: any, index: any) => (
               <div className="col-sm-6 col-lg-4" key={index}>
-                <a className="paymentBox d-flex align-items-center p-3" href="">
-                  <div></div>
+                <a
+                  className="paymentBox d-flex align-items-center p-3 gap-10"
+                  href=""
+                >
+                  {data?.logo ? (
+                    <img
+                      src={data?.logo}
+                      style={{
+                        maxWidth: "20px",
+                        maxHeight: "20px",
+                        width: "100%",
+                        height: "100%",
+                      }}
+                      alt="logo"
+                    />
+                  ) : (
+                    <div></div>
+                  )}
+
                   {data?.name}
                 </a>
               </div>
