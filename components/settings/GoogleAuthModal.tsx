@@ -1,5 +1,6 @@
 import useTranslation from "next-translate/useTranslation";
 import React from "react";
+import QRCode from "react-qr-code";
 import { SetupGoogle2faAction } from "state/actions/settings";
 
 const GoogleAuthModal = ({ settings, setSettings }: any) => {
@@ -46,12 +47,18 @@ const GoogleAuthModal = ({ settings, setSettings }: any) => {
             </div>
             <div className="modal-body">
               <div className="row">
-                <div className="col-4">
+                <div className="col-4 ">
                   {settings?.user?.google2fa === 0 && (
-                    <img src={settings?.qrcode} className="img-fluid" alt="" />
+                    // <img src={settings?.qrcode} className="img-fluid" alt="" />
+                    <QRCode
+                    className="qrCodeBg rounded"
+                    value={settings?.qrcode}
+                    size={150}
+                  />
                   )}
                 </div>
-                <div className="col-8">
+                <div className="col-1"></div>
+                <div className="col-7">
                   <p>
                     {t(
                       "Open your Google Authenticator app, and scan Your secret code and enter the 6-digit code from the app into the input field"
