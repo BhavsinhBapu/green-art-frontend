@@ -70,7 +70,10 @@ const WalletOverview: NextPage = () => {
                     >
                       <div className="row" style={{ rowGap: "20px" }}>
                         <div className=" col-md-6">
-                          <div className="shadow-sm section-padding-custom wallet-card-info-container">
+                          <div
+                            className="shadow-sm section-padding-custom wallet-card-info-container"
+                            style={{ position: "relative", zIndex: "10" }}
+                          >
                             <div
                               // style={{
                               //   display: "flex",
