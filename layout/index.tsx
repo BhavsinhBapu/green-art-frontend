@@ -160,7 +160,21 @@ const Index = ({ children }: any) => {
       dispatch(GetUserInfoByTokenAction());
     }
   }, [isLoggedIn, settings.cookie_status]);
-  if (isLoading) return <Loading />;
+  if (isLoading)
+    return (
+      <>
+        <Head>
+          <title>
+            {metaData?.app_title || process.env.NEXT_PUBLIC_APP_NAME}
+          </title>
+          <link
+            rel="shortcut icon"
+            href={metaData?.favicon || process.env.NEXT_PUBLIC_FAVICON}
+          />
+        </Head>
+        <Loading />
+      </>
+    );
 
   return navbarVisible ? (
     <div>
