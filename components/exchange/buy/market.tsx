@@ -1,4 +1,4 @@
-import { formateZert } from "common";
+import { formatCurrency, formateZert } from "common";
 import RangeSlider from "components/dashboard/RangeSlider";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
@@ -79,12 +79,14 @@ const Market = ({
                         style={{ fontWeight: 700 }}
                       >
                         <span>
-                          {parseFloat(
-                            dashboard?.order_data?.total?.base_wallet?.balance
-                              ? dashboard?.order_data?.total?.base_wallet
-                                  ?.balance
-                              : 0
-                          ).toFixed(4)}
+                          {dashboard?.order_data?.total?.base_wallet?.balance
+                            ? formatCurrency(
+                                dashboard?.order_data?.total?.base_wallet
+                                  ?.balance,
+                                dashboard?.order_data?.total?.trade_wallet
+                                  ?.pair_decimal
+                              )
+                            : 0}
                         </span>
                       </span>
                       <span
@@ -104,12 +106,14 @@ const Market = ({
                       >
                         <span>
                           {" "}
-                          {parseFloat(
-                            dashboard?.order_data?.total?.base_wallet?.balance
-                              ? dashboard?.order_data?.total?.base_wallet
-                                  ?.balance
-                              : 0
-                          ).toFixed(4)}
+                          {dashboard?.order_data?.total?.base_wallet?.balance
+                            ? formatCurrency(
+                                dashboard?.order_data?.total?.base_wallet
+                                  ?.balance,
+                                dashboard?.order_data?.total?.trade_wallet
+                                  ?.pair_decimal
+                              )
+                            : 0}
                         </span>
                       </span>
                       <span
