@@ -97,11 +97,12 @@ const CurrencyLevel = () => {
                 : "decrease"
             }`}
           >
-            {parseFloat(
-              dashboard?.order_data?.total?.trade_wallet?.price_change
-                ? dashboard?.order_data?.total?.trade_wallet?.price_change
-                : 0
-            )}
+            {dashboard?.order_data?.total?.trade_wallet?.price_change
+              ? formatCurrency(
+                  dashboard?.order_data?.total?.trade_wallet?.price_change,
+                  dashboard?.order_data?.total?.trade_wallet?.pair_decimal
+                )
+              : 0}
             %
           </span>
         </li>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Tooltip from "rc-tooltip";
 import "rc-tooltip/assets/bootstrap.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   setBuyAmount,
   setBuyPrice,
@@ -9,10 +9,14 @@ import {
   setSellPrice,
 } from "state/reducer/exchange";
 import useTranslation from "next-translate/useTranslation";
+import { formatCurrency } from "common";
+import { RootState } from "state/store";
 const AllBuyOrders = ({ buy, show, customClss }: any) => {
   const { t } = useTranslation("common");
   const [OpenBookBuy, setopenBookBuy] = useState<any>([]);
   const dispatch = useDispatch();
+  const { dashboard } = useSelector((state: RootState) => state.exchange);
+
   const changeBuyPrice = (price: number, amount: number) => {
     dispatch(setSellPrice(price));
     dispatch(setSellAmount(amount));
@@ -126,16 +130,31 @@ const AllBuyOrders = ({ buy, show, customClss }: any) => {
                           overlay={
                             <span>
                               <span>
-                                {t("Avg Price")}: {item.price}
+                                {t("Avg Price")}:{" "}
+                                {formatCurrency(
+                                  item.price,
+                                  dashboard?.order_data?.total?.trade_wallet
+                                    ?.pair_decimal
+                                )}
                               </span>
                               <br />
                               <span>
-                                {t("Amount")}: {summary.amount}
+                                {t("Amount")}:{" "}
+                                {formatCurrency(
+                                  summary.amount,
+                                  dashboard?.order_data?.total?.trade_wallet
+                                    ?.pair_decimal
+                                )}
                               </span>
                               <br />
 
                               <span>
-                                {t("Size")}: {summary.total}
+                                {t("Size")}:{" "}
+                                {formatCurrency(
+                                  summary.total,
+                                  dashboard?.order_data?.total?.trade_wallet
+                                    ?.pair_decimal
+                                )}
                               </span>
                             </span>
                           }
@@ -168,20 +187,34 @@ const AllBuyOrders = ({ buy, show, customClss }: any) => {
                           >
                             <td>
                               <div className="asset">
-                                <span className="redText">{item.price}</span>
-                              </div>
-                            </td>
-                            <td>
-                              <div className="asset">
-                                <span className="asset-name">
-                                  {item.amount}
+                                <span className="redText">
+                                  {formatCurrency(
+                                    item.price,
+                                    dashboard?.order_data?.total?.trade_wallet
+                                      ?.pair_decimal
+                                  )}
                                 </span>
                               </div>
                             </td>
                             <td>
                               <div className="asset">
                                 <span className="asset-name">
-                                  {parseFloat(item.total).toFixed(2)}
+                                  {formatCurrency(
+                                    item.amount,
+                                    dashboard?.order_data?.total?.trade_wallet
+                                      ?.pair_decimal
+                                  )}
+                                </span>
+                              </div>
+                            </td>
+                            <td>
+                              <div className="asset">
+                                <span className="asset-name">
+                                  {formatCurrency(
+                                    item.total,
+                                    dashboard?.order_data?.total?.trade_wallet
+                                      ?.pair_decimal
+                                  )}
                                 </span>
                               </div>
                             </td>

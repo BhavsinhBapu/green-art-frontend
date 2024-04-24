@@ -17,6 +17,7 @@ import {
   EXCHANGE_LAYOUT_TWO,
 } from "helpers/core-constants";
 import { set } from "nprogress";
+import { formatCurrency } from "common";
 const TradingChart = dynamic(
   () =>
     import("components/exchange/TradingChart").then(
@@ -141,11 +142,13 @@ const LayoutOne = ({ ThemeColor }: any) => {
                         : "value-same"
                     }
                   >
-                    {parseFloat(
-                      dashboard?.last_price_data[0]?.price
-                        ? dashboard?.last_price_data[0]?.price
-                        : 0
-                    )}
+                    {dashboard?.last_price_data[0]?.price
+                      ? formatCurrency(
+                          dashboard?.last_price_data[0]?.price,
+                          dashboard?.order_data?.total?.trade_wallet
+                            ?.pair_decimal
+                        )
+                      : 0}
                     {parseFloat(
                       dashboard?.last_price_data &&
                         dashboard?.last_price_data[0]?.price
@@ -170,11 +173,13 @@ const LayoutOne = ({ ThemeColor }: any) => {
                   </span>
                   <span className="value-previous">
                     {" "}
-                    {parseFloat(
-                      dashboard?.last_price_data[0]?.last_price
-                        ? dashboard?.last_price_data[0]?.last_price
-                        : 0
-                    )}
+                    {dashboard?.last_price_data[0]?.last_price
+                      ? formatCurrency(
+                          dashboard?.last_price_data[0]?.last_price,
+                          dashboard?.order_data?.total?.trade_wallet
+                            ?.pair_decimal
+                        )
+                      : 0}
                     ({dashboard?.order_data?.base_coin})
                   </span>
                 </div>
@@ -208,11 +213,13 @@ const LayoutOne = ({ ThemeColor }: any) => {
                         : "value-same"
                     }
                   >
-                    {parseFloat(
-                      dashboard?.last_price_data[0]?.price
-                        ? dashboard?.last_price_data[0]?.price
-                        : 0
-                    )}
+                    {dashboard?.last_price_data[0]?.price
+                      ? formatCurrency(
+                          dashboard?.last_price_data[0]?.price,
+                          dashboard?.order_data?.total?.trade_wallet
+                            ?.pair_decimal
+                        )
+                      : 0}
                     {parseFloat(
                       dashboard?.last_price_data &&
                         dashboard?.last_price_data[0]?.price
@@ -237,11 +244,13 @@ const LayoutOne = ({ ThemeColor }: any) => {
                   </span>
                   <span className="value-previous">
                     {" "}
-                    {parseFloat(
-                      dashboard?.last_price_data[0]?.last_price
-                        ? dashboard?.last_price_data[0]?.last_price
-                        : 0
-                    )}
+                    {dashboard?.last_price_data[0]?.last_price
+                      ? formatCurrency(
+                          dashboard?.last_price_data[0]?.last_price,
+                          dashboard?.order_data?.total?.trade_wallet
+                            ?.pair_decimal
+                        )
+                      : 0}
                     ({dashboard?.order_data?.base_coin})
                   </span>
                 </div>
@@ -279,11 +288,13 @@ const LayoutOne = ({ ThemeColor }: any) => {
                           : "value-same"
                       }
                     >
-                      {parseFloat(
-                        dashboard?.last_price_data
-                          ? dashboard?.last_price_data[0]?.price
-                          : 0
-                      ).toFixed(2)}
+                      {dashboard?.last_price_data[0]?.price
+                        ? formatCurrency(
+                            dashboard?.last_price_data[0]?.price,
+                            dashboard?.order_data?.total?.trade_wallet
+                              ?.pair_decimal
+                          )
+                        : 0}
                       {parseFloat(
                         dashboard?.last_price_data &&
                           dashboard?.last_price_data[0]?.price
@@ -308,11 +319,13 @@ const LayoutOne = ({ ThemeColor }: any) => {
                     </span>
                     <span className="value-previous">
                       {" "}
-                      {parseFloat(
-                        dashboard?.last_price_data
-                          ? dashboard?.last_price_data[0]?.last_price
-                          : 0
-                      )}
+                      {dashboard?.last_price_data[0]?.last_price
+                        ? formatCurrency(
+                            dashboard?.last_price_data[0]?.last_price,
+                            dashboard?.order_data?.total?.trade_wallet
+                              ?.pair_decimal
+                          )
+                        : 0}
                       ({dashboard?.order_data?.base_coin})
                     </span>
                   </div>

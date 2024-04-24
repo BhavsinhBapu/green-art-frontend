@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Tooltip from "rc-tooltip";
 import "rc-tooltip/assets/bootstrap.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   setBuyAmount,
   setBuyPrice,
@@ -9,9 +9,13 @@ import {
   setSellPrice,
 } from "state/reducer/exchange";
 import useTranslation from "next-translate/useTranslation";
+import { formatCurrency } from "common";
+import { RootState } from "state/store";
 const AllBuyOrders = ({ OpenBookBuy, show, customClass }: any) => {
   const { t } = useTranslation("common");
   const [buyData, setBuyData] = React.useState<any>([]);
+  const { dashboard } = useSelector((state: RootState) => state.exchange);
+
   const dispatch = useDispatch();
   const changeSellPrice = (price: number, amount: number) => {
     dispatch(setSellPrice(price));
@@ -128,16 +132,31 @@ const AllBuyOrders = ({ OpenBookBuy, show, customClass }: any) => {
                           overlay={
                             <span>
                               <span>
-                                {t("Avg Price")}: {item.price}
+                                {t("Avg Price")}:
+                                {formatCurrency(
+                                  item.price,
+                                  dashboard?.order_data?.total?.trade_wallet
+                                    ?.pair_decimal
+                                )}
                               </span>
                               <br />
                               <span>
-                                {t("Amount")}: {summary.amount}
+                                {t("Amount")}:{" "}
+                                {formatCurrency(
+                                  summary.amount,
+                                  dashboard?.order_data?.total?.trade_wallet
+                                    ?.pair_decimal
+                                )}
                               </span>
                               <br />
 
                               <span>
-                                {t("Size")}: {summary.total}
+                                {t("Size")}:{" "}
+                                {formatCurrency(
+                                  summary.total,
+                                  dashboard?.order_data?.total?.trade_wallet
+                                    ?.pair_decimal
+                                )}
                               </span>
                             </span>
                           }
@@ -172,21 +191,34 @@ const AllBuyOrders = ({ OpenBookBuy, show, customClass }: any) => {
                               <div className="asset">
                                 <span className="greenText">
                                   {/* {parseFloat(item.price)%1 !== 0 ? parseFloat(item.price) : parseFloat(item.price).toFixed(2)} */}
-                                  {item.price}
+
+                                  {formatCurrency(
+                                    item.price,
+                                    dashboard?.order_data?.total?.trade_wallet
+                                      ?.pair_decimal
+                                  )}
                                 </span>
                               </div>
                             </td>
                             <td>
                               <div className="asset">
                                 <span className="asset-name">
-                                  {item.amount}
+                                  {formatCurrency(
+                                    item.amount,
+                                    dashboard?.order_data?.total?.trade_wallet
+                                      ?.pair_decimal
+                                  )}
                                 </span>
                               </div>
                             </td>
                             <td>
                               <div className="asset">
                                 <span className="asset-name">
-                                  {parseFloat(item.total).toFixed(2)}
+                                  {formatCurrency(
+                                    item.total,
+                                    dashboard?.order_data?.total?.trade_wallet
+                                      ?.pair_decimal
+                                  )}
                                 </span>
                               </div>
                             </td>

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Tooltip from "rc-tooltip";
 import "rc-tooltip/assets/bootstrap.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   setBuyAmount,
   setSellAmount,
@@ -9,9 +9,13 @@ import {
   setBuyPrice,
 } from "state/reducer/exchange";
 import useTranslation from "next-translate/useTranslation";
+import { formatCurrency } from "common";
+import { RootState } from "state/store";
 const TradesTable = ({ buy, show }: any) => {
   const dispatch = useDispatch();
   const { t } = useTranslation("common");
+  const { dashboard } = useSelector((state: RootState) => state.exchange);
+
   const changeSellPrice = (price: number, amount: number) => {
     dispatch(setSellPrice(price));
     dispatch(setSellAmount(amount));
@@ -36,16 +40,28 @@ const TradesTable = ({ buy, show }: any) => {
             overlay={
               <span>
                 <span>
-                  {t("Avg Price")}: {parseFloat(item.price).toFixed(8)}
+                  {t("Avg Price")}:{" "}
+                  {formatCurrency(
+                    item.price,
+                    dashboard?.order_data?.total?.trade_wallet?.pair_decimal
+                  )}
                 </span>
                 <br />
                 <span>
-                  {t("Amount")}: {parseFloat(summary.amount)}
+                  {t("Amount")}:{" "}
+                  {formatCurrency(
+                    summary.amount,
+                    dashboard?.order_data?.total?.trade_wallet?.pair_decimal
+                  )}
                 </span>
                 <br />
 
                 <span>
-                  {t("Total")}: {parseFloat(summary.total).toFixed(5)}
+                  {t("Total")}:{" "}
+                  {formatCurrency(
+                    summary.total,
+                    dashboard?.order_data?.total?.trade_wallet?.pair_decimal
+                  )}
                 </span>
               </span>
             }
@@ -74,18 +90,31 @@ const TradesTable = ({ buy, show }: any) => {
               <>
                 <td>
                   <div className="asset">
-                    <span className="redText">{item.price}</span>
-                  </div>
-                </td>
-                <td>
-                  <div className="asset">
-                    <span className="asset-name">{item.amount} </span>
+                    <span className="redText">
+                      {formatCurrency(
+                        item.price,
+                        dashboard?.order_data?.total?.trade_wallet?.pair_decimal
+                      )}
+                    </span>
                   </div>
                 </td>
                 <td>
                   <div className="asset">
                     <span className="asset-name">
-                      {parseFloat(item.total).toFixed(2)}
+                      {formatCurrency(
+                        item.amount,
+                        dashboard?.order_data?.total?.trade_wallet?.pair_decimal
+                      )}
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div className="asset">
+                    <span className="asset-name">
+                      {formatCurrency(
+                        item.total,
+                        dashboard?.order_data?.total?.trade_wallet?.pair_decimal
+                      )}
                     </span>
                   </div>
                 </td>
