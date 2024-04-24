@@ -1,6 +1,11 @@
+import { formatCurrency } from "common";
 import React from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "state/store";
 
 export default function MarketsCardItem({ item }: any) {
+  const { dashboard } = useSelector((state: RootState) => state.exchange);
+
   return (
     <div className="card-for-markets-item">
       <div className="row">
@@ -18,7 +23,11 @@ export default function MarketsCardItem({ item }: any) {
         <div className="col-4">
           <p className="text-primary">
             {item?.currency_symbol}
-            {parseFloat(item?.usdt_price).toFixed(2)}
+
+            {formatCurrency(
+              item.usdt_price,
+              dashboard?.order_data?.total?.trade_wallet?.pair_decimal
+            )}
           </p>
         </div>
         <div className="col-4">
@@ -28,8 +37,15 @@ export default function MarketsCardItem({ item }: any) {
             } `}
           >
             {item?.change >= 0
-              ? "+" + parseFloat(item?.change).toFixed(2)
-              : parseFloat(item?.change).toFixed(2)}
+              ? "+" +
+                formatCurrency(
+                  item.change,
+                  dashboard?.order_data?.total?.trade_wallet?.pair_decimal
+                )
+              : formatCurrency(
+                  item.change,
+                  dashboard?.order_data?.total?.trade_wallet?.pair_decimal
+                )}
           </p>
         </div>
       </div>

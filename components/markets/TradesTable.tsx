@@ -9,6 +9,9 @@ import { getMarketsTradeSectionDataApi } from "service/markets";
 import Echo from "laravel-echo";
 import Pusher from "pusher-js";
 import SectionLoading from "components/common/SectionLoading";
+import { formatCurrency } from "common";
+import { useSelector } from "react-redux";
+import { RootState } from "state/store";
 
 async function listenMessages(setUpdatedTradeData: any) {
   //@ts-ignore
@@ -44,6 +47,8 @@ export default function TradesTable({ selectedCurrency }: any) {
   const [updatedTradeData, setUpdatedTradeData] = useState<any>({});
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
+  const { dashboard } = useSelector((state: RootState) => state.exchange);
+
   // use
   const router = useRouter();
 
@@ -310,7 +315,12 @@ export default function TradesTable({ selectedCurrency }: any) {
                                         </div>
                                       </td>
                                       <td className="text-black text-right p-2">
-                                        ${item.price}
+                                        $
+                                        {formatCurrency(
+                                          item.price,
+                                          dashboard?.order_data?.total
+                                            ?.trade_wallet?.pair_decimal
+                                        )}
                                       </td>
                                       <td className="text-right p-2">
                                         <span
@@ -320,7 +330,12 @@ export default function TradesTable({ selectedCurrency }: any) {
                                               : "text-danger"
                                           } `}
                                         >
-                                          {item.change}%
+                                          {formatCurrency(
+                                            item.change,
+                                            dashboard?.order_data?.total
+                                              ?.trade_wallet?.pair_decimal
+                                          )}
+                                          %
                                         </span>
                                       </td>
                                       {/* <td className="text-center">
@@ -339,13 +354,19 @@ export default function TradesTable({ selectedCurrency }: any) {
                                       )}
                                     </td> */}
                                       <td className="text-black text-right p-2">
-                                        {item.volume}
+                                        {formatCurrency(
+                                          item.volume,
+                                          dashboard?.order_data?.total
+                                            ?.trade_wallet?.pair_decimal
+                                        )}
                                       </td>
                                       <td className="text-black text-right p-2">
                                         {item.total_balance
-                                          ? parseFloat(
-                                              item.total_balance
-                                            ).toFixed(2)
+                                          ? formatCurrency(
+                                              item.total_balance,
+                                              dashboard?.order_data?.total
+                                                ?.trade_wallet?.pair_decimal
+                                            )
                                           : 0}
                                       </td>
                                       {/* <td
