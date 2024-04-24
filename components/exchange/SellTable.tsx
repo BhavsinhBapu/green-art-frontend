@@ -1,9 +1,14 @@
+import { formatCurrency } from "common";
 import useTranslation from "next-translate/useTranslation";
 import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "state/store";
 
 const TradesTable = ({ marketTrades }: any) => {
   const { t } = useTranslation("common");
   const [trades, setTrades] = React.useState<any>([]);
+  const { dashboard } = useSelector((state: RootState) => state.exchange);
+
   const setTradeData = () => {
     let allTradeData = [];
     marketTrades.length &&
@@ -56,9 +61,13 @@ const TradesTable = ({ marketTrades }: any) => {
         </tr>
       ) : (
         trades?.map((item: any, index: number) => (
-          <tr className="odd dataTable-white" key={index} style={{lineHeight: '1.3'}}>
+          <tr
+            className="odd dataTable-white"
+            key={index}
+            style={{ lineHeight: "1.3" }}
+          >
             <td>
-              <div className={"asset"} style={{padding: '4px'}}>
+              <div className={"asset"} style={{ padding: "4px" }}>
                 <span
                   className={
                     item.type === "green"
@@ -68,17 +77,25 @@ const TradesTable = ({ marketTrades }: any) => {
                       : ""
                   }
                 >
-                  {item?.price}
+                  {formatCurrency(
+                    item?.price,
+                    dashboard?.order_data?.total?.trade_wallet?.pair_decimal
+                  )}
                 </span>
               </div>
             </td>
             <td>
-              <div className="asset" style={{padding: '4px'}}>
-                <span className="">{item?.amount}</span>
+              <div className="asset" style={{ padding: "4px" }}>
+                <span className="">
+                  {formatCurrency(
+                    item?.amount,
+                    dashboard?.order_data?.total?.trade_wallet?.pair_decimal
+                  )}
+                </span>
               </div>
             </td>
             <td>
-              <div className="asset" style={{padding: '4px'}}>
+              <div className="asset" style={{ padding: "4px" }}>
                 <span className="">{item?.time}</span>
               </div>
             </td>
