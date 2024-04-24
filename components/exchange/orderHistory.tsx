@@ -1,4 +1,4 @@
-import { formateData } from "common";
+import { formatCurrency, formateData } from "common";
 import useTranslation from "next-translate/useTranslation";
 import React from "react";
 import { useSelector } from "react-redux";
@@ -64,7 +64,9 @@ const OrderHistory = ({
                 <table className="table">
                   <thead>
                     <tr>
-                      <th scope="col" className="pl-0">{t("Type")}</th>
+                      <th scope="col" className="pl-0">
+                        {t("Type")}
+                      </th>
                       <th scope="col">{t("Pair")}</th>
                       <th scope="col">
                         {t("Price")}({dashboard?.order_data?.base_coin})
@@ -97,10 +99,34 @@ const OrderHistory = ({
                           {dashboard.order_data.exchange_coin_pair &&
                             dashboard.order_data.exchange_coin_pair}
                         </td>
-                        <td>{item.price}</td>
-                        <td>{item.amount}</td>
-                        <td>{parseFloat(item.fees).toFixed(8)}</td>
-                        <td>{item.total}</td>
+                        <td>
+                          {formatCurrency(
+                            item.price,
+                            dashboard?.order_data?.total?.trade_wallet
+                              ?.pair_decimal
+                          )}
+                        </td>
+                        <td>
+                          {formatCurrency(
+                            item.amount,
+                            dashboard?.order_data?.total?.trade_wallet
+                              ?.pair_decimal
+                          )}
+                        </td>
+                        <td>
+                          {formatCurrency(
+                            item.fees,
+                            dashboard?.order_data?.total?.trade_wallet
+                              ?.pair_decimal
+                          )}
+                        </td>
+                        <td>
+                          {formatCurrency(
+                            item.total,
+                            dashboard?.order_data?.total?.trade_wallet
+                              ?.pair_decimal
+                          )}
+                        </td>
                         <td>{formateData(item.created_at)}</td>
                       </tr>
                     ))}
@@ -118,7 +144,9 @@ const OrderHistory = ({
                 <table className="table">
                   <thead>
                     <tr>
-                      <th scope="col" className="pl-0">{t("Type")}</th>
+                      <th scope="col" className="pl-0">
+                        {t("Type")}
+                      </th>
                       <th scope="col">{t("Pair")}</th>
                       <th scope="col">
                         {t("Price")}({dashboard?.order_data?.base_coin})
@@ -151,10 +179,34 @@ const OrderHistory = ({
                           {dashboard.order_data.exchange_coin_pair &&
                             dashboard.order_data.exchange_coin_pair}
                         </td>
-                        <td>{item.price}</td>
-                        <td>{item.amount}</td>
-                        <td>{item.fees}</td>
-                        <td>{item.total}</td>
+                        <td>
+                          {formatCurrency(
+                            item.price,
+                            dashboard?.order_data?.total?.trade_wallet
+                              ?.pair_decimal
+                          )}
+                        </td>
+                        <td>
+                          {formatCurrency(
+                            item.amount,
+                            dashboard?.order_data?.total?.trade_wallet
+                              ?.pair_decimal
+                          )}
+                        </td>
+                        <td>
+                          {formatCurrency(
+                            item.fees,
+                            dashboard?.order_data?.total?.trade_wallet
+                              ?.pair_decimal
+                          )}
+                        </td>
+                        <td>
+                          {formatCurrency(
+                            item.total,
+                            dashboard?.order_data?.total?.trade_wallet
+                              ?.pair_decimal
+                          )}
+                        </td>
                         <td>{formateData(item.created_at)}</td>
                       </tr>
                     ))}

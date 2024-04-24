@@ -1,4 +1,4 @@
-import { formateData } from "common";
+import { formatCurrency, formateData } from "common";
 import useTranslation from "next-translate/useTranslation";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -29,7 +29,9 @@ const OpenOrders = ({ openOrders, openOrderHistory }: any) => {
           <table className="table">
             <thead>
               <tr>
-                <th scope="col" className="pl-0">{t("Type")}</th>
+                <th scope="col" className="pl-0">
+                  {t("Type")}
+                </th>
 
                 <th scope="col">
                   {t("Amount")}({dashboard?.order_data?.trade_coin})
@@ -54,7 +56,7 @@ const OpenOrders = ({ openOrders, openOrderHistory }: any) => {
             <tbody>
               {openOrderHistory?.map((order: any, index: number) => (
                 <tr key={index}>
-                  <td className="pl-0"> 
+                  <td className="pl-0">
                     <span
                       className={
                         order.type === "sell" ? "redText" : "greenText"
@@ -64,11 +66,31 @@ const OpenOrders = ({ openOrders, openOrderHistory }: any) => {
                     </span>
                   </td>
 
-                  <td>{order.amount}</td>
-                  <td>{parseFloat(order.fees).toFixed(8)}</td>
-                  <td>{order.price}</td>
+                  <td>
+                    {formatCurrency(
+                      order.amount,
+                      dashboard?.order_data?.total?.trade_wallet?.pair_decimal
+                    )}
+                  </td>
+                  <td>
+                    {formatCurrency(
+                      order.fees,
+                      dashboard?.order_data?.total?.trade_wallet?.pair_decimal
+                    )}
+                  </td>
+                  <td>
+                    {formatCurrency(
+                      order.price,
+                      dashboard?.order_data?.total?.trade_wallet?.pair_decimal
+                    )}
+                  </td>
                   <td>{order.processed}</td>
-                  <td>{order.total}</td>
+                  <td>
+                    {formatCurrency(
+                      order.total,
+                      dashboard?.order_data?.total?.trade_wallet?.pair_decimal
+                    )}
+                  </td>
                   <td>{formateData(order.created_at)}</td>
 
                   <td>

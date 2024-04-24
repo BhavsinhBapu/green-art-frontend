@@ -1,4 +1,4 @@
-import { formateData } from "common";
+import { formatCurrency, formateData } from "common";
 import useTranslation from "next-translate/useTranslation";
 import React from "react";
 import { useSelector } from "react-redux";
@@ -21,7 +21,9 @@ const TradeOrder = ({ tradeOrder, tradeOrderHistory }: any) => {
           <table className="table">
             <thead>
               <tr>
-                <th scope="col" className="pl-0">{t("Transaction id")}</th>
+                <th scope="col" className="pl-0">
+                  {t("Transaction id")}
+                </th>
                 <th scope="col">
                   {" "}
                   {t("Fees")}({dashboard?.order_data?.base_coin})
@@ -43,10 +45,30 @@ const TradeOrder = ({ tradeOrder, tradeOrderHistory }: any) => {
               {tradeOrderHistory?.map((order: any, index: number) => (
                 <tr key={index}>
                   <td className="pl-0">{order.transaction_id}</td>
-                  <td>{parseFloat(order.fees).toFixed(8)}</td>
-                  <td>{order.amount}</td>
-                  <td>{order.price}</td>
-                  <td>{order.total}</td>
+                  <td>
+                    {formatCurrency(
+                      order.fees,
+                      dashboard?.order_data?.total?.trade_wallet?.pair_decimal
+                    )}
+                  </td>
+                  <td>
+                    {formatCurrency(
+                      order.amount,
+                      dashboard?.order_data?.total?.trade_wallet?.pair_decimal
+                    )}
+                  </td>
+                  <td>
+                    {formatCurrency(
+                      order.price,
+                      dashboard?.order_data?.total?.trade_wallet?.pair_decimal
+                    )}
+                  </td>
+                  <td>
+                    {formatCurrency(
+                      order.total,
+                      dashboard?.order_data?.total?.trade_wallet?.pair_decimal
+                    )}
+                  </td>
                   <td>{formateData(order.created_at)}</td>
                 </tr>
               ))}
