@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import useTranslation from "next-translate/useTranslation";
 import DataTable from "react-data-table-component";
 import { unlistenAllChannels } from "state/actions/exchange";
+import { formatCurrency } from "common";
 const SelectCurrencyRight = () => {
   const router = useRouter();
   const [pairs, setPairs] = React.useState([]);
@@ -70,7 +71,11 @@ const SelectCurrencyRight = () => {
             overlay={
               <span>
                 <span>
-                  {t("Last Price")}: {row.last_price}
+                  {t("Last Price")}:{" "}
+                  {formatCurrency(
+                    row.last_price,
+                    dashboard?.order_data?.total?.trade_wallet?.pair_decimal
+                  )}
                 </span>
               </span>
             }
@@ -146,7 +151,11 @@ const SelectCurrencyRight = () => {
             overlay={
               <span>
                 <span>
-                  {t("Last Price")}: {row.last_price}
+                  {t("Last Price")}:{" "}
+                  {formatCurrency(
+                    row.last_price,
+                    dashboard?.order_data?.total?.trade_wallet?.pair_decimal
+                  )}
                 </span>
               </span>
             }
@@ -165,7 +174,10 @@ const SelectCurrencyRight = () => {
               }}
               style={{ fontSize: "11px" }}
             >
-              {parseFloat(row.last_price)}
+              {formatCurrency(
+                row.last_price,
+                dashboard?.order_data?.total?.trade_wallet?.pair_decimal
+              )}
             </span>
           </Tooltip>
         );
@@ -182,7 +194,12 @@ const SelectCurrencyRight = () => {
             overlay={
               <span>
                 <span>
-                  {t("Price Change")}: {row.price_change}%
+                  {t("Price Change")}:{" "}
+                  {formatCurrency(
+                    row.price_change,
+                    dashboard?.order_data?.total?.trade_wallet?.pair_decimal
+                  )}
+                  %
                 </span>
               </span>
             }
@@ -206,7 +223,11 @@ const SelectCurrencyRight = () => {
                 // router.reload();
               }}
             >
-              {parseFloat(row.price_change).toFixed(2)}%
+              {formatCurrency(
+                row.price_change,
+                dashboard?.order_data?.total?.trade_wallet?.pair_decimal
+              )}
+              %
             </span>
           </Tooltip>
         );
