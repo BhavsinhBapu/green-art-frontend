@@ -210,8 +210,7 @@ const Index = ({ children }: any) => {
           property="og:title"
           content={settings?.seo_social_title}
         />
-        <meta name="description" content={settings?.seo_meta_description} />
-        <meta property="description" content={settings?.seo_meta_description} />
+
         <meta
           name="description"
           property="og:description"
@@ -222,7 +221,6 @@ const Index = ({ children }: any) => {
           property="og:keywords"
           content={settings?.seo_meta_keywords}
         />
-        <meta property="keywords" content={settings?.seo_meta_keywords} />
         <meta name="robots" content="index,follow" />
         <meta name="image" property="og:image" content={settings?.seo_image} />
         <link
