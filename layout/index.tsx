@@ -207,10 +207,17 @@ const Index = ({ children }: any) => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta property="og:title" content={settings?.seo_social_title} />
         <meta name="description" content={settings?.seo_meta_description} />
+        <meta property="description" content={settings?.seo_meta_description} />
+        <meta
+          property="og:description"
+          content={settings?.seo_meta_description}
+        />
         <meta name="keywords" content={settings?.seo_meta_keywords} />
+        <meta property="keywords" content={settings?.seo_meta_keywords} />
+        <meta name="robots" content="index, follow" />
         <meta property="og:image" content={settings?.seo_image} />
         <link
-          rel="shortcut icon"
+          rel="icon"
           href={metaData?.favicon || process.env.NEXT_PUBLIC_FAVICON}
         />
       </Head>
