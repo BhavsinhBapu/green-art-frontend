@@ -6,9 +6,9 @@ import PlaceTopLeft from "components/gradient/placeTopLeft";
 const GetInTouch = ({ landing, featureListdata }: any) => {
   console.log("featureListdata", featureListdata);
   return (
-    <div>
-      <PlaceTopLeft />
-      <PlaceBottomRight />
+    <div >
+      {/* <PlaceTopLeft />
+      <PlaceBottomRight /> */}
       {parseInt(landing.landing_sixth_section_status) === 1 && (
         <motion.section
           className="get-touch-area"
