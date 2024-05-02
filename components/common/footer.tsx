@@ -100,7 +100,11 @@ const Footer = () => {
                 <div className="col-lg-2 col-md-6 col-sm-6 mb-30">
                   <div className="single-wedgets text-widget">
                     <div className="widget-title">
-                      <h4>{t("About Us")}</h4>
+                      <h4>
+                        {customPageData?.custom_page_list[0]?.name
+                          ? customPageData?.custom_page_list[0]?.name
+                          : t("About Us")}
+                      </h4>
                     </div>
                     <div className="widget-inner">
                       <ul>
@@ -109,10 +113,11 @@ const Footer = () => {
                             <Link href={"/blog"}>{t("Blog")}</Link>
                           </li>
                         )}
-
-                        <li>
-                          <Link href={"/staking"}>{t("Staking")}</Link>
-                        </li>
+                        {parseInt(settings?.enable_staking) === 1 && (
+                          <li>
+                            <Link href={"/staking"}>{t("Staking")}</Link>
+                          </li>
+                        )}
 
                         {parseInt(settings?.knowledgebase_support_module) ===
                           1 && (
@@ -148,8 +153,8 @@ const Footer = () => {
                   <div className="single-wedgets text-widget">
                     <div className="widget-title">
                       <h4>
-                        {customPageData?.custom_page_list[0]?.name
-                          ? customPageData?.custom_page_list[0]?.name
+                        {customPageData?.custom_page_list[1]?.name
+                          ? customPageData?.custom_page_list[1]?.name
                           : t("Products")}
                       </h4>
                     </div>
@@ -184,8 +189,8 @@ const Footer = () => {
                   <div className="single-wedgets text-widget">
                     <div className="widget-title">
                       <h4>
-                        {customPageData?.custom_page_list[1]?.name
-                          ? customPageData?.custom_page_list[1]?.name
+                        {customPageData?.custom_page_list[2]?.name
+                          ? customPageData?.custom_page_list[2]?.name
                           : t("Service")}
                       </h4>
                     </div>
@@ -219,8 +224,8 @@ const Footer = () => {
                   <div className="single-wedgets text-widget">
                     <div className="widget-title">
                       <h4>
-                        {customPageData?.custom_page_list[2]?.name
-                          ? customPageData?.custom_page_list[2]?.name
+                        {customPageData?.custom_page_list[3]?.name
+                          ? customPageData?.custom_page_list[3]?.name
                           : t("Support")}
                       </h4>
                     </div>
@@ -254,8 +259,8 @@ const Footer = () => {
                   <div className="single-wedgets social-link">
                     <div className="widget-title">
                       <h4>
-                        {customPageData?.custom_page_list[3]?.name
-                          ? customPageData?.custom_page_list[3]?.name
+                        {customPageData?.custom_page_list[4]?.name
+                          ? customPageData?.custom_page_list[4]?.name
                           : t("Community")}
                       </h4>
                     </div>

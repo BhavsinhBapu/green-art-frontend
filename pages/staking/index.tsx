@@ -30,7 +30,18 @@ const Index = ({ data }: any) => {
   );
 };
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
-  const { data } = await LandingDetailsStaking();
+  const response = await LandingDetailsStaking();
+
+  if (!response?.success) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: true,
+      },
+    };
+  }
+  const { data } = response;
+
   return {
     props: {
       data: data,
