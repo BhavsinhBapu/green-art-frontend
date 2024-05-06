@@ -59,13 +59,7 @@ const LockedStaking = () => {
   return (
     <div className="">
       <StakingHeader title={t(`Staking`)} />
-      <div
-        className="container-4xl"
-        style={{
-          marginTop: "-60px",
-          marginBottom: "30px",
-        }}
-      >
+      <div className="container-4xl margin-n-top-60 margin-bottom-30">
         {loading ? (
           <SectionLoading />
         ) : (

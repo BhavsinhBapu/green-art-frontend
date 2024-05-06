@@ -16470,11 +16470,11 @@ input:checked + .gift-card-buy-slider:before {
   width: 370px !important;
 }
 
-.w-16{
+.w-16 {
   width: 16px !important;
 }
 
-.h-16{
+.h-16 {
   height: 16px !important;
 }
 
@@ -16530,12 +16530,24 @@ input:checked + .gift-card-buy-slider:before {
   gap: 4px !important;
 }
 
+.row-gap-20 {
+  row-gap: 20px !important;
+}
+
 .display-grid {
   display: grid !important;
 }
 
 .grid-temp-col-2 {
   grid-template-columns: repeat(2, 1fr);
+}
+
+.margin-n-top-60 {
+  margin-top: -60px !important;
+}
+
+.margin-bottom-30 {
+  margin-bottom: 30px !important;
 }
 
 .sign-up-btn-un-auth {

@@ -57,24 +57,9 @@ const CreateEditPhase = ({ id, edit, data }: any) => {
         <PlaceTopLeft />
         <PlaceBottomRight />
         <div className="container-4xl">
-          <div
-            className="ico-tokenCreate shadow-sm section-padding-custom wallet-card-info-container"
-            style={{
-              marginTop: "-60px",
-              marginBottom: "30px",
-            }}
-          >
+          <div className="ico-tokenCreate shadow-sm section-padding-custom wallet-card-info-container margin-n-top-60 margin-bottom-30">
             <div className="row">
               <div>
-                {/* <div className="col-12">
-              <h2>
-                {t(
-                  `${
-                    router.query.edit === "true" ? "Edit" : "Create New"
-                  }  Phase`
-                )}
-              </h2>
-            </div> */}
                 <div className="ico-create-form col-12">
                   <form
                     className="row"

@@ -108,20 +108,7 @@ const MyWallet: NextPage = () => {
           <PlaceTopLeft />
           <PlaceBottomRight />
           <div className="container-4xl">
-            {/* <div className="section-top-wrap mb-25 inner-section-margin-top">
-              <div className="overview-area">
-                <div className="overview-left">
-                  <h2 className="section-top-title">{t("Token Wallet")}</h2>
-                </div>
-              </div>
-            </div> */}
-            <div
-              className="asset-balances-area cstm-loader-area shadow-sm  wallet-card-info-container"
-              style={{
-                marginTop: "-60px",
-                marginBottom: "30px",
-              }}
-            >
+            <div className="asset-balances-area cstm-loader-area shadow-sm  wallet-card-info-container margin-n-top-60 margin-bottom-30">
               <div className="asset-balances-left">
                 <div className="section-wrapper">
                   <div className="tableScroll">

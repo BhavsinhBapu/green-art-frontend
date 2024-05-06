@@ -91,27 +91,7 @@ export default function Index() {
       <PlaceBottomRight />
       <PlaceTopLeft />
       <div className="container-4xl">
-        {/* <div className=" pt-4 pb-2 p2p-gift-card-navbar-margin-top">
-          <h1 className="banner-title">{t("Markets Overview")}</h1>
-          <div className="d-flex gap-5 align-items-center">
-            <p className="text-14">{t(`All price information is in`)}</p>
-            <CUstomSelect
-              options={allCurrency}
-              handleFunction={handleCoinType}
-              classname={"market-select-page"}
-              defaultValue={allCurrency[0]}
-            />
-          </div>
-        </div> */}
-
-        <div
-          className="row"
-          style={{
-            marginTop: "-60px",
-            marginBottom: "30px",
-            rowGap: "20px",
-          }}
-        >
+        <div className="row margin-n-top-60 margin-bottom-30 row-gap-20">
           {marketsCardData?.highlight_coin.length > 0 && (
             <div className="col-md-6 col-lg-3">
               <div className="shadow-sm p-3 bg-card-glass-clr">

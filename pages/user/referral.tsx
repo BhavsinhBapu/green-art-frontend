@@ -35,12 +35,7 @@ const Referral: NextPage = () => {
         <PlaceTopLeft />
         <PlaceBottomRight />
         <div className="referral-area container-4xl ">
-          <div
-            style={{
-              marginTop: "-60px",
-              marginBottom: "30px",
-            }}
-          >
+          <div className="margin-n-top-60 margin-bottom-30">
             <div className="invite-friends mb-5 shadow-sm  section-padding-custom wallet-card-info-container">
               <h4>{t("Invite your friends")}</h4>
               <div className="input-group rounded">

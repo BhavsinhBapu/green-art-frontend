@@ -34,13 +34,7 @@ const PaymentList = ({}: any) => {
       <div className="page-wrap">
         <div className="page-main-content">
           <StakingHeader title={t("My Earnings")} />
-          <div
-            className="container-4xl"
-            style={{
-              marginTop: "-60px",
-              marginBottom: "30px",
-            }}
-          >
+          <div className="container-4xl margin-n-top-60 margin-bottom-30">
             {processing ? (
               <SectionLoading />
             ) : (

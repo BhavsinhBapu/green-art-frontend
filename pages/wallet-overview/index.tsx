@@ -61,27 +61,14 @@ const WalletOverview: NextPage = () => {
               ) : (
                 Object.keys(walletOverviewData).length > 0 && (
                   <>
-                    <div
-                      className="px-1"
-                      style={{
-                        marginTop: "-60px",
-                        marginBottom: "30px",
-                      }}
-                    >
-                      <div className="row" style={{ rowGap: "20px" }}>
+                    <div className="px-1 margin-n-top-60 margin-bottom-30 row-gap-20">
+                      <div className="row">
                         <div className=" col-md-6">
                           <div
                             className="shadow-sm section-padding-custom wallet-card-info-container"
                             style={{ position: "relative", zIndex: "10" }}
                           >
-                            <div
-                              // style={{
-                              //   display: "flex",
-                              //   justifyContent: "space-between",
-                              //   alignItems: "center",
-                              // }}
-                              className="card-head"
-                            >
+                            <div className="card-head">
                               <h6>{t(`Estimated Balance`)}</h6>
                               <div
                                 style={{
