@@ -88,11 +88,11 @@ const UnAuthNav = ({
             <div className="d-flex align-items-center" style={{ gap: "20px" }}>
               <div className="cp-user-logo">
                 <Link href="/">
-                  <a href="">
+                  <a>
                     <img
                       src={logo || ""}
                       className="img-fluid cp-user-logo-large"
-                      style={{maxHeight: '50px'}}
+                      style={{ maxHeight: "50px" }}
                       alt=""
                     />
                   </a>
@@ -126,13 +126,13 @@ const UnAuthNav = ({
                               : "/exchange/dashboard"
                           }
                         >
-                          <a className="py-1 menu-hover">
+                          <div className="py-1 menu-hover">
                             <span className="cp-user-icon">
                               {" "}
                               <BiShapeCircle />{" "}
                             </span>{" "}
                             <span>{t("Spot Trading")}</span>{" "}
-                          </a>
+                          </div>
                         </a>
                       </li>
                       {parseInt(settings?.p2p_module) === 1 && (
@@ -321,7 +321,7 @@ const UnAuthNav = ({
                               <label className="gift-card-buy-switch mb-0">
                                 <input
                                   type="checkbox"
-                                  onClick={() => {
+                                  onChange={() => {
                                     darkModeToggle(
                                       settings,
                                       setTheme,
@@ -344,7 +344,7 @@ const UnAuthNav = ({
                                   name="exampleRadios"
                                   id="exampleRadios1"
                                   checked={ThemeColor.chooseColor === 1}
-                                  onClick={() => {
+                                  onChange={() => {
                                     changeThemeSettingsDashboard(
                                       "#32d777",
                                       "#d63031",
@@ -384,7 +384,7 @@ const UnAuthNav = ({
                                   id="exampleRadios3"
                                   checked={ThemeColor.chooseColor === 2}
                                   value="option1"
-                                  onClick={() => {
+                                  onChange={() => {
                                     changeThemeSettingsDashboard(
                                       "#3498db",
                                       "#9b59b6",
@@ -423,7 +423,7 @@ const UnAuthNav = ({
                                   id="exampleRadios2"
                                   value="option1"
                                   checked={ThemeColor.chooseColor === 3}
-                                  onClick={() => {
+                                  onChange={() => {
                                     changeThemeSettingsDashboard(
                                       "#f39c12",
                                       "#d35400",
@@ -758,7 +758,7 @@ const UnAuthNav = ({
                         aria-labelledby="navbarDropdown"
                       >
                         {navbar?.trade?.status && (
-                          <a
+                          <Link
                             href={
                               router.locale !== "en"
                                 ? `/${router.locale}/exchange/dashboard`
@@ -784,7 +784,7 @@ const UnAuthNav = ({
                                 <span>{t("Spot Trading")}</span>
                               </a>
                             </li>
-                          </a>
+                          </Link>
                         )}
                         {parseInt(settings?.p2p_module) === 1 && (
                           <Link href={isLoggedIn ? "/p2p" : "/signin"}>
@@ -793,13 +793,12 @@ const UnAuthNav = ({
                                 router.pathname == "/p2p" ? "active-navbar" : ""
                               }
                             >
-                              <a
-                                href=""
+                              <span
                                 className="px-3 py-2 text-primary-color-two"
                                 onClick={() => setActive(false)}
                               >
                                 <span>{t("P2P Trading")}</span>
-                              </a>
+                              </span>
                             </li>
                           </Link>
                         )}
@@ -818,13 +817,12 @@ const UnAuthNav = ({
                                   : ""
                               }
                             >
-                              <a
-                                href=""
+                              <span
                                 className="px-3 py-2 text-primary-color-two"
                                 onClick={() => setActive(false)}
                               >
                                 <span>{t("Future Trading")}</span>
-                              </a>
+                              </span>
                             </li>
                           </Link>
                         )}
@@ -888,7 +886,7 @@ const UnAuthNav = ({
                       <label className="gift-card-buy-switch mb-0">
                         <input
                           type="checkbox"
-                          onClick={() => {
+                          onChange={() => {
                             darkModeToggle(settings, setTheme, dispatch);
                           }}
                           checked={theme === 0}
