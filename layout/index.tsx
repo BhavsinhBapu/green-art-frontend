@@ -179,8 +179,7 @@ const Index = ({ children }: any) => {
             name="title"
             property="og:title"
             content={
-              settings?.seo_social_title ||
-              "Tradexpro is a Crypto Currency Exchange Platform."
+              settings?.seo_social_title || process.env.NEXT_PUBLIC_SEO_TITLE
             }
           />
 
@@ -188,8 +187,7 @@ const Index = ({ children }: any) => {
             name="description"
             property="og:description"
             content={
-              settings?.seo_meta_description ||
-              "Tradexpro is a Crypto Currency Exchange Platform."
+              settings?.seo_meta_description || process.env.NEXT_PUBLIC_SEO_DES
             }
           />
           <meta
@@ -197,17 +195,15 @@ const Index = ({ children }: any) => {
             property="og:keywords"
             content={
               settings?.seo_meta_keywords ||
-              "exchange,tradex,spottrading,Crypto"
+              process.env.NEXT_PUBLIC_SEO_KEYWORDS
             }
           />
           <meta name="robots" content="index,follow" />
-          {/* <meta
-            name="image"
-            property="og:image"
-            content={settings?.seo_image}
-          /> */}
         </Head>
         <Loading />
+
+        <h1 className="sr-only">{process.env.NEXT_PUBLIC_SEO_TITLE}</h1>
+        <h2 className="sr-only">{process.env.NEXT_PUBLIC_SEO_DES}</h2>
       </>
     );
 
