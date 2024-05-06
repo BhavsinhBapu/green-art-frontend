@@ -171,6 +171,41 @@ const Index = ({ children }: any) => {
             rel="shortcut icon"
             href={metaData?.favicon || process.env.NEXT_PUBLIC_FAVICON}
           />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          />
+          <meta
+            name="title"
+            property="og:title"
+            content={
+              settings?.seo_social_title ||
+              "Tradexpro is a Crypto Currency Exchange Platform."
+            }
+          />
+
+          <meta
+            name="description"
+            property="og:description"
+            content={
+              settings?.seo_meta_description ||
+              "Tradexpro is a Crypto Currency Exchange Platform."
+            }
+          />
+          <meta
+            name="keywords"
+            property="og:keywords"
+            content={
+              settings?.seo_meta_keywords ||
+              "exchange,tradex,spottrading,Crypto"
+            }
+          />
+          <meta name="robots" content="index,follow" />
+          {/* <meta
+            name="image"
+            property="og:image"
+            content={settings?.seo_image}
+          /> */}
         </Head>
         <Loading />
       </>
