@@ -13,7 +13,7 @@ const SliderCover = ({ featuredblogs }: any) => {
     arrows: false,
     autoplay: true,
   };
-  console.log("featuredblogs", featuredblogs);
+
   return (
     <div className="mt-4">
       <Slider className="blogSlider" {...settings}>
