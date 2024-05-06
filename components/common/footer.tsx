@@ -161,9 +161,9 @@ const Footer = () => {
                     <div className="widget-inner">
                       <ul>
                         {customPageData?.links?.map(
-                          (item: any) =>
+                          (item: any, index: any) =>
                             item.type === 1 && (
-                              <li>
+                              <li key={index}>
                                 {item.page_type === CUSTOM_PAGE_LINK_PAGE ? (
                                   <Link href={"/page-details/" + item.key}>
                                     {item.title}
@@ -197,9 +197,9 @@ const Footer = () => {
                     <div className="widget-inner">
                       <ul>
                         {customPageData?.links?.map(
-                          (item: any) =>
+                          (item: any, index: any) =>
                             item.type === 2 && (
-                              <li>
+                              <li key={index}>
                                 {item.page_type === CUSTOM_PAGE_LINK_PAGE ? (
                                   <Link href={"/page-details/" + item.key}>
                                     {item.title}
@@ -232,9 +232,9 @@ const Footer = () => {
                     <div className="widget-inner">
                       <ul>
                         {customPageData?.links?.map(
-                          (item: any) =>
+                          (item: any, index: any) =>
                             item.type === 3 && (
-                              <li>
+                              <li key={index}>
                                 {item.page_type === CUSTOM_PAGE_LINK_PAGE ? (
                                   <Link href={"/page-details/" + item.key}>
                                     {item.title}
