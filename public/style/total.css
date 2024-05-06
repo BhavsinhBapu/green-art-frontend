@@ -16465,3 +16465,82 @@ input:checked + .gift-card-buy-slider:before {
   font-size: 12px;
   min-width: 75px;
 }
+
+.w-370 {
+  width: 370px !important;
+}
+
+.w-16{
+  width: 16px !important;
+}
+
+.h-16{
+  height: 16px !important;
+}
+
+.min-h-370 {
+  min-height: 370px !important;
+}
+
+.max-h-245 {
+  max-height: 245px !important;
+}
+
+.max-h-350 {
+  max-height: 350px !important;
+}
+
+.max-h-50 {
+  max-height: 50px !important;
+}
+
+.rounded-10 {
+  border-radius: 10px !important;
+}
+
+.h-44 {
+  height: 44px !important;
+}
+
+.h-48 {
+  height: 48px !important;
+}
+
+.right-0 {
+  right: 0px !important;
+}
+
+.left-auto {
+  left: auto !important;
+}
+
+.leading-18 {
+  line-height: 18px !important;
+}
+
+.gap-20 {
+  gap: 20px !important;
+}
+
+.gap-2 {
+  gap: 2px !important;
+}
+
+.gap-4 {
+  gap: 4px !important;
+}
+
+.display-grid {
+  display: grid !important;
+}
+
+.grid-temp-col-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.sign-up-btn-un-auth {
+  padding: 3px 10px;
+  border-radius: 5px;
+  border: 1px solid var(--border-color-2);
+  color: var(--border-color-2);
+}

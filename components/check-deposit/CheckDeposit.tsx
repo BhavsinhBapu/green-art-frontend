@@ -114,8 +114,7 @@ export default function CheckDeposit() {
                   <div className="cp-select-area">
                     <select
                       name="currency"
-                      className="form-control coin-list-item  mt-3"
-                      style={{ height: "44px" }}
+                      className="form-control coin-list-item  mt-3 h-44"
                       onChange={getCoinLists}
                       value={selectedNetwork}
                     >
@@ -133,10 +132,9 @@ export default function CheckDeposit() {
                   <div className="cp-select-area">
                     <select
                       name="currency"
-                      className={`form-control coin-list-item  mt-3 ${
+                      className={`form-control coin-list-item h-44 mt-3 ${
                         !selectedNetwork && "cursor-not-allowed"
                       }`}
-                      style={{ height: "44px" }}
                       disabled={!selectedNetwork}
                       onChange={(e: any) => setSelectedCoin(e.target.value)}
                       value={selectedCoin}
@@ -165,11 +163,10 @@ export default function CheckDeposit() {
                   </div>
                 </div>
                 <button
-                  className={`primary-btn-outline bg-primary-color w-100 mt-4 ${
+                  className={`primary-btn-outline h-44 bg-primary-color w-100 mt-4 ${
                     isProcessing && "cursor-not-allowed"
                   }`}
                   type="button"
-                  style={{ height: "44px" }}
                   onClick={handleCheckDeposit}
                   disabled={isProcessing}
                 >
@@ -190,9 +187,8 @@ export default function CheckDeposit() {
                   <h5 className="modal-title">{t("Deposit Info")}</h5>
                   <button
                     type="button"
-                    className="close"
+                    className="close right-0"
                     onClick={() => setIsModalOpen(false)}
-                    style={{ right: "0" }}
                   >
                     <span aria-hidden="true">&times;</span>
                   </button>

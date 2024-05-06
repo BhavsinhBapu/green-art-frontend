@@ -265,10 +265,7 @@ const Footer = () => {
                       </h4>
                     </div>
                     <div className="widget-inner">
-                      <ul
-                        className="d-flex flex-wrap align-items-center"
-                        style={{ gap: "20px" }}
-                      >
+                      <ul className="d-flex flex-wrap align-items-center gap-20">
                         {socialData?.length > 0 ? (
                           socialData?.map((social: any, index: any) => (
                             <li key={index}>

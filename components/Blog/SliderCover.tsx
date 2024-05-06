@@ -19,14 +19,7 @@ const SliderCover = ({ featuredblogs }: any) => {
       <Slider className="blogSlider" {...settings}>
         {featuredblogs?.map((featuredblog: any, index: any) => (
           <Link href={"/blog/" + featuredblog?.post_id} key={index}>
-            <a
-              style={{
-                maxHeight: "350px",
-                borderRadius: "10px",
-                overflow: "hidden",
-              }}
-              className=" mt-4 glass-color-bg-custom d-block "
-            >
+            <a className="overflow-hidden max-h-350 rounded-10 mt-4 glass-color-bg-custom d-block ">
               <div className="row">
                 <div className="col-md-5">
                   <img
