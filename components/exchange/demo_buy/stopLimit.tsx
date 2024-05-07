@@ -61,10 +61,7 @@ const StopLimit = ({
                   </div>
                   <div className="total-top-blance">
                     <div className="total-blance">
-                      <span
-                        className="text-warning"
-                        style={{ fontWeight: 700 }}
-                      >
+                      <span className="text-warning font-bold">
                         <span>
                           {parseFloat(
                             dashboard?.order_data?.total?.base_wallet?.balance
@@ -74,10 +71,7 @@ const StopLimit = ({
                           ).toFixed(4)}
                         </span>
                       </span>
-                      <span
-                        className="text-warning"
-                        style={{ fontWeight: 700 }}
-                      >
+                      <span className="text-warning font-bold">
                         <span className="base_coin_type">
                           {" "}
                           {dashboard?.order_data?.total?.base_wallet?.coin_type}
@@ -85,10 +79,7 @@ const StopLimit = ({
                       </span>
                     </div>
                     <div className="avilable-blance">
-                      <span
-                        className="text-warning"
-                        style={{ fontWeight: 700 }}
-                      >
+                      <span className="text-warning font-bold">
                         <span>
                           {" "}
                           {parseFloat(
@@ -99,10 +90,7 @@ const StopLimit = ({
                           ).toFixed(4)}
                         </span>
                       </span>
-                      <span
-                        className="text-warning"
-                        style={{ fontWeight: 700 }}
-                      >
+                      <span className="text-warning font-bold">
                         <span className="base_coin_type">
                           {" "}
                           {dashboard?.order_data?.total?.base_wallet?.coin_type}
@@ -129,10 +117,7 @@ const StopLimit = ({
                       });
                     }}
                   />
-                  <span
-                    className="text-warning blns"
-                    style={{ fontWeight: 700 }}
-                  >
+                  <span className="text-warning blns font-bold">
                     <span className="base_coin_type">
                       {" "}
                       {dashboard?.order_data?.total?.base_wallet?.coin_type}
@@ -157,10 +142,7 @@ const StopLimit = ({
                       });
                     }}
                   />
-                  <span
-                    className="text-warning blns"
-                    style={{ fontWeight: 700 }}
-                  >
+                  <span className="text-warning blns font-bold">
                     <span className="base_coin_type">
                       {" "}
                       {dashboard?.order_data?.total?.base_wallet?.coin_type}
@@ -189,10 +171,7 @@ const StopLimit = ({
                       });
                     }}
                   />
-                  <span
-                    className="text-warning blns"
-                    style={{ fontWeight: 700 }}
-                  >
+                  <span className="text-warning blns font-bold">
                     <span className="trade_coin_type">
                       {dashboard?.order_data?.total?.trade_wallet?.coin_type}
                     </span>
@@ -210,10 +189,7 @@ const StopLimit = ({
                       parseFloat(buySellStopLimitCoinData.total).toFixed(8) ?? 0
                     }
                   />
-                  <span
-                    className="text-warning blns"
-                    style={{ fontWeight: 700 }}
-                  >
+                  <span className="text-warning blns font-bold">
                     <span className="base_coin_type">
                       {" "}
                       {dashboard?.order_data?.total?.base_wallet?.coin_type}

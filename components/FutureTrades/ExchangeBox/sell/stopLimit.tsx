@@ -68,10 +68,7 @@ const StopLimit = ({
                       <label>{t("Available")}</label>
                     </div>
                     <div className="avilable-blance">
-                      <span
-                        className="text-warning"
-                        style={{ fontWeight: 700 }}
-                      >
+                      <span className="text-warning font-bold">
                         <span>
                           {" "}
                           {parseFloat(
@@ -82,10 +79,7 @@ const StopLimit = ({
                           ).toFixed(4)}
                         </span>
                       </span>
-                      <span
-                        className="text-warning ml-1"
-                        style={{ fontWeight: 700 }}
-                      >
+                      <span className="text-warning ml-1 font-bold">
                         <span className="trade_coin_type">
                           {dashboard?.order_data?.total?.base_wallet?.coin_type}
                         </span>
@@ -109,7 +103,7 @@ const StopLimit = ({
                     }}
                   />
 
-                  <span className=" blns" style={{ fontWeight: 700 }}>
+                  <span className=" blns font-bold">
                     <span
                       className={
                         selectedCoinType === TRADE
@@ -142,10 +136,7 @@ const StopLimit = ({
                       });
                     }}
                   />
-                  <span
-                    className="text-warning blns"
-                    style={{ fontWeight: 700 }}
-                  >
+                  <span className="text-warning blns font-bold">
                     <span className="trade_coin_type">
                       {dashboard?.order_data?.total?.base_wallet?.coin_type}
                     </span>
@@ -169,7 +160,7 @@ const StopLimit = ({
                       });
                     }}
                   />
-                  <span className=" blns" style={{ fontWeight: 700 }}>
+                  <span className=" blns font-bold">
                     <span
                       className={
                         OpenCloseStopLimitCoinData.amount_type ===
@@ -250,16 +241,8 @@ const StopLimit = ({
                           });
                         }}
                       />
-                      {/* make a select here */}
-                      {/* <select
-                        name=""
-                        className="form-control border-0 swapSelect"
-                        id=""
-                      >
-                        <option value="">Mark</option>
-                        <option value="">Last</option>
-                      </select> */}
-                      <span className=" blns" style={{ fontWeight: 700 }}>
+
+                      <span className=" blns font-bold">
                         <span
                           className={
                             selectedCoinType === TRADE
@@ -290,7 +273,7 @@ const StopLimit = ({
                         }}
                       />
 
-                      <span className=" blns" style={{ fontWeight: 700 }}>
+                      <span className=" blns font-bold">
                         <span
                           className={
                             selectedCoinType === TRADE
@@ -308,35 +291,6 @@ const StopLimit = ({
                   </div>
                 )}
 
-                {/* {isLoggedIn && (
-                  <div className=" mt-3 percent-container ">
-                    <span
-                      className=" percent-btn col-3"
-                      onClick={() => setSizeBasedOnPercentage(0.25)}
-                    >
-                      {t("25%")}
-                    </span>
-                    <span
-                      className=" percent-btn col-3"
-                      onClick={() => setSizeBasedOnPercentage(0.5)}
-                    >
-                      {t("50%")}
-                    </span>
-                    <span
-                      className=" percent-btn col-3"
-                      onClick={() => setSizeBasedOnPercentage(0.75)}
-                    >
-                      {t("75%")}
-                    </span>
-                    <span
-                      className=" percent-btn col-3"
-                      onClick={() => setSizeBasedOnPercentage(1)}
-                    >
-                      {t("100%")}
-                    </span>
-                  </div>
-                )} */}
-
                 {!isLoggedIn ? (
                   <div className="form-group mt-4">
                     <Link href="/signin?redirect=/futures/exchange">
@@ -350,12 +304,7 @@ const StopLimit = ({
                       className="btn theme-btn-future"
                       onClick={(e) => {
                         e.preventDefault();
-                        // await dispatch(getDashboardData(currentPair));
-                        // setOpenCloseStopLimitCoinData({
-                        //   ...OpenCloseStopLimitCoinData,
-                        //   amount: 0,
-                        //   total: 0,
-                        // });
+
                         BuyOrder(
                           OpenCloseStopLimitCoinData,
                           setOpenCloseStopLimitCoinData

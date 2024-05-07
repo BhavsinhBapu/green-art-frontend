@@ -76,10 +76,7 @@ const Limit = ({
                       <label>{t("Available")}</label>
                     </div>
                     <div className="avilable-blance">
-                      <span
-                        className="text-warning"
-                        style={{ fontWeight: 700 }}
-                      >
+                      <span className="text-warning font-bold">
                         <span>
                           {" "}
                           {parseFloat(
@@ -90,10 +87,7 @@ const Limit = ({
                           ).toFixed(4)}
                         </span>
                       </span>
-                      <span
-                        className="text-warning ml-1"
-                        style={{ fontWeight: 700 }}
-                      >
+                      <span className="text-warning ml-1 font-bold">
                         <span className="trade_coin_type">
                           {dashboard?.order_data?.total?.base_wallet?.coin_type}
                         </span>
@@ -119,10 +113,7 @@ const Limit = ({
                       });
                     }}
                   />
-                  <span
-                    className="text-warning blns"
-                    style={{ fontWeight: 700 }}
-                  >
+                  <span className="text-warning blns font-bold">
                     <span className="trade_coin_type">
                       {dashboard?.order_data?.total?.base_wallet?.coin_type}
                     </span>
@@ -146,7 +137,7 @@ const Limit = ({
                       });
                     }}
                   />
-                  <span className=" blns" style={{ fontWeight: 700 }}>
+                  <span className=" blns font-bold">
                     <span
                       className={
                         OpenCloseLimitCoinData.amount_type === AMOUNT_TYPE_TRADE
@@ -225,16 +216,8 @@ const Limit = ({
                           });
                         }}
                       />
-                      {/* make a select here */}
-                      {/* <select
-                        name=""
-                        className="form-control border-0 swapSelect"
-                        id=""
-                      >
-                        <option value="">Mark</option>
-                        <option value="">Last</option>
-                      </select> */}
-                      <span className=" blns" style={{ fontWeight: 700 }}>
+
+                      <span className=" blns font-bold">
                         <span
                           className={
                             selectedCoinType === TRADE
@@ -265,7 +248,7 @@ const Limit = ({
                         }}
                       />
 
-                      <span className=" blns" style={{ fontWeight: 700 }}>
+                      <span className=" blns font-bold">
                         <span
                           className={
                             selectedCoinType === TRADE

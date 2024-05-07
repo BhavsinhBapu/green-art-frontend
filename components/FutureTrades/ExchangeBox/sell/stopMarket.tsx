@@ -68,18 +68,12 @@ const SellStopMarketLimit = ({
                   defaultValue="g2OWJq3pDqYRQmVvmGt799aCsDmkkV4UjrWDhzcF"
                 />
                 <div className="form-group">
-                  {/* <div className="total-top">
-                    <label>{t("Total")}</label> <label>{t("Available")}</label>
-                  </div> */}
                   <div className="total-top-blance">
                     <div className="total-blance">
                       <label>{t("Available")}</label>
                     </div>
                     <div className="avilable-blance">
-                      <span
-                        className="text-warning"
-                        style={{ fontWeight: 700 }}
-                      >
+                      <span className="text-warning font-bold">
                         <span>
                           {" "}
                           {parseFloat(
@@ -90,10 +84,7 @@ const SellStopMarketLimit = ({
                           ).toFixed(4)}
                         </span>
                       </span>
-                      <span
-                        className="text-warning ml-1"
-                        style={{ fontWeight: 700 }}
-                      >
+                      <span className="text-warning ml-1 font-bold">
                         <span className="trade_coin_type">
                           {dashboard?.order_data?.total?.base_wallet?.coin_type}
                         </span>
@@ -117,7 +108,7 @@ const SellStopMarketLimit = ({
                     }}
                   />
 
-                  <span className=" blns" style={{ fontWeight: 700 }}>
+                  <span className=" blns font-bold">
                     <span
                       className={
                         selectedCoinType === TRADE
@@ -150,7 +141,7 @@ const SellStopMarketLimit = ({
                       });
                     }}
                   />
-                  <span className=" blns" style={{ fontWeight: 700 }}>
+                  <span className=" blns font-bold">
                     <span
                       className={
                         OpenCloseStopMarketCoinData.amount_type ===
@@ -231,16 +222,8 @@ const SellStopMarketLimit = ({
                           });
                         }}
                       />
-                      {/* make a select here */}
-                      {/* <select
-                        name=""
-                        className="form-control border-0 swapSelect"
-                        id=""
-                      >
-                        <option value="">Mark</option>
-                        <option value="">Last</option>
-                      </select> */}
-                      <span className=" blns" style={{ fontWeight: 700 }}>
+
+                      <span className=" blns font-bold">
                         <span
                           className={
                             selectedCoinType === TRADE
@@ -271,7 +254,7 @@ const SellStopMarketLimit = ({
                         }}
                       />
 
-                      <span className=" blns" style={{ fontWeight: 700 }}>
+                      <span className=" blns font-bold">
                         <span
                           className={
                             selectedCoinType === TRADE

@@ -74,10 +74,7 @@ const Market = ({
                   </div>
                   <div className="total-top-blance">
                     <div className="total-blance">
-                      <span
-                        className="text-warning"
-                        style={{ fontWeight: 700 }}
-                      >
+                      <span className="text-warning font-bold">
                         <span>
                           {dashboard?.order_data?.total?.base_wallet?.balance
                             ? formatCurrency(
@@ -89,10 +86,7 @@ const Market = ({
                             : 0}
                         </span>
                       </span>
-                      <span
-                        className="text-warning"
-                        style={{ fontWeight: 700 }}
-                      >
+                      <span className="text-warning font-bold">
                         <span className="base_coin_type">
                           {" "}
                           {dashboard?.order_data?.total?.base_wallet?.coin_type}
@@ -100,10 +94,7 @@ const Market = ({
                       </span>
                     </div>
                     <div className="avilable-blance">
-                      <span
-                        className="text-warning"
-                        style={{ fontWeight: 700 }}
-                      >
+                      <span className="text-warning font-bold">
                         <span>
                           {" "}
                           {dashboard?.order_data?.total?.base_wallet?.balance
@@ -116,10 +107,7 @@ const Market = ({
                             : 0}
                         </span>
                       </span>
-                      <span
-                        className="text-warning"
-                        style={{ fontWeight: 700 }}
-                      >
+                      <span className="text-warning font-bold">
                         <span className="base_coin_type">
                           {" "}
                           {dashboard?.order_data?.total?.base_wallet?.coin_type}
@@ -138,10 +126,7 @@ const Market = ({
                     value={buySellMarketCoinData?.price}
                     disabled
                   />
-                  <span
-                    className="text-warning blns"
-                    style={{ fontWeight: 700 }}
-                  >
+                  <span className="text-warning blns font-bold">
                     <span className="base_coin_type">
                       {" "}
                       {dashboard?.order_data?.total?.base_wallet?.coin_type}
@@ -178,10 +163,7 @@ const Market = ({
                       });
                     }}
                   />
-                  <span
-                    className="text-warning blns"
-                    style={{ fontWeight: 700 }}
-                  >
+                  <span className="text-warning blns font-bold">
                     <span className="trade_coin_type">
                       {dashboard?.order_data?.total?.trade_wallet?.coin_type}
                     </span>
@@ -202,10 +184,7 @@ const Market = ({
                         : 0
                     }
                   />
-                  <span
-                    className="text-warning blns"
-                    style={{ fontWeight: 700 }}
-                  >
+                  <span className="text-warning blns font-bold">
                     <span className="trade_coin_type">
                       {dashboard?.order_data?.total?.base_wallet?.coin_type}
                     </span>
@@ -298,16 +277,10 @@ const Market = ({
                   </div>
                   <div className="total-top-blance">
                     <div className="total-blance">
-                      <span
-                        className="text-warning"
-                        style={{ fontWeight: 700 }}
-                      >
+                      <span className="text-warning font-bold">
                         <span>0</span>
                       </span>
-                      <span
-                        className="text-warning"
-                        style={{ fontWeight: 700 }}
-                      >
+                      <span className="text-warning font-bold">
                         <span className="base_coin_type">
                           {" "}
                           {dashboard?.order_data?.total?.base_wallet?.coin_type}
@@ -315,16 +288,10 @@ const Market = ({
                       </span>
                     </div>
                     <div className="avilable-blance">
-                      <span
-                        className="text-warning"
-                        style={{ fontWeight: 700 }}
-                      >
+                      <span className="text-warning font-bold">
                         <span>0</span>
                       </span>
-                      <span
-                        className="text-warning"
-                        style={{ fontWeight: 700 }}
-                      >
+                      <span className="text-warning font-bold">
                         <span className="base_coin_type">
                           {" "}
                           {dashboard?.order_data?.total?.base_wallet?.coin_type}
@@ -336,10 +303,7 @@ const Market = ({
                 <div className="form-group mt-3">
                   <label>{t("Price")}</label>
                   <p className="form-control">Market</p>
-                  <span
-                    className="text-warning blns"
-                    style={{ fontWeight: 700 }}
-                  >
+                  <span className="text-warning blns font-bold">
                     <span className="base_coin_type">
                       {" "}
                       {dashboard?.order_data?.total?.base_wallet?.coin_type}
@@ -354,10 +318,7 @@ const Market = ({
                     placeholder=""
                     className="form-control number_only"
                   />
-                  <span
-                    className="text-warning blns"
-                    style={{ fontWeight: 700 }}
-                  >
+                  <span className="text-warning blns font-bold">
                     <span className="trade_coin_type">
                       {dashboard?.order_data?.total?.trade_wallet?.coin_type}
                     </span>
@@ -392,16 +353,10 @@ const Market = ({
                   </div>
                   <div className="total-top-blance">
                     <div className="total-blance">
-                      <span
-                        className="text-warning"
-                        style={{ fontWeight: 700 }}
-                      >
+                      <span className="text-warning font-bold">
                         <span>0</span>
                       </span>
-                      <span
-                        className="text-warning"
-                        style={{ fontWeight: 700 }}
-                      >
+                      <span className="text-warning font-bold">
                         <span className="base_coin_type">
                           {" "}
                           {dashboard?.order_data?.total?.base_wallet?.coin_type}
@@ -409,16 +364,10 @@ const Market = ({
                       </span>
                     </div>
                     <div className="avilable-blance">
-                      <span
-                        className="text-warning"
-                        style={{ fontWeight: 700 }}
-                      >
+                      <span className="text-warning font-bold">
                         <span>0</span>
                       </span>
-                      <span
-                        className="text-warning"
-                        style={{ fontWeight: 700 }}
-                      >
+                      <span className="text-warning font-bold">
                         <span className="base_coin_type">
                           {" "}
                           {dashboard?.order_data?.total?.base_wallet?.coin_type}
@@ -435,10 +384,7 @@ const Market = ({
                     placeholder=""
                     className="form-control number_only"
                   />
-                  <span
-                    className="text-warning blns"
-                    style={{ fontWeight: 700 }}
-                  >
+                  <span className="text-warning blns font-bold">
                     <span className="base_coin_type">
                       {" "}
                       {dashboard?.order_data?.total?.base_wallet?.coin_type}
@@ -453,10 +399,7 @@ const Market = ({
                     placeholder=""
                     className="form-control number_only"
                   />
-                  <span
-                    className="text-warning blns"
-                    style={{ fontWeight: 700 }}
-                  >
+                  <span className="text-warning blns font-bold">
                     <span className="base_coin_type">
                       {" "}
                       {dashboard?.order_data?.total?.base_wallet?.coin_type}
@@ -471,10 +414,7 @@ const Market = ({
                     placeholder=""
                     className="form-control number_only"
                   />
-                  <span
-                    className="text-warning blns"
-                    style={{ fontWeight: 700 }}
-                  >
+                  <span className="text-warning blns font-bold">
                     <span className="trade_coin_type">
                       {dashboard?.order_data?.total?.trade_wallet?.coin_type}
                     </span>
@@ -489,10 +429,7 @@ const Market = ({
                     placeholder=""
                     className="form-control number_only"
                   />
-                  <span
-                    className="text-warning blns"
-                    style={{ fontWeight: 700 }}
-                  >
+                  <span className="text-warning blns font-bold">
                     <span className="base_coin_type">
                       {" "}
                       {dashboard?.order_data?.total?.base_wallet?.coin_type}

@@ -68,18 +68,12 @@ const Market = ({
                   defaultValue="g2OWJq3pDqYRQmVvmGt799aCsDmkkV4UjrWDhzcF"
                 />
                 <div className="form-group">
-                  {/* <div className="total-top">
-                    <label>{t("Total")}</label> <label>{t("Available")}</label>
-                  </div> */}
                   <div className="total-top-blance">
                     <div className="total-blance">
                       <label>{t("Available")}</label>
                     </div>
                     <div className="avilable-blance">
-                      <span
-                        className="text-warning"
-                        style={{ fontWeight: 700 }}
-                      >
+                      <span className="text-warning font-bold">
                         <span>
                           {" "}
                           {parseFloat(
@@ -90,10 +84,7 @@ const Market = ({
                           ).toFixed(4)}
                         </span>
                       </span>
-                      <span
-                        className="text-warning ml-1"
-                        style={{ fontWeight: 700 }}
-                      >
+                      <span className="text-warning ml-1 font-bold">
                         <span className="trade_coin_type">
                           {dashboard?.order_data?.total?.base_wallet?.coin_type}
                         </span>
@@ -101,33 +92,7 @@ const Market = ({
                     </div>
                   </div>
                 </div>
-                {/* <div className="form-group mt-3 boxShadow">
-                  <label className="cstmHead">{t("Price")}</label>
-                  <input
-                    name="price"
-                    type="text"
-                    placeholder="0"
-                    className="form-control number_only input_1"
-                    value={OpenCloseMarketCoinData.price}
-                    onChange={async (e) => {
-                      await setOpenCloseMarketCoinData({
-                        ...OpenCloseMarketCoinData,
-                        price: e.target.value,
-                        total:
-                          parseFloat(e.target.value) *
-                          OpenCloseMarketCoinData.size,
-                      });
-                    }}
-                  />
-                  <span
-                    className="text-warning blns"
-                    style={{ fontWeight: 700 }}
-                  >
-                    <span className="trade_coin_type">
-                      {dashboard?.order_data?.total?.base_wallet?.coin_type}
-                    </span>
-                  </span>
-                </div> */}
+
                 <div className="form-group mt-3 boxShadow">
                   <label className="cstmHead">{t("Size")}</label>
                   <input
@@ -146,7 +111,7 @@ const Market = ({
                       });
                     }}
                   />
-                  <span className=" blns" style={{ fontWeight: 700 }}>
+                  <span className=" blns font-bold">
                     <span
                       className={
                         OpenCloseMarketCoinData.amount_type ===
@@ -226,16 +191,8 @@ const Market = ({
                           });
                         }}
                       />
-                      {/* make a select here */}
-                      {/* <select
-                        name=""
-                        className="form-control border-0 swapSelect"
-                        id=""
-                      >
-                        <option value="">Mark</option>
-                        <option value="">Last</option>
-                      </select> */}
-                      <span className=" blns" style={{ fontWeight: 700 }}>
+
+                      <span className=" blns font-bold">
                         <span
                           className={
                             selectedCoinType === TRADE
@@ -266,7 +223,7 @@ const Market = ({
                         }}
                       />
 
-                      <span className=" blns" style={{ fontWeight: 700 }}>
+                      <span className=" blns font-bold">
                         <span
                           className={
                             selectedCoinType === TRADE

@@ -51,10 +51,7 @@ const Market = ({
                   </div>
                   <div className="total-top-blance">
                     <div className="total-blance">
-                      <span
-                        className="text-warning"
-                        style={{ fontWeight: 700 }}
-                      >
+                      <span className="text-warning font-bold">
                         <span>
                           {parseFloat(
                             dashboard?.order_data?.total?.trade_wallet?.balance
@@ -64,10 +61,7 @@ const Market = ({
                           ).toFixed(4)}
                         </span>
                       </span>
-                      <span
-                        className="text-warning"
-                        style={{ fontWeight: 700 }}
-                      >
+                      <span className="text-warning font-bold">
                         <span className="trade_coin_type ml-1">
                           {
                             dashboard?.order_data?.total?.trade_wallet
@@ -77,10 +71,7 @@ const Market = ({
                       </span>
                     </div>
                     <div className="avilable-blance">
-                      <span
-                        className="text-warning"
-                        style={{ fontWeight: 700 }}
-                      >
+                      <span className="text-warning font-bold">
                         <span>
                           {parseFloat(
                             dashboard?.order_data?.total?.trade_wallet?.balance
@@ -90,10 +81,7 @@ const Market = ({
                           ).toFixed(4)}
                         </span>
                       </span>
-                      <span
-                        className="text-warning"
-                        style={{ fontWeight: 700 }}
-                      >
+                      <span className="text-warning font-bold">
                         <span className="trade_coin_type ml-1">
                           {
                             dashboard?.order_data?.total?.trade_wallet
@@ -114,10 +102,7 @@ const Market = ({
                     value={buySellMarketCoinData?.price}
                     disabled
                   />
-                  <span
-                    className="text-warning blns"
-                    style={{ fontWeight: 700 }}
-                  >
+                  <span className="text-warning blns font-bold">
                     <span className="trade_coin_type">
                       {dashboard?.order_data?.total?.base_wallet?.coin_type}
                     </span>
@@ -144,10 +129,7 @@ const Market = ({
                       });
                     }}
                   />
-                  <span
-                    className="text-warning blns"
-                    style={{ fontWeight: 700 }}
-                  >
+                  <span className="text-warning blns font-bold">
                     <span className="trade_coin_type">
                       {dashboard?.order_data?.total?.trade_wallet?.coin_type}
                     </span>
