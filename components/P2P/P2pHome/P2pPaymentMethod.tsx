@@ -10,7 +10,7 @@ export const P2pPaymentMethod = ({ data }: any) => {
           <h2>{t(`Top Payment Methods`)}</h2>
         </div>
         <div className="col-md-12 pb-4 mt-4">
-          <div className="row" style={{ rowGap: "20px" }}>
+          <div className="row row-gap-20">
             {data.payment_method_landing.map((data: any, index: any) => (
               <div className="col-sm-6 col-lg-4" key={index}>
                 <a
@@ -20,13 +20,8 @@ export const P2pPaymentMethod = ({ data }: any) => {
                   {data?.logo ? (
                     <img
                       src={data?.logo}
-                      style={{
-                        maxWidth: "20px",
-                        maxHeight: "20px",
-                        width: "100%",
-                        height: "100%",
-                      }}
                       alt="logo"
+                      className="h-full w-full max-w-20 max-h-20"
                     />
                   ) : (
                     <div></div>

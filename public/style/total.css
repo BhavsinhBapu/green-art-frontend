@@ -16470,8 +16470,40 @@ input:checked + .gift-card-buy-slider:before {
   min-width: 4rem !important;
 }
 
+.max-w-80-p {
+  min-width: 80% !important;
+}
+
+.min-w-21 {
+  min-width: 21px !important;
+}
+
+.min-w-45 {
+  min-width: 45px !important;
+}
+
+.max-w-20 { 
+  max-width: 20px !important;
+}
+
+.w-45 {
+  width: 45px !important;
+}
+
+.min-w-25 {
+  min-width: 25px !important;
+}
+
 .w-370 {
   width: 370px !important;
+}
+
+.w-auto {
+  width: auto !important;
+}
+
+.min-w-75p {
+  min-width: 75% !important;
 }
 
 .w-650 {
@@ -16481,11 +16513,24 @@ input:checked + .gift-card-buy-slider:before {
 .w-16 {
   width: 16px !important;
 }
+
+.w-30 {
+  width: 30px !important;
+}
+
 .w-35 {
   width: 35px !important;
 }
 .w-36 {
   width: 36px !important;
+}
+
+.w-50 {
+  width: 50px !important;
+}
+
+.min-w-max-content {
+  min-width: max-content !important;
 }
 
 .w-69 {
@@ -16496,6 +16541,17 @@ input:checked + .gift-card-buy-slider:before {
   height: 16px !important;
 }
 
+.h-45 {
+  height: 45px !important;
+}
+
+.h-50 {
+  height: 50px !important;
+}
+
+.min-h-45 {
+  min-height: 45px !important;
+}
 .min-h-370 {
   min-height: 370px !important;
 }
@@ -16524,8 +16580,20 @@ input:checked + .gift-card-buy-slider:before {
   border-radius: 16px !important;
 }
 
+.rounded-27 {
+  border-radius: 27px !important;
+}
+
 .rounded-50p {
   border-radius: 50% !important;
+}
+
+.min-h-25 {
+  min-height: 25px !important;
+}
+
+.h-30 {
+  height: 30px !important;
 }
 
 .h-35 {
@@ -16536,12 +16604,20 @@ input:checked + .gift-card-buy-slider:before {
   height: 36px !important;
 }
 
+.h-41 {
+  height: 41px !important;
+}
+
 .h-42 {
   height: 42px !important;
 }
 
 .h-44 {
   height: 44px !important;
+}
+
+.h-46 {
+  height: 46px !important;
 }
 
 .h-48 {
@@ -16554,6 +16630,18 @@ input:checked + .gift-card-buy-slider:before {
 
 .h-570 {
   height: 570px !important;
+}
+
+.max-h-0 {
+  max-height: 0px !important;
+}
+
+.max-h-20 { 
+  max-height: 20px !important;
+}
+
+.max-h-60vh {
+  max-height: 60vh !important;
 }
 
 .min-h-69 {
@@ -16576,12 +16664,24 @@ input:checked + .gift-card-buy-slider:before {
   line-height: 18px !important;
 }
 
+.leading-1 {
+  line-height: 1 !important;
+}
+
 .leading-1-5 {
   line-height: 1.5 !important;
 }
 
+.overflow-y-scroll {
+  overflow-y: scroll !important;
+}
+
 .gap-20 {
   gap: 20px !important;
+}
+
+.gap-28 {
+  gap: 28px !important;
 }
 
 .gap-2 {
@@ -16610,6 +16710,10 @@ input:checked + .gift-card-buy-slider:before {
 
 .padding-b-5 {
   padding-bottom: 5px !important;
+}
+
+.margin-top-90 {
+  margin-top: 90px !important;
 }
 
 .margin-n-top-60 {
@@ -16644,8 +16748,16 @@ input:checked + .gift-card-buy-slider:before {
   z-index: 10 !important;
 }
 
+.z-2147483647{
+  z-index: 2147483647 !important;
+}
+
 .font-bolder {
   font-weight: bolder !important;
+}
+
+.text-18 {
+  font-size: 18px !important;
 }
 
 .text-10c75c {
@@ -16664,8 +16776,12 @@ input:checked + .gift-card-buy-slider:before {
   border-bottom: none !important;
 }
 
+.border-1 {
+  border-width: 1px !important;
+}
+
 .border-b-1 {
-  border-bottom: 1px !important;
+  border-bottom-width: 1px !important;
 }
 
 .border-solid {
@@ -16692,6 +16808,22 @@ input:checked + .gift-card-buy-slider:before {
   white-space: break-spaces !important;
 }
 
+.white-space-nowrap {
+  white-space: nowrap !important;
+}
+
+.overflow-x-sxroll { 
+  overflow-x: scroll !important;
+}
+
+.pt-60 {
+  padding-top: 60px !important;
+}
+
+.pb-60 {
+  padding-bottom: 60px !important;
+}
+
 .p-l-50 {
   padding-left: 50px !important;
 }
@@ -16702,6 +16834,14 @@ input:checked + .gift-card-buy-slider:before {
 
 .p-r-10 {
   padding-right: 10px !important;
+}
+
+.text-underline {
+  text-decoration: underline !important;
+}
+
+.overflow-visible{
+  overflow: visible !important;
 }
 
 .backdrop-filter-none {
@@ -16744,4 +16884,8 @@ input:checked + .gift-card-buy-slider:before {
   background: green !important;
   border-radius: 50% !important;
   margin-bottom: 1px !important;
+}
+
+.future-exchange-border-color { 
+  border-color: rgb(126 126 126 / 20%) !important;
 }

@@ -49,23 +49,13 @@ const Exchange = () => {
           <div className="custom-container">
             <div id="dashboard">
               <div className="row">
-                <div
-                  className="col-xl-12 col-12"
-                  style={{ border: "1px solid rgb(126 126 126 / 20%)" }}
-                >
+                <div className="col-xl-12 col-12 border-1 border-solid future-exchange-border-color">
                   <div className="cxchange-summary-wrap future-exchange-top w-full">
                     <div className="w-full mt-3 tarde-coin-pair-header">
                       <div>
                         {currentPair && (
                           <div className="cxchange-summary-name">
-                            <div
-                              className="summber-coin-type dropdown"
-                              style={{
-                                display: "flex",
-                                alignItems: "center",
-                                gap: "4px",
-                              }}
-                            >
+                            <div className="summber-coin-type dropdown d-flex align-items-center gap-4">
                               <div>
                                 <img
                                   src={
@@ -75,16 +65,10 @@ const Exchange = () => {
                                     )?.icon || "/add-pockaet-vector.svg"
                                   }
                                   alt=""
-                                  style={{ width: "30px", height: "30px" }}
+                                  className="w-30 h-30"
                                 />
                               </div>
-                              <div
-                                style={{
-                                  display: "flex",
-                                  flexDirection: "column",
-                                  gap: "2px",
-                                }}
-                              >
+                              <div className="d-flex flex-column gap-2">
                                 <span
                                   className="coin-badge dropdown-toggle"
                                   id="dropdownMenuButton"
@@ -94,7 +78,7 @@ const Exchange = () => {
                                 >
                                   {currentPair.replace(/_/g, "/")}
                                 </span>
-                                <span style={{ lineHeight: "1" }}>
+                                <span className="leading-1">
                                   {dashboard?.pairs?.find(
                                     (item: any) => item.coin_pair == currentPair
                                   )?.coin_pair_name || ""}

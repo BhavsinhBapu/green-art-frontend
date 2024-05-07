@@ -67,11 +67,8 @@ const SecretKeyModal = ({
               <div className="modal-body">
                 <div className="row">
                   <div className="col-12">
-                    <div
-                      className="border rounded d-flex flex-wrap py-2 px-3 align-items-center justify-content-between"
-                      style={{ gap: "10px" }}
-                    >
-                      <p style={{ wordBreak: "break-all" }}>
+                    <div className="border rounded d-flex flex-wrap py-2 px-3 align-items-center justify-content-between gap-10">
+                      <p className="word-break-all">
                         Secret Key: <strong> {secretKey}</strong>
                       </p>
                       <span
@@ -79,7 +76,7 @@ const SecretKeyModal = ({
                           navigator.clipboard.writeText(secretKey);
                           toast.success("Successfully copied");
                         }}
-                        style={{ cursor: "pointer" }}
+                        className="cursor-pointer"
                       >
                         <i className="fa fa-clone"></i>
                       </span>
@@ -118,13 +115,12 @@ const SecretKeyModal = ({
                       <input
                         placeholder={t("Password")}
                         type="password"
-                        className="form-control "
+                        className="form-control h-46"
                         name="password"
                         value={password}
                         onChange={(e) => {
                           setPassword(e.target.value);
                         }}
-                        style={{ height: "46px" }}
                       />
                     </div>
                     {generateSecret2faEnable == 1 &&
@@ -136,12 +132,7 @@ const SecretKeyModal = ({
                               href={"/user/settings"}
                               onClick={() => setIsSecretKeyModalOpen(false)}
                             >
-                              <h5
-                                style={{
-                                  textDecoration: "underline",
-                                  cursor: "pointer",
-                                }}
-                              >
+                              <h5 className="cursor-pointer text-underline">
                                 {t(`[ Set Two Factor ]`)}
                               </h5>
                             </Link>{" "}
@@ -152,13 +143,12 @@ const SecretKeyModal = ({
                           <input
                             placeholder={t("Google Authentication Code")}
                             type="text"
-                            className="form-control "
+                            className="form-control h-46"
                             name="otp"
                             value={code}
                             onChange={(e) => {
                               setCode(e.target.value);
                             }}
-                            style={{ height: "46px" }}
                           />
                         </div>
                       ))}

@@ -15,10 +15,7 @@ const BottomDetails = ({ landing }: any) => {
               alt="Hero Banner"
             />
           </div>
-          <div
-            className="container-4xl trade-anywhere-container"
-            style={{ borderRadius: "27px" }}
-          >
+          <div className="container-4xl trade-anywhere-container rounded-27">
             <div className="section-title">
               <h2 className="title"> {landing?.secure_trade_title} </h2>
             </div>

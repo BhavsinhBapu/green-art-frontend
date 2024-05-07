@@ -90,7 +90,7 @@ const MyWallet: NextPage = () => {
   return (
     <>
       <DemoTradeNavbar settings={settings} isLoggedIn={isLoggedIn} />
-      <div className="page-wrap" style={{ marginTop: "90px" }}>
+      <div className="page-wrap margin-top-90">
         <div className="page-main-content container-fluid">
           <div className="section-top-wrap mb-25">
             <div className="overview-area">

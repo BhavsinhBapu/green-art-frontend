@@ -10,8 +10,7 @@ const GetInTouch = ({ landing, featureListdata }: any) => {
       <PlaceBottomRight /> */}
       {parseInt(landing.landing_sixth_section_status) === 1 && (
         <motion.section
-          className="get-touch-area"
-          style={{ padding: "60px 0" }}
+          className="get-touch-area pt-60 pb-60 "
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
         >

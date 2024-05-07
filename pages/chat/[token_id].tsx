@@ -266,13 +266,9 @@ export const Chat = () => {
                               />
                             </div>
 
-                            <div
-                              className="submit-button ml-2"
-                              style={{ width: "50px", height: "50px" }}
-                            >
+                            <div className="submit-button ml-2 w-50 h-50">
                               <button
-                                className="chat-button rounded-circle align-items-center justify-content-center"
-                                style={{ display: "grid" }}
+                                className="chat-button rounded-circle align-items-center justify-content-center display-grid"
                                 type="submit"
                                 disabled={sendFile || message ? false : true}
                               >

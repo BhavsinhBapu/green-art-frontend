@@ -169,7 +169,7 @@ export const AddPostTwo = ({
         </div>
       </div>
 
-      <div className="addPostNextButton mt-3" style={{ justifyContent: "end" }}>
+      <div className="addPostNextButton mt-3 justify-content-end">
         <div>
           <button onClick={() => setAddStep("stepOne")} className=" py-2">
             {t("Previous")}

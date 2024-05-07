@@ -90,7 +90,7 @@ export const AddPostOne = ({
             <div className="row">
               <div className="col-md-6 col-lg-6 col-12">
                 <label>{t(`Price Type`)}</label>
-                <div className="d-flex" style={{ gap: "20px" }}>
+                <div className="d-flex gap-20">
                   <div className="adFromCheckBox">
                     <input
                       type="radio"
@@ -132,8 +132,7 @@ export const AddPostOne = ({
                   <input
                     type="number"
                     value={pricePoint.price}
-                    className="pricePoint_field border-none"
-                    style={{ width: "100%" }}
+                    className="pricePoint_field border-none w-full"
                     onChange={(e) =>
                       setPricePoint({ ...pricePoint, price: e.target.value })
                     }

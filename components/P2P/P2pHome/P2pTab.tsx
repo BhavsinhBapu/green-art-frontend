@@ -11,7 +11,7 @@ export const P2pTab = ({ filters, setFilters, settings }: any) => {
       <div className="container-4xl">
         <div className="row">
           <div className="col-12 ">
-            <div className="p2pTabList d-flex" style={{ flexFlow: "row" }}>
+            <div className="p2pTabList d-flex flex-row">
               <div className="buySellBox rounded d-flex">
                 <button
                   className={`${
@@ -34,38 +34,7 @@ export const P2pTab = ({ filters, setFilters, settings }: any) => {
                   {t(`Sell`)}
                 </button>
               </div>
-              <ul
-                className="d-flex p2pTabList p2p-custom-scrollbar"
-                style={{ flexFlow: "row", overflowX: "scroll" }}
-              >
-                {/* <li>
-                <div className="buySellBox rounded d-flex">
-                  <button
-                    className={`${
-                      parseInt(filters.type) === BUY && "buySellBoxActive"
-                    }`}
-                    onClick={() => {
-                      setFilters({ ...filters, type: BUY });
-                    }}
-                  >
-                    {t(`Buy`)}
-                  </button>
-                  <button
-                    className={`${
-                      parseInt(filters.type) === SELL && "buySellBoxActive"
-                    }`}
-                    onClick={() => {
-                      setFilters({ ...filters, type: SELL });
-                    }}
-                  >
-                    {t(`Sell`)}
-                  </button>
-                </div>
-              </li> */}
-
-                {/* <li>
-                <a className="p2pTabListActive"></a>
-              </li> */}
+              <ul className="d-flex p2pTabList p2p-custom-scrollbar overflow-x-sxroll flex-row">
                 {settings?.assets?.map((coinName: any, index: any) => (
                   <li
                     key={index}

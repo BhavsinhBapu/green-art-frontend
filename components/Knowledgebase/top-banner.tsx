@@ -50,13 +50,6 @@ export const TopBanner = ({ resorce }: any) => {
                         setSuggestions(true);
                       }}
                     />
-
-                    {/* <button
-                    className="border-0 px-4 btn-secondary rounded-r"
-                    type="submit"
-                  >
-                    <i className="fa fa-search" aria-hidden="true"></i>
-                  </button> */}
                   </div>
 
                   {suggestions && (

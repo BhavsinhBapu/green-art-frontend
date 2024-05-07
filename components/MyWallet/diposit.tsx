@@ -79,8 +79,7 @@ export const DipositComponent = ({
                 <div className="cp-select-area">
                   <select
                     name="currency"
-                    className="form-control coin-list-item  mt-3"
-                    style={{ height: "44px" }}
+                    className="form-control coin-list-item  mt-3 h-44"
                     onChange={(e) => {
                       const findObje = responseData?.data?.find(
                         (x: any) => x.id === parseInt(e.target.value)

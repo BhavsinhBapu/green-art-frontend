@@ -20,10 +20,7 @@ const DistributionSection = ({ landing }: any) => {
               />
             </div>
             <PlaceBottomRight />
-            <div
-              className="container-4xl trade-anywhere-container"
-              style={{ borderRadius: "27px" }}
-            >
+            <div className="container-4xl trade-anywhere-container rounded-27">
               <div className="section-title">
                 <h2 className="title">{landing?.trade_anywhere_title}</h2>
               </div>

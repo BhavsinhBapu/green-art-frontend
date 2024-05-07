@@ -29,14 +29,7 @@ const WalletList: NextPage = () => {
 
       Cell: ({ row }: any) => (
         <div className="asset d-flex align-items-center gap-10">
-          <div
-            style={{
-              width: "35px",
-              height: "35px",
-              borderRadius: "50%",
-              overflow: "hidden",
-            }}
-          >
+          <div className="overflow-hidden w-35 h-35 rounded-50p">
             <img
               className="asset-icon"
               src={row.original.coin_icon || "/bitcoin.png"}

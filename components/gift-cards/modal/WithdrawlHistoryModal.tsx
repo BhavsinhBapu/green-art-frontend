@@ -6,16 +6,15 @@ export default function WithdrawlHistoryModal({ close, item }: any) {
   const { t } = useTranslation();
   return (
     <div id="demo-modal" className="gift-card-modal">
-      <div
-        className="gift-card-modal__content section-padding-custom"
-        style={{ width: "auto", minWidth: "75%" }}
-      >
+      <div className="gift-card-modal__content section-padding-custom w-auto min-w-75p">
         <h2>{t(`Payment Details`)}</h2>
 
         <div className="row my-5">
           <div className="col-lg-12">
             {item?.bank_id == 0 ? (
-              <p className="fiat-withdrawal-history-modal-box ">{item?.payment_info}</p>
+              <p className="fiat-withdrawal-history-modal-box ">
+                {item?.payment_info}
+              </p>
             ) : (
               <>
                 <BankDetails bankInfo={item?.bank} />

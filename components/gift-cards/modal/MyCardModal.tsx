@@ -80,7 +80,7 @@ export default function MyCardModal({
                   <label htmlFor="userPassword">Password</label>
                   <input
                     type="password"
-                    className="form-control"
+                    className="form-control h-42"
                     placeholder="Enter your password"
                     id="userPassword"
                     name="password"
@@ -88,7 +88,6 @@ export default function MyCardModal({
                     onChange={(e) => {
                       setUserPass(e.target.value);
                     }}
-                    style={{ height: "42px" }}
                   />
                 </div>
                 <div className="d-flex align-items-center gap-10">

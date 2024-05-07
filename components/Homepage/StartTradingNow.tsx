@@ -14,13 +14,7 @@ const StartTradingNow = ({ landing, loggedin }: any) => {
     <div>
       {" "}
       {parseInt(landing?.landing_seventh_section_status) === 1 && (
-        <section
-          className="start-trading-area"
-          style={{
-            // background: `linear-gradient(var(--primary-color) 0%, rgba(255, 255, 255, 0) 100%)`,
-            padding: "60px 0",
-          }}
-        >
+        <section className="start-trading-area pt-60  pb-60 ">
           <div className="container-4xl">
             <div className="section-title text-center">
               <h2 className="title">{t("Start trading now")}</h2>

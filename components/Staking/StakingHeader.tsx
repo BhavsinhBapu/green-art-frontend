@@ -11,9 +11,7 @@ export default function StakingHeader({ title, imageUrl, description }: any) {
         <div className="profle-are-top container-4xl">
           <h2 className="wallet-overview-header-title">{title}</h2>
           {description && (
-            <p className="text-white" style={{ maxWidth: "80%" }}>
-              {description}
-            </p>
+            <p className="text-white max-w-80-p">{description}</p>
           )}
         </div>
         {isLoggedIn && <StakingHeaderMenuTab />}

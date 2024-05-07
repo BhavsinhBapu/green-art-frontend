@@ -79,37 +79,33 @@ export const P2pDataTable = ({
               <table className="table">
                 <thead>
                   <tr>
-                    <th scope="col" style={{ padding: "0 10px" }}>
+                    <th scope="col" className="p-l-10 p-r-10">
                       {t(`Advertisers`)}
                     </th>
-                    <th scope="col" style={{ padding: "0 10px" }}>
+                    <th scope="col" className="p-l-10 p-r-10">
                       {t(`Price`)}
                     </th>
-                    <th scope="col" style={{ padding: "0 10px" }}>
+                    <th scope="col" className="p-l-10 p-r-10">
                       {t(`Limit/Available`)}
                     </th>
                     {statusChange && (
-                      <th
-                        scope="col"
-                        className="text-center"
-                        style={{ padding: "0 10px" }}
-                      >
+                      <th scope="col" className="text-center p-l-10 p-r-10">
                         {t(`Status`)}
                       </th>
                     )}
 
                     {payment === true && (
-                      <th scope="col" style={{ padding: "0 10px" }}>
+                      <th scope="col" className="p-l-10 p-r-10">
                         {t(`Payment`)}
                       </th>
                     )}
                     {action === true && (
-                      <th scope="col" style={{ padding: "0 10px" }}>
+                      <th scope="col" className="p-l-10 p-r-10">
                         {t(`Trade`)}
                       </th>
                     )}
                     {edit === true && (
-                      <th scope="col" style={{ padding: "0 10px" }}>
+                      <th scope="col" className="p-l-10 p-r-10">
                         {t(`Action`)}
                       </th>
                     )}
@@ -120,10 +116,7 @@ export const P2pDataTable = ({
                     <tr className="tableRow" key={index}>
                       <td className="text-nowrap">
                         <Link href={"/p2p/profile/" + item?.user_id}>
-                          <div
-                            className="tableImg d-flex align-items-center"
-                            style={{ minWidth: "max-content" }}
-                          >
+                          <div className="tableImg d-flex align-items-center min-w-max-content">
                             <img src={item?.user?.photo} alt="" />
                             <h5>{item?.user?.nickname}</h5>
                           </div>
@@ -152,10 +145,7 @@ export const P2pDataTable = ({
                         </div>
                       </td>
                       {statusChange && (
-                        <td
-                          style={{ verticalAlign: "middle" }}
-                          className="text-center text-nowrap"
-                        >
+                        <td className="text-center text-nowrap align-middle">
                           <label className="gift-card-buy-switch mb-0">
                             <input
                               type="checkbox"

@@ -112,19 +112,8 @@ const Dashboard: NextPage = () => {
           {isLoading && <Loading />}
           <div className="mt-5"></div>
           <div className="cp-user-sidebar-area">
-            <div
-              className="scroll-wrapper cp-user-sidebar-menu scrollbar-inner"
-              style={{ position: "relative" }}
-            >
-              <div
-                className="cp-user-sidebar-menu scrollbar-inner scroll-content"
-                style={{
-                  height: "auto",
-                  marginBottom: "0px",
-                  marginRight: "0px",
-                  maxHeight: "0px",
-                }}
-              ></div>
+            <div className="scroll-wrapper cp-user-sidebar-menu scrollbar-inner position-relative">
+              <div className="cp-user-sidebar-menu scrollbar-inner scroll-content h-auto mb-0 mr-0 max-h-0"></div>
               <div className="scroll-element scroll-x">
                 <div className="scroll-element_outer">
                   <div className="scroll-element_size" />
@@ -241,23 +230,13 @@ const Dashboard: NextPage = () => {
               <div className="cp-user-custom-card exchange-area">
                 <div id="dashboard">
                   <div className="row">
-                    <div
-                      className="col-xl-12 col-12 mt-4"
-                      style={{ border: "1px solid rgb(126 126 126 / 20%)" }}
-                    >
+                    <div className="col-xl-12 col-12 mt-4 future-exchange-border-color border-1 border-solid">
                       <div className="cxchange-summary-wrap mt-3">
                         <div className="tarde-coin-pair-header w-full">
                           <div>
                             {currentPair && (
                               <div className="cxchange-summary-name">
-                                <div
-                                  className="summber-coin-type dropdown"
-                                  style={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                    gap: "4px",
-                                  }}
-                                >
+                                <div className="summber-coin-type dropdown d-flex align-items-center gap-4">
                                   <div>
                                     <img
                                       src={
@@ -267,16 +246,10 @@ const Dashboard: NextPage = () => {
                                         )?.icon || "/add-pockaet-vector.svg"
                                       }
                                       alt=""
-                                      style={{ width: "30px", height: "30px" }}
+                                      className="w-30 h-30"
                                     />
                                   </div>
-                                  <div
-                                    style={{
-                                      display: "flex",
-                                      flexDirection: "column",
-                                      gap: "2px",
-                                    }}
-                                  >
+                                  <div className="d-flex flex-column gap-2">
                                     <span
                                       className="coin-badge dropdown-toggle"
                                       id="dropdownMenuButton"
@@ -286,7 +259,7 @@ const Dashboard: NextPage = () => {
                                     >
                                       {currentPair.replace(/_/g, "/")}
                                     </span>
-                                    <span style={{ lineHeight: "1" }}>
+                                    <span className="leading-1">
                                       {dashboard?.pairs?.find(
                                         (item: any) =>
                                           item.coin_pair == currentPair

@@ -17,7 +17,7 @@ const OfferTable = ({ isLoggedIn }: any) => {
     <div>
       <div className="container-4xl margin-n-top-60 margin-bottom-30">
         <div className="row shadow-sm section-padding-custom wallet-card-info-container">
-          <div className="table-responsive" style={{ overflowX: "auto" }}>
+          <div className="table-responsive overflow-x-hidden">
             {loading ? (
               <SectionLoading />
             ) : (
@@ -26,19 +26,19 @@ const OfferTable = ({ isLoggedIn }: any) => {
                   <table className="table">
                     <thead>
                       <tr>
-                        <th scope="col" style={{ padding: "0 10px" }}>
+                        <th scope="col" className="p-l-10 p-r-10">
                           {t(`Token`)}
                         </th>
-                        <th scope="col" style={{ padding: "0 10px" }}>
+                        <th scope="col" className="p-l-10 p-r-10">
                           {t(`Minimum Amount`)}
                         </th>
-                        <th scope="col" style={{ padding: "0 10px" }}>
+                        <th scope="col" className="p-l-10 p-r-10">
                           {t(`Est. APR`)}
                         </th>
-                        <th scope="col" style={{ padding: "0 10px" }}>
+                        <th scope="col" className="p-l-10 p-r-10">
                           {t(`Duration Days`)}
                         </th>
-                        <th scope="col" style={{ padding: "0 10px" }}></th>
+                        <th scope="col" className="p-l-10 p-r-10"></th>
                       </tr>
                     </thead>
                     <tbody>

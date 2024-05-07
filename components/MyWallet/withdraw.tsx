@@ -142,8 +142,7 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
                   <h5>{t("Select Network")}</h5>
                   <select
                     name="currency"
-                    className="form-control coin-list-item mt-3"
-                    style={{ height: "44px" }}
+                    className="form-control coin-list-item mt-3 h-44"
                     onChange={(e) => {
                       const findObje = responseData?.data?.find(
                         (x: any) => x.id === parseInt(e.target.value)
@@ -321,9 +320,8 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
           </button>
         ) : (
           <button
-            className="primary-btn-outline w-100 mt-4"
+            className="primary-btn-outline w-100 mt-4 h-44"
             type="button"
-            style={{ height: "44px" }}
             disabled={errorMessage.status === true}
             onClick={handleSubmit}
           >

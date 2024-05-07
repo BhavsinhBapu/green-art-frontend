@@ -42,7 +42,6 @@ function FaqStaking({ faq_list }: any) {
                       className="collapse"
                       aria-labelledby="headingThree"
                       data-parent="#accordionExample"
-                      style={{}}
                     >
                       <div className="p-3">{faq?.answer}</div>
                     </div>

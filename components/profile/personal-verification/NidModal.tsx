@@ -112,14 +112,13 @@ const NidModal = ({
   return (
     <>
       <div
-        className={`modal fade cp-user-idverifymodal ${
-          isModalOpen ? " show" : ""
+        className={`modal fade cp-user-idverifymodal pt-0 ${
+          isModalOpen ? "d-block show" : "d-none"
         }`}
         tabIndex={-1}
         role="dialog"
         aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true"
-        style={{ display: isModalOpen ? "block" : "none", paddingTop: "0px" }}
       >
         <div
           className="modal-dialog modal-dialog-centered modal-lg"
@@ -138,7 +137,7 @@ const NidModal = ({
               </button>
               <form id="nidUpload" className="Upload">
                 <div className="container">
-                  <div style={{ maxHeight: "60vh", overflowY: "scroll" }}>
+                  <div className="max-h-60vh overflow-y-scroll">
                     <div className="row">
                       <div className="col-12">
                         <div className="card-list">

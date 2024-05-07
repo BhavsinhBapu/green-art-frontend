@@ -81,7 +81,7 @@ export const P2pTopBar = () => {
                   </Link>
                 </li>
               </div>
-              <li style={{ position: "relative" }}>
+              <li className="position-relative">
                 <a
                   href=""
                   className="dropdown-toggle"

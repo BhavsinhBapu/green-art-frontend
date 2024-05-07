@@ -91,40 +91,22 @@ export const OrderTable = ({ actionFunction, filter = false }: any) => {
             <table className="table mt-4">
               <thead>
                 <tr>
-                  <th
-                    scope="col"
-                    style={{ paddingLeft: "10px", paddingRight: "10px" }}
-                  >
+                  <th scope="col" className="p-l-10 p-r-10">
                     {t(`Order Id`)}
                   </th>
-                  <th
-                    scope="col"
-                    style={{ paddingLeft: "10px", paddingRight: "10px" }}
-                  >
+                  <th scope="col" className="p-l-10 p-r-10">
                     {t(`Amount`)}
                   </th>
-                  <th
-                    scope="col"
-                    style={{ paddingLeft: "10px", paddingRight: "10px" }}
-                  >
+                  <th scope="col" className="p-l-10 p-r-10">
                     {t(`Price`)}
                   </th>
-                  <th
-                    scope="col"
-                    style={{ paddingLeft: "10px", paddingRight: "10px" }}
-                  >
+                  <th scope="col" className="p-l-10 p-r-10">
                     {t(`Seller fees`)}
                   </th>
-                  <th
-                    scope="col"
-                    style={{ paddingLeft: "10px", paddingRight: "10px" }}
-                  >
+                  <th scope="col" className="p-l-10 p-r-10">
                     {t(`Status`)}
                   </th>
-                  <th
-                    scope="col"
-                    style={{ paddingLeft: "10px", paddingRight: "10px" }}
-                  >
+                  <th scope="col" className="p-l-10 p-r-10">
                     {t(`Operation`)}
                   </th>
                 </tr>

@@ -100,7 +100,7 @@ const Home: NextPage = ({
           <a
             id="scrollUp"
             href="#top"
-            style={{ position: "fixed", zIndex: 2147483647, display: "none" }}
+            className="position-fixed d-none z-2147483647"
           >
             <i className="fa fa-angle-up" />
           </a>

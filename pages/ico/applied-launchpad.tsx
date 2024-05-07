@@ -99,9 +99,8 @@ const Profile: NextPage = () => {
             row?.original?.token_create_status === 1 && (
               <Link href={`/ico/create-edit-token/${row?.original?.id}`}>
                 <li
-                  className="toolTipForPhaseList d-inline-block"
+                  className="toolTipForPhaseList d-inline-block position-relative cursor-pointer"
                   title="Create Token"
-                  style={{ position: "relative", cursor: "pointer" }}
                 >
                   <GiToken size={25} />
                 </li>

@@ -77,18 +77,6 @@ export const AddPostThree = ({
           </div>
         </div>
         <div className="row">
-          {/* <div className="col-md-6">
-            <label> {t("Auto-reply [Optional]")}</label>
-            <div className="P2psearchBox position-relative">
-              <textarea
-                placeholder="Terms will be displayed the counterparty"
-                value={auto_reply}
-                onChange={(e) => {
-                  setAuto_reply(e.target.value);
-                }}
-              ></textarea>
-            </div>
-          </div> */}
           <div className="col-12 mt-2">
             <label className="d-block pb-0 mb-0">
               <strong>{t("Counterparty Conditions")}</strong>
@@ -101,8 +89,7 @@ export const AddPostThree = ({
                   <input
                     type="number"
                     value={registerDays}
-                    className="pricePoint_field custom-border-box"
-                    style={{ width: "100%", height: "41px" }}
+                    className="pricePoint_field custom-border-box w-full h-41"
                     onChange={(e) => {
                       setregisterDays(e.target.value);
                     }}
@@ -114,9 +101,8 @@ export const AddPostThree = ({
                 <div className="adFromCheckBox">
                   <input
                     type="number"
-                    style={{ width: "100%", height: "41px" }}
                     value={coinHolding}
-                    className="pricePoint_field custom-border-box"
+                    className="pricePoint_field custom-border-box w-full h-41"
                     onChange={(e) => {
                       setcoinHolding(e.target.value);
                     }}

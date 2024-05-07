@@ -64,12 +64,7 @@ const BlogDetails = ({ BlogNewsSettings }: any) => {
               <hr />
               {blogDetails?.data?.details?.thumbnail && (
                 <img
-                  className="rounded my-3 w-full"
-                  style={{
-                    maxHeight: "350px",
-                    objectPosition: "center",
-                    objectFit: "cover",
-                  }}
+                  className="rounded my-3 w-full max-h-350 object-position-center object-fit-cover"
                   src={blogDetails?.data?.details?.thumbnail}
                   alt=""
                 />

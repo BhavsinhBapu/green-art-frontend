@@ -74,10 +74,7 @@ const Profile: NextPage = ({}: any) => {
     {
       Header: t("Actions"),
       Cell: ({ row }: any) => (
-        <div
-          className="blance-text flex flex-row"
-          style={{ position: "relative" }}
-        >
+        <div className="blance-text flex flex-row position-relative">
           {row?.original?.approved_status === 1 ? (
             <Link href={`/ico/create-edit-phase/${row?.original?.id}`}>
               <li className="toolTip" title="Create Phase">

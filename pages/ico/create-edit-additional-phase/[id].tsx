@@ -64,8 +64,7 @@ const CreateEditAdditionalPhase = ({ id, edit, data }: any) => {
                     onClick={() => {
                       router.back();
                     }}
-                    className="cursor-pointer mb-4"
-                    style={{ fontSize: "18px" }}
+                    className="cursor-pointer mb-4 text-18"
                   >
                     <BiArrowBack />
                     Back

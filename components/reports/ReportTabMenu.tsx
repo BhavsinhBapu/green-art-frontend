@@ -58,7 +58,7 @@ const ReportTabMenu: React.FC = () => {
 
   return (
     <div className="container-4xl ">
-      <ul className="report-overview-tab-menu" style={{ overflow: "visible" }}>
+      <ul className="report-overview-tab-menu overflow-visible">
         {visibleTabs.map((tab) => (
           <Link key={tab.type} href={tab.link}>
             <li className={router.query.type === tab.type ? "active" : ""}>

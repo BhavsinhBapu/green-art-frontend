@@ -58,10 +58,7 @@ export const P2pFilter = ({ filters, setFilters, settings }: any) => {
     setPayment(payment);
   }, [settings]);
   return (
-    <div
-      className="glass-color-bg-custom py-4"
-      style={{ backdropFilter: "none" }}
-    >
+    <div className="glass-color-bg-custom py-4 backdrop-filter-none">
       <div className="container-4xl mt-4">
         <div className="row">
           <div className="col-md-3">

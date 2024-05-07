@@ -73,9 +73,8 @@ const IpAddressModal = ({
                     <input
                       placeholder={t("Enter Ip Address")}
                       type="text"
-                      className="form-control w-full"
+                      className="form-control w-full h-46"
                       name="Ip address"
-                      style={{ height: "46px" }}
                       value={ipAddress}
                       onChange={(e: any) => setIpAddress(e.target.value)}
                     />
