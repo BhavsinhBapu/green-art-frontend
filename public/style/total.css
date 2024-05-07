@@ -16482,7 +16482,7 @@ input:checked + .gift-card-buy-slider:before {
   min-width: 45px !important;
 }
 
-.max-w-20 { 
+.max-w-20 {
   max-width: 20px !important;
 }
 
@@ -16636,7 +16636,7 @@ input:checked + .gift-card-buy-slider:before {
   max-height: 0px !important;
 }
 
-.max-h-20 { 
+.max-h-20 {
   max-height: 20px !important;
 }
 
@@ -16748,7 +16748,7 @@ input:checked + .gift-card-buy-slider:before {
   z-index: 10 !important;
 }
 
-.z-2147483647{
+.z-2147483647 {
   z-index: 2147483647 !important;
 }
 
@@ -16812,7 +16812,7 @@ input:checked + .gift-card-buy-slider:before {
   white-space: nowrap !important;
 }
 
-.overflow-x-sxroll { 
+.overflow-x-sxroll {
   overflow-x: scroll !important;
 }
 
@@ -16840,7 +16840,7 @@ input:checked + .gift-card-buy-slider:before {
   text-decoration: underline !important;
 }
 
-.overflow-visible{
+.overflow-visible {
   overflow: visible !important;
 }
 
@@ -16886,6 +16886,6 @@ input:checked + .gift-card-buy-slider:before {
   margin-bottom: 1px !important;
 }
 
-.future-exchange-border-color { 
+.future-exchange-border-color {
   border-color: rgb(126 126 126 / 20%) !important;
 }
