@@ -60,12 +60,7 @@ const NewsDetails = ({ BlogNewsSettings }: any) => {
               <h3 className="titleText">{newsDetails?.details?.title}</h3>
               <small>{formateData(newsDetails?.details?.created_at)}</small>
               <img
-                className="rounded my-3 w-full"
-                style={{
-                  maxHeight: "350px",
-                  objectPosition: "center",
-                  objectFit: "cover",
-                }}
+                className="rounded my-3 w-full max-h-350 object-position-center object-fit-cover"
                 src={newsDetails?.details?.thumbnail}
                 alt=""
               />
@@ -98,44 +93,23 @@ const NewsDetails = ({ BlogNewsSettings }: any) => {
                 <div
                   className={
                     newsDetails?.related?.data?.length == index + 1
-                      ? ""
-                      : "pb-4 mb-4"
+                      ? "border-b-none"
+                      : "pb-4 mb-4 border-b-1 border-solid border-border-color"
                   }
-                  style={{
-                    borderBottom:
-                      newsDetails?.related?.data?.length == index + 1
-                        ? "none"
-                        : "1px solid var(--border-color)",
-                  }}
                   key={index}
                 >
                   <a href="">
                     <div className="row">
                       <div className="col-3">
                         <img
-                          className="rounded"
-                          style={{
-                            minWidth: "69px",
-                            width: "69px",
-                            height: "69px",
-                            objectFit: "cover",
-                            objectPosition: "center",
-                          }}
+                          className="rounded object-position-center object-fit-cover w-69 h-69 min-h-69"
                           src={item.thumbnail}
                           alt=""
                         />
                       </div>
                       <div className="col-9">
                         <div className="newsCardText">
-                          <p
-                            className="titleText"
-                            style={{
-                              fontSize: "16px",
-                              lineHeight: "1.5",
-                              paddingBottom: "5px",
-                              fontWeight: "bolder",
-                            }}
-                          >
+                          <p className="titleText padding-b-5 text-16 font-bolder leading-1-5">
                             {item.title}
                           </p>
                           <small>{formateData(item.created_at)}</small>

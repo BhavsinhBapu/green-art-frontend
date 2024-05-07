@@ -126,10 +126,7 @@ const PhoneVerification: NextPage = () => {
                             </div>
                           </div>
                           <div className="col-lg-6 col-md-4  d-flex align-items-center justify-content-center">
-                            <div
-                              className="reset-password-right text-center"
-                              style={{ marginTop: "0px" }}
-                            >
+                            <div className="reset-password-right text-center mt-0">
                               <img
                                 src="/reset-password.svg"
                                 alt="reset-password"

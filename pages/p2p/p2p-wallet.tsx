@@ -33,14 +33,7 @@ const MyWallet: NextPage = () => {
 
       Cell: ({ row }: any) => (
         <div className="asset d-flex align-items-center gap-10">
-          <div
-            style={{
-              width: "35px",
-              height: "35px",
-              borderRadius: "50%",
-              overflow: "hidden",
-            }}
-          >
+          <div className="h-35 w-35 overflow-hidden rounded-50p">
             <img
               className="asset-icon"
               src={row.original.coin_icon || "/bitcoin.png"}

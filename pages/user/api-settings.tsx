@@ -312,16 +312,10 @@ const ApiSettings: NextPage = () => {
                         </div>
                       </div>
                       <div className="my-3 ">
-                        <div
-                          className="border rounded d-flex flex-wrap py-2 px-3 align-items-center justify-content-between"
-                          style={{ gap: "10px" }}
-                        >
-                          <div
-                            className=" d-flex flex-wrap"
-                            style={{ gap: "10px" }}
-                          >
+                        <div className="border rounded d-flex flex-wrap py-2 px-3 align-items-center justify-content-between gap-10">
+                          <div className=" d-flex flex-wrap gap-10">
                             <p>{t(`Public Key : `)}</p>
-                            <p style={{ wordBreak: "break-all" }}>
+                            <p className="word-break-all ">
                               {settingsReducer?.public_key ||
                                 process.env.NEXT_PUBLIC_SECRET_KEY}
                             </p>
@@ -336,16 +330,13 @@ const ApiSettings: NextPage = () => {
                                 );
                                 toast.success("Successfully copied");
                               }}
-                              style={{ cursor: "pointer" }}
+                              className="cursor-pointer"
                             >
                               <i className="fa fa-clone"></i>
                             </span>
                           )}
                         </div>
-                        <div
-                          className="border mt-3 rounded px-3 py-2 d-flex flex-wrap"
-                          style={{ gap: "10px" }}
-                        >
+                        <div className="border mt-3 rounded px-3 py-2 d-flex flex-wrap gap-10">
                           <p>{t(`Secret Key : `)}</p>
                           <p>*********************</p>
                         </div>
@@ -392,10 +383,7 @@ const ApiSettings: NextPage = () => {
                               </div>
                             </div>
                             <div className="my-3 ">
-                              <div
-                                className="row"
-                                style={{ alignItems: "end" }}
-                              >
+                              <div className="row align-items-end">
                                 <div className="col-md-3">
                                   <div className="form-group p2pSelectFilter">
                                     <label>
@@ -450,8 +438,7 @@ const ApiSettings: NextPage = () => {
                                 <div className="col-md-3">
                                   <div className="form-group p2pSelectFilter">
                                     <button
-                                      className="btn w-full"
-                                      style={{ height: "42px" }}
+                                      className="btn w-full h-42"
                                       onClick={handleUpdateApiSettings}
                                       disabled={isUpdateApiSettingsLoading}
                                     >

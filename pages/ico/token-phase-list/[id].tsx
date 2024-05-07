@@ -58,12 +58,7 @@ const IcoTokenPhaseList = ({ id }: any) => {
       Header: t("Phase title"),
       accessor: "phase_title",
       Cell: ({ row }: any) => (
-        <div
-          style={{
-            wordWrap: "break-word",
-            whiteSpace: "break-spaces",
-          }}
-        >
+        <div className="word-wrap-break-word white-space-break-spaces">
           <p>{row?.original?.phase_title}</p>
         </div>
       ),
@@ -108,7 +103,7 @@ const IcoTokenPhaseList = ({ id }: any) => {
       selector: ({ row }: any) => row?.status,
       sortable: true,
       Cell: ({ row }: any) => (
-        <div style={{ position: "relative" }}>
+        <div className="position-relative">
           <li
             className="toolTip ml-3"
             title={row?.original?.status === 0 ? "Turn on" : "Turn off"}
@@ -155,18 +150,16 @@ const IcoTokenPhaseList = ({ id }: any) => {
         <div className="blance-text">
           <Link href={`/ico/create-edit-phase/${row?.original?.id}?edit=true`}>
             <li
-              className="toolTipForPhaseList d-inline-block"
+              className="toolTipForPhaseList d-inline-block position-relative cursor-pointer"
               title="Edit Phase"
-              style={{ position: "relative", cursor: "pointer" }}
             >
               <IoCreateOutline size={20} />
             </li>
           </Link>
           <Link href={`/ico/create-edit-additional-phase/${row?.original?.id}`}>
             <li
-              className="toolTipForPhaseList ml-3 d-inline-block"
+              className="toolTipForPhaseList ml-3 d-inline-block position-relative cursor-pointer"
               title="Add Edit Additional phase"
-              style={{ position: "relative", cursor: "pointer" }}
             >
               <AiOutlineAppstoreAdd size={20} />
             </li>

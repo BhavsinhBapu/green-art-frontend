@@ -148,10 +148,7 @@ const DeposiAndWithdraw = ({ withdrawFaq, depositFaq }: any) => {
         <div className="container">
           <div className={`row`}>
             <div className="col-md-12">
-              <div
-                className="single-wallet boxShadow shadow-sm rounded"
-                style={{ backdropFilter: "none" }}
-              >
+              <div className="single-wallet boxShadow shadow-sm rounded backdrop-filter-none">
                 <div className="box-two single-box visible">
                   <div className="">
                     <Link href="/user/my-wallet">

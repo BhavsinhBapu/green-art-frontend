@@ -14930,7 +14930,7 @@ input {
 }
 
 .text-16 {
-  font-size: 16px;
+  font-size: 16px !important;
 }
 
 .text-14 {
@@ -15107,7 +15107,7 @@ input {
 }
 
 .gap-10 {
-  gap: 10px;
+  gap: 10px !important;
 }
 
 .buy-all-gift-cards {
@@ -16481,9 +16481,17 @@ input:checked + .gift-card-buy-slider:before {
 .w-16 {
   width: 16px !important;
 }
+.w-35 {
+  width: 35px !important;
+}
 .w-36 {
   width: 36px !important;
 }
+
+.w-69 {
+  width: 69px !important;
+}
+
 .h-16 {
   height: 16px !important;
 }
@@ -16512,8 +16520,24 @@ input:checked + .gift-card-buy-slider:before {
   border-radius: 10px !important;
 }
 
+.rounded-16 {
+  border-radius: 16px !important;
+}
+
+.rounded-50p {
+  border-radius: 50% !important;
+}
+
+.h-35 {
+  height: 35px !important;
+}
+
 .h-36 {
   height: 36px !important;
+}
+
+.h-42 {
+  height: 42px !important;
 }
 
 .h-44 {
@@ -16524,8 +16548,20 @@ input:checked + .gift-card-buy-slider:before {
   height: 48px !important;
 }
 
+.h-69 {
+  height: 69px !important;
+}
+
 .h-570 {
   height: 570px !important;
+}
+
+.min-h-69 {
+  min-height: 69px !important;
+}
+
+.min-h-200 {
+  min-height: 200px !important;
 }
 
 .right-0 {
@@ -16538,6 +16574,10 @@ input:checked + .gift-card-buy-slider:before {
 
 .leading-18 {
   line-height: 18px !important;
+}
+
+.leading-1-5 {
+  line-height: 1.5 !important;
 }
 
 .gap-20 {
@@ -16568,6 +16608,10 @@ input:checked + .gift-card-buy-slider:before {
   grid-template-columns: repeat(2, 1fr) !important;
 }
 
+.padding-b-5 {
+  padding-bottom: 5px !important;
+}
+
 .margin-n-top-60 {
   margin-top: -60px !important;
 }
@@ -16588,8 +16632,80 @@ input:checked + .gift-card-buy-slider:before {
   overflow-x: auto !important;
 }
 
+.object-position-center {
+  object-position: center !important;
+}
+
+.object-fit-cover {
+  object-fit: cover !important;
+}
+
 .z-index-10 {
   z-index: 10 !important;
+}
+
+.font-bolder {
+  font-weight: bolder !important;
+}
+
+.text-10c75c {
+  color: #10c75c !important;
+}
+
+.text-blue {
+  color: blue !important;
+}
+
+.text-underline {
+  text-decoration: underline !important;
+}
+
+.border-b-none {
+  border-bottom: none !important;
+}
+
+.border-b-1 {
+  border-bottom: 1px !important;
+}
+
+.border-solid {
+  border-style: solid !important;
+}
+
+.border-border-color {
+  border-color: var(--border-color) !important;
+}
+
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
+.word-break-all {
+  word-break: break-all !important;
+}
+
+.word-wrap-break-word {
+  word-wrap: break-word !important;
+}
+
+.white-space-break-spaces {
+  white-space: break-spaces !important;
+}
+
+.p-l-50 {
+  padding-left: 50px !important;
+}
+
+.p-l-10 {
+  padding-left: 10px !important;
+}
+
+.p-r-10 {
+  padding-right: 10px !important;
+}
+
+.backdrop-filter-none {
+  backdrop-filter: none !important;
 }
 
 .custom-bg-main-background-color {

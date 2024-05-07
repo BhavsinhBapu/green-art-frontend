@@ -198,7 +198,7 @@ const DepositHistory: NextPage = () => {
             {selectedType.id == 1 && (
               <div className="asset-balances-area">
                 <div className="asset-balances-left">
-                  <div style={{ borderRadius: "16px" }}>
+                  <div className="rounded-16">
                     <div className="tableScroll">
                       <div className=" table-responsive tableScroll">
                         <CustomDataTable

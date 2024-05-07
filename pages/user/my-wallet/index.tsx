@@ -62,14 +62,7 @@ const MyWallet: NextPage = () => {
 
       Cell: ({ row }: any) => (
         <div className="asset d-flex align-items-center gap-10">
-          <div
-            style={{
-              width: "35px",
-              height: "35px",
-              borderRadius: "50%",
-              overflow: "hidden",
-            }}
-          >
+          <div className="overflow-hidden w-35 h-35 rounded-50p">
             <img
               className="asset-icon"
               src={row.original.coin_icon || "/bitcoin.png"}
@@ -90,10 +83,7 @@ const MyWallet: NextPage = () => {
       Header: t("On Order"),
       Cell: ({ row }: any) => (
         <div className="blance-text">
-          <span
-            className="blance market incree border-0 p-0"
-            style={{ color: "#10c75c" }}
-          >
+          <span className="blance market incree border-0 p-0 text-10c75c">
             {row?.original?.on_order}
           </span>
           <span className="usd">
@@ -268,10 +258,7 @@ const MyWallet: NextPage = () => {
               <PlaceTopLeft />
               <div className="col-md-12 px-0 margin-n-top-60 margin-bottom-30">
                 <div className="shadow-sm section-padding-custom wallet-card-info-container">
-                  <div
-                    className="py-5"
-                    style={{ borderBottom: "1px solid var(--border-color)" }}
-                  >
+                  <div className="py-5 border-b-1 border-solid border-border-color">
                     <div>
                       <h6>{t("Total Balance")}</h6>
                       <div className="pt-3">

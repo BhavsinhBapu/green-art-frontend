@@ -49,24 +49,14 @@ const PhoneVerification: NextPage = () => {
                   <div className="col-lg-6 col-md-8 d-flex align-items-center">
                     {user?.phone_verified == 1 && !isChangeNumber ? (
                       <div className="w-full">
-                        <div
-                          className="border px-3 w-full d-flex flex-column justify-content-center align-items-center"
-                          style={{
-                            minHeight: "200px",
-                            borderRadius: "10px",
-                            gap: "10px",
-                          }}
-                        >
+                        <div className="border px-3 w-full d-flex flex-column justify-content-center align-items-center rounded-10 gap-10 min-h-200">
                           <FaCheckCircle color="green" size={60} />
                           <h3 className="text-center">
                             {t("Your Phone number has been verified.")}
                           </h3>
-                          <p style={{ cursor: "pointer" }}>
+                          <p className="cursor-pointer">
                             <span
-                              style={{
-                                textDecoration: "underline",
-                                color: "blue",
-                              }}
+                              className="text-blue text-underline"
                               onClick={() => setIsChangeNumber(true)}
                             >{`Click here `}</span>
                             {t("to change the Phone number.")}
@@ -74,10 +64,7 @@ const PhoneVerification: NextPage = () => {
                         </div>
                       </div>
                     ) : (
-                      <div
-                        className="user-profile-form"
-                        style={{ width: "100%" }}
-                      >
+                      <div className="user-profile-form w-full">
                         <div className="form-group">
                           <label htmlFor="number">{t("Phone number")}</label>
                           {user?.phone ? (

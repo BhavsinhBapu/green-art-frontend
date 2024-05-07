@@ -83,35 +83,19 @@ export default function Index() {
               <table className="table">
                 <thead>
                   <tr>
-                    <th
-                      scope="col"
-                      style={{ paddingLeft: "10px", paddingRight: "10px" }}
-                    >
+                    <th scope="col" className="p-l-10 p-r-10">
                       {t(`Order Id`)}
                     </th>
-                    <th
-                      scope="col"
-                      style={{ paddingLeft: "10px", paddingRight: "10px" }}
-                    >
+                    <th scope="col" className="p-l-10 p-r-10">
                       {t(`Amount`)}
                     </th>
-                    <th
-                      scope="col"
-                      style={{ paddingLeft: "10px", paddingRight: "10px" }}
-                    >
+                    <th scope="col" className="p-l-10 p-r-10">
                       {t(`Price`)}
                     </th>
-                    <th
-                      scope="col"
-                      style={{ paddingLeft: "10px", paddingRight: "10px" }}
-                    >
+                    <th scope="col" className="p-l-10 p-r-10">
                       {t(`Status`)}
                     </th>
-                    <th
-                      scope="col"
-                      style={{ paddingLeft: "10px", paddingRight: "10px" }}
-                      className="text-right"
-                    >
+                    <th scope="col" className="text-right p-l-10 p-r-10">
                       {t(`Operation`)}
                     </th>
                   </tr>

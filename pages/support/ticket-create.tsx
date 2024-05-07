@@ -93,10 +93,7 @@ const TicketCreate = () => {
                   <div className="">
                     {/* <h4 className="fw_600">{t(`Create New Ticket`)}</h4> */}
                     <input type="hidden" />
-                    <div
-                      className="p_color pt-4 row"
-                      style={{ rowGap: "20px" }}
-                    >
+                    <div className="p_color pt-4 row row-gap-20">
                       <div className="col-md-6">
                         <label>{t(`Choose Category:`)}</label>
                         <select

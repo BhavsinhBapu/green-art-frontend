@@ -335,10 +335,10 @@ const Trading = () => {
                               {doc ? doc.name : t("Browse")}
                             </label>
                             <input
-                              style={{ display: "none" }}
                               ref={inputRef}
                               type="file"
                               onChange={handleFileChange}
+                              className="d-none"
                             />
                           </div>
                         </div>
