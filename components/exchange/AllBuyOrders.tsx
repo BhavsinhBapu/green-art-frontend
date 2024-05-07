@@ -49,21 +49,10 @@ const AllBuyOrders = ({ OpenBookBuy, show, customClass }: any) => {
           </div>
           <div className="">
             <div className="dataTables_scrollHead w-full overflow-hidden position-relative border-0">
-              <div
-                className="dataTables_scrollHeadInner"
-                style={{
-                  boxSizing: "content-box",
-                  width: "431.25px",
-                  paddingRight: "0px",
-                }}
-              >
+              <div className="dataTables_scrollHeadInner box-sizing-content-box pr-0 w-431-25">
                 <table
-                  className="table dataTable no-footer"
+                  className="table dataTable no-footer w-431-25 ml-0"
                   role="grid"
-                  style={{
-                    marginLeft: "0px",
-                    width: "431.25px",
-                  }}
                 >
                   <thead>
                     <tr role="row"></tr>
@@ -73,15 +62,7 @@ const AllBuyOrders = ({ OpenBookBuy, show, customClass }: any) => {
                 </table>
               </div>
             </div>
-            <div
-              className="dataTables_scrollBody mt-2"
-              style={{
-                position: "relative",
-                overflow: "auto",
-                height: "425px",
-                width: "100%",
-              }}
-            >
+            <div className="dataTables_scrollBody mt-2 position-relative overflow-auto w-full h-425">
               {OpenBookBuy.length > 0 ? (
                 <table
                   id="exchangeAllSellOrders"

@@ -20,65 +20,41 @@ const AllSellOrders = ({ OpenBooksell, show, customClass }: any) => {
         >
           <div
             id="exchangeAllBuyOrders_processing"
-            className="dataTables_processing"
-            style={{ display: "none" }}
+            className="dataTables_processing d-none"
           >
             {t("Processing")}...
           </div>
           <div className="">
-            <div
-              className="dataTables_scrollHead"
-              style={{
-                overflow: "hidden",
-                position: "relative",
-                border: "0px",
-                width: "100%",
-              }}
-            >
-              <div
-                className="dataTables_scrollBody"
-                style={{
-                  position: "relative",
-                  overflow: "auto",
-                  height: "244px",
-                  width: "100%",
-                }}
-              >
+            <div className="dataTables_scrollHead overflow-hidden position-relative border-0 w-full">
+              <div className="dataTables_scrollBody overflow-auto position-relative border-0 w-full h-244">
                 {OpenBooksell.length > 0 ? (
                   <table
                     id="exchangeAllSellOrders"
-                    className="table dataTable no-footer"
+                    className="table dataTable no-footer w-full"
                     role="grid"
-                    style={{ width: "100%" }}
                   >
                     <thead>
                       <tr role="row" className="">
                         <th
-                          className="table-col price sorting_disabled"
+                          className="table-col price sorting_disabled padding-3"
                           rowSpan={1}
                           colSpan={1}
-                          // style={{ width: "170.656px" }}
-                          style={{ padding: "3px" }}
                           aria-label="Price"
                         >
                           {t("Price")}({dashboard?.order_data?.base_coin})
                         </th>
                         <th
-                          className="table-col amount sorting_disabled"
+                          className="table-col amount sorting_disabled padding-3"
                           rowSpan={1}
                           colSpan={1}
-                          style={{ padding: "3px" }}
-                          // style={{ width: "120.75px" }}
                           aria-label="Amount"
                         >
                           {t("Amount")}({dashboard?.order_data?.trade_coin})
                         </th>
                         <th
-                          className="table-col time sorting_desc"
+                          className="table-col time sorting_desc padding-3"
                           rowSpan={1}
                           colSpan={1}
-                          style={{ padding: "3px" }}
-                          // style={{ width: "79.8438px" }}
                           aria-label="Time"
                         >
                           {t("Total")}

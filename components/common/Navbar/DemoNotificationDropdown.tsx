@@ -71,19 +71,14 @@ const DemoNotificationDropdown = ({
                 </Link>
               </li>
 
-              <li
-                className="hm-notify"
-                id="notification_item"
-                style={{ margin: "0 10px" }}
-              >
+              <li className="hm-notify ml-10 mr-10" id="notification_item">
                 <div className="btn-group profile-dropdown">
                   <button
                     type="button"
-                    className="btn dropdown-toggle bg-transparent"
+                    className="btn dropdown-toggle bg-transparent ml-0"
                     data-toggle="dropdown"
                     aria-haspopup="true"
                     aria-expanded="false"
-                    style={{ marginLeft: "0" }}
                   >
                     <span className="cp-user-avater">
                       <span>
@@ -151,11 +146,7 @@ const DemoNotificationDropdown = ({
                 </div>
               </li>
 
-              <li
-                className="hm-notify"
-                id="notification_item"
-                style={{ margin: "0 10px" }}
-              >
+              <li className="hm-notify ml-10 mr-10" id="notification_item">
                 <div className="btn-group dropdown">
                   <button
                     type="button"
@@ -235,21 +226,8 @@ const DemoNotificationDropdown = ({
                       </div>
                     </div>
 
-                    <div
-                      className="scroll-wrapper scrollbar-inner"
-                      style={{
-                        position: "relative",
-                      }}
-                    >
-                      <ul
-                        className="scrollbar-inner scroll-content"
-                        style={{
-                          height: "auto",
-                          marginBottom: "0px",
-                          marginRight: "0px",
-                          maxHeight: "0px",
-                        }}
-                      ></ul>
+                    <div className="scroll-wrapper scrollbar-inner position-relative">
+                      <ul className="scrollbar-inner scroll-content h-auto mb-0 mr-0 max-h-0"></ul>
                       <div className="scroll-element scroll-x">
                         <div className="scroll-element_outer">
                           <div className="scroll-element_size"></div>
@@ -273,22 +251,15 @@ const DemoNotificationDropdown = ({
                 <ul>
                   <li className="hm-notify">
                     <a
-                      className="arrow-icon"
+                      className="arrow-icon h-48"
                       href="#"
                       aria-expanded="true"
-                      style={{ height: "48px" }}
                     >
                       <span className="">
                         <IoMdGlobe size={25} />
                       </span>
-                      {/* <span className="cp-user-name">
-                          {router.locale?.toLocaleUpperCase()}
-                        </span> */}
                     </a>
-                    <ul
-                      className="dropdown-menu-main"
-                      style={{ right: "0", left: "auto" }}
-                    >
+                    <ul className="dropdown-menu-main right-0 left-auto">
                       {settings?.LanguageList?.map((item: any, index: any) => (
                         <li key={index}>
                           <Link href={router.asPath} locale={item.key}>
@@ -376,14 +347,8 @@ const DemoNotificationDropdown = ({
                                       <span className="margin-right-auto">
                                         {t(`Fresh`)}
                                       </span>
-                                      <span
-                                        className="settings-dropdown-color-box"
-                                        style={{ background: "#32d777" }}
-                                      ></span>
-                                      <span
-                                        className="settings-dropdown-color-box"
-                                        style={{ background: "#d63031" }}
-                                      ></span>
+                                      <span className="settings-dropdown-color-box bg-32d777"></span>
+                                      <span className="settings-dropdown-color-box bg-d63031"></span>
                                     </span>
                                   </span>
                                 </label>
@@ -415,14 +380,8 @@ const DemoNotificationDropdown = ({
                                       <span className="margin-right-auto text-14">
                                         {t(`Traditional`)}
                                       </span>
-                                      <span
-                                        className="settings-dropdown-color-box"
-                                        style={{ background: "#3498db" }}
-                                      ></span>
-                                      <span
-                                        className="settings-dropdown-color-box"
-                                        style={{ background: "#9b59b6" }}
-                                      ></span>
+                                      <span className="settings-dropdown-color-box bg-3498db"></span>
+                                      <span className="settings-dropdown-color-box bg-9b59b6"></span>
                                     </span>
                                   </span>
                                 </label>
@@ -454,14 +413,8 @@ const DemoNotificationDropdown = ({
                                       <span className="margin-right-auto">
                                         {t(`Color Vision Deficiency`)}
                                       </span>
-                                      <span
-                                        className="settings-dropdown-color-box"
-                                        style={{ background: "#f39c12" }}
-                                      ></span>
-                                      <span
-                                        className="settings-dropdown-color-box "
-                                        style={{ background: "#d35400" }}
-                                      ></span>
+                                      <span className="settings-dropdown-color-box bg-f39c12"></span>
+                                      <span className="settings-dropdown-color-box bg-d35400"></span>
                                     </span>
                                   </span>
                                 </label>
@@ -502,10 +455,10 @@ const DemoNotificationDropdown = ({
                                           fill="currentColor"
                                           strokeWidth="0"
                                           viewBox="0 0 16 16"
-                                          style={{ color: "#58bd7d" }}
                                           height="1em"
                                           width="1em"
                                           xmlns="http://www.w3.org/2000/svg"
+                                          className="text-58bd7d"
                                         >
                                           <path
                                             fillRule="evenodd"
@@ -519,7 +472,7 @@ const DemoNotificationDropdown = ({
                                           fill="currentColor"
                                           strokeWidth="0"
                                           viewBox="0 0 16 16"
-                                          style={{ color: "#fa0000" }}
+                                          className="text-fa0000"
                                           height="1em"
                                           width="1em"
                                           xmlns="http://www.w3.org/2000/svg"
@@ -568,7 +521,7 @@ const DemoNotificationDropdown = ({
                                           height="1em"
                                           width="1em"
                                           xmlns="http://www.w3.org/2000/svg"
-                                          style={{ color: "#fa0000" }}
+                                          className="text-fa0000"
                                         >
                                           <path
                                             fillRule="evenodd"
@@ -585,7 +538,7 @@ const DemoNotificationDropdown = ({
                                           height="1em"
                                           width="1em"
                                           xmlns="http://www.w3.org/2000/svg"
-                                          style={{ color: "#58bd7d" }}
+                                          className="text-58bd7d"
                                         >
                                           <path
                                             fillRule="evenodd"
@@ -599,7 +552,9 @@ const DemoNotificationDropdown = ({
                               </div>
                             </div>
                             <div className="pb-3 border-bottom text-left">
-                              <p className="mt-2 text-14 font-medium">{t(`Layout`)}</p>
+                              <p className="mt-2 text-14 font-medium">
+                                {t(`Layout`)}
+                              </p>
                               <div className="form-check py-1">
                                 <input
                                   className="form-check-input radio-scale"

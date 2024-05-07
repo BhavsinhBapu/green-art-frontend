@@ -41,36 +41,16 @@ const AllBuyOrders = ({ buy, show, customClss }: any) => {
         >
           <div
             id="exchangeAllSellOrders_processing"
-            className="dataTables_processing"
-            style={{ display: "none" }}
+            className="dataTables_processing d-none"
           >
             {t("Processing")}...
           </div>
           <div className="">
-            <div
-              className="dataTables_scrollHead"
-              style={{
-                overflow: "hidden",
-                position: "relative",
-                border: "0px",
-                width: "100%",
-              }}
-            >
-              <div
-                className="dataTables_scrollHeadInner"
-                style={{
-                  boxSizing: "content-box",
-                  width: "431.25px",
-                  paddingRight: "0px",
-                }}
-              >
+            <div className="dataTables_scrollHead overflow-hidden position-relative border-0 w-full">
+              <div className="dataTables_scrollHeadInner box-sizing-content-box pr-0 w-431-25">
                 <table
-                  className="table dataTable no-footer"
+                  className="table dataTable no-footer ml-0 w-431-25"
                   role="grid"
-                  style={{
-                    marginLeft: "0px",
-                    width: "431.25px",
-                  }}
                 >
                   <thead>
                     <tr role="row"></tr>
@@ -80,43 +60,31 @@ const AllBuyOrders = ({ buy, show, customClss }: any) => {
                 </table>
               </div>
             </div>
-            <div
-              className="dataTables_scrollBody"
-              style={{
-                position: "relative",
-                overflow: "auto",
-                height: "855px !important",
-                width: "100%",
-              }}
-            >
+            <div className="dataTables_scrollBody overflow-auto position-relative h-855 w-full">
               {OpenBookBuy.length > 0 ? (
                 <table
                   id="exchangeAllSellOrders"
-                  className="table dataTable no-footer"
+                  className="table dataTable no-footer w-full"
                   role="grid"
-                  style={{ width: "100%" }}
                 >
                   <thead>
                     <tr role="row">
                       <th
-                        className="table-col price sorting_disabled"
+                        className="table-col price sorting_disabled w-170-656"
                         rowSpan={1}
                         colSpan={1}
-                        style={{ width: "170.656px" }}
                         aria-label="Price"
                       ></th>
                       <th
-                        className="table-col amount sorting_disabled"
+                        className="table-col amount sorting_disabled w-120-75"
                         rowSpan={1}
                         colSpan={1}
-                        style={{ width: "120.75px" }}
                         aria-label="Amount"
                       ></th>
                       <th
-                        className="table-col time text-right sorting_desc"
+                        className="table-col time text-right sorting_desc w-79-8438"
                         rowSpan={1}
                         colSpan={1}
-                        style={{ width: "79.8438px" }}
                         aria-label="Time"
                       ></th>
                     </tr>

@@ -22,25 +22,22 @@ const SellBook = ({ height = 425 }) => {
             <thead>
               <tr role="row">
                 <th
-                  className="table-col price sorting_disabled"
+                  className="table-col price sorting_disabled w-170-656"
                   rowSpan={1}
                   colSpan={1}
                   aria-label="Price"
-                  style={{ width: "170.656px" }}
                 />
                 <th
-                  className="table-col amount sorting_disabled"
+                  className="table-col amount sorting_disabled w-120-75"
                   rowSpan={1}
                   colSpan={1}
                   aria-label="Amount"
-                  style={{ width: "120.75px" }}
                 />
                 <th
-                  className="table-col time text-right sorting_desc"
+                  className="table-col time text-right sorting_desc w-79-8438"
                   rowSpan={1}
                   colSpan={1}
                   aria-label="Time"
-                  style={{ width: "79.8438px" }}
                 />
               </tr>
             </thead>

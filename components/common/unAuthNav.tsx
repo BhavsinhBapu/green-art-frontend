@@ -316,14 +316,8 @@ const UnAuthNav = ({
                                       <span className="margin-right-auto">
                                         {t("Fresh")}
                                       </span>
-                                      <span
-                                        className="settings-dropdown-color-box"
-                                        style={{ background: "#32d777" }}
-                                      ></span>
-                                      <span
-                                        className="settings-dropdown-color-box"
-                                        style={{ background: "#d63031" }}
-                                      ></span>
+                                      <span className="settings-dropdown-color-box bg-32d777"></span>
+                                      <span className="settings-dropdown-color-box bg-d63031"></span>
                                     </span>
                                   </span>
                                 </label>
@@ -355,14 +349,8 @@ const UnAuthNav = ({
                                       <span className="margin-right-auto text-14">
                                         {t("Traditional")}
                                       </span>
-                                      <span
-                                        className="settings-dropdown-color-box"
-                                        style={{ background: "#3498db" }}
-                                      ></span>
-                                      <span
-                                        className="settings-dropdown-color-box"
-                                        style={{ background: "#9b59b6" }}
-                                      ></span>
+                                      <span className="settings-dropdown-color-box bg-3498db"></span>
+                                      <span className="settings-dropdown-color-box bg-9b59b6"></span>
                                     </span>
                                   </span>
                                 </label>
@@ -394,14 +382,8 @@ const UnAuthNav = ({
                                       <span className="margin-right-auto">
                                         {t("Color Vision Deficiency")}
                                       </span>
-                                      <span
-                                        className="settings-dropdown-color-box"
-                                        style={{ background: "#f39c12" }}
-                                      ></span>
-                                      <span
-                                        className="settings-dropdown-color-box "
-                                        style={{ background: "#d35400" }}
-                                      ></span>
+                                      <span className="settings-dropdown-color-box bg-f39c12"></span>
+                                      <span className="settings-dropdown-color-box bg-d35400"></span>
                                     </span>
                                   </span>
                                 </label>
@@ -442,10 +424,10 @@ const UnAuthNav = ({
                                           fill="currentColor"
                                           strokeWidth="0"
                                           viewBox="0 0 16 16"
-                                          style={{ color: "#58bd7d" }}
                                           height="1em"
                                           width="1em"
                                           xmlns="http://www.w3.org/2000/svg"
+                                          className="text-58bd7d"
                                         >
                                           <path
                                             fillRule="evenodd"
@@ -459,10 +441,10 @@ const UnAuthNav = ({
                                           fill="currentColor"
                                           strokeWidth="0"
                                           viewBox="0 0 16 16"
-                                          style={{ color: "#fa0000" }}
                                           height="1em"
                                           width="1em"
                                           xmlns="http://www.w3.org/2000/svg"
+                                          className="text-fa0000"
                                         >
                                           <path
                                             fillRule="evenodd"
@@ -508,7 +490,7 @@ const UnAuthNav = ({
                                           height="1em"
                                           width="1em"
                                           xmlns="http://www.w3.org/2000/svg"
-                                          style={{ color: "#fa0000" }}
+                                          className="text-fa0000"
                                         >
                                           <path
                                             fillRule="evenodd"
@@ -525,7 +507,7 @@ const UnAuthNav = ({
                                           height="1em"
                                           width="1em"
                                           xmlns="http://www.w3.org/2000/svg"
-                                          style={{ color: "#58bd7d" }}
+                                          className="text-58bd7d"
                                         >
                                           <path
                                             fillRule="evenodd"
@@ -859,8 +841,7 @@ const UnAuthNav = ({
                         <IoMdGlobe size={20} />
                       </span>
                       <span
-                        className="text-primary-color-two text-16"
-                        style={{ lineHeight: "19px" }}
+                        className="text-primary-color-two text-16 leading-18"
                         onClick={() => {
                           setLanguageActive(true);
                           setActive(false);

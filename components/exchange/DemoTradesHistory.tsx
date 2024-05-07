@@ -34,22 +34,11 @@ const DemoTradesHistory = ({ marketTrades }: any) => {
                 width: "100%",
               }}
             >
-              <div
-                className="dataTables_scrollHeadInner"
-                style={{
-                  boxSizing: "content-box",
-                  width: "431.25px",
-                  paddingRight: "0px",
-                }}
-              >
+              <div className="dataTables_scrollHeadInner box-sizing-content-box pr-0 w-431-25">
                 {marketTrades.length > 0 ? (
                   <table
-                    className="table dataTable  no-footer"
+                    className="table dataTable  no-footer ml-0 w-431-25"
                     role="grid"
-                    style={{
-                      marginLeft: "0px",
-                      width: "431.25px",
-                    }}
                   >
                     <thead>
                       <tr role="row">
@@ -57,7 +46,6 @@ const DemoTradesHistory = ({ marketTrades }: any) => {
                           className="table-col price sorting_disabled"
                           rowSpan={1}
                           colSpan={1}
-                          // style={{ width: "170.656px" }}
                           style={{ padding: "4px" }}
                           aria-label="Price"
                         >
@@ -68,7 +56,6 @@ const DemoTradesHistory = ({ marketTrades }: any) => {
                           rowSpan={1}
                           colSpan={1}
                           style={{ padding: "4px" }}
-                          // style={{ width: "120.75px" }}
                           aria-label="Amount"
                         >
                           {t("Amount")}({dashboard?.order_data?.trade_coin})
@@ -78,7 +65,6 @@ const DemoTradesHistory = ({ marketTrades }: any) => {
                           rowSpan={1}
                           colSpan={1}
                           style={{ padding: "4px" }}
-                          // style={{ width: "79.8438px" }}
                           aria-label="Time"
                         >
                           {t("Time")}

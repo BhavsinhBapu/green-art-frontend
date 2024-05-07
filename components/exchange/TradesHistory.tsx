@@ -53,57 +53,38 @@ const TradesHistory = ({ marketTrades, customClass }: any) => {
               {t("Processing")}...
             </div>
             <div className="dataTables_scroll px-0">
-              <div
-                className="dataTables_scrollHead"
-                style={{
-                  overflow: "hidden",
-                  position: "relative",
-                  border: "0px",
-                  width: "100%",
-                }}
-              >
-                <div
-                  className="dataTables_scrollHeadInner"
-                  style={{
-                    boxSizing: "content-box",
-                    width: "431.25px",
-                    paddingRight: "0px",
-                  }}
-                >
+              <div className="dataTables_scrollHead overflow-hidden position-relative border-0 w-full">
+                <div className="dataTables_scrollHeadInner box-sizing-content-box pr-0 w-431-25">
                   {marketTrades.length > 0 ? (
                     <table
-                      className="table dataTable  no-footer"
+                      className="table dataTable  no-footer ml-0 w-431-25"
                       role="grid"
-                      style={{
-                        marginLeft: "0px",
-                        width: "431.25px",
-                      }}
                     >
                       <thead>
                         <tr role="row">
                           <th
-                            className="table-col price sorting_disabled"
+                            className="table-col price sorting_disabled w-170-656"
                             rowSpan={1}
                             colSpan={1}
-                            style={{ width: "170.656px", padding: "4px" }}
+                            style={{ padding: "4px" }}
                             aria-label="Price"
                           >
                             {t("Price")}({dashboard?.order_data?.base_coin})
                           </th>
                           <th
-                            className="table-col amount sorting_disabled"
+                            className="table-col amount sorting_disabled w-120-75"
                             rowSpan={1}
                             colSpan={1}
-                            style={{ width: "120.75px", padding: "4px" }}
+                            style={{ padding: "4px" }}
                             aria-label="Amount"
                           >
                             {t("Amount")}({dashboard?.order_data?.trade_coin})
                           </th>
                           <th
-                            className="table-col time text-right sorting_desc"
+                            className="table-col time text-right sorting_desc w-79-8438"
                             rowSpan={1}
                             colSpan={1}
-                            style={{ width: "79.8438px", padding: "4px" }}
+                            style={{ padding: "4px" }}
                             aria-label="Time"
                           >
                             {t("Time")}

@@ -54,21 +54,10 @@ const DemoAllBuyOrders = ({ OpenBookBuy, show }: any) => {
                 width: "100%",
               }}
             >
-              <div
-                className="dataTables_scrollHeadInner"
-                style={{
-                  boxSizing: "content-box",
-                  width: "431.25px",
-                  paddingRight: "0px",
-                }}
-              >
+              <div className="dataTables_scrollHeadInner box-sizing-content-box pr-0 w-431-25">
                 <table
-                  className="table dataTable no-footer"
+                  className="table dataTable no-footer ml-0 w-431-25"
                   role="grid"
-                  style={{
-                    marginLeft: "0px",
-                    width: "431.25px",
-                  }}
                 >
                   <thead>
                     <tr role="row"></tr>
@@ -100,21 +89,18 @@ const DemoAllBuyOrders = ({ OpenBookBuy, show }: any) => {
                         className="table-col price sorting_disabled"
                         rowSpan={1}
                         colSpan={1}
-                        // style={{ width: "170.656px" }}
                         aria-label="Price"
                       ></th>
                       <th
                         className="table-col amount sorting_disabled"
                         rowSpan={1}
                         colSpan={1}
-                        // style={{ width: "120.75px" }}
                         aria-label="Amount"
                       ></th>
                       <th
                         className="table-col time text-right sorting_desc"
                         rowSpan={1}
                         colSpan={1}
-                        // style={{ width: "79.8438px" }}
                         aria-label="Time"
                       ></th>
                     </tr>

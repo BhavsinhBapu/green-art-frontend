@@ -16844,6 +16844,14 @@ input:checked + .gift-card-buy-slider:before {
   padding-right: 10px !important;
 }
 
+.ml-10 {
+  margin-left: 10px !important;
+}
+
+.mr-10 {
+  margin-right: 10px !important;
+}
+
 .text-underline {
   text-decoration: underline !important;
 }
@@ -16854,6 +16862,38 @@ input:checked + .gift-card-buy-slider:before {
 
 .backdrop-filter-none {
   backdrop-filter: none !important;
+}
+
+.bg-32d777 {
+  background: #32d777 !important;
+}
+
+.bg-d63031 {
+  background: #d63031 !important;
+}
+
+.bg-3498db {
+  background: #3498db !important;
+}
+
+.bg-9b59b6 {
+  background: #9b59b6 !important;
+}
+
+.bg-f39c12 {
+  background: #f39c12 !important;
+}
+
+.bg-d35400 {
+  background: #d35400 !important;
+}
+
+.text-58bd7d {
+  color: #58bd7d !important;
+}
+
+.text-fa0000 {
+  color: #fa0000 !important;
 }
 
 .custom-bg-main-background-color {
@@ -16896,4 +16936,48 @@ input:checked + .gift-card-buy-slider:before {
 
 .future-exchange-border-color {
   border-color: rgb(126 126 126 / 20%) !important;
+}
+
+.custom-text-primary-color-4 {
+  color: var(--text-primary-color-4) !important;
+}
+
+.box-sizing-content-box {
+  box-sizing: content-box !important;
+}
+
+.w-431-25 {
+  width: 431.25px;
+}
+
+.h-425 {
+  height: 425px !important;
+}
+
+.h-855 {
+  height: 855px !important;
+}
+
+.h-825 {
+  height: 825px !important;
+}
+
+.w-170-656 {
+  width: 170.656px;
+}
+
+.w-120-75 {
+  width: 120.75px;
+}
+
+.w-79-8438 {
+  width: 79.8438px;
+}
+
+.h-244 {
+  height: 244px !important;
+}
+
+.padding-3 {
+  padding: 3px !important;
 }

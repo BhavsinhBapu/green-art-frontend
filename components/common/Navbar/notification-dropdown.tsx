@@ -64,19 +64,14 @@ const NotificationDropdown = ({
         <div className="cp-user-top-bar-right">
           <div>
             <ul>
-              <li
-                className="hm-notify"
-                id="notification_item"
-                style={{ margin: "0 10px" }}
-              >
+              <li className="hm-notify ml-10 mr-10" id="notification_item">
                 <div className="btn-group profile-dropdown">
                   <button
                     type="button"
-                    className="btn dropdown-toggle bg-transparent"
+                    className="btn dropdown-toggle bg-transparent ml-0"
                     data-toggle="dropdown"
                     aria-haspopup="true"
                     aria-expanded="false"
-                    style={{ marginLeft: "0" }}
                   >
                     <span className="cp-user-avater">
                       <span>
@@ -100,13 +95,7 @@ const NotificationDropdown = ({
                       />
                     </p>
                     <div className="user-name">
-                      <p
-                        className="nav-userName"
-                        style={{
-                          color: "var(--text-primary-color-4)",
-                          fontWeight: "bold",
-                        }}
-                      >
+                      <p className="nav-userName font-bold custom-text-primary-color-4">
                         {user?.first_name!} {user?.last_name!}
                       </p>
                     </div>
@@ -167,11 +156,7 @@ const NotificationDropdown = ({
                 </div>
               </li>
 
-              <li
-                className="hm-notify"
-                id="notification_item"
-                style={{ margin: "0 10px" }}
-              >
+              <li className="hm-notify ml-10 mr-10" id="notification_item">
                 <div className="btn-group dropdown">
                   <button
                     type="button"
@@ -251,21 +236,8 @@ const NotificationDropdown = ({
                       </div>
                     </div>
 
-                    <div
-                      className="scroll-wrapper scrollbar-inner"
-                      style={{
-                        position: "relative",
-                      }}
-                    >
-                      <ul
-                        className="scrollbar-inner scroll-content"
-                        style={{
-                          height: "auto",
-                          marginBottom: "0px",
-                          marginRight: "0px",
-                          maxHeight: "0px",
-                        }}
-                      ></ul>
+                    <div className="scroll-wrapper scrollbar-inner position-relative">
+                      <ul className="scrollbar-inner scroll-content h-auto mb-0 mr-0 max-h-0"></ul>
                       <div className="scroll-element scroll-x">
                         <div className="scroll-element_outer">
                           <div className="scroll-element_size"></div>
@@ -289,28 +261,15 @@ const NotificationDropdown = ({
                 <ul>
                   <li className="hm-notify">
                     <a
-                      className="arrow-icon"
+                      className="arrow-icon h-48"
                       href="#"
                       aria-expanded="true"
-                      style={{ height: "48px" }}
                     >
                       <span className="">
                         <IoMdGlobe size={25} />
                       </span>
-                      {/* <span className="cp-user-name">
-                        {router.locale?.toLocaleUpperCase()}
-                      </span> */}
                     </a>
-                    <ul
-                      className="dropdown-menu-main"
-                      style={{
-                        right: "0",
-                        left: "auto",
-                        display: "grid",
-                        gridTemplateColumns: "repeat(2, 1fr)",
-                        width: "370px",
-                      }}
-                    >
+                    <ul className="dropdown-menu-main right-0 left-auto display-grid grid-temp-col-2 w-370">
                       {settings?.LanguageList?.map((item: any, index: any) => (
                         <li key={index}>
                           <Link href={router.asPath} locale={item.key}>
@@ -398,14 +357,8 @@ const NotificationDropdown = ({
                                       <span className="margin-right-auto">
                                         Fresh
                                       </span>
-                                      <span
-                                        className="settings-dropdown-color-box"
-                                        style={{ background: "#32d777" }}
-                                      ></span>
-                                      <span
-                                        className="settings-dropdown-color-box"
-                                        style={{ background: "#d63031" }}
-                                      ></span>
+                                      <span className="settings-dropdown-color-box bg-32d777"></span>
+                                      <span className="settings-dropdown-color-box bg-d63031"></span>
                                     </span>
                                   </span>
                                 </label>
@@ -437,14 +390,8 @@ const NotificationDropdown = ({
                                       <span className="margin-right-auto text-14">
                                         Traditional
                                       </span>
-                                      <span
-                                        className="settings-dropdown-color-box"
-                                        style={{ background: "#3498db" }}
-                                      ></span>
-                                      <span
-                                        className="settings-dropdown-color-box"
-                                        style={{ background: "#9b59b6" }}
-                                      ></span>
+                                      <span className="settings-dropdown-color-box bg-3498db"></span>
+                                      <span className="settings-dropdown-color-box bg-9b59b6"></span>
                                     </span>
                                   </span>
                                 </label>
@@ -476,14 +423,8 @@ const NotificationDropdown = ({
                                       <span className="margin-right-auto">
                                         Color Vision Deficiency
                                       </span>
-                                      <span
-                                        className="settings-dropdown-color-box"
-                                        style={{ background: "#f39c12" }}
-                                      ></span>
-                                      <span
-                                        className="settings-dropdown-color-box "
-                                        style={{ background: "#d35400" }}
-                                      ></span>
+                                      <span className="settings-dropdown-color-box bg-f39c12"></span>
+                                      <span className="settings-dropdown-color-box bg-d35400"></span>
                                     </span>
                                   </span>
                                 </label>
@@ -524,10 +465,10 @@ const NotificationDropdown = ({
                                           fill="currentColor"
                                           strokeWidth="0"
                                           viewBox="0 0 16 16"
-                                          style={{ color: "#58bd7d" }}
                                           height="1em"
                                           width="1em"
                                           xmlns="http://www.w3.org/2000/svg"
+                                          className="text-58bd7d"
                                         >
                                           <path
                                             fillRule="evenodd"
@@ -541,7 +482,7 @@ const NotificationDropdown = ({
                                           fill="currentColor"
                                           strokeWidth="0"
                                           viewBox="0 0 16 16"
-                                          style={{ color: "#fa0000" }}
+                                          className="text-fa0000"
                                           height="1em"
                                           width="1em"
                                           xmlns="http://www.w3.org/2000/svg"
@@ -590,7 +531,7 @@ const NotificationDropdown = ({
                                           height="1em"
                                           width="1em"
                                           xmlns="http://www.w3.org/2000/svg"
-                                          style={{ color: "#fa0000" }}
+                                          className="text-fa0000"
                                         >
                                           <path
                                             fillRule="evenodd"
@@ -607,7 +548,7 @@ const NotificationDropdown = ({
                                           height="1em"
                                           width="1em"
                                           xmlns="http://www.w3.org/2000/svg"
-                                          style={{ color: "#58bd7d" }}
+                                          className="text-58bd7d"
                                         >
                                           <path
                                             fillRule="evenodd"
