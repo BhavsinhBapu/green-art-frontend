@@ -50,7 +50,7 @@ export default function DepthChartView() {
     depthCartData.buy.length > 0 && depthCartData.sell.length > 0;
 
   return (
-    <div style={{ height: "570px", width: "100%" }}>
+    <div className="w-full h-570">
       {isDataAvailable && (
         <DepthChart
           data={depthCartData}

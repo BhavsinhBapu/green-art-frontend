@@ -35,7 +35,11 @@ import {
 import { MdOutlineSwapHorizontalCircle, MdTransform } from "react-icons/md";
 import { GiBuyCard, GiSellCard, GiTrade } from "react-icons/gi";
 import { GoStop } from "react-icons/go";
-import { AiFillGift, AiOutlineClose, AiOutlineDeliveredProcedure } from "react-icons/ai";
+import {
+  AiFillGift,
+  AiOutlineClose,
+  AiOutlineDeliveredProcedure,
+} from "react-icons/ai";
 import DemoNotificationDropdown from "./DemoNotificationDropdown";
 
 const DemoTradeNavbar = ({
@@ -94,17 +98,13 @@ const DemoTradeNavbar = ({
           <div className="cp-user-top-bar position-fixed">
             <div className="container-fluid">
               <div className="d-flex align-items-center justify-content-between">
-                <div
-                  className="d-flex align-items-center"
-                  style={{ gap: "20px" }}
-                >
+                <div className="d-flex align-items-center gap-20">
                   <div className="cp-user-logo">
                     <Link href="/">
                       <a href="">
                         <img
                           src={logo || ""}
-                          className="img-fluid cp-user-logo-large"
-                          style={{maxHeight: '50px'}}
+                          className="img-fluid cp-user-logo-large max-h-50"
                           alt=""
                         />
                       </a>
@@ -267,9 +267,11 @@ const DemoTradeNavbar = ({
                               <span>
                                 <AiOutlineDeliveredProcedure />
                               </span>
-                              <span className="line-h-19"> {t("Back To Live")}</span>
+                              <span className="line-h-19">
+                                {" "}
+                                {t("Back To Live")}
+                              </span>
                             </div>
-                           
                           </a>
                         </li>
                       </Link>
@@ -307,8 +309,7 @@ const DemoTradeNavbar = ({
                             <IoMdGlobe size={20} />
                           </span>
                           <span
-                            className="text-primary-color-two text-16"
-                            style={{ lineHeight: "19px" }}
+                            className="text-primary-color-two text-16 leading-18"
                             onClick={() => {
                               setLanguageActive(true);
                               setActive(false);

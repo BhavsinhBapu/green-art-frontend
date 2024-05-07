@@ -305,10 +305,10 @@ const MobileMoney = ({ currencyList, walletlist, method_id, mobiles }: any) => {
                 )}
               </label>
               <input
-                style={{ display: "none" }}
                 ref={inputRef}
                 type="file"
                 onChange={handleFileChange}
+                className="d-none"
               />
             </div>
           </div>

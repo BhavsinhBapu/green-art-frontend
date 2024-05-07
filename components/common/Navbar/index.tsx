@@ -94,17 +94,13 @@ const Navbar = ({
           <div className="cp-user-top-bar position-fixed">
             <div className="container-fluid">
               <div className="d-flex align-items-center justify-content-between main-navbar">
-                <div
-                  className="d-flex align-items-center"
-                  style={{ gap: "20px" }}
-                >
+                <div className="d-flex align-items-center gap-20">
                   <div className="cp-user-logo">
                     <Link href="/">
                       <a href="">
                         <img
                           src={logo || ""}
-                          className="img-fluid cp-user-logo-large"
-                          style={{maxHeight: '50px'}}
+                          className="img-fluid cp-user-logo-large max-h-50"
                           alt=""
                         />
                       </a>
@@ -129,10 +125,9 @@ const Navbar = ({
                             }
                           >
                             <a
-                              className="arrow-icon"
+                              className="arrow-icon h-48 gap-2"
                               href="#"
                               aria-expanded="true"
-                              style={{ height: "48px", gap: "2px" }}
                             >
                               {/* <span className="cp-user-icon">
                                 <BsBarChartLine />
@@ -307,10 +302,9 @@ const Navbar = ({
                               }
                             >
                               <a
-                                className="arrow-icon"
+                                className="arrow-icon h-48 gap-2"
                                 href="#"
                                 aria-expanded="true"
-                                style={{ height: "48px", gap: "2px" }}
                               >
                                 {/* <span className="cp-user-icon">
                                   <FiSettings />
@@ -413,10 +407,9 @@ const Navbar = ({
                             }
                           >
                             <a
-                              className="arrow-icon"
+                              className="arrow-icon h-48 gap-2"
                               href="#"
                               aria-expanded="true"
-                              style={{ height: "48px", gap: "2px" }}
                             >
                               {/* <span className="cp-user-icon">
                                 <HiOutlineDocumentReport />
@@ -433,14 +426,7 @@ const Navbar = ({
                           </Link>
                         )}
 
-                        <ul
-                          className="dropdown-menu bg-transparent-main"
-                          style={{
-                            display: "grid",
-                            gridTemplateColumns: "repeat(2, 1fr)",
-                            width: "650px",
-                          }}
-                        >
+                        <ul className="dropdown-menu bg-transparent-main display-grid grid-temp-col-2 w-650">
                           {navbar?.reports?.depositHistory?.status && (
                             <Link
                               href={
@@ -750,28 +736,7 @@ const Navbar = ({
                           )}
                         </ul>
                       </li>
-                      {/* {navbar?.myProfile?.status && (
-                        <Link href={isLoggedIn ? "/user/profile" : "/signin"}>
-                          <li
-                            className={
-                              router.pathname == "/user/profile"
-                                ? "cp-user-active-page"
-                                : ""
-                            }
-                          >
-                            <a href="">
-                              <span className="cp-user-icon">
-                                <CgProfile />
-                              </span>
-                              <span className="cp-user-name">
-                                {navbar?.myProfile?.name
-                                  ? navbar?.myProfile?.name
-                                  : t("My Profile")}
-                              </span>
-                            </a>
-                          </li>
-                        </Link>
-                      )} */}
+
                       <Link href={isLoggedIn ? "/user/referral" : "/signin"}>
                         <li
                           className={
@@ -783,9 +748,6 @@ const Navbar = ({
                           {navbar?.myReferral?.status && (
                             <Link href="/user/referral">
                               <a>
-                                {/* <span className="cp-user-icon">
-                                  <BiNetworkChart />
-                                </span> */}
                                 <span className="cp-user-name">
                                   {navbar?.myReferral?.name
                                     ? navbar.myReferral?.name
@@ -796,86 +758,7 @@ const Navbar = ({
                           )}
                         </li>
                       </Link>
-                      {/* <li
-                        className={
-                          router.pathname == "/user/settings"
-                            ? "cp-user-active-page"
-                            : router.pathname == "/user/faq"
-                            ? "cp-user-active-page"
-                            : ""
-                        }
-                      >
-                        {navbar?.settings?.status && (
-                          <Link
-                            href={isLoggedIn ? "/user/settings" : "/signin"}
-                          >
-                            <a
-                              className="arrow-icon"
-                              href="#"
-                              aria-expanded="true"
-                              style={{ height: "48px" }}
-                            >
-                              <span className="cp-user-icon">
-                                <FiSettings />
-                              </span>
-                              <span className="cp-user-name">
-                                {navbar?.settings?.name
-                                  ? navbar?.settings?.name
-                                  : t("Settings")}
-                              </span>
-                            </a>
-                          </Link>
-                        )}
 
-                        <ul className="dropdown-menu bg-transparent-main">
-                          {navbar?.settings?.mySettings?.status && (
-                            <Link
-                              href={isLoggedIn ? "/user/settings" : "/signin"}
-                            >
-                              <li
-                                className={
-                                  router.pathname == "/user/settings"
-                                    ? "cp-user-active-page"
-                                    : ""
-                                }
-                              >
-                                <a href="" className="menu-hover">
-                                  <span className="cp-user-icon">
-                                    <RiUserSettingsLine />
-                                  </span>
-                                  <span>
-                                    {navbar?.settings?.mySettings?.name
-                                      ? navbar?.settings?.mySettings?.name
-                                      : t("My Settings")}
-                                  </span>
-                                </a>
-                              </li>
-                            </Link>
-                          )}
-                          {navbar?.settings?.faq?.status && (
-                            <Link href={isLoggedIn ? "/user/faq" : "/signin"}>
-                              <li
-                                className={
-                                  router.pathname == "/user/faq"
-                                    ? "cp-user-active-page"
-                                    : ""
-                                }
-                              >
-                                <a href="" className="menu-hover">
-                                  <span className="cp-user-icon">
-                                    <FaQq />
-                                  </span>
-                                  <span>
-                                    {navbar?.settings?.faq?.name
-                                      ? navbar?.settings?.faq?.name
-                                      : t("FAQ")}
-                                  </span>
-                                </a>
-                              </li>
-                            </Link>
-                          )}
-                        </ul>
-                      </li> */}
                       {Number(settings?.enable_gift_card) === 1 && (
                         <li
                           className={
@@ -888,14 +771,10 @@ const Navbar = ({
                         >
                           <Link href={isLoggedIn ? "/gift-cards" : "/signin"}>
                             <a
-                              className="arrow-icon"
+                              className="arrow-icon h-48 gap-2"
                               href="#"
                               aria-expanded="true"
-                              style={{ height: "48px", gap: "2px" }}
                             >
-                              {/* <span className="cp-user-icon">
-                                <AiFillGift />
-                              </span> */}
                               <span className="cp-user-name">
                                 {navbar?.giftCards?.name
                                   ? navbar?.giftCards?.name
@@ -2062,8 +1941,7 @@ const Navbar = ({
                             <IoMdGlobe size={20} />
                           </span>
                           <span
-                            className="text-primary-color-two text-16"
-                            style={{ lineHeight: "19px" }}
+                            className="text-primary-color-two text-16 leading-18"
                             onClick={() => {
                               setLanguageActive(true);
                               setActive(false);

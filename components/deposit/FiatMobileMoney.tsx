@@ -205,10 +205,10 @@ const FiatMobileMoney = ({ method_id, mobiles, currency_type }: any) => {
                 )}
               </label>
               <input
-                style={{ display: "none" }}
                 ref={inputRef}
                 type="file"
                 onChange={handleFileChange}
+                className="d-none"
               />
             </div>
           </div>

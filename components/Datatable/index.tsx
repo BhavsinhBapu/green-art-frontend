@@ -44,7 +44,7 @@ const CustomDataTable = ({
   const { globalFilter }: any = state;
 
   return (
-    <div style={{ overflowX: "auto" }}>
+    <div className="overflow-x-auto">
       <div id="assetBalances_wrapper" className="dataTables_wrapper no-footer">
         <div className="dataTables_head">
           <div className="dataTables_length" id="assetBalances_length">
@@ -96,14 +96,7 @@ const CustomDataTable = ({
                     <th
                       key={key}
                       {...column.getHeaderProps(column.getSortByToggleProps())} // Add sorting props to the column header
-                      style={{
-                        borderBottom: "1px solid #7d7d7d33",
-                        background: "transparent",
-                        padding: "12px 8px",
-                        textAlign: "left", // Update this line
-                        cursor: "pointer",
-                      }}
-                      className="dataTables_header_class"
+                      className="dataTables_header_class common-datatable-header-th"
                     >
                       {column.render("Header")}
                       <span>
@@ -135,16 +128,11 @@ const CustomDataTable = ({
                             key={key}
                             {...cell.getCellProps()}
                             style={{
-                              borderBottom: "1px solid #7d7d7d33",
-                              padding: "12px 8px",
-                              textAlign: "start",
-                              whiteSpace: "nowrap",
-                              textOverflow: "ellipsis",
-                              maxWidth: "200px",
                               verticalAlign: verticalAlignData,
-                              wordBreak: "break-word",
                             }}
-                            className={`${isOverflow ? "" : "overflow-hidden"}`}
+                            className={`${
+                              isOverflow ? "" : "overflow-hidden"
+                            } common-datatable-body-td`}
                           >
                             {cell.render("Cell")}
                           </td>
