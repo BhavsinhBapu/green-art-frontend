@@ -43,21 +43,12 @@ const AllBuyOrders = ({ OpenBookBuy, show, customClass }: any) => {
         >
           <div
             id="exchangeAllSellOrders_processing"
-            className="dataTables_processing"
-            style={{ display: "none" }}
+            className="dataTables_processing d-none"
           >
             {t("Processing")}...
           </div>
           <div className="">
-            <div
-              className="dataTables_scrollHead"
-              style={{
-                overflow: "hidden",
-                position: "relative",
-                border: "0px",
-                width: "100%",
-              }}
-            >
+            <div className="dataTables_scrollHead w-full overflow-hidden position-relative border-0">
               <div
                 className="dataTables_scrollHeadInner"
                 style={{
@@ -94,9 +85,8 @@ const AllBuyOrders = ({ OpenBookBuy, show, customClass }: any) => {
               {OpenBookBuy.length > 0 ? (
                 <table
                   id="exchangeAllSellOrders"
-                  className="table dataTable no-footer"
+                  className="table dataTable no-footer w-full"
                   role="grid"
-                  style={{ width: "100%" }}
                 >
                   <thead>
                     <tr role="row">
@@ -104,21 +94,18 @@ const AllBuyOrders = ({ OpenBookBuy, show, customClass }: any) => {
                         className="table-col price sorting_disabled"
                         rowSpan={1}
                         colSpan={1}
-                        // style={{ width: "170.656px" }}
                         aria-label="Price"
                       ></th>
                       <th
                         className="table-col amount sorting_disabled"
                         rowSpan={1}
                         colSpan={1}
-                        // style={{ width: "120.75px" }}
                         aria-label="Amount"
                       ></th>
                       <th
                         className="table-col time text-right sorting_desc"
                         rowSpan={1}
                         colSpan={1}
-                        // style={{ width: "79.8438px" }}
                         aria-label="Time"
                       ></th>
                     </tr>
@@ -190,8 +177,6 @@ const AllBuyOrders = ({ OpenBookBuy, show, customClass }: any) => {
                             <td>
                               <div className="asset">
                                 <span className="greenText">
-                                  {/* {parseFloat(item.price)%1 !== 0 ? parseFloat(item.price) : parseFloat(item.price).toFixed(2)} */}
-
                                   {formatCurrency(
                                     item.price,
                                     dashboard?.order_data?.total?.trade_wallet

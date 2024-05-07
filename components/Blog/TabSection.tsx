@@ -4,7 +4,6 @@ import { getBlogsByCategoryApi } from "service/blog";
 const TabSection = ({ categories, setRecentBlogState, setLoading }: any) => {
   const [selected, setSelected] = useState(null);
   const getBlogsByCategory = async (id: any) => {
-    console.log("getBlogsByCategory", id);
     setLoading(true);
     setSelected(id);
     const CategoryBlog = await getBlogsByCategoryApi(id, 0, 5, 1);

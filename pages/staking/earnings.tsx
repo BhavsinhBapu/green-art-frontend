@@ -14,24 +14,8 @@ const Earnings = () => {
   }, []);
   return (
     <div>
-      {/* <div className="">
-        <div className="section-top-wrap mb-25">
-          <div className="overview-area">
-            <div className="overview-left">
-              <h2 className="section-top-title">{t("My Earnings")}</h2>
-            </div>
-          </div>
-        </div>
-      </div>
-      <StakingTopBar /> */}
       <StakingHeader title={t("My Earnings")} />
-      <div
-        className="container-4xl"
-        style={{
-          marginTop: "-60px",
-          marginBottom: "30px",
-        }}
-      >
+      <div className="container-4xl margin-n-top-60 margin-bottom-30">
         <div className=" row ">
           <div className="col-md-6 col-12 mt-3">
             <div className="shadow-sm section-padding-custom wallet-card-info-container ">

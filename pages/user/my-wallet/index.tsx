@@ -266,13 +266,7 @@ const MyWallet: NextPage = () => {
 
             <div className="row  container-4xl">
               <PlaceTopLeft />
-              <div
-                className="col-md-12 px-0"
-                style={{
-                  marginTop: "-60px",
-                  marginBottom: "30px",
-                }}
-              >
+              <div className="col-md-12 px-0 margin-n-top-60 margin-bottom-30">
                 <div className="shadow-sm section-padding-custom wallet-card-info-container">
                   <div
                     className="py-5"

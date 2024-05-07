@@ -15,13 +15,7 @@ const OfferTable = ({ isLoggedIn }: any) => {
   }, []);
   return (
     <div>
-      <div
-        className="container-4xl"
-        style={{
-          marginTop: "-60px",
-          marginBottom: "30px",
-        }}
-      >
+      <div className="container-4xl margin-n-top-60 margin-bottom-30">
         <div className="row shadow-sm section-padding-custom wallet-card-info-container">
           <div className="table-responsive" style={{ overflowX: "auto" }}>
             {loading ? (

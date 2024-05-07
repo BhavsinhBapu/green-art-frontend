@@ -75,8 +75,7 @@ const DashboardNavbar = () => {
                   <a href="">
                     <img
                       src={logo || ""}
-                      className="img-fluid cp-user-logo-large"
-                      style={{ maxHeight: "50px" }}
+                      className="img-fluid cp-user-logo-large max-h-50"
                       alt=""
                     />
                   </a>

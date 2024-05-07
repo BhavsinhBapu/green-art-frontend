@@ -108,13 +108,7 @@ export default function CheckDeposit() {
         {isLoading ? (
           <SectionLoading />
         ) : (
-          <div
-            className="container"
-            style={{
-              marginTop: "-60px",
-              marginBottom: "30px",
-            }}
-          >
+          <div className="container margin-n-top-60 margin-bottom-30">
             <div className="row">
               <div className="offset-md-2 col-md-8 shadow-sm section-padding-custom wallet-card-info-container">
                 <div

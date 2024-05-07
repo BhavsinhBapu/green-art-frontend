@@ -56,13 +56,7 @@ const CreateEditAdditionalPhase = ({ id, edit, data }: any) => {
         <PlaceTopLeft />
         <PlaceBottomRight />
         <div className="container-4xl">
-          <div
-            className="shadow-sm section-padding-custom wallet-card-info-container mb-5"
-            style={{
-              marginTop: "-60px",
-              marginBottom: "30px",
-            }}
-          >
+          <div className="shadow-sm section-padding-custom wallet-card-info-container mb-5 margin-n-top-60 margin-bottom-30">
             <div className="row">
               <div className="">
                 <div className="col-12">

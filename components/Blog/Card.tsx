@@ -8,40 +8,15 @@ const BlogCard = ({ blog }: any) => {
     <>
       <Link href={"/blog/" + blog?.post_id}>
         <a>
-          <div
-            className="blogCard shadow-sm rounded card h-full"
-            style={{
-              minHeight: "370px",
-              overflow: "hidden",
-              // background: `url(${blog?.thumbnail})`,
-              // backgroundPosition: "center",
-              // backgroundRepeat: "no-repeat",
-              // backgroundSize: "cover",
-              // position: "relative",
-            }}
-          >
-            {/* <div
-              style={{
-                position: "absolute",
-                top: "0",
-                left: "0",
-                width: "100%",
-                background: "black",
-                height: "100%",
-                opacity: "0.3",
-                borderRadius: "10px",
-                zIndex: "-1",
-              }}
-            ></div> */}
+          <div className="blogCard shadow-sm rounded card h-full overflow-hidden min-h-370">
             <img
-              className="rounded"
+              className="rounded h-full max-h-245"
               src={blog?.thumbnail}
               alt="Card image cap"
-              style={{ maxHeight: "245px", height: "100%" }}
             />
             <div className="newsCardText p-4 ">
               <h4 className="titleText">{blog?.title}</h4>
-              <p className="pt-2" style={{ lineHeight: "18px" }}>
+              <p className="pt-2 leading-18">
                 {" "}
                 {blog?.description?.length > 100
                   ? `${blog?.description.slice(0, 100)}...`

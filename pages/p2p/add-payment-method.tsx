@@ -39,13 +39,7 @@ const AddPaymentMethod = () => {
             </h2>
           </div>
         </div>
-        <div
-          className="container"
-          style={{
-            marginTop: "-60px",
-            marginBottom: "30px",
-          }}
-        >
+        <div className="container margin-n-top-60 margin-bottom-30">
           <div className="row">
             <div className="col-md-7 mx-auto shadow-sm section-padding-custom wallet-card-info-container">
               <Link href={`/p2p/p2p-profile`}>

@@ -133,22 +133,7 @@ const CurrencyDepositHistory = () => {
         <PlaceTopLeft />
         <PlaceBottomRight />
         <div className="page-main-content container-4xl">
-          <div
-            className="report-overview-body-padding"
-            style={{
-              marginTop: "-60px",
-              marginBottom: "30px",
-            }}
-          >
-            {/* <div className="section-top-wrap mb-25 inner-section-margin-top">
-              <div className="overview-area">
-                <div className="overview-left">
-                  <h2 className="section-top-title">
-                    {t("Fiat To Crypto Deposit History")}
-                  </h2>
-                </div>
-              </div>
-            </div> */}
+          <div className="report-overview-body-padding margin-n-top-60 margin-bottom-30">
             <div className="asset-balances-area">
               <div className="asset-balances-left">
                 <div>

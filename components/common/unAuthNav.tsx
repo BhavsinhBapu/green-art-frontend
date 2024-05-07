@@ -85,14 +85,13 @@ const UnAuthNav = ({
       <div className="cp-user-top-bar position-fixed">
         <div className="container-fluid">
           <div className="d-flex align-items-center justify-content-between">
-            <div className="d-flex align-items-center" style={{ gap: "20px" }}>
+            <div className="d-flex align-items-center gap-20">
               <div className="cp-user-logo">
                 <Link href="/">
-                  <a href="">
+                  <a>
                     <img
                       src={logo || ""}
-                      className="img-fluid cp-user-logo-large"
-                      style={{maxHeight: '50px'}}
+                      className="img-fluid cp-user-logo-large max-h-50"
                       alt=""
                     />
                   </a>
@@ -102,10 +101,9 @@ const UnAuthNav = ({
                 <ul>
                   <li>
                     <a
-                      className="flex"
+                      className="flex h-48 gap-2"
                       href="#"
                       aria-expanded="true"
-                      style={{ height: "48px", gap: "2px" }}
                     >
                       {/* <span className="cp-user-icon">
                         <BsBarChartLine />
@@ -126,13 +124,13 @@ const UnAuthNav = ({
                               : "/exchange/dashboard"
                           }
                         >
-                          <a className="py-1 menu-hover">
+                          <div className="py-1 menu-hover">
                             <span className="cp-user-icon">
                               {" "}
                               <BiShapeCircle />{" "}
                             </span>{" "}
                             <span>{t("Spot Trading")}</span>{" "}
-                          </a>
+                          </div>
                         </a>
                       </li>
                       {parseInt(settings?.p2p_module) === 1 && (
@@ -202,22 +200,12 @@ const UnAuthNav = ({
                   </li>
                   <li>
                     <Link href="/signup">
-                      <a
-                        style={{
-                          padding: "3px 10px",
-                          // background: "var(--primary-color)",
-                          borderRadius: "5px",
-                          border: "1px solid var(--border-color-2)",
-                          color: "var(--border-color-2)",
-                          gap: "4px",
-                        }}
-                      >
+                      <a className="sign-up-btn-un-auth gap-4">
                         <svg
-                          style={{ width: "16px", height: "16px" }}
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 24 24"
                           fill="none"
-                          className=""
+                          className="h-16 w-16"
                         >
                           <path
                             d="M13.5 6.379V3h-3v3.379l-2.94-2.94-2.12 2.122L7.878 8H4v3h6.75V8h2.5v3H20V8h-3.879l2.44-2.44-2.122-2.12L13.5 6.378zM4 13.5V20h6.75v-6.5H4zM13.25 20H20v-6.5h-6.75V20z"
@@ -229,53 +217,17 @@ const UnAuthNav = ({
                     </Link>
                   </li>
 
-                  {/* <li
-                    style={{ height: "48px" }}
-                    className="d-flex align-items-center"
-                  >
-                    <a className="flex" href="#" aria-expanded="true">
-                      <IoMdGlobe size={20} />{" "}
-                      <span className="ml-2">
-                        {router.locale?.toLocaleUpperCase()}
-                      </span>
-                    </a>
-                    <ul
-                      className="lang-list dropdown-menu-main"
-                      style={{ right: "0", left: "auto" }}
-                    >
-                      {settings?.LanguageList?.map((item: any, index: any) => (
-                        <li key={index}>
-                          <Link href={router.asPath} locale={item.key}>
-                            <a className="py-1 menu-hover">{item.name}</a>
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </li> */}
                   <li className="hm-notify">
                     <a
-                      className="arrow-icon"
+                      className="arrow-icon h-48"
                       href="#"
                       aria-expanded="true"
-                      style={{ height: "48px" }}
                     >
                       <span className="">
                         <IoMdGlobe size={25} />
                       </span>
-                      {/* <span className="cp-user-name">
-                        {router.locale?.toLocaleUpperCase()}
-                      </span> */}
                     </a>
-                    <ul
-                      className="dropdown-menu-main"
-                      style={{
-                        right: "0",
-                        left: "auto",
-                        display: "grid",
-                        gridTemplateColumns: "repeat(2, 1fr)",
-                        width: "370px",
-                      }}
-                    >
+                    <ul className="dropdown-menu-main right-0 left-auto display-grid w-370 display-grid grid-temp-col-2 w-370">
                       {settings?.LanguageList?.map((item: any, index: any) => (
                         <li key={index}>
                           <Link href={router.asPath} locale={item.key}>
@@ -321,7 +273,7 @@ const UnAuthNav = ({
                               <label className="gift-card-buy-switch mb-0">
                                 <input
                                   type="checkbox"
-                                  onClick={() => {
+                                  onChange={() => {
                                     darkModeToggle(
                                       settings,
                                       setTheme,
@@ -344,7 +296,7 @@ const UnAuthNav = ({
                                   name="exampleRadios"
                                   id="exampleRadios1"
                                   checked={ThemeColor.chooseColor === 1}
-                                  onClick={() => {
+                                  onChange={() => {
                                     changeThemeSettingsDashboard(
                                       "#32d777",
                                       "#d63031",
@@ -384,7 +336,7 @@ const UnAuthNav = ({
                                   id="exampleRadios3"
                                   checked={ThemeColor.chooseColor === 2}
                                   value="option1"
-                                  onClick={() => {
+                                  onChange={() => {
                                     changeThemeSettingsDashboard(
                                       "#3498db",
                                       "#9b59b6",
@@ -423,7 +375,7 @@ const UnAuthNav = ({
                                   id="exampleRadios2"
                                   value="option1"
                                   checked={ThemeColor.chooseColor === 3}
-                                  onClick={() => {
+                                  onChange={() => {
                                     changeThemeSettingsDashboard(
                                       "#f39c12",
                                       "#d35400",
@@ -758,7 +710,7 @@ const UnAuthNav = ({
                         aria-labelledby="navbarDropdown"
                       >
                         {navbar?.trade?.status && (
-                          <a
+                          <Link
                             href={
                               router.locale !== "en"
                                 ? `/${router.locale}/exchange/dashboard`
@@ -784,7 +736,7 @@ const UnAuthNav = ({
                                 <span>{t("Spot Trading")}</span>
                               </a>
                             </li>
-                          </a>
+                          </Link>
                         )}
                         {parseInt(settings?.p2p_module) === 1 && (
                           <Link href={isLoggedIn ? "/p2p" : "/signin"}>
@@ -793,13 +745,12 @@ const UnAuthNav = ({
                                 router.pathname == "/p2p" ? "active-navbar" : ""
                               }
                             >
-                              <a
-                                href=""
+                              <span
                                 className="px-3 py-2 text-primary-color-two"
                                 onClick={() => setActive(false)}
                               >
                                 <span>{t("P2P Trading")}</span>
-                              </a>
+                              </span>
                             </li>
                           </Link>
                         )}
@@ -818,13 +769,12 @@ const UnAuthNav = ({
                                   : ""
                               }
                             >
-                              <a
-                                href=""
+                              <span
                                 className="px-3 py-2 text-primary-color-two"
                                 onClick={() => setActive(false)}
                               >
                                 <span>{t("Future Trading")}</span>
-                              </a>
+                              </span>
                             </li>
                           </Link>
                         )}
@@ -888,7 +838,7 @@ const UnAuthNav = ({
                       <label className="gift-card-buy-switch mb-0">
                         <input
                           type="checkbox"
-                          onClick={() => {
+                          onChange={() => {
                             darkModeToggle(settings, setTheme, dispatch);
                           }}
                           checked={theme === 0}

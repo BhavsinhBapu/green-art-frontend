@@ -61,36 +61,13 @@ const WalletOverview: NextPage = () => {
               ) : (
                 Object.keys(walletOverviewData).length > 0 && (
                   <>
-                    <div
-                      className="px-1"
-                      style={{
-                        marginTop: "-60px",
-                        marginBottom: "30px",
-                      }}
-                    >
-                      <div className="row" style={{ rowGap: "20px" }}>
+                    <div className="px-1 margin-n-top-60 margin-bottom-30 row-gap-20">
+                      <div className="row">
                         <div className=" col-md-6">
-                          <div
-                            className="shadow-sm section-padding-custom wallet-card-info-container"
-                            style={{ position: "relative", zIndex: "10" }}
-                          >
-                            <div
-                              // style={{
-                              //   display: "flex",
-                              //   justifyContent: "space-between",
-                              //   alignItems: "center",
-                              // }}
-                              className="card-head"
-                            >
+                          <div className="shadow-sm section-padding-custom wallet-card-info-container position-relative z-index-10">
+                            <div className="card-head">
                               <h6>{t(`Estimated Balance`)}</h6>
-                              <div
-                                style={{
-                                  display: "flex",
-                                  gap: "6px",
-                                  alignItems: "center",
-                                  height: "36px",
-                                }}
-                              >
+                              <div className="d-flex align-items-center gap-6 h-36">
                                 <span>
                                   {walletOverviewData?.selected_coin ?? "NA"}
                                 </span>
@@ -105,8 +82,7 @@ const WalletOverview: NextPage = () => {
                                       aria-expanded="false"
                                     ></button>
                                     <div
-                                      className="dropdown-menu shadow bg-main-clr"
-                                      style={{ minWidth: "4rem" }}
+                                      className="dropdown-menu shadow bg-main-clr min-w-4r"
                                       aria-labelledby="dropdownMenuButton"
                                     >
                                       {walletOverviewData?.coins.map(
@@ -126,11 +102,7 @@ const WalletOverview: NextPage = () => {
                               </div>
                             </div>
                             <div className="pt-3 d-flex align-items-center gap-10">
-                              <div
-                                style={{
-                                  display: "inline-block",
-                                }}
-                              >
+                              <div className="d-inline-block">
                                 <h3>
                                   {`${
                                     walletOverviewData?.total ?? "0.00000000"
@@ -160,13 +132,7 @@ const WalletOverview: NextPage = () => {
                                   <h6>{t("Spot")}</h6>
                                 </div>
                               </Link>
-                              <div
-                                style={{
-                                  padding: "6px",
-                                  borderRadius: "10px",
-                                  background: "var(--main-background-color)",
-                                }}
-                              >
+                              <div className="p-6 rounded-10 custom-bg-main-background-color">
                                 <BiShapeCircle
                                   size={24}
                                   color="var(--primary-color)"
@@ -174,11 +140,7 @@ const WalletOverview: NextPage = () => {
                               </div>
                             </div>
                             <div className="pt-3 d-flex align-items-center gap-10">
-                              <div
-                                style={{
-                                  display: "inline-block",
-                                }}
-                              >
+                              <div className="d-inline-block">
                                 <h3>
                                   {`${
                                     walletOverviewData?.spot_wallet
@@ -214,13 +176,7 @@ const WalletOverview: NextPage = () => {
                                     <h6>{t("Futures")}</h6>
                                   </div>
                                 </Link>
-                                <div
-                                  style={{
-                                    padding: "6px",
-                                    borderRadius: "10px",
-                                    background: "var(--main-background-color)",
-                                  }}
-                                >
+                                <div className="p-6 rounded-10 custom-bg-main-background-color">
                                   <BiShapeCircle
                                     size={24}
                                     color="var(--primary-color)"
@@ -228,11 +184,7 @@ const WalletOverview: NextPage = () => {
                                 </div>
                               </div>
                               <div className="pt-3 d-flex align-items-center gap-10">
-                                <div
-                                  style={{
-                                    display: "inline-block",
-                                  }}
-                                >
+                                <div className="d-inline-block">
                                   <h3>
                                     {`${
                                       walletOverviewData?.future_wallet
@@ -269,13 +221,7 @@ const WalletOverview: NextPage = () => {
                                     <h6>{t("P2P")}</h6>
                                   </div>
                                 </Link>
-                                <div
-                                  style={{
-                                    padding: "6px",
-                                    borderRadius: "10px",
-                                    background: "var(--main-background-color)",
-                                  }}
-                                >
+                                <div className="p-6 rounded-10 custom-bg-main-background-color">
                                   <BiShapeCircle
                                     size={24}
                                     color="var(--primary-color)"
@@ -283,11 +229,7 @@ const WalletOverview: NextPage = () => {
                                 </div>
                               </div>
                               <div className="pt-3 d-flex align-items-center gap-10">
-                                <div
-                                  style={{
-                                    display: "inline-block",
-                                  }}
-                                >
+                                <div className="d-inline-block">
                                   <h3>
                                     {`${
                                       walletOverviewData?.p2p_wallet
@@ -317,12 +259,7 @@ const WalletOverview: NextPage = () => {
                         )}
                       </div>
                     </div>
-                    <div
-                      className="shadow-sm section-padding-custom wallet-card-info-container"
-                      style={{
-                        marginBottom: "60px",
-                      }}
-                    >
+                    <div className="shadow-sm section-padding-custom wallet-card-info-container margin-bottom-60">
                       <div>
                         <div className="mb-3 px-2 d-flex justify-content-between align-items-center gap-10 card-head">
                           <h6>{t(`Recent Transactions`)}</h6>
@@ -343,13 +280,7 @@ const WalletOverview: NextPage = () => {
                                     <tr key={index}>
                                       <td className="p-2 align-middle">
                                         <div className="d-flex gap-10 align-items-center">
-                                          <div
-                                            className="d-flex justify-content-center align-items-center bg-main-clr rounded"
-                                            style={{
-                                              width: "36px",
-                                              height: "36px",
-                                            }}
-                                          >
+                                          <div className="d-flex justify-content-center align-items-center bg-main-clr rounded w-36 h-36">
                                             <AiOutlineUpload size={16} />
                                           </div>
                                           <div>
@@ -374,16 +305,7 @@ const WalletOverview: NextPage = () => {
                                             {item?.coin_type}
                                           </span>
                                           <small>
-                                            <span
-                                              style={{
-                                                display: "inline-block",
-                                                width: "5px",
-                                                height: "5px",
-                                                background: "green",
-                                                borderRadius: "50%",
-                                                marginBottom: "1px",
-                                              }}
-                                            ></span>{" "}
+                                            <span className="completed-btn-status"></span>{" "}
                                             {t(`Completed`)}
                                           </small>
                                         </div>
@@ -398,13 +320,7 @@ const WalletOverview: NextPage = () => {
                                     <tr key={index}>
                                       <td className="p-2 align-middle">
                                         <div className="d-flex gap-10 align-items-center">
-                                          <div
-                                            className="d-flex justify-content-center align-items-center bg-main-clr rounded"
-                                            style={{
-                                              width: "36px",
-                                              height: "36px",
-                                            }}
-                                          >
+                                          <div className="d-flex justify-content-center align-items-center bg-main-clr rounded w-36 h-36">
                                             <AiOutlineDownload size={16} />
                                           </div>
                                           <div>
@@ -429,16 +345,7 @@ const WalletOverview: NextPage = () => {
                                             {item?.coin_type}
                                           </span>
                                           <small>
-                                            <span
-                                              style={{
-                                                display: "inline-block",
-                                                width: "5px",
-                                                height: "5px",
-                                                background: "green",
-                                                borderRadius: "50%",
-                                                marginBottom: "1px",
-                                              }}
-                                            ></span>{" "}
+                                            <span className="completed-btn-status"></span>{" "}
                                             {t(`Completed`)}
                                           </small>
                                         </div>

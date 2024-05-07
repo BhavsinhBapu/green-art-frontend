@@ -168,7 +168,7 @@ const Index = ({ children }: any) => {
             {metaData?.app_title || process.env.NEXT_PUBLIC_APP_NAME}
           </title>
           <link
-            rel="shortcut icon"
+            rel="icon"
             href={metaData?.favicon || process.env.NEXT_PUBLIC_FAVICON}
           />
           <meta

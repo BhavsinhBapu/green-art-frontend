@@ -118,18 +118,6 @@ const MyWallet: NextPage = () => {
 
   return (
     <>
-      {/* <div className="page-wrap">
-        <div className="page-main-content container-fluid">
-          <div className="section-top-wrap mb-25">
-            <div className="overview-area">
-              <div className="overview-left">
-                <h2 className="section-top-title">{t("P2P Wallet")}</h2>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> */}
-      {/* {<P2pTopBar />} */}
       <div className="page-wrap">
         {/* <WalletOverviewSidebar /> */}
         <div className="page-main-content pt-0">
@@ -138,13 +126,7 @@ const MyWallet: NextPage = () => {
             <PlaceTopLeft />
             <PlaceBottomRight />
             <div className="row container-4xl">
-              <div
-                className="col-md-12 px-0"
-                style={{
-                  marginTop: "-60px",
-                  marginBottom: "30px",
-                }}
-              >
+              <div className="col-md-12 px-0 margin-n-top-60 margin-bottom-30">
                 <div className="asset-balances-area cstm-loader-area shadow-sm section-padding-custom wallet-card-info-container">
                   <div className="asset-balances-left">
                     <div className="section-wrapper px-0 py-5">

@@ -106,12 +106,7 @@ export const Chat = () => {
           <PlaceTopLeft />
           <PlaceBottomRight />
           <div className="container-4xl">
-            <div
-              style={{
-                marginTop: "-60px",
-                marginBottom: "30px",
-              }}
-            >
+            <div className="margin-n-top-60 margin-bottom-30">
               <form
                 onSubmit={(e: any) => {
                   e.preventDefault();

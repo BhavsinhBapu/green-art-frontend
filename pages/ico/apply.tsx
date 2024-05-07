@@ -52,13 +52,7 @@ const Apply = () => {
         <PlaceTopLeft />
         <PlaceBottomRight />
         <div className="container-4xl">
-          <div
-            className="shadow-sm wallet-card-info-container"
-            style={{
-              marginTop: "-60px",
-              marginBottom: "30px",
-            }}
-          >
+          <div className="shadow-sm wallet-card-info-container margin-n-top-60 margin-bottom-30">
             {loading ? (
               <SectionLoading />
             ) : (
