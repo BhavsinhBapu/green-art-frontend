@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import useTranslation from "next-translate/useTranslation";
 
 const Position = ({ listData }: any) => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const [CloseAll, setCloseAll] = useState<any>([]);
   const { dashboard } = useSelector((state: RootState) => state.futureExchange);
   const dispatch = useDispatch();
@@ -29,7 +29,7 @@ const Position = ({ listData }: any) => {
   return (
     <div>
       {" "}
-      <div className="tab-content" style={{padding: '0 10px'}} id="ordersTabContent">
+      <div className="tab-content p-l-10 p-r-10" id="ordersTabContent">
         <div
           className="tab-pane fade show active"
           id="Open-orders"
@@ -40,7 +40,9 @@ const Position = ({ listData }: any) => {
             <table className="table">
               <thead>
                 <tr>
-                  <th scope="col" className="pl-0">{t(`Symbol`)}</th>
+                  <th scope="col" className="pl-0">
+                    {t(`Symbol`)}
+                  </th>
                   <th scope="col">{t(`Size`)}</th>
                   <th scope="col">{t(`Entry Price`)}</th>
                   <th scope="col">{t(`Mark Price`)}</th>

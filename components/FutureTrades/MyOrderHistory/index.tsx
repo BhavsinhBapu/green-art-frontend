@@ -115,7 +115,7 @@ const MyOrderHistory = ({ setdisableCross, setdisableIsolated }: any) => {
   return (
     <div>
       <div className="orders-area mb-0">
-        <div className="orders-area-top" style={{ padding: "10px" }}>
+        <div className="orders-area-top p-10">
           <div className="top-left">
             <ul id="ordersTab" role="tablist" className="nav nav-tabs">
               <li role="presentation" className="nav-item">

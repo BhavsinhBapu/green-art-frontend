@@ -30,11 +30,7 @@ const TradeHistory = ({ tradeHistory }: any) => {
   return (
     <div>
       {" "}
-      <div
-        className="tab-content"
-        style={{ padding: "0 10px" }}
-        id="ordersTabContent"
-      >
+      <div className="tab-content p-l-10 p-r-10" id="ordersTabContent">
         <div
           className="tab-pane fade show active"
           id="Open-orders"

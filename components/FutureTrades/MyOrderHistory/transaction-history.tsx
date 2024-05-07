@@ -9,11 +9,11 @@ import useTranslation from "next-translate/useTranslation";
 import React from "react";
 
 const TransactionHistory = ({ transactionHistory }: any) => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   return (
     <div>
       {" "}
-      <div className="tab-content" style={{padding: '0 10px'}} id="ordersTabContent">
+      <div className="tab-content p-l-10 p-r-10" id="ordersTabContent">
         <div
           className="tab-pane fade show active"
           id="Open-orders"
@@ -24,7 +24,9 @@ const TransactionHistory = ({ transactionHistory }: any) => {
             <table className="table">
               <thead>
                 <tr>
-                  <th scope="col" className="pl-0">{t(`Time`)}</th>
+                  <th scope="col" className="pl-0">
+                    {t(`Time`)}
+                  </th>
                   <th scope="col">{t(`Type`)}</th>
                   <th scope="col">{t(`Amount`)}</th>
                   <th scope="col">{t(`Asset`)}</th>

@@ -5,31 +5,27 @@ const BuyBook = ({ height = 425 }) => {
     <div>
       <div className="">
         <div
-          className="dataTables_scrollBody"
+          className="dataTables_scrollBody position-relative overflow-hidden w-full"
           style={{
-            position: "relative",
-            overflow: "hidden",
             height: `${height}px`,
-            width: "100%",
           }}
         >
-          <div className="progress-green" style={{ width: "0%" }} />
-          <div className="progress-green" style={{ width: "0%" }} />
-          <div className="progress-green" style={{ width: "0%" }} />
-          <div className="progress-green" style={{ width: "0%" }} />
-          <div className="progress-green" style={{ width: "0%" }} />
-          <div className="progress-green" style={{ width: "0%" }} />
-          <div className="progress-green" style={{ width: "0%" }} />
-          <div className="progress-green" style={{ width: "0%" }} />
-          <div className="progress-green" style={{ width: "0%" }} />
-          <div className="progress-green" style={{ width: "0%" }} />
-          <div className="progress-green" style={{ width: "0%" }} />
-          <div className="progress-green" style={{ width: "0%" }} />
+          <div className="progress-green w-0" />
+          <div className="progress-green w-0" />
+          <div className="progress-green w-0" />
+          <div className="progress-green w-0" />
+          <div className="progress-green w-0" />
+          <div className="progress-green w-0" />
+          <div className="progress-green w-0" />
+          <div className="progress-green w-0" />
+          <div className="progress-green w-0" />
+          <div className="progress-green w-0" />
+          <div className="progress-green w-0" />
+          <div className="progress-green w-0" />
           <table
             id="exchangeAllSellOrders"
-            className="table dataTable no-footer"
+            className="table dataTable no-footer w-full"
             role="grid"
-            style={{ width: "100%" }}
           >
             <thead></thead>
             <tbody>

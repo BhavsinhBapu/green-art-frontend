@@ -16816,12 +16816,20 @@ input:checked + .gift-card-buy-slider:before {
   overflow-x: scroll !important;
 }
 
+.w-0 {
+  width: 0px !important;
+}
+
 .pt-60 {
   padding-top: 60px !important;
 }
 
 .pb-60 {
   padding-bottom: 60px !important;
+}
+
+.p-10 {
+  padding: 10px !important;
 }
 
 .p-l-50 {
