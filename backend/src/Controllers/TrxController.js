@@ -12,7 +12,6 @@ async function createAccount(req, res) {
   try {
     const tronWeb = tronWebCall(req, res);
     const response = await tronWeb.createAccount();
-
     if (response) {
       res.json({
         status: true,
@@ -470,7 +469,7 @@ async function getTrxTransactionBlock(req, res) {
     const tronWeb = tronWebCall(req, res);
     const txId = req.body.transaction_hash ?? "trx_hash";
     const response = await tronWeb.getEventByTransactionID(txId);
-
+    console.log('getTrxTransactionBlock re',response)
     if (typeof response == "object" && response.length > 0) {
       let transaction = response[0];
       let from = transaction.result.from;
@@ -481,7 +480,7 @@ async function getTrxTransactionBlock(req, res) {
       transaction.result.to = tronWeb.address.fromHex(
         tronWeb.address.toHex(to)
       );
-
+      console.log('transaction', transaction)
       res.json({
         status: true,
         message: "Transaction details get successfully",

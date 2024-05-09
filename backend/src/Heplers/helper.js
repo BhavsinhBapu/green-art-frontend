@@ -2,8 +2,8 @@ const TronWeb = require("tronweb");
 const Web3 = require("web3");
 const BigNumber = require("bignumber.js");
 
-function contract_decimals($input = null) {
-  $output = {
+function contract_decimals(input = null) {
+  let output = {
     6: "picoether",
     8: "customeight",
     9: "nanoether",
@@ -15,14 +15,14 @@ function contract_decimals($input = null) {
     27: "gether",
     30: "tether",
   };
-  if ($input == null) {
-    return $output;
+  if (input == null) {
+    return output;
   } else {
-    $result = "ether";
-    if ($output[$input]) {
-      $result = $output[$input];
+    let result = "ether";
+    if (output[input]) {
+      result = output[input];
     }
-    return $result;
+    return result;
   }
 }
 
@@ -76,15 +76,39 @@ function powerOfTen(x) {
   return Math.pow(10, x);
 }
 
+function tronApiUrl(input = '') {
+  const network = [
+    'https://api.trongrid.io',
+    'https://api.tronstack.io',
+    'https://api.shasta.trongrid.io',
+    'https://api.nileex.io',
+    'https://nile.trongrid.io'
+  ];
+
+  if (input && network.includes(input)) {
+    return true;
+  }
+  if (input && !network.includes(input)) {
+    return false;
+  }
+  return network;
+}
+
 function tronWebCall(req, res) {
-  const tronWeb = new TronWeb({
-    fullHost: req.headers.chainlinks,
-    headers: {
-      "TRON-PRO-API-KEY": req.headers?.tron_grid_api_key ?? "",
-    },
-  });
+  const rpcUrl = req.headers.chainlinks;
+  const tronWeb = tronApiUrl(rpcUrl) ?
+    new TronWeb({
+      fullHost: rpcUrl,
+      headers: {
+        "TRON-PRO-API-KEY": req.headers?.tron_grid_api_key ?? "",
+      },
+    }) : 
+    new TronWeb({
+      fullHost: rpcUrl
+    });
   return tronWeb;
 }
+
 async function checkTx(tronWeb, txId) {
   return true;
   let txObj = await fetchTx(tronWeb, txId);
@@ -150,4 +174,5 @@ module.exports = {
   ERC20_TOKEN,
   BEP20_TOKEN,
   TRC20_TOKEN,
+  tronApiUrl
 };

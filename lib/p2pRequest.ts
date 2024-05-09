@@ -17,7 +17,7 @@ p2pResuest.interceptors.request.use((config: any) => {
     config.headers.Authorization = `Bearer ${token}`;
   }
   config.headers.lang = lang ? lang : "en";
-  config.headers.userapisecret = process.env.NEXT_PUBLIC_SECRET_KEY;
+  // config.headers.userapisecret = process.env.NEXT_PUBLIC_SECRET_KEY;
   return config;
 });
 p2pResuest.interceptors.response.use((response: any) => {

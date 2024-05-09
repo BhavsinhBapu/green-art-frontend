@@ -55,7 +55,7 @@ async function getContractDecimal(contractInstance) {
 }*/
 
 async function generateAddress(req, res) {
-  console.log('generateAddress', 'start')
+//   console.log('generateAddress', 'start')
   try {
     const network = req.headers.chainlinks;
     const networkType = req.headers.networktype;

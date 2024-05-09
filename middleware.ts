@@ -15,7 +15,7 @@ export async function middleware(req: NextRequest) {
         Accept: "application/json",
         "Content-Type": "application/json",
         Origin: "*",
-        userapisecret: `${process.env.NEXT_PUBLIC_SECRET_KEY}`,
+        // userapisecret: `${process.env.NEXT_PUBLIC_SECRET_KEY}`,
       },
     }
   );
