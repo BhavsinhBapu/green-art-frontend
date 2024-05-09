@@ -91,7 +91,7 @@ const Apply = () => {
 
                   {launchpadForm?.dynamic_form.map((item: any) =>
                     item.type === FORM_INPUT_TEXT ? (
-                      <div className="form-div">
+                      <div className="form-div" key={item?.id}>
                         <label htmlFor="">{item?.title}</label>
                         <input
                           type="text"
@@ -110,7 +110,7 @@ const Apply = () => {
                         />
                       </div>
                     ) : item.type === FORM_SELECT ? (
-                      <div className="form-div">
+                      <div className="form-div" key={item?.id}>
                         <label htmlFor="">{item?.title}</label>
                         <select
                           className="form-control apply-select-field"
@@ -129,15 +129,15 @@ const Apply = () => {
                         >
                           <option value="">{t("Select one")}</option>
 
-                          {item.optionList.map((select: any) => (
-                            <>
-                              <option value={select}>{select}</option>
-                            </>
+                          {item.optionList.map((select: any, index: any) => (
+                            <option value={select} key={index}>
+                              {select}
+                            </option>
                           ))}
                         </select>
                       </div>
                     ) : item.type === FORM_RADIO ? (
-                      <div className="form-div">
+                      <div className="form-div" key={item?.id}>
                         <label htmlFor="">{item?.title}</label>
                         <div className="radio-item">
                           {item?.optionList?.map(
@@ -166,7 +166,7 @@ const Apply = () => {
                         </div>
                       </div>
                     ) : item.type === FORM_CHECKBOX ? (
-                      <div className="form-div">
+                      <div className="form-div" key={item?.id}>
                         <label htmlFor="">{item?.title}</label>
                         <div className="radio-item">
                           {item?.optionList?.map(
@@ -207,7 +207,7 @@ const Apply = () => {
                         </div>
                       </div>
                     ) : item.type === FORM_FILE ? (
-                      <div className="form-div">
+                      <div className="form-div" key={item?.id}>
                         <label htmlFor="">{item?.title}</label>
                         <input
                           className="apply-file-input"
@@ -225,7 +225,7 @@ const Apply = () => {
                         />
                       </div>
                     ) : item.type === FORM_TEXT_AREA ? (
-                      <div className="form-div">
+                      <div className="form-div" key={item?.id}>
                         <label htmlFor="">{item?.title}</label>
                         <textarea
                           className="apply-file-input"
