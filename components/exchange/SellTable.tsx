@@ -67,7 +67,7 @@ const TradesTable = ({ marketTrades }: any) => {
             style={{ lineHeight: "1.3" }}
           >
             <td>
-              <div className={"asset"} style={{ padding: "4px" }}>
+              <div className={"asset padding-4"}>
                 <span
                   className={
                     item.type === "green"
@@ -85,7 +85,7 @@ const TradesTable = ({ marketTrades }: any) => {
               </div>
             </td>
             <td>
-              <div className="asset" style={{ padding: "4px" }}>
+              <div className="asset padding-4">
                 <span className="">
                   {formatCurrency(
                     item?.amount,
@@ -95,7 +95,7 @@ const TradesTable = ({ marketTrades }: any) => {
               </div>
             </td>
             <td>
-              <div className="asset" style={{ padding: "4px" }}>
+              <div className="asset padding-4">
                 <span className="">{item?.time}</span>
               </div>
             </td>

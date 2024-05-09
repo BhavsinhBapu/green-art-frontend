@@ -321,12 +321,7 @@ const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
           </li>
         </ul>
       </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-around",
-        }}
-      >
+      <div className="d-flex justify-content-around">
         <Isolated
           isolated={marginMode}
           setIsolated={setmarginMode}

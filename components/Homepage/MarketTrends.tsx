@@ -314,47 +314,42 @@ const MarketTrends = ({
                           <tr role="row">
                             <th
                               scope="col"
-                              className="sorting_disabled"
+                              className="sorting_disabled w-0"
                               rowSpan={1}
                               colSpan={1}
-                              style={{ width: "0px" }}
                             >
                               {t("Market")}
                             </th>
                             <th
                               scope="col"
-                              className="sorting_disabled"
+                              className="sorting_disabled w-0"
                               rowSpan={1}
                               colSpan={1}
-                              style={{ width: "0px" }}
                             >
                               {t("Price")}
                             </th>
                             <th
                               scope="col"
-                              className="sorting_disabled"
+                              className="sorting_disabled w-0"
                               rowSpan={1}
                               colSpan={1}
-                              style={{ width: "0px" }}
                             >
                               {t("Change (24h)")}
                             </th>
 
                             <th
                               scope="col"
-                              className="sorting_disabled"
+                              className="sorting_disabled w-0"
                               rowSpan={1}
                               colSpan={1}
-                              style={{ width: "0px" }}
                             >
                               {t("Volume")}
                             </th>
                             <th
                               scope="col"
-                              className="sorting_disabled"
+                              className="sorting_disabled w-0"
                               rowSpan={1}
                               colSpan={1}
-                              style={{ width: "0px" }}
                             >
                               {t("Actions")}
                             </th>
@@ -460,47 +455,42 @@ const MarketTrends = ({
                           <tr role="row">
                             <th
                               scope="col"
-                              className="sorting_disabled"
+                              className="sorting_disabled w-0"
                               rowSpan={1}
                               colSpan={1}
-                              style={{ width: "0px" }}
                             >
                               {t("Market")}
                             </th>
                             <th
                               scope="col"
-                              className="sorting_disabled"
+                              className="sorting_disabled w-0"
                               rowSpan={1}
                               colSpan={1}
-                              style={{ width: "0px" }}
                             >
                               {t("Price")}
                             </th>
                             <th
                               scope="col"
-                              className="sorting_disabled"
+                              className="sorting_disabled w-0"
                               rowSpan={1}
                               colSpan={1}
-                              style={{ width: "0px" }}
                             >
                               {t("Change (24h)")}
                             </th>
 
                             <th
                               scope="col"
-                              className="sorting_disabled"
+                              className="sorting_disabled w-0"
                               rowSpan={1}
                               colSpan={1}
-                              style={{ width: "0px" }}
                             >
                               {t("Volume")}
                             </th>
                             <th
                               scope="col"
-                              className="sorting_disabled"
+                              className="sorting_disabled w-0"
                               rowSpan={1}
                               colSpan={1}
-                              style={{ width: "0px" }}
                             >
                               {t("Actions")}
                             </th>

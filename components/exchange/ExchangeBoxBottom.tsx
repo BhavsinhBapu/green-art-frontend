@@ -57,13 +57,21 @@ const ExchangeBoxBottom = () => {
       price: dashboard?.order_data?.sell_price,
       amount: dashboard?.order_data?.sell_amount ?? 0,
       total:
-        dashboard?.order_data?.sell_price * dashboard?.order_data?.sell_amount>0?dashboard?.order_data?.sell_price * dashboard?.order_data?.sell_amount:0,
+        dashboard?.order_data?.sell_price * dashboard?.order_data?.sell_amount >
+        0
+          ? dashboard?.order_data?.sell_price *
+            dashboard?.order_data?.sell_amount
+          : 0,
     });
     setBuyMarketCoinData({
       price: dashboard?.order_data?.sell_price,
       amount: dashboard?.order_data?.sell_amount ?? 0,
       total:
-        dashboard?.order_data?.sell_price * dashboard?.order_data?.sell_amount>0?dashboard?.order_data?.sell_price * dashboard?.order_data?.sell_amount:0,
+        dashboard?.order_data?.sell_price * dashboard?.order_data?.sell_amount >
+        0
+          ? dashboard?.order_data?.sell_price *
+            dashboard?.order_data?.sell_amount
+          : 0,
     });
     setBuyStopLimitCoinData({
       amount: 0,
@@ -95,7 +103,7 @@ const ExchangeBoxBottom = () => {
   ]);
 
   return (
-    <div className="exchange-box order-box" style={{border: 'unset'}}>
+    <div className="exchange-box order-box b-unset">
       <div id="pills-tabContent" className="tab-content">
         <div
           id="pills-transfer-1"

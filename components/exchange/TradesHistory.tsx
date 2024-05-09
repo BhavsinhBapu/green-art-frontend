@@ -47,8 +47,7 @@ const TradesHistory = ({ marketTrades, customClass }: any) => {
           >
             <div
               id="marketTradeTable_processing"
-              className="dataTables_processing"
-              style={{ display: "none" }}
+              className="dataTables_processing d-none"
             >
               {t("Processing")}...
             </div>
@@ -63,28 +62,25 @@ const TradesHistory = ({ marketTrades, customClass }: any) => {
                       <thead>
                         <tr role="row">
                           <th
-                            className="table-col price sorting_disabled w-170-656"
+                            className="table-col price sorting_disabled w-170-656 padding-4"
                             rowSpan={1}
                             colSpan={1}
-                            style={{ padding: "4px" }}
                             aria-label="Price"
                           >
                             {t("Price")}({dashboard?.order_data?.base_coin})
                           </th>
                           <th
-                            className="table-col amount sorting_disabled w-120-75"
+                            className="table-col amount sorting_disabled w-120-75 padding-4"
                             rowSpan={1}
                             colSpan={1}
-                            style={{ padding: "4px" }}
                             aria-label="Amount"
                           >
                             {t("Amount")}({dashboard?.order_data?.trade_coin})
                           </th>
                           <th
-                            className="table-col time text-right sorting_desc w-79-8438"
+                            className="table-col time text-right sorting_desc w-79-8438 padding-4"
                             rowSpan={1}
                             colSpan={1}
-                            style={{ padding: "4px" }}
                             aria-label="Time"
                           >
                             {t("Time")}
@@ -100,15 +96,7 @@ const TradesHistory = ({ marketTrades, customClass }: any) => {
                   )}
                 </div>
               </div>
-              <div
-                className="dataTables_scrollBody"
-                style={{
-                  position: "relative",
-                  overflow: "auto",
-                  height: "244px",
-                  width: "100%",
-                }}
-              ></div>
+              <div className="dataTables_scrollBody position-relative overflow-auto w-full h-244"></div>
             </div>
           </div>
         </div>
@@ -116,7 +104,7 @@ const TradesHistory = ({ marketTrades, customClass }: any) => {
         router.pathname == "/exchange/dashboard" && (
           <div>
             <div>
-              <p style={{ fontWeight: "600" }}>{t("Trading Account")}</p>
+              <p className="font-600">{t("Trading Account")}</p>
               <div className="d-flex justify-content-between align-items-center">
                 <p>{dashboard?.order_data?.base_coin}</p>
                 <p>
@@ -139,7 +127,7 @@ const TradesHistory = ({ marketTrades, customClass }: any) => {
               </div>
             </div>
             <div>
-              <p style={{ fontWeight: "600" }}>{t("Funding Account")}</p>
+              <p className="font-600">{t("Funding Account")}</p>
               <div className="d-flex justify-content-between align-items-center">
                 <p>{dashboard?.order_data?.base_coin}</p>
                 <p>

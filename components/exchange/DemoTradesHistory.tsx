@@ -19,21 +19,12 @@ const DemoTradesHistory = ({ marketTrades }: any) => {
         >
           <div
             id="marketTradeTable_processing"
-            className="dataTables_processing"
-            style={{ display: "none" }}
+            className="dataTables_processing d-none"
           >
             {t("Processing")}...
           </div>
           <div className="dataTables_scroll p-0">
-            <div
-              className="dataTables_scrollHead"
-              style={{
-                overflow: "hidden",
-                position: "relative",
-                border: "0px",
-                width: "100%",
-              }}
-            >
+            <div className="dataTables_scrollHead overflow-hidden position-relative border-0 w-full">
               <div className="dataTables_scrollHeadInner box-sizing-content-box pr-0 w-431-25">
                 {marketTrades.length > 0 ? (
                   <table
@@ -43,28 +34,25 @@ const DemoTradesHistory = ({ marketTrades }: any) => {
                     <thead>
                       <tr role="row">
                         <th
-                          className="table-col price sorting_disabled"
+                          className="table-col price sorting_disabled padding-4"
                           rowSpan={1}
                           colSpan={1}
-                          style={{ padding: "4px" }}
                           aria-label="Price"
                         >
                           {t("Price")}({dashboard?.order_data?.base_coin})
                         </th>
                         <th
-                          className="table-col amount sorting_disabled"
+                          className="table-col amount sorting_disabled padding-4"
                           rowSpan={1}
                           colSpan={1}
-                          style={{ padding: "4px" }}
                           aria-label="Amount"
                         >
                           {t("Amount")}({dashboard?.order_data?.trade_coin})
                         </th>
                         <th
-                          className="table-col time text-right sorting_desc"
+                          className="table-col time text-right sorting_desc padding-4"
                           rowSpan={1}
                           colSpan={1}
-                          style={{ padding: "4px" }}
                           aria-label="Time"
                         >
                           {t("Time")}
@@ -80,15 +68,7 @@ const DemoTradesHistory = ({ marketTrades }: any) => {
                 )}
               </div>
             </div>
-            <div
-              className="dataTables_scrollBody"
-              style={{
-                position: "relative",
-                overflow: "auto",
-                height: "244px",
-                width: "100%",
-              }}
-            ></div>
+            <div className="dataTables_scrollBody overflow-auto position-relative w-full h-244"></div>
           </div>
         </div>
       </div>

@@ -16981,3 +16981,30 @@ input:checked + .gift-card-buy-slider:before {
 .padding-3 {
   padding: 3px !important;
 }
+
+.h-448{
+  height: 448px !important;
+}
+
+.w-415 {
+  width: 415px !important;
+}
+.pr-17 {
+  padding-right: 17px !important;
+}
+
+.text-11 {
+  font-size: 11px !important;
+}
+
+.padding-4 {
+  padding: 4px !important;
+}
+
+.b-unset {
+  border: unset !important;
+}
+
+.font-600 {
+  font-weight: 600 !important;
+}

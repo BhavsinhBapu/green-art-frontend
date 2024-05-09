@@ -44,12 +44,7 @@ const Limit = ({
         <div className="row">
           <div className="col-md-12">
             <div className="cp-user-profile-info">
-              <form
-                id="buy-form"
-                style={{
-                  overflow: "hidden",
-                }}
-              >
+              <form id="buy-form overflow-hidden">
                 <input
                   type="hidden"
                   name="_token"

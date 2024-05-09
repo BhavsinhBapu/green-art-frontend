@@ -37,21 +37,12 @@ const DemoAllBuyOrdersFull = ({ buy, show }: any) => {
         >
           <div
             id="exchangeAllSellOrders_processing"
-            className="dataTables_processing"
-            style={{ display: "none" }}
+            className="dataTables_processing d-none"
           >
             {t("Processing")}...
           </div>
           <div className="">
-            <div
-              className="dataTables_scrollHead"
-              style={{
-                overflow: "hidden",
-                position: "relative",
-                border: "0px",
-                width: "100%",
-              }}
-            >
+            <div className="dataTables_scrollHead overflow-hidden position-relative border-0 w-full">
               <div className="dataTables_scrollHeadInner box-sizing-content-box pr-0 w-431-25">
                 <table
                   className="table dataTable no-footer ml-0 w-431-25"
@@ -65,21 +56,12 @@ const DemoAllBuyOrdersFull = ({ buy, show }: any) => {
                 </table>
               </div>
             </div>
-            <div
-              className="dataTables_scrollBody mt-2"
-              style={{
-                position: "relative",
-                overflow: "auto",
-                height: "855px !important",
-                width: "100%",
-              }}
-            >
+            <div className="dataTables_scrollBody mt-2 overflow-auto position-relative w-full h-855">
               {OpenBookBuy.length > 0 ? (
                 <table
                   id="exchangeAllSellOrders"
-                  className="table dataTable no-footer"
+                  className="table dataTable no-footer w-full"
                   role="grid"
-                  style={{ width: "100%" }}
                 >
                   <thead>
                     <tr role="row">

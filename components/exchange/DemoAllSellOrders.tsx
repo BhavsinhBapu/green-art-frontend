@@ -21,36 +21,18 @@ const DemoAllSellOrders = ({ OpenBooksell, show }: any) => {
         >
           <div
             id="exchangeAllBuyOrders_processing"
-            className="dataTables_processing"
-            style={{ display: "none" }}
+            className="dataTables_processing d-none"
           >
             {t("Processing")}...
           </div>
           <div className="">
-            <div
-              className="dataTables_scrollHead"
-              style={{
-                overflow: "hidden",
-                position: "relative",
-                border: "0px",
-                width: "100%",
-              }}
-            >
-              <div
-                className="dataTables_scrollBody"
-                style={{
-                  position: "relative",
-                  overflow: "auto",
-                  height: "244px",
-                  width: "100%",
-                }}
-              >
+            <div className="dataTables_scrollHead overflow-hidden position-relative border-0 w-full">
+              <div className="dataTables_scrollBody overflow-auto position-relative w-full h-244">
                 {OpenBooksell.length > 0 ? (
                   <table
                     id="exchangeAllSellOrders"
-                    className="table dataTable no-footer"
+                    className="table dataTable no-footer w-full "
                     role="grid"
-                    style={{ width: "100%" }}
                   >
                     <thead>
                       <tr role="row" className="">

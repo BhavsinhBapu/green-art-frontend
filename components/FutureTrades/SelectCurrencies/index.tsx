@@ -214,39 +214,15 @@ const SelectCurrency = () => {
           </div>
           <div
             id="exchangeCoinPair_processing"
-            className="dataTables_processing"
-            style={{ display: "none" }}
+            className="dataTables_processing d-none"
           >
             {t("Processing")}...
           </div>
           <div className="dataTables_scroll">
-            <div
-              className="dataTables_scrollHead"
-              style={{
-                overflow: "hidden",
-                position: "relative",
-                border: "0px",
-                width: "100%",
-              }}
-            >
-              <div
-                className="dataTables_scrollHeadInner"
-                style={{
-                  boxSizing: "content-box",
-                  width: "415px",
-                  paddingRight: "17px",
-                }}
-              ></div>
+            <div className="dataTables_scrollHead overflow-hidden position-relative border-0 w-full">
+              <div className="dataTables_scrollHeadInner box-sizing-content-box w-415 pr-17"></div>
             </div>
-            <div
-              className="dataTables_scrollBody always-show-sort-arrow"
-              style={{
-                position: "relative",
-                overflow: "auto",
-                height: "448px",
-                width: "100%",
-              }}
-            >
+            <div className="dataTables_scrollBody always-show-sort-arrow overflow-auto position-relative h-448 w-full">
               <DataTable
                 columns={columns}
                 data={pairs}

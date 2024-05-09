@@ -15,13 +15,12 @@ const FAQ = ({ faqs, type }: any) => {
                 <div className="card faqAccordion shadow-sm rounded">
                   <div className="card-header" id="headingThree">
                     <button
-                      className="d-flex justify-content-between align-items-center collapsed"
+                      className="d-flex justify-content-between align-items-center collapsed p-10"
                       type="button"
                       data-toggle="collapse"
                       data-target={"#collapseThree" + faq.id}
                       aria-expanded="false"
                       aria-controls={"collapseThree" + faq.id}
-                      style={{ padding: "10px" }}
                     >
                       {faq?.question}
                       <svg
@@ -43,7 +42,6 @@ const FAQ = ({ faqs, type }: any) => {
                     className="collapse"
                     aria-labelledby="headingThree"
                     data-parent="#accordionExample"
-                    style={{}}
                   >
                     <div className="p-3">{faq?.answer}</div>
                   </div>

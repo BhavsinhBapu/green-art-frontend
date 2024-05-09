@@ -92,7 +92,7 @@ const Home: NextPage = ({
     <SEO seoData={customSettings}>
       <div>
         <div>
-          {loggedin ? <Navbar /> : <UnAuthNav  />}
+          {loggedin ? <Navbar /> : <UnAuthNav />}
           {landing?.page_builder_landing === true ? (
             <div className="custom-page-container container">
               <div
@@ -438,55 +438,49 @@ const Home: NextPage = ({
                                   <tr role="row">
                                     <th
                                       scope="col"
-                                      className="sorting_disabled"
+                                      className="sorting_disabled w-0"
                                       rowSpan={1}
                                       colSpan={1}
-                                      style={{ width: "0px" }}
                                     >
                                       {t("Market")}
                                     </th>
                                     <th
                                       scope="col"
-                                      className="sorting_disabled"
+                                      className="sorting_disabled w-0"
                                       rowSpan={1}
                                       colSpan={1}
-                                      style={{ width: "0px" }}
                                     >
                                       {t("Price")}
                                     </th>
                                     <th
                                       scope="col"
-                                      className="sorting_disabled"
+                                      className="sorting_disabled w-0"
                                       rowSpan={1}
                                       colSpan={1}
-                                      style={{ width: "0px" }}
                                     >
                                       {t("Change (24h)")}
                                     </th>
                                     <th
                                       scope="col"
-                                      className="sorting_disabled"
+                                      className="sorting_disabled w-0"
                                       rowSpan={1}
                                       colSpan={1}
-                                      style={{ width: "0px" }}
                                     >
                                       {t("Chart")}
                                     </th>
                                     <th
                                       scope="col"
-                                      className="sorting_disabled"
+                                      className="sorting_disabled w-0"
                                       rowSpan={1}
                                       colSpan={1}
-                                      style={{ width: "0px" }}
                                     >
                                       {t("Volume")}
                                     </th>
                                     <th
                                       scope="col"
-                                      className="sorting_disabled"
+                                      className="sorting_disabled w-0"
                                       rowSpan={1}
                                       colSpan={1}
-                                      style={{ width: "0px" }}
                                     >
                                       {t("Actions")}
                                     </th>
@@ -607,55 +601,49 @@ const Home: NextPage = ({
                                   <tr role="row">
                                     <th
                                       scope="col"
-                                      className="sorting_disabled"
+                                      className="sorting_disabled w-0"
                                       rowSpan={1}
                                       colSpan={1}
-                                      style={{ width: "0px" }}
                                     >
                                       {t("Market")}
                                     </th>
                                     <th
                                       scope="col"
-                                      className="sorting_disabled"
+                                      className="sorting_disabled w-0"
                                       rowSpan={1}
                                       colSpan={1}
-                                      style={{ width: "0px" }}
                                     >
                                       {t("Price")}
                                     </th>
                                     <th
                                       scope="col"
-                                      className="sorting_disabled"
+                                      className="sorting_disabled w-0"
                                       rowSpan={1}
                                       colSpan={1}
-                                      style={{ width: "0px" }}
                                     >
                                       {t("Change (24h)")}
                                     </th>
                                     <th
                                       scope="col"
-                                      className="sorting_disabled"
+                                      className="sorting_disabled w-0"
                                       rowSpan={1}
                                       colSpan={1}
-                                      style={{ width: "0px" }}
                                     >
                                       {t("Chart")}
                                     </th>
                                     <th
                                       scope="col"
-                                      className="sorting_disabled"
+                                      className="sorting_disabled w-0"
                                       rowSpan={1}
                                       colSpan={1}
-                                      style={{ width: "0px" }}
                                     >
                                       {t("Volume")}
                                     </th>
                                     <th
                                       scope="col"
-                                      className="sorting_disabled"
+                                      className="sorting_disabled w-0"
                                       rowSpan={1}
                                       colSpan={1}
-                                      style={{ width: "0px" }}
                                     >
                                       {t("Actions")}
                                     </th>
@@ -976,8 +964,7 @@ const Home: NextPage = ({
                     </div>
                   </div>
                 </section>
-                )}
-                
+              )}
 
               {/* Get in touch. area end here  */}
               {/* Start trading area start here  */}
@@ -1009,13 +996,11 @@ const Home: NextPage = ({
             </>
           )}
 
-          {/* Start trading area end here  */}
-          {/* footer area start here */}
           <Footer />
           <a
             id="scrollUp"
             href="#top"
-            style={{ position: "fixed", zIndex: 2147483647, display: "none" }}
+            className="d-none position-fixed z-2147483647"
           >
             <i className="fa fa-angle-up" />
           </a>
