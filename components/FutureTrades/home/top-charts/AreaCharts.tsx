@@ -91,11 +91,12 @@ export default function AreaCharts({ tradeDatas }: any) {
       </div>
       <div
         style={{
-          width: "100%",
+        
           height: 77,
-          overflow: "hidden",
+         
           borderRadius: "8px",
         }}
+        className="overflow-hidden w-full"
       >
         <ResponsiveContainer>
           <AreaChart

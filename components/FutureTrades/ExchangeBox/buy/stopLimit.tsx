@@ -36,12 +36,7 @@ const StopLimit = ({
         <div className="row">
           <div className="col-md-12">
             <div className="cp-user-profile-info">
-              <form
-                id="buy-form"
-                style={{
-                  overflow: "hidden",
-                }}
-              >
+              <form id="buy-form" className="overflow-hidden">
                 <div className="form-group">
                   <div className="total-top-blance">
                     <div className="total-blance">

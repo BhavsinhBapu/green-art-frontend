@@ -5,12 +5,9 @@ const SellBook = ({ height = 425 }) => {
     <div>
       <div className="">
         <div
-          className="dataTables_scrollBody"
+          className="dataTables_scrollBody overflow-hidden position-relative w-full"
           style={{
-            position: "relative",
-            overflow: "hidden",
             height: `${height}px`,
-            width: "100%",
           }}
         >
           <table
