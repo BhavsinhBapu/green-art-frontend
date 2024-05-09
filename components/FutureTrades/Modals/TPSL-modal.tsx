@@ -175,11 +175,7 @@ const TpslModal = ({ uid }: any) => {
 
               <div className="position-button-area">
                 <button
-                  style={{
-                    width: "98%",
-                    margin: 2,
-                  }}
-                  className="primary-btn"
+                  className="primary-btn w-98-p margin-2"
                   onClick={closeModal}
                 >
                   {t(`Close`)}

@@ -51,11 +51,9 @@ const Isolated = ({
             <h3>{currentPair} Perpetual Margin Mode</h3>
             <div className="mt-3 percent-container mb-5 d-flex flex-wrap">
               <span
-                className="percent-btn col-3 pb-2"
-                style={{
-                  background:
-                    isolated === ISOLATED ? "var(--primary-color)" : "",
-                }}
+                className={`percent-btn col-3 pb-2 ${
+                  isolated === ISOLATED ? "bg-primary-color" : ""
+                } `}
                 onClick={() => {
                   if (disableIsolated) {
                     return;
@@ -66,10 +64,9 @@ const Isolated = ({
                 Isolated
               </span>
               <span
-                className="percent-btn col-3 pb-2"
-                style={{
-                  background: isolated === CROSS ? "var(--primary-color)" : "",
-                }}
+                className={`percent-btn col-3 pb-2 ${
+                  isolated === CROSS ? "bg-primary-color" : ""
+                }`}
                 onClick={() => {
                   if (disableCross) {
                     return;
@@ -88,11 +85,7 @@ const Isolated = ({
                 <p className="mb-4">{crossMarginDescription}</p>
               )}
               <button
-                style={{
-                  width: "98%",
-                  margin: 2,
-                }}
-                className="primary-btn"
+                className="primary-btn w-98-p margin-2"
                 onClick={closeModal}
               >
                 Close

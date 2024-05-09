@@ -14,19 +14,13 @@ export default function ListCharts({ tradeDatas }: any) {
     },
   ];
   return (
-    <div
-      className="bg-card-glass-clr"
-      style={{ height: "224px", borderRadius: "8px" }}
-    >
+    <div className="bg-card-glass-clr h-224 rounded-8">
       <div className="p-3">
         <div className="d-flex justify-content-between align-items-center">
           <div>
             <span className="text-12 text-primary">
               Highest/Lowest PNL{"  "}
-              <span
-                className="ml-1 px-1 rounded"
-                style={{ color: "#F0B90B", background: "#3C2601" }}
-              >
+              <span className="ml-1 px-1 rounded text-F0B90B bg-3C2601">
                 24 hour
               </span>
             </span>
@@ -55,42 +49,13 @@ export default function ListCharts({ tradeDatas }: any) {
                 </h5>
                 <span className="text-12 text-primary">Perpetual</span>
               </div>
-              <p
-                className="text-16 text-primary"
-                style={{ color: "#F6465D" }}
-              >
+              <p className="text-16 text-primary text-F6465D">
                 {tradeDatas?.profit_loss_by_coin_pair?.lowest_PNL
                   ?.total_amount || 0}
                 {tradeDatas?.profit_loss_by_coin_pair?.lowest_PNL?.coin_type}
               </p>
             </div>
           </div>
-          {/* <div className="col-6 px-1 d-flex align-items-center">
-            <div style={{ width: "100%", height: 100 }}>
-              <ResponsiveContainer>
-                <PieChart>
-                  <Pie
-                    data={data02}
-                    innerRadius={30}
-                    outerRadius={50}
-                    dataKey="value"
-                    stroke="none"
-                  >
-                    {data02.map((entry, index) => (
-                      <Cell
-                        key={`cell-${index}`}
-                        fill={COLORS[index % COLORS.length]}
-                      />
-                    ))}
-                    <Label
-                      value={tradeDatas?.getHighestVolumePair?.ratio}
-                      position="center"
-                    />
-                  </Pie>
-                </PieChart>
-              </ResponsiveContainer>
-            </div>
-          </div> */}
         </div>
       </div>
     </div>

@@ -95,29 +95,16 @@ const PositionEdit = ({ item }: any) => {
                 </span>
               </div>
             </div>
-            {/* <small className="mt-5">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim,
-              eligendi. Vel voluptas placeat in unde, nesciunt ut atque
-              doloribus vitae, iure eaque modi consectetur! Libero eveniet quis
-              sunt ipsam distinctio!
-            </small> */}
+
             <div className="position-button-area">
               <button
-                style={{
-                  width: "98%",
-                  margin: 2,
-                }}
-                className="primary-btn"
+                className="primary-btn w-98-p margin-2"
                 onClick={closeModal}
               >
                 {t(`Close`)}
               </button>
               <button
-                style={{
-                  width: "98%",
-                  margin: 2,
-                }}
-                className="primary-btn"
+                className="primary-btn w-98-p margin-2"
                 onClick={async () => {
                   await updateProfitLongShortAction(
                     item?.uid,

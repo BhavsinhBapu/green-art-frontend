@@ -12,9 +12,8 @@ const SellBook = ({ height = 425 }) => {
         >
           <table
             id="exchangeAllSellOrders"
-            className="table dataTable no-footer"
+            className="table dataTable no-footer w-full"
             role="grid"
-            style={{ width: "100%" }}
           >
             <thead>
               <tr role="row">

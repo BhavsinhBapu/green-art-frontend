@@ -12,10 +12,5 @@ const oR = 100;
 const value = 70;
 
 export default function PieChartsWithNeddle() {
-  return (
-    <div
-      className="bg-card-glass-clr"
-      style={{ height: "224px", borderRadius: "8px" }}
-    ></div>
-  );
+  return <div className="bg-card-glass-clr h-224 rounded-8"></div>;
 }

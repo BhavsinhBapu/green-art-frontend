@@ -10,9 +10,9 @@ export default function HighestSearchedItem({ item }: any) {
         <span className="text-12 text-primary">Prepetual</span>
       </div>
       <p
-        style={{
-          color: Number(item.price_change) >= 0 ? "#0ecb81" : "#f6465d",
-        }}
+        className={
+          Number(item.price_change) >= 0 ? "text-0ecb81" : "text-f6465d"
+        }
       >
         {parseFloat(item.price_change).toFixed(4)}%
       </p>

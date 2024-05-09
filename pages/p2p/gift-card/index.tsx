@@ -112,12 +112,9 @@ export default function Index({ data }: any) {
   return (
     <section>
       <div
-        className="p2p_bg"
+        className="p2p_bg bg-center bg-cover bg-no-repeat"
         style={{
           background: data?.banner ? `url('${data?.banner}')` : "",
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
         }}
       >
         <div className="container-4xl">

@@ -232,19 +232,17 @@ const Signup: NextPage = () => {
                           )}
                         </div>
                         <span
-                          className="eye rev"
+                          className={`eye rev ${
+                            touched.password && errors.password
+                              ? "top-35-p"
+                              : "top-50-p"
+                          }`}
                           onClick={() =>
                             setShowPassword({
                               ...showPassword,
                               password: !showPassword.password,
                             })
                           }
-                          style={{
-                            top:
-                              touched.password && errors.password
-                                ? "35%"
-                                : "50%",
-                          }}
                         >
                           <i className="fa fa-eye-slash toggle-password"></i>
                         </span>
@@ -274,20 +272,18 @@ const Signup: NextPage = () => {
                           )}
 
                         <span
-                          className="eye rev"
+                          className={`eye rev ${
+                            touched.password_confirmation &&
+                            errors.password_confirmation
+                              ? "top-35-p"
+                              : "top-50-p"
+                          }`}
                           onClick={() =>
                             setShowPassword({
                               ...showPassword,
                               confirm_password: !showPassword.confirm_password,
                             })
                           }
-                          style={{
-                            top:
-                              touched.password_confirmation &&
-                              errors.password_confirmation
-                                ? "35%"
-                                : "50%",
-                          }}
                         >
                           <i className="fa fa-eye-slash toggle-password"></i>
                         </span>

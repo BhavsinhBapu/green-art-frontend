@@ -204,8 +204,7 @@ export default function TradesTable({ selectedCurrency }: any) {
                           <div className="table-responsive">
                             <div
                               id="DataTables_Table_0_wrapper"
-                              className="dataTables_wrapper no-footer"
-                              style={{ overflowX: "auto" }}
+                              className="dataTables_wrapper no-footer overflow-x-auto"
                             >
                               <table
                                 className="table table-borderless dataTable no-footer"
@@ -220,73 +219,48 @@ export default function TradesTable({ selectedCurrency }: any) {
                                       className="sorting_disabled"
                                       rowSpan={1}
                                       colSpan={1}
-                                      // style={{ width: "137.516px" }}
                                     >
                                       {t("Market")}
                                     </th>
                                     <th
                                       scope="col"
-                                      className="sorting_disabled text-right"
+                                      className="sorting_disabled text-right w-81-2812"
                                       rowSpan={1}
                                       colSpan={1}
-                                      style={{ width: "81.2812px" }}
                                     >
                                       {t("Price")}
                                     </th>
                                     <th
                                       scope="col"
-                                      className="sorting_disabled text-right"
+                                      className="sorting_disabled text-right w-193-797"
                                       rowSpan={1}
                                       colSpan={1}
-                                      style={{ width: "193.797px" }}
                                     >
                                       {t("Change (24h)")}
                                     </th>
-                                    {/* <th
-                                  scope="col"
-                                  className="sorting_disabled text-center"
-                                  rowSpan={1}
-                                  colSpan={1}
-                                  style={{ width: "182.297px" }}
-                                >
-                                  {t("Chart")}
-                                </th> */}
+
                                     <th
                                       scope="col"
-                                      className="sorting_disabled text-right"
+                                      className="sorting_disabled text-right w-207-766"
                                       rowSpan={1}
                                       colSpan={1}
-                                      style={{ width: "207.766px" }}
                                     >
                                       {t("Volume")}
                                     </th>
                                     <th
                                       scope="col"
-                                      className="sorting_disabled text-right"
+                                      className="sorting_disabled text-right w-207-766"
                                       rowSpan={1}
                                       colSpan={1}
-                                      style={{ width: "207.766px" }}
                                     >
                                       {t("Market Cap")}
                                     </th>
-                                    {/* <th
-                                  scope="col"
-                                  className="sorting_disabled text-right"
-                                  rowSpan={1}
-                                  colSpan={1}
-                                  style={{ width: "127.344px" }}
-                                >
-                                  {t("Actions")}
-                                </th> */}
                                   </tr>
                                 </thead>
                                 <tbody>
                                   {tradeItems?.map((item: any, index: any) => (
                                     <tr role="row" className="odd" key={index}>
-                                      <td
-                                        className="mb-2 p-2"
-                                        style={{ minWidth: "100px" }}
-                                      >
+                                      <td className="mb-2 p-2 min-w-100">
                                         <div className="d-flex w-full">
                                           <img
                                             className="icon mr-3"

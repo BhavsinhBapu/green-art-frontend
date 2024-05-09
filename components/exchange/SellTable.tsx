@@ -61,11 +61,7 @@ const TradesTable = ({ marketTrades }: any) => {
         </tr>
       ) : (
         trades?.map((item: any, index: number) => (
-          <tr
-            className="odd dataTable-white"
-            key={index}
-            style={{ lineHeight: "1.3" }}
-          >
+          <tr className="odd dataTable-white leading-13" key={index}>
             <td>
               <div className={"asset padding-4"}>
                 <span

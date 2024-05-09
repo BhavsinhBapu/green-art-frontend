@@ -3,10 +3,7 @@ import HighestSearchedItem from "./HighestSearchedItem";
 
 export default function HighestSearchedLists({ tradeDatas }: any) {
   return (
-    <div
-      className="bg-card-glass-clr"
-      style={{ height: "224px", borderRadius: "8px" }}
-    >
+    <div className="bg-card-glass-clr rounded-8 h-224">
       <div className="p-3">
         <div className="d-flex justify-content-between align-items-center">
           <div className="d-flex text-12 gap-5 text-color-4">
@@ -75,18 +72,10 @@ export default function HighestSearchedLists({ tradeDatas }: any) {
             </svg>
             <span className="text-primary">Highest Searched</span>
 
-            <span
-              className="ml-1 px-1 rounded"
-              style={{ color: "#F0B90B", background: "#3C2601" }}
-            >
-              24H
-            </span>
+            <span className="ml-1 px-1 rounded text-F0B90B bg-3C2601">24H</span>
           </div>
         </div>
-        <div
-          className="my-3 future-market-page-custom-sidebar"
-          style={{ maxHeight: "150px", overflowY: "auto" }}
-        >
+        <div className="my-3 future-market-page-custom-sidebar max-h-150 overflow-y-auto">
           {tradeDatas?.coins?.map((item: any, index: number) => (
             <HighestSearchedItem item={item} key={index} />
           ))}

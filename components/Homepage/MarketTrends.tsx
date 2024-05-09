@@ -140,8 +140,7 @@ const MarketTrends = ({
                   <div className="table-responsive">
                     <div
                       id="DataTables_Table_0_wrapper"
-                      className="dataTables_wrapper no-footer"
-                      style={{ overflowX: "auto" }}
+                      className="dataTables_wrapper no-footer overflow-x-auto"
                     >
                       <table
                         className="table table-borderless dataTable no-footer"
@@ -153,47 +152,42 @@ const MarketTrends = ({
                           <tr role="row">
                             <th
                               scope="col"
-                              className="sorting_disabled"
+                              className="sorting_disabled w-137-516"
                               rowSpan={1}
                               colSpan={1}
-                              style={{ width: "137.516px" }}
                             >
                               {t("Market")}
                             </th>
                             <th
                               scope="col"
-                              className="sorting_disabled"
+                              className="sorting_disabled w-81-2812"
                               rowSpan={1}
                               colSpan={1}
-                              style={{ width: "81.2812px" }}
                             >
                               {t("Price")}
                             </th>
                             <th
                               scope="col"
-                              className="sorting_disabled"
+                              className="sorting_disabled w-193-797"
                               rowSpan={1}
                               colSpan={1}
-                              style={{ width: "193.797px" }}
                             >
                               {t("Change (24h)")}
                             </th>
 
                             <th
                               scope="col"
-                              className="sorting_disabled"
+                              className="sorting_disabled w-207-766"
                               rowSpan={1}
                               colSpan={1}
-                              style={{ width: "207.766px" }}
                             >
                               {t("Volume")}
                             </th>
                             <th
                               scope="col"
-                              className="sorting_disabled text-right"
+                              className="sorting_disabled text-right w-127-344"
                               rowSpan={1}
                               colSpan={1}
-                              style={{ width: "127.344px" }}
                             >
                               {t("Actions")}
                             </th>

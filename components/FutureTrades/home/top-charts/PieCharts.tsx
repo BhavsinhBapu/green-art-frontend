@@ -14,19 +14,13 @@ export default function PieCharts({ tradeDatas }: any) {
     },
   ];
   return (
-    <div
-      className="bg-card-glass-clr"
-      style={{ height: "224px", borderRadius: "8px" }}
-    >
+    <div className="bg-card-glass-clr h-224 rounded-8">
       <div className="p-3">
         <div className="d-flex justify-content-between align-items-center">
           <div>
             <span className="text-12 text-primary">
               Long/Short Ratio{" "}
-              <span
-                className="ml-1 px-1 rounded"
-                style={{ color: "#F0B90B", background: "#3C2601" }}
-              >
+              <span className="ml-1 px-1 rounded text-F0B90B bg-3C2601">
                 {tradeDatas?.getHighestVolumePair?.hour} hour
               </span>
             </span>
@@ -44,58 +38,30 @@ export default function PieCharts({ tradeDatas }: any) {
         <div className="row pt-3">
           <div className="col-6 pl-3 pr-1">
             <div>
-              <span
-                style={{
-                  width: "6px",
-                  height: "6px",
-                  background: "#F6465D",
-                  display: "inline-block",
-                  marginRight: "6px",
-                }}
-              ></span>
+              <span className="d-inline-block width-6 height-6 bg-F6465D margin-r-6"></span>
               <span className="text-12 text-primary">Short Account%</span>
-              <h5
-                className="text-16 text-primary"
-                style={{ marginLeft: "12px" }}
-              >
+              <h5 className="text-16 text-primary ml-12">
                 {tradeDatas?.getHighestVolumePair?.short_account || 0}%
               </h5>
             </div>
             <div>
-              <span
-                style={{
-                  width: "6px",
-                  height: "6px",
-                  background: "#0ECB81",
-                  display: "inline-block",
-                  marginRight: "6px",
-                }}
-              ></span>
+              <span className="d-inline-block width-6 height-6 bg-0ECB81 margin-r-6"></span>
               <span className="text-12 text-primary">Long Account%</span>
-              <h5
-                className="text-16 text-primary"
-                style={{ marginLeft: "12px" }}
-              >
+              <h5 className="text-16 text-primary ml-12">
                 {tradeDatas?.getHighestVolumePair?.long_account || 0}%
               </h5>
             </div>
             <div>
-              <span
-                className="text-12 text-primary"
-                style={{ marginLeft: "12px" }}
-              >
+              <span className="text-12 text-primary ml-12">
                 Long/Short Ratio
               </span>
-              <h5
-                className="text-16 text-primary"
-                style={{ marginLeft: "12px" }}
-              >
+              <h5 className="text-16 text-primary ml-12">
                 {tradeDatas?.getHighestVolumePair?.ratio || 0}
               </h5>
             </div>
           </div>
           <div className="col-6 px-1 d-flex align-items-center">
-            <div style={{ width: "100%", height: 100 }}>
+            <div className="w-full h-100">
               <ResponsiveContainer>
                 <PieChart>
                   <Pie

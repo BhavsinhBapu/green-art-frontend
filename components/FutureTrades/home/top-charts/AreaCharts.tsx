@@ -42,10 +42,7 @@ const data = [
 
 export default function AreaCharts({ tradeDatas }: any) {
   return (
-    <div
-      className="bg-card-glass-clr"
-      style={{ height: "224px", borderRadius: "8px" }}
-    >
+    <div className="bg-card-glass-clr h-224 rounded-8">
       <div className="p-3">
         <div className="d-flex justify-content-between align-items-start">
           <div>
@@ -58,15 +55,6 @@ export default function AreaCharts({ tradeDatas }: any) {
               <span className="text-12 text-primary">Perpetual</span>
             </div>
           </div>
-          {/* <div className="area-charts-button mt-1">
-            <div>
-              <FaBtc color="#fcd535"/>
-            </div>
-            <div>|</div>
-            <div>
-              <IoLogoUsd />
-            </div>
-          </div> */}
         </div>
         <div className="mt-3 mb-2">
           <h4 className="text-16 text-primary">
@@ -76,28 +64,18 @@ export default function AreaCharts({ tradeDatas }: any) {
         </div>
         <div>
           <span
-            className="text-16 d-inline-block mr-2 px-2 py-1"
-            style={{
-              background:
-                tradeDatas?.coins[0]?.price_change >= 0 ? "#183e2f" : "#35141D",
-              color:
-                tradeDatas?.coins[0]?.price_change >= 0 ? "#0ecb81" : "#F6465D",
-            }}
+            className={`text-16 d-inline-block mr-2 px-2 py-1 ${
+              tradeDatas?.coins[0]?.price_change >= 0
+                ? "bg-183e2f text-0ecb81"
+                : "bg-35141D text-F6465D"
+            }`}
           >
             {parseFloat(tradeDatas?.coins[0]?.price_change || 0).toFixed(4)}%
           </span>
           <span className="text-14 text-primary">24H Change</span>
         </div>
       </div>
-      <div
-        style={{
-        
-          height: 77,
-         
-          borderRadius: "8px",
-        }}
-        className="overflow-hidden w-full"
-      >
+      <div className="overflow-hidden w-full rounded-8 h-77">
         <ResponsiveContainer>
           <AreaChart
             data={data}

@@ -16982,7 +16982,7 @@ input:checked + .gift-card-buy-slider:before {
   padding: 3px !important;
 }
 
-.h-448{
+.h-448 {
   height: 448px !important;
 }
 
@@ -17007,4 +17007,147 @@ input:checked + .gift-card-buy-slider:before {
 
 .font-600 {
   font-weight: 600 !important;
+}
+.leading-13 {
+  line-height: 1.3 !important;
+}
+
+.mb-24 {
+  margin-bottom: 24px !important;
+}
+
+.h-224 {
+  height: 224px !important;
+}
+
+.rounded-8 {
+  border-radius: 8px !important;
+}
+
+.h-77 {
+  height: 77px !important;
+}
+
+.text-F0B90B {
+  color: #f0b90b !important;
+}
+
+.bg-3C2601 {
+  background: #3c2601 !important;
+}
+
+.text-0ecb81 {
+  color: #0ecb81 !important;
+}
+
+.text-f6465d {
+  color: #f6465d !important;
+}
+
+.bg-183e2f {
+  background: #183e2f !important;
+}
+
+.bg-35141D {
+  background: #35141d !important;
+}
+
+.text-F6465D {
+  color: #f6465d !important;
+}
+.max-h-150 {
+  max-height: 150px !important;
+}
+.overflow-y-auto {
+  overflow-y: auto !important;
+}
+
+.w-137-516 {
+  width: 137.516px;
+}
+
+.w-81-2812 {
+  width: 81.2812px;
+}
+
+.w-193-797 {
+  width: 193.797px;
+}
+
+.w-182-297 {
+  width: 182.297px;
+}
+
+.w-207-766 {
+  width: 207.766px;
+}
+
+.w-127-344 {
+  width: 127.344px;
+}
+
+.ml-12 {
+  margin-left: 12px !important;
+}
+
+.bg-center {
+  background-position: center !important;
+}
+.bg-cover {
+  background-size: cover !important;
+}
+
+.bg-no-repeat {
+  background-repeat: no-repeat !important;
+}
+
+.top-35-p {
+  top: 35% !important;
+}
+
+.top-50-p {
+  top: 50% !important;
+}
+
+.min-w-100 {
+  min-width: 100px !important;
+}
+
+.max-w-600 {
+  max-width: 600px !important;
+}
+.min-w-50-p {
+  min-width: 50% !important;
+}
+
+.w-98-p {
+  width: 98% !important;
+}
+
+.margin-2 {
+  margin: 2px !important;
+}
+
+.h-100 {
+  height: 100px !important;
+}
+
+.width-6 {
+  width: 6px !important;
+}
+
+.height-6 {
+  height: 6px !important;
+}
+
+.bg-0ECB81 {
+  background: #0ecb81 !important;
+}
+
+.margin-r-6 {
+  margin-right: 6px !important;
+}
+
+.bg-F6465D {
+  background: #f6465d !important;
 }
