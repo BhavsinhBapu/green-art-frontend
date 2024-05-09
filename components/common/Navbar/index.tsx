@@ -1920,7 +1920,7 @@ const Navbar = ({
                           <label className="gift-card-buy-switch mb-0">
                             <input
                               type="checkbox"
-                              onClick={() => {
+                              onChange={() => {
                                 darkModeToggle(settings, setTheme, dispatch);
                               }}
                               checked={theme === 0}

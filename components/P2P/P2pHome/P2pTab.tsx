@@ -11,7 +11,7 @@ export const P2pTab = ({ filters, setFilters, settings }: any) => {
       <div className="container-4xl">
         <div className="row">
           <div className="col-12 ">
-            <div className="p2pTabList d-flex flex-row">
+            <div className="p2pTabList d-flex flex-row flex-nowrap">
               <div className="buySellBox rounded d-flex">
                 <button
                   className={`${
@@ -34,7 +34,7 @@ export const P2pTab = ({ filters, setFilters, settings }: any) => {
                   {t(`Sell`)}
                 </button>
               </div>
-              <ul className="d-flex p2pTabList p2p-custom-scrollbar overflow-x-sxroll flex-row">
+              <ul className="d-flex p2pTabList p2p-custom-scrollbar overflow-x-sxroll flex-row flex-nowrap">
                 {settings?.assets?.map((coinName: any, index: any) => (
                   <li
                     key={index}

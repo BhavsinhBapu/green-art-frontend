@@ -61,8 +61,8 @@ const WalletOverview: NextPage = () => {
               ) : (
                 Object.keys(walletOverviewData).length > 0 && (
                   <>
-                    <div className="px-1 margin-n-top-60 margin-bottom-30 row-gap-20">
-                      <div className="row">
+                    <div className="px-1 margin-n-top-60 margin-bottom-30 ">
+                      <div className="row row-gap-20">
                         <div className=" col-md-6">
                           <div className="shadow-sm section-padding-custom wallet-card-info-container position-relative z-index-10">
                             <div className="card-head">

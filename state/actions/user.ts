@@ -118,7 +118,7 @@ export const SigninAction =
       // Retrieve the redirect query from the router
       const redirectQuery = Router.query.redirect;
       if (redirectQuery) {
-        const redirectUrl = `/${redirectQuery}`;
+        const redirectUrl = `${redirectQuery}`;
         Router.push(redirectUrl);
       } else {
         Router.reload();
