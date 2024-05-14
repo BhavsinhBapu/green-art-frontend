@@ -54,20 +54,20 @@ const Dashboard: NextPage = () => {
       );
     }
   }, [isLoggedIn, router?.query?.coin_pair]);
-  useEffect(() => {
-    if (
-      dashboard?.order_data?.base_coin_id &&
-      dashboard?.order_data?.trade_coin_id
-    ) {
-      dispatch(
-        initialDashboardCallActionWithToken(
-          currentPair,
-          dashboard,
-          setisLoading
-        )
-      );
-    }
-  }, [dashboard?.order_data?.base_coin_id]);
+  // useEffect(() => {
+  //   if (
+  //     dashboard?.order_data?.base_coin_id &&
+  //     dashboard?.order_data?.trade_coin_id
+  //   ) {
+  //     dispatch(
+  //       initialDashboardCallActionWithToken(
+  //         currentPair,
+  //         dashboard,
+  //         setisLoading
+  //       )
+  //     );
+  //   }
+  // }, [dashboard?.order_data?.base_coin_id]);
   useEffect(() => {
     const delay = 3000; // 3 seconds in milliseconds
 
