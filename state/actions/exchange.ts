@@ -254,6 +254,16 @@ export const initialDashboardCallAction =
       if (pair) {
         try {
           response = await appDashboardData(pair);
+
+          if (response.success == false) {
+            response = await appDashboardDataWithoutPair();
+            response?.pairs[0]?.coin_pair &&
+              dispatch(setCurrentPair(response?.pairs[0]?.coin_pair));
+            router.push(
+              `/exchange/dashboard?coin_pair=${response?.pairs[0]?.coin_pair}`
+            );
+            return;
+          }
           if (response?.pair_status === false) {
             router.push(
               `/exchange/dashboard?coin_pair=${response?.pairs[0]?.coin_pair}`
@@ -265,9 +275,6 @@ export const initialDashboardCallAction =
           if (!response?.pairs) {
             setisLoading && setisLoading(false);
             return;
-          }
-          if (response.success === false) {
-            response = await appDashboardDataWithoutPair();
           }
         } catch (error) {
           dispatch(setCurrentPair(""));

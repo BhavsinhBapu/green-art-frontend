@@ -40,6 +40,7 @@ const Dashboard: NextPage = () => {
 
   useEffect(() => {
     // const pair = localStorage.getItem("current_pair");
+
     if (!router.isReady) return;
 
     if (router?.query?.coin_pair) {
