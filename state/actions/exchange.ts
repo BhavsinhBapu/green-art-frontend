@@ -270,7 +270,9 @@ export const initialDashboardCallAction =
             response = await appDashboardDataWithoutPair();
           }
         } catch (error) {
+          dispatch(setCurrentPair(""));
           router.push(`/`);
+          return;
         }
       } else {
         response = await appDashboardDataWithoutPair();
@@ -303,13 +305,14 @@ export const initialDashboardCallAction =
           dispatch(setCurrentPair(response?.pairs[0]?.coin_pair));
       }
 
-      await dispatch(setDashboard(response));
       if (!router?.query?.coin_pair) {
         router.push(
           `/exchange/dashboard?coin_pair=${response?.pairs[0]?.coin_pair}`
         );
         return;
       }
+      await dispatch(setDashboard(response));
+
       const BuySellResponse = await openBookDashboard(
         response?.order_data?.base_coin_id
           ? response?.order_data?.base_coin_id
