@@ -46,6 +46,7 @@ const UnAuthNav = ({
   const router = useRouter();
   const [theme, setTheme] = useState(0);
   const { settings } = useSelector((state: RootState) => state.common);
+  const { currentPair } = useSelector((state: RootState) => state.exchange);
   const { navbar } = settings;
   const [active, setActive] = useState(false);
   const [notificationData, setNotification] = useState<any>([]);
@@ -80,6 +81,24 @@ const UnAuthNav = ({
       document.body.classList.remove("rtl-style");
     }
   }, [router.locale]);
+
+  const handleSpotTradeUrl = () => {
+    let spotUrl = `/exchange/dashboard`;
+    if (currentPair && router.locale !== "en") {
+      return `/${router.locale}/${spotUrl}?coin_pair=${currentPair}`;
+    }
+
+    if (!currentPair && router.locale !== "en") {
+      return `/${router.locale}/${spotUrl}`;
+    }
+
+    if (currentPair && router.locale == "en") {
+      return `${spotUrl}?coin_pair=${currentPair}`;
+    }
+
+    return spotUrl;
+  };
+
   return (
     <div className="">
       <div className="cp-user-top-bar position-fixed">
@@ -115,24 +134,19 @@ const UnAuthNav = ({
                     </a>
 
                     <ul className="lang-list dropdown-menu-main">
-                      <li>
-                        <a
-                          // href="/exchange/dashboard"
-                          href={
-                            router.locale !== "en"
-                              ? `/${router.locale}/exchange/dashboard`
-                              : "/exchange/dashboard"
-                          }
-                        >
-                          <div className="py-1 menu-hover">
-                            <span className="cp-user-icon">
-                              {" "}
-                              <BiShapeCircle />{" "}
-                            </span>{" "}
-                            <span>{t("Spot Trading")}</span>{" "}
-                          </div>
-                        </a>
-                      </li>
+                      <Link href={handleSpotTradeUrl()}>
+                        <li>
+                          <a className="cursor-pointer">
+                            <div className="py-1 menu-hover">
+                              <span className="cp-user-icon">
+                                {" "}
+                                <BiShapeCircle />{" "}
+                              </span>{" "}
+                              <span>{t("Spot Trading")}</span>{" "}
+                            </div>
+                          </a>
+                        </li>
+                      </Link>
                       {parseInt(settings?.p2p_module) === 1 && (
                         <li>
                           <Link href="/p2p">
@@ -692,13 +706,7 @@ const UnAuthNav = ({
                         aria-labelledby="navbarDropdown"
                       >
                         {navbar?.trade?.status && (
-                          <Link
-                            href={
-                              router.locale !== "en"
-                                ? `/${router.locale}/exchange/dashboard`
-                                : "/exchange/dashboard"
-                            }
-                          >
+                          <Link href={handleSpotTradeUrl()}>
                             <li
                               className={
                                 router.pathname == "/exchange/dashboard"
@@ -707,12 +715,7 @@ const UnAuthNav = ({
                               }
                             >
                               <a
-                                href={
-                                  router.locale !== "en"
-                                    ? `/${router.locale}/exchange/dashboard`
-                                    : "/exchange/dashboard"
-                                }
-                                className="px-3 py-2 text-primary-color-two"
+                                className="px-3 py-2 text-primary-color-two cursor-pointer"
                                 onClick={() => setActive(false)}
                               >
                                 <span>{t("Spot Trading")}</span>

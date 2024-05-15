@@ -57,6 +57,7 @@ const Navbar = ({
   const { t } = useTranslation("common");
   const [active, setActive] = useState(false);
   const router = useRouter();
+  const { currentPair } = useSelector((state: RootState) => state.exchange);
   const getNotifications = async () => {
     const data = await notification();
     dispatch(setNotificationData(data.data.data));
@@ -86,6 +87,23 @@ const Navbar = ({
       document.body.classList.remove("rtl-style");
     }
   }, [router.locale]);
+
+  const handleSpotTradeUrl = () => {
+    let spotUrl = `/exchange/dashboard`;
+    if (currentPair && router.locale !== "en") {
+      return `/${router.locale}/${spotUrl}?coin_pair=${currentPair}`;
+    }
+
+    if (!currentPair && router.locale !== "en") {
+      return `/${router.locale}/${spotUrl}`;
+    }
+
+    if (currentPair && router.locale == "en") {
+      return `${spotUrl}?coin_pair=${currentPair}`;
+    }
+
+    return spotUrl;
+  };
 
   return (
     <>
@@ -144,13 +162,7 @@ const Navbar = ({
                           </Link>
                           <ul className="dropdown-menu bg-transparent-main">
                             {navbar?.trade?.status && (
-                              <Link
-                                href={
-                                  router.locale !== "en"
-                                    ? `/${router.locale}/exchange/dashboard`
-                                    : "/exchange/dashboard"
-                                }
-                              >
+                              <Link href={handleSpotTradeUrl()}>
                                 <li
                                   className={
                                     router.pathname == "/exchange/dashboard"
@@ -957,13 +969,7 @@ const Navbar = ({
                             aria-labelledby="navbarDropdown"
                           >
                             {navbar?.trade?.status && (
-                              <Link
-                                href={
-                                  router.locale !== "en"
-                                    ? `/${router.locale}/exchange/dashboard`
-                                    : "/exchange/dashboard"
-                                }
-                              >
+                              <Link href={handleSpotTradeUrl()}>
                                 <li
                                   className={
                                     router.pathname == "/exchange/dashboard"
