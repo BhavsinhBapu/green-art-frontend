@@ -240,6 +240,7 @@ export async function listenMessages(dispatch: any, user: any) {
     e?.order_data?.total && dispatch(setTotalData(e?.order_data?.total));
   });
 }
+
 export const initialDashboardCallAction =
   //@ts-ignore
 
@@ -257,11 +258,20 @@ export const initialDashboardCallAction =
 
           if (response.success == false) {
             response = await appDashboardDataWithoutPair();
+            if (response?.pairs?.length == 0) {
+              router.push(`/`);
+              return;
+            }
+
             response?.pairs[0]?.coin_pair &&
               dispatch(setCurrentPair(response?.pairs[0]?.coin_pair));
             router.push(
               `/exchange/dashboard?coin_pair=${response?.pairs[0]?.coin_pair}`
             );
+            return;
+          }
+          if (response?.pairs?.length == 0) {
+            router.push(`/`);
             return;
           }
           if (response?.pair_status === false) {
@@ -283,6 +293,11 @@ export const initialDashboardCallAction =
         }
       } else {
         response = await appDashboardDataWithoutPair();
+
+        if (response?.pairs?.length == 0) {
+          router.push(`/`);
+          return;
+        }
         if (!response?.pairs) {
           setisLoading && setisLoading(false);
           return;
@@ -311,7 +326,10 @@ export const initialDashboardCallAction =
         response?.pairs[0]?.coin_pair &&
           dispatch(setCurrentPair(response?.pairs[0]?.coin_pair));
       }
-
+      if (response?.pairs?.length == 0) {
+        router.push(`/`);
+        return;
+      }
       if (!router?.query?.coin_pair) {
         router.push(
           `/exchange/dashboard?coin_pair=${response?.pairs[0]?.coin_pair}`
