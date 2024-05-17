@@ -44,7 +44,7 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
       withdrawalCredentials,
       setProcessing
     );
-    if (!response.success) {
+    if (response.success) {
       setWithdrawalCredentials({
         wallet_id: responseData?.wallet?.id,
         code: "",
