@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "state/store";
 
 import DemoBuyTable from "./DemoBuyTable";
+import TestDemoBuyTable from "./TestDemoBuyTable";
 const DemoAllSellOrdersFull = ({ OpenBooksell }: any) => {
   const { t } = useTranslation("common");
   const { dashboard } = useSelector((state: RootState) => state.demoExchange);
@@ -25,7 +26,7 @@ const DemoAllSellOrdersFull = ({ OpenBooksell }: any) => {
             {t("Processing")}...
           </div>
           <div className="">
-            <div className="dataTables_scrollHead overflow-hidden position-relative border-0 w-full">
+            {/* <div className="dataTables_scrollHead overflow-hidden position-relative border-0 w-full">
               <div className="dataTables_scrollBody overflow-auto position-relative w-full h-825">
                 {OpenBooksell.length > 0 ? (
                   <table
@@ -63,6 +64,40 @@ const DemoAllSellOrdersFull = ({ OpenBooksell }: any) => {
                     </thead>
                     <DemoBuyTable buy={OpenBooksell} />
                   </table>
+                ) : (
+                  <div className="text-center mt-5">
+                    <p>{t("No data available in table")} </p>
+                  </div>
+                )}
+              </div>
+            </div> */}
+            <div className="dataTables_scrollHead overflow-hidden position-relative border-0 w-full">
+              <div className="dataTables_scrollBody overflow-auto position-relative w-full h-825">
+                {OpenBooksell.length > 0 ? (
+                  <div className="row mx-0">
+                    <div className="col-12 px-0">
+                      <div className="row mx-0">
+                        <div className="col-4 px-0">
+                          <span className="order-book-heading-text">
+                            {" "}
+                            {t("Price")}({dashboard?.order_data?.base_coin})
+                          </span>
+                        </div>
+                        <div className="col-4 px-0">
+                          <span className="order-book-heading-text">
+                            {t("Amount")}({dashboard?.order_data?.trade_coin})
+                          </span>
+                        </div>
+
+                        <div className="col-4 px-0">
+                          <span className="order-book-heading-text">
+                            {t("Total")}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <TestDemoBuyTable buy={OpenBooksell} />
+                  </div>
                 ) : (
                   <div className="text-center mt-5">
                     <p>{t("No data available in table")} </p>
