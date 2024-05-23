@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "state/store";
 
 import BuyTable from "./BuyTable";
+import TestBuyTable from "./TestBuyTable";
 const AllSellOrders = ({ OpenBooksell, show, customClass }: any) => {
   const { t } = useTranslation("common");
   const { dashboard } = useSelector((state: RootState) => state.exchange);
@@ -25,7 +26,7 @@ const AllSellOrders = ({ OpenBooksell, show, customClass }: any) => {
             {t("Processing")}...
           </div>
           <div className="">
-            <div className="dataTables_scrollHead overflow-hidden position-relative border-0 w-full">
+            {/* <div className="dataTables_scrollHead overflow-hidden position-relative border-0 w-full">
               <div className="dataTables_scrollBody overflow-auto position-relative border-0 w-full h-244">
                 {OpenBooksell.length > 0 ? (
                   <table
@@ -63,6 +64,40 @@ const AllSellOrders = ({ OpenBooksell, show, customClass }: any) => {
                     </thead>
                     <BuyTable buy={OpenBooksell} show={show} />
                   </table>
+                ) : (
+                  <div className="text-center mt-5">
+                    <p>{t("No data available in table")} </p>
+                  </div>
+                )}
+              </div>
+            </div> */}
+            <div className="dataTables_scrollHead overflow-hidden position-relative border-0 w-full">
+              <div className="dataTables_scrollBody overflow-auto position-relative h-244 w-full">
+                {OpenBooksell.length > 0 ? (
+                  <div className="row mx-0">
+                    <div className="col-12 px-0">
+                      <div className="row mx-0">
+                        <div className="col-4 px-0">
+                          <span style={{ fontSize: "12px", color: "#848e9c" }}>
+                            {" "}
+                            {t("Price")}({dashboard?.order_data?.base_coin})
+                          </span>
+                        </div>
+                        <div className="col-4 px-0">
+                          <span style={{ fontSize: "12px", color: "#848e9c" }}>
+                            {t("Amount")}({dashboard?.order_data?.trade_coin})
+                          </span>
+                        </div>
+
+                        <div className="col-4 px-0">
+                          <span style={{ fontSize: "12px", color: "#848e9c" }}>
+                            {t("Total")}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <TestBuyTable buy={OpenBooksell} show={show}/>
+                  </div>
                 ) : (
                   <div className="text-center mt-5">
                     <p>{t("No data available in table")} </p>

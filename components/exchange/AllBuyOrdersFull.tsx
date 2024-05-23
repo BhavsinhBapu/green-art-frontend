@@ -46,7 +46,7 @@ const AllBuyOrders = ({ buy, show, customClss }: any) => {
             {t("Processing")}...
           </div>
           <div className="">
-            <div className="dataTables_scrollHead overflow-hidden position-relative border-0 w-full">
+            {/* <div className="dataTables_scrollHead overflow-hidden position-relative border-0 w-full">
               <div className="dataTables_scrollHeadInner box-sizing-content-box pr-0 w-431-25">
                 <table
                   className="table dataTable no-footer ml-0 w-431-25"
@@ -206,6 +206,150 @@ const AllBuyOrders = ({ buy, show, customClss }: any) => {
                     )}
                   </tbody>
                 </table>
+              ) : (
+                <div className="text-center mt-5">
+                  <p>{t("No data available in table")} </p>
+                </div>
+              )}
+            </div> */}
+            <div className="dataTables_scrollBody overflow-auto position-relative h-855 w-full">
+              {OpenBookBuy.length > 0 ? (
+                <div>
+                  {OpenBookBuy?.length !== 0 ? (
+                    OpenBookBuy?.map((item: any, index: number) => (
+                      <Tooltip
+                        key={index}
+                        placement={"right"}
+                        overlay={
+                          <span>
+                            <span>
+                              {t("Avg Price")}:{" "}
+                              {formatCurrency(
+                                item.price,
+                                dashboard?.order_data?.total?.trade_wallet
+                                  ?.pair_decimal
+                              )}
+                            </span>
+                            <br />
+                            <span>
+                              {t("Amount")}:{" "}
+                              {formatCurrency(
+                                summary.amount,
+                                dashboard?.order_data?.total?.trade_wallet
+                                  ?.pair_decimal
+                              )}
+                            </span>
+                            <br />
+
+                            <span>
+                              {t("Size")}:{" "}
+                              {formatCurrency(
+                                summary.total,
+                                dashboard?.order_data?.total?.trade_wallet
+                                  ?.pair_decimal
+                              )}
+                            </span>
+                          </span>
+                        }
+                        trigger={["hover"]}
+                        overlayClassName="rcTooltipOverlay"
+                      >
+                        <div
+                          className="row mx-0 position-relative"
+                          onClick={() => {
+                            changeBuyPrice(item.price, item.amount);
+                          }}
+                          onMouseEnter={() => {
+                            const selectedIndex = index;
+                            const firstIndex = 0;
+                            let sumtotal = 0;
+                            let sumAmount = 0;
+                            for (let i = selectedIndex; i >= firstIndex; i--) {
+                              sumtotal += parseFloat(OpenBookBuy[i].total);
+                              sumAmount += parseFloat(OpenBookBuy[i].amount);
+                            }
+                            setSummary({
+                              amount: sumAmount,
+                              total: sumtotal,
+                            });
+                          }}
+                        >
+                          <div className="col-4 px-0">
+                            <div className="asset">
+                              <span
+                                className="greenText"
+                                style={{
+                                  fontSize: "11px",
+                                  lineHeight: "1.3",
+                                  cursor: "pointer",
+                                  wordBreak: "break-all",
+                                }}
+                              >
+                                {formatCurrency(
+                                  item.price,
+                                  dashboard?.order_data?.total?.trade_wallet
+                                    ?.pair_decimal
+                                )}
+                              </span>
+                            </div>
+                          </div>
+                          <div className="col-4 px-0">
+                            <div className="asset">
+                              <span
+                                className="asset-name"
+                                style={{
+                                  fontSize: "11px",
+                                  lineHeight: "1.3",
+                                  cursor: "pointer",
+                                  wordBreak: "break-all",
+                                }}
+                              >
+                                {formatCurrency(
+                                  item.amount,
+                                  dashboard?.order_data?.total?.trade_wallet
+                                    ?.pair_decimal
+                                )}
+                              </span>
+                            </div>
+                          </div>
+                          <div className="col-4 px-0">
+                            <div className="asset">
+                              <span
+                                className="asset-name"
+                                style={{
+                                  fontSize: "11px",
+                                  lineHeight: "1.3",
+                                  cursor: "pointer",
+                                  wordBreak: "break-all",
+                                }}
+                              >
+                                {formatCurrency(
+                                  item.total,
+                                  dashboard?.order_data?.total?.trade_wallet
+                                    ?.pair_decimal
+                                )}
+                              </span>
+                            </div>
+                          </div>
+                          <div
+                            className="progress-green"
+                            style={{
+                              width: `${
+                                parseFloat(item?.percentage)
+                                  ? parseFloat(item?.percentage)
+                                  : 0
+                              }%`,
+                            }}
+                          ></div>
+                        </div>
+                      </Tooltip>
+                    ))
+                  ) : (
+                    <div>
+                      <div className="">{t("No data available in table")}</div>
+                    </div>
+                  )}
+                </div>
               ) : (
                 <div className="text-center mt-5">
                   <p>{t("No data available in table")} </p>
