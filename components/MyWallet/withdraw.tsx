@@ -45,7 +45,15 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
       setProcessing
     );
     if (response.success) {
-      router.push("/user/wallet-history?type=withdrawal");
+      setWithdrawalCredentials({
+        wallet_id: responseData?.wallet?.id,
+        code: "",
+        address: "",
+        amount: "",
+        note: "withdrawal",
+        memo: "",
+        network_type: selectedNetwork?.network_type ?? "",
+      });
     }
   };
   const CheckG2faEnabled = async () => {
@@ -306,7 +314,8 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
             disabled={
               withdrawalCredentials.address === "" ||
               withdrawalCredentials.amount === "" ||
-              errorMessage.status === true
+              errorMessage.status === true ||
+              processing
             }
             data-toggle="modal"
             onClick={() => {
@@ -322,7 +331,7 @@ export const WithdrawComponent = ({ responseData, router, fullPage }: any) => {
           <button
             className="primary-btn-outline w-100 mt-4 h-44"
             type="button"
-            disabled={errorMessage.status === true}
+            disabled={processing}
             onClick={handleSubmit}
           >
             {t("Withdraw")}
