@@ -48,259 +48,107 @@ const DemoAllBuyOrders = ({ OpenBookBuy, show }: any) => {
             {t("Processing")}...
           </div>
           <div className="">
-            {/* <div className="dataTables_scrollHead overflow-hidden position-relative border-0 w-full">
-              <div className="dataTables_scrollHeadInner box-sizing-content-box pr-0 w-431-25">
-                <table
-                  className="table dataTable no-footer ml-0 w-431-25"
-                  role="grid"
-                >
-                  <thead>
-                    <tr role="row"></tr>
-                    <tr role="row"></tr>
-                    <tr role="row"></tr>
-                  </thead>
-                </table>
-              </div>
-            </div>
             <div className="dataTables_scrollBody mt-2 overflow-auto position-relative w-full h-425">
               {OpenBookBuy.length > 0 ? (
-                <table
-                  id="exchangeAllSellOrders"
-                  className="table dataTable no-footer w-full"
-                  role="grid"
-                >
-                  <thead>
-                    <tr role="row">
-                      <th
-                        className="table-col price sorting_disabled"
-                        rowSpan={1}
-                        colSpan={1}
-                        aria-label="Price"
-                      ></th>
-                      <th
-                        className="table-col amount sorting_disabled"
-                        rowSpan={1}
-                        colSpan={1}
-                        aria-label="Amount"
-                      ></th>
-                      <th
-                        className="table-col time text-right sorting_desc"
-                        rowSpan={1}
-                        colSpan={1}
-                        aria-label="Time"
-                      ></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {buyData?.length !== 0 ? (
-                      buyData?.map((item: any, index: number) => (
-                        <Tooltip
-                          key={index}
-                          placement={"right"}
-                          overlay={
+                <div>
+                  {buyData?.length !== 0 ? (
+                    buyData?.map((item: any, index: number) => (
+                      <Tooltip
+                        key={index}
+                        placement={"right"}
+                        overlay={
+                          <span>
                             <span>
-                              <span>
-                                {t("Avg Price")}: {item.price}
-                              </span>
-                              <br />
-                              <span>
-                                {t("Amount")}: {summary.amount}
-                              </span>
-                              <br />
-
-                              <span>
-                                {t("Size")}: {summary.total}
-                              </span>
+                              {t("Avg Price")}: {item.price}
                             </span>
-                          }
-                          trigger={["hover"]}
-                          overlayClassName="rcTooltipOverlay"
-                        >
-                          <tr
-                            className="odd trade_tableList_two d-table-row"
-                            onClick={() => {
-                              changeSellPrice(item.price, item.amount);
-                            }}
-                            onMouseEnter={() => {
-                              const selectedIndex = index;
-                              const firstIndex = 0;
-                              let sumtotal = 0;
-                              let sumAmount = 0;
-                              for (
-                                let i = selectedIndex;
-                                i >= firstIndex;
-                                i--
-                              ) {
-                                sumtotal += parseFloat(OpenBookBuy[i].total);
-                                sumAmount += parseFloat(OpenBookBuy[i].amount);
-                              }
-                              setSummary({
-                                amount: sumAmount,
-                                total: sumtotal,
-                              });
-                            }}
-                          >
-                            <td>
-                              <div className="asset">
-                                <span className="text-success">
-                                  {item.price}
-                                </span>
-                              </div>
-                            </td>
-                            <td>
-                              <div className="asset">
-                                <span className="asset-name">
-                                  {item.amount}
-                                </span>
-                              </div>
-                            </td>
-                            <td>
-                              <div className="asset">
-                                <span className="asset-name">
-                                  {parseFloat(item.total).toFixed(2)}
-                                </span>
-                              </div>
-                            </td>
-                            <div
-                              className="progress-green"
-                              style={{
-                                width: `${
-                                  parseFloat(item?.percentage)
-                                    ? parseFloat(item?.percentage)
-                                    : 0
-                                }%`,
-                              }}
-                            ></div>
-                          </tr>
-                        </Tooltip>
-                      ))
-                    ) : (
-                      <tr className="odd">
-                        <td valign="top" className="text-center">
-                          {t("No data available in table")}
-                        </td>
-                      </tr>
-                    )}
-                  </tbody>
-                </table>
-              ) : (
-                <div className="text-center mt-5">
-                  <p>{t("No data available in table")} </p>
-                </div>
-              )}
-            </div> */}
-
-            <div className="dataTables_scrollBody mt-2 overflow-auto position-relative w-full h-425">
-              {OpenBookBuy.length > 0 ? (
-                <table
-                  id="exchangeAllSellOrders"
-                  className="table dataTable no-footer w-full"
-                  role="grid"
-                >
-                  <div>
-                    {buyData?.length !== 0 ? (
-                      buyData?.map((item: any, index: number) => (
-                        <Tooltip
-                          key={index}
-                          placement={"right"}
-                          overlay={
+                            <br />
                             <span>
-                              <span>
-                                {t("Avg Price")}: {item.price}
-                              </span>
-                              <br />
-                              <span>
-                                {t("Amount")}: {summary.amount}
-                              </span>
-                              <br />
-
-                              <span>
-                                {t("Size")}: {summary.total}
-                              </span>
+                              {t("Amount")}: {summary.amount}
                             </span>
-                          }
-                          trigger={["hover"]}
-                          overlayClassName="rcTooltipOverlay"
+                            <br />
+
+                            <span>
+                              {t("Size")}: {summary.total}
+                            </span>
+                          </span>
+                        }
+                        trigger={["hover"]}
+                        overlayClassName="rcTooltipOverlay"
+                      >
+                        <div
+                          className="row mx-0 position-relative"
+                          onClick={() => {
+                            changeSellPrice(item.price, item.amount);
+                          }}
+                          onMouseEnter={() => {
+                            const selectedIndex = index;
+                            const firstIndex = 0;
+                            let sumtotal = 0;
+                            let sumAmount = 0;
+                            for (let i = selectedIndex; i >= firstIndex; i--) {
+                              sumtotal += parseFloat(OpenBookBuy[i].total);
+                              sumAmount += parseFloat(OpenBookBuy[i].amount);
+                            }
+                            setSummary({
+                              amount: sumAmount,
+                              total: sumtotal,
+                            });
+                          }}
                         >
-                          <div
-                            className="row mx-0 position-relative"
-                            onClick={() => {
-                              changeSellPrice(item.price, item.amount);
-                            }}
-                            onMouseEnter={() => {
-                              const selectedIndex = index;
-                              const firstIndex = 0;
-                              let sumtotal = 0;
-                              let sumAmount = 0;
-                              for (
-                                let i = selectedIndex;
-                                i >= firstIndex;
-                                i--
-                              ) {
-                                sumtotal += parseFloat(OpenBookBuy[i].total);
-                                sumAmount += parseFloat(OpenBookBuy[i].amount);
-                              }
-                              setSummary({
-                                amount: sumAmount,
-                                total: sumtotal,
-                              });
-                            }}
-                          >
-                            <div className="col-4 px-0">
-                              <div className="asset">
-                                <span className="text-success order-book-body-text">
-                                  {formatCurrency(
-                                    item.price,
-                                    dashboard?.order_data?.total?.trade_wallet
-                                      ?.pair_decimal
-                                  )}
-                                </span>
-                              </div>
+                          <div className="col-4 px-0">
+                            <div className="asset">
+                              <span className="text-success order-book-body-text">
+                                {formatCurrency(
+                                  item.price,
+                                  dashboard?.order_data?.total?.trade_wallet
+                                    ?.pair_decimal
+                                )}
+                              </span>
                             </div>
-                            <div className="col-4 px-0">
-                              <div className="asset">
-                                <span className="asset-name order-book-body-text">
-                                  {formatCurrency(
-                                    item.amount,
-                                    dashboard?.order_data?.total?.trade_wallet
-                                      ?.pair_decimal
-                                  )}
-                                </span>
-                              </div>
-                            </div>
-                            <div className="col-4 px-0">
-                              <div className="asset">
-                                <span className="asset-name order-book-body-text">
-                                  {formatCurrency(
-                                    item.total,
-                                    dashboard?.order_data?.total?.trade_wallet
-                                      ?.pair_decimal
-                                  )}
-                                </span>
-                              </div>
-                            </div>
-                            <div
-                              className="progress-green"
-                              style={{
-                                width: `${
-                                  parseFloat(item?.percentage)
-                                    ? parseFloat(item?.percentage)
-                                    : 0
-                                }%`,
-                              }}
-                            ></div>
                           </div>
-                        </Tooltip>
-                      ))
-                    ) : (
-                      <div className="odd">
-                        <div className="text-center">
-                          {t("No data available in table")}
+                          <div className="col-4 px-0">
+                            <div className="asset">
+                              <span className="asset-name order-book-body-text">
+                                {formatCurrency(
+                                  item.amount,
+                                  dashboard?.order_data?.total?.trade_wallet
+                                    ?.pair_decimal
+                                )}
+                              </span>
+                            </div>
+                          </div>
+                          <div className="col-4 px-0">
+                            <div className="asset">
+                              <span className="asset-name order-book-body-text">
+                                {formatCurrency(
+                                  item.total,
+                                  dashboard?.order_data?.total?.trade_wallet
+                                    ?.pair_decimal
+                                )}
+                              </span>
+                            </div>
+                          </div>
+                          <div
+                            className="progress-green"
+                            style={{
+                              width: `${
+                                parseFloat(item?.percentage)
+                                  ? parseFloat(item?.percentage)
+                                  : 0
+                              }%`,
+                            }}
+                          ></div>
                         </div>
+                      </Tooltip>
+                    ))
+                  ) : (
+                    <div className="odd">
+                      <div className="text-center">
+                        {t("No data available in table")}
                       </div>
-                    )}
-                  </div>
-                </table>
+                    </div>
+                  )}
+                </div>
               ) : (
                 <div className="text-center mt-5">
                   <p>{t("No data available in table")} </p>
