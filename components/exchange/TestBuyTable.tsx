@@ -89,15 +89,7 @@ const TestBuyTable = ({ buy, show }: any) => {
             >
               <div className="col-4 px-0">
                 <div className="asset">
-                  <span
-                    className="redText"
-                    style={{
-                      fontSize: "11px",
-                      lineHeight: "1.3",
-                      cursor: "pointer",
-                      wordBreak: "break-all",
-                    }}
-                  >
+                  <span className="redText order-book-body-text">
                     {formatCurrency(
                       item.price,
                       dashboard?.order_data?.total?.trade_wallet?.pair_decimal
@@ -107,15 +99,7 @@ const TestBuyTable = ({ buy, show }: any) => {
               </div>
               <div className="col-4 px-0">
                 <div className="asset">
-                  <span
-                    className="asset-name"
-                    style={{
-                      fontSize: "11px",
-                      lineHeight: "1.3",
-                      cursor: "pointer",
-                      wordBreak: "break-all",
-                    }}
-                  >
+                  <span className="asset-name order-book-body-text">
                     {formatCurrency(
                       item.amount,
                       dashboard?.order_data?.total?.trade_wallet?.pair_decimal
@@ -125,15 +109,7 @@ const TestBuyTable = ({ buy, show }: any) => {
               </div>
               <div className="col-4 px-0">
                 <div className="asset">
-                  <span
-                    className="asset-name"
-                    style={{
-                      fontSize: "11px",
-                      lineHeight: "1.3",
-                      cursor: "pointer",
-                      wordBreak: "break-all",
-                    }}
-                  >
+                  <span className="asset-name order-book-body-text">
                     {formatCurrency(
                       item.total,
                       dashboard?.order_data?.total?.trade_wallet?.pair_decimal

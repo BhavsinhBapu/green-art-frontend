@@ -78,25 +78,25 @@ const AllSellOrders = ({ OpenBooksell, show, customClass }: any) => {
                     <div className="col-12 px-0">
                       <div className="row mx-0">
                         <div className="col-4 px-0">
-                          <span style={{ fontSize: "12px", color: "#848e9c" }}>
+                          <span className="order-book-heading-text">
                             {" "}
                             {t("Price")}({dashboard?.order_data?.base_coin})
                           </span>
                         </div>
                         <div className="col-4 px-0">
-                          <span style={{ fontSize: "12px", color: "#848e9c" }}>
+                          <span className="order-book-heading-text">
                             {t("Amount")}({dashboard?.order_data?.trade_coin})
                           </span>
                         </div>
 
                         <div className="col-4 px-0">
-                          <span style={{ fontSize: "12px", color: "#848e9c" }}>
+                          <span className="order-book-heading-text">
                             {t("Total")}
                           </span>
                         </div>
                       </div>
                     </div>
-                    <TestBuyTable buy={OpenBooksell} show={show}/>
+                    <TestBuyTable buy={OpenBooksell} show={show} />
                   </div>
                 ) : (
                   <div className="text-center mt-5">

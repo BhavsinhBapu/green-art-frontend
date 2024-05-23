@@ -280,15 +280,7 @@ const AllBuyOrders = ({ OpenBookBuy, show, customClass }: any) => {
                         >
                           <div className="col-4 px-0">
                             <div className="asset">
-                              <span
-                                className="greenText"
-                                style={{
-                                  fontSize: "11px",
-                                  lineHeight: "1.3",
-                                  cursor: "pointer",
-                                  wordBreak: "break-all",
-                                }}
-                              >
+                              <span className="greenText order-book-body-text">
                                 {formatCurrency(
                                   item.price,
                                   dashboard?.order_data?.total?.trade_wallet
@@ -299,15 +291,7 @@ const AllBuyOrders = ({ OpenBookBuy, show, customClass }: any) => {
                           </div>
                           <div className="col-4 px-0">
                             <div className="asset">
-                              <span
-                                className="asset-name"
-                                style={{
-                                  fontSize: "11px",
-                                  lineHeight: "1.3",
-                                  cursor: "pointer",
-                                  wordBreak: "break-all",
-                                }}
-                              >
+                              <span className="asset-name order-book-body-text">
                                 {formatCurrency(
                                   item.amount,
                                   dashboard?.order_data?.total?.trade_wallet
@@ -318,15 +302,7 @@ const AllBuyOrders = ({ OpenBookBuy, show, customClass }: any) => {
                           </div>
                           <div className="col-4 px-0">
                             <div className="asset">
-                              <span
-                                className="asset-name"
-                                style={{
-                                  fontSize: "11px",
-                                  lineHeight: "1.3",
-                                  cursor: "pointer",
-                                  wordBreak: "break-all",
-                                }}
-                              >
+                              <span className="asset-name order-book-body-text">
                                 {formatCurrency(
                                   item.total,
                                   dashboard?.order_data?.total?.trade_wallet
