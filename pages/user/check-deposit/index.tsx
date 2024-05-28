@@ -110,7 +110,7 @@ export default function CheckDeposit() {
         ) : (
           <div className="container margin-n-top-60 margin-bottom-30">
             <div className="row">
-              <div className="offset-md-2 col-md-8 shadow-sm section-padding-custom wallet-card-info-container">
+              <div className="offset-md-1 col-md-10 shadow-sm section-padding-custom wallet-card-info-container">
                 <div
                   onClick={() => {
                     router.back();
@@ -120,6 +120,20 @@ export default function CheckDeposit() {
                   <BiArrowBack />
                   <h5 className="font-bold">{t("Back")}</h5>
                 </div>
+                <p className="mt-2">
+                  {t(
+                    `If your deposit has not appeared on your balance yet, use the following form to check if the deposit has been received.`
+                  )}
+                  <br />
+                  {t(
+                    `So first, select the Network, then select the Coin and then enter the Transaction ID of the deposit that you made. `
+                  )}
+                  <br />
+                  {t(
+                    `Then click the Submit button. And then you can check the balance again.`
+                  )}
+                </p>
+
                 <div className="total-balance mt-4">
                   <h5>{t("Select Network")}</h5>
                   <div className="cp-select-area">

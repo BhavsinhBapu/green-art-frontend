@@ -104,9 +104,17 @@ export default function CheckDeposit() {
             <div className="row">
               <div className="col-12 shadow-sm section-padding-custom wallet-card-info-container">
                 <h3>Check Deposit</h3>
-                <p>
+                <p className="mt-2">
                   {t(
-                    `After performing the Deposit, enter the Transaction ID of the Deposit on this section.`
+                    `If your deposit has not appeared on your balance yet, use the following form to check if the deposit has been received.`
+                  )}
+                  <br />
+                  {t(
+                    `So first, select the Network, then select the Coin and then enter the Transaction ID of the deposit that you made. `
+                  )}
+                  <br />
+                  {t(
+                    `Then click the Submit button. And then you can check the balance again.`
                   )}
                 </p>
                 <div className="total-balance mt-4">
