@@ -84,11 +84,13 @@ function tronApiUrl(input = '') {
     'https://api.nileex.io',
     'https://nile.trongrid.io'
   ];
+  
+  let hasNetwork = network.includes(input.replace(/[/]$/g, ""));
 
-  if (input && network.includes(input)) {
+  if (input && hasNetwork) {
     return true;
   }
-  if (input && !network.includes(input)) {
+  if (input && !hasNetwork) {
     return false;
   }
   return network;
