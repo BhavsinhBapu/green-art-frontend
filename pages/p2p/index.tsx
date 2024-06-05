@@ -112,7 +112,7 @@ const P2P = ({ data }: any) => {
         {isLoggedIn && <P2pTopBar />}
         <P2pTab setFilters={setFilters} filters={filters} settings={settings} />
 
-        <div className="container-4xl glass-color-bg-custom p2pWork mt-5">
+        <div className="container-4xl glass-color-bg-custom p2pWork mt-5 backdrop-filter-none">
           <P2pFilter
             setFilters={setFilters}
             filters={filters}

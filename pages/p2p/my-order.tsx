@@ -24,7 +24,7 @@ const P2pOrder = () => {
         <P2pTopBar />
         <PlaceTopLeft />
         <PlaceBottomRight />
-        <div className="glass-color-bg-custom">
+        <div className="glass-color-bg-custom backdrop-filter-none">
           <div className="container-4xl">
             <div className="row">
               <div className="col-12">
@@ -60,7 +60,7 @@ const P2pOrder = () => {
             </div>
           </div>
         </div>
-        <div className="glass-color-bg-custom">
+        <div className="glass-color-bg-custom backdrop-filter-none">
           {selectedMenu === 1 && (
             <OrderTable actionFunction={myP2pOrderAction} filter={true} />
           )}

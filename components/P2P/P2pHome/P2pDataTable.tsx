@@ -69,7 +69,7 @@ export const P2pDataTable = ({
     toast.success(response.message);
   };
   return (
-    <div className="glass-color-bg-custom pt-5">
+    <div className="glass-color-bg-custom pt-5 backdrop-filter-none">
       <div className="container-4xl">
         <div className="row mx-0">
           <div className="table-responsive overflow-x-auto">

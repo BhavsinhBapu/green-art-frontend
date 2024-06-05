@@ -87,7 +87,7 @@ export const OrderTable = ({ actionFunction, filter = false }: any) => {
       )}
       <div className="row">
         <div className="col-12">
-          <div className="table-responsive overflow-hidden">
+          <div className="table-responsive overflow-x-auto">
             <table className="table mt-4">
               <thead>
                 <tr>
