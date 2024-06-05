@@ -126,14 +126,25 @@ const DepositHistory: NextPage = () => {
       Header: t("Status"),
       accessor: "status",
 
-      Cell: ({ cell: { value } }: any) =>
-        value == 1 ? (
-          <span className="badge badge-pill text-12 badge-success">Active</span>
-        ) : (
-          <span className="badge badge-pill text-12 badge-danger">
-            InActive
-          </span>
-        ),
+      Cell: ({ cell: { value } }: any) => (
+        <>
+          {value == 1 && (
+            <span className="badge badge-pill text-12 badge-success">
+              Accepted
+            </span>
+          )}
+          {value == 2 && (
+            <span className="badge badge-pill text-12 badge-danger">
+              Rejected
+            </span>
+          )}
+          {value == 0 && (
+            <span className="badge badge-pill text-12 badge-warning text-white">
+              Pending
+            </span>
+          )}
+        </>
+      ),
     },
   ];
   useEffect(() => {
