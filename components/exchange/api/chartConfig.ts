@@ -13,9 +13,9 @@ export const ENABLED_FEATURES = [
 
 export const DISABLED_FEATURES = [
   // "header_symbol_search",
-  "header_widget",
+  // "header_widget",
   "symbol_info",
-  "header_compare",
+  // "header_compare",
   // "header_chart_type",
   // "display_market_status",
   // "symbol_search_hot_key",
@@ -34,6 +34,7 @@ export const DISABLED_FEATURES = [
   // "header_fullscreen_button",
   // "header_indicators",
   // "header_interval_dialog_button",
+  "header_resolutions",
 ];
 
 export const INTERVAL = {
