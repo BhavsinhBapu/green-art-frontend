@@ -53,11 +53,11 @@ const ForgotPassword: NextPage = () => {
           </div>
           <div className="d-md-flex d-block align-items-center justify-content-center h-75">
             <div className="text-center text-md-left">
-              <h1 className="text-white">
+              <h1 className="authentication-page-text-color">
                 {t("Welcome To")} {settings.app_title}
               </h1>
               <Link href="/signin">
-                <p className="text-white h5">
+                <p className="authentication-page-text-color h5">
                   {t("Return to")}
                   <a className="text-theme" href="">
                     {t(" Sign In ")}

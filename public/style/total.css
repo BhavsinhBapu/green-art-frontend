@@ -17163,3 +17163,7 @@ input:checked + .gift-card-buy-slider:before {
   cursor: pointer;
   word-break: break-all;
 }
+
+.authentication-page-text-color {
+  color: var(--authentication-page-text-color) !important;
+}

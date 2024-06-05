@@ -75,6 +75,7 @@ Tags: admin, best react admin template, das
   --hover-bg-color: #fafafa;
   --percentage: 0%;
   --primary-box-shadow-color: rgba(0, 0, 0, 0.1);
+  --authentication-page-text-color: #ffffff;
 }
 
 :root[data-theme="dark"] {
@@ -109,6 +110,7 @@ Tags: admin, best react admin template, das
   --hover-bg-color: #383839;
   --percentage: 100%;
   --primary-box-shadow-color: rgba(255, 255, 255, 0.2);
+  --authentication-page-text-color: #ffffff;
 }
 
 html,
