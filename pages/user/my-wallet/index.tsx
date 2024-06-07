@@ -180,11 +180,13 @@ const MyWallet: NextPage = () => {
                   <TiArrowRepeat size={25} />
                 </li>
               ))} */}
-            <Link href={`/user/swap-coin?coin_id=${row?.original.id}`}>
-              <li className="toolTip relative cursor-pointer" title="swap">
-                <TiArrowRepeat size={25} />
-              </li>
-            </Link>
+            {parseInt(settings?.swap_status) === 1 && (
+              <Link href={`/user/swap-coin?coin_id=${row?.original.id}`}>
+                <li className="toolTip relative cursor-pointer" title="swap">
+                  <TiArrowRepeat size={25} />
+                </li>
+              </Link>
+            )}
           </ul>
         </div>
       ),
