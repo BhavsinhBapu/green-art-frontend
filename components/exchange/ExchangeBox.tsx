@@ -75,7 +75,14 @@ const ExchangeBox = () => {
 
   useEffect(() => {
     initialSetUp();
-  }, [currentPair, dashboard, tradingTab]);
+  }, [
+    currentPair,
+    dashboard?.order_data?.buy_price,
+    dashboard?.order_data?.sell_price,
+    dashboard?.order_data?.buy_amount,
+    dashboard?.order_data?.sell_amount,
+    tradingTab,
+  ]);
 
   return (
     <div className="exchange-box order-box">
