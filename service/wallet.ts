@@ -38,3 +38,8 @@ export const getFeeAmountApi = async (credential: any) => {
   const { data } = await request.post("/pre-withdrawal-process", credential);
   return data;
 };
+
+export const getTotalWalletBalanceApi = async () => {
+  const { data } = await request.get(`/wallet-total-value`);
+  return data;
+};

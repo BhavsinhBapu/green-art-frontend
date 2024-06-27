@@ -16781,7 +16781,7 @@ input:checked + .gift-card-buy-slider:before {
 }
 
 .border-b-1 {
-  border-bottom-width: 1px !important;
+  border-bottom: 1px solid !important;
 }
 
 .border-solid {

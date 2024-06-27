@@ -28,6 +28,8 @@ import WalletOverviewHeader from "components/wallet-overview/WalletOverviewHeade
 import { useRouter } from "next/router";
 import PlaceBottomRight from "components/gradient/placeBottomRight";
 import PlaceTopLeft from "components/gradient/placeTopLeft";
+import { getTotalWalletBalanceApi } from "service/wallet";
+import SectionLoading from "components/common/SectionLoading";
 const MyWallet: NextPage = () => {
   const { t } = useTranslation("common");
   const router = useRouter();
@@ -40,7 +42,10 @@ const MyWallet: NextPage = () => {
   const [allData, setAllData] = useState<any>();
   const [tradeList, setTradeList]: any = useState();
   const [coinList, setCoinList]: any = useState([]);
+  const [totalBalance, setTotalBalance] = useState<any>(0);
   const [selectedLimit, setSelectedLimit] = useState<any>("10");
+  const [loadingForTotalBalance, setLoadingForTotalBalance] = useState(false);
+
   useEffect(() => {
     if (router.query.errorMessage) {
       toast.error(router.query.errorMessage);
@@ -208,6 +213,17 @@ const MyWallet: NextPage = () => {
     setAllData(response);
   };
 
+  const getWalletTotalBalance = async () => {
+    setLoadingForTotalBalance(true);
+    const response: any = await getTotalWalletBalanceApi();
+    if (!response?.success) {
+      setLoadingForTotalBalance(false);
+      return;
+    }
+    setTotalBalance(response?.data?.total || 0);
+    setLoadingForTotalBalance(false);
+  };
+
   const LinkTopaginationString = async (link: any) => {
     if (link.url === null) return;
     if (link.label === walletList.current_page.toString()) return;
@@ -224,6 +240,10 @@ const MyWallet: NextPage = () => {
     const coinList = await appDashboardDataWithoutPair();
     setCoinList(coinList);
   };
+
+  useEffect(() => {
+    getWalletTotalBalance();
+  }, []);
 
   useEffect(() => {
     coinListApi();
@@ -260,21 +280,24 @@ const MyWallet: NextPage = () => {
               <PlaceTopLeft />
               <div className="col-md-12 px-0 margin-n-top-60 margin-bottom-30">
                 <div className="shadow-sm section-padding-custom wallet-card-info-container">
-                  <div className="py-5 border-b-1 border-solid border-border-color">
-                    <div>
-                      <h6>{t("Total Balance")}</h6>
-                      <div className="pt-3">
-                        <div>
-                          <h3 className="mobile-font-size-for-total-wallet">
-                            {allData?.total
-                              ? parseFloat(allData?.total).toFixed(8)
-                              : 0}
-                            {""} {settings?.currency}
-                          </h3>
+                  {loadingForTotalBalance ? (
+                    <SectionLoading />
+                  ) : (
+                    <div className="py-5 border-b-1 border-border-color">
+                      <div>
+                        <h6>{t("Total Balance")}</h6>
+                        <div className="pt-3">
+                          <div>
+                            <h3 className="mobile-font-size-for-total-wallet">
+                              {totalBalance}
+                              {""} {settings?.currency}
+                            </h3>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
+                  )}
+
                   <div className="asset-balances-area cstm-loader-area">
                     <div className="asset-balances-left">
                       <div className="section-wrapper px-0">
