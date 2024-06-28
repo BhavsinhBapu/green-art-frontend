@@ -136,7 +136,7 @@ const Home: NextPage = ({
                         <img
                           src={
                             landing_banner_image ||
-                            "/undraw_crypto_flowers_re_dyqo.svg.svg"
+                            "/undraw_crypto_flowers_re_dyqo.svg"
                           }
                         />
                       </div>

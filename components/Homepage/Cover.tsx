@@ -94,7 +94,7 @@ const Cover = ({ landing, loggedin, landing_banner_image }: any) => {
                 <img
                   src={
                     landing_banner_image ||
-                    "/undraw_crypto_flowers_re_dyqo.svg.svg"
+                    "/undraw_crypto_flowers_re_dyqo.svg"
                   }
                   height={440}
                   alt="banner"
