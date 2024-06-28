@@ -178,7 +178,7 @@ const Referral: NextPage = () => {
                   </table>
                 </div>
               </div>
-              <div className="my-earnings-table">
+              {/* <div className="my-earnings-table">
                 <h4 className="section-title-medium font-bold">
                   {t("My Earnings")}
                 </h4>
@@ -218,7 +218,7 @@ const Referral: NextPage = () => {
                     </tbody>
                   </table>
                 </div>
-              </div>
+              </div> */}
             </div>{" "}
           </div>
         </div>
