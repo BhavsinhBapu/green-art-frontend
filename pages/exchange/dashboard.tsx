@@ -100,7 +100,7 @@ const Dashboard: NextPage = () => {
   }
 
   return (
-    <div className="container-dashboard container-fluid">
+    <div className="container-dashboard">
       <div className="background-col">
         <Head>
           <title>
@@ -237,7 +237,7 @@ const Dashboard: NextPage = () => {
               </div>
             </div>
 
-            <div className="cp-user-custom-card exchange-area">
+            <div className="cp-user-custom-card exchange-area container-fluid">
               <div id="dashboard">
                 <div className="row">
                   <div className="col-xl-12 col-12 mt-4 future-exchange-border-color border-1 border-solid">
