@@ -100,7 +100,7 @@ const Dashboard: NextPage = () => {
   }
 
   return (
-    <div className="container-dashboard">
+    <div className="container-dashboard container-fluid">
       <div className="background-col">
         <Head>
           <title>
