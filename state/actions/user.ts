@@ -201,7 +201,12 @@ export const SignupAction =
         progress: undefined,
         className: "dark-toast",
       });
-      Router.push("/verify-email");
+
+      if (response?.data?.is_verified == 1) {
+        Router.push("/signin");
+      } else {
+        Router.push("/verify-email");
+      }
     } else if (response.success === false) {
       dispatch(setAuthenticationState(false));
       toast.error(responseMessage, {
