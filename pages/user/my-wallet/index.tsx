@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import React, { useEffect, useState } from "react";
 import { IoWalletOutline } from "react-icons/io5";
 import { TiArrowRepeat } from "react-icons/ti";
+import ReactPaginate from "react-paginate";
 
 import {
   HiOutlineBanknotes,
@@ -206,11 +207,20 @@ const MyWallet: NextPage = () => {
     }
   };
 
+  const handlePageClick = (event: any) => {
+    getWalletLists(
+      `/wallet-list?page=${
+        event.selected + 1
+      }&per_page=${selectedLimit}&search=${search}`
+    );
+  };
+
   const getWalletLists = async (url: string) => {
     const response: any = await WalletListApiAction(url, setProcessing);
+    console.log("response", response);
     setWalletList(response?.wallets);
     setChangeable(response?.wallets?.data);
-    setAllData(response);
+    // setAllData(response);
   };
 
   const getWalletTotalBalance = async () => {
@@ -224,18 +234,19 @@ const MyWallet: NextPage = () => {
     setLoadingForTotalBalance(false);
   };
 
-  const LinkTopaginationString = async (link: any) => {
-    if (link.url === null) return;
-    if (link.label === walletList.current_page.toString()) return;
-    const splitLink = link.url.split("api");
-    const response: any = await WalletListApiAction(
-      splitLink[1] + "&per_page=" + selectedLimit + "&search=" + search,
-      setProcessing
-    );
-    setWalletList(response?.wallets);
-    setChangeable(response?.wallets?.data);
-  };
+  // const LinkTopaginationString = async (link: any) => {
+  //   if (link.url === null) return;
+  //   if (link.label === walletList.current_page.toString()) return;
+  //   const splitLink = link.url.split("api");
+  //   const response: any = await WalletListApiAction(
+  //     splitLink[1] + "&per_page=" + selectedLimit + "&search=" + search,
+  //     setProcessing
+  //   );
+  //   setWalletList(response?.wallets);
+  //   setChangeable(response?.wallets?.data);
+  // };
 
+  console.log("Changeable", Changeable);
   const coinListApi = async () => {
     const coinList = await appDashboardDataWithoutPair();
     setCoinList(coinList);
@@ -246,11 +257,15 @@ const MyWallet: NextPage = () => {
   }, []);
 
   useEffect(() => {
-    coinListApi();
-    getWalletLists(
-      `/wallet-list?page=1&per_page=${selectedLimit}&search=${search}`
-    );
+    const debounceTimeout = setTimeout(() => {
+      coinListApi();
+      getWalletLists(
+        `/wallet-list?page=1&per_page=${selectedLimit}&search=${search}`
+      );
+    }, 500); // Adjust the delay as needed
+
     return () => {
+      clearTimeout(debounceTimeout);
       setWalletList(null);
     };
   }, [search, selectedLimit]);
@@ -314,50 +329,23 @@ const MyWallet: NextPage = () => {
                               verticalAlignData={`middle`}
                               isOverflow={true}
                             />
-                            <div
-                              className="pagination-wrapper"
-                              id="assetBalances_paginate"
-                            >
-                              <span>
-                                {walletList?.links?.map(
-                                  (link: any, index: number) =>
-                                    link.label === "&laquo; Previous" ? (
-                                      <a
-                                        className="paginate-button"
-                                        onClick={() =>
-                                          LinkTopaginationString(link)
-                                        }
-                                        key={index}
-                                      >
-                                        <i className="fa fa-angle-left"></i>
-                                      </a>
-                                    ) : link.label === "Next &raquo;" ? (
-                                      <a
-                                        className="paginate-button"
-                                        onClick={() =>
-                                          LinkTopaginationString(link)
-                                        }
-                                        key={index}
-                                      >
-                                        <i className="fa fa-angle-right"></i>
-                                      </a>
-                                    ) : (
-                                      <a
-                                        className={`paginate_button paginate-number ${
-                                          link.active === true && "text-warning"
-                                        }`}
-                                        aria-controls="assetBalances"
-                                        data-dt-idx="1"
-                                        onClick={() =>
-                                          LinkTopaginationString(link)
-                                        }
-                                        key={index}
-                                      >
-                                        {link.label}
-                                      </a>
-                                    )
+
+                            <div className="row justify-content-center mt-5">
+                              <ReactPaginate
+                                nextLabel=">"
+                                onPageChange={handlePageClick}
+                                pageRangeDisplayed={5}
+                                pageCount={Math.ceil(
+                                  walletList?.total / selectedLimit
                                 )}
-                              </span>
+                                previousLabel="<"
+                                renderOnZeroPageCount={null}
+                                className={`d-flex align-items-center justify-content-center`}
+                                pageLinkClassName={`paginate-number`}
+                                activeLinkClassName={`active-paginate-cls`}
+                                previousLinkClassName={`text-primary-color text-25 mr-2`}
+                                nextLinkClassName={`text-primary-color text-25 ml-2`}
+                              />
                             </div>
                           </div>
                         </div>
