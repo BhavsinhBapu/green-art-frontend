@@ -41,3 +41,4 @@ jobs:
 
           # Start the application
           nohup $NVM_DIR/versions/node/v20.18.0/bin/npm run start
+          exit
