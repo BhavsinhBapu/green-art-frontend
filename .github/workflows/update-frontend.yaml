@@ -39,6 +39,9 @@ jobs:
               echo "No process found using port $PORT"
           fi
 
-          # Start the application
-          nohup $NVM_DIR/versions/node/v20.18.0/bin/npm run start
+          # Start the application in the background with logging
+          nohup $NVM_DIR/versions/node/v20.18.0/bin/npm run start > /home/gacv2/green-art-frontend/start.log 2>&1 &
+
+          # Check the process and exit
+          echo "Application started in the background. Exiting now."
           exit
