@@ -32,6 +32,7 @@ yarn-error.log*
 .env.production.local
 .vscode
 .idea
+start.log
 
 # vercel
 .vercel
