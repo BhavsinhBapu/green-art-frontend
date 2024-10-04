@@ -24,6 +24,16 @@ jobs:
         script: |
           export NVM_DIR="$HOME/.nvm"
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" 
+          PORT=7000
+          PID=$(lsof -t -i:$PORT)
+          if [ ! -z "$PID" ]; then
+              echo "Killing process $PID using port $PORT"
+              kill -9 $PID
+          else
+              echo "No process found using port $PORT"
+          fi
+
+          # Navigate to the project directory and build and start the application
           cd /home/gacv2/green-art-frontend && \
           $NVM_DIR/versions/node/v20.18.0/bin/npm run build && \
           $NVM_DIR/versions/node/v20.18.0/bin/npm run start &
