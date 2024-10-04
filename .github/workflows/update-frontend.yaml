@@ -36,4 +36,4 @@ jobs:
           # Navigate to the project directory and build and start the application
           cd /home/gacv2/green-art-frontend && \
           $NVM_DIR/versions/node/v20.18.0/bin/npm run build && \
-          $NVM_DIR/versions/node/v20.18.0/bin/npm run start &
+          $NVM_DIR/versions/node/v20.18.0/bin/npm run start 
