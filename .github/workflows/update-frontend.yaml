@@ -27,7 +27,7 @@ jobs:
           
           # Navigate to the project directory and build the application
           cd /home/gacv2/green-art-frontend && \
-          cd /home/gacv2/green-art-frontend git pull origin main && \
+          git pull origin main && \
           $NVM_DIR/versions/node/v20.18.0/bin/npm run build 
           
           # Check if the port is in use and kill the process
