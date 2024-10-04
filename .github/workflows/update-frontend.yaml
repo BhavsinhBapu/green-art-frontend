@@ -26,4 +26,4 @@ jobs:
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" 
           cd /home/gacv2/green-art-frontend && \
           $NVM_DIR/versions/node/v20.18.0/bin/npm run build && \
-          $NVM_DIR/versions/node/v20.18.0/bin/npm run start 
+          $NVM_DIR/versions/node/v20.18.0/bin/npm run start &
