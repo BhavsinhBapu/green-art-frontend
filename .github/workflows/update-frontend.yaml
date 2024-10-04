@@ -23,5 +23,5 @@ jobs:
         password: ${{ env.PASSWORD }}
         script: |
           cd /home/gacv2/green-art-frontend && \
-          npm run build && \
-          npm run start &
+          /home/gacv2/.nvm/versions/node/v20.18.0/bin/npm run build && \
+          /home/gacv2/.nvm/versions/node/v20.18.0/bin/npm run start &
