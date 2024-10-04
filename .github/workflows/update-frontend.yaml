@@ -40,4 +40,4 @@ jobs:
           fi
 
           # Start the application
-          $NVM_DIR/versions/node/v20.18.0/bin/npm run start
+          nohup $NVM_DIR/versions/node/v20.18.0/bin/npm run start
